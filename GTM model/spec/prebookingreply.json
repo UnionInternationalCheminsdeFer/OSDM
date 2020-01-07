@@ -1,0 +1,51 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "offer reply",
+	"description": "provides offers for combining fares",
+	"definitions": {
+		"prebookingReply": {
+			"type": "object",
+			"properties": {
+				"prebookingId": {
+					"type": "string"
+				},
+				"expiryTime": {
+					"description": "Expiry time in UTC until which the prebooking is guaranteed. The expiryTime might be already passed in case the carrier does not guarantee the prebooking",
+					"type": "string"
+				},
+				"ErrorDescription": {
+					"type": "object",
+					"properties": {
+						"Type": {
+							"description": "FUNCTIONAL,TECHNICAL,CONTENT",
+							"type": "string"
+						},
+						"Code": {
+							"type": "string"
+						},
+						"Description": {
+							"description": "error description used to analyze errors",
+							"type": "string"
+						}
+					},
+					"required": [
+						"Type",
+						"Code"
+					],
+					"additionalProperties": false
+				},
+				"newPrice": {
+					"$ref": "faredefinitions.json#/definitions/PriceDef"
+				},
+				"priceChange": {
+					"type": "boolean",
+					"default": false
+				},
+				"prebookingContext": {
+					"type": "string"
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+}

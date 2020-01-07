@@ -1,0 +1,169 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "offer reply",
+	"description": "provides offers for combining fares",
+	"definitions": {
+		"OfferReply": {
+			"type": "object",
+			"properties": {
+				"travelDescription": {
+					"$ref": "anxilliarydefinitions.json#/definitions/TripDef"
+				},
+				"travelSection": {
+					"$ref": "anxilliarydefinitions.json#/definitions/TravelSectionDef"
+				},
+				"Offers": {
+					"type": "array",
+					"items": {
+						"title": "Offer",
+						"type": "object",
+						"properties": {
+							"Offer": {
+								"$ref": "anxilliarydefinitions.json#/definitions/OfferDef"
+							}
+						},
+						"required": [
+							"Offer"
+						],
+						"additionalProperties": false
+					}
+				},
+				"FareProperties": {
+					"type": "object",
+					"properties": {
+						"fullfillmentConstraints": {
+							"type": "array",
+							"items": [
+								{
+									"$ref": "faredefinitions.json#/definitions/FullfillmentConstraintDef"
+								}
+							],
+							"additionalItems": false
+						},
+						"reductionConstarints": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ReductionConstraintDef"
+							}
+						},
+						"zoneDefinitions": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ZoneDefinitionDef"
+							}
+						},
+						"afterSalesConditions": {
+							"description": "list of allowed after sales transactions and conditions",
+							"type": "array",
+							"minItems": 1,
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/AfterSalesConditionDef"
+							}
+						},
+						"combinationConstraints": {
+							"type": "array",
+							"minItems": 1,
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/FareCombinationConstraintDef"
+							}
+						},
+						"serviceClassDefinitions": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ServiceClassDef"
+							}
+						},
+						"serviceLevelDefinitions": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ServiceLevelDef"
+							}
+						},
+						"texts": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/TextDef"
+							}
+						},
+						"prices": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/PriceDef"
+							}
+						},
+						"regionalConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/RegionalConstraintDef"
+							}
+						},
+						"serviceConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ServiceConstraintDef"
+							}
+						},
+						"carrierConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/CarrierConstraintDef"
+							}
+						},
+						"passengerConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/PassengerConstraintDef"
+							}
+						},
+						"ReservationParameters": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ReservationParameterDef"
+							}
+						}
+					},
+					"required": [
+						"combinationConstraints",
+						"serviceClassDefinitions",
+						"texts",
+						"regionalConstraints"
+					],
+					"additionalProperties": false
+				},
+				"ErrorDescription": {
+					"type": "object",
+					"properties": {
+						"Type": {
+							"description": "FUNCTIONAL,TECHNICAL,CONTENT",
+							"type": "string"
+						},
+						"Code": {
+							"type": "string"
+						},
+						"Description": {
+							"description": "error description used to analyze errors",
+							"type": "string"
+						}
+					},
+					"required": [
+						"Type",
+						"Code"
+					],
+					"additionalProperties": false
+				},
+				"travelDescriptionChange": {
+					"description": "TRAIN_NUMBER_CHANGE,TIME_CHANGE, CONNECTION_TIME_CHANGE",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"travelDescription",
+				"travelSection"
+			],
+			"additionalProperties": false
+		}
+	}
+}
