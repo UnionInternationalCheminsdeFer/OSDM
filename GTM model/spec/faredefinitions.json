@@ -1,0 +1,1098 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v1/faredefinitions.json",
+	"description": "object definitions used in a fare structure",
+	"definitions": {
+		"AfterSalesConditionDef": {
+			"type": "object",
+			"properties": {
+				"transactionType": {
+					"description": "REXCHANGE, UPGRADE,..",
+					"type": "string"
+				},
+				"fee": {
+					"description": "optional in case there is no fee but the after sales transaction is allowed",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/CurrencyPriceDef"
+					}
+				},
+				"applicationTime": {
+					"type": "object",
+					"properties": {
+						"timeUnit": {
+							"description": "MINUTES,DAYS,HOURS",
+							"type": "string"
+						},
+						"timeValue": {
+							"type": "number"
+						},
+						"timeReference": {
+							"description": "BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY",
+							"type": "string"
+						}
+					},
+					"required": [
+						"timeUnit",
+						"timeValue",
+						"timeReference"
+					],
+					"additionalProperties": false
+				},
+				"carrierFee": {
+					"description": "indicates that the fee belongs to the carrier",
+					"type": "boolean",
+					"default": true
+				},
+				"individualContracts": {
+					"description": "indicates that the after sales of this fare can be treated independently per person.",
+					"type": "boolean",
+					"default": false
+				}
+			},
+			"required": [
+				"transactionType",
+				"applicationTime"
+			],
+			"additionalProperties": false
+		},
+		"AfterSalesRulesDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"afterSalesRules": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/AfterSalesConditionDef"
+					}
+				}
+			},
+			"required": [
+				"id",
+				"afterSalesRules"
+			],
+			"additionalProperties": false
+		},
+		"CalendarDef": {
+			"description": "valid on all days in case no calendar is provided",
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"fromDate": {
+					"type": "string"
+				},
+				"untilDate": {
+					"type": "string"
+				},
+				"dates": {
+					"description": "dates included in the calendar. In case no dates are provided the entire range is assumed to be valid",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"UTCoffset": {
+					"description": "offsett to UTC in minutes (number of minutes to be added to get UTC dates)",
+					"type": "number"
+				}
+			},
+			"required": [
+				"id",
+				"fromDate",
+				"untilDate",
+				"UTCoffset"
+			],
+			"additionalProperties": false
+		},
+		"CarrierConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				}
+			},
+			"additionalProperties": false,
+			"oneOf": [
+				{
+					"type": "object",
+					"properties": {
+						"includedCarrier": {
+							"type": "array",
+							"items": {
+								"$ref": "definitions.json#/definitions/CompanyDef"
+							}
+						},
+						"excludedCarrier": {
+							"type": "array",
+							"items": {
+								"$ref": "definitions.json#/definitions/CompanyDef"
+							}
+						}
+					},
+					"additionalProperties": false
+				}
+			]
+		},
+		"CarrierResourceLocationDef": {
+			"type": "object",
+			"properties": {
+				"carrier": {
+					"$ref": "definitions.json#/definitions/CompanyDef"
+				},
+				"serviceBrandCode": {
+					"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+				},
+				"onlineResource": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/OnlineResourceDef"
+					}
+				}
+			},
+			"required": [
+				"carrier",
+				"onlineResource"
+			],
+			"additionalProperties": false
+		},
+		"ConnectionPointDef": {
+			"description": "connection point connecting two fare regimes",
+			"type": "array",
+			"items": {
+				"$ref": "definitions.json#/definitions/StationDef"
+			}
+		},
+		"CurrencyPriceDef": {
+			"type": "object",
+			"minProperties": 1,
+			"properties": {
+				"currency": {
+					"$ref": "definitions.json#/definitions/CurrencyDef"
+				},
+				"amount": {
+					"type": "number"
+				},
+				"vatDetail": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Country": {
+								"$ref": "definitions.json#/definitions/CountryDef"
+							},
+							"Amount": {
+								"type": "number"
+							},
+							"Percentage": {
+								"type": "number"
+							},
+							"taxId": {
+								"type": "string"
+							},
+							"scope": {
+								"description": "scope where the VAT applies: INTERNALTIONAL, NATIONAL, SHORT_DISTANCE, LONG_DISTANCE",
+								"type": "string"
+							}
+						},
+						"required": [
+							"Country"
+						],
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": [
+				"currency",
+				"amount"
+			],
+			"additionalProperties": false
+		},
+		"FareCombinationModelDef": {
+			"type": "object",
+			"properties": {
+				"model": {
+					"description": "SEPARATE_TICKET.SEPARATE_CONTRACT,CLUSTERING,COMBINING",
+					"type": "string"
+				},
+				"combinableCarrier": {
+					"description": "list of all carriers where the model can be applied, in case the list is empty all combinations are allowed.",
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/CompanyDef"
+					}
+				},
+				"onlyWhenCombined": {
+					"description": "this combination model applies only in case the fare is combined with another carrier",
+					"type": "boolean",
+					"default": false
+				},
+				"referenceCluster": {
+					"description": "in case of CLUSTERING model: the cluster to which the fare belongs",
+					"type": "string"
+				},
+				"allowedClusters": {
+					"description": "in case of CLUSTERIMNG model: the other clusters taht allow a combination",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"allowedAllocators": {
+					"description": "list of allowed allocators. in case the list is empty all allocators with a sales contract are permitted.",
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/CompanyDef"
+					}
+				},
+				"allowedCommonContracts": {
+					"description": "list of carriers where a common contract with separate tickets are allowed. ",
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/CompanyDef"
+					}
+				}
+			},
+			"required": [
+				"model"
+			],
+			"additionalProperties": false
+		},
+		"FareCombinationConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"combinationModels": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/FareCombinationModelDef"
+					}
+				}
+			},
+			"required": [
+				"id",
+				"combinationModels"
+			],
+			"additionalProperties": false
+		},
+		"FullfillmentConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"acceptedFullfillmentTypes": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"description": "SIP - secure paper tickets; SID - security in data (signed bar code); SIS - security in system",
+						"type": "string"
+					}
+				},
+				"acceptedBarCodes": {
+					"description": "for SiD fulllfillment one of the listed bar codes is required",
+					"type": "array",
+					"items": {
+						"description": "according IRS 90918-9: FCB, TLB, SSB",
+						"type": "string"
+					}
+				},
+				"acceptedSiS": {
+					"description": "for SiD fullfillment one of the listed interfaces is required",
+					"type": "array",
+					"items": {
+						"description": "registry90918-4;peertopeer90918-4",
+						"type": "string"
+					}
+				},
+				"individualTicketingPermitted": {
+					"description": "a seprate fullfillment per traveler is permitted",
+					"type": "boolean"
+				},
+				"requiredPersonalData": {
+					"description": "required personal data in the booking",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"description": "NAME,DATEOFBIRTH,GENDER,ID-CARD,PASSPORT,E-MAIL, ...",
+								"type": "string"
+							},
+							"Security": {
+								"description": "SIP,SID,SIS",
+								"type": "string"
+							}
+						},
+						"required": [
+							"id"
+						],
+						"additionalProperties": false
+					}
+				},
+				"ticketHolderOnly": {
+					"description": "personal data are required for the ticket holder only",
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"id",
+				"acceptedFullfillmentTypes",
+				"individualTicketingPermitted"
+			],
+			"additionalProperties": false
+		},
+		"OnlineResourceDef": {
+			"type": "object",
+			"properties": {
+				"resourceType": {
+					"description": "The resource provides offers bases on trains or based on areas. Train based offers must start and end at a read station and are not splitted inbetween a train run . Values TRAIN, AREA",
+					"type": "string"
+				},
+				"interfaceType": {
+					"description": "\"TAPTSI-B5\", \"\"nTM\",..",
+					"type": "string"
+				},
+				"version": {
+					"type": "string"
+				},
+				"system": {
+					"description": "system where the offer can be found (e.r. for TAP-TSI-B5 the reservation system code)",
+					"type": "string"
+				}
+			},
+			"required": [
+				"interfaceType"
+			],
+			"additionalProperties": false
+		},
+		"PassengerConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"nameRef": {
+					"type": "string"
+				},
+				"upperAgeLimit": {
+					"type": "number"
+				},
+				"lowerAgeLimit": {
+					"type": "number"
+				},
+				"ageLimitToTravelAlone": {
+					"type": "number"
+				},
+				"ageLimitForReservation": {
+					"type": "number"
+				},
+				"isAncilliaryItem": {
+					"description": "to indicate dogs, bicycles,.. ",
+					"type": "boolean",
+					"default": false
+				},
+				"combinationConstraint": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"maxNumber": {
+								"description": "number of passengers allowed per accompanying passenger",
+								"type": "number"
+							},
+							"passengerTypeRef": {
+								"description": "reference to the type of the acompanying passenger",
+								"type": "string"
+							}
+						},
+						"required": [
+							"maxNumber",
+							"passengerTypeRef"
+						],
+						"additionalProperties": false
+					}
+				},
+				"includedFreePassenger": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"number": {
+								"description": "number of passengers that can be included with one passenger for free. The number is given in fractions. The calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog for free)",
+								"type": "number"
+							},
+							"passengerTypeRef": {
+								"type": "string"
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"passengerWeight": {
+					"type": "number"
+				},
+				"maxWeightedPasseners": {
+					"description": "the total weighted number of passengers on the offer is restricted to be equal or smaller than this  maximum ",
+					"type": "number"
+				},
+				"minWeightedPassengers": {
+					"description": "the total weighted number of passengers on the offer is restricted to equal or larger than this minimum",
+					"type": "number"
+				}
+			},
+			"required": [
+				"id",
+				"nameRef"
+			],
+			"additionalProperties": false
+		},
+		"PriceDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"price": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/CurrencyPriceDef"
+					}
+				}
+			},
+			"required": [
+				"id",
+				"price"
+			],
+			"additionalProperties": false
+		},
+		"PersonalDataConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"requiredData": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"properties": {
+							"dataItem": {
+								"type": "string"
+							},
+							"transfer": {
+								"description": "BOOKING,SIS_CONTROL,SID_CONTROL",
+								"type": "array",
+								"minItems": 1,
+								"items": {
+									"type": "string"
+								}
+							},
+							"ticketHolderOnly": {
+								"type": "boolean",
+								"default": false
+							}
+						},
+						"required": [
+							"dataItem",
+							"transfer"
+						],
+						"additionalProperties": false
+					}
+				},
+				"allowedChanges": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"acceptedReason": {
+								"description": "IN_GENERAL,MARRIAGE,DOCUMENT_CHANGE,AGENT_ERROR",
+								"type": "string"
+							},
+							"timeLimit": {
+								"description": "the cgange is limited to n hours after booking confirmation",
+								"type": "number"
+							}
+						},
+						"required": [
+							"acceptedReason"
+						],
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": [
+				"id"
+			],
+			"additionalProperties": false
+		},
+		"RegionalConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"entryConnectionPoint": {
+					"$ref": "#/definitions/ConnectionPointDef"
+				},
+				"exitConnectionPoint": {
+					"$ref": "#/definitions/ConnectionPointDef"
+				},
+				"RegionalValidity": {
+					"$ref": "ticketdefinitions.json#/definitions/RegionalValidityDef"
+				},
+				"distance": {
+					"description": "distance in km for statistics ",
+					"type": "number"
+				}
+			},
+			"additionalProperties": false
+		},
+		"ReservationParameterDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"reservationRequired": {
+					"type": "boolean",
+					"default": false
+				},
+				"reservationParams918-1": {
+					"type": "object",
+					"properties": {
+						"travelClass": {
+							"description": "90918-1 class code in reservation ",
+							"type": "string"
+						},
+						"serviceLevelCode": {
+							"description": "service level code defined in UIC 90918-1",
+							"type": "string"
+						},
+						"serviceCode": {
+							"description": "service code to be used in reservation",
+							"type": "string"
+						},
+						"berthType": {
+							"type": "string"
+						},
+						"coachTypeCode": {
+							"type": "string"
+						},
+						"compartmentTypeCode": {
+							"type": "string"
+						},
+						"TariffCode": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"travelClass",
+						"serviceLevelCode",
+						"serviceCode"
+					],
+					"additionalProperties": false
+				},
+				"reservationOptions": {
+					"description": "options for reservations, Not: full details might be provided in the online version only",
+					"type": "object",
+					"properties": {
+						"preferences": {
+							"description": "possible preferences to be requested in reservation without changing the fare",
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/ReservationOptionGroupDef"
+							}
+						},
+						"graficalReservation": {
+							"description": "grafical reservation is supported, interface type \"NO\",\"UIC_918\",..",
+							"type": "string"
+						},
+						"serviceBrands": {
+							"description": "service brands where the options apply",
+							"type": "array",
+							"items": {
+								"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+							}
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"id"
+			],
+			"additionalProperties": false
+		},
+		"ReservationOptionGroupDef": {
+			"type": "object",
+			"properties": {
+				"optionGroup": {
+					"type": "string"
+				},
+				"option": {
+					"type": "array",
+					"minItems": 1
+				}
+			},
+			"additionalProperties": false
+		},
+		"ReductionConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"requiredCards": {
+					"description": "one of the listed cards is required to be valid at the time of travel. ",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"cardId": {
+								"description": "code of the card type according to code list",
+								"type": "string"
+							},
+							"cardName": {
+								"description": "card name for printing on tickets",
+								"type": "string"
+							},
+							"cardClass": {
+								"$ref": "#/definitions/ServiceClassDef"
+							}
+						},
+						"required": [
+							"cardId"
+						],
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": [
+				"id",
+				"requiredCards"
+			],
+			"additionalProperties": false
+		},
+		"ReductionCardDef": {
+			"type": "object",
+			"properties": {
+				"CardIssuer": {
+					"$ref": "definitions.json#/definitions/CompanyDef"
+				},
+				"CardName": {
+					"$ref": "#/definitions/TextDef"
+				},
+				"CardId": {
+					"type": "string"
+				},
+				"serviceClasses": {
+					"description": "list of service classes in case this class is available for different classes",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"serviceClass": {
+								"$ref": "#/definitions/ServiceClassDef"
+							}
+						},
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": [
+				"CardIssuer",
+				"CardName",
+				"CardId"
+			],
+			"additionalProperties": false
+		},
+		"SalesAvailabilityConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"salesRestrictions": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"properties": {
+							"salesDates": {
+								"$ref": "#/definitions/CalendarDef"
+							},
+							"startOfSale": {
+								"$ref": "#/definitions/TimeReferenceDef"
+							},
+							"endOfSale": {
+								"$ref": "#/definitions/TimeReferenceDef"
+							}
+						},
+						"required": [
+							"salesDates"
+						],
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": [
+				"id",
+				"salesRestrictions"
+			],
+			"additionalProperties": false
+		},
+		"ServiceClassDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "A,B,C,D",
+					"type": "string"
+				},
+				"textId": {
+					"description": "id of the text describing the class",
+					"type": "string"
+				},
+				"classicClass": {
+					"description": "FIRST,SECOND",
+					"type": "string"
+				}
+			},
+			"required": [
+				"id"
+			],
+			"additionalProperties": false
+		},
+		"ServiceConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"id"
+			],
+			"additionalProperties": false,
+			"oneOf": [
+				{
+					"type": "object",
+					"properties": {
+						"includedServiceBrands": {
+							"type": "array",
+							"items": {
+								"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+							}
+						}
+					},
+					"additionalProperties": false
+				},
+				{
+					"type": "object",
+					"properties": {
+						"excludedServiceBrands": {
+							"type": "array",
+							"items": {
+								"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+							}
+						}
+					},
+					"additionalProperties": false
+				}
+			]
+		},
+		"ServiceLevelDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"combiningServiceClasses": {
+					"description": "list of service class ids that can be combined with these service levels",
+					"type": "array",
+					"items": {
+						"description": "service classes that are allowed in combination with these service levels",
+						"type": "string"
+					}
+				},
+				"textRef": {
+					"description": "id of the text describing the service level",
+					"type": "string"
+				},
+				"includesClassName": {
+					"description": "indicates that the class name is included",
+					"type": "boolean",
+					"default": true
+				},
+				"reservationParameterId": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"id"
+			],
+			"additionalProperties": false
+		},
+		"StationResourceLocationDef": {
+			"type": "object",
+			"properties": {
+				"onlineResource": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/OnlineResourceDef"
+					}
+				},
+				"stations": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/StationDef"
+					}
+				},
+				"connectionPoints": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ConnectionPointDef"
+					}
+				}
+			},
+			"required": [
+				"onlineResource"
+			],
+			"additionalProperties": false
+		},
+		"TextDef": {
+			"description": "data type for texts with translations)",
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"textUTF8": {
+					"type": "string"
+				},
+				"translations": {
+					"type": "object",
+					"properties": {
+						"language": {
+							"$ref": "definitions.json#/definitions/LanguageDef"
+						},
+						"textUTF8": {
+							"type": "string"
+						},
+						"text": {
+							"description": "text without special characters according to ICAO specification",
+							"type": "string"
+						},
+						"shortTextUtf8": {
+							"type": "string"
+						},
+						"shortText": {
+							"description": "text without special characters according to ICAO specification",
+							"type": "string"
+						}
+					},
+					"required": [
+						"language",
+						"textUTF8",
+						"text"
+					],
+					"additionalProperties": false
+				},
+				"text": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				},
+				"shortTextUtf8": {
+					"type": "string"
+				},
+				"shortText": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"textUTF8",
+				"text"
+			],
+			"additionalProperties": false
+		},
+		"TimeReferenceDef": {
+			"type": "object",
+			"properties": {
+				"timeUnit": {
+					"description": "DAY,HOUR,MINUTE",
+					"type": "string"
+				},
+				"value": {
+					"type": "number"
+				},
+				"timeReference": {
+					"description": "BEFORE_DEPARTURE,AFTER_DEPARTURE,BEFORE_VALIDITY",
+					"type": "string"
+				}
+			},
+			"required": [
+				"timeUnit",
+				"value",
+				"timeReference"
+			],
+			"additionalProperties": false
+		},
+		"TrainResourceLocationDef": {
+			"type": "object",
+			"properties": {
+				"carrier": {
+					"$ref": "definitions.json#/definitions/CompanyDef"
+				},
+				"trainId": {
+					"type": "string"
+				},
+				"onlineResource": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/OnlineResourceDef"
+					}
+				}
+			},
+			"required": [
+				"carrier",
+				"trainId",
+				"onlineResource"
+			],
+			"additionalProperties": false
+		},
+		"TravelValidityConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"validTravelDates": {
+					"$ref": "#/definitions/CalendarDef"
+				},
+				"validityRange": {
+					"type": "object",
+					"properties": {
+						"timeUnit": {
+							"description": "DAYS, HOURS, MINUTES",
+							"type": "string"
+						},
+						"value": {
+							"type": "number"
+						},
+						"hoursAfterMidnight": {
+							"description": "validity extended after midnight",
+							"type": "number"
+						}
+					},
+					"required": [
+						"timeUnit",
+						"value"
+					],
+					"additionalProperties": false
+				},
+				"excludedTimeRange": {
+					"description": "time ranges excluded from the validity (e.g. off peak tickets)",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"from": {
+								"description": "minutes of the day in the time zone of travel",
+								"type": "number"
+							},
+							"until": {
+								"description": "minutes of the day in the time zone of travel",
+								"type": "number"
+							},
+							"scope": {
+								"description": "START_OF_TRAVEL,COMPLETE_RANGE",
+								"type": "string"
+							}
+						},
+						"required": [
+							"from",
+							"until",
+							"scope"
+						],
+						"additionalProperties": false
+					}
+				},
+				"numberOfTravelDays": {
+					"description": "number of allowed travel days (e.g. 3 travel days within 2 weeks)",
+					"type": "number"
+				},
+				"returnConstraint": {
+					"description": "a return trip with the same carrier must be sold in combination",
+					"type": "object",
+					"properties": {
+						"latestReturn": {
+							"description": "number of days after departure or start of validity of the last return ",
+							"type": "number"
+						},
+						"earliestReturn": {
+							"description": "number of days after departure or start of validity of the earliest return",
+							"type": "number"
+						},
+						"excludedWeekdays": {
+							"description": "weekdays (ISO day of the week, 1 = Monday) between travel and return where travel is not allowed",
+							"type": "array",
+							"items": {
+								"type": "number"
+							}
+						}
+					},
+					"required": [
+						"latestReturn",
+						"earliestReturn"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"id",
+				"validityRange"
+			],
+			"additionalProperties": false
+		},
+		"ZoneDefinitionDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"Stations": {
+					"type": "array",
+					"minItems": 2,
+					"uniqueItems": true,
+					"items": {
+						"$ref": "definitions.json#/definitions/StationDef"
+					}
+				},
+				"zoneId": {
+					"description": "short zone id to be used in bar codes",
+					"type": "string"
+				},
+				"name": {
+					"description": "name to be used in route descriptions",
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"Stations",
+				"zoneId"
+			],
+			"additionalProperties": false
+		}
+	}
+}

@@ -1,0 +1,197 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/personalticketdata.json",
+	"additionalProperties": false,
+	"definitions": {
+		"PassengerDetailsDef": {
+			"type": "object",
+			"properties": {
+				"DateOfBirth": {
+					"$ref": "definitions.json#/definitions/date"
+				},
+				"Email": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"format": "email"
+					}
+				},
+				"FirstName": {
+					"type": "string"
+				},
+				"FirstNameICAO": {
+					"description": "ICAO transliteration",
+					"type": "string"
+				},
+				"Language": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/LanguageDef",
+						"description": "Languages spoken by the traveler (ISO Language code)"
+					}
+				},
+				"LastName": {
+					"type": "string"
+				},
+				"LastNameICAO": {
+					"description": "ICAO transliteration",
+					"type": "string"
+				},
+				"Title": {
+					"type": "string"
+				},
+				"Phone": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"SocialMediaAccount": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"account": {
+								"type": "string"
+							},
+							"accountType": {
+								"description": "values: facebook,whatsapp,skype,wechat,...",
+								"type": "string"
+							}
+						},
+						"required": [
+							"account",
+							"accountType"
+						],
+						"additionalProperties": false
+					}
+				},
+				"TrainStaffInfo": {
+					"description": "Information Text provided by the issuing system in a controled way (e.g. VIP customer)",
+					"type": "string"
+				}
+			},
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"PassengerPassportDef": {
+			"description": "Travel document data to be exchanged for border control in case of legal requirements",
+			"type": "object",
+			"properties": {
+				"CityOfBirth": {
+					"type": "string"
+				},
+				"CityOfIssue": {
+					"description": "place where the document is issued",
+					"type": "string"
+				},
+				"CityOfResidence": {
+					"type": "string"
+				},
+				"CountryOfBirth": {
+					"$ref": "definitions.json#/definitions/CountryDef"
+				},
+				"CountryOfIssue": {
+					"$ref": "definitions.json#/definitions/CountryDef"
+				},
+				"CountryOfResidence": {
+					"$ref": "definitions.json#/definitions/CountryDef"
+				},
+				"DateOfIssue": {
+					"$ref": "definitions.json#/definitions/date"
+				},
+				"DocumentId": {
+					"type": "string"
+				},
+				"DocumentType": {
+					"description": "values: passport,id-card,diplomatic passport,refugee travel document",
+					"type": "string"
+				},
+				"Gender": {
+					"description": "values: male, female",
+					"type": "string"
+				},
+				"LimitOfValidity": {
+					"$ref": "definitions.json#/definitions/date"
+				},
+				"Name": {
+					"description": "ICAO transliteration identical as written in the document",
+					"type": "string"
+				},
+				"Nationality": {
+					"$ref": "definitions.json#/definitions/CountryDef"
+				}
+			},
+			"required": [
+				"DocumentType",
+				"Name"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"CardIdentificationDef": {
+			"type": "object",
+			"properties": {
+				"CardId": {
+					"type": "string"
+				},
+				"CardIssuer": {
+					"$ref": "definitions.json#/definitions/CompanyDef",
+					"description": "RICS code in case of Railways, otherwise starting with "
+				},
+				"CardType": {
+					"description": "Code table to be defined in tariff description data",
+					"type": "string"
+				},
+				"LeadingCardId": {
+					"type": "string"
+				},
+				"TrailingCardId": {
+					"type": "string"
+				},
+				"cardNumber": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"CardIssuer",
+				"CardType"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+}

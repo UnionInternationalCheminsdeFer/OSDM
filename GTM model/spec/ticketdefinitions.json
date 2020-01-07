@@ -1,0 +1,1886 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/eticket/v1/ticketdefinitions.json",
+	"additionalProperties": false,
+	"definitions": {
+		"BookingReferenceDef": {
+			"type": "object",
+			"properties": {
+				"BookingId": {
+					"description": "Reservation reference number (element 34) in case of reservations and IRTs",
+					"type": "string"
+				},
+				"DepartureDate": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "To be used with systems where the bookingId is not unique"
+				},
+				"Train": {
+					"description": "train number (UIC 918.1 element 20) - To be used with systems where the bookingId is not unique",
+					"type": "string"
+				}
+			},
+			"required": [
+				"BookingId"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"BerthCodeDef": {
+			"description": "Type of a berth. Code list is a subset of the  in UIC 918.1 with codes L,M,N,O,P,Q,R.",
+			"type": "string"
+		},
+		"BoatCategoryType": {
+			"description": "Leaflet 918.1 element 29 ",
+			"type": "integer"
+		},
+		"CarLoadingType": {
+			"type": "object",
+			"properties": {
+				"BeginLoading": {
+					"$ref": "definitions.json#/definitions/date"
+				},
+				"BeginUnloading": {
+					"$ref": "definitions.json#/definitions/date"
+				},
+				"EndLoading": {
+					"$ref": "definitions.json#/definitions/date"
+				},
+				"EndUnloading": {
+					"$ref": "definitions.json#/definitions/date"
+				},
+				"LoadingListEntry": {
+					"type": "string"
+				},
+				"Coach": {
+					"type": "string"
+				},
+				"Place": {
+					"type": "string"
+				},
+				"CompartmentDetails": {
+					"type": "object",
+					"properties": {
+						"CoachDescription": {
+							"type": "string"
+						},
+						"CoachType": {
+							"$ref": "definitions.json#/definitions/BerthCodeDef"
+						},
+						"CompartmentDescription": {
+							"type": "string"
+						},
+						"CompartmentType": {
+							"$ref": "definitions.json#/definitions/AllocatedCompartmentTypeDef"
+						},
+						"Position": {
+							"$ref": "definitions.json#/definitions/PositionOfCompartmentDef"
+						},
+						"SpecialAllocation": {
+							"$ref": "definitions.json#/definitions/AllocatedContingentTypeDef"
+						},
+						"SpecialAllocationDescription": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"CarDescriptionType": {
+			"type": "object",
+			"properties": {
+				"RoofRackHeight": {
+					"type": "integer"
+				},
+				"RoofRackType": {
+					"type": "string"
+				},
+				"TextileRoof": {
+					"type": "boolean",
+					"default": "false"
+				},
+				"TrailerCategory": {
+					"$ref": "ticketdefinitions.json#/definitions/TrailerSizeDef"
+				},
+				"VehicleCategory": {
+					"$ref": "ticketdefinitions.json#/definitions/VehicleCategoryDef"
+				},
+				"BoatCategory": {
+					"$ref": "ticketdefinitions.json#/definitions/BoatCategoryDef"
+				}
+			},
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"CarCarriageReservationDef": {
+			"type": "object",
+			"properties": {
+				"Train": {
+					"$ref": "ticketdefinitions.json#/definitions/TrainDef"
+				},
+				"Loading": {
+					"$ref": "ticketdefinitions.json#/definitions/CarLoadingDef"
+				},
+				"Pricing": {
+					"$ref": "ticketdefinitions.json#/definitions/ReservationPricingDef"
+				},
+				"CarDescription": {
+					"$ref": "ticketdefinitions.json#/definitions/CarDescriptionDef"
+				}
+			},
+			"required": [
+				"Train",
+				"Loading",
+				"Pricing",
+				"CarDescription"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"CardReferenceType": {
+			"type": "object",
+			"properties": {
+				"Issuer": {
+					"$ref": "definitions.json#/definitions/CompanyDef",
+					"description": "issuer of the card"
+				},
+				"CardId": {
+					"description": "id of the card",
+					"type": "string"
+				},
+				"Name": {
+					"description": "name of the card",
+					"type": "string"
+				},
+				"CardType": {
+					"description": "type of the card, code table defined y the issuer",
+					"type": "string"
+				},
+				"TrailingCardId": {
+					"description": "trailing id of the card",
+					"type": "string"
+				},
+				"LeadingCardId": {
+					"description": "leading id of the card",
+					"type": "string"
+				}
+			},
+			"required": [
+				"Issuer"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"CounterMarkDef": {
+			"type": "object",
+			"properties": {
+				"number": {
+					"type": "integer"
+				},
+				"totalNumber": {
+					"type": "integer"
+				},
+				"GroupName": {
+					"type": "string"
+				},
+				"returnIncluded": {
+					"type": "boolean",
+					"default": "false"
+				},
+				"validFrom": {
+					"$ref": "definitions.json#/definitions/date"
+				},
+				"validUntil": {
+					"$ref": "definitions.json#/definitions/date"
+				},
+				"FromStation": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"Region": {
+					"$ref": "ticketdefinitions.json#/definitions/RegionalValidityDef"
+				},
+				"RegionDescription": {
+					"description": "textual description of the validity region to be displayed to a conductor",
+					"type": "string"
+				},
+				"ReturnDescription": {
+					"$ref": "ticketdefinitions.json#/definitions/ReturnRouteDescription"
+				},
+				"Service": {
+					"$ref": "ticketdefinitions.json#/definitions/OpenTicketServiceDef"
+				},
+				"Pricing": {
+					"$ref": "ticketdefinitions.json#/definitions/PricingDef"
+				}
+			},
+			"required": [
+				"validFrom",
+				"validUntil"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"DelayConfirmationDef": {
+			"type": "object",
+			"properties": {
+				"delay": {
+					"description": "delay in minutes",
+					"type": "integer"
+				},
+				"trainCancelled": {
+					"type": "boolean"
+				},
+				"confirmationType": {
+					"description": "values: trainDelayConfirmation, travelerDelayConfirmation, trainLinkedTicketDelay",
+					"type": "string"
+				},
+				"AffectedTicket": {
+					"type": "array",
+					"items": {
+						"$ref": "ticketdefinitions.json#/definitions/TicketLinkDef"
+					}
+				},
+				"DepartureDate": {
+					"$ref": "definitions.json#/definitions/date"
+				},
+				"Station": {
+					"$ref": "definitions.json#/definitions/StationDef",
+					"description": "station where the delay became relevant"
+				},
+				"Train": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"DepartureDate",
+				"Station",
+				"Train"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"FipTicketDef": {
+			"type": "object",
+			"properties": {
+				"includeSupplements": {
+					"type": "boolean"
+				},
+				"numberOfTravelDays": {
+					"type": "integer"
+				},
+				"ActivatedDay": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/date",
+						"description": "in case of individual separated day of validity"
+					}
+				},
+				"Carrier": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "definitions.json#/definitions/CompanyType"
+					}
+				},
+				"ProductId": {
+					"type": "string"
+				},
+				"ProductOwner": {
+					"$ref": "definitions.json#/definitions/date"
+				},
+				"TravelClass": {
+					"$ref": "ticketdefinitions.json#/definitions/TravelClassDef"
+				},
+				"validFrom": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "date and time in UTC"
+				},
+				"validUntil": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "date and time in UTC"
+				}
+			},
+			"required": [
+				"Carrier",
+				"validFrom",
+				"validUntil"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"GeneralBookingReferenceDef": {
+			"type": "object",
+			"properties": {
+				"Allocator": {
+					"$ref": "definitions.json#/definitions/CompanyDef",
+					"description": "RICS code - allocator managing the booking"
+				},
+				"BookingId": {
+					"description": "Reservation reference number (element 34) in case of reservations and IRTs",
+					"type": "string"
+				},
+				"DepartureDate": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "To be used with systems where the bookingId is not unique"
+				},
+				"IssuingDate": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "issuing date (UTC). The issuing date must not match exactly in a search, its purpose here is to uniquely identify the ticket if the BookingId is repeated after some months or years."
+				},
+				"SystemCode": {
+					"description": "optional system code in case an allocator runs technically different systems for his tickets (e.g. during a migration phase).",
+					"type": "string"
+				},
+				"Train": {
+					"description": "train number - To be used with systems where the bookingId is not unique",
+					"type": "string"
+				},
+				"AccountingId": {
+					"description": "id of the ticket used in the accounting data UIC 301 in case it differs from the BookingId.",
+					"type": "string"
+				}
+			},
+			"required": [
+				"Allocator",
+				"BookingId",
+				"IssuingDate"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"IncludedAddOnTicketType": {
+			"type": "object",
+			"properties": {
+				"validFrom": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "date and time in UTC"
+				},
+				"validUntil": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "date and time in UTC"
+				},
+				"ProductId": {
+					"type": "string"
+				},
+				"ProductOwner": {
+					"$ref": "definitions.json#/definitions/CompanyDef"
+				},
+				"Region": {
+					"$ref": "ticketdefinitions.json#/definitions/RegionalValidityDef"
+				},
+				"Tariff": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/TariffDef"
+					}
+				},
+				"Service": {
+					"$ref": "ticketdefinitions.json#/definitions/OpenTicketServiceDef"
+				},
+				"externalAuthorizationId": {
+					"description": "to support other content (e.g. VDV, UTPF, V?V, CALYPSO)",
+					"type": "string"
+				},
+				"externalIssuerId": {
+					"description": "to support other content (e.g. VDV, UTPF, V?V, CALYPSO)",
+					"type": "string"
+				}
+			},
+			"required": [
+				"validFrom",
+				"validUntil"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"LineDef": {
+			"type": "object",
+			"properties": {
+				"BinaryZoneId": {
+					"$ref": "definitions.json#/definitions/base64Binary",
+					"description": "to support local traffic standards (e.g. VDV,...)"
+				},
+				"Carrier": {
+					"$ref": "definitions.json#/definitions/CompanyDef"
+				},
+				"City": {
+					"type": "integer"
+				},
+				"EntryStation": {
+					"$ref": "definitions.json#/definitions/StationDef",
+					"description": "Station  to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station."
+				},
+				"LineId": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"TerminalStation": {
+					"$ref": "definitions.json#/definitions/StationDef",
+					"description": "Terminal station in case trhe  product requires a detination within the zone (e.g. local ticket to go to the main railstation)"
+				},
+				"nutsCode": {
+					"description": "Nomenclature des units territoriales statistiques  \n COMMISSION REGULATION (EU) No 31/2011",
+					"type": "string"
+				}
+			},
+			"required": [
+				"Carrier"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"LuggageRestrictionDef": {
+			"type": "object",
+			"properties": {
+				"maxHandluggage": {
+					"type": "integer"
+				},
+				"maxLargeLuggage": {
+					"type": "integer"
+				},
+				"RegisteredLuggage": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"MaxSize": {
+								"description": "sum of length with and height in cm",
+								"type": "integer"
+							},
+							"MaxWeight": {
+								"description": "max luggage weight in kg",
+								"type": "integer"
+							},
+							"RegistrationId": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"MaxSize",
+							"MaxWeight",
+							"RegistrationId"
+						],
+						"additionalProperties": false
+					}
+				}
+			},
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"OpenTicketServiceDef": {
+			"type": "object",
+			"properties": {
+				"Carrier": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "definitions.json#/definitions/CompanyDef"
+					}
+				},
+				"ServiceLevel": {
+					"$ref": "definitions.json#/definitions/ServiceLevelDef"
+				},
+				"TravelClass": {
+					"$ref": "ticketdefinitions.json#/definitions/TravelClassDef"
+				},
+				"includedServiceBrand": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+					}
+				},
+				"excludedServiceBrand": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+					}
+				}
+			},
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"OpenTicketDef": {
+			"type": "object",
+			"properties": {
+				"validFrom": {
+					"$ref": "definitions.json#/definitions/date"
+				},
+				"validUntil": {
+					"$ref": "definitions.json#/definitions/date"
+				},
+				"activated": {
+					"type": "boolean",
+					"default": "true"
+				},
+				"ActivatedDay": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/date",
+						"description": "in case of individual separated day of validity"
+					}
+				},
+				"Service": {
+					"$ref": "ticketdefinitions.json#/definitions/OpenTicketServiceDef"
+				},
+				"FromStation": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"ToStation": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"LugageRestriction": {
+					"$ref": "ticketdefinitions.json#/definitions/LuggageRestrictionDef"
+				},
+				"Pricing": {
+					"$ref": "ticketdefinitions.json#/definitions/PricingDef"
+				},
+				"Region": {
+					"$ref": "ticketdefinitions.json#/definitions/RegionalValidityDef"
+				},
+				"RegionDescription": {
+					"description": "textual description of the validity region to be displayed to a conductor",
+					"type": "string"
+				},
+				"returnIncluded": {
+					"type": "boolean",
+					"default": "false"
+				},
+				"ReturnDescription": {
+					"$ref": "ticketdefinitions.json#/definitions/ReturnRouteDescription"
+				},
+				"IncludedAddonTicket": {
+					"type": "array",
+					"items": {
+						"$ref": "ticketdefinitions.json#/definitions/IncludedOpenTicketDef"
+					}
+				},
+				"externalAuthorizationId": {
+					"description": "to support other identification schemas (e.g. VDV, UTPF, V?V, CALYPSO)",
+					"type": "string"
+				},
+				"externalIssuerId": {
+					"description": "to support other identification schemas (e.g. VDV, UTPF, V?V, CALYPSO)",
+					"type": "string"
+				}
+			},
+			"required": [
+				"validFrom",
+				"validUntil"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"PassDef": {
+			"type": "object",
+			"properties": {
+				"activated": {
+					"type": "boolean",
+					"default": "true"
+				},
+				"ActivatedDays": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/date",
+						"description": "in case of individual separated day of validity"
+					}
+				},
+				"Carrier": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "definitions.json#/definitions/CompanyDef",
+						"description": "RICS code"
+					}
+				},
+				"NumberOfPossibleTrips": {
+					"type": "integer"
+				},
+				"NumberOfTravelDays": {
+					"type": "integer"
+				},
+				"NumberOfValidityDays": {
+					"type": "integer"
+				},
+				"PassDescription": {
+					"type": "string"
+				},
+				"PassDef": {
+					"description": "type of the pass, code list provided by the product owner  (e.g. Interrail, Eurail) ",
+					"type": "string"
+				},
+				"Pricing": {
+					"$ref": "ticketdefinitions.json#/definitions/PricingDef"
+				},
+				"Region": {
+					"$ref": "ticketdefinitions.json#/definitions/RegionalValidityDef"
+				},
+				"TravelClass": {
+					"$ref": "ticketdefinitions.json#/definitions/TravelClassDef"
+				},
+				"ValidityPeriodDetails": {
+					"type": "object",
+					"properties": {
+						"ExcludedTimeRange": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"from": {
+										"$ref": "definitions.json#/definitions/time"
+									},
+									"until": {
+										"$ref": "definitions.json#/definitions/time"
+									}
+								},
+								"additionalProperties": false
+							}
+						},
+						"ValidityPeriod": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"from": {
+										"$ref": "definitions.json#/definitions/date"
+									},
+									"until": {
+										"$ref": "definitions.json#/definitions/date"
+									}
+								},
+								"additionalProperties": false
+							}
+						}
+					},
+					"additionalProperties": false
+				},
+				"excludedServiceBrand": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+					}
+				},
+				"includedServiceBrand": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+					}
+				},
+				"includedCountries": {
+					"type": "array",
+					"items": {
+						"description": "codes according to UIC 918.2",
+						"type": "integer"
+					}
+				},
+				"validFrom": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "date and time in UTC"
+				},
+				"validUntil": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "date and time in UTC"
+				}
+			},
+			"required": [
+				"Carrier",
+				"PassDef",
+				"validFrom",
+				"validUntil"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"PlacesDef": {
+			"type": "object",
+			"properties": {
+				"Coach": {
+					"type": "string"
+				},
+				"Place": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "string"
+					}
+				},
+				"PlaceNumbers": {
+					"description": "Place numbers as describing text: e.g. 11,12,22 - 25,..",
+					"type": "string"
+				}
+			},
+			"required": [
+				"Coach",
+				"Place",
+				"PlaceNumbers"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"PolygoneDef": {
+			"type": "object",
+			"properties": {
+				"Edge": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "definitions.json#/definitions/GeoCoordinateDef"
+					}
+				}
+			},
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"PositionOfCompartmentDef": {
+			"description": "Leaflet 918 element 38",
+			"type": "integer"
+		},
+		"PricingDef": {
+			"type": "object",
+			"properties": {
+				"ProductId": {
+					"type": "string"
+				},
+				"ProductOwner": {
+					"$ref": "definitions.json#/definitions/CompanyDef"
+				},
+				"Price": {
+					"$ref": "ticketdefinitions.json#/definitions/PriceDef"
+				},
+				"Tariff": {
+					"type": "array",
+					"items": {
+						"$ref": "ticketdefinitions.json#/definitions/TariffDef"
+					}
+				}
+			},
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"RegionalValidityDef": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"SeqNb": {
+						"description": "order number of the list item",
+						"type": "integer"
+					}
+				},
+				"additionalProperties": false,
+				"oneOf": [
+					{
+						"type": "object",
+						"properties": {
+							"Zone": {
+								"$ref": "ticketdefinitions.json#/definitions/ZoneDef"
+							}
+						},
+						"additionalProperties": false
+					},
+					{
+						"type": "object",
+						"properties": {
+							"ViaStations": {
+								"$ref": "ticketdefinitions.json#/definitions/ViaStationsDef"
+							}
+						},
+						"additionalProperties": false
+					},
+					{
+						"type": "object",
+						"properties": {
+							"TrainLink": {
+								"$ref": "ticketdefinitions.json#/definitions/TrainLinkDef"
+							}
+						},
+						"additionalProperties": false
+					},
+					{
+						"type": "object",
+						"properties": {
+							"Line": {
+								"$ref": "ticketdefinitions.json#/definitions/LineDef"
+							}
+						},
+						"additionalProperties": false
+					},
+					{
+						"type": "object",
+						"properties": {
+							"Polygone": {
+								"$ref": "#/definitions/PolygoneDef"
+							}
+						},
+						"additionalProperties": false
+					},
+					{
+						"type": "object",
+						"patternProperties": {
+							"^P_": {
+								"anyOf": [
+									{
+										"type": "object"
+									},
+									{
+										"type": "string"
+									}
+								]
+							}
+						},
+						"additionalProperties": false
+					}
+				]
+			}
+		},
+		"ReservationServiceDef": {
+			"type": "object",
+			"properties": {
+				"Category": {
+					"description": "UIC 918.1 service code: 1 = seat, 2 = couchette, 3 = berths, 6 = car carriage",
+					"type": "integer"
+				},
+				"ServiceLevel": {
+					"$ref": "definitions.json#/definitions/ServiceLevelDef"
+				},
+				"TravelClass": {
+					"$ref": "ticketdefinitions.json#/definitions/TravelClassDef"
+				},
+				"Places": {
+					"type": "array",
+					"items": {
+						"$ref": "ticketdefinitions.json#/definitions/PlacesDef",
+						"description": "places in one coach"
+					}
+				},
+				"Berth": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Gender": {
+								"description": "male,female,family,mixed",
+								"type": "string"
+							},
+							"Number": {
+								"type": "integer"
+							},
+							"BerthType": {
+								"$ref": "ticketdefinitions.json#/definitions/BerthCodeDef"
+							}
+						},
+						"required": [
+							"Number",
+							"Type"
+						],
+						"additionalProperties": false
+					}
+				},
+				"BicyclePlaces": {
+					"$ref": "ticketdefinitions.json#/definitions/PlacesDef"
+				},
+				"Overbookings": {
+					"type": "integer"
+				},
+				"CompartmentDetails": {
+					"type": "object",
+					"properties": {
+						"CoachDescription": {
+							"type": "string"
+						},
+						"CoachType": {
+							"$ref": "ticketdefinitions.json#/definitions/AllocatedCoachTypeType"
+						},
+						"CompartmentDescription": {
+							"type": "string"
+						},
+						"CompartmentType": {
+							"$ref": "ticketdefinitions.json#/definitions/AllocatedCompartmentTypeDef"
+						},
+						"Position": {
+							"$ref": "ticketdefinitions.json#/definitions/PositionOfCompartmentDef"
+						},
+						"SpecialAllocation": {
+							"$ref": "ticketdefinitions.json#/definitions/AllocatedContingentTypeDef"
+						},
+						"SpecialAllocationDescription": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"Category",
+				"ServiceLevel"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"ReservationPricingDef": {
+			"type": "object",
+			"properties": {
+				"ProductId": {
+					"type": "string"
+				},
+				"ProductOwner": {
+					"$ref": "definitions.json#/definitions/CompanyDef"
+				},
+				"TypeOfSupplement": {
+					"$ref": "ticketdefinitions.json#/definitions/SupplementTypeDef"
+				},
+				"NumberOfSupplements": {
+					"type": "integer"
+				},
+				"Price": {
+					"$ref": "ticketdefinitions.json#/definitions/PriceDef"
+				},
+				"PriceDef": {
+					"description": "type of the price: integrated ticket proce IRT, Supplement SUP, reservation fee RES, No Price NOP",
+					"type": "string",
+					"enum": [
+						"IRT",
+						"SUP",
+						"RES",
+						"NOP"
+					]
+				},
+				"Tariff": {
+					"type": "array",
+					"items": {
+						"$ref": "ticketdefinitions.json#/definitions/TariffDef"
+					}
+				}
+			},
+			"required": [
+				"PriceDef"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"ReservationDef": {
+			"type": "object",
+			"properties": {
+				"Train": {
+					"$ref": "ticketdefinitions.json#/definitions/TrainDef"
+				},
+				"Service": {
+					"$ref": "ticketdefinitions.json#/definitions/ReservationServiceDef"
+				},
+				"Pricing": {
+					"$ref": "ticketdefinitions.json#/definitions/ReservationPricingDef"
+				},
+				"LugageRestriction": {
+					"$ref": "ticketdefinitions.json#/definitions/LuggageRestrictionDef"
+				}
+			},
+			"required": [
+				"Train",
+				"Service",
+				"Pricing"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"ReturnRouteDescription": {
+			"type": "object",
+			"properties": {
+				"FromStation": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"ToStation": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"Region": {
+					"$ref": "ticketdefinitions.json#/definitions/RegionalValidityDef"
+				},
+				"RegionDescription": {
+					"description": "textual description of the validity region to be displayed to a conductor",
+					"type": "string"
+				}
+			},
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"ServiceCodeType": {
+			"description": "Leaflet 918-1 element 308 first two digits (e.g. A = 1st class seat)",
+			"type": "string"
+		},
+		"ServiceType": {
+			"description": "Leaflet 918.1 element 15",
+			"type": "integer"
+		},
+		"StationPassageDef": {
+			"type": "object",
+			"properties": {
+				"AreaCode": {
+					"type": "string"
+				},
+				"AreaName": {
+					"type": "string"
+				},
+				"NumberOfValidityDays": {
+					"type": "integer"
+				},
+				"ProductId": {
+					"type": "string"
+				},
+				"ProductName": {
+					"type": "string"
+				},
+				"ProductOwner": {
+					"$ref": "definitions.json#/definitions/CompanyDef"
+				},
+				"Station": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"validFrom": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "date and time in UTC"
+				},
+				"validUntil": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "date and time in UTC"
+				}
+			},
+			"required": [
+				"validFrom",
+				"validUntil"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"SupplementTypeDef": {
+			"description": "Leaflet 918.1 element 59",
+			"type": "integer"
+		},
+		"TariffDef": {
+			"type": "object",
+			"properties": {
+				"@restrictedToCountryOfResidence": {
+					"type": "boolean"
+				},
+				"Number": {
+					"type": "integer"
+				},
+				"PassengerType": {
+					"description": "code table in UIC leaflet 918.9",
+					"type": "string"
+				},
+				"SeriesDetails": {
+					"description": "details in case the tariff originates from NRT data according to UIC 108.1. For content description see. UIC leaflet 108.1 or ERA TD B.1",
+					"type": "object",
+					"properties": {
+						"OfferIdentification": {
+							"type": "integer"
+						},
+						"Series": {
+							"type": "integer"
+						},
+						"SupplyingCarrier": {
+							"$ref": "definitions.json#/definitions/CompanyDef"
+						}
+					},
+					"additionalProperties": false
+				},
+				"TariffDescription": {
+					"type": "string"
+				},
+				"TariffId": {
+					"type": "string"
+				},
+				"maxAge": {
+					"type": "integer"
+				},
+				"minAge": {
+					"type": "integer"
+				},
+				"reductionCard": {
+					"type": "array",
+					"items": {
+						"$ref": "ticketdefinitions.json#/definitions/CardReferenceType"
+					}
+				},
+				"restrictedRouteSection": {
+					"description": "this tariff applies to a section of the entire route only",
+					"type": "object",
+					"properties": {
+						"FromStation": {
+							"$ref": "definitions.json#/definitions/StationDef"
+						},
+						"ToStation": {
+							"$ref": "definitions.json#/definitions/StationDef"
+						}
+					},
+					"required": [
+						"FromStation",
+						"ToStation"
+					],
+					"additionalProperties": false
+				},
+				"travelerId": {
+					"type": "array",
+					"items": {
+						"type": "integer"
+					}
+				}
+			},
+			"required": [
+				"Number",
+				"TariffDescription",
+				"TariffId"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"TrailerSizeType": {
+			"description": "Leaflet 918.1 element 45 ",
+			"type": "integer"
+		},
+		"TrainDef": {
+			"type": "object",
+			"properties": {
+				"Train": {
+					"description": "train number",
+					"type": "string"
+				},
+				"DepartureDate": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "date and time of departure as given to the customer with this reservation (UTC)"
+				},
+				"DepartureStation": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"ArrivalDate": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "date and time of arrival as given to the traveler with this reservation (UTC)"
+				},
+				"ArrivalStation": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"ServiceBrand": {
+					"$ref": "definitions.json#/definitions/ServiceBrandInformationDef"
+				},
+				"Carrier": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/CompanyDef",
+						"description": "RICS code"
+					}
+				}
+			},
+			"required": [
+				"Train",
+				"DepartureDate",
+				"DepartureStation",
+				"ArrivalStation",
+				"ServiceBrand"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"TrainLinkDef": {
+			"type": "object",
+			"properties": {
+				"FromStation": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"ToStation": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"Train": {
+					"type": "string"
+				},
+				"TravelDate": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "date and time of the departure where the train link starts"
+				}
+			},
+			"required": [
+				"FromStation",
+				"ToStation",
+				"Train",
+				"TravelDate"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"TransportDocumentType": {
+			"type": "object",
+			"properties": {
+				"BookingId": {
+					"type": "string"
+				},
+				"oneOf": {
+					"properties": {
+						"CarCarriageReservation": {
+							"$ref": "ticketdefinitions.json#/definitions/CarCarriageReservationDef"
+						},
+						"CounterMark": {
+							"$ref": "ticketdefinitions.json#/definitions/CounterMarkDef"
+						},
+						"DelayConfirmation": {
+							"$ref": "ticketdefinitions.json#/definitions/DelayConfirmationDef"
+						},
+						"FipTicket": {
+							"$ref": "ticketdefinitions.json#/definitions/FipTicketDef"
+						},
+						"OpenTicket": {
+							"$ref": "ticketdefinitions.json#/definitions/OpenTicketDef"
+						},
+						"Pass": {
+							"$ref": "ticketdefinitions.json#/definitions/PassDef"
+						},
+						"Reservation": {
+							"$ref": "ticketdefinitions.json#/definitions/ReservationDef"
+						},
+						"StationPassage": {
+							"$ref": "ticketdefinitions.json#/definitions/StationPassageDef"
+						}
+					},
+					"additionalProperties": false
+				},
+				"Token": {
+					"$ref": "definitions.json#/definitions/TokenDef",
+					"type": "array"
+				}
+			},
+			"required": [
+				"BookingId"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"TicketControlDetailsType": {
+			"type": "object",
+			"properties": {
+				"ageCheckRequired": {
+					"type": "boolean"
+				},
+				"passportValidationRequired": {
+					"type": "boolean"
+				},
+				"reductionCardCheckRequired": {
+					"type": "boolean"
+				},
+				"LinkedTicket": {
+					"type": "array",
+					"items": {
+						"$ref": "ticketdefinitions.json#/definitions/TicketLinkDef"
+					}
+				}
+			},
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"TicketIssuingDetailsType": {
+			"type": "object",
+			"properties": {
+				"activated": {
+					"type": "boolean"
+				},
+				"securePaperTicket": {
+					"type": "boolean"
+				},
+				"specimen": {
+					"type": "boolean"
+				},
+				"Issuer": {
+					"$ref": "definitions.json#/definitions/CompanyDef",
+					"description": "RICS code of the issuer"
+				},
+				"IssuerName": {
+					"type": "string"
+				},
+				"IssuerPNR": {
+					"description": "Additional Reference provided by the Issuer",
+					"type": "string"
+				},
+				"IssuingDate": {
+					"$ref": "definitions.json#/definitions/date",
+					"description": "date and time when the ticket was issued (UTC)"
+				},
+				"IssuingLocation": {
+					"type": "object",
+					"properties": {
+						"Line": {
+							"description": "line number in case of a sale on board ",
+							"type": "string"
+						},
+						"PointOfSale": {
+							"$ref": "definitions.json#/definitions/GeoCoordinateDef"
+						},
+						"Train": {
+							"description": "train number in case of a sale on board",
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"PriceFormat": {
+					"type": "object",
+					"properties": {
+						"Currency": {
+							"$ref": "definitions.json#/definitions/CurrencyDef",
+							"description": "ISO currency code"
+						},
+						"Fraction": {
+							"type": "integer"
+						}
+					},
+					"required": [
+						"Currency",
+						"Fraction"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"Issuer",
+				"IssuingDate"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"TicketLinkDef": {
+			"type": "object",
+			"properties": {
+				"linkmode": {
+					"$ref": "ticketdefinitions.json#/definitions/LinkModeDef"
+				},
+				"tickettype": {
+					"$ref": "ticketdefinitions.json#/definitions/TicketTypeDef"
+				},
+				"Reference": {
+					"$ref": "ticketdefinitions.json#/definitions/BookingReferenceDef"
+				}
+			},
+			"required": [
+				"Reference"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"LinkModeDef": {
+			"description": "values: issuedTogether, onlyValidInCombination",
+			"type": "string"
+		},
+		"TicketTypeDef": {
+			"description": "values: openTicket ,pass,reservation,carcarriageReservation",
+			"type": "string"
+		},
+		"AllocatedCoachTypeType": {
+			"description": "Leaflet 918.1 element 51 digit one and two Values: 1 = In a side-corridor coach 2 - In a central-gangway coach, ...",
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 99
+		},
+		"AllocatedCompartmentTypeDef": {
+			"description": "Leaflet 918.1 element 51 third and fourth digit",
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 99
+		},
+		"AllocatedContingentTypeDef": {
+			"description": "Leaflet 918.1 element 51 fith and sixth digit",
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 99
+		},
+		"PriceDef": {
+			"type": "object",
+			"properties": {
+				"Amount": {
+					"type": "number"
+				},
+				"Currency": {
+					"$ref": "definitions.json#/definitions/CurrencyDef",
+					"description": "ISO4217 currency codes"
+				},
+				"VAT": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Amount": {
+								"type": "number"
+							},
+							"Country": {
+								"$ref": "definitions.json#/definitions/CountryDef",
+								"description": "ISO 3166"
+							},
+							"Percentage": {
+								"type": "number"
+							},
+							"VatNo": {
+								"description": "Value added tax identification",
+								"type": "string"
+							}
+						},
+						"required": [
+							"Country",
+							"Percentage"
+						],
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": [
+				"Amount",
+				"Currency"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"TravelClassDef": {
+			"description": "values: first, second,tourist,comfort,premium,business, all",
+			"type": "string"
+		},
+		"VehicleCategoryType": {
+			"description": "Leaflet 918.1 element 29",
+			"type": "integer"
+		},
+		"ViaStationsDef": {
+			"type": "object",
+			"properties": {
+				"isBorder": {
+					"type": "boolean"
+				},
+				"routeId": {
+					"type": "integer"
+				},
+				"seriesId": {
+					"type": "integer"
+				},
+				"AlternativeRoute": {
+					"type": "array",
+					"items": {
+						"$ref": "ticketdefinitions.json#/definitions/ViaStationsDef"
+					}
+				},
+				"Carrier": {
+					"$ref": "definitions.json#/definitions/CompanyDef"
+				},
+				"Route": {
+					"type": "array",
+					"items": {
+						"$ref": "ticketdefinitions.json#/definitions/ViaStationsDef"
+					}
+				},
+				"Station": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				}
+			},
+			"required": [
+				"Station"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"ZoneDef": {
+			"type": "object",
+			"properties": {
+				"BinaryZoneId": {
+					"$ref": "definitions.json#/definitions/base64Binary",
+					"description": "to support local traffic standards (e.g. VDV,...)"
+				},
+				"Carrier": {
+					"$ref": "definitions.json#/definitions/CompanyDef",
+					"description": "carrier responsible for the transport."
+				},
+				"City": {
+					"type": "integer"
+				},
+				"EntryStation": {
+					"$ref": "definitions.json#/definitions/StationDef",
+					"description": "Station  to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station."
+				},
+				"TerminalStation": {
+					"$ref": "definitions.json#/definitions/StationDef",
+					"description": "Terminal station in case the  product requires a destination within the zone (e.g. local ticket to go to the main railstation)"
+				},
+				"ZoneId": {
+					"type": "array",
+					"items": {
+						"type": "integer"
+					}
+				},
+				"nutsCode": {
+					"description": "Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011",
+					"type": "string"
+				}
+			},
+			"required": [
+				"Carrier"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+}
