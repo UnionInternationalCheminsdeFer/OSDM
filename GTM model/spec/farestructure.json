@@ -1,0 +1,206 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v1/farestructure.json",
+	"title": "fareStructure",
+	"description": "Cover of the fare structure",
+	"definitions": {
+		"FareStructureDeliveryDef": {
+			"type": "object",
+			"properties": {
+				"delivery": {
+					"type": "object",
+					"properties": {
+						"fareProvider": {
+							"$ref": "definitions.json#/definitions/CompanyDef"
+						},
+						"deliveryId": {
+							"description": "unique id of this data delivery",
+							"type": "string"
+						},
+						"previousDeliveryId": {
+							"type": "string"
+						},
+						"replacementDeliveryId": {
+							"description": "in case this delivery replaces an previous delivery",
+							"type": "string"
+						},
+						"optionalDelivery": {
+							"description": "this delivery is not mandatory to be downloaded. ",
+							"type": "boolean",
+							"default": false
+						}
+					},
+					"required": [
+						"fareProvider",
+						"deliveryId"
+					],
+					"additionalProperties": false
+				},
+				"fareStructure": {
+					"type": "object",
+					"properties": {
+						"calendars": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/CalendarDef"
+							}
+						},
+						"serviceClassDefinitions": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ServiceClassDef"
+							}
+						},
+						"serviceLevelDefinitions": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ServiceLevelDef"
+							}
+						},
+						"texts": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/TextDef"
+							}
+						},
+						"fareResourceLocation": {
+							"$ref": "fareitems.json#/definitions/FareResourceLocationDef"
+						},
+						"prices": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/PriceDef"
+							}
+						},
+						"regionalConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/RegionalConstraintDef"
+							}
+						},
+						"serviceConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ServiceConstraintDef"
+							}
+						},
+						"carrierConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/CarrierConstraintDef"
+							}
+						},
+						"passengerConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/PassengerConstraintDef"
+							}
+						},
+						"fareElements": {
+							"type": "array",
+							"minItems": 1,
+							"items": [
+								{
+									"$ref": "fareitems.json#/definitions/FareElementDef"
+								}
+							],
+							"additionalItems": false
+						},
+						"afterSalesConditions": {
+							"description": "list of allowed after sales transactions and conditions",
+							"type": "array",
+							"minItems": 1,
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/AfterSalesConditionDef"
+							}
+						},
+						"supportedOnlineServices": {
+							"type": "array",
+							"items": {
+								"description": "list of supported services (code list supported services)",
+								"type": "string"
+							}
+						},
+						"combinationConstraints": {
+							"type": "array",
+							"minItems": 1,
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/FareCombinationConstraintDef"
+							}
+						},
+						"salesAvailabilityConstraint": {
+							"type": "array",
+							"minItems": 1,
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/SalesAvailabilityConstraintDef"
+							}
+						},
+						"travelValidityConstraints": {
+							"type": "array",
+							"minItems": 1,
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/TravelValidityConstraintDef"
+							}
+						},
+						"fullfillmentConstraints": {
+							"type": "array",
+							"items": [
+								{
+									"$ref": "faredefinitions.json#/definitions/FullfillmentConstraintDef"
+								}
+							],
+							"additionalItems": false
+						},
+						"reductionConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ReductionConstraintDef"
+							}
+						},
+						"zoneDefinitions": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ZoneDefinitionDef"
+							}
+						},
+						"reductionCards": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ReductionCardDef"
+							}
+						},
+						"personalDataConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/PersonalDataConstraintDef"
+							}
+						},
+						"reservationParameters": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ReservationParameterDef"
+							}
+						}
+					},
+					"required": [
+						"calendars",
+						"serviceClassDefinitions",
+						"texts",
+						"regionalConstraints",
+						"fareElements",
+						"afterSalesConditions",
+						"combinationConstraints",
+						"salesAvailabilityConstraint"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"delivery",
+				"fareStructure"
+			],
+			"additionalProperties": false,
+			"definitions": {}
+		}
+	}
+}
