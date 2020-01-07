@@ -1,0 +1,45 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v1/AddPersonalDataRequest.json",
+	"title": "AddPersonalDataRequest",
+	"description": "AddPersonalDataRequest",
+	"definitions": {
+		"AddPersonalDataRequest": {
+			"type": "object",
+			"properties": {
+				"bookingId": {
+					"type": "string"
+				},
+				"personalData": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"reference": {
+								"description": "reference to the traveler",
+								"type": "string"
+							},
+							"personalData": {
+								"$ref": "personaldatadefinitions.json#/definitions/PassengerDetailsDef"
+							},
+							"documentData": {
+								"$ref": "personaldatadefinitions.json#/definitions/PassengerPassportDef"
+							},
+							"cardData": {
+								"$ref": "personaldatadefinitions.json#/definitions/CardIdentificationDef"
+							}
+						},
+						"required": [
+							"reference"
+						],
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": [
+				"bookingId"
+			],
+			"additionalProperties": false
+		}
+	}
+}

@@ -1,0 +1,210 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v1/offerRequest.json",
+	"title": "offer request",
+	"description": "Request offers",
+	"definitions": {
+		"offerRequest": {
+			"type": "object",
+			"properties": {
+				"trip": {
+					"$ref": "anxilliarydefinitions.json#/definitions/TripDef"
+				},
+				"requestedSection": {
+					"$ref": "anxilliarydefinitions.json#/definitions/TravelSectionDef"
+				},
+				"salesChannel": {
+					"$ref": "anxilliarydefinitions.json#/definitions/SalesChannelDef"
+				},
+				"passengers": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"minProperties": 1,
+						"properties": {
+							"travelerId": {
+								"description": "used to link fares to the individual traveler in the reply",
+								"type": "string"
+							},
+							"dateOfBirth": {
+								"description": "YYYY-MM-DD (2017-07-21)",
+								"type": "string"
+							},
+							"reductions": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"reductionIssuer": {
+											"$ref": "definitions.json#/definitions/CompanyDef"
+										},
+										"reductionType": {
+											"type": "string"
+										},
+										"serviceClassId": {
+											"description": "in case te card depends on a class",
+											"type": "string"
+										}
+									},
+									"required": [
+										"reductionType"
+									],
+									"additionalProperties": false
+								}
+							},
+							"gender": {
+								"description": "MALE,FEMALE (only in case of night trains)",
+								"type": "string"
+							},
+							"travelerType": {
+								"description": "for traveler types other than age dependent types (accompagning for PRM)",
+								"type": "string"
+							}
+						},
+						"required": [
+							"travelerId",
+							"dateOfBirth"
+						],
+						"additionalProperties": false
+					}
+				},
+				"anxilliaries": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"anxilliaryType": {
+								"description": "type of an anxilliary service (e.g. DOG)",
+								"type": "string"
+							}
+						},
+						"required": [
+							"anxilliaryType"
+						],
+						"additionalProperties": false,
+						"oneOf": [
+							{
+								"type": "object",
+								"properties": {
+									"car": {
+										"type": "object",
+										"properties": {
+											"weight": {
+												"type": "number"
+											},
+											"length": {
+												"type": "number"
+											},
+											"width": {
+												"type": "number"
+											},
+											"height": {
+												"type": "number"
+											},
+											"attachedItems": {
+												"description": "TODO code list according IRS90918-1",
+												"type": "array",
+												"items": {
+													"type": "string"
+												}
+											}
+										},
+										"additionalProperties": false
+									}
+								},
+								"additionalProperties": false
+							},
+							{
+								"type": "object",
+								"properties": {
+									"motoCycle": {
+										"type": "object",
+										"properties": {
+											"includingSideCar": {
+												"type": "boolean",
+												"default": false
+											}
+										},
+										"additionalProperties": false
+									}
+								},
+								"additionalProperties": false
+							},
+							{
+								"type": "object",
+								"properties": {
+									"trailer": {
+										"type": "object",
+										"properties": {
+											"weight": {
+												"type": "number"
+											},
+											"length": {
+												"type": "number"
+											},
+											"width": {
+												"type": "number"
+											},
+											"height": {
+												"type": "number"
+											}
+										},
+										"additionalProperties": false
+									}
+								},
+								"additionalProperties": false
+							}
+						]
+					}
+				},
+				"promoRequest": {
+					"description": "the request is for a promotional offer only. A bilaterally agreed promotion id can be provided",
+					"type": "object",
+					"properties": {
+						"promoId": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"availableFullfillment": {
+					"description": "list of available fullfillment SIP,SiD,..",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"partialOfferAccepted": {
+					"description": "the requestor would accept offers that do not cover the entire section",
+					"type": "boolean",
+					"default": false
+				},
+				"afterSale": {
+					"type": "object",
+					"properties": {
+						"exchangeReferences": {
+							"description": "list of booking references in case the new offer is requested for an exchange",
+							"type": "array",
+							"items": {
+								"title": "bookingId",
+								"type": "string"
+							}
+						},
+						"reason": {
+							"description": "indication of the type of exchange offer required.",
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"trip",
+				"requestedSection",
+				"salesChannel",
+				"passengers"
+			],
+			"additionalProperties": false
+		}
+	}
+}
