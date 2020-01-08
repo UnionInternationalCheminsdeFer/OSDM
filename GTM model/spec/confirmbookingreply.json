@@ -42,6 +42,84 @@
 							},
 							"bookingId": {
 								"type": "string"
+							},
+							"Reservation": {
+								"type": "object",
+								"properties": {
+									"train": {
+										"type": "string"
+									},
+									"placePack": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"reservationId": {
+													"type": "string"
+												},
+												"reference": {
+													"description": "reference of the traveller / reservation holder",
+													"type": "string"
+												},
+												"coach": {
+													"type": "string"
+												},
+												"places": {
+													"description": "descriptive string of the palces (e.g. \"11-35\")",
+													"type": "string"
+												},
+												"placeIds": {
+													"type": "array",
+													"items": [
+														{
+															"type": "string"
+														}
+													],
+													"additionalItems": false
+												},
+												"placeProperties": {
+													"description": "place properties to be indicated to the customer",
+													"type": "array",
+													"items": {
+														"type": "object",
+														"properties": {
+															"placeProperty": {
+																"description": "see code list",
+																"type": "string"
+															},
+															"number": {
+																"description": "number of places with this property",
+																"type": "number"
+															},
+															"priority": {
+																"description": "priority for display",
+																"type": "number"
+															}
+														},
+														"required": [
+															"placeProperty"
+														],
+														"additionalProperties": false
+													}
+												}
+											},
+											"additionalProperties": false
+										}
+									},
+									"trainDescription": {
+										"type": "object",
+										"properties": {
+											"serviceBrand": {
+												"$ref": "definitions.json#/definitions/ServiceBrandInformationDef"
+											},
+											"trainInformation": {
+												"$ref": "faredefinitions.json#/definitions/TextDef"
+											}
+										},
+										"additionalProperties": false
+									}
+								},
+								"additionalProperties": false
 							}
 						},
 						"additionalProperties": false

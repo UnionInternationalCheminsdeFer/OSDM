@@ -106,12 +106,12 @@
 							],
 							"additionalItems": false
 						},
-						"afterSalesConditions": {
+						"afterSalesRules": {
 							"description": "list of allowed after sales transactions and conditions",
 							"type": "array",
 							"minItems": 1,
 							"items": {
-								"$ref": "faredefinitions.json#/definitions/AfterSalesConditionDef"
+								"$ref": "faredefinitions.json#/definitions/AfterSalesRulesDef"
 							}
 						},
 						"supportedOnlineServices": {
@@ -180,6 +180,12 @@
 							"items": {
 								"$ref": "faredefinitions.json#/definitions/ReservationParameterDef"
 							}
+						},
+						"connectionPoints": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ConnectionPointDef"
+							}
 						}
 					},
 					"required": [
@@ -188,7 +194,7 @@
 						"texts",
 						"regionalConstraints",
 						"fareElements",
-						"afterSalesConditions",
+						"afterSalesRules",
 						"combinationConstraints",
 						"salesAvailabilityConstraint"
 					],
