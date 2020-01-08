@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/GTM data converter/src" modelPluginID="GTM_data_converter"
+    modelName="Gtm" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" runtimePlatform="RCP" importOrganizing="true" oSGiCompatible="true">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.xsd.ecore.importer">
+    <details key="createMap" value="true"/>
+  </genAnnotations>
+  <foreignModel>gtm.xsd</foreignModel>
+  <genPackages prefix="Gtm" resource="XML" disposableProviderFactory="true" extensibleProviderFactory="true"
+      childCreationExtenders="true" ecorePackage="Gtm.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ReservationService">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationService/SEAT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationService/COUCHETTE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationService/BERTH"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationService/CAR_CARRIAGE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ReservationBerthType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationBerthType/SINGLE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationBerthType/SPECIAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationBerthType/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationBerthType/T2"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationBerthType/T3"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationBerthType/T4"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//GraphicalReservationType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GraphicalReservationType/IRS90918_1"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GraphicalReservationType/GTM"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GraphicalReservationType/NONE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//LegacyCalculationType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacyCalculationType/distance_based"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacyCalculationType/route_based"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//LegacySeriesType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacySeriesType/border_destination"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacySeriesType/transit"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacySeriesType/station_station"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ClassicClassType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassicClassType/FIRST"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassicClassType/SECOND"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TaxScope">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/INTERNALTIONAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/NATIONAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/SHORT_DISTANCE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/LONG_DISTANCE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/ANY"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//FareType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/NRT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/IRT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/RES"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/RPT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ReservationTravelClass">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/FIRST"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/SECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/C"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/P"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/T"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ReservationServiceLevel">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/A"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/B"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/RO"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TimeReferenceType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/BEFORE_DEPARTURE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/AFTER_DEPARTURE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/BEFORE_VALIDITY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/BEFORE_START_VALIDITY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/AFTER_END_VALIDITY"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TimeRangeScope">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeRangeScope/START_OF_TRAVEL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeRangeScope/COMPLETE_RANGE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TimeUnit">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeUnit/DAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeUnit/HOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeUnit/MINUTE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//WeekDay">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/MONDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/TUESDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/WEDNESDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/THURSDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/FRIDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/SATURDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/SUNDAY"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//CombinationModel">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CombinationModel/SEPARATE_TICKET"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CombinationModel/SEPARATE_CONTRACT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CombinationModel/CLUSTERING"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CombinationModel/COMBINING"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//Clusters">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//Clusters/BUSINESS"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//Clusters/FULLFLEX"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//Clusters/SEMIFLEX"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//Clusters/NONFLEX"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//Clusters/PROMO"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//GeoSystem">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GeoSystem/wgs84"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GeoSystem/grs80"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//GeoUnit">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GeoUnit/microDegree"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GeoUnit/tenthmilliDegree"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GeoUnit/milliDegree"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GeoUnit/centiDegree"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GeoUnit/deciDegree"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//HemisphereEW">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//HemisphereEW/EAST"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//HemisphereEW/WEST"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//HemisphereNS">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//HemisphereNS/NORTH"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//HemisphereNS/SOUTH"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//LegacyPassengerType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacyPassengerType/ADULT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacyPassengerType/CHILD"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TravelerType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/ADULT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/CHILD"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/YOUTH"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/SENIOR"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/ACCOMP_PRM"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/DOG"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/LUGGAGE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/ACCOMP_DOG"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/CAR"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/BICYCLE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/MOTOCYCLE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/TRAILER"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/GRAPHICAL_RES"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/OPT_RESERVATION"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//AfterSalesTransactionType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/REFUND"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/EXCHANGE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/EXCHANGE_KEEP_CARRIER"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/EXCHANGE_CHANGE_CARRIER"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//PersonalDataItemsType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DATE_OF_BIRTH"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/E_MAIL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/PHONE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/FULL_NAME"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/LAST_NAME"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/LANGUAGE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/TITLE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/GENDER"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_TYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_ID"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_NAME"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_CITY_OF_RESIDENCE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_COUNTRY_OF_BIRTH"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_COUNTRY_OF_ISSUE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_COUNTRY_OF_RESDENCE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_DATE_OF_ISSUE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_GENDER"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_NATIONALITY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_LIMIT_OF_VALIDITY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_CITY_OF_ISSUE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_CITY_OF_BIRTH"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DOC_TYPE_PASSPORT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/CARD_ISSUER"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/CARD_NUMBER"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//PersonalDataTransferType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataTransferType/SID"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataTransferType/SIS_CONTROL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataTransferType/BOOKING"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//PersonalDataChangeReason">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataChangeReason/IN_GENERAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataChangeReason/MARRIAGE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataChangeReason/DOCUMENT_EXCHANGE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataChangeReason/AGENT_ERROR"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//OnlineServiceType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/OFFER"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/BOOKING"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/RESERVATION_LEGACY_918_1"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/RESERVATION_PREF"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/RESERVATION_GRAPH"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/INCREASE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/DECREASE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/EXCHANGE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/FULFILLMENT_ITEMS"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/FULFILLMENT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//FulfillmentType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FulfillmentType/SID"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FulfillmentType/SIP"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FulfillmentType/SIS"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//BarcodeTypes">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//BarcodeTypes/FCB"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//BarcodeTypes/TLB"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//BarcodeTypes/SSB"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ControlDataExchangeTypes">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/IRS90918_4_PEER2PEER"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/IRS90918_4_REGISTRY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/PROPRIETARY"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//OfferRequestType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OfferRequestType/POINT2POINT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OfferRequestType/AREA"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//InterfaceType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//InterfaceType/IRS90918_1_RESERVATION_BINARY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//InterfaceType/GTM"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//InterfaceType/IRS90918_1_RESERVATION_XML"/>
+    </genEnums>
+    <genClasses ecoreClass="Gtm.ecore#//GTMTool">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//GTMTool/conversionFromLegacy"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//GTMTool/codeLists"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//GTMTool/generalTariffModel"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//CodeLists">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CodeLists/carriers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CodeLists/stations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CodeLists/countries"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CodeLists/languages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CodeLists/currencies"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CodeLists/serviceBrands"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CodeLists/nutsCodes"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//GeneralTariffModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//GeneralTariffModel/delivery"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//GeneralTariffModel/fareStructure"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ConversionFromLegacy">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ConversionFromLegacy/legacy108"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ConversionFromLegacy/params"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//FareStructure">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/fareElements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/afterSalesRules"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/calendars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/serviceClassDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/prices"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/regionalConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/texts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/serviceLevelDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/reservationParameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/serviceConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/carrierConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/reductionCards"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/salesAvailabilityConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/travelValidityConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/combinationConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/passengerConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/personalDataConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/reductionConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/zoneDefinitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareStructure/supportedOnlineServices"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/fulfillmentConstraint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/fareResourceLocations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStructure/connectionPoints"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Delivery">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Delivery/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Delivery/previousDeliveryId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Delivery/replacedDeliveryId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Delivery/fareProvider"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Delivery/optional"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//Delivery/provider"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//BorderPoints">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//BorderPoints/code"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//BorderPoints/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//BorderPoints/station1"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//BorderPoints/station2"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Calendar">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Calendar/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Calendar/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Calendar/fromDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Calendar/untilDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Calendar/utcOffset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Calendar/dates"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Carrier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Carrier/code"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Carrier/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//CoversionParams">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CoversionParams/borderPoints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CoversionParams/targetFares"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CoversionParams/stationMappings"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//CoversionParams/TaxId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//CoversionParams/VATpercentage"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//CoversionParams/taxCountry"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//LegacyDescription">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyDescription/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyDescription/text"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//LegacyDistanceFare">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyDistanceFare/distance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyDistanceFare/fare2nd"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyDistanceFare/fare1st"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyDistanceFare/fareTableNumber"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//LegacyFares">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyFares/description"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Legacy108">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Legacy108/carrier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Legacy108/series"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Legacy108/fares"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Legacy108/distanceFare"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Legacy108/routeFare"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//LegacyRouteFare">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyRouteFare/seriesNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyRouteFare/fare2nd"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyRouteFare/fare1st"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyRouteFare/fareTableNumber"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//LegacySeries" labelFeature="#//Gtm/LegacySeries/fromStation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacySeries/viastations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacySeries/distance1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacySeries/pricetype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacySeries/validFrom"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacySeries/validUntil"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacySeries/pricing"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacySeries/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacySeries/number"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacySeries/fromStation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacySeries/toStation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacySeries/distance2"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//LegacyViastation" labelFeature="#//Gtm/LegacyViastation/code">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyViastation/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyViastation/code"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//LegacyStationMap">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyStationMap/legacyCode"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyStationMap/station"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//CarrierConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//CarrierConstraint/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//CarrierConstraint/includedCarriers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//CarrierConstraint/excludedCarriers"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Country">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Country/code"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Country/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ConnectionPoint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ConnectionPoint/stations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConnectionPoint/id"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Currency">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Currency/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Currency/isoCode"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//CurrencyPrice">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//CurrencyPrice/currency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//CurrencyPrice/amount"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CurrencyPrice/VATdetails"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Language">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Language/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Language/code"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Price">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Price/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Price/currencies"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ReductionCard">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReductionCard/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReductionCard/cardIssuer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReductionCard/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReductionCard/serviceClasses"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//RegionalConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RegionalConstraint/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RegionalConstraint/distance"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalConstraint/entryConnectionPoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalConstraint/exitConnectionPoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalConstraint/regionalValidity"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ReservationParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParameter/optionalReservation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParameter/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReservationParameter/params9181"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReservationParameter/options"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ReservationParams9181">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParams9181/travelClass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParams9181/serviceLevel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParams9181/service"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParams9181/berthType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParams9181/coachType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParams9181/compartmentType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParams9181/tariff"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ReservationOptions">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReservationOptions/preferences"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReservationOptions/serviceBrands"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationOptions/graphicalReservation"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ReservationPreference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationPreference/preference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationPreference/group"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ServiceClass">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ServiceClass/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ServiceClass/classicClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ServiceClass/text"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ServiceLevel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ServiceLevel/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ServiceLevel/text"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ServiceLevel/combiningServiceClasses"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ServiceLevel/reservationParameter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ServiceLevel/includesClassName"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ServiceConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ServiceConstraint/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ServiceConstraint/includedServiceBrands"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ServiceConstraint/excludedServiceBrands"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Station">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Station/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//Station/country"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//StationsType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//StationsType/code"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//StationsType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//TargetFareTemplate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TargetFareTemplate/priceFactor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TargetFareTemplate/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TargetFareTemplate/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TargetFareTemplate/dataDescription"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//TargetFareTemplate/text"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//TargetFareTemplate/serviceConstraint"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//TargetFareTemplate/carrierConstraint"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//TargetFareTemplate/serviceClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//TargetFareTemplate/serviceLevel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//TargetFareTemplate/salesAvailability"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//TargetFareTemplate/travelValidity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//TargetFareTemplate/combinationConstraint"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//TravelValidityConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TravelValidityConstraint/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TravelValidityConstraint/dataDescription"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//TravelValidityConstraint/validDays"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TravelValidityConstraint/excludedTimeRange"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TravelValidityConstraint/travelDays"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//TravelValidityConstraint/range"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//TravelValidityConstraint/returnConstraint"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Text" labelFeature="#//Gtm/Text/textUTF8">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Text/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Text/textUTF8"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Text/textICAO"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Text/shortTextUTF8"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Text/shortTextICAO"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Text/translations"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Translation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//Translation/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Translation/textUTF8"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Translation/textICAO"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Translation/shortTextUTF8"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Translation/shortTextICAO"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//VATDetail">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//VATDetail/amount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//VATDetail/percentage"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//VATDetail/country"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//VATDetail/taxId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//VATDetail/scope"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//FareElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareElement/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareElement/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareElement/dataDescription"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/text"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/price"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/regionalConstraint"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/serviceConstraint"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/carrierConstraint"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/serviceClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/serviceLevel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/salesAvailability"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/travelValidity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/combinationConstraint"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ServiceBrand">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ServiceBrand/code"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ServiceBrand/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ServiceBrand/abbreviation"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//SalesAvailabilityConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//SalesAvailabilityConstraint/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//SalesAvailabilityConstraint/dataDescription"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//SalesAvailabilityConstraint/restrictions"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//SalesRestriction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//SalesRestriction/salesDates"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//SalesRestriction/startOfSale"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//SalesRestriction/endOfSale"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//TimeReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TimeReference/refereceType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TimeReference/unit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TimeReference/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//CombinationConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//CombinationConstraint/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//CombinationConstraint/dataDescription"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CombinationConstraint/combinationModels"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ValidityRange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ValidityRange/unit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ValidityRange/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ValidityRange/hoursAfterMidnight"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//TimeRange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TimeRange/scope"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TimeRange/from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TimeRange/until"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ReturnValidityConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReturnValidityConstraint/excludedWeekdays"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReturnValidityConstraint/latestReturn"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReturnValidityConstraint/earliestReturn"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//FareCombinationModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareCombinationModel/model"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareCombinationModel/combinableCarriers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareCombinationModel/onlyWhenCombined"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareCombinationModel/allowedAllocators"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareCombinationModel/referenceCluster"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareCombinationModel/allowedClusters"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareCombinationModel/allowedCommonContracts"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//RegionalValidity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RegionalValidity/seqNb"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/viaStation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/zone"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/line"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/polygone"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ViaStation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/station"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/route"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/alternativeRoutes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/carrier"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Zone">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Zone/binaryZoneId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Zone/zoneId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//Zone/carrier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//Zone/entryStation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//Zone/terminalStation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//Zone/nutsCode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Zone/city"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//NutsCode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//NutsCode/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//NutsCode/code"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Line">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Line/binaryZoneId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Line/lineId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//Line/carrier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//Line/entryStation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//Line/terminalStation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//Line/nutsCode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Line/city"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Polygone">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Polygone/egde"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//Edge">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Edge/system"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Edge/eastWest"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Edge/northSouth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Edge/unit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Edge/accuracy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Edge/longitude"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Edge/latitude"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//PassengerConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/travelerType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//PassengerConstraint/text"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/upperAgeLimit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/lowerAgeLimit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/travelAloneAgeLimit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/reservationAgeLimit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/isAncilliary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/passengerWeight"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/maxTotalPassengerWeight"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/minTotalPassengerWeight"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PassengerConstraint/includedFreePassengers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PassengerConstraint/excludedPassengerCombinations"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//PassengerCombinationConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerCombinationConstraint/maxNumber"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//PassengerCombinationConstraint/passengerType"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//RelativeTime">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RelativeTime/unit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RelativeTime/reference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RelativeTime/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ZoneDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ZoneDefinition/zoneId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ZoneDefinition/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ZoneDefinition/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ZoneDefinition/stations"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//AfterSalesCondition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesCondition/transactionType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesCondition/individualContracts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesCondition/carrierFee"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//AfterSalesCondition/fee"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//AfterSalesCondition/applicationTime"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//AfterSalesRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesRule/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//AfterSalesRule/conditions"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//PersonalDataConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PersonalDataConstraint/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PersonalDataConstraint/requiredPersonalData"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PersonalDataConstraint/allowedChanges"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//RequiredPersonalData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RequiredPersonalData/ticketHolderOnly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RequiredPersonalData/dataItem"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RequiredPersonalData/transfer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RequiredPersonalData/fulfillmentType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RequiredPersonalData/crossBorder"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//CrossBorderCondition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//CrossBorderCondition/fromCountry"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//CrossBorderCondition/toCountry"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//CrossBorderCondition/affectedServiceBrands"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//AllowedPersonalDataChanges">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AllowedPersonalDataChanges/timeLimit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AllowedPersonalDataChanges/acceptedReason"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//ReductionConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReductionConstraint/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReductionConstraint/requiredReductionCards"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//RequiredReductionCard">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//RequiredReductionCard/cardClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//RequiredReductionCard/card"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RequiredReductionCard/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//FulfillmentConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FulfillmentConstraint/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FulfillmentConstraint/acceptedFulfilmentTypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FulfillmentConstraint/acceptedBarcodes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FulfillmentConstraint/requiredControlDataExchange"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FulfillmentConstraint/individualTicketingPermitted"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//FareResourceLocation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareResourceLocation/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareResourceLocation/carrierResourceLocations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareResourceLocation/stationResourceLocations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareResourceLocation/trainResourceLocations"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//TrainResourceLocation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//TrainResourceLocation/carrier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//TrainResourceLocation/onlineResources"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TrainResourceLocation/trainId"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//CarrierResourceLocation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//CarrierResourceLocation/carrier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//CarrierResourceLocation/serviceBrand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CarrierResourceLocation/onlineResources"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//StationResourceLocation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//StationResourceLocation/onlineResources"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//StationResourceLocation/stations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//StationResourceLocation/connectionPoints"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//OnlineResource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//OnlineResource/offerRequestType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//OnlineResource/interfaceType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//OnlineResource/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//OnlineResource/system"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

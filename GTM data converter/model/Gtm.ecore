@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Gtm" nsURI="platform:/resource/GTM%20data%20converter/model/gtm.xsd"
+    nsPrefix="Gtm">
+  <eClassifiers xsi:type="ecore:EClass" name="GTMTool">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conversionFromLegacy" lowerBound="1"
+        eType="#//ConversionFromLegacy" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="codeLists" lowerBound="1"
+        eType="#//CodeLists" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generalTariffModel" lowerBound="1"
+        eType="#//GeneralTariffModel" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CodeLists">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carriers" upperBound="-1"
+        eType="#//Carrier" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stations" upperBound="-1"
+        eType="#//Station" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="countries" upperBound="-1"
+        eType="#//Country" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="languages" upperBound="-1"
+        eType="#//Language" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currencies" upperBound="-1"
+        eType="#//Currency" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceBrands" upperBound="-1"
+        eType="#//ServiceBrand" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nutsCodes" upperBound="-1"
+        eType="#//NutsCode" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GeneralTariffModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="delivery" lowerBound="1"
+        eType="#//Delivery" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fareStructure" lowerBound="1"
+        eType="#//FareStructure" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConversionFromLegacy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="legacy108" lowerBound="1"
+        eType="#//Legacy108" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="params" lowerBound="1"
+        eType="#//CoversionParams" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FareStructure">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fareElements" upperBound="-1"
+        eType="#//FareElement" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="afterSalesRules" upperBound="-1"
+        eType="#//AfterSalesRule" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="calendars" lowerBound="1"
+        upperBound="-1" eType="#//Calendar" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceClassDefinitions"
+        lowerBound="1" upperBound="-1" eType="#//ServiceClass" containment="true"
+        resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prices" upperBound="-1"
+        eType="#//Price" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="regionalConstraints" upperBound="-1"
+        eType="#//RegionalConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="texts" upperBound="-1"
+        eType="#//Text" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceLevelDefinitions"
+        upperBound="-1" eType="#//ServiceLevel" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reservationParameters"
+        upperBound="-1" eType="#//ReservationParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceConstraints" upperBound="-1"
+        eType="#//ServiceConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carrierConstraints" upperBound="-1"
+        eType="#//CarrierConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reductionCards" upperBound="-1"
+        eType="#//ReductionCard" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="salesAvailabilityConstraints"
+        upperBound="-1" eType="#//SalesAvailabilityConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="travelValidityConstraints"
+        upperBound="-1" eType="#//TravelValidityConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="combinationConstraints"
+        upperBound="-1" eType="#//CombinationConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="passengerConstraints" upperBound="-1"
+        eType="#//PassengerConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="personalDataConstraints"
+        upperBound="-1" eType="#//PersonalDataConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reductionConstraints" upperBound="-1"
+        eType="#//ReductionConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="zoneDefinitions" upperBound="-1"
+        eType="#//ZoneDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="supportedOnlineServices"
+        upperBound="-1" eType="#//OnlineServiceType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fulfillmentConstraint"
+        upperBound="-1" eType="#//FulfillmentConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fareResourceLocations"
+        upperBound="-1" eType="#//FareResourceLocation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectionPoints" upperBound="-1"
+        eType="#//ConnectionPoint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Delivery">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="previousDeliveryId" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="replacedDeliveryId" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fareProvider" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"
+        unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="provider" eType="#//Carrier"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BorderPoints">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
+        unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="station1" eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="station2" eType="#//Station"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Calendar">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fromDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="untilDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="utcOffset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dates" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Carrier">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CoversionParams">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="borderPoints" upperBound="-1"
+        eType="#//BorderPoints" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetFares" lowerBound="1"
+        upperBound="-1" eType="#//TargetFareTemplate" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stationMappings" upperBound="-1"
+        eType="#//LegacyStationMap" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="TaxId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VATpercentage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taxCountry" eType="#//Country"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacyDescription">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacyDistanceFare">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fare2nd" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fare1st" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fareTableNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacyFares">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description" lowerBound="1"
+        upperBound="5" eType="#//LegacyDescription" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Legacy108">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="carrier" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="series" lowerBound="1"
+        upperBound="-1" eType="#//LegacySeries" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fares" lowerBound="1" upperBound="-1"
+        eType="#//LegacyFares" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="distanceFare" lowerBound="1"
+        upperBound="-1" eType="#//LegacyDistanceFare" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="routeFare" lowerBound="1"
+        upperBound="-1" eType="#//LegacyRouteFare" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacyRouteFare">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="seriesNumber" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fare2nd" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fare1st" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fareTableNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacySeries">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viastations" upperBound="-1"
+        eType="#//LegacyViastation" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance1" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pricetype" lowerBound="1"
+        eType="#//LegacyCalculationType" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validFrom" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Date"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validUntil" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Date"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pricing" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//LegacySeriesType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fromStation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="toStation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacyViastation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
+        unsettable="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacyStationMap">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="legacyCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="station" eType="#//Station"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CarrierConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="includedCarriers" upperBound="-1"
+        eType="#//Carrier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="excludedCarriers" upperBound="-1"
+        eType="#//Carrier"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Country">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConnectionPoint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stations" upperBound="-1"
+        eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Currency">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isoCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CurrencyPrice">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currency" eType="#//Currency"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="VATdetails" upperBound="-1"
+        eType="#//VATDetail" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Language">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Price">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currencies" upperBound="-1"
+        eType="#//CurrencyPrice" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReductionCard">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cardIssuer" lowerBound="1"
+        eType="#//Carrier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//Text"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceClasses" upperBound="-1"
+        eType="#//ServiceClass"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RegionalConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entryConnectionPoint" eType="#//ConnectionPoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exitConnectionPoint" eType="#//ConnectionPoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="regionalValidity" upperBound="-1"
+        eType="#//RegionalValidity" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReservationParameter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optionalReservation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="params9181" eType="#//ReservationParams9181"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="options" eType="#//ReservationOptions"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReservationParams9181">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="travelClass" eType="#//ReservationTravelClass"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceLevel" eType="#//ReservationServiceLevel"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="service" eType="#//ReservationService"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="berthType" eType="#//ReservationBerthType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coachType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="compartmentType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tariff" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ReservationService">
+    <eLiterals name="SEAT" value="1"/>
+    <eLiterals name="COUCHETTE" value="2"/>
+    <eLiterals name="BERTH" value="3"/>
+    <eLiterals name="CAR_CARRIAGE" value="6"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ReservationBerthType">
+    <eLiterals name="SINGLE" value="1"/>
+    <eLiterals name="SPECIAL" value="2"/>
+    <eLiterals name="DOUBLE" value="3"/>
+    <eLiterals name="T2" value="4"/>
+    <eLiterals name="T3" value="5"/>
+    <eLiterals name="T4" value="6"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReservationOptions">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preferences" upperBound="-1"
+        eType="#//ReservationPreference" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceBrands" upperBound="-1"
+        eType="#//ServiceBrand"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="graphicalReservation" eType="#//GraphicalReservationType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="GraphicalReservationType">
+    <eLiterals name="IRS90918_1" value="1"/>
+    <eLiterals name="GTM" value="2"/>
+    <eLiterals name="NONE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReservationPreference">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="preference" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="group" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classicClass" eType="#//ClassicClassType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="text" eType="#//Text"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceLevel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="text" lowerBound="1" eType="#//Text"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="combiningServiceClasses"
+        upperBound="-1" eType="#//ServiceClass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reservationParameter" eType="#//ReservationParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="includesClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="includedServiceBrands"
+        upperBound="-1" eType="#//ServiceBrand"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="excludedServiceBrands"
+        upperBound="-1" eType="#//ServiceBrand"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Station">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="country" eType="#//Country"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StationsType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"
+        unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetFareTemplate">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="priceFactor" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Float" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//FareType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="text" eType="#//Text"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceConstraint" eType="#//ServiceConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carrierConstraint" eType="#//CarrierConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceClass" eType="#//ServiceClass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceLevel" eType="#//ServiceLevel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="salesAvailability" eType="#//SalesAvailabilityConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="travelValidity" eType="#//TravelValidityConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="combinationConstraint"
+        eType="#//CombinationConstraint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TravelValidityConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validDays" eType="#//Calendar"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="excludedTimeRange" eType="#//TimeRangeScope"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="travelDays" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="range" eType="#//ValidityRange"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnConstraint" eType="#//ReturnValidityConstraint"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Text">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textUTF8" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textICAO" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortTextUTF8" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortTextICAO" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="translations" upperBound="-1"
+        eType="#//Translation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Translation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="language" eType="#//Language"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textUTF8" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textICAO" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortTextUTF8" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortTextICAO" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VATDetail">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="percentage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="country" lowerBound="1"
+        eType="#//Country"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="taxId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scope" eType="#//TaxScope"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FareElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//FareType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="text" eType="#//Text"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="price" eType="#//Price"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="regionalConstraint" eType="#//RegionalConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceConstraint" eType="#//ServiceConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carrierConstraint" eType="#//CarrierConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceClass" eType="#//ServiceClass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceLevel" eType="#//ServiceLevel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="salesAvailability" eType="#//SalesAvailabilityConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="travelValidity" eType="#//TravelValidityConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="combinationConstraint"
+        eType="#//CombinationConstraint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceBrand">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abbreviation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SalesAvailabilityConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="restrictions" upperBound="-1"
+        eType="#//SalesRestriction" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SalesRestriction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="salesDates" eType="#//Calendar"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startOfSale" eType="#//TimeReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endOfSale" eType="#//TimeReference"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeReference">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="refereceType" eType="#//TimeReferenceType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="#//TimeUnit"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CombinationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="combinationModels" upperBound="-1"
+        eType="#//FareCombinationModel" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidityRange">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="#//TimeUnit"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hoursAfterMidnight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeRange">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scope" eType="#//TimeRangeScope"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="until" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReturnValidityConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="excludedWeekdays" upperBound="-1"
+        eType="#//WeekDay"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="latestReturn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="earliestReturn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FareCombinationModel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="model" eType="#//CombinationModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="combinableCarriers" upperBound="-1"
+        eType="#//Carrier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="onlyWhenCombined" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allowedAllocators" upperBound="-1"
+        eType="#//Carrier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceCluster" eType="#//Clusters"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowedClusters" upperBound="-1"
+        eType="#//Clusters"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allowedCommonContracts"
+        upperBound="-1" eType="#//Carrier"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RegionalValidity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="seqNb" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viaStation" upperBound="-1"
+        eType="#//ViaStation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="zone" upperBound="-1" eType="#//Zone"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="line" upperBound="-1" eType="#//Line"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="polygone" upperBound="-1"
+        eType="#//Polygone" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ViaStation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="station" eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="route" eType="#//ViaStation"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alternativeRoutes" upperBound="-1"
+        eType="#//ViaStation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" eType="#//Carrier"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Zone">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="binaryZoneId" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Base64Binary"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="zoneId" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" eType="#//Carrier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entryStation" eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="terminalStation" eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nutsCode" eType="#//NutsCode"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="city" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NutsCode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Line">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="binaryZoneId" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Base64Binary"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lineId" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" eType="#//Carrier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entryStation" eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="terminalStation" eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nutsCode" eType="#//NutsCode"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="city" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Polygone">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="egde" upperBound="-1" eType="#//Edge"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Edge">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="system" eType="#//GeoSystem"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eastWest" eType="#//HemisphereEW"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="northSouth" eType="#//HemisphereNS"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="#//GeoUnit"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accuracy" eType="#//GeoUnit"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="longitude" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="latitude" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PassengerConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="travelerType" eType="#//TravelerType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="text" eType="#//Text"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperAgeLimit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerAgeLimit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="travelAloneAgeLimit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reservationAgeLimit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAncilliary" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="passengerWeight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxTotalPassengerWeight"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minTotalPassengerWeight"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="includedFreePassengers"
+        upperBound="-1" eType="#//PassengerCombinationConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="excludedPassengerCombinations"
+        upperBound="-1" eType="#//PassengerCombinationConstraint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PassengerCombinationConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="passengerType" eType="#//PassengerConstraint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RelativeTime">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="#//TimeUnit"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reference" eType="#//TimeReferenceType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ZoneDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="zoneId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stations" upperBound="-1"
+        eType="#//Station"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AfterSalesCondition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transactionType" eType="#//AfterSalesTransactionType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="individualContracts" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="carrierFee" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fee" eType="#//Price"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="applicationTime" eType="#//RelativeTime"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AfterSalesRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
+        eType="#//AfterSalesCondition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PersonalDataConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requiredPersonalData" upperBound="-1"
+        eType="#//RequiredPersonalData" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allowedChanges" upperBound="-1"
+        eType="#//AllowedPersonalDataChanges" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RequiredPersonalData">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ticketHolderOnly" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataItem" eType="#//PersonalDataItemsType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transfer" eType="#//PersonalDataTransferType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fulfillmentType" upperBound="-1"
+        eType="#//FulfillmentType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="crossBorder" upperBound="-1"
+        eType="#//CrossBorderCondition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CrossBorderCondition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromCountry" eType="#//Country"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toCountry" eType="#//Country"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="affectedServiceBrands"
+        eType="#//ServiceBrand"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AllowedPersonalDataChanges">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeLimit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="acceptedReason" eType="#//PersonalDataChangeReason"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReductionConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requiredReductionCards"
+        upperBound="-1" eType="#//RequiredReductionCard" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RequiredReductionCard">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cardClass" eType="#//ServiceClass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="card" lowerBound="1" eType="#//ReductionCard"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FulfillmentConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="acceptedFulfilmentTypes"
+        upperBound="-1" eType="#//FulfillmentType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="acceptedBarcodes" upperBound="-1"
+        eType="#//BarcodeTypes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredControlDataExchange"
+        upperBound="-1" eType="#//ControlDataExchangeTypes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="individualTicketingPermitted"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FareResourceLocation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carrierResourceLocations"
+        upperBound="-1" eType="#//CarrierResourceLocation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stationResourceLocations"
+        upperBound="-1" eType="#//StationResourceLocation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trainResourceLocations"
+        upperBound="-1" eType="#//TrainResourceLocation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TrainResourceLocation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" lowerBound="1"
+        eType="#//Carrier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onlineResources" upperBound="-1"
+        eType="#//OnlineResource" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="trainId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CarrierResourceLocation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" lowerBound="1"
+        eType="#//Carrier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceBrand" eType="#//ServiceBrand"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onlineResources" upperBound="-1"
+        eType="#//OnlineResource" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StationResourceLocation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onlineResources" upperBound="-1"
+        eType="#//OnlineResource" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stations" upperBound="-1"
+        eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectionPoints" upperBound="-1"
+        eType="#//ConnectionPoint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OnlineResource">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="offerRequestType" eType="#//OfferRequestType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interfaceType" eType="#//InterfaceType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="system" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LegacyCalculationType">
+    <eLiterals name="distance_based" value="1"/>
+    <eLiterals name="route_based" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LegacySeriesType">
+    <eLiterals name="border_destination" value="2"/>
+    <eLiterals name="transit" value="1"/>
+    <eLiterals name="station_station" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ClassicClassType">
+    <eLiterals name="FIRST" value="1"/>
+    <eLiterals name="SECOND" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TaxScope">
+    <eLiterals name="INTERNALTIONAL" value="1"/>
+    <eLiterals name="NATIONAL" value="2"/>
+    <eLiterals name="SHORT_DISTANCE" value="3"/>
+    <eLiterals name="LONG_DISTANCE" value="4"/>
+    <eLiterals name="ANY"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FareType">
+    <eLiterals name="NRT"/>
+    <eLiterals name="IRT" value="1"/>
+    <eLiterals name="RES" value="2"/>
+    <eLiterals name="RPT" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ReservationTravelClass">
+    <eLiterals name="FIRST" value="1"/>
+    <eLiterals name="SECOND" value="2"/>
+    <eLiterals name="C" value="3"/>
+    <eLiterals name="P" value="4"/>
+    <eLiterals name="T" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ReservationServiceLevel">
+    <eLiterals name="A"/>
+    <eLiterals name="B" value="1"/>
+    <eLiterals name="RO" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimeReferenceType">
+    <eLiterals name="BEFORE_DEPARTURE" value="1"/>
+    <eLiterals name="AFTER_DEPARTURE" value="2"/>
+    <eLiterals name="BEFORE_VALIDITY" value="3"/>
+    <eLiterals name="BEFORE_START_VALIDITY" value="4"/>
+    <eLiterals name="AFTER_END_VALIDITY" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimeRangeScope">
+    <eLiterals name="START_OF_TRAVEL" value="1"/>
+    <eLiterals name="COMPLETE_RANGE" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimeUnit">
+    <eLiterals name="DAY"/>
+    <eLiterals name="HOUR" value="1"/>
+    <eLiterals name="MINUTE" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="WeekDay">
+    <eLiterals name="MONDAY" value="1"/>
+    <eLiterals name="TUESDAY" value="2"/>
+    <eLiterals name="WEDNESDAY" value="3"/>
+    <eLiterals name="THURSDAY" value="4"/>
+    <eLiterals name="FRIDAY" value="5"/>
+    <eLiterals name="SATURDAY" value="6"/>
+    <eLiterals name="SUNDAY" value="7"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CombinationModel">
+    <eLiterals name="SEPARATE_TICKET" value="1"/>
+    <eLiterals name="SEPARATE_CONTRACT" value="2"/>
+    <eLiterals name="CLUSTERING" value="3"/>
+    <eLiterals name="COMBINING" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Clusters">
+    <eLiterals name="BUSINESS"/>
+    <eLiterals name="FULLFLEX" value="1"/>
+    <eLiterals name="SEMIFLEX" value="2"/>
+    <eLiterals name="NONFLEX" value="3"/>
+    <eLiterals name="PROMO" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="GeoSystem">
+    <eLiterals name="wgs84"/>
+    <eLiterals name="grs80" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="GeoUnit">
+    <eLiterals name="microDegree"/>
+    <eLiterals name="tenthmilliDegree" value="1"/>
+    <eLiterals name="milliDegree" value="2"/>
+    <eLiterals name="centiDegree" value="3"/>
+    <eLiterals name="deciDegree" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HemisphereEW">
+    <eLiterals name="EAST"/>
+    <eLiterals name="WEST" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HemisphereNS">
+    <eLiterals name="NORTH"/>
+    <eLiterals name="SOUTH" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LegacyPassengerType">
+    <eLiterals name="ADULT" value="1"/>
+    <eLiterals name="CHILD" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TravelerType">
+    <eLiterals name="ADULT" value="1"/>
+    <eLiterals name="CHILD" value="3"/>
+    <eLiterals name="YOUTH" value="2"/>
+    <eLiterals name="SENIOR" value="4"/>
+    <eLiterals name="ACCOMP_PRM" value="5"/>
+    <eLiterals name="DOG" value="20"/>
+    <eLiterals name="LUGGAGE" value="21"/>
+    <eLiterals name="ACCOMP_DOG" value="22"/>
+    <eLiterals name="CAR" value="30"/>
+    <eLiterals name="BICYCLE" value="31"/>
+    <eLiterals name="MOTOCYCLE" value="32"/>
+    <eLiterals name="TRAILER" value="33"/>
+    <eLiterals name="GRAPHICAL_RES" value="40"/>
+    <eLiterals name="OPT_RESERVATION" value="41"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AfterSalesTransactionType">
+    <eLiterals name="REFUND" value="1"/>
+    <eLiterals name="EXCHANGE" value="2"/>
+    <eLiterals name="EXCHANGE_KEEP_CARRIER" value="3"/>
+    <eLiterals name="EXCHANGE_CHANGE_CARRIER"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PersonalDataItemsType">
+    <eLiterals name="DATE_OF_BIRTH" value="1"/>
+    <eLiterals name="E_MAIL" value="2"/>
+    <eLiterals name="PHONE" value="3"/>
+    <eLiterals name="FULL_NAME" value="4"/>
+    <eLiterals name="LAST_NAME" value="5"/>
+    <eLiterals name="LANGUAGE" value="6"/>
+    <eLiterals name="TITLE" value="7"/>
+    <eLiterals name="GENDER" value="8"/>
+    <eLiterals name="DOC_TYPE" value="9"/>
+    <eLiterals name="DOC_ID" value="10"/>
+    <eLiterals name="DOC_NAME" value="11"/>
+    <eLiterals name="DOC_CITY_OF_RESIDENCE" value="12"/>
+    <eLiterals name="DOC_COUNTRY_OF_BIRTH" value="13"/>
+    <eLiterals name="DOC_COUNTRY_OF_ISSUE" value="14"/>
+    <eLiterals name="DOC_COUNTRY_OF_RESDENCE" value="15"/>
+    <eLiterals name="DOC_DATE_OF_ISSUE" value="16"/>
+    <eLiterals name="DOC_GENDER" value="17"/>
+    <eLiterals name="DOC_NATIONALITY" value="18"/>
+    <eLiterals name="DOC_LIMIT_OF_VALIDITY" value="19"/>
+    <eLiterals name="DOC_CITY_OF_ISSUE" value="20"/>
+    <eLiterals name="DOC_CITY_OF_BIRTH" value="21"/>
+    <eLiterals name="DOC_TYPE_PASSPORT" value="22"/>
+    <eLiterals name="CARD_ISSUER" value="23"/>
+    <eLiterals name="CARD_NUMBER" value="24"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PersonalDataTransferType">
+    <eLiterals name="SID" value="1"/>
+    <eLiterals name="SIS_CONTROL" value="2"/>
+    <eLiterals name="BOOKING" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PersonalDataChangeReason">
+    <eLiterals name="IN_GENERAL" value="1"/>
+    <eLiterals name="MARRIAGE" value="2"/>
+    <eLiterals name="DOCUMENT_EXCHANGE" value="3"/>
+    <eLiterals name="AGENT_ERROR" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="OnlineServiceType">
+    <eLiterals name="OFFER" value="1"/>
+    <eLiterals name="BOOKING" value="2"/>
+    <eLiterals name="RESERVATION_LEGACY_918_1" value="3"/>
+    <eLiterals name="RESERVATION_PREF" value="4"/>
+    <eLiterals name="RESERVATION_GRAPH" value="6"/>
+    <eLiterals name="INCREASE" value="7"/>
+    <eLiterals name="DECREASE" value="8"/>
+    <eLiterals name="EXCHANGE" value="9"/>
+    <eLiterals name="FULFILLMENT_ITEMS" value="10"/>
+    <eLiterals name="FULFILLMENT" value="12"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FulfillmentType">
+    <eLiterals name="SID" value="2"/>
+    <eLiterals name="SIP" value="1"/>
+    <eLiterals name="SIS" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BarcodeTypes">
+    <eLiterals name="FCB" value="1"/>
+    <eLiterals name="TLB" value="2"/>
+    <eLiterals name="SSB" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ControlDataExchangeTypes">
+    <eLiterals name="IRS90918_4_PEER2PEER" value="2" literal="IRS90918_4_PEER2PEER"/>
+    <eLiterals name="IRS90918_4_REGISTRY" value="1"/>
+    <eLiterals name="PROPRIETARY" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="OfferRequestType">
+    <eLiterals name="POINT2POINT" value="1"/>
+    <eLiterals name="AREA" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="InterfaceType">
+    <eLiterals name="IRS90918_1_RESERVATION_BINARY" value="1" literal="IRS90918_1_RESERVATION_BINARY"/>
+    <eLiterals name="GTM" value="2"/>
+    <eLiterals name="IRS90918_1_RESERVATION_XML" value="3"/>
+  </eClassifiers>
+</ecore:EPackage>
