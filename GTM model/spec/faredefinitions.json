@@ -7,37 +7,15 @@
 			"type": "object",
 			"properties": {
 				"transactionType": {
-					"description": "REXCHANGE, UPGRADE,..",
+					"description": "code list Reason for after sale",
 					"type": "string"
 				},
-				"fee": {
-					"description": "optional in case there is no fee but the after sales transaction is allowed",
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/CurrencyPriceDef"
-					}
+				"feeId": {
+					"description": "reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction is allowed",
+					"type": "string"
 				},
 				"applicationTime": {
-					"type": "object",
-					"properties": {
-						"timeUnit": {
-							"description": "MINUTES,DAYS,HOURS",
-							"type": "string"
-						},
-						"timeValue": {
-							"type": "number"
-						},
-						"timeReference": {
-							"description": "BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY",
-							"type": "string"
-						}
-					},
-					"required": [
-						"timeUnit",
-						"timeValue",
-						"timeReference"
-					],
-					"additionalProperties": false
+					"$ref": "#/definitions/RelativeTimeDef"
 				},
 				"carrierFee": {
 					"description": "indicates that the fee belongs to the carrier",
@@ -162,10 +140,7 @@
 		},
 		"ConnectionPointDef": {
 			"description": "connection point connecting two fare regimes",
-			"type": "array",
-			"items": {
-				"$ref": "definitions.json#/definitions/StationDef"
-			}
+			"type": "string"
 		},
 		"CurrencyPriceDef": {
 			"type": "object",
@@ -304,8 +279,15 @@
 						"type": "string"
 					}
 				},
-				"acceptedSiS": {
-					"description": "for SiD fullfillment one of the listed interfaces is required",
+				"requiredBarCodes": {
+					"description": "one of the listed bar codes must be provided",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"requiredSiS": {
+					"description": "for SiS fullfillment one of the listed interfaces is required",
 					"type": "array",
 					"items": {
 						"description": "registry90918-4;peertopeer90918-4",
@@ -314,31 +296,6 @@
 				},
 				"individualTicketingPermitted": {
 					"description": "a seprate fullfillment per traveler is permitted",
-					"type": "boolean"
-				},
-				"requiredPersonalData": {
-					"description": "required personal data in the booking",
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"description": "NAME,DATEOFBIRTH,GENDER,ID-CARD,PASSPORT,E-MAIL, ...",
-								"type": "string"
-							},
-							"Security": {
-								"description": "SIP,SID,SIS",
-								"type": "string"
-							}
-						},
-						"required": [
-							"id"
-						],
-						"additionalProperties": false
-					}
-				},
-				"ticketHolderOnly": {
-					"description": "personal data are required for the ticket holder only",
 					"type": "boolean"
 				}
 			},
@@ -352,12 +309,12 @@
 		"OnlineResourceDef": {
 			"type": "object",
 			"properties": {
-				"resourceType": {
-					"description": "The resource provides offers bases on trains or based on areas. Train based offers must start and end at a read station and are not splitted inbetween a train run . Values TRAIN, AREA",
+				"offerType": {
+					"description": "The resource provides offers bases on trains or based on areas. Train based offers must start and end at a real station and are not splitted inbetween a train run . Values TRAIN, AREA",
 					"type": "string"
 				},
 				"interfaceType": {
-					"description": "\"TAPTSI-B5\", \"\"nTM\",..",
+					"description": "GTM,...",
 					"type": "string"
 				},
 				"version": {
@@ -377,6 +334,10 @@
 			"type": "object",
 			"properties": {
 				"id": {
+					"type": "string"
+				},
+				"passengerType": {
+					"description": "see code list travelerType",
 					"type": "string"
 				},
 				"nameRef": {
@@ -450,6 +411,7 @@
 			},
 			"required": [
 				"id",
+				"passengerType",
 				"nameRef"
 			],
 			"additionalProperties": false
@@ -499,6 +461,17 @@
 							"ticketHolderOnly": {
 								"type": "boolean",
 								"default": false
+							},
+							"fulfillmentType": {
+								"description": "type of fulfillment in case the presonal data are required for that type only",
+								"type": "string"
+							},
+							"crossBorder": {
+								"description": "the dara are required only in case one of the cross border conditions apply",
+								"type": "array",
+								"items": {
+									"$ref": "#/definitions/CrossBorderCondition"
+								}
 							}
 						},
 						"required": [
@@ -518,7 +491,7 @@
 								"type": "string"
 							},
 							"timeLimit": {
-								"description": "the cgange is limited to n hours after booking confirmation",
+								"description": "the change is limited to n hours after booking confirmation",
 								"type": "number"
 							}
 						},
@@ -540,11 +513,13 @@
 				"id": {
 					"type": "string"
 				},
-				"entryConnectionPoint": {
-					"$ref": "#/definitions/ConnectionPointDef"
+				"entryConnectionPointId": {
+					"description": "connection point connecting two fare regimes",
+					"type": "string"
 				},
-				"exitConnectionPoint": {
-					"$ref": "#/definitions/ConnectionPointDef"
+				"exitConnectionPointId": {
+					"description": "connection point connecting two fare regimes",
+					"type": "string"
 				},
 				"RegionalValidity": {
 					"$ref": "ticketdefinitions.json#/definitions/RegionalValidityDef"
@@ -590,7 +565,7 @@
 						"compartmentTypeCode": {
 							"type": "string"
 						},
-						"TariffCode": {
+						"tariff": {
 							"type": "string"
 						}
 					},
@@ -635,12 +610,15 @@
 		"ReservationOptionGroupDef": {
 			"type": "object",
 			"properties": {
-				"optionGroup": {
+				"preferenceGroup": {
 					"type": "string"
 				},
-				"option": {
+				"preference": {
 					"type": "array",
-					"minItems": 1
+					"minItems": 1,
+					"items": {
+						"type": "string"
+					}
 				}
 			},
 			"additionalProperties": false
@@ -665,8 +643,9 @@
 								"description": "card name for printing on tickets",
 								"type": "string"
 							},
-							"cardClass": {
-								"$ref": "#/definitions/ServiceClassDef"
+							"cardClassId": {
+								"description": "reference to the service class of the card",
+								"type": "string"
 							}
 						},
 						"required": [
@@ -856,10 +835,10 @@
 						"$ref": "definitions.json#/definitions/StationDef"
 					}
 				},
-				"connectionPoints": {
+				"connectionPointIds": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ConnectionPointDef"
+						"type": "string"
 					}
 				}
 			},
@@ -954,6 +933,7 @@
 					"$ref": "definitions.json#/definitions/CompanyDef"
 				},
 				"trainId": {
+					"description": "ztrain number (without service brand abbreviation)",
 					"type": "string"
 				},
 				"onlineResource": {
@@ -1092,6 +1072,48 @@
 				"Stations",
 				"zoneId"
 			],
+			"additionalProperties": false
+		},
+		"RelativeTimeDef": {
+			"type": "object",
+			"properties": {
+				"timeUnit": {
+					"description": "MINUTES,DAYS,HOURS",
+					"type": "string"
+				},
+				"timeValue": {
+					"type": "number"
+				},
+				"timeReference": {
+					"description": "BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY",
+					"type": "string"
+				}
+			},
+			"required": [
+				"timeUnit",
+				"timeValue",
+				"timeReference"
+			],
+			"additionalProperties": false
+		},
+		"CrossBorderCondition": {
+			"type": "object",
+			"properties": {
+				"fromCountry": {
+					"description": "ISO coutry code (2A)",
+					"type": "string"
+				},
+				"toCountry": {
+					"description": "ISO country code (A2)",
+					"type": "string"
+				},
+				"affectedServiceBrands": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+					}
+				}
+			},
 			"additionalProperties": false
 		}
 	}
