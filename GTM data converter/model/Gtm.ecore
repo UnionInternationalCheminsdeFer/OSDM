@@ -642,74 +642,20 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="system" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="LegacyCalculationType">
-    <eLiterals name="distance_based" value="1"/>
-    <eLiterals name="route_based" value="2"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="AfterSalesTransactionType">
+    <eLiterals name="REFUND" value="1"/>
+    <eLiterals name="EXCHANGE" value="2"/>
+    <eLiterals name="EXCHANGE_KEEP_CARRIER" value="3"/>
+    <eLiterals name="EXCHANGE_CHANGE_CARRIER"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="LegacySeriesType">
-    <eLiterals name="border_destination" value="2"/>
-    <eLiterals name="transit" value="1"/>
-    <eLiterals name="station_station" value="2"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="BarcodeTypes">
+    <eLiterals name="FCB" value="1"/>
+    <eLiterals name="TLB" value="2"/>
+    <eLiterals name="SSB" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ClassicClassType">
     <eLiterals name="FIRST" value="1"/>
     <eLiterals name="SECOND" value="2"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="TaxScope">
-    <eLiterals name="INTERNALTIONAL" value="1"/>
-    <eLiterals name="NATIONAL" value="2"/>
-    <eLiterals name="SHORT_DISTANCE" value="3"/>
-    <eLiterals name="LONG_DISTANCE" value="4"/>
-    <eLiterals name="ANY"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="FareType">
-    <eLiterals name="NRT"/>
-    <eLiterals name="IRT" value="1"/>
-    <eLiterals name="RES" value="2"/>
-    <eLiterals name="RPT" value="3"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ReservationTravelClass">
-    <eLiterals name="FIRST" value="1"/>
-    <eLiterals name="SECOND" value="2"/>
-    <eLiterals name="C" value="3"/>
-    <eLiterals name="P" value="4"/>
-    <eLiterals name="T" value="5"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ReservationServiceLevel">
-    <eLiterals name="A"/>
-    <eLiterals name="B" value="1"/>
-    <eLiterals name="RO" value="3"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="TimeReferenceType">
-    <eLiterals name="BEFORE_DEPARTURE" value="1"/>
-    <eLiterals name="AFTER_DEPARTURE" value="2"/>
-    <eLiterals name="BEFORE_VALIDITY" value="3"/>
-    <eLiterals name="BEFORE_START_VALIDITY" value="4"/>
-    <eLiterals name="AFTER_END_VALIDITY" value="5"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="TimeRangeScope">
-    <eLiterals name="START_OF_TRAVEL" value="1"/>
-    <eLiterals name="COMPLETE_RANGE" value="2"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="TimeUnit">
-    <eLiterals name="DAY"/>
-    <eLiterals name="HOUR" value="1"/>
-    <eLiterals name="MINUTE" value="2"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="WeekDay">
-    <eLiterals name="MONDAY" value="1"/>
-    <eLiterals name="TUESDAY" value="2"/>
-    <eLiterals name="WEDNESDAY" value="3"/>
-    <eLiterals name="THURSDAY" value="4"/>
-    <eLiterals name="FRIDAY" value="5"/>
-    <eLiterals name="SATURDAY" value="6"/>
-    <eLiterals name="SUNDAY" value="7"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="CombinationModel">
-    <eLiterals name="SEPARATE_TICKET" value="1"/>
-    <eLiterals name="SEPARATE_CONTRACT" value="2"/>
-    <eLiterals name="CLUSTERING" value="3"/>
-    <eLiterals name="COMBINING" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Clusters">
     <eLiterals name="BUSINESS"/>
@@ -717,6 +663,28 @@
     <eLiterals name="SEMIFLEX" value="2"/>
     <eLiterals name="NONFLEX" value="3"/>
     <eLiterals name="PROMO" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CombinationModel">
+    <eLiterals name="SEPARATE_TICKET" value="1"/>
+    <eLiterals name="SEPARATE_CONTRACT" value="2"/>
+    <eLiterals name="CLUSTERING" value="3"/>
+    <eLiterals name="COMBINING" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ControlDataExchangeTypes">
+    <eLiterals name="IRS90918_4_PEER2PEER" value="2" literal="IRS90918_4_PEER2PEER"/>
+    <eLiterals name="IRS90918_4_REGISTRY" value="1"/>
+    <eLiterals name="PROPRIETARY" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FareType">
+    <eLiterals name="NRT"/>
+    <eLiterals name="IRT" value="1"/>
+    <eLiterals name="RES" value="2"/>
+    <eLiterals name="RPT" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FulfillmentType">
+    <eLiterals name="SID" value="2"/>
+    <eLiterals name="SIP" value="1"/>
+    <eLiterals name="SIS" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="GeoSystem">
     <eLiterals name="wgs84"/>
@@ -737,31 +705,101 @@
     <eLiterals name="NORTH"/>
     <eLiterals name="SOUTH" value="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="InterfaceType">
+    <eLiterals name="IRS90918_1_RESERVATION_BINARY" value="1" literal="IRS90918_1_RESERVATION_BINARY"/>
+    <eLiterals name="GTM" value="2"/>
+    <eLiterals name="IRS90918_1_RESERVATION_XML" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ReservationTravelClass">
+    <eLiterals name="FIRST" value="1"/>
+    <eLiterals name="SECOND" value="2"/>
+    <eLiterals name="C" value="3"/>
+    <eLiterals name="P" value="4"/>
+    <eLiterals name="T" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ReservationServiceLevel">
+    <eLiterals name="A"/>
+    <eLiterals name="B" value="1"/>
+    <eLiterals name="AH" value="2"/>
+    <eLiterals name="AM" value="3"/>
+    <eLiterals name="AR" value="4"/>
+    <eLiterals name="AS" value="5"/>
+    <eLiterals name="AV" value="6"/>
+    <eLiterals name="AW" value="7"/>
+    <eLiterals name="BC" value="8"/>
+    <eLiterals name="BD" value="9"/>
+    <eLiterals name="BE" value="10"/>
+    <eLiterals name="BH" value="11"/>
+    <eLiterals name="BN" value="12"/>
+    <eLiterals name="BR" value="13"/>
+    <eLiterals name="BS" value="14"/>
+    <eLiterals name="C" value="15"/>
+    <eLiterals name="D" value="16"/>
+    <eLiterals name="DR" value="17"/>
+    <eLiterals name="D2" value="18"/>
+    <eLiterals name="D4" value="19"/>
+    <eLiterals name="D5" value="20"/>
+    <eLiterals name="D6" value="21"/>
+    <eLiterals name="E" value="22"/>
+    <eLiterals name="EX" value="23"/>
+    <eLiterals name="F" value="24"/>
+    <eLiterals name="G" value="25"/>
+    <eLiterals name="G2" value="26"/>
+    <eLiterals name="H" value="27"/>
+    <eLiterals name="K" value="28"/>
+    <eLiterals name="L" value="29"/>
+    <eLiterals name="M" value="30"/>
+    <eLiterals name="N" value="31"/>
+    <eLiterals name="O" value="32"/>
+    <eLiterals name="O3" value="33"/>
+    <eLiterals name="O4" value="34"/>
+    <eLiterals name="O5" value="35"/>
+    <eLiterals name="O8" value="36"/>
+    <eLiterals name="OB" value="37"/>
+    <eLiterals name="OL" value="38"/>
+    <eLiterals name="OS" value="39"/>
+    <eLiterals name="OT" value="40"/>
+    <eLiterals name="P" value="41"/>
+    <eLiterals name="Q" value="42"/>
+    <eLiterals name="R" value="43"/>
+    <eLiterals name="S" value="44"/>
+    <eLiterals name="SL" value="45"/>
+    <eLiterals name="T" value="46"/>
+    <eLiterals name="TL" value="47"/>
+    <eLiterals name="U" value="48"/>
+    <eLiterals name="W" value="49"/>
+    <eLiterals name="X" value="50"/>
+    <eLiterals name="Y" value="51"/>
+    <eLiterals name="Z" value="52"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LegacyCalculationType">
+    <eLiterals name="distance_based" value="1"/>
+    <eLiterals name="route_based" value="2"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="LegacyPassengerType">
     <eLiterals name="ADULT" value="1"/>
     <eLiterals name="CHILD" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="TravelerType">
-    <eLiterals name="ADULT" value="1"/>
-    <eLiterals name="CHILD" value="3"/>
-    <eLiterals name="YOUTH" value="2"/>
-    <eLiterals name="SENIOR" value="4"/>
-    <eLiterals name="ACCOMP_PRM" value="5"/>
-    <eLiterals name="DOG" value="20"/>
-    <eLiterals name="LUGGAGE" value="21"/>
-    <eLiterals name="ACCOMP_DOG" value="22"/>
-    <eLiterals name="CAR" value="30"/>
-    <eLiterals name="BICYCLE" value="31"/>
-    <eLiterals name="MOTOCYCLE" value="32"/>
-    <eLiterals name="TRAILER" value="33"/>
-    <eLiterals name="GRAPHICAL_RES" value="40"/>
-    <eLiterals name="OPT_RESERVATION" value="41"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="LegacySeriesType">
+    <eLiterals name="border_destination" value="2"/>
+    <eLiterals name="transit" value="1"/>
+    <eLiterals name="station_station" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="AfterSalesTransactionType">
-    <eLiterals name="REFUND" value="1"/>
-    <eLiterals name="EXCHANGE" value="2"/>
-    <eLiterals name="EXCHANGE_KEEP_CARRIER" value="3"/>
-    <eLiterals name="EXCHANGE_CHANGE_CARRIER"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="OfferRequestType">
+    <eLiterals name="POINT2POINT" value="1"/>
+    <eLiterals name="AREA" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="OnlineServiceType">
+    <eLiterals name="OFFER" value="1"/>
+    <eLiterals name="BOOKING" value="2"/>
+    <eLiterals name="RESERVATION_LEGACY_918_1" value="3"/>
+    <eLiterals name="RESERVATION_PREF" value="4"/>
+    <eLiterals name="RESERVATION_GRAPH" value="6"/>
+    <eLiterals name="INCREASE" value="7"/>
+    <eLiterals name="DECREASE" value="8"/>
+    <eLiterals name="EXCHANGE" value="9"/>
+    <eLiterals name="FULFILLMENT_ITEMS" value="10"/>
+    <eLiterals name="FULFILLMENT" value="12"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PersonalDataItemsType">
     <eLiterals name="DATE_OF_BIRTH" value="1"/>
@@ -800,40 +838,52 @@
     <eLiterals name="DOCUMENT_EXCHANGE" value="3"/>
     <eLiterals name="AGENT_ERROR" value="4"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="OnlineServiceType">
-    <eLiterals name="OFFER" value="1"/>
-    <eLiterals name="BOOKING" value="2"/>
-    <eLiterals name="RESERVATION_LEGACY_918_1" value="3"/>
-    <eLiterals name="RESERVATION_PREF" value="4"/>
-    <eLiterals name="RESERVATION_GRAPH" value="6"/>
-    <eLiterals name="INCREASE" value="7"/>
-    <eLiterals name="DECREASE" value="8"/>
-    <eLiterals name="EXCHANGE" value="9"/>
-    <eLiterals name="FULFILLMENT_ITEMS" value="10"/>
-    <eLiterals name="FULFILLMENT" value="12"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="TaxScope">
+    <eLiterals name="INTERNALTIONAL" value="1"/>
+    <eLiterals name="NATIONAL" value="2"/>
+    <eLiterals name="SHORT_DISTANCE" value="3"/>
+    <eLiterals name="LONG_DISTANCE" value="4"/>
+    <eLiterals name="ANY"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="FulfillmentType">
-    <eLiterals name="SID" value="2"/>
-    <eLiterals name="SIP" value="1"/>
-    <eLiterals name="SIS" value="3"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimeReferenceType">
+    <eLiterals name="BEFORE_DEPARTURE" value="1"/>
+    <eLiterals name="AFTER_DEPARTURE" value="2"/>
+    <eLiterals name="BEFORE_VALIDITY" value="3"/>
+    <eLiterals name="BEFORE_START_VALIDITY" value="4"/>
+    <eLiterals name="AFTER_END_VALIDITY" value="5"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="BarcodeTypes">
-    <eLiterals name="FCB" value="1"/>
-    <eLiterals name="TLB" value="2"/>
-    <eLiterals name="SSB" value="3"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimeRangeScope">
+    <eLiterals name="START_OF_TRAVEL" value="1"/>
+    <eLiterals name="COMPLETE_RANGE" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ControlDataExchangeTypes">
-    <eLiterals name="IRS90918_4_PEER2PEER" value="2" literal="IRS90918_4_PEER2PEER"/>
-    <eLiterals name="IRS90918_4_REGISTRY" value="1"/>
-    <eLiterals name="PROPRIETARY" value="3"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimeUnit">
+    <eLiterals name="DAY"/>
+    <eLiterals name="HOUR" value="1"/>
+    <eLiterals name="MINUTE" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="OfferRequestType">
-    <eLiterals name="POINT2POINT" value="1"/>
-    <eLiterals name="AREA" value="2"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="TravelerType">
+    <eLiterals name="ADULT" value="1"/>
+    <eLiterals name="CHILD" value="3"/>
+    <eLiterals name="YOUTH" value="2"/>
+    <eLiterals name="SENIOR" value="4"/>
+    <eLiterals name="ACCOMP_PRM" value="5"/>
+    <eLiterals name="DOG" value="20"/>
+    <eLiterals name="LUGGAGE" value="21"/>
+    <eLiterals name="ACCOMP_DOG" value="22"/>
+    <eLiterals name="CAR" value="30"/>
+    <eLiterals name="BICYCLE" value="31"/>
+    <eLiterals name="MOTOCYCLE" value="32"/>
+    <eLiterals name="TRAILER" value="33"/>
+    <eLiterals name="GRAPHICAL_RES" value="40"/>
+    <eLiterals name="OPT_RESERVATION" value="41"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="InterfaceType">
-    <eLiterals name="IRS90918_1_RESERVATION_BINARY" value="1" literal="IRS90918_1_RESERVATION_BINARY"/>
-    <eLiterals name="GTM" value="2"/>
-    <eLiterals name="IRS90918_1_RESERVATION_XML" value="3"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="WeekDay">
+    <eLiterals name="MONDAY" value="1"/>
+    <eLiterals name="TUESDAY" value="2"/>
+    <eLiterals name="WEDNESDAY" value="3"/>
+    <eLiterals name="THURSDAY" value="4"/>
+    <eLiterals name="FRIDAY" value="5"/>
+    <eLiterals name="SATURDAY" value="6"/>
+    <eLiterals name="SUNDAY" value="7"/>
   </eClassifiers>
 </ecore:EPackage>

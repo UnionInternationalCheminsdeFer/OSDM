@@ -149,11 +149,11 @@ public final class GtmEditorAdvisor extends WorkbenchAdvisor {
 			layout.setEditorAreaVisible(true);
 			layout.addPerspectiveShortcut(ID_PERSPECTIVE);
 			
-			IFolderLayout bottom = layout.createFolder("bottom", IPageLayout.BOTTOM, (float)0.60, layout.getEditorArea());
-			bottom.addView(GtmProblemView.ID);	
-			bottom.addView(IPageLayout.ID_PROBLEM_VIEW);
-			bottom.addView("org.eclipse.ui.console.ConsoleView");
-			bottom.addView("org.eclipse.pde.runtime.LogView");
+			//IFolderLayout bottom = layout.createFolder("bottom", IPageLayout.BOTTOM, (float)0.60, layout.getEditorArea());
+			//bottom.addView(GtmProblemView.ID);	
+			//bottom.addView(IPageLayout.ID_PROBLEM_VIEW);
+			//bottom.addView("org.eclipse.ui.console.ConsoleView");
+			//bottom.addView("org.eclipse.pde.runtime.LogView");
 
 			IFolderLayout right = layout.createFolder("right", IPageLayout.RIGHT, (float)0.66, layout.getEditorArea());
 			right.addView(IPageLayout.ID_OUTLINE);

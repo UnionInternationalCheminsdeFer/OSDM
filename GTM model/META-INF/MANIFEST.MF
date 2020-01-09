@@ -4,6 +4,9 @@ Bundle-Name: GTM_model
 Bundle-SymbolicName: GTM_model
 Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: GTM_model
-Export-Package: export,
+Export-Package: export;uses:="gtm",
  gtm
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: com.fasterxml.jackson.core.jackson-annotations,
+ com.fasterxml.jackson.core.jackson-databind,
+ com.fasterxml.jackson.core.jackson-core

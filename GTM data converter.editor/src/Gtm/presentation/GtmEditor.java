@@ -914,7 +914,7 @@ public class GtmEditor
 	 * This is the method used by the framework to install your own controls.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void createPages() {
@@ -962,6 +962,7 @@ public class GtmEditor
 
 			// Create a page for the parent tree view.
 			//
+			/*
 			{
 				ViewerPane viewerPane =
 					new ViewerPane(getSite().getPage(), GtmEditor.this) {
@@ -988,9 +989,11 @@ public class GtmEditor
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_ParentPage_label"));
 			}
+			*/
 
 			// This is the page for the list viewer
 			//
+			/*
 			{
 				ViewerPane viewerPane =
 					new ViewerPane(getSite().getPage(), GtmEditor.this) {
@@ -1013,9 +1016,11 @@ public class GtmEditor
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_ListPage_label"));
 			}
+			*/
 
 			// This is the page for the tree viewer
 			//
+			/*
 			{
 				ViewerPane viewerPane =
 					new ViewerPane(getSite().getPage(), GtmEditor.this) {
@@ -1040,9 +1045,11 @@ public class GtmEditor
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_TreePage_label"));
 			}
+			*/
 
 			// This is the page for the table viewer.
 			//
+			/*
 			{
 				ViewerPane viewerPane =
 					new ViewerPane(getSite().getPage(), GtmEditor.this) {
@@ -1083,9 +1090,11 @@ public class GtmEditor
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_TablePage_label"));
 			}
+			*/
 
 			// This is the page for the table tree viewer.
 			//
+			/*
 			{
 				ViewerPane viewerPane =
 					new ViewerPane(getSite().getPage(), GtmEditor.this) {
@@ -1126,6 +1135,7 @@ public class GtmEditor
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_TreeWithColumnsPage_label"));
 			}
+			*/
 
 			getSite().getShell().getDisplay().asyncExec
 				(new Runnable() {

@@ -29,74 +29,20 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GraphicalReservationType/GTM"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GraphicalReservationType/NONE"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//LegacyCalculationType">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacyCalculationType/distance_based"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacyCalculationType/route_based"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//AfterSalesTransactionType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/REFUND"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/EXCHANGE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/EXCHANGE_KEEP_CARRIER"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/EXCHANGE_CHANGE_CARRIER"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//LegacySeriesType">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacySeriesType/border_destination"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacySeriesType/transit"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacySeriesType/station_station"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//BarcodeTypes">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//BarcodeTypes/FCB"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//BarcodeTypes/TLB"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//BarcodeTypes/SSB"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ClassicClassType">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassicClassType/FIRST"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassicClassType/SECOND"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TaxScope">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/INTERNALTIONAL"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/NATIONAL"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/SHORT_DISTANCE"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/LONG_DISTANCE"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/ANY"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//FareType">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/NRT"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/IRT"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/RES"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/RPT"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ReservationTravelClass">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/FIRST"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/SECOND"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/C"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/P"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/T"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ReservationServiceLevel">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/A"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/B"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/RO"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TimeReferenceType">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/BEFORE_DEPARTURE"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/AFTER_DEPARTURE"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/BEFORE_VALIDITY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/BEFORE_START_VALIDITY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/AFTER_END_VALIDITY"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TimeRangeScope">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeRangeScope/START_OF_TRAVEL"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeRangeScope/COMPLETE_RANGE"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TimeUnit">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeUnit/DAY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeUnit/HOUR"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeUnit/MINUTE"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//WeekDay">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/MONDAY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/TUESDAY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/WEDNESDAY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/THURSDAY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/FRIDAY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/SATURDAY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/SUNDAY"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//CombinationModel">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CombinationModel/SEPARATE_TICKET"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CombinationModel/SEPARATE_CONTRACT"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CombinationModel/CLUSTERING"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CombinationModel/COMBINING"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//Clusters">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//Clusters/BUSINESS"/>
@@ -104,6 +50,28 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//Clusters/SEMIFLEX"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//Clusters/NONFLEX"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//Clusters/PROMO"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//CombinationModel">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CombinationModel/SEPARATE_TICKET"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CombinationModel/SEPARATE_CONTRACT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CombinationModel/CLUSTERING"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CombinationModel/COMBINING"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ControlDataExchangeTypes">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/IRS90918_4_PEER2PEER"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/IRS90918_4_REGISTRY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/PROPRIETARY"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//FareType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/NRT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/IRT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/RES"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/RPT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//FulfillmentType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FulfillmentType/SID"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FulfillmentType/SIP"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FulfillmentType/SIS"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//GeoSystem">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GeoSystem/wgs84"/>
@@ -124,31 +92,101 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//HemisphereNS/NORTH"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//HemisphereNS/SOUTH"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//InterfaceType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//InterfaceType/IRS90918_1_RESERVATION_BINARY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//InterfaceType/GTM"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//InterfaceType/IRS90918_1_RESERVATION_XML"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ReservationTravelClass">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/FIRST"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/SECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/C"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/P"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationTravelClass/T"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ReservationServiceLevel">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/A"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/B"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/AH"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/AM"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/AR"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/AS"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/AV"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/AW"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/BC"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/BD"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/BE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/BH"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/BN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/BR"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/BS"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/C"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/D"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/DR"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/D2"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/D4"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/D5"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/D6"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/E"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/EX"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/F"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/G"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/G2"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/H"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/K"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/L"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/M"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/N"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/O"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/O3"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/O4"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/O5"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/O8"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/OB"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/OL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/OS"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/OT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/P"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/Q"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/R"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/S"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/SL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/T"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/TL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/U"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/W"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/X"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/Y"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationServiceLevel/Z"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//LegacyCalculationType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacyCalculationType/distance_based"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacyCalculationType/route_based"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//LegacyPassengerType">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacyPassengerType/ADULT"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacyPassengerType/CHILD"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TravelerType">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/ADULT"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/CHILD"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/YOUTH"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/SENIOR"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/ACCOMP_PRM"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/DOG"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/LUGGAGE"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/ACCOMP_DOG"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/CAR"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/BICYCLE"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/MOTOCYCLE"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/TRAILER"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/GRAPHICAL_RES"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/OPT_RESERVATION"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//LegacySeriesType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacySeriesType/border_destination"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacySeriesType/transit"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//LegacySeriesType/station_station"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//AfterSalesTransactionType">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/REFUND"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/EXCHANGE"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/EXCHANGE_KEEP_CARRIER"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/EXCHANGE_CHANGE_CARRIER"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//OfferRequestType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OfferRequestType/POINT2POINT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OfferRequestType/AREA"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//OnlineServiceType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/OFFER"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/BOOKING"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/RESERVATION_LEGACY_918_1"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/RESERVATION_PREF"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/RESERVATION_GRAPH"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/INCREASE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/DECREASE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/EXCHANGE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/FULFILLMENT_ITEMS"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/FULFILLMENT"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//PersonalDataItemsType">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataItemsType/DATE_OF_BIRTH"/>
@@ -187,41 +225,53 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataChangeReason/DOCUMENT_EXCHANGE"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataChangeReason/AGENT_ERROR"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//OnlineServiceType">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/OFFER"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/BOOKING"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/RESERVATION_LEGACY_918_1"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/RESERVATION_PREF"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/RESERVATION_GRAPH"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/INCREASE"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/DECREASE"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/EXCHANGE"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/FULFILLMENT_ITEMS"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OnlineServiceType/FULFILLMENT"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TaxScope">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/INTERNALTIONAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/NATIONAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/SHORT_DISTANCE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/LONG_DISTANCE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/ANY"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//FulfillmentType">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FulfillmentType/SID"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FulfillmentType/SIP"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FulfillmentType/SIS"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TimeReferenceType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/BEFORE_DEPARTURE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/AFTER_DEPARTURE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/BEFORE_VALIDITY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/BEFORE_START_VALIDITY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeReferenceType/AFTER_END_VALIDITY"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//BarcodeTypes">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//BarcodeTypes/FCB"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//BarcodeTypes/TLB"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//BarcodeTypes/SSB"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TimeRangeScope">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeRangeScope/START_OF_TRAVEL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeRangeScope/COMPLETE_RANGE"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ControlDataExchangeTypes">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/IRS90918_4_PEER2PEER"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/IRS90918_4_REGISTRY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/PROPRIETARY"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TimeUnit">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeUnit/DAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeUnit/HOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeUnit/MINUTE"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//OfferRequestType">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OfferRequestType/POINT2POINT"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//OfferRequestType/AREA"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TravelerType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/ADULT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/CHILD"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/YOUTH"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/SENIOR"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/ACCOMP_PRM"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/DOG"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/LUGGAGE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/ACCOMP_DOG"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/CAR"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/BICYCLE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/MOTOCYCLE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/TRAILER"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/GRAPHICAL_RES"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/OPT_RESERVATION"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//InterfaceType">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//InterfaceType/IRS90918_1_RESERVATION_BINARY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//InterfaceType/GTM"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//InterfaceType/IRS90918_1_RESERVATION_XML"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//WeekDay">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/MONDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/TUESDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/WEDNESDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/THURSDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/FRIDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/SATURDAY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/SUNDAY"/>
     </genEnums>
     <genClasses ecoreClass="Gtm.ecore#//GTMTool">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//GTMTool/conversionFromLegacy"/>

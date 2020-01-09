@@ -17,5 +17,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  GTM_data_converter,
- GTM_model;bundle-version="1.0.0"
+ GTM_model;bundle-version="1.0.0",
+ org.apache.felix.scr;bundle-version="2.1.14",
+ com.fasterxml.jackson.core.jackson-annotations,
+ com.fasterxml.jackson.core.jackson-core,
+ com.fasterxml.jackson.core.jackson-databind
 Bundle-ActivationPolicy: lazy
