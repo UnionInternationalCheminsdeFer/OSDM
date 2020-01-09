@@ -41,7 +41,7 @@ public class ExportLegacyAction extends BaseSelectionListenerAction {
 			
 			if (!checkSelection( structuredSelection)) return;	
 			
-			EObject o = (EObject) structuredSelection.getFirstElement();
+			//EObject o = (EObject) structuredSelection.getFirstElement();
 			
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 			dialog.setText("not yet implemented");

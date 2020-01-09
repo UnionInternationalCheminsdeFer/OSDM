@@ -8,8 +8,10 @@ Bundle-ClassPath: .
 Bundle-Activator: Gtm.presentation.GtmEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: Gtm.presentation
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: Gtm.presentation,
+ actions,
+ jsonImportExport
 Require-Bundle: org.eclipse.core.runtime,
  GTM_data_converter.edit;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
