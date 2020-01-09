@@ -152,32 +152,22 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return createReservationBerthTypeFromString(eDataType, initialValue);
 			case GtmPackage.GRAPHICAL_RESERVATION_TYPE:
 				return createGraphicalReservationTypeFromString(eDataType, initialValue);
-			case GtmPackage.LEGACY_CALCULATION_TYPE:
-				return createLegacyCalculationTypeFromString(eDataType, initialValue);
-			case GtmPackage.LEGACY_SERIES_TYPE:
-				return createLegacySeriesTypeFromString(eDataType, initialValue);
+			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
+				return createAfterSalesTransactionTypeFromString(eDataType, initialValue);
+			case GtmPackage.BARCODE_TYPES:
+				return createBarcodeTypesFromString(eDataType, initialValue);
 			case GtmPackage.CLASSIC_CLASS_TYPE:
 				return createClassicClassTypeFromString(eDataType, initialValue);
-			case GtmPackage.TAX_SCOPE:
-				return createTaxScopeFromString(eDataType, initialValue);
-			case GtmPackage.FARE_TYPE:
-				return createFareTypeFromString(eDataType, initialValue);
-			case GtmPackage.RESERVATION_TRAVEL_CLASS:
-				return createReservationTravelClassFromString(eDataType, initialValue);
-			case GtmPackage.RESERVATION_SERVICE_LEVEL:
-				return createReservationServiceLevelFromString(eDataType, initialValue);
-			case GtmPackage.TIME_REFERENCE_TYPE:
-				return createTimeReferenceTypeFromString(eDataType, initialValue);
-			case GtmPackage.TIME_RANGE_SCOPE:
-				return createTimeRangeScopeFromString(eDataType, initialValue);
-			case GtmPackage.TIME_UNIT:
-				return createTimeUnitFromString(eDataType, initialValue);
-			case GtmPackage.WEEK_DAY:
-				return createWeekDayFromString(eDataType, initialValue);
-			case GtmPackage.COMBINATION_MODEL:
-				return createCombinationModelFromString(eDataType, initialValue);
 			case GtmPackage.CLUSTERS:
 				return createClustersFromString(eDataType, initialValue);
+			case GtmPackage.COMBINATION_MODEL:
+				return createCombinationModelFromString(eDataType, initialValue);
+			case GtmPackage.CONTROL_DATA_EXCHANGE_TYPES:
+				return createControlDataExchangeTypesFromString(eDataType, initialValue);
+			case GtmPackage.FARE_TYPE:
+				return createFareTypeFromString(eDataType, initialValue);
+			case GtmPackage.FULFILLMENT_TYPE:
+				return createFulfillmentTypeFromString(eDataType, initialValue);
 			case GtmPackage.GEO_SYSTEM:
 				return createGeoSystemFromString(eDataType, initialValue);
 			case GtmPackage.GEO_UNIT:
@@ -186,30 +176,40 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return createHemisphereEWFromString(eDataType, initialValue);
 			case GtmPackage.HEMISPHERE_NS:
 				return createHemisphereNSFromString(eDataType, initialValue);
+			case GtmPackage.INTERFACE_TYPE:
+				return createInterfaceTypeFromString(eDataType, initialValue);
+			case GtmPackage.RESERVATION_TRAVEL_CLASS:
+				return createReservationTravelClassFromString(eDataType, initialValue);
+			case GtmPackage.RESERVATION_SERVICE_LEVEL:
+				return createReservationServiceLevelFromString(eDataType, initialValue);
+			case GtmPackage.LEGACY_CALCULATION_TYPE:
+				return createLegacyCalculationTypeFromString(eDataType, initialValue);
 			case GtmPackage.LEGACY_PASSENGER_TYPE:
 				return createLegacyPassengerTypeFromString(eDataType, initialValue);
-			case GtmPackage.TRAVELER_TYPE:
-				return createTravelerTypeFromString(eDataType, initialValue);
-			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
-				return createAfterSalesTransactionTypeFromString(eDataType, initialValue);
+			case GtmPackage.LEGACY_SERIES_TYPE:
+				return createLegacySeriesTypeFromString(eDataType, initialValue);
+			case GtmPackage.OFFER_REQUEST_TYPE:
+				return createOfferRequestTypeFromString(eDataType, initialValue);
+			case GtmPackage.ONLINE_SERVICE_TYPE:
+				return createOnlineServiceTypeFromString(eDataType, initialValue);
 			case GtmPackage.PERSONAL_DATA_ITEMS_TYPE:
 				return createPersonalDataItemsTypeFromString(eDataType, initialValue);
 			case GtmPackage.PERSONAL_DATA_TRANSFER_TYPE:
 				return createPersonalDataTransferTypeFromString(eDataType, initialValue);
 			case GtmPackage.PERSONAL_DATA_CHANGE_REASON:
 				return createPersonalDataChangeReasonFromString(eDataType, initialValue);
-			case GtmPackage.ONLINE_SERVICE_TYPE:
-				return createOnlineServiceTypeFromString(eDataType, initialValue);
-			case GtmPackage.FULFILLMENT_TYPE:
-				return createFulfillmentTypeFromString(eDataType, initialValue);
-			case GtmPackage.BARCODE_TYPES:
-				return createBarcodeTypesFromString(eDataType, initialValue);
-			case GtmPackage.CONTROL_DATA_EXCHANGE_TYPES:
-				return createControlDataExchangeTypesFromString(eDataType, initialValue);
-			case GtmPackage.OFFER_REQUEST_TYPE:
-				return createOfferRequestTypeFromString(eDataType, initialValue);
-			case GtmPackage.INTERFACE_TYPE:
-				return createInterfaceTypeFromString(eDataType, initialValue);
+			case GtmPackage.TAX_SCOPE:
+				return createTaxScopeFromString(eDataType, initialValue);
+			case GtmPackage.TIME_REFERENCE_TYPE:
+				return createTimeReferenceTypeFromString(eDataType, initialValue);
+			case GtmPackage.TIME_RANGE_SCOPE:
+				return createTimeRangeScopeFromString(eDataType, initialValue);
+			case GtmPackage.TIME_UNIT:
+				return createTimeUnitFromString(eDataType, initialValue);
+			case GtmPackage.TRAVELER_TYPE:
+				return createTravelerTypeFromString(eDataType, initialValue);
+			case GtmPackage.WEEK_DAY:
+				return createWeekDayFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -229,32 +229,22 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return convertReservationBerthTypeToString(eDataType, instanceValue);
 			case GtmPackage.GRAPHICAL_RESERVATION_TYPE:
 				return convertGraphicalReservationTypeToString(eDataType, instanceValue);
-			case GtmPackage.LEGACY_CALCULATION_TYPE:
-				return convertLegacyCalculationTypeToString(eDataType, instanceValue);
-			case GtmPackage.LEGACY_SERIES_TYPE:
-				return convertLegacySeriesTypeToString(eDataType, instanceValue);
+			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
+				return convertAfterSalesTransactionTypeToString(eDataType, instanceValue);
+			case GtmPackage.BARCODE_TYPES:
+				return convertBarcodeTypesToString(eDataType, instanceValue);
 			case GtmPackage.CLASSIC_CLASS_TYPE:
 				return convertClassicClassTypeToString(eDataType, instanceValue);
-			case GtmPackage.TAX_SCOPE:
-				return convertTaxScopeToString(eDataType, instanceValue);
-			case GtmPackage.FARE_TYPE:
-				return convertFareTypeToString(eDataType, instanceValue);
-			case GtmPackage.RESERVATION_TRAVEL_CLASS:
-				return convertReservationTravelClassToString(eDataType, instanceValue);
-			case GtmPackage.RESERVATION_SERVICE_LEVEL:
-				return convertReservationServiceLevelToString(eDataType, instanceValue);
-			case GtmPackage.TIME_REFERENCE_TYPE:
-				return convertTimeReferenceTypeToString(eDataType, instanceValue);
-			case GtmPackage.TIME_RANGE_SCOPE:
-				return convertTimeRangeScopeToString(eDataType, instanceValue);
-			case GtmPackage.TIME_UNIT:
-				return convertTimeUnitToString(eDataType, instanceValue);
-			case GtmPackage.WEEK_DAY:
-				return convertWeekDayToString(eDataType, instanceValue);
-			case GtmPackage.COMBINATION_MODEL:
-				return convertCombinationModelToString(eDataType, instanceValue);
 			case GtmPackage.CLUSTERS:
 				return convertClustersToString(eDataType, instanceValue);
+			case GtmPackage.COMBINATION_MODEL:
+				return convertCombinationModelToString(eDataType, instanceValue);
+			case GtmPackage.CONTROL_DATA_EXCHANGE_TYPES:
+				return convertControlDataExchangeTypesToString(eDataType, instanceValue);
+			case GtmPackage.FARE_TYPE:
+				return convertFareTypeToString(eDataType, instanceValue);
+			case GtmPackage.FULFILLMENT_TYPE:
+				return convertFulfillmentTypeToString(eDataType, instanceValue);
 			case GtmPackage.GEO_SYSTEM:
 				return convertGeoSystemToString(eDataType, instanceValue);
 			case GtmPackage.GEO_UNIT:
@@ -263,30 +253,40 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return convertHemisphereEWToString(eDataType, instanceValue);
 			case GtmPackage.HEMISPHERE_NS:
 				return convertHemisphereNSToString(eDataType, instanceValue);
+			case GtmPackage.INTERFACE_TYPE:
+				return convertInterfaceTypeToString(eDataType, instanceValue);
+			case GtmPackage.RESERVATION_TRAVEL_CLASS:
+				return convertReservationTravelClassToString(eDataType, instanceValue);
+			case GtmPackage.RESERVATION_SERVICE_LEVEL:
+				return convertReservationServiceLevelToString(eDataType, instanceValue);
+			case GtmPackage.LEGACY_CALCULATION_TYPE:
+				return convertLegacyCalculationTypeToString(eDataType, instanceValue);
 			case GtmPackage.LEGACY_PASSENGER_TYPE:
 				return convertLegacyPassengerTypeToString(eDataType, instanceValue);
-			case GtmPackage.TRAVELER_TYPE:
-				return convertTravelerTypeToString(eDataType, instanceValue);
-			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
-				return convertAfterSalesTransactionTypeToString(eDataType, instanceValue);
+			case GtmPackage.LEGACY_SERIES_TYPE:
+				return convertLegacySeriesTypeToString(eDataType, instanceValue);
+			case GtmPackage.OFFER_REQUEST_TYPE:
+				return convertOfferRequestTypeToString(eDataType, instanceValue);
+			case GtmPackage.ONLINE_SERVICE_TYPE:
+				return convertOnlineServiceTypeToString(eDataType, instanceValue);
 			case GtmPackage.PERSONAL_DATA_ITEMS_TYPE:
 				return convertPersonalDataItemsTypeToString(eDataType, instanceValue);
 			case GtmPackage.PERSONAL_DATA_TRANSFER_TYPE:
 				return convertPersonalDataTransferTypeToString(eDataType, instanceValue);
 			case GtmPackage.PERSONAL_DATA_CHANGE_REASON:
 				return convertPersonalDataChangeReasonToString(eDataType, instanceValue);
-			case GtmPackage.ONLINE_SERVICE_TYPE:
-				return convertOnlineServiceTypeToString(eDataType, instanceValue);
-			case GtmPackage.FULFILLMENT_TYPE:
-				return convertFulfillmentTypeToString(eDataType, instanceValue);
-			case GtmPackage.BARCODE_TYPES:
-				return convertBarcodeTypesToString(eDataType, instanceValue);
-			case GtmPackage.CONTROL_DATA_EXCHANGE_TYPES:
-				return convertControlDataExchangeTypesToString(eDataType, instanceValue);
-			case GtmPackage.OFFER_REQUEST_TYPE:
-				return convertOfferRequestTypeToString(eDataType, instanceValue);
-			case GtmPackage.INTERFACE_TYPE:
-				return convertInterfaceTypeToString(eDataType, instanceValue);
+			case GtmPackage.TAX_SCOPE:
+				return convertTaxScopeToString(eDataType, instanceValue);
+			case GtmPackage.TIME_REFERENCE_TYPE:
+				return convertTimeReferenceTypeToString(eDataType, instanceValue);
+			case GtmPackage.TIME_RANGE_SCOPE:
+				return convertTimeRangeScopeToString(eDataType, instanceValue);
+			case GtmPackage.TIME_UNIT:
+				return convertTimeUnitToString(eDataType, instanceValue);
+			case GtmPackage.TRAVELER_TYPE:
+				return convertTravelerTypeToString(eDataType, instanceValue);
+			case GtmPackage.WEEK_DAY:
+				return convertWeekDayToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}

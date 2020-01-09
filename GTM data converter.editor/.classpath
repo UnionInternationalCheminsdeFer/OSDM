@@ -3,28 +3,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/annotations-1.3.9.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/codemodel-2.6.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/collections-generic-4.01.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/commons-io-2.4.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/commons-lang3-3.2.1.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/gson-2.5.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/jackson-annotations-2.9.0.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/jackson-core-2.9.7.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/jackson-core-asl-1.9.13.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/jackson-databind-2.9.7.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/jackson-dataformat-yaml-2.9.7.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/jackson-mapper-asl-1.9.13.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/javaparser-1.0.10.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/jcommander-1.30.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/joda-time-2.2.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/jsonschema2pojo-cli-1.0.1.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/jsonschema2pojo-core-1.0.1.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/jsonschema2pojo-scalagen-1.0.1.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/jsr305-3.0.1.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/scala-library-2.11.6.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/snakeyaml-1.23.jar"/>
-	<classpathentry kind="lib" path="D:/Software/jsonschemajava/jsonschema2pojo-1.0.1/lib/validation-api-1.0.0.GA.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

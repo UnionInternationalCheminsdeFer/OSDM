@@ -179,7 +179,7 @@ public class GtmActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	protected static Collection<BaseSelectionListenerAction> gtmActions = new ArrayList<BaseSelectionListenerAction>();
+	protected static Collection<BaseSelectionListenerAction> gtmActions;
 
 	/**
 	 * This is the menu manager into which menu contribution items should be added for CreateSibling actions.
@@ -215,6 +215,10 @@ public class GtmActionBarContributor
 		 * <!-- end-user-doc -->
 		 * @generated NOT
 		 */
+		if (gtmActions == null) {
+			gtmActions = new ArrayList<BaseSelectionListenerAction>();
+		}
+		
 		gtmActions.add(new ImportLegacySeriesAction(this));
 		gtmActions.add(new ImportLegacyDistanceFareAction(this));
 		gtmActions.add(new ImportLegacyRouteFareAction(this));

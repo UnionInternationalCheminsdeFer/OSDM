@@ -109,5 +109,18 @@
             name="GTM">
       </product>
    </extension>
+   
+   
+      <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            class="Gtm.presentation.ProblemView"
+            id="org.uic.gtm.GtmProblemView"
+            name="%_UI_VIEW_ERROR"
+            restorable="true">
+      </view>
+   </extension>
+   
 
 </plugin>

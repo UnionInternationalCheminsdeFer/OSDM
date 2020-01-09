@@ -5396,35 +5396,35 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		reservationServiceEEnum = createEEnum(RESERVATION_SERVICE);
 		reservationBerthTypeEEnum = createEEnum(RESERVATION_BERTH_TYPE);
 		graphicalReservationTypeEEnum = createEEnum(GRAPHICAL_RESERVATION_TYPE);
-		legacyCalculationTypeEEnum = createEEnum(LEGACY_CALCULATION_TYPE);
-		legacySeriesTypeEEnum = createEEnum(LEGACY_SERIES_TYPE);
+		afterSalesTransactionTypeEEnum = createEEnum(AFTER_SALES_TRANSACTION_TYPE);
+		barcodeTypesEEnum = createEEnum(BARCODE_TYPES);
 		classicClassTypeEEnum = createEEnum(CLASSIC_CLASS_TYPE);
-		taxScopeEEnum = createEEnum(TAX_SCOPE);
-		fareTypeEEnum = createEEnum(FARE_TYPE);
-		reservationTravelClassEEnum = createEEnum(RESERVATION_TRAVEL_CLASS);
-		reservationServiceLevelEEnum = createEEnum(RESERVATION_SERVICE_LEVEL);
-		timeReferenceTypeEEnum = createEEnum(TIME_REFERENCE_TYPE);
-		timeRangeScopeEEnum = createEEnum(TIME_RANGE_SCOPE);
-		timeUnitEEnum = createEEnum(TIME_UNIT);
-		weekDayEEnum = createEEnum(WEEK_DAY);
-		combinationModelEEnum = createEEnum(COMBINATION_MODEL);
 		clustersEEnum = createEEnum(CLUSTERS);
+		combinationModelEEnum = createEEnum(COMBINATION_MODEL);
+		controlDataExchangeTypesEEnum = createEEnum(CONTROL_DATA_EXCHANGE_TYPES);
+		fareTypeEEnum = createEEnum(FARE_TYPE);
+		fulfillmentTypeEEnum = createEEnum(FULFILLMENT_TYPE);
 		geoSystemEEnum = createEEnum(GEO_SYSTEM);
 		geoUnitEEnum = createEEnum(GEO_UNIT);
 		hemisphereEWEEnum = createEEnum(HEMISPHERE_EW);
 		hemisphereNSEEnum = createEEnum(HEMISPHERE_NS);
+		interfaceTypeEEnum = createEEnum(INTERFACE_TYPE);
+		reservationTravelClassEEnum = createEEnum(RESERVATION_TRAVEL_CLASS);
+		reservationServiceLevelEEnum = createEEnum(RESERVATION_SERVICE_LEVEL);
+		legacyCalculationTypeEEnum = createEEnum(LEGACY_CALCULATION_TYPE);
 		legacyPassengerTypeEEnum = createEEnum(LEGACY_PASSENGER_TYPE);
-		travelerTypeEEnum = createEEnum(TRAVELER_TYPE);
-		afterSalesTransactionTypeEEnum = createEEnum(AFTER_SALES_TRANSACTION_TYPE);
+		legacySeriesTypeEEnum = createEEnum(LEGACY_SERIES_TYPE);
+		offerRequestTypeEEnum = createEEnum(OFFER_REQUEST_TYPE);
+		onlineServiceTypeEEnum = createEEnum(ONLINE_SERVICE_TYPE);
 		personalDataItemsTypeEEnum = createEEnum(PERSONAL_DATA_ITEMS_TYPE);
 		personalDataTransferTypeEEnum = createEEnum(PERSONAL_DATA_TRANSFER_TYPE);
 		personalDataChangeReasonEEnum = createEEnum(PERSONAL_DATA_CHANGE_REASON);
-		onlineServiceTypeEEnum = createEEnum(ONLINE_SERVICE_TYPE);
-		fulfillmentTypeEEnum = createEEnum(FULFILLMENT_TYPE);
-		barcodeTypesEEnum = createEEnum(BARCODE_TYPES);
-		controlDataExchangeTypesEEnum = createEEnum(CONTROL_DATA_EXCHANGE_TYPES);
-		offerRequestTypeEEnum = createEEnum(OFFER_REQUEST_TYPE);
-		interfaceTypeEEnum = createEEnum(INTERFACE_TYPE);
+		taxScopeEEnum = createEEnum(TAX_SCOPE);
+		timeReferenceTypeEEnum = createEEnum(TIME_REFERENCE_TYPE);
+		timeRangeScopeEEnum = createEEnum(TIME_RANGE_SCOPE);
+		timeUnitEEnum = createEEnum(TIME_UNIT);
+		travelerTypeEEnum = createEEnum(TRAVELER_TYPE);
+		weekDayEEnum = createEEnum(WEEK_DAY);
 	}
 
 	/**
@@ -5961,74 +5961,20 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		addEEnumLiteral(graphicalReservationTypeEEnum, GraphicalReservationType.GTM);
 		addEEnumLiteral(graphicalReservationTypeEEnum, GraphicalReservationType.NONE);
 
-		initEEnum(legacyCalculationTypeEEnum, LegacyCalculationType.class, "LegacyCalculationType");
-		addEEnumLiteral(legacyCalculationTypeEEnum, LegacyCalculationType.DISTANCE_BASED);
-		addEEnumLiteral(legacyCalculationTypeEEnum, LegacyCalculationType.ROUTE_BASED);
+		initEEnum(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.class, "AfterSalesTransactionType");
+		addEEnumLiteral(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.REFUND);
+		addEEnumLiteral(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.EXCHANGE);
+		addEEnumLiteral(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.EXCHANGE_KEEP_CARRIER);
+		addEEnumLiteral(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.EXCHANGE_CHANGE_CARRIER);
 
-		initEEnum(legacySeriesTypeEEnum, LegacySeriesType.class, "LegacySeriesType");
-		addEEnumLiteral(legacySeriesTypeEEnum, LegacySeriesType.BORDER_DESTINATION);
-		addEEnumLiteral(legacySeriesTypeEEnum, LegacySeriesType.TRANSIT);
-		addEEnumLiteral(legacySeriesTypeEEnum, LegacySeriesType.STATION_STATION);
+		initEEnum(barcodeTypesEEnum, BarcodeTypes.class, "BarcodeTypes");
+		addEEnumLiteral(barcodeTypesEEnum, BarcodeTypes.FCB);
+		addEEnumLiteral(barcodeTypesEEnum, BarcodeTypes.TLB);
+		addEEnumLiteral(barcodeTypesEEnum, BarcodeTypes.SSB);
 
 		initEEnum(classicClassTypeEEnum, ClassicClassType.class, "ClassicClassType");
 		addEEnumLiteral(classicClassTypeEEnum, ClassicClassType.FIRST);
 		addEEnumLiteral(classicClassTypeEEnum, ClassicClassType.SECOND);
-
-		initEEnum(taxScopeEEnum, TaxScope.class, "TaxScope");
-		addEEnumLiteral(taxScopeEEnum, TaxScope.INTERNALTIONAL);
-		addEEnumLiteral(taxScopeEEnum, TaxScope.NATIONAL);
-		addEEnumLiteral(taxScopeEEnum, TaxScope.SHORT_DISTANCE);
-		addEEnumLiteral(taxScopeEEnum, TaxScope.LONG_DISTANCE);
-		addEEnumLiteral(taxScopeEEnum, TaxScope.ANY);
-
-		initEEnum(fareTypeEEnum, FareType.class, "FareType");
-		addEEnumLiteral(fareTypeEEnum, FareType.NRT);
-		addEEnumLiteral(fareTypeEEnum, FareType.IRT);
-		addEEnumLiteral(fareTypeEEnum, FareType.RES);
-		addEEnumLiteral(fareTypeEEnum, FareType.RPT);
-
-		initEEnum(reservationTravelClassEEnum, ReservationTravelClass.class, "ReservationTravelClass");
-		addEEnumLiteral(reservationTravelClassEEnum, ReservationTravelClass.FIRST);
-		addEEnumLiteral(reservationTravelClassEEnum, ReservationTravelClass.SECOND);
-		addEEnumLiteral(reservationTravelClassEEnum, ReservationTravelClass.C);
-		addEEnumLiteral(reservationTravelClassEEnum, ReservationTravelClass.P);
-		addEEnumLiteral(reservationTravelClassEEnum, ReservationTravelClass.T);
-
-		initEEnum(reservationServiceLevelEEnum, ReservationServiceLevel.class, "ReservationServiceLevel");
-		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.A);
-		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.B);
-		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.RO);
-
-		initEEnum(timeReferenceTypeEEnum, TimeReferenceType.class, "TimeReferenceType");
-		addEEnumLiteral(timeReferenceTypeEEnum, TimeReferenceType.BEFORE_DEPARTURE);
-		addEEnumLiteral(timeReferenceTypeEEnum, TimeReferenceType.AFTER_DEPARTURE);
-		addEEnumLiteral(timeReferenceTypeEEnum, TimeReferenceType.BEFORE_VALIDITY);
-		addEEnumLiteral(timeReferenceTypeEEnum, TimeReferenceType.BEFORE_START_VALIDITY);
-		addEEnumLiteral(timeReferenceTypeEEnum, TimeReferenceType.AFTER_END_VALIDITY);
-
-		initEEnum(timeRangeScopeEEnum, TimeRangeScope.class, "TimeRangeScope");
-		addEEnumLiteral(timeRangeScopeEEnum, TimeRangeScope.START_OF_TRAVEL);
-		addEEnumLiteral(timeRangeScopeEEnum, TimeRangeScope.COMPLETE_RANGE);
-
-		initEEnum(timeUnitEEnum, TimeUnit.class, "TimeUnit");
-		addEEnumLiteral(timeUnitEEnum, TimeUnit.DAY);
-		addEEnumLiteral(timeUnitEEnum, TimeUnit.HOUR);
-		addEEnumLiteral(timeUnitEEnum, TimeUnit.MINUTE);
-
-		initEEnum(weekDayEEnum, WeekDay.class, "WeekDay");
-		addEEnumLiteral(weekDayEEnum, WeekDay.MONDAY);
-		addEEnumLiteral(weekDayEEnum, WeekDay.TUESDAY);
-		addEEnumLiteral(weekDayEEnum, WeekDay.WEDNESDAY);
-		addEEnumLiteral(weekDayEEnum, WeekDay.THURSDAY);
-		addEEnumLiteral(weekDayEEnum, WeekDay.FRIDAY);
-		addEEnumLiteral(weekDayEEnum, WeekDay.SATURDAY);
-		addEEnumLiteral(weekDayEEnum, WeekDay.SUNDAY);
-
-		initEEnum(combinationModelEEnum, CombinationModel.class, "CombinationModel");
-		addEEnumLiteral(combinationModelEEnum, CombinationModel.SEPARATE_TICKET);
-		addEEnumLiteral(combinationModelEEnum, CombinationModel.SEPARATE_CONTRACT);
-		addEEnumLiteral(combinationModelEEnum, CombinationModel.CLUSTERING);
-		addEEnumLiteral(combinationModelEEnum, CombinationModel.COMBINING);
 
 		initEEnum(clustersEEnum, Clusters.class, "Clusters");
 		addEEnumLiteral(clustersEEnum, Clusters.BUSINESS);
@@ -6036,6 +5982,28 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		addEEnumLiteral(clustersEEnum, Clusters.SEMIFLEX);
 		addEEnumLiteral(clustersEEnum, Clusters.NONFLEX);
 		addEEnumLiteral(clustersEEnum, Clusters.PROMO);
+
+		initEEnum(combinationModelEEnum, CombinationModel.class, "CombinationModel");
+		addEEnumLiteral(combinationModelEEnum, CombinationModel.SEPARATE_TICKET);
+		addEEnumLiteral(combinationModelEEnum, CombinationModel.SEPARATE_CONTRACT);
+		addEEnumLiteral(combinationModelEEnum, CombinationModel.CLUSTERING);
+		addEEnumLiteral(combinationModelEEnum, CombinationModel.COMBINING);
+
+		initEEnum(controlDataExchangeTypesEEnum, ControlDataExchangeTypes.class, "ControlDataExchangeTypes");
+		addEEnumLiteral(controlDataExchangeTypesEEnum, ControlDataExchangeTypes.IRS90918_4PEER2PEER);
+		addEEnumLiteral(controlDataExchangeTypesEEnum, ControlDataExchangeTypes.IRS90918_4REGISTRY);
+		addEEnumLiteral(controlDataExchangeTypesEEnum, ControlDataExchangeTypes.PROPRIETARY);
+
+		initEEnum(fareTypeEEnum, FareType.class, "FareType");
+		addEEnumLiteral(fareTypeEEnum, FareType.NRT);
+		addEEnumLiteral(fareTypeEEnum, FareType.IRT);
+		addEEnumLiteral(fareTypeEEnum, FareType.RES);
+		addEEnumLiteral(fareTypeEEnum, FareType.RPT);
+
+		initEEnum(fulfillmentTypeEEnum, FulfillmentType.class, "FulfillmentType");
+		addEEnumLiteral(fulfillmentTypeEEnum, FulfillmentType.SID);
+		addEEnumLiteral(fulfillmentTypeEEnum, FulfillmentType.SIP);
+		addEEnumLiteral(fulfillmentTypeEEnum, FulfillmentType.SIS);
 
 		initEEnum(geoSystemEEnum, GeoSystem.class, "GeoSystem");
 		addEEnumLiteral(geoSystemEEnum, GeoSystem.WGS84);
@@ -6056,31 +6024,101 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		addEEnumLiteral(hemisphereNSEEnum, HemisphereNS.NORTH);
 		addEEnumLiteral(hemisphereNSEEnum, HemisphereNS.SOUTH);
 
+		initEEnum(interfaceTypeEEnum, InterfaceType.class, "InterfaceType");
+		addEEnumLiteral(interfaceTypeEEnum, InterfaceType.IRS90918_1RESERVATION_BINARY);
+		addEEnumLiteral(interfaceTypeEEnum, InterfaceType.GTM);
+		addEEnumLiteral(interfaceTypeEEnum, InterfaceType.IRS90918_1RESERVATION_XML);
+
+		initEEnum(reservationTravelClassEEnum, ReservationTravelClass.class, "ReservationTravelClass");
+		addEEnumLiteral(reservationTravelClassEEnum, ReservationTravelClass.FIRST);
+		addEEnumLiteral(reservationTravelClassEEnum, ReservationTravelClass.SECOND);
+		addEEnumLiteral(reservationTravelClassEEnum, ReservationTravelClass.C);
+		addEEnumLiteral(reservationTravelClassEEnum, ReservationTravelClass.P);
+		addEEnumLiteral(reservationTravelClassEEnum, ReservationTravelClass.T);
+
+		initEEnum(reservationServiceLevelEEnum, ReservationServiceLevel.class, "ReservationServiceLevel");
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.A);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.B);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.AH);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.AM);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.AR);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.AS);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.AV);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.AW);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.BC);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.BD);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.BE);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.BH);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.BN);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.BR);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.BS);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.C);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.D);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.DR);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.D2);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.D4);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.D5);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.D6);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.E);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.EX);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.F);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.G);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.G2);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.H);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.K);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.L);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.M);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.N);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.O);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.O3);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.O4);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.O5);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.O8);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.OB);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.OL);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.OS);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.OT);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.P);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.Q);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.R);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.S);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.SL);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.T);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.TL);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.U);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.W);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.X);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.Y);
+		addEEnumLiteral(reservationServiceLevelEEnum, ReservationServiceLevel.Z);
+
+		initEEnum(legacyCalculationTypeEEnum, LegacyCalculationType.class, "LegacyCalculationType");
+		addEEnumLiteral(legacyCalculationTypeEEnum, LegacyCalculationType.DISTANCE_BASED);
+		addEEnumLiteral(legacyCalculationTypeEEnum, LegacyCalculationType.ROUTE_BASED);
+
 		initEEnum(legacyPassengerTypeEEnum, LegacyPassengerType.class, "LegacyPassengerType");
 		addEEnumLiteral(legacyPassengerTypeEEnum, LegacyPassengerType.ADULT);
 		addEEnumLiteral(legacyPassengerTypeEEnum, LegacyPassengerType.CHILD);
 
-		initEEnum(travelerTypeEEnum, TravelerType.class, "TravelerType");
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.ADULT);
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.CHILD);
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.YOUTH);
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.SENIOR);
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.ACCOMP_PRM);
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.DOG);
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.LUGGAGE);
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.ACCOMP_DOG);
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.CAR);
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.BICYCLE);
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.MOTOCYCLE);
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.TRAILER);
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.GRAPHICAL_RES);
-		addEEnumLiteral(travelerTypeEEnum, TravelerType.OPT_RESERVATION);
+		initEEnum(legacySeriesTypeEEnum, LegacySeriesType.class, "LegacySeriesType");
+		addEEnumLiteral(legacySeriesTypeEEnum, LegacySeriesType.BORDER_DESTINATION);
+		addEEnumLiteral(legacySeriesTypeEEnum, LegacySeriesType.TRANSIT);
+		addEEnumLiteral(legacySeriesTypeEEnum, LegacySeriesType.STATION_STATION);
 
-		initEEnum(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.class, "AfterSalesTransactionType");
-		addEEnumLiteral(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.REFUND);
-		addEEnumLiteral(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.EXCHANGE);
-		addEEnumLiteral(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.EXCHANGE_KEEP_CARRIER);
-		addEEnumLiteral(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.EXCHANGE_CHANGE_CARRIER);
+		initEEnum(offerRequestTypeEEnum, OfferRequestType.class, "OfferRequestType");
+		addEEnumLiteral(offerRequestTypeEEnum, OfferRequestType.POINT2POINT);
+		addEEnumLiteral(offerRequestTypeEEnum, OfferRequestType.AREA);
+
+		initEEnum(onlineServiceTypeEEnum, OnlineServiceType.class, "OnlineServiceType");
+		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.OFFER);
+		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.BOOKING);
+		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.RESERVATION_LEGACY_918_1);
+		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.RESERVATION_PREF);
+		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.RESERVATION_GRAPH);
+		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.INCREASE);
+		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.DECREASE);
+		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.EXCHANGE);
+		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.FULFILLMENT_ITEMS);
+		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.FULFILLMENT);
 
 		initEEnum(personalDataItemsTypeEEnum, PersonalDataItemsType.class, "PersonalDataItemsType");
 		addEEnumLiteral(personalDataItemsTypeEEnum, PersonalDataItemsType.DATE_OF_BIRTH);
@@ -6119,41 +6157,53 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		addEEnumLiteral(personalDataChangeReasonEEnum, PersonalDataChangeReason.DOCUMENT_EXCHANGE);
 		addEEnumLiteral(personalDataChangeReasonEEnum, PersonalDataChangeReason.AGENT_ERROR);
 
-		initEEnum(onlineServiceTypeEEnum, OnlineServiceType.class, "OnlineServiceType");
-		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.OFFER);
-		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.BOOKING);
-		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.RESERVATION_LEGACY_918_1);
-		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.RESERVATION_PREF);
-		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.RESERVATION_GRAPH);
-		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.INCREASE);
-		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.DECREASE);
-		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.EXCHANGE);
-		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.FULFILLMENT_ITEMS);
-		addEEnumLiteral(onlineServiceTypeEEnum, OnlineServiceType.FULFILLMENT);
+		initEEnum(taxScopeEEnum, TaxScope.class, "TaxScope");
+		addEEnumLiteral(taxScopeEEnum, TaxScope.INTERNALTIONAL);
+		addEEnumLiteral(taxScopeEEnum, TaxScope.NATIONAL);
+		addEEnumLiteral(taxScopeEEnum, TaxScope.SHORT_DISTANCE);
+		addEEnumLiteral(taxScopeEEnum, TaxScope.LONG_DISTANCE);
+		addEEnumLiteral(taxScopeEEnum, TaxScope.ANY);
 
-		initEEnum(fulfillmentTypeEEnum, FulfillmentType.class, "FulfillmentType");
-		addEEnumLiteral(fulfillmentTypeEEnum, FulfillmentType.SID);
-		addEEnumLiteral(fulfillmentTypeEEnum, FulfillmentType.SIP);
-		addEEnumLiteral(fulfillmentTypeEEnum, FulfillmentType.SIS);
+		initEEnum(timeReferenceTypeEEnum, TimeReferenceType.class, "TimeReferenceType");
+		addEEnumLiteral(timeReferenceTypeEEnum, TimeReferenceType.BEFORE_DEPARTURE);
+		addEEnumLiteral(timeReferenceTypeEEnum, TimeReferenceType.AFTER_DEPARTURE);
+		addEEnumLiteral(timeReferenceTypeEEnum, TimeReferenceType.BEFORE_VALIDITY);
+		addEEnumLiteral(timeReferenceTypeEEnum, TimeReferenceType.BEFORE_START_VALIDITY);
+		addEEnumLiteral(timeReferenceTypeEEnum, TimeReferenceType.AFTER_END_VALIDITY);
 
-		initEEnum(barcodeTypesEEnum, BarcodeTypes.class, "BarcodeTypes");
-		addEEnumLiteral(barcodeTypesEEnum, BarcodeTypes.FCB);
-		addEEnumLiteral(barcodeTypesEEnum, BarcodeTypes.TLB);
-		addEEnumLiteral(barcodeTypesEEnum, BarcodeTypes.SSB);
+		initEEnum(timeRangeScopeEEnum, TimeRangeScope.class, "TimeRangeScope");
+		addEEnumLiteral(timeRangeScopeEEnum, TimeRangeScope.START_OF_TRAVEL);
+		addEEnumLiteral(timeRangeScopeEEnum, TimeRangeScope.COMPLETE_RANGE);
 
-		initEEnum(controlDataExchangeTypesEEnum, ControlDataExchangeTypes.class, "ControlDataExchangeTypes");
-		addEEnumLiteral(controlDataExchangeTypesEEnum, ControlDataExchangeTypes.IRS90918_4PEER2PEER);
-		addEEnumLiteral(controlDataExchangeTypesEEnum, ControlDataExchangeTypes.IRS90918_4REGISTRY);
-		addEEnumLiteral(controlDataExchangeTypesEEnum, ControlDataExchangeTypes.PROPRIETARY);
+		initEEnum(timeUnitEEnum, TimeUnit.class, "TimeUnit");
+		addEEnumLiteral(timeUnitEEnum, TimeUnit.DAY);
+		addEEnumLiteral(timeUnitEEnum, TimeUnit.HOUR);
+		addEEnumLiteral(timeUnitEEnum, TimeUnit.MINUTE);
 
-		initEEnum(offerRequestTypeEEnum, OfferRequestType.class, "OfferRequestType");
-		addEEnumLiteral(offerRequestTypeEEnum, OfferRequestType.POINT2POINT);
-		addEEnumLiteral(offerRequestTypeEEnum, OfferRequestType.AREA);
+		initEEnum(travelerTypeEEnum, TravelerType.class, "TravelerType");
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.ADULT);
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.CHILD);
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.YOUTH);
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.SENIOR);
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.ACCOMP_PRM);
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.DOG);
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.LUGGAGE);
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.ACCOMP_DOG);
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.CAR);
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.BICYCLE);
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.MOTOCYCLE);
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.TRAILER);
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.GRAPHICAL_RES);
+		addEEnumLiteral(travelerTypeEEnum, TravelerType.OPT_RESERVATION);
 
-		initEEnum(interfaceTypeEEnum, InterfaceType.class, "InterfaceType");
-		addEEnumLiteral(interfaceTypeEEnum, InterfaceType.IRS90918_1RESERVATION_BINARY);
-		addEEnumLiteral(interfaceTypeEEnum, InterfaceType.GTM);
-		addEEnumLiteral(interfaceTypeEEnum, InterfaceType.IRS90918_1RESERVATION_XML);
+		initEEnum(weekDayEEnum, WeekDay.class, "WeekDay");
+		addEEnumLiteral(weekDayEEnum, WeekDay.MONDAY);
+		addEEnumLiteral(weekDayEEnum, WeekDay.TUESDAY);
+		addEEnumLiteral(weekDayEEnum, WeekDay.WEDNESDAY);
+		addEEnumLiteral(weekDayEEnum, WeekDay.THURSDAY);
+		addEEnumLiteral(weekDayEEnum, WeekDay.FRIDAY);
+		addEEnumLiteral(weekDayEEnum, WeekDay.SATURDAY);
+		addEEnumLiteral(weekDayEEnum, WeekDay.SUNDAY);
 
 		// Create resource
 		createResource(eNS_URI);
