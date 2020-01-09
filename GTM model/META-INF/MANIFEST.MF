@@ -3,4 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: GTM_model
 Bundle-SymbolicName: GTM_model
 Bundle-Version: 1.0.0.qualifier
-Export-Package: gtm
+Automatic-Module-Name: GTM_model
+Export-Package: export,
+ gtm
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
