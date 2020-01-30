@@ -76,104 +76,308 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createCodeListsAdapter();
 			}
 			@Override
-			public Adapter caseGeneralTariffModel(GeneralTariffModel object) {
-				return createGeneralTariffModelAdapter();
+			public Adapter caseNUTSCodes(NUTSCodes object) {
+				return createNUTSCodesAdapter();
 			}
 			@Override
-			public Adapter caseConversionFromLegacy(ConversionFromLegacy object) {
-				return createConversionFromLegacyAdapter();
+			public Adapter caseNutsCode(NutsCode object) {
+				return createNutsCodeAdapter();
 			}
 			@Override
-			public Adapter caseFareStructure(FareStructure object) {
-				return createFareStructureAdapter();
+			public Adapter caseServiceBrands(ServiceBrands object) {
+				return createServiceBrandsAdapter();
 			}
 			@Override
-			public Adapter caseDelivery(Delivery object) {
-				return createDeliveryAdapter();
+			public Adapter caseServiceBrand(ServiceBrand object) {
+				return createServiceBrandAdapter();
 			}
 			@Override
-			public Adapter caseBorderPoints(BorderPoints object) {
-				return createBorderPointsAdapter();
-			}
-			@Override
-			public Adapter caseCalendar(Calendar object) {
-				return createCalendarAdapter();
-			}
-			@Override
-			public Adapter caseCarrier(Carrier object) {
-				return createCarrierAdapter();
-			}
-			@Override
-			public Adapter caseCoversionParams(CoversionParams object) {
-				return createCoversionParamsAdapter();
-			}
-			@Override
-			public Adapter caseLegacyDescription(LegacyDescription object) {
-				return createLegacyDescriptionAdapter();
-			}
-			@Override
-			public Adapter caseLegacyDistanceFare(LegacyDistanceFare object) {
-				return createLegacyDistanceFareAdapter();
-			}
-			@Override
-			public Adapter caseLegacyFares(LegacyFares object) {
-				return createLegacyFaresAdapter();
-			}
-			@Override
-			public Adapter caseLegacy108(Legacy108 object) {
-				return createLegacy108Adapter();
-			}
-			@Override
-			public Adapter caseLegacyRouteFare(LegacyRouteFare object) {
-				return createLegacyRouteFareAdapter();
-			}
-			@Override
-			public Adapter caseLegacySeries(LegacySeries object) {
-				return createLegacySeriesAdapter();
-			}
-			@Override
-			public Adapter caseLegacyViastation(LegacyViastation object) {
-				return createLegacyViastationAdapter();
-			}
-			@Override
-			public Adapter caseLegacyStationMap(LegacyStationMap object) {
-				return createLegacyStationMapAdapter();
-			}
-			@Override
-			public Adapter caseCarrierConstraint(CarrierConstraint object) {
-				return createCarrierConstraintAdapter();
+			public Adapter caseCountries(Countries object) {
+				return createCountriesAdapter();
 			}
 			@Override
 			public Adapter caseCountry(Country object) {
 				return createCountryAdapter();
 			}
 			@Override
-			public Adapter caseConnectionPoint(ConnectionPoint object) {
-				return createConnectionPointAdapter();
-			}
-			@Override
-			public Adapter caseCurrency(Currency object) {
-				return createCurrencyAdapter();
-			}
-			@Override
-			public Adapter caseCurrencyPrice(CurrencyPrice object) {
-				return createCurrencyPriceAdapter();
+			public Adapter caseLanguages(Languages object) {
+				return createLanguagesAdapter();
 			}
 			@Override
 			public Adapter caseLanguage(Language object) {
 				return createLanguageAdapter();
 			}
 			@Override
-			public Adapter casePrice(Price object) {
-				return createPriceAdapter();
+			public Adapter caseCurrencies(Currencies object) {
+				return createCurrenciesAdapter();
+			}
+			@Override
+			public Adapter caseCurrency(Currency object) {
+				return createCurrencyAdapter();
+			}
+			@Override
+			public Adapter caseStations(Stations object) {
+				return createStationsAdapter();
+			}
+			@Override
+			public Adapter caseStation(Station object) {
+				return createStationAdapter();
+			}
+			@Override
+			public Adapter caseCarrier(Carrier object) {
+				return createCarrierAdapter();
+			}
+			@Override
+			public Adapter caseCarriers(Carriers object) {
+				return createCarriersAdapter();
+			}
+			@Override
+			public Adapter caseGeneralTariffModel(GeneralTariffModel object) {
+				return createGeneralTariffModelAdapter();
+			}
+			@Override
+			public Adapter caseDelivery(Delivery object) {
+				return createDeliveryAdapter();
+			}
+			@Override
+			public Adapter caseAfterSalesRules(AfterSalesRules object) {
+				return createAfterSalesRulesAdapter();
+			}
+			@Override
+			public Adapter caseAfterSalesRule(AfterSalesRule object) {
+				return createAfterSalesRuleAdapter();
+			}
+			@Override
+			public Adapter caseAfterSalesCondition(AfterSalesCondition object) {
+				return createAfterSalesConditionAdapter();
+			}
+			@Override
+			public Adapter caseApplicationTime(ApplicationTime object) {
+				return createApplicationTimeAdapter();
+			}
+			@Override
+			public Adapter caseFareStructure(FareStructure object) {
+				return createFareStructureAdapter();
+			}
+			@Override
+			public Adapter caseConnectionPoints(ConnectionPoints object) {
+				return createConnectionPointsAdapter();
+			}
+			@Override
+			public Adapter caseConnectionPoint(ConnectionPoint object) {
+				return createConnectionPointAdapter();
+			}
+			@Override
+			public Adapter caseStationSet(StationSet object) {
+				return createStationSetAdapter();
+			}
+			@Override
+			public Adapter caseFareResourceLocations(FareResourceLocations object) {
+				return createFareResourceLocationsAdapter();
+			}
+			@Override
+			public Adapter caseTrainResourceLocations(TrainResourceLocations object) {
+				return createTrainResourceLocationsAdapter();
+			}
+			@Override
+			public Adapter caseStationResourceLocations(StationResourceLocations object) {
+				return createStationResourceLocationsAdapter();
+			}
+			@Override
+			public Adapter caseCarrierResourceLocations(CarrierResourceLocations object) {
+				return createCarrierResourceLocationsAdapter();
+			}
+			@Override
+			public Adapter caseTrainResourceLocation(TrainResourceLocation object) {
+				return createTrainResourceLocationAdapter();
+			}
+			@Override
+			public Adapter caseStationResourceLocation(StationResourceLocation object) {
+				return createStationResourceLocationAdapter();
+			}
+			@Override
+			public Adapter caseOnlineResource(OnlineResource object) {
+				return createOnlineResourceAdapter();
+			}
+			@Override
+			public Adapter caseFulfillmentConstraints(FulfillmentConstraints object) {
+				return createFulfillmentConstraintsAdapter();
+			}
+			@Override
+			public Adapter caseSupportedOnlineServices(SupportedOnlineServices object) {
+				return createSupportedOnlineServicesAdapter();
+			}
+			@Override
+			public Adapter caseZoneDefinitions(ZoneDefinitions object) {
+				return createZoneDefinitionsAdapter();
+			}
+			@Override
+			public Adapter caseFareElement(FareElement object) {
+				return createFareElementAdapter();
+			}
+			@Override
+			public Adapter caseLegacyAccountingIdentifier(LegacyAccountingIdentifier object) {
+				return createLegacyAccountingIdentifierAdapter();
+			}
+			@Override
+			public Adapter caseReductionConstraints(ReductionConstraints object) {
+				return createReductionConstraintsAdapter();
+			}
+			@Override
+			public Adapter caseFareElements(FareElements object) {
+				return createFareElementsAdapter();
+			}
+			@Override
+			public Adapter casePersonalDataConstraints(PersonalDataConstraints object) {
+				return createPersonalDataConstraintsAdapter();
+			}
+			@Override
+			public Adapter casePersonalDataConstraint(PersonalDataConstraint object) {
+				return createPersonalDataConstraintAdapter();
+			}
+			@Override
+			public Adapter caseRequiredPersonalData(RequiredPersonalData object) {
+				return createRequiredPersonalDataAdapter();
+			}
+			@Override
+			public Adapter caseAllowedPersonalDataChanges(AllowedPersonalDataChanges object) {
+				return createAllowedPersonalDataChangesAdapter();
+			}
+			@Override
+			public Adapter casePassengerConstraints(PassengerConstraints object) {
+				return createPassengerConstraintsAdapter();
+			}
+			@Override
+			public Adapter casePassengerConstraint(PassengerConstraint object) {
+				return createPassengerConstraintAdapter();
+			}
+			@Override
+			public Adapter caseIncludedFreePassengers(IncludedFreePassengers object) {
+				return createIncludedFreePassengersAdapter();
+			}
+			@Override
+			public Adapter casePassengerCombinationConstraint(PassengerCombinationConstraint object) {
+				return createPassengerCombinationConstraintAdapter();
+			}
+			@Override
+			public Adapter caseCombinationConstraints(CombinationConstraints object) {
+				return createCombinationConstraintsAdapter();
+			}
+			@Override
+			public Adapter caseCombinationConstraint(CombinationConstraint object) {
+				return createCombinationConstraintAdapter();
+			}
+			@Override
+			public Adapter caseTravelValidityConstraints(TravelValidityConstraints object) {
+				return createTravelValidityConstraintsAdapter();
+			}
+			@Override
+			public Adapter caseTravelValidityConstraint(TravelValidityConstraint object) {
+				return createTravelValidityConstraintAdapter();
+			}
+			@Override
+			public Adapter caseSalesAvailabilityConstraints(SalesAvailabilityConstraints object) {
+				return createSalesAvailabilityConstraintsAdapter();
+			}
+			@Override
+			public Adapter caseSalesAvailabilityConstraint(SalesAvailabilityConstraint object) {
+				return createSalesAvailabilityConstraintAdapter();
+			}
+			@Override
+			public Adapter caseSalesRestriction(SalesRestriction object) {
+				return createSalesRestrictionAdapter();
+			}
+			@Override
+			public Adapter caseEndOfSale(EndOfSale object) {
+				return createEndOfSaleAdapter();
+			}
+			@Override
+			public Adapter caseStartOfSale(StartOfSale object) {
+				return createStartOfSaleAdapter();
+			}
+			@Override
+			public Adapter caseReductionCards(ReductionCards object) {
+				return createReductionCardsAdapter();
 			}
 			@Override
 			public Adapter caseReductionCard(ReductionCard object) {
 				return createReductionCardAdapter();
 			}
 			@Override
+			public Adapter caseCarrierConstraints(CarrierConstraints object) {
+				return createCarrierConstraintsAdapter();
+			}
+			@Override
+			public Adapter caseCarrierConstraint(CarrierConstraint object) {
+				return createCarrierConstraintAdapter();
+			}
+			@Override
+			public Adapter caseServiceConstraints(ServiceConstraints object) {
+				return createServiceConstraintsAdapter();
+			}
+			@Override
+			public Adapter caseServiceConstraint(ServiceConstraint object) {
+				return createServiceConstraintAdapter();
+			}
+			@Override
+			public Adapter caseRegionalConstraints(RegionalConstraints object) {
+				return createRegionalConstraintsAdapter();
+			}
+			@Override
 			public Adapter caseRegionalConstraint(RegionalConstraint object) {
 				return createRegionalConstraintAdapter();
+			}
+			@Override
+			public Adapter caseRegionalValidity(RegionalValidity object) {
+				return createRegionalValidityAdapter();
+			}
+			@Override
+			public Adapter caseServiceLevelDefinitions(ServiceLevelDefinitions object) {
+				return createServiceLevelDefinitionsAdapter();
+			}
+			@Override
+			public Adapter caseTexts(Texts object) {
+				return createTextsAdapter();
+			}
+			@Override
+			public Adapter caseText(Text object) {
+				return createTextAdapter();
+			}
+			@Override
+			public Adapter caseTranslation(Translation object) {
+				return createTranslationAdapter();
+			}
+			@Override
+			public Adapter casePrices(Prices object) {
+				return createPricesAdapter();
+			}
+			@Override
+			public Adapter casePrice(Price object) {
+				return createPriceAdapter();
+			}
+			@Override
+			public Adapter caseVATDetail(VATDetail object) {
+				return createVATDetailAdapter();
+			}
+			@Override
+			public Adapter caseCurrencyPrice(CurrencyPrice object) {
+				return createCurrencyPriceAdapter();
+			}
+			@Override
+			public Adapter caseServiceClassDefinitions(ServiceClassDefinitions object) {
+				return createServiceClassDefinitionsAdapter();
+			}
+			@Override
+			public Adapter caseCalendars(Calendars object) {
+				return createCalendarsAdapter();
+			}
+			@Override
+			public Adapter caseCalendar(Calendar object) {
+				return createCalendarAdapter();
+			}
+			@Override
+			public Adapter caseReservationParameters(ReservationParameters object) {
+				return createReservationParametersAdapter();
 			}
 			@Override
 			public Adapter caseReservationParameter(ReservationParameter object) {
@@ -188,8 +392,8 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createReservationOptionsAdapter();
 			}
 			@Override
-			public Adapter caseReservationPreference(ReservationPreference object) {
-				return createReservationPreferenceAdapter();
+			public Adapter caseReservationPreferenceGroup(ReservationPreferenceGroup object) {
+				return createReservationPreferenceGroupAdapter();
 			}
 			@Override
 			public Adapter caseServiceClass(ServiceClass object) {
@@ -200,92 +404,44 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createServiceLevelAdapter();
 			}
 			@Override
-			public Adapter caseServiceConstraint(ServiceConstraint object) {
-				return createServiceConstraintAdapter();
+			public Adapter caseTimeRange(TimeRange object) {
+				return createTimeRangeAdapter();
 			}
 			@Override
-			public Adapter caseStation(Station object) {
-				return createStationAdapter();
-			}
-			@Override
-			public Adapter caseStationsType(StationsType object) {
-				return createStationsTypeAdapter();
-			}
-			@Override
-			public Adapter caseTargetFareTemplate(TargetFareTemplate object) {
-				return createTargetFareTemplateAdapter();
-			}
-			@Override
-			public Adapter caseTravelValidityConstraint(TravelValidityConstraint object) {
-				return createTravelValidityConstraintAdapter();
-			}
-			@Override
-			public Adapter caseText(Text object) {
-				return createTextAdapter();
-			}
-			@Override
-			public Adapter caseTranslation(Translation object) {
-				return createTranslationAdapter();
-			}
-			@Override
-			public Adapter caseVATDetail(VATDetail object) {
-				return createVATDetailAdapter();
-			}
-			@Override
-			public Adapter caseFareElement(FareElement object) {
-				return createFareElementAdapter();
-			}
-			@Override
-			public Adapter caseServiceBrand(ServiceBrand object) {
-				return createServiceBrandAdapter();
-			}
-			@Override
-			public Adapter caseSalesAvailabilityConstraint(SalesAvailabilityConstraint object) {
-				return createSalesAvailabilityConstraintAdapter();
-			}
-			@Override
-			public Adapter caseSalesRestriction(SalesRestriction object) {
-				return createSalesRestrictionAdapter();
-			}
-			@Override
-			public Adapter caseTimeReference(TimeReference object) {
-				return createTimeReferenceAdapter();
-			}
-			@Override
-			public Adapter caseCombinationConstraint(CombinationConstraint object) {
-				return createCombinationConstraintAdapter();
+			public Adapter caseExcludedTimeRange(ExcludedTimeRange object) {
+				return createExcludedTimeRangeAdapter();
 			}
 			@Override
 			public Adapter caseValidityRange(ValidityRange object) {
 				return createValidityRangeAdapter();
 			}
 			@Override
-			public Adapter caseTimeRange(TimeRange object) {
-				return createTimeRangeAdapter();
+			public Adapter caseRelativeTime(RelativeTime object) {
+				return createRelativeTimeAdapter();
 			}
 			@Override
 			public Adapter caseReturnValidityConstraint(ReturnValidityConstraint object) {
 				return createReturnValidityConstraintAdapter();
 			}
 			@Override
-			public Adapter caseFareCombinationModel(FareCombinationModel object) {
-				return createFareCombinationModelAdapter();
-			}
-			@Override
-			public Adapter caseRegionalValidity(RegionalValidity object) {
-				return createRegionalValidityAdapter();
-			}
-			@Override
 			public Adapter caseViaStation(ViaStation object) {
 				return createViaStationAdapter();
+			}
+			@Override
+			public Adapter caseAlternativeRoute(AlternativeRoute object) {
+				return createAlternativeRouteAdapter();
+			}
+			@Override
+			public Adapter caseRoute(Route object) {
+				return createRouteAdapter();
 			}
 			@Override
 			public Adapter caseZone(Zone object) {
 				return createZoneAdapter();
 			}
 			@Override
-			public Adapter caseNutsCode(NutsCode object) {
-				return createNutsCodeAdapter();
+			public Adapter caseZoneDefinition(ZoneDefinition object) {
+				return createZoneDefinitionAdapter();
 			}
 			@Override
 			public Adapter caseLine(Line object) {
@@ -300,44 +456,28 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createEdgeAdapter();
 			}
 			@Override
-			public Adapter casePassengerConstraint(PassengerConstraint object) {
-				return createPassengerConstraintAdapter();
-			}
-			@Override
-			public Adapter casePassengerCombinationConstraint(PassengerCombinationConstraint object) {
-				return createPassengerCombinationConstraintAdapter();
-			}
-			@Override
-			public Adapter caseRelativeTime(RelativeTime object) {
-				return createRelativeTimeAdapter();
-			}
-			@Override
-			public Adapter caseZoneDefinition(ZoneDefinition object) {
-				return createZoneDefinitionAdapter();
-			}
-			@Override
-			public Adapter caseAfterSalesCondition(AfterSalesCondition object) {
-				return createAfterSalesConditionAdapter();
-			}
-			@Override
-			public Adapter caseAfterSalesRule(AfterSalesRule object) {
-				return createAfterSalesRuleAdapter();
-			}
-			@Override
-			public Adapter casePersonalDataConstraint(PersonalDataConstraint object) {
-				return createPersonalDataConstraintAdapter();
-			}
-			@Override
-			public Adapter caseRequiredPersonalData(RequiredPersonalData object) {
-				return createRequiredPersonalDataAdapter();
+			public Adapter caseCarrierResourceLocation(CarrierResourceLocation object) {
+				return createCarrierResourceLocationAdapter();
 			}
 			@Override
 			public Adapter caseCrossBorderCondition(CrossBorderCondition object) {
 				return createCrossBorderConditionAdapter();
 			}
 			@Override
-			public Adapter caseAllowedPersonalDataChanges(AllowedPersonalDataChanges object) {
-				return createAllowedPersonalDataChangesAdapter();
+			public Adapter caseFareCombinationModel(FareCombinationModel object) {
+				return createFareCombinationModelAdapter();
+			}
+			@Override
+			public Adapter caseFulfillmentConstraint(FulfillmentConstraint object) {
+				return createFulfillmentConstraintAdapter();
+			}
+			@Override
+			public Adapter caseRequiredBarcodes(RequiredBarcodes object) {
+				return createRequiredBarcodesAdapter();
+			}
+			@Override
+			public Adapter caseAcceptedBarcodes(AcceptedBarcodes object) {
+				return createAcceptedBarcodesAdapter();
 			}
 			@Override
 			public Adapter caseReductionConstraint(ReductionConstraint object) {
@@ -348,28 +488,108 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createRequiredReductionCardAdapter();
 			}
 			@Override
-			public Adapter caseFulfillmentConstraint(FulfillmentConstraint object) {
-				return createFulfillmentConstraintAdapter();
+			public Adapter caseConversionFromLegacy(ConversionFromLegacy object) {
+				return createConversionFromLegacyAdapter();
 			}
 			@Override
-			public Adapter caseFareResourceLocation(FareResourceLocation object) {
-				return createFareResourceLocationAdapter();
+			public Adapter caseConversionParams(ConversionParams object) {
+				return createConversionParamsAdapter();
 			}
 			@Override
-			public Adapter caseTrainResourceLocation(TrainResourceLocation object) {
-				return createTrainResourceLocationAdapter();
+			public Adapter caseTargetFareTemplate(TargetFareTemplate object) {
+				return createTargetFareTemplateAdapter();
 			}
 			@Override
-			public Adapter caseCarrierResourceLocation(CarrierResourceLocation object) {
-				return createCarrierResourceLocationAdapter();
+			public Adapter caseLegacyStationToServiceConstraintMappings(LegacyStationToServiceConstraintMappings object) {
+				return createLegacyStationToServiceConstraintMappingsAdapter();
 			}
 			@Override
-			public Adapter caseStationResourceLocation(StationResourceLocation object) {
-				return createStationResourceLocationAdapter();
+			public Adapter caseLegacyStationToServiceConstraintMapping(LegacyStationToServiceConstraintMapping object) {
+				return createLegacyStationToServiceConstraintMappingAdapter();
 			}
 			@Override
-			public Adapter caseOnlineResource(OnlineResource object) {
-				return createOnlineResourceAdapter();
+			public Adapter caseLegacyStationMappings(LegacyStationMappings object) {
+				return createLegacyStationMappingsAdapter();
+			}
+			@Override
+			public Adapter caseLegacyStationMap(LegacyStationMap object) {
+				return createLegacyStationMapAdapter();
+			}
+			@Override
+			public Adapter caseLegacyStation(LegacyStation object) {
+				return createLegacyStationAdapter();
+			}
+			@Override
+			public Adapter caseLegacyBoderPointMappings(LegacyBoderPointMappings object) {
+				return createLegacyBoderPointMappingsAdapter();
+			}
+			@Override
+			public Adapter caseLegacyBorderPointMapping(LegacyBorderPointMapping object) {
+				return createLegacyBorderPointMappingAdapter();
+			}
+			@Override
+			public Adapter caseLegacyDescription(LegacyDescription object) {
+				return createLegacyDescriptionAdapter();
+			}
+			@Override
+			public Adapter caseLegacyZoneMappings(LegacyZoneMappings object) {
+				return createLegacyZoneMappingsAdapter();
+			}
+			@Override
+			public Adapter caseLegacyZoneMap(LegacyZoneMap object) {
+				return createLegacyZoneMapAdapter();
+			}
+			@Override
+			public Adapter caseLegacyFares(LegacyFares object) {
+				return createLegacyFaresAdapter();
+			}
+			@Override
+			public Adapter caseLegacyFare(LegacyFare object) {
+				return createLegacyFareAdapter();
+			}
+			@Override
+			public Adapter caseLegacy108(Legacy108 object) {
+				return createLegacy108Adapter();
+			}
+			@Override
+			public Adapter caseLegacy108Stations(Legacy108Stations object) {
+				return createLegacy108StationsAdapter();
+			}
+			@Override
+			public Adapter caseLegacy108Station(Legacy108Station object) {
+				return createLegacy108StationAdapter();
+			}
+			@Override
+			public Adapter caseLegacyRouteFares(LegacyRouteFares object) {
+				return createLegacyRouteFaresAdapter();
+			}
+			@Override
+			public Adapter caseLegacyRouteFare(LegacyRouteFare object) {
+				return createLegacyRouteFareAdapter();
+			}
+			@Override
+			public Adapter caseLegacySeries(LegacySeries object) {
+				return createLegacySeriesAdapter();
+			}
+			@Override
+			public Adapter caseLegacySeriesList(LegacySeriesList object) {
+				return createLegacySeriesListAdapter();
+			}
+			@Override
+			public Adapter caseLegacyDistanceFares(LegacyDistanceFares object) {
+				return createLegacyDistanceFaresAdapter();
+			}
+			@Override
+			public Adapter caseLegacyDistanceFare(LegacyDistanceFare object) {
+				return createLegacyDistanceFareAdapter();
+			}
+			@Override
+			public Adapter caseLegacyViastation(LegacyViastation object) {
+				return createLegacyViastationAdapter();
+			}
+			@Override
+			public Adapter caseLegacyTargetFares(LegacyTargetFares object) {
+				return createLegacyTargetFaresAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -420,6 +640,104 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.NUTSCodes <em>NUTS Codes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.NUTSCodes
+	 * @generated
+	 */
+	public Adapter createNUTSCodesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.ServiceBrands <em>Service Brands</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.ServiceBrands
+	 * @generated
+	 */
+	public Adapter createServiceBrandsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.Languages <em>Languages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.Languages
+	 * @generated
+	 */
+	public Adapter createLanguagesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.Currencies <em>Currencies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.Currencies
+	 * @generated
+	 */
+	public Adapter createCurrenciesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.Countries <em>Countries</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.Countries
+	 * @generated
+	 */
+	public Adapter createCountriesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.Stations <em>Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.Stations
+	 * @generated
+	 */
+	public Adapter createStationsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.Carriers <em>Carriers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.Carriers
+	 * @generated
+	 */
+	public Adapter createCarriersAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link Gtm.GeneralTariffModel <em>General Tariff Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -448,6 +766,20 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.ConversionParams <em>Conversion Params</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.ConversionParams
+	 * @generated
+	 */
+	public Adapter createConversionParamsAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link Gtm.FareStructure <em>Fare Structure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -462,6 +794,370 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.ConnectionPoints <em>Connection Points</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.ConnectionPoints
+	 * @generated
+	 */
+	public Adapter createConnectionPointsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.FareResourceLocations <em>Fare Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.FareResourceLocations
+	 * @generated
+	 */
+	public Adapter createFareResourceLocationsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.TrainResourceLocations <em>Train Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.TrainResourceLocations
+	 * @generated
+	 */
+	public Adapter createTrainResourceLocationsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.StationResourceLocations <em>Station Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.StationResourceLocations
+	 * @generated
+	 */
+	public Adapter createStationResourceLocationsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.CarrierResourceLocations <em>Carrier Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.CarrierResourceLocations
+	 * @generated
+	 */
+	public Adapter createCarrierResourceLocationsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.FulfillmentConstraints <em>Fulfillment Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.FulfillmentConstraints
+	 * @generated
+	 */
+	public Adapter createFulfillmentConstraintsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.SupportedOnlineServices <em>Supported Online Services</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.SupportedOnlineServices
+	 * @generated
+	 */
+	public Adapter createSupportedOnlineServicesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.ZoneDefinitions <em>Zone Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.ZoneDefinitions
+	 * @generated
+	 */
+	public Adapter createZoneDefinitionsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.ReductionConstraints <em>Reduction Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.ReductionConstraints
+	 * @generated
+	 */
+	public Adapter createReductionConstraintsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.PersonalDataConstraints <em>Personal Data Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.PersonalDataConstraints
+	 * @generated
+	 */
+	public Adapter createPersonalDataConstraintsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.PassengerConstraints <em>Passenger Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.PassengerConstraints
+	 * @generated
+	 */
+	public Adapter createPassengerConstraintsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.CombinationConstraints <em>Combination Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.CombinationConstraints
+	 * @generated
+	 */
+	public Adapter createCombinationConstraintsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.TravelValidityConstraints <em>Travel Validity Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.TravelValidityConstraints
+	 * @generated
+	 */
+	public Adapter createTravelValidityConstraintsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.SalesAvailabilityConstraints <em>Sales Availability Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.SalesAvailabilityConstraints
+	 * @generated
+	 */
+	public Adapter createSalesAvailabilityConstraintsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.ReductionCards <em>Reduction Cards</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.ReductionCards
+	 * @generated
+	 */
+	public Adapter createReductionCardsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.CarrierConstraints <em>Carrier Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.CarrierConstraints
+	 * @generated
+	 */
+	public Adapter createCarrierConstraintsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.ServiceConstraints <em>Service Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.ServiceConstraints
+	 * @generated
+	 */
+	public Adapter createServiceConstraintsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.ReservationParameters <em>Reservation Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.ReservationParameters
+	 * @generated
+	 */
+	public Adapter createReservationParametersAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.RegionalConstraints <em>Regional Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.RegionalConstraints
+	 * @generated
+	 */
+	public Adapter createRegionalConstraintsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.ServiceLevelDefinitions <em>Service Level Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.ServiceLevelDefinitions
+	 * @generated
+	 */
+	public Adapter createServiceLevelDefinitionsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.Texts <em>Texts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.Texts
+	 * @generated
+	 */
+	public Adapter createTextsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.Prices <em>Prices</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.Prices
+	 * @generated
+	 */
+	public Adapter createPricesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.ServiceClassDefinitions <em>Service Class Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.ServiceClassDefinitions
+	 * @generated
+	 */
+	public Adapter createServiceClassDefinitionsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.Calendars <em>Calendars</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.Calendars
+	 * @generated
+	 */
+	public Adapter createCalendarsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.AfterSalesRules <em>After Sales Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.AfterSalesRules
+	 * @generated
+	 */
+	public Adapter createAfterSalesRulesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.FareElements <em>Fare Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.FareElements
+	 * @generated
+	 */
+	public Adapter createFareElementsAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link Gtm.Delivery <em>Delivery</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -472,20 +1168,6 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDeliveryAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.BorderPoints <em>Border Points</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see Gtm.BorderPoints
-	 * @generated
-	 */
-	public Adapter createBorderPointsAdapter() {
 		return null;
 	}
 
@@ -518,16 +1200,30 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.CoversionParams <em>Coversion Params</em>}'.
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyStationToServiceConstraintMappings <em>Legacy Station To Service Constraint Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Gtm.CoversionParams
+	 * @see Gtm.LegacyStationToServiceConstraintMappings
 	 * @generated
 	 */
-	public Adapter createCoversionParamsAdapter() {
+	public Adapter createLegacyStationToServiceConstraintMappingsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyStationToServiceConstraintMapping <em>Legacy Station To Service Constraint Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyStationToServiceConstraintMapping
+	 * @generated
+	 */
+	public Adapter createLegacyStationToServiceConstraintMappingAdapter() {
 		return null;
 	}
 
@@ -542,6 +1238,34 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLegacyDescriptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyZoneMappings <em>Legacy Zone Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyZoneMappings
+	 * @generated
+	 */
+	public Adapter createLegacyZoneMappingsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyZoneMap <em>Legacy Zone Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyZoneMap
+	 * @generated
+	 */
+	public Adapter createLegacyZoneMapAdapter() {
 		return null;
 	}
 
@@ -574,6 +1298,20 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyFare <em>Legacy Fare</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyFare
+	 * @generated
+	 */
+	public Adapter createLegacyFareAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link Gtm.Legacy108 <em>Legacy108</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -584,6 +1322,48 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLegacy108Adapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.Legacy108Stations <em>Legacy108 Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.Legacy108Stations
+	 * @generated
+	 */
+	public Adapter createLegacy108StationsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.Legacy108Station <em>Legacy108 Station</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.Legacy108Station
+	 * @generated
+	 */
+	public Adapter createLegacy108StationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyRouteFares <em>Legacy Route Fares</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyRouteFares
+	 * @generated
+	 */
+	public Adapter createLegacyRouteFaresAdapter() {
 		return null;
 	}
 
@@ -616,6 +1396,34 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacySeriesList <em>Legacy Series List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacySeriesList
+	 * @generated
+	 */
+	public Adapter createLegacySeriesListAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyDistanceFares <em>Legacy Distance Fares</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyDistanceFares
+	 * @generated
+	 */
+	public Adapter createLegacyDistanceFaresAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link Gtm.LegacyViastation <em>Legacy Viastation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -644,16 +1452,58 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.StationsType <em>Stations Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyBoderPointMappings <em>Legacy Boder Point Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Gtm.StationsType
+	 * @see Gtm.LegacyBoderPointMappings
 	 * @generated
 	 */
-	public Adapter createStationsTypeAdapter() {
+	public Adapter createLegacyBoderPointMappingsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyBorderPointMapping <em>Legacy Border Point Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyBorderPointMapping
+	 * @generated
+	 */
+	public Adapter createLegacyBorderPointMappingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyStationMappings <em>Legacy Station Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyStationMappings
+	 * @generated
+	 */
+	public Adapter createLegacyStationMappingsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyTargetFares <em>Legacy Target Fares</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyTargetFares
+	 * @generated
+	 */
+	public Adapter createLegacyTargetFaresAdapter() {
 		return null;
 	}
 
@@ -826,16 +1676,16 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.ReservationPreference <em>Reservation Preference</em>}'.
+	 * Creates a new adapter for an object of class '{@link Gtm.ReservationPreferenceGroup <em>Reservation Preference Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Gtm.ReservationPreference
+	 * @see Gtm.ReservationPreferenceGroup
 	 * @generated
 	 */
-	public Adapter createReservationPreferenceAdapter() {
+	public Adapter createReservationPreferenceGroupAdapter() {
 		return null;
 	}
 
@@ -910,6 +1760,20 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.StationSet <em>Station Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.StationSet
+	 * @generated
+	 */
+	public Adapter createStationSetAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link Gtm.ServiceConstraint <em>Service Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -948,6 +1812,20 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFareElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyAccountingIdentifier
+	 * @generated
+	 */
+	public Adapter createLegacyAccountingIdentifierAdapter() {
 		return null;
 	}
 
@@ -1022,16 +1900,30 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.TimeReference <em>Time Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link Gtm.EndOfSale <em>End Of Sale</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Gtm.TimeReference
+	 * @see Gtm.EndOfSale
 	 * @generated
 	 */
-	public Adapter createTimeReferenceAdapter() {
+	public Adapter createEndOfSaleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.StartOfSale <em>Start Of Sale</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.StartOfSale
+	 * @generated
+	 */
+	public Adapter createStartOfSaleAdapter() {
 		return null;
 	}
 
@@ -1078,6 +1970,20 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.ExcludedTimeRange <em>Excluded Time Range</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.ExcludedTimeRange
+	 * @generated
+	 */
+	public Adapter createExcludedTimeRangeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link Gtm.ReturnValidityConstraint <em>Return Validity Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1106,6 +2012,34 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.RequiredBarcodes <em>Required Barcodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.RequiredBarcodes
+	 * @generated
+	 */
+	public Adapter createRequiredBarcodesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.AcceptedBarcodes <em>Accepted Barcodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.AcceptedBarcodes
+	 * @generated
+	 */
+	public Adapter createAcceptedBarcodesAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link Gtm.RegionalValidity <em>Regional Validity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1130,6 +2064,34 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createViaStationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.AlternativeRoute <em>Alternative Route</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.AlternativeRoute
+	 * @generated
+	 */
+	public Adapter createAlternativeRouteAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.Route <em>Route</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.Route
+	 * @generated
+	 */
+	public Adapter createRouteAdapter() {
 		return null;
 	}
 
@@ -1190,6 +2152,20 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyStation <em>Legacy Station</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyStation
+	 * @generated
+	 */
+	public Adapter createLegacyStationAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link Gtm.Edge <em>Edge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1214,6 +2190,20 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPassengerConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.IncludedFreePassengers <em>Included Free Passengers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.IncludedFreePassengers
+	 * @generated
+	 */
+	public Adapter createIncludedFreePassengersAdapter() {
 		return null;
 	}
 
@@ -1270,6 +2260,20 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAfterSalesConditionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.ApplicationTime <em>Application Time</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.ApplicationTime
+	 * @generated
+	 */
+	public Adapter createApplicationTimeAdapter() {
 		return null;
 	}
 
@@ -1382,20 +2386,6 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFulfillmentConstraintAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.FareResourceLocation <em>Fare Resource Location</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see Gtm.FareResourceLocation
-	 * @generated
-	 */
-	public Adapter createFareResourceLocationAdapter() {
 		return null;
 	}
 
