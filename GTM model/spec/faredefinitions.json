@@ -76,7 +76,7 @@
 				},
 				"UTCoffset": {
 					"description": "offsett to UTC in minutes (number of minutes to be added to get UTC dates)",
-					"type": "number"
+					"type": "integer"
 				}
 			},
 			"required": [
@@ -92,29 +92,21 @@
 			"properties": {
 				"id": {
 					"type": "string"
+				},
+				"includedCarrier": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/CompanyDef"
+					}
+				},
+				"excludedCarrier": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/CompanyDef"
+					}
 				}
 			},
-			"additionalProperties": false,
-			"oneOf": [
-				{
-					"type": "object",
-					"properties": {
-						"includedCarrier": {
-							"type": "array",
-							"items": {
-								"$ref": "definitions.json#/definitions/CompanyDef"
-							}
-						},
-						"excludedCarrier": {
-							"type": "array",
-							"items": {
-								"$ref": "definitions.json#/definitions/CompanyDef"
-							}
-						}
-					},
-					"additionalProperties": false
-				}
-			]
+			"additionalProperties": false
 		},
 		"CarrierResourceLocationDef": {
 			"type": "object",
@@ -139,8 +131,35 @@
 			"additionalProperties": false
 		},
 		"ConnectionPointDef": {
-			"description": "connection point connecting two fare regimes",
-			"type": "string"
+			"description": "connection point connecting two fare regimes ",
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"legacyBorderPointCode": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"stationSets": {
+					"type": "array",
+					"items": {
+						"type": "array",
+						"items": {
+							"$ref": "definitions.json#/definitions/StationDef"
+						}
+					}
+				},
+				"station": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				}
+			},
+			"required": [
+				"id"
+			],
+			"additionalProperties": false
 		},
 		"CurrencyPriceDef": {
 			"type": "object",
@@ -344,16 +363,16 @@
 					"type": "string"
 				},
 				"upperAgeLimit": {
-					"type": "number"
+					"type": "integer"
 				},
 				"lowerAgeLimit": {
-					"type": "number"
+					"type": "integer"
 				},
 				"ageLimitToTravelAlone": {
-					"type": "number"
+					"type": "integer"
 				},
 				"ageLimitForReservation": {
-					"type": "number"
+					"type": "integer"
 				},
 				"isAncilliaryItem": {
 					"description": "to indicate dogs, bicycles,.. ",
@@ -367,7 +386,7 @@
 						"properties": {
 							"maxNumber": {
 								"description": "number of passengers allowed per accompanying passenger",
-								"type": "number"
+								"type": "integer"
 							},
 							"passengerTypeRef": {
 								"description": "reference to the type of the acompanying passenger",
@@ -388,7 +407,7 @@
 						"properties": {
 							"number": {
 								"description": "number of passengers that can be included with one passenger for free. The number is given in fractions. The calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog for free)",
-								"type": "number"
+								"type": "integer"
 							},
 							"passengerTypeRef": {
 								"type": "string"
@@ -462,15 +481,18 @@
 								"type": "boolean",
 								"default": false
 							},
-							"fulfillmentType": {
-								"description": "type of fulfillment in case the presonal data are required for that type only",
-								"type": "string"
-							},
 							"crossBorder": {
 								"description": "the dara are required only in case one of the cross border conditions apply",
 								"type": "array",
 								"items": {
 									"$ref": "#/definitions/CrossBorderCondition"
+								}
+							},
+							"fulfillmentType": {
+								"description": "type of fulfillment in case the presonal data are required for that type only",
+								"type": "array",
+								"items": {
+									"type": "string"
 								}
 							}
 						},
@@ -677,13 +699,7 @@
 					"description": "list of service classes in case this class is available for different classes",
 					"type": "array",
 					"items": {
-						"type": "object",
-						"properties": {
-							"serviceClass": {
-								"$ref": "#/definitions/ServiceClassDef"
-							}
-						},
-						"additionalProperties": false
+						"$ref": "#/definitions/ServiceClassDef"
 					}
 				}
 			},
@@ -710,10 +726,10 @@
 								"$ref": "#/definitions/CalendarDef"
 							},
 							"startOfSale": {
-								"$ref": "#/definitions/TimeReferenceDef"
+								"$ref": "#/definitions/RelativeTimeDef"
 							},
 							"endOfSale": {
-								"$ref": "#/definitions/TimeReferenceDef"
+								"$ref": "#/definitions/RelativeTimeDef"
 							}
 						},
 						"required": [
@@ -751,42 +767,29 @@
 			"additionalProperties": false
 		},
 		"ServiceConstraintDef": {
+			"description": "one of the lists of exclueded or included service brands only",
 			"type": "object",
 			"properties": {
 				"id": {
 					"type": "string"
+				},
+				"includedServiceBrands": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+					}
+				},
+				"excludedServiceBrands": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+					}
 				}
 			},
 			"required": [
 				"id"
 			],
-			"additionalProperties": false,
-			"oneOf": [
-				{
-					"type": "object",
-					"properties": {
-						"includedServiceBrands": {
-							"type": "array",
-							"items": {
-								"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
-							}
-						}
-					},
-					"additionalProperties": false
-				},
-				{
-					"type": "object",
-					"properties": {
-						"excludedServiceBrands": {
-							"type": "array",
-							"items": {
-								"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
-							}
-						}
-					},
-					"additionalProperties": false
-				}
-			]
+			"additionalProperties": false
 		},
 		"ServiceLevelDef": {
 			"type": "object",
@@ -858,32 +861,10 @@
 					"type": "string"
 				},
 				"translations": {
-					"type": "object",
-					"properties": {
-						"language": {
-							"$ref": "definitions.json#/definitions/LanguageDef"
-						},
-						"textUTF8": {
-							"type": "string"
-						},
-						"text": {
-							"description": "text without special characters according to ICAO specification",
-							"type": "string"
-						},
-						"shortTextUtf8": {
-							"type": "string"
-						},
-						"shortText": {
-							"description": "text without special characters according to ICAO specification",
-							"type": "string"
-						}
-					},
-					"required": [
-						"language",
-						"textUTF8",
-						"text"
-					],
-					"additionalProperties": false
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TranslationDef"
+					}
 				},
 				"text": {
 					"description": "text without special characters according to ICAO specification",
@@ -912,7 +893,7 @@
 					"type": "string"
 				},
 				"value": {
-					"type": "number"
+					"type": "integer"
 				},
 				"timeReference": {
 					"description": "BEFORE_DEPARTURE,AFTER_DEPARTURE,BEFORE_VALIDITY",
@@ -988,11 +969,11 @@
 						"properties": {
 							"from": {
 								"description": "minutes of the day in the time zone of travel",
-								"type": "number"
+								"type": "integer"
 							},
 							"until": {
 								"description": "minutes of the day in the time zone of travel",
-								"type": "number"
+								"type": "integer"
 							},
 							"scope": {
 								"description": "START_OF_TRAVEL,COMPLETE_RANGE",
@@ -1009,7 +990,7 @@
 				},
 				"numberOfTravelDays": {
 					"description": "number of allowed travel days (e.g. 3 travel days within 2 weeks)",
-					"type": "number"
+					"type": "integer"
 				},
 				"returnConstraint": {
 					"description": "a return trip with the same carrier must be sold in combination",
@@ -1017,17 +998,17 @@
 					"properties": {
 						"latestReturn": {
 							"description": "number of days after departure or start of validity of the last return ",
-							"type": "number"
+							"type": "integer"
 						},
 						"earliestReturn": {
 							"description": "number of days after departure or start of validity of the earliest return",
-							"type": "number"
+							"type": "integer"
 						},
 						"excludedWeekdays": {
 							"description": "weekdays (ISO day of the week, 1 = Monday) between travel and return where travel is not allowed",
 							"type": "array",
 							"items": {
-								"type": "number"
+								"type": "integer"
 							}
 						}
 					},
@@ -1082,7 +1063,7 @@
 					"type": "string"
 				},
 				"timeValue": {
-					"type": "number"
+					"type": "integer"
 				},
 				"timeReference": {
 					"description": "BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY",
@@ -1114,6 +1095,34 @@
 					}
 				}
 			},
+			"additionalProperties": false
+		},
+		"TranslationDef": {
+			"type": "object",
+			"properties": {
+				"language": {
+					"$ref": "definitions.json#/definitions/LanguageDef"
+				},
+				"textUTF8": {
+					"type": "string"
+				},
+				"text": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				},
+				"shortTextUtf8": {
+					"type": "string"
+				},
+				"shortText": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				}
+			},
+			"required": [
+				"language",
+				"textUTF8",
+				"text"
+			],
 			"additionalProperties": false
 		}
 	}

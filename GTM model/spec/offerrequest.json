@@ -196,6 +196,11 @@
 						}
 					},
 					"additionalProperties": false
+				},
+				"includeReservationOptions": {
+					"description": "provide the list of reservation options if possible, the requestor ia able to handle it",
+					"type": "boolean",
+					"default": false
 				}
 			},
 			"required": [

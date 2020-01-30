@@ -961,77 +961,30 @@
 		"RegionalValidityDef": {
 			"type": "array",
 			"items": {
+				"description": "one of the elements Zone,ViaStation,TrainLink, Line, Polygone",
 				"type": "object",
 				"properties": {
 					"SeqNb": {
 						"description": "order number of the list item",
 						"type": "integer"
+					},
+					"Zone": {
+						"$ref": "ticketdefinitions.json#/definitions/ZoneDef"
+					},
+					"ViaStations": {
+						"$ref": "ticketdefinitions.json#/definitions/ViaStationsDef"
+					},
+					"TrainLink": {
+						"$ref": "ticketdefinitions.json#/definitions/TrainLinkDef"
+					},
+					"Line": {
+						"$ref": "ticketdefinitions.json#/definitions/LineDef"
+					},
+					"Polygone": {
+						"$ref": "#/definitions/PolygoneDef"
 					}
 				},
-				"additionalProperties": false,
-				"oneOf": [
-					{
-						"type": "object",
-						"properties": {
-							"Zone": {
-								"$ref": "ticketdefinitions.json#/definitions/ZoneDef"
-							}
-						},
-						"additionalProperties": false
-					},
-					{
-						"type": "object",
-						"properties": {
-							"ViaStations": {
-								"$ref": "ticketdefinitions.json#/definitions/ViaStationsDef"
-							}
-						},
-						"additionalProperties": false
-					},
-					{
-						"type": "object",
-						"properties": {
-							"TrainLink": {
-								"$ref": "ticketdefinitions.json#/definitions/TrainLinkDef"
-							}
-						},
-						"additionalProperties": false
-					},
-					{
-						"type": "object",
-						"properties": {
-							"Line": {
-								"$ref": "ticketdefinitions.json#/definitions/LineDef"
-							}
-						},
-						"additionalProperties": false
-					},
-					{
-						"type": "object",
-						"properties": {
-							"Polygone": {
-								"$ref": "#/definitions/PolygoneDef"
-							}
-						},
-						"additionalProperties": false
-					},
-					{
-						"type": "object",
-						"patternProperties": {
-							"^P_": {
-								"anyOf": [
-									{
-										"type": "object"
-									},
-									{
-										"type": "string"
-									}
-								]
-							}
-						},
-						"additionalProperties": false
-					}
-				]
+				"additionalProperties": false
 			}
 		},
 		"ReservationServiceDef": {
@@ -1813,6 +1766,10 @@
 				},
 				"Station": {
 					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"serviceBrand": {
+					"description": "restriction  to a specific service brand",
+					"type": "string"
 				}
 			},
 			"required": [
@@ -1855,6 +1812,7 @@
 					"description": "Terminal station in case the  product requires a destination within the zone (e.g. local ticket to go to the main railstation)"
 				},
 				"ZoneId": {
+					"description": "to be used in bar codes",
 					"type": "array",
 					"items": {
 						"type": "integer"
@@ -1863,6 +1821,13 @@
 				"nutsCode": {
 					"description": "Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011",
 					"type": "string"
+				},
+				"ZoneDefinitionIds": {
+					"description": "reference to zoe definitions in the afre data",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
 				}
 			},
 			"required": [

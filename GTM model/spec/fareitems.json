@@ -57,7 +57,42 @@
 				"reservationParameterRef": {
 					"type": "string"
 				},
-				"requiredPersonalDataConstraintREf": {
+				"personalDataConstraintRef": {
+					"type": "string"
+				},
+				"legacyAccountingIdentifier": {
+					"description": "identifier of the fare in the current 301 accounting file data",
+					"type": "object",
+					"properties": {
+						"serialId": {
+							"description": "sequential number of regional validities",
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 99999
+						},
+						"addId": {
+							"description": "sequential number of regional validities (leading positions in case the series is too short",
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 99
+						},
+						"tariffId": {
+							"description": "sequential number of the fares for one regional validity",
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 9999
+						}
+					},
+					"additionalProperties": false
+				},
+				"fareDetailDescriptionRef": {
+					"description": "reference to a text with the details of the fare ",
+					"type": "string"
+				},
+				"SalesAvailabilityConstraintRef": {
+					"type": "string"
+				},
+				"TravelValidityConstraintRef": {
 					"type": "string"
 				}
 			},
