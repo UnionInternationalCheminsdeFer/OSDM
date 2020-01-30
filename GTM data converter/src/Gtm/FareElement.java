@@ -26,6 +26,15 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.FareElement#getSalesAvailability <em>Sales Availability</em>}</li>
  *   <li>{@link Gtm.FareElement#getTravelValidity <em>Travel Validity</em>}</li>
  *   <li>{@link Gtm.FareElement#getCombinationConstraint <em>Combination Constraint</em>}</li>
+ *   <li>{@link Gtm.FareElement#getFareDetailDescription <em>Fare Detail Description</em>}</li>
+ *   <li>{@link Gtm.FareElement#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
+ *   <li>{@link Gtm.FareElement#getPersonalDataConstraint <em>Personal Data Constraint</em>}</li>
+ *   <li>{@link Gtm.FareElement#getReservationParameter <em>Reservation Parameter</em>}</li>
+ *   <li>{@link Gtm.FareElement#getReductionConstraint <em>Reduction Constraint</em>}</li>
+ *   <li>{@link Gtm.FareElement#getFulfillmentConstraint <em>Fulfillment Constraint</em>}</li>
+ *   <li>{@link Gtm.FareElement#getPassengerConstraint <em>Passenger Constraint</em>}</li>
+ *   <li>{@link Gtm.FareElement#getAfterSalesRule <em>After Sales Rule</em>}</li>
+ *   <li>{@link Gtm.FareElement#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getFareElement()
@@ -321,5 +330,206 @@ public interface FareElement extends EObject {
 	 * @generated
 	 */
 	void setCombinationConstraint(CombinationConstraint value);
+
+	/**
+	 * Returns the value of the '<em><b>Fare Detail Description</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fare Detail Description</em>' reference.
+	 * @see #setFareDetailDescription(Text)
+	 * @see Gtm.GtmPackage#getFareElement_FareDetailDescription()
+	 * @model
+	 * @generated
+	 */
+	Text getFareDetailDescription();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareElement#getFareDetailDescription <em>Fare Detail Description</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fare Detail Description</em>' reference.
+	 * @see #getFareDetailDescription()
+	 * @generated
+	 */
+	void setFareDetailDescription(Text value);
+
+	/**
+	 * Returns the value of the '<em><b>Legacy Accounting Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Legacy Accounting Identifier</em>' containment reference.
+	 * @see #setLegacyAccountingIdentifier(LegacyAccountingIdentifier)
+	 * @see Gtm.GtmPackage#getFareElement_LegacyAccountingIdentifier()
+	 * @model containment="true"
+	 * @generated
+	 */
+	LegacyAccountingIdentifier getLegacyAccountingIdentifier();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareElement#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Legacy Accounting Identifier</em>' containment reference.
+	 * @see #getLegacyAccountingIdentifier()
+	 * @generated
+	 */
+	void setLegacyAccountingIdentifier(LegacyAccountingIdentifier value);
+
+	/**
+	 * Returns the value of the '<em><b>Personal Data Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Personal Data Constraint</em>' reference.
+	 * @see #setPersonalDataConstraint(PersonalDataConstraint)
+	 * @see Gtm.GtmPackage#getFareElement_PersonalDataConstraint()
+	 * @model
+	 * @generated
+	 */
+	PersonalDataConstraint getPersonalDataConstraint();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareElement#getPersonalDataConstraint <em>Personal Data Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Personal Data Constraint</em>' reference.
+	 * @see #getPersonalDataConstraint()
+	 * @generated
+	 */
+	void setPersonalDataConstraint(PersonalDataConstraint value);
+
+	/**
+	 * Returns the value of the '<em><b>Reservation Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Reservation Parameter</em>' reference.
+	 * @see #setReservationParameter(ReservationParameter)
+	 * @see Gtm.GtmPackage#getFareElement_ReservationParameter()
+	 * @model
+	 * @generated
+	 */
+	ReservationParameter getReservationParameter();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareElement#getReservationParameter <em>Reservation Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Reservation Parameter</em>' reference.
+	 * @see #getReservationParameter()
+	 * @generated
+	 */
+	void setReservationParameter(ReservationParameter value);
+
+	/**
+	 * Returns the value of the '<em><b>Reduction Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Reduction Constraint</em>' reference.
+	 * @see #setReductionConstraint(ReductionConstraint)
+	 * @see Gtm.GtmPackage#getFareElement_ReductionConstraint()
+	 * @model
+	 * @generated
+	 */
+	ReductionConstraint getReductionConstraint();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareElement#getReductionConstraint <em>Reduction Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Reduction Constraint</em>' reference.
+	 * @see #getReductionConstraint()
+	 * @generated
+	 */
+	void setReductionConstraint(ReductionConstraint value);
+
+	/**
+	 * Returns the value of the '<em><b>Fulfillment Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fulfillment Constraint</em>' reference.
+	 * @see #setFulfillmentConstraint(FulfillmentConstraint)
+	 * @see Gtm.GtmPackage#getFareElement_FulfillmentConstraint()
+	 * @model
+	 * @generated
+	 */
+	FulfillmentConstraint getFulfillmentConstraint();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareElement#getFulfillmentConstraint <em>Fulfillment Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fulfillment Constraint</em>' reference.
+	 * @see #getFulfillmentConstraint()
+	 * @generated
+	 */
+	void setFulfillmentConstraint(FulfillmentConstraint value);
+
+	/**
+	 * Returns the value of the '<em><b>Passenger Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Passenger Constraint</em>' reference.
+	 * @see #setPassengerConstraint(PassengerConstraint)
+	 * @see Gtm.GtmPackage#getFareElement_PassengerConstraint()
+	 * @model
+	 * @generated
+	 */
+	PassengerConstraint getPassengerConstraint();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareElement#getPassengerConstraint <em>Passenger Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Passenger Constraint</em>' reference.
+	 * @see #getPassengerConstraint()
+	 * @generated
+	 */
+	void setPassengerConstraint(PassengerConstraint value);
+
+	/**
+	 * Returns the value of the '<em><b>After Sales Rule</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>After Sales Rule</em>' reference.
+	 * @see #setAfterSalesRule(AfterSalesRule)
+	 * @see Gtm.GtmPackage#getFareElement_AfterSalesRule()
+	 * @model
+	 * @generated
+	 */
+	AfterSalesRule getAfterSalesRule();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareElement#getAfterSalesRule <em>After Sales Rule</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>After Sales Rule</em>' reference.
+	 * @see #getAfterSalesRule()
+	 * @generated
+	 */
+	void setAfterSalesRule(AfterSalesRule value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Source</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gtm.DataSource}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Source</em>' attribute.
+	 * @see Gtm.DataSource
+	 * @see #setDataSource(DataSource)
+	 * @see Gtm.GtmPackage#getFareElement_DataSource()
+	 * @model
+	 * @generated
+	 */
+	DataSource getDataSource();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareElement#getDataSource <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Source</em>' attribute.
+	 * @see Gtm.DataSource
+	 * @see #getDataSource()
+	 * @generated
+	 */
+	void setDataSource(DataSource value);
 
 } // FareElement

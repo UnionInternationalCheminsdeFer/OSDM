@@ -17,9 +17,10 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Gtm.FulfillmentConstraint#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.FulfillmentConstraint#getAcceptedFulfilmentTypes <em>Accepted Fulfilment Types</em>}</li>
- *   <li>{@link Gtm.FulfillmentConstraint#getAcceptedBarcodes <em>Accepted Barcodes</em>}</li>
  *   <li>{@link Gtm.FulfillmentConstraint#getRequiredControlDataExchange <em>Required Control Data Exchange</em>}</li>
  *   <li>{@link Gtm.FulfillmentConstraint#isIndividualTicketingPermitted <em>Individual Ticketing Permitted</em>}</li>
+ *   <li>{@link Gtm.FulfillmentConstraint#getAcceptedBarcodes <em>Accepted Barcodes</em>}</li>
+ *   <li>{@link Gtm.FulfillmentConstraint#getRequiredBarcodes <em>Required Barcodes</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getFulfillmentConstraint()
@@ -64,18 +65,48 @@ public interface FulfillmentConstraint extends EObject {
 	EList<FulfillmentType> getAcceptedFulfilmentTypes();
 
 	/**
-	 * Returns the value of the '<em><b>Accepted Barcodes</b></em>' attribute list.
-	 * The list contents are of type {@link Gtm.BarcodeTypes}.
-	 * The literals are from the enumeration {@link Gtm.BarcodeTypes}.
+	 * Returns the value of the '<em><b>Accepted Barcodes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Accepted Barcodes</em>' attribute list.
-	 * @see Gtm.BarcodeTypes
+	 * @return the value of the '<em>Accepted Barcodes</em>' containment reference.
+	 * @see #setAcceptedBarcodes(AcceptedBarcodes)
 	 * @see Gtm.GtmPackage#getFulfillmentConstraint_AcceptedBarcodes()
+	 * @model containment="true"
+	 * @generated
+	 */
+	AcceptedBarcodes getAcceptedBarcodes();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FulfillmentConstraint#getAcceptedBarcodes <em>Accepted Barcodes</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Accepted Barcodes</em>' containment reference.
+	 * @see #getAcceptedBarcodes()
+	 * @generated
+	 */
+	void setAcceptedBarcodes(AcceptedBarcodes value);
+
+	/**
+	 * Returns the value of the '<em><b>Required Barcodes</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Required Barcodes</em>' reference.
+	 * @see #setRequiredBarcodes(RequiredBarcodes)
+	 * @see Gtm.GtmPackage#getFulfillmentConstraint_RequiredBarcodes()
 	 * @model
 	 * @generated
 	 */
-	EList<BarcodeTypes> getAcceptedBarcodes();
+	RequiredBarcodes getRequiredBarcodes();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FulfillmentConstraint#getRequiredBarcodes <em>Required Barcodes</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Required Barcodes</em>' reference.
+	 * @see #getRequiredBarcodes()
+	 * @generated
+	 */
+	void setRequiredBarcodes(RequiredBarcodes value);
 
 	/**
 	 * Returns the value of the '<em><b>Required Control Data Exchange</b></em>' attribute list.

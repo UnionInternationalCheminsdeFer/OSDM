@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.Calendar#getUntilDate <em>Until Date</em>}</li>
  *   <li>{@link Gtm.Calendar#getUtcOffset <em>Utc Offset</em>}</li>
  *   <li>{@link Gtm.Calendar#getDates <em>Dates</em>}</li>
+ *   <li>{@link Gtm.Calendar#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getCalendar()
@@ -151,5 +152,30 @@ public interface Calendar extends EObject {
 	 * @generated
 	 */
 	EList<Date> getDates();
+
+	/**
+	 * Returns the value of the '<em><b>Data Source</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gtm.DataSource}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Source</em>' attribute.
+	 * @see Gtm.DataSource
+	 * @see #setDataSource(DataSource)
+	 * @see Gtm.GtmPackage#getCalendar_DataSource()
+	 * @model
+	 * @generated
+	 */
+	DataSource getDataSource();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Calendar#getDataSource <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Source</em>' attribute.
+	 * @see Gtm.DataSource
+	 * @see #getDataSource()
+	 * @generated
+	 */
+	void setDataSource(DataSource value);
 
 } // Calendar

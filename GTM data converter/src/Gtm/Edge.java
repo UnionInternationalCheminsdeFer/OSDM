@@ -157,12 +157,12 @@ public interface Edge extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Longitude</em>' attribute.
-	 * @see #setLongitude(long)
+	 * @see #setLongitude(float)
 	 * @see Gtm.GtmPackage#getEdge_Longitude()
 	 * @model
 	 * @generated
 	 */
-	long getLongitude();
+	float getLongitude();
 
 	/**
 	 * Sets the value of the '{@link Gtm.Edge#getLongitude <em>Longitude</em>}' attribute.
@@ -172,19 +172,19 @@ public interface Edge extends EObject {
 	 * @see #getLongitude()
 	 * @generated
 	 */
-	void setLongitude(long value);
+	void setLongitude(float value);
 
 	/**
 	 * Returns the value of the '<em><b>Latitude</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Latitude</em>' attribute.
-	 * @see #setLatitude(long)
+	 * @see #setLatitude(float)
 	 * @see Gtm.GtmPackage#getEdge_Latitude()
 	 * @model
 	 * @generated
 	 */
-	long getLatitude();
+	float getLatitude();
 
 	/**
 	 * Sets the value of the '{@link Gtm.Edge#getLatitude <em>Latitude</em>}' attribute.
@@ -194,6 +194,6 @@ public interface Edge extends EObject {
 	 * @see #getLatitude()
 	 * @generated
 	 */
-	void setLatitude(long value);
+	void setLatitude(float value);
 
 } // Edge

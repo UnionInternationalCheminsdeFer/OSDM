@@ -2,6 +2,7 @@
  */
 package Gtm;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -68,25 +69,15 @@ public interface CrossBorderCondition extends EObject {
 	void setToCountry(Country value);
 
 	/**
-	 * Returns the value of the '<em><b>Affected Service Brands</b></em>' reference.
+	 * Returns the value of the '<em><b>Affected Service Brands</b></em>' reference list.
+	 * The list contents are of type {@link Gtm.ServiceBrand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Affected Service Brands</em>' reference.
-	 * @see #setAffectedServiceBrands(ServiceBrand)
+	 * @return the value of the '<em>Affected Service Brands</em>' reference list.
 	 * @see Gtm.GtmPackage#getCrossBorderCondition_AffectedServiceBrands()
 	 * @model
 	 * @generated
 	 */
-	ServiceBrand getAffectedServiceBrands();
-
-	/**
-	 * Sets the value of the '{@link Gtm.CrossBorderCondition#getAffectedServiceBrands <em>Affected Service Brands</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Affected Service Brands</em>' reference.
-	 * @see #getAffectedServiceBrands()
-	 * @generated
-	 */
-	void setAffectedServiceBrands(ServiceBrand value);
+	EList<ServiceBrand> getAffectedServiceBrands();
 
 } // CrossBorderCondition

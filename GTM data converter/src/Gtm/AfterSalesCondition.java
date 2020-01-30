@@ -123,12 +123,12 @@ public interface AfterSalesCondition extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Application Time</em>' containment reference.
-	 * @see #setApplicationTime(RelativeTime)
+	 * @see #setApplicationTime(ApplicationTime)
 	 * @see Gtm.GtmPackage#getAfterSalesCondition_ApplicationTime()
 	 * @model containment="true"
 	 * @generated
 	 */
-	RelativeTime getApplicationTime();
+	ApplicationTime getApplicationTime();
 
 	/**
 	 * Sets the value of the '{@link Gtm.AfterSalesCondition#getApplicationTime <em>Application Time</em>}' containment reference.
@@ -138,6 +138,6 @@ public interface AfterSalesCondition extends EObject {
 	 * @see #getApplicationTime()
 	 * @generated
 	 */
-	void setApplicationTime(RelativeTime value);
+	void setApplicationTime(ApplicationTime value);
 
 } // AfterSalesCondition

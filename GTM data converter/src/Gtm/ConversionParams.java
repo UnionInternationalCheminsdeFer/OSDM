@@ -6,42 +6,43 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Coversion Params</b></em>'.
+ * A representation of the model object '<em><b>Conversion Params</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link Gtm.CoversionParams#getTaxId <em>Tax Id</em>}</li>
- *   <li>{@link Gtm.CoversionParams#getVATpercentage <em>VA Tpercentage</em>}</li>
- *   <li>{@link Gtm.CoversionParams#getTaxCountry <em>Tax Country</em>}</li>
- *   <li>{@link Gtm.CoversionParams#getLegacyBorderPointMappings <em>Legacy Border Point Mappings</em>}</li>
- *   <li>{@link Gtm.CoversionParams#getLegacyStationMappings <em>Legacy Station Mappings</em>}</li>
- *   <li>{@link Gtm.CoversionParams#getLegacyTargetFares <em>Legacy Target Fares</em>}</li>
- *   <li>{@link Gtm.CoversionParams#getLegacyZoneMappings <em>Legacy Zone Mappings</em>}</li>
- *   <li>{@link Gtm.CoversionParams#getLegacyStationToServiceBrandMappings <em>Legacy Station To Service Brand Mappings</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getTaxId <em>Tax Id</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getVATpercentage <em>VA Tpercentage</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getCountry <em>Country</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getLegacyStationMappings <em>Legacy Station Mappings</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getLegacyTargetFares <em>Legacy Target Fares</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getLegacyZoneMappings <em>Legacy Zone Mappings</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getLegacyStationToServiceBrandMappings <em>Legacy Station To Service Brand Mappings</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getEndOfSale <em>End Of Sale</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getStartOfSale <em>Start Of Sale</em>}</li>
  * </ul>
  *
- * @see Gtm.GtmPackage#getCoversionParams()
+ * @see Gtm.GtmPackage#getConversionParams()
  * @model
  * @generated
  */
-public interface CoversionParams extends EObject {
+public interface ConversionParams extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Tax Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tax Id</em>' attribute.
 	 * @see #setTaxId(String)
-	 * @see Gtm.GtmPackage#getCoversionParams_TaxId()
+	 * @see Gtm.GtmPackage#getConversionParams_TaxId()
 	 * @model
 	 * @generated
 	 */
 	String getTaxId();
 
 	/**
-	 * Sets the value of the '{@link Gtm.CoversionParams#getTaxId <em>Tax Id</em>}' attribute.
+	 * Sets the value of the '{@link Gtm.ConversionParams#getTaxId <em>Tax Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Tax Id</em>' attribute.
@@ -56,14 +57,14 @@ public interface CoversionParams extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>VA Tpercentage</em>' attribute.
 	 * @see #setVATpercentage(float)
-	 * @see Gtm.GtmPackage#getCoversionParams_VATpercentage()
+	 * @see Gtm.GtmPackage#getConversionParams_VATpercentage()
 	 * @model
 	 * @generated
 	 */
 	float getVATpercentage();
 
 	/**
-	 * Sets the value of the '{@link Gtm.CoversionParams#getVATpercentage <em>VA Tpercentage</em>}' attribute.
+	 * Sets the value of the '{@link Gtm.ConversionParams#getVATpercentage <em>VA Tpercentage</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>VA Tpercentage</em>' attribute.
@@ -73,48 +74,26 @@ public interface CoversionParams extends EObject {
 	void setVATpercentage(float value);
 
 	/**
-	 * Returns the value of the '<em><b>Tax Country</b></em>' reference.
+	 * Returns the value of the '<em><b>Country</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tax Country</em>' reference.
-	 * @see #setTaxCountry(Country)
-	 * @see Gtm.GtmPackage#getCoversionParams_TaxCountry()
+	 * @return the value of the '<em>Country</em>' reference.
+	 * @see #setCountry(Country)
+	 * @see Gtm.GtmPackage#getConversionParams_Country()
 	 * @model
 	 * @generated
 	 */
-	Country getTaxCountry();
+	Country getCountry();
 
 	/**
-	 * Sets the value of the '{@link Gtm.CoversionParams#getTaxCountry <em>Tax Country</em>}' reference.
+	 * Sets the value of the '{@link Gtm.ConversionParams#getCountry <em>Country</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Tax Country</em>' reference.
-	 * @see #getTaxCountry()
+	 * @param value the new value of the '<em>Country</em>' reference.
+	 * @see #getCountry()
 	 * @generated
 	 */
-	void setTaxCountry(Country value);
-
-	/**
-	 * Returns the value of the '<em><b>Legacy Border Point Mappings</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Legacy Border Point Mappings</em>' containment reference.
-	 * @see #setLegacyBorderPointMappings(LegacyBoderPointMappings)
-	 * @see Gtm.GtmPackage#getCoversionParams_LegacyBorderPointMappings()
-	 * @model containment="true"
-	 * @generated
-	 */
-	LegacyBoderPointMappings getLegacyBorderPointMappings();
-
-	/**
-	 * Sets the value of the '{@link Gtm.CoversionParams#getLegacyBorderPointMappings <em>Legacy Border Point Mappings</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Legacy Border Point Mappings</em>' containment reference.
-	 * @see #getLegacyBorderPointMappings()
-	 * @generated
-	 */
-	void setLegacyBorderPointMappings(LegacyBoderPointMappings value);
+	void setCountry(Country value);
 
 	/**
 	 * Returns the value of the '<em><b>Legacy Station Mappings</b></em>' containment reference.
@@ -122,14 +101,14 @@ public interface CoversionParams extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Legacy Station Mappings</em>' containment reference.
 	 * @see #setLegacyStationMappings(LegacyStationMappings)
-	 * @see Gtm.GtmPackage#getCoversionParams_LegacyStationMappings()
+	 * @see Gtm.GtmPackage#getConversionParams_LegacyStationMappings()
 	 * @model containment="true"
 	 * @generated
 	 */
 	LegacyStationMappings getLegacyStationMappings();
 
 	/**
-	 * Sets the value of the '{@link Gtm.CoversionParams#getLegacyStationMappings <em>Legacy Station Mappings</em>}' containment reference.
+	 * Sets the value of the '{@link Gtm.ConversionParams#getLegacyStationMappings <em>Legacy Station Mappings</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Legacy Station Mappings</em>' containment reference.
@@ -144,14 +123,14 @@ public interface CoversionParams extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Legacy Target Fares</em>' containment reference.
 	 * @see #setLegacyTargetFares(LegacyTargetFares)
-	 * @see Gtm.GtmPackage#getCoversionParams_LegacyTargetFares()
+	 * @see Gtm.GtmPackage#getConversionParams_LegacyTargetFares()
 	 * @model containment="true"
 	 * @generated
 	 */
 	LegacyTargetFares getLegacyTargetFares();
 
 	/**
-	 * Sets the value of the '{@link Gtm.CoversionParams#getLegacyTargetFares <em>Legacy Target Fares</em>}' containment reference.
+	 * Sets the value of the '{@link Gtm.ConversionParams#getLegacyTargetFares <em>Legacy Target Fares</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Legacy Target Fares</em>' containment reference.
@@ -166,14 +145,14 @@ public interface CoversionParams extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Legacy Zone Mappings</em>' containment reference.
 	 * @see #setLegacyZoneMappings(LegacyZoneMappings)
-	 * @see Gtm.GtmPackage#getCoversionParams_LegacyZoneMappings()
+	 * @see Gtm.GtmPackage#getConversionParams_LegacyZoneMappings()
 	 * @model containment="true"
 	 * @generated
 	 */
 	LegacyZoneMappings getLegacyZoneMappings();
 
 	/**
-	 * Sets the value of the '{@link Gtm.CoversionParams#getLegacyZoneMappings <em>Legacy Zone Mappings</em>}' containment reference.
+	 * Sets the value of the '{@link Gtm.ConversionParams#getLegacyZoneMappings <em>Legacy Zone Mappings</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Legacy Zone Mappings</em>' containment reference.
@@ -188,14 +167,14 @@ public interface CoversionParams extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Legacy Station To Service Brand Mappings</em>' containment reference.
 	 * @see #setLegacyStationToServiceBrandMappings(LegacyStationToServiceConstraintMappings)
-	 * @see Gtm.GtmPackage#getCoversionParams_LegacyStationToServiceBrandMappings()
+	 * @see Gtm.GtmPackage#getConversionParams_LegacyStationToServiceBrandMappings()
 	 * @model containment="true"
 	 * @generated
 	 */
 	LegacyStationToServiceConstraintMappings getLegacyStationToServiceBrandMappings();
 
 	/**
-	 * Sets the value of the '{@link Gtm.CoversionParams#getLegacyStationToServiceBrandMappings <em>Legacy Station To Service Brand Mappings</em>}' containment reference.
+	 * Sets the value of the '{@link Gtm.ConversionParams#getLegacyStationToServiceBrandMappings <em>Legacy Station To Service Brand Mappings</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Legacy Station To Service Brand Mappings</em>' containment reference.
@@ -204,4 +183,48 @@ public interface CoversionParams extends EObject {
 	 */
 	void setLegacyStationToServiceBrandMappings(LegacyStationToServiceConstraintMappings value);
 
-} // CoversionParams
+	/**
+	 * Returns the value of the '<em><b>End Of Sale</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>End Of Sale</em>' containment reference.
+	 * @see #setEndOfSale(EndOfSale)
+	 * @see Gtm.GtmPackage#getConversionParams_EndOfSale()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EndOfSale getEndOfSale();
+
+	/**
+	 * Sets the value of the '{@link Gtm.ConversionParams#getEndOfSale <em>End Of Sale</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>End Of Sale</em>' containment reference.
+	 * @see #getEndOfSale()
+	 * @generated
+	 */
+	void setEndOfSale(EndOfSale value);
+
+	/**
+	 * Returns the value of the '<em><b>Start Of Sale</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Start Of Sale</em>' containment reference.
+	 * @see #setStartOfSale(EndOfSale)
+	 * @see Gtm.GtmPackage#getConversionParams_StartOfSale()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EndOfSale getStartOfSale();
+
+	/**
+	 * Sets the value of the '{@link Gtm.ConversionParams#getStartOfSale <em>Start Of Sale</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Start Of Sale</em>' containment reference.
+	 * @see #getStartOfSale()
+	 * @generated
+	 */
+	void setStartOfSale(EndOfSale value);
+
+} // ConversionParams

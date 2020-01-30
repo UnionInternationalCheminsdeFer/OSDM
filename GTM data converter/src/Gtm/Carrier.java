@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Gtm.Carrier#getCode <em>Code</em>}</li>
  *   <li>{@link Gtm.Carrier#getName <em>Name</em>}</li>
+ *   <li>{@link Gtm.Carrier#getShortName <em>Short Name</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getCarrier()
@@ -65,5 +66,27 @@ public interface Carrier extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Short Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Short Name</em>' attribute.
+	 * @see #setShortName(String)
+	 * @see Gtm.GtmPackage#getCarrier_ShortName()
+	 * @model
+	 * @generated
+	 */
+	String getShortName();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Carrier#getShortName <em>Short Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Short Name</em>' attribute.
+	 * @see #getShortName()
+	 * @generated
+	 */
+	void setShortName(String value);
 
 } // Carrier

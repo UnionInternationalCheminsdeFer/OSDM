@@ -2,8 +2,6 @@
  */
 package Gtm;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -30,87 +28,157 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface CodeLists extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Carriers</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.Carrier}.
+	 * Returns the value of the '<em><b>Carriers</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Carriers</em>' containment reference list.
+	 * @return the value of the '<em>Carriers</em>' containment reference.
+	 * @see #setCarriers(Carriers)
 	 * @see Gtm.GtmPackage#getCodeLists_Carriers()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Carrier> getCarriers();
+	Carriers getCarriers();
 
 	/**
-	 * Returns the value of the '<em><b>Stations</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.Station}.
+	 * Sets the value of the '{@link Gtm.CodeLists#getCarriers <em>Carriers</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Stations</em>' containment reference list.
+	 * @param value the new value of the '<em>Carriers</em>' containment reference.
+	 * @see #getCarriers()
+	 * @generated
+	 */
+	void setCarriers(Carriers value);
+
+	/**
+	 * Returns the value of the '<em><b>Stations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stations</em>' containment reference.
+	 * @see #setStations(Stations)
 	 * @see Gtm.GtmPackage#getCodeLists_Stations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Station> getStations();
+	Stations getStations();
 
 	/**
-	 * Returns the value of the '<em><b>Countries</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.Country}.
+	 * Sets the value of the '{@link Gtm.CodeLists#getStations <em>Stations</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Countries</em>' containment reference list.
+	 * @param value the new value of the '<em>Stations</em>' containment reference.
+	 * @see #getStations()
+	 * @generated
+	 */
+	void setStations(Stations value);
+
+	/**
+	 * Returns the value of the '<em><b>Countries</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Countries</em>' containment reference.
+	 * @see #setCountries(Countries)
 	 * @see Gtm.GtmPackage#getCodeLists_Countries()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Country> getCountries();
+	Countries getCountries();
 
 	/**
-	 * Returns the value of the '<em><b>Languages</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.Language}.
+	 * Sets the value of the '{@link Gtm.CodeLists#getCountries <em>Countries</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Languages</em>' containment reference list.
+	 * @param value the new value of the '<em>Countries</em>' containment reference.
+	 * @see #getCountries()
+	 * @generated
+	 */
+	void setCountries(Countries value);
+
+	/**
+	 * Returns the value of the '<em><b>Languages</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Languages</em>' containment reference.
+	 * @see #setLanguages(Languages)
 	 * @see Gtm.GtmPackage#getCodeLists_Languages()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Language> getLanguages();
+	Languages getLanguages();
 
 	/**
-	 * Returns the value of the '<em><b>Currencies</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.Currency}.
+	 * Sets the value of the '{@link Gtm.CodeLists#getLanguages <em>Languages</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Currencies</em>' containment reference list.
+	 * @param value the new value of the '<em>Languages</em>' containment reference.
+	 * @see #getLanguages()
+	 * @generated
+	 */
+	void setLanguages(Languages value);
+
+	/**
+	 * Returns the value of the '<em><b>Currencies</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Currencies</em>' containment reference.
+	 * @see #setCurrencies(Currencies)
 	 * @see Gtm.GtmPackage#getCodeLists_Currencies()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Currency> getCurrencies();
+	Currencies getCurrencies();
 
 	/**
-	 * Returns the value of the '<em><b>Service Brands</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.ServiceBrand}.
+	 * Sets the value of the '{@link Gtm.CodeLists#getCurrencies <em>Currencies</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Service Brands</em>' containment reference list.
+	 * @param value the new value of the '<em>Currencies</em>' containment reference.
+	 * @see #getCurrencies()
+	 * @generated
+	 */
+	void setCurrencies(Currencies value);
+
+	/**
+	 * Returns the value of the '<em><b>Service Brands</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Service Brands</em>' containment reference.
+	 * @see #setServiceBrands(ServiceBrands)
 	 * @see Gtm.GtmPackage#getCodeLists_ServiceBrands()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ServiceBrand> getServiceBrands();
+	ServiceBrands getServiceBrands();
 
 	/**
-	 * Returns the value of the '<em><b>Nuts Codes</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.NutsCode}.
+	 * Sets the value of the '{@link Gtm.CodeLists#getServiceBrands <em>Service Brands</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nuts Codes</em>' containment reference list.
+	 * @param value the new value of the '<em>Service Brands</em>' containment reference.
+	 * @see #getServiceBrands()
+	 * @generated
+	 */
+	void setServiceBrands(ServiceBrands value);
+
+	/**
+	 * Returns the value of the '<em><b>Nuts Codes</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nuts Codes</em>' containment reference.
+	 * @see #setNutsCodes(NUTSCodes)
 	 * @see Gtm.GtmPackage#getCodeLists_NutsCodes()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<NutsCode> getNutsCodes();
+	NUTSCodes getNutsCodes();
+
+	/**
+	 * Sets the value of the '{@link Gtm.CodeLists#getNutsCodes <em>Nuts Codes</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nuts Codes</em>' containment reference.
+	 * @see #getNutsCodes()
+	 * @generated
+	 */
+	void setNutsCodes(NUTSCodes value);
 
 } // CodeLists
