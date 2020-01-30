@@ -46,7 +46,7 @@ public class ReductionCardDef {
      */
     @JsonProperty("serviceClasses")
     @JsonPropertyDescription("list of service classes in case this class is available for different classes")
-    private List<ServiceClass> serviceClasses = new ArrayList<ServiceClass>();
+    private List<ServiceClassDef> serviceClasses = new ArrayList<ServiceClassDef>();
 
     /**
      * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
@@ -113,7 +113,7 @@ public class ReductionCardDef {
      * 
      */
     @JsonProperty("serviceClasses")
-    public List<ServiceClass> getServiceClasses() {
+    public List<ServiceClassDef> getServiceClasses() {
         return serviceClasses;
     }
 
@@ -122,7 +122,7 @@ public class ReductionCardDef {
      * 
      */
     @JsonProperty("serviceClasses")
-    public void setServiceClasses(List<ServiceClass> serviceClasses) {
+    public void setServiceClasses(List<ServiceClassDef> serviceClasses) {
         this.serviceClasses = serviceClasses;
     }
 

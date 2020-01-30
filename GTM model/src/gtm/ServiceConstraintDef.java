@@ -1,13 +1,22 @@
 
 package gtm;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+
+/**
+ * one of the lists of exclueded or included service brands only
+ * 
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "id"
+    "id",
+    "includedServiceBrands",
+    "excludedServiceBrands"
 })
 public class ServiceConstraintDef {
 
@@ -18,6 +27,10 @@ public class ServiceConstraintDef {
      */
     @JsonProperty("id")
     private String id;
+    @JsonProperty("includedServiceBrands")
+    private List<Integer> includedServiceBrands = new ArrayList<Integer>();
+    @JsonProperty("excludedServiceBrands")
+    private List<Integer> excludedServiceBrands = new ArrayList<Integer>();
 
     /**
      * 
@@ -39,6 +52,26 @@ public class ServiceConstraintDef {
         this.id = id;
     }
 
+    @JsonProperty("includedServiceBrands")
+    public List<Integer> getIncludedServiceBrands() {
+        return includedServiceBrands;
+    }
+
+    @JsonProperty("includedServiceBrands")
+    public void setIncludedServiceBrands(List<Integer> includedServiceBrands) {
+        this.includedServiceBrands = includedServiceBrands;
+    }
+
+    @JsonProperty("excludedServiceBrands")
+    public List<Integer> getExcludedServiceBrands() {
+        return excludedServiceBrands;
+    }
+
+    @JsonProperty("excludedServiceBrands")
+    public void setExcludedServiceBrands(List<Integer> excludedServiceBrands) {
+        this.excludedServiceBrands = excludedServiceBrands;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -46,6 +79,14 @@ public class ServiceConstraintDef {
         sb.append("id");
         sb.append('=');
         sb.append(((this.id == null)?"<null>":this.id));
+        sb.append(',');
+        sb.append("includedServiceBrands");
+        sb.append('=');
+        sb.append(((this.includedServiceBrands == null)?"<null>":this.includedServiceBrands));
+        sb.append(',');
+        sb.append("excludedServiceBrands");
+        sb.append('=');
+        sb.append(((this.excludedServiceBrands == null)?"<null>":this.excludedServiceBrands));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -58,7 +99,9 @@ public class ServiceConstraintDef {
     @Override
     public int hashCode() {
         int result = 1;
+        result = ((result* 31)+((this.excludedServiceBrands == null)? 0 :this.excludedServiceBrands.hashCode()));
         result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
+        result = ((result* 31)+((this.includedServiceBrands == null)? 0 :this.includedServiceBrands.hashCode()));
         return result;
     }
 
@@ -71,7 +114,7 @@ public class ServiceConstraintDef {
             return false;
         }
         ServiceConstraintDef rhs = ((ServiceConstraintDef) other);
-        return ((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id)));
+        return ((((this.excludedServiceBrands == rhs.excludedServiceBrands)||((this.excludedServiceBrands!= null)&&this.excludedServiceBrands.equals(rhs.excludedServiceBrands)))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.includedServiceBrands == rhs.includedServiceBrands)||((this.includedServiceBrands!= null)&&this.includedServiceBrands.equals(rhs.includedServiceBrands))));
     }
 
 }

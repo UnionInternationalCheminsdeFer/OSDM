@@ -22,12 +22,12 @@ public class AllowedChange {
     @JsonPropertyDescription("IN_GENERAL,MARRIAGE,DOCUMENT_CHANGE,AGENT_ERROR")
     private String acceptedReason;
     /**
-     * the cgange is limited to n hours after booking confirmation
+     * the change is limited to n hours after booking confirmation
      * 
      */
     @JsonProperty("timeLimit")
-    @JsonPropertyDescription("the cgange is limited to n hours after booking confirmation")
-    private Double timeLimit;
+    @JsonPropertyDescription("the change is limited to n hours after booking confirmation")
+    private Float timeLimit;
 
     /**
      * IN_GENERAL,MARRIAGE,DOCUMENT_CHANGE,AGENT_ERROR
@@ -50,20 +50,20 @@ public class AllowedChange {
     }
 
     /**
-     * the cgange is limited to n hours after booking confirmation
+     * the change is limited to n hours after booking confirmation
      * 
      */
     @JsonProperty("timeLimit")
-    public Double getTimeLimit() {
+    public Float getTimeLimit() {
         return timeLimit;
     }
 
     /**
-     * the cgange is limited to n hours after booking confirmation
+     * the change is limited to n hours after booking confirmation
      * 
      */
     @JsonProperty("timeLimit")
-    public void setTimeLimit(Double timeLimit) {
+    public void setTimeLimit(Float timeLimit) {
         this.timeLimit = timeLimit;
     }
 

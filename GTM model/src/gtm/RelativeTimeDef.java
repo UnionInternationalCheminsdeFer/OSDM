@@ -9,37 +9,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "timeUnit",
-    "value",
+    "timeValue",
     "timeReference"
 })
-public class TimeReferenceDef {
+public class RelativeTimeDef {
 
     /**
-     * DAY,HOUR,MINUTE
+     * MINUTES,DAYS,HOURS
      * (Required)
      * 
      */
     @JsonProperty("timeUnit")
-    @JsonPropertyDescription("DAY,HOUR,MINUTE")
+    @JsonPropertyDescription("MINUTES,DAYS,HOURS")
     private String timeUnit;
     /**
      * 
      * (Required)
      * 
      */
-    @JsonProperty("value")
-    private Integer value;
+    @JsonProperty("timeValue")
+    private Integer timeValue;
     /**
-     * BEFORE_DEPARTURE,AFTER_DEPARTURE,BEFORE_VALIDITY
+     * BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY
      * (Required)
      * 
      */
     @JsonProperty("timeReference")
-    @JsonPropertyDescription("BEFORE_DEPARTURE,AFTER_DEPARTURE,BEFORE_VALIDITY")
+    @JsonPropertyDescription("BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY")
     private String timeReference;
 
     /**
-     * DAY,HOUR,MINUTE
+     * MINUTES,DAYS,HOURS
      * (Required)
      * 
      */
@@ -49,7 +49,7 @@ public class TimeReferenceDef {
     }
 
     /**
-     * DAY,HOUR,MINUTE
+     * MINUTES,DAYS,HOURS
      * (Required)
      * 
      */
@@ -63,9 +63,9 @@ public class TimeReferenceDef {
      * (Required)
      * 
      */
-    @JsonProperty("value")
-    public Integer getValue() {
-        return value;
+    @JsonProperty("timeValue")
+    public Integer getTimeValue() {
+        return timeValue;
     }
 
     /**
@@ -73,13 +73,13 @@ public class TimeReferenceDef {
      * (Required)
      * 
      */
-    @JsonProperty("value")
-    public void setValue(Integer value) {
-        this.value = value;
+    @JsonProperty("timeValue")
+    public void setTimeValue(Integer timeValue) {
+        this.timeValue = timeValue;
     }
 
     /**
-     * BEFORE_DEPARTURE,AFTER_DEPARTURE,BEFORE_VALIDITY
+     * BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY
      * (Required)
      * 
      */
@@ -89,7 +89,7 @@ public class TimeReferenceDef {
     }
 
     /**
-     * BEFORE_DEPARTURE,AFTER_DEPARTURE,BEFORE_VALIDITY
+     * BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY
      * (Required)
      * 
      */
@@ -101,14 +101,14 @@ public class TimeReferenceDef {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(TimeReferenceDef.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(RelativeTimeDef.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("timeUnit");
         sb.append('=');
         sb.append(((this.timeUnit == null)?"<null>":this.timeUnit));
         sb.append(',');
-        sb.append("value");
+        sb.append("timeValue");
         sb.append('=');
-        sb.append(((this.value == null)?"<null>":this.value));
+        sb.append(((this.timeValue == null)?"<null>":this.timeValue));
         sb.append(',');
         sb.append("timeReference");
         sb.append('=');
@@ -125,8 +125,8 @@ public class TimeReferenceDef {
     @Override
     public int hashCode() {
         int result = 1;
+        result = ((result* 31)+((this.timeValue == null)? 0 :this.timeValue.hashCode()));
         result = ((result* 31)+((this.timeReference == null)? 0 :this.timeReference.hashCode()));
-        result = ((result* 31)+((this.value == null)? 0 :this.value.hashCode()));
         result = ((result* 31)+((this.timeUnit == null)? 0 :this.timeUnit.hashCode()));
         return result;
     }
@@ -136,11 +136,11 @@ public class TimeReferenceDef {
         if (other == this) {
             return true;
         }
-        if ((other instanceof TimeReferenceDef) == false) {
+        if ((other instanceof RelativeTimeDef) == false) {
             return false;
         }
-        TimeReferenceDef rhs = ((TimeReferenceDef) other);
-        return ((((this.timeReference == rhs.timeReference)||((this.timeReference!= null)&&this.timeReference.equals(rhs.timeReference)))&&((this.value == rhs.value)||((this.value!= null)&&this.value.equals(rhs.value))))&&((this.timeUnit == rhs.timeUnit)||((this.timeUnit!= null)&&this.timeUnit.equals(rhs.timeUnit))));
+        RelativeTimeDef rhs = ((RelativeTimeDef) other);
+        return ((((this.timeValue == rhs.timeValue)||((this.timeValue!= null)&&this.timeValue.equals(rhs.timeValue)))&&((this.timeReference == rhs.timeReference)||((this.timeReference!= null)&&this.timeReference.equals(rhs.timeReference))))&&((this.timeUnit == rhs.timeUnit)||((this.timeUnit!= null)&&this.timeUnit.equals(rhs.timeUnit))));
     }
 
 }

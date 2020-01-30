@@ -1,8 +1,6 @@
 
 package gtm;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
@@ -11,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "transactionType",
-    "fee",
+    "feeId",
     "applicationTime",
     "carrierFee",
     "individualContracts"
@@ -19,27 +17,27 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class AfterSalesConditionDef {
 
     /**
-     * REXCHANGE, UPGRADE,..
+     * code list Reason for after sale
      * (Required)
      * 
      */
     @JsonProperty("transactionType")
-    @JsonPropertyDescription("REXCHANGE, UPGRADE,..")
+    @JsonPropertyDescription("code list Reason for after sale")
     private String transactionType;
     /**
-     * optional in case there is no fee but the after sales transaction is allowed
+     * reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction is allowed
      * 
      */
-    @JsonProperty("fee")
-    @JsonPropertyDescription("optional in case there is no fee but the after sales transaction is allowed")
-    private List<CurrencyPriceDef> fee = new ArrayList<CurrencyPriceDef>();
+    @JsonProperty("feeId")
+    @JsonPropertyDescription("reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction is allowed")
+    private String feeId;
     /**
      * 
      * (Required)
      * 
      */
     @JsonProperty("applicationTime")
-    private ApplicationTime applicationTime;
+    private RelativeTimeDef applicationTime;
     /**
      * indicates that the fee belongs to the carrier
      * 
@@ -56,7 +54,7 @@ public class AfterSalesConditionDef {
     private Boolean individualContracts = false;
 
     /**
-     * REXCHANGE, UPGRADE,..
+     * code list Reason for after sale
      * (Required)
      * 
      */
@@ -66,7 +64,7 @@ public class AfterSalesConditionDef {
     }
 
     /**
-     * REXCHANGE, UPGRADE,..
+     * code list Reason for after sale
      * (Required)
      * 
      */
@@ -76,21 +74,21 @@ public class AfterSalesConditionDef {
     }
 
     /**
-     * optional in case there is no fee but the after sales transaction is allowed
+     * reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction is allowed
      * 
      */
-    @JsonProperty("fee")
-    public List<CurrencyPriceDef> getFee() {
-        return fee;
+    @JsonProperty("feeId")
+    public String getFeeId() {
+        return feeId;
     }
 
     /**
-     * optional in case there is no fee but the after sales transaction is allowed
+     * reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction is allowed
      * 
      */
-    @JsonProperty("fee")
-    public void setFee(List<CurrencyPriceDef> fee) {
-        this.fee = fee;
+    @JsonProperty("feeId")
+    public void setFeeId(String feeId) {
+        this.feeId = feeId;
     }
 
     /**
@@ -99,7 +97,7 @@ public class AfterSalesConditionDef {
      * 
      */
     @JsonProperty("applicationTime")
-    public ApplicationTime getApplicationTime() {
+    public RelativeTimeDef getApplicationTime() {
         return applicationTime;
     }
 
@@ -109,7 +107,7 @@ public class AfterSalesConditionDef {
      * 
      */
     @JsonProperty("applicationTime")
-    public void setApplicationTime(ApplicationTime applicationTime) {
+    public void setApplicationTime(RelativeTimeDef applicationTime) {
         this.applicationTime = applicationTime;
     }
 
@@ -157,9 +155,9 @@ public class AfterSalesConditionDef {
         sb.append('=');
         sb.append(((this.transactionType == null)?"<null>":this.transactionType));
         sb.append(',');
-        sb.append("fee");
+        sb.append("feeId");
         sb.append('=');
-        sb.append(((this.fee == null)?"<null>":this.fee));
+        sb.append(((this.feeId == null)?"<null>":this.feeId));
         sb.append(',');
         sb.append("applicationTime");
         sb.append('=');
@@ -187,8 +185,8 @@ public class AfterSalesConditionDef {
         result = ((result* 31)+((this.transactionType == null)? 0 :this.transactionType.hashCode()));
         result = ((result* 31)+((this.carrierFee == null)? 0 :this.carrierFee.hashCode()));
         result = ((result* 31)+((this.individualContracts == null)? 0 :this.individualContracts.hashCode()));
+        result = ((result* 31)+((this.feeId == null)? 0 :this.feeId.hashCode()));
         result = ((result* 31)+((this.applicationTime == null)? 0 :this.applicationTime.hashCode()));
-        result = ((result* 31)+((this.fee == null)? 0 :this.fee.hashCode()));
         return result;
     }
 
@@ -201,7 +199,7 @@ public class AfterSalesConditionDef {
             return false;
         }
         AfterSalesConditionDef rhs = ((AfterSalesConditionDef) other);
-        return ((((((this.transactionType == rhs.transactionType)||((this.transactionType!= null)&&this.transactionType.equals(rhs.transactionType)))&&((this.carrierFee == rhs.carrierFee)||((this.carrierFee!= null)&&this.carrierFee.equals(rhs.carrierFee))))&&((this.individualContracts == rhs.individualContracts)||((this.individualContracts!= null)&&this.individualContracts.equals(rhs.individualContracts))))&&((this.applicationTime == rhs.applicationTime)||((this.applicationTime!= null)&&this.applicationTime.equals(rhs.applicationTime))))&&((this.fee == rhs.fee)||((this.fee!= null)&&this.fee.equals(rhs.fee))));
+        return ((((((this.transactionType == rhs.transactionType)||((this.transactionType!= null)&&this.transactionType.equals(rhs.transactionType)))&&((this.carrierFee == rhs.carrierFee)||((this.carrierFee!= null)&&this.carrierFee.equals(rhs.carrierFee))))&&((this.individualContracts == rhs.individualContracts)||((this.individualContracts!= null)&&this.individualContracts.equals(rhs.individualContracts))))&&((this.feeId == rhs.feeId)||((this.feeId!= null)&&this.feeId.equals(rhs.feeId))))&&((this.applicationTime == rhs.applicationTime)||((this.applicationTime!= null)&&this.applicationTime.equals(rhs.applicationTime))));
     }
 
 }

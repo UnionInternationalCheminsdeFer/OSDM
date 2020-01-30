@@ -28,14 +28,14 @@ public class ValidityRange {
      * 
      */
     @JsonProperty("value")
-    private Double value;
+    private Float value;
     /**
      * validity extended after midnight
      * 
      */
     @JsonProperty("hoursAfterMidnight")
     @JsonPropertyDescription("validity extended after midnight")
-    private Double hoursAfterMidnight;
+    private Float hoursAfterMidnight;
 
     /**
      * DAYS, HOURS, MINUTES
@@ -63,7 +63,7 @@ public class ValidityRange {
      * 
      */
     @JsonProperty("value")
-    public Double getValue() {
+    public Float getValue() {
         return value;
     }
 
@@ -73,7 +73,7 @@ public class ValidityRange {
      * 
      */
     @JsonProperty("value")
-    public void setValue(Double value) {
+    public void setValue(Float value) {
         this.value = value;
     }
 
@@ -82,7 +82,7 @@ public class ValidityRange {
      * 
      */
     @JsonProperty("hoursAfterMidnight")
-    public Double getHoursAfterMidnight() {
+    public Float getHoursAfterMidnight() {
         return hoursAfterMidnight;
     }
 
@@ -91,7 +91,7 @@ public class ValidityRange {
      * 
      */
     @JsonProperty("hoursAfterMidnight")
-    public void setHoursAfterMidnight(Double hoursAfterMidnight) {
+    public void setHoursAfterMidnight(Float hoursAfterMidnight) {
         this.hoursAfterMidnight = hoursAfterMidnight;
     }
 

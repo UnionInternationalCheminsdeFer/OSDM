@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "onlineResource",
     "stations",
-    "connectionPoints"
+    "connectionPointIds"
 })
 public class StationResourceLocationDef {
 
@@ -24,8 +24,8 @@ public class StationResourceLocationDef {
     private List<OnlineResourceDef> onlineResource = new ArrayList<OnlineResourceDef>();
     @JsonProperty("stations")
     private List<StationDef> stations = new ArrayList<StationDef>();
-    @JsonProperty("connectionPoints")
-    private List<List<StationDef>> connectionPoints = new ArrayList<List<StationDef>>();
+    @JsonProperty("connectionPointIds")
+    private List<String> connectionPointIds = new ArrayList<String>();
 
     /**
      * 
@@ -57,14 +57,14 @@ public class StationResourceLocationDef {
         this.stations = stations;
     }
 
-    @JsonProperty("connectionPoints")
-    public List<List<StationDef>> getConnectionPoints() {
-        return connectionPoints;
+    @JsonProperty("connectionPointIds")
+    public List<String> getConnectionPointIds() {
+        return connectionPointIds;
     }
 
-    @JsonProperty("connectionPoints")
-    public void setConnectionPoints(List<List<StationDef>> connectionPoints) {
-        this.connectionPoints = connectionPoints;
+    @JsonProperty("connectionPointIds")
+    public void setConnectionPointIds(List<String> connectionPointIds) {
+        this.connectionPointIds = connectionPointIds;
     }
 
     @Override
@@ -79,9 +79,9 @@ public class StationResourceLocationDef {
         sb.append('=');
         sb.append(((this.stations == null)?"<null>":this.stations));
         sb.append(',');
-        sb.append("connectionPoints");
+        sb.append("connectionPointIds");
         sb.append('=');
-        sb.append(((this.connectionPoints == null)?"<null>":this.connectionPoints));
+        sb.append(((this.connectionPointIds == null)?"<null>":this.connectionPointIds));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -96,7 +96,7 @@ public class StationResourceLocationDef {
         int result = 1;
         result = ((result* 31)+((this.onlineResource == null)? 0 :this.onlineResource.hashCode()));
         result = ((result* 31)+((this.stations == null)? 0 :this.stations.hashCode()));
-        result = ((result* 31)+((this.connectionPoints == null)? 0 :this.connectionPoints.hashCode()));
+        result = ((result* 31)+((this.connectionPointIds == null)? 0 :this.connectionPointIds.hashCode()));
         return result;
     }
 
@@ -109,7 +109,7 @@ public class StationResourceLocationDef {
             return false;
         }
         StationResourceLocationDef rhs = ((StationResourceLocationDef) other);
-        return ((((this.onlineResource == rhs.onlineResource)||((this.onlineResource!= null)&&this.onlineResource.equals(rhs.onlineResource)))&&((this.stations == rhs.stations)||((this.stations!= null)&&this.stations.equals(rhs.stations))))&&((this.connectionPoints == rhs.connectionPoints)||((this.connectionPoints!= null)&&this.connectionPoints.equals(rhs.connectionPoints))));
+        return ((((this.onlineResource == rhs.onlineResource)||((this.onlineResource!= null)&&this.onlineResource.equals(rhs.onlineResource)))&&((this.stations == rhs.stations)||((this.stations!= null)&&this.stations.equals(rhs.stations))))&&((this.connectionPointIds == rhs.connectionPointIds)||((this.connectionPointIds!= null)&&this.connectionPointIds.equals(rhs.connectionPointIds))));
     }
 
 }

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "berthType",
     "coachTypeCode",
     "compartmentTypeCode",
-    "TariffCode"
+    "tariff"
 })
 public class ReservationParams9181 {
 
@@ -48,8 +48,8 @@ public class ReservationParams9181 {
     private String coachTypeCode;
     @JsonProperty("compartmentTypeCode")
     private String compartmentTypeCode;
-    @JsonProperty("TariffCode")
-    private String tariffCode;
+    @JsonProperty("tariff")
+    private String tariff;
 
     /**
      *  90918-1 class code in reservation 
@@ -141,14 +141,14 @@ public class ReservationParams9181 {
         this.compartmentTypeCode = compartmentTypeCode;
     }
 
-    @JsonProperty("TariffCode")
-    public String getTariffCode() {
-        return tariffCode;
+    @JsonProperty("tariff")
+    public String getTariff() {
+        return tariff;
     }
 
-    @JsonProperty("TariffCode")
-    public void setTariffCode(String tariffCode) {
-        this.tariffCode = tariffCode;
+    @JsonProperty("tariff")
+    public void setTariff(String tariff) {
+        this.tariff = tariff;
     }
 
     @Override
@@ -179,9 +179,9 @@ public class ReservationParams9181 {
         sb.append('=');
         sb.append(((this.compartmentTypeCode == null)?"<null>":this.compartmentTypeCode));
         sb.append(',');
-        sb.append("tariffCode");
+        sb.append("tariff");
         sb.append('=');
-        sb.append(((this.tariffCode == null)?"<null>":this.tariffCode));
+        sb.append(((this.tariff == null)?"<null>":this.tariff));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -195,10 +195,10 @@ public class ReservationParams9181 {
     public int hashCode() {
         int result = 1;
         result = ((result* 31)+((this.coachTypeCode == null)? 0 :this.coachTypeCode.hashCode()));
-        result = ((result* 31)+((this.tariffCode == null)? 0 :this.tariffCode.hashCode()));
         result = ((result* 31)+((this.serviceCode == null)? 0 :this.serviceCode.hashCode()));
         result = ((result* 31)+((this.serviceLevelCode == null)? 0 :this.serviceLevelCode.hashCode()));
         result = ((result* 31)+((this.compartmentTypeCode == null)? 0 :this.compartmentTypeCode.hashCode()));
+        result = ((result* 31)+((this.tariff == null)? 0 :this.tariff.hashCode()));
         result = ((result* 31)+((this.berthType == null)? 0 :this.berthType.hashCode()));
         result = ((result* 31)+((this.travelClass == null)? 0 :this.travelClass.hashCode()));
         return result;
@@ -213,7 +213,7 @@ public class ReservationParams9181 {
             return false;
         }
         ReservationParams9181 rhs = ((ReservationParams9181) other);
-        return ((((((((this.coachTypeCode == rhs.coachTypeCode)||((this.coachTypeCode!= null)&&this.coachTypeCode.equals(rhs.coachTypeCode)))&&((this.tariffCode == rhs.tariffCode)||((this.tariffCode!= null)&&this.tariffCode.equals(rhs.tariffCode))))&&((this.serviceCode == rhs.serviceCode)||((this.serviceCode!= null)&&this.serviceCode.equals(rhs.serviceCode))))&&((this.serviceLevelCode == rhs.serviceLevelCode)||((this.serviceLevelCode!= null)&&this.serviceLevelCode.equals(rhs.serviceLevelCode))))&&((this.compartmentTypeCode == rhs.compartmentTypeCode)||((this.compartmentTypeCode!= null)&&this.compartmentTypeCode.equals(rhs.compartmentTypeCode))))&&((this.berthType == rhs.berthType)||((this.berthType!= null)&&this.berthType.equals(rhs.berthType))))&&((this.travelClass == rhs.travelClass)||((this.travelClass!= null)&&this.travelClass.equals(rhs.travelClass))));
+        return ((((((((this.coachTypeCode == rhs.coachTypeCode)||((this.coachTypeCode!= null)&&this.coachTypeCode.equals(rhs.coachTypeCode)))&&((this.serviceCode == rhs.serviceCode)||((this.serviceCode!= null)&&this.serviceCode.equals(rhs.serviceCode))))&&((this.serviceLevelCode == rhs.serviceLevelCode)||((this.serviceLevelCode!= null)&&this.serviceLevelCode.equals(rhs.serviceLevelCode))))&&((this.compartmentTypeCode == rhs.compartmentTypeCode)||((this.compartmentTypeCode!= null)&&this.compartmentTypeCode.equals(rhs.compartmentTypeCode))))&&((this.tariff == rhs.tariff)||((this.tariff!= null)&&this.tariff.equals(rhs.tariff))))&&((this.berthType == rhs.berthType)||((this.berthType!= null)&&this.berthType.equals(rhs.berthType))))&&((this.travelClass == rhs.travelClass)||((this.travelClass!= null)&&this.travelClass.equals(rhs.travelClass))));
     }
 
 }

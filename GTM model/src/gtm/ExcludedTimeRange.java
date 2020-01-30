@@ -21,7 +21,7 @@ public class ExcludedTimeRange {
      */
     @JsonProperty("from")
     @JsonPropertyDescription("minutes of the day in the time zone of travel")
-    private Double from;
+    private Integer from;
     /**
      * minutes of the day in the time zone of travel
      * (Required)
@@ -29,7 +29,7 @@ public class ExcludedTimeRange {
      */
     @JsonProperty("until")
     @JsonPropertyDescription("minutes of the day in the time zone of travel")
-    private Double until;
+    private Integer until;
     /**
      * START_OF_TRAVEL,COMPLETE_RANGE
      * (Required)
@@ -45,7 +45,7 @@ public class ExcludedTimeRange {
      * 
      */
     @JsonProperty("from")
-    public Double getFrom() {
+    public Integer getFrom() {
         return from;
     }
 
@@ -55,7 +55,7 @@ public class ExcludedTimeRange {
      * 
      */
     @JsonProperty("from")
-    public void setFrom(Double from) {
+    public void setFrom(Integer from) {
         this.from = from;
     }
 
@@ -65,7 +65,7 @@ public class ExcludedTimeRange {
      * 
      */
     @JsonProperty("until")
-    public Double getUntil() {
+    public Integer getUntil() {
         return until;
     }
 
@@ -75,7 +75,7 @@ public class ExcludedTimeRange {
      * 
      */
     @JsonProperty("until")
-    public void setUntil(Double until) {
+    public void setUntil(Integer until) {
         this.until = until;
     }
 

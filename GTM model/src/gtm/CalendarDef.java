@@ -58,7 +58,7 @@ public class CalendarDef {
      */
     @JsonProperty("UTCoffset")
     @JsonPropertyDescription("offsett to UTC in minutes (number of minutes to be added to get UTC dates)")
-    private Double uTCoffset;
+    private Integer uTCoffset;
 
     /**
      * 
@@ -143,7 +143,7 @@ public class CalendarDef {
      * 
      */
     @JsonProperty("UTCoffset")
-    public Double getUTCoffset() {
+    public Integer getUTCoffset() {
         return uTCoffset;
     }
 
@@ -152,7 +152,7 @@ public class CalendarDef {
      * 
      */
     @JsonProperty("UTCoffset")
-    public void setUTCoffset(Double uTCoffset) {
+    public void setUTCoffset(Integer uTCoffset) {
         this.uTCoffset = uTCoffset;
     }
 
