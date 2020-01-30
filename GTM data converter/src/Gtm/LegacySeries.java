@@ -2,8 +2,7 @@
  */
 package Gtm;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
+import java.util.Date;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -153,12 +152,12 @@ public interface LegacySeries extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Valid From</em>' attribute.
-	 * @see #setValidFrom(XMLGregorianCalendar)
+	 * @see #setValidFrom(Date)
 	 * @see Gtm.GtmPackage#getLegacySeries_ValidFrom()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.Date" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
-	XMLGregorianCalendar getValidFrom();
+	Date getValidFrom();
 
 	/**
 	 * Sets the value of the '{@link Gtm.LegacySeries#getValidFrom <em>Valid From</em>}' attribute.
@@ -168,19 +167,19 @@ public interface LegacySeries extends EObject {
 	 * @see #getValidFrom()
 	 * @generated
 	 */
-	void setValidFrom(XMLGregorianCalendar value);
+	void setValidFrom(Date value);
 
 	/**
 	 * Returns the value of the '<em><b>Valid Until</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Valid Until</em>' attribute.
-	 * @see #setValidUntil(XMLGregorianCalendar)
+	 * @see #setValidUntil(Date)
 	 * @see Gtm.GtmPackage#getLegacySeries_ValidUntil()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.Date" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
-	XMLGregorianCalendar getValidUntil();
+	Date getValidUntil();
 
 	/**
 	 * Sets the value of the '{@link Gtm.LegacySeries#getValidUntil <em>Valid Until</em>}' attribute.
@@ -190,7 +189,7 @@ public interface LegacySeries extends EObject {
 	 * @see #getValidUntil()
 	 * @generated
 	 */
-	void setValidUntil(XMLGregorianCalendar value);
+	void setValidUntil(Date value);
 
 	/**
 	 * Returns the value of the '<em><b>Pricing</b></em>' attribute.

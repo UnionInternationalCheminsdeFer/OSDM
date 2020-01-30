@@ -47,13 +47,13 @@ public interface AfterSalesRule extends EObject {
 	void setId(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Conditions</b></em>' reference list.
+	 * Returns the value of the '<em><b>Conditions</b></em>' containment reference list.
 	 * The list contents are of type {@link Gtm.AfterSalesCondition}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Conditions</em>' reference list.
+	 * @return the value of the '<em>Conditions</em>' containment reference list.
 	 * @see Gtm.GtmPackage#getAfterSalesRule_Conditions()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<AfterSalesCondition> getConditions();

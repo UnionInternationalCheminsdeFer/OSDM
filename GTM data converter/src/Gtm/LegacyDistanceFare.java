@@ -2,6 +2,7 @@
  */
 package Gtm;
 
+import java.util.Date;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -17,6 +18,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.LegacyDistanceFare#getFare2nd <em>Fare2nd</em>}</li>
  *   <li>{@link Gtm.LegacyDistanceFare#getFare1st <em>Fare1st</em>}</li>
  *   <li>{@link Gtm.LegacyDistanceFare#getFareTableNumber <em>Fare Table Number</em>}</li>
+ *   <li>{@link Gtm.LegacyDistanceFare#getReturnFare1st <em>Return Fare1st</em>}</li>
+ *   <li>{@link Gtm.LegacyDistanceFare#getReturnFare2nd <em>Return Fare2nd</em>}</li>
+ *   <li>{@link Gtm.LegacyDistanceFare#getValidFrom <em>Valid From</em>}</li>
+ *   <li>{@link Gtm.LegacyDistanceFare#getValidUntil <em>Valid Until</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getLegacyDistanceFare()
@@ -192,5 +197,93 @@ public interface LegacyDistanceFare extends EObject {
 	 * @generated
 	 */
 	void setFareTableNumber(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Return Fare1st</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Return Fare1st</em>' attribute.
+	 * @see #setReturnFare1st(int)
+	 * @see Gtm.GtmPackage#getLegacyDistanceFare_ReturnFare1st()
+	 * @model
+	 * @generated
+	 */
+	int getReturnFare1st();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacyDistanceFare#getReturnFare1st <em>Return Fare1st</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Return Fare1st</em>' attribute.
+	 * @see #getReturnFare1st()
+	 * @generated
+	 */
+	void setReturnFare1st(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Return Fare2nd</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Return Fare2nd</em>' attribute.
+	 * @see #setReturnFare2nd(int)
+	 * @see Gtm.GtmPackage#getLegacyDistanceFare_ReturnFare2nd()
+	 * @model
+	 * @generated
+	 */
+	int getReturnFare2nd();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacyDistanceFare#getReturnFare2nd <em>Return Fare2nd</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Return Fare2nd</em>' attribute.
+	 * @see #getReturnFare2nd()
+	 * @generated
+	 */
+	void setReturnFare2nd(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Valid From</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Valid From</em>' attribute.
+	 * @see #setValidFrom(Date)
+	 * @see Gtm.GtmPackage#getLegacyDistanceFare_ValidFrom()
+	 * @model
+	 * @generated
+	 */
+	Date getValidFrom();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacyDistanceFare#getValidFrom <em>Valid From</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Valid From</em>' attribute.
+	 * @see #getValidFrom()
+	 * @generated
+	 */
+	void setValidFrom(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Valid Until</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Valid Until</em>' attribute.
+	 * @see #setValidUntil(Date)
+	 * @see Gtm.GtmPackage#getLegacyDistanceFare_ValidUntil()
+	 * @model
+	 * @generated
+	 */
+	Date getValidUntil();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacyDistanceFare#getValidUntil <em>Valid Until</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Valid Until</em>' attribute.
+	 * @see #getValidUntil()
+	 * @generated
+	 */
+	void setValidUntil(Date value);
 
 } // LegacyDistanceFare

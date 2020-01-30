@@ -49,12 +49,12 @@ public interface ConversionFromLegacy extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Params</em>' containment reference.
-	 * @see #setParams(CoversionParams)
+	 * @see #setParams(ConversionParams)
 	 * @see Gtm.GtmPackage#getConversionFromLegacy_Params()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	CoversionParams getParams();
+	ConversionParams getParams();
 
 	/**
 	 * Sets the value of the '{@link Gtm.ConversionFromLegacy#getParams <em>Params</em>}' containment reference.
@@ -64,6 +64,6 @@ public interface ConversionFromLegacy extends EObject {
 	 * @see #getParams()
 	 * @generated
 	 */
-	void setParams(CoversionParams value);
+	void setParams(ConversionParams value);
 
 } // ConversionFromLegacy

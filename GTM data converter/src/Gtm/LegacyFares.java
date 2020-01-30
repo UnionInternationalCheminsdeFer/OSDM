@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link Gtm.LegacyFares#getDescription <em>Description</em>}</li>
+ *   <li>{@link Gtm.LegacyFares#getFares <em>Fares</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getLegacyFares()
@@ -24,15 +24,15 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface LegacyFares extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Description</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.LegacyDescription}.
+	 * Returns the value of the '<em><b>Fares</b></em>' containment reference list.
+	 * The list contents are of type {@link Gtm.LegacyFare}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Description</em>' containment reference list.
-	 * @see Gtm.GtmPackage#getLegacyFares_Description()
-	 * @model containment="true" required="true" upper="5"
+	 * @return the value of the '<em>Fares</em>' containment reference list.
+	 * @see Gtm.GtmPackage#getLegacyFares_Fares()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<LegacyDescription> getDescription();
+	EList<LegacyFare> getFares();
 
 } // LegacyFares

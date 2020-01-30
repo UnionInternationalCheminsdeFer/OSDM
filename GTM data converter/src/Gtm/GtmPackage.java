@@ -5,6 +5,7 @@ package Gtm;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -123,7 +124,7 @@ public interface GtmPackage extends EPackage {
 	int CODE_LISTS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Carriers</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Carriers</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -132,7 +133,7 @@ public interface GtmPackage extends EPackage {
 	int CODE_LISTS__CARRIERS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Stations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Stations</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -141,7 +142,7 @@ public interface GtmPackage extends EPackage {
 	int CODE_LISTS__STATIONS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Countries</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Countries</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -150,7 +151,7 @@ public interface GtmPackage extends EPackage {
 	int CODE_LISTS__COUNTRIES = 2;
 
 	/**
-	 * The feature id for the '<em><b>Languages</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Languages</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -159,7 +160,7 @@ public interface GtmPackage extends EPackage {
 	int CODE_LISTS__LANGUAGES = 3;
 
 	/**
-	 * The feature id for the '<em><b>Currencies</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Currencies</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -168,7 +169,7 @@ public interface GtmPackage extends EPackage {
 	int CODE_LISTS__CURRENCIES = 4;
 
 	/**
-	 * The feature id for the '<em><b>Service Brands</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Service Brands</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -177,7 +178,7 @@ public interface GtmPackage extends EPackage {
 	int CODE_LISTS__SERVICE_BRANDS = 5;
 
 	/**
-	 * The feature id for the '<em><b>Nuts Codes</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Nuts Codes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -204,6 +205,740 @@ public interface GtmPackage extends EPackage {
 	int CODE_LISTS_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link Gtm.impl.NUTSCodesImpl <em>NUTS Codes</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.NUTSCodesImpl
+	 * @see Gtm.impl.GtmPackageImpl#getNUTSCodes()
+	 * @generated
+	 */
+	int NUTS_CODES = 2;
+
+	/**
+	 * The feature id for the '<em><b>Nuts Codes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUTS_CODES__NUTS_CODES = 0;
+
+	/**
+	 * The number of structural features of the '<em>NUTS Codes</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUTS_CODES_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>NUTS Codes</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUTS_CODES_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.NutsCodeImpl <em>Nuts Code</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.NutsCodeImpl
+	 * @see Gtm.impl.GtmPackageImpl#getNutsCode()
+	 * @generated
+	 */
+	int NUTS_CODE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUTS_CODE__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUTS_CODE__CODE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Nuts Code</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUTS_CODE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Nuts Code</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUTS_CODE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ServiceBrandsImpl <em>Service Brands</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ServiceBrandsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getServiceBrands()
+	 * @generated
+	 */
+	int SERVICE_BRANDS = 4;
+
+	/**
+	 * The feature id for the '<em><b>Service Brands</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_BRANDS__SERVICE_BRANDS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Service Brands</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_BRANDS_FEATURE_COUNT = 1;
+
+	/**
+	 * The operation id for the '<em>Find Service BRand</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_BRANDS___FIND_SERVICE_BRAND__INT = 0;
+
+	/**
+	 * The number of operations of the '<em>Service Brands</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_BRANDS_OPERATION_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ServiceBrandImpl <em>Service Brand</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ServiceBrandImpl
+	 * @see Gtm.impl.GtmPackageImpl#getServiceBrand()
+	 * @generated
+	 */
+	int SERVICE_BRAND = 5;
+
+	/**
+	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_BRAND__CODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_BRAND__NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Abbreviation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_BRAND__ABBREVIATION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_BRAND__DESCRIPTION = 3;
+
+	/**
+	 * The number of structural features of the '<em>Service Brand</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_BRAND_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Service Brand</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_BRAND_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.CountriesImpl <em>Countries</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CountriesImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCountries()
+	 * @generated
+	 */
+	int COUNTRIES = 6;
+
+	/**
+	 * The feature id for the '<em><b>Countries</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COUNTRIES__COUNTRIES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Countries</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COUNTRIES_FEATURE_COUNT = 1;
+
+	/**
+	 * The operation id for the '<em>Find Country</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COUNTRIES___FIND_COUNTRY__INT = 0;
+
+	/**
+	 * The number of operations of the '<em>Countries</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COUNTRIES_OPERATION_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.CountryImpl <em>Country</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CountryImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCountry()
+	 * @generated
+	 */
+	int COUNTRY = 7;
+
+	/**
+	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COUNTRY__CODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COUNTRY__NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>IS Ocode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COUNTRY__IS_OCODE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Country</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COUNTRY_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Country</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COUNTRY_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LanguagesImpl <em>Languages</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LanguagesImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLanguages()
+	 * @generated
+	 */
+	int LANGUAGES = 8;
+
+	/**
+	 * The feature id for the '<em><b>Languages</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGES__LANGUAGES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Languages</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGES_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Languages</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGES_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LanguageImpl <em>Language</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LanguageImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLanguage()
+	 * @generated
+	 */
+	int LANGUAGE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE__CODE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Language</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Language</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANGUAGE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.CurrenciesImpl <em>Currencies</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CurrenciesImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCurrencies()
+	 * @generated
+	 */
+	int CURRENCIES = 10;
+
+	/**
+	 * The feature id for the '<em><b>Currencies</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CURRENCIES__CURRENCIES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Currencies</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CURRENCIES_FEATURE_COUNT = 1;
+
+	/**
+	 * The operation id for the '<em>Find Currency</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CURRENCIES___FIND_CURRENCY__STRING = 0;
+
+	/**
+	 * The number of operations of the '<em>Currencies</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CURRENCIES_OPERATION_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.CurrencyImpl <em>Currency</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CurrencyImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCurrency()
+	 * @generated
+	 */
+	int CURRENCY = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CURRENCY__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Iso Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CURRENCY__ISO_CODE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Currency</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CURRENCY_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Currency</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CURRENCY_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.StationsImpl <em>Stations</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.StationsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getStations()
+	 * @generated
+	 */
+	int STATIONS = 12;
+
+	/**
+	 * The feature id for the '<em><b>Stations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIONS__STATIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Stations</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIONS_FEATURE_COUNT = 1;
+
+	/**
+	 * The operation id for the '<em>Find Station</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIONS___FIND_STATION__INT_INT = 0;
+
+	/**
+	 * The operation id for the '<em>Find Station</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIONS___FIND_STATION__INT_STRING = 1;
+
+	/**
+	 * The number of operations of the '<em>Stations</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATIONS_OPERATION_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.StationImpl <em>Station</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.StationImpl
+	 * @see Gtm.impl.GtmPackageImpl#getStation()
+	 * @generated
+	 */
+	int STATION = 13;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Country</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__COUNTRY = 1;
+
+	/**
+	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__CODE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Longitude</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__LONGITUDE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Latitude</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__LATITUDE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Timetable Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__TIMETABLE_NAME = 5;
+
+	/**
+	 * The feature id for the '<em><b>Border Station</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__BORDER_STATION = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name Case UTF8</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__NAME_CASE_UTF8 = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name Case ASCII</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__NAME_CASE_ASCII = 8;
+
+	/**
+	 * The number of structural features of the '<em>Station</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION_FEATURE_COUNT = 9;
+
+	/**
+	 * The number of operations of the '<em>Station</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.CarrierImpl <em>Carrier</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CarrierImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCarrier()
+	 * @generated
+	 */
+	int CARRIER = 14;
+
+	/**
+	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARRIER__CODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARRIER__NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Short Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARRIER__SHORT_NAME = 2;
+
+	/**
+	 * The number of structural features of the '<em>Carrier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARRIER_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Carrier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARRIER_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.CarriersImpl <em>Carriers</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CarriersImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCarriers()
+	 * @generated
+	 */
+	int CARRIERS = 15;
+
+	/**
+	 * The feature id for the '<em><b>Carriers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARRIERS__CARRIERS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Carriers</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARRIERS_FEATURE_COUNT = 1;
+
+	/**
+	 * The operation id for the '<em>Find Carrier</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARRIERS___FIND_CARRIER__STRING = 0;
+
+	/**
+	 * The number of operations of the '<em>Carriers</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARRIERS_OPERATION_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link Gtm.impl.GeneralTariffModelImpl <em>General Tariff Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -211,7 +946,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getGeneralTariffModel()
 	 * @generated
 	 */
-	int GENERAL_TARIFF_MODEL = 2;
+	int GENERAL_TARIFF_MODEL = 16;
 
 	/**
 	 * The feature id for the '<em><b>Delivery</b></em>' containment reference.
@@ -257,43 +992,87 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getConversionFromLegacy()
 	 * @generated
 	 */
-	int CONVERSION_FROM_LEGACY = 3;
+	int CONVERSION_FROM_LEGACY = 105;
 
 	/**
-	 * The feature id for the '<em><b>Legacy108</b></em>' containment reference.
+	 * The meta object id for the '{@link Gtm.impl.ConversionParamsImpl <em>Conversion Params</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ConversionParamsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getConversionParams()
 	 * @generated
-	 * @ordered
 	 */
-	int CONVERSION_FROM_LEGACY__LEGACY108 = 0;
+	int CONVERSION_PARAMS = 106;
 
 	/**
-	 * The feature id for the '<em><b>Params</b></em>' containment reference.
+	 * The meta object id for the '{@link Gtm.impl.LegacyStationToServiceConstraintMappingsImpl <em>Legacy Station To Service Constraint Mappings</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyStationToServiceConstraintMappingsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyStationToServiceConstraintMappings()
 	 * @generated
-	 * @ordered
 	 */
-	int CONVERSION_FROM_LEGACY__PARAMS = 1;
+	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS = 108;
 
 	/**
-	 * The number of structural features of the '<em>Conversion From Legacy</em>' class.
+	 * The meta object id for the '{@link Gtm.impl.LegacyStationToServiceConstraintMappingImpl <em>Legacy Station To Service Constraint Mapping</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyStationToServiceConstraintMappingImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyStationToServiceConstraintMapping()
 	 * @generated
-	 * @ordered
 	 */
-	int CONVERSION_FROM_LEGACY_FEATURE_COUNT = 2;
+	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING = 109;
 
 	/**
-	 * The number of operations of the '<em>Conversion From Legacy</em>' class.
+	 * The meta object id for the '{@link Gtm.impl.LegacyStationMappingsImpl <em>Legacy Station Mappings</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyStationMappingsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyStationMappings()
 	 * @generated
-	 * @ordered
 	 */
-	int CONVERSION_FROM_LEGACY_OPERATION_COUNT = 0;
+	int LEGACY_STATION_MAPPINGS = 110;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyStationMapImpl <em>Legacy Station Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyStationMapImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyStationMap()
+	 * @generated
+	 */
+	int LEGACY_STATION_MAP = 111;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyBoderPointMappingsImpl <em>Legacy Boder Point Mappings</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyBoderPointMappingsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyBoderPointMappings()
+	 * @generated
+	 */
+	int LEGACY_BODER_POINT_MAPPINGS = 113;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyBorderPointMappingImpl <em>Legacy Border Point Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyBorderPointMappingImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyBorderPointMapping()
+	 * @generated
+	 */
+	int LEGACY_BORDER_POINT_MAPPING = 114;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.AfterSalesRulesImpl <em>After Sales Rules</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.AfterSalesRulesImpl
+	 * @see Gtm.impl.GtmPackageImpl#getAfterSalesRules()
+	 * @generated
+	 */
+	int AFTER_SALES_RULES = 18;
 
 	/**
 	 * The meta object id for the '{@link Gtm.impl.FareStructureImpl <em>Fare Structure</em>}' class.
@@ -303,232 +1082,247 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getFareStructure()
 	 * @generated
 	 */
-	int FARE_STRUCTURE = 4;
+	int FARE_STRUCTURE = 22;
 
 	/**
-	 * The feature id for the '<em><b>Fare Elements</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.ConnectionPointsImpl <em>Connection Points</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ConnectionPointsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getConnectionPoints()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__FARE_ELEMENTS = 0;
+	int CONNECTION_POINTS = 23;
 
 	/**
-	 * The feature id for the '<em><b>After Sales Rules</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.ConnectionPointImpl <em>Connection Point</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ConnectionPointImpl
+	 * @see Gtm.impl.GtmPackageImpl#getConnectionPoint()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__AFTER_SALES_RULES = 1;
+	int CONNECTION_POINT = 24;
 
 	/**
-	 * The feature id for the '<em><b>Calendars</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.StationSetImpl <em>Station Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.StationSetImpl
+	 * @see Gtm.impl.GtmPackageImpl#getStationSet()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__CALENDARS = 2;
+	int STATION_SET = 25;
 
 	/**
-	 * The feature id for the '<em><b>Service Class Definitions</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.FareResourceLocationsImpl <em>Fare Resource Locations</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.FareResourceLocationsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getFareResourceLocations()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS = 3;
+	int FARE_RESOURCE_LOCATIONS = 26;
 
 	/**
-	 * The feature id for the '<em><b>Prices</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.FulfillmentConstraintsImpl <em>Fulfillment Constraints</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.FulfillmentConstraintsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getFulfillmentConstraints()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__PRICES = 4;
+	int FULFILLMENT_CONSTRAINTS = 33;
 
 	/**
-	 * The feature id for the '<em><b>Regional Constraints</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.SupportedOnlineServicesImpl <em>Supported Online Services</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.SupportedOnlineServicesImpl
+	 * @see Gtm.impl.GtmPackageImpl#getSupportedOnlineServices()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__REGIONAL_CONSTRAINTS = 5;
+	int SUPPORTED_ONLINE_SERVICES = 34;
 
 	/**
-	 * The feature id for the '<em><b>Texts</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.ZoneDefinitionsImpl <em>Zone Definitions</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ZoneDefinitionsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getZoneDefinitions()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__TEXTS = 6;
+	int ZONE_DEFINITIONS = 35;
 
 	/**
-	 * The feature id for the '<em><b>Service Level Definitions</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.ReductionConstraintsImpl <em>Reduction Constraints</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ReductionConstraintsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getReductionConstraints()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS = 7;
+	int REDUCTION_CONSTRAINTS = 38;
 
 	/**
-	 * The feature id for the '<em><b>Reservation Parameters</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.PersonalDataConstraintsImpl <em>Personal Data Constraints</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.PersonalDataConstraintsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getPersonalDataConstraints()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__RESERVATION_PARAMETERS = 8;
+	int PERSONAL_DATA_CONSTRAINTS = 40;
 
 	/**
-	 * The feature id for the '<em><b>Service Constraints</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.PassengerConstraintsImpl <em>Passenger Constraints</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.PassengerConstraintsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getPassengerConstraints()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__SERVICE_CONSTRAINTS = 9;
+	int PASSENGER_CONSTRAINTS = 44;
 
 	/**
-	 * The feature id for the '<em><b>Carrier Constraints</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.CombinationConstraintsImpl <em>Combination Constraints</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CombinationConstraintsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCombinationConstraints()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__CARRIER_CONSTRAINTS = 10;
+	int COMBINATION_CONSTRAINTS = 48;
 
 	/**
-	 * The feature id for the '<em><b>Reduction Cards</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.TravelValidityConstraintsImpl <em>Travel Validity Constraints</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.TravelValidityConstraintsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getTravelValidityConstraints()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__REDUCTION_CARDS = 11;
+	int TRAVEL_VALIDITY_CONSTRAINTS = 50;
 
 	/**
-	 * The feature id for the '<em><b>Sales Availability Constraints</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.SalesAvailabilityConstraintsImpl <em>Sales Availability Constraints</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.SalesAvailabilityConstraintsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getSalesAvailabilityConstraints()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__SALES_AVAILABILITY_CONSTRAINTS = 12;
+	int SALES_AVAILABILITY_CONSTRAINTS = 52;
 
 	/**
-	 * The feature id for the '<em><b>Travel Validity Constraints</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.ReductionCardsImpl <em>Reduction Cards</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ReductionCardsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getReductionCards()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__TRAVEL_VALIDITY_CONSTRAINTS = 13;
+	int REDUCTION_CARDS = 57;
 
 	/**
-	 * The feature id for the '<em><b>Combination Constraints</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.CarrierConstraintsImpl <em>Carrier Constraints</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CarrierConstraintsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCarrierConstraints()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__COMBINATION_CONSTRAINTS = 14;
+	int CARRIER_CONSTRAINTS = 59;
 
 	/**
-	 * The feature id for the '<em><b>Passenger Constraints</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.ServiceConstraintsImpl <em>Service Constraints</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ServiceConstraintsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getServiceConstraints()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__PASSENGER_CONSTRAINTS = 15;
+	int SERVICE_CONSTRAINTS = 61;
 
 	/**
-	 * The feature id for the '<em><b>Personal Data Constraints</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.ReservationParametersImpl <em>Reservation Parameters</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ReservationParametersImpl
+	 * @see Gtm.impl.GtmPackageImpl#getReservationParameters()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS = 16;
+	int RESERVATION_PARAMETERS = 77;
 
 	/**
-	 * The feature id for the '<em><b>Reduction Constraints</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.RegionalConstraintsImpl <em>Regional Constraints</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.RegionalConstraintsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getRegionalConstraints()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__REDUCTION_CONSTRAINTS = 17;
+	int REGIONAL_CONSTRAINTS = 63;
 
 	/**
-	 * The feature id for the '<em><b>Zone Definitions</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.ServiceLevelDefinitionsImpl <em>Service Level Definitions</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ServiceLevelDefinitionsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getServiceLevelDefinitions()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__ZONE_DEFINITIONS = 18;
+	int SERVICE_LEVEL_DEFINITIONS = 66;
 
 	/**
-	 * The feature id for the '<em><b>Supported Online Services</b></em>' attribute list.
+	 * The meta object id for the '{@link Gtm.impl.TextsImpl <em>Texts</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.TextsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getTexts()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__SUPPORTED_ONLINE_SERVICES = 19;
+	int TEXTS = 67;
 
 	/**
-	 * The feature id for the '<em><b>Fulfillment Constraint</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.PricesImpl <em>Prices</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.PricesImpl
+	 * @see Gtm.impl.GtmPackageImpl#getPrices()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__FULFILLMENT_CONSTRAINT = 20;
+	int PRICES = 70;
 
 	/**
-	 * The feature id for the '<em><b>Fare Resource Locations</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.ServiceClassDefinitionsImpl <em>Service Class Definitions</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ServiceClassDefinitionsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getServiceClassDefinitions()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS = 21;
+	int SERVICE_CLASS_DEFINITIONS = 74;
 
 	/**
-	 * The feature id for the '<em><b>Connection Points</b></em>' containment reference list.
+	 * The meta object id for the '{@link Gtm.impl.CalendarsImpl <em>Calendars</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CalendarsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCalendars()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE__CONNECTION_POINTS = 22;
+	int CALENDARS = 75;
 
 	/**
-	 * The number of structural features of the '<em>Fare Structure</em>' class.
+	 * The meta object id for the '{@link Gtm.impl.FareElementsImpl <em>Fare Elements</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.FareElementsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getFareElements()
 	 * @generated
-	 * @ordered
 	 */
-	int FARE_STRUCTURE_FEATURE_COUNT = 23;
-
-	/**
-	 * The number of operations of the '<em>Fare Structure</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_STRUCTURE_OPERATION_COUNT = 0;
+	int FARE_ELEMENTS = 39;
 
 	/**
 	 * The meta object id for the '{@link Gtm.impl.DeliveryImpl <em>Delivery</em>}' class.
@@ -538,7 +1332,707 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getDelivery()
 	 * @generated
 	 */
-	int DELIVERY = 5;
+	int DELIVERY = 17;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.CalendarImpl <em>Calendar</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CalendarImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCalendar()
+	 * @generated
+	 */
+	int CALENDAR = 76;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyDescriptionImpl <em>Legacy Description</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyDescriptionImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyDescription()
+	 * @generated
+	 */
+	int LEGACY_DESCRIPTION = 115;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyZoneMappingsImpl <em>Legacy Zone Mappings</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyZoneMappingsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyZoneMappings()
+	 * @generated
+	 */
+	int LEGACY_ZONE_MAPPINGS = 116;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyZoneMapImpl <em>Legacy Zone Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyZoneMapImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyZoneMap()
+	 * @generated
+	 */
+	int LEGACY_ZONE_MAP = 117;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyDistanceFareImpl <em>Legacy Distance Fare</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyDistanceFareImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyDistanceFare()
+	 * @generated
+	 */
+	int LEGACY_DISTANCE_FARE = 128;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyFaresImpl <em>Legacy Fares</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyFaresImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyFares()
+	 * @generated
+	 */
+	int LEGACY_FARES = 118;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyFareImpl <em>Legacy Fare</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyFareImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyFare()
+	 * @generated
+	 */
+	int LEGACY_FARE = 119;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.Legacy108Impl <em>Legacy108</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.Legacy108Impl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacy108()
+	 * @generated
+	 */
+	int LEGACY108 = 120;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.Legacy108StationsImpl <em>Legacy108 Stations</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.Legacy108StationsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacy108Stations()
+	 * @generated
+	 */
+	int LEGACY108_STATIONS = 121;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.Legacy108StationImpl <em>Legacy108 Station</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.Legacy108StationImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacy108Station()
+	 * @generated
+	 */
+	int LEGACY108_STATION = 122;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyRouteFaresImpl <em>Legacy Route Fares</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyRouteFaresImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyRouteFares()
+	 * @generated
+	 */
+	int LEGACY_ROUTE_FARES = 123;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyRouteFareImpl <em>Legacy Route Fare</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyRouteFareImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyRouteFare()
+	 * @generated
+	 */
+	int LEGACY_ROUTE_FARE = 124;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacySeriesImpl <em>Legacy Series</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacySeriesImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacySeries()
+	 * @generated
+	 */
+	int LEGACY_SERIES = 125;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacySeriesListImpl <em>Legacy Series List</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacySeriesListImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacySeriesList()
+	 * @generated
+	 */
+	int LEGACY_SERIES_LIST = 126;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyDistanceFaresImpl <em>Legacy Distance Fares</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyDistanceFaresImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyDistanceFares()
+	 * @generated
+	 */
+	int LEGACY_DISTANCE_FARES = 127;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyViastationImpl <em>Legacy Viastation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyViastationImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyViastation()
+	 * @generated
+	 */
+	int LEGACY_VIASTATION = 129;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyTargetFaresImpl <em>Legacy Target Fares</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyTargetFaresImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyTargetFares()
+	 * @generated
+	 */
+	int LEGACY_TARGET_FARES = 130;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.CarrierConstraintImpl <em>Carrier Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CarrierConstraintImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCarrierConstraint()
+	 * @generated
+	 */
+	int CARRIER_CONSTRAINT = 60;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.PriceImpl <em>Price</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.PriceImpl
+	 * @see Gtm.impl.GtmPackageImpl#getPrice()
+	 * @generated
+	 */
+	int PRICE = 71;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.CurrencyPriceImpl <em>Currency Price</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CurrencyPriceImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCurrencyPrice()
+	 * @generated
+	 */
+	int CURRENCY_PRICE = 73;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ReductionCardImpl <em>Reduction Card</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ReductionCardImpl
+	 * @see Gtm.impl.GtmPackageImpl#getReductionCard()
+	 * @generated
+	 */
+	int REDUCTION_CARD = 58;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.RegionalConstraintImpl <em>Regional Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.RegionalConstraintImpl
+	 * @see Gtm.impl.GtmPackageImpl#getRegionalConstraint()
+	 * @generated
+	 */
+	int REGIONAL_CONSTRAINT = 64;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ReservationParameterImpl <em>Reservation Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ReservationParameterImpl
+	 * @see Gtm.impl.GtmPackageImpl#getReservationParameter()
+	 * @generated
+	 */
+	int RESERVATION_PARAMETER = 78;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ReservationParams9181Impl <em>Reservation Params9181</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ReservationParams9181Impl
+	 * @see Gtm.impl.GtmPackageImpl#getReservationParams9181()
+	 * @generated
+	 */
+	int RESERVATION_PARAMS9181 = 79;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ReservationOptionsImpl <em>Reservation Options</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ReservationOptionsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getReservationOptions()
+	 * @generated
+	 */
+	int RESERVATION_OPTIONS = 80;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ServiceClassImpl <em>Service Class</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ServiceClassImpl
+	 * @see Gtm.impl.GtmPackageImpl#getServiceClass()
+	 * @generated
+	 */
+	int SERVICE_CLASS = 82;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ServiceLevelImpl <em>Service Level</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ServiceLevelImpl
+	 * @see Gtm.impl.GtmPackageImpl#getServiceLevel()
+	 * @generated
+	 */
+	int SERVICE_LEVEL = 83;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ServiceConstraintImpl <em>Service Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ServiceConstraintImpl
+	 * @see Gtm.impl.GtmPackageImpl#getServiceConstraint()
+	 * @generated
+	 */
+	int SERVICE_CONSTRAINT = 62;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.TargetFareTemplateImpl <em>Target Fare Template</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.TargetFareTemplateImpl
+	 * @see Gtm.impl.GtmPackageImpl#getTargetFareTemplate()
+	 * @generated
+	 */
+	int TARGET_FARE_TEMPLATE = 107;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.TravelValidityConstraintImpl <em>Travel Validity Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.TravelValidityConstraintImpl
+	 * @see Gtm.impl.GtmPackageImpl#getTravelValidityConstraint()
+	 * @generated
+	 */
+	int TRAVEL_VALIDITY_CONSTRAINT = 51;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.TextImpl <em>Text</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.TextImpl
+	 * @see Gtm.impl.GtmPackageImpl#getText()
+	 * @generated
+	 */
+	int TEXT = 68;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.TranslationImpl <em>Translation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.TranslationImpl
+	 * @see Gtm.impl.GtmPackageImpl#getTranslation()
+	 * @generated
+	 */
+	int TRANSLATION = 69;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.VATDetailImpl <em>VAT Detail</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.VATDetailImpl
+	 * @see Gtm.impl.GtmPackageImpl#getVATDetail()
+	 * @generated
+	 */
+	int VAT_DETAIL = 72;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.FareElementImpl <em>Fare Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.FareElementImpl
+	 * @see Gtm.impl.GtmPackageImpl#getFareElement()
+	 * @generated
+	 */
+	int FARE_ELEMENT = 36;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyAccountingIdentifierImpl <em>Legacy Accounting Identifier</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyAccountingIdentifierImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyAccountingIdentifier()
+	 * @generated
+	 */
+	int LEGACY_ACCOUNTING_IDENTIFIER = 37;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.SalesAvailabilityConstraintImpl <em>Sales Availability Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.SalesAvailabilityConstraintImpl
+	 * @see Gtm.impl.GtmPackageImpl#getSalesAvailabilityConstraint()
+	 * @generated
+	 */
+	int SALES_AVAILABILITY_CONSTRAINT = 53;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.SalesRestrictionImpl <em>Sales Restriction</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.SalesRestrictionImpl
+	 * @see Gtm.impl.GtmPackageImpl#getSalesRestriction()
+	 * @generated
+	 */
+	int SALES_RESTRICTION = 54;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.CombinationConstraintImpl <em>Combination Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CombinationConstraintImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCombinationConstraint()
+	 * @generated
+	 */
+	int COMBINATION_CONSTRAINT = 49;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ValidityRangeImpl <em>Validity Range</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ValidityRangeImpl
+	 * @see Gtm.impl.GtmPackageImpl#getValidityRange()
+	 * @generated
+	 */
+	int VALIDITY_RANGE = 86;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.TimeRangeImpl <em>Time Range</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.TimeRangeImpl
+	 * @see Gtm.impl.GtmPackageImpl#getTimeRange()
+	 * @generated
+	 */
+	int TIME_RANGE = 84;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ReturnValidityConstraintImpl <em>Return Validity Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ReturnValidityConstraintImpl
+	 * @see Gtm.impl.GtmPackageImpl#getReturnValidityConstraint()
+	 * @generated
+	 */
+	int RETURN_VALIDITY_CONSTRAINT = 88;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.RegionalValidityImpl <em>Regional Validity</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.RegionalValidityImpl
+	 * @see Gtm.impl.GtmPackageImpl#getRegionalValidity()
+	 * @generated
+	 */
+	int REGIONAL_VALIDITY = 65;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ViaStationImpl <em>Via Station</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ViaStationImpl
+	 * @see Gtm.impl.GtmPackageImpl#getViaStation()
+	 * @generated
+	 */
+	int VIA_STATION = 89;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ZoneImpl <em>Zone</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ZoneImpl
+	 * @see Gtm.impl.GtmPackageImpl#getZone()
+	 * @generated
+	 */
+	int ZONE = 92;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ZoneDefinitionImpl <em>Zone Definition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ZoneDefinitionImpl
+	 * @see Gtm.impl.GtmPackageImpl#getZoneDefinition()
+	 * @generated
+	 */
+	int ZONE_DEFINITION = 93;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LineImpl <em>Line</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LineImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLine()
+	 * @generated
+	 */
+	int LINE = 94;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.PolygoneImpl <em>Polygone</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.PolygoneImpl
+	 * @see Gtm.impl.GtmPackageImpl#getPolygone()
+	 * @generated
+	 */
+	int POLYGONE = 95;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyStationImpl <em>Legacy Station</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyStationImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyStation()
+	 * @generated
+	 */
+	int LEGACY_STATION = 112;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.EdgeImpl <em>Edge</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.EdgeImpl
+	 * @see Gtm.impl.GtmPackageImpl#getEdge()
+	 * @generated
+	 */
+	int EDGE = 96;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.PassengerConstraintImpl <em>Passenger Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.PassengerConstraintImpl
+	 * @see Gtm.impl.GtmPackageImpl#getPassengerConstraint()
+	 * @generated
+	 */
+	int PASSENGER_CONSTRAINT = 45;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.PassengerCombinationConstraintImpl <em>Passenger Combination Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.PassengerCombinationConstraintImpl
+	 * @see Gtm.impl.GtmPackageImpl#getPassengerCombinationConstraint()
+	 * @generated
+	 */
+	int PASSENGER_COMBINATION_CONSTRAINT = 47;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.RelativeTimeImpl <em>Relative Time</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.RelativeTimeImpl
+	 * @see Gtm.impl.GtmPackageImpl#getRelativeTime()
+	 * @generated
+	 */
+	int RELATIVE_TIME = 87;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.AfterSalesConditionImpl <em>After Sales Condition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.AfterSalesConditionImpl
+	 * @see Gtm.impl.GtmPackageImpl#getAfterSalesCondition()
+	 * @generated
+	 */
+	int AFTER_SALES_CONDITION = 20;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.AfterSalesRuleImpl <em>After Sales Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.AfterSalesRuleImpl
+	 * @see Gtm.impl.GtmPackageImpl#getAfterSalesRule()
+	 * @generated
+	 */
+	int AFTER_SALES_RULE = 19;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.EndOfSaleImpl <em>End Of Sale</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.EndOfSaleImpl
+	 * @see Gtm.impl.GtmPackageImpl#getEndOfSale()
+	 * @generated
+	 */
+	int END_OF_SALE = 55;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.StartOfSaleImpl <em>Start Of Sale</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.StartOfSaleImpl
+	 * @see Gtm.impl.GtmPackageImpl#getStartOfSale()
+	 * @generated
+	 */
+	int START_OF_SALE = 56;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ApplicationTimeImpl <em>Application Time</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ApplicationTimeImpl
+	 * @see Gtm.impl.GtmPackageImpl#getApplicationTime()
+	 * @generated
+	 */
+	int APPLICATION_TIME = 21;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.IncludedFreePassengersImpl <em>Included Free Passengers</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.IncludedFreePassengersImpl
+	 * @see Gtm.impl.GtmPackageImpl#getIncludedFreePassengers()
+	 * @generated
+	 */
+	int INCLUDED_FREE_PASSENGERS = 46;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.AllowedPersonalDataChangesImpl <em>Allowed Personal Data Changes</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.AllowedPersonalDataChangesImpl
+	 * @see Gtm.impl.GtmPackageImpl#getAllowedPersonalDataChanges()
+	 * @generated
+	 */
+	int ALLOWED_PERSONAL_DATA_CHANGES = 43;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.CarrierResourceLocationImpl <em>Carrier Resource Location</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CarrierResourceLocationImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCarrierResourceLocation()
+	 * @generated
+	 */
+	int CARRIER_RESOURCE_LOCATION = 97;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.CrossBorderConditionImpl <em>Cross Border Condition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CrossBorderConditionImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCrossBorderCondition()
+	 * @generated
+	 */
+	int CROSS_BORDER_CONDITION = 98;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.FareCombinationModelImpl <em>Fare Combination Model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.FareCombinationModelImpl
+	 * @see Gtm.impl.GtmPackageImpl#getFareCombinationModel()
+	 * @generated
+	 */
+	int FARE_COMBINATION_MODEL = 99;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.FulfillmentConstraintImpl <em>Fulfillment Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.FulfillmentConstraintImpl
+	 * @see Gtm.impl.GtmPackageImpl#getFulfillmentConstraint()
+	 * @generated
+	 */
+	int FULFILLMENT_CONSTRAINT = 100;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.OnlineResourceImpl <em>Online Resource</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.OnlineResourceImpl
+	 * @see Gtm.impl.GtmPackageImpl#getOnlineResource()
+	 * @generated
+	 */
+	int ONLINE_RESOURCE = 32;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.PersonalDataConstraintImpl <em>Personal Data Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.PersonalDataConstraintImpl
+	 * @see Gtm.impl.GtmPackageImpl#getPersonalDataConstraint()
+	 * @generated
+	 */
+	int PERSONAL_DATA_CONSTRAINT = 41;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.RequiredPersonalDataImpl <em>Required Personal Data</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.RequiredPersonalDataImpl
+	 * @see Gtm.impl.GtmPackageImpl#getRequiredPersonalData()
+	 * @generated
+	 */
+	int REQUIRED_PERSONAL_DATA = 42;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ReductionConstraintImpl <em>Reduction Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ReductionConstraintImpl
+	 * @see Gtm.impl.GtmPackageImpl#getReductionConstraint()
+	 * @generated
+	 */
+	int REDUCTION_CONSTRAINT = 103;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.RequiredReductionCardImpl <em>Required Reduction Card</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.RequiredReductionCardImpl
+	 * @see Gtm.impl.GtmPackageImpl#getRequiredReductionCard()
+	 * @generated
+	 */
+	int REQUIRED_REDUCTION_CARD = 104;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.StationResourceLocationImpl <em>Station Resource Location</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.StationResourceLocationImpl
+	 * @see Gtm.impl.GtmPackageImpl#getStationResourceLocation()
+	 * @generated
+	 */
+	int STATION_RESOURCE_LOCATION = 31;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.TrainResourceLocationImpl <em>Train Resource Location</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.TrainResourceLocationImpl
+	 * @see Gtm.impl.GtmPackageImpl#getTrainResourceLocation()
+	 * @generated
+	 */
+	int TRAIN_RESOURCE_LOCATION = 30;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -568,22 +2062,13 @@ public interface GtmPackage extends EPackage {
 	int DELIVERY__REPLACED_DELIVERY_ID = 2;
 
 	/**
-	 * The feature id for the '<em><b>Fare Provider</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DELIVERY__FARE_PROVIDER = 3;
-
-	/**
 	 * The feature id for the '<em><b>Optional</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DELIVERY__OPTIONAL = 4;
+	int DELIVERY__OPTIONAL = 3;
 
 	/**
 	 * The feature id for the '<em><b>Provider</b></em>' reference.
@@ -592,7 +2077,25 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DELIVERY__PROVIDER = 5;
+	int DELIVERY__PROVIDER = 4;
+
+	/**
+	 * The feature id for the '<em><b>Schema Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELIVERY__SCHEMA_VERSION = 5;
+
+	/**
+	 * The feature id for the '<em><b>Accepted Schema Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELIVERY__ACCEPTED_SCHEMA_VERSION = 6;
 
 	/**
 	 * The number of structural features of the '<em>Delivery</em>' class.
@@ -601,7 +2104,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DELIVERY_FEATURE_COUNT = 6;
+	int DELIVERY_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Delivery</em>' class.
@@ -613,87 +2116,31 @@ public interface GtmPackage extends EPackage {
 	int DELIVERY_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.BorderPointsImpl <em>Border Points</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.BorderPointsImpl
-	 * @see Gtm.impl.GtmPackageImpl#getBorderPoints()
-	 * @generated
-	 */
-	int BORDER_POINTS = 6;
-
-	/**
-	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * The feature id for the '<em><b>After Sales Rules</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BORDER_POINTS__CODE = 0;
+	int AFTER_SALES_RULES__AFTER_SALES_RULES = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The number of structural features of the '<em>After Sales Rules</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BORDER_POINTS__NAME = 1;
+	int AFTER_SALES_RULES_FEATURE_COUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Station1</b></em>' reference.
+	 * The number of operations of the '<em>After Sales Rules</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BORDER_POINTS__STATION1 = 2;
-
-	/**
-	 * The feature id for the '<em><b>Station2</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BORDER_POINTS__STATION2 = 3;
-
-	/**
-	 * The number of structural features of the '<em>Border Points</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BORDER_POINTS_FEATURE_COUNT = 4;
-
-	/**
-	 * The number of operations of the '<em>Border Points</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BORDER_POINTS_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.CalendarImpl <em>Calendar</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.CalendarImpl
-	 * @see Gtm.impl.GtmPackageImpl#getCalendar()
-	 * @generated
-	 */
-	int CALENDAR = 7;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALENDAR__NAME = 0;
+	int AFTER_SALES_RULES_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -702,872 +2149,448 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CALENDAR__ID = 1;
+	int AFTER_SALES_RULE__ID = 0;
 
 	/**
-	 * The feature id for the '<em><b>From Date</b></em>' attribute.
+	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALENDAR__FROM_DATE = 2;
+	int AFTER_SALES_RULE__CONDITIONS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Until Date</b></em>' attribute.
+	 * The number of structural features of the '<em>After Sales Rule</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALENDAR__UNTIL_DATE = 3;
+	int AFTER_SALES_RULE_FEATURE_COUNT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Utc Offset</b></em>' attribute.
+	 * The number of operations of the '<em>After Sales Rule</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALENDAR__UTC_OFFSET = 4;
+	int AFTER_SALES_RULE_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Dates</b></em>' attribute list.
+	 * The feature id for the '<em><b>Transaction Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALENDAR__DATES = 5;
+	int AFTER_SALES_CONDITION__TRANSACTION_TYPE = 0;
 
 	/**
-	 * The number of structural features of the '<em>Calendar</em>' class.
+	 * The feature id for the '<em><b>Individual Contracts</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALENDAR_FEATURE_COUNT = 6;
+	int AFTER_SALES_CONDITION__INDIVIDUAL_CONTRACTS = 1;
 
 	/**
-	 * The number of operations of the '<em>Calendar</em>' class.
+	 * The feature id for the '<em><b>Carrier Fee</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALENDAR_OPERATION_COUNT = 0;
+	int AFTER_SALES_CONDITION__CARRIER_FEE = 2;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.CarrierImpl <em>Carrier</em>}' class.
+	 * The feature id for the '<em><b>Fee</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.CarrierImpl
-	 * @see Gtm.impl.GtmPackageImpl#getCarrier()
 	 * @generated
-	 */
-	int CARRIER = 8;
-
-	/**
-	 * The feature id for the '<em><b>Code</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARRIER__CODE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARRIER__NAME = 1;
-
-	/**
-	 * The number of structural features of the '<em>Carrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARRIER_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Carrier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARRIER_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.CoversionParamsImpl <em>Coversion Params</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.CoversionParamsImpl
-	 * @see Gtm.impl.GtmPackageImpl#getCoversionParams()
-	 * @generated
-	 */
-	int COVERSION_PARAMS = 9;
-
-	/**
-	 * The feature id for the '<em><b>Border Points</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COVERSION_PARAMS__BORDER_POINTS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Target Fares</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COVERSION_PARAMS__TARGET_FARES = 1;
-
-	/**
-	 * The feature id for the '<em><b>Station Mappings</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COVERSION_PARAMS__STATION_MAPPINGS = 2;
-
-	/**
-	 * The feature id for the '<em><b>Tax Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COVERSION_PARAMS__TAX_ID = 3;
-
-	/**
-	 * The feature id for the '<em><b>VA Tpercentage</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COVERSION_PARAMS__VA_TPERCENTAGE = 4;
-
-	/**
-	 * The feature id for the '<em><b>Tax Country</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COVERSION_PARAMS__TAX_COUNTRY = 5;
-
-	/**
-	 * The number of structural features of the '<em>Coversion Params</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COVERSION_PARAMS_FEATURE_COUNT = 6;
-
-	/**
-	 * The number of operations of the '<em>Coversion Params</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COVERSION_PARAMS_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.LegacyDescriptionImpl <em>Legacy Description</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.LegacyDescriptionImpl
-	 * @see Gtm.impl.GtmPackageImpl#getLegacyDescription()
-	 * @generated
-	 */
-	int LEGACY_DESCRIPTION = 10;
-
-	/**
-	 * The feature id for the '<em><b>Language</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEGACY_DESCRIPTION__LANGUAGE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Text</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEGACY_DESCRIPTION__TEXT = 1;
-
-	/**
-	 * The number of structural features of the '<em>Legacy Description</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEGACY_DESCRIPTION_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Legacy Description</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEGACY_DESCRIPTION_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.LegacyDistanceFareImpl <em>Legacy Distance Fare</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.LegacyDistanceFareImpl
-	 * @see Gtm.impl.GtmPackageImpl#getLegacyDistanceFare()
-	 * @generated
-	 */
-	int LEGACY_DISTANCE_FARE = 11;
-
-	/**
-	 * The feature id for the '<em><b>Distance</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_DISTANCE_FARE__DISTANCE = 0;
+	int AFTER_SALES_CONDITION__FEE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Fare2nd</b></em>' attribute.
+	 * The feature id for the '<em><b>Application Time</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_DISTANCE_FARE__FARE2ND = 1;
+	int AFTER_SALES_CONDITION__APPLICATION_TIME = 4;
 
 	/**
-	 * The feature id for the '<em><b>Fare1st</b></em>' attribute.
+	 * The number of structural features of the '<em>After Sales Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_DISTANCE_FARE__FARE1ST = 2;
+	int AFTER_SALES_CONDITION_FEATURE_COUNT = 5;
 
 	/**
-	 * The feature id for the '<em><b>Fare Table Number</b></em>' attribute.
+	 * The number of operations of the '<em>After Sales Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_DISTANCE_FARE__FARE_TABLE_NUMBER = 3;
+	int AFTER_SALES_CONDITION_OPERATION_COUNT = 0;
 
 	/**
-	 * The number of structural features of the '<em>Legacy Distance Fare</em>' class.
+	 * The feature id for the '<em><b>Unit</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_DISTANCE_FARE_FEATURE_COUNT = 4;
+	int RELATIVE_TIME__UNIT = 0;
 
 	/**
-	 * The number of operations of the '<em>Legacy Distance Fare</em>' class.
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 */
-	int LEGACY_DISTANCE_FARE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.LegacyFaresImpl <em>Legacy Fares</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.LegacyFaresImpl
-	 * @see Gtm.impl.GtmPackageImpl#getLegacyFares()
-	 * @generated
 	 */
-	int LEGACY_FARES = 12;
+	int RELATIVE_TIME__REFERENCE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_FARES__DESCRIPTION = 0;
+	int RELATIVE_TIME__VALUE = 2;
 
 	/**
-	 * The number of structural features of the '<em>Legacy Fares</em>' class.
+	 * The number of structural features of the '<em>Relative Time</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_FARES_FEATURE_COUNT = 1;
+	int RELATIVE_TIME_FEATURE_COUNT = 3;
 
 	/**
-	 * The number of operations of the '<em>Legacy Fares</em>' class.
+	 * The number of operations of the '<em>Relative Time</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 */
-	int LEGACY_FARES_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.Legacy108Impl <em>Legacy108</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.Legacy108Impl
-	 * @see Gtm.impl.GtmPackageImpl#getLegacy108()
-	 * @generated
 	 */
-	int LEGACY108 = 13;
+	int RELATIVE_TIME_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Carrier</b></em>' attribute.
+	 * The feature id for the '<em><b>Unit</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY108__CARRIER = 0;
+	int APPLICATION_TIME__UNIT = RELATIVE_TIME__UNIT;
 
 	/**
-	 * The feature id for the '<em><b>Series</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY108__SERIES = 1;
+	int APPLICATION_TIME__REFERENCE = RELATIVE_TIME__REFERENCE;
 
 	/**
-	 * The feature id for the '<em><b>Fares</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY108__FARES = 2;
+	int APPLICATION_TIME__VALUE = RELATIVE_TIME__VALUE;
 
 	/**
-	 * The feature id for the '<em><b>Distance Fare</b></em>' containment reference list.
+	 * The number of structural features of the '<em>Application Time</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY108__DISTANCE_FARE = 3;
+	int APPLICATION_TIME_FEATURE_COUNT = RELATIVE_TIME_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Route Fare</b></em>' containment reference list.
+	 * The number of operations of the '<em>Application Time</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY108__ROUTE_FARE = 4;
+	int APPLICATION_TIME_OPERATION_COUNT = RELATIVE_TIME_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Legacy108</em>' class.
+	 * The feature id for the '<em><b>Fare Elements</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY108_FEATURE_COUNT = 5;
+	int FARE_STRUCTURE__FARE_ELEMENTS = 0;
 
 	/**
-	 * The number of operations of the '<em>Legacy108</em>' class.
+	 * The feature id for the '<em><b>Combination Constraints</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY108_OPERATION_COUNT = 0;
+	int FARE_STRUCTURE__COMBINATION_CONSTRAINTS = 1;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.LegacyRouteFareImpl <em>Legacy Route Fare</em>}' class.
+	 * The feature id for the '<em><b>Sales Availability Constraints</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.LegacyRouteFareImpl
-	 * @see Gtm.impl.GtmPackageImpl#getLegacyRouteFare()
 	 * @generated
-	 */
-	int LEGACY_ROUTE_FARE = 14;
-
-	/**
-	 * The feature id for the '<em><b>Series Number</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_ROUTE_FARE__SERIES_NUMBER = 0;
+	int FARE_STRUCTURE__SALES_AVAILABILITY_CONSTRAINTS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Fare2nd</b></em>' attribute.
+	 * The feature id for the '<em><b>Travel Validity Constraints</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_ROUTE_FARE__FARE2ND = 1;
+	int FARE_STRUCTURE__TRAVEL_VALIDITY_CONSTRAINTS = 3;
 
 	/**
-	 * The feature id for the '<em><b>Fare1st</b></em>' attribute.
+	 * The feature id for the '<em><b>Prices</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_ROUTE_FARE__FARE1ST = 2;
+	int FARE_STRUCTURE__PRICES = 4;
 
 	/**
-	 * The feature id for the '<em><b>Fare Table Number</b></em>' attribute.
+	 * The feature id for the '<em><b>Regional Constraints</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_ROUTE_FARE__FARE_TABLE_NUMBER = 3;
+	int FARE_STRUCTURE__REGIONAL_CONSTRAINTS = 5;
 
 	/**
-	 * The number of structural features of the '<em>Legacy Route Fare</em>' class.
+	 * The feature id for the '<em><b>Connection Points</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_ROUTE_FARE_FEATURE_COUNT = 4;
+	int FARE_STRUCTURE__CONNECTION_POINTS = 6;
 
 	/**
-	 * The number of operations of the '<em>Legacy Route Fare</em>' class.
+	 * The feature id for the '<em><b>Carrier Constraints</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 */
-	int LEGACY_ROUTE_FARE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.LegacySeriesImpl <em>Legacy Series</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.LegacySeriesImpl
-	 * @see Gtm.impl.GtmPackageImpl#getLegacySeries()
-	 * @generated
 	 */
-	int LEGACY_SERIES = 15;
+	int FARE_STRUCTURE__CARRIER_CONSTRAINTS = 7;
 
 	/**
-	 * The feature id for the '<em><b>Viastations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Service Constraints</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_SERIES__VIASTATIONS = 0;
+	int FARE_STRUCTURE__SERVICE_CONSTRAINTS = 8;
 
 	/**
-	 * The feature id for the '<em><b>Distance1</b></em>' attribute.
+	 * The feature id for the '<em><b>Passenger Constraints</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_SERIES__DISTANCE1 = 1;
+	int FARE_STRUCTURE__PASSENGER_CONSTRAINTS = 9;
 
 	/**
-	 * The feature id for the '<em><b>Pricetype</b></em>' attribute.
+	 * The feature id for the '<em><b>Reduction Constraints</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_SERIES__PRICETYPE = 2;
+	int FARE_STRUCTURE__REDUCTION_CONSTRAINTS = 10;
 
 	/**
-	 * The feature id for the '<em><b>Valid From</b></em>' attribute.
+	 * The feature id for the '<em><b>After Sales Rules</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_SERIES__VALID_FROM = 3;
+	int FARE_STRUCTURE__AFTER_SALES_RULES = 11;
 
 	/**
-	 * The feature id for the '<em><b>Valid Until</b></em>' attribute.
+	 * The feature id for the '<em><b>Personal Data Constraints</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_SERIES__VALID_UNTIL = 4;
+	int FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS = 12;
 
 	/**
-	 * The feature id for the '<em><b>Pricing</b></em>' attribute.
+	 * The feature id for the '<em><b>Fulfillment Constraints</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_SERIES__PRICING = 5;
+	int FARE_STRUCTURE__FULFILLMENT_CONSTRAINTS = 13;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Reduction Cards</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_SERIES__TYPE = 6;
+	int FARE_STRUCTURE__REDUCTION_CARDS = 14;
 
 	/**
-	 * The feature id for the '<em><b>Number</b></em>' attribute.
+	 * The feature id for the '<em><b>Service Level Definitions</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_SERIES__NUMBER = 7;
+	int FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS = 15;
 
 	/**
-	 * The feature id for the '<em><b>From Station</b></em>' attribute.
+	 * The feature id for the '<em><b>Service Class Definitions</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_SERIES__FROM_STATION = 8;
+	int FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS = 16;
 
 	/**
-	 * The feature id for the '<em><b>To Station</b></em>' attribute.
+	 * The feature id for the '<em><b>Calendars</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_SERIES__TO_STATION = 9;
+	int FARE_STRUCTURE__CALENDARS = 17;
 
 	/**
-	 * The feature id for the '<em><b>Distance2</b></em>' attribute.
+	 * The feature id for the '<em><b>Texts</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_SERIES__DISTANCE2 = 10;
+	int FARE_STRUCTURE__TEXTS = 18;
 
 	/**
-	 * The number of structural features of the '<em>Legacy Series</em>' class.
+	 * The feature id for the '<em><b>Zone Definitions</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_SERIES_FEATURE_COUNT = 11;
+	int FARE_STRUCTURE__ZONE_DEFINITIONS = 19;
 
 	/**
-	 * The number of operations of the '<em>Legacy Series</em>' class.
+	 * The feature id for the '<em><b>Reservation Parameters</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 */
-	int LEGACY_SERIES_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.LegacyViastationImpl <em>Legacy Viastation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.LegacyViastationImpl
-	 * @see Gtm.impl.GtmPackageImpl#getLegacyViastation()
-	 * @generated
 	 */
-	int LEGACY_VIASTATION = 16;
+	int FARE_STRUCTURE__RESERVATION_PARAMETERS = 20;
 
 	/**
-	 * The feature id for the '<em><b>Position</b></em>' attribute.
+	 * The feature id for the '<em><b>Supported Online Services</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_VIASTATION__POSITION = 0;
+	int FARE_STRUCTURE__SUPPORTED_ONLINE_SERVICES = 21;
 
 	/**
-	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * The feature id for the '<em><b>Fare Resource Locations</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_VIASTATION__CODE = 1;
+	int FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS = 22;
 
 	/**
-	 * The number of structural features of the '<em>Legacy Viastation</em>' class.
+	 * The number of structural features of the '<em>Fare Structure</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_VIASTATION_FEATURE_COUNT = 2;
+	int FARE_STRUCTURE_FEATURE_COUNT = 23;
 
 	/**
-	 * The number of operations of the '<em>Legacy Viastation</em>' class.
+	 * The number of operations of the '<em>Fare Structure</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_VIASTATION_OPERATION_COUNT = 0;
+	int FARE_STRUCTURE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.LegacyStationMapImpl <em>Legacy Station Map</em>}' class.
+	 * The feature id for the '<em><b>Connection Points</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.LegacyStationMapImpl
-	 * @see Gtm.impl.GtmPackageImpl#getLegacyStationMap()
 	 * @generated
-	 */
-	int LEGACY_STATION_MAP = 17;
-
-	/**
-	 * The feature id for the '<em><b>Legacy Code</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_STATION_MAP__LEGACY_CODE = 0;
+	int CONNECTION_POINTS__CONNECTION_POINTS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Station</b></em>' reference.
+	 * The number of structural features of the '<em>Connection Points</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_STATION_MAP__STATION = 1;
+	int CONNECTION_POINTS_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of structural features of the '<em>Legacy Station Map</em>' class.
+	 * The operation id for the '<em>Find Simple Connection Point</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_STATION_MAP_FEATURE_COUNT = 2;
+	int CONNECTION_POINTS___FIND_SIMPLE_CONNECTION_POINT__STATION = 0;
 
 	/**
-	 * The number of operations of the '<em>Legacy Station Map</em>' class.
+	 * The number of operations of the '<em>Connection Points</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 */
-	int LEGACY_STATION_MAP_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.StationsTypeImpl <em>Stations Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.StationsTypeImpl
-	 * @see Gtm.impl.GtmPackageImpl#getStationsType()
-	 * @generated
-	 */
-	int STATIONS_TYPE = 35;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.TargetFareTemplateImpl <em>Target Fare Template</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.TargetFareTemplateImpl
-	 * @see Gtm.impl.GtmPackageImpl#getTargetFareTemplate()
-	 * @generated
-	 */
-	int TARGET_FARE_TEMPLATE = 36;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.StationImpl <em>Station</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.StationImpl
-	 * @see Gtm.impl.GtmPackageImpl#getStation()
-	 * @generated
-	 */
-	int STATION = 34;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.CountryImpl <em>Country</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.CountryImpl
-	 * @see Gtm.impl.GtmPackageImpl#getCountry()
-	 * @generated
-	 */
-	int COUNTRY = 19;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.LanguageImpl <em>Language</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.LanguageImpl
-	 * @see Gtm.impl.GtmPackageImpl#getLanguage()
-	 * @generated
-	 */
-	int LANGUAGE = 23;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.TextImpl <em>Text</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.TextImpl
-	 * @see Gtm.impl.GtmPackageImpl#getText()
-	 * @generated
-	 */
-	int TEXT = 38;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.TranslationImpl <em>Translation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.TranslationImpl
-	 * @see Gtm.impl.GtmPackageImpl#getTranslation()
-	 * @generated
-	 */
-	int TRANSLATION = 39;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.ServiceClassImpl <em>Service Class</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ServiceClassImpl
-	 * @see Gtm.impl.GtmPackageImpl#getServiceClass()
-	 * @generated
-	 */
-	int SERVICE_CLASS = 31;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.ServiceLevelImpl <em>Service Level</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ServiceLevelImpl
-	 * @see Gtm.impl.GtmPackageImpl#getServiceLevel()
-	 * @generated
-	 */
-	int SERVICE_LEVEL = 32;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.PriceImpl <em>Price</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.PriceImpl
-	 * @see Gtm.impl.GtmPackageImpl#getPrice()
-	 * @generated
-	 */
-	int PRICE = 24;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.ReservationParameterImpl <em>Reservation Parameter</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ReservationParameterImpl
-	 * @see Gtm.impl.GtmPackageImpl#getReservationParameter()
-	 * @generated
-	 */
-	int RESERVATION_PARAMETER = 27;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.CurrencyPriceImpl <em>Currency Price</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.CurrencyPriceImpl
-	 * @see Gtm.impl.GtmPackageImpl#getCurrencyPrice()
-	 * @generated
-	 */
-	int CURRENCY_PRICE = 22;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.CurrencyImpl <em>Currency</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.CurrencyImpl
-	 * @see Gtm.impl.GtmPackageImpl#getCurrency()
-	 * @generated
-	 */
-	int CURRENCY = 21;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.VATDetailImpl <em>VAT Detail</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.VATDetailImpl
-	 * @see Gtm.impl.GtmPackageImpl#getVATDetail()
-	 * @generated
-	 */
-	int VAT_DETAIL = 40;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.RegionalConstraintImpl <em>Regional Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.RegionalConstraintImpl
-	 * @see Gtm.impl.GtmPackageImpl#getRegionalConstraint()
-	 * @generated
-	 */
-	int REGIONAL_CONSTRAINT = 26;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.ConnectionPointImpl <em>Connection Point</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ConnectionPointImpl
-	 * @see Gtm.impl.GtmPackageImpl#getConnectionPoint()
-	 * @generated
-	 */
-	int CONNECTION_POINT = 20;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.ServiceConstraintImpl <em>Service Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ServiceConstraintImpl
-	 * @see Gtm.impl.GtmPackageImpl#getServiceConstraint()
-	 * @generated
-	 */
-	int SERVICE_CONSTRAINT = 33;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.CarrierConstraintImpl <em>Carrier Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.CarrierConstraintImpl
-	 * @see Gtm.impl.GtmPackageImpl#getCarrierConstraint()
-	 * @generated
 	 */
-	int CARRIER_CONSTRAINT = 18;
+	int CONNECTION_POINTS_OPERATION_COUNT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1576,52 +2599,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARRIER_CONSTRAINT__ID = 0;
-
-	/**
-	 * The feature id for the '<em><b>Included Carriers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARRIER_CONSTRAINT__INCLUDED_CARRIERS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Excluded Carriers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARRIER_CONSTRAINT__EXCLUDED_CARRIERS = 2;
-
-	/**
-	 * The number of structural features of the '<em>Carrier Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARRIER_CONSTRAINT_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Carrier Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARRIER_CONSTRAINT_OPERATION_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Code</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COUNTRY__CODE = 0;
+	int CONNECTION_POINT__ID = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1630,43 +2608,43 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COUNTRY__NAME = 1;
+	int CONNECTION_POINT__NAME = 1;
 
 	/**
-	 * The number of structural features of the '<em>Country</em>' class.
+	 * The feature id for the '<em><b>Legacy Border Point Code</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COUNTRY_FEATURE_COUNT = 2;
+	int CONNECTION_POINT__LEGACY_BORDER_POINT_CODE = 2;
 
 	/**
-	 * The number of operations of the '<em>Country</em>' class.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COUNTRY_OPERATION_COUNT = 0;
+	int CONNECTION_POINT__DESCRIPTION = 3;
 
 	/**
-	 * The feature id for the '<em><b>Stations</b></em>' reference list.
+	 * The feature id for the '<em><b>Connected Station Sets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTION_POINT__STATIONS = 0;
+	int CONNECTION_POINT__CONNECTED_STATION_SETS = 4;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTION_POINT__ID = 1;
+	int CONNECTION_POINT__DATA_SOURCE = 5;
 
 	/**
 	 * The number of structural features of the '<em>Connection Point</em>' class.
@@ -1675,7 +2653,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTION_POINT_FEATURE_COUNT = 2;
+	int CONNECTION_POINT_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Connection Point</em>' class.
@@ -1687,171 +2665,442 @@ public interface GtmPackage extends EPackage {
 	int CONNECTION_POINT_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Stations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CURRENCY__NAME = 0;
+	int STATION_SET__STATIONS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Iso Code</b></em>' attribute.
+	 * The number of structural features of the '<em>Station Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CURRENCY__ISO_CODE = 1;
+	int STATION_SET_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of structural features of the '<em>Currency</em>' class.
+	 * The number of operations of the '<em>Station Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CURRENCY_FEATURE_COUNT = 2;
+	int STATION_SET_OPERATION_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>Currency</em>' class.
+	 * The feature id for the '<em><b>Train Resource Locations</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CURRENCY_OPERATION_COUNT = 0;
+	int FARE_RESOURCE_LOCATIONS__TRAIN_RESOURCE_LOCATIONS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Currency</b></em>' reference.
+	 * The feature id for the '<em><b>Station Resource Locations</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CURRENCY_PRICE__CURRENCY = 0;
+	int FARE_RESOURCE_LOCATIONS__STATION_RESOURCE_LOCATIONS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Amount</b></em>' attribute.
+	 * The feature id for the '<em><b>Carrier Resource Locations</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CURRENCY_PRICE__AMOUNT = 1;
+	int FARE_RESOURCE_LOCATIONS__CARRIER_RESOURCE_LOCATIONS = 2;
 
 	/**
-	 * The feature id for the '<em><b>VA Tdetails</b></em>' containment reference list.
+	 * The number of structural features of the '<em>Fare Resource Locations</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CURRENCY_PRICE__VA_TDETAILS = 2;
+	int FARE_RESOURCE_LOCATIONS_FEATURE_COUNT = 3;
 
 	/**
-	 * The number of structural features of the '<em>Currency Price</em>' class.
+	 * The number of operations of the '<em>Fare Resource Locations</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CURRENCY_PRICE_FEATURE_COUNT = 3;
+	int FARE_RESOURCE_LOCATIONS_OPERATION_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>Currency Price</em>' class.
+	 * The meta object id for the '{@link Gtm.impl.TrainResourceLocationsImpl <em>Train Resource Locations</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.TrainResourceLocationsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getTrainResourceLocations()
+	 * @generated
+	 */
+	int TRAIN_RESOURCE_LOCATIONS = 27;
+
+	/**
+	 * The feature id for the '<em><b>Train Resource Locations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CURRENCY_PRICE_OPERATION_COUNT = 0;
+	int TRAIN_RESOURCE_LOCATIONS__TRAIN_RESOURCE_LOCATIONS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The number of structural features of the '<em>Train Resource Locations</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__NAME = 0;
+	int TRAIN_RESOURCE_LOCATIONS_FEATURE_COUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * The number of operations of the '<em>Train Resource Locations</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE__CODE = 1;
+	int TRAIN_RESOURCE_LOCATIONS_OPERATION_COUNT = 0;
 
 	/**
-	 * The number of structural features of the '<em>Language</em>' class.
+	 * The meta object id for the '{@link Gtm.impl.StationResourceLocationsImpl <em>Station Resource Locations</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.StationResourceLocationsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getStationResourceLocations()
+	 * @generated
+	 */
+	int STATION_RESOURCE_LOCATIONS = 28;
+
+	/**
+	 * The feature id for the '<em><b>Station Resource Locations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE_FEATURE_COUNT = 2;
+	int STATION_RESOURCE_LOCATIONS__STATION_RESOURCE_LOCATIONS = 0;
 
 	/**
-	 * The number of operations of the '<em>Language</em>' class.
+	 * The number of structural features of the '<em>Station Resource Locations</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LANGUAGE_OPERATION_COUNT = 0;
+	int STATION_RESOURCE_LOCATIONS_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.FareElementImpl <em>Fare Element</em>}' class.
+	 * The number of operations of the '<em>Station Resource Locations</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.FareElementImpl
-	 * @see Gtm.impl.GtmPackageImpl#getFareElement()
 	 * @generated
+	 * @ordered
 	 */
-	int FARE_ELEMENT = 41;
+	int STATION_RESOURCE_LOCATIONS_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.ReductionCardImpl <em>Reduction Card</em>}' class.
+	 * The meta object id for the '{@link Gtm.impl.CarrierResourceLocationsImpl <em>Carrier Resource Locations</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ReductionCardImpl
-	 * @see Gtm.impl.GtmPackageImpl#getReductionCard()
+	 * @see Gtm.impl.CarrierResourceLocationsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCarrierResourceLocations()
 	 * @generated
 	 */
-	int REDUCTION_CARD = 25;
+	int CARRIER_RESOURCE_LOCATIONS = 29;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.ServiceBrandImpl <em>Service Brand</em>}' class.
+	 * The feature id for the '<em><b>Carrier Resource Locations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ServiceBrandImpl
-	 * @see Gtm.impl.GtmPackageImpl#getServiceBrand()
 	 * @generated
+	 * @ordered
 	 */
-	int SERVICE_BRAND = 42;
+	int CARRIER_RESOURCE_LOCATIONS__CARRIER_RESOURCE_LOCATIONS = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.SalesAvailabilityConstraintImpl <em>Sales Availability Constraint</em>}' class.
+	 * The number of structural features of the '<em>Carrier Resource Locations</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.SalesAvailabilityConstraintImpl
-	 * @see Gtm.impl.GtmPackageImpl#getSalesAvailabilityConstraint()
 	 * @generated
+	 * @ordered
 	 */
-	int SALES_AVAILABILITY_CONSTRAINT = 43;
+	int CARRIER_RESOURCE_LOCATIONS_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.TravelValidityConstraintImpl <em>Travel Validity Constraint</em>}' class.
+	 * The number of operations of the '<em>Carrier Resource Locations</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.TravelValidityConstraintImpl
-	 * @see Gtm.impl.GtmPackageImpl#getTravelValidityConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	int CARRIER_RESOURCE_LOCATIONS_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Carrier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAIN_RESOURCE_LOCATION__CARRIER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Online Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAIN_RESOURCE_LOCATION__ONLINE_RESOURCES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Train Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAIN_RESOURCE_LOCATION__TRAIN_ID = 2;
+
+	/**
+	 * The number of structural features of the '<em>Train Resource Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAIN_RESOURCE_LOCATION_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Train Resource Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAIN_RESOURCE_LOCATION_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Online Resources</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION_RESOURCE_LOCATION__ONLINE_RESOURCES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Stations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION_RESOURCE_LOCATION__STATIONS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Connection Points</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION_RESOURCE_LOCATION__CONNECTION_POINTS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Station Resource Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION_RESOURCE_LOCATION_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Station Resource Location</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION_RESOURCE_LOCATION_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Offer Request Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ONLINE_RESOURCE__OFFER_REQUEST_TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Interface Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ONLINE_RESOURCE__INTERFACE_TYPE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ONLINE_RESOURCE__VERSION = 2;
+
+	/**
+	 * The feature id for the '<em><b>System</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ONLINE_RESOURCE__SYSTEM = 3;
+
+	/**
+	 * The number of structural features of the '<em>Online Resource</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ONLINE_RESOURCE_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Online Resource</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ONLINE_RESOURCE_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Fulfillment Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FULFILLMENT_CONSTRAINTS__FULFILLMENT_CONSTRAINTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Fulfillment Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FULFILLMENT_CONSTRAINTS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Fulfillment Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FULFILLMENT_CONSTRAINTS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ExcludedTimeRangeImpl <em>Excluded Time Range</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ExcludedTimeRangeImpl
+	 * @see Gtm.impl.GtmPackageImpl#getExcludedTimeRange()
 	 * @generated
 	 */
-	int TRAVEL_VALIDITY_CONSTRAINT = 37;
+	int EXCLUDED_TIME_RANGE = 85;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.RequiredBarcodesImpl <em>Required Barcodes</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.RequiredBarcodesImpl
+	 * @see Gtm.impl.GtmPackageImpl#getRequiredBarcodes()
+	 * @generated
+	 */
+	int REQUIRED_BARCODES = 101;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.AcceptedBarcodesImpl <em>Accepted Barcodes</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.AcceptedBarcodesImpl
+	 * @see Gtm.impl.GtmPackageImpl#getAcceptedBarcodes()
+	 * @generated
+	 */
+	int ACCEPTED_BARCODES = 102;
+
+	/**
+	 * The feature id for the '<em><b>Supported Online Services</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTED_ONLINE_SERVICES__SUPPORTED_ONLINE_SERVICES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Supported Online Services</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTED_ONLINE_SERVICES_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Supported Online Services</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTED_ONLINE_SERVICES_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Zone Definitions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ZONE_DEFINITIONS__ZONE_DEFINITIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Zone Definitions</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ZONE_DEFINITIONS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Zone Definitions</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ZONE_DEFINITIONS_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1860,34 +3109,1142 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRICE__ID = 0;
+	int FARE_ELEMENT__ID = 0;
 
 	/**
-	 * The feature id for the '<em><b>Currencies</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRICE__CURRENCIES = 1;
+	int FARE_ELEMENT__TYPE = 1;
 
 	/**
-	 * The number of structural features of the '<em>Price</em>' class.
+	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRICE_FEATURE_COUNT = 2;
+	int FARE_ELEMENT__DATA_DESCRIPTION = 2;
 
 	/**
-	 * The number of operations of the '<em>Price</em>' class.
+	 * The feature id for the '<em><b>Text</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRICE_OPERATION_COUNT = 0;
+	int FARE_ELEMENT__TEXT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Price</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__PRICE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Regional Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__REGIONAL_CONSTRAINT = 5;
+
+	/**
+	 * The feature id for the '<em><b>Service Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__SERVICE_CONSTRAINT = 6;
+
+	/**
+	 * The feature id for the '<em><b>Carrier Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__CARRIER_CONSTRAINT = 7;
+
+	/**
+	 * The feature id for the '<em><b>Service Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__SERVICE_CLASS = 8;
+
+	/**
+	 * The feature id for the '<em><b>Service Level</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__SERVICE_LEVEL = 9;
+
+	/**
+	 * The feature id for the '<em><b>Sales Availability</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__SALES_AVAILABILITY = 10;
+
+	/**
+	 * The feature id for the '<em><b>Travel Validity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__TRAVEL_VALIDITY = 11;
+
+	/**
+	 * The feature id for the '<em><b>Combination Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__COMBINATION_CONSTRAINT = 12;
+
+	/**
+	 * The feature id for the '<em><b>Fare Detail Description</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__FARE_DETAIL_DESCRIPTION = 13;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Accounting Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER = 14;
+
+	/**
+	 * The feature id for the '<em><b>Personal Data Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__PERSONAL_DATA_CONSTRAINT = 15;
+
+	/**
+	 * The feature id for the '<em><b>Reservation Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__RESERVATION_PARAMETER = 16;
+
+	/**
+	 * The feature id for the '<em><b>Reduction Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__REDUCTION_CONSTRAINT = 17;
+
+	/**
+	 * The feature id for the '<em><b>Fulfillment Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__FULFILLMENT_CONSTRAINT = 18;
+
+	/**
+	 * The feature id for the '<em><b>Passenger Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__PASSENGER_CONSTRAINT = 19;
+
+	/**
+	 * The feature id for the '<em><b>After Sales Rule</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__AFTER_SALES_RULE = 20;
+
+	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__DATA_SOURCE = 21;
+
+	/**
+	 * The number of structural features of the '<em>Fare Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT_FEATURE_COUNT = 22;
+
+	/**
+	 * The number of operations of the '<em>Fare Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Series Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_ACCOUNTING_IDENTIFIER__SERIES_ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Tariff Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_ACCOUNTING_IDENTIFIER__TARIFF_ID = 1;
+
+	/**
+	 * The feature id for the '<em><b>Add Series Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_ACCOUNTING_IDENTIFIER__ADD_SERIES_ID = 2;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Accounting Identifier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_ACCOUNTING_IDENTIFIER_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Legacy Accounting Identifier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_ACCOUNTING_IDENTIFIER_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Reduction Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REDUCTION_CONSTRAINTS__REDUCTION_CONSTRAINTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Reduction Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REDUCTION_CONSTRAINTS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Reduction Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REDUCTION_CONSTRAINTS_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Fare Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENTS__FARE_ELEMENTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Fare Elements</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENTS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Fare Elements</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENTS_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Personal Data Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_DATA_CONSTRAINTS__PERSONAL_DATA_CONSTRAINTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Personal Data Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_DATA_CONSTRAINTS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Personal Data Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_DATA_CONSTRAINTS_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_DATA_CONSTRAINT__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Required Personal Data</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_DATA_CONSTRAINT__REQUIRED_PERSONAL_DATA = 1;
+
+	/**
+	 * The feature id for the '<em><b>Allowed Changes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_DATA_CONSTRAINT__ALLOWED_CHANGES = 2;
+
+	/**
+	 * The number of structural features of the '<em>Personal Data Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_DATA_CONSTRAINT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Personal Data Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSONAL_DATA_CONSTRAINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Ticket Holder Only</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRED_PERSONAL_DATA__TICKET_HOLDER_ONLY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Data Item</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRED_PERSONAL_DATA__DATA_ITEM = 1;
+
+	/**
+	 * The feature id for the '<em><b>Transfer</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRED_PERSONAL_DATA__TRANSFER = 2;
+
+	/**
+	 * The feature id for the '<em><b>Fulfillment Type</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRED_PERSONAL_DATA__FULFILLMENT_TYPE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Cross Border</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRED_PERSONAL_DATA__CROSS_BORDER = 4;
+
+	/**
+	 * The number of structural features of the '<em>Required Personal Data</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRED_PERSONAL_DATA_FEATURE_COUNT = 5;
+
+	/**
+	 * The number of operations of the '<em>Required Personal Data</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRED_PERSONAL_DATA_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Time Limit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOWED_PERSONAL_DATA_CHANGES__TIME_LIMIT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Accepted Reason</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOWED_PERSONAL_DATA_CHANGES__ACCEPTED_REASON = 1;
+
+	/**
+	 * The number of structural features of the '<em>Allowed Personal Data Changes</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOWED_PERSONAL_DATA_CHANGES_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Allowed Personal Data Changes</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOWED_PERSONAL_DATA_CHANGES_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Passenger Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINTS__PASSENGER_CONSTRAINTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Passenger Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINTS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Passenger Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINTS_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Traveler Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__TRAVELER_TYPE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__TEXT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Upper Age Limit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__UPPER_AGE_LIMIT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Lower Age Limit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__LOWER_AGE_LIMIT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Travel Alone Age Limit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__TRAVEL_ALONE_AGE_LIMIT = 5;
+
+	/**
+	 * The feature id for the '<em><b>Reservation Age Limit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__RESERVATION_AGE_LIMIT = 6;
+
+	/**
+	 * The feature id for the '<em><b>Is Ancilliary</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__IS_ANCILLIARY = 7;
+
+	/**
+	 * The feature id for the '<em><b>Passenger Weight</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__PASSENGER_WEIGHT = 8;
+
+	/**
+	 * The feature id for the '<em><b>Max Total Passenger Weight</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__MAX_TOTAL_PASSENGER_WEIGHT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Min Total Passenger Weight</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__MIN_TOTAL_PASSENGER_WEIGHT = 10;
+
+	/**
+	 * The feature id for the '<em><b>Included Free Passengers</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS = 11;
+
+	/**
+	 * The feature id for the '<em><b>Excluded Passenger Combinations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS = 12;
+
+	/**
+	 * The number of structural features of the '<em>Passenger Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT_FEATURE_COUNT = 13;
+
+	/**
+	 * The number of operations of the '<em>Passenger Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Included Free Passengers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDED_FREE_PASSENGERS__INCLUDED_FREE_PASSENGERS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Included Free Passengers</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDED_FREE_PASSENGERS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Included Free Passengers</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDED_FREE_PASSENGERS_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Max Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_COMBINATION_CONSTRAINT__MAX_NUMBER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Passenger Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_COMBINATION_CONSTRAINT__PASSENGER_TYPE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Passenger Combination Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_COMBINATION_CONSTRAINT_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Passenger Combination Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_COMBINATION_CONSTRAINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Combination Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMBINATION_CONSTRAINTS__COMBINATION_CONSTRAINTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Combination Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMBINATION_CONSTRAINTS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Combination Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMBINATION_CONSTRAINTS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.ReservationPreferenceGroupImpl <em>Reservation Preference Group</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.ReservationPreferenceGroupImpl
+	 * @see Gtm.impl.GtmPackageImpl#getReservationPreferenceGroup()
+	 * @generated
+	 */
+	int RESERVATION_PREFERENCE_GROUP = 81;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMBINATION_CONSTRAINT__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMBINATION_CONSTRAINT__DATA_DESCRIPTION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Combination Models</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMBINATION_CONSTRAINT__COMBINATION_MODELS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Combination Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMBINATION_CONSTRAINT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Combination Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMBINATION_CONSTRAINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Travel Validity Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAVEL_VALIDITY_CONSTRAINTS__TRAVEL_VALIDITY_CONSTRAINTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Travel Validity Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAVEL_VALIDITY_CONSTRAINTS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Travel Validity Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAVEL_VALIDITY_CONSTRAINTS_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAVEL_VALIDITY_CONSTRAINT__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAVEL_VALIDITY_CONSTRAINT__DATA_DESCRIPTION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Valid Days</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAVEL_VALIDITY_CONSTRAINT__VALID_DAYS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Travel Days</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAVEL_VALIDITY_CONSTRAINT__TRAVEL_DAYS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Range</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAVEL_VALIDITY_CONSTRAINT__RANGE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Return Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAVEL_VALIDITY_CONSTRAINT__RETURN_CONSTRAINT = 5;
+
+	/**
+	 * The feature id for the '<em><b>Excluded Time Range</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE = 6;
+
+	/**
+	 * The number of structural features of the '<em>Travel Validity Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAVEL_VALIDITY_CONSTRAINT_FEATURE_COUNT = 7;
+
+	/**
+	 * The number of operations of the '<em>Travel Validity Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRAVEL_VALIDITY_CONSTRAINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Sales Availability Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_AVAILABILITY_CONSTRAINTS__SALES_AVAILABILITY_CONSTRAINTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Sales Availability Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_AVAILABILITY_CONSTRAINTS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Sales Availability Constraints</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_AVAILABILITY_CONSTRAINTS_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_AVAILABILITY_CONSTRAINT__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_AVAILABILITY_CONSTRAINT__DATA_DESCRIPTION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Restrictions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_AVAILABILITY_CONSTRAINT__RESTRICTIONS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_AVAILABILITY_CONSTRAINT__DATA_SOURCE = 3;
+
+	/**
+	 * The number of structural features of the '<em>Sales Availability Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_AVAILABILITY_CONSTRAINT_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Sales Availability Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_AVAILABILITY_CONSTRAINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Sales Dates</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_RESTRICTION__SALES_DATES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Start Of Sale</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_RESTRICTION__START_OF_SALE = 1;
+
+	/**
+	 * The feature id for the '<em><b>End Of Sale</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_RESTRICTION__END_OF_SALE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Sales Restriction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_RESTRICTION_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Sales Restriction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SALES_RESTRICTION_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Unit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OF_SALE__UNIT = RELATIVE_TIME__UNIT;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OF_SALE__REFERENCE = RELATIVE_TIME__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OF_SALE__VALUE = RELATIVE_TIME__VALUE;
+
+	/**
+	 * The number of structural features of the '<em>End Of Sale</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OF_SALE_FEATURE_COUNT = RELATIVE_TIME_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>End Of Sale</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_OF_SALE_OPERATION_COUNT = RELATIVE_TIME_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Unit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_OF_SALE__UNIT = RELATIVE_TIME__UNIT;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_OF_SALE__REFERENCE = RELATIVE_TIME__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_OF_SALE__VALUE = RELATIVE_TIME__VALUE;
+
+	/**
+	 * The number of structural features of the '<em>Start Of Sale</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_OF_SALE_FEATURE_COUNT = RELATIVE_TIME_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Start Of Sale</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_OF_SALE_OPERATION_COUNT = RELATIVE_TIME_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Reduction Cards</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REDUCTION_CARDS__REDUCTION_CARDS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Reduction Cards</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REDUCTION_CARDS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Reduction Cards</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REDUCTION_CARDS_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1944,76 +4301,31 @@ public interface GtmPackage extends EPackage {
 	int REDUCTION_CARD_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * The feature id for the '<em><b>Carrier Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REGIONAL_CONSTRAINT__ID = 0;
+	int CARRIER_CONSTRAINTS__CARRIER_CONSTRAINTS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Distance</b></em>' attribute.
+	 * The number of structural features of the '<em>Carrier Constraints</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REGIONAL_CONSTRAINT__DISTANCE = 1;
+	int CARRIER_CONSTRAINTS_FEATURE_COUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Entry Connection Point</b></em>' reference.
+	 * The number of operations of the '<em>Carrier Constraints</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REGIONAL_CONSTRAINT__ENTRY_CONNECTION_POINT = 2;
-
-	/**
-	 * The feature id for the '<em><b>Exit Connection Point</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGIONAL_CONSTRAINT__EXIT_CONNECTION_POINT = 3;
-
-	/**
-	 * The feature id for the '<em><b>Regional Validity</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGIONAL_CONSTRAINT__REGIONAL_VALIDITY = 4;
-
-	/**
-	 * The number of structural features of the '<em>Regional Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGIONAL_CONSTRAINT_FEATURE_COUNT = 5;
-
-	/**
-	 * The number of operations of the '<em>Regional Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGIONAL_CONSTRAINT_OPERATION_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Optional Reservation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_PARAMETER__OPTIONAL_RESERVATION = 0;
+	int CARRIER_CONSTRAINTS_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -2022,343 +4334,79 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION_PARAMETER__ID = 1;
+	int CARRIER_CONSTRAINT__ID = 0;
 
 	/**
-	 * The feature id for the '<em><b>Params9181</b></em>' containment reference.
+	 * The feature id for the '<em><b>Included Carriers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION_PARAMETER__PARAMS9181 = 2;
+	int CARRIER_CONSTRAINT__INCLUDED_CARRIERS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Options</b></em>' containment reference.
+	 * The feature id for the '<em><b>Excluded Carriers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION_PARAMETER__OPTIONS = 3;
+	int CARRIER_CONSTRAINT__EXCLUDED_CARRIERS = 2;
 
 	/**
-	 * The number of structural features of the '<em>Reservation Parameter</em>' class.
+	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION_PARAMETER_FEATURE_COUNT = 4;
+	int CARRIER_CONSTRAINT__DATA_DESCRIPTION = 3;
 
 	/**
-	 * The number of operations of the '<em>Reservation Parameter</em>' class.
+	 * The number of structural features of the '<em>Carrier Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION_PARAMETER_OPERATION_COUNT = 0;
+	int CARRIER_CONSTRAINT_FEATURE_COUNT = 4;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.ReservationParams9181Impl <em>Reservation Params9181</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ReservationParams9181Impl
-	 * @see Gtm.impl.GtmPackageImpl#getReservationParams9181()
-	 * @generated
-	 */
-	int RESERVATION_PARAMS9181 = 28;
-
-	/**
-	 * The feature id for the '<em><b>Travel Class</b></em>' attribute.
+	 * The number of operations of the '<em>Carrier Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION_PARAMS9181__TRAVEL_CLASS = 0;
+	int CARRIER_CONSTRAINT_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Service Level</b></em>' attribute.
+	 * The feature id for the '<em><b>Service Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION_PARAMS9181__SERVICE_LEVEL = 1;
+	int SERVICE_CONSTRAINTS__SERVICE_CONSTRAINTS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Service</b></em>' attribute.
+	 * The number of structural features of the '<em>Service Constraints</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION_PARAMS9181__SERVICE = 2;
+	int SERVICE_CONSTRAINTS_FEATURE_COUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Berth Type</b></em>' attribute.
+	 * The number of operations of the '<em>Service Constraints</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION_PARAMS9181__BERTH_TYPE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Coach Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_PARAMS9181__COACH_TYPE = 4;
-
-	/**
-	 * The feature id for the '<em><b>Compartment Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_PARAMS9181__COMPARTMENT_TYPE = 5;
-
-	/**
-	 * The feature id for the '<em><b>Tariff</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_PARAMS9181__TARIFF = 6;
-
-	/**
-	 * The number of structural features of the '<em>Reservation Params9181</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_PARAMS9181_FEATURE_COUNT = 7;
-
-	/**
-	 * The number of operations of the '<em>Reservation Params9181</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_PARAMS9181_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.ReservationOptionsImpl <em>Reservation Options</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ReservationOptionsImpl
-	 * @see Gtm.impl.GtmPackageImpl#getReservationOptions()
-	 * @generated
-	 */
-	int RESERVATION_OPTIONS = 29;
-
-	/**
-	 * The feature id for the '<em><b>Preferences</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_OPTIONS__PREFERENCES = 0;
-
-	/**
-	 * The feature id for the '<em><b>Service Brands</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_OPTIONS__SERVICE_BRANDS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Graphical Reservation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_OPTIONS__GRAPHICAL_RESERVATION = 2;
-
-	/**
-	 * The number of structural features of the '<em>Reservation Options</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_OPTIONS_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Reservation Options</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_OPTIONS_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.ReservationPreferenceImpl <em>Reservation Preference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ReservationPreferenceImpl
-	 * @see Gtm.impl.GtmPackageImpl#getReservationPreference()
-	 * @generated
-	 */
-	int RESERVATION_PREFERENCE = 30;
-
-	/**
-	 * The feature id for the '<em><b>Preference</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_PREFERENCE__PREFERENCE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Group</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_PREFERENCE__GROUP = 1;
-
-	/**
-	 * The number of structural features of the '<em>Reservation Preference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_PREFERENCE_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Reservation Preference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESERVATION_PREFERENCE_OPERATION_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_CLASS__ID = 0;
-
-	/**
-	 * The feature id for the '<em><b>Classic Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_CLASS__CLASSIC_CLASS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Text</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_CLASS__TEXT = 2;
-
-	/**
-	 * The number of structural features of the '<em>Service Class</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_CLASS_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Service Class</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_CLASS_OPERATION_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_LEVEL__ID = 0;
-
-	/**
-	 * The feature id for the '<em><b>Text</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_LEVEL__TEXT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Combining Service Classes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_LEVEL__COMBINING_SERVICE_CLASSES = 2;
-
-	/**
-	 * The feature id for the '<em><b>Reservation Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_LEVEL__RESERVATION_PARAMETER = 3;
-
-	/**
-	 * The feature id for the '<em><b>Includes Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_LEVEL__INCLUDES_CLASS_NAME = 4;
-
-	/**
-	 * The number of structural features of the '<em>Service Level</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_LEVEL_FEATURE_COUNT = 5;
-
-	/**
-	 * The number of operations of the '<em>Service Level</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_LEVEL_OPERATION_COUNT = 0;
+	int SERVICE_CONSTRAINTS_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -2406,85 +4454,31 @@ public interface GtmPackage extends EPackage {
 	int SERVICE_CONSTRAINT_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Regional Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATION__NAME = 0;
+	int REGIONAL_CONSTRAINTS__REGIONAL_CONSTRAINTS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Country</b></em>' reference.
+	 * The number of structural features of the '<em>Regional Constraints</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATION__COUNTRY = 1;
+	int REGIONAL_CONSTRAINTS_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of structural features of the '<em>Station</em>' class.
+	 * The number of operations of the '<em>Regional Constraints</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATION_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Station</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATION_OPERATION_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Code</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATIONS_TYPE__CODE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATIONS_TYPE__NAME = 1;
-
-	/**
-	 * The number of structural features of the '<em>Stations Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATIONS_TYPE_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Stations Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATIONS_TYPE_OPERATION_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Price Factor</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_FARE_TEMPLATE__PRICE_FACTOR = 0;
+	int REGIONAL_CONSTRAINTS_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -2493,196 +4487,187 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_FARE_TEMPLATE__ID = 1;
+	int REGIONAL_CONSTRAINT__ID = 0;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Distance</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_FARE_TEMPLATE__TYPE = 2;
+	int REGIONAL_CONSTRAINT__DISTANCE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Entry Connection Point</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_FARE_TEMPLATE__DATA_DESCRIPTION = 3;
+	int REGIONAL_CONSTRAINT__ENTRY_CONNECTION_POINT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Text</b></em>' reference.
+	 * The feature id for the '<em><b>Exit Connection Point</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_FARE_TEMPLATE__TEXT = 4;
+	int REGIONAL_CONSTRAINT__EXIT_CONNECTION_POINT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Service Constraint</b></em>' reference.
+	 * The feature id for the '<em><b>Regional Validity</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_FARE_TEMPLATE__SERVICE_CONSTRAINT = 5;
+	int REGIONAL_CONSTRAINT__REGIONAL_VALIDITY = 4;
 
 	/**
-	 * The feature id for the '<em><b>Carrier Constraint</b></em>' reference.
+	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_FARE_TEMPLATE__CARRIER_CONSTRAINT = 6;
+	int REGIONAL_CONSTRAINT__DATA_SOURCE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Service Class</b></em>' reference.
+	 * The number of structural features of the '<em>Regional Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_FARE_TEMPLATE__SERVICE_CLASS = 7;
+	int REGIONAL_CONSTRAINT_FEATURE_COUNT = 6;
 
 	/**
-	 * The feature id for the '<em><b>Service Level</b></em>' reference.
+	 * The number of operations of the '<em>Regional Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_FARE_TEMPLATE__SERVICE_LEVEL = 8;
+	int REGIONAL_CONSTRAINT_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Sales Availability</b></em>' reference.
+	 * The feature id for the '<em><b>Seq Nb</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_FARE_TEMPLATE__SALES_AVAILABILITY = 9;
+	int REGIONAL_VALIDITY__SEQ_NB = 0;
 
 	/**
-	 * The feature id for the '<em><b>Travel Validity</b></em>' reference.
+	 * The feature id for the '<em><b>Via Station</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_FARE_TEMPLATE__TRAVEL_VALIDITY = 10;
+	int REGIONAL_VALIDITY__VIA_STATION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Combination Constraint</b></em>' reference.
+	 * The feature id for the '<em><b>Zone</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT = 11;
+	int REGIONAL_VALIDITY__ZONE = 2;
 
 	/**
-	 * The number of structural features of the '<em>Target Fare Template</em>' class.
+	 * The feature id for the '<em><b>Line</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_FARE_TEMPLATE_FEATURE_COUNT = 12;
+	int REGIONAL_VALIDITY__LINE = 3;
 
 	/**
-	 * The number of operations of the '<em>Target Fare Template</em>' class.
+	 * The feature id for the '<em><b>Polygone</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_FARE_TEMPLATE_OPERATION_COUNT = 0;
+	int REGIONAL_VALIDITY__POLYGONE = 4;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * The number of structural features of the '<em>Regional Validity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRAVEL_VALIDITY_CONSTRAINT__ID = 0;
+	int REGIONAL_VALIDITY_FEATURE_COUNT = 5;
 
 	/**
-	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
+	 * The number of operations of the '<em>Regional Validity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRAVEL_VALIDITY_CONSTRAINT__DATA_DESCRIPTION = 1;
+	int REGIONAL_VALIDITY_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Valid Days</b></em>' reference.
+	 * The feature id for the '<em><b>Service Level Definition</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRAVEL_VALIDITY_CONSTRAINT__VALID_DAYS = 2;
+	int SERVICE_LEVEL_DEFINITIONS__SERVICE_LEVEL_DEFINITION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Excluded Time Range</b></em>' attribute.
+	 * The number of structural features of the '<em>Service Level Definitions</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE = 3;
+	int SERVICE_LEVEL_DEFINITIONS_FEATURE_COUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Travel Days</b></em>' attribute.
+	 * The number of operations of the '<em>Service Level Definitions</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRAVEL_VALIDITY_CONSTRAINT__TRAVEL_DAYS = 4;
+	int SERVICE_LEVEL_DEFINITIONS_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Range</b></em>' containment reference.
+	 * The feature id for the '<em><b>Texts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRAVEL_VALIDITY_CONSTRAINT__RANGE = 5;
+	int TEXTS__TEXTS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Return Constraint</b></em>' containment reference.
+	 * The number of structural features of the '<em>Texts</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRAVEL_VALIDITY_CONSTRAINT__RETURN_CONSTRAINT = 6;
+	int TEXTS_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of structural features of the '<em>Travel Validity Constraint</em>' class.
+	 * The number of operations of the '<em>Texts</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRAVEL_VALIDITY_CONSTRAINT_FEATURE_COUNT = 7;
-
-	/**
-	 * The number of operations of the '<em>Travel Validity Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRAVEL_VALIDITY_CONSTRAINT_OPERATION_COUNT = 0;
+	int TEXTS_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -2820,6 +4805,78 @@ public interface GtmPackage extends EPackage {
 	int TRANSLATION_OPERATION_COUNT = 0;
 
 	/**
+	 * The feature id for the '<em><b>Prices</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRICES__PRICES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Prices</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRICES_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Prices</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRICES_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRICE__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Currencies</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRICE__CURRENCIES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRICE__DATA_SOURCE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Price</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRICE_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Price</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRICE_OPERATION_COUNT = 0;
+
+	/**
 	 * The feature id for the '<em><b>Amount</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2883,148 +4940,103 @@ public interface GtmPackage extends EPackage {
 	int VAT_DETAIL_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * The feature id for the '<em><b>Currency</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_ELEMENT__ID = 0;
+	int CURRENCY_PRICE__CURRENCY = 0;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Amount</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_ELEMENT__TYPE = 1;
+	int CURRENCY_PRICE__AMOUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
+	 * The feature id for the '<em><b>VA Tdetails</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_ELEMENT__DATA_DESCRIPTION = 2;
+	int CURRENCY_PRICE__VA_TDETAILS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Text</b></em>' reference.
+	 * The number of structural features of the '<em>Currency Price</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_ELEMENT__TEXT = 3;
+	int CURRENCY_PRICE_FEATURE_COUNT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Price</b></em>' reference.
+	 * The number of operations of the '<em>Currency Price</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_ELEMENT__PRICE = 4;
+	int CURRENCY_PRICE_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Regional Constraint</b></em>' reference.
+	 * The feature id for the '<em><b>Service Class Definitions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_ELEMENT__REGIONAL_CONSTRAINT = 5;
+	int SERVICE_CLASS_DEFINITIONS__SERVICE_CLASS_DEFINITIONS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Service Constraint</b></em>' reference.
+	 * The number of structural features of the '<em>Service Class Definitions</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_ELEMENT__SERVICE_CONSTRAINT = 6;
+	int SERVICE_CLASS_DEFINITIONS_FEATURE_COUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Carrier Constraint</b></em>' reference.
+	 * The number of operations of the '<em>Service Class Definitions</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_ELEMENT__CARRIER_CONSTRAINT = 7;
+	int SERVICE_CLASS_DEFINITIONS_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Service Class</b></em>' reference.
+	 * The feature id for the '<em><b>Calendars</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_ELEMENT__SERVICE_CLASS = 8;
+	int CALENDARS__CALENDARS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Service Level</b></em>' reference.
+	 * The number of structural features of the '<em>Calendars</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_ELEMENT__SERVICE_LEVEL = 9;
+	int CALENDARS_FEATURE_COUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Sales Availability</b></em>' reference.
+	 * The number of operations of the '<em>Calendars</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_ELEMENT__SALES_AVAILABILITY = 10;
-
-	/**
-	 * The feature id for the '<em><b>Travel Validity</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_ELEMENT__TRAVEL_VALIDITY = 11;
-
-	/**
-	 * The feature id for the '<em><b>Combination Constraint</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_ELEMENT__COMBINATION_CONSTRAINT = 12;
-
-	/**
-	 * The number of structural features of the '<em>Fare Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_ELEMENT_FEATURE_COUNT = 13;
-
-	/**
-	 * The number of operations of the '<em>Fare Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_ELEMENT_OPERATION_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Code</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_BRAND__CODE = 0;
+	int CALENDARS_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3033,34 +5045,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_BRAND__NAME = 1;
-
-	/**
-	 * The feature id for the '<em><b>Abbreviation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_BRAND__ABBREVIATION = 2;
-
-	/**
-	 * The number of structural features of the '<em>Service Brand</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_BRAND_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Service Brand</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_BRAND_OPERATION_COUNT = 0;
+	int CALENDAR__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -3069,163 +5054,106 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SALES_AVAILABILITY_CONSTRAINT__ID = 0;
+	int CALENDAR__ID = 1;
 
 	/**
-	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
+	 * The feature id for the '<em><b>From Date</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SALES_AVAILABILITY_CONSTRAINT__DATA_DESCRIPTION = 1;
+	int CALENDAR__FROM_DATE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Restrictions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Until Date</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SALES_AVAILABILITY_CONSTRAINT__RESTRICTIONS = 2;
+	int CALENDAR__UNTIL_DATE = 3;
 
 	/**
-	 * The number of structural features of the '<em>Sales Availability Constraint</em>' class.
+	 * The feature id for the '<em><b>Utc Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SALES_AVAILABILITY_CONSTRAINT_FEATURE_COUNT = 3;
+	int CALENDAR__UTC_OFFSET = 4;
 
 	/**
-	 * The number of operations of the '<em>Sales Availability Constraint</em>' class.
+	 * The feature id for the '<em><b>Dates</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SALES_AVAILABILITY_CONSTRAINT_OPERATION_COUNT = 0;
+	int CALENDAR__DATES = 5;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.SalesRestrictionImpl <em>Sales Restriction</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.SalesRestrictionImpl
-	 * @see Gtm.impl.GtmPackageImpl#getSalesRestriction()
-	 * @generated
-	 */
-	int SALES_RESTRICTION = 44;
-
-	/**
-	 * The feature id for the '<em><b>Sales Dates</b></em>' reference.
+	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SALES_RESTRICTION__SALES_DATES = 0;
+	int CALENDAR__DATA_SOURCE = 6;
 
 	/**
-	 * The feature id for the '<em><b>Start Of Sale</b></em>' containment reference.
+	 * The number of structural features of the '<em>Calendar</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SALES_RESTRICTION__START_OF_SALE = 1;
+	int CALENDAR_FEATURE_COUNT = 7;
 
 	/**
-	 * The feature id for the '<em><b>End Of Sale</b></em>' containment reference.
+	 * The number of operations of the '<em>Calendar</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SALES_RESTRICTION__END_OF_SALE = 2;
+	int CALENDAR_OPERATION_COUNT = 0;
 
 	/**
-	 * The number of structural features of the '<em>Sales Restriction</em>' class.
+	 * The feature id for the '<em><b>Reservation Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SALES_RESTRICTION_FEATURE_COUNT = 3;
+	int RESERVATION_PARAMETERS__RESERVATION_PARAMETERS = 0;
 
 	/**
-	 * The number of operations of the '<em>Sales Restriction</em>' class.
+	 * The number of structural features of the '<em>Reservation Parameters</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SALES_RESTRICTION_OPERATION_COUNT = 0;
+	int RESERVATION_PARAMETERS_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.TimeReferenceImpl <em>Time Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.TimeReferenceImpl
-	 * @see Gtm.impl.GtmPackageImpl#getTimeReference()
-	 * @generated
-	 */
-	int TIME_REFERENCE = 45;
-
-	/**
-	 * The feature id for the '<em><b>Referece Type</b></em>' attribute.
+	 * The number of operations of the '<em>Reservation Parameters</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_REFERENCE__REFERECE_TYPE = 0;
+	int RESERVATION_PARAMETERS_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Unit</b></em>' attribute.
+	 * The feature id for the '<em><b>Optional Reservation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_REFERENCE__UNIT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_REFERENCE__VALUE = 2;
-
-	/**
-	 * The number of structural features of the '<em>Time Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_REFERENCE_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Time Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_REFERENCE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.CombinationConstraintImpl <em>Combination Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.CombinationConstraintImpl
-	 * @see Gtm.impl.GtmPackageImpl#getCombinationConstraint()
-	 * @generated
-	 */
-	int COMBINATION_CONSTRAINT = 46;
+	int RESERVATION_PARAMETER__OPTIONAL_RESERVATION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -3234,108 +5162,313 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMBINATION_CONSTRAINT__ID = 0;
+	int RESERVATION_PARAMETER__ID = 1;
 
 	/**
-	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
+	 * The feature id for the '<em><b>Params9181</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMBINATION_CONSTRAINT__DATA_DESCRIPTION = 1;
+	int RESERVATION_PARAMETER__PARAMS9181 = 2;
 
 	/**
-	 * The feature id for the '<em><b>Combination Models</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Options</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMBINATION_CONSTRAINT__COMBINATION_MODELS = 2;
+	int RESERVATION_PARAMETER__OPTIONS = 3;
 
 	/**
-	 * The number of structural features of the '<em>Combination Constraint</em>' class.
+	 * The number of structural features of the '<em>Reservation Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMBINATION_CONSTRAINT_FEATURE_COUNT = 3;
+	int RESERVATION_PARAMETER_FEATURE_COUNT = 4;
 
 	/**
-	 * The number of operations of the '<em>Combination Constraint</em>' class.
+	 * The number of operations of the '<em>Reservation Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMBINATION_CONSTRAINT_OPERATION_COUNT = 0;
+	int RESERVATION_PARAMETER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.ValidityRangeImpl <em>Validity Range</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ValidityRangeImpl
-	 * @see Gtm.impl.GtmPackageImpl#getValidityRange()
-	 * @generated
-	 */
-	int VALIDITY_RANGE = 47;
-
-	/**
-	 * The feature id for the '<em><b>Unit</b></em>' attribute.
+	 * The feature id for the '<em><b>Travel Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALIDITY_RANGE__UNIT = 0;
+	int RESERVATION_PARAMS9181__TRAVEL_CLASS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * The feature id for the '<em><b>Service Level</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALIDITY_RANGE__VALUE = 1;
+	int RESERVATION_PARAMS9181__SERVICE_LEVEL = 1;
 
 	/**
-	 * The feature id for the '<em><b>Hours After Midnight</b></em>' attribute.
+	 * The feature id for the '<em><b>Service</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALIDITY_RANGE__HOURS_AFTER_MIDNIGHT = 2;
+	int RESERVATION_PARAMS9181__SERVICE = 2;
 
 	/**
-	 * The number of structural features of the '<em>Validity Range</em>' class.
+	 * The feature id for the '<em><b>Berth Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALIDITY_RANGE_FEATURE_COUNT = 3;
+	int RESERVATION_PARAMS9181__BERTH_TYPE = 3;
 
 	/**
-	 * The number of operations of the '<em>Validity Range</em>' class.
+	 * The feature id for the '<em><b>Coach Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALIDITY_RANGE_OPERATION_COUNT = 0;
+	int RESERVATION_PARAMS9181__COACH_TYPE = 4;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.TimeRangeImpl <em>Time Range</em>}' class.
+	 * The feature id for the '<em><b>Compartment Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.TimeRangeImpl
-	 * @see Gtm.impl.GtmPackageImpl#getTimeRange()
 	 * @generated
+	 * @ordered
 	 */
-	int TIME_RANGE = 48;
+	int RESERVATION_PARAMS9181__COMPARTMENT_TYPE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Tariff</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_PARAMS9181__TARIFF = 6;
+
+	/**
+	 * The number of structural features of the '<em>Reservation Params9181</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_PARAMS9181_FEATURE_COUNT = 7;
+
+	/**
+	 * The number of operations of the '<em>Reservation Params9181</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_PARAMS9181_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Preferences</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_OPTIONS__PREFERENCES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Service Brands</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_OPTIONS__SERVICE_BRANDS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Graphical Reservation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_OPTIONS__GRAPHICAL_RESERVATION = 2;
+
+	/**
+	 * The number of structural features of the '<em>Reservation Options</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_OPTIONS_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Reservation Options</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_OPTIONS_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Preference</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_PREFERENCE_GROUP__PREFERENCE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Group</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_PREFERENCE_GROUP__GROUP = 1;
+
+	/**
+	 * The number of structural features of the '<em>Reservation Preference Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_PREFERENCE_GROUP_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Reservation Preference Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_PREFERENCE_GROUP_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_CLASS__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Classic Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_CLASS__CLASSIC_CLASS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_CLASS__TEXT = 2;
+
+	/**
+	 * The number of structural features of the '<em>Service Class</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_CLASS_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Service Class</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_CLASS_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_LEVEL__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_LEVEL__TEXT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Combining Service Classes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_LEVEL__COMBINING_SERVICE_CLASSES = 2;
+
+	/**
+	 * The feature id for the '<em><b>Reservation Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_LEVEL__RESERVATION_PARAMETER = 3;
+
+	/**
+	 * The feature id for the '<em><b>Includes Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_LEVEL__INCLUDES_CLASS_NAME = 4;
+
+	/**
+	 * The number of structural features of the '<em>Service Level</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_LEVEL_FEATURE_COUNT = 5;
+
+	/**
+	 * The number of operations of the '<em>Service Level</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_LEVEL_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Scope</b></em>' attribute.
@@ -3383,14 +5516,94 @@ public interface GtmPackage extends EPackage {
 	int TIME_RANGE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.ReturnValidityConstraintImpl <em>Return Validity Constraint</em>}' class.
+	 * The feature id for the '<em><b>Scope</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ReturnValidityConstraintImpl
-	 * @see Gtm.impl.GtmPackageImpl#getReturnValidityConstraint()
 	 * @generated
+	 * @ordered
 	 */
-	int RETURN_VALIDITY_CONSTRAINT = 49;
+	int EXCLUDED_TIME_RANGE__SCOPE = TIME_RANGE__SCOPE;
+
+	/**
+	 * The feature id for the '<em><b>From</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDED_TIME_RANGE__FROM = TIME_RANGE__FROM;
+
+	/**
+	 * The feature id for the '<em><b>Until</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDED_TIME_RANGE__UNTIL = TIME_RANGE__UNTIL;
+
+	/**
+	 * The number of structural features of the '<em>Excluded Time Range</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDED_TIME_RANGE_FEATURE_COUNT = TIME_RANGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Excluded Time Range</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDED_TIME_RANGE_OPERATION_COUNT = TIME_RANGE_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Unit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALIDITY_RANGE__UNIT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALIDITY_RANGE__VALUE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Hours After Midnight</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALIDITY_RANGE__HOURS_AFTER_MIDNIGHT = 2;
+
+	/**
+	 * The number of structural features of the '<em>Validity Range</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALIDITY_RANGE_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Validity Range</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALIDITY_RANGE_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Excluded Weekdays</b></em>' attribute list.
@@ -3438,180 +5651,6 @@ public interface GtmPackage extends EPackage {
 	int RETURN_VALIDITY_CONSTRAINT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.FareCombinationModelImpl <em>Fare Combination Model</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.FareCombinationModelImpl
-	 * @see Gtm.impl.GtmPackageImpl#getFareCombinationModel()
-	 * @generated
-	 */
-	int FARE_COMBINATION_MODEL = 50;
-
-	/**
-	 * The feature id for the '<em><b>Model</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_COMBINATION_MODEL__MODEL = 0;
-
-	/**
-	 * The feature id for the '<em><b>Combinable Carriers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_COMBINATION_MODEL__COMBINABLE_CARRIERS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Only When Combined</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_COMBINATION_MODEL__ONLY_WHEN_COMBINED = 2;
-
-	/**
-	 * The feature id for the '<em><b>Allowed Allocators</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_COMBINATION_MODEL__ALLOWED_ALLOCATORS = 3;
-
-	/**
-	 * The feature id for the '<em><b>Reference Cluster</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_COMBINATION_MODEL__REFERENCE_CLUSTER = 4;
-
-	/**
-	 * The feature id for the '<em><b>Allowed Clusters</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_COMBINATION_MODEL__ALLOWED_CLUSTERS = 5;
-
-	/**
-	 * The feature id for the '<em><b>Allowed Common Contracts</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_COMBINATION_MODEL__ALLOWED_COMMON_CONTRACTS = 6;
-
-	/**
-	 * The number of structural features of the '<em>Fare Combination Model</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_COMBINATION_MODEL_FEATURE_COUNT = 7;
-
-	/**
-	 * The number of operations of the '<em>Fare Combination Model</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_COMBINATION_MODEL_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.RegionalValidityImpl <em>Regional Validity</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.RegionalValidityImpl
-	 * @see Gtm.impl.GtmPackageImpl#getRegionalValidity()
-	 * @generated
-	 */
-	int REGIONAL_VALIDITY = 51;
-
-	/**
-	 * The feature id for the '<em><b>Seq Nb</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGIONAL_VALIDITY__SEQ_NB = 0;
-
-	/**
-	 * The feature id for the '<em><b>Via Station</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGIONAL_VALIDITY__VIA_STATION = 1;
-
-	/**
-	 * The feature id for the '<em><b>Zone</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGIONAL_VALIDITY__ZONE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Line</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGIONAL_VALIDITY__LINE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Polygone</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGIONAL_VALIDITY__POLYGONE = 4;
-
-	/**
-	 * The number of structural features of the '<em>Regional Validity</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGIONAL_VALIDITY_FEATURE_COUNT = 5;
-
-	/**
-	 * The number of operations of the '<em>Regional Validity</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGIONAL_VALIDITY_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.ViaStationImpl <em>Via Station</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ViaStationImpl
-	 * @see Gtm.impl.GtmPackageImpl#getViaStation()
-	 * @generated
-	 */
-	int VIA_STATION = 52;
-
-	/**
 	 * The feature id for the '<em><b>Station</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3621,13 +5660,22 @@ public interface GtmPackage extends EPackage {
 	int VIA_STATION__STATION = 0;
 
 	/**
+	 * The feature id for the '<em><b>Carrier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIA_STATION__CARRIER = 1;
+
+	/**
 	 * The feature id for the '<em><b>Route</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIA_STATION__ROUTE = 1;
+	int VIA_STATION__ROUTE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Alternative Routes</b></em>' containment reference list.
@@ -3636,16 +5684,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIA_STATION__ALTERNATIVE_ROUTES = 2;
-
-	/**
-	 * The feature id for the '<em><b>Carrier</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIA_STATION__CARRIER = 3;
+	int VIA_STATION__ALTERNATIVE_ROUTES = 3;
 
 	/**
 	 * The number of structural features of the '<em>Via Station</em>' class.
@@ -3657,23 +5696,96 @@ public interface GtmPackage extends EPackage {
 	int VIA_STATION_FEATURE_COUNT = 4;
 
 	/**
+	 * The operation id for the '<em>Get Description</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIA_STATION___GET_DESCRIPTION = 0;
+
+	/**
 	 * The number of operations of the '<em>Via Station</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIA_STATION_OPERATION_COUNT = 0;
+	int VIA_STATION_OPERATION_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.ZoneImpl <em>Zone</em>}' class.
+	 * The meta object id for the '{@link Gtm.impl.AlternativeRouteImpl <em>Alternative Route</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ZoneImpl
-	 * @see Gtm.impl.GtmPackageImpl#getZone()
+	 * @see Gtm.impl.AlternativeRouteImpl
+	 * @see Gtm.impl.GtmPackageImpl#getAlternativeRoute()
 	 * @generated
 	 */
-	int ZONE = 53;
+	int ALTERNATIVE_ROUTE = 90;
+
+	/**
+	 * The feature id for the '<em><b>Stations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALTERNATIVE_ROUTE__STATIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Alternative Route</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALTERNATIVE_ROUTE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Alternative Route</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALTERNATIVE_ROUTE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.RouteImpl <em>Route</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.RouteImpl
+	 * @see Gtm.impl.GtmPackageImpl#getRoute()
+	 * @generated
+	 */
+	int ROUTE = 91;
+
+	/**
+	 * The feature id for the '<em><b>Stations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROUTE__STATIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Route</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROUTE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Route</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROUTE_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Binary Zone Id</b></em>' attribute.
@@ -3685,22 +5797,13 @@ public interface GtmPackage extends EPackage {
 	int ZONE__BINARY_ZONE_ID = 0;
 
 	/**
-	 * The feature id for the '<em><b>Zone Id</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ZONE__ZONE_ID = 1;
-
-	/**
 	 * The feature id for the '<em><b>Carrier</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ZONE__CARRIER = 2;
+	int ZONE__CARRIER = 1;
 
 	/**
 	 * The feature id for the '<em><b>Entry Station</b></em>' reference.
@@ -3709,7 +5812,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ZONE__ENTRY_STATION = 3;
+	int ZONE__ENTRY_STATION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Terminal Station</b></em>' reference.
@@ -3718,7 +5821,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ZONE__TERMINAL_STATION = 4;
+	int ZONE__TERMINAL_STATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Nuts Code</b></em>' reference.
@@ -3727,7 +5830,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ZONE__NUTS_CODE = 5;
+	int ZONE__NUTS_CODE = 4;
 
 	/**
 	 * The feature id for the '<em><b>City</b></em>' attribute.
@@ -3736,7 +5839,16 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ZONE__CITY = 6;
+	int ZONE__CITY = 5;
+
+	/**
+	 * The feature id for the '<em><b>Zone Definitions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ZONE__ZONE_DEFINITIONS = 6;
 
 	/**
 	 * The number of structural features of the '<em>Zone</em>' class.
@@ -3757,14 +5869,22 @@ public interface GtmPackage extends EPackage {
 	int ZONE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.NutsCodeImpl <em>Nuts Code</em>}' class.
+	 * The feature id for the '<em><b>Zone Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.NutsCodeImpl
-	 * @see Gtm.impl.GtmPackageImpl#getNutsCode()
 	 * @generated
+	 * @ordered
 	 */
-	int NUTS_CODE = 54;
+	int ZONE_DEFINITION__ZONE_ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ZONE_DEFINITION__ID = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3773,44 +5893,34 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NUTS_CODE__NAME = 0;
+	int ZONE_DEFINITION__NAME = 2;
 
 	/**
-	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * The feature id for the '<em><b>Stations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUTS_CODE__CODE = 1;
+	int ZONE_DEFINITION__STATIONS = 3;
 
 	/**
-	 * The number of structural features of the '<em>Nuts Code</em>' class.
+	 * The number of structural features of the '<em>Zone Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUTS_CODE_FEATURE_COUNT = 2;
+	int ZONE_DEFINITION_FEATURE_COUNT = 4;
 
 	/**
-	 * The number of operations of the '<em>Nuts Code</em>' class.
+	 * The number of operations of the '<em>Zone Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUTS_CODE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.LineImpl <em>Line</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.LineImpl
-	 * @see Gtm.impl.GtmPackageImpl#getLine()
-	 * @generated
-	 */
-	int LINE = 55;
+	int ZONE_DEFINITION_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Binary Zone Id</b></em>' attribute.
@@ -3894,23 +6004,13 @@ public interface GtmPackage extends EPackage {
 	int LINE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.PolygoneImpl <em>Polygone</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.PolygoneImpl
-	 * @see Gtm.impl.GtmPackageImpl#getPolygone()
-	 * @generated
-	 */
-	int POLYGONE = 56;
-
-	/**
-	 * The feature id for the '<em><b>Egde</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Edge</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POLYGONE__EGDE = 0;
+	int POLYGONE__EDGE = 0;
 
 	/**
 	 * The number of structural features of the '<em>Polygone</em>' class.
@@ -3929,16 +6029,6 @@ public interface GtmPackage extends EPackage {
 	 * @ordered
 	 */
 	int POLYGONE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.EdgeImpl <em>Edge</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.EdgeImpl
-	 * @see Gtm.impl.GtmPackageImpl#getEdge()
-	 * @generated
-	 */
-	int EDGE = 57;
 
 	/**
 	 * The feature id for the '<em><b>System</b></em>' attribute.
@@ -4022,571 +6112,49 @@ public interface GtmPackage extends EPackage {
 	int EDGE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.PassengerConstraintImpl <em>Passenger Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.PassengerConstraintImpl
-	 * @see Gtm.impl.GtmPackageImpl#getPassengerConstraint()
-	 * @generated
-	 */
-	int PASSENGER_CONSTRAINT = 58;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * The feature id for the '<em><b>Carrier</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PASSENGER_CONSTRAINT__ID = 0;
+	int CARRIER_RESOURCE_LOCATION__CARRIER = 0;
 
 	/**
-	 * The feature id for the '<em><b>Traveler Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Service Brand</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PASSENGER_CONSTRAINT__TRAVELER_TYPE = 1;
+	int CARRIER_RESOURCE_LOCATION__SERVICE_BRAND = 1;
 
 	/**
-	 * The feature id for the '<em><b>Text</b></em>' reference.
+	 * The feature id for the '<em><b>Online Resources</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PASSENGER_CONSTRAINT__TEXT = 2;
+	int CARRIER_RESOURCE_LOCATION__ONLINE_RESOURCES = 2;
 
 	/**
-	 * The feature id for the '<em><b>Upper Age Limit</b></em>' attribute.
+	 * The number of structural features of the '<em>Carrier Resource Location</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PASSENGER_CONSTRAINT__UPPER_AGE_LIMIT = 3;
+	int CARRIER_RESOURCE_LOCATION_FEATURE_COUNT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Lower Age Limit</b></em>' attribute.
+	 * The number of operations of the '<em>Carrier Resource Location</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PASSENGER_CONSTRAINT__LOWER_AGE_LIMIT = 4;
-
-	/**
-	 * The feature id for the '<em><b>Travel Alone Age Limit</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_CONSTRAINT__TRAVEL_ALONE_AGE_LIMIT = 5;
-
-	/**
-	 * The feature id for the '<em><b>Reservation Age Limit</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_CONSTRAINT__RESERVATION_AGE_LIMIT = 6;
-
-	/**
-	 * The feature id for the '<em><b>Is Ancilliary</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_CONSTRAINT__IS_ANCILLIARY = 7;
-
-	/**
-	 * The feature id for the '<em><b>Passenger Weight</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_CONSTRAINT__PASSENGER_WEIGHT = 8;
-
-	/**
-	 * The feature id for the '<em><b>Max Total Passenger Weight</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_CONSTRAINT__MAX_TOTAL_PASSENGER_WEIGHT = 9;
-
-	/**
-	 * The feature id for the '<em><b>Min Total Passenger Weight</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_CONSTRAINT__MIN_TOTAL_PASSENGER_WEIGHT = 10;
-
-	/**
-	 * The feature id for the '<em><b>Included Free Passengers</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS = 11;
-
-	/**
-	 * The feature id for the '<em><b>Excluded Passenger Combinations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS = 12;
-
-	/**
-	 * The number of structural features of the '<em>Passenger Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_CONSTRAINT_FEATURE_COUNT = 13;
-
-	/**
-	 * The number of operations of the '<em>Passenger Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_CONSTRAINT_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.PassengerCombinationConstraintImpl <em>Passenger Combination Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.PassengerCombinationConstraintImpl
-	 * @see Gtm.impl.GtmPackageImpl#getPassengerCombinationConstraint()
-	 * @generated
-	 */
-	int PASSENGER_COMBINATION_CONSTRAINT = 59;
-
-	/**
-	 * The feature id for the '<em><b>Max Number</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_COMBINATION_CONSTRAINT__MAX_NUMBER = 0;
-
-	/**
-	 * The feature id for the '<em><b>Passenger Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_COMBINATION_CONSTRAINT__PASSENGER_TYPE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Passenger Combination Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_COMBINATION_CONSTRAINT_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Passenger Combination Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PASSENGER_COMBINATION_CONSTRAINT_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.RelativeTimeImpl <em>Relative Time</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.RelativeTimeImpl
-	 * @see Gtm.impl.GtmPackageImpl#getRelativeTime()
-	 * @generated
-	 */
-	int RELATIVE_TIME = 60;
-
-	/**
-	 * The feature id for the '<em><b>Unit</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RELATIVE_TIME__UNIT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Reference</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RELATIVE_TIME__REFERENCE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RELATIVE_TIME__VALUE = 2;
-
-	/**
-	 * The number of structural features of the '<em>Relative Time</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RELATIVE_TIME_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Relative Time</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RELATIVE_TIME_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.ZoneDefinitionImpl <em>Zone Definition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ZoneDefinitionImpl
-	 * @see Gtm.impl.GtmPackageImpl#getZoneDefinition()
-	 * @generated
-	 */
-	int ZONE_DEFINITION = 61;
-
-	/**
-	 * The feature id for the '<em><b>Zone Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ZONE_DEFINITION__ZONE_ID = 0;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ZONE_DEFINITION__ID = 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ZONE_DEFINITION__NAME = 2;
-
-	/**
-	 * The feature id for the '<em><b>Stations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ZONE_DEFINITION__STATIONS = 3;
-
-	/**
-	 * The number of structural features of the '<em>Zone Definition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ZONE_DEFINITION_FEATURE_COUNT = 4;
-
-	/**
-	 * The number of operations of the '<em>Zone Definition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ZONE_DEFINITION_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.AfterSalesConditionImpl <em>After Sales Condition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.AfterSalesConditionImpl
-	 * @see Gtm.impl.GtmPackageImpl#getAfterSalesCondition()
-	 * @generated
-	 */
-	int AFTER_SALES_CONDITION = 62;
-
-	/**
-	 * The feature id for the '<em><b>Transaction Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AFTER_SALES_CONDITION__TRANSACTION_TYPE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Individual Contracts</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AFTER_SALES_CONDITION__INDIVIDUAL_CONTRACTS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Carrier Fee</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AFTER_SALES_CONDITION__CARRIER_FEE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Fee</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AFTER_SALES_CONDITION__FEE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Application Time</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AFTER_SALES_CONDITION__APPLICATION_TIME = 4;
-
-	/**
-	 * The number of structural features of the '<em>After Sales Condition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AFTER_SALES_CONDITION_FEATURE_COUNT = 5;
-
-	/**
-	 * The number of operations of the '<em>After Sales Condition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AFTER_SALES_CONDITION_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.AfterSalesRuleImpl <em>After Sales Rule</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.AfterSalesRuleImpl
-	 * @see Gtm.impl.GtmPackageImpl#getAfterSalesRule()
-	 * @generated
-	 */
-	int AFTER_SALES_RULE = 63;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AFTER_SALES_RULE__ID = 0;
-
-	/**
-	 * The feature id for the '<em><b>Conditions</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AFTER_SALES_RULE__CONDITIONS = 1;
-
-	/**
-	 * The number of structural features of the '<em>After Sales Rule</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AFTER_SALES_RULE_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>After Sales Rule</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AFTER_SALES_RULE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.PersonalDataConstraintImpl <em>Personal Data Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.PersonalDataConstraintImpl
-	 * @see Gtm.impl.GtmPackageImpl#getPersonalDataConstraint()
-	 * @generated
-	 */
-	int PERSONAL_DATA_CONSTRAINT = 64;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERSONAL_DATA_CONSTRAINT__ID = 0;
-
-	/**
-	 * The feature id for the '<em><b>Required Personal Data</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERSONAL_DATA_CONSTRAINT__REQUIRED_PERSONAL_DATA = 1;
-
-	/**
-	 * The feature id for the '<em><b>Allowed Changes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERSONAL_DATA_CONSTRAINT__ALLOWED_CHANGES = 2;
-
-	/**
-	 * The number of structural features of the '<em>Personal Data Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERSONAL_DATA_CONSTRAINT_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Personal Data Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERSONAL_DATA_CONSTRAINT_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.RequiredPersonalDataImpl <em>Required Personal Data</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.RequiredPersonalDataImpl
-	 * @see Gtm.impl.GtmPackageImpl#getRequiredPersonalData()
-	 * @generated
-	 */
-	int REQUIRED_PERSONAL_DATA = 65;
-
-	/**
-	 * The feature id for the '<em><b>Ticket Holder Only</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIRED_PERSONAL_DATA__TICKET_HOLDER_ONLY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Data Item</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIRED_PERSONAL_DATA__DATA_ITEM = 1;
-
-	/**
-	 * The feature id for the '<em><b>Transfer</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIRED_PERSONAL_DATA__TRANSFER = 2;
-
-	/**
-	 * The feature id for the '<em><b>Fulfillment Type</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIRED_PERSONAL_DATA__FULFILLMENT_TYPE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Cross Border</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIRED_PERSONAL_DATA__CROSS_BORDER = 4;
-
-	/**
-	 * The number of structural features of the '<em>Required Personal Data</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIRED_PERSONAL_DATA_FEATURE_COUNT = 5;
-
-	/**
-	 * The number of operations of the '<em>Required Personal Data</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIRED_PERSONAL_DATA_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.CrossBorderConditionImpl <em>Cross Border Condition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.CrossBorderConditionImpl
-	 * @see Gtm.impl.GtmPackageImpl#getCrossBorderCondition()
-	 * @generated
-	 */
-	int CROSS_BORDER_CONDITION = 66;
+	int CARRIER_RESOURCE_LOCATION_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>From Country</b></em>' reference.
@@ -4607,7 +6175,7 @@ public interface GtmPackage extends EPackage {
 	int CROSS_BORDER_CONDITION__TO_COUNTRY = 1;
 
 	/**
-	 * The feature id for the '<em><b>Affected Service Brands</b></em>' reference.
+	 * The feature id for the '<em><b>Affected Service Brands</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4634,60 +6202,211 @@ public interface GtmPackage extends EPackage {
 	int CROSS_BORDER_CONDITION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.AllowedPersonalDataChangesImpl <em>Allowed Personal Data Changes</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.AllowedPersonalDataChangesImpl
-	 * @see Gtm.impl.GtmPackageImpl#getAllowedPersonalDataChanges()
-	 * @generated
-	 */
-	int ALLOWED_PERSONAL_DATA_CHANGES = 67;
-
-	/**
-	 * The feature id for the '<em><b>Time Limit</b></em>' attribute.
+	 * The feature id for the '<em><b>Model</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOWED_PERSONAL_DATA_CHANGES__TIME_LIMIT = 0;
+	int FARE_COMBINATION_MODEL__MODEL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Accepted Reason</b></em>' attribute.
+	 * The feature id for the '<em><b>Combinable Carriers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOWED_PERSONAL_DATA_CHANGES__ACCEPTED_REASON = 1;
+	int FARE_COMBINATION_MODEL__COMBINABLE_CARRIERS = 1;
 
 	/**
-	 * The number of structural features of the '<em>Allowed Personal Data Changes</em>' class.
+	 * The feature id for the '<em><b>Only When Combined</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOWED_PERSONAL_DATA_CHANGES_FEATURE_COUNT = 2;
+	int FARE_COMBINATION_MODEL__ONLY_WHEN_COMBINED = 2;
 
 	/**
-	 * The number of operations of the '<em>Allowed Personal Data Changes</em>' class.
+	 * The feature id for the '<em><b>Allowed Allocators</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOWED_PERSONAL_DATA_CHANGES_OPERATION_COUNT = 0;
+	int FARE_COMBINATION_MODEL__ALLOWED_ALLOCATORS = 3;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.ReductionConstraintImpl <em>Reduction Constraint</em>}' class.
+	 * The feature id for the '<em><b>Reference Cluster</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.ReductionConstraintImpl
-	 * @see Gtm.impl.GtmPackageImpl#getReductionConstraint()
 	 * @generated
+	 * @ordered
 	 */
-	int REDUCTION_CONSTRAINT = 68;
+	int FARE_COMBINATION_MODEL__REFERENCE_CLUSTER = 4;
+
+	/**
+	 * The feature id for the '<em><b>Allowed Clusters</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_COMBINATION_MODEL__ALLOWED_CLUSTERS = 5;
+
+	/**
+	 * The feature id for the '<em><b>Allowed Common Contracts</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_COMBINATION_MODEL__ALLOWED_COMMON_CONTRACTS = 6;
+
+	/**
+	 * The number of structural features of the '<em>Fare Combination Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_COMBINATION_MODEL_FEATURE_COUNT = 7;
+
+	/**
+	 * The number of operations of the '<em>Fare Combination Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_COMBINATION_MODEL_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FULFILLMENT_CONSTRAINT__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Accepted Fulfilment Types</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FULFILLMENT_CONSTRAINT__ACCEPTED_FULFILMENT_TYPES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Required Control Data Exchange</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FULFILLMENT_CONSTRAINT__REQUIRED_CONTROL_DATA_EXCHANGE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Individual Ticketing Permitted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FULFILLMENT_CONSTRAINT__INDIVIDUAL_TICKETING_PERMITTED = 3;
+
+	/**
+	 * The feature id for the '<em><b>Accepted Barcodes</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES = 4;
+
+	/**
+	 * The feature id for the '<em><b>Required Barcodes</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FULFILLMENT_CONSTRAINT__REQUIRED_BARCODES = 5;
+
+	/**
+	 * The number of structural features of the '<em>Fulfillment Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FULFILLMENT_CONSTRAINT_FEATURE_COUNT = 6;
+
+	/**
+	 * The number of operations of the '<em>Fulfillment Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FULFILLMENT_CONSTRAINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Required Barcodes</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRED_BARCODES__REQUIRED_BARCODES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Required Barcodes</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRED_BARCODES_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Required Barcodes</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRED_BARCODES_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Accepted Barcodes</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACCEPTED_BARCODES__ACCEPTED_BARCODES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Accepted Barcodes</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACCEPTED_BARCODES_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Accepted Barcodes</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACCEPTED_BARCODES_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -4724,16 +6443,6 @@ public interface GtmPackage extends EPackage {
 	 * @ordered
 	 */
 	int REDUCTION_CONSTRAINT_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.RequiredReductionCardImpl <em>Required Reduction Card</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.RequiredReductionCardImpl
-	 * @see Gtm.impl.GtmPackageImpl#getRequiredReductionCard()
-	 * @generated
-	 */
-	int REQUIRED_REDUCTION_CARD = 69;
 
 	/**
 	 * The feature id for the '<em><b>Card Class</b></em>' reference.
@@ -4781,14 +6490,148 @@ public interface GtmPackage extends EPackage {
 	int REQUIRED_REDUCTION_CARD_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.FulfillmentConstraintImpl <em>Fulfillment Constraint</em>}' class.
+	 * The feature id for the '<em><b>Legacy108</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.FulfillmentConstraintImpl
-	 * @see Gtm.impl.GtmPackageImpl#getFulfillmentConstraint()
 	 * @generated
+	 * @ordered
 	 */
-	int FULFILLMENT_CONSTRAINT = 70;
+	int CONVERSION_FROM_LEGACY__LEGACY108 = 0;
+
+	/**
+	 * The feature id for the '<em><b>Params</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_FROM_LEGACY__PARAMS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Conversion From Legacy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_FROM_LEGACY_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Conversion From Legacy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_FROM_LEGACY_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Tax Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_PARAMS__TAX_ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>VA Tpercentage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_PARAMS__VA_TPERCENTAGE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Country</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_PARAMS__COUNTRY = 2;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Station Mappings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_PARAMS__LEGACY_STATION_MAPPINGS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Target Fares</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_PARAMS__LEGACY_TARGET_FARES = 4;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Zone Mappings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_PARAMS__LEGACY_ZONE_MAPPINGS = 5;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Station To Service Brand Mappings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS = 6;
+
+	/**
+	 * The feature id for the '<em><b>End Of Sale</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_PARAMS__END_OF_SALE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Start Of Sale</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_PARAMS__START_OF_SALE = 8;
+
+	/**
+	 * The number of structural features of the '<em>Conversion Params</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_PARAMS_FEATURE_COUNT = 9;
+
+	/**
+	 * The number of operations of the '<em>Conversion Params</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONVERSION_PARAMS_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Price Factor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_FARE_TEMPLATE__PRICE_FACTOR = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -4797,135 +6640,709 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FULFILLMENT_CONSTRAINT__ID = 0;
+	int TARGET_FARE_TEMPLATE__ID = 1;
 
 	/**
-	 * The feature id for the '<em><b>Accepted Fulfilment Types</b></em>' attribute list.
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FULFILLMENT_CONSTRAINT__ACCEPTED_FULFILMENT_TYPES = 1;
+	int TARGET_FARE_TEMPLATE__TYPE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Accepted Barcodes</b></em>' attribute list.
+	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES = 2;
+	int TARGET_FARE_TEMPLATE__DATA_DESCRIPTION = 3;
 
 	/**
-	 * The feature id for the '<em><b>Required Control Data Exchange</b></em>' attribute list.
+	 * The feature id for the '<em><b>Text</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FULFILLMENT_CONSTRAINT__REQUIRED_CONTROL_DATA_EXCHANGE = 3;
+	int TARGET_FARE_TEMPLATE__TEXT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Individual Ticketing Permitted</b></em>' attribute.
+	 * The feature id for the '<em><b>Price</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FULFILLMENT_CONSTRAINT__INDIVIDUAL_TICKETING_PERMITTED = 4;
+	int TARGET_FARE_TEMPLATE__PRICE = 5;
 
 	/**
-	 * The number of structural features of the '<em>Fulfillment Constraint</em>' class.
+	 * The feature id for the '<em><b>Regional Constraint</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FULFILLMENT_CONSTRAINT_FEATURE_COUNT = 5;
+	int TARGET_FARE_TEMPLATE__REGIONAL_CONSTRAINT = 6;
 
 	/**
-	 * The number of operations of the '<em>Fulfillment Constraint</em>' class.
+	 * The feature id for the '<em><b>Service Constraint</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FULFILLMENT_CONSTRAINT_OPERATION_COUNT = 0;
+	int TARGET_FARE_TEMPLATE__SERVICE_CONSTRAINT = 7;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.FareResourceLocationImpl <em>Fare Resource Location</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.FareResourceLocationImpl
-	 * @see Gtm.impl.GtmPackageImpl#getFareResourceLocation()
-	 * @generated
-	 */
-	int FARE_RESOURCE_LOCATION = 71;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * The feature id for the '<em><b>Carrier Constraint</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_RESOURCE_LOCATION__ID = 0;
+	int TARGET_FARE_TEMPLATE__CARRIER_CONSTRAINT = 8;
 
 	/**
-	 * The feature id for the '<em><b>Carrier Resource Locations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Service Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_RESOURCE_LOCATION__CARRIER_RESOURCE_LOCATIONS = 1;
+	int TARGET_FARE_TEMPLATE__SERVICE_CLASS = 9;
 
 	/**
-	 * The feature id for the '<em><b>Station Resource Locations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Service Level</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_RESOURCE_LOCATION__STATION_RESOURCE_LOCATIONS = 2;
+	int TARGET_FARE_TEMPLATE__SERVICE_LEVEL = 10;
 
 	/**
-	 * The feature id for the '<em><b>Train Resource Locations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sales Availability</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_RESOURCE_LOCATION__TRAIN_RESOURCE_LOCATIONS = 3;
+	int TARGET_FARE_TEMPLATE__SALES_AVAILABILITY = 11;
 
 	/**
-	 * The number of structural features of the '<em>Fare Resource Location</em>' class.
+	 * The feature id for the '<em><b>Travel Validity</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_RESOURCE_LOCATION_FEATURE_COUNT = 4;
+	int TARGET_FARE_TEMPLATE__TRAVEL_VALIDITY = 12;
 
 	/**
-	 * The number of operations of the '<em>Fare Resource Location</em>' class.
+	 * The feature id for the '<em><b>Combination Constraint</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_RESOURCE_LOCATION_OPERATION_COUNT = 0;
+	int TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT = 13;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.TrainResourceLocationImpl <em>Train Resource Location</em>}' class.
+	 * The feature id for the '<em><b>Fare Detail Description</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.TrainResourceLocationImpl
-	 * @see Gtm.impl.GtmPackageImpl#getTrainResourceLocation()
 	 * @generated
+	 * @ordered
 	 */
-	int TRAIN_RESOURCE_LOCATION = 72;
+	int TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION = 14;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Accounting Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER = 15;
+
+	/**
+	 * The feature id for the '<em><b>Personal Data Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT = 16;
+
+	/**
+	 * The feature id for the '<em><b>Reservation Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_FARE_TEMPLATE__RESERVATION_PARAMETER = 17;
+
+	/**
+	 * The feature id for the '<em><b>Reduction Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_FARE_TEMPLATE__REDUCTION_CONSTRAINT = 18;
+
+	/**
+	 * The feature id for the '<em><b>Fulfillment Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_FARE_TEMPLATE__FULFILLMENT_CONSTRAINT = 19;
+
+	/**
+	 * The feature id for the '<em><b>Passenger Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_FARE_TEMPLATE__PASSENGER_CONSTRAINT = 20;
+
+	/**
+	 * The feature id for the '<em><b>After Sales Rule</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_FARE_TEMPLATE__AFTER_SALES_RULE = 21;
+
+	/**
+	 * The number of structural features of the '<em>Target Fare Template</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_FARE_TEMPLATE_FEATURE_COUNT = 22;
+
+	/**
+	 * The number of operations of the '<em>Target Fare Template</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_FARE_TEMPLATE_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Station To Service Brand Mappings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Station To Service Constraint Mappings</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS_FEATURE_COUNT = 1;
+
+	/**
+	 * The operation id for the '<em>Find Service Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS___FIND_SERVICE_CONSTRAINT__INT = 0;
+
+	/**
+	 * The number of operations of the '<em>Legacy Station To Service Constraint Mappings</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS_OPERATION_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING__CODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Service Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING__SERVICE_CONSTRAINT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING__DESCRIPTION = 2;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Station To Service Constraint Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Legacy Station To Service Constraint Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Station Mappings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_MAPPINGS__STATION_MAPPINGS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Station Mappings</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_MAPPINGS_FEATURE_COUNT = 1;
+
+	/**
+	 * The operation id for the '<em>Find Mapped Station</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_MAPPINGS___FIND_MAPPED_STATION__INT = 0;
+
+	/**
+	 * The number of operations of the '<em>Legacy Station Mappings</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_MAPPINGS_OPERATION_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_MAP__LEGACY_CODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Station</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_MAP__STATION = 1;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Station Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_MAP_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Legacy Station Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_MAP_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION__CODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION__NAME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Station</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Legacy Station</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Border Points</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BODER_POINT_MAPPINGS__BORDER_POINTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Boder Point Mappings</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BODER_POINT_MAPPINGS_FEATURE_COUNT = 1;
+
+	/**
+	 * The operation id for the '<em>Get Mapping By Border Point Code</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BODER_POINT_MAPPINGS___GET_MAPPING_BY_BORDER_POINT_CODE__INT = 0;
+
+	/**
+	 * The number of operations of the '<em>Legacy Boder Point Mappings</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BODER_POINT_MAPPINGS_OPERATION_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINT_MAPPING__CODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINT_MAPPING__NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Station1</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINT_MAPPING__STATION1 = 2;
+
+	/**
+	 * The feature id for the '<em><b>Station2</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINT_MAPPING__STATION2 = 3;
+
+	/**
+	 * The feature id for the '<em><b>Connection Point</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINT_MAPPING__CONNECTION_POINT = 4;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Border Point Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINT_MAPPING_FEATURE_COUNT = 5;
+
+	/**
+	 * The number of operations of the '<em>Legacy Border Point Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINT_MAPPING_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Language</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DESCRIPTION__LANGUAGE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DESCRIPTION__TEXT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Description</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DESCRIPTION_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Legacy Description</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DESCRIPTION_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Zone Map</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_ZONE_MAPPINGS__LEGACY_ZONE_MAP = 0;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Zone Mappings</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_ZONE_MAPPINGS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Legacy Zone Mappings</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_ZONE_MAPPINGS_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_ZONE_MAP__LEGACY_CODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Zone</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_ZONE_MAP__ZONE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Zone Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_ZONE_MAP_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Legacy Zone Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_ZONE_MAP_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Fares</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_FARES__FARES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Fares</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_FARES_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Legacy Fares</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_FARES_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_FARE__DESCRIPTION = 0;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Fare</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_FARE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Legacy Fare</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_FARE_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Character Set</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY108__CHARACTER_SET = 0;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Series List</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY108__LEGACY_SERIES_LIST = 1;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Fares</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY108__LEGACY_FARES = 2;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Distance Fares</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY108__LEGACY_DISTANCE_FARES = 3;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Route Fares</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY108__LEGACY_ROUTE_FARES = 4;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Stations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY108__LEGACY_STATIONS = 5;
+
+	/**
+	 * The feature id for the '<em><b>Time Zone</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY108__TIME_ZONE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Carrier</b></em>' reference.
@@ -4934,439 +7351,595 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRAIN_RESOURCE_LOCATION__CARRIER = 0;
+	int LEGACY108__CARRIER = 7;
 
 	/**
-	 * The feature id for the '<em><b>Online Resources</b></em>' containment reference list.
+	 * The number of structural features of the '<em>Legacy108</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRAIN_RESOURCE_LOCATION__ONLINE_RESOURCES = 1;
+	int LEGACY108_FEATURE_COUNT = 8;
 
 	/**
-	 * The feature id for the '<em><b>Train Id</b></em>' attribute.
+	 * The number of operations of the '<em>Legacy108</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRAIN_RESOURCE_LOCATION__TRAIN_ID = 2;
+	int LEGACY108_OPERATION_COUNT = 0;
 
 	/**
-	 * The number of structural features of the '<em>Train Resource Location</em>' class.
+	 * The feature id for the '<em><b>Legacy Stations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRAIN_RESOURCE_LOCATION_FEATURE_COUNT = 3;
+	int LEGACY108_STATIONS__LEGACY_STATIONS = 0;
 
 	/**
-	 * The number of operations of the '<em>Train Resource Location</em>' class.
+	 * The number of structural features of the '<em>Legacy108 Stations</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRAIN_RESOURCE_LOCATION_OPERATION_COUNT = 0;
+	int LEGACY108_STATIONS_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.CarrierResourceLocationImpl <em>Carrier Resource Location</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.CarrierResourceLocationImpl
-	 * @see Gtm.impl.GtmPackageImpl#getCarrierResourceLocation()
-	 * @generated
-	 */
-	int CARRIER_RESOURCE_LOCATION = 73;
-
-	/**
-	 * The feature id for the '<em><b>Carrier</b></em>' reference.
+	 * The operation id for the '<em>Find Station</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARRIER_RESOURCE_LOCATION__CARRIER = 0;
+	int LEGACY108_STATIONS___FIND_STATION__INT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Service Brand</b></em>' reference.
+	 * The operation id for the '<em>Find By Border Point</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARRIER_RESOURCE_LOCATION__SERVICE_BRAND = 1;
+	int LEGACY108_STATIONS___FIND_BY_BORDER_POINT__INT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Online Resources</b></em>' containment reference list.
+	 * The number of operations of the '<em>Legacy108 Stations</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARRIER_RESOURCE_LOCATION__ONLINE_RESOURCES = 2;
+	int LEGACY108_STATIONS_OPERATION_COUNT = 2;
 
 	/**
-	 * The number of structural features of the '<em>Carrier Resource Location</em>' class.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARRIER_RESOURCE_LOCATION_FEATURE_COUNT = 3;
+	int LEGACY108_STATION__NAME = 0;
 
 	/**
-	 * The number of operations of the '<em>Carrier Resource Location</em>' class.
+	 * The feature id for the '<em><b>Border Point Code</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARRIER_RESOURCE_LOCATION_OPERATION_COUNT = 0;
+	int LEGACY108_STATION__BORDER_POINT_CODE = 1;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.StationResourceLocationImpl <em>Station Resource Location</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.StationResourceLocationImpl
-	 * @see Gtm.impl.GtmPackageImpl#getStationResourceLocation()
-	 * @generated
-	 */
-	int STATION_RESOURCE_LOCATION = 74;
-
-	/**
-	 * The feature id for the '<em><b>Online Resources</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Name UTF8</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATION_RESOURCE_LOCATION__ONLINE_RESOURCES = 0;
+	int LEGACY108_STATION__NAME_UTF8 = 2;
 
 	/**
-	 * The feature id for the '<em><b>Stations</b></em>' reference list.
+	 * The feature id for the '<em><b>Station Code</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATION_RESOURCE_LOCATION__STATIONS = 1;
+	int LEGACY108_STATION__STATION_CODE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Connection Points</b></em>' reference list.
+	 * The number of structural features of the '<em>Legacy108 Station</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATION_RESOURCE_LOCATION__CONNECTION_POINTS = 2;
+	int LEGACY108_STATION_FEATURE_COUNT = 4;
 
 	/**
-	 * The number of structural features of the '<em>Station Resource Location</em>' class.
+	 * The number of operations of the '<em>Legacy108 Station</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATION_RESOURCE_LOCATION_FEATURE_COUNT = 3;
+	int LEGACY108_STATION_OPERATION_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>Station Resource Location</em>' class.
+	 * The feature id for the '<em><b>Route Fare</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATION_RESOURCE_LOCATION_OPERATION_COUNT = 0;
+	int LEGACY_ROUTE_FARES__ROUTE_FARE = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.impl.OnlineResourceImpl <em>Online Resource</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.OnlineResourceImpl
-	 * @see Gtm.impl.GtmPackageImpl#getOnlineResource()
-	 * @generated
-	 */
-	int ONLINE_RESOURCE = 75;
-
-	/**
-	 * The feature id for the '<em><b>Offer Request Type</b></em>' attribute.
+	 * The number of structural features of the '<em>Legacy Route Fares</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ONLINE_RESOURCE__OFFER_REQUEST_TYPE = 0;
+	int LEGACY_ROUTE_FARES_FEATURE_COUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Interface Type</b></em>' attribute.
+	 * The number of operations of the '<em>Legacy Route Fares</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ONLINE_RESOURCE__INTERFACE_TYPE = 1;
+	int LEGACY_ROUTE_FARES_OPERATION_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * The feature id for the '<em><b>Series Number</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ONLINE_RESOURCE__VERSION = 2;
+	int LEGACY_ROUTE_FARE__SERIES_NUMBER = 0;
 
 	/**
-	 * The feature id for the '<em><b>System</b></em>' attribute.
+	 * The feature id for the '<em><b>Fare2nd</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ONLINE_RESOURCE__SYSTEM = 3;
+	int LEGACY_ROUTE_FARE__FARE2ND = 1;
 
 	/**
-	 * The number of structural features of the '<em>Online Resource</em>' class.
+	 * The feature id for the '<em><b>Fare1st</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ONLINE_RESOURCE_FEATURE_COUNT = 4;
+	int LEGACY_ROUTE_FARE__FARE1ST = 2;
 
 	/**
-	 * The number of operations of the '<em>Online Resource</em>' class.
+	 * The feature id for the '<em><b>Fare Table Number</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ONLINE_RESOURCE_OPERATION_COUNT = 0;
+	int LEGACY_ROUTE_FARE__FARE_TABLE_NUMBER = 3;
 
 	/**
-	 * The meta object id for the '{@link Gtm.ReservationService <em>Reservation Service</em>}' enum.
+	 * The feature id for the '<em><b>Return Fare1st</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.ReservationService
-	 * @see Gtm.impl.GtmPackageImpl#getReservationService()
 	 * @generated
+	 * @ordered
 	 */
-	int RESERVATION_SERVICE = 76;
+	int LEGACY_ROUTE_FARE__RETURN_FARE1ST = 4;
 
 	/**
-	 * The meta object id for the '{@link Gtm.ReservationBerthType <em>Reservation Berth Type</em>}' enum.
+	 * The feature id for the '<em><b>Return Fare2nd</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.ReservationBerthType
-	 * @see Gtm.impl.GtmPackageImpl#getReservationBerthType()
 	 * @generated
+	 * @ordered
 	 */
-	int RESERVATION_BERTH_TYPE = 77;
+	int LEGACY_ROUTE_FARE__RETURN_FARE2ND = 5;
 
 	/**
-	 * The meta object id for the '{@link Gtm.GraphicalReservationType <em>Graphical Reservation Type</em>}' enum.
+	 * The feature id for the '<em><b>Valid From</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.GraphicalReservationType
-	 * @see Gtm.impl.GtmPackageImpl#getGraphicalReservationType()
 	 * @generated
+	 * @ordered
 	 */
-	int GRAPHICAL_RESERVATION_TYPE = 78;
+	int LEGACY_ROUTE_FARE__VALID_FROM = 6;
 
 	/**
-	 * The meta object id for the '{@link Gtm.LegacyCalculationType <em>Legacy Calculation Type</em>}' enum.
+	 * The feature id for the '<em><b>Valid Until</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.LegacyCalculationType
-	 * @see Gtm.impl.GtmPackageImpl#getLegacyCalculationType()
 	 * @generated
+	 * @ordered
 	 */
-	int LEGACY_CALCULATION_TYPE = 94;
+	int LEGACY_ROUTE_FARE__VALID_UNTIL = 7;
 
 	/**
-	 * The meta object id for the '{@link Gtm.LegacySeriesType <em>Legacy Series Type</em>}' enum.
+	 * The number of structural features of the '<em>Legacy Route Fare</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.LegacySeriesType
-	 * @see Gtm.impl.GtmPackageImpl#getLegacySeriesType()
 	 * @generated
+	 * @ordered
 	 */
-	int LEGACY_SERIES_TYPE = 96;
+	int LEGACY_ROUTE_FARE_FEATURE_COUNT = 8;
 
 	/**
-	 * The meta object id for the '{@link Gtm.ClassicClassType <em>Classic Class Type</em>}' enum.
+	 * The number of operations of the '<em>Legacy Route Fare</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.ClassicClassType
-	 * @see Gtm.impl.GtmPackageImpl#getClassicClassType()
 	 * @generated
+	 * @ordered
 	 */
-	int CLASSIC_CLASS_TYPE = 81;
+	int LEGACY_ROUTE_FARE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.TaxScope <em>Tax Scope</em>}' enum.
+	 * The feature id for the '<em><b>Viastations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.TaxScope
-	 * @see Gtm.impl.GtmPackageImpl#getTaxScope()
 	 * @generated
+	 * @ordered
 	 */
-	int TAX_SCOPE = 102;
+	int LEGACY_SERIES__VIASTATIONS = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.FareType <em>Fare Type</em>}' enum.
+	 * The feature id for the '<em><b>Distance1</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.FareType
-	 * @see Gtm.impl.GtmPackageImpl#getFareType()
 	 * @generated
+	 * @ordered
 	 */
-	int FARE_TYPE = 85;
+	int LEGACY_SERIES__DISTANCE1 = 1;
 
 	/**
-	 * The meta object id for the '{@link Gtm.ReservationTravelClass <em>Reservation Travel Class</em>}' enum.
+	 * The feature id for the '<em><b>Pricetype</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.ReservationTravelClass
-	 * @see Gtm.impl.GtmPackageImpl#getReservationTravelClass()
 	 * @generated
+	 * @ordered
 	 */
-	int RESERVATION_TRAVEL_CLASS = 92;
+	int LEGACY_SERIES__PRICETYPE = 2;
 
 	/**
-	 * The meta object id for the '{@link Gtm.ReservationServiceLevel <em>Reservation Service Level</em>}' enum.
+	 * The feature id for the '<em><b>Valid From</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.ReservationServiceLevel
-	 * @see Gtm.impl.GtmPackageImpl#getReservationServiceLevel()
 	 * @generated
+	 * @ordered
 	 */
-	int RESERVATION_SERVICE_LEVEL = 93;
+	int LEGACY_SERIES__VALID_FROM = 3;
 
 	/**
-	 * The meta object id for the '{@link Gtm.TimeReferenceType <em>Time Reference Type</em>}' enum.
+	 * The feature id for the '<em><b>Valid Until</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.TimeReferenceType
-	 * @see Gtm.impl.GtmPackageImpl#getTimeReferenceType()
 	 * @generated
+	 * @ordered
 	 */
-	int TIME_REFERENCE_TYPE = 103;
+	int LEGACY_SERIES__VALID_UNTIL = 4;
 
 	/**
-	 * The meta object id for the '{@link Gtm.TimeRangeScope <em>Time Range Scope</em>}' enum.
+	 * The feature id for the '<em><b>Pricing</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.TimeRangeScope
-	 * @see Gtm.impl.GtmPackageImpl#getTimeRangeScope()
 	 * @generated
+	 * @ordered
 	 */
-	int TIME_RANGE_SCOPE = 104;
+	int LEGACY_SERIES__PRICING = 5;
 
 	/**
-	 * The meta object id for the '{@link Gtm.TimeUnit <em>Time Unit</em>}' enum.
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.TimeUnit
-	 * @see Gtm.impl.GtmPackageImpl#getTimeUnit()
 	 * @generated
+	 * @ordered
 	 */
-	int TIME_UNIT = 105;
+	int LEGACY_SERIES__TYPE = 6;
 
 	/**
-	 * The meta object id for the '{@link Gtm.WeekDay <em>Week Day</em>}' enum.
+	 * The feature id for the '<em><b>Number</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.WeekDay
-	 * @see Gtm.impl.GtmPackageImpl#getWeekDay()
 	 * @generated
+	 * @ordered
 	 */
-	int WEEK_DAY = 107;
+	int LEGACY_SERIES__NUMBER = 7;
 
 	/**
-	 * The meta object id for the '{@link Gtm.CombinationModel <em>Combination Model</em>}' enum.
+	 * The feature id for the '<em><b>From Station</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.CombinationModel
-	 * @see Gtm.impl.GtmPackageImpl#getCombinationModel()
 	 * @generated
+	 * @ordered
 	 */
-	int COMBINATION_MODEL = 83;
+	int LEGACY_SERIES__FROM_STATION = 8;
 
 	/**
-	 * The meta object id for the '{@link Gtm.Clusters <em>Clusters</em>}' enum.
+	 * The feature id for the '<em><b>To Station</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.Clusters
-	 * @see Gtm.impl.GtmPackageImpl#getClusters()
 	 * @generated
+	 * @ordered
 	 */
-	int CLUSTERS = 82;
+	int LEGACY_SERIES__TO_STATION = 9;
 
 	/**
-	 * The meta object id for the '{@link Gtm.GeoSystem <em>Geo System</em>}' enum.
+	 * The feature id for the '<em><b>Distance2</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.GeoSystem
-	 * @see Gtm.impl.GtmPackageImpl#getGeoSystem()
 	 * @generated
+	 * @ordered
 	 */
-	int GEO_SYSTEM = 87;
+	int LEGACY_SERIES__DISTANCE2 = 10;
 
 	/**
-	 * The meta object id for the '{@link Gtm.GeoUnit <em>Geo Unit</em>}' enum.
+	 * The number of structural features of the '<em>Legacy Series</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.GeoUnit
-	 * @see Gtm.impl.GtmPackageImpl#getGeoUnit()
 	 * @generated
+	 * @ordered
 	 */
-	int GEO_UNIT = 88;
+	int LEGACY_SERIES_FEATURE_COUNT = 11;
 
 	/**
-	 * The meta object id for the '{@link Gtm.HemisphereEW <em>Hemisphere EW</em>}' enum.
+	 * The number of operations of the '<em>Legacy Series</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.HemisphereEW
-	 * @see Gtm.impl.GtmPackageImpl#getHemisphereEW()
 	 * @generated
+	 * @ordered
 	 */
-	int HEMISPHERE_EW = 89;
+	int LEGACY_SERIES_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.HemisphereNS <em>Hemisphere NS</em>}' enum.
+	 * The feature id for the '<em><b>Series</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.HemisphereNS
-	 * @see Gtm.impl.GtmPackageImpl#getHemisphereNS()
 	 * @generated
+	 * @ordered
 	 */
-	int HEMISPHERE_NS = 90;
-
+	int LEGACY_SERIES_LIST__SERIES = 0;
 
 	/**
-	 * The meta object id for the '{@link Gtm.LegacyPassengerType <em>Legacy Passenger Type</em>}' enum.
+	 * The number of structural features of the '<em>Legacy Series List</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.LegacyPassengerType
-	 * @see Gtm.impl.GtmPackageImpl#getLegacyPassengerType()
 	 * @generated
+	 * @ordered
 	 */
-	int LEGACY_PASSENGER_TYPE = 95;
+	int LEGACY_SERIES_LIST_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link Gtm.TravelerType <em>Traveler Type</em>}' enum.
+	 * The number of operations of the '<em>Legacy Series List</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.TravelerType
-	 * @see Gtm.impl.GtmPackageImpl#getTravelerType()
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_SERIES_LIST_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Distance Fare</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DISTANCE_FARES__DISTANCE_FARE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Distance Fares</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DISTANCE_FARES_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Legacy Distance Fares</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DISTANCE_FARES_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Distance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DISTANCE_FARE__DISTANCE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Fare2nd</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DISTANCE_FARE__FARE2ND = 1;
+
+	/**
+	 * The feature id for the '<em><b>Fare1st</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DISTANCE_FARE__FARE1ST = 2;
+
+	/**
+	 * The feature id for the '<em><b>Fare Table Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DISTANCE_FARE__FARE_TABLE_NUMBER = 3;
+
+	/**
+	 * The feature id for the '<em><b>Return Fare1st</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DISTANCE_FARE__RETURN_FARE1ST = 4;
+
+	/**
+	 * The feature id for the '<em><b>Return Fare2nd</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DISTANCE_FARE__RETURN_FARE2ND = 5;
+
+	/**
+	 * The feature id for the '<em><b>Valid From</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DISTANCE_FARE__VALID_FROM = 6;
+
+	/**
+	 * The feature id for the '<em><b>Valid Until</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DISTANCE_FARE__VALID_UNTIL = 7;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Distance Fare</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DISTANCE_FARE_FEATURE_COUNT = 8;
+
+	/**
+	 * The number of operations of the '<em>Legacy Distance Fare</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_DISTANCE_FARE_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_VIASTATION__POSITION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_VIASTATION__CODE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Viastation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_VIASTATION_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Legacy Viastation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_VIASTATION_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Target Fares</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_TARGET_FARES__TARGET_FARES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Target Fares</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_TARGET_FARES_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Legacy Target Fares</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_TARGET_FARES_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.SchemaVersion <em>Schema Version</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.SchemaVersion
+	 * @see Gtm.impl.GtmPackageImpl#getSchemaVersion()
 	 * @generated
 	 */
-	int TRAVELER_TYPE = 106;
+	int SCHEMA_VERSION = 158;
 
+	/**
+	 * The meta object id for the '{@link Gtm.TimeZone <em>Time Zone</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.TimeZone
+	 * @see Gtm.impl.GtmPackageImpl#getTimeZone()
+	 * @generated
+	 */
+	int TIME_ZONE = 159;
+
+	/**
+	 * The meta object id for the '{@link Gtm.CharacterSet <em>Character Set</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.CharacterSet
+	 * @see Gtm.impl.GtmPackageImpl#getCharacterSet()
+	 * @generated
+	 */
+	int CHARACTER_SET = 134;
 
 	/**
 	 * The meta object id for the '{@link Gtm.AfterSalesTransactionType <em>After Sales Transaction Type</em>}' enum.
@@ -5376,57 +7949,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getAfterSalesTransactionType()
 	 * @generated
 	 */
-	int AFTER_SALES_TRANSACTION_TYPE = 79;
-
-	/**
-	 * The meta object id for the '{@link Gtm.PersonalDataItemsType <em>Personal Data Items Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.PersonalDataItemsType
-	 * @see Gtm.impl.GtmPackageImpl#getPersonalDataItemsType()
-	 * @generated
-	 */
-	int PERSONAL_DATA_ITEMS_TYPE = 99;
-
-	/**
-	 * The meta object id for the '{@link Gtm.PersonalDataTransferType <em>Personal Data Transfer Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.PersonalDataTransferType
-	 * @see Gtm.impl.GtmPackageImpl#getPersonalDataTransferType()
-	 * @generated
-	 */
-	int PERSONAL_DATA_TRANSFER_TYPE = 100;
-
-	/**
-	 * The meta object id for the '{@link Gtm.PersonalDataChangeReason <em>Personal Data Change Reason</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.PersonalDataChangeReason
-	 * @see Gtm.impl.GtmPackageImpl#getPersonalDataChangeReason()
-	 * @generated
-	 */
-	int PERSONAL_DATA_CHANGE_REASON = 101;
-
-	/**
-	 * The meta object id for the '{@link Gtm.OnlineServiceType <em>Online Service Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.OnlineServiceType
-	 * @see Gtm.impl.GtmPackageImpl#getOnlineServiceType()
-	 * @generated
-	 */
-	int ONLINE_SERVICE_TYPE = 98;
-
-	/**
-	 * The meta object id for the '{@link Gtm.FulfillmentType <em>Fulfillment Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.FulfillmentType
-	 * @see Gtm.impl.GtmPackageImpl#getFulfillmentType()
-	 * @generated
-	 */
-	int FULFILLMENT_TYPE = 86;
+	int AFTER_SALES_TRANSACTION_TYPE = 131;
 
 	/**
 	 * The meta object id for the '{@link Gtm.BarcodeTypes <em>Barcode Types</em>}' enum.
@@ -5436,7 +7959,37 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getBarcodeTypes()
 	 * @generated
 	 */
-	int BARCODE_TYPES = 80;
+	int BARCODE_TYPES = 132;
+
+	/**
+	 * The meta object id for the '{@link Gtm.ClassicClassType <em>Classic Class Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.ClassicClassType
+	 * @see Gtm.impl.GtmPackageImpl#getClassicClassType()
+	 * @generated
+	 */
+	int CLASSIC_CLASS_TYPE = 133;
+
+	/**
+	 * The meta object id for the '{@link Gtm.Clusters <em>Clusters</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.Clusters
+	 * @see Gtm.impl.GtmPackageImpl#getClusters()
+	 * @generated
+	 */
+	int CLUSTERS = 135;
+
+	/**
+	 * The meta object id for the '{@link Gtm.CombinationModel <em>Combination Model</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.CombinationModel
+	 * @see Gtm.impl.GtmPackageImpl#getCombinationModel()
+	 * @generated
+	 */
+	int COMBINATION_MODEL = 136;
 
 	/**
 	 * The meta object id for the '{@link Gtm.ControlDataExchangeTypes <em>Control Data Exchange Types</em>}' enum.
@@ -5446,17 +7999,77 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getControlDataExchangeTypes()
 	 * @generated
 	 */
-	int CONTROL_DATA_EXCHANGE_TYPES = 84;
+	int CONTROL_DATA_EXCHANGE_TYPES = 137;
 
 	/**
-	 * The meta object id for the '{@link Gtm.OfferRequestType <em>Offer Request Type</em>}' enum.
+	 * The meta object id for the '{@link Gtm.FareType <em>Fare Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gtm.OfferRequestType
-	 * @see Gtm.impl.GtmPackageImpl#getOfferRequestType()
+	 * @see Gtm.FareType
+	 * @see Gtm.impl.GtmPackageImpl#getFareType()
 	 * @generated
 	 */
-	int OFFER_REQUEST_TYPE = 97;
+	int FARE_TYPE = 138;
+
+	/**
+	 * The meta object id for the '{@link Gtm.FulfillmentType <em>Fulfillment Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.FulfillmentType
+	 * @see Gtm.impl.GtmPackageImpl#getFulfillmentType()
+	 * @generated
+	 */
+	int FULFILLMENT_TYPE = 139;
+
+	/**
+	 * The meta object id for the '{@link Gtm.GeoSystem <em>Geo System</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.GeoSystem
+	 * @see Gtm.impl.GtmPackageImpl#getGeoSystem()
+	 * @generated
+	 */
+	int GEO_SYSTEM = 140;
+
+	/**
+	 * The meta object id for the '{@link Gtm.GeoUnit <em>Geo Unit</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.GeoUnit
+	 * @see Gtm.impl.GtmPackageImpl#getGeoUnit()
+	 * @generated
+	 */
+	int GEO_UNIT = 141;
+
+	/**
+	 * The meta object id for the '{@link Gtm.GraphicalReservationType <em>Graphical Reservation Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.GraphicalReservationType
+	 * @see Gtm.impl.GtmPackageImpl#getGraphicalReservationType()
+	 * @generated
+	 */
+	int GRAPHICAL_RESERVATION_TYPE = 142;
+
+	/**
+	 * The meta object id for the '{@link Gtm.HemisphereEW <em>Hemisphere EW</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.HemisphereEW
+	 * @see Gtm.impl.GtmPackageImpl#getHemisphereEW()
+	 * @generated
+	 */
+	int HEMISPHERE_EW = 143;
+
+	/**
+	 * The meta object id for the '{@link Gtm.HemisphereNS <em>Hemisphere NS</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.HemisphereNS
+	 * @see Gtm.impl.GtmPackageImpl#getHemisphereNS()
+	 * @generated
+	 */
+	int HEMISPHERE_NS = 144;
 
 	/**
 	 * The meta object id for the '{@link Gtm.InterfaceType <em>Interface Type</em>}' enum.
@@ -5466,7 +8079,208 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getInterfaceType()
 	 * @generated
 	 */
-	int INTERFACE_TYPE = 91;
+	int INTERFACE_TYPE = 145;
+
+	/**
+	 * The meta object id for the '{@link Gtm.ReservationTravelClass <em>Reservation Travel Class</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.ReservationTravelClass
+	 * @see Gtm.impl.GtmPackageImpl#getReservationTravelClass()
+	 * @generated
+	 */
+	int RESERVATION_TRAVEL_CLASS = 154;
+
+	/**
+	 * The meta object id for the '{@link Gtm.ReservationServiceLevel <em>Reservation Service Level</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.ReservationServiceLevel
+	 * @see Gtm.impl.GtmPackageImpl#getReservationServiceLevel()
+	 * @generated
+	 */
+	int RESERVATION_SERVICE_LEVEL = 155;
+
+	/**
+	 * The meta object id for the '{@link Gtm.ReservationService <em>Reservation Service</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.ReservationService
+	 * @see Gtm.impl.GtmPackageImpl#getReservationService()
+	 * @generated
+	 */
+	int RESERVATION_SERVICE = 156;
+
+	/**
+	 * The meta object id for the '{@link Gtm.ReservationBerthType <em>Reservation Berth Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.ReservationBerthType
+	 * @see Gtm.impl.GtmPackageImpl#getReservationBerthType()
+	 * @generated
+	 */
+	int RESERVATION_BERTH_TYPE = 157;
+
+	/**
+	 * The meta object id for the '{@link Gtm.LegacyCalculationType <em>Legacy Calculation Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.LegacyCalculationType
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyCalculationType()
+	 * @generated
+	 */
+	int LEGACY_CALCULATION_TYPE = 146;
+
+	/**
+	 * The meta object id for the '{@link Gtm.LegacyPassengerType <em>Legacy Passenger Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.LegacyPassengerType
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyPassengerType()
+	 * @generated
+	 */
+	int LEGACY_PASSENGER_TYPE = 147;
+
+	/**
+	 * The meta object id for the '{@link Gtm.LegacySeriesType <em>Legacy Series Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.LegacySeriesType
+	 * @see Gtm.impl.GtmPackageImpl#getLegacySeriesType()
+	 * @generated
+	 */
+	int LEGACY_SERIES_TYPE = 148;
+
+	/**
+	 * The meta object id for the '{@link Gtm.OfferRequestType <em>Offer Request Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.OfferRequestType
+	 * @see Gtm.impl.GtmPackageImpl#getOfferRequestType()
+	 * @generated
+	 */
+	int OFFER_REQUEST_TYPE = 149;
+
+	/**
+	 * The meta object id for the '{@link Gtm.OnlineServiceType <em>Online Service Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.OnlineServiceType
+	 * @see Gtm.impl.GtmPackageImpl#getOnlineServiceType()
+	 * @generated
+	 */
+	int ONLINE_SERVICE_TYPE = 150;
+
+	/**
+	 * The meta object id for the '{@link Gtm.PersonalDataItemsType <em>Personal Data Items Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.PersonalDataItemsType
+	 * @see Gtm.impl.GtmPackageImpl#getPersonalDataItemsType()
+	 * @generated
+	 */
+	int PERSONAL_DATA_ITEMS_TYPE = 151;
+
+	/**
+	 * The meta object id for the '{@link Gtm.PersonalDataTransferType <em>Personal Data Transfer Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.PersonalDataTransferType
+	 * @see Gtm.impl.GtmPackageImpl#getPersonalDataTransferType()
+	 * @generated
+	 */
+	int PERSONAL_DATA_TRANSFER_TYPE = 152;
+
+	/**
+	 * The meta object id for the '{@link Gtm.PersonalDataChangeReason <em>Personal Data Change Reason</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.PersonalDataChangeReason
+	 * @see Gtm.impl.GtmPackageImpl#getPersonalDataChangeReason()
+	 * @generated
+	 */
+	int PERSONAL_DATA_CHANGE_REASON = 153;
+
+	/**
+	 * The meta object id for the '{@link Gtm.TaxScope <em>Tax Scope</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.TaxScope
+	 * @see Gtm.impl.GtmPackageImpl#getTaxScope()
+	 * @generated
+	 */
+	int TAX_SCOPE = 160;
+
+	/**
+	 * The meta object id for the '{@link Gtm.TimeReferenceType <em>Time Reference Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.TimeReferenceType
+	 * @see Gtm.impl.GtmPackageImpl#getTimeReferenceType()
+	 * @generated
+	 */
+	int TIME_REFERENCE_TYPE = 161;
+
+	/**
+	 * The meta object id for the '{@link Gtm.TimeRangeScope <em>Time Range Scope</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.TimeRangeScope
+	 * @see Gtm.impl.GtmPackageImpl#getTimeRangeScope()
+	 * @generated
+	 */
+	int TIME_RANGE_SCOPE = 162;
+
+	/**
+	 * The meta object id for the '{@link Gtm.TimeUnit <em>Time Unit</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.TimeUnit
+	 * @see Gtm.impl.GtmPackageImpl#getTimeUnit()
+	 * @generated
+	 */
+	int TIME_UNIT = 163;
+
+	/**
+	 * The meta object id for the '{@link Gtm.TravelerType <em>Traveler Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.TravelerType
+	 * @see Gtm.impl.GtmPackageImpl#getTravelerType()
+	 * @generated
+	 */
+	int TRAVELER_TYPE = 164;
+
+	/**
+	 * The meta object id for the '{@link Gtm.WeekDay <em>Week Day</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.WeekDay
+	 * @see Gtm.impl.GtmPackageImpl#getWeekDay()
+	 * @generated
+	 */
+	int WEEK_DAY = 165;
+
+	/**
+	 * The meta object id for the '{@link Gtm.DataSource <em>Data Source</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.DataSource
+	 * @see Gtm.impl.GtmPackageImpl#getDataSource()
+	 * @generated
+	 */
+	int DATA_SOURCE = 166;
+
+
+	/**
+	 * The meta object id for the '{@link Gtm.ClassId <em>Class Id</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.ClassId
+	 * @see Gtm.impl.GtmPackageImpl#getClassId()
+	 * @generated
+	 */
+	int CLASS_ID = 167;
 
 
 	/**
@@ -5523,10 +8337,10 @@ public interface GtmPackage extends EPackage {
 	EClass getCodeLists();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.CodeLists#getCarriers <em>Carriers</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.CodeLists#getCarriers <em>Carriers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Carriers</em>'.
+	 * @return the meta object for the containment reference '<em>Carriers</em>'.
 	 * @see Gtm.CodeLists#getCarriers()
 	 * @see #getCodeLists()
 	 * @generated
@@ -5534,10 +8348,10 @@ public interface GtmPackage extends EPackage {
 	EReference getCodeLists_Carriers();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.CodeLists#getStations <em>Stations</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.CodeLists#getStations <em>Stations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Stations</em>'.
+	 * @return the meta object for the containment reference '<em>Stations</em>'.
 	 * @see Gtm.CodeLists#getStations()
 	 * @see #getCodeLists()
 	 * @generated
@@ -5545,10 +8359,10 @@ public interface GtmPackage extends EPackage {
 	EReference getCodeLists_Stations();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.CodeLists#getCountries <em>Countries</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.CodeLists#getCountries <em>Countries</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Countries</em>'.
+	 * @return the meta object for the containment reference '<em>Countries</em>'.
 	 * @see Gtm.CodeLists#getCountries()
 	 * @see #getCodeLists()
 	 * @generated
@@ -5556,10 +8370,10 @@ public interface GtmPackage extends EPackage {
 	EReference getCodeLists_Countries();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.CodeLists#getLanguages <em>Languages</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.CodeLists#getLanguages <em>Languages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Languages</em>'.
+	 * @return the meta object for the containment reference '<em>Languages</em>'.
 	 * @see Gtm.CodeLists#getLanguages()
 	 * @see #getCodeLists()
 	 * @generated
@@ -5567,10 +8381,10 @@ public interface GtmPackage extends EPackage {
 	EReference getCodeLists_Languages();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.CodeLists#getCurrencies <em>Currencies</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.CodeLists#getCurrencies <em>Currencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Currencies</em>'.
+	 * @return the meta object for the containment reference '<em>Currencies</em>'.
 	 * @see Gtm.CodeLists#getCurrencies()
 	 * @see #getCodeLists()
 	 * @generated
@@ -5578,10 +8392,10 @@ public interface GtmPackage extends EPackage {
 	EReference getCodeLists_Currencies();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.CodeLists#getServiceBrands <em>Service Brands</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.CodeLists#getServiceBrands <em>Service Brands</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Service Brands</em>'.
+	 * @return the meta object for the containment reference '<em>Service Brands</em>'.
 	 * @see Gtm.CodeLists#getServiceBrands()
 	 * @see #getCodeLists()
 	 * @generated
@@ -5589,15 +8403,567 @@ public interface GtmPackage extends EPackage {
 	EReference getCodeLists_ServiceBrands();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.CodeLists#getNutsCodes <em>Nuts Codes</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.CodeLists#getNutsCodes <em>Nuts Codes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Nuts Codes</em>'.
+	 * @return the meta object for the containment reference '<em>Nuts Codes</em>'.
 	 * @see Gtm.CodeLists#getNutsCodes()
 	 * @see #getCodeLists()
 	 * @generated
 	 */
 	EReference getCodeLists_NutsCodes();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.NUTSCodes <em>NUTS Codes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>NUTS Codes</em>'.
+	 * @see Gtm.NUTSCodes
+	 * @generated
+	 */
+	EClass getNUTSCodes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.NUTSCodes#getNutsCodes <em>Nuts Codes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Nuts Codes</em>'.
+	 * @see Gtm.NUTSCodes#getNutsCodes()
+	 * @see #getNUTSCodes()
+	 * @generated
+	 */
+	EReference getNUTSCodes_NutsCodes();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.NutsCode <em>Nuts Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Nuts Code</em>'.
+	 * @see Gtm.NutsCode
+	 * @generated
+	 */
+	EClass getNutsCode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.NutsCode#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see Gtm.NutsCode#getName()
+	 * @see #getNutsCode()
+	 * @generated
+	 */
+	EAttribute getNutsCode_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.NutsCode#getCode <em>Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Code</em>'.
+	 * @see Gtm.NutsCode#getCode()
+	 * @see #getNutsCode()
+	 * @generated
+	 */
+	EAttribute getNutsCode_Code();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.ServiceBrands <em>Service Brands</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Brands</em>'.
+	 * @see Gtm.ServiceBrands
+	 * @generated
+	 */
+	EClass getServiceBrands();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.ServiceBrands#getServiceBrands <em>Service Brands</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Service Brands</em>'.
+	 * @see Gtm.ServiceBrands#getServiceBrands()
+	 * @see #getServiceBrands()
+	 * @generated
+	 */
+	EReference getServiceBrands_ServiceBrands();
+
+	/**
+	 * Returns the meta object for the '{@link Gtm.ServiceBrands#findServiceBRand(int) <em>Find Service BRand</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Service BRand</em>' operation.
+	 * @see Gtm.ServiceBrands#findServiceBRand(int)
+	 * @generated
+	 */
+	EOperation getServiceBrands__FindServiceBRand__int();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.ServiceBrand <em>Service Brand</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Brand</em>'.
+	 * @see Gtm.ServiceBrand
+	 * @generated
+	 */
+	EClass getServiceBrand();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ServiceBrand#getCode <em>Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Code</em>'.
+	 * @see Gtm.ServiceBrand#getCode()
+	 * @see #getServiceBrand()
+	 * @generated
+	 */
+	EAttribute getServiceBrand_Code();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ServiceBrand#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see Gtm.ServiceBrand#getName()
+	 * @see #getServiceBrand()
+	 * @generated
+	 */
+	EAttribute getServiceBrand_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ServiceBrand#getAbbreviation <em>Abbreviation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Abbreviation</em>'.
+	 * @see Gtm.ServiceBrand#getAbbreviation()
+	 * @see #getServiceBrand()
+	 * @generated
+	 */
+	EAttribute getServiceBrand_Abbreviation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ServiceBrand#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see Gtm.ServiceBrand#getDescription()
+	 * @see #getServiceBrand()
+	 * @generated
+	 */
+	EAttribute getServiceBrand_Description();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Countries <em>Countries</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Countries</em>'.
+	 * @see Gtm.Countries
+	 * @generated
+	 */
+	EClass getCountries();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.Countries#getCountries <em>Countries</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Countries</em>'.
+	 * @see Gtm.Countries#getCountries()
+	 * @see #getCountries()
+	 * @generated
+	 */
+	EReference getCountries_Countries();
+
+	/**
+	 * Returns the meta object for the '{@link Gtm.Countries#findCountry(int) <em>Find Country</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Country</em>' operation.
+	 * @see Gtm.Countries#findCountry(int)
+	 * @generated
+	 */
+	EOperation getCountries__FindCountry__int();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Country <em>Country</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Country</em>'.
+	 * @see Gtm.Country
+	 * @generated
+	 */
+	EClass getCountry();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Country#getCode <em>Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Code</em>'.
+	 * @see Gtm.Country#getCode()
+	 * @see #getCountry()
+	 * @generated
+	 */
+	EAttribute getCountry_Code();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Country#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see Gtm.Country#getName()
+	 * @see #getCountry()
+	 * @generated
+	 */
+	EAttribute getCountry_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Country#getISOcode <em>IS Ocode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>IS Ocode</em>'.
+	 * @see Gtm.Country#getISOcode()
+	 * @see #getCountry()
+	 * @generated
+	 */
+	EAttribute getCountry_ISOcode();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Languages <em>Languages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Languages</em>'.
+	 * @see Gtm.Languages
+	 * @generated
+	 */
+	EClass getLanguages();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.Languages#getLanguages <em>Languages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Languages</em>'.
+	 * @see Gtm.Languages#getLanguages()
+	 * @see #getLanguages()
+	 * @generated
+	 */
+	EReference getLanguages_Languages();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Language <em>Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Language</em>'.
+	 * @see Gtm.Language
+	 * @generated
+	 */
+	EClass getLanguage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Language#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see Gtm.Language#getName()
+	 * @see #getLanguage()
+	 * @generated
+	 */
+	EAttribute getLanguage_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Language#getCode <em>Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Code</em>'.
+	 * @see Gtm.Language#getCode()
+	 * @see #getLanguage()
+	 * @generated
+	 */
+	EAttribute getLanguage_Code();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Currencies <em>Currencies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Currencies</em>'.
+	 * @see Gtm.Currencies
+	 * @generated
+	 */
+	EClass getCurrencies();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.Currencies#getCurrencies <em>Currencies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Currencies</em>'.
+	 * @see Gtm.Currencies#getCurrencies()
+	 * @see #getCurrencies()
+	 * @generated
+	 */
+	EReference getCurrencies_Currencies();
+
+	/**
+	 * Returns the meta object for the '{@link Gtm.Currencies#findCurrency(java.lang.String) <em>Find Currency</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Currency</em>' operation.
+	 * @see Gtm.Currencies#findCurrency(java.lang.String)
+	 * @generated
+	 */
+	EOperation getCurrencies__FindCurrency__String();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Currency <em>Currency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Currency</em>'.
+	 * @see Gtm.Currency
+	 * @generated
+	 */
+	EClass getCurrency();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Currency#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see Gtm.Currency#getName()
+	 * @see #getCurrency()
+	 * @generated
+	 */
+	EAttribute getCurrency_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Currency#getIsoCode <em>Iso Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Iso Code</em>'.
+	 * @see Gtm.Currency#getIsoCode()
+	 * @see #getCurrency()
+	 * @generated
+	 */
+	EAttribute getCurrency_IsoCode();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Stations <em>Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Stations</em>'.
+	 * @see Gtm.Stations
+	 * @generated
+	 */
+	EClass getStations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.Stations#getStations <em>Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Stations</em>'.
+	 * @see Gtm.Stations#getStations()
+	 * @see #getStations()
+	 * @generated
+	 */
+	EReference getStations_Stations();
+
+	/**
+	 * Returns the meta object for the '{@link Gtm.Stations#findStation(int, int) <em>Find Station</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Station</em>' operation.
+	 * @see Gtm.Stations#findStation(int, int)
+	 * @generated
+	 */
+	EOperation getStations__FindStation__int_int();
+
+	/**
+	 * Returns the meta object for the '{@link Gtm.Stations#findStation(int, java.lang.String) <em>Find Station</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Station</em>' operation.
+	 * @see Gtm.Stations#findStation(int, java.lang.String)
+	 * @generated
+	 */
+	EOperation getStations__FindStation__int_String();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Station <em>Station</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Station</em>'.
+	 * @see Gtm.Station
+	 * @generated
+	 */
+	EClass getStation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Station#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see Gtm.Station#getName()
+	 * @see #getStation()
+	 * @generated
+	 */
+	EAttribute getStation_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.Station#getCountry <em>Country</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Country</em>'.
+	 * @see Gtm.Station#getCountry()
+	 * @see #getStation()
+	 * @generated
+	 */
+	EReference getStation_Country();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Station#getCode <em>Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Code</em>'.
+	 * @see Gtm.Station#getCode()
+	 * @see #getStation()
+	 * @generated
+	 */
+	EAttribute getStation_Code();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Station#getLongitude <em>Longitude</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Longitude</em>'.
+	 * @see Gtm.Station#getLongitude()
+	 * @see #getStation()
+	 * @generated
+	 */
+	EAttribute getStation_Longitude();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Station#getLatitude <em>Latitude</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Latitude</em>'.
+	 * @see Gtm.Station#getLatitude()
+	 * @see #getStation()
+	 * @generated
+	 */
+	EAttribute getStation_Latitude();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Station#getTimetableName <em>Timetable Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Timetable Name</em>'.
+	 * @see Gtm.Station#getTimetableName()
+	 * @see #getStation()
+	 * @generated
+	 */
+	EAttribute getStation_TimetableName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Station#isBorderStation <em>Border Station</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Border Station</em>'.
+	 * @see Gtm.Station#isBorderStation()
+	 * @see #getStation()
+	 * @generated
+	 */
+	EAttribute getStation_BorderStation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Station#getNameCaseUTF8 <em>Name Case UTF8</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name Case UTF8</em>'.
+	 * @see Gtm.Station#getNameCaseUTF8()
+	 * @see #getStation()
+	 * @generated
+	 */
+	EAttribute getStation_NameCaseUTF8();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Station#getNameCaseASCII <em>Name Case ASCII</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name Case ASCII</em>'.
+	 * @see Gtm.Station#getNameCaseASCII()
+	 * @see #getStation()
+	 * @generated
+	 */
+	EAttribute getStation_NameCaseASCII();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Carrier <em>Carrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Carrier</em>'.
+	 * @see Gtm.Carrier
+	 * @generated
+	 */
+	EClass getCarrier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Carrier#getCode <em>Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Code</em>'.
+	 * @see Gtm.Carrier#getCode()
+	 * @see #getCarrier()
+	 * @generated
+	 */
+	EAttribute getCarrier_Code();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Carrier#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see Gtm.Carrier#getName()
+	 * @see #getCarrier()
+	 * @generated
+	 */
+	EAttribute getCarrier_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Carrier#getShortName <em>Short Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Short Name</em>'.
+	 * @see Gtm.Carrier#getShortName()
+	 * @see #getCarrier()
+	 * @generated
+	 */
+	EAttribute getCarrier_ShortName();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Carriers <em>Carriers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Carriers</em>'.
+	 * @see Gtm.Carriers
+	 * @generated
+	 */
+	EClass getCarriers();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.Carriers#getCarriers <em>Carriers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Carriers</em>'.
+	 * @see Gtm.Carriers#getCarriers()
+	 * @see #getCarriers()
+	 * @generated
+	 */
+	EReference getCarriers_Carriers();
+
+	/**
+	 * Returns the meta object for the '{@link Gtm.Carriers#findCarrier(java.lang.String) <em>Find Carrier</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Carrier</em>' operation.
+	 * @see Gtm.Carriers#findCarrier(java.lang.String)
+	 * @generated
+	 */
+	EOperation getCarriers__FindCarrier__String();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.GeneralTariffModel <em>General Tariff Model</em>}'.
@@ -5664,6 +9030,369 @@ public interface GtmPackage extends EPackage {
 	EReference getConversionFromLegacy_Params();
 
 	/**
+	 * Returns the meta object for class '{@link Gtm.ConversionParams <em>Conversion Params</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Conversion Params</em>'.
+	 * @see Gtm.ConversionParams
+	 * @generated
+	 */
+	EClass getConversionParams();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ConversionParams#getTaxId <em>Tax Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Tax Id</em>'.
+	 * @see Gtm.ConversionParams#getTaxId()
+	 * @see #getConversionParams()
+	 * @generated
+	 */
+	EAttribute getConversionParams_TaxId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ConversionParams#getVATpercentage <em>VA Tpercentage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>VA Tpercentage</em>'.
+	 * @see Gtm.ConversionParams#getVATpercentage()
+	 * @see #getConversionParams()
+	 * @generated
+	 */
+	EAttribute getConversionParams_VATpercentage();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.ConversionParams#getCountry <em>Country</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Country</em>'.
+	 * @see Gtm.ConversionParams#getCountry()
+	 * @see #getConversionParams()
+	 * @generated
+	 */
+	EReference getConversionParams_Country();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.ConversionParams#getLegacyStationMappings <em>Legacy Station Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Legacy Station Mappings</em>'.
+	 * @see Gtm.ConversionParams#getLegacyStationMappings()
+	 * @see #getConversionParams()
+	 * @generated
+	 */
+	EReference getConversionParams_LegacyStationMappings();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.ConversionParams#getLegacyTargetFares <em>Legacy Target Fares</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Legacy Target Fares</em>'.
+	 * @see Gtm.ConversionParams#getLegacyTargetFares()
+	 * @see #getConversionParams()
+	 * @generated
+	 */
+	EReference getConversionParams_LegacyTargetFares();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.ConversionParams#getLegacyZoneMappings <em>Legacy Zone Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Legacy Zone Mappings</em>'.
+	 * @see Gtm.ConversionParams#getLegacyZoneMappings()
+	 * @see #getConversionParams()
+	 * @generated
+	 */
+	EReference getConversionParams_LegacyZoneMappings();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.ConversionParams#getLegacyStationToServiceBrandMappings <em>Legacy Station To Service Brand Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Legacy Station To Service Brand Mappings</em>'.
+	 * @see Gtm.ConversionParams#getLegacyStationToServiceBrandMappings()
+	 * @see #getConversionParams()
+	 * @generated
+	 */
+	EReference getConversionParams_LegacyStationToServiceBrandMappings();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.ConversionParams#getEndOfSale <em>End Of Sale</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>End Of Sale</em>'.
+	 * @see Gtm.ConversionParams#getEndOfSale()
+	 * @see #getConversionParams()
+	 * @generated
+	 */
+	EReference getConversionParams_EndOfSale();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.ConversionParams#getStartOfSale <em>Start Of Sale</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Start Of Sale</em>'.
+	 * @see Gtm.ConversionParams#getStartOfSale()
+	 * @see #getConversionParams()
+	 * @generated
+	 */
+	EReference getConversionParams_StartOfSale();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyStationToServiceConstraintMappings <em>Legacy Station To Service Constraint Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Station To Service Constraint Mappings</em>'.
+	 * @see Gtm.LegacyStationToServiceConstraintMappings
+	 * @generated
+	 */
+	EClass getLegacyStationToServiceConstraintMappings();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.LegacyStationToServiceConstraintMappings#getLegacyStationToServiceBrandMappings <em>Legacy Station To Service Brand Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Legacy Station To Service Brand Mappings</em>'.
+	 * @see Gtm.LegacyStationToServiceConstraintMappings#getLegacyStationToServiceBrandMappings()
+	 * @see #getLegacyStationToServiceConstraintMappings()
+	 * @generated
+	 */
+	EReference getLegacyStationToServiceConstraintMappings_LegacyStationToServiceBrandMappings();
+
+	/**
+	 * Returns the meta object for the '{@link Gtm.LegacyStationToServiceConstraintMappings#findServiceConstraint(int) <em>Find Service Constraint</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Service Constraint</em>' operation.
+	 * @see Gtm.LegacyStationToServiceConstraintMappings#findServiceConstraint(int)
+	 * @generated
+	 */
+	EOperation getLegacyStationToServiceConstraintMappings__FindServiceConstraint__int();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyStationToServiceConstraintMapping <em>Legacy Station To Service Constraint Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Station To Service Constraint Mapping</em>'.
+	 * @see Gtm.LegacyStationToServiceConstraintMapping
+	 * @generated
+	 */
+	EClass getLegacyStationToServiceConstraintMapping();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyStationToServiceConstraintMapping#getCode <em>Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Code</em>'.
+	 * @see Gtm.LegacyStationToServiceConstraintMapping#getCode()
+	 * @see #getLegacyStationToServiceConstraintMapping()
+	 * @generated
+	 */
+	EAttribute getLegacyStationToServiceConstraintMapping_Code();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.LegacyStationToServiceConstraintMapping#getServiceConstraint <em>Service Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Service Constraint</em>'.
+	 * @see Gtm.LegacyStationToServiceConstraintMapping#getServiceConstraint()
+	 * @see #getLegacyStationToServiceConstraintMapping()
+	 * @generated
+	 */
+	EReference getLegacyStationToServiceConstraintMapping_ServiceConstraint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyStationToServiceConstraintMapping#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see Gtm.LegacyStationToServiceConstraintMapping#getDescription()
+	 * @see #getLegacyStationToServiceConstraintMapping()
+	 * @generated
+	 */
+	EAttribute getLegacyStationToServiceConstraintMapping_Description();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyStationMappings <em>Legacy Station Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Station Mappings</em>'.
+	 * @see Gtm.LegacyStationMappings
+	 * @generated
+	 */
+	EClass getLegacyStationMappings();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.LegacyStationMappings#getStationMappings <em>Station Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Station Mappings</em>'.
+	 * @see Gtm.LegacyStationMappings#getStationMappings()
+	 * @see #getLegacyStationMappings()
+	 * @generated
+	 */
+	EReference getLegacyStationMappings_StationMappings();
+
+	/**
+	 * Returns the meta object for the '{@link Gtm.LegacyStationMappings#findMappedStation(int) <em>Find Mapped Station</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Mapped Station</em>' operation.
+	 * @see Gtm.LegacyStationMappings#findMappedStation(int)
+	 * @generated
+	 */
+	EOperation getLegacyStationMappings__FindMappedStation__int();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyStationMap <em>Legacy Station Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Station Map</em>'.
+	 * @see Gtm.LegacyStationMap
+	 * @generated
+	 */
+	EClass getLegacyStationMap();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyStationMap#getLegacyCode <em>Legacy Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Legacy Code</em>'.
+	 * @see Gtm.LegacyStationMap#getLegacyCode()
+	 * @see #getLegacyStationMap()
+	 * @generated
+	 */
+	EAttribute getLegacyStationMap_LegacyCode();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.LegacyStationMap#getStation <em>Station</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Station</em>'.
+	 * @see Gtm.LegacyStationMap#getStation()
+	 * @see #getLegacyStationMap()
+	 * @generated
+	 */
+	EReference getLegacyStationMap_Station();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyBoderPointMappings <em>Legacy Boder Point Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Boder Point Mappings</em>'.
+	 * @see Gtm.LegacyBoderPointMappings
+	 * @generated
+	 */
+	EClass getLegacyBoderPointMappings();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.LegacyBoderPointMappings#getBorderPoints <em>Border Points</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Border Points</em>'.
+	 * @see Gtm.LegacyBoderPointMappings#getBorderPoints()
+	 * @see #getLegacyBoderPointMappings()
+	 * @generated
+	 */
+	EReference getLegacyBoderPointMappings_BorderPoints();
+
+	/**
+	 * Returns the meta object for the '{@link Gtm.LegacyBoderPointMappings#getMappingByBorderPointCode(int) <em>Get Mapping By Border Point Code</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Mapping By Border Point Code</em>' operation.
+	 * @see Gtm.LegacyBoderPointMappings#getMappingByBorderPointCode(int)
+	 * @generated
+	 */
+	EOperation getLegacyBoderPointMappings__GetMappingByBorderPointCode__int();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyBorderPointMapping <em>Legacy Border Point Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Border Point Mapping</em>'.
+	 * @see Gtm.LegacyBorderPointMapping
+	 * @generated
+	 */
+	EClass getLegacyBorderPointMapping();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyBorderPointMapping#getCode <em>Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Code</em>'.
+	 * @see Gtm.LegacyBorderPointMapping#getCode()
+	 * @see #getLegacyBorderPointMapping()
+	 * @generated
+	 */
+	EAttribute getLegacyBorderPointMapping_Code();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyBorderPointMapping#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see Gtm.LegacyBorderPointMapping#getName()
+	 * @see #getLegacyBorderPointMapping()
+	 * @generated
+	 */
+	EAttribute getLegacyBorderPointMapping_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.LegacyBorderPointMapping#getStation1 <em>Station1</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Station1</em>'.
+	 * @see Gtm.LegacyBorderPointMapping#getStation1()
+	 * @see #getLegacyBorderPointMapping()
+	 * @generated
+	 */
+	EReference getLegacyBorderPointMapping_Station1();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.LegacyBorderPointMapping#getStation2 <em>Station2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Station2</em>'.
+	 * @see Gtm.LegacyBorderPointMapping#getStation2()
+	 * @see #getLegacyBorderPointMapping()
+	 * @generated
+	 */
+	EReference getLegacyBorderPointMapping_Station2();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.LegacyBorderPointMapping#getConnectionPoint <em>Connection Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Connection Point</em>'.
+	 * @see Gtm.LegacyBorderPointMapping#getConnectionPoint()
+	 * @see #getLegacyBorderPointMapping()
+	 * @generated
+	 */
+	EReference getLegacyBorderPointMapping_ConnectionPoint();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.AfterSalesRules <em>After Sales Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>After Sales Rules</em>'.
+	 * @see Gtm.AfterSalesRules
+	 * @generated
+	 */
+	EClass getAfterSalesRules();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.AfterSalesRules#getAfterSalesRules <em>After Sales Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>After Sales Rules</em>'.
+	 * @see Gtm.AfterSalesRules#getAfterSalesRules()
+	 * @see #getAfterSalesRules()
+	 * @generated
+	 */
+	EReference getAfterSalesRules_AfterSalesRules();
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.FareStructure <em>Fare Structure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5674,10 +9403,10 @@ public interface GtmPackage extends EPackage {
 	EClass getFareStructure();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getFareElements <em>Fare Elements</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getFareElements <em>Fare Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Fare Elements</em>'.
+	 * @return the meta object for the containment reference '<em>Fare Elements</em>'.
 	 * @see Gtm.FareStructure#getFareElements()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5685,10 +9414,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_FareElements();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getAfterSalesRules <em>After Sales Rules</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getAfterSalesRules <em>After Sales Rules</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>After Sales Rules</em>'.
+	 * @return the meta object for the containment reference '<em>After Sales Rules</em>'.
 	 * @see Gtm.FareStructure#getAfterSalesRules()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5696,10 +9425,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_AfterSalesRules();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getCalendars <em>Calendars</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getCalendars <em>Calendars</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Calendars</em>'.
+	 * @return the meta object for the containment reference '<em>Calendars</em>'.
 	 * @see Gtm.FareStructure#getCalendars()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5707,10 +9436,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_Calendars();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getServiceClassDefinitions <em>Service Class Definitions</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getServiceClassDefinitions <em>Service Class Definitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Service Class Definitions</em>'.
+	 * @return the meta object for the containment reference '<em>Service Class Definitions</em>'.
 	 * @see Gtm.FareStructure#getServiceClassDefinitions()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5718,10 +9447,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_ServiceClassDefinitions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getPrices <em>Prices</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getPrices <em>Prices</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Prices</em>'.
+	 * @return the meta object for the containment reference '<em>Prices</em>'.
 	 * @see Gtm.FareStructure#getPrices()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5729,10 +9458,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_Prices();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getRegionalConstraints <em>Regional Constraints</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getRegionalConstraints <em>Regional Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Regional Constraints</em>'.
+	 * @return the meta object for the containment reference '<em>Regional Constraints</em>'.
 	 * @see Gtm.FareStructure#getRegionalConstraints()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5740,10 +9469,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_RegionalConstraints();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getTexts <em>Texts</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getTexts <em>Texts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Texts</em>'.
+	 * @return the meta object for the containment reference '<em>Texts</em>'.
 	 * @see Gtm.FareStructure#getTexts()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5751,10 +9480,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_Texts();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getServiceLevelDefinitions <em>Service Level Definitions</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getServiceLevelDefinitions <em>Service Level Definitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Service Level Definitions</em>'.
+	 * @return the meta object for the containment reference '<em>Service Level Definitions</em>'.
 	 * @see Gtm.FareStructure#getServiceLevelDefinitions()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5762,10 +9491,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_ServiceLevelDefinitions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getReservationParameters <em>Reservation Parameters</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getReservationParameters <em>Reservation Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Reservation Parameters</em>'.
+	 * @return the meta object for the containment reference '<em>Reservation Parameters</em>'.
 	 * @see Gtm.FareStructure#getReservationParameters()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5773,10 +9502,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_ReservationParameters();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getServiceConstraints <em>Service Constraints</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getServiceConstraints <em>Service Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Service Constraints</em>'.
+	 * @return the meta object for the containment reference '<em>Service Constraints</em>'.
 	 * @see Gtm.FareStructure#getServiceConstraints()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5784,10 +9513,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_ServiceConstraints();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getCarrierConstraints <em>Carrier Constraints</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getCarrierConstraints <em>Carrier Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Carrier Constraints</em>'.
+	 * @return the meta object for the containment reference '<em>Carrier Constraints</em>'.
 	 * @see Gtm.FareStructure#getCarrierConstraints()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5795,10 +9524,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_CarrierConstraints();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getReductionCards <em>Reduction Cards</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getReductionCards <em>Reduction Cards</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Reduction Cards</em>'.
+	 * @return the meta object for the containment reference '<em>Reduction Cards</em>'.
 	 * @see Gtm.FareStructure#getReductionCards()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5806,10 +9535,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_ReductionCards();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getSalesAvailabilityConstraints <em>Sales Availability Constraints</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getSalesAvailabilityConstraints <em>Sales Availability Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Sales Availability Constraints</em>'.
+	 * @return the meta object for the containment reference '<em>Sales Availability Constraints</em>'.
 	 * @see Gtm.FareStructure#getSalesAvailabilityConstraints()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5817,10 +9546,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_SalesAvailabilityConstraints();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getTravelValidityConstraints <em>Travel Validity Constraints</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getTravelValidityConstraints <em>Travel Validity Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Travel Validity Constraints</em>'.
+	 * @return the meta object for the containment reference '<em>Travel Validity Constraints</em>'.
 	 * @see Gtm.FareStructure#getTravelValidityConstraints()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5828,10 +9557,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_TravelValidityConstraints();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getCombinationConstraints <em>Combination Constraints</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getCombinationConstraints <em>Combination Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Combination Constraints</em>'.
+	 * @return the meta object for the containment reference '<em>Combination Constraints</em>'.
 	 * @see Gtm.FareStructure#getCombinationConstraints()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5839,10 +9568,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_CombinationConstraints();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getPassengerConstraints <em>Passenger Constraints</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getPassengerConstraints <em>Passenger Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Passenger Constraints</em>'.
+	 * @return the meta object for the containment reference '<em>Passenger Constraints</em>'.
 	 * @see Gtm.FareStructure#getPassengerConstraints()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5850,10 +9579,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_PassengerConstraints();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getPersonalDataConstraints <em>Personal Data Constraints</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getPersonalDataConstraints <em>Personal Data Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Personal Data Constraints</em>'.
+	 * @return the meta object for the containment reference '<em>Personal Data Constraints</em>'.
 	 * @see Gtm.FareStructure#getPersonalDataConstraints()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5861,10 +9590,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_PersonalDataConstraints();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getReductionConstraints <em>Reduction Constraints</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getReductionConstraints <em>Reduction Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Reduction Constraints</em>'.
+	 * @return the meta object for the containment reference '<em>Reduction Constraints</em>'.
 	 * @see Gtm.FareStructure#getReductionConstraints()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5872,10 +9601,10 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_ReductionConstraints();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getZoneDefinitions <em>Zone Definitions</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getZoneDefinitions <em>Zone Definitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Zone Definitions</em>'.
+	 * @return the meta object for the containment reference '<em>Zone Definitions</em>'.
 	 * @see Gtm.FareStructure#getZoneDefinitions()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5883,32 +9612,21 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_ZoneDefinitions();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link Gtm.FareStructure#getSupportedOnlineServices <em>Supported Online Services</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getFulfillmentConstraints <em>Fulfillment Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Supported Online Services</em>'.
-	 * @see Gtm.FareStructure#getSupportedOnlineServices()
+	 * @return the meta object for the containment reference '<em>Fulfillment Constraints</em>'.
+	 * @see Gtm.FareStructure#getFulfillmentConstraints()
 	 * @see #getFareStructure()
 	 * @generated
 	 */
-	EAttribute getFareStructure_SupportedOnlineServices();
+	EReference getFareStructure_FulfillmentConstraints();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getFulfillmentConstraint <em>Fulfillment Constraint</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getFareResourceLocations <em>Fare Resource Locations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Fulfillment Constraint</em>'.
-	 * @see Gtm.FareStructure#getFulfillmentConstraint()
-	 * @see #getFareStructure()
-	 * @generated
-	 */
-	EReference getFareStructure_FulfillmentConstraint();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getFareResourceLocations <em>Fare Resource Locations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Fare Resource Locations</em>'.
+	 * @return the meta object for the containment reference '<em>Fare Resource Locations</em>'.
 	 * @see Gtm.FareStructure#getFareResourceLocations()
 	 * @see #getFareStructure()
 	 * @generated
@@ -5916,15 +9634,680 @@ public interface GtmPackage extends EPackage {
 	EReference getFareStructure_FareResourceLocations();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareStructure#getConnectionPoints <em>Connection Points</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getConnectionPoints <em>Connection Points</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Connection Points</em>'.
+	 * @return the meta object for the containment reference '<em>Connection Points</em>'.
 	 * @see Gtm.FareStructure#getConnectionPoints()
 	 * @see #getFareStructure()
 	 * @generated
 	 */
 	EReference getFareStructure_ConnectionPoints();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.FareStructure#getSupportedOnlineServices <em>Supported Online Services</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Supported Online Services</em>'.
+	 * @see Gtm.FareStructure#getSupportedOnlineServices()
+	 * @see #getFareStructure()
+	 * @generated
+	 */
+	EReference getFareStructure_SupportedOnlineServices();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.ConnectionPoints <em>Connection Points</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Connection Points</em>'.
+	 * @see Gtm.ConnectionPoints
+	 * @generated
+	 */
+	EClass getConnectionPoints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.ConnectionPoints#getConnectionPoints <em>Connection Points</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Connection Points</em>'.
+	 * @see Gtm.ConnectionPoints#getConnectionPoints()
+	 * @see #getConnectionPoints()
+	 * @generated
+	 */
+	EReference getConnectionPoints_ConnectionPoints();
+
+	/**
+	 * Returns the meta object for the '{@link Gtm.ConnectionPoints#findSimpleConnectionPoint(Gtm.Station) <em>Find Simple Connection Point</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Simple Connection Point</em>' operation.
+	 * @see Gtm.ConnectionPoints#findSimpleConnectionPoint(Gtm.Station)
+	 * @generated
+	 */
+	EOperation getConnectionPoints__FindSimpleConnectionPoint__Station();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.ConnectionPoint <em>Connection Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Connection Point</em>'.
+	 * @see Gtm.ConnectionPoint
+	 * @generated
+	 */
+	EClass getConnectionPoint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ConnectionPoint#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see Gtm.ConnectionPoint#getId()
+	 * @see #getConnectionPoint()
+	 * @generated
+	 */
+	EAttribute getConnectionPoint_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ConnectionPoint#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see Gtm.ConnectionPoint#getName()
+	 * @see #getConnectionPoint()
+	 * @generated
+	 */
+	EAttribute getConnectionPoint_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ConnectionPoint#getLegacyBorderPointCode <em>Legacy Border Point Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Legacy Border Point Code</em>'.
+	 * @see Gtm.ConnectionPoint#getLegacyBorderPointCode()
+	 * @see #getConnectionPoint()
+	 * @generated
+	 */
+	EAttribute getConnectionPoint_LegacyBorderPointCode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ConnectionPoint#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see Gtm.ConnectionPoint#getDescription()
+	 * @see #getConnectionPoint()
+	 * @generated
+	 */
+	EAttribute getConnectionPoint_Description();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.ConnectionPoint#getConnectedStationSets <em>Connected Station Sets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Connected Station Sets</em>'.
+	 * @see Gtm.ConnectionPoint#getConnectedStationSets()
+	 * @see #getConnectionPoint()
+	 * @generated
+	 */
+	EReference getConnectionPoint_ConnectedStationSets();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ConnectionPoint#getDataSource <em>Data Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Source</em>'.
+	 * @see Gtm.ConnectionPoint#getDataSource()
+	 * @see #getConnectionPoint()
+	 * @generated
+	 */
+	EAttribute getConnectionPoint_DataSource();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.StationSet <em>Station Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Station Set</em>'.
+	 * @see Gtm.StationSet
+	 * @generated
+	 */
+	EClass getStationSet();
+
+	/**
+	 * Returns the meta object for the reference list '{@link Gtm.StationSet#getStations <em>Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Stations</em>'.
+	 * @see Gtm.StationSet#getStations()
+	 * @see #getStationSet()
+	 * @generated
+	 */
+	EReference getStationSet_Stations();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.FareResourceLocations <em>Fare Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fare Resource Locations</em>'.
+	 * @see Gtm.FareResourceLocations
+	 * @generated
+	 */
+	EClass getFareResourceLocations();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.FareResourceLocations#getCarrierResourceLocations <em>Carrier Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Carrier Resource Locations</em>'.
+	 * @see Gtm.FareResourceLocations#getCarrierResourceLocations()
+	 * @see #getFareResourceLocations()
+	 * @generated
+	 */
+	EReference getFareResourceLocations_CarrierResourceLocations();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.TrainResourceLocations <em>Train Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Train Resource Locations</em>'.
+	 * @see Gtm.TrainResourceLocations
+	 * @generated
+	 */
+	EClass getTrainResourceLocations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.TrainResourceLocations#getTrainResourceLocations <em>Train Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Train Resource Locations</em>'.
+	 * @see Gtm.TrainResourceLocations#getTrainResourceLocations()
+	 * @see #getTrainResourceLocations()
+	 * @generated
+	 */
+	EReference getTrainResourceLocations_TrainResourceLocations();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.StationResourceLocations <em>Station Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Station Resource Locations</em>'.
+	 * @see Gtm.StationResourceLocations
+	 * @generated
+	 */
+	EClass getStationResourceLocations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.StationResourceLocations#getStationResourceLocations <em>Station Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Station Resource Locations</em>'.
+	 * @see Gtm.StationResourceLocations#getStationResourceLocations()
+	 * @see #getStationResourceLocations()
+	 * @generated
+	 */
+	EReference getStationResourceLocations_StationResourceLocations();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.CarrierResourceLocations <em>Carrier Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Carrier Resource Locations</em>'.
+	 * @see Gtm.CarrierResourceLocations
+	 * @generated
+	 */
+	EClass getCarrierResourceLocations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.CarrierResourceLocations#getCarrierResourceLocations <em>Carrier Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Carrier Resource Locations</em>'.
+	 * @see Gtm.CarrierResourceLocations#getCarrierResourceLocations()
+	 * @see #getCarrierResourceLocations()
+	 * @generated
+	 */
+	EReference getCarrierResourceLocations_CarrierResourceLocations();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.FareResourceLocations#getStationResourceLocations <em>Station Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Station Resource Locations</em>'.
+	 * @see Gtm.FareResourceLocations#getStationResourceLocations()
+	 * @see #getFareResourceLocations()
+	 * @generated
+	 */
+	EReference getFareResourceLocations_StationResourceLocations();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.FareResourceLocations#getTrainResourceLocations <em>Train Resource Locations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Train Resource Locations</em>'.
+	 * @see Gtm.FareResourceLocations#getTrainResourceLocations()
+	 * @see #getFareResourceLocations()
+	 * @generated
+	 */
+	EReference getFareResourceLocations_TrainResourceLocations();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.FulfillmentConstraints <em>Fulfillment Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fulfillment Constraints</em>'.
+	 * @see Gtm.FulfillmentConstraints
+	 * @generated
+	 */
+	EClass getFulfillmentConstraints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.FulfillmentConstraints#getFulfillmentConstraints <em>Fulfillment Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Fulfillment Constraints</em>'.
+	 * @see Gtm.FulfillmentConstraints#getFulfillmentConstraints()
+	 * @see #getFulfillmentConstraints()
+	 * @generated
+	 */
+	EReference getFulfillmentConstraints_FulfillmentConstraints();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.SupportedOnlineServices <em>Supported Online Services</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Supported Online Services</em>'.
+	 * @see Gtm.SupportedOnlineServices
+	 * @generated
+	 */
+	EClass getSupportedOnlineServices();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link Gtm.SupportedOnlineServices#getSupportedOnlineServices <em>Supported Online Services</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Supported Online Services</em>'.
+	 * @see Gtm.SupportedOnlineServices#getSupportedOnlineServices()
+	 * @see #getSupportedOnlineServices()
+	 * @generated
+	 */
+	EAttribute getSupportedOnlineServices_SupportedOnlineServices();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.ZoneDefinitions <em>Zone Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Zone Definitions</em>'.
+	 * @see Gtm.ZoneDefinitions
+	 * @generated
+	 */
+	EClass getZoneDefinitions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.ZoneDefinitions#getZoneDefinitions <em>Zone Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Zone Definitions</em>'.
+	 * @see Gtm.ZoneDefinitions#getZoneDefinitions()
+	 * @see #getZoneDefinitions()
+	 * @generated
+	 */
+	EReference getZoneDefinitions_ZoneDefinitions();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.ReductionConstraints <em>Reduction Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reduction Constraints</em>'.
+	 * @see Gtm.ReductionConstraints
+	 * @generated
+	 */
+	EClass getReductionConstraints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.ReductionConstraints#getReductionConstraints <em>Reduction Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Reduction Constraints</em>'.
+	 * @see Gtm.ReductionConstraints#getReductionConstraints()
+	 * @see #getReductionConstraints()
+	 * @generated
+	 */
+	EReference getReductionConstraints_ReductionConstraints();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.PersonalDataConstraints <em>Personal Data Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Personal Data Constraints</em>'.
+	 * @see Gtm.PersonalDataConstraints
+	 * @generated
+	 */
+	EClass getPersonalDataConstraints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.PersonalDataConstraints#getPersonalDataConstraints <em>Personal Data Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Personal Data Constraints</em>'.
+	 * @see Gtm.PersonalDataConstraints#getPersonalDataConstraints()
+	 * @see #getPersonalDataConstraints()
+	 * @generated
+	 */
+	EReference getPersonalDataConstraints_PersonalDataConstraints();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.PassengerConstraints <em>Passenger Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Passenger Constraints</em>'.
+	 * @see Gtm.PassengerConstraints
+	 * @generated
+	 */
+	EClass getPassengerConstraints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.PassengerConstraints#getPassengerConstraints <em>Passenger Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Passenger Constraints</em>'.
+	 * @see Gtm.PassengerConstraints#getPassengerConstraints()
+	 * @see #getPassengerConstraints()
+	 * @generated
+	 */
+	EReference getPassengerConstraints_PassengerConstraints();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.CombinationConstraints <em>Combination Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Combination Constraints</em>'.
+	 * @see Gtm.CombinationConstraints
+	 * @generated
+	 */
+	EClass getCombinationConstraints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.CombinationConstraints#getCombinationConstraints <em>Combination Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Combination Constraints</em>'.
+	 * @see Gtm.CombinationConstraints#getCombinationConstraints()
+	 * @see #getCombinationConstraints()
+	 * @generated
+	 */
+	EReference getCombinationConstraints_CombinationConstraints();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.TravelValidityConstraints <em>Travel Validity Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Travel Validity Constraints</em>'.
+	 * @see Gtm.TravelValidityConstraints
+	 * @generated
+	 */
+	EClass getTravelValidityConstraints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.TravelValidityConstraints#getTravelValidityConstraints <em>Travel Validity Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Travel Validity Constraints</em>'.
+	 * @see Gtm.TravelValidityConstraints#getTravelValidityConstraints()
+	 * @see #getTravelValidityConstraints()
+	 * @generated
+	 */
+	EReference getTravelValidityConstraints_TravelValidityConstraints();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.SalesAvailabilityConstraints <em>Sales Availability Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Sales Availability Constraints</em>'.
+	 * @see Gtm.SalesAvailabilityConstraints
+	 * @generated
+	 */
+	EClass getSalesAvailabilityConstraints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.SalesAvailabilityConstraints#getSalesAvailabilityConstraints <em>Sales Availability Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Sales Availability Constraints</em>'.
+	 * @see Gtm.SalesAvailabilityConstraints#getSalesAvailabilityConstraints()
+	 * @see #getSalesAvailabilityConstraints()
+	 * @generated
+	 */
+	EReference getSalesAvailabilityConstraints_SalesAvailabilityConstraints();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.ReductionCards <em>Reduction Cards</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reduction Cards</em>'.
+	 * @see Gtm.ReductionCards
+	 * @generated
+	 */
+	EClass getReductionCards();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.ReductionCards#getReductionCards <em>Reduction Cards</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Reduction Cards</em>'.
+	 * @see Gtm.ReductionCards#getReductionCards()
+	 * @see #getReductionCards()
+	 * @generated
+	 */
+	EReference getReductionCards_ReductionCards();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.CarrierConstraints <em>Carrier Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Carrier Constraints</em>'.
+	 * @see Gtm.CarrierConstraints
+	 * @generated
+	 */
+	EClass getCarrierConstraints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.CarrierConstraints#getCarrierConstraints <em>Carrier Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Carrier Constraints</em>'.
+	 * @see Gtm.CarrierConstraints#getCarrierConstraints()
+	 * @see #getCarrierConstraints()
+	 * @generated
+	 */
+	EReference getCarrierConstraints_CarrierConstraints();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.ServiceConstraints <em>Service Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Constraints</em>'.
+	 * @see Gtm.ServiceConstraints
+	 * @generated
+	 */
+	EClass getServiceConstraints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.ServiceConstraints#getServiceConstraints <em>Service Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Service Constraints</em>'.
+	 * @see Gtm.ServiceConstraints#getServiceConstraints()
+	 * @see #getServiceConstraints()
+	 * @generated
+	 */
+	EReference getServiceConstraints_ServiceConstraints();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.ReservationParameters <em>Reservation Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reservation Parameters</em>'.
+	 * @see Gtm.ReservationParameters
+	 * @generated
+	 */
+	EClass getReservationParameters();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.ReservationParameters#getReservationParameters <em>Reservation Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Reservation Parameters</em>'.
+	 * @see Gtm.ReservationParameters#getReservationParameters()
+	 * @see #getReservationParameters()
+	 * @generated
+	 */
+	EReference getReservationParameters_ReservationParameters();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.RegionalConstraints <em>Regional Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Regional Constraints</em>'.
+	 * @see Gtm.RegionalConstraints
+	 * @generated
+	 */
+	EClass getRegionalConstraints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.RegionalConstraints#getRegionalConstraints <em>Regional Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Regional Constraints</em>'.
+	 * @see Gtm.RegionalConstraints#getRegionalConstraints()
+	 * @see #getRegionalConstraints()
+	 * @generated
+	 */
+	EReference getRegionalConstraints_RegionalConstraints();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.ServiceLevelDefinitions <em>Service Level Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Level Definitions</em>'.
+	 * @see Gtm.ServiceLevelDefinitions
+	 * @generated
+	 */
+	EClass getServiceLevelDefinitions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.ServiceLevelDefinitions#getServiceLevelDefinition <em>Service Level Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Service Level Definition</em>'.
+	 * @see Gtm.ServiceLevelDefinitions#getServiceLevelDefinition()
+	 * @see #getServiceLevelDefinitions()
+	 * @generated
+	 */
+	EReference getServiceLevelDefinitions_ServiceLevelDefinition();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Texts <em>Texts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Texts</em>'.
+	 * @see Gtm.Texts
+	 * @generated
+	 */
+	EClass getTexts();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.Texts#getTexts <em>Texts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Texts</em>'.
+	 * @see Gtm.Texts#getTexts()
+	 * @see #getTexts()
+	 * @generated
+	 */
+	EReference getTexts_Texts();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Prices <em>Prices</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Prices</em>'.
+	 * @see Gtm.Prices
+	 * @generated
+	 */
+	EClass getPrices();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.Prices#getPrices <em>Prices</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Prices</em>'.
+	 * @see Gtm.Prices#getPrices()
+	 * @see #getPrices()
+	 * @generated
+	 */
+	EReference getPrices_Prices();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.ServiceClassDefinitions <em>Service Class Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Class Definitions</em>'.
+	 * @see Gtm.ServiceClassDefinitions
+	 * @generated
+	 */
+	EClass getServiceClassDefinitions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.ServiceClassDefinitions#getServiceClassDefinitions <em>Service Class Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Service Class Definitions</em>'.
+	 * @see Gtm.ServiceClassDefinitions#getServiceClassDefinitions()
+	 * @see #getServiceClassDefinitions()
+	 * @generated
+	 */
+	EReference getServiceClassDefinitions_ServiceClassDefinitions();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Calendars <em>Calendars</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Calendars</em>'.
+	 * @see Gtm.Calendars
+	 * @generated
+	 */
+	EClass getCalendars();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.Calendars#getCalendars <em>Calendars</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Calendars</em>'.
+	 * @see Gtm.Calendars#getCalendars()
+	 * @see #getCalendars()
+	 * @generated
+	 */
+	EReference getCalendars_Calendars();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.FareElements <em>Fare Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fare Elements</em>'.
+	 * @see Gtm.FareElements
+	 * @generated
+	 */
+	EClass getFareElements();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.FareElements#getFareElements <em>Fare Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Fare Elements</em>'.
+	 * @see Gtm.FareElements#getFareElements()
+	 * @see #getFareElements()
+	 * @generated
+	 */
+	EReference getFareElements_FareElements();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.Delivery <em>Delivery</em>}'.
@@ -5970,17 +10353,6 @@ public interface GtmPackage extends EPackage {
 	EAttribute getDelivery_ReplacedDeliveryId();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Delivery#getFareProvider <em>Fare Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Fare Provider</em>'.
-	 * @see Gtm.Delivery#getFareProvider()
-	 * @see #getDelivery()
-	 * @generated
-	 */
-	EAttribute getDelivery_FareProvider();
-
-	/**
 	 * Returns the meta object for the attribute '{@link Gtm.Delivery#isOptional <em>Optional</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6003,58 +10375,26 @@ public interface GtmPackage extends EPackage {
 	EReference getDelivery_Provider();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.BorderPoints <em>Border Points</em>}'.
+	 * Returns the meta object for the attribute '{@link Gtm.Delivery#getSchemaVersion <em>Schema Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Border Points</em>'.
-	 * @see Gtm.BorderPoints
+	 * @return the meta object for the attribute '<em>Schema Version</em>'.
+	 * @see Gtm.Delivery#getSchemaVersion()
+	 * @see #getDelivery()
 	 * @generated
 	 */
-	EClass getBorderPoints();
+	EAttribute getDelivery_SchemaVersion();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.BorderPoints#getCode <em>Code</em>}'.
+	 * Returns the meta object for the attribute '{@link Gtm.Delivery#getAcceptedSchemaVersion <em>Accepted Schema Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Code</em>'.
-	 * @see Gtm.BorderPoints#getCode()
-	 * @see #getBorderPoints()
+	 * @return the meta object for the attribute '<em>Accepted Schema Version</em>'.
+	 * @see Gtm.Delivery#getAcceptedSchemaVersion()
+	 * @see #getDelivery()
 	 * @generated
 	 */
-	EAttribute getBorderPoints_Code();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.BorderPoints#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Gtm.BorderPoints#getName()
-	 * @see #getBorderPoints()
-	 * @generated
-	 */
-	EAttribute getBorderPoints_Name();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.BorderPoints#getStation1 <em>Station1</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Station1</em>'.
-	 * @see Gtm.BorderPoints#getStation1()
-	 * @see #getBorderPoints()
-	 * @generated
-	 */
-	EReference getBorderPoints_Station1();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.BorderPoints#getStation2 <em>Station2</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Station2</em>'.
-	 * @see Gtm.BorderPoints#getStation2()
-	 * @see #getBorderPoints()
-	 * @generated
-	 */
-	EReference getBorderPoints_Station2();
+	EAttribute getDelivery_AcceptedSchemaVersion();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.Calendar <em>Calendar</em>}'.
@@ -6133,112 +10473,15 @@ public interface GtmPackage extends EPackage {
 	EAttribute getCalendar_Dates();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.Carrier <em>Carrier</em>}'.
+	 * Returns the meta object for the attribute '{@link Gtm.Calendar#getDataSource <em>Data Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Carrier</em>'.
-	 * @see Gtm.Carrier
+	 * @return the meta object for the attribute '<em>Data Source</em>'.
+	 * @see Gtm.Calendar#getDataSource()
+	 * @see #getCalendar()
 	 * @generated
 	 */
-	EClass getCarrier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Carrier#getCode <em>Code</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Code</em>'.
-	 * @see Gtm.Carrier#getCode()
-	 * @see #getCarrier()
-	 * @generated
-	 */
-	EAttribute getCarrier_Code();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Carrier#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Gtm.Carrier#getName()
-	 * @see #getCarrier()
-	 * @generated
-	 */
-	EAttribute getCarrier_Name();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.CoversionParams <em>Coversion Params</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Coversion Params</em>'.
-	 * @see Gtm.CoversionParams
-	 * @generated
-	 */
-	EClass getCoversionParams();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.CoversionParams#getBorderPoints <em>Border Points</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Border Points</em>'.
-	 * @see Gtm.CoversionParams#getBorderPoints()
-	 * @see #getCoversionParams()
-	 * @generated
-	 */
-	EReference getCoversionParams_BorderPoints();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.CoversionParams#getTargetFares <em>Target Fares</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Target Fares</em>'.
-	 * @see Gtm.CoversionParams#getTargetFares()
-	 * @see #getCoversionParams()
-	 * @generated
-	 */
-	EReference getCoversionParams_TargetFares();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.CoversionParams#getStationMappings <em>Station Mappings</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Station Mappings</em>'.
-	 * @see Gtm.CoversionParams#getStationMappings()
-	 * @see #getCoversionParams()
-	 * @generated
-	 */
-	EReference getCoversionParams_StationMappings();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.CoversionParams#getTaxId <em>Tax Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Tax Id</em>'.
-	 * @see Gtm.CoversionParams#getTaxId()
-	 * @see #getCoversionParams()
-	 * @generated
-	 */
-	EAttribute getCoversionParams_TaxId();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.CoversionParams#getVATpercentage <em>VA Tpercentage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>VA Tpercentage</em>'.
-	 * @see Gtm.CoversionParams#getVATpercentage()
-	 * @see #getCoversionParams()
-	 * @generated
-	 */
-	EAttribute getCoversionParams_VATpercentage();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.CoversionParams#getTaxCountry <em>Tax Country</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Tax Country</em>'.
-	 * @see Gtm.CoversionParams#getTaxCountry()
-	 * @see #getCoversionParams()
-	 * @generated
-	 */
-	EReference getCoversionParams_TaxCountry();
+	EAttribute getCalendar_DataSource();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.LegacyDescription <em>Legacy Description</em>}'.
@@ -6271,6 +10514,59 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLegacyDescription_Text();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyZoneMappings <em>Legacy Zone Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Zone Mappings</em>'.
+	 * @see Gtm.LegacyZoneMappings
+	 * @generated
+	 */
+	EClass getLegacyZoneMappings();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.LegacyZoneMappings#getLegacyZoneMap <em>Legacy Zone Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Legacy Zone Map</em>'.
+	 * @see Gtm.LegacyZoneMappings#getLegacyZoneMap()
+	 * @see #getLegacyZoneMappings()
+	 * @generated
+	 */
+	EReference getLegacyZoneMappings_LegacyZoneMap();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyZoneMap <em>Legacy Zone Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Zone Map</em>'.
+	 * @see Gtm.LegacyZoneMap
+	 * @generated
+	 */
+	EClass getLegacyZoneMap();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyZoneMap#getLegacyCode <em>Legacy Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Legacy Code</em>'.
+	 * @see Gtm.LegacyZoneMap#getLegacyCode()
+	 * @see #getLegacyZoneMap()
+	 * @generated
+	 */
+	EAttribute getLegacyZoneMap_LegacyCode();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.LegacyZoneMap#getZone <em>Zone</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Zone</em>'.
+	 * @see Gtm.LegacyZoneMap#getZone()
+	 * @see #getLegacyZoneMap()
+	 * @generated
+	 */
+	EReference getLegacyZoneMap_Zone();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.LegacyDistanceFare <em>Legacy Distance Fare</em>}'.
@@ -6327,6 +10623,50 @@ public interface GtmPackage extends EPackage {
 	EAttribute getLegacyDistanceFare_FareTableNumber();
 
 	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyDistanceFare#getReturnFare1st <em>Return Fare1st</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Return Fare1st</em>'.
+	 * @see Gtm.LegacyDistanceFare#getReturnFare1st()
+	 * @see #getLegacyDistanceFare()
+	 * @generated
+	 */
+	EAttribute getLegacyDistanceFare_ReturnFare1st();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyDistanceFare#getReturnFare2nd <em>Return Fare2nd</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Return Fare2nd</em>'.
+	 * @see Gtm.LegacyDistanceFare#getReturnFare2nd()
+	 * @see #getLegacyDistanceFare()
+	 * @generated
+	 */
+	EAttribute getLegacyDistanceFare_ReturnFare2nd();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyDistanceFare#getValidFrom <em>Valid From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Valid From</em>'.
+	 * @see Gtm.LegacyDistanceFare#getValidFrom()
+	 * @see #getLegacyDistanceFare()
+	 * @generated
+	 */
+	EAttribute getLegacyDistanceFare_ValidFrom();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyDistanceFare#getValidUntil <em>Valid Until</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Valid Until</em>'.
+	 * @see Gtm.LegacyDistanceFare#getValidUntil()
+	 * @see #getLegacyDistanceFare()
+	 * @generated
+	 */
+	EAttribute getLegacyDistanceFare_ValidUntil();
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.LegacyFares <em>Legacy Fares</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6337,15 +10677,36 @@ public interface GtmPackage extends EPackage {
 	EClass getLegacyFares();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.LegacyFares#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the containment reference list '{@link Gtm.LegacyFares#getFares <em>Fares</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Description</em>'.
-	 * @see Gtm.LegacyFares#getDescription()
+	 * @return the meta object for the containment reference list '<em>Fares</em>'.
+	 * @see Gtm.LegacyFares#getFares()
 	 * @see #getLegacyFares()
 	 * @generated
 	 */
-	EReference getLegacyFares_Description();
+	EReference getLegacyFares_Fares();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyFare <em>Legacy Fare</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Fare</em>'.
+	 * @see Gtm.LegacyFare
+	 * @generated
+	 */
+	EClass getLegacyFare();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.LegacyFare#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Description</em>'.
+	 * @see Gtm.LegacyFare#getDescription()
+	 * @see #getLegacyFare()
+	 * @generated
+	 */
+	EReference getLegacyFare_Description();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.Legacy108 <em>Legacy108</em>}'.
@@ -6358,59 +10719,208 @@ public interface GtmPackage extends EPackage {
 	EClass getLegacy108();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Legacy108#getCarrier <em>Carrier</em>}'.
+	 * Returns the meta object for the attribute '{@link Gtm.Legacy108#getCharacterSet <em>Character Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Carrier</em>'.
+	 * @return the meta object for the attribute '<em>Character Set</em>'.
+	 * @see Gtm.Legacy108#getCharacterSet()
+	 * @see #getLegacy108()
+	 * @generated
+	 */
+	EAttribute getLegacy108_CharacterSet();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.Legacy108#getCarrier <em>Carrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Carrier</em>'.
 	 * @see Gtm.Legacy108#getCarrier()
 	 * @see #getLegacy108()
 	 * @generated
 	 */
-	EAttribute getLegacy108_Carrier();
+	EReference getLegacy108_Carrier();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.Legacy108#getSeries <em>Series</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.Legacy108#getLegacySeriesList <em>Legacy Series List</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Series</em>'.
-	 * @see Gtm.Legacy108#getSeries()
+	 * @return the meta object for the containment reference '<em>Legacy Series List</em>'.
+	 * @see Gtm.Legacy108#getLegacySeriesList()
 	 * @see #getLegacy108()
 	 * @generated
 	 */
-	EReference getLegacy108_Series();
+	EReference getLegacy108_LegacySeriesList();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.Legacy108#getFares <em>Fares</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.Legacy108#getLegacyFares <em>Legacy Fares</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Fares</em>'.
-	 * @see Gtm.Legacy108#getFares()
+	 * @return the meta object for the containment reference '<em>Legacy Fares</em>'.
+	 * @see Gtm.Legacy108#getLegacyFares()
 	 * @see #getLegacy108()
 	 * @generated
 	 */
-	EReference getLegacy108_Fares();
+	EReference getLegacy108_LegacyFares();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.Legacy108#getDistanceFare <em>Distance Fare</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.Legacy108#getLegacyDistanceFares <em>Legacy Distance Fares</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Distance Fare</em>'.
-	 * @see Gtm.Legacy108#getDistanceFare()
+	 * @return the meta object for the containment reference '<em>Legacy Distance Fares</em>'.
+	 * @see Gtm.Legacy108#getLegacyDistanceFares()
 	 * @see #getLegacy108()
 	 * @generated
 	 */
-	EReference getLegacy108_DistanceFare();
+	EReference getLegacy108_LegacyDistanceFares();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.Legacy108#getRouteFare <em>Route Fare</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.Legacy108#getLegacyRouteFares <em>Legacy Route Fares</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Legacy Route Fares</em>'.
+	 * @see Gtm.Legacy108#getLegacyRouteFares()
+	 * @see #getLegacy108()
+	 * @generated
+	 */
+	EReference getLegacy108_LegacyRouteFares();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.Legacy108#getLegacyStations <em>Legacy Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Legacy Stations</em>'.
+	 * @see Gtm.Legacy108#getLegacyStations()
+	 * @see #getLegacy108()
+	 * @generated
+	 */
+	EReference getLegacy108_LegacyStations();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Legacy108#getTimeZone <em>Time Zone</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time Zone</em>'.
+	 * @see Gtm.Legacy108#getTimeZone()
+	 * @see #getLegacy108()
+	 * @generated
+	 */
+	EAttribute getLegacy108_TimeZone();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Legacy108Stations <em>Legacy108 Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy108 Stations</em>'.
+	 * @see Gtm.Legacy108Stations
+	 * @generated
+	 */
+	EClass getLegacy108Stations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.Legacy108Stations#getLegacyStations <em>Legacy Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Legacy Stations</em>'.
+	 * @see Gtm.Legacy108Stations#getLegacyStations()
+	 * @see #getLegacy108Stations()
+	 * @generated
+	 */
+	EReference getLegacy108Stations_LegacyStations();
+
+	/**
+	 * Returns the meta object for the '{@link Gtm.Legacy108Stations#findStation(int) <em>Find Station</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find Station</em>' operation.
+	 * @see Gtm.Legacy108Stations#findStation(int)
+	 * @generated
+	 */
+	EOperation getLegacy108Stations__FindStation__int();
+
+	/**
+	 * Returns the meta object for the '{@link Gtm.Legacy108Stations#findByBorderPoint(int) <em>Find By Border Point</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Find By Border Point</em>' operation.
+	 * @see Gtm.Legacy108Stations#findByBorderPoint(int)
+	 * @generated
+	 */
+	EOperation getLegacy108Stations__FindByBorderPoint__int();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Legacy108Station <em>Legacy108 Station</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy108 Station</em>'.
+	 * @see Gtm.Legacy108Station
+	 * @generated
+	 */
+	EClass getLegacy108Station();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Legacy108Station#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see Gtm.Legacy108Station#getName()
+	 * @see #getLegacy108Station()
+	 * @generated
+	 */
+	EAttribute getLegacy108Station_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Legacy108Station#getBorderPointCode <em>Border Point Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Border Point Code</em>'.
+	 * @see Gtm.Legacy108Station#getBorderPointCode()
+	 * @see #getLegacy108Station()
+	 * @generated
+	 */
+	EAttribute getLegacy108Station_BorderPointCode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Legacy108Station#getNameUTF8 <em>Name UTF8</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name UTF8</em>'.
+	 * @see Gtm.Legacy108Station#getNameUTF8()
+	 * @see #getLegacy108Station()
+	 * @generated
+	 */
+	EAttribute getLegacy108Station_NameUTF8();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Legacy108Station#getStationCode <em>Station Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Station Code</em>'.
+	 * @see Gtm.Legacy108Station#getStationCode()
+	 * @see #getLegacy108Station()
+	 * @generated
+	 */
+	EAttribute getLegacy108Station_StationCode();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyRouteFares <em>Legacy Route Fares</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Route Fares</em>'.
+	 * @see Gtm.LegacyRouteFares
+	 * @generated
+	 */
+	EClass getLegacyRouteFares();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.LegacyRouteFares#getRouteFare <em>Route Fare</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Route Fare</em>'.
-	 * @see Gtm.Legacy108#getRouteFare()
-	 * @see #getLegacy108()
+	 * @see Gtm.LegacyRouteFares#getRouteFare()
+	 * @see #getLegacyRouteFares()
 	 * @generated
 	 */
-	EReference getLegacy108_RouteFare();
+	EReference getLegacyRouteFares_RouteFare();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.LegacyRouteFare <em>Legacy Route Fare</em>}'.
@@ -6465,6 +10975,50 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLegacyRouteFare_FareTableNumber();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyRouteFare#getReturnFare1st <em>Return Fare1st</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Return Fare1st</em>'.
+	 * @see Gtm.LegacyRouteFare#getReturnFare1st()
+	 * @see #getLegacyRouteFare()
+	 * @generated
+	 */
+	EAttribute getLegacyRouteFare_ReturnFare1st();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyRouteFare#getReturnFare2nd <em>Return Fare2nd</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Return Fare2nd</em>'.
+	 * @see Gtm.LegacyRouteFare#getReturnFare2nd()
+	 * @see #getLegacyRouteFare()
+	 * @generated
+	 */
+	EAttribute getLegacyRouteFare_ReturnFare2nd();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyRouteFare#getValidFrom <em>Valid From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Valid From</em>'.
+	 * @see Gtm.LegacyRouteFare#getValidFrom()
+	 * @see #getLegacyRouteFare()
+	 * @generated
+	 */
+	EAttribute getLegacyRouteFare_ValidFrom();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyRouteFare#getValidUntil <em>Valid Until</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Valid Until</em>'.
+	 * @see Gtm.LegacyRouteFare#getValidUntil()
+	 * @see #getLegacyRouteFare()
+	 * @generated
+	 */
+	EAttribute getLegacyRouteFare_ValidUntil();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.LegacySeries <em>Legacy Series</em>}'.
@@ -6598,6 +11152,48 @@ public interface GtmPackage extends EPackage {
 	EAttribute getLegacySeries_Distance2();
 
 	/**
+	 * Returns the meta object for class '{@link Gtm.LegacySeriesList <em>Legacy Series List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Series List</em>'.
+	 * @see Gtm.LegacySeriesList
+	 * @generated
+	 */
+	EClass getLegacySeriesList();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.LegacySeriesList#getSeries <em>Series</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Series</em>'.
+	 * @see Gtm.LegacySeriesList#getSeries()
+	 * @see #getLegacySeriesList()
+	 * @generated
+	 */
+	EReference getLegacySeriesList_Series();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyDistanceFares <em>Legacy Distance Fares</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Distance Fares</em>'.
+	 * @see Gtm.LegacyDistanceFares
+	 * @generated
+	 */
+	EClass getLegacyDistanceFares();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.LegacyDistanceFares#getDistanceFare <em>Distance Fare</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Distance Fare</em>'.
+	 * @see Gtm.LegacyDistanceFares#getDistanceFare()
+	 * @see #getLegacyDistanceFares()
+	 * @generated
+	 */
+	EReference getLegacyDistanceFares_DistanceFare();
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.LegacyViastation <em>Legacy Viastation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6630,555 +11226,89 @@ public interface GtmPackage extends EPackage {
 	EAttribute getLegacyViastation_Code();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.LegacyStationMap <em>Legacy Station Map</em>}'.
+	 * Returns the meta object for class '{@link Gtm.LegacyTargetFares <em>Legacy Target Fares</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Legacy Station Map</em>'.
-	 * @see Gtm.LegacyStationMap
+	 * @return the meta object for class '<em>Legacy Target Fares</em>'.
+	 * @see Gtm.LegacyTargetFares
 	 * @generated
 	 */
-	EClass getLegacyStationMap();
+	EClass getLegacyTargetFares();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.LegacyStationMap#getLegacyCode <em>Legacy Code</em>}'.
+	 * Returns the meta object for the containment reference list '{@link Gtm.LegacyTargetFares#getTargetFares <em>Target Fares</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Legacy Code</em>'.
-	 * @see Gtm.LegacyStationMap#getLegacyCode()
-	 * @see #getLegacyStationMap()
+	 * @return the meta object for the containment reference list '<em>Target Fares</em>'.
+	 * @see Gtm.LegacyTargetFares#getTargetFares()
+	 * @see #getLegacyTargetFares()
 	 * @generated
 	 */
-	EAttribute getLegacyStationMap_LegacyCode();
+	EReference getLegacyTargetFares_TargetFares();
 
 	/**
-	 * Returns the meta object for the reference '{@link Gtm.LegacyStationMap#getStation <em>Station</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.SchemaVersion <em>Schema Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Station</em>'.
-	 * @see Gtm.LegacyStationMap#getStation()
-	 * @see #getLegacyStationMap()
+	 * @return the meta object for enum '<em>Schema Version</em>'.
+	 * @see Gtm.SchemaVersion
 	 * @generated
 	 */
-	EReference getLegacyStationMap_Station();
+	EEnum getSchemaVersion();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.StationsType <em>Stations Type</em>}'.
+	 * Returns the meta object for class '{@link Gtm.CarrierConstraint <em>Carrier Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Stations Type</em>'.
-	 * @see Gtm.StationsType
+	 * @return the meta object for class '<em>Carrier Constraint</em>'.
+	 * @see Gtm.CarrierConstraint
 	 * @generated
 	 */
-	EClass getStationsType();
+	EClass getCarrierConstraint();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.StationsType#getCode <em>Code</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Code</em>'.
-	 * @see Gtm.StationsType#getCode()
-	 * @see #getStationsType()
-	 * @generated
-	 */
-	EAttribute getStationsType_Code();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.StationsType#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Gtm.StationsType#getName()
-	 * @see #getStationsType()
-	 * @generated
-	 */
-	EAttribute getStationsType_Name();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.TargetFareTemplate <em>Target Fare Template</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Target Fare Template</em>'.
-	 * @see Gtm.TargetFareTemplate
-	 * @generated
-	 */
-	EClass getTargetFareTemplate();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.TargetFareTemplate#getPriceFactor <em>Price Factor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Price Factor</em>'.
-	 * @see Gtm.TargetFareTemplate#getPriceFactor()
-	 * @see #getTargetFareTemplate()
-	 * @generated
-	 */
-	EAttribute getTargetFareTemplate_PriceFactor();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.TargetFareTemplate#getId <em>Id</em>}'.
+	 * Returns the meta object for the attribute '{@link Gtm.CarrierConstraint#getId <em>Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see Gtm.TargetFareTemplate#getId()
-	 * @see #getTargetFareTemplate()
+	 * @see Gtm.CarrierConstraint#getId()
+	 * @see #getCarrierConstraint()
 	 * @generated
 	 */
-	EAttribute getTargetFareTemplate_Id();
+	EAttribute getCarrierConstraint_Id();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.TargetFareTemplate#getType <em>Type</em>}'.
+	 * Returns the meta object for the reference list '{@link Gtm.CarrierConstraint#getIncludedCarriers <em>Included Carriers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see Gtm.TargetFareTemplate#getType()
-	 * @see #getTargetFareTemplate()
+	 * @return the meta object for the reference list '<em>Included Carriers</em>'.
+	 * @see Gtm.CarrierConstraint#getIncludedCarriers()
+	 * @see #getCarrierConstraint()
 	 * @generated
 	 */
-	EAttribute getTargetFareTemplate_Type();
+	EReference getCarrierConstraint_IncludedCarriers();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.TargetFareTemplate#getDataDescription <em>Data Description</em>}'.
+	 * Returns the meta object for the reference list '{@link Gtm.CarrierConstraint#getExcludedCarriers <em>Excluded Carriers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Excluded Carriers</em>'.
+	 * @see Gtm.CarrierConstraint#getExcludedCarriers()
+	 * @see #getCarrierConstraint()
+	 * @generated
+	 */
+	EReference getCarrierConstraint_ExcludedCarriers();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.CarrierConstraint#getDataDescription <em>Data Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Data Description</em>'.
-	 * @see Gtm.TargetFareTemplate#getDataDescription()
-	 * @see #getTargetFareTemplate()
+	 * @see Gtm.CarrierConstraint#getDataDescription()
+	 * @see #getCarrierConstraint()
 	 * @generated
 	 */
-	EAttribute getTargetFareTemplate_DataDescription();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getText <em>Text</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Text</em>'.
-	 * @see Gtm.TargetFareTemplate#getText()
-	 * @see #getTargetFareTemplate()
-	 * @generated
-	 */
-	EReference getTargetFareTemplate_Text();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getServiceConstraint <em>Service Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Service Constraint</em>'.
-	 * @see Gtm.TargetFareTemplate#getServiceConstraint()
-	 * @see #getTargetFareTemplate()
-	 * @generated
-	 */
-	EReference getTargetFareTemplate_ServiceConstraint();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getCarrierConstraint <em>Carrier Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Carrier Constraint</em>'.
-	 * @see Gtm.TargetFareTemplate#getCarrierConstraint()
-	 * @see #getTargetFareTemplate()
-	 * @generated
-	 */
-	EReference getTargetFareTemplate_CarrierConstraint();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getServiceClass <em>Service Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Service Class</em>'.
-	 * @see Gtm.TargetFareTemplate#getServiceClass()
-	 * @see #getTargetFareTemplate()
-	 * @generated
-	 */
-	EReference getTargetFareTemplate_ServiceClass();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getServiceLevel <em>Service Level</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Service Level</em>'.
-	 * @see Gtm.TargetFareTemplate#getServiceLevel()
-	 * @see #getTargetFareTemplate()
-	 * @generated
-	 */
-	EReference getTargetFareTemplate_ServiceLevel();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getSalesAvailability <em>Sales Availability</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Sales Availability</em>'.
-	 * @see Gtm.TargetFareTemplate#getSalesAvailability()
-	 * @see #getTargetFareTemplate()
-	 * @generated
-	 */
-	EReference getTargetFareTemplate_SalesAvailability();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getTravelValidity <em>Travel Validity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Travel Validity</em>'.
-	 * @see Gtm.TargetFareTemplate#getTravelValidity()
-	 * @see #getTargetFareTemplate()
-	 * @generated
-	 */
-	EReference getTargetFareTemplate_TravelValidity();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getCombinationConstraint <em>Combination Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Combination Constraint</em>'.
-	 * @see Gtm.TargetFareTemplate#getCombinationConstraint()
-	 * @see #getTargetFareTemplate()
-	 * @generated
-	 */
-	EReference getTargetFareTemplate_CombinationConstraint();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.Station <em>Station</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Station</em>'.
-	 * @see Gtm.Station
-	 * @generated
-	 */
-	EClass getStation();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Station#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Gtm.Station#getName()
-	 * @see #getStation()
-	 * @generated
-	 */
-	EAttribute getStation_Name();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.Station#getCountry <em>Country</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Country</em>'.
-	 * @see Gtm.Station#getCountry()
-	 * @see #getStation()
-	 * @generated
-	 */
-	EReference getStation_Country();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.Country <em>Country</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Country</em>'.
-	 * @see Gtm.Country
-	 * @generated
-	 */
-	EClass getCountry();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Country#getCode <em>Code</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Code</em>'.
-	 * @see Gtm.Country#getCode()
-	 * @see #getCountry()
-	 * @generated
-	 */
-	EAttribute getCountry_Code();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Country#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Gtm.Country#getName()
-	 * @see #getCountry()
-	 * @generated
-	 */
-	EAttribute getCountry_Name();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.Language <em>Language</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Language</em>'.
-	 * @see Gtm.Language
-	 * @generated
-	 */
-	EClass getLanguage();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Language#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Gtm.Language#getName()
-	 * @see #getLanguage()
-	 * @generated
-	 */
-	EAttribute getLanguage_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Language#getCode <em>Code</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Code</em>'.
-	 * @see Gtm.Language#getCode()
-	 * @see #getLanguage()
-	 * @generated
-	 */
-	EAttribute getLanguage_Code();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.Text <em>Text</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Text</em>'.
-	 * @see Gtm.Text
-	 * @generated
-	 */
-	EClass getText();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Text#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see Gtm.Text#getId()
-	 * @see #getText()
-	 * @generated
-	 */
-	EAttribute getText_Id();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Text#getTextUTF8 <em>Text UTF8</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Text UTF8</em>'.
-	 * @see Gtm.Text#getTextUTF8()
-	 * @see #getText()
-	 * @generated
-	 */
-	EAttribute getText_TextUTF8();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Text#getTextICAO <em>Text ICAO</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Text ICAO</em>'.
-	 * @see Gtm.Text#getTextICAO()
-	 * @see #getText()
-	 * @generated
-	 */
-	EAttribute getText_TextICAO();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Text#getShortTextUTF8 <em>Short Text UTF8</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Short Text UTF8</em>'.
-	 * @see Gtm.Text#getShortTextUTF8()
-	 * @see #getText()
-	 * @generated
-	 */
-	EAttribute getText_ShortTextUTF8();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Text#getShortTextICAO <em>Short Text ICAO</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Short Text ICAO</em>'.
-	 * @see Gtm.Text#getShortTextICAO()
-	 * @see #getText()
-	 * @generated
-	 */
-	EAttribute getText_ShortTextICAO();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.Text#getTranslations <em>Translations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Translations</em>'.
-	 * @see Gtm.Text#getTranslations()
-	 * @see #getText()
-	 * @generated
-	 */
-	EReference getText_Translations();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.Translation <em>Translation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Translation</em>'.
-	 * @see Gtm.Translation
-	 * @generated
-	 */
-	EClass getTranslation();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.Translation#getLanguage <em>Language</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Language</em>'.
-	 * @see Gtm.Translation#getLanguage()
-	 * @see #getTranslation()
-	 * @generated
-	 */
-	EReference getTranslation_Language();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Translation#getTextUTF8 <em>Text UTF8</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Text UTF8</em>'.
-	 * @see Gtm.Translation#getTextUTF8()
-	 * @see #getTranslation()
-	 * @generated
-	 */
-	EAttribute getTranslation_TextUTF8();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Translation#getTextICAO <em>Text ICAO</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Text ICAO</em>'.
-	 * @see Gtm.Translation#getTextICAO()
-	 * @see #getTranslation()
-	 * @generated
-	 */
-	EAttribute getTranslation_TextICAO();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Translation#getShortTextUTF8 <em>Short Text UTF8</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Short Text UTF8</em>'.
-	 * @see Gtm.Translation#getShortTextUTF8()
-	 * @see #getTranslation()
-	 * @generated
-	 */
-	EAttribute getTranslation_ShortTextUTF8();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Translation#getShortTextICAO <em>Short Text ICAO</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Short Text ICAO</em>'.
-	 * @see Gtm.Translation#getShortTextICAO()
-	 * @see #getTranslation()
-	 * @generated
-	 */
-	EAttribute getTranslation_ShortTextICAO();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.ServiceClass <em>Service Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Service Class</em>'.
-	 * @see Gtm.ServiceClass
-	 * @generated
-	 */
-	EClass getServiceClass();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ServiceClass#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see Gtm.ServiceClass#getId()
-	 * @see #getServiceClass()
-	 * @generated
-	 */
-	EAttribute getServiceClass_Id();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ServiceClass#getClassicClass <em>Classic Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Classic Class</em>'.
-	 * @see Gtm.ServiceClass#getClassicClass()
-	 * @see #getServiceClass()
-	 * @generated
-	 */
-	EAttribute getServiceClass_ClassicClass();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.ServiceClass#getText <em>Text</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Text</em>'.
-	 * @see Gtm.ServiceClass#getText()
-	 * @see #getServiceClass()
-	 * @generated
-	 */
-	EReference getServiceClass_Text();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.ServiceLevel <em>Service Level</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Service Level</em>'.
-	 * @see Gtm.ServiceLevel
-	 * @generated
-	 */
-	EClass getServiceLevel();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ServiceLevel#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see Gtm.ServiceLevel#getId()
-	 * @see #getServiceLevel()
-	 * @generated
-	 */
-	EAttribute getServiceLevel_Id();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.ServiceLevel#getText <em>Text</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Text</em>'.
-	 * @see Gtm.ServiceLevel#getText()
-	 * @see #getServiceLevel()
-	 * @generated
-	 */
-	EReference getServiceLevel_Text();
-
-	/**
-	 * Returns the meta object for the reference list '{@link Gtm.ServiceLevel#getCombiningServiceClasses <em>Combining Service Classes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Combining Service Classes</em>'.
-	 * @see Gtm.ServiceLevel#getCombiningServiceClasses()
-	 * @see #getServiceLevel()
-	 * @generated
-	 */
-	EReference getServiceLevel_CombiningServiceClasses();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.ServiceLevel#getReservationParameter <em>Reservation Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Reservation Parameter</em>'.
-	 * @see Gtm.ServiceLevel#getReservationParameter()
-	 * @see #getServiceLevel()
-	 * @generated
-	 */
-	EReference getServiceLevel_ReservationParameter();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ServiceLevel#isIncludesClassName <em>Includes Class Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Includes Class Name</em>'.
-	 * @see Gtm.ServiceLevel#isIncludesClassName()
-	 * @see #getServiceLevel()
-	 * @generated
-	 */
-	EAttribute getServiceLevel_IncludesClassName();
+	EAttribute getCarrierConstraint_DataDescription();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.Price <em>Price</em>}'.
@@ -7211,6 +11341,190 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPrice_Currencies();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Price#getDataSource <em>Data Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Source</em>'.
+	 * @see Gtm.Price#getDataSource()
+	 * @see #getPrice()
+	 * @generated
+	 */
+	EAttribute getPrice_DataSource();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.CurrencyPrice <em>Currency Price</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Currency Price</em>'.
+	 * @see Gtm.CurrencyPrice
+	 * @generated
+	 */
+	EClass getCurrencyPrice();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.CurrencyPrice#getCurrency <em>Currency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Currency</em>'.
+	 * @see Gtm.CurrencyPrice#getCurrency()
+	 * @see #getCurrencyPrice()
+	 * @generated
+	 */
+	EReference getCurrencyPrice_Currency();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.CurrencyPrice#getAmount <em>Amount</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Amount</em>'.
+	 * @see Gtm.CurrencyPrice#getAmount()
+	 * @see #getCurrencyPrice()
+	 * @generated
+	 */
+	EAttribute getCurrencyPrice_Amount();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.CurrencyPrice#getVATdetails <em>VA Tdetails</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>VA Tdetails</em>'.
+	 * @see Gtm.CurrencyPrice#getVATdetails()
+	 * @see #getCurrencyPrice()
+	 * @generated
+	 */
+	EReference getCurrencyPrice_VATdetails();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.ReductionCard <em>Reduction Card</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reduction Card</em>'.
+	 * @see Gtm.ReductionCard
+	 * @generated
+	 */
+	EClass getReductionCard();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ReductionCard#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see Gtm.ReductionCard#getId()
+	 * @see #getReductionCard()
+	 * @generated
+	 */
+	EAttribute getReductionCard_Id();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.ReductionCard#getCardIssuer <em>Card Issuer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Card Issuer</em>'.
+	 * @see Gtm.ReductionCard#getCardIssuer()
+	 * @see #getReductionCard()
+	 * @generated
+	 */
+	EReference getReductionCard_CardIssuer();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.ReductionCard#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Name</em>'.
+	 * @see Gtm.ReductionCard#getName()
+	 * @see #getReductionCard()
+	 * @generated
+	 */
+	EReference getReductionCard_Name();
+
+	/**
+	 * Returns the meta object for the reference list '{@link Gtm.ReductionCard#getServiceClasses <em>Service Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Service Classes</em>'.
+	 * @see Gtm.ReductionCard#getServiceClasses()
+	 * @see #getReductionCard()
+	 * @generated
+	 */
+	EReference getReductionCard_ServiceClasses();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.RegionalConstraint <em>Regional Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Regional Constraint</em>'.
+	 * @see Gtm.RegionalConstraint
+	 * @generated
+	 */
+	EClass getRegionalConstraint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.RegionalConstraint#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see Gtm.RegionalConstraint#getId()
+	 * @see #getRegionalConstraint()
+	 * @generated
+	 */
+	EAttribute getRegionalConstraint_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.RegionalConstraint#getDistance <em>Distance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Distance</em>'.
+	 * @see Gtm.RegionalConstraint#getDistance()
+	 * @see #getRegionalConstraint()
+	 * @generated
+	 */
+	EAttribute getRegionalConstraint_Distance();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.RegionalConstraint#getEntryConnectionPoint <em>Entry Connection Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Entry Connection Point</em>'.
+	 * @see Gtm.RegionalConstraint#getEntryConnectionPoint()
+	 * @see #getRegionalConstraint()
+	 * @generated
+	 */
+	EReference getRegionalConstraint_EntryConnectionPoint();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.RegionalConstraint#getExitConnectionPoint <em>Exit Connection Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Exit Connection Point</em>'.
+	 * @see Gtm.RegionalConstraint#getExitConnectionPoint()
+	 * @see #getRegionalConstraint()
+	 * @generated
+	 */
+	EReference getRegionalConstraint_ExitConnectionPoint();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.RegionalConstraint#getRegionalValidity <em>Regional Validity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Regional Validity</em>'.
+	 * @see Gtm.RegionalConstraint#getRegionalValidity()
+	 * @see #getRegionalConstraint()
+	 * @generated
+	 */
+	EReference getRegionalConstraint_RegionalValidity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.RegionalConstraint#getDataSource <em>Data Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Source</em>'.
+	 * @see Gtm.RegionalConstraint#getDataSource()
+	 * @see #getRegionalConstraint()
+	 * @generated
+	 */
+	EAttribute getRegionalConstraint_DataSource();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.ReservationParameter <em>Reservation Parameter</em>}'.
@@ -7397,111 +11711,667 @@ public interface GtmPackage extends EPackage {
 	EAttribute getReservationOptions_GraphicalReservation();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.ReservationPreference <em>Reservation Preference</em>}'.
+	 * Returns the meta object for class '{@link Gtm.ReservationPreferenceGroup <em>Reservation Preference Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Reservation Preference</em>'.
-	 * @see Gtm.ReservationPreference
+	 * @return the meta object for class '<em>Reservation Preference Group</em>'.
+	 * @see Gtm.ReservationPreferenceGroup
 	 * @generated
 	 */
-	EClass getReservationPreference();
+	EClass getReservationPreferenceGroup();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ReservationPreference#getPreference <em>Preference</em>}'.
+	 * Returns the meta object for the attribute list '{@link Gtm.ReservationPreferenceGroup#getPreference <em>Preference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Preference</em>'.
-	 * @see Gtm.ReservationPreference#getPreference()
-	 * @see #getReservationPreference()
+	 * @return the meta object for the attribute list '<em>Preference</em>'.
+	 * @see Gtm.ReservationPreferenceGroup#getPreference()
+	 * @see #getReservationPreferenceGroup()
 	 * @generated
 	 */
-	EAttribute getReservationPreference_Preference();
+	EAttribute getReservationPreferenceGroup_Preference();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ReservationPreference#getGroup <em>Group</em>}'.
+	 * Returns the meta object for the attribute '{@link Gtm.ReservationPreferenceGroup#getGroup <em>Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Group</em>'.
-	 * @see Gtm.ReservationPreference#getGroup()
-	 * @see #getReservationPreference()
+	 * @see Gtm.ReservationPreferenceGroup#getGroup()
+	 * @see #getReservationPreferenceGroup()
 	 * @generated
 	 */
-	EAttribute getReservationPreference_Group();
+	EAttribute getReservationPreferenceGroup_Group();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.CurrencyPrice <em>Currency Price</em>}'.
+	 * Returns the meta object for class '{@link Gtm.ServiceClass <em>Service Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Currency Price</em>'.
-	 * @see Gtm.CurrencyPrice
+	 * @return the meta object for class '<em>Service Class</em>'.
+	 * @see Gtm.ServiceClass
 	 * @generated
 	 */
-	EClass getCurrencyPrice();
+	EClass getServiceClass();
 
 	/**
-	 * Returns the meta object for the reference '{@link Gtm.CurrencyPrice#getCurrency <em>Currency</em>}'.
+	 * Returns the meta object for the attribute '{@link Gtm.ServiceClass#getId <em>Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Currency</em>'.
-	 * @see Gtm.CurrencyPrice#getCurrency()
-	 * @see #getCurrencyPrice()
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see Gtm.ServiceClass#getId()
+	 * @see #getServiceClass()
 	 * @generated
 	 */
-	EReference getCurrencyPrice_Currency();
+	EAttribute getServiceClass_Id();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.CurrencyPrice#getAmount <em>Amount</em>}'.
+	 * Returns the meta object for the attribute '{@link Gtm.ServiceClass#getClassicClass <em>Classic Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Amount</em>'.
-	 * @see Gtm.CurrencyPrice#getAmount()
-	 * @see #getCurrencyPrice()
+	 * @return the meta object for the attribute '<em>Classic Class</em>'.
+	 * @see Gtm.ServiceClass#getClassicClass()
+	 * @see #getServiceClass()
 	 * @generated
 	 */
-	EAttribute getCurrencyPrice_Amount();
+	EAttribute getServiceClass_ClassicClass();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.CurrencyPrice#getVATdetails <em>VA Tdetails</em>}'.
+	 * Returns the meta object for the reference '{@link Gtm.ServiceClass#getText <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>VA Tdetails</em>'.
-	 * @see Gtm.CurrencyPrice#getVATdetails()
-	 * @see #getCurrencyPrice()
+	 * @return the meta object for the reference '<em>Text</em>'.
+	 * @see Gtm.ServiceClass#getText()
+	 * @see #getServiceClass()
 	 * @generated
 	 */
-	EReference getCurrencyPrice_VATdetails();
+	EReference getServiceClass_Text();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.Currency <em>Currency</em>}'.
+	 * Returns the meta object for class '{@link Gtm.ServiceLevel <em>Service Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Currency</em>'.
-	 * @see Gtm.Currency
+	 * @return the meta object for class '<em>Service Level</em>'.
+	 * @see Gtm.ServiceLevel
 	 * @generated
 	 */
-	EClass getCurrency();
+	EClass getServiceLevel();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Currency#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link Gtm.ServiceLevel#getId <em>Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Gtm.Currency#getName()
-	 * @see #getCurrency()
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see Gtm.ServiceLevel#getId()
+	 * @see #getServiceLevel()
 	 * @generated
 	 */
-	EAttribute getCurrency_Name();
+	EAttribute getServiceLevel_Id();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Currency#getIsoCode <em>Iso Code</em>}'.
+	 * Returns the meta object for the reference '{@link Gtm.ServiceLevel#getText <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Iso Code</em>'.
-	 * @see Gtm.Currency#getIsoCode()
-	 * @see #getCurrency()
+	 * @return the meta object for the reference '<em>Text</em>'.
+	 * @see Gtm.ServiceLevel#getText()
+	 * @see #getServiceLevel()
 	 * @generated
 	 */
-	EAttribute getCurrency_IsoCode();
+	EReference getServiceLevel_Text();
+
+	/**
+	 * Returns the meta object for the reference list '{@link Gtm.ServiceLevel#getCombiningServiceClasses <em>Combining Service Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Combining Service Classes</em>'.
+	 * @see Gtm.ServiceLevel#getCombiningServiceClasses()
+	 * @see #getServiceLevel()
+	 * @generated
+	 */
+	EReference getServiceLevel_CombiningServiceClasses();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.ServiceLevel#getReservationParameter <em>Reservation Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Reservation Parameter</em>'.
+	 * @see Gtm.ServiceLevel#getReservationParameter()
+	 * @see #getServiceLevel()
+	 * @generated
+	 */
+	EReference getServiceLevel_ReservationParameter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ServiceLevel#isIncludesClassName <em>Includes Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Includes Class Name</em>'.
+	 * @see Gtm.ServiceLevel#isIncludesClassName()
+	 * @see #getServiceLevel()
+	 * @generated
+	 */
+	EAttribute getServiceLevel_IncludesClassName();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.ServiceConstraint <em>Service Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service Constraint</em>'.
+	 * @see Gtm.ServiceConstraint
+	 * @generated
+	 */
+	EClass getServiceConstraint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ServiceConstraint#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see Gtm.ServiceConstraint#getId()
+	 * @see #getServiceConstraint()
+	 * @generated
+	 */
+	EAttribute getServiceConstraint_Id();
+
+	/**
+	 * Returns the meta object for the reference list '{@link Gtm.ServiceConstraint#getIncludedServiceBrands <em>Included Service Brands</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Included Service Brands</em>'.
+	 * @see Gtm.ServiceConstraint#getIncludedServiceBrands()
+	 * @see #getServiceConstraint()
+	 * @generated
+	 */
+	EReference getServiceConstraint_IncludedServiceBrands();
+
+	/**
+	 * Returns the meta object for the reference list '{@link Gtm.ServiceConstraint#getExcludedServiceBrands <em>Excluded Service Brands</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Excluded Service Brands</em>'.
+	 * @see Gtm.ServiceConstraint#getExcludedServiceBrands()
+	 * @see #getServiceConstraint()
+	 * @generated
+	 */
+	EReference getServiceConstraint_ExcludedServiceBrands();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.TargetFareTemplate <em>Target Fare Template</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Target Fare Template</em>'.
+	 * @see Gtm.TargetFareTemplate
+	 * @generated
+	 */
+	EClass getTargetFareTemplate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.TargetFareTemplate#getPriceFactor <em>Price Factor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Price Factor</em>'.
+	 * @see Gtm.TargetFareTemplate#getPriceFactor()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EAttribute getTargetFareTemplate_PriceFactor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.TargetFareTemplate#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see Gtm.TargetFareTemplate#getId()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EAttribute getTargetFareTemplate_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.TargetFareTemplate#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see Gtm.TargetFareTemplate#getType()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EAttribute getTargetFareTemplate_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.TargetFareTemplate#getDataDescription <em>Data Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Description</em>'.
+	 * @see Gtm.TargetFareTemplate#getDataDescription()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EAttribute getTargetFareTemplate_DataDescription();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getText <em>Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Text</em>'.
+	 * @see Gtm.TargetFareTemplate#getText()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_Text();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getPrice <em>Price</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Price</em>'.
+	 * @see Gtm.TargetFareTemplate#getPrice()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_Price();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getRegionalConstraint <em>Regional Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Regional Constraint</em>'.
+	 * @see Gtm.TargetFareTemplate#getRegionalConstraint()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_RegionalConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getServiceConstraint <em>Service Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Service Constraint</em>'.
+	 * @see Gtm.TargetFareTemplate#getServiceConstraint()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_ServiceConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getCarrierConstraint <em>Carrier Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Carrier Constraint</em>'.
+	 * @see Gtm.TargetFareTemplate#getCarrierConstraint()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_CarrierConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getServiceClass <em>Service Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Service Class</em>'.
+	 * @see Gtm.TargetFareTemplate#getServiceClass()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_ServiceClass();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getServiceLevel <em>Service Level</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Service Level</em>'.
+	 * @see Gtm.TargetFareTemplate#getServiceLevel()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_ServiceLevel();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getSalesAvailability <em>Sales Availability</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Sales Availability</em>'.
+	 * @see Gtm.TargetFareTemplate#getSalesAvailability()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_SalesAvailability();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getTravelValidity <em>Travel Validity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Travel Validity</em>'.
+	 * @see Gtm.TargetFareTemplate#getTravelValidity()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_TravelValidity();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getCombinationConstraint <em>Combination Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Combination Constraint</em>'.
+	 * @see Gtm.TargetFareTemplate#getCombinationConstraint()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_CombinationConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getFareDetailDescription <em>Fare Detail Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Fare Detail Description</em>'.
+	 * @see Gtm.TargetFareTemplate#getFareDetailDescription()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_FareDetailDescription();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.TargetFareTemplate#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Legacy Accounting Identifier</em>'.
+	 * @see Gtm.TargetFareTemplate#getLegacyAccountingIdentifier()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_LegacyAccountingIdentifier();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getPersonalDataConstraint <em>Personal Data Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Personal Data Constraint</em>'.
+	 * @see Gtm.TargetFareTemplate#getPersonalDataConstraint()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_PersonalDataConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getReservationParameter <em>Reservation Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Reservation Parameter</em>'.
+	 * @see Gtm.TargetFareTemplate#getReservationParameter()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_ReservationParameter();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getReductionConstraint <em>Reduction Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Reduction Constraint</em>'.
+	 * @see Gtm.TargetFareTemplate#getReductionConstraint()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_ReductionConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getFulfillmentConstraint <em>Fulfillment Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Fulfillment Constraint</em>'.
+	 * @see Gtm.TargetFareTemplate#getFulfillmentConstraint()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_FulfillmentConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getPassengerConstraint <em>Passenger Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Passenger Constraint</em>'.
+	 * @see Gtm.TargetFareTemplate#getPassengerConstraint()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_PassengerConstraint();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TargetFareTemplate#getAfterSalesRule <em>After Sales Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>After Sales Rule</em>'.
+	 * @see Gtm.TargetFareTemplate#getAfterSalesRule()
+	 * @see #getTargetFareTemplate()
+	 * @generated
+	 */
+	EReference getTargetFareTemplate_AfterSalesRule();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.TravelValidityConstraint <em>Travel Validity Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Travel Validity Constraint</em>'.
+	 * @see Gtm.TravelValidityConstraint
+	 * @generated
+	 */
+	EClass getTravelValidityConstraint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.TravelValidityConstraint#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see Gtm.TravelValidityConstraint#getId()
+	 * @see #getTravelValidityConstraint()
+	 * @generated
+	 */
+	EAttribute getTravelValidityConstraint_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.TravelValidityConstraint#getDataDescription <em>Data Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Description</em>'.
+	 * @see Gtm.TravelValidityConstraint#getDataDescription()
+	 * @see #getTravelValidityConstraint()
+	 * @generated
+	 */
+	EAttribute getTravelValidityConstraint_DataDescription();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.TravelValidityConstraint#getValidDays <em>Valid Days</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Valid Days</em>'.
+	 * @see Gtm.TravelValidityConstraint#getValidDays()
+	 * @see #getTravelValidityConstraint()
+	 * @generated
+	 */
+	EReference getTravelValidityConstraint_ValidDays();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.TravelValidityConstraint#getExcludedTimeRange <em>Excluded Time Range</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Excluded Time Range</em>'.
+	 * @see Gtm.TravelValidityConstraint#getExcludedTimeRange()
+	 * @see #getTravelValidityConstraint()
+	 * @generated
+	 */
+	EReference getTravelValidityConstraint_ExcludedTimeRange();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.TravelValidityConstraint#getTravelDays <em>Travel Days</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Travel Days</em>'.
+	 * @see Gtm.TravelValidityConstraint#getTravelDays()
+	 * @see #getTravelValidityConstraint()
+	 * @generated
+	 */
+	EAttribute getTravelValidityConstraint_TravelDays();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.TravelValidityConstraint#getRange <em>Range</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Range</em>'.
+	 * @see Gtm.TravelValidityConstraint#getRange()
+	 * @see #getTravelValidityConstraint()
+	 * @generated
+	 */
+	EReference getTravelValidityConstraint_Range();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.TravelValidityConstraint#getReturnConstraint <em>Return Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Return Constraint</em>'.
+	 * @see Gtm.TravelValidityConstraint#getReturnConstraint()
+	 * @see #getTravelValidityConstraint()
+	 * @generated
+	 */
+	EReference getTravelValidityConstraint_ReturnConstraint();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Text <em>Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Text</em>'.
+	 * @see Gtm.Text
+	 * @generated
+	 */
+	EClass getText();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Text#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see Gtm.Text#getId()
+	 * @see #getText()
+	 * @generated
+	 */
+	EAttribute getText_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Text#getTextUTF8 <em>Text UTF8</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Text UTF8</em>'.
+	 * @see Gtm.Text#getTextUTF8()
+	 * @see #getText()
+	 * @generated
+	 */
+	EAttribute getText_TextUTF8();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Text#getTextICAO <em>Text ICAO</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Text ICAO</em>'.
+	 * @see Gtm.Text#getTextICAO()
+	 * @see #getText()
+	 * @generated
+	 */
+	EAttribute getText_TextICAO();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Text#getShortTextUTF8 <em>Short Text UTF8</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Short Text UTF8</em>'.
+	 * @see Gtm.Text#getShortTextUTF8()
+	 * @see #getText()
+	 * @generated
+	 */
+	EAttribute getText_ShortTextUTF8();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Text#getShortTextICAO <em>Short Text ICAO</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Short Text ICAO</em>'.
+	 * @see Gtm.Text#getShortTextICAO()
+	 * @see #getText()
+	 * @generated
+	 */
+	EAttribute getText_ShortTextICAO();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.Text#getTranslations <em>Translations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Translations</em>'.
+	 * @see Gtm.Text#getTranslations()
+	 * @see #getText()
+	 * @generated
+	 */
+	EReference getText_Translations();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Translation <em>Translation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Translation</em>'.
+	 * @see Gtm.Translation
+	 * @generated
+	 */
+	EClass getTranslation();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.Translation#getLanguage <em>Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Language</em>'.
+	 * @see Gtm.Translation#getLanguage()
+	 * @see #getTranslation()
+	 * @generated
+	 */
+	EReference getTranslation_Language();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Translation#getTextUTF8 <em>Text UTF8</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Text UTF8</em>'.
+	 * @see Gtm.Translation#getTextUTF8()
+	 * @see #getTranslation()
+	 * @generated
+	 */
+	EAttribute getTranslation_TextUTF8();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Translation#getTextICAO <em>Text ICAO</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Text ICAO</em>'.
+	 * @see Gtm.Translation#getTextICAO()
+	 * @see #getTranslation()
+	 * @generated
+	 */
+	EAttribute getTranslation_TextICAO();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Translation#getShortTextUTF8 <em>Short Text UTF8</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Short Text UTF8</em>'.
+	 * @see Gtm.Translation#getShortTextUTF8()
+	 * @see #getTranslation()
+	 * @generated
+	 */
+	EAttribute getTranslation_ShortTextUTF8();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Translation#getShortTextICAO <em>Short Text ICAO</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Short Text ICAO</em>'.
+	 * @see Gtm.Translation#getShortTextICAO()
+	 * @see #getTranslation()
+	 * @generated
+	 */
+	EAttribute getTranslation_ShortTextICAO();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.VATDetail <em>VAT Detail</em>}'.
@@ -7567,189 +12437,6 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getVATDetail_Scope();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.RegionalConstraint <em>Regional Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Regional Constraint</em>'.
-	 * @see Gtm.RegionalConstraint
-	 * @generated
-	 */
-	EClass getRegionalConstraint();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.RegionalConstraint#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see Gtm.RegionalConstraint#getId()
-	 * @see #getRegionalConstraint()
-	 * @generated
-	 */
-	EAttribute getRegionalConstraint_Id();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.RegionalConstraint#getDistance <em>Distance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Distance</em>'.
-	 * @see Gtm.RegionalConstraint#getDistance()
-	 * @see #getRegionalConstraint()
-	 * @generated
-	 */
-	EAttribute getRegionalConstraint_Distance();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.RegionalConstraint#getEntryConnectionPoint <em>Entry Connection Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Entry Connection Point</em>'.
-	 * @see Gtm.RegionalConstraint#getEntryConnectionPoint()
-	 * @see #getRegionalConstraint()
-	 * @generated
-	 */
-	EReference getRegionalConstraint_EntryConnectionPoint();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.RegionalConstraint#getExitConnectionPoint <em>Exit Connection Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Exit Connection Point</em>'.
-	 * @see Gtm.RegionalConstraint#getExitConnectionPoint()
-	 * @see #getRegionalConstraint()
-	 * @generated
-	 */
-	EReference getRegionalConstraint_ExitConnectionPoint();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.RegionalConstraint#getRegionalValidity <em>Regional Validity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Regional Validity</em>'.
-	 * @see Gtm.RegionalConstraint#getRegionalValidity()
-	 * @see #getRegionalConstraint()
-	 * @generated
-	 */
-	EReference getRegionalConstraint_RegionalValidity();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.ConnectionPoint <em>Connection Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Connection Point</em>'.
-	 * @see Gtm.ConnectionPoint
-	 * @generated
-	 */
-	EClass getConnectionPoint();
-
-	/**
-	 * Returns the meta object for the reference list '{@link Gtm.ConnectionPoint#getStations <em>Stations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Stations</em>'.
-	 * @see Gtm.ConnectionPoint#getStations()
-	 * @see #getConnectionPoint()
-	 * @generated
-	 */
-	EReference getConnectionPoint_Stations();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ConnectionPoint#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see Gtm.ConnectionPoint#getId()
-	 * @see #getConnectionPoint()
-	 * @generated
-	 */
-	EAttribute getConnectionPoint_Id();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.ServiceConstraint <em>Service Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Service Constraint</em>'.
-	 * @see Gtm.ServiceConstraint
-	 * @generated
-	 */
-	EClass getServiceConstraint();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ServiceConstraint#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see Gtm.ServiceConstraint#getId()
-	 * @see #getServiceConstraint()
-	 * @generated
-	 */
-	EAttribute getServiceConstraint_Id();
-
-	/**
-	 * Returns the meta object for the reference list '{@link Gtm.ServiceConstraint#getIncludedServiceBrands <em>Included Service Brands</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Included Service Brands</em>'.
-	 * @see Gtm.ServiceConstraint#getIncludedServiceBrands()
-	 * @see #getServiceConstraint()
-	 * @generated
-	 */
-	EReference getServiceConstraint_IncludedServiceBrands();
-
-	/**
-	 * Returns the meta object for the reference list '{@link Gtm.ServiceConstraint#getExcludedServiceBrands <em>Excluded Service Brands</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Excluded Service Brands</em>'.
-	 * @see Gtm.ServiceConstraint#getExcludedServiceBrands()
-	 * @see #getServiceConstraint()
-	 * @generated
-	 */
-	EReference getServiceConstraint_ExcludedServiceBrands();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.CarrierConstraint <em>Carrier Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Carrier Constraint</em>'.
-	 * @see Gtm.CarrierConstraint
-	 * @generated
-	 */
-	EClass getCarrierConstraint();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.CarrierConstraint#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see Gtm.CarrierConstraint#getId()
-	 * @see #getCarrierConstraint()
-	 * @generated
-	 */
-	EAttribute getCarrierConstraint_Id();
-
-	/**
-	 * Returns the meta object for the reference list '{@link Gtm.CarrierConstraint#getIncludedCarriers <em>Included Carriers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Included Carriers</em>'.
-	 * @see Gtm.CarrierConstraint#getIncludedCarriers()
-	 * @see #getCarrierConstraint()
-	 * @generated
-	 */
-	EReference getCarrierConstraint_IncludedCarriers();
-
-	/**
-	 * Returns the meta object for the reference list '{@link Gtm.CarrierConstraint#getExcludedCarriers <em>Excluded Carriers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Excluded Carriers</em>'.
-	 * @see Gtm.CarrierConstraint#getExcludedCarriers()
-	 * @see #getCarrierConstraint()
-	 * @generated
-	 */
-	EReference getCarrierConstraint_ExcludedCarriers();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.FareElement <em>Fare Element</em>}'.
@@ -7905,101 +12592,146 @@ public interface GtmPackage extends EPackage {
 	EReference getFareElement_CombinationConstraint();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.ReductionCard <em>Reduction Card</em>}'.
+	 * Returns the meta object for the reference '{@link Gtm.FareElement#getFareDetailDescription <em>Fare Detail Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Reduction Card</em>'.
-	 * @see Gtm.ReductionCard
+	 * @return the meta object for the reference '<em>Fare Detail Description</em>'.
+	 * @see Gtm.FareElement#getFareDetailDescription()
+	 * @see #getFareElement()
 	 * @generated
 	 */
-	EClass getReductionCard();
+	EReference getFareElement_FareDetailDescription();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ReductionCard#getId <em>Id</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FareElement#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see Gtm.ReductionCard#getId()
-	 * @see #getReductionCard()
+	 * @return the meta object for the containment reference '<em>Legacy Accounting Identifier</em>'.
+	 * @see Gtm.FareElement#getLegacyAccountingIdentifier()
+	 * @see #getFareElement()
 	 * @generated
 	 */
-	EAttribute getReductionCard_Id();
+	EReference getFareElement_LegacyAccountingIdentifier();
 
 	/**
-	 * Returns the meta object for the reference '{@link Gtm.ReductionCard#getCardIssuer <em>Card Issuer</em>}'.
+	 * Returns the meta object for the reference '{@link Gtm.FareElement#getPersonalDataConstraint <em>Personal Data Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Card Issuer</em>'.
-	 * @see Gtm.ReductionCard#getCardIssuer()
-	 * @see #getReductionCard()
+	 * @return the meta object for the reference '<em>Personal Data Constraint</em>'.
+	 * @see Gtm.FareElement#getPersonalDataConstraint()
+	 * @see #getFareElement()
 	 * @generated
 	 */
-	EReference getReductionCard_CardIssuer();
+	EReference getFareElement_PersonalDataConstraint();
 
 	/**
-	 * Returns the meta object for the reference '{@link Gtm.ReductionCard#getName <em>Name</em>}'.
+	 * Returns the meta object for the reference '{@link Gtm.FareElement#getReservationParameter <em>Reservation Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Name</em>'.
-	 * @see Gtm.ReductionCard#getName()
-	 * @see #getReductionCard()
+	 * @return the meta object for the reference '<em>Reservation Parameter</em>'.
+	 * @see Gtm.FareElement#getReservationParameter()
+	 * @see #getFareElement()
 	 * @generated
 	 */
-	EReference getReductionCard_Name();
+	EReference getFareElement_ReservationParameter();
 
 	/**
-	 * Returns the meta object for the reference list '{@link Gtm.ReductionCard#getServiceClasses <em>Service Classes</em>}'.
+	 * Returns the meta object for the reference '{@link Gtm.FareElement#getReductionConstraint <em>Reduction Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Service Classes</em>'.
-	 * @see Gtm.ReductionCard#getServiceClasses()
-	 * @see #getReductionCard()
+	 * @return the meta object for the reference '<em>Reduction Constraint</em>'.
+	 * @see Gtm.FareElement#getReductionConstraint()
+	 * @see #getFareElement()
 	 * @generated
 	 */
-	EReference getReductionCard_ServiceClasses();
+	EReference getFareElement_ReductionConstraint();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.ServiceBrand <em>Service Brand</em>}'.
+	 * Returns the meta object for the reference '{@link Gtm.FareElement#getFulfillmentConstraint <em>Fulfillment Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Service Brand</em>'.
-	 * @see Gtm.ServiceBrand
+	 * @return the meta object for the reference '<em>Fulfillment Constraint</em>'.
+	 * @see Gtm.FareElement#getFulfillmentConstraint()
+	 * @see #getFareElement()
 	 * @generated
 	 */
-	EClass getServiceBrand();
+	EReference getFareElement_FulfillmentConstraint();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ServiceBrand#getCode <em>Code</em>}'.
+	 * Returns the meta object for the reference '{@link Gtm.FareElement#getPassengerConstraint <em>Passenger Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Code</em>'.
-	 * @see Gtm.ServiceBrand#getCode()
-	 * @see #getServiceBrand()
+	 * @return the meta object for the reference '<em>Passenger Constraint</em>'.
+	 * @see Gtm.FareElement#getPassengerConstraint()
+	 * @see #getFareElement()
 	 * @generated
 	 */
-	EAttribute getServiceBrand_Code();
+	EReference getFareElement_PassengerConstraint();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ServiceBrand#getName <em>Name</em>}'.
+	 * Returns the meta object for the reference '{@link Gtm.FareElement#getAfterSalesRule <em>After Sales Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Gtm.ServiceBrand#getName()
-	 * @see #getServiceBrand()
+	 * @return the meta object for the reference '<em>After Sales Rule</em>'.
+	 * @see Gtm.FareElement#getAfterSalesRule()
+	 * @see #getFareElement()
 	 * @generated
 	 */
-	EAttribute getServiceBrand_Name();
+	EReference getFareElement_AfterSalesRule();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ServiceBrand#getAbbreviation <em>Abbreviation</em>}'.
+	 * Returns the meta object for the attribute '{@link Gtm.FareElement#getDataSource <em>Data Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Abbreviation</em>'.
-	 * @see Gtm.ServiceBrand#getAbbreviation()
-	 * @see #getServiceBrand()
+	 * @return the meta object for the attribute '<em>Data Source</em>'.
+	 * @see Gtm.FareElement#getDataSource()
+	 * @see #getFareElement()
 	 * @generated
 	 */
-	EAttribute getServiceBrand_Abbreviation();
+	EAttribute getFareElement_DataSource();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Accounting Identifier</em>'.
+	 * @see Gtm.LegacyAccountingIdentifier
+	 * @generated
+	 */
+	EClass getLegacyAccountingIdentifier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyAccountingIdentifier#getSeriesId <em>Series Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Series Id</em>'.
+	 * @see Gtm.LegacyAccountingIdentifier#getSeriesId()
+	 * @see #getLegacyAccountingIdentifier()
+	 * @generated
+	 */
+	EAttribute getLegacyAccountingIdentifier_SeriesId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyAccountingIdentifier#getTariffId <em>Tariff Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Tariff Id</em>'.
+	 * @see Gtm.LegacyAccountingIdentifier#getTariffId()
+	 * @see #getLegacyAccountingIdentifier()
+	 * @generated
+	 */
+	EAttribute getLegacyAccountingIdentifier_TariffId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyAccountingIdentifier#getAddSeriesId <em>Add Series Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Add Series Id</em>'.
+	 * @see Gtm.LegacyAccountingIdentifier#getAddSeriesId()
+	 * @see #getLegacyAccountingIdentifier()
+	 * @generated
+	 */
+	EAttribute getLegacyAccountingIdentifier_AddSeriesId();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.SalesAvailabilityConstraint <em>Sales Availability Constraint</em>}'.
@@ -8045,91 +12777,15 @@ public interface GtmPackage extends EPackage {
 	EReference getSalesAvailabilityConstraint_Restrictions();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.TravelValidityConstraint <em>Travel Validity Constraint</em>}'.
+	 * Returns the meta object for the attribute '{@link Gtm.SalesAvailabilityConstraint#getDataSource <em>Data Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Travel Validity Constraint</em>'.
-	 * @see Gtm.TravelValidityConstraint
+	 * @return the meta object for the attribute '<em>Data Source</em>'.
+	 * @see Gtm.SalesAvailabilityConstraint#getDataSource()
+	 * @see #getSalesAvailabilityConstraint()
 	 * @generated
 	 */
-	EClass getTravelValidityConstraint();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.TravelValidityConstraint#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see Gtm.TravelValidityConstraint#getId()
-	 * @see #getTravelValidityConstraint()
-	 * @generated
-	 */
-	EAttribute getTravelValidityConstraint_Id();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.TravelValidityConstraint#getDataDescription <em>Data Description</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Data Description</em>'.
-	 * @see Gtm.TravelValidityConstraint#getDataDescription()
-	 * @see #getTravelValidityConstraint()
-	 * @generated
-	 */
-	EAttribute getTravelValidityConstraint_DataDescription();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.TravelValidityConstraint#getValidDays <em>Valid Days</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Valid Days</em>'.
-	 * @see Gtm.TravelValidityConstraint#getValidDays()
-	 * @see #getTravelValidityConstraint()
-	 * @generated
-	 */
-	EReference getTravelValidityConstraint_ValidDays();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.TravelValidityConstraint#getExcludedTimeRange <em>Excluded Time Range</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Excluded Time Range</em>'.
-	 * @see Gtm.TravelValidityConstraint#getExcludedTimeRange()
-	 * @see #getTravelValidityConstraint()
-	 * @generated
-	 */
-	EAttribute getTravelValidityConstraint_ExcludedTimeRange();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.TravelValidityConstraint#getTravelDays <em>Travel Days</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Travel Days</em>'.
-	 * @see Gtm.TravelValidityConstraint#getTravelDays()
-	 * @see #getTravelValidityConstraint()
-	 * @generated
-	 */
-	EAttribute getTravelValidityConstraint_TravelDays();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link Gtm.TravelValidityConstraint#getRange <em>Range</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Range</em>'.
-	 * @see Gtm.TravelValidityConstraint#getRange()
-	 * @see #getTravelValidityConstraint()
-	 * @generated
-	 */
-	EReference getTravelValidityConstraint_Range();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link Gtm.TravelValidityConstraint#getReturnConstraint <em>Return Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Return Constraint</em>'.
-	 * @see Gtm.TravelValidityConstraint#getReturnConstraint()
-	 * @see #getTravelValidityConstraint()
-	 * @generated
-	 */
-	EReference getTravelValidityConstraint_ReturnConstraint();
+	EAttribute getSalesAvailabilityConstraint_DataSource();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.SalesRestriction <em>Sales Restriction</em>}'.
@@ -8175,47 +12831,24 @@ public interface GtmPackage extends EPackage {
 	EReference getSalesRestriction_EndOfSale();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.TimeReference <em>Time Reference</em>}'.
+	 * Returns the meta object for class '{@link Gtm.EndOfSale <em>End Of Sale</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Time Reference</em>'.
-	 * @see Gtm.TimeReference
+	 * @return the meta object for class '<em>End Of Sale</em>'.
+	 * @see Gtm.EndOfSale
 	 * @generated
 	 */
-	EClass getTimeReference();
+	EClass getEndOfSale();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.TimeReference#getRefereceType <em>Referece Type</em>}'.
+	 * Returns the meta object for class '{@link Gtm.StartOfSale <em>Start Of Sale</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Referece Type</em>'.
-	 * @see Gtm.TimeReference#getRefereceType()
-	 * @see #getTimeReference()
+	 * @return the meta object for class '<em>Start Of Sale</em>'.
+	 * @see Gtm.StartOfSale
 	 * @generated
 	 */
-	EAttribute getTimeReference_RefereceType();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.TimeReference#getUnit <em>Unit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Unit</em>'.
-	 * @see Gtm.TimeReference#getUnit()
-	 * @see #getTimeReference()
-	 * @generated
-	 */
-	EAttribute getTimeReference_Unit();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.TimeReference#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see Gtm.TimeReference#getValue()
-	 * @see #getTimeReference()
-	 * @generated
-	 */
-	EAttribute getTimeReference_Value();
+	EClass getStartOfSale();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.CombinationConstraint <em>Combination Constraint</em>}'.
@@ -8347,6 +12980,16 @@ public interface GtmPackage extends EPackage {
 	EAttribute getTimeRange_Until();
 
 	/**
+	 * Returns the meta object for class '{@link Gtm.ExcludedTimeRange <em>Excluded Time Range</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Excluded Time Range</em>'.
+	 * @see Gtm.ExcludedTimeRange
+	 * @generated
+	 */
+	EClass getExcludedTimeRange();
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.ReturnValidityConstraint <em>Return Validity Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8390,93 +13033,6 @@ public interface GtmPackage extends EPackage {
 	EAttribute getReturnValidityConstraint_EarliestReturn();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.FareCombinationModel <em>Fare Combination Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Fare Combination Model</em>'.
-	 * @see Gtm.FareCombinationModel
-	 * @generated
-	 */
-	EClass getFareCombinationModel();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.FareCombinationModel#getModel <em>Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Model</em>'.
-	 * @see Gtm.FareCombinationModel#getModel()
-	 * @see #getFareCombinationModel()
-	 * @generated
-	 */
-	EAttribute getFareCombinationModel_Model();
-
-	/**
-	 * Returns the meta object for the reference list '{@link Gtm.FareCombinationModel#getCombinableCarriers <em>Combinable Carriers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Combinable Carriers</em>'.
-	 * @see Gtm.FareCombinationModel#getCombinableCarriers()
-	 * @see #getFareCombinationModel()
-	 * @generated
-	 */
-	EReference getFareCombinationModel_CombinableCarriers();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.FareCombinationModel#isOnlyWhenCombined <em>Only When Combined</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Only When Combined</em>'.
-	 * @see Gtm.FareCombinationModel#isOnlyWhenCombined()
-	 * @see #getFareCombinationModel()
-	 * @generated
-	 */
-	EAttribute getFareCombinationModel_OnlyWhenCombined();
-
-	/**
-	 * Returns the meta object for the reference list '{@link Gtm.FareCombinationModel#getAllowedAllocators <em>Allowed Allocators</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Allowed Allocators</em>'.
-	 * @see Gtm.FareCombinationModel#getAllowedAllocators()
-	 * @see #getFareCombinationModel()
-	 * @generated
-	 */
-	EReference getFareCombinationModel_AllowedAllocators();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.FareCombinationModel#getReferenceCluster <em>Reference Cluster</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Reference Cluster</em>'.
-	 * @see Gtm.FareCombinationModel#getReferenceCluster()
-	 * @see #getFareCombinationModel()
-	 * @generated
-	 */
-	EAttribute getFareCombinationModel_ReferenceCluster();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link Gtm.FareCombinationModel#getAllowedClusters <em>Allowed Clusters</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Allowed Clusters</em>'.
-	 * @see Gtm.FareCombinationModel#getAllowedClusters()
-	 * @see #getFareCombinationModel()
-	 * @generated
-	 */
-	EAttribute getFareCombinationModel_AllowedClusters();
-
-	/**
-	 * Returns the meta object for the reference list '{@link Gtm.FareCombinationModel#getAllowedCommonContracts <em>Allowed Common Contracts</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Allowed Common Contracts</em>'.
-	 * @see Gtm.FareCombinationModel#getAllowedCommonContracts()
-	 * @see #getFareCombinationModel()
-	 * @generated
-	 */
-	EReference getFareCombinationModel_AllowedCommonContracts();
-
-	/**
 	 * Returns the meta object for class '{@link Gtm.RegionalValidity <em>Regional Validity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8498,10 +13054,10 @@ public interface GtmPackage extends EPackage {
 	EAttribute getRegionalValidity_SeqNb();
 
 	/**
-	 * Returns the meta object for the reference list '{@link Gtm.RegionalValidity#getViaStation <em>Via Station</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.RegionalValidity#getViaStation <em>Via Station</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Via Station</em>'.
+	 * @return the meta object for the containment reference '<em>Via Station</em>'.
 	 * @see Gtm.RegionalValidity#getViaStation()
 	 * @see #getRegionalValidity()
 	 * @generated
@@ -8509,10 +13065,10 @@ public interface GtmPackage extends EPackage {
 	EReference getRegionalValidity_ViaStation();
 
 	/**
-	 * Returns the meta object for the reference list '{@link Gtm.RegionalValidity#getZone <em>Zone</em>}'.
+	 * Returns the meta object for the reference '{@link Gtm.RegionalValidity#getZone <em>Zone</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Zone</em>'.
+	 * @return the meta object for the reference '<em>Zone</em>'.
 	 * @see Gtm.RegionalValidity#getZone()
 	 * @see #getRegionalValidity()
 	 * @generated
@@ -8520,10 +13076,10 @@ public interface GtmPackage extends EPackage {
 	EReference getRegionalValidity_Zone();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.RegionalValidity#getLine <em>Line</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.RegionalValidity#getLine <em>Line</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Line</em>'.
+	 * @return the meta object for the containment reference '<em>Line</em>'.
 	 * @see Gtm.RegionalValidity#getLine()
 	 * @see #getRegionalValidity()
 	 * @generated
@@ -8531,10 +13087,10 @@ public interface GtmPackage extends EPackage {
 	EReference getRegionalValidity_Line();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.RegionalValidity#getPolygone <em>Polygone</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.RegionalValidity#getPolygone <em>Polygone</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Polygone</em>'.
+	 * @return the meta object for the containment reference '<em>Polygone</em>'.
 	 * @see Gtm.RegionalValidity#getPolygone()
 	 * @see #getRegionalValidity()
 	 * @generated
@@ -8596,6 +13152,58 @@ public interface GtmPackage extends EPackage {
 	EReference getViaStation_Carrier();
 
 	/**
+	 * Returns the meta object for the '{@link Gtm.ViaStation#getDescription() <em>Get Description</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Description</em>' operation.
+	 * @see Gtm.ViaStation#getDescription()
+	 * @generated
+	 */
+	EOperation getViaStation__GetDescription();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.AlternativeRoute <em>Alternative Route</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Alternative Route</em>'.
+	 * @see Gtm.AlternativeRoute
+	 * @generated
+	 */
+	EClass getAlternativeRoute();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.AlternativeRoute#getStations <em>Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Stations</em>'.
+	 * @see Gtm.AlternativeRoute#getStations()
+	 * @see #getAlternativeRoute()
+	 * @generated
+	 */
+	EReference getAlternativeRoute_Stations();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.Route <em>Route</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Route</em>'.
+	 * @see Gtm.Route
+	 * @generated
+	 */
+	EClass getRoute();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.Route#getStations <em>Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Stations</em>'.
+	 * @see Gtm.Route#getStations()
+	 * @see #getRoute()
+	 * @generated
+	 */
+	EReference getRoute_Stations();
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.Zone <em>Zone</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8615,17 +13223,6 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getZone_BinaryZoneId();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link Gtm.Zone#getZoneId <em>Zone Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Zone Id</em>'.
-	 * @see Gtm.Zone#getZoneId()
-	 * @see #getZone()
-	 * @generated
-	 */
-	EAttribute getZone_ZoneId();
 
 	/**
 	 * Returns the meta object for the reference '{@link Gtm.Zone#getCarrier <em>Carrier</em>}'.
@@ -8683,36 +13280,69 @@ public interface GtmPackage extends EPackage {
 	EAttribute getZone_City();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.NutsCode <em>Nuts Code</em>}'.
+	 * Returns the meta object for the reference list '{@link Gtm.Zone#getZoneDefinitions <em>Zone Definitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Nuts Code</em>'.
-	 * @see Gtm.NutsCode
+	 * @return the meta object for the reference list '<em>Zone Definitions</em>'.
+	 * @see Gtm.Zone#getZoneDefinitions()
+	 * @see #getZone()
 	 * @generated
 	 */
-	EClass getNutsCode();
+	EReference getZone_ZoneDefinitions();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.NutsCode#getName <em>Name</em>}'.
+	 * Returns the meta object for class '{@link Gtm.ZoneDefinition <em>Zone Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Zone Definition</em>'.
+	 * @see Gtm.ZoneDefinition
+	 * @generated
+	 */
+	EClass getZoneDefinition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ZoneDefinition#getZoneId <em>Zone Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Zone Id</em>'.
+	 * @see Gtm.ZoneDefinition#getZoneId()
+	 * @see #getZoneDefinition()
+	 * @generated
+	 */
+	EAttribute getZoneDefinition_ZoneId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ZoneDefinition#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see Gtm.ZoneDefinition#getId()
+	 * @see #getZoneDefinition()
+	 * @generated
+	 */
+	EAttribute getZoneDefinition_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ZoneDefinition#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Gtm.NutsCode#getName()
-	 * @see #getNutsCode()
+	 * @see Gtm.ZoneDefinition#getName()
+	 * @see #getZoneDefinition()
 	 * @generated
 	 */
-	EAttribute getNutsCode_Name();
+	EAttribute getZoneDefinition_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.NutsCode#getCode <em>Code</em>}'.
+	 * Returns the meta object for the reference list '{@link Gtm.ZoneDefinition#getStations <em>Stations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Code</em>'.
-	 * @see Gtm.NutsCode#getCode()
-	 * @see #getNutsCode()
+	 * @return the meta object for the reference list '<em>Stations</em>'.
+	 * @see Gtm.ZoneDefinition#getStations()
+	 * @see #getZoneDefinition()
 	 * @generated
 	 */
-	EAttribute getNutsCode_Code();
+	EReference getZoneDefinition_Stations();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.Line <em>Line</em>}'.
@@ -8812,15 +13442,47 @@ public interface GtmPackage extends EPackage {
 	EClass getPolygone();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.Polygone#getEgde <em>Egde</em>}'.
+	 * Returns the meta object for the containment reference list '{@link Gtm.Polygone#getEdge <em>Edge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Egde</em>'.
-	 * @see Gtm.Polygone#getEgde()
+	 * @return the meta object for the containment reference list '<em>Edge</em>'.
+	 * @see Gtm.Polygone#getEdge()
 	 * @see #getPolygone()
 	 * @generated
 	 */
-	EReference getPolygone_Egde();
+	EReference getPolygone_Edge();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyStation <em>Legacy Station</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Station</em>'.
+	 * @see Gtm.LegacyStation
+	 * @generated
+	 */
+	EClass getLegacyStation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyStation#getCode <em>Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Code</em>'.
+	 * @see Gtm.LegacyStation#getCode()
+	 * @see #getLegacyStation()
+	 * @generated
+	 */
+	EAttribute getLegacyStation_Code();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyStation#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see Gtm.LegacyStation#getName()
+	 * @see #getLegacyStation()
+	 * @generated
+	 */
+	EAttribute getLegacyStation_Name();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.Edge <em>Edge</em>}'.
@@ -9041,10 +13703,10 @@ public interface GtmPackage extends EPackage {
 	EAttribute getPassengerConstraint_MinTotalPassengerWeight();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.PassengerConstraint#getIncludedFreePassengers <em>Included Free Passengers</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.PassengerConstraint#getIncludedFreePassengers <em>Included Free Passengers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Included Free Passengers</em>'.
+	 * @return the meta object for the containment reference '<em>Included Free Passengers</em>'.
 	 * @see Gtm.PassengerConstraint#getIncludedFreePassengers()
 	 * @see #getPassengerConstraint()
 	 * @generated
@@ -9061,6 +13723,27 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPassengerConstraint_ExcludedPassengerCombinations();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.IncludedFreePassengers <em>Included Free Passengers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Included Free Passengers</em>'.
+	 * @see Gtm.IncludedFreePassengers
+	 * @generated
+	 */
+	EClass getIncludedFreePassengers();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.IncludedFreePassengers#getIncludedFreePassengers <em>Included Free Passengers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Included Free Passengers</em>'.
+	 * @see Gtm.IncludedFreePassengers#getIncludedFreePassengers()
+	 * @see #getIncludedFreePassengers()
+	 * @generated
+	 */
+	EReference getIncludedFreePassengers_IncludedFreePassengers();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.PassengerCombinationConstraint <em>Passenger Combination Constraint</em>}'.
@@ -9084,15 +13767,15 @@ public interface GtmPackage extends EPackage {
 	EAttribute getPassengerCombinationConstraint_MaxNumber();
 
 	/**
-	 * Returns the meta object for the reference '{@link Gtm.PassengerCombinationConstraint#getPassengerType <em>Passenger Type</em>}'.
+	 * Returns the meta object for the attribute '{@link Gtm.PassengerCombinationConstraint#getPassengerType <em>Passenger Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Passenger Type</em>'.
+	 * @return the meta object for the attribute '<em>Passenger Type</em>'.
 	 * @see Gtm.PassengerCombinationConstraint#getPassengerType()
 	 * @see #getPassengerCombinationConstraint()
 	 * @generated
 	 */
-	EReference getPassengerCombinationConstraint_PassengerType();
+	EAttribute getPassengerCombinationConstraint_PassengerType();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.RelativeTime <em>Relative Time</em>}'.
@@ -9136,60 +13819,6 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRelativeTime_Value();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.ZoneDefinition <em>Zone Definition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Zone Definition</em>'.
-	 * @see Gtm.ZoneDefinition
-	 * @generated
-	 */
-	EClass getZoneDefinition();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ZoneDefinition#getZoneId <em>Zone Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Zone Id</em>'.
-	 * @see Gtm.ZoneDefinition#getZoneId()
-	 * @see #getZoneDefinition()
-	 * @generated
-	 */
-	EAttribute getZoneDefinition_ZoneId();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ZoneDefinition#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see Gtm.ZoneDefinition#getId()
-	 * @see #getZoneDefinition()
-	 * @generated
-	 */
-	EAttribute getZoneDefinition_Id();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ZoneDefinition#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Gtm.ZoneDefinition#getName()
-	 * @see #getZoneDefinition()
-	 * @generated
-	 */
-	EAttribute getZoneDefinition_Name();
-
-	/**
-	 * Returns the meta object for the reference list '{@link Gtm.ZoneDefinition#getStations <em>Stations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Stations</em>'.
-	 * @see Gtm.ZoneDefinition#getStations()
-	 * @see #getZoneDefinition()
-	 * @generated
-	 */
-	EReference getZoneDefinition_Stations();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.AfterSalesCondition <em>After Sales Condition</em>}'.
@@ -9257,6 +13886,16 @@ public interface GtmPackage extends EPackage {
 	EReference getAfterSalesCondition_ApplicationTime();
 
 	/**
+	 * Returns the meta object for class '{@link Gtm.ApplicationTime <em>Application Time</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Application Time</em>'.
+	 * @see Gtm.ApplicationTime
+	 * @generated
+	 */
+	EClass getApplicationTime();
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.AfterSalesRule <em>After Sales Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9278,15 +13917,392 @@ public interface GtmPackage extends EPackage {
 	EAttribute getAfterSalesRule_Id();
 
 	/**
-	 * Returns the meta object for the reference list '{@link Gtm.AfterSalesRule#getConditions <em>Conditions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link Gtm.AfterSalesRule#getConditions <em>Conditions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Conditions</em>'.
+	 * @return the meta object for the containment reference list '<em>Conditions</em>'.
 	 * @see Gtm.AfterSalesRule#getConditions()
 	 * @see #getAfterSalesRule()
 	 * @generated
 	 */
 	EReference getAfterSalesRule_Conditions();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.AllowedPersonalDataChanges <em>Allowed Personal Data Changes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Allowed Personal Data Changes</em>'.
+	 * @see Gtm.AllowedPersonalDataChanges
+	 * @generated
+	 */
+	EClass getAllowedPersonalDataChanges();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.AllowedPersonalDataChanges#getTimeLimit <em>Time Limit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time Limit</em>'.
+	 * @see Gtm.AllowedPersonalDataChanges#getTimeLimit()
+	 * @see #getAllowedPersonalDataChanges()
+	 * @generated
+	 */
+	EAttribute getAllowedPersonalDataChanges_TimeLimit();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.AllowedPersonalDataChanges#getAcceptedReason <em>Accepted Reason</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Accepted Reason</em>'.
+	 * @see Gtm.AllowedPersonalDataChanges#getAcceptedReason()
+	 * @see #getAllowedPersonalDataChanges()
+	 * @generated
+	 */
+	EAttribute getAllowedPersonalDataChanges_AcceptedReason();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.CarrierResourceLocation <em>Carrier Resource Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Carrier Resource Location</em>'.
+	 * @see Gtm.CarrierResourceLocation
+	 * @generated
+	 */
+	EClass getCarrierResourceLocation();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.CarrierResourceLocation#getCarrier <em>Carrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Carrier</em>'.
+	 * @see Gtm.CarrierResourceLocation#getCarrier()
+	 * @see #getCarrierResourceLocation()
+	 * @generated
+	 */
+	EReference getCarrierResourceLocation_Carrier();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.CarrierResourceLocation#getServiceBrand <em>Service Brand</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Service Brand</em>'.
+	 * @see Gtm.CarrierResourceLocation#getServiceBrand()
+	 * @see #getCarrierResourceLocation()
+	 * @generated
+	 */
+	EReference getCarrierResourceLocation_ServiceBrand();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.CarrierResourceLocation#getOnlineResources <em>Online Resources</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Online Resources</em>'.
+	 * @see Gtm.CarrierResourceLocation#getOnlineResources()
+	 * @see #getCarrierResourceLocation()
+	 * @generated
+	 */
+	EReference getCarrierResourceLocation_OnlineResources();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.CrossBorderCondition <em>Cross Border Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Cross Border Condition</em>'.
+	 * @see Gtm.CrossBorderCondition
+	 * @generated
+	 */
+	EClass getCrossBorderCondition();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.CrossBorderCondition#getFromCountry <em>From Country</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>From Country</em>'.
+	 * @see Gtm.CrossBorderCondition#getFromCountry()
+	 * @see #getCrossBorderCondition()
+	 * @generated
+	 */
+	EReference getCrossBorderCondition_FromCountry();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.CrossBorderCondition#getToCountry <em>To Country</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>To Country</em>'.
+	 * @see Gtm.CrossBorderCondition#getToCountry()
+	 * @see #getCrossBorderCondition()
+	 * @generated
+	 */
+	EReference getCrossBorderCondition_ToCountry();
+
+	/**
+	 * Returns the meta object for the reference list '{@link Gtm.CrossBorderCondition#getAffectedServiceBrands <em>Affected Service Brands</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Affected Service Brands</em>'.
+	 * @see Gtm.CrossBorderCondition#getAffectedServiceBrands()
+	 * @see #getCrossBorderCondition()
+	 * @generated
+	 */
+	EReference getCrossBorderCondition_AffectedServiceBrands();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.FareCombinationModel <em>Fare Combination Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fare Combination Model</em>'.
+	 * @see Gtm.FareCombinationModel
+	 * @generated
+	 */
+	EClass getFareCombinationModel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.FareCombinationModel#getModel <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Model</em>'.
+	 * @see Gtm.FareCombinationModel#getModel()
+	 * @see #getFareCombinationModel()
+	 * @generated
+	 */
+	EAttribute getFareCombinationModel_Model();
+
+	/**
+	 * Returns the meta object for the reference list '{@link Gtm.FareCombinationModel#getCombinableCarriers <em>Combinable Carriers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Combinable Carriers</em>'.
+	 * @see Gtm.FareCombinationModel#getCombinableCarriers()
+	 * @see #getFareCombinationModel()
+	 * @generated
+	 */
+	EReference getFareCombinationModel_CombinableCarriers();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.FareCombinationModel#isOnlyWhenCombined <em>Only When Combined</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Only When Combined</em>'.
+	 * @see Gtm.FareCombinationModel#isOnlyWhenCombined()
+	 * @see #getFareCombinationModel()
+	 * @generated
+	 */
+	EAttribute getFareCombinationModel_OnlyWhenCombined();
+
+	/**
+	 * Returns the meta object for the reference list '{@link Gtm.FareCombinationModel#getAllowedAllocators <em>Allowed Allocators</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Allowed Allocators</em>'.
+	 * @see Gtm.FareCombinationModel#getAllowedAllocators()
+	 * @see #getFareCombinationModel()
+	 * @generated
+	 */
+	EReference getFareCombinationModel_AllowedAllocators();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.FareCombinationModel#getReferenceCluster <em>Reference Cluster</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reference Cluster</em>'.
+	 * @see Gtm.FareCombinationModel#getReferenceCluster()
+	 * @see #getFareCombinationModel()
+	 * @generated
+	 */
+	EAttribute getFareCombinationModel_ReferenceCluster();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link Gtm.FareCombinationModel#getAllowedClusters <em>Allowed Clusters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Allowed Clusters</em>'.
+	 * @see Gtm.FareCombinationModel#getAllowedClusters()
+	 * @see #getFareCombinationModel()
+	 * @generated
+	 */
+	EAttribute getFareCombinationModel_AllowedClusters();
+
+	/**
+	 * Returns the meta object for the reference list '{@link Gtm.FareCombinationModel#getAllowedCommonContracts <em>Allowed Common Contracts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Allowed Common Contracts</em>'.
+	 * @see Gtm.FareCombinationModel#getAllowedCommonContracts()
+	 * @see #getFareCombinationModel()
+	 * @generated
+	 */
+	EReference getFareCombinationModel_AllowedCommonContracts();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.RequiredBarcodes <em>Required Barcodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Required Barcodes</em>'.
+	 * @see Gtm.RequiredBarcodes
+	 * @generated
+	 */
+	EClass getRequiredBarcodes();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link Gtm.RequiredBarcodes#getRequiredBarcodes <em>Required Barcodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Required Barcodes</em>'.
+	 * @see Gtm.RequiredBarcodes#getRequiredBarcodes()
+	 * @see #getRequiredBarcodes()
+	 * @generated
+	 */
+	EAttribute getRequiredBarcodes_RequiredBarcodes();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.AcceptedBarcodes <em>Accepted Barcodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Accepted Barcodes</em>'.
+	 * @see Gtm.AcceptedBarcodes
+	 * @generated
+	 */
+	EClass getAcceptedBarcodes();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link Gtm.AcceptedBarcodes#getAcceptedBarcodes <em>Accepted Barcodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Accepted Barcodes</em>'.
+	 * @see Gtm.AcceptedBarcodes#getAcceptedBarcodes()
+	 * @see #getAcceptedBarcodes()
+	 * @generated
+	 */
+	EAttribute getAcceptedBarcodes_AcceptedBarcodes();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.FulfillmentConstraint <em>Fulfillment Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fulfillment Constraint</em>'.
+	 * @see Gtm.FulfillmentConstraint
+	 * @generated
+	 */
+	EClass getFulfillmentConstraint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.FulfillmentConstraint#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see Gtm.FulfillmentConstraint#getId()
+	 * @see #getFulfillmentConstraint()
+	 * @generated
+	 */
+	EAttribute getFulfillmentConstraint_Id();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link Gtm.FulfillmentConstraint#getAcceptedFulfilmentTypes <em>Accepted Fulfilment Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Accepted Fulfilment Types</em>'.
+	 * @see Gtm.FulfillmentConstraint#getAcceptedFulfilmentTypes()
+	 * @see #getFulfillmentConstraint()
+	 * @generated
+	 */
+	EAttribute getFulfillmentConstraint_AcceptedFulfilmentTypes();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.FulfillmentConstraint#getAcceptedBarcodes <em>Accepted Barcodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Accepted Barcodes</em>'.
+	 * @see Gtm.FulfillmentConstraint#getAcceptedBarcodes()
+	 * @see #getFulfillmentConstraint()
+	 * @generated
+	 */
+	EReference getFulfillmentConstraint_AcceptedBarcodes();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.FulfillmentConstraint#getRequiredBarcodes <em>Required Barcodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Required Barcodes</em>'.
+	 * @see Gtm.FulfillmentConstraint#getRequiredBarcodes()
+	 * @see #getFulfillmentConstraint()
+	 * @generated
+	 */
+	EReference getFulfillmentConstraint_RequiredBarcodes();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link Gtm.FulfillmentConstraint#getRequiredControlDataExchange <em>Required Control Data Exchange</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Required Control Data Exchange</em>'.
+	 * @see Gtm.FulfillmentConstraint#getRequiredControlDataExchange()
+	 * @see #getFulfillmentConstraint()
+	 * @generated
+	 */
+	EAttribute getFulfillmentConstraint_RequiredControlDataExchange();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.FulfillmentConstraint#isIndividualTicketingPermitted <em>Individual Ticketing Permitted</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Individual Ticketing Permitted</em>'.
+	 * @see Gtm.FulfillmentConstraint#isIndividualTicketingPermitted()
+	 * @see #getFulfillmentConstraint()
+	 * @generated
+	 */
+	EAttribute getFulfillmentConstraint_IndividualTicketingPermitted();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.OnlineResource <em>Online Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Online Resource</em>'.
+	 * @see Gtm.OnlineResource
+	 * @generated
+	 */
+	EClass getOnlineResource();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.OnlineResource#getOfferRequestType <em>Offer Request Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Offer Request Type</em>'.
+	 * @see Gtm.OnlineResource#getOfferRequestType()
+	 * @see #getOnlineResource()
+	 * @generated
+	 */
+	EAttribute getOnlineResource_OfferRequestType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.OnlineResource#getInterfaceType <em>Interface Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Interface Type</em>'.
+	 * @see Gtm.OnlineResource#getInterfaceType()
+	 * @see #getOnlineResource()
+	 * @generated
+	 */
+	EAttribute getOnlineResource_InterfaceType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.OnlineResource#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Version</em>'.
+	 * @see Gtm.OnlineResource#getVersion()
+	 * @see #getOnlineResource()
+	 * @generated
+	 */
+	EAttribute getOnlineResource_Version();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.OnlineResource#getSystem <em>System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>System</em>'.
+	 * @see Gtm.OnlineResource#getSystem()
+	 * @see #getOnlineResource()
+	 * @generated
+	 */
+	EAttribute getOnlineResource_System();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.PersonalDataConstraint <em>Personal Data Constraint</em>}'.
@@ -9364,10 +14380,10 @@ public interface GtmPackage extends EPackage {
 	EAttribute getRequiredPersonalData_DataItem();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.RequiredPersonalData#getTransfer <em>Transfer</em>}'.
+	 * Returns the meta object for the attribute list '{@link Gtm.RequiredPersonalData#getTransfer <em>Transfer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Transfer</em>'.
+	 * @return the meta object for the attribute list '<em>Transfer</em>'.
 	 * @see Gtm.RequiredPersonalData#getTransfer()
 	 * @see #getRequiredPersonalData()
 	 * @generated
@@ -9395,81 +14411,6 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRequiredPersonalData_CrossBorder();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.CrossBorderCondition <em>Cross Border Condition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Cross Border Condition</em>'.
-	 * @see Gtm.CrossBorderCondition
-	 * @generated
-	 */
-	EClass getCrossBorderCondition();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.CrossBorderCondition#getFromCountry <em>From Country</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>From Country</em>'.
-	 * @see Gtm.CrossBorderCondition#getFromCountry()
-	 * @see #getCrossBorderCondition()
-	 * @generated
-	 */
-	EReference getCrossBorderCondition_FromCountry();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.CrossBorderCondition#getToCountry <em>To Country</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>To Country</em>'.
-	 * @see Gtm.CrossBorderCondition#getToCountry()
-	 * @see #getCrossBorderCondition()
-	 * @generated
-	 */
-	EReference getCrossBorderCondition_ToCountry();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.CrossBorderCondition#getAffectedServiceBrands <em>Affected Service Brands</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Affected Service Brands</em>'.
-	 * @see Gtm.CrossBorderCondition#getAffectedServiceBrands()
-	 * @see #getCrossBorderCondition()
-	 * @generated
-	 */
-	EReference getCrossBorderCondition_AffectedServiceBrands();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.AllowedPersonalDataChanges <em>Allowed Personal Data Changes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Allowed Personal Data Changes</em>'.
-	 * @see Gtm.AllowedPersonalDataChanges
-	 * @generated
-	 */
-	EClass getAllowedPersonalDataChanges();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.AllowedPersonalDataChanges#getTimeLimit <em>Time Limit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Time Limit</em>'.
-	 * @see Gtm.AllowedPersonalDataChanges#getTimeLimit()
-	 * @see #getAllowedPersonalDataChanges()
-	 * @generated
-	 */
-	EAttribute getAllowedPersonalDataChanges_TimeLimit();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.AllowedPersonalDataChanges#getAcceptedReason <em>Accepted Reason</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Accepted Reason</em>'.
-	 * @see Gtm.AllowedPersonalDataChanges#getAcceptedReason()
-	 * @see #getAllowedPersonalDataChanges()
-	 * @generated
-	 */
-	EAttribute getAllowedPersonalDataChanges_AcceptedReason();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.ReductionConstraint <em>Reduction Constraint</em>}'.
@@ -9547,123 +14488,47 @@ public interface GtmPackage extends EPackage {
 	EAttribute getRequiredReductionCard_Name();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.FulfillmentConstraint <em>Fulfillment Constraint</em>}'.
+	 * Returns the meta object for class '{@link Gtm.StationResourceLocation <em>Station Resource Location</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Fulfillment Constraint</em>'.
-	 * @see Gtm.FulfillmentConstraint
+	 * @return the meta object for class '<em>Station Resource Location</em>'.
+	 * @see Gtm.StationResourceLocation
 	 * @generated
 	 */
-	EClass getFulfillmentConstraint();
+	EClass getStationResourceLocation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.FulfillmentConstraint#getId <em>Id</em>}'.
+	 * Returns the meta object for the containment reference list '{@link Gtm.StationResourceLocation#getOnlineResources <em>Online Resources</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see Gtm.FulfillmentConstraint#getId()
-	 * @see #getFulfillmentConstraint()
+	 * @return the meta object for the containment reference list '<em>Online Resources</em>'.
+	 * @see Gtm.StationResourceLocation#getOnlineResources()
+	 * @see #getStationResourceLocation()
 	 * @generated
 	 */
-	EAttribute getFulfillmentConstraint_Id();
+	EReference getStationResourceLocation_OnlineResources();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link Gtm.FulfillmentConstraint#getAcceptedFulfilmentTypes <em>Accepted Fulfilment Types</em>}'.
+	 * Returns the meta object for the reference list '{@link Gtm.StationResourceLocation#getStations <em>Stations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Accepted Fulfilment Types</em>'.
-	 * @see Gtm.FulfillmentConstraint#getAcceptedFulfilmentTypes()
-	 * @see #getFulfillmentConstraint()
+	 * @return the meta object for the reference list '<em>Stations</em>'.
+	 * @see Gtm.StationResourceLocation#getStations()
+	 * @see #getStationResourceLocation()
 	 * @generated
 	 */
-	EAttribute getFulfillmentConstraint_AcceptedFulfilmentTypes();
+	EReference getStationResourceLocation_Stations();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link Gtm.FulfillmentConstraint#getAcceptedBarcodes <em>Accepted Barcodes</em>}'.
+	 * Returns the meta object for the reference list '{@link Gtm.StationResourceLocation#getConnectionPoints <em>Connection Points</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Accepted Barcodes</em>'.
-	 * @see Gtm.FulfillmentConstraint#getAcceptedBarcodes()
-	 * @see #getFulfillmentConstraint()
+	 * @return the meta object for the reference list '<em>Connection Points</em>'.
+	 * @see Gtm.StationResourceLocation#getConnectionPoints()
+	 * @see #getStationResourceLocation()
 	 * @generated
 	 */
-	EAttribute getFulfillmentConstraint_AcceptedBarcodes();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link Gtm.FulfillmentConstraint#getRequiredControlDataExchange <em>Required Control Data Exchange</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Required Control Data Exchange</em>'.
-	 * @see Gtm.FulfillmentConstraint#getRequiredControlDataExchange()
-	 * @see #getFulfillmentConstraint()
-	 * @generated
-	 */
-	EAttribute getFulfillmentConstraint_RequiredControlDataExchange();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.FulfillmentConstraint#isIndividualTicketingPermitted <em>Individual Ticketing Permitted</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Individual Ticketing Permitted</em>'.
-	 * @see Gtm.FulfillmentConstraint#isIndividualTicketingPermitted()
-	 * @see #getFulfillmentConstraint()
-	 * @generated
-	 */
-	EAttribute getFulfillmentConstraint_IndividualTicketingPermitted();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.FareResourceLocation <em>Fare Resource Location</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Fare Resource Location</em>'.
-	 * @see Gtm.FareResourceLocation
-	 * @generated
-	 */
-	EClass getFareResourceLocation();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.FareResourceLocation#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see Gtm.FareResourceLocation#getId()
-	 * @see #getFareResourceLocation()
-	 * @generated
-	 */
-	EAttribute getFareResourceLocation_Id();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareResourceLocation#getCarrierResourceLocations <em>Carrier Resource Locations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Carrier Resource Locations</em>'.
-	 * @see Gtm.FareResourceLocation#getCarrierResourceLocations()
-	 * @see #getFareResourceLocation()
-	 * @generated
-	 */
-	EReference getFareResourceLocation_CarrierResourceLocations();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareResourceLocation#getStationResourceLocations <em>Station Resource Locations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Station Resource Locations</em>'.
-	 * @see Gtm.FareResourceLocation#getStationResourceLocations()
-	 * @see #getFareResourceLocation()
-	 * @generated
-	 */
-	EReference getFareResourceLocation_StationResourceLocations();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareResourceLocation#getTrainResourceLocations <em>Train Resource Locations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Train Resource Locations</em>'.
-	 * @see Gtm.FareResourceLocation#getTrainResourceLocations()
-	 * @see #getFareResourceLocation()
-	 * @generated
-	 */
-	EReference getFareResourceLocation_TrainResourceLocations();
+	EReference getStationResourceLocation_ConnectionPoints();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.TrainResourceLocation <em>Train Resource Location</em>}'.
@@ -9709,194 +14574,44 @@ public interface GtmPackage extends EPackage {
 	EAttribute getTrainResourceLocation_TrainId();
 
 	/**
-	 * Returns the meta object for class '{@link Gtm.CarrierResourceLocation <em>Carrier Resource Location</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.TimeZone <em>Time Zone</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Carrier Resource Location</em>'.
-	 * @see Gtm.CarrierResourceLocation
+	 * @return the meta object for enum '<em>Time Zone</em>'.
+	 * @see Gtm.TimeZone
 	 * @generated
 	 */
-	EClass getCarrierResourceLocation();
+	EEnum getTimeZone();
 
 	/**
-	 * Returns the meta object for the reference '{@link Gtm.CarrierResourceLocation#getCarrier <em>Carrier</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.CharacterSet <em>Character Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Carrier</em>'.
-	 * @see Gtm.CarrierResourceLocation#getCarrier()
-	 * @see #getCarrierResourceLocation()
+	 * @return the meta object for enum '<em>Character Set</em>'.
+	 * @see Gtm.CharacterSet
 	 * @generated
 	 */
-	EReference getCarrierResourceLocation_Carrier();
+	EEnum getCharacterSet();
 
 	/**
-	 * Returns the meta object for the reference '{@link Gtm.CarrierResourceLocation#getServiceBrand <em>Service Brand</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.AfterSalesTransactionType <em>After Sales Transaction Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Service Brand</em>'.
-	 * @see Gtm.CarrierResourceLocation#getServiceBrand()
-	 * @see #getCarrierResourceLocation()
+	 * @return the meta object for enum '<em>After Sales Transaction Type</em>'.
+	 * @see Gtm.AfterSalesTransactionType
 	 * @generated
 	 */
-	EReference getCarrierResourceLocation_ServiceBrand();
+	EEnum getAfterSalesTransactionType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.CarrierResourceLocation#getOnlineResources <em>Online Resources</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.BarcodeTypes <em>Barcode Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Online Resources</em>'.
-	 * @see Gtm.CarrierResourceLocation#getOnlineResources()
-	 * @see #getCarrierResourceLocation()
+	 * @return the meta object for enum '<em>Barcode Types</em>'.
+	 * @see Gtm.BarcodeTypes
 	 * @generated
 	 */
-	EReference getCarrierResourceLocation_OnlineResources();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.StationResourceLocation <em>Station Resource Location</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Station Resource Location</em>'.
-	 * @see Gtm.StationResourceLocation
-	 * @generated
-	 */
-	EClass getStationResourceLocation();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.StationResourceLocation#getOnlineResources <em>Online Resources</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Online Resources</em>'.
-	 * @see Gtm.StationResourceLocation#getOnlineResources()
-	 * @see #getStationResourceLocation()
-	 * @generated
-	 */
-	EReference getStationResourceLocation_OnlineResources();
-
-	/**
-	 * Returns the meta object for the reference list '{@link Gtm.StationResourceLocation#getStations <em>Stations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Stations</em>'.
-	 * @see Gtm.StationResourceLocation#getStations()
-	 * @see #getStationResourceLocation()
-	 * @generated
-	 */
-	EReference getStationResourceLocation_Stations();
-
-	/**
-	 * Returns the meta object for the reference list '{@link Gtm.StationResourceLocation#getConnectionPoints <em>Connection Points</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Connection Points</em>'.
-	 * @see Gtm.StationResourceLocation#getConnectionPoints()
-	 * @see #getStationResourceLocation()
-	 * @generated
-	 */
-	EReference getStationResourceLocation_ConnectionPoints();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.OnlineResource <em>Online Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Online Resource</em>'.
-	 * @see Gtm.OnlineResource
-	 * @generated
-	 */
-	EClass getOnlineResource();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.OnlineResource#getOfferRequestType <em>Offer Request Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Offer Request Type</em>'.
-	 * @see Gtm.OnlineResource#getOfferRequestType()
-	 * @see #getOnlineResource()
-	 * @generated
-	 */
-	EAttribute getOnlineResource_OfferRequestType();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.OnlineResource#getInterfaceType <em>Interface Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Interface Type</em>'.
-	 * @see Gtm.OnlineResource#getInterfaceType()
-	 * @see #getOnlineResource()
-	 * @generated
-	 */
-	EAttribute getOnlineResource_InterfaceType();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.OnlineResource#getVersion <em>Version</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Version</em>'.
-	 * @see Gtm.OnlineResource#getVersion()
-	 * @see #getOnlineResource()
-	 * @generated
-	 */
-	EAttribute getOnlineResource_Version();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.OnlineResource#getSystem <em>System</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>System</em>'.
-	 * @see Gtm.OnlineResource#getSystem()
-	 * @see #getOnlineResource()
-	 * @generated
-	 */
-	EAttribute getOnlineResource_System();
-
-	/**
-	 * Returns the meta object for enum '{@link Gtm.ReservationService <em>Reservation Service</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Reservation Service</em>'.
-	 * @see Gtm.ReservationService
-	 * @generated
-	 */
-	EEnum getReservationService();
-
-	/**
-	 * Returns the meta object for enum '{@link Gtm.ReservationBerthType <em>Reservation Berth Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Reservation Berth Type</em>'.
-	 * @see Gtm.ReservationBerthType
-	 * @generated
-	 */
-	EEnum getReservationBerthType();
-
-	/**
-	 * Returns the meta object for enum '{@link Gtm.GraphicalReservationType <em>Graphical Reservation Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Graphical Reservation Type</em>'.
-	 * @see Gtm.GraphicalReservationType
-	 * @generated
-	 */
-	EEnum getGraphicalReservationType();
-
-	/**
-	 * Returns the meta object for enum '{@link Gtm.LegacyCalculationType <em>Legacy Calculation Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Legacy Calculation Type</em>'.
-	 * @see Gtm.LegacyCalculationType
-	 * @generated
-	 */
-	EEnum getLegacyCalculationType();
-
-	/**
-	 * Returns the meta object for enum '{@link Gtm.LegacySeriesType <em>Legacy Series Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Legacy Series Type</em>'.
-	 * @see Gtm.LegacySeriesType
-	 * @generated
-	 */
-	EEnum getLegacySeriesType();
+	EEnum getBarcodeTypes();
 
 	/**
 	 * Returns the meta object for enum '{@link Gtm.ClassicClassType <em>Classic Class Type</em>}'.
@@ -9909,84 +14624,14 @@ public interface GtmPackage extends EPackage {
 	EEnum getClassicClassType();
 
 	/**
-	 * Returns the meta object for enum '{@link Gtm.TaxScope <em>Tax Scope</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.Clusters <em>Clusters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Tax Scope</em>'.
-	 * @see Gtm.TaxScope
+	 * @return the meta object for enum '<em>Clusters</em>'.
+	 * @see Gtm.Clusters
 	 * @generated
 	 */
-	EEnum getTaxScope();
-
-	/**
-	 * Returns the meta object for enum '{@link Gtm.FareType <em>Fare Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Fare Type</em>'.
-	 * @see Gtm.FareType
-	 * @generated
-	 */
-	EEnum getFareType();
-
-	/**
-	 * Returns the meta object for enum '{@link Gtm.ReservationTravelClass <em>Reservation Travel Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Reservation Travel Class</em>'.
-	 * @see Gtm.ReservationTravelClass
-	 * @generated
-	 */
-	EEnum getReservationTravelClass();
-
-	/**
-	 * Returns the meta object for enum '{@link Gtm.ReservationServiceLevel <em>Reservation Service Level</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Reservation Service Level</em>'.
-	 * @see Gtm.ReservationServiceLevel
-	 * @generated
-	 */
-	EEnum getReservationServiceLevel();
-
-	/**
-	 * Returns the meta object for enum '{@link Gtm.TimeReferenceType <em>Time Reference Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Time Reference Type</em>'.
-	 * @see Gtm.TimeReferenceType
-	 * @generated
-	 */
-	EEnum getTimeReferenceType();
-
-	/**
-	 * Returns the meta object for enum '{@link Gtm.TimeRangeScope <em>Time Range Scope</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Time Range Scope</em>'.
-	 * @see Gtm.TimeRangeScope
-	 * @generated
-	 */
-	EEnum getTimeRangeScope();
-
-	/**
-	 * Returns the meta object for enum '{@link Gtm.TimeUnit <em>Time Unit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Time Unit</em>'.
-	 * @see Gtm.TimeUnit
-	 * @generated
-	 */
-	EEnum getTimeUnit();
-
-	/**
-	 * Returns the meta object for enum '{@link Gtm.WeekDay <em>Week Day</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Week Day</em>'.
-	 * @see Gtm.WeekDay
-	 * @generated
-	 */
-	EEnum getWeekDay();
+	EEnum getClusters();
 
 	/**
 	 * Returns the meta object for enum '{@link Gtm.CombinationModel <em>Combination Model</em>}'.
@@ -9999,14 +14644,34 @@ public interface GtmPackage extends EPackage {
 	EEnum getCombinationModel();
 
 	/**
-	 * Returns the meta object for enum '{@link Gtm.Clusters <em>Clusters</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.ControlDataExchangeTypes <em>Control Data Exchange Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Clusters</em>'.
-	 * @see Gtm.Clusters
+	 * @return the meta object for enum '<em>Control Data Exchange Types</em>'.
+	 * @see Gtm.ControlDataExchangeTypes
 	 * @generated
 	 */
-	EEnum getClusters();
+	EEnum getControlDataExchangeTypes();
+
+	/**
+	 * Returns the meta object for enum '{@link Gtm.FareType <em>Fare Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Fare Type</em>'.
+	 * @see Gtm.FareType
+	 * @generated
+	 */
+	EEnum getFareType();
+
+	/**
+	 * Returns the meta object for enum '{@link Gtm.FulfillmentType <em>Fulfillment Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Fulfillment Type</em>'.
+	 * @see Gtm.FulfillmentType
+	 * @generated
+	 */
+	EEnum getFulfillmentType();
 
 	/**
 	 * Returns the meta object for enum '{@link Gtm.GeoSystem <em>Geo System</em>}'.
@@ -10029,6 +14694,16 @@ public interface GtmPackage extends EPackage {
 	EEnum getGeoUnit();
 
 	/**
+	 * Returns the meta object for enum '{@link Gtm.GraphicalReservationType <em>Graphical Reservation Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Graphical Reservation Type</em>'.
+	 * @see Gtm.GraphicalReservationType
+	 * @generated
+	 */
+	EEnum getGraphicalReservationType();
+
+	/**
 	 * Returns the meta object for enum '{@link Gtm.HemisphereEW <em>Hemisphere EW</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10049,6 +14724,66 @@ public interface GtmPackage extends EPackage {
 	EEnum getHemisphereNS();
 
 	/**
+	 * Returns the meta object for enum '{@link Gtm.InterfaceType <em>Interface Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Interface Type</em>'.
+	 * @see Gtm.InterfaceType
+	 * @generated
+	 */
+	EEnum getInterfaceType();
+
+	/**
+	 * Returns the meta object for enum '{@link Gtm.ReservationTravelClass <em>Reservation Travel Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Reservation Travel Class</em>'.
+	 * @see Gtm.ReservationTravelClass
+	 * @generated
+	 */
+	EEnum getReservationTravelClass();
+
+	/**
+	 * Returns the meta object for enum '{@link Gtm.ReservationServiceLevel <em>Reservation Service Level</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Reservation Service Level</em>'.
+	 * @see Gtm.ReservationServiceLevel
+	 * @generated
+	 */
+	EEnum getReservationServiceLevel();
+
+	/**
+	 * Returns the meta object for enum '{@link Gtm.ReservationService <em>Reservation Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Reservation Service</em>'.
+	 * @see Gtm.ReservationService
+	 * @generated
+	 */
+	EEnum getReservationService();
+
+	/**
+	 * Returns the meta object for enum '{@link Gtm.ReservationBerthType <em>Reservation Berth Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Reservation Berth Type</em>'.
+	 * @see Gtm.ReservationBerthType
+	 * @generated
+	 */
+	EEnum getReservationBerthType();
+
+	/**
+	 * Returns the meta object for enum '{@link Gtm.LegacyCalculationType <em>Legacy Calculation Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Legacy Calculation Type</em>'.
+	 * @see Gtm.LegacyCalculationType
+	 * @generated
+	 */
+	EEnum getLegacyCalculationType();
+
+	/**
 	 * Returns the meta object for enum '{@link Gtm.LegacyPassengerType <em>Legacy Passenger Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10059,24 +14794,34 @@ public interface GtmPackage extends EPackage {
 	EEnum getLegacyPassengerType();
 
 	/**
-	 * Returns the meta object for enum '{@link Gtm.TravelerType <em>Traveler Type</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.LegacySeriesType <em>Legacy Series Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Traveler Type</em>'.
-	 * @see Gtm.TravelerType
+	 * @return the meta object for enum '<em>Legacy Series Type</em>'.
+	 * @see Gtm.LegacySeriesType
 	 * @generated
 	 */
-	EEnum getTravelerType();
+	EEnum getLegacySeriesType();
 
 	/**
-	 * Returns the meta object for enum '{@link Gtm.AfterSalesTransactionType <em>After Sales Transaction Type</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.OfferRequestType <em>Offer Request Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>After Sales Transaction Type</em>'.
-	 * @see Gtm.AfterSalesTransactionType
+	 * @return the meta object for enum '<em>Offer Request Type</em>'.
+	 * @see Gtm.OfferRequestType
 	 * @generated
 	 */
-	EEnum getAfterSalesTransactionType();
+	EEnum getOfferRequestType();
+
+	/**
+	 * Returns the meta object for enum '{@link Gtm.OnlineServiceType <em>Online Service Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Online Service Type</em>'.
+	 * @see Gtm.OnlineServiceType
+	 * @generated
+	 */
+	EEnum getOnlineServiceType();
 
 	/**
 	 * Returns the meta object for enum '{@link Gtm.PersonalDataItemsType <em>Personal Data Items Type</em>}'.
@@ -10109,64 +14854,84 @@ public interface GtmPackage extends EPackage {
 	EEnum getPersonalDataChangeReason();
 
 	/**
-	 * Returns the meta object for enum '{@link Gtm.OnlineServiceType <em>Online Service Type</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.TaxScope <em>Tax Scope</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Online Service Type</em>'.
-	 * @see Gtm.OnlineServiceType
+	 * @return the meta object for enum '<em>Tax Scope</em>'.
+	 * @see Gtm.TaxScope
 	 * @generated
 	 */
-	EEnum getOnlineServiceType();
+	EEnum getTaxScope();
 
 	/**
-	 * Returns the meta object for enum '{@link Gtm.FulfillmentType <em>Fulfillment Type</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.TimeReferenceType <em>Time Reference Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Fulfillment Type</em>'.
-	 * @see Gtm.FulfillmentType
+	 * @return the meta object for enum '<em>Time Reference Type</em>'.
+	 * @see Gtm.TimeReferenceType
 	 * @generated
 	 */
-	EEnum getFulfillmentType();
+	EEnum getTimeReferenceType();
 
 	/**
-	 * Returns the meta object for enum '{@link Gtm.BarcodeTypes <em>Barcode Types</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.TimeRangeScope <em>Time Range Scope</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Barcode Types</em>'.
-	 * @see Gtm.BarcodeTypes
+	 * @return the meta object for enum '<em>Time Range Scope</em>'.
+	 * @see Gtm.TimeRangeScope
 	 * @generated
 	 */
-	EEnum getBarcodeTypes();
+	EEnum getTimeRangeScope();
 
 	/**
-	 * Returns the meta object for enum '{@link Gtm.ControlDataExchangeTypes <em>Control Data Exchange Types</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.TimeUnit <em>Time Unit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Control Data Exchange Types</em>'.
-	 * @see Gtm.ControlDataExchangeTypes
+	 * @return the meta object for enum '<em>Time Unit</em>'.
+	 * @see Gtm.TimeUnit
 	 * @generated
 	 */
-	EEnum getControlDataExchangeTypes();
+	EEnum getTimeUnit();
 
 	/**
-	 * Returns the meta object for enum '{@link Gtm.OfferRequestType <em>Offer Request Type</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.TravelerType <em>Traveler Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Offer Request Type</em>'.
-	 * @see Gtm.OfferRequestType
+	 * @return the meta object for enum '<em>Traveler Type</em>'.
+	 * @see Gtm.TravelerType
 	 * @generated
 	 */
-	EEnum getOfferRequestType();
+	EEnum getTravelerType();
 
 	/**
-	 * Returns the meta object for enum '{@link Gtm.InterfaceType <em>Interface Type</em>}'.
+	 * Returns the meta object for enum '{@link Gtm.WeekDay <em>Week Day</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Interface Type</em>'.
-	 * @see Gtm.InterfaceType
+	 * @return the meta object for enum '<em>Week Day</em>'.
+	 * @see Gtm.WeekDay
 	 * @generated
 	 */
-	EEnum getInterfaceType();
+	EEnum getWeekDay();
+
+	/**
+	 * Returns the meta object for enum '{@link Gtm.DataSource <em>Data Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Data Source</em>'.
+	 * @see Gtm.DataSource
+	 * @generated
+	 */
+	EEnum getDataSource();
+
+	/**
+	 * Returns the meta object for enum '{@link Gtm.ClassId <em>Class Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Class Id</em>'.
+	 * @see Gtm.ClassId
+	 * @generated
+	 */
+	EEnum getClassId();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -10236,7 +15001,7 @@ public interface GtmPackage extends EPackage {
 		EClass CODE_LISTS = eINSTANCE.getCodeLists();
 
 		/**
-		 * The meta object literal for the '<em><b>Carriers</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Carriers</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10244,7 +15009,7 @@ public interface GtmPackage extends EPackage {
 		EReference CODE_LISTS__CARRIERS = eINSTANCE.getCodeLists_Carriers();
 
 		/**
-		 * The meta object literal for the '<em><b>Stations</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Stations</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10252,7 +15017,7 @@ public interface GtmPackage extends EPackage {
 		EReference CODE_LISTS__STATIONS = eINSTANCE.getCodeLists_Stations();
 
 		/**
-		 * The meta object literal for the '<em><b>Countries</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Countries</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10260,7 +15025,7 @@ public interface GtmPackage extends EPackage {
 		EReference CODE_LISTS__COUNTRIES = eINSTANCE.getCodeLists_Countries();
 
 		/**
-		 * The meta object literal for the '<em><b>Languages</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Languages</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10268,7 +15033,7 @@ public interface GtmPackage extends EPackage {
 		EReference CODE_LISTS__LANGUAGES = eINSTANCE.getCodeLists_Languages();
 
 		/**
-		 * The meta object literal for the '<em><b>Currencies</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Currencies</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10276,7 +15041,7 @@ public interface GtmPackage extends EPackage {
 		EReference CODE_LISTS__CURRENCIES = eINSTANCE.getCodeLists_Currencies();
 
 		/**
-		 * The meta object literal for the '<em><b>Service Brands</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Service Brands</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10284,12 +15049,456 @@ public interface GtmPackage extends EPackage {
 		EReference CODE_LISTS__SERVICE_BRANDS = eINSTANCE.getCodeLists_ServiceBrands();
 
 		/**
-		 * The meta object literal for the '<em><b>Nuts Codes</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Nuts Codes</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference CODE_LISTS__NUTS_CODES = eINSTANCE.getCodeLists_NutsCodes();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.NUTSCodesImpl <em>NUTS Codes</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.NUTSCodesImpl
+		 * @see Gtm.impl.GtmPackageImpl#getNUTSCodes()
+		 * @generated
+		 */
+		EClass NUTS_CODES = eINSTANCE.getNUTSCodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Nuts Codes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NUTS_CODES__NUTS_CODES = eINSTANCE.getNUTSCodes_NutsCodes();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.NutsCodeImpl <em>Nuts Code</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.NutsCodeImpl
+		 * @see Gtm.impl.GtmPackageImpl#getNutsCode()
+		 * @generated
+		 */
+		EClass NUTS_CODE = eINSTANCE.getNutsCode();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NUTS_CODE__NAME = eINSTANCE.getNutsCode_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NUTS_CODE__CODE = eINSTANCE.getNutsCode_Code();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ServiceBrandsImpl <em>Service Brands</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ServiceBrandsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getServiceBrands()
+		 * @generated
+		 */
+		EClass SERVICE_BRANDS = eINSTANCE.getServiceBrands();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Brands</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_BRANDS__SERVICE_BRANDS = eINSTANCE.getServiceBrands_ServiceBrands();
+
+		/**
+		 * The meta object literal for the '<em><b>Find Service BRand</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SERVICE_BRANDS___FIND_SERVICE_BRAND__INT = eINSTANCE.getServiceBrands__FindServiceBRand__int();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ServiceBrandImpl <em>Service Brand</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ServiceBrandImpl
+		 * @see Gtm.impl.GtmPackageImpl#getServiceBrand()
+		 * @generated
+		 */
+		EClass SERVICE_BRAND = eINSTANCE.getServiceBrand();
+
+		/**
+		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_BRAND__CODE = eINSTANCE.getServiceBrand_Code();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_BRAND__NAME = eINSTANCE.getServiceBrand_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Abbreviation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_BRAND__ABBREVIATION = eINSTANCE.getServiceBrand_Abbreviation();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_BRAND__DESCRIPTION = eINSTANCE.getServiceBrand_Description();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.CountriesImpl <em>Countries</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.CountriesImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCountries()
+		 * @generated
+		 */
+		EClass COUNTRIES = eINSTANCE.getCountries();
+
+		/**
+		 * The meta object literal for the '<em><b>Countries</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COUNTRIES__COUNTRIES = eINSTANCE.getCountries_Countries();
+
+		/**
+		 * The meta object literal for the '<em><b>Find Country</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COUNTRIES___FIND_COUNTRY__INT = eINSTANCE.getCountries__FindCountry__int();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.CountryImpl <em>Country</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.CountryImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCountry()
+		 * @generated
+		 */
+		EClass COUNTRY = eINSTANCE.getCountry();
+
+		/**
+		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COUNTRY__CODE = eINSTANCE.getCountry_Code();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COUNTRY__NAME = eINSTANCE.getCountry_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>IS Ocode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COUNTRY__IS_OCODE = eINSTANCE.getCountry_ISOcode();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LanguagesImpl <em>Languages</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LanguagesImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLanguages()
+		 * @generated
+		 */
+		EClass LANGUAGES = eINSTANCE.getLanguages();
+
+		/**
+		 * The meta object literal for the '<em><b>Languages</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LANGUAGES__LANGUAGES = eINSTANCE.getLanguages_Languages();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LanguageImpl <em>Language</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LanguageImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLanguage()
+		 * @generated
+		 */
+		EClass LANGUAGE = eINSTANCE.getLanguage();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LANGUAGE__NAME = eINSTANCE.getLanguage_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LANGUAGE__CODE = eINSTANCE.getLanguage_Code();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.CurrenciesImpl <em>Currencies</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.CurrenciesImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCurrencies()
+		 * @generated
+		 */
+		EClass CURRENCIES = eINSTANCE.getCurrencies();
+
+		/**
+		 * The meta object literal for the '<em><b>Currencies</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CURRENCIES__CURRENCIES = eINSTANCE.getCurrencies_Currencies();
+
+		/**
+		 * The meta object literal for the '<em><b>Find Currency</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CURRENCIES___FIND_CURRENCY__STRING = eINSTANCE.getCurrencies__FindCurrency__String();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.CurrencyImpl <em>Currency</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.CurrencyImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCurrency()
+		 * @generated
+		 */
+		EClass CURRENCY = eINSTANCE.getCurrency();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CURRENCY__NAME = eINSTANCE.getCurrency_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Iso Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CURRENCY__ISO_CODE = eINSTANCE.getCurrency_IsoCode();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.StationsImpl <em>Stations</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.StationsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getStations()
+		 * @generated
+		 */
+		EClass STATIONS = eINSTANCE.getStations();
+
+		/**
+		 * The meta object literal for the '<em><b>Stations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATIONS__STATIONS = eINSTANCE.getStations_Stations();
+
+		/**
+		 * The meta object literal for the '<em><b>Find Station</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation STATIONS___FIND_STATION__INT_INT = eINSTANCE.getStations__FindStation__int_int();
+
+		/**
+		 * The meta object literal for the '<em><b>Find Station</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation STATIONS___FIND_STATION__INT_STRING = eINSTANCE.getStations__FindStation__int_String();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.StationImpl <em>Station</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.StationImpl
+		 * @see Gtm.impl.GtmPackageImpl#getStation()
+		 * @generated
+		 */
+		EClass STATION = eINSTANCE.getStation();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATION__NAME = eINSTANCE.getStation_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Country</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATION__COUNTRY = eINSTANCE.getStation_Country();
+
+		/**
+		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATION__CODE = eINSTANCE.getStation_Code();
+
+		/**
+		 * The meta object literal for the '<em><b>Longitude</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATION__LONGITUDE = eINSTANCE.getStation_Longitude();
+
+		/**
+		 * The meta object literal for the '<em><b>Latitude</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATION__LATITUDE = eINSTANCE.getStation_Latitude();
+
+		/**
+		 * The meta object literal for the '<em><b>Timetable Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATION__TIMETABLE_NAME = eINSTANCE.getStation_TimetableName();
+
+		/**
+		 * The meta object literal for the '<em><b>Border Station</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATION__BORDER_STATION = eINSTANCE.getStation_BorderStation();
+
+		/**
+		 * The meta object literal for the '<em><b>Name Case UTF8</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATION__NAME_CASE_UTF8 = eINSTANCE.getStation_NameCaseUTF8();
+
+		/**
+		 * The meta object literal for the '<em><b>Name Case ASCII</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATION__NAME_CASE_ASCII = eINSTANCE.getStation_NameCaseASCII();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.CarrierImpl <em>Carrier</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.CarrierImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCarrier()
+		 * @generated
+		 */
+		EClass CARRIER = eINSTANCE.getCarrier();
+
+		/**
+		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CARRIER__CODE = eINSTANCE.getCarrier_Code();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CARRIER__NAME = eINSTANCE.getCarrier_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Short Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CARRIER__SHORT_NAME = eINSTANCE.getCarrier_ShortName();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.CarriersImpl <em>Carriers</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.CarriersImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCarriers()
+		 * @generated
+		 */
+		EClass CARRIERS = eINSTANCE.getCarriers();
+
+		/**
+		 * The meta object literal for the '<em><b>Carriers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CARRIERS__CARRIERS = eINSTANCE.getCarriers_Carriers();
+
+		/**
+		 * The meta object literal for the '<em><b>Find Carrier</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARRIERS___FIND_CARRIER__STRING = eINSTANCE.getCarriers__FindCarrier__String();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.GeneralTariffModelImpl <em>General Tariff Model</em>}' class.
@@ -10344,6 +15553,294 @@ public interface GtmPackage extends EPackage {
 		EReference CONVERSION_FROM_LEGACY__PARAMS = eINSTANCE.getConversionFromLegacy_Params();
 
 		/**
+		 * The meta object literal for the '{@link Gtm.impl.ConversionParamsImpl <em>Conversion Params</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ConversionParamsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getConversionParams()
+		 * @generated
+		 */
+		EClass CONVERSION_PARAMS = eINSTANCE.getConversionParams();
+
+		/**
+		 * The meta object literal for the '<em><b>Tax Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONVERSION_PARAMS__TAX_ID = eINSTANCE.getConversionParams_TaxId();
+
+		/**
+		 * The meta object literal for the '<em><b>VA Tpercentage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONVERSION_PARAMS__VA_TPERCENTAGE = eINSTANCE.getConversionParams_VATpercentage();
+
+		/**
+		 * The meta object literal for the '<em><b>Country</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONVERSION_PARAMS__COUNTRY = eINSTANCE.getConversionParams_Country();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Station Mappings</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONVERSION_PARAMS__LEGACY_STATION_MAPPINGS = eINSTANCE.getConversionParams_LegacyStationMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Target Fares</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONVERSION_PARAMS__LEGACY_TARGET_FARES = eINSTANCE.getConversionParams_LegacyTargetFares();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Zone Mappings</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONVERSION_PARAMS__LEGACY_ZONE_MAPPINGS = eINSTANCE.getConversionParams_LegacyZoneMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Station To Service Brand Mappings</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS = eINSTANCE.getConversionParams_LegacyStationToServiceBrandMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>End Of Sale</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONVERSION_PARAMS__END_OF_SALE = eINSTANCE.getConversionParams_EndOfSale();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Of Sale</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONVERSION_PARAMS__START_OF_SALE = eINSTANCE.getConversionParams_StartOfSale();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyStationToServiceConstraintMappingsImpl <em>Legacy Station To Service Constraint Mappings</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyStationToServiceConstraintMappingsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyStationToServiceConstraintMappings()
+		 * @generated
+		 */
+		EClass LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS = eINSTANCE.getLegacyStationToServiceConstraintMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Station To Service Brand Mappings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS = eINSTANCE.getLegacyStationToServiceConstraintMappings_LegacyStationToServiceBrandMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Find Service Constraint</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS___FIND_SERVICE_CONSTRAINT__INT = eINSTANCE.getLegacyStationToServiceConstraintMappings__FindServiceConstraint__int();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyStationToServiceConstraintMappingImpl <em>Legacy Station To Service Constraint Mapping</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyStationToServiceConstraintMappingImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyStationToServiceConstraintMapping()
+		 * @generated
+		 */
+		EClass LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING = eINSTANCE.getLegacyStationToServiceConstraintMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING__CODE = eINSTANCE.getLegacyStationToServiceConstraintMapping_Code();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Constraint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING__SERVICE_CONSTRAINT = eINSTANCE.getLegacyStationToServiceConstraintMapping_ServiceConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING__DESCRIPTION = eINSTANCE.getLegacyStationToServiceConstraintMapping_Description();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyStationMappingsImpl <em>Legacy Station Mappings</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyStationMappingsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyStationMappings()
+		 * @generated
+		 */
+		EClass LEGACY_STATION_MAPPINGS = eINSTANCE.getLegacyStationMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Station Mappings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_STATION_MAPPINGS__STATION_MAPPINGS = eINSTANCE.getLegacyStationMappings_StationMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Find Mapped Station</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LEGACY_STATION_MAPPINGS___FIND_MAPPED_STATION__INT = eINSTANCE.getLegacyStationMappings__FindMappedStation__int();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyStationMapImpl <em>Legacy Station Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyStationMapImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyStationMap()
+		 * @generated
+		 */
+		EClass LEGACY_STATION_MAP = eINSTANCE.getLegacyStationMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_STATION_MAP__LEGACY_CODE = eINSTANCE.getLegacyStationMap_LegacyCode();
+
+		/**
+		 * The meta object literal for the '<em><b>Station</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_STATION_MAP__STATION = eINSTANCE.getLegacyStationMap_Station();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyBoderPointMappingsImpl <em>Legacy Boder Point Mappings</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyBoderPointMappingsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyBoderPointMappings()
+		 * @generated
+		 */
+		EClass LEGACY_BODER_POINT_MAPPINGS = eINSTANCE.getLegacyBoderPointMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Border Points</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_BODER_POINT_MAPPINGS__BORDER_POINTS = eINSTANCE.getLegacyBoderPointMappings_BorderPoints();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Mapping By Border Point Code</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LEGACY_BODER_POINT_MAPPINGS___GET_MAPPING_BY_BORDER_POINT_CODE__INT = eINSTANCE.getLegacyBoderPointMappings__GetMappingByBorderPointCode__int();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyBorderPointMappingImpl <em>Legacy Border Point Mapping</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyBorderPointMappingImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyBorderPointMapping()
+		 * @generated
+		 */
+		EClass LEGACY_BORDER_POINT_MAPPING = eINSTANCE.getLegacyBorderPointMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_BORDER_POINT_MAPPING__CODE = eINSTANCE.getLegacyBorderPointMapping_Code();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_BORDER_POINT_MAPPING__NAME = eINSTANCE.getLegacyBorderPointMapping_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Station1</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_BORDER_POINT_MAPPING__STATION1 = eINSTANCE.getLegacyBorderPointMapping_Station1();
+
+		/**
+		 * The meta object literal for the '<em><b>Station2</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_BORDER_POINT_MAPPING__STATION2 = eINSTANCE.getLegacyBorderPointMapping_Station2();
+
+		/**
+		 * The meta object literal for the '<em><b>Connection Point</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_BORDER_POINT_MAPPING__CONNECTION_POINT = eINSTANCE.getLegacyBorderPointMapping_ConnectionPoint();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.AfterSalesRulesImpl <em>After Sales Rules</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.AfterSalesRulesImpl
+		 * @see Gtm.impl.GtmPackageImpl#getAfterSalesRules()
+		 * @generated
+		 */
+		EClass AFTER_SALES_RULES = eINSTANCE.getAfterSalesRules();
+
+		/**
+		 * The meta object literal for the '<em><b>After Sales Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference AFTER_SALES_RULES__AFTER_SALES_RULES = eINSTANCE.getAfterSalesRules_AfterSalesRules();
+
+		/**
 		 * The meta object literal for the '{@link Gtm.impl.FareStructureImpl <em>Fare Structure</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10354,7 +15851,7 @@ public interface GtmPackage extends EPackage {
 		EClass FARE_STRUCTURE = eINSTANCE.getFareStructure();
 
 		/**
-		 * The meta object literal for the '<em><b>Fare Elements</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Fare Elements</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10362,7 +15859,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__FARE_ELEMENTS = eINSTANCE.getFareStructure_FareElements();
 
 		/**
-		 * The meta object literal for the '<em><b>After Sales Rules</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>After Sales Rules</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10370,7 +15867,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__AFTER_SALES_RULES = eINSTANCE.getFareStructure_AfterSalesRules();
 
 		/**
-		 * The meta object literal for the '<em><b>Calendars</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Calendars</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10378,7 +15875,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__CALENDARS = eINSTANCE.getFareStructure_Calendars();
 
 		/**
-		 * The meta object literal for the '<em><b>Service Class Definitions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Service Class Definitions</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10386,7 +15883,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS = eINSTANCE.getFareStructure_ServiceClassDefinitions();
 
 		/**
-		 * The meta object literal for the '<em><b>Prices</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Prices</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10394,7 +15891,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__PRICES = eINSTANCE.getFareStructure_Prices();
 
 		/**
-		 * The meta object literal for the '<em><b>Regional Constraints</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Regional Constraints</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10402,7 +15899,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__REGIONAL_CONSTRAINTS = eINSTANCE.getFareStructure_RegionalConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Texts</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Texts</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10410,7 +15907,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__TEXTS = eINSTANCE.getFareStructure_Texts();
 
 		/**
-		 * The meta object literal for the '<em><b>Service Level Definitions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Service Level Definitions</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10418,7 +15915,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS = eINSTANCE.getFareStructure_ServiceLevelDefinitions();
 
 		/**
-		 * The meta object literal for the '<em><b>Reservation Parameters</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Reservation Parameters</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10426,7 +15923,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__RESERVATION_PARAMETERS = eINSTANCE.getFareStructure_ReservationParameters();
 
 		/**
-		 * The meta object literal for the '<em><b>Service Constraints</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Service Constraints</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10434,7 +15931,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__SERVICE_CONSTRAINTS = eINSTANCE.getFareStructure_ServiceConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Carrier Constraints</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Carrier Constraints</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10442,7 +15939,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__CARRIER_CONSTRAINTS = eINSTANCE.getFareStructure_CarrierConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Reduction Cards</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Reduction Cards</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10450,7 +15947,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__REDUCTION_CARDS = eINSTANCE.getFareStructure_ReductionCards();
 
 		/**
-		 * The meta object literal for the '<em><b>Sales Availability Constraints</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Sales Availability Constraints</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10458,7 +15955,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__SALES_AVAILABILITY_CONSTRAINTS = eINSTANCE.getFareStructure_SalesAvailabilityConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Travel Validity Constraints</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Travel Validity Constraints</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10466,7 +15963,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__TRAVEL_VALIDITY_CONSTRAINTS = eINSTANCE.getFareStructure_TravelValidityConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Combination Constraints</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Combination Constraints</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10474,7 +15971,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__COMBINATION_CONSTRAINTS = eINSTANCE.getFareStructure_CombinationConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Passenger Constraints</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Passenger Constraints</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10482,7 +15979,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__PASSENGER_CONSTRAINTS = eINSTANCE.getFareStructure_PassengerConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Personal Data Constraints</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Personal Data Constraints</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10490,7 +15987,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS = eINSTANCE.getFareStructure_PersonalDataConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Reduction Constraints</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Reduction Constraints</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10498,7 +15995,7 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__REDUCTION_CONSTRAINTS = eINSTANCE.getFareStructure_ReductionConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Zone Definitions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Zone Definitions</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10506,23 +16003,15 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__ZONE_DEFINITIONS = eINSTANCE.getFareStructure_ZoneDefinitions();
 
 		/**
-		 * The meta object literal for the '<em><b>Supported Online Services</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Fulfillment Constraints</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FARE_STRUCTURE__SUPPORTED_ONLINE_SERVICES = eINSTANCE.getFareStructure_SupportedOnlineServices();
+		EReference FARE_STRUCTURE__FULFILLMENT_CONSTRAINTS = eINSTANCE.getFareStructure_FulfillmentConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Fulfillment Constraint</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FARE_STRUCTURE__FULFILLMENT_CONSTRAINT = eINSTANCE.getFareStructure_FulfillmentConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Fare Resource Locations</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Fare Resource Locations</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10530,12 +16019,570 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS = eINSTANCE.getFareStructure_FareResourceLocations();
 
 		/**
-		 * The meta object literal for the '<em><b>Connection Points</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Connection Points</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference FARE_STRUCTURE__CONNECTION_POINTS = eINSTANCE.getFareStructure_ConnectionPoints();
+
+		/**
+		 * The meta object literal for the '<em><b>Supported Online Services</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FARE_STRUCTURE__SUPPORTED_ONLINE_SERVICES = eINSTANCE.getFareStructure_SupportedOnlineServices();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ConnectionPointsImpl <em>Connection Points</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ConnectionPointsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getConnectionPoints()
+		 * @generated
+		 */
+		EClass CONNECTION_POINTS = eINSTANCE.getConnectionPoints();
+
+		/**
+		 * The meta object literal for the '<em><b>Connection Points</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONNECTION_POINTS__CONNECTION_POINTS = eINSTANCE.getConnectionPoints_ConnectionPoints();
+
+		/**
+		 * The meta object literal for the '<em><b>Find Simple Connection Point</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONNECTION_POINTS___FIND_SIMPLE_CONNECTION_POINT__STATION = eINSTANCE.getConnectionPoints__FindSimpleConnectionPoint__Station();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ConnectionPointImpl <em>Connection Point</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ConnectionPointImpl
+		 * @see Gtm.impl.GtmPackageImpl#getConnectionPoint()
+		 * @generated
+		 */
+		EClass CONNECTION_POINT = eINSTANCE.getConnectionPoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONNECTION_POINT__ID = eINSTANCE.getConnectionPoint_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONNECTION_POINT__NAME = eINSTANCE.getConnectionPoint_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Border Point Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONNECTION_POINT__LEGACY_BORDER_POINT_CODE = eINSTANCE.getConnectionPoint_LegacyBorderPointCode();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONNECTION_POINT__DESCRIPTION = eINSTANCE.getConnectionPoint_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Connected Station Sets</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONNECTION_POINT__CONNECTED_STATION_SETS = eINSTANCE.getConnectionPoint_ConnectedStationSets();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Source</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONNECTION_POINT__DATA_SOURCE = eINSTANCE.getConnectionPoint_DataSource();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.StationSetImpl <em>Station Set</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.StationSetImpl
+		 * @see Gtm.impl.GtmPackageImpl#getStationSet()
+		 * @generated
+		 */
+		EClass STATION_SET = eINSTANCE.getStationSet();
+
+		/**
+		 * The meta object literal for the '<em><b>Stations</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATION_SET__STATIONS = eINSTANCE.getStationSet_Stations();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.FareResourceLocationsImpl <em>Fare Resource Locations</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.FareResourceLocationsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getFareResourceLocations()
+		 * @generated
+		 */
+		EClass FARE_RESOURCE_LOCATIONS = eINSTANCE.getFareResourceLocations();
+
+		/**
+		 * The meta object literal for the '<em><b>Carrier Resource Locations</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FARE_RESOURCE_LOCATIONS__CARRIER_RESOURCE_LOCATIONS = eINSTANCE.getFareResourceLocations_CarrierResourceLocations();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.TrainResourceLocationsImpl <em>Train Resource Locations</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.TrainResourceLocationsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getTrainResourceLocations()
+		 * @generated
+		 */
+		EClass TRAIN_RESOURCE_LOCATIONS = eINSTANCE.getTrainResourceLocations();
+
+		/**
+		 * The meta object literal for the '<em><b>Train Resource Locations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRAIN_RESOURCE_LOCATIONS__TRAIN_RESOURCE_LOCATIONS = eINSTANCE.getTrainResourceLocations_TrainResourceLocations();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.StationResourceLocationsImpl <em>Station Resource Locations</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.StationResourceLocationsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getStationResourceLocations()
+		 * @generated
+		 */
+		EClass STATION_RESOURCE_LOCATIONS = eINSTANCE.getStationResourceLocations();
+
+		/**
+		 * The meta object literal for the '<em><b>Station Resource Locations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATION_RESOURCE_LOCATIONS__STATION_RESOURCE_LOCATIONS = eINSTANCE.getStationResourceLocations_StationResourceLocations();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.CarrierResourceLocationsImpl <em>Carrier Resource Locations</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.CarrierResourceLocationsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCarrierResourceLocations()
+		 * @generated
+		 */
+		EClass CARRIER_RESOURCE_LOCATIONS = eINSTANCE.getCarrierResourceLocations();
+
+		/**
+		 * The meta object literal for the '<em><b>Carrier Resource Locations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CARRIER_RESOURCE_LOCATIONS__CARRIER_RESOURCE_LOCATIONS = eINSTANCE.getCarrierResourceLocations_CarrierResourceLocations();
+
+		/**
+		 * The meta object literal for the '<em><b>Station Resource Locations</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FARE_RESOURCE_LOCATIONS__STATION_RESOURCE_LOCATIONS = eINSTANCE.getFareResourceLocations_StationResourceLocations();
+
+		/**
+		 * The meta object literal for the '<em><b>Train Resource Locations</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FARE_RESOURCE_LOCATIONS__TRAIN_RESOURCE_LOCATIONS = eINSTANCE.getFareResourceLocations_TrainResourceLocations();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.FulfillmentConstraintsImpl <em>Fulfillment Constraints</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.FulfillmentConstraintsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getFulfillmentConstraints()
+		 * @generated
+		 */
+		EClass FULFILLMENT_CONSTRAINTS = eINSTANCE.getFulfillmentConstraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Fulfillment Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FULFILLMENT_CONSTRAINTS__FULFILLMENT_CONSTRAINTS = eINSTANCE.getFulfillmentConstraints_FulfillmentConstraints();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.SupportedOnlineServicesImpl <em>Supported Online Services</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.SupportedOnlineServicesImpl
+		 * @see Gtm.impl.GtmPackageImpl#getSupportedOnlineServices()
+		 * @generated
+		 */
+		EClass SUPPORTED_ONLINE_SERVICES = eINSTANCE.getSupportedOnlineServices();
+
+		/**
+		 * The meta object literal for the '<em><b>Supported Online Services</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUPPORTED_ONLINE_SERVICES__SUPPORTED_ONLINE_SERVICES = eINSTANCE.getSupportedOnlineServices_SupportedOnlineServices();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ZoneDefinitionsImpl <em>Zone Definitions</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ZoneDefinitionsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getZoneDefinitions()
+		 * @generated
+		 */
+		EClass ZONE_DEFINITIONS = eINSTANCE.getZoneDefinitions();
+
+		/**
+		 * The meta object literal for the '<em><b>Zone Definitions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ZONE_DEFINITIONS__ZONE_DEFINITIONS = eINSTANCE.getZoneDefinitions_ZoneDefinitions();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ReductionConstraintsImpl <em>Reduction Constraints</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ReductionConstraintsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getReductionConstraints()
+		 * @generated
+		 */
+		EClass REDUCTION_CONSTRAINTS = eINSTANCE.getReductionConstraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Reduction Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REDUCTION_CONSTRAINTS__REDUCTION_CONSTRAINTS = eINSTANCE.getReductionConstraints_ReductionConstraints();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.PersonalDataConstraintsImpl <em>Personal Data Constraints</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.PersonalDataConstraintsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getPersonalDataConstraints()
+		 * @generated
+		 */
+		EClass PERSONAL_DATA_CONSTRAINTS = eINSTANCE.getPersonalDataConstraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Personal Data Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PERSONAL_DATA_CONSTRAINTS__PERSONAL_DATA_CONSTRAINTS = eINSTANCE.getPersonalDataConstraints_PersonalDataConstraints();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.PassengerConstraintsImpl <em>Passenger Constraints</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.PassengerConstraintsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getPassengerConstraints()
+		 * @generated
+		 */
+		EClass PASSENGER_CONSTRAINTS = eINSTANCE.getPassengerConstraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Passenger Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PASSENGER_CONSTRAINTS__PASSENGER_CONSTRAINTS = eINSTANCE.getPassengerConstraints_PassengerConstraints();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.CombinationConstraintsImpl <em>Combination Constraints</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.CombinationConstraintsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCombinationConstraints()
+		 * @generated
+		 */
+		EClass COMBINATION_CONSTRAINTS = eINSTANCE.getCombinationConstraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Combination Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMBINATION_CONSTRAINTS__COMBINATION_CONSTRAINTS = eINSTANCE.getCombinationConstraints_CombinationConstraints();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.TravelValidityConstraintsImpl <em>Travel Validity Constraints</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.TravelValidityConstraintsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getTravelValidityConstraints()
+		 * @generated
+		 */
+		EClass TRAVEL_VALIDITY_CONSTRAINTS = eINSTANCE.getTravelValidityConstraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Travel Validity Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRAVEL_VALIDITY_CONSTRAINTS__TRAVEL_VALIDITY_CONSTRAINTS = eINSTANCE.getTravelValidityConstraints_TravelValidityConstraints();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.SalesAvailabilityConstraintsImpl <em>Sales Availability Constraints</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.SalesAvailabilityConstraintsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getSalesAvailabilityConstraints()
+		 * @generated
+		 */
+		EClass SALES_AVAILABILITY_CONSTRAINTS = eINSTANCE.getSalesAvailabilityConstraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Sales Availability Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SALES_AVAILABILITY_CONSTRAINTS__SALES_AVAILABILITY_CONSTRAINTS = eINSTANCE.getSalesAvailabilityConstraints_SalesAvailabilityConstraints();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ReductionCardsImpl <em>Reduction Cards</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ReductionCardsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getReductionCards()
+		 * @generated
+		 */
+		EClass REDUCTION_CARDS = eINSTANCE.getReductionCards();
+
+		/**
+		 * The meta object literal for the '<em><b>Reduction Cards</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REDUCTION_CARDS__REDUCTION_CARDS = eINSTANCE.getReductionCards_ReductionCards();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.CarrierConstraintsImpl <em>Carrier Constraints</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.CarrierConstraintsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCarrierConstraints()
+		 * @generated
+		 */
+		EClass CARRIER_CONSTRAINTS = eINSTANCE.getCarrierConstraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Carrier Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CARRIER_CONSTRAINTS__CARRIER_CONSTRAINTS = eINSTANCE.getCarrierConstraints_CarrierConstraints();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ServiceConstraintsImpl <em>Service Constraints</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ServiceConstraintsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getServiceConstraints()
+		 * @generated
+		 */
+		EClass SERVICE_CONSTRAINTS = eINSTANCE.getServiceConstraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_CONSTRAINTS__SERVICE_CONSTRAINTS = eINSTANCE.getServiceConstraints_ServiceConstraints();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ReservationParametersImpl <em>Reservation Parameters</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ReservationParametersImpl
+		 * @see Gtm.impl.GtmPackageImpl#getReservationParameters()
+		 * @generated
+		 */
+		EClass RESERVATION_PARAMETERS = eINSTANCE.getReservationParameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Reservation Parameters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RESERVATION_PARAMETERS__RESERVATION_PARAMETERS = eINSTANCE.getReservationParameters_ReservationParameters();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.RegionalConstraintsImpl <em>Regional Constraints</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.RegionalConstraintsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getRegionalConstraints()
+		 * @generated
+		 */
+		EClass REGIONAL_CONSTRAINTS = eINSTANCE.getRegionalConstraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Regional Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REGIONAL_CONSTRAINTS__REGIONAL_CONSTRAINTS = eINSTANCE.getRegionalConstraints_RegionalConstraints();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ServiceLevelDefinitionsImpl <em>Service Level Definitions</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ServiceLevelDefinitionsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getServiceLevelDefinitions()
+		 * @generated
+		 */
+		EClass SERVICE_LEVEL_DEFINITIONS = eINSTANCE.getServiceLevelDefinitions();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Level Definition</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_LEVEL_DEFINITIONS__SERVICE_LEVEL_DEFINITION = eINSTANCE.getServiceLevelDefinitions_ServiceLevelDefinition();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.TextsImpl <em>Texts</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.TextsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getTexts()
+		 * @generated
+		 */
+		EClass TEXTS = eINSTANCE.getTexts();
+
+		/**
+		 * The meta object literal for the '<em><b>Texts</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEXTS__TEXTS = eINSTANCE.getTexts_Texts();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.PricesImpl <em>Prices</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.PricesImpl
+		 * @see Gtm.impl.GtmPackageImpl#getPrices()
+		 * @generated
+		 */
+		EClass PRICES = eINSTANCE.getPrices();
+
+		/**
+		 * The meta object literal for the '<em><b>Prices</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRICES__PRICES = eINSTANCE.getPrices_Prices();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ServiceClassDefinitionsImpl <em>Service Class Definitions</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ServiceClassDefinitionsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getServiceClassDefinitions()
+		 * @generated
+		 */
+		EClass SERVICE_CLASS_DEFINITIONS = eINSTANCE.getServiceClassDefinitions();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Class Definitions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_CLASS_DEFINITIONS__SERVICE_CLASS_DEFINITIONS = eINSTANCE.getServiceClassDefinitions_ServiceClassDefinitions();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.CalendarsImpl <em>Calendars</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.CalendarsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCalendars()
+		 * @generated
+		 */
+		EClass CALENDARS = eINSTANCE.getCalendars();
+
+		/**
+		 * The meta object literal for the '<em><b>Calendars</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CALENDARS__CALENDARS = eINSTANCE.getCalendars_Calendars();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.FareElementsImpl <em>Fare Elements</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.FareElementsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getFareElements()
+		 * @generated
+		 */
+		EClass FARE_ELEMENTS = eINSTANCE.getFareElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Fare Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FARE_ELEMENTS__FARE_ELEMENTS = eINSTANCE.getFareElements_FareElements();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.DeliveryImpl <em>Delivery</em>}' class.
@@ -10572,14 +16619,6 @@ public interface GtmPackage extends EPackage {
 		EAttribute DELIVERY__REPLACED_DELIVERY_ID = eINSTANCE.getDelivery_ReplacedDeliveryId();
 
 		/**
-		 * The meta object literal for the '<em><b>Fare Provider</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DELIVERY__FARE_PROVIDER = eINSTANCE.getDelivery_FareProvider();
-
-		/**
 		 * The meta object literal for the '<em><b>Optional</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10596,46 +16635,20 @@ public interface GtmPackage extends EPackage {
 		EReference DELIVERY__PROVIDER = eINSTANCE.getDelivery_Provider();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.BorderPointsImpl <em>Border Points</em>}' class.
+		 * The meta object literal for the '<em><b>Schema Version</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.BorderPointsImpl
-		 * @see Gtm.impl.GtmPackageImpl#getBorderPoints()
 		 * @generated
 		 */
-		EClass BORDER_POINTS = eINSTANCE.getBorderPoints();
+		EAttribute DELIVERY__SCHEMA_VERSION = eINSTANCE.getDelivery_SchemaVersion();
 
 		/**
-		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Accepted Schema Version</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BORDER_POINTS__CODE = eINSTANCE.getBorderPoints_Code();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BORDER_POINTS__NAME = eINSTANCE.getBorderPoints_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Station1</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BORDER_POINTS__STATION1 = eINSTANCE.getBorderPoints_Station1();
-
-		/**
-		 * The meta object literal for the '<em><b>Station2</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BORDER_POINTS__STATION2 = eINSTANCE.getBorderPoints_Station2();
+		EAttribute DELIVERY__ACCEPTED_SCHEMA_VERSION = eINSTANCE.getDelivery_AcceptedSchemaVersion();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.CalendarImpl <em>Calendar</em>}' class.
@@ -10696,88 +16709,12 @@ public interface GtmPackage extends EPackage {
 		EAttribute CALENDAR__DATES = eINSTANCE.getCalendar_Dates();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.CarrierImpl <em>Carrier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.CarrierImpl
-		 * @see Gtm.impl.GtmPackageImpl#getCarrier()
-		 * @generated
-		 */
-		EClass CARRIER = eINSTANCE.getCarrier();
-
-		/**
-		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Data Source</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CARRIER__CODE = eINSTANCE.getCarrier_Code();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CARRIER__NAME = eINSTANCE.getCarrier_Name();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.CoversionParamsImpl <em>Coversion Params</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.CoversionParamsImpl
-		 * @see Gtm.impl.GtmPackageImpl#getCoversionParams()
-		 * @generated
-		 */
-		EClass COVERSION_PARAMS = eINSTANCE.getCoversionParams();
-
-		/**
-		 * The meta object literal for the '<em><b>Border Points</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COVERSION_PARAMS__BORDER_POINTS = eINSTANCE.getCoversionParams_BorderPoints();
-
-		/**
-		 * The meta object literal for the '<em><b>Target Fares</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COVERSION_PARAMS__TARGET_FARES = eINSTANCE.getCoversionParams_TargetFares();
-
-		/**
-		 * The meta object literal for the '<em><b>Station Mappings</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COVERSION_PARAMS__STATION_MAPPINGS = eINSTANCE.getCoversionParams_StationMappings();
-
-		/**
-		 * The meta object literal for the '<em><b>Tax Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COVERSION_PARAMS__TAX_ID = eINSTANCE.getCoversionParams_TaxId();
-
-		/**
-		 * The meta object literal for the '<em><b>VA Tpercentage</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COVERSION_PARAMS__VA_TPERCENTAGE = eINSTANCE.getCoversionParams_VATpercentage();
-
-		/**
-		 * The meta object literal for the '<em><b>Tax Country</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COVERSION_PARAMS__TAX_COUNTRY = eINSTANCE.getCoversionParams_TaxCountry();
+		EAttribute CALENDAR__DATA_SOURCE = eINSTANCE.getCalendar_DataSource();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.LegacyDescriptionImpl <em>Legacy Description</em>}' class.
@@ -10804,6 +16741,50 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LEGACY_DESCRIPTION__TEXT = eINSTANCE.getLegacyDescription_Text();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyZoneMappingsImpl <em>Legacy Zone Mappings</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyZoneMappingsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyZoneMappings()
+		 * @generated
+		 */
+		EClass LEGACY_ZONE_MAPPINGS = eINSTANCE.getLegacyZoneMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Zone Map</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_ZONE_MAPPINGS__LEGACY_ZONE_MAP = eINSTANCE.getLegacyZoneMappings_LegacyZoneMap();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyZoneMapImpl <em>Legacy Zone Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyZoneMapImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyZoneMap()
+		 * @generated
+		 */
+		EClass LEGACY_ZONE_MAP = eINSTANCE.getLegacyZoneMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_ZONE_MAP__LEGACY_CODE = eINSTANCE.getLegacyZoneMap_LegacyCode();
+
+		/**
+		 * The meta object literal for the '<em><b>Zone</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_ZONE_MAP__ZONE = eINSTANCE.getLegacyZoneMap_Zone();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.LegacyDistanceFareImpl <em>Legacy Distance Fare</em>}' class.
@@ -10848,6 +16829,38 @@ public interface GtmPackage extends EPackage {
 		EAttribute LEGACY_DISTANCE_FARE__FARE_TABLE_NUMBER = eINSTANCE.getLegacyDistanceFare_FareTableNumber();
 
 		/**
+		 * The meta object literal for the '<em><b>Return Fare1st</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_DISTANCE_FARE__RETURN_FARE1ST = eINSTANCE.getLegacyDistanceFare_ReturnFare1st();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Fare2nd</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_DISTANCE_FARE__RETURN_FARE2ND = eINSTANCE.getLegacyDistanceFare_ReturnFare2nd();
+
+		/**
+		 * The meta object literal for the '<em><b>Valid From</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_DISTANCE_FARE__VALID_FROM = eINSTANCE.getLegacyDistanceFare_ValidFrom();
+
+		/**
+		 * The meta object literal for the '<em><b>Valid Until</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_DISTANCE_FARE__VALID_UNTIL = eINSTANCE.getLegacyDistanceFare_ValidUntil();
+
+		/**
 		 * The meta object literal for the '{@link Gtm.impl.LegacyFaresImpl <em>Legacy Fares</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10858,12 +16871,30 @@ public interface GtmPackage extends EPackage {
 		EClass LEGACY_FARES = eINSTANCE.getLegacyFares();
 
 		/**
+		 * The meta object literal for the '<em><b>Fares</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_FARES__FARES = eINSTANCE.getLegacyFares_Fares();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyFareImpl <em>Legacy Fare</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyFareImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyFare()
+		 * @generated
+		 */
+		EClass LEGACY_FARE = eINSTANCE.getLegacyFare();
+
+		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LEGACY_FARES__DESCRIPTION = eINSTANCE.getLegacyFares_Description();
+		EReference LEGACY_FARE__DESCRIPTION = eINSTANCE.getLegacyFare_Description();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.Legacy108Impl <em>Legacy108</em>}' class.
@@ -10876,36 +16907,154 @@ public interface GtmPackage extends EPackage {
 		EClass LEGACY108 = eINSTANCE.getLegacy108();
 
 		/**
-		 * The meta object literal for the '<em><b>Carrier</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Character Set</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LEGACY108__CARRIER = eINSTANCE.getLegacy108_Carrier();
+		EAttribute LEGACY108__CHARACTER_SET = eINSTANCE.getLegacy108_CharacterSet();
 
 		/**
-		 * The meta object literal for the '<em><b>Series</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Carrier</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LEGACY108__SERIES = eINSTANCE.getLegacy108_Series();
+		EReference LEGACY108__CARRIER = eINSTANCE.getLegacy108_Carrier();
 
 		/**
-		 * The meta object literal for the '<em><b>Fares</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Legacy Series List</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LEGACY108__FARES = eINSTANCE.getLegacy108_Fares();
+		EReference LEGACY108__LEGACY_SERIES_LIST = eINSTANCE.getLegacy108_LegacySeriesList();
 
 		/**
-		 * The meta object literal for the '<em><b>Distance Fare</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Legacy Fares</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LEGACY108__DISTANCE_FARE = eINSTANCE.getLegacy108_DistanceFare();
+		EReference LEGACY108__LEGACY_FARES = eINSTANCE.getLegacy108_LegacyFares();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Distance Fares</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY108__LEGACY_DISTANCE_FARES = eINSTANCE.getLegacy108_LegacyDistanceFares();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Route Fares</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY108__LEGACY_ROUTE_FARES = eINSTANCE.getLegacy108_LegacyRouteFares();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Stations</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY108__LEGACY_STATIONS = eINSTANCE.getLegacy108_LegacyStations();
+
+		/**
+		 * The meta object literal for the '<em><b>Time Zone</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY108__TIME_ZONE = eINSTANCE.getLegacy108_TimeZone();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.Legacy108StationsImpl <em>Legacy108 Stations</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.Legacy108StationsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacy108Stations()
+		 * @generated
+		 */
+		EClass LEGACY108_STATIONS = eINSTANCE.getLegacy108Stations();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Stations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY108_STATIONS__LEGACY_STATIONS = eINSTANCE.getLegacy108Stations_LegacyStations();
+
+		/**
+		 * The meta object literal for the '<em><b>Find Station</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LEGACY108_STATIONS___FIND_STATION__INT = eINSTANCE.getLegacy108Stations__FindStation__int();
+
+		/**
+		 * The meta object literal for the '<em><b>Find By Border Point</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LEGACY108_STATIONS___FIND_BY_BORDER_POINT__INT = eINSTANCE.getLegacy108Stations__FindByBorderPoint__int();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.Legacy108StationImpl <em>Legacy108 Station</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.Legacy108StationImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacy108Station()
+		 * @generated
+		 */
+		EClass LEGACY108_STATION = eINSTANCE.getLegacy108Station();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY108_STATION__NAME = eINSTANCE.getLegacy108Station_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Border Point Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY108_STATION__BORDER_POINT_CODE = eINSTANCE.getLegacy108Station_BorderPointCode();
+
+		/**
+		 * The meta object literal for the '<em><b>Name UTF8</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY108_STATION__NAME_UTF8 = eINSTANCE.getLegacy108Station_NameUTF8();
+
+		/**
+		 * The meta object literal for the '<em><b>Station Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY108_STATION__STATION_CODE = eINSTANCE.getLegacy108Station_StationCode();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyRouteFaresImpl <em>Legacy Route Fares</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyRouteFaresImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyRouteFares()
+		 * @generated
+		 */
+		EClass LEGACY_ROUTE_FARES = eINSTANCE.getLegacyRouteFares();
 
 		/**
 		 * The meta object literal for the '<em><b>Route Fare</b></em>' containment reference list feature.
@@ -10913,7 +17062,7 @@ public interface GtmPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LEGACY108__ROUTE_FARE = eINSTANCE.getLegacy108_RouteFare();
+		EReference LEGACY_ROUTE_FARES__ROUTE_FARE = eINSTANCE.getLegacyRouteFares_RouteFare();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.LegacyRouteFareImpl <em>Legacy Route Fare</em>}' class.
@@ -10956,6 +17105,38 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LEGACY_ROUTE_FARE__FARE_TABLE_NUMBER = eINSTANCE.getLegacyRouteFare_FareTableNumber();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Fare1st</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_ROUTE_FARE__RETURN_FARE1ST = eINSTANCE.getLegacyRouteFare_ReturnFare1st();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Fare2nd</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_ROUTE_FARE__RETURN_FARE2ND = eINSTANCE.getLegacyRouteFare_ReturnFare2nd();
+
+		/**
+		 * The meta object literal for the '<em><b>Valid From</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_ROUTE_FARE__VALID_FROM = eINSTANCE.getLegacyRouteFare_ValidFrom();
+
+		/**
+		 * The meta object literal for the '<em><b>Valid Until</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_ROUTE_FARE__VALID_UNTIL = eINSTANCE.getLegacyRouteFare_ValidUntil();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.LegacySeriesImpl <em>Legacy Series</em>}' class.
@@ -11056,6 +17237,42 @@ public interface GtmPackage extends EPackage {
 		EAttribute LEGACY_SERIES__DISTANCE2 = eINSTANCE.getLegacySeries_Distance2();
 
 		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacySeriesListImpl <em>Legacy Series List</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacySeriesListImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacySeriesList()
+		 * @generated
+		 */
+		EClass LEGACY_SERIES_LIST = eINSTANCE.getLegacySeriesList();
+
+		/**
+		 * The meta object literal for the '<em><b>Series</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_SERIES_LIST__SERIES = eINSTANCE.getLegacySeriesList_Series();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyDistanceFaresImpl <em>Legacy Distance Fares</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyDistanceFaresImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyDistanceFares()
+		 * @generated
+		 */
+		EClass LEGACY_DISTANCE_FARES = eINSTANCE.getLegacyDistanceFares();
+
+		/**
+		 * The meta object literal for the '<em><b>Distance Fare</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_DISTANCE_FARES__DISTANCE_FARE = eINSTANCE.getLegacyDistanceFares_DistanceFare();
+
+		/**
 		 * The meta object literal for the '{@link Gtm.impl.LegacyViastationImpl <em>Legacy Viastation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -11082,74 +17299,42 @@ public interface GtmPackage extends EPackage {
 		EAttribute LEGACY_VIASTATION__CODE = eINSTANCE.getLegacyViastation_Code();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.LegacyStationMapImpl <em>Legacy Station Map</em>}' class.
+		 * The meta object literal for the '{@link Gtm.impl.LegacyTargetFaresImpl <em>Legacy Target Fares</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.LegacyStationMapImpl
-		 * @see Gtm.impl.GtmPackageImpl#getLegacyStationMap()
+		 * @see Gtm.impl.LegacyTargetFaresImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyTargetFares()
 		 * @generated
 		 */
-		EClass LEGACY_STATION_MAP = eINSTANCE.getLegacyStationMap();
+		EClass LEGACY_TARGET_FARES = eINSTANCE.getLegacyTargetFares();
 
 		/**
-		 * The meta object literal for the '<em><b>Legacy Code</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Target Fares</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LEGACY_STATION_MAP__LEGACY_CODE = eINSTANCE.getLegacyStationMap_LegacyCode();
+		EReference LEGACY_TARGET_FARES__TARGET_FARES = eINSTANCE.getLegacyTargetFares_TargetFares();
 
 		/**
-		 * The meta object literal for the '<em><b>Station</b></em>' reference feature.
+		 * The meta object literal for the '{@link Gtm.SchemaVersion <em>Schema Version</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Gtm.SchemaVersion
+		 * @see Gtm.impl.GtmPackageImpl#getSchemaVersion()
 		 * @generated
 		 */
-		EReference LEGACY_STATION_MAP__STATION = eINSTANCE.getLegacyStationMap_Station();
+		EEnum SCHEMA_VERSION = eINSTANCE.getSchemaVersion();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.StationsTypeImpl <em>Stations Type</em>}' class.
+		 * The meta object literal for the '{@link Gtm.impl.CarrierConstraintImpl <em>Carrier Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.StationsTypeImpl
-		 * @see Gtm.impl.GtmPackageImpl#getStationsType()
+		 * @see Gtm.impl.CarrierConstraintImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCarrierConstraint()
 		 * @generated
 		 */
-		EClass STATIONS_TYPE = eINSTANCE.getStationsType();
-
-		/**
-		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STATIONS_TYPE__CODE = eINSTANCE.getStationsType_Code();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STATIONS_TYPE__NAME = eINSTANCE.getStationsType_Name();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.TargetFareTemplateImpl <em>Target Fare Template</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.TargetFareTemplateImpl
-		 * @see Gtm.impl.GtmPackageImpl#getTargetFareTemplate()
-		 * @generated
-		 */
-		EClass TARGET_FARE_TEMPLATE = eINSTANCE.getTargetFareTemplate();
-
-		/**
-		 * The meta object literal for the '<em><b>Price Factor</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TARGET_FARE_TEMPLATE__PRICE_FACTOR = eINSTANCE.getTargetFareTemplate_PriceFactor();
+		EClass CARRIER_CONSTRAINT = eINSTANCE.getCarrierConstraint();
 
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
@@ -11157,15 +17342,23 @@ public interface GtmPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TARGET_FARE_TEMPLATE__ID = eINSTANCE.getTargetFareTemplate_Id();
+		EAttribute CARRIER_CONSTRAINT__ID = eINSTANCE.getCarrierConstraint_Id();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Included Carriers</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TARGET_FARE_TEMPLATE__TYPE = eINSTANCE.getTargetFareTemplate_Type();
+		EReference CARRIER_CONSTRAINT__INCLUDED_CARRIERS = eINSTANCE.getCarrierConstraint_IncludedCarriers();
+
+		/**
+		 * The meta object literal for the '<em><b>Excluded Carriers</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CARRIER_CONSTRAINT__EXCLUDED_CARRIERS = eINSTANCE.getCarrierConstraint_ExcludedCarriers();
 
 		/**
 		 * The meta object literal for the '<em><b>Data Description</b></em>' attribute feature.
@@ -11173,341 +17366,7 @@ public interface GtmPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TARGET_FARE_TEMPLATE__DATA_DESCRIPTION = eINSTANCE.getTargetFareTemplate_DataDescription();
-
-		/**
-		 * The meta object literal for the '<em><b>Text</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TARGET_FARE_TEMPLATE__TEXT = eINSTANCE.getTargetFareTemplate_Text();
-
-		/**
-		 * The meta object literal for the '<em><b>Service Constraint</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TARGET_FARE_TEMPLATE__SERVICE_CONSTRAINT = eINSTANCE.getTargetFareTemplate_ServiceConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Carrier Constraint</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TARGET_FARE_TEMPLATE__CARRIER_CONSTRAINT = eINSTANCE.getTargetFareTemplate_CarrierConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Service Class</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TARGET_FARE_TEMPLATE__SERVICE_CLASS = eINSTANCE.getTargetFareTemplate_ServiceClass();
-
-		/**
-		 * The meta object literal for the '<em><b>Service Level</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TARGET_FARE_TEMPLATE__SERVICE_LEVEL = eINSTANCE.getTargetFareTemplate_ServiceLevel();
-
-		/**
-		 * The meta object literal for the '<em><b>Sales Availability</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TARGET_FARE_TEMPLATE__SALES_AVAILABILITY = eINSTANCE.getTargetFareTemplate_SalesAvailability();
-
-		/**
-		 * The meta object literal for the '<em><b>Travel Validity</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TARGET_FARE_TEMPLATE__TRAVEL_VALIDITY = eINSTANCE.getTargetFareTemplate_TravelValidity();
-
-		/**
-		 * The meta object literal for the '<em><b>Combination Constraint</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT = eINSTANCE.getTargetFareTemplate_CombinationConstraint();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.StationImpl <em>Station</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.StationImpl
-		 * @see Gtm.impl.GtmPackageImpl#getStation()
-		 * @generated
-		 */
-		EClass STATION = eINSTANCE.getStation();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STATION__NAME = eINSTANCE.getStation_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Country</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATION__COUNTRY = eINSTANCE.getStation_Country();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.CountryImpl <em>Country</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.CountryImpl
-		 * @see Gtm.impl.GtmPackageImpl#getCountry()
-		 * @generated
-		 */
-		EClass COUNTRY = eINSTANCE.getCountry();
-
-		/**
-		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COUNTRY__CODE = eINSTANCE.getCountry_Code();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COUNTRY__NAME = eINSTANCE.getCountry_Name();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.LanguageImpl <em>Language</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.LanguageImpl
-		 * @see Gtm.impl.GtmPackageImpl#getLanguage()
-		 * @generated
-		 */
-		EClass LANGUAGE = eINSTANCE.getLanguage();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LANGUAGE__NAME = eINSTANCE.getLanguage_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LANGUAGE__CODE = eINSTANCE.getLanguage_Code();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.TextImpl <em>Text</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.TextImpl
-		 * @see Gtm.impl.GtmPackageImpl#getText()
-		 * @generated
-		 */
-		EClass TEXT = eINSTANCE.getText();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEXT__ID = eINSTANCE.getText_Id();
-
-		/**
-		 * The meta object literal for the '<em><b>Text UTF8</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEXT__TEXT_UTF8 = eINSTANCE.getText_TextUTF8();
-
-		/**
-		 * The meta object literal for the '<em><b>Text ICAO</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEXT__TEXT_ICAO = eINSTANCE.getText_TextICAO();
-
-		/**
-		 * The meta object literal for the '<em><b>Short Text UTF8</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEXT__SHORT_TEXT_UTF8 = eINSTANCE.getText_ShortTextUTF8();
-
-		/**
-		 * The meta object literal for the '<em><b>Short Text ICAO</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEXT__SHORT_TEXT_ICAO = eINSTANCE.getText_ShortTextICAO();
-
-		/**
-		 * The meta object literal for the '<em><b>Translations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEXT__TRANSLATIONS = eINSTANCE.getText_Translations();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.TranslationImpl <em>Translation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.TranslationImpl
-		 * @see Gtm.impl.GtmPackageImpl#getTranslation()
-		 * @generated
-		 */
-		EClass TRANSLATION = eINSTANCE.getTranslation();
-
-		/**
-		 * The meta object literal for the '<em><b>Language</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSLATION__LANGUAGE = eINSTANCE.getTranslation_Language();
-
-		/**
-		 * The meta object literal for the '<em><b>Text UTF8</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRANSLATION__TEXT_UTF8 = eINSTANCE.getTranslation_TextUTF8();
-
-		/**
-		 * The meta object literal for the '<em><b>Text ICAO</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRANSLATION__TEXT_ICAO = eINSTANCE.getTranslation_TextICAO();
-
-		/**
-		 * The meta object literal for the '<em><b>Short Text UTF8</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRANSLATION__SHORT_TEXT_UTF8 = eINSTANCE.getTranslation_ShortTextUTF8();
-
-		/**
-		 * The meta object literal for the '<em><b>Short Text ICAO</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRANSLATION__SHORT_TEXT_ICAO = eINSTANCE.getTranslation_ShortTextICAO();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.ServiceClassImpl <em>Service Class</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.ServiceClassImpl
-		 * @see Gtm.impl.GtmPackageImpl#getServiceClass()
-		 * @generated
-		 */
-		EClass SERVICE_CLASS = eINSTANCE.getServiceClass();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVICE_CLASS__ID = eINSTANCE.getServiceClass_Id();
-
-		/**
-		 * The meta object literal for the '<em><b>Classic Class</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVICE_CLASS__CLASSIC_CLASS = eINSTANCE.getServiceClass_ClassicClass();
-
-		/**
-		 * The meta object literal for the '<em><b>Text</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SERVICE_CLASS__TEXT = eINSTANCE.getServiceClass_Text();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.ServiceLevelImpl <em>Service Level</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.ServiceLevelImpl
-		 * @see Gtm.impl.GtmPackageImpl#getServiceLevel()
-		 * @generated
-		 */
-		EClass SERVICE_LEVEL = eINSTANCE.getServiceLevel();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVICE_LEVEL__ID = eINSTANCE.getServiceLevel_Id();
-
-		/**
-		 * The meta object literal for the '<em><b>Text</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SERVICE_LEVEL__TEXT = eINSTANCE.getServiceLevel_Text();
-
-		/**
-		 * The meta object literal for the '<em><b>Combining Service Classes</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SERVICE_LEVEL__COMBINING_SERVICE_CLASSES = eINSTANCE.getServiceLevel_CombiningServiceClasses();
-
-		/**
-		 * The meta object literal for the '<em><b>Reservation Parameter</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SERVICE_LEVEL__RESERVATION_PARAMETER = eINSTANCE.getServiceLevel_ReservationParameter();
-
-		/**
-		 * The meta object literal for the '<em><b>Includes Class Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVICE_LEVEL__INCLUDES_CLASS_NAME = eINSTANCE.getServiceLevel_IncludesClassName();
+		EAttribute CARRIER_CONSTRAINT__DATA_DESCRIPTION = eINSTANCE.getCarrierConstraint_DataDescription();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.PriceImpl <em>Price</em>}' class.
@@ -11534,6 +17393,148 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PRICE__CURRENCIES = eINSTANCE.getPrice_Currencies();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Source</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRICE__DATA_SOURCE = eINSTANCE.getPrice_DataSource();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.CurrencyPriceImpl <em>Currency Price</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.CurrencyPriceImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCurrencyPrice()
+		 * @generated
+		 */
+		EClass CURRENCY_PRICE = eINSTANCE.getCurrencyPrice();
+
+		/**
+		 * The meta object literal for the '<em><b>Currency</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CURRENCY_PRICE__CURRENCY = eINSTANCE.getCurrencyPrice_Currency();
+
+		/**
+		 * The meta object literal for the '<em><b>Amount</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CURRENCY_PRICE__AMOUNT = eINSTANCE.getCurrencyPrice_Amount();
+
+		/**
+		 * The meta object literal for the '<em><b>VA Tdetails</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CURRENCY_PRICE__VA_TDETAILS = eINSTANCE.getCurrencyPrice_VATdetails();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ReductionCardImpl <em>Reduction Card</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ReductionCardImpl
+		 * @see Gtm.impl.GtmPackageImpl#getReductionCard()
+		 * @generated
+		 */
+		EClass REDUCTION_CARD = eINSTANCE.getReductionCard();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REDUCTION_CARD__ID = eINSTANCE.getReductionCard_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Card Issuer</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REDUCTION_CARD__CARD_ISSUER = eINSTANCE.getReductionCard_CardIssuer();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REDUCTION_CARD__NAME = eINSTANCE.getReductionCard_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Classes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REDUCTION_CARD__SERVICE_CLASSES = eINSTANCE.getReductionCard_ServiceClasses();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.RegionalConstraintImpl <em>Regional Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.RegionalConstraintImpl
+		 * @see Gtm.impl.GtmPackageImpl#getRegionalConstraint()
+		 * @generated
+		 */
+		EClass REGIONAL_CONSTRAINT = eINSTANCE.getRegionalConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REGIONAL_CONSTRAINT__ID = eINSTANCE.getRegionalConstraint_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Distance</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REGIONAL_CONSTRAINT__DISTANCE = eINSTANCE.getRegionalConstraint_Distance();
+
+		/**
+		 * The meta object literal for the '<em><b>Entry Connection Point</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REGIONAL_CONSTRAINT__ENTRY_CONNECTION_POINT = eINSTANCE.getRegionalConstraint_EntryConnectionPoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Exit Connection Point</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REGIONAL_CONSTRAINT__EXIT_CONNECTION_POINT = eINSTANCE.getRegionalConstraint_ExitConnectionPoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Regional Validity</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REGIONAL_CONSTRAINT__REGIONAL_VALIDITY = eINSTANCE.getRegionalConstraint_RegionalValidity();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Source</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REGIONAL_CONSTRAINT__DATA_SOURCE = eINSTANCE.getRegionalConstraint_DataSource();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.ReservationParameterImpl <em>Reservation Parameter</em>}' class.
@@ -11678,22 +17679,22 @@ public interface GtmPackage extends EPackage {
 		EAttribute RESERVATION_OPTIONS__GRAPHICAL_RESERVATION = eINSTANCE.getReservationOptions_GraphicalReservation();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.ReservationPreferenceImpl <em>Reservation Preference</em>}' class.
+		 * The meta object literal for the '{@link Gtm.impl.ReservationPreferenceGroupImpl <em>Reservation Preference Group</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.ReservationPreferenceImpl
-		 * @see Gtm.impl.GtmPackageImpl#getReservationPreference()
+		 * @see Gtm.impl.ReservationPreferenceGroupImpl
+		 * @see Gtm.impl.GtmPackageImpl#getReservationPreferenceGroup()
 		 * @generated
 		 */
-		EClass RESERVATION_PREFERENCE = eINSTANCE.getReservationPreference();
+		EClass RESERVATION_PREFERENCE_GROUP = eINSTANCE.getReservationPreferenceGroup();
 
 		/**
-		 * The meta object literal for the '<em><b>Preference</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Preference</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute RESERVATION_PREFERENCE__PREFERENCE = eINSTANCE.getReservationPreference_Preference();
+		EAttribute RESERVATION_PREFERENCE_GROUP__PREFERENCE = eINSTANCE.getReservationPreferenceGroup_Preference();
 
 		/**
 		 * The meta object literal for the '<em><b>Group</b></em>' attribute feature.
@@ -11701,67 +17702,485 @@ public interface GtmPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute RESERVATION_PREFERENCE__GROUP = eINSTANCE.getReservationPreference_Group();
+		EAttribute RESERVATION_PREFERENCE_GROUP__GROUP = eINSTANCE.getReservationPreferenceGroup_Group();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.CurrencyPriceImpl <em>Currency Price</em>}' class.
+		 * The meta object literal for the '{@link Gtm.impl.ServiceClassImpl <em>Service Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.CurrencyPriceImpl
-		 * @see Gtm.impl.GtmPackageImpl#getCurrencyPrice()
+		 * @see Gtm.impl.ServiceClassImpl
+		 * @see Gtm.impl.GtmPackageImpl#getServiceClass()
 		 * @generated
 		 */
-		EClass CURRENCY_PRICE = eINSTANCE.getCurrencyPrice();
+		EClass SERVICE_CLASS = eINSTANCE.getServiceClass();
 
 		/**
-		 * The meta object literal for the '<em><b>Currency</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CURRENCY_PRICE__CURRENCY = eINSTANCE.getCurrencyPrice_Currency();
-
-		/**
-		 * The meta object literal for the '<em><b>Amount</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CURRENCY_PRICE__AMOUNT = eINSTANCE.getCurrencyPrice_Amount();
+		EAttribute SERVICE_CLASS__ID = eINSTANCE.getServiceClass_Id();
 
 		/**
-		 * The meta object literal for the '<em><b>VA Tdetails</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Classic Class</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CURRENCY_PRICE__VA_TDETAILS = eINSTANCE.getCurrencyPrice_VATdetails();
+		EAttribute SERVICE_CLASS__CLASSIC_CLASS = eINSTANCE.getServiceClass_ClassicClass();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.CurrencyImpl <em>Currency</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.CurrencyImpl
-		 * @see Gtm.impl.GtmPackageImpl#getCurrency()
-		 * @generated
-		 */
-		EClass CURRENCY = eINSTANCE.getCurrency();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Text</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CURRENCY__NAME = eINSTANCE.getCurrency_Name();
+		EReference SERVICE_CLASS__TEXT = eINSTANCE.getServiceClass_Text();
 
 		/**
-		 * The meta object literal for the '<em><b>Iso Code</b></em>' attribute feature.
+		 * The meta object literal for the '{@link Gtm.impl.ServiceLevelImpl <em>Service Level</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ServiceLevelImpl
+		 * @see Gtm.impl.GtmPackageImpl#getServiceLevel()
+		 * @generated
+		 */
+		EClass SERVICE_LEVEL = eINSTANCE.getServiceLevel();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CURRENCY__ISO_CODE = eINSTANCE.getCurrency_IsoCode();
+		EAttribute SERVICE_LEVEL__ID = eINSTANCE.getServiceLevel_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Text</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_LEVEL__TEXT = eINSTANCE.getServiceLevel_Text();
+
+		/**
+		 * The meta object literal for the '<em><b>Combining Service Classes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_LEVEL__COMBINING_SERVICE_CLASSES = eINSTANCE.getServiceLevel_CombiningServiceClasses();
+
+		/**
+		 * The meta object literal for the '<em><b>Reservation Parameter</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_LEVEL__RESERVATION_PARAMETER = eINSTANCE.getServiceLevel_ReservationParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Includes Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_LEVEL__INCLUDES_CLASS_NAME = eINSTANCE.getServiceLevel_IncludesClassName();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ServiceConstraintImpl <em>Service Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ServiceConstraintImpl
+		 * @see Gtm.impl.GtmPackageImpl#getServiceConstraint()
+		 * @generated
+		 */
+		EClass SERVICE_CONSTRAINT = eINSTANCE.getServiceConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_CONSTRAINT__ID = eINSTANCE.getServiceConstraint_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Included Service Brands</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_CONSTRAINT__INCLUDED_SERVICE_BRANDS = eINSTANCE.getServiceConstraint_IncludedServiceBrands();
+
+		/**
+		 * The meta object literal for the '<em><b>Excluded Service Brands</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE_CONSTRAINT__EXCLUDED_SERVICE_BRANDS = eINSTANCE.getServiceConstraint_ExcludedServiceBrands();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.TargetFareTemplateImpl <em>Target Fare Template</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.TargetFareTemplateImpl
+		 * @see Gtm.impl.GtmPackageImpl#getTargetFareTemplate()
+		 * @generated
+		 */
+		EClass TARGET_FARE_TEMPLATE = eINSTANCE.getTargetFareTemplate();
+
+		/**
+		 * The meta object literal for the '<em><b>Price Factor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TARGET_FARE_TEMPLATE__PRICE_FACTOR = eINSTANCE.getTargetFareTemplate_PriceFactor();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TARGET_FARE_TEMPLATE__ID = eINSTANCE.getTargetFareTemplate_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TARGET_FARE_TEMPLATE__TYPE = eINSTANCE.getTargetFareTemplate_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TARGET_FARE_TEMPLATE__DATA_DESCRIPTION = eINSTANCE.getTargetFareTemplate_DataDescription();
+
+		/**
+		 * The meta object literal for the '<em><b>Text</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__TEXT = eINSTANCE.getTargetFareTemplate_Text();
+
+		/**
+		 * The meta object literal for the '<em><b>Price</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__PRICE = eINSTANCE.getTargetFareTemplate_Price();
+
+		/**
+		 * The meta object literal for the '<em><b>Regional Constraint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__REGIONAL_CONSTRAINT = eINSTANCE.getTargetFareTemplate_RegionalConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Constraint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__SERVICE_CONSTRAINT = eINSTANCE.getTargetFareTemplate_ServiceConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Carrier Constraint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__CARRIER_CONSTRAINT = eINSTANCE.getTargetFareTemplate_CarrierConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__SERVICE_CLASS = eINSTANCE.getTargetFareTemplate_ServiceClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Level</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__SERVICE_LEVEL = eINSTANCE.getTargetFareTemplate_ServiceLevel();
+
+		/**
+		 * The meta object literal for the '<em><b>Sales Availability</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__SALES_AVAILABILITY = eINSTANCE.getTargetFareTemplate_SalesAvailability();
+
+		/**
+		 * The meta object literal for the '<em><b>Travel Validity</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__TRAVEL_VALIDITY = eINSTANCE.getTargetFareTemplate_TravelValidity();
+
+		/**
+		 * The meta object literal for the '<em><b>Combination Constraint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT = eINSTANCE.getTargetFareTemplate_CombinationConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Fare Detail Description</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION = eINSTANCE.getTargetFareTemplate_FareDetailDescription();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Accounting Identifier</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER = eINSTANCE.getTargetFareTemplate_LegacyAccountingIdentifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Personal Data Constraint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT = eINSTANCE.getTargetFareTemplate_PersonalDataConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Reservation Parameter</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__RESERVATION_PARAMETER = eINSTANCE.getTargetFareTemplate_ReservationParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Reduction Constraint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__REDUCTION_CONSTRAINT = eINSTANCE.getTargetFareTemplate_ReductionConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Fulfillment Constraint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__FULFILLMENT_CONSTRAINT = eINSTANCE.getTargetFareTemplate_FulfillmentConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Passenger Constraint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__PASSENGER_CONSTRAINT = eINSTANCE.getTargetFareTemplate_PassengerConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>After Sales Rule</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_FARE_TEMPLATE__AFTER_SALES_RULE = eINSTANCE.getTargetFareTemplate_AfterSalesRule();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.TravelValidityConstraintImpl <em>Travel Validity Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.TravelValidityConstraintImpl
+		 * @see Gtm.impl.GtmPackageImpl#getTravelValidityConstraint()
+		 * @generated
+		 */
+		EClass TRAVEL_VALIDITY_CONSTRAINT = eINSTANCE.getTravelValidityConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRAVEL_VALIDITY_CONSTRAINT__ID = eINSTANCE.getTravelValidityConstraint_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRAVEL_VALIDITY_CONSTRAINT__DATA_DESCRIPTION = eINSTANCE.getTravelValidityConstraint_DataDescription();
+
+		/**
+		 * The meta object literal for the '<em><b>Valid Days</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRAVEL_VALIDITY_CONSTRAINT__VALID_DAYS = eINSTANCE.getTravelValidityConstraint_ValidDays();
+
+		/**
+		 * The meta object literal for the '<em><b>Excluded Time Range</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE = eINSTANCE.getTravelValidityConstraint_ExcludedTimeRange();
+
+		/**
+		 * The meta object literal for the '<em><b>Travel Days</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRAVEL_VALIDITY_CONSTRAINT__TRAVEL_DAYS = eINSTANCE.getTravelValidityConstraint_TravelDays();
+
+		/**
+		 * The meta object literal for the '<em><b>Range</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRAVEL_VALIDITY_CONSTRAINT__RANGE = eINSTANCE.getTravelValidityConstraint_Range();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Constraint</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRAVEL_VALIDITY_CONSTRAINT__RETURN_CONSTRAINT = eINSTANCE.getTravelValidityConstraint_ReturnConstraint();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.TextImpl <em>Text</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.TextImpl
+		 * @see Gtm.impl.GtmPackageImpl#getText()
+		 * @generated
+		 */
+		EClass TEXT = eINSTANCE.getText();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT__ID = eINSTANCE.getText_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Text UTF8</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT__TEXT_UTF8 = eINSTANCE.getText_TextUTF8();
+
+		/**
+		 * The meta object literal for the '<em><b>Text ICAO</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT__TEXT_ICAO = eINSTANCE.getText_TextICAO();
+
+		/**
+		 * The meta object literal for the '<em><b>Short Text UTF8</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT__SHORT_TEXT_UTF8 = eINSTANCE.getText_ShortTextUTF8();
+
+		/**
+		 * The meta object literal for the '<em><b>Short Text ICAO</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT__SHORT_TEXT_ICAO = eINSTANCE.getText_ShortTextICAO();
+
+		/**
+		 * The meta object literal for the '<em><b>Translations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEXT__TRANSLATIONS = eINSTANCE.getText_Translations();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.TranslationImpl <em>Translation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.TranslationImpl
+		 * @see Gtm.impl.GtmPackageImpl#getTranslation()
+		 * @generated
+		 */
+		EClass TRANSLATION = eINSTANCE.getTranslation();
+
+		/**
+		 * The meta object literal for the '<em><b>Language</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRANSLATION__LANGUAGE = eINSTANCE.getTranslation_Language();
+
+		/**
+		 * The meta object literal for the '<em><b>Text UTF8</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSLATION__TEXT_UTF8 = eINSTANCE.getTranslation_TextUTF8();
+
+		/**
+		 * The meta object literal for the '<em><b>Text ICAO</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSLATION__TEXT_ICAO = eINSTANCE.getTranslation_TextICAO();
+
+		/**
+		 * The meta object literal for the '<em><b>Short Text UTF8</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSLATION__SHORT_TEXT_UTF8 = eINSTANCE.getTranslation_ShortTextUTF8();
+
+		/**
+		 * The meta object literal for the '<em><b>Short Text ICAO</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSLATION__SHORT_TEXT_ICAO = eINSTANCE.getTranslation_ShortTextICAO();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.VATDetailImpl <em>VAT Detail</em>}' class.
@@ -11812,150 +18231,6 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VAT_DETAIL__SCOPE = eINSTANCE.getVATDetail_Scope();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.RegionalConstraintImpl <em>Regional Constraint</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.RegionalConstraintImpl
-		 * @see Gtm.impl.GtmPackageImpl#getRegionalConstraint()
-		 * @generated
-		 */
-		EClass REGIONAL_CONSTRAINT = eINSTANCE.getRegionalConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REGIONAL_CONSTRAINT__ID = eINSTANCE.getRegionalConstraint_Id();
-
-		/**
-		 * The meta object literal for the '<em><b>Distance</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REGIONAL_CONSTRAINT__DISTANCE = eINSTANCE.getRegionalConstraint_Distance();
-
-		/**
-		 * The meta object literal for the '<em><b>Entry Connection Point</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REGIONAL_CONSTRAINT__ENTRY_CONNECTION_POINT = eINSTANCE.getRegionalConstraint_EntryConnectionPoint();
-
-		/**
-		 * The meta object literal for the '<em><b>Exit Connection Point</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REGIONAL_CONSTRAINT__EXIT_CONNECTION_POINT = eINSTANCE.getRegionalConstraint_ExitConnectionPoint();
-
-		/**
-		 * The meta object literal for the '<em><b>Regional Validity</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REGIONAL_CONSTRAINT__REGIONAL_VALIDITY = eINSTANCE.getRegionalConstraint_RegionalValidity();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.ConnectionPointImpl <em>Connection Point</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.ConnectionPointImpl
-		 * @see Gtm.impl.GtmPackageImpl#getConnectionPoint()
-		 * @generated
-		 */
-		EClass CONNECTION_POINT = eINSTANCE.getConnectionPoint();
-
-		/**
-		 * The meta object literal for the '<em><b>Stations</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONNECTION_POINT__STATIONS = eINSTANCE.getConnectionPoint_Stations();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONNECTION_POINT__ID = eINSTANCE.getConnectionPoint_Id();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.ServiceConstraintImpl <em>Service Constraint</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.ServiceConstraintImpl
-		 * @see Gtm.impl.GtmPackageImpl#getServiceConstraint()
-		 * @generated
-		 */
-		EClass SERVICE_CONSTRAINT = eINSTANCE.getServiceConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVICE_CONSTRAINT__ID = eINSTANCE.getServiceConstraint_Id();
-
-		/**
-		 * The meta object literal for the '<em><b>Included Service Brands</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SERVICE_CONSTRAINT__INCLUDED_SERVICE_BRANDS = eINSTANCE.getServiceConstraint_IncludedServiceBrands();
-
-		/**
-		 * The meta object literal for the '<em><b>Excluded Service Brands</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SERVICE_CONSTRAINT__EXCLUDED_SERVICE_BRANDS = eINSTANCE.getServiceConstraint_ExcludedServiceBrands();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.CarrierConstraintImpl <em>Carrier Constraint</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.CarrierConstraintImpl
-		 * @see Gtm.impl.GtmPackageImpl#getCarrierConstraint()
-		 * @generated
-		 */
-		EClass CARRIER_CONSTRAINT = eINSTANCE.getCarrierConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CARRIER_CONSTRAINT__ID = eINSTANCE.getCarrierConstraint_Id();
-
-		/**
-		 * The meta object literal for the '<em><b>Included Carriers</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CARRIER_CONSTRAINT__INCLUDED_CARRIERS = eINSTANCE.getCarrierConstraint_IncludedCarriers();
-
-		/**
-		 * The meta object literal for the '<em><b>Excluded Carriers</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CARRIER_CONSTRAINT__EXCLUDED_CARRIERS = eINSTANCE.getCarrierConstraint_ExcludedCarriers();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.FareElementImpl <em>Fare Element</em>}' class.
@@ -12072,80 +18347,110 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_ELEMENT__COMBINATION_CONSTRAINT = eINSTANCE.getFareElement_CombinationConstraint();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.ReductionCardImpl <em>Reduction Card</em>}' class.
+		 * The meta object literal for the '<em><b>Fare Detail Description</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.ReductionCardImpl
-		 * @see Gtm.impl.GtmPackageImpl#getReductionCard()
 		 * @generated
 		 */
-		EClass REDUCTION_CARD = eINSTANCE.getReductionCard();
+		EReference FARE_ELEMENT__FARE_DETAIL_DESCRIPTION = eINSTANCE.getFareElement_FareDetailDescription();
 
 		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Legacy Accounting Identifier</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REDUCTION_CARD__ID = eINSTANCE.getReductionCard_Id();
+		EReference FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER = eINSTANCE.getFareElement_LegacyAccountingIdentifier();
 
 		/**
-		 * The meta object literal for the '<em><b>Card Issuer</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Personal Data Constraint</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REDUCTION_CARD__CARD_ISSUER = eINSTANCE.getReductionCard_CardIssuer();
+		EReference FARE_ELEMENT__PERSONAL_DATA_CONSTRAINT = eINSTANCE.getFareElement_PersonalDataConstraint();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Reservation Parameter</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REDUCTION_CARD__NAME = eINSTANCE.getReductionCard_Name();
+		EReference FARE_ELEMENT__RESERVATION_PARAMETER = eINSTANCE.getFareElement_ReservationParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Service Classes</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Reduction Constraint</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REDUCTION_CARD__SERVICE_CLASSES = eINSTANCE.getReductionCard_ServiceClasses();
+		EReference FARE_ELEMENT__REDUCTION_CONSTRAINT = eINSTANCE.getFareElement_ReductionConstraint();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.ServiceBrandImpl <em>Service Brand</em>}' class.
+		 * The meta object literal for the '<em><b>Fulfillment Constraint</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.ServiceBrandImpl
-		 * @see Gtm.impl.GtmPackageImpl#getServiceBrand()
 		 * @generated
 		 */
-		EClass SERVICE_BRAND = eINSTANCE.getServiceBrand();
+		EReference FARE_ELEMENT__FULFILLMENT_CONSTRAINT = eINSTANCE.getFareElement_FulfillmentConstraint();
 
 		/**
-		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Passenger Constraint</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVICE_BRAND__CODE = eINSTANCE.getServiceBrand_Code();
+		EReference FARE_ELEMENT__PASSENGER_CONSTRAINT = eINSTANCE.getFareElement_PassengerConstraint();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>After Sales Rule</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVICE_BRAND__NAME = eINSTANCE.getServiceBrand_Name();
+		EReference FARE_ELEMENT__AFTER_SALES_RULE = eINSTANCE.getFareElement_AfterSalesRule();
 
 		/**
-		 * The meta object literal for the '<em><b>Abbreviation</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Data Source</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVICE_BRAND__ABBREVIATION = eINSTANCE.getServiceBrand_Abbreviation();
+		EAttribute FARE_ELEMENT__DATA_SOURCE = eINSTANCE.getFareElement_DataSource();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyAccountingIdentifierImpl <em>Legacy Accounting Identifier</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyAccountingIdentifierImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyAccountingIdentifier()
+		 * @generated
+		 */
+		EClass LEGACY_ACCOUNTING_IDENTIFIER = eINSTANCE.getLegacyAccountingIdentifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Series Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_ACCOUNTING_IDENTIFIER__SERIES_ID = eINSTANCE.getLegacyAccountingIdentifier_SeriesId();
+
+		/**
+		 * The meta object literal for the '<em><b>Tariff Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_ACCOUNTING_IDENTIFIER__TARIFF_ID = eINSTANCE.getLegacyAccountingIdentifier_TariffId();
+
+		/**
+		 * The meta object literal for the '<em><b>Add Series Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_ACCOUNTING_IDENTIFIER__ADD_SERIES_ID = eINSTANCE.getLegacyAccountingIdentifier_AddSeriesId();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.SalesAvailabilityConstraintImpl <em>Sales Availability Constraint</em>}' class.
@@ -12182,70 +18487,12 @@ public interface GtmPackage extends EPackage {
 		EReference SALES_AVAILABILITY_CONSTRAINT__RESTRICTIONS = eINSTANCE.getSalesAvailabilityConstraint_Restrictions();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.TravelValidityConstraintImpl <em>Travel Validity Constraint</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.TravelValidityConstraintImpl
-		 * @see Gtm.impl.GtmPackageImpl#getTravelValidityConstraint()
-		 * @generated
-		 */
-		EClass TRAVEL_VALIDITY_CONSTRAINT = eINSTANCE.getTravelValidityConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Data Source</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TRAVEL_VALIDITY_CONSTRAINT__ID = eINSTANCE.getTravelValidityConstraint_Id();
-
-		/**
-		 * The meta object literal for the '<em><b>Data Description</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRAVEL_VALIDITY_CONSTRAINT__DATA_DESCRIPTION = eINSTANCE.getTravelValidityConstraint_DataDescription();
-
-		/**
-		 * The meta object literal for the '<em><b>Valid Days</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRAVEL_VALIDITY_CONSTRAINT__VALID_DAYS = eINSTANCE.getTravelValidityConstraint_ValidDays();
-
-		/**
-		 * The meta object literal for the '<em><b>Excluded Time Range</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE = eINSTANCE.getTravelValidityConstraint_ExcludedTimeRange();
-
-		/**
-		 * The meta object literal for the '<em><b>Travel Days</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRAVEL_VALIDITY_CONSTRAINT__TRAVEL_DAYS = eINSTANCE.getTravelValidityConstraint_TravelDays();
-
-		/**
-		 * The meta object literal for the '<em><b>Range</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRAVEL_VALIDITY_CONSTRAINT__RANGE = eINSTANCE.getTravelValidityConstraint_Range();
-
-		/**
-		 * The meta object literal for the '<em><b>Return Constraint</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRAVEL_VALIDITY_CONSTRAINT__RETURN_CONSTRAINT = eINSTANCE.getTravelValidityConstraint_ReturnConstraint();
+		EAttribute SALES_AVAILABILITY_CONSTRAINT__DATA_SOURCE = eINSTANCE.getSalesAvailabilityConstraint_DataSource();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.SalesRestrictionImpl <em>Sales Restriction</em>}' class.
@@ -12282,38 +18529,24 @@ public interface GtmPackage extends EPackage {
 		EReference SALES_RESTRICTION__END_OF_SALE = eINSTANCE.getSalesRestriction_EndOfSale();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.TimeReferenceImpl <em>Time Reference</em>}' class.
+		 * The meta object literal for the '{@link Gtm.impl.EndOfSaleImpl <em>End Of Sale</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.TimeReferenceImpl
-		 * @see Gtm.impl.GtmPackageImpl#getTimeReference()
+		 * @see Gtm.impl.EndOfSaleImpl
+		 * @see Gtm.impl.GtmPackageImpl#getEndOfSale()
 		 * @generated
 		 */
-		EClass TIME_REFERENCE = eINSTANCE.getTimeReference();
+		EClass END_OF_SALE = eINSTANCE.getEndOfSale();
 
 		/**
-		 * The meta object literal for the '<em><b>Referece Type</b></em>' attribute feature.
+		 * The meta object literal for the '{@link Gtm.impl.StartOfSaleImpl <em>Start Of Sale</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.StartOfSaleImpl
+		 * @see Gtm.impl.GtmPackageImpl#getStartOfSale()
 		 * @generated
 		 */
-		EAttribute TIME_REFERENCE__REFERECE_TYPE = eINSTANCE.getTimeReference_RefereceType();
-
-		/**
-		 * The meta object literal for the '<em><b>Unit</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TIME_REFERENCE__UNIT = eINSTANCE.getTimeReference_Unit();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TIME_REFERENCE__VALUE = eINSTANCE.getTimeReference_Value();
+		EClass START_OF_SALE = eINSTANCE.getStartOfSale();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.CombinationConstraintImpl <em>Combination Constraint</em>}' class.
@@ -12418,6 +18651,16 @@ public interface GtmPackage extends EPackage {
 		EAttribute TIME_RANGE__UNTIL = eINSTANCE.getTimeRange_Until();
 
 		/**
+		 * The meta object literal for the '{@link Gtm.impl.ExcludedTimeRangeImpl <em>Excluded Time Range</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ExcludedTimeRangeImpl
+		 * @see Gtm.impl.GtmPackageImpl#getExcludedTimeRange()
+		 * @generated
+		 */
+		EClass EXCLUDED_TIME_RANGE = eINSTANCE.getExcludedTimeRange();
+
+		/**
 		 * The meta object literal for the '{@link Gtm.impl.ReturnValidityConstraintImpl <em>Return Validity Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -12452,72 +18695,6 @@ public interface GtmPackage extends EPackage {
 		EAttribute RETURN_VALIDITY_CONSTRAINT__EARLIEST_RETURN = eINSTANCE.getReturnValidityConstraint_EarliestReturn();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.FareCombinationModelImpl <em>Fare Combination Model</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.FareCombinationModelImpl
-		 * @see Gtm.impl.GtmPackageImpl#getFareCombinationModel()
-		 * @generated
-		 */
-		EClass FARE_COMBINATION_MODEL = eINSTANCE.getFareCombinationModel();
-
-		/**
-		 * The meta object literal for the '<em><b>Model</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FARE_COMBINATION_MODEL__MODEL = eINSTANCE.getFareCombinationModel_Model();
-
-		/**
-		 * The meta object literal for the '<em><b>Combinable Carriers</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FARE_COMBINATION_MODEL__COMBINABLE_CARRIERS = eINSTANCE.getFareCombinationModel_CombinableCarriers();
-
-		/**
-		 * The meta object literal for the '<em><b>Only When Combined</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FARE_COMBINATION_MODEL__ONLY_WHEN_COMBINED = eINSTANCE.getFareCombinationModel_OnlyWhenCombined();
-
-		/**
-		 * The meta object literal for the '<em><b>Allowed Allocators</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FARE_COMBINATION_MODEL__ALLOWED_ALLOCATORS = eINSTANCE.getFareCombinationModel_AllowedAllocators();
-
-		/**
-		 * The meta object literal for the '<em><b>Reference Cluster</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FARE_COMBINATION_MODEL__REFERENCE_CLUSTER = eINSTANCE.getFareCombinationModel_ReferenceCluster();
-
-		/**
-		 * The meta object literal for the '<em><b>Allowed Clusters</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FARE_COMBINATION_MODEL__ALLOWED_CLUSTERS = eINSTANCE.getFareCombinationModel_AllowedClusters();
-
-		/**
-		 * The meta object literal for the '<em><b>Allowed Common Contracts</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FARE_COMBINATION_MODEL__ALLOWED_COMMON_CONTRACTS = eINSTANCE.getFareCombinationModel_AllowedCommonContracts();
-
-		/**
 		 * The meta object literal for the '{@link Gtm.impl.RegionalValidityImpl <em>Regional Validity</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -12536,7 +18713,7 @@ public interface GtmPackage extends EPackage {
 		EAttribute REGIONAL_VALIDITY__SEQ_NB = eINSTANCE.getRegionalValidity_SeqNb();
 
 		/**
-		 * The meta object literal for the '<em><b>Via Station</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Via Station</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -12544,7 +18721,7 @@ public interface GtmPackage extends EPackage {
 		EReference REGIONAL_VALIDITY__VIA_STATION = eINSTANCE.getRegionalValidity_ViaStation();
 
 		/**
-		 * The meta object literal for the '<em><b>Zone</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Zone</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -12552,7 +18729,7 @@ public interface GtmPackage extends EPackage {
 		EReference REGIONAL_VALIDITY__ZONE = eINSTANCE.getRegionalValidity_Zone();
 
 		/**
-		 * The meta object literal for the '<em><b>Line</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Line</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -12560,7 +18737,7 @@ public interface GtmPackage extends EPackage {
 		EReference REGIONAL_VALIDITY__LINE = eINSTANCE.getRegionalValidity_Line();
 
 		/**
-		 * The meta object literal for the '<em><b>Polygone</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Polygone</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -12610,6 +18787,50 @@ public interface GtmPackage extends EPackage {
 		EReference VIA_STATION__CARRIER = eINSTANCE.getViaStation_Carrier();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Description</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VIA_STATION___GET_DESCRIPTION = eINSTANCE.getViaStation__GetDescription();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.AlternativeRouteImpl <em>Alternative Route</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.AlternativeRouteImpl
+		 * @see Gtm.impl.GtmPackageImpl#getAlternativeRoute()
+		 * @generated
+		 */
+		EClass ALTERNATIVE_ROUTE = eINSTANCE.getAlternativeRoute();
+
+		/**
+		 * The meta object literal for the '<em><b>Stations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ALTERNATIVE_ROUTE__STATIONS = eINSTANCE.getAlternativeRoute_Stations();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.RouteImpl <em>Route</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.RouteImpl
+		 * @see Gtm.impl.GtmPackageImpl#getRoute()
+		 * @generated
+		 */
+		EClass ROUTE = eINSTANCE.getRoute();
+
+		/**
+		 * The meta object literal for the '<em><b>Stations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ROUTE__STATIONS = eINSTANCE.getRoute_Stations();
+
+		/**
 		 * The meta object literal for the '{@link Gtm.impl.ZoneImpl <em>Zone</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -12626,14 +18847,6 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ZONE__BINARY_ZONE_ID = eINSTANCE.getZone_BinaryZoneId();
-
-		/**
-		 * The meta object literal for the '<em><b>Zone Id</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ZONE__ZONE_ID = eINSTANCE.getZone_ZoneId();
 
 		/**
 		 * The meta object literal for the '<em><b>Carrier</b></em>' reference feature.
@@ -12676,14 +18889,38 @@ public interface GtmPackage extends EPackage {
 		EAttribute ZONE__CITY = eINSTANCE.getZone_City();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.NutsCodeImpl <em>Nuts Code</em>}' class.
+		 * The meta object literal for the '<em><b>Zone Definitions</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.NutsCodeImpl
-		 * @see Gtm.impl.GtmPackageImpl#getNutsCode()
 		 * @generated
 		 */
-		EClass NUTS_CODE = eINSTANCE.getNutsCode();
+		EReference ZONE__ZONE_DEFINITIONS = eINSTANCE.getZone_ZoneDefinitions();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.ZoneDefinitionImpl <em>Zone Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ZoneDefinitionImpl
+		 * @see Gtm.impl.GtmPackageImpl#getZoneDefinition()
+		 * @generated
+		 */
+		EClass ZONE_DEFINITION = eINSTANCE.getZoneDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Zone Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ZONE_DEFINITION__ZONE_ID = eINSTANCE.getZoneDefinition_ZoneId();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ZONE_DEFINITION__ID = eINSTANCE.getZoneDefinition_Id();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -12691,15 +18928,15 @@ public interface GtmPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NUTS_CODE__NAME = eINSTANCE.getNutsCode_Name();
+		EAttribute ZONE_DEFINITION__NAME = eINSTANCE.getZoneDefinition_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Stations</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NUTS_CODE__CODE = eINSTANCE.getNutsCode_Code();
+		EReference ZONE_DEFINITION__STATIONS = eINSTANCE.getZoneDefinition_Stations();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.LineImpl <em>Line</em>}' class.
@@ -12778,12 +19015,38 @@ public interface GtmPackage extends EPackage {
 		EClass POLYGONE = eINSTANCE.getPolygone();
 
 		/**
-		 * The meta object literal for the '<em><b>Egde</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Edge</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference POLYGONE__EGDE = eINSTANCE.getPolygone_Egde();
+		EReference POLYGONE__EDGE = eINSTANCE.getPolygone_Edge();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyStationImpl <em>Legacy Station</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyStationImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyStation()
+		 * @generated
+		 */
+		EClass LEGACY_STATION = eINSTANCE.getLegacyStation();
+
+		/**
+		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_STATION__CODE = eINSTANCE.getLegacyStation_Code();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_STATION__NAME = eINSTANCE.getLegacyStation_Name();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.EdgeImpl <em>Edge</em>}' class.
@@ -12950,7 +19213,7 @@ public interface GtmPackage extends EPackage {
 		EAttribute PASSENGER_CONSTRAINT__MIN_TOTAL_PASSENGER_WEIGHT = eINSTANCE.getPassengerConstraint_MinTotalPassengerWeight();
 
 		/**
-		 * The meta object literal for the '<em><b>Included Free Passengers</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Included Free Passengers</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -12964,6 +19227,24 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS = eINSTANCE.getPassengerConstraint_ExcludedPassengerCombinations();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.IncludedFreePassengersImpl <em>Included Free Passengers</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.IncludedFreePassengersImpl
+		 * @see Gtm.impl.GtmPackageImpl#getIncludedFreePassengers()
+		 * @generated
+		 */
+		EClass INCLUDED_FREE_PASSENGERS = eINSTANCE.getIncludedFreePassengers();
+
+		/**
+		 * The meta object literal for the '<em><b>Included Free Passengers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INCLUDED_FREE_PASSENGERS__INCLUDED_FREE_PASSENGERS = eINSTANCE.getIncludedFreePassengers_IncludedFreePassengers();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.PassengerCombinationConstraintImpl <em>Passenger Combination Constraint</em>}' class.
@@ -12984,12 +19265,12 @@ public interface GtmPackage extends EPackage {
 		EAttribute PASSENGER_COMBINATION_CONSTRAINT__MAX_NUMBER = eINSTANCE.getPassengerCombinationConstraint_MaxNumber();
 
 		/**
-		 * The meta object literal for the '<em><b>Passenger Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Passenger Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PASSENGER_COMBINATION_CONSTRAINT__PASSENGER_TYPE = eINSTANCE.getPassengerCombinationConstraint_PassengerType();
+		EAttribute PASSENGER_COMBINATION_CONSTRAINT__PASSENGER_TYPE = eINSTANCE.getPassengerCombinationConstraint_PassengerType();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.RelativeTimeImpl <em>Relative Time</em>}' class.
@@ -13024,48 +19305,6 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute RELATIVE_TIME__VALUE = eINSTANCE.getRelativeTime_Value();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.ZoneDefinitionImpl <em>Zone Definition</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.ZoneDefinitionImpl
-		 * @see Gtm.impl.GtmPackageImpl#getZoneDefinition()
-		 * @generated
-		 */
-		EClass ZONE_DEFINITION = eINSTANCE.getZoneDefinition();
-
-		/**
-		 * The meta object literal for the '<em><b>Zone Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ZONE_DEFINITION__ZONE_ID = eINSTANCE.getZoneDefinition_ZoneId();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ZONE_DEFINITION__ID = eINSTANCE.getZoneDefinition_Id();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ZONE_DEFINITION__NAME = eINSTANCE.getZoneDefinition_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Stations</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ZONE_DEFINITION__STATIONS = eINSTANCE.getZoneDefinition_Stations();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.AfterSalesConditionImpl <em>After Sales Condition</em>}' class.
@@ -13118,6 +19357,16 @@ public interface GtmPackage extends EPackage {
 		EReference AFTER_SALES_CONDITION__APPLICATION_TIME = eINSTANCE.getAfterSalesCondition_ApplicationTime();
 
 		/**
+		 * The meta object literal for the '{@link Gtm.impl.ApplicationTimeImpl <em>Application Time</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.ApplicationTimeImpl
+		 * @see Gtm.impl.GtmPackageImpl#getApplicationTime()
+		 * @generated
+		 */
+		EClass APPLICATION_TIME = eINSTANCE.getApplicationTime();
+
+		/**
 		 * The meta object literal for the '{@link Gtm.impl.AfterSalesRuleImpl <em>After Sales Rule</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -13136,12 +19385,308 @@ public interface GtmPackage extends EPackage {
 		EAttribute AFTER_SALES_RULE__ID = eINSTANCE.getAfterSalesRule_Id();
 
 		/**
-		 * The meta object literal for the '<em><b>Conditions</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Conditions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference AFTER_SALES_RULE__CONDITIONS = eINSTANCE.getAfterSalesRule_Conditions();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.AllowedPersonalDataChangesImpl <em>Allowed Personal Data Changes</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.AllowedPersonalDataChangesImpl
+		 * @see Gtm.impl.GtmPackageImpl#getAllowedPersonalDataChanges()
+		 * @generated
+		 */
+		EClass ALLOWED_PERSONAL_DATA_CHANGES = eINSTANCE.getAllowedPersonalDataChanges();
+
+		/**
+		 * The meta object literal for the '<em><b>Time Limit</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ALLOWED_PERSONAL_DATA_CHANGES__TIME_LIMIT = eINSTANCE.getAllowedPersonalDataChanges_TimeLimit();
+
+		/**
+		 * The meta object literal for the '<em><b>Accepted Reason</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ALLOWED_PERSONAL_DATA_CHANGES__ACCEPTED_REASON = eINSTANCE.getAllowedPersonalDataChanges_AcceptedReason();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.CarrierResourceLocationImpl <em>Carrier Resource Location</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.CarrierResourceLocationImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCarrierResourceLocation()
+		 * @generated
+		 */
+		EClass CARRIER_RESOURCE_LOCATION = eINSTANCE.getCarrierResourceLocation();
+
+		/**
+		 * The meta object literal for the '<em><b>Carrier</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CARRIER_RESOURCE_LOCATION__CARRIER = eINSTANCE.getCarrierResourceLocation_Carrier();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Brand</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CARRIER_RESOURCE_LOCATION__SERVICE_BRAND = eINSTANCE.getCarrierResourceLocation_ServiceBrand();
+
+		/**
+		 * The meta object literal for the '<em><b>Online Resources</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CARRIER_RESOURCE_LOCATION__ONLINE_RESOURCES = eINSTANCE.getCarrierResourceLocation_OnlineResources();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.CrossBorderConditionImpl <em>Cross Border Condition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.CrossBorderConditionImpl
+		 * @see Gtm.impl.GtmPackageImpl#getCrossBorderCondition()
+		 * @generated
+		 */
+		EClass CROSS_BORDER_CONDITION = eINSTANCE.getCrossBorderCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>From Country</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CROSS_BORDER_CONDITION__FROM_COUNTRY = eINSTANCE.getCrossBorderCondition_FromCountry();
+
+		/**
+		 * The meta object literal for the '<em><b>To Country</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CROSS_BORDER_CONDITION__TO_COUNTRY = eINSTANCE.getCrossBorderCondition_ToCountry();
+
+		/**
+		 * The meta object literal for the '<em><b>Affected Service Brands</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CROSS_BORDER_CONDITION__AFFECTED_SERVICE_BRANDS = eINSTANCE.getCrossBorderCondition_AffectedServiceBrands();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.FareCombinationModelImpl <em>Fare Combination Model</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.FareCombinationModelImpl
+		 * @see Gtm.impl.GtmPackageImpl#getFareCombinationModel()
+		 * @generated
+		 */
+		EClass FARE_COMBINATION_MODEL = eINSTANCE.getFareCombinationModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Model</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FARE_COMBINATION_MODEL__MODEL = eINSTANCE.getFareCombinationModel_Model();
+
+		/**
+		 * The meta object literal for the '<em><b>Combinable Carriers</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FARE_COMBINATION_MODEL__COMBINABLE_CARRIERS = eINSTANCE.getFareCombinationModel_CombinableCarriers();
+
+		/**
+		 * The meta object literal for the '<em><b>Only When Combined</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FARE_COMBINATION_MODEL__ONLY_WHEN_COMBINED = eINSTANCE.getFareCombinationModel_OnlyWhenCombined();
+
+		/**
+		 * The meta object literal for the '<em><b>Allowed Allocators</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FARE_COMBINATION_MODEL__ALLOWED_ALLOCATORS = eINSTANCE.getFareCombinationModel_AllowedAllocators();
+
+		/**
+		 * The meta object literal for the '<em><b>Reference Cluster</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FARE_COMBINATION_MODEL__REFERENCE_CLUSTER = eINSTANCE.getFareCombinationModel_ReferenceCluster();
+
+		/**
+		 * The meta object literal for the '<em><b>Allowed Clusters</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FARE_COMBINATION_MODEL__ALLOWED_CLUSTERS = eINSTANCE.getFareCombinationModel_AllowedClusters();
+
+		/**
+		 * The meta object literal for the '<em><b>Allowed Common Contracts</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FARE_COMBINATION_MODEL__ALLOWED_COMMON_CONTRACTS = eINSTANCE.getFareCombinationModel_AllowedCommonContracts();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.RequiredBarcodesImpl <em>Required Barcodes</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.RequiredBarcodesImpl
+		 * @see Gtm.impl.GtmPackageImpl#getRequiredBarcodes()
+		 * @generated
+		 */
+		EClass REQUIRED_BARCODES = eINSTANCE.getRequiredBarcodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Required Barcodes</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REQUIRED_BARCODES__REQUIRED_BARCODES = eINSTANCE.getRequiredBarcodes_RequiredBarcodes();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.AcceptedBarcodesImpl <em>Accepted Barcodes</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.AcceptedBarcodesImpl
+		 * @see Gtm.impl.GtmPackageImpl#getAcceptedBarcodes()
+		 * @generated
+		 */
+		EClass ACCEPTED_BARCODES = eINSTANCE.getAcceptedBarcodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Accepted Barcodes</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ACCEPTED_BARCODES__ACCEPTED_BARCODES = eINSTANCE.getAcceptedBarcodes_AcceptedBarcodes();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.FulfillmentConstraintImpl <em>Fulfillment Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.FulfillmentConstraintImpl
+		 * @see Gtm.impl.GtmPackageImpl#getFulfillmentConstraint()
+		 * @generated
+		 */
+		EClass FULFILLMENT_CONSTRAINT = eINSTANCE.getFulfillmentConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FULFILLMENT_CONSTRAINT__ID = eINSTANCE.getFulfillmentConstraint_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Accepted Fulfilment Types</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FULFILLMENT_CONSTRAINT__ACCEPTED_FULFILMENT_TYPES = eINSTANCE.getFulfillmentConstraint_AcceptedFulfilmentTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Accepted Barcodes</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES = eINSTANCE.getFulfillmentConstraint_AcceptedBarcodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Required Barcodes</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FULFILLMENT_CONSTRAINT__REQUIRED_BARCODES = eINSTANCE.getFulfillmentConstraint_RequiredBarcodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Required Control Data Exchange</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FULFILLMENT_CONSTRAINT__REQUIRED_CONTROL_DATA_EXCHANGE = eINSTANCE.getFulfillmentConstraint_RequiredControlDataExchange();
+
+		/**
+		 * The meta object literal for the '<em><b>Individual Ticketing Permitted</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FULFILLMENT_CONSTRAINT__INDIVIDUAL_TICKETING_PERMITTED = eINSTANCE.getFulfillmentConstraint_IndividualTicketingPermitted();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.OnlineResourceImpl <em>Online Resource</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.OnlineResourceImpl
+		 * @see Gtm.impl.GtmPackageImpl#getOnlineResource()
+		 * @generated
+		 */
+		EClass ONLINE_RESOURCE = eINSTANCE.getOnlineResource();
+
+		/**
+		 * The meta object literal for the '<em><b>Offer Request Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ONLINE_RESOURCE__OFFER_REQUEST_TYPE = eINSTANCE.getOnlineResource_OfferRequestType();
+
+		/**
+		 * The meta object literal for the '<em><b>Interface Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ONLINE_RESOURCE__INTERFACE_TYPE = eINSTANCE.getOnlineResource_InterfaceType();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ONLINE_RESOURCE__VERSION = eINSTANCE.getOnlineResource_Version();
+
+		/**
+		 * The meta object literal for the '<em><b>System</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ONLINE_RESOURCE__SYSTEM = eINSTANCE.getOnlineResource_System();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.PersonalDataConstraintImpl <em>Personal Data Constraint</em>}' class.
@@ -13204,7 +19749,7 @@ public interface GtmPackage extends EPackage {
 		EAttribute REQUIRED_PERSONAL_DATA__DATA_ITEM = eINSTANCE.getRequiredPersonalData_DataItem();
 
 		/**
-		 * The meta object literal for the '<em><b>Transfer</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Transfer</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -13226,66 +19771,6 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REQUIRED_PERSONAL_DATA__CROSS_BORDER = eINSTANCE.getRequiredPersonalData_CrossBorder();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.CrossBorderConditionImpl <em>Cross Border Condition</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.CrossBorderConditionImpl
-		 * @see Gtm.impl.GtmPackageImpl#getCrossBorderCondition()
-		 * @generated
-		 */
-		EClass CROSS_BORDER_CONDITION = eINSTANCE.getCrossBorderCondition();
-
-		/**
-		 * The meta object literal for the '<em><b>From Country</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CROSS_BORDER_CONDITION__FROM_COUNTRY = eINSTANCE.getCrossBorderCondition_FromCountry();
-
-		/**
-		 * The meta object literal for the '<em><b>To Country</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CROSS_BORDER_CONDITION__TO_COUNTRY = eINSTANCE.getCrossBorderCondition_ToCountry();
-
-		/**
-		 * The meta object literal for the '<em><b>Affected Service Brands</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CROSS_BORDER_CONDITION__AFFECTED_SERVICE_BRANDS = eINSTANCE.getCrossBorderCondition_AffectedServiceBrands();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.AllowedPersonalDataChangesImpl <em>Allowed Personal Data Changes</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.AllowedPersonalDataChangesImpl
-		 * @see Gtm.impl.GtmPackageImpl#getAllowedPersonalDataChanges()
-		 * @generated
-		 */
-		EClass ALLOWED_PERSONAL_DATA_CHANGES = eINSTANCE.getAllowedPersonalDataChanges();
-
-		/**
-		 * The meta object literal for the '<em><b>Time Limit</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ALLOWED_PERSONAL_DATA_CHANGES__TIME_LIMIT = eINSTANCE.getAllowedPersonalDataChanges_TimeLimit();
-
-		/**
-		 * The meta object literal for the '<em><b>Accepted Reason</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ALLOWED_PERSONAL_DATA_CHANGES__ACCEPTED_REASON = eINSTANCE.getAllowedPersonalDataChanges_AcceptedReason();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.ReductionConstraintImpl <em>Reduction Constraint</em>}' class.
@@ -13348,96 +19833,38 @@ public interface GtmPackage extends EPackage {
 		EAttribute REQUIRED_REDUCTION_CARD__NAME = eINSTANCE.getRequiredReductionCard_Name();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.FulfillmentConstraintImpl <em>Fulfillment Constraint</em>}' class.
+		 * The meta object literal for the '{@link Gtm.impl.StationResourceLocationImpl <em>Station Resource Location</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.FulfillmentConstraintImpl
-		 * @see Gtm.impl.GtmPackageImpl#getFulfillmentConstraint()
+		 * @see Gtm.impl.StationResourceLocationImpl
+		 * @see Gtm.impl.GtmPackageImpl#getStationResourceLocation()
 		 * @generated
 		 */
-		EClass FULFILLMENT_CONSTRAINT = eINSTANCE.getFulfillmentConstraint();
+		EClass STATION_RESOURCE_LOCATION = eINSTANCE.getStationResourceLocation();
 
 		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Online Resources</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FULFILLMENT_CONSTRAINT__ID = eINSTANCE.getFulfillmentConstraint_Id();
+		EReference STATION_RESOURCE_LOCATION__ONLINE_RESOURCES = eINSTANCE.getStationResourceLocation_OnlineResources();
 
 		/**
-		 * The meta object literal for the '<em><b>Accepted Fulfilment Types</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Stations</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FULFILLMENT_CONSTRAINT__ACCEPTED_FULFILMENT_TYPES = eINSTANCE.getFulfillmentConstraint_AcceptedFulfilmentTypes();
+		EReference STATION_RESOURCE_LOCATION__STATIONS = eINSTANCE.getStationResourceLocation_Stations();
 
 		/**
-		 * The meta object literal for the '<em><b>Accepted Barcodes</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Connection Points</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES = eINSTANCE.getFulfillmentConstraint_AcceptedBarcodes();
-
-		/**
-		 * The meta object literal for the '<em><b>Required Control Data Exchange</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FULFILLMENT_CONSTRAINT__REQUIRED_CONTROL_DATA_EXCHANGE = eINSTANCE.getFulfillmentConstraint_RequiredControlDataExchange();
-
-		/**
-		 * The meta object literal for the '<em><b>Individual Ticketing Permitted</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FULFILLMENT_CONSTRAINT__INDIVIDUAL_TICKETING_PERMITTED = eINSTANCE.getFulfillmentConstraint_IndividualTicketingPermitted();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.FareResourceLocationImpl <em>Fare Resource Location</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.FareResourceLocationImpl
-		 * @see Gtm.impl.GtmPackageImpl#getFareResourceLocation()
-		 * @generated
-		 */
-		EClass FARE_RESOURCE_LOCATION = eINSTANCE.getFareResourceLocation();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FARE_RESOURCE_LOCATION__ID = eINSTANCE.getFareResourceLocation_Id();
-
-		/**
-		 * The meta object literal for the '<em><b>Carrier Resource Locations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FARE_RESOURCE_LOCATION__CARRIER_RESOURCE_LOCATIONS = eINSTANCE.getFareResourceLocation_CarrierResourceLocations();
-
-		/**
-		 * The meta object literal for the '<em><b>Station Resource Locations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FARE_RESOURCE_LOCATION__STATION_RESOURCE_LOCATIONS = eINSTANCE.getFareResourceLocation_StationResourceLocations();
-
-		/**
-		 * The meta object literal for the '<em><b>Train Resource Locations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FARE_RESOURCE_LOCATION__TRAIN_RESOURCE_LOCATIONS = eINSTANCE.getFareResourceLocation_TrainResourceLocations();
+		EReference STATION_RESOURCE_LOCATION__CONNECTION_POINTS = eINSTANCE.getStationResourceLocation_ConnectionPoints();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.TrainResourceLocationImpl <em>Train Resource Location</em>}' class.
@@ -13474,164 +19901,44 @@ public interface GtmPackage extends EPackage {
 		EAttribute TRAIN_RESOURCE_LOCATION__TRAIN_ID = eINSTANCE.getTrainResourceLocation_TrainId();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.impl.CarrierResourceLocationImpl <em>Carrier Resource Location</em>}' class.
+		 * The meta object literal for the '{@link Gtm.TimeZone <em>Time Zone</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.CarrierResourceLocationImpl
-		 * @see Gtm.impl.GtmPackageImpl#getCarrierResourceLocation()
+		 * @see Gtm.TimeZone
+		 * @see Gtm.impl.GtmPackageImpl#getTimeZone()
 		 * @generated
 		 */
-		EClass CARRIER_RESOURCE_LOCATION = eINSTANCE.getCarrierResourceLocation();
+		EEnum TIME_ZONE = eINSTANCE.getTimeZone();
 
 		/**
-		 * The meta object literal for the '<em><b>Carrier</b></em>' reference feature.
+		 * The meta object literal for the '{@link Gtm.CharacterSet <em>Character Set</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Gtm.CharacterSet
+		 * @see Gtm.impl.GtmPackageImpl#getCharacterSet()
 		 * @generated
 		 */
-		EReference CARRIER_RESOURCE_LOCATION__CARRIER = eINSTANCE.getCarrierResourceLocation_Carrier();
+		EEnum CHARACTER_SET = eINSTANCE.getCharacterSet();
 
 		/**
-		 * The meta object literal for the '<em><b>Service Brand</b></em>' reference feature.
+		 * The meta object literal for the '{@link Gtm.AfterSalesTransactionType <em>After Sales Transaction Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Gtm.AfterSalesTransactionType
+		 * @see Gtm.impl.GtmPackageImpl#getAfterSalesTransactionType()
 		 * @generated
 		 */
-		EReference CARRIER_RESOURCE_LOCATION__SERVICE_BRAND = eINSTANCE.getCarrierResourceLocation_ServiceBrand();
+		EEnum AFTER_SALES_TRANSACTION_TYPE = eINSTANCE.getAfterSalesTransactionType();
 
 		/**
-		 * The meta object literal for the '<em><b>Online Resources</b></em>' containment reference list feature.
+		 * The meta object literal for the '{@link Gtm.BarcodeTypes <em>Barcode Types</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see Gtm.BarcodeTypes
+		 * @see Gtm.impl.GtmPackageImpl#getBarcodeTypes()
 		 * @generated
 		 */
-		EReference CARRIER_RESOURCE_LOCATION__ONLINE_RESOURCES = eINSTANCE.getCarrierResourceLocation_OnlineResources();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.StationResourceLocationImpl <em>Station Resource Location</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.StationResourceLocationImpl
-		 * @see Gtm.impl.GtmPackageImpl#getStationResourceLocation()
-		 * @generated
-		 */
-		EClass STATION_RESOURCE_LOCATION = eINSTANCE.getStationResourceLocation();
-
-		/**
-		 * The meta object literal for the '<em><b>Online Resources</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATION_RESOURCE_LOCATION__ONLINE_RESOURCES = eINSTANCE.getStationResourceLocation_OnlineResources();
-
-		/**
-		 * The meta object literal for the '<em><b>Stations</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATION_RESOURCE_LOCATION__STATIONS = eINSTANCE.getStationResourceLocation_Stations();
-
-		/**
-		 * The meta object literal for the '<em><b>Connection Points</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATION_RESOURCE_LOCATION__CONNECTION_POINTS = eINSTANCE.getStationResourceLocation_ConnectionPoints();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.OnlineResourceImpl <em>Online Resource</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.OnlineResourceImpl
-		 * @see Gtm.impl.GtmPackageImpl#getOnlineResource()
-		 * @generated
-		 */
-		EClass ONLINE_RESOURCE = eINSTANCE.getOnlineResource();
-
-		/**
-		 * The meta object literal for the '<em><b>Offer Request Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ONLINE_RESOURCE__OFFER_REQUEST_TYPE = eINSTANCE.getOnlineResource_OfferRequestType();
-
-		/**
-		 * The meta object literal for the '<em><b>Interface Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ONLINE_RESOURCE__INTERFACE_TYPE = eINSTANCE.getOnlineResource_InterfaceType();
-
-		/**
-		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ONLINE_RESOURCE__VERSION = eINSTANCE.getOnlineResource_Version();
-
-		/**
-		 * The meta object literal for the '<em><b>System</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ONLINE_RESOURCE__SYSTEM = eINSTANCE.getOnlineResource_System();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.ReservationService <em>Reservation Service</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.ReservationService
-		 * @see Gtm.impl.GtmPackageImpl#getReservationService()
-		 * @generated
-		 */
-		EEnum RESERVATION_SERVICE = eINSTANCE.getReservationService();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.ReservationBerthType <em>Reservation Berth Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.ReservationBerthType
-		 * @see Gtm.impl.GtmPackageImpl#getReservationBerthType()
-		 * @generated
-		 */
-		EEnum RESERVATION_BERTH_TYPE = eINSTANCE.getReservationBerthType();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.GraphicalReservationType <em>Graphical Reservation Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.GraphicalReservationType
-		 * @see Gtm.impl.GtmPackageImpl#getGraphicalReservationType()
-		 * @generated
-		 */
-		EEnum GRAPHICAL_RESERVATION_TYPE = eINSTANCE.getGraphicalReservationType();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.LegacyCalculationType <em>Legacy Calculation Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.LegacyCalculationType
-		 * @see Gtm.impl.GtmPackageImpl#getLegacyCalculationType()
-		 * @generated
-		 */
-		EEnum LEGACY_CALCULATION_TYPE = eINSTANCE.getLegacyCalculationType();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.LegacySeriesType <em>Legacy Series Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.LegacySeriesType
-		 * @see Gtm.impl.GtmPackageImpl#getLegacySeriesType()
-		 * @generated
-		 */
-		EEnum LEGACY_SERIES_TYPE = eINSTANCE.getLegacySeriesType();
+		EEnum BARCODE_TYPES = eINSTANCE.getBarcodeTypes();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.ClassicClassType <em>Classic Class Type</em>}' enum.
@@ -13644,84 +19951,14 @@ public interface GtmPackage extends EPackage {
 		EEnum CLASSIC_CLASS_TYPE = eINSTANCE.getClassicClassType();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.TaxScope <em>Tax Scope</em>}' enum.
+		 * The meta object literal for the '{@link Gtm.Clusters <em>Clusters</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.TaxScope
-		 * @see Gtm.impl.GtmPackageImpl#getTaxScope()
+		 * @see Gtm.Clusters
+		 * @see Gtm.impl.GtmPackageImpl#getClusters()
 		 * @generated
 		 */
-		EEnum TAX_SCOPE = eINSTANCE.getTaxScope();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.FareType <em>Fare Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.FareType
-		 * @see Gtm.impl.GtmPackageImpl#getFareType()
-		 * @generated
-		 */
-		EEnum FARE_TYPE = eINSTANCE.getFareType();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.ReservationTravelClass <em>Reservation Travel Class</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.ReservationTravelClass
-		 * @see Gtm.impl.GtmPackageImpl#getReservationTravelClass()
-		 * @generated
-		 */
-		EEnum RESERVATION_TRAVEL_CLASS = eINSTANCE.getReservationTravelClass();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.ReservationServiceLevel <em>Reservation Service Level</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.ReservationServiceLevel
-		 * @see Gtm.impl.GtmPackageImpl#getReservationServiceLevel()
-		 * @generated
-		 */
-		EEnum RESERVATION_SERVICE_LEVEL = eINSTANCE.getReservationServiceLevel();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.TimeReferenceType <em>Time Reference Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.TimeReferenceType
-		 * @see Gtm.impl.GtmPackageImpl#getTimeReferenceType()
-		 * @generated
-		 */
-		EEnum TIME_REFERENCE_TYPE = eINSTANCE.getTimeReferenceType();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.TimeRangeScope <em>Time Range Scope</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.TimeRangeScope
-		 * @see Gtm.impl.GtmPackageImpl#getTimeRangeScope()
-		 * @generated
-		 */
-		EEnum TIME_RANGE_SCOPE = eINSTANCE.getTimeRangeScope();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.TimeUnit <em>Time Unit</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.TimeUnit
-		 * @see Gtm.impl.GtmPackageImpl#getTimeUnit()
-		 * @generated
-		 */
-		EEnum TIME_UNIT = eINSTANCE.getTimeUnit();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.WeekDay <em>Week Day</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.WeekDay
-		 * @see Gtm.impl.GtmPackageImpl#getWeekDay()
-		 * @generated
-		 */
-		EEnum WEEK_DAY = eINSTANCE.getWeekDay();
+		EEnum CLUSTERS = eINSTANCE.getClusters();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.CombinationModel <em>Combination Model</em>}' enum.
@@ -13734,14 +19971,34 @@ public interface GtmPackage extends EPackage {
 		EEnum COMBINATION_MODEL = eINSTANCE.getCombinationModel();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.Clusters <em>Clusters</em>}' enum.
+		 * The meta object literal for the '{@link Gtm.ControlDataExchangeTypes <em>Control Data Exchange Types</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.Clusters
-		 * @see Gtm.impl.GtmPackageImpl#getClusters()
+		 * @see Gtm.ControlDataExchangeTypes
+		 * @see Gtm.impl.GtmPackageImpl#getControlDataExchangeTypes()
 		 * @generated
 		 */
-		EEnum CLUSTERS = eINSTANCE.getClusters();
+		EEnum CONTROL_DATA_EXCHANGE_TYPES = eINSTANCE.getControlDataExchangeTypes();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.FareType <em>Fare Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.FareType
+		 * @see Gtm.impl.GtmPackageImpl#getFareType()
+		 * @generated
+		 */
+		EEnum FARE_TYPE = eINSTANCE.getFareType();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.FulfillmentType <em>Fulfillment Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.FulfillmentType
+		 * @see Gtm.impl.GtmPackageImpl#getFulfillmentType()
+		 * @generated
+		 */
+		EEnum FULFILLMENT_TYPE = eINSTANCE.getFulfillmentType();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.GeoSystem <em>Geo System</em>}' enum.
@@ -13764,6 +20021,16 @@ public interface GtmPackage extends EPackage {
 		EEnum GEO_UNIT = eINSTANCE.getGeoUnit();
 
 		/**
+		 * The meta object literal for the '{@link Gtm.GraphicalReservationType <em>Graphical Reservation Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.GraphicalReservationType
+		 * @see Gtm.impl.GtmPackageImpl#getGraphicalReservationType()
+		 * @generated
+		 */
+		EEnum GRAPHICAL_RESERVATION_TYPE = eINSTANCE.getGraphicalReservationType();
+
+		/**
 		 * The meta object literal for the '{@link Gtm.HemisphereEW <em>Hemisphere EW</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -13784,6 +20051,66 @@ public interface GtmPackage extends EPackage {
 		EEnum HEMISPHERE_NS = eINSTANCE.getHemisphereNS();
 
 		/**
+		 * The meta object literal for the '{@link Gtm.InterfaceType <em>Interface Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.InterfaceType
+		 * @see Gtm.impl.GtmPackageImpl#getInterfaceType()
+		 * @generated
+		 */
+		EEnum INTERFACE_TYPE = eINSTANCE.getInterfaceType();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.ReservationTravelClass <em>Reservation Travel Class</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.ReservationTravelClass
+		 * @see Gtm.impl.GtmPackageImpl#getReservationTravelClass()
+		 * @generated
+		 */
+		EEnum RESERVATION_TRAVEL_CLASS = eINSTANCE.getReservationTravelClass();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.ReservationServiceLevel <em>Reservation Service Level</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.ReservationServiceLevel
+		 * @see Gtm.impl.GtmPackageImpl#getReservationServiceLevel()
+		 * @generated
+		 */
+		EEnum RESERVATION_SERVICE_LEVEL = eINSTANCE.getReservationServiceLevel();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.ReservationService <em>Reservation Service</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.ReservationService
+		 * @see Gtm.impl.GtmPackageImpl#getReservationService()
+		 * @generated
+		 */
+		EEnum RESERVATION_SERVICE = eINSTANCE.getReservationService();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.ReservationBerthType <em>Reservation Berth Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.ReservationBerthType
+		 * @see Gtm.impl.GtmPackageImpl#getReservationBerthType()
+		 * @generated
+		 */
+		EEnum RESERVATION_BERTH_TYPE = eINSTANCE.getReservationBerthType();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.LegacyCalculationType <em>Legacy Calculation Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.LegacyCalculationType
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyCalculationType()
+		 * @generated
+		 */
+		EEnum LEGACY_CALCULATION_TYPE = eINSTANCE.getLegacyCalculationType();
+
+		/**
 		 * The meta object literal for the '{@link Gtm.LegacyPassengerType <em>Legacy Passenger Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -13794,24 +20121,34 @@ public interface GtmPackage extends EPackage {
 		EEnum LEGACY_PASSENGER_TYPE = eINSTANCE.getLegacyPassengerType();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.TravelerType <em>Traveler Type</em>}' enum.
+		 * The meta object literal for the '{@link Gtm.LegacySeriesType <em>Legacy Series Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.TravelerType
-		 * @see Gtm.impl.GtmPackageImpl#getTravelerType()
+		 * @see Gtm.LegacySeriesType
+		 * @see Gtm.impl.GtmPackageImpl#getLegacySeriesType()
 		 * @generated
 		 */
-		EEnum TRAVELER_TYPE = eINSTANCE.getTravelerType();
+		EEnum LEGACY_SERIES_TYPE = eINSTANCE.getLegacySeriesType();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.AfterSalesTransactionType <em>After Sales Transaction Type</em>}' enum.
+		 * The meta object literal for the '{@link Gtm.OfferRequestType <em>Offer Request Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.AfterSalesTransactionType
-		 * @see Gtm.impl.GtmPackageImpl#getAfterSalesTransactionType()
+		 * @see Gtm.OfferRequestType
+		 * @see Gtm.impl.GtmPackageImpl#getOfferRequestType()
 		 * @generated
 		 */
-		EEnum AFTER_SALES_TRANSACTION_TYPE = eINSTANCE.getAfterSalesTransactionType();
+		EEnum OFFER_REQUEST_TYPE = eINSTANCE.getOfferRequestType();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.OnlineServiceType <em>Online Service Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.OnlineServiceType
+		 * @see Gtm.impl.GtmPackageImpl#getOnlineServiceType()
+		 * @generated
+		 */
+		EEnum ONLINE_SERVICE_TYPE = eINSTANCE.getOnlineServiceType();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.PersonalDataItemsType <em>Personal Data Items Type</em>}' enum.
@@ -13844,64 +20181,84 @@ public interface GtmPackage extends EPackage {
 		EEnum PERSONAL_DATA_CHANGE_REASON = eINSTANCE.getPersonalDataChangeReason();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.OnlineServiceType <em>Online Service Type</em>}' enum.
+		 * The meta object literal for the '{@link Gtm.TaxScope <em>Tax Scope</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.OnlineServiceType
-		 * @see Gtm.impl.GtmPackageImpl#getOnlineServiceType()
+		 * @see Gtm.TaxScope
+		 * @see Gtm.impl.GtmPackageImpl#getTaxScope()
 		 * @generated
 		 */
-		EEnum ONLINE_SERVICE_TYPE = eINSTANCE.getOnlineServiceType();
+		EEnum TAX_SCOPE = eINSTANCE.getTaxScope();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.FulfillmentType <em>Fulfillment Type</em>}' enum.
+		 * The meta object literal for the '{@link Gtm.TimeReferenceType <em>Time Reference Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.FulfillmentType
-		 * @see Gtm.impl.GtmPackageImpl#getFulfillmentType()
+		 * @see Gtm.TimeReferenceType
+		 * @see Gtm.impl.GtmPackageImpl#getTimeReferenceType()
 		 * @generated
 		 */
-		EEnum FULFILLMENT_TYPE = eINSTANCE.getFulfillmentType();
+		EEnum TIME_REFERENCE_TYPE = eINSTANCE.getTimeReferenceType();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.BarcodeTypes <em>Barcode Types</em>}' enum.
+		 * The meta object literal for the '{@link Gtm.TimeRangeScope <em>Time Range Scope</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.BarcodeTypes
-		 * @see Gtm.impl.GtmPackageImpl#getBarcodeTypes()
+		 * @see Gtm.TimeRangeScope
+		 * @see Gtm.impl.GtmPackageImpl#getTimeRangeScope()
 		 * @generated
 		 */
-		EEnum BARCODE_TYPES = eINSTANCE.getBarcodeTypes();
+		EEnum TIME_RANGE_SCOPE = eINSTANCE.getTimeRangeScope();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.ControlDataExchangeTypes <em>Control Data Exchange Types</em>}' enum.
+		 * The meta object literal for the '{@link Gtm.TimeUnit <em>Time Unit</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.ControlDataExchangeTypes
-		 * @see Gtm.impl.GtmPackageImpl#getControlDataExchangeTypes()
+		 * @see Gtm.TimeUnit
+		 * @see Gtm.impl.GtmPackageImpl#getTimeUnit()
 		 * @generated
 		 */
-		EEnum CONTROL_DATA_EXCHANGE_TYPES = eINSTANCE.getControlDataExchangeTypes();
+		EEnum TIME_UNIT = eINSTANCE.getTimeUnit();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.OfferRequestType <em>Offer Request Type</em>}' enum.
+		 * The meta object literal for the '{@link Gtm.TravelerType <em>Traveler Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.OfferRequestType
-		 * @see Gtm.impl.GtmPackageImpl#getOfferRequestType()
+		 * @see Gtm.TravelerType
+		 * @see Gtm.impl.GtmPackageImpl#getTravelerType()
 		 * @generated
 		 */
-		EEnum OFFER_REQUEST_TYPE = eINSTANCE.getOfferRequestType();
+		EEnum TRAVELER_TYPE = eINSTANCE.getTravelerType();
 
 		/**
-		 * The meta object literal for the '{@link Gtm.InterfaceType <em>Interface Type</em>}' enum.
+		 * The meta object literal for the '{@link Gtm.WeekDay <em>Week Day</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gtm.InterfaceType
-		 * @see Gtm.impl.GtmPackageImpl#getInterfaceType()
+		 * @see Gtm.WeekDay
+		 * @see Gtm.impl.GtmPackageImpl#getWeekDay()
 		 * @generated
 		 */
-		EEnum INTERFACE_TYPE = eINSTANCE.getInterfaceType();
+		EEnum WEEK_DAY = eINSTANCE.getWeekDay();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.DataSource <em>Data Source</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.DataSource
+		 * @see Gtm.impl.GtmPackageImpl#getDataSource()
+		 * @generated
+		 */
+		EEnum DATA_SOURCE = eINSTANCE.getDataSource();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.ClassId <em>Class Id</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.ClassId
+		 * @see Gtm.impl.GtmPackageImpl#getClassId()
+		 * @generated
+		 */
+		EEnum CLASS_ID = eINSTANCE.getClassId();
 
 	}
 

@@ -16,9 +16,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.Delivery#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.Delivery#getPreviousDeliveryId <em>Previous Delivery Id</em>}</li>
  *   <li>{@link Gtm.Delivery#getReplacedDeliveryId <em>Replaced Delivery Id</em>}</li>
- *   <li>{@link Gtm.Delivery#getFareProvider <em>Fare Provider</em>}</li>
  *   <li>{@link Gtm.Delivery#isOptional <em>Optional</em>}</li>
  *   <li>{@link Gtm.Delivery#getProvider <em>Provider</em>}</li>
+ *   <li>{@link Gtm.Delivery#getSchemaVersion <em>Schema Version</em>}</li>
+ *   <li>{@link Gtm.Delivery#getAcceptedSchemaVersion <em>Accepted Schema Version</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getDelivery()
@@ -77,12 +78,12 @@ public interface Delivery extends EObject {
 	 * @return the value of the '<em>Replaced Delivery Id</em>' attribute.
 	 * @see #isSetReplacedDeliveryId()
 	 * @see #unsetReplacedDeliveryId()
-	 * @see #setReplacedDeliveryId(int)
+	 * @see #setReplacedDeliveryId(String)
 	 * @see Gtm.GtmPackage#getDelivery_ReplacedDeliveryId()
-	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int" required="true"
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
 	 * @generated
 	 */
-	int getReplacedDeliveryId();
+	String getReplacedDeliveryId();
 
 	/**
 	 * Sets the value of the '{@link Gtm.Delivery#getReplacedDeliveryId <em>Replaced Delivery Id</em>}' attribute.
@@ -94,7 +95,7 @@ public interface Delivery extends EObject {
 	 * @see #getReplacedDeliveryId()
 	 * @generated
 	 */
-	void setReplacedDeliveryId(int value);
+	void setReplacedDeliveryId(String value);
 
 	/**
 	 * Unsets the value of the '{@link Gtm.Delivery#getReplacedDeliveryId <em>Replaced Delivery Id</em>}' attribute.
@@ -102,7 +103,7 @@ public interface Delivery extends EObject {
 	 * <!-- end-user-doc -->
 	 * @see #isSetReplacedDeliveryId()
 	 * @see #getReplacedDeliveryId()
-	 * @see #setReplacedDeliveryId(int)
+	 * @see #setReplacedDeliveryId(String)
 	 * @generated
 	 */
 	void unsetReplacedDeliveryId();
@@ -114,32 +115,10 @@ public interface Delivery extends EObject {
 	 * @return whether the value of the '<em>Replaced Delivery Id</em>' attribute is set.
 	 * @see #unsetReplacedDeliveryId()
 	 * @see #getReplacedDeliveryId()
-	 * @see #setReplacedDeliveryId(int)
+	 * @see #setReplacedDeliveryId(String)
 	 * @generated
 	 */
 	boolean isSetReplacedDeliveryId();
-
-	/**
-	 * Returns the value of the '<em><b>Fare Provider</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Fare Provider</em>' attribute.
-	 * @see #setFareProvider(String)
-	 * @see Gtm.GtmPackage#getDelivery_FareProvider()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-	 * @generated
-	 */
-	String getFareProvider();
-
-	/**
-	 * Sets the value of the '{@link Gtm.Delivery#getFareProvider <em>Fare Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Fare Provider</em>' attribute.
-	 * @see #getFareProvider()
-	 * @generated
-	 */
-	void setFareProvider(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Optional</b></em>' attribute.
@@ -212,5 +191,55 @@ public interface Delivery extends EObject {
 	 * @generated
 	 */
 	void setProvider(Carrier value);
+
+	/**
+	 * Returns the value of the '<em><b>Schema Version</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gtm.SchemaVersion}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Schema Version</em>' attribute.
+	 * @see Gtm.SchemaVersion
+	 * @see #setSchemaVersion(SchemaVersion)
+	 * @see Gtm.GtmPackage#getDelivery_SchemaVersion()
+	 * @model
+	 * @generated
+	 */
+	SchemaVersion getSchemaVersion();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Delivery#getSchemaVersion <em>Schema Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Schema Version</em>' attribute.
+	 * @see Gtm.SchemaVersion
+	 * @see #getSchemaVersion()
+	 * @generated
+	 */
+	void setSchemaVersion(SchemaVersion value);
+
+	/**
+	 * Returns the value of the '<em><b>Accepted Schema Version</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gtm.SchemaVersion}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Accepted Schema Version</em>' attribute.
+	 * @see Gtm.SchemaVersion
+	 * @see #setAcceptedSchemaVersion(SchemaVersion)
+	 * @see Gtm.GtmPackage#getDelivery_AcceptedSchemaVersion()
+	 * @model
+	 * @generated
+	 */
+	SchemaVersion getAcceptedSchemaVersion();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Delivery#getAcceptedSchemaVersion <em>Accepted Schema Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Accepted Schema Version</em>' attribute.
+	 * @see Gtm.SchemaVersion
+	 * @see #getAcceptedSchemaVersion()
+	 * @generated
+	 */
+	void setAcceptedSchemaVersion(SchemaVersion value);
 
 } // Delivery
