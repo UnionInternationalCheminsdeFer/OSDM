@@ -78,105 +78,33 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.GENERAL_TARIFF_MODEL: {
-				GeneralTariffModel generalTariffModel = (GeneralTariffModel)theEObject;
-				T result = caseGeneralTariffModel(generalTariffModel);
+			case GtmPackage.NUTS_CODES: {
+				NUTSCodes nutsCodes = (NUTSCodes)theEObject;
+				T result = caseNUTSCodes(nutsCodes);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.CONVERSION_FROM_LEGACY: {
-				ConversionFromLegacy conversionFromLegacy = (ConversionFromLegacy)theEObject;
-				T result = caseConversionFromLegacy(conversionFromLegacy);
+			case GtmPackage.NUTS_CODE: {
+				NutsCode nutsCode = (NutsCode)theEObject;
+				T result = caseNutsCode(nutsCode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.FARE_STRUCTURE: {
-				FareStructure fareStructure = (FareStructure)theEObject;
-				T result = caseFareStructure(fareStructure);
+			case GtmPackage.SERVICE_BRANDS: {
+				ServiceBrands serviceBrands = (ServiceBrands)theEObject;
+				T result = caseServiceBrands(serviceBrands);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.DELIVERY: {
-				Delivery delivery = (Delivery)theEObject;
-				T result = caseDelivery(delivery);
+			case GtmPackage.SERVICE_BRAND: {
+				ServiceBrand serviceBrand = (ServiceBrand)theEObject;
+				T result = caseServiceBrand(serviceBrand);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.BORDER_POINTS: {
-				BorderPoints borderPoints = (BorderPoints)theEObject;
-				T result = caseBorderPoints(borderPoints);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.CALENDAR: {
-				Calendar calendar = (Calendar)theEObject;
-				T result = caseCalendar(calendar);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.CARRIER: {
-				Carrier carrier = (Carrier)theEObject;
-				T result = caseCarrier(carrier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.COVERSION_PARAMS: {
-				CoversionParams coversionParams = (CoversionParams)theEObject;
-				T result = caseCoversionParams(coversionParams);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.LEGACY_DESCRIPTION: {
-				LegacyDescription legacyDescription = (LegacyDescription)theEObject;
-				T result = caseLegacyDescription(legacyDescription);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.LEGACY_DISTANCE_FARE: {
-				LegacyDistanceFare legacyDistanceFare = (LegacyDistanceFare)theEObject;
-				T result = caseLegacyDistanceFare(legacyDistanceFare);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.LEGACY_FARES: {
-				LegacyFares legacyFares = (LegacyFares)theEObject;
-				T result = caseLegacyFares(legacyFares);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.LEGACY108: {
-				Legacy108 legacy108 = (Legacy108)theEObject;
-				T result = caseLegacy108(legacy108);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.LEGACY_ROUTE_FARE: {
-				LegacyRouteFare legacyRouteFare = (LegacyRouteFare)theEObject;
-				T result = caseLegacyRouteFare(legacyRouteFare);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.LEGACY_SERIES: {
-				LegacySeries legacySeries = (LegacySeries)theEObject;
-				T result = caseLegacySeries(legacySeries);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.LEGACY_VIASTATION: {
-				LegacyViastation legacyViastation = (LegacyViastation)theEObject;
-				T result = caseLegacyViastation(legacyViastation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.LEGACY_STATION_MAP: {
-				LegacyStationMap legacyStationMap = (LegacyStationMap)theEObject;
-				T result = caseLegacyStationMap(legacyStationMap);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.CARRIER_CONSTRAINT: {
-				CarrierConstraint carrierConstraint = (CarrierConstraint)theEObject;
-				T result = caseCarrierConstraint(carrierConstraint);
+			case GtmPackage.COUNTRIES: {
+				Countries countries = (Countries)theEObject;
+				T result = caseCountries(countries);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -186,21 +114,9 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.CONNECTION_POINT: {
-				ConnectionPoint connectionPoint = (ConnectionPoint)theEObject;
-				T result = caseConnectionPoint(connectionPoint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.CURRENCY: {
-				Currency currency = (Currency)theEObject;
-				T result = caseCurrency(currency);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.CURRENCY_PRICE: {
-				CurrencyPrice currencyPrice = (CurrencyPrice)theEObject;
-				T result = caseCurrencyPrice(currencyPrice);
+			case GtmPackage.LANGUAGES: {
+				Languages languages = (Languages)theEObject;
+				T result = caseLanguages(languages);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -210,9 +126,294 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.PRICE: {
-				Price price = (Price)theEObject;
-				T result = casePrice(price);
+			case GtmPackage.CURRENCIES: {
+				Currencies currencies = (Currencies)theEObject;
+				T result = caseCurrencies(currencies);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.CURRENCY: {
+				Currency currency = (Currency)theEObject;
+				T result = caseCurrency(currency);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.STATIONS: {
+				Stations stations = (Stations)theEObject;
+				T result = caseStations(stations);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.STATION: {
+				Station station = (Station)theEObject;
+				T result = caseStation(station);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.CARRIER: {
+				Carrier carrier = (Carrier)theEObject;
+				T result = caseCarrier(carrier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.CARRIERS: {
+				Carriers carriers = (Carriers)theEObject;
+				T result = caseCarriers(carriers);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.GENERAL_TARIFF_MODEL: {
+				GeneralTariffModel generalTariffModel = (GeneralTariffModel)theEObject;
+				T result = caseGeneralTariffModel(generalTariffModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.DELIVERY: {
+				Delivery delivery = (Delivery)theEObject;
+				T result = caseDelivery(delivery);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.AFTER_SALES_RULES: {
+				AfterSalesRules afterSalesRules = (AfterSalesRules)theEObject;
+				T result = caseAfterSalesRules(afterSalesRules);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.AFTER_SALES_RULE: {
+				AfterSalesRule afterSalesRule = (AfterSalesRule)theEObject;
+				T result = caseAfterSalesRule(afterSalesRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.AFTER_SALES_CONDITION: {
+				AfterSalesCondition afterSalesCondition = (AfterSalesCondition)theEObject;
+				T result = caseAfterSalesCondition(afterSalesCondition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.APPLICATION_TIME: {
+				ApplicationTime applicationTime = (ApplicationTime)theEObject;
+				T result = caseApplicationTime(applicationTime);
+				if (result == null) result = caseRelativeTime(applicationTime);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.FARE_STRUCTURE: {
+				FareStructure fareStructure = (FareStructure)theEObject;
+				T result = caseFareStructure(fareStructure);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.CONNECTION_POINTS: {
+				ConnectionPoints connectionPoints = (ConnectionPoints)theEObject;
+				T result = caseConnectionPoints(connectionPoints);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.CONNECTION_POINT: {
+				ConnectionPoint connectionPoint = (ConnectionPoint)theEObject;
+				T result = caseConnectionPoint(connectionPoint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.STATION_SET: {
+				StationSet stationSet = (StationSet)theEObject;
+				T result = caseStationSet(stationSet);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.FARE_RESOURCE_LOCATIONS: {
+				FareResourceLocations fareResourceLocations = (FareResourceLocations)theEObject;
+				T result = caseFareResourceLocations(fareResourceLocations);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.TRAIN_RESOURCE_LOCATIONS: {
+				TrainResourceLocations trainResourceLocations = (TrainResourceLocations)theEObject;
+				T result = caseTrainResourceLocations(trainResourceLocations);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.STATION_RESOURCE_LOCATIONS: {
+				StationResourceLocations stationResourceLocations = (StationResourceLocations)theEObject;
+				T result = caseStationResourceLocations(stationResourceLocations);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.CARRIER_RESOURCE_LOCATIONS: {
+				CarrierResourceLocations carrierResourceLocations = (CarrierResourceLocations)theEObject;
+				T result = caseCarrierResourceLocations(carrierResourceLocations);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.TRAIN_RESOURCE_LOCATION: {
+				TrainResourceLocation trainResourceLocation = (TrainResourceLocation)theEObject;
+				T result = caseTrainResourceLocation(trainResourceLocation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.STATION_RESOURCE_LOCATION: {
+				StationResourceLocation stationResourceLocation = (StationResourceLocation)theEObject;
+				T result = caseStationResourceLocation(stationResourceLocation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.ONLINE_RESOURCE: {
+				OnlineResource onlineResource = (OnlineResource)theEObject;
+				T result = caseOnlineResource(onlineResource);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.FULFILLMENT_CONSTRAINTS: {
+				FulfillmentConstraints fulfillmentConstraints = (FulfillmentConstraints)theEObject;
+				T result = caseFulfillmentConstraints(fulfillmentConstraints);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.SUPPORTED_ONLINE_SERVICES: {
+				SupportedOnlineServices supportedOnlineServices = (SupportedOnlineServices)theEObject;
+				T result = caseSupportedOnlineServices(supportedOnlineServices);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.ZONE_DEFINITIONS: {
+				ZoneDefinitions zoneDefinitions = (ZoneDefinitions)theEObject;
+				T result = caseZoneDefinitions(zoneDefinitions);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.FARE_ELEMENT: {
+				FareElement fareElement = (FareElement)theEObject;
+				T result = caseFareElement(fareElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_ACCOUNTING_IDENTIFIER: {
+				LegacyAccountingIdentifier legacyAccountingIdentifier = (LegacyAccountingIdentifier)theEObject;
+				T result = caseLegacyAccountingIdentifier(legacyAccountingIdentifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.REDUCTION_CONSTRAINTS: {
+				ReductionConstraints reductionConstraints = (ReductionConstraints)theEObject;
+				T result = caseReductionConstraints(reductionConstraints);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.FARE_ELEMENTS: {
+				FareElements fareElements = (FareElements)theEObject;
+				T result = caseFareElements(fareElements);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.PERSONAL_DATA_CONSTRAINTS: {
+				PersonalDataConstraints personalDataConstraints = (PersonalDataConstraints)theEObject;
+				T result = casePersonalDataConstraints(personalDataConstraints);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.PERSONAL_DATA_CONSTRAINT: {
+				PersonalDataConstraint personalDataConstraint = (PersonalDataConstraint)theEObject;
+				T result = casePersonalDataConstraint(personalDataConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.REQUIRED_PERSONAL_DATA: {
+				RequiredPersonalData requiredPersonalData = (RequiredPersonalData)theEObject;
+				T result = caseRequiredPersonalData(requiredPersonalData);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.ALLOWED_PERSONAL_DATA_CHANGES: {
+				AllowedPersonalDataChanges allowedPersonalDataChanges = (AllowedPersonalDataChanges)theEObject;
+				T result = caseAllowedPersonalDataChanges(allowedPersonalDataChanges);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.PASSENGER_CONSTRAINTS: {
+				PassengerConstraints passengerConstraints = (PassengerConstraints)theEObject;
+				T result = casePassengerConstraints(passengerConstraints);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.PASSENGER_CONSTRAINT: {
+				PassengerConstraint passengerConstraint = (PassengerConstraint)theEObject;
+				T result = casePassengerConstraint(passengerConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.INCLUDED_FREE_PASSENGERS: {
+				IncludedFreePassengers includedFreePassengers = (IncludedFreePassengers)theEObject;
+				T result = caseIncludedFreePassengers(includedFreePassengers);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.PASSENGER_COMBINATION_CONSTRAINT: {
+				PassengerCombinationConstraint passengerCombinationConstraint = (PassengerCombinationConstraint)theEObject;
+				T result = casePassengerCombinationConstraint(passengerCombinationConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.COMBINATION_CONSTRAINTS: {
+				CombinationConstraints combinationConstraints = (CombinationConstraints)theEObject;
+				T result = caseCombinationConstraints(combinationConstraints);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.COMBINATION_CONSTRAINT: {
+				CombinationConstraint combinationConstraint = (CombinationConstraint)theEObject;
+				T result = caseCombinationConstraint(combinationConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINTS: {
+				TravelValidityConstraints travelValidityConstraints = (TravelValidityConstraints)theEObject;
+				T result = caseTravelValidityConstraints(travelValidityConstraints);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT: {
+				TravelValidityConstraint travelValidityConstraint = (TravelValidityConstraint)theEObject;
+				T result = caseTravelValidityConstraint(travelValidityConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.SALES_AVAILABILITY_CONSTRAINTS: {
+				SalesAvailabilityConstraints salesAvailabilityConstraints = (SalesAvailabilityConstraints)theEObject;
+				T result = caseSalesAvailabilityConstraints(salesAvailabilityConstraints);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.SALES_AVAILABILITY_CONSTRAINT: {
+				SalesAvailabilityConstraint salesAvailabilityConstraint = (SalesAvailabilityConstraint)theEObject;
+				T result = caseSalesAvailabilityConstraint(salesAvailabilityConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.SALES_RESTRICTION: {
+				SalesRestriction salesRestriction = (SalesRestriction)theEObject;
+				T result = caseSalesRestriction(salesRestriction);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.END_OF_SALE: {
+				EndOfSale endOfSale = (EndOfSale)theEObject;
+				T result = caseEndOfSale(endOfSale);
+				if (result == null) result = caseRelativeTime(endOfSale);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.START_OF_SALE: {
+				StartOfSale startOfSale = (StartOfSale)theEObject;
+				T result = caseStartOfSale(startOfSale);
+				if (result == null) result = caseRelativeTime(startOfSale);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.REDUCTION_CARDS: {
+				ReductionCards reductionCards = (ReductionCards)theEObject;
+				T result = caseReductionCards(reductionCards);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -222,9 +423,117 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GtmPackage.CARRIER_CONSTRAINTS: {
+				CarrierConstraints carrierConstraints = (CarrierConstraints)theEObject;
+				T result = caseCarrierConstraints(carrierConstraints);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.CARRIER_CONSTRAINT: {
+				CarrierConstraint carrierConstraint = (CarrierConstraint)theEObject;
+				T result = caseCarrierConstraint(carrierConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.SERVICE_CONSTRAINTS: {
+				ServiceConstraints serviceConstraints = (ServiceConstraints)theEObject;
+				T result = caseServiceConstraints(serviceConstraints);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.SERVICE_CONSTRAINT: {
+				ServiceConstraint serviceConstraint = (ServiceConstraint)theEObject;
+				T result = caseServiceConstraint(serviceConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.REGIONAL_CONSTRAINTS: {
+				RegionalConstraints regionalConstraints = (RegionalConstraints)theEObject;
+				T result = caseRegionalConstraints(regionalConstraints);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GtmPackage.REGIONAL_CONSTRAINT: {
 				RegionalConstraint regionalConstraint = (RegionalConstraint)theEObject;
 				T result = caseRegionalConstraint(regionalConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.REGIONAL_VALIDITY: {
+				RegionalValidity regionalValidity = (RegionalValidity)theEObject;
+				T result = caseRegionalValidity(regionalValidity);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.SERVICE_LEVEL_DEFINITIONS: {
+				ServiceLevelDefinitions serviceLevelDefinitions = (ServiceLevelDefinitions)theEObject;
+				T result = caseServiceLevelDefinitions(serviceLevelDefinitions);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.TEXTS: {
+				Texts texts = (Texts)theEObject;
+				T result = caseTexts(texts);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.TEXT: {
+				Text text = (Text)theEObject;
+				T result = caseText(text);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.TRANSLATION: {
+				Translation translation = (Translation)theEObject;
+				T result = caseTranslation(translation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.PRICES: {
+				Prices prices = (Prices)theEObject;
+				T result = casePrices(prices);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.PRICE: {
+				Price price = (Price)theEObject;
+				T result = casePrice(price);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.VAT_DETAIL: {
+				VATDetail vatDetail = (VATDetail)theEObject;
+				T result = caseVATDetail(vatDetail);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.CURRENCY_PRICE: {
+				CurrencyPrice currencyPrice = (CurrencyPrice)theEObject;
+				T result = caseCurrencyPrice(currencyPrice);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.SERVICE_CLASS_DEFINITIONS: {
+				ServiceClassDefinitions serviceClassDefinitions = (ServiceClassDefinitions)theEObject;
+				T result = caseServiceClassDefinitions(serviceClassDefinitions);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.CALENDARS: {
+				Calendars calendars = (Calendars)theEObject;
+				T result = caseCalendars(calendars);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.CALENDAR: {
+				Calendar calendar = (Calendar)theEObject;
+				T result = caseCalendar(calendar);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.RESERVATION_PARAMETERS: {
+				ReservationParameters reservationParameters = (ReservationParameters)theEObject;
+				T result = caseReservationParameters(reservationParameters);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -246,9 +555,9 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.RESERVATION_PREFERENCE: {
-				ReservationPreference reservationPreference = (ReservationPreference)theEObject;
-				T result = caseReservationPreference(reservationPreference);
+			case GtmPackage.RESERVATION_PREFERENCE_GROUP: {
+				ReservationPreferenceGroup reservationPreferenceGroup = (ReservationPreferenceGroup)theEObject;
+				T result = caseReservationPreferenceGroup(reservationPreferenceGroup);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -264,87 +573,16 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.SERVICE_CONSTRAINT: {
-				ServiceConstraint serviceConstraint = (ServiceConstraint)theEObject;
-				T result = caseServiceConstraint(serviceConstraint);
+			case GtmPackage.TIME_RANGE: {
+				TimeRange timeRange = (TimeRange)theEObject;
+				T result = caseTimeRange(timeRange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.STATION: {
-				Station station = (Station)theEObject;
-				T result = caseStation(station);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.STATIONS_TYPE: {
-				StationsType stationsType = (StationsType)theEObject;
-				T result = caseStationsType(stationsType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.TARGET_FARE_TEMPLATE: {
-				TargetFareTemplate targetFareTemplate = (TargetFareTemplate)theEObject;
-				T result = caseTargetFareTemplate(targetFareTemplate);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT: {
-				TravelValidityConstraint travelValidityConstraint = (TravelValidityConstraint)theEObject;
-				T result = caseTravelValidityConstraint(travelValidityConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.TEXT: {
-				Text text = (Text)theEObject;
-				T result = caseText(text);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.TRANSLATION: {
-				Translation translation = (Translation)theEObject;
-				T result = caseTranslation(translation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.VAT_DETAIL: {
-				VATDetail vatDetail = (VATDetail)theEObject;
-				T result = caseVATDetail(vatDetail);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.FARE_ELEMENT: {
-				FareElement fareElement = (FareElement)theEObject;
-				T result = caseFareElement(fareElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.SERVICE_BRAND: {
-				ServiceBrand serviceBrand = (ServiceBrand)theEObject;
-				T result = caseServiceBrand(serviceBrand);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.SALES_AVAILABILITY_CONSTRAINT: {
-				SalesAvailabilityConstraint salesAvailabilityConstraint = (SalesAvailabilityConstraint)theEObject;
-				T result = caseSalesAvailabilityConstraint(salesAvailabilityConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.SALES_RESTRICTION: {
-				SalesRestriction salesRestriction = (SalesRestriction)theEObject;
-				T result = caseSalesRestriction(salesRestriction);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.TIME_REFERENCE: {
-				TimeReference timeReference = (TimeReference)theEObject;
-				T result = caseTimeReference(timeReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.COMBINATION_CONSTRAINT: {
-				CombinationConstraint combinationConstraint = (CombinationConstraint)theEObject;
-				T result = caseCombinationConstraint(combinationConstraint);
+			case GtmPackage.EXCLUDED_TIME_RANGE: {
+				ExcludedTimeRange excludedTimeRange = (ExcludedTimeRange)theEObject;
+				T result = caseExcludedTimeRange(excludedTimeRange);
+				if (result == null) result = caseTimeRange(excludedTimeRange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -354,9 +592,9 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.TIME_RANGE: {
-				TimeRange timeRange = (TimeRange)theEObject;
-				T result = caseTimeRange(timeRange);
+			case GtmPackage.RELATIVE_TIME: {
+				RelativeTime relativeTime = (RelativeTime)theEObject;
+				T result = caseRelativeTime(relativeTime);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -366,21 +604,21 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.FARE_COMBINATION_MODEL: {
-				FareCombinationModel fareCombinationModel = (FareCombinationModel)theEObject;
-				T result = caseFareCombinationModel(fareCombinationModel);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.REGIONAL_VALIDITY: {
-				RegionalValidity regionalValidity = (RegionalValidity)theEObject;
-				T result = caseRegionalValidity(regionalValidity);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case GtmPackage.VIA_STATION: {
 				ViaStation viaStation = (ViaStation)theEObject;
 				T result = caseViaStation(viaStation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.ALTERNATIVE_ROUTE: {
+				AlternativeRoute alternativeRoute = (AlternativeRoute)theEObject;
+				T result = caseAlternativeRoute(alternativeRoute);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.ROUTE: {
+				Route route = (Route)theEObject;
+				T result = caseRoute(route);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -390,9 +628,9 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.NUTS_CODE: {
-				NutsCode nutsCode = (NutsCode)theEObject;
-				T result = caseNutsCode(nutsCode);
+			case GtmPackage.ZONE_DEFINITION: {
+				ZoneDefinition zoneDefinition = (ZoneDefinition)theEObject;
+				T result = caseZoneDefinition(zoneDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -414,51 +652,9 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.PASSENGER_CONSTRAINT: {
-				PassengerConstraint passengerConstraint = (PassengerConstraint)theEObject;
-				T result = casePassengerConstraint(passengerConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.PASSENGER_COMBINATION_CONSTRAINT: {
-				PassengerCombinationConstraint passengerCombinationConstraint = (PassengerCombinationConstraint)theEObject;
-				T result = casePassengerCombinationConstraint(passengerCombinationConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.RELATIVE_TIME: {
-				RelativeTime relativeTime = (RelativeTime)theEObject;
-				T result = caseRelativeTime(relativeTime);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.ZONE_DEFINITION: {
-				ZoneDefinition zoneDefinition = (ZoneDefinition)theEObject;
-				T result = caseZoneDefinition(zoneDefinition);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.AFTER_SALES_CONDITION: {
-				AfterSalesCondition afterSalesCondition = (AfterSalesCondition)theEObject;
-				T result = caseAfterSalesCondition(afterSalesCondition);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.AFTER_SALES_RULE: {
-				AfterSalesRule afterSalesRule = (AfterSalesRule)theEObject;
-				T result = caseAfterSalesRule(afterSalesRule);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.PERSONAL_DATA_CONSTRAINT: {
-				PersonalDataConstraint personalDataConstraint = (PersonalDataConstraint)theEObject;
-				T result = casePersonalDataConstraint(personalDataConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.REQUIRED_PERSONAL_DATA: {
-				RequiredPersonalData requiredPersonalData = (RequiredPersonalData)theEObject;
-				T result = caseRequiredPersonalData(requiredPersonalData);
+			case GtmPackage.CARRIER_RESOURCE_LOCATION: {
+				CarrierResourceLocation carrierResourceLocation = (CarrierResourceLocation)theEObject;
+				T result = caseCarrierResourceLocation(carrierResourceLocation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -468,9 +664,27 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.ALLOWED_PERSONAL_DATA_CHANGES: {
-				AllowedPersonalDataChanges allowedPersonalDataChanges = (AllowedPersonalDataChanges)theEObject;
-				T result = caseAllowedPersonalDataChanges(allowedPersonalDataChanges);
+			case GtmPackage.FARE_COMBINATION_MODEL: {
+				FareCombinationModel fareCombinationModel = (FareCombinationModel)theEObject;
+				T result = caseFareCombinationModel(fareCombinationModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.FULFILLMENT_CONSTRAINT: {
+				FulfillmentConstraint fulfillmentConstraint = (FulfillmentConstraint)theEObject;
+				T result = caseFulfillmentConstraint(fulfillmentConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.REQUIRED_BARCODES: {
+				RequiredBarcodes requiredBarcodes = (RequiredBarcodes)theEObject;
+				T result = caseRequiredBarcodes(requiredBarcodes);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.ACCEPTED_BARCODES: {
+				AcceptedBarcodes acceptedBarcodes = (AcceptedBarcodes)theEObject;
+				T result = caseAcceptedBarcodes(acceptedBarcodes);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -486,39 +700,159 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.FULFILLMENT_CONSTRAINT: {
-				FulfillmentConstraint fulfillmentConstraint = (FulfillmentConstraint)theEObject;
-				T result = caseFulfillmentConstraint(fulfillmentConstraint);
+			case GtmPackage.CONVERSION_FROM_LEGACY: {
+				ConversionFromLegacy conversionFromLegacy = (ConversionFromLegacy)theEObject;
+				T result = caseConversionFromLegacy(conversionFromLegacy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.FARE_RESOURCE_LOCATION: {
-				FareResourceLocation fareResourceLocation = (FareResourceLocation)theEObject;
-				T result = caseFareResourceLocation(fareResourceLocation);
+			case GtmPackage.CONVERSION_PARAMS: {
+				ConversionParams conversionParams = (ConversionParams)theEObject;
+				T result = caseConversionParams(conversionParams);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.TRAIN_RESOURCE_LOCATION: {
-				TrainResourceLocation trainResourceLocation = (TrainResourceLocation)theEObject;
-				T result = caseTrainResourceLocation(trainResourceLocation);
+			case GtmPackage.TARGET_FARE_TEMPLATE: {
+				TargetFareTemplate targetFareTemplate = (TargetFareTemplate)theEObject;
+				T result = caseTargetFareTemplate(targetFareTemplate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.CARRIER_RESOURCE_LOCATION: {
-				CarrierResourceLocation carrierResourceLocation = (CarrierResourceLocation)theEObject;
-				T result = caseCarrierResourceLocation(carrierResourceLocation);
+			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS: {
+				LegacyStationToServiceConstraintMappings legacyStationToServiceConstraintMappings = (LegacyStationToServiceConstraintMappings)theEObject;
+				T result = caseLegacyStationToServiceConstraintMappings(legacyStationToServiceConstraintMappings);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.STATION_RESOURCE_LOCATION: {
-				StationResourceLocation stationResourceLocation = (StationResourceLocation)theEObject;
-				T result = caseStationResourceLocation(stationResourceLocation);
+			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING: {
+				LegacyStationToServiceConstraintMapping legacyStationToServiceConstraintMapping = (LegacyStationToServiceConstraintMapping)theEObject;
+				T result = caseLegacyStationToServiceConstraintMapping(legacyStationToServiceConstraintMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.ONLINE_RESOURCE: {
-				OnlineResource onlineResource = (OnlineResource)theEObject;
-				T result = caseOnlineResource(onlineResource);
+			case GtmPackage.LEGACY_STATION_MAPPINGS: {
+				LegacyStationMappings legacyStationMappings = (LegacyStationMappings)theEObject;
+				T result = caseLegacyStationMappings(legacyStationMappings);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_STATION_MAP: {
+				LegacyStationMap legacyStationMap = (LegacyStationMap)theEObject;
+				T result = caseLegacyStationMap(legacyStationMap);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_STATION: {
+				LegacyStation legacyStation = (LegacyStation)theEObject;
+				T result = caseLegacyStation(legacyStation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_BODER_POINT_MAPPINGS: {
+				LegacyBoderPointMappings legacyBoderPointMappings = (LegacyBoderPointMappings)theEObject;
+				T result = caseLegacyBoderPointMappings(legacyBoderPointMappings);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_BORDER_POINT_MAPPING: {
+				LegacyBorderPointMapping legacyBorderPointMapping = (LegacyBorderPointMapping)theEObject;
+				T result = caseLegacyBorderPointMapping(legacyBorderPointMapping);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_DESCRIPTION: {
+				LegacyDescription legacyDescription = (LegacyDescription)theEObject;
+				T result = caseLegacyDescription(legacyDescription);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_ZONE_MAPPINGS: {
+				LegacyZoneMappings legacyZoneMappings = (LegacyZoneMappings)theEObject;
+				T result = caseLegacyZoneMappings(legacyZoneMappings);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_ZONE_MAP: {
+				LegacyZoneMap legacyZoneMap = (LegacyZoneMap)theEObject;
+				T result = caseLegacyZoneMap(legacyZoneMap);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_FARES: {
+				LegacyFares legacyFares = (LegacyFares)theEObject;
+				T result = caseLegacyFares(legacyFares);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_FARE: {
+				LegacyFare legacyFare = (LegacyFare)theEObject;
+				T result = caseLegacyFare(legacyFare);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY108: {
+				Legacy108 legacy108 = (Legacy108)theEObject;
+				T result = caseLegacy108(legacy108);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY108_STATIONS: {
+				Legacy108Stations legacy108Stations = (Legacy108Stations)theEObject;
+				T result = caseLegacy108Stations(legacy108Stations);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY108_STATION: {
+				Legacy108Station legacy108Station = (Legacy108Station)theEObject;
+				T result = caseLegacy108Station(legacy108Station);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_ROUTE_FARES: {
+				LegacyRouteFares legacyRouteFares = (LegacyRouteFares)theEObject;
+				T result = caseLegacyRouteFares(legacyRouteFares);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_ROUTE_FARE: {
+				LegacyRouteFare legacyRouteFare = (LegacyRouteFare)theEObject;
+				T result = caseLegacyRouteFare(legacyRouteFare);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_SERIES: {
+				LegacySeries legacySeries = (LegacySeries)theEObject;
+				T result = caseLegacySeries(legacySeries);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_SERIES_LIST: {
+				LegacySeriesList legacySeriesList = (LegacySeriesList)theEObject;
+				T result = caseLegacySeriesList(legacySeriesList);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_DISTANCE_FARES: {
+				LegacyDistanceFares legacyDistanceFares = (LegacyDistanceFares)theEObject;
+				T result = caseLegacyDistanceFares(legacyDistanceFares);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_DISTANCE_FARE: {
+				LegacyDistanceFare legacyDistanceFare = (LegacyDistanceFare)theEObject;
+				T result = caseLegacyDistanceFare(legacyDistanceFare);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_VIASTATION: {
+				LegacyViastation legacyViastation = (LegacyViastation)theEObject;
+				T result = caseLegacyViastation(legacyViastation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_TARGET_FARES: {
+				LegacyTargetFares legacyTargetFares = (LegacyTargetFares)theEObject;
+				T result = caseLegacyTargetFares(legacyTargetFares);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -557,6 +891,111 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>NUTS Codes</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>NUTS Codes</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNUTSCodes(NUTSCodes object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Service Brands</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Service Brands</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseServiceBrands(ServiceBrands object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Languages</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Languages</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLanguages(Languages object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Currencies</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Currencies</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCurrencies(Currencies object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Countries</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Countries</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCountries(Countries object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Stations</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Stations</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStations(Stations object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Carriers</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Carriers</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCarriers(Carriers object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>General Tariff Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -587,6 +1026,21 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conversion Params</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conversion Params</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConversionParams(ConversionParams object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Fare Structure</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -602,6 +1056,396 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Connection Points</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Connection Points</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConnectionPoints(ConnectionPoints object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fare Resource Locations</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fare Resource Locations</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFareResourceLocations(FareResourceLocations object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Train Resource Locations</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Train Resource Locations</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTrainResourceLocations(TrainResourceLocations object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Station Resource Locations</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Station Resource Locations</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStationResourceLocations(StationResourceLocations object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Carrier Resource Locations</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Carrier Resource Locations</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCarrierResourceLocations(CarrierResourceLocations object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fulfillment Constraints</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fulfillment Constraints</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFulfillmentConstraints(FulfillmentConstraints object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Supported Online Services</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Supported Online Services</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSupportedOnlineServices(SupportedOnlineServices object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Zone Definitions</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Zone Definitions</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseZoneDefinitions(ZoneDefinitions object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reduction Constraints</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reduction Constraints</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReductionConstraints(ReductionConstraints object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Personal Data Constraints</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Personal Data Constraints</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePersonalDataConstraints(PersonalDataConstraints object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Passenger Constraints</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Passenger Constraints</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePassengerConstraints(PassengerConstraints object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Combination Constraints</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Combination Constraints</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCombinationConstraints(CombinationConstraints object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Travel Validity Constraints</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Travel Validity Constraints</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTravelValidityConstraints(TravelValidityConstraints object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sales Availability Constraints</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sales Availability Constraints</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSalesAvailabilityConstraints(SalesAvailabilityConstraints object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reduction Cards</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reduction Cards</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReductionCards(ReductionCards object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Carrier Constraints</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Carrier Constraints</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCarrierConstraints(CarrierConstraints object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Service Constraints</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Service Constraints</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseServiceConstraints(ServiceConstraints object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reservation Parameters</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reservation Parameters</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReservationParameters(ReservationParameters object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Regional Constraints</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Regional Constraints</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRegionalConstraints(RegionalConstraints object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Service Level Definitions</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Service Level Definitions</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseServiceLevelDefinitions(ServiceLevelDefinitions object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Texts</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Texts</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTexts(Texts object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Prices</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Prices</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePrices(Prices object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Service Class Definitions</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Service Class Definitions</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseServiceClassDefinitions(ServiceClassDefinitions object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Calendars</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Calendars</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCalendars(Calendars object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>After Sales Rules</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>After Sales Rules</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAfterSalesRules(AfterSalesRules object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fare Elements</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fare Elements</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFareElements(FareElements object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Delivery</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -613,21 +1457,6 @@ public class GtmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDelivery(Delivery object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Border Points</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Border Points</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBorderPoints(BorderPoints object) {
 		return null;
 	}
 
@@ -662,17 +1491,32 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Coversion Params</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Station To Service Constraint Mappings</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Coversion Params</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Station To Service Constraint Mappings</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCoversionParams(CoversionParams object) {
+	public T caseLegacyStationToServiceConstraintMappings(LegacyStationToServiceConstraintMappings object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Station To Service Constraint Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Station To Service Constraint Mapping</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyStationToServiceConstraintMapping(LegacyStationToServiceConstraintMapping object) {
 		return null;
 	}
 
@@ -688,6 +1532,36 @@ public class GtmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLegacyDescription(LegacyDescription object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Zone Mappings</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Zone Mappings</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyZoneMappings(LegacyZoneMappings object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Zone Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Zone Map</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyZoneMap(LegacyZoneMap object) {
 		return null;
 	}
 
@@ -722,6 +1596,21 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Fare</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Fare</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyFare(LegacyFare object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Legacy108</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -733,6 +1622,51 @@ public class GtmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLegacy108(Legacy108 object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy108 Stations</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy108 Stations</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacy108Stations(Legacy108Stations object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy108 Station</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy108 Station</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacy108Station(Legacy108Station object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Route Fares</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Route Fares</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyRouteFares(LegacyRouteFares object) {
 		return null;
 	}
 
@@ -767,6 +1701,36 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Series List</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Series List</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacySeriesList(LegacySeriesList object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Distance Fares</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Distance Fares</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyDistanceFares(LegacyDistanceFares object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Legacy Viastation</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -797,17 +1761,62 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Stations Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Boder Point Mappings</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Stations Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Boder Point Mappings</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStationsType(StationsType object) {
+	public T caseLegacyBoderPointMappings(LegacyBoderPointMappings object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Border Point Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Border Point Mapping</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyBorderPointMapping(LegacyBorderPointMapping object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Station Mappings</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Station Mappings</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyStationMappings(LegacyStationMappings object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Target Fares</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Target Fares</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyTargetFares(LegacyTargetFares object) {
 		return null;
 	}
 
@@ -992,17 +2001,17 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Reservation Preference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Reservation Preference Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Reservation Preference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Reservation Preference Group</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseReservationPreference(ReservationPreference object) {
+	public T caseReservationPreferenceGroup(ReservationPreferenceGroup object) {
 		return null;
 	}
 
@@ -1082,6 +2091,21 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Station Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Station Set</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStationSet(StationSet object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Service Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1123,6 +2147,21 @@ public class GtmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFareElement(FareElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Accounting Identifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Accounting Identifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyAccountingIdentifier(LegacyAccountingIdentifier object) {
 		return null;
 	}
 
@@ -1202,17 +2241,32 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Time Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>End Of Sale</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Time Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>End Of Sale</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTimeReference(TimeReference object) {
+	public T caseEndOfSale(EndOfSale object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Start Of Sale</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Start Of Sale</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStartOfSale(StartOfSale object) {
 		return null;
 	}
 
@@ -1262,6 +2316,21 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Excluded Time Range</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Excluded Time Range</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExcludedTimeRange(ExcludedTimeRange object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Return Validity Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1292,6 +2361,36 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Required Barcodes</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Required Barcodes</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRequiredBarcodes(RequiredBarcodes object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Accepted Barcodes</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Accepted Barcodes</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAcceptedBarcodes(AcceptedBarcodes object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Regional Validity</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1318,6 +2417,36 @@ public class GtmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseViaStation(ViaStation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Alternative Route</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Alternative Route</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAlternativeRoute(AlternativeRoute object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Route</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Route</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRoute(Route object) {
 		return null;
 	}
 
@@ -1382,6 +2511,21 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Station</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Station</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyStation(LegacyStation object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Edge</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1408,6 +2552,21 @@ public class GtmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePassengerConstraint(PassengerConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Included Free Passengers</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Included Free Passengers</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIncludedFreePassengers(IncludedFreePassengers object) {
 		return null;
 	}
 
@@ -1468,6 +2627,21 @@ public class GtmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAfterSalesCondition(AfterSalesCondition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Application Time</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Application Time</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseApplicationTime(ApplicationTime object) {
 		return null;
 	}
 
@@ -1588,21 +2762,6 @@ public class GtmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFulfillmentConstraint(FulfillmentConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Fare Resource Location</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Fare Resource Location</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFareResourceLocation(FareResourceLocation object) {
 		return null;
 	}
 
