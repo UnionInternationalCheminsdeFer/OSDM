@@ -10,6 +10,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: Gtm,
  Gtm.impl,
+ Gtm.nls,
  Gtm.util
 Require-Bundle: org.eclipse.core.runtime;resolution:=optional;x-installation:=greedy,
  org.eclipse.emf.ecore;visibility:=reexport,
