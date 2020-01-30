@@ -208,7 +208,7 @@ public class ReservationOptionsItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.RESERVATION_OPTIONS__PREFERENCES,
-				 GtmFactory.eINSTANCE.createReservationPreference()));
+				 GtmFactory.eINSTANCE.createReservationPreferenceGroup()));
 	}
 
 	/**

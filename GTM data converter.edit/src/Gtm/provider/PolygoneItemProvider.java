@@ -78,7 +78,7 @@ public class PolygoneItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GtmPackage.Literals.POLYGONE__EGDE);
+			childrenFeatures.add(GtmPackage.Literals.POLYGONE__EDGE);
 		}
 		return childrenFeatures;
 	}
@@ -131,7 +131,7 @@ public class PolygoneItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Polygone.class)) {
-			case GtmPackage.POLYGONE__EGDE:
+			case GtmPackage.POLYGONE__EDGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -151,7 +151,7 @@ public class PolygoneItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.POLYGONE__EGDE,
+				(GtmPackage.Literals.POLYGONE__EDGE,
 				 GtmFactory.eINSTANCE.createEdge()));
 	}
 

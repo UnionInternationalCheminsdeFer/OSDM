@@ -159,7 +159,7 @@ public class ConversionFromLegacyItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.CONVERSION_FROM_LEGACY__PARAMS,
-				 GtmFactory.eINSTANCE.createCoversionParams()));
+				 GtmFactory.eINSTANCE.createConversionParams()));
 	}
 
 	/**

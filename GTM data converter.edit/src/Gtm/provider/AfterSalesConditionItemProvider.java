@@ -256,7 +256,7 @@ public class AfterSalesConditionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.AFTER_SALES_CONDITION__APPLICATION_TIME,
-				 GtmFactory.eINSTANCE.createRelativeTime()));
+				 GtmFactory.eINSTANCE.createApplicationTime()));
 	}
 
 	/**

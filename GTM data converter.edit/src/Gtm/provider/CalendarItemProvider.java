@@ -67,6 +67,7 @@ public class CalendarItemProvider
 			addUntilDatePropertyDescriptor(object);
 			addUtcOffsetPropertyDescriptor(object);
 			addDatesPropertyDescriptor(object);
+			addDataSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -204,6 +205,28 @@ public class CalendarItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Data Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Calendar_dataSource_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Calendar_dataSource_feature", "_UI_Calendar_type"),
+				 GtmPackage.Literals.CALENDAR__DATA_SOURCE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Calendar.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -247,6 +270,7 @@ public class CalendarItemProvider
 			case GtmPackage.CALENDAR__UNTIL_DATE:
 			case GtmPackage.CALENDAR__UTC_OFFSET:
 			case GtmPackage.CALENDAR__DATES:
+			case GtmPackage.CALENDAR__DATA_SOURCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

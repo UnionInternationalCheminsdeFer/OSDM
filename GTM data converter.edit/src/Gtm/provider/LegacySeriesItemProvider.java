@@ -348,7 +348,7 @@ public class LegacySeriesItemProvider
 	@Override
 	public String getText(Object object) {
 		LegacySeries legacySeries = (LegacySeries)object;
-		return getString("_UI_LegacySeries_type") + " " + legacySeries.getFromStation();
+		return getString("_UI_LegacySeries_type") + " " + legacySeries.getNumber();
 	}
 
 

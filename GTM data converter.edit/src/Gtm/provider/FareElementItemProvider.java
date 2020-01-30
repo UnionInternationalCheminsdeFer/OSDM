@@ -4,6 +4,7 @@ package Gtm.provider;
 
 
 import Gtm.FareElement;
+import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 
 import java.util.Collection;
@@ -14,6 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -74,6 +76,14 @@ public class FareElementItemProvider
 			addSalesAvailabilityPropertyDescriptor(object);
 			addTravelValidityPropertyDescriptor(object);
 			addCombinationConstraintPropertyDescriptor(object);
+			addFareDetailDescriptionPropertyDescriptor(object);
+			addPersonalDataConstraintPropertyDescriptor(object);
+			addReservationParameterPropertyDescriptor(object);
+			addReductionConstraintPropertyDescriptor(object);
+			addFulfillmentConstraintPropertyDescriptor(object);
+			addPassengerConstraintPropertyDescriptor(object);
+			addAfterSalesRulePropertyDescriptor(object);
+			addDataSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -365,6 +375,212 @@ public class FareElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Fare Detail Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFareDetailDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FareElement_fareDetailDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareElement_fareDetailDescription_feature", "_UI_FareElement_type"),
+				 GtmPackage.Literals.FARE_ELEMENT__FARE_DETAIL_DESCRIPTION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Personal Data Constraint feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPersonalDataConstraintPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FareElement_personalDataConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareElement_personalDataConstraint_feature", "_UI_FareElement_type"),
+				 GtmPackage.Literals.FARE_ELEMENT__PERSONAL_DATA_CONSTRAINT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Reservation Parameter feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReservationParameterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FareElement_reservationParameter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareElement_reservationParameter_feature", "_UI_FareElement_type"),
+				 GtmPackage.Literals.FARE_ELEMENT__RESERVATION_PARAMETER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Reduction Constraint feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReductionConstraintPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FareElement_reductionConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareElement_reductionConstraint_feature", "_UI_FareElement_type"),
+				 GtmPackage.Literals.FARE_ELEMENT__REDUCTION_CONSTRAINT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Fulfillment Constraint feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFulfillmentConstraintPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FareElement_fulfillmentConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareElement_fulfillmentConstraint_feature", "_UI_FareElement_type"),
+				 GtmPackage.Literals.FARE_ELEMENT__FULFILLMENT_CONSTRAINT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Passenger Constraint feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPassengerConstraintPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FareElement_passengerConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareElement_passengerConstraint_feature", "_UI_FareElement_type"),
+				 GtmPackage.Literals.FARE_ELEMENT__PASSENGER_CONSTRAINT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the After Sales Rule feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAfterSalesRulePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FareElement_afterSalesRule_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareElement_afterSalesRule_feature", "_UI_FareElement_type"),
+				 GtmPackage.Literals.FARE_ELEMENT__AFTER_SALES_RULE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Data Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FareElement_dataSource_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareElement_dataSource_feature", "_UI_FareElement_type"),
+				 GtmPackage.Literals.FARE_ELEMENT__DATA_SOURCE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(GtmPackage.Literals.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
 	 * This returns FareElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -405,7 +621,11 @@ public class FareElementItemProvider
 			case GtmPackage.FARE_ELEMENT__ID:
 			case GtmPackage.FARE_ELEMENT__TYPE:
 			case GtmPackage.FARE_ELEMENT__DATA_DESCRIPTION:
+			case GtmPackage.FARE_ELEMENT__DATA_SOURCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -421,6 +641,11 @@ public class FareElementItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER,
+				 GtmFactory.eINSTANCE.createLegacyAccountingIdentifier()));
 	}
 
 	/**

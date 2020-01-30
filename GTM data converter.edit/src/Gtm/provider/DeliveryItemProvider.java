@@ -64,9 +64,10 @@ public class DeliveryItemProvider
 			addIdPropertyDescriptor(object);
 			addPreviousDeliveryIdPropertyDescriptor(object);
 			addReplacedDeliveryIdPropertyDescriptor(object);
-			addFareProviderPropertyDescriptor(object);
 			addOptionalPropertyDescriptor(object);
 			addProviderPropertyDescriptor(object);
+			addSchemaVersionPropertyDescriptor(object);
+			addAcceptedSchemaVersionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -132,28 +133,6 @@ public class DeliveryItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Fare Provider feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFareProviderPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Delivery_fareProvider_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Delivery_fareProvider_feature", "_UI_Delivery_type"),
-				 GtmPackage.Literals.DELIVERY__FARE_PROVIDER,
-				 true,
-				 false,
-				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -204,6 +183,50 @@ public class DeliveryItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Schema Version feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSchemaVersionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Delivery_schemaVersion_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Delivery_schemaVersion_feature", "_UI_Delivery_type"),
+				 GtmPackage.Literals.DELIVERY__SCHEMA_VERSION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Accepted Schema Version feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAcceptedSchemaVersionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Delivery_acceptedSchemaVersion_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Delivery_acceptedSchemaVersion_feature", "_UI_Delivery_type"),
+				 GtmPackage.Literals.DELIVERY__ACCEPTED_SCHEMA_VERSION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Delivery.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -244,8 +267,9 @@ public class DeliveryItemProvider
 			case GtmPackage.DELIVERY__ID:
 			case GtmPackage.DELIVERY__PREVIOUS_DELIVERY_ID:
 			case GtmPackage.DELIVERY__REPLACED_DELIVERY_ID:
-			case GtmPackage.DELIVERY__FARE_PROVIDER:
 			case GtmPackage.DELIVERY__OPTIONAL:
+			case GtmPackage.DELIVERY__SCHEMA_VERSION:
+			case GtmPackage.DELIVERY__ACCEPTED_SCHEMA_VERSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

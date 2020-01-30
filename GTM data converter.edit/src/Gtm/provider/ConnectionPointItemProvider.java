@@ -4,6 +4,7 @@ package Gtm.provider;
 
 
 import Gtm.ConnectionPoint;
+import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 
 import java.util.Collection;
@@ -14,6 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -61,32 +63,13 @@ public class ConnectionPointItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStationsPropertyDescriptor(object);
 			addIdPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
+			addLegacyBorderPointCodePropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
+			addDataSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Stations feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConnectionPoint_stations_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConnectionPoint_stations_feature", "_UI_ConnectionPoint_type"),
-				 GtmPackage.Literals.CONNECTION_POINT__STATIONS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -112,6 +95,124 @@ public class ConnectionPointItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConnectionPoint_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConnectionPoint_name_feature", "_UI_ConnectionPoint_type"),
+				 GtmPackage.Literals.CONNECTION_POINT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Legacy Border Point Code feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLegacyBorderPointCodePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConnectionPoint_LegacyBorderPointCode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConnectionPoint_LegacyBorderPointCode_feature", "_UI_ConnectionPoint_type"),
+				 GtmPackage.Literals.CONNECTION_POINT__LEGACY_BORDER_POINT_CODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConnectionPoint_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConnectionPoint_description_feature", "_UI_ConnectionPoint_type"),
+				 GtmPackage.Literals.CONNECTION_POINT__DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Data Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConnectionPoint_dataSource_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConnectionPoint_dataSource_feature", "_UI_ConnectionPoint_type"),
+				 GtmPackage.Literals.CONNECTION_POINT__DATA_SOURCE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(GtmPackage.Literals.CONNECTION_POINT__CONNECTED_STATION_SETS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
 	 * This returns ConnectionPoint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,7 +231,7 @@ public class ConnectionPointItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ConnectionPoint)object).getId();
+		String label = ((ConnectionPoint)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ConnectionPoint_type") :
 			getString("_UI_ConnectionPoint_type") + " " + label;
@@ -150,7 +251,14 @@ public class ConnectionPointItemProvider
 
 		switch (notification.getFeatureID(ConnectionPoint.class)) {
 			case GtmPackage.CONNECTION_POINT__ID:
+			case GtmPackage.CONNECTION_POINT__NAME:
+			case GtmPackage.CONNECTION_POINT__LEGACY_BORDER_POINT_CODE:
+			case GtmPackage.CONNECTION_POINT__DESCRIPTION:
+			case GtmPackage.CONNECTION_POINT__DATA_SOURCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GtmPackage.CONNECTION_POINT__CONNECTED_STATION_SETS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -166,6 +274,11 @@ public class ConnectionPointItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.CONNECTION_POINT__CONNECTED_STATION_SETS,
+				 GtmFactory.eINSTANCE.createStationSet()));
 	}
 
 	/**

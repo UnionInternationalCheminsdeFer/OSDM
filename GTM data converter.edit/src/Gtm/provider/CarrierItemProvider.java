@@ -63,6 +63,7 @@ public class CarrierItemProvider
 
 			addCodePropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
+			addShortNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,6 +113,28 @@ public class CarrierItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Short Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addShortNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Carrier_shortName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Carrier_shortName_feature", "_UI_Carrier_type"),
+				 GtmPackage.Literals.CARRIER__SHORT_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Carrier.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -126,14 +149,15 @@ public class CarrierItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Carrier)object).getName();
+		String label2 = ((Carrier)object).getCode();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Carrier_type") :
-			getString("_UI_Carrier_type") + " " + label;
+			label2 + " - " + label;
 	}
 
 
@@ -151,6 +175,7 @@ public class CarrierItemProvider
 		switch (notification.getFeatureID(Carrier.class)) {
 			case GtmPackage.CARRIER__CODE:
 			case GtmPackage.CARRIER__NAME:
+			case GtmPackage.CARRIER__SHORT_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

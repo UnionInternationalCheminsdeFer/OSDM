@@ -164,37 +164,37 @@ public class CodeListsItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.CODE_LISTS__CARRIERS,
-				 GtmFactory.eINSTANCE.createCarrier()));
+				 GtmFactory.eINSTANCE.createCarriers()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.CODE_LISTS__STATIONS,
-				 GtmFactory.eINSTANCE.createStation()));
+				 GtmFactory.eINSTANCE.createStations()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.CODE_LISTS__COUNTRIES,
-				 GtmFactory.eINSTANCE.createCountry()));
+				 GtmFactory.eINSTANCE.createCountries()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.CODE_LISTS__LANGUAGES,
-				 GtmFactory.eINSTANCE.createLanguage()));
+				 GtmFactory.eINSTANCE.createLanguages()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.CODE_LISTS__CURRENCIES,
-				 GtmFactory.eINSTANCE.createCurrency()));
+				 GtmFactory.eINSTANCE.createCurrencies()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.CODE_LISTS__SERVICE_BRANDS,
-				 GtmFactory.eINSTANCE.createServiceBrand()));
+				 GtmFactory.eINSTANCE.createServiceBrands()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.CODE_LISTS__NUTS_CODES,
-				 GtmFactory.eINSTANCE.createNutsCode()));
+				 GtmFactory.eINSTANCE.createNUTSCodes()));
 	}
 
 	/**

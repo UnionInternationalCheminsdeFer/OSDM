@@ -163,7 +163,7 @@ public class CombinationConstraintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CombinationConstraint)object).getId();
+		String label = ((CombinationConstraint)object).getDataDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_CombinationConstraint_type") :
 			getString("_UI_CombinationConstraint_type") + " " + label;

@@ -3,18 +3,21 @@
 package Gtm.provider;
 
 import Gtm.GtmPackage;
+
 import Gtm.util.GtmAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
 import java.util.List;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.domain.EditingDomain;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -132,6 +135,328 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.NUTSCodes} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NUTSCodesItemProvider nutsCodesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.NUTSCodes}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNUTSCodesAdapter() {
+		if (nutsCodesItemProvider == null) {
+			nutsCodesItemProvider = new NUTSCodesItemProvider(this);
+		}
+
+		return nutsCodesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.NutsCode} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NutsCodeItemProvider nutsCodeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.NutsCode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNutsCodeAdapter() {
+		if (nutsCodeItemProvider == null) {
+			nutsCodeItemProvider = new NutsCodeItemProvider(this);
+		}
+
+		return nutsCodeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ServiceBrands} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ServiceBrandsItemProvider serviceBrandsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ServiceBrands}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createServiceBrandsAdapter() {
+		if (serviceBrandsItemProvider == null) {
+			serviceBrandsItemProvider = new ServiceBrandsItemProvider(this);
+		}
+
+		return serviceBrandsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ServiceBrand} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ServiceBrandItemProvider serviceBrandItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ServiceBrand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createServiceBrandAdapter() {
+		if (serviceBrandItemProvider == null) {
+			serviceBrandItemProvider = new ServiceBrandItemProvider(this);
+		}
+
+		return serviceBrandItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Countries} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CountriesItemProvider countriesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Countries}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCountriesAdapter() {
+		if (countriesItemProvider == null) {
+			countriesItemProvider = new CountriesItemProvider(this);
+		}
+
+		return countriesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Country} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CountryItemProvider countryItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Country}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCountryAdapter() {
+		if (countryItemProvider == null) {
+			countryItemProvider = new CountryItemProvider(this);
+		}
+
+		return countryItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Languages} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LanguagesItemProvider languagesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Languages}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLanguagesAdapter() {
+		if (languagesItemProvider == null) {
+			languagesItemProvider = new LanguagesItemProvider(this);
+		}
+
+		return languagesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Language} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LanguageItemProvider languageItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Language}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLanguageAdapter() {
+		if (languageItemProvider == null) {
+			languageItemProvider = new LanguageItemProvider(this);
+		}
+
+		return languageItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Currencies} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CurrenciesItemProvider currenciesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Currencies}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCurrenciesAdapter() {
+		if (currenciesItemProvider == null) {
+			currenciesItemProvider = new CurrenciesItemProvider(this);
+		}
+
+		return currenciesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Currency} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CurrencyItemProvider currencyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Currency}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCurrencyAdapter() {
+		if (currencyItemProvider == null) {
+			currencyItemProvider = new CurrencyItemProvider(this);
+		}
+
+		return currencyItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Stations} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StationsItemProvider stationsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Stations}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStationsAdapter() {
+		if (stationsItemProvider == null) {
+			stationsItemProvider = new StationsItemProvider(this);
+		}
+
+		return stationsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Station} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StationItemProvider stationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Station}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStationAdapter() {
+		if (stationItemProvider == null) {
+			stationItemProvider = new StationItemProvider(this);
+		}
+
+		return stationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Carrier} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CarrierItemProvider carrierItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Carrier}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCarrierAdapter() {
+		if (carrierItemProvider == null) {
+			carrierItemProvider = new CarrierItemProvider(this);
+		}
+
+		return carrierItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Carriers} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CarriersItemProvider carriersItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Carriers}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCarriersAdapter() {
+		if (carriersItemProvider == null) {
+			carriersItemProvider = new CarriersItemProvider(this);
+		}
+
+		return carriersItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.GeneralTariffModel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -178,6 +503,190 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ConversionParams} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConversionParamsItemProvider conversionParamsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ConversionParams}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConversionParamsAdapter() {
+		if (conversionParamsItemProvider == null) {
+			conversionParamsItemProvider = new ConversionParamsItemProvider(this);
+		}
+
+		return conversionParamsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyStationToServiceConstraintMappings} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyStationToServiceConstraintMappingsItemProvider legacyStationToServiceConstraintMappingsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyStationToServiceConstraintMappings}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyStationToServiceConstraintMappingsAdapter() {
+		if (legacyStationToServiceConstraintMappingsItemProvider == null) {
+			legacyStationToServiceConstraintMappingsItemProvider = new LegacyStationToServiceConstraintMappingsItemProvider(this);
+		}
+
+		return legacyStationToServiceConstraintMappingsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyStationToServiceConstraintMapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyStationToServiceConstraintMappingItemProvider legacyStationToServiceConstraintMappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyStationToServiceConstraintMapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyStationToServiceConstraintMappingAdapter() {
+		if (legacyStationToServiceConstraintMappingItemProvider == null) {
+			legacyStationToServiceConstraintMappingItemProvider = new LegacyStationToServiceConstraintMappingItemProvider(this);
+		}
+
+		return legacyStationToServiceConstraintMappingItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyStationMappings} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyStationMappingsItemProvider legacyStationMappingsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyStationMappings}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyStationMappingsAdapter() {
+		if (legacyStationMappingsItemProvider == null) {
+			legacyStationMappingsItemProvider = new LegacyStationMappingsItemProvider(this);
+		}
+
+		return legacyStationMappingsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyStationMap} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyStationMapItemProvider legacyStationMapItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyStationMap}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyStationMapAdapter() {
+		if (legacyStationMapItemProvider == null) {
+			legacyStationMapItemProvider = new LegacyStationMapItemProvider(this);
+		}
+
+		return legacyStationMapItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyBoderPointMappings} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyBoderPointMappingsItemProvider legacyBoderPointMappingsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyBoderPointMappings}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyBoderPointMappingsAdapter() {
+		if (legacyBoderPointMappingsItemProvider == null) {
+			legacyBoderPointMappingsItemProvider = new LegacyBoderPointMappingsItemProvider(this);
+		}
+
+		return legacyBoderPointMappingsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyBorderPointMapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyBorderPointMappingItemProvider legacyBorderPointMappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyBorderPointMapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyBorderPointMappingAdapter() {
+		if (legacyBorderPointMappingItemProvider == null) {
+			legacyBorderPointMappingItemProvider = new LegacyBorderPointMappingItemProvider(this);
+		}
+
+		return legacyBorderPointMappingItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.AfterSalesRules} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AfterSalesRulesItemProvider afterSalesRulesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.AfterSalesRules}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAfterSalesRulesAdapter() {
+		if (afterSalesRulesItemProvider == null) {
+			afterSalesRulesItemProvider = new AfterSalesRulesItemProvider(this);
+		}
+
+		return afterSalesRulesItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.FareStructure} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -198,6 +707,627 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		}
 
 		return fareStructureItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ConnectionPoints} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConnectionPointsItemProvider connectionPointsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ConnectionPoints}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConnectionPointsAdapter() {
+		if (connectionPointsItemProvider == null) {
+			connectionPointsItemProvider = new ConnectionPointsItemProvider(this);
+		}
+
+		return connectionPointsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ConnectionPoint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConnectionPointItemProvider connectionPointItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ConnectionPoint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConnectionPointAdapter() {
+		if (connectionPointItemProvider == null) {
+			connectionPointItemProvider = new ConnectionPointItemProvider(this);
+		}
+
+		return connectionPointItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.StationSet} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StationSetItemProvider stationSetItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.StationSet}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStationSetAdapter() {
+		if (stationSetItemProvider == null) {
+			stationSetItemProvider = new StationSetItemProvider(this);
+		}
+
+		return stationSetItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.FareResourceLocations} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FareResourceLocationsItemProvider fareResourceLocationsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.FareResourceLocations}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFareResourceLocationsAdapter() {
+		if (fareResourceLocationsItemProvider == null) {
+			fareResourceLocationsItemProvider = new FareResourceLocationsItemProvider(this);
+		}
+
+		return fareResourceLocationsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.TrainResourceLocations} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TrainResourceLocationsItemProvider trainResourceLocationsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.TrainResourceLocations}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTrainResourceLocationsAdapter() {
+		if (trainResourceLocationsItemProvider == null) {
+			trainResourceLocationsItemProvider = new TrainResourceLocationsItemProvider(this);
+		}
+
+		return trainResourceLocationsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.StationResourceLocations} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StationResourceLocationsItemProvider stationResourceLocationsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.StationResourceLocations}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStationResourceLocationsAdapter() {
+		if (stationResourceLocationsItemProvider == null) {
+			stationResourceLocationsItemProvider = new StationResourceLocationsItemProvider(this);
+		}
+
+		return stationResourceLocationsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.CarrierResourceLocations} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CarrierResourceLocationsItemProvider carrierResourceLocationsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.CarrierResourceLocations}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCarrierResourceLocationsAdapter() {
+		if (carrierResourceLocationsItemProvider == null) {
+			carrierResourceLocationsItemProvider = new CarrierResourceLocationsItemProvider(this);
+		}
+
+		return carrierResourceLocationsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.FulfillmentConstraints} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FulfillmentConstraintsItemProvider fulfillmentConstraintsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.FulfillmentConstraints}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFulfillmentConstraintsAdapter() {
+		if (fulfillmentConstraintsItemProvider == null) {
+			fulfillmentConstraintsItemProvider = new FulfillmentConstraintsItemProvider(this);
+		}
+
+		return fulfillmentConstraintsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.SupportedOnlineServices} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SupportedOnlineServicesItemProvider supportedOnlineServicesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.SupportedOnlineServices}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSupportedOnlineServicesAdapter() {
+		if (supportedOnlineServicesItemProvider == null) {
+			supportedOnlineServicesItemProvider = new SupportedOnlineServicesItemProvider(this);
+		}
+
+		return supportedOnlineServicesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ZoneDefinitions} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ZoneDefinitionsItemProvider zoneDefinitionsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ZoneDefinitions}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createZoneDefinitionsAdapter() {
+		if (zoneDefinitionsItemProvider == null) {
+			zoneDefinitionsItemProvider = new ZoneDefinitionsItemProvider(this);
+		}
+
+		return zoneDefinitionsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ReductionConstraints} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ReductionConstraintsItemProvider reductionConstraintsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ReductionConstraints}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createReductionConstraintsAdapter() {
+		if (reductionConstraintsItemProvider == null) {
+			reductionConstraintsItemProvider = new ReductionConstraintsItemProvider(this);
+		}
+
+		return reductionConstraintsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.PersonalDataConstraints} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PersonalDataConstraintsItemProvider personalDataConstraintsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.PersonalDataConstraints}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPersonalDataConstraintsAdapter() {
+		if (personalDataConstraintsItemProvider == null) {
+			personalDataConstraintsItemProvider = new PersonalDataConstraintsItemProvider(this);
+		}
+
+		return personalDataConstraintsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.PassengerConstraints} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PassengerConstraintsItemProvider passengerConstraintsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.PassengerConstraints}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPassengerConstraintsAdapter() {
+		if (passengerConstraintsItemProvider == null) {
+			passengerConstraintsItemProvider = new PassengerConstraintsItemProvider(this);
+		}
+
+		return passengerConstraintsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.CombinationConstraints} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CombinationConstraintsItemProvider combinationConstraintsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.CombinationConstraints}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCombinationConstraintsAdapter() {
+		if (combinationConstraintsItemProvider == null) {
+			combinationConstraintsItemProvider = new CombinationConstraintsItemProvider(this);
+		}
+
+		return combinationConstraintsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.TravelValidityConstraints} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TravelValidityConstraintsItemProvider travelValidityConstraintsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.TravelValidityConstraints}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTravelValidityConstraintsAdapter() {
+		if (travelValidityConstraintsItemProvider == null) {
+			travelValidityConstraintsItemProvider = new TravelValidityConstraintsItemProvider(this);
+		}
+
+		return travelValidityConstraintsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.SalesAvailabilityConstraints} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SalesAvailabilityConstraintsItemProvider salesAvailabilityConstraintsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.SalesAvailabilityConstraints}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSalesAvailabilityConstraintsAdapter() {
+		if (salesAvailabilityConstraintsItemProvider == null) {
+			salesAvailabilityConstraintsItemProvider = new SalesAvailabilityConstraintsItemProvider(this);
+		}
+
+		return salesAvailabilityConstraintsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ReductionCards} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ReductionCardsItemProvider reductionCardsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ReductionCards}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createReductionCardsAdapter() {
+		if (reductionCardsItemProvider == null) {
+			reductionCardsItemProvider = new ReductionCardsItemProvider(this);
+		}
+
+		return reductionCardsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.CarrierConstraints} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CarrierConstraintsItemProvider carrierConstraintsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.CarrierConstraints}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCarrierConstraintsAdapter() {
+		if (carrierConstraintsItemProvider == null) {
+			carrierConstraintsItemProvider = new CarrierConstraintsItemProvider(this);
+		}
+
+		return carrierConstraintsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ServiceConstraints} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ServiceConstraintsItemProvider serviceConstraintsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ServiceConstraints}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createServiceConstraintsAdapter() {
+		if (serviceConstraintsItemProvider == null) {
+			serviceConstraintsItemProvider = new ServiceConstraintsItemProvider(this);
+		}
+
+		return serviceConstraintsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ReservationParameters} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ReservationParametersItemProvider reservationParametersItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ReservationParameters}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createReservationParametersAdapter() {
+		if (reservationParametersItemProvider == null) {
+			reservationParametersItemProvider = new ReservationParametersItemProvider(this);
+		}
+
+		return reservationParametersItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.RegionalConstraints} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RegionalConstraintsItemProvider regionalConstraintsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.RegionalConstraints}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRegionalConstraintsAdapter() {
+		if (regionalConstraintsItemProvider == null) {
+			regionalConstraintsItemProvider = new RegionalConstraintsItemProvider(this);
+		}
+
+		return regionalConstraintsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ServiceLevelDefinitions} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ServiceLevelDefinitionsItemProvider serviceLevelDefinitionsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ServiceLevelDefinitions}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createServiceLevelDefinitionsAdapter() {
+		if (serviceLevelDefinitionsItemProvider == null) {
+			serviceLevelDefinitionsItemProvider = new ServiceLevelDefinitionsItemProvider(this);
+		}
+
+		return serviceLevelDefinitionsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Texts} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TextsItemProvider textsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Texts}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTextsAdapter() {
+		if (textsItemProvider == null) {
+			textsItemProvider = new TextsItemProvider(this);
+		}
+
+		return textsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Prices} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PricesItemProvider pricesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Prices}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPricesAdapter() {
+		if (pricesItemProvider == null) {
+			pricesItemProvider = new PricesItemProvider(this);
+		}
+
+		return pricesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ServiceClassDefinitions} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ServiceClassDefinitionsItemProvider serviceClassDefinitionsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ServiceClassDefinitions}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createServiceClassDefinitionsAdapter() {
+		if (serviceClassDefinitionsItemProvider == null) {
+			serviceClassDefinitionsItemProvider = new ServiceClassDefinitionsItemProvider(this);
+		}
+
+		return serviceClassDefinitionsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Calendars} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CalendarsItemProvider calendarsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Calendars}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCalendarsAdapter() {
+		if (calendarsItemProvider == null) {
+			calendarsItemProvider = new CalendarsItemProvider(this);
+		}
+
+		return calendarsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.FareElements} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FareElementsItemProvider fareElementsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.FareElements}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFareElementsAdapter() {
+		if (fareElementsItemProvider == null) {
+			fareElementsItemProvider = new FareElementsItemProvider(this);
+		}
+
+		return fareElementsItemProvider;
 	}
 
 	/**
@@ -224,29 +1354,6 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.BorderPoints} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BorderPointsItemProvider borderPointsItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.BorderPoints}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createBorderPointsAdapter() {
-		if (borderPointsItemProvider == null) {
-			borderPointsItemProvider = new BorderPointsItemProvider(this);
-		}
-
-		return borderPointsItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.Calendar} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -270,52 +1377,6 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.Carrier} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CarrierItemProvider carrierItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.Carrier}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCarrierAdapter() {
-		if (carrierItemProvider == null) {
-			carrierItemProvider = new CarrierItemProvider(this);
-		}
-
-		return carrierItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.CoversionParams} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CoversionParamsItemProvider coversionParamsItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.CoversionParams}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCoversionParamsAdapter() {
-		if (coversionParamsItemProvider == null) {
-			coversionParamsItemProvider = new CoversionParamsItemProvider(this);
-		}
-
-		return coversionParamsItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.LegacyDescription} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -336,6 +1397,52 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		}
 
 		return legacyDescriptionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyZoneMappings} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyZoneMappingsItemProvider legacyZoneMappingsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyZoneMappings}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyZoneMappingsAdapter() {
+		if (legacyZoneMappingsItemProvider == null) {
+			legacyZoneMappingsItemProvider = new LegacyZoneMappingsItemProvider(this);
+		}
+
+		return legacyZoneMappingsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyZoneMap} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyZoneMapItemProvider legacyZoneMapItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyZoneMap}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyZoneMapAdapter() {
+		if (legacyZoneMapItemProvider == null) {
+			legacyZoneMapItemProvider = new LegacyZoneMapItemProvider(this);
+		}
+
+		return legacyZoneMapItemProvider;
 	}
 
 	/**
@@ -385,6 +1492,29 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyFare} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyFareItemProvider legacyFareItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyFare}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyFareAdapter() {
+		if (legacyFareItemProvider == null) {
+			legacyFareItemProvider = new LegacyFareItemProvider(this);
+		}
+
+		return legacyFareItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.Legacy108} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -405,6 +1535,75 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		}
 
 		return legacy108ItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Legacy108Stations} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Legacy108StationsItemProvider legacy108StationsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Legacy108Stations}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacy108StationsAdapter() {
+		if (legacy108StationsItemProvider == null) {
+			legacy108StationsItemProvider = new Legacy108StationsItemProvider(this);
+		}
+
+		return legacy108StationsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Legacy108Station} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Legacy108StationItemProvider legacy108StationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Legacy108Station}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacy108StationAdapter() {
+		if (legacy108StationItemProvider == null) {
+			legacy108StationItemProvider = new Legacy108StationItemProvider(this);
+		}
+
+		return legacy108StationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyRouteFares} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyRouteFaresItemProvider legacyRouteFaresItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyRouteFares}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyRouteFaresAdapter() {
+		if (legacyRouteFaresItemProvider == null) {
+			legacyRouteFaresItemProvider = new LegacyRouteFaresItemProvider(this);
+		}
+
+		return legacyRouteFaresItemProvider;
 	}
 
 	/**
@@ -454,6 +1653,52 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacySeriesList} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacySeriesListItemProvider legacySeriesListItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacySeriesList}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacySeriesListAdapter() {
+		if (legacySeriesListItemProvider == null) {
+			legacySeriesListItemProvider = new LegacySeriesListItemProvider(this);
+		}
+
+		return legacySeriesListItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyDistanceFares} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyDistanceFaresItemProvider legacyDistanceFaresItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyDistanceFares}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyDistanceFaresAdapter() {
+		if (legacyDistanceFaresItemProvider == null) {
+			legacyDistanceFaresItemProvider = new LegacyDistanceFaresItemProvider(this);
+		}
+
+		return legacyDistanceFaresItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.LegacyViastation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -477,233 +1722,49 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.LegacyStationMap} instances.
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyTargetFares} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LegacyStationMapItemProvider legacyStationMapItemProvider;
+	protected LegacyTargetFaresItemProvider legacyTargetFaresItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gtm.LegacyStationMap}.
+	 * This creates an adapter for a {@link Gtm.LegacyTargetFares}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createLegacyStationMapAdapter() {
-		if (legacyStationMapItemProvider == null) {
-			legacyStationMapItemProvider = new LegacyStationMapItemProvider(this);
+	public Adapter createLegacyTargetFaresAdapter() {
+		if (legacyTargetFaresItemProvider == null) {
+			legacyTargetFaresItemProvider = new LegacyTargetFaresItemProvider(this);
 		}
 
-		return legacyStationMapItemProvider;
+		return legacyTargetFaresItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.StationsType} instances.
+	 * This keeps track of the one adapter used for all {@link Gtm.CarrierConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StationsTypeItemProvider stationsTypeItemProvider;
+	protected CarrierConstraintItemProvider carrierConstraintItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gtm.StationsType}.
+	 * This creates an adapter for a {@link Gtm.CarrierConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createStationsTypeAdapter() {
-		if (stationsTypeItemProvider == null) {
-			stationsTypeItemProvider = new StationsTypeItemProvider(this);
+	public Adapter createCarrierConstraintAdapter() {
+		if (carrierConstraintItemProvider == null) {
+			carrierConstraintItemProvider = new CarrierConstraintItemProvider(this);
 		}
 
-		return stationsTypeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.TargetFareTemplate} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TargetFareTemplateItemProvider targetFareTemplateItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.TargetFareTemplate}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTargetFareTemplateAdapter() {
-		if (targetFareTemplateItemProvider == null) {
-			targetFareTemplateItemProvider = new TargetFareTemplateItemProvider(this);
-		}
-
-		return targetFareTemplateItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.Station} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StationItemProvider stationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.Station}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStationAdapter() {
-		if (stationItemProvider == null) {
-			stationItemProvider = new StationItemProvider(this);
-		}
-
-		return stationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.Country} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CountryItemProvider countryItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.Country}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCountryAdapter() {
-		if (countryItemProvider == null) {
-			countryItemProvider = new CountryItemProvider(this);
-		}
-
-		return countryItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.Language} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LanguageItemProvider languageItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.Language}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLanguageAdapter() {
-		if (languageItemProvider == null) {
-			languageItemProvider = new LanguageItemProvider(this);
-		}
-
-		return languageItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.Text} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TextItemProvider textItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.Text}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTextAdapter() {
-		if (textItemProvider == null) {
-			textItemProvider = new TextItemProvider(this);
-		}
-
-		return textItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.Translation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TranslationItemProvider translationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.Translation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTranslationAdapter() {
-		if (translationItemProvider == null) {
-			translationItemProvider = new TranslationItemProvider(this);
-		}
-
-		return translationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.ServiceClass} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ServiceClassItemProvider serviceClassItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.ServiceClass}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createServiceClassAdapter() {
-		if (serviceClassItemProvider == null) {
-			serviceClassItemProvider = new ServiceClassItemProvider(this);
-		}
-
-		return serviceClassItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.ServiceLevel} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ServiceLevelItemProvider serviceLevelItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.ServiceLevel}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createServiceLevelAdapter() {
-		if (serviceLevelItemProvider == null) {
-			serviceLevelItemProvider = new ServiceLevelItemProvider(this);
-		}
-
-		return serviceLevelItemProvider;
+		return carrierConstraintItemProvider;
 	}
 
 	/**
@@ -727,6 +1788,75 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		}
 
 		return priceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.CurrencyPrice} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CurrencyPriceItemProvider currencyPriceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.CurrencyPrice}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCurrencyPriceAdapter() {
+		if (currencyPriceItemProvider == null) {
+			currencyPriceItemProvider = new CurrencyPriceItemProvider(this);
+		}
+
+		return currencyPriceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ReductionCard} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ReductionCardItemProvider reductionCardItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ReductionCard}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createReductionCardAdapter() {
+		if (reductionCardItemProvider == null) {
+			reductionCardItemProvider = new ReductionCardItemProvider(this);
+		}
+
+		return reductionCardItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.RegionalConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RegionalConstraintItemProvider regionalConstraintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.RegionalConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRegionalConstraintAdapter() {
+		if (regionalConstraintItemProvider == null) {
+			regionalConstraintItemProvider = new RegionalConstraintItemProvider(this);
+		}
+
+		return regionalConstraintItemProvider;
 	}
 
 	/**
@@ -799,141 +1929,72 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.ReservationPreference} instances.
+	 * This keeps track of the one adapter used for all {@link Gtm.ReservationPreferenceGroup} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ReservationPreferenceItemProvider reservationPreferenceItemProvider;
+	protected ReservationPreferenceGroupItemProvider reservationPreferenceGroupItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gtm.ReservationPreference}.
+	 * This creates an adapter for a {@link Gtm.ReservationPreferenceGroup}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createReservationPreferenceAdapter() {
-		if (reservationPreferenceItemProvider == null) {
-			reservationPreferenceItemProvider = new ReservationPreferenceItemProvider(this);
+	public Adapter createReservationPreferenceGroupAdapter() {
+		if (reservationPreferenceGroupItemProvider == null) {
+			reservationPreferenceGroupItemProvider = new ReservationPreferenceGroupItemProvider(this);
 		}
 
-		return reservationPreferenceItemProvider;
+		return reservationPreferenceGroupItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.CurrencyPrice} instances.
+	 * This keeps track of the one adapter used for all {@link Gtm.ServiceClass} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CurrencyPriceItemProvider currencyPriceItemProvider;
+	protected ServiceClassItemProvider serviceClassItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gtm.CurrencyPrice}.
+	 * This creates an adapter for a {@link Gtm.ServiceClass}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createCurrencyPriceAdapter() {
-		if (currencyPriceItemProvider == null) {
-			currencyPriceItemProvider = new CurrencyPriceItemProvider(this);
+	public Adapter createServiceClassAdapter() {
+		if (serviceClassItemProvider == null) {
+			serviceClassItemProvider = new ServiceClassItemProvider(this);
 		}
 
-		return currencyPriceItemProvider;
+		return serviceClassItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.Currency} instances.
+	 * This keeps track of the one adapter used for all {@link Gtm.ServiceLevel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CurrencyItemProvider currencyItemProvider;
+	protected ServiceLevelItemProvider serviceLevelItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gtm.Currency}.
+	 * This creates an adapter for a {@link Gtm.ServiceLevel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createCurrencyAdapter() {
-		if (currencyItemProvider == null) {
-			currencyItemProvider = new CurrencyItemProvider(this);
+	public Adapter createServiceLevelAdapter() {
+		if (serviceLevelItemProvider == null) {
+			serviceLevelItemProvider = new ServiceLevelItemProvider(this);
 		}
 
-		return currencyItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.VATDetail} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected VATDetailItemProvider vatDetailItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.VATDetail}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createVATDetailAdapter() {
-		if (vatDetailItemProvider == null) {
-			vatDetailItemProvider = new VATDetailItemProvider(this);
-		}
-
-		return vatDetailItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.RegionalConstraint} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected RegionalConstraintItemProvider regionalConstraintItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.RegionalConstraint}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createRegionalConstraintAdapter() {
-		if (regionalConstraintItemProvider == null) {
-			regionalConstraintItemProvider = new RegionalConstraintItemProvider(this);
-		}
-
-		return regionalConstraintItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.ConnectionPoint} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ConnectionPointItemProvider connectionPointItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.ConnectionPoint}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createConnectionPointAdapter() {
-		if (connectionPointItemProvider == null) {
-			connectionPointItemProvider = new ConnectionPointItemProvider(this);
-		}
-
-		return connectionPointItemProvider;
+		return serviceLevelItemProvider;
 	}
 
 	/**
@@ -960,118 +2021,26 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.CarrierConstraint} instances.
+	 * This keeps track of the one adapter used for all {@link Gtm.TargetFareTemplate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CarrierConstraintItemProvider carrierConstraintItemProvider;
+	protected TargetFareTemplateItemProvider targetFareTemplateItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gtm.CarrierConstraint}.
+	 * This creates an adapter for a {@link Gtm.TargetFareTemplate}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createCarrierConstraintAdapter() {
-		if (carrierConstraintItemProvider == null) {
-			carrierConstraintItemProvider = new CarrierConstraintItemProvider(this);
+	public Adapter createTargetFareTemplateAdapter() {
+		if (targetFareTemplateItemProvider == null) {
+			targetFareTemplateItemProvider = new TargetFareTemplateItemProvider(this);
 		}
 
-		return carrierConstraintItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.FareElement} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FareElementItemProvider fareElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.FareElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFareElementAdapter() {
-		if (fareElementItemProvider == null) {
-			fareElementItemProvider = new FareElementItemProvider(this);
-		}
-
-		return fareElementItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.ReductionCard} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ReductionCardItemProvider reductionCardItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.ReductionCard}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createReductionCardAdapter() {
-		if (reductionCardItemProvider == null) {
-			reductionCardItemProvider = new ReductionCardItemProvider(this);
-		}
-
-		return reductionCardItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.ServiceBrand} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ServiceBrandItemProvider serviceBrandItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.ServiceBrand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createServiceBrandAdapter() {
-		if (serviceBrandItemProvider == null) {
-			serviceBrandItemProvider = new ServiceBrandItemProvider(this);
-		}
-
-		return serviceBrandItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.SalesAvailabilityConstraint} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SalesAvailabilityConstraintItemProvider salesAvailabilityConstraintItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.SalesAvailabilityConstraint}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSalesAvailabilityConstraintAdapter() {
-		if (salesAvailabilityConstraintItemProvider == null) {
-			salesAvailabilityConstraintItemProvider = new SalesAvailabilityConstraintItemProvider(this);
-		}
-
-		return salesAvailabilityConstraintItemProvider;
+		return targetFareTemplateItemProvider;
 	}
 
 	/**
@@ -1098,6 +2067,144 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Text} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TextItemProvider textItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Text}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTextAdapter() {
+		if (textItemProvider == null) {
+			textItemProvider = new TextItemProvider(this);
+		}
+
+		return textItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Translation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TranslationItemProvider translationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Translation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTranslationAdapter() {
+		if (translationItemProvider == null) {
+			translationItemProvider = new TranslationItemProvider(this);
+		}
+
+		return translationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.VATDetail} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VATDetailItemProvider vatDetailItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.VATDetail}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVATDetailAdapter() {
+		if (vatDetailItemProvider == null) {
+			vatDetailItemProvider = new VATDetailItemProvider(this);
+		}
+
+		return vatDetailItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.FareElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FareElementItemProvider fareElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.FareElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFareElementAdapter() {
+		if (fareElementItemProvider == null) {
+			fareElementItemProvider = new FareElementItemProvider(this);
+		}
+
+		return fareElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyAccountingIdentifier} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyAccountingIdentifierItemProvider legacyAccountingIdentifierItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyAccountingIdentifier}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyAccountingIdentifierAdapter() {
+		if (legacyAccountingIdentifierItemProvider == null) {
+			legacyAccountingIdentifierItemProvider = new LegacyAccountingIdentifierItemProvider(this);
+		}
+
+		return legacyAccountingIdentifierItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.SalesAvailabilityConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SalesAvailabilityConstraintItemProvider salesAvailabilityConstraintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.SalesAvailabilityConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSalesAvailabilityConstraintAdapter() {
+		if (salesAvailabilityConstraintItemProvider == null) {
+			salesAvailabilityConstraintItemProvider = new SalesAvailabilityConstraintItemProvider(this);
+		}
+
+		return salesAvailabilityConstraintItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.SalesRestriction} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1121,26 +2228,49 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.TimeReference} instances.
+	 * This keeps track of the one adapter used for all {@link Gtm.EndOfSale} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TimeReferenceItemProvider timeReferenceItemProvider;
+	protected EndOfSaleItemProvider endOfSaleItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gtm.TimeReference}.
+	 * This creates an adapter for a {@link Gtm.EndOfSale}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createTimeReferenceAdapter() {
-		if (timeReferenceItemProvider == null) {
-			timeReferenceItemProvider = new TimeReferenceItemProvider(this);
+	public Adapter createEndOfSaleAdapter() {
+		if (endOfSaleItemProvider == null) {
+			endOfSaleItemProvider = new EndOfSaleItemProvider(this);
 		}
 
-		return timeReferenceItemProvider;
+		return endOfSaleItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.StartOfSale} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StartOfSaleItemProvider startOfSaleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.StartOfSale}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStartOfSaleAdapter() {
+		if (startOfSaleItemProvider == null) {
+			startOfSaleItemProvider = new StartOfSaleItemProvider(this);
+		}
+
+		return startOfSaleItemProvider;
 	}
 
 	/**
@@ -1213,6 +2343,29 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ExcludedTimeRange} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExcludedTimeRangeItemProvider excludedTimeRangeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ExcludedTimeRange}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExcludedTimeRangeAdapter() {
+		if (excludedTimeRangeItemProvider == null) {
+			excludedTimeRangeItemProvider = new ExcludedTimeRangeItemProvider(this);
+		}
+
+		return excludedTimeRangeItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.ReturnValidityConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1233,29 +2386,6 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		}
 
 		return returnValidityConstraintItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.FareCombinationModel} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FareCombinationModelItemProvider fareCombinationModelItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.FareCombinationModel}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFareCombinationModelAdapter() {
-		if (fareCombinationModelItemProvider == null) {
-			fareCombinationModelItemProvider = new FareCombinationModelItemProvider(this);
-		}
-
-		return fareCombinationModelItemProvider;
 	}
 
 	/**
@@ -1305,6 +2435,52 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.AlternativeRoute} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AlternativeRouteItemProvider alternativeRouteItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.AlternativeRoute}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAlternativeRouteAdapter() {
+		if (alternativeRouteItemProvider == null) {
+			alternativeRouteItemProvider = new AlternativeRouteItemProvider(this);
+		}
+
+		return alternativeRouteItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Route} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RouteItemProvider routeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Route}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRouteAdapter() {
+		if (routeItemProvider == null) {
+			routeItemProvider = new RouteItemProvider(this);
+		}
+
+		return routeItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.Zone} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1328,26 +2504,26 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.NutsCode} instances.
+	 * This keeps track of the one adapter used for all {@link Gtm.ZoneDefinition} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NutsCodeItemProvider nutsCodeItemProvider;
+	protected ZoneDefinitionItemProvider zoneDefinitionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gtm.NutsCode}.
+	 * This creates an adapter for a {@link Gtm.ZoneDefinition}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createNutsCodeAdapter() {
-		if (nutsCodeItemProvider == null) {
-			nutsCodeItemProvider = new NutsCodeItemProvider(this);
+	public Adapter createZoneDefinitionAdapter() {
+		if (zoneDefinitionItemProvider == null) {
+			zoneDefinitionItemProvider = new ZoneDefinitionItemProvider(this);
 		}
 
-		return nutsCodeItemProvider;
+		return zoneDefinitionItemProvider;
 	}
 
 	/**
@@ -1397,6 +2573,29 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyStation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyStationItemProvider legacyStationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyStation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyStationAdapter() {
+		if (legacyStationItemProvider == null) {
+			legacyStationItemProvider = new LegacyStationItemProvider(this);
+		}
+
+		return legacyStationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.Edge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1440,6 +2639,29 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		}
 
 		return passengerConstraintItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.IncludedFreePassengers} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IncludedFreePassengersItemProvider includedFreePassengersItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.IncludedFreePassengers}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIncludedFreePassengersAdapter() {
+		if (includedFreePassengersItemProvider == null) {
+			includedFreePassengersItemProvider = new IncludedFreePassengersItemProvider(this);
+		}
+
+		return includedFreePassengersItemProvider;
 	}
 
 	/**
@@ -1489,29 +2711,6 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.ZoneDefinition} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ZoneDefinitionItemProvider zoneDefinitionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.ZoneDefinition}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createZoneDefinitionAdapter() {
-		if (zoneDefinitionItemProvider == null) {
-			zoneDefinitionItemProvider = new ZoneDefinitionItemProvider(this);
-		}
-
-		return zoneDefinitionItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.AfterSalesCondition} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1535,6 +2734,29 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.ApplicationTime} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ApplicationTimeItemProvider applicationTimeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.ApplicationTime}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createApplicationTimeAdapter() {
+		if (applicationTimeItemProvider == null) {
+			applicationTimeItemProvider = new ApplicationTimeItemProvider(this);
+		}
+
+		return applicationTimeItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.AfterSalesRule} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1555,6 +2777,190 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		}
 
 		return afterSalesRuleItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.AllowedPersonalDataChanges} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AllowedPersonalDataChangesItemProvider allowedPersonalDataChangesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.AllowedPersonalDataChanges}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAllowedPersonalDataChangesAdapter() {
+		if (allowedPersonalDataChangesItemProvider == null) {
+			allowedPersonalDataChangesItemProvider = new AllowedPersonalDataChangesItemProvider(this);
+		}
+
+		return allowedPersonalDataChangesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.CarrierResourceLocation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CarrierResourceLocationItemProvider carrierResourceLocationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.CarrierResourceLocation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCarrierResourceLocationAdapter() {
+		if (carrierResourceLocationItemProvider == null) {
+			carrierResourceLocationItemProvider = new CarrierResourceLocationItemProvider(this);
+		}
+
+		return carrierResourceLocationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.CrossBorderCondition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CrossBorderConditionItemProvider crossBorderConditionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.CrossBorderCondition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCrossBorderConditionAdapter() {
+		if (crossBorderConditionItemProvider == null) {
+			crossBorderConditionItemProvider = new CrossBorderConditionItemProvider(this);
+		}
+
+		return crossBorderConditionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.FareCombinationModel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FareCombinationModelItemProvider fareCombinationModelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.FareCombinationModel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFareCombinationModelAdapter() {
+		if (fareCombinationModelItemProvider == null) {
+			fareCombinationModelItemProvider = new FareCombinationModelItemProvider(this);
+		}
+
+		return fareCombinationModelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.RequiredBarcodes} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RequiredBarcodesItemProvider requiredBarcodesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.RequiredBarcodes}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRequiredBarcodesAdapter() {
+		if (requiredBarcodesItemProvider == null) {
+			requiredBarcodesItemProvider = new RequiredBarcodesItemProvider(this);
+		}
+
+		return requiredBarcodesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.AcceptedBarcodes} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AcceptedBarcodesItemProvider acceptedBarcodesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.AcceptedBarcodes}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAcceptedBarcodesAdapter() {
+		if (acceptedBarcodesItemProvider == null) {
+			acceptedBarcodesItemProvider = new AcceptedBarcodesItemProvider(this);
+		}
+
+		return acceptedBarcodesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.FulfillmentConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FulfillmentConstraintItemProvider fulfillmentConstraintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.FulfillmentConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFulfillmentConstraintAdapter() {
+		if (fulfillmentConstraintItemProvider == null) {
+			fulfillmentConstraintItemProvider = new FulfillmentConstraintItemProvider(this);
+		}
+
+		return fulfillmentConstraintItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.OnlineResource} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OnlineResourceItemProvider onlineResourceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.OnlineResource}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOnlineResourceAdapter() {
+		if (onlineResourceItemProvider == null) {
+			onlineResourceItemProvider = new OnlineResourceItemProvider(this);
+		}
+
+		return onlineResourceItemProvider;
 	}
 
 	/**
@@ -1604,52 +3010,6 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.CrossBorderCondition} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CrossBorderConditionItemProvider crossBorderConditionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.CrossBorderCondition}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCrossBorderConditionAdapter() {
-		if (crossBorderConditionItemProvider == null) {
-			crossBorderConditionItemProvider = new CrossBorderConditionItemProvider(this);
-		}
-
-		return crossBorderConditionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.AllowedPersonalDataChanges} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AllowedPersonalDataChangesItemProvider allowedPersonalDataChangesItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.AllowedPersonalDataChanges}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAllowedPersonalDataChangesAdapter() {
-		if (allowedPersonalDataChangesItemProvider == null) {
-			allowedPersonalDataChangesItemProvider = new AllowedPersonalDataChangesItemProvider(this);
-		}
-
-		return allowedPersonalDataChangesItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.ReductionConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1696,98 +3056,6 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.FulfillmentConstraint} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FulfillmentConstraintItemProvider fulfillmentConstraintItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.FulfillmentConstraint}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFulfillmentConstraintAdapter() {
-		if (fulfillmentConstraintItemProvider == null) {
-			fulfillmentConstraintItemProvider = new FulfillmentConstraintItemProvider(this);
-		}
-
-		return fulfillmentConstraintItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.FareResourceLocation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FareResourceLocationItemProvider fareResourceLocationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.FareResourceLocation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createFareResourceLocationAdapter() {
-		if (fareResourceLocationItemProvider == null) {
-			fareResourceLocationItemProvider = new FareResourceLocationItemProvider(this);
-		}
-
-		return fareResourceLocationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.TrainResourceLocation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TrainResourceLocationItemProvider trainResourceLocationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.TrainResourceLocation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTrainResourceLocationAdapter() {
-		if (trainResourceLocationItemProvider == null) {
-			trainResourceLocationItemProvider = new TrainResourceLocationItemProvider(this);
-		}
-
-		return trainResourceLocationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.CarrierResourceLocation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CarrierResourceLocationItemProvider carrierResourceLocationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.CarrierResourceLocation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCarrierResourceLocationAdapter() {
-		if (carrierResourceLocationItemProvider == null) {
-			carrierResourceLocationItemProvider = new CarrierResourceLocationItemProvider(this);
-		}
-
-		return carrierResourceLocationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.StationResourceLocation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1811,26 +3079,26 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.OnlineResource} instances.
+	 * This keeps track of the one adapter used for all {@link Gtm.TrainResourceLocation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OnlineResourceItemProvider onlineResourceItemProvider;
+	protected TrainResourceLocationItemProvider trainResourceLocationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gtm.OnlineResource}.
+	 * This creates an adapter for a {@link Gtm.TrainResourceLocation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createOnlineResourceAdapter() {
-		if (onlineResourceItemProvider == null) {
-			onlineResourceItemProvider = new OnlineResourceItemProvider(this);
+	public Adapter createTrainResourceLocationAdapter() {
+		if (trainResourceLocationItemProvider == null) {
+			trainResourceLocationItemProvider = new TrainResourceLocationItemProvider(this);
 		}
 
-		return onlineResourceItemProvider;
+		return trainResourceLocationItemProvider;
 	}
 
 	/**
@@ -1961,80 +3229,135 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	public void dispose() {
 		if (gtmToolItemProvider != null) gtmToolItemProvider.dispose();
 		if (codeListsItemProvider != null) codeListsItemProvider.dispose();
-		if (generalTariffModelItemProvider != null) generalTariffModelItemProvider.dispose();
-		if (conversionFromLegacyItemProvider != null) conversionFromLegacyItemProvider.dispose();
-		if (fareStructureItemProvider != null) fareStructureItemProvider.dispose();
-		if (deliveryItemProvider != null) deliveryItemProvider.dispose();
-		if (borderPointsItemProvider != null) borderPointsItemProvider.dispose();
-		if (calendarItemProvider != null) calendarItemProvider.dispose();
-		if (carrierItemProvider != null) carrierItemProvider.dispose();
-		if (coversionParamsItemProvider != null) coversionParamsItemProvider.dispose();
-		if (legacyDescriptionItemProvider != null) legacyDescriptionItemProvider.dispose();
-		if (legacyDistanceFareItemProvider != null) legacyDistanceFareItemProvider.dispose();
-		if (legacyFaresItemProvider != null) legacyFaresItemProvider.dispose();
-		if (legacy108ItemProvider != null) legacy108ItemProvider.dispose();
-		if (legacyRouteFareItemProvider != null) legacyRouteFareItemProvider.dispose();
-		if (legacySeriesItemProvider != null) legacySeriesItemProvider.dispose();
-		if (legacyViastationItemProvider != null) legacyViastationItemProvider.dispose();
-		if (legacyStationMapItemProvider != null) legacyStationMapItemProvider.dispose();
-		if (carrierConstraintItemProvider != null) carrierConstraintItemProvider.dispose();
+		if (nutsCodesItemProvider != null) nutsCodesItemProvider.dispose();
+		if (nutsCodeItemProvider != null) nutsCodeItemProvider.dispose();
+		if (serviceBrandsItemProvider != null) serviceBrandsItemProvider.dispose();
+		if (serviceBrandItemProvider != null) serviceBrandItemProvider.dispose();
+		if (countriesItemProvider != null) countriesItemProvider.dispose();
 		if (countryItemProvider != null) countryItemProvider.dispose();
-		if (connectionPointItemProvider != null) connectionPointItemProvider.dispose();
-		if (currencyItemProvider != null) currencyItemProvider.dispose();
-		if (currencyPriceItemProvider != null) currencyPriceItemProvider.dispose();
+		if (languagesItemProvider != null) languagesItemProvider.dispose();
 		if (languageItemProvider != null) languageItemProvider.dispose();
-		if (priceItemProvider != null) priceItemProvider.dispose();
+		if (currenciesItemProvider != null) currenciesItemProvider.dispose();
+		if (currencyItemProvider != null) currencyItemProvider.dispose();
+		if (stationsItemProvider != null) stationsItemProvider.dispose();
+		if (stationItemProvider != null) stationItemProvider.dispose();
+		if (carrierItemProvider != null) carrierItemProvider.dispose();
+		if (carriersItemProvider != null) carriersItemProvider.dispose();
+		if (generalTariffModelItemProvider != null) generalTariffModelItemProvider.dispose();
+		if (deliveryItemProvider != null) deliveryItemProvider.dispose();
+		if (afterSalesRulesItemProvider != null) afterSalesRulesItemProvider.dispose();
+		if (afterSalesRuleItemProvider != null) afterSalesRuleItemProvider.dispose();
+		if (afterSalesConditionItemProvider != null) afterSalesConditionItemProvider.dispose();
+		if (applicationTimeItemProvider != null) applicationTimeItemProvider.dispose();
+		if (fareStructureItemProvider != null) fareStructureItemProvider.dispose();
+		if (connectionPointsItemProvider != null) connectionPointsItemProvider.dispose();
+		if (connectionPointItemProvider != null) connectionPointItemProvider.dispose();
+		if (stationSetItemProvider != null) stationSetItemProvider.dispose();
+		if (fareResourceLocationsItemProvider != null) fareResourceLocationsItemProvider.dispose();
+		if (trainResourceLocationsItemProvider != null) trainResourceLocationsItemProvider.dispose();
+		if (stationResourceLocationsItemProvider != null) stationResourceLocationsItemProvider.dispose();
+		if (carrierResourceLocationsItemProvider != null) carrierResourceLocationsItemProvider.dispose();
+		if (trainResourceLocationItemProvider != null) trainResourceLocationItemProvider.dispose();
+		if (stationResourceLocationItemProvider != null) stationResourceLocationItemProvider.dispose();
+		if (onlineResourceItemProvider != null) onlineResourceItemProvider.dispose();
+		if (fulfillmentConstraintsItemProvider != null) fulfillmentConstraintsItemProvider.dispose();
+		if (supportedOnlineServicesItemProvider != null) supportedOnlineServicesItemProvider.dispose();
+		if (zoneDefinitionsItemProvider != null) zoneDefinitionsItemProvider.dispose();
+		if (fareElementItemProvider != null) fareElementItemProvider.dispose();
+		if (legacyAccountingIdentifierItemProvider != null) legacyAccountingIdentifierItemProvider.dispose();
+		if (reductionConstraintsItemProvider != null) reductionConstraintsItemProvider.dispose();
+		if (fareElementsItemProvider != null) fareElementsItemProvider.dispose();
+		if (personalDataConstraintsItemProvider != null) personalDataConstraintsItemProvider.dispose();
+		if (personalDataConstraintItemProvider != null) personalDataConstraintItemProvider.dispose();
+		if (requiredPersonalDataItemProvider != null) requiredPersonalDataItemProvider.dispose();
+		if (allowedPersonalDataChangesItemProvider != null) allowedPersonalDataChangesItemProvider.dispose();
+		if (passengerConstraintsItemProvider != null) passengerConstraintsItemProvider.dispose();
+		if (passengerConstraintItemProvider != null) passengerConstraintItemProvider.dispose();
+		if (includedFreePassengersItemProvider != null) includedFreePassengersItemProvider.dispose();
+		if (passengerCombinationConstraintItemProvider != null) passengerCombinationConstraintItemProvider.dispose();
+		if (combinationConstraintsItemProvider != null) combinationConstraintsItemProvider.dispose();
+		if (combinationConstraintItemProvider != null) combinationConstraintItemProvider.dispose();
+		if (travelValidityConstraintsItemProvider != null) travelValidityConstraintsItemProvider.dispose();
+		if (travelValidityConstraintItemProvider != null) travelValidityConstraintItemProvider.dispose();
+		if (salesAvailabilityConstraintsItemProvider != null) salesAvailabilityConstraintsItemProvider.dispose();
+		if (salesAvailabilityConstraintItemProvider != null) salesAvailabilityConstraintItemProvider.dispose();
+		if (salesRestrictionItemProvider != null) salesRestrictionItemProvider.dispose();
+		if (endOfSaleItemProvider != null) endOfSaleItemProvider.dispose();
+		if (startOfSaleItemProvider != null) startOfSaleItemProvider.dispose();
+		if (reductionCardsItemProvider != null) reductionCardsItemProvider.dispose();
 		if (reductionCardItemProvider != null) reductionCardItemProvider.dispose();
+		if (carrierConstraintsItemProvider != null) carrierConstraintsItemProvider.dispose();
+		if (carrierConstraintItemProvider != null) carrierConstraintItemProvider.dispose();
+		if (serviceConstraintsItemProvider != null) serviceConstraintsItemProvider.dispose();
+		if (serviceConstraintItemProvider != null) serviceConstraintItemProvider.dispose();
+		if (regionalConstraintsItemProvider != null) regionalConstraintsItemProvider.dispose();
 		if (regionalConstraintItemProvider != null) regionalConstraintItemProvider.dispose();
+		if (regionalValidityItemProvider != null) regionalValidityItemProvider.dispose();
+		if (serviceLevelDefinitionsItemProvider != null) serviceLevelDefinitionsItemProvider.dispose();
+		if (textsItemProvider != null) textsItemProvider.dispose();
+		if (textItemProvider != null) textItemProvider.dispose();
+		if (translationItemProvider != null) translationItemProvider.dispose();
+		if (pricesItemProvider != null) pricesItemProvider.dispose();
+		if (priceItemProvider != null) priceItemProvider.dispose();
+		if (vatDetailItemProvider != null) vatDetailItemProvider.dispose();
+		if (currencyPriceItemProvider != null) currencyPriceItemProvider.dispose();
+		if (serviceClassDefinitionsItemProvider != null) serviceClassDefinitionsItemProvider.dispose();
+		if (calendarsItemProvider != null) calendarsItemProvider.dispose();
+		if (calendarItemProvider != null) calendarItemProvider.dispose();
+		if (reservationParametersItemProvider != null) reservationParametersItemProvider.dispose();
 		if (reservationParameterItemProvider != null) reservationParameterItemProvider.dispose();
 		if (reservationParams9181ItemProvider != null) reservationParams9181ItemProvider.dispose();
 		if (reservationOptionsItemProvider != null) reservationOptionsItemProvider.dispose();
-		if (reservationPreferenceItemProvider != null) reservationPreferenceItemProvider.dispose();
+		if (reservationPreferenceGroupItemProvider != null) reservationPreferenceGroupItemProvider.dispose();
 		if (serviceClassItemProvider != null) serviceClassItemProvider.dispose();
 		if (serviceLevelItemProvider != null) serviceLevelItemProvider.dispose();
-		if (serviceConstraintItemProvider != null) serviceConstraintItemProvider.dispose();
-		if (stationItemProvider != null) stationItemProvider.dispose();
-		if (stationsTypeItemProvider != null) stationsTypeItemProvider.dispose();
-		if (targetFareTemplateItemProvider != null) targetFareTemplateItemProvider.dispose();
-		if (travelValidityConstraintItemProvider != null) travelValidityConstraintItemProvider.dispose();
-		if (textItemProvider != null) textItemProvider.dispose();
-		if (translationItemProvider != null) translationItemProvider.dispose();
-		if (vatDetailItemProvider != null) vatDetailItemProvider.dispose();
-		if (fareElementItemProvider != null) fareElementItemProvider.dispose();
-		if (serviceBrandItemProvider != null) serviceBrandItemProvider.dispose();
-		if (salesAvailabilityConstraintItemProvider != null) salesAvailabilityConstraintItemProvider.dispose();
-		if (salesRestrictionItemProvider != null) salesRestrictionItemProvider.dispose();
-		if (timeReferenceItemProvider != null) timeReferenceItemProvider.dispose();
-		if (combinationConstraintItemProvider != null) combinationConstraintItemProvider.dispose();
-		if (validityRangeItemProvider != null) validityRangeItemProvider.dispose();
 		if (timeRangeItemProvider != null) timeRangeItemProvider.dispose();
+		if (excludedTimeRangeItemProvider != null) excludedTimeRangeItemProvider.dispose();
+		if (validityRangeItemProvider != null) validityRangeItemProvider.dispose();
+		if (relativeTimeItemProvider != null) relativeTimeItemProvider.dispose();
 		if (returnValidityConstraintItemProvider != null) returnValidityConstraintItemProvider.dispose();
-		if (fareCombinationModelItemProvider != null) fareCombinationModelItemProvider.dispose();
-		if (regionalValidityItemProvider != null) regionalValidityItemProvider.dispose();
 		if (viaStationItemProvider != null) viaStationItemProvider.dispose();
+		if (alternativeRouteItemProvider != null) alternativeRouteItemProvider.dispose();
+		if (routeItemProvider != null) routeItemProvider.dispose();
 		if (zoneItemProvider != null) zoneItemProvider.dispose();
-		if (nutsCodeItemProvider != null) nutsCodeItemProvider.dispose();
+		if (zoneDefinitionItemProvider != null) zoneDefinitionItemProvider.dispose();
 		if (lineItemProvider != null) lineItemProvider.dispose();
 		if (polygoneItemProvider != null) polygoneItemProvider.dispose();
 		if (edgeItemProvider != null) edgeItemProvider.dispose();
-		if (passengerConstraintItemProvider != null) passengerConstraintItemProvider.dispose();
-		if (passengerCombinationConstraintItemProvider != null) passengerCombinationConstraintItemProvider.dispose();
-		if (relativeTimeItemProvider != null) relativeTimeItemProvider.dispose();
-		if (zoneDefinitionItemProvider != null) zoneDefinitionItemProvider.dispose();
-		if (afterSalesConditionItemProvider != null) afterSalesConditionItemProvider.dispose();
-		if (afterSalesRuleItemProvider != null) afterSalesRuleItemProvider.dispose();
-		if (personalDataConstraintItemProvider != null) personalDataConstraintItemProvider.dispose();
-		if (requiredPersonalDataItemProvider != null) requiredPersonalDataItemProvider.dispose();
+		if (carrierResourceLocationItemProvider != null) carrierResourceLocationItemProvider.dispose();
 		if (crossBorderConditionItemProvider != null) crossBorderConditionItemProvider.dispose();
-		if (allowedPersonalDataChangesItemProvider != null) allowedPersonalDataChangesItemProvider.dispose();
+		if (fareCombinationModelItemProvider != null) fareCombinationModelItemProvider.dispose();
+		if (fulfillmentConstraintItemProvider != null) fulfillmentConstraintItemProvider.dispose();
+		if (requiredBarcodesItemProvider != null) requiredBarcodesItemProvider.dispose();
+		if (acceptedBarcodesItemProvider != null) acceptedBarcodesItemProvider.dispose();
 		if (reductionConstraintItemProvider != null) reductionConstraintItemProvider.dispose();
 		if (requiredReductionCardItemProvider != null) requiredReductionCardItemProvider.dispose();
-		if (fulfillmentConstraintItemProvider != null) fulfillmentConstraintItemProvider.dispose();
-		if (fareResourceLocationItemProvider != null) fareResourceLocationItemProvider.dispose();
-		if (trainResourceLocationItemProvider != null) trainResourceLocationItemProvider.dispose();
-		if (carrierResourceLocationItemProvider != null) carrierResourceLocationItemProvider.dispose();
-		if (stationResourceLocationItemProvider != null) stationResourceLocationItemProvider.dispose();
-		if (onlineResourceItemProvider != null) onlineResourceItemProvider.dispose();
+		if (conversionFromLegacyItemProvider != null) conversionFromLegacyItemProvider.dispose();
+		if (conversionParamsItemProvider != null) conversionParamsItemProvider.dispose();
+		if (targetFareTemplateItemProvider != null) targetFareTemplateItemProvider.dispose();
+		if (legacyStationToServiceConstraintMappingsItemProvider != null) legacyStationToServiceConstraintMappingsItemProvider.dispose();
+		if (legacyStationToServiceConstraintMappingItemProvider != null) legacyStationToServiceConstraintMappingItemProvider.dispose();
+		if (legacyStationMappingsItemProvider != null) legacyStationMappingsItemProvider.dispose();
+		if (legacyStationMapItemProvider != null) legacyStationMapItemProvider.dispose();
+		if (legacyStationItemProvider != null) legacyStationItemProvider.dispose();
+		if (legacyBoderPointMappingsItemProvider != null) legacyBoderPointMappingsItemProvider.dispose();
+		if (legacyBorderPointMappingItemProvider != null) legacyBorderPointMappingItemProvider.dispose();
+		if (legacyDescriptionItemProvider != null) legacyDescriptionItemProvider.dispose();
+		if (legacyZoneMappingsItemProvider != null) legacyZoneMappingsItemProvider.dispose();
+		if (legacyZoneMapItemProvider != null) legacyZoneMapItemProvider.dispose();
+		if (legacyFaresItemProvider != null) legacyFaresItemProvider.dispose();
+		if (legacyFareItemProvider != null) legacyFareItemProvider.dispose();
+		if (legacy108ItemProvider != null) legacy108ItemProvider.dispose();
+		if (legacy108StationsItemProvider != null) legacy108StationsItemProvider.dispose();
+		if (legacy108StationItemProvider != null) legacy108StationItemProvider.dispose();
+		if (legacyRouteFaresItemProvider != null) legacyRouteFaresItemProvider.dispose();
+		if (legacyRouteFareItemProvider != null) legacyRouteFareItemProvider.dispose();
+		if (legacySeriesItemProvider != null) legacySeriesItemProvider.dispose();
+		if (legacySeriesListItemProvider != null) legacySeriesListItemProvider.dispose();
+		if (legacyDistanceFaresItemProvider != null) legacyDistanceFaresItemProvider.dispose();
+		if (legacyDistanceFareItemProvider != null) legacyDistanceFareItemProvider.dispose();
+		if (legacyViastationItemProvider != null) legacyViastationItemProvider.dispose();
+		if (legacyTargetFaresItemProvider != null) legacyTargetFaresItemProvider.dispose();
 	}
 
 }

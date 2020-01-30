@@ -78,7 +78,7 @@ public class LegacyFaresItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GtmPackage.Literals.LEGACY_FARES__DESCRIPTION);
+			childrenFeatures.add(GtmPackage.Literals.LEGACY_FARES__FARES);
 		}
 		return childrenFeatures;
 	}
@@ -131,7 +131,7 @@ public class LegacyFaresItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LegacyFares.class)) {
-			case GtmPackage.LEGACY_FARES__DESCRIPTION:
+			case GtmPackage.LEGACY_FARES__FARES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -151,8 +151,8 @@ public class LegacyFaresItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.LEGACY_FARES__DESCRIPTION,
-				 GtmFactory.eINSTANCE.createLegacyDescription()));
+				(GtmPackage.Literals.LEGACY_FARES__FARES,
+				 GtmFactory.eINSTANCE.createLegacyFare()));
 	}
 
 	/**
