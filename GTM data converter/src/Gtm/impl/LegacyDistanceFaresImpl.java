@@ -3,8 +3,8 @@
 package Gtm.impl;
 
 import Gtm.GtmPackage;
-import Gtm.LegacyFare;
-import Gtm.LegacyFares;
+import Gtm.LegacyDistanceFare;
+import Gtm.LegacyDistanceFares;
 
 import java.util.Collection;
 
@@ -22,33 +22,34 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Legacy Fares</b></em>'.
+ * An implementation of the model object '<em><b>Legacy Distance Fares</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Gtm.impl.LegacyFaresImpl#getFares <em>Fares</em>}</li>
+ *   <li>{@link Gtm.impl.LegacyDistanceFaresImpl#getDistanceFare <em>Distance Fare</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements LegacyFares {
+public class LegacyDistanceFaresImpl extends MinimalEObjectImpl.Container implements LegacyDistanceFares {
 	/**
-	 * The cached value of the '{@link #getFares() <em>Fares</em>}' containment reference list.
+	 * The cached value of the '{@link #getDistanceFare() <em>Distance Fare</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFares()
+	 * @see #getDistanceFare()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LegacyFare> fares;
+	protected EList<LegacyDistanceFare> distanceFare;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LegacyFaresImpl() {
+	protected LegacyDistanceFaresImpl() {
 		super();
 	}
 
@@ -59,7 +60,7 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GtmPackage.Literals.LEGACY_FARES;
+		return GtmPackage.Literals.LEGACY_DISTANCE_FARES;
 	}
 
 	/**
@@ -67,11 +68,11 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LegacyFare> getFares() {
-		if (fares == null) {
-			fares = new EObjectContainmentEList<LegacyFare>(LegacyFare.class, this, GtmPackage.LEGACY_FARES__FARES);
+	public EList<LegacyDistanceFare> getDistanceFare() {
+		if (distanceFare == null) {
+			distanceFare = new EObjectContainmentEList<LegacyDistanceFare>(LegacyDistanceFare.class, this, GtmPackage.LEGACY_DISTANCE_FARES__DISTANCE_FARE);
 		}
-		return fares;
+		return distanceFare;
 	}
 
 	/**
@@ -82,8 +83,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return ((InternalEList<?>)getFares()).basicRemove(otherEnd, msgs);
+			case GtmPackage.LEGACY_DISTANCE_FARES__DISTANCE_FARE:
+				return ((InternalEList<?>)getDistanceFare()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -96,8 +97,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return getFares();
+			case GtmPackage.LEGACY_DISTANCE_FARES__DISTANCE_FARE:
+				return getDistanceFare();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,9 +112,9 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				getFares().clear();
-				getFares().addAll((Collection<? extends LegacyFare>)newValue);
+			case GtmPackage.LEGACY_DISTANCE_FARES__DISTANCE_FARE:
+				getDistanceFare().clear();
+				getDistanceFare().addAll((Collection<? extends LegacyDistanceFare>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,8 +128,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				getFares().clear();
+			case GtmPackage.LEGACY_DISTANCE_FARES__DISTANCE_FARE:
+				getDistanceFare().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -142,10 +143,10 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return fares != null && !fares.isEmpty();
+			case GtmPackage.LEGACY_DISTANCE_FARES__DISTANCE_FARE:
+				return distanceFare != null && !distanceFare.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //LegacyFaresImpl
+} //LegacyDistanceFaresImpl

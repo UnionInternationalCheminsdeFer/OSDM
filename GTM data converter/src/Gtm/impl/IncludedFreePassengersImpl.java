@@ -3,8 +3,8 @@
 package Gtm.impl;
 
 import Gtm.GtmPackage;
-import Gtm.LegacyFare;
-import Gtm.LegacyFares;
+import Gtm.IncludedFreePassengers;
+import Gtm.PassengerCombinationConstraint;
 
 import java.util.Collection;
 
@@ -22,33 +22,34 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Legacy Fares</b></em>'.
+ * An implementation of the model object '<em><b>Included Free Passengers</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Gtm.impl.LegacyFaresImpl#getFares <em>Fares</em>}</li>
+ *   <li>{@link Gtm.impl.IncludedFreePassengersImpl#getIncludedFreePassengers <em>Included Free Passengers</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements LegacyFares {
+public class IncludedFreePassengersImpl extends MinimalEObjectImpl.Container implements IncludedFreePassengers {
 	/**
-	 * The cached value of the '{@link #getFares() <em>Fares</em>}' containment reference list.
+	 * The cached value of the '{@link #getIncludedFreePassengers() <em>Included Free Passengers</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFares()
+	 * @see #getIncludedFreePassengers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LegacyFare> fares;
+	protected EList<PassengerCombinationConstraint> includedFreePassengers;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LegacyFaresImpl() {
+	protected IncludedFreePassengersImpl() {
 		super();
 	}
 
@@ -59,7 +60,7 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GtmPackage.Literals.LEGACY_FARES;
+		return GtmPackage.Literals.INCLUDED_FREE_PASSENGERS;
 	}
 
 	/**
@@ -67,11 +68,11 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LegacyFare> getFares() {
-		if (fares == null) {
-			fares = new EObjectContainmentEList<LegacyFare>(LegacyFare.class, this, GtmPackage.LEGACY_FARES__FARES);
+	public EList<PassengerCombinationConstraint> getIncludedFreePassengers() {
+		if (includedFreePassengers == null) {
+			includedFreePassengers = new EObjectContainmentEList<PassengerCombinationConstraint>(PassengerCombinationConstraint.class, this, GtmPackage.INCLUDED_FREE_PASSENGERS__INCLUDED_FREE_PASSENGERS);
 		}
-		return fares;
+		return includedFreePassengers;
 	}
 
 	/**
@@ -82,8 +83,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return ((InternalEList<?>)getFares()).basicRemove(otherEnd, msgs);
+			case GtmPackage.INCLUDED_FREE_PASSENGERS__INCLUDED_FREE_PASSENGERS:
+				return ((InternalEList<?>)getIncludedFreePassengers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -96,8 +97,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return getFares();
+			case GtmPackage.INCLUDED_FREE_PASSENGERS__INCLUDED_FREE_PASSENGERS:
+				return getIncludedFreePassengers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,9 +112,9 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				getFares().clear();
-				getFares().addAll((Collection<? extends LegacyFare>)newValue);
+			case GtmPackage.INCLUDED_FREE_PASSENGERS__INCLUDED_FREE_PASSENGERS:
+				getIncludedFreePassengers().clear();
+				getIncludedFreePassengers().addAll((Collection<? extends PassengerCombinationConstraint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,8 +128,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				getFares().clear();
+			case GtmPackage.INCLUDED_FREE_PASSENGERS__INCLUDED_FREE_PASSENGERS:
+				getIncludedFreePassengers().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -142,10 +143,10 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return fares != null && !fares.isEmpty();
+			case GtmPackage.INCLUDED_FREE_PASSENGERS__INCLUDED_FREE_PASSENGERS:
+				return includedFreePassengers != null && !includedFreePassengers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //LegacyFaresImpl
+} //IncludedFreePassengersImpl

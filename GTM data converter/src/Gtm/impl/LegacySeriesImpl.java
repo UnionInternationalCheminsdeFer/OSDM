@@ -10,8 +10,7 @@ import Gtm.LegacyViastation;
 
 import java.util.Collection;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
+import java.util.Date;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -126,7 +125,7 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 	 * @generated
 	 * @ordered
 	 */
-	protected static final XMLGregorianCalendar VALID_FROM_EDEFAULT = null;
+	protected static final Date VALID_FROM_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getValidFrom() <em>Valid From</em>}' attribute.
@@ -136,7 +135,7 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 	 * @generated
 	 * @ordered
 	 */
-	protected XMLGregorianCalendar validFrom = VALID_FROM_EDEFAULT;
+	protected Date validFrom = VALID_FROM_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getValidUntil() <em>Valid Until</em>}' attribute.
@@ -146,7 +145,7 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 	 * @generated
 	 * @ordered
 	 */
-	protected static final XMLGregorianCalendar VALID_UNTIL_EDEFAULT = null;
+	protected static final Date VALID_UNTIL_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getValidUntil() <em>Valid Until</em>}' attribute.
@@ -156,7 +155,7 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 	 * @generated
 	 * @ordered
 	 */
-	protected XMLGregorianCalendar validUntil = VALID_UNTIL_EDEFAULT;
+	protected Date validUntil = VALID_UNTIL_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPricing() <em>Pricing</em>}' attribute.
@@ -406,7 +405,7 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public XMLGregorianCalendar getValidFrom() {
+	public Date getValidFrom() {
 		return validFrom;
 	}
 
@@ -415,8 +414,8 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValidFrom(XMLGregorianCalendar newValidFrom) {
-		XMLGregorianCalendar oldValidFrom = validFrom;
+	public void setValidFrom(Date newValidFrom) {
+		Date oldValidFrom = validFrom;
 		validFrom = newValidFrom;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY_SERIES__VALID_FROM, oldValidFrom, validFrom));
@@ -427,7 +426,7 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public XMLGregorianCalendar getValidUntil() {
+	public Date getValidUntil() {
 		return validUntil;
 	}
 
@@ -436,8 +435,8 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValidUntil(XMLGregorianCalendar newValidUntil) {
-		XMLGregorianCalendar oldValidUntil = validUntil;
+	public void setValidUntil(Date newValidUntil) {
+		Date oldValidUntil = validUntil;
 		validUntil = newValidUntil;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY_SERIES__VALID_UNTIL, oldValidUntil, validUntil));
@@ -637,10 +636,10 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 				setPricetype((LegacyCalculationType)newValue);
 				return;
 			case GtmPackage.LEGACY_SERIES__VALID_FROM:
-				setValidFrom((XMLGregorianCalendar)newValue);
+				setValidFrom((Date)newValue);
 				return;
 			case GtmPackage.LEGACY_SERIES__VALID_UNTIL:
-				setValidUntil((XMLGregorianCalendar)newValue);
+				setValidUntil((Date)newValue);
 				return;
 			case GtmPackage.LEGACY_SERIES__PRICING:
 				setPricing((String)newValue);

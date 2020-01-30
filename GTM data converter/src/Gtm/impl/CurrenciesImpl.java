@@ -2,10 +2,11 @@
  */
 package Gtm.impl;
 
+import Gtm.Currencies;
+import Gtm.Currency;
 import Gtm.GtmPackage;
-import Gtm.LegacyFare;
-import Gtm.LegacyFares;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -22,33 +23,34 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Legacy Fares</b></em>'.
+ * An implementation of the model object '<em><b>Currencies</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Gtm.impl.LegacyFaresImpl#getFares <em>Fares</em>}</li>
+ *   <li>{@link Gtm.impl.CurrenciesImpl#getCurrencies <em>Currencies</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements LegacyFares {
+public class CurrenciesImpl extends MinimalEObjectImpl.Container implements Currencies {
 	/**
-	 * The cached value of the '{@link #getFares() <em>Fares</em>}' containment reference list.
+	 * The cached value of the '{@link #getCurrencies() <em>Currencies</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFares()
+	 * @see #getCurrencies()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LegacyFare> fares;
+	protected EList<Currency> currencies;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LegacyFaresImpl() {
+	protected CurrenciesImpl() {
 		super();
 	}
 
@@ -59,7 +61,7 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GtmPackage.Literals.LEGACY_FARES;
+		return GtmPackage.Literals.CURRENCIES;
 	}
 
 	/**
@@ -67,11 +69,25 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LegacyFare> getFares() {
-		if (fares == null) {
-			fares = new EObjectContainmentEList<LegacyFare>(LegacyFare.class, this, GtmPackage.LEGACY_FARES__FARES);
+	public EList<Currency> getCurrencies() {
+		if (currencies == null) {
+			currencies = new EObjectContainmentEList<Currency>(Currency.class, this, GtmPackage.CURRENCIES__CURRENCIES);
 		}
-		return fares;
+		return currencies;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Currency findCurrency(String ISOcode) {
+		if (currencies == null) return null;
+		for (Currency currency : currencies) {
+			if (currency.getIsoCode().equals(ISOcode)) return currency;
+		}
+		return null;
+
 	}
 
 	/**
@@ -82,8 +98,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return ((InternalEList<?>)getFares()).basicRemove(otherEnd, msgs);
+			case GtmPackage.CURRENCIES__CURRENCIES:
+				return ((InternalEList<?>)getCurrencies()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -96,8 +112,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return getFares();
+			case GtmPackage.CURRENCIES__CURRENCIES:
+				return getCurrencies();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,9 +127,9 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				getFares().clear();
-				getFares().addAll((Collection<? extends LegacyFare>)newValue);
+			case GtmPackage.CURRENCIES__CURRENCIES:
+				getCurrencies().clear();
+				getCurrencies().addAll((Collection<? extends Currency>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,8 +143,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				getFares().clear();
+			case GtmPackage.CURRENCIES__CURRENCIES:
+				getCurrencies().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -142,10 +158,24 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return fares != null && !fares.isEmpty();
+			case GtmPackage.CURRENCIES__CURRENCIES:
+				return currencies != null && !currencies.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //LegacyFaresImpl
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case GtmPackage.CURRENCIES___FIND_CURRENCY__STRING:
+				return findCurrency((String)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+} //CurrenciesImpl

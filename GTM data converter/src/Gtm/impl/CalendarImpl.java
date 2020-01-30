@@ -3,6 +3,7 @@
 package Gtm.impl;
 
 import Gtm.Calendar;
+import Gtm.DataSource;
 import Gtm.GtmPackage;
 
 import java.util.Collection;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *   <li>{@link Gtm.impl.CalendarImpl#getUntilDate <em>Until Date</em>}</li>
  *   <li>{@link Gtm.impl.CalendarImpl#getUtcOffset <em>Utc Offset</em>}</li>
  *   <li>{@link Gtm.impl.CalendarImpl#getDates <em>Dates</em>}</li>
+ *   <li>{@link Gtm.impl.CalendarImpl#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @generated
@@ -147,6 +149,26 @@ public class CalendarImpl extends MinimalEObjectImpl.Container implements Calend
 	 * @ordered
 	 */
 	protected EList<Date> dates;
+
+	/**
+	 * The default value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final DataSource DATA_SOURCE_EDEFAULT = DataSource.MANUAL;
+
+	/**
+	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected DataSource dataSource = DATA_SOURCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -289,6 +311,27 @@ public class CalendarImpl extends MinimalEObjectImpl.Container implements Calend
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataSource(DataSource newDataSource) {
+		DataSource oldDataSource = dataSource;
+		dataSource = newDataSource == null ? DATA_SOURCE_EDEFAULT : newDataSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CALENDAR__DATA_SOURCE, oldDataSource, dataSource));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -304,6 +347,8 @@ public class CalendarImpl extends MinimalEObjectImpl.Container implements Calend
 				return getUtcOffset();
 			case GtmPackage.CALENDAR__DATES:
 				return getDates();
+			case GtmPackage.CALENDAR__DATA_SOURCE:
+				return getDataSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -336,6 +381,9 @@ public class CalendarImpl extends MinimalEObjectImpl.Container implements Calend
 				getDates().clear();
 				getDates().addAll((Collection<? extends Date>)newValue);
 				return;
+			case GtmPackage.CALENDAR__DATA_SOURCE:
+				setDataSource((DataSource)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -366,6 +414,9 @@ public class CalendarImpl extends MinimalEObjectImpl.Container implements Calend
 			case GtmPackage.CALENDAR__DATES:
 				getDates().clear();
 				return;
+			case GtmPackage.CALENDAR__DATA_SOURCE:
+				setDataSource(DATA_SOURCE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -390,6 +441,8 @@ public class CalendarImpl extends MinimalEObjectImpl.Container implements Calend
 				return utcOffset != UTC_OFFSET_EDEFAULT;
 			case GtmPackage.CALENDAR__DATES:
 				return dates != null && !dates.isEmpty();
+			case GtmPackage.CALENDAR__DATA_SOURCE:
+				return dataSource != DATA_SOURCE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -416,6 +469,8 @@ public class CalendarImpl extends MinimalEObjectImpl.Container implements Calend
 		result.append(utcOffset);
 		result.append(", dates: ");
 		result.append(dates);
+		result.append(", dataSource: ");
+		result.append(dataSource);
 		result.append(')');
 		return result.toString();
 	}

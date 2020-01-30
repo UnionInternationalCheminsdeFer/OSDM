@@ -6,6 +6,7 @@ import Gtm.Carrier;
 import Gtm.Delivery;
 import Gtm.GtmPackage;
 
+import Gtm.SchemaVersion;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -25,9 +26,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.DeliveryImpl#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.impl.DeliveryImpl#getPreviousDeliveryId <em>Previous Delivery Id</em>}</li>
  *   <li>{@link Gtm.impl.DeliveryImpl#getReplacedDeliveryId <em>Replaced Delivery Id</em>}</li>
- *   <li>{@link Gtm.impl.DeliveryImpl#getFareProvider <em>Fare Provider</em>}</li>
  *   <li>{@link Gtm.impl.DeliveryImpl#isOptional <em>Optional</em>}</li>
  *   <li>{@link Gtm.impl.DeliveryImpl#getProvider <em>Provider</em>}</li>
+ *   <li>{@link Gtm.impl.DeliveryImpl#getSchemaVersion <em>Schema Version</em>}</li>
+ *   <li>{@link Gtm.impl.DeliveryImpl#getAcceptedSchemaVersion <em>Accepted Schema Version</em>}</li>
  * </ul>
  *
  * @generated
@@ -81,7 +83,7 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int REPLACED_DELIVERY_ID_EDEFAULT = 0;
+	protected static final String REPLACED_DELIVERY_ID_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getReplacedDeliveryId() <em>Replaced Delivery Id</em>}' attribute.
@@ -91,7 +93,7 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 	 * @generated
 	 * @ordered
 	 */
-	protected int replacedDeliveryId = REPLACED_DELIVERY_ID_EDEFAULT;
+	protected String replacedDeliveryId = REPLACED_DELIVERY_ID_EDEFAULT;
 
 	/**
 	 * This is true if the Replaced Delivery Id attribute has been set.
@@ -101,26 +103,6 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 	 * @ordered
 	 */
 	protected boolean replacedDeliveryIdESet;
-
-	/**
-	 * The default value of the '{@link #getFareProvider() <em>Fare Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFareProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String FARE_PROVIDER_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getFareProvider() <em>Fare Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFareProvider()
-	 * @generated
-	 * @ordered
-	 */
-	protected String fareProvider = FARE_PROVIDER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isOptional() <em>Optional</em>}' attribute.
@@ -160,6 +142,46 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 	 * @ordered
 	 */
 	protected Carrier provider;
+
+	/**
+	 * The default value of the '{@link #getSchemaVersion() <em>Schema Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSchemaVersion()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final SchemaVersion SCHEMA_VERSION_EDEFAULT = SchemaVersion.V10;
+
+	/**
+	 * The cached value of the '{@link #getSchemaVersion() <em>Schema Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSchemaVersion()
+	 * @generated
+	 * @ordered
+	 */
+	protected SchemaVersion schemaVersion = SCHEMA_VERSION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getAcceptedSchemaVersion() <em>Accepted Schema Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAcceptedSchemaVersion()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final SchemaVersion ACCEPTED_SCHEMA_VERSION_EDEFAULT = SchemaVersion.V10;
+
+	/**
+	 * The cached value of the '{@link #getAcceptedSchemaVersion() <em>Accepted Schema Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAcceptedSchemaVersion()
+	 * @generated
+	 * @ordered
+	 */
+	protected SchemaVersion acceptedSchemaVersion = ACCEPTED_SCHEMA_VERSION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -227,7 +249,7 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getReplacedDeliveryId() {
+	public String getReplacedDeliveryId() {
 		return replacedDeliveryId;
 	}
 
@@ -236,8 +258,8 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReplacedDeliveryId(int newReplacedDeliveryId) {
-		int oldReplacedDeliveryId = replacedDeliveryId;
+	public void setReplacedDeliveryId(String newReplacedDeliveryId) {
+		String oldReplacedDeliveryId = replacedDeliveryId;
 		replacedDeliveryId = newReplacedDeliveryId;
 		boolean oldReplacedDeliveryIdESet = replacedDeliveryIdESet;
 		replacedDeliveryIdESet = true;
@@ -251,7 +273,7 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 	 * @generated
 	 */
 	public void unsetReplacedDeliveryId() {
-		int oldReplacedDeliveryId = replacedDeliveryId;
+		String oldReplacedDeliveryId = replacedDeliveryId;
 		boolean oldReplacedDeliveryIdESet = replacedDeliveryIdESet;
 		replacedDeliveryId = REPLACED_DELIVERY_ID_EDEFAULT;
 		replacedDeliveryIdESet = false;
@@ -266,27 +288,6 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 	 */
 	public boolean isSetReplacedDeliveryId() {
 		return replacedDeliveryIdESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getFareProvider() {
-		return fareProvider;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFareProvider(String newFareProvider) {
-		String oldFareProvider = fareProvider;
-		fareProvider = newFareProvider;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.DELIVERY__FARE_PROVIDER, oldFareProvider, fareProvider));
 	}
 
 	/**
@@ -378,6 +379,48 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SchemaVersion getSchemaVersion() {
+		return schemaVersion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSchemaVersion(SchemaVersion newSchemaVersion) {
+		SchemaVersion oldSchemaVersion = schemaVersion;
+		schemaVersion = newSchemaVersion == null ? SCHEMA_VERSION_EDEFAULT : newSchemaVersion;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.DELIVERY__SCHEMA_VERSION, oldSchemaVersion, schemaVersion));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SchemaVersion getAcceptedSchemaVersion() {
+		return acceptedSchemaVersion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAcceptedSchemaVersion(SchemaVersion newAcceptedSchemaVersion) {
+		SchemaVersion oldAcceptedSchemaVersion = acceptedSchemaVersion;
+		acceptedSchemaVersion = newAcceptedSchemaVersion == null ? ACCEPTED_SCHEMA_VERSION_EDEFAULT : newAcceptedSchemaVersion;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.DELIVERY__ACCEPTED_SCHEMA_VERSION, oldAcceptedSchemaVersion, acceptedSchemaVersion));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -387,13 +430,15 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 				return getPreviousDeliveryId();
 			case GtmPackage.DELIVERY__REPLACED_DELIVERY_ID:
 				return getReplacedDeliveryId();
-			case GtmPackage.DELIVERY__FARE_PROVIDER:
-				return getFareProvider();
 			case GtmPackage.DELIVERY__OPTIONAL:
 				return isOptional();
 			case GtmPackage.DELIVERY__PROVIDER:
 				if (resolve) return getProvider();
 				return basicGetProvider();
+			case GtmPackage.DELIVERY__SCHEMA_VERSION:
+				return getSchemaVersion();
+			case GtmPackage.DELIVERY__ACCEPTED_SCHEMA_VERSION:
+				return getAcceptedSchemaVersion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -413,16 +458,19 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 				setPreviousDeliveryId((String)newValue);
 				return;
 			case GtmPackage.DELIVERY__REPLACED_DELIVERY_ID:
-				setReplacedDeliveryId((Integer)newValue);
-				return;
-			case GtmPackage.DELIVERY__FARE_PROVIDER:
-				setFareProvider((String)newValue);
+				setReplacedDeliveryId((String)newValue);
 				return;
 			case GtmPackage.DELIVERY__OPTIONAL:
 				setOptional((Boolean)newValue);
 				return;
 			case GtmPackage.DELIVERY__PROVIDER:
 				setProvider((Carrier)newValue);
+				return;
+			case GtmPackage.DELIVERY__SCHEMA_VERSION:
+				setSchemaVersion((SchemaVersion)newValue);
+				return;
+			case GtmPackage.DELIVERY__ACCEPTED_SCHEMA_VERSION:
+				setAcceptedSchemaVersion((SchemaVersion)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -445,14 +493,17 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 			case GtmPackage.DELIVERY__REPLACED_DELIVERY_ID:
 				unsetReplacedDeliveryId();
 				return;
-			case GtmPackage.DELIVERY__FARE_PROVIDER:
-				setFareProvider(FARE_PROVIDER_EDEFAULT);
-				return;
 			case GtmPackage.DELIVERY__OPTIONAL:
 				unsetOptional();
 				return;
 			case GtmPackage.DELIVERY__PROVIDER:
 				setProvider((Carrier)null);
+				return;
+			case GtmPackage.DELIVERY__SCHEMA_VERSION:
+				setSchemaVersion(SCHEMA_VERSION_EDEFAULT);
+				return;
+			case GtmPackage.DELIVERY__ACCEPTED_SCHEMA_VERSION:
+				setAcceptedSchemaVersion(ACCEPTED_SCHEMA_VERSION_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -472,12 +523,14 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 				return PREVIOUS_DELIVERY_ID_EDEFAULT == null ? previousDeliveryId != null : !PREVIOUS_DELIVERY_ID_EDEFAULT.equals(previousDeliveryId);
 			case GtmPackage.DELIVERY__REPLACED_DELIVERY_ID:
 				return isSetReplacedDeliveryId();
-			case GtmPackage.DELIVERY__FARE_PROVIDER:
-				return FARE_PROVIDER_EDEFAULT == null ? fareProvider != null : !FARE_PROVIDER_EDEFAULT.equals(fareProvider);
 			case GtmPackage.DELIVERY__OPTIONAL:
 				return isSetOptional();
 			case GtmPackage.DELIVERY__PROVIDER:
 				return provider != null;
+			case GtmPackage.DELIVERY__SCHEMA_VERSION:
+				return schemaVersion != SCHEMA_VERSION_EDEFAULT;
+			case GtmPackage.DELIVERY__ACCEPTED_SCHEMA_VERSION:
+				return acceptedSchemaVersion != ACCEPTED_SCHEMA_VERSION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -498,10 +551,12 @@ public class DeliveryImpl extends MinimalEObjectImpl.Container implements Delive
 		result.append(previousDeliveryId);
 		result.append(", replacedDeliveryId: ");
 		if (replacedDeliveryIdESet) result.append(replacedDeliveryId); else result.append("<unset>");
-		result.append(", fareProvider: ");
-		result.append(fareProvider);
 		result.append(", optional: ");
 		if (optionalESet) result.append(optional); else result.append("<unset>");
+		result.append(", schemaVersion: ");
+		result.append(schemaVersion);
+		result.append(", acceptedSchemaVersion: ");
+		result.append(acceptedSchemaVersion);
 		result.append(')');
 		return result.toString();
 	}

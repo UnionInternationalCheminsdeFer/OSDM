@@ -2,29 +2,22 @@
  */
 package Gtm.impl;
 
-import Gtm.Carrier;
+import Gtm.Carriers;
 import Gtm.CodeLists;
-import Gtm.Country;
-import Gtm.Currency;
+import Gtm.Countries;
+import Gtm.Currencies;
 import Gtm.GtmPackage;
-import Gtm.Language;
-import Gtm.NutsCode;
-import Gtm.ServiceBrand;
-import Gtm.Station;
-
-import java.util.Collection;
-
+import Gtm.Languages;
+import Gtm.NUTSCodes;
+import Gtm.ServiceBrands;
+import Gtm.Stations;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,74 +40,74 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class CodeListsImpl extends MinimalEObjectImpl.Container implements CodeLists {
 	/**
-	 * The cached value of the '{@link #getCarriers() <em>Carriers</em>}' containment reference list.
+	 * The cached value of the '{@link #getCarriers() <em>Carriers</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCarriers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Carrier> carriers;
+	protected Carriers carriers;
 
 	/**
-	 * The cached value of the '{@link #getStations() <em>Stations</em>}' containment reference list.
+	 * The cached value of the '{@link #getStations() <em>Stations</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getStations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Station> stations;
+	protected Stations stations;
 
 	/**
-	 * The cached value of the '{@link #getCountries() <em>Countries</em>}' containment reference list.
+	 * The cached value of the '{@link #getCountries() <em>Countries</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCountries()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Country> countries;
+	protected Countries countries;
 
 	/**
-	 * The cached value of the '{@link #getLanguages() <em>Languages</em>}' containment reference list.
+	 * The cached value of the '{@link #getLanguages() <em>Languages</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLanguages()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Language> languages;
+	protected Languages languages;
 
 	/**
-	 * The cached value of the '{@link #getCurrencies() <em>Currencies</em>}' containment reference list.
+	 * The cached value of the '{@link #getCurrencies() <em>Currencies</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCurrencies()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Currency> currencies;
+	protected Currencies currencies;
 
 	/**
-	 * The cached value of the '{@link #getServiceBrands() <em>Service Brands</em>}' containment reference list.
+	 * The cached value of the '{@link #getServiceBrands() <em>Service Brands</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getServiceBrands()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ServiceBrand> serviceBrands;
+	protected ServiceBrands serviceBrands;
 
 	/**
-	 * The cached value of the '{@link #getNutsCodes() <em>Nuts Codes</em>}' containment reference list.
+	 * The cached value of the '{@link #getNutsCodes() <em>Nuts Codes</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getNutsCodes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<NutsCode> nutsCodes;
+	protected NUTSCodes nutsCodes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -140,10 +133,7 @@ public class CodeListsImpl extends MinimalEObjectImpl.Container implements CodeL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Carrier> getCarriers() {
-		if (carriers == null) {
-			carriers = new EObjectContainmentEList<Carrier>(Carrier.class, this, GtmPackage.CODE_LISTS__CARRIERS);
-		}
+	public Carriers getCarriers() {
 		return carriers;
 	}
 
@@ -152,10 +142,41 @@ public class CodeListsImpl extends MinimalEObjectImpl.Container implements CodeL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Station> getStations() {
-		if (stations == null) {
-			stations = new EObjectContainmentEList<Station>(Station.class, this, GtmPackage.CODE_LISTS__STATIONS);
+	public NotificationChain basicSetCarriers(Carriers newCarriers, NotificationChain msgs) {
+		Carriers oldCarriers = carriers;
+		carriers = newCarriers;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__CARRIERS, oldCarriers, newCarriers);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCarriers(Carriers newCarriers) {
+		if (newCarriers != carriers) {
+			NotificationChain msgs = null;
+			if (carriers != null)
+				msgs = ((InternalEObject)carriers).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__CARRIERS, null, msgs);
+			if (newCarriers != null)
+				msgs = ((InternalEObject)newCarriers).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__CARRIERS, null, msgs);
+			msgs = basicSetCarriers(newCarriers, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__CARRIERS, newCarriers, newCarriers));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Stations getStations() {
 		return stations;
 	}
 
@@ -164,10 +185,41 @@ public class CodeListsImpl extends MinimalEObjectImpl.Container implements CodeL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Country> getCountries() {
-		if (countries == null) {
-			countries = new EObjectContainmentEList<Country>(Country.class, this, GtmPackage.CODE_LISTS__COUNTRIES);
+	public NotificationChain basicSetStations(Stations newStations, NotificationChain msgs) {
+		Stations oldStations = stations;
+		stations = newStations;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__STATIONS, oldStations, newStations);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStations(Stations newStations) {
+		if (newStations != stations) {
+			NotificationChain msgs = null;
+			if (stations != null)
+				msgs = ((InternalEObject)stations).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__STATIONS, null, msgs);
+			if (newStations != null)
+				msgs = ((InternalEObject)newStations).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__STATIONS, null, msgs);
+			msgs = basicSetStations(newStations, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__STATIONS, newStations, newStations));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Countries getCountries() {
 		return countries;
 	}
 
@@ -176,10 +228,41 @@ public class CodeListsImpl extends MinimalEObjectImpl.Container implements CodeL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Language> getLanguages() {
-		if (languages == null) {
-			languages = new EObjectContainmentEList<Language>(Language.class, this, GtmPackage.CODE_LISTS__LANGUAGES);
+	public NotificationChain basicSetCountries(Countries newCountries, NotificationChain msgs) {
+		Countries oldCountries = countries;
+		countries = newCountries;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__COUNTRIES, oldCountries, newCountries);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCountries(Countries newCountries) {
+		if (newCountries != countries) {
+			NotificationChain msgs = null;
+			if (countries != null)
+				msgs = ((InternalEObject)countries).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__COUNTRIES, null, msgs);
+			if (newCountries != null)
+				msgs = ((InternalEObject)newCountries).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__COUNTRIES, null, msgs);
+			msgs = basicSetCountries(newCountries, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__COUNTRIES, newCountries, newCountries));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Languages getLanguages() {
 		return languages;
 	}
 
@@ -188,10 +271,41 @@ public class CodeListsImpl extends MinimalEObjectImpl.Container implements CodeL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Currency> getCurrencies() {
-		if (currencies == null) {
-			currencies = new EObjectContainmentEList<Currency>(Currency.class, this, GtmPackage.CODE_LISTS__CURRENCIES);
+	public NotificationChain basicSetLanguages(Languages newLanguages, NotificationChain msgs) {
+		Languages oldLanguages = languages;
+		languages = newLanguages;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__LANGUAGES, oldLanguages, newLanguages);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLanguages(Languages newLanguages) {
+		if (newLanguages != languages) {
+			NotificationChain msgs = null;
+			if (languages != null)
+				msgs = ((InternalEObject)languages).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__LANGUAGES, null, msgs);
+			if (newLanguages != null)
+				msgs = ((InternalEObject)newLanguages).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__LANGUAGES, null, msgs);
+			msgs = basicSetLanguages(newLanguages, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__LANGUAGES, newLanguages, newLanguages));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Currencies getCurrencies() {
 		return currencies;
 	}
 
@@ -200,10 +314,41 @@ public class CodeListsImpl extends MinimalEObjectImpl.Container implements CodeL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ServiceBrand> getServiceBrands() {
-		if (serviceBrands == null) {
-			serviceBrands = new EObjectContainmentEList<ServiceBrand>(ServiceBrand.class, this, GtmPackage.CODE_LISTS__SERVICE_BRANDS);
+	public NotificationChain basicSetCurrencies(Currencies newCurrencies, NotificationChain msgs) {
+		Currencies oldCurrencies = currencies;
+		currencies = newCurrencies;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__CURRENCIES, oldCurrencies, newCurrencies);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCurrencies(Currencies newCurrencies) {
+		if (newCurrencies != currencies) {
+			NotificationChain msgs = null;
+			if (currencies != null)
+				msgs = ((InternalEObject)currencies).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__CURRENCIES, null, msgs);
+			if (newCurrencies != null)
+				msgs = ((InternalEObject)newCurrencies).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__CURRENCIES, null, msgs);
+			msgs = basicSetCurrencies(newCurrencies, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__CURRENCIES, newCurrencies, newCurrencies));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServiceBrands getServiceBrands() {
 		return serviceBrands;
 	}
 
@@ -212,11 +357,76 @@ public class CodeListsImpl extends MinimalEObjectImpl.Container implements CodeL
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<NutsCode> getNutsCodes() {
-		if (nutsCodes == null) {
-			nutsCodes = new EObjectContainmentEList<NutsCode>(NutsCode.class, this, GtmPackage.CODE_LISTS__NUTS_CODES);
+	public NotificationChain basicSetServiceBrands(ServiceBrands newServiceBrands, NotificationChain msgs) {
+		ServiceBrands oldServiceBrands = serviceBrands;
+		serviceBrands = newServiceBrands;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__SERVICE_BRANDS, oldServiceBrands, newServiceBrands);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setServiceBrands(ServiceBrands newServiceBrands) {
+		if (newServiceBrands != serviceBrands) {
+			NotificationChain msgs = null;
+			if (serviceBrands != null)
+				msgs = ((InternalEObject)serviceBrands).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__SERVICE_BRANDS, null, msgs);
+			if (newServiceBrands != null)
+				msgs = ((InternalEObject)newServiceBrands).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__SERVICE_BRANDS, null, msgs);
+			msgs = basicSetServiceBrands(newServiceBrands, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__SERVICE_BRANDS, newServiceBrands, newServiceBrands));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NUTSCodes getNutsCodes() {
 		return nutsCodes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetNutsCodes(NUTSCodes newNutsCodes, NotificationChain msgs) {
+		NUTSCodes oldNutsCodes = nutsCodes;
+		nutsCodes = newNutsCodes;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__NUTS_CODES, oldNutsCodes, newNutsCodes);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNutsCodes(NUTSCodes newNutsCodes) {
+		if (newNutsCodes != nutsCodes) {
+			NotificationChain msgs = null;
+			if (nutsCodes != null)
+				msgs = ((InternalEObject)nutsCodes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__NUTS_CODES, null, msgs);
+			if (newNutsCodes != null)
+				msgs = ((InternalEObject)newNutsCodes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CODE_LISTS__NUTS_CODES, null, msgs);
+			msgs = basicSetNutsCodes(newNutsCodes, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CODE_LISTS__NUTS_CODES, newNutsCodes, newNutsCodes));
 	}
 
 	/**
@@ -228,19 +438,19 @@ public class CodeListsImpl extends MinimalEObjectImpl.Container implements CodeL
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case GtmPackage.CODE_LISTS__CARRIERS:
-				return ((InternalEList<?>)getCarriers()).basicRemove(otherEnd, msgs);
+				return basicSetCarriers(null, msgs);
 			case GtmPackage.CODE_LISTS__STATIONS:
-				return ((InternalEList<?>)getStations()).basicRemove(otherEnd, msgs);
+				return basicSetStations(null, msgs);
 			case GtmPackage.CODE_LISTS__COUNTRIES:
-				return ((InternalEList<?>)getCountries()).basicRemove(otherEnd, msgs);
+				return basicSetCountries(null, msgs);
 			case GtmPackage.CODE_LISTS__LANGUAGES:
-				return ((InternalEList<?>)getLanguages()).basicRemove(otherEnd, msgs);
+				return basicSetLanguages(null, msgs);
 			case GtmPackage.CODE_LISTS__CURRENCIES:
-				return ((InternalEList<?>)getCurrencies()).basicRemove(otherEnd, msgs);
+				return basicSetCurrencies(null, msgs);
 			case GtmPackage.CODE_LISTS__SERVICE_BRANDS:
-				return ((InternalEList<?>)getServiceBrands()).basicRemove(otherEnd, msgs);
+				return basicSetServiceBrands(null, msgs);
 			case GtmPackage.CODE_LISTS__NUTS_CODES:
-				return ((InternalEList<?>)getNutsCodes()).basicRemove(otherEnd, msgs);
+				return basicSetNutsCodes(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -281,32 +491,25 @@ public class CodeListsImpl extends MinimalEObjectImpl.Container implements CodeL
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case GtmPackage.CODE_LISTS__CARRIERS:
-				getCarriers().clear();
-				getCarriers().addAll((Collection<? extends Carrier>)newValue);
+				setCarriers((Carriers)newValue);
 				return;
 			case GtmPackage.CODE_LISTS__STATIONS:
-				getStations().clear();
-				getStations().addAll((Collection<? extends Station>)newValue);
+				setStations((Stations)newValue);
 				return;
 			case GtmPackage.CODE_LISTS__COUNTRIES:
-				getCountries().clear();
-				getCountries().addAll((Collection<? extends Country>)newValue);
+				setCountries((Countries)newValue);
 				return;
 			case GtmPackage.CODE_LISTS__LANGUAGES:
-				getLanguages().clear();
-				getLanguages().addAll((Collection<? extends Language>)newValue);
+				setLanguages((Languages)newValue);
 				return;
 			case GtmPackage.CODE_LISTS__CURRENCIES:
-				getCurrencies().clear();
-				getCurrencies().addAll((Collection<? extends Currency>)newValue);
+				setCurrencies((Currencies)newValue);
 				return;
 			case GtmPackage.CODE_LISTS__SERVICE_BRANDS:
-				getServiceBrands().clear();
-				getServiceBrands().addAll((Collection<? extends ServiceBrand>)newValue);
+				setServiceBrands((ServiceBrands)newValue);
 				return;
 			case GtmPackage.CODE_LISTS__NUTS_CODES:
-				getNutsCodes().clear();
-				getNutsCodes().addAll((Collection<? extends NutsCode>)newValue);
+				setNutsCodes((NUTSCodes)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -321,25 +524,25 @@ public class CodeListsImpl extends MinimalEObjectImpl.Container implements CodeL
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case GtmPackage.CODE_LISTS__CARRIERS:
-				getCarriers().clear();
+				setCarriers((Carriers)null);
 				return;
 			case GtmPackage.CODE_LISTS__STATIONS:
-				getStations().clear();
+				setStations((Stations)null);
 				return;
 			case GtmPackage.CODE_LISTS__COUNTRIES:
-				getCountries().clear();
+				setCountries((Countries)null);
 				return;
 			case GtmPackage.CODE_LISTS__LANGUAGES:
-				getLanguages().clear();
+				setLanguages((Languages)null);
 				return;
 			case GtmPackage.CODE_LISTS__CURRENCIES:
-				getCurrencies().clear();
+				setCurrencies((Currencies)null);
 				return;
 			case GtmPackage.CODE_LISTS__SERVICE_BRANDS:
-				getServiceBrands().clear();
+				setServiceBrands((ServiceBrands)null);
 				return;
 			case GtmPackage.CODE_LISTS__NUTS_CODES:
-				getNutsCodes().clear();
+				setNutsCodes((NUTSCodes)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -354,19 +557,19 @@ public class CodeListsImpl extends MinimalEObjectImpl.Container implements CodeL
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case GtmPackage.CODE_LISTS__CARRIERS:
-				return carriers != null && !carriers.isEmpty();
+				return carriers != null;
 			case GtmPackage.CODE_LISTS__STATIONS:
-				return stations != null && !stations.isEmpty();
+				return stations != null;
 			case GtmPackage.CODE_LISTS__COUNTRIES:
-				return countries != null && !countries.isEmpty();
+				return countries != null;
 			case GtmPackage.CODE_LISTS__LANGUAGES:
-				return languages != null && !languages.isEmpty();
+				return languages != null;
 			case GtmPackage.CODE_LISTS__CURRENCIES:
-				return currencies != null && !currencies.isEmpty();
+				return currencies != null;
 			case GtmPackage.CODE_LISTS__SERVICE_BRANDS:
-				return serviceBrands != null && !serviceBrands.isEmpty();
+				return serviceBrands != null;
 			case GtmPackage.CODE_LISTS__NUTS_CODES:
-				return nutsCodes != null && !nutsCodes.isEmpty();
+				return nutsCodes != null;
 		}
 		return super.eIsSet(featureID);
 	}

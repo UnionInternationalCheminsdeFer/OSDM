@@ -144,7 +144,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long LONGITUDE_EDEFAULT = 0L;
+	protected static final float LONGITUDE_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getLongitude() <em>Longitude</em>}' attribute.
@@ -154,7 +154,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * @generated
 	 * @ordered
 	 */
-	protected long longitude = LONGITUDE_EDEFAULT;
+	protected float longitude = LONGITUDE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getLatitude() <em>Latitude</em>}' attribute.
@@ -164,7 +164,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long LATITUDE_EDEFAULT = 0L;
+	protected static final float LATITUDE_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getLatitude() <em>Latitude</em>}' attribute.
@@ -174,7 +174,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * @generated
 	 * @ordered
 	 */
-	protected long latitude = LATITUDE_EDEFAULT;
+	protected float latitude = LATITUDE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -305,7 +305,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getLongitude() {
+	public float getLongitude() {
 		return longitude;
 	}
 
@@ -314,8 +314,8 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLongitude(long newLongitude) {
-		long oldLongitude = longitude;
+	public void setLongitude(float newLongitude) {
+		float oldLongitude = longitude;
 		longitude = newLongitude;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.EDGE__LONGITUDE, oldLongitude, longitude));
@@ -326,7 +326,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getLatitude() {
+	public float getLatitude() {
 		return latitude;
 	}
 
@@ -335,8 +335,8 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLatitude(long newLatitude) {
-		long oldLatitude = latitude;
+	public void setLatitude(float newLatitude) {
+		float oldLatitude = latitude;
 		latitude = newLatitude;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.EDGE__LATITUDE, oldLatitude, latitude));
@@ -392,10 +392,10 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 				setAccuracy((GeoUnit)newValue);
 				return;
 			case GtmPackage.EDGE__LONGITUDE:
-				setLongitude((Long)newValue);
+				setLongitude((Float)newValue);
 				return;
 			case GtmPackage.EDGE__LATITUDE:
-				setLatitude((Long)newValue);
+				setLatitude((Float)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

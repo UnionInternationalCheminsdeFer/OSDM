@@ -2,20 +2,23 @@
  */
 package Gtm.impl;
 
-import Gtm.BarcodeTypes;
+import Gtm.AcceptedBarcodes;
 import Gtm.ControlDataExchangeTypes;
 import Gtm.FulfillmentConstraint;
 import Gtm.FulfillmentType;
 import Gtm.GtmPackage;
 
+import Gtm.RequiredBarcodes;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -31,9 +34,10 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <ul>
  *   <li>{@link Gtm.impl.FulfillmentConstraintImpl#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.impl.FulfillmentConstraintImpl#getAcceptedFulfilmentTypes <em>Accepted Fulfilment Types</em>}</li>
- *   <li>{@link Gtm.impl.FulfillmentConstraintImpl#getAcceptedBarcodes <em>Accepted Barcodes</em>}</li>
  *   <li>{@link Gtm.impl.FulfillmentConstraintImpl#getRequiredControlDataExchange <em>Required Control Data Exchange</em>}</li>
  *   <li>{@link Gtm.impl.FulfillmentConstraintImpl#isIndividualTicketingPermitted <em>Individual Ticketing Permitted</em>}</li>
+ *   <li>{@link Gtm.impl.FulfillmentConstraintImpl#getAcceptedBarcodes <em>Accepted Barcodes</em>}</li>
+ *   <li>{@link Gtm.impl.FulfillmentConstraintImpl#getRequiredBarcodes <em>Required Barcodes</em>}</li>
  * </ul>
  *
  * @generated
@@ -70,16 +74,6 @@ public class FulfillmentConstraintImpl extends MinimalEObjectImpl.Container impl
 	protected EList<FulfillmentType> acceptedFulfilmentTypes;
 
 	/**
-	 * The cached value of the '{@link #getAcceptedBarcodes() <em>Accepted Barcodes</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAcceptedBarcodes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<BarcodeTypes> acceptedBarcodes;
-
-	/**
 	 * The cached value of the '{@link #getRequiredControlDataExchange() <em>Required Control Data Exchange</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -108,6 +102,26 @@ public class FulfillmentConstraintImpl extends MinimalEObjectImpl.Container impl
 	 * @ordered
 	 */
 	protected boolean individualTicketingPermitted = INDIVIDUAL_TICKETING_PERMITTED_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAcceptedBarcodes() <em>Accepted Barcodes</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAcceptedBarcodes()
+	 * @generated
+	 * @ordered
+	 */
+	protected AcceptedBarcodes acceptedBarcodes;
+
+	/**
+	 * The cached value of the '{@link #getRequiredBarcodes() <em>Required Barcodes</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequiredBarcodes()
+	 * @generated
+	 * @ordered
+	 */
+	protected RequiredBarcodes requiredBarcodes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,11 +180,94 @@ public class FulfillmentConstraintImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<BarcodeTypes> getAcceptedBarcodes() {
-		if (acceptedBarcodes == null) {
-			acceptedBarcodes = new EDataTypeUniqueEList<BarcodeTypes>(BarcodeTypes.class, this, GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES);
-		}
+	public AcceptedBarcodes getAcceptedBarcodes() {
 		return acceptedBarcodes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAcceptedBarcodes(AcceptedBarcodes newAcceptedBarcodes, NotificationChain msgs) {
+		AcceptedBarcodes oldAcceptedBarcodes = acceptedBarcodes;
+		acceptedBarcodes = newAcceptedBarcodes;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES, oldAcceptedBarcodes, newAcceptedBarcodes);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAcceptedBarcodes(AcceptedBarcodes newAcceptedBarcodes) {
+		if (newAcceptedBarcodes != acceptedBarcodes) {
+			NotificationChain msgs = null;
+			if (acceptedBarcodes != null)
+				msgs = ((InternalEObject)acceptedBarcodes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES, null, msgs);
+			if (newAcceptedBarcodes != null)
+				msgs = ((InternalEObject)newAcceptedBarcodes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES, null, msgs);
+			msgs = basicSetAcceptedBarcodes(newAcceptedBarcodes, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES, newAcceptedBarcodes, newAcceptedBarcodes));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RequiredBarcodes getRequiredBarcodes() {
+		if (requiredBarcodes != null && requiredBarcodes.eIsProxy()) {
+			InternalEObject oldRequiredBarcodes = (InternalEObject)requiredBarcodes;
+			requiredBarcodes = (RequiredBarcodes)eResolveProxy(oldRequiredBarcodes);
+			if (requiredBarcodes != oldRequiredBarcodes) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.FULFILLMENT_CONSTRAINT__REQUIRED_BARCODES, oldRequiredBarcodes, requiredBarcodes));
+			}
+		}
+		return requiredBarcodes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RequiredBarcodes basicGetRequiredBarcodes() {
+		return requiredBarcodes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRequiredBarcodes(RequiredBarcodes newRequiredBarcodes) {
+		RequiredBarcodes oldRequiredBarcodes = requiredBarcodes;
+		requiredBarcodes = newRequiredBarcodes;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FULFILLMENT_CONSTRAINT__REQUIRED_BARCODES, oldRequiredBarcodes, requiredBarcodes));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES:
+				return basicSetAcceptedBarcodes(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -218,12 +315,15 @@ public class FulfillmentConstraintImpl extends MinimalEObjectImpl.Container impl
 				return getId();
 			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_FULFILMENT_TYPES:
 				return getAcceptedFulfilmentTypes();
-			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES:
-				return getAcceptedBarcodes();
 			case GtmPackage.FULFILLMENT_CONSTRAINT__REQUIRED_CONTROL_DATA_EXCHANGE:
 				return getRequiredControlDataExchange();
 			case GtmPackage.FULFILLMENT_CONSTRAINT__INDIVIDUAL_TICKETING_PERMITTED:
 				return isIndividualTicketingPermitted();
+			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES:
+				return getAcceptedBarcodes();
+			case GtmPackage.FULFILLMENT_CONSTRAINT__REQUIRED_BARCODES:
+				if (resolve) return getRequiredBarcodes();
+				return basicGetRequiredBarcodes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -244,16 +344,18 @@ public class FulfillmentConstraintImpl extends MinimalEObjectImpl.Container impl
 				getAcceptedFulfilmentTypes().clear();
 				getAcceptedFulfilmentTypes().addAll((Collection<? extends FulfillmentType>)newValue);
 				return;
-			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES:
-				getAcceptedBarcodes().clear();
-				getAcceptedBarcodes().addAll((Collection<? extends BarcodeTypes>)newValue);
-				return;
 			case GtmPackage.FULFILLMENT_CONSTRAINT__REQUIRED_CONTROL_DATA_EXCHANGE:
 				getRequiredControlDataExchange().clear();
 				getRequiredControlDataExchange().addAll((Collection<? extends ControlDataExchangeTypes>)newValue);
 				return;
 			case GtmPackage.FULFILLMENT_CONSTRAINT__INDIVIDUAL_TICKETING_PERMITTED:
 				setIndividualTicketingPermitted((Boolean)newValue);
+				return;
+			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES:
+				setAcceptedBarcodes((AcceptedBarcodes)newValue);
+				return;
+			case GtmPackage.FULFILLMENT_CONSTRAINT__REQUIRED_BARCODES:
+				setRequiredBarcodes((RequiredBarcodes)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -273,14 +375,17 @@ public class FulfillmentConstraintImpl extends MinimalEObjectImpl.Container impl
 			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_FULFILMENT_TYPES:
 				getAcceptedFulfilmentTypes().clear();
 				return;
-			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES:
-				getAcceptedBarcodes().clear();
-				return;
 			case GtmPackage.FULFILLMENT_CONSTRAINT__REQUIRED_CONTROL_DATA_EXCHANGE:
 				getRequiredControlDataExchange().clear();
 				return;
 			case GtmPackage.FULFILLMENT_CONSTRAINT__INDIVIDUAL_TICKETING_PERMITTED:
 				setIndividualTicketingPermitted(INDIVIDUAL_TICKETING_PERMITTED_EDEFAULT);
+				return;
+			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES:
+				setAcceptedBarcodes((AcceptedBarcodes)null);
+				return;
+			case GtmPackage.FULFILLMENT_CONSTRAINT__REQUIRED_BARCODES:
+				setRequiredBarcodes((RequiredBarcodes)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -298,12 +403,14 @@ public class FulfillmentConstraintImpl extends MinimalEObjectImpl.Container impl
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_FULFILMENT_TYPES:
 				return acceptedFulfilmentTypes != null && !acceptedFulfilmentTypes.isEmpty();
-			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES:
-				return acceptedBarcodes != null && !acceptedBarcodes.isEmpty();
 			case GtmPackage.FULFILLMENT_CONSTRAINT__REQUIRED_CONTROL_DATA_EXCHANGE:
 				return requiredControlDataExchange != null && !requiredControlDataExchange.isEmpty();
 			case GtmPackage.FULFILLMENT_CONSTRAINT__INDIVIDUAL_TICKETING_PERMITTED:
 				return individualTicketingPermitted != INDIVIDUAL_TICKETING_PERMITTED_EDEFAULT;
+			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES:
+				return acceptedBarcodes != null;
+			case GtmPackage.FULFILLMENT_CONSTRAINT__REQUIRED_BARCODES:
+				return requiredBarcodes != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -322,8 +429,6 @@ public class FulfillmentConstraintImpl extends MinimalEObjectImpl.Container impl
 		result.append(id);
 		result.append(", acceptedFulfilmentTypes: ");
 		result.append(acceptedFulfilmentTypes);
-		result.append(", acceptedBarcodes: ");
-		result.append(acceptedBarcodes);
 		result.append(", requiredControlDataExchange: ");
 		result.append(requiredControlDataExchange);
 		result.append(", individualTicketingPermitted: ");

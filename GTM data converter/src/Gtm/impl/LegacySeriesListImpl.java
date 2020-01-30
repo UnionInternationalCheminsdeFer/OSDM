@@ -3,8 +3,8 @@
 package Gtm.impl;
 
 import Gtm.GtmPackage;
-import Gtm.LegacyFare;
-import Gtm.LegacyFares;
+import Gtm.LegacySeries;
+import Gtm.LegacySeriesList;
 
 import java.util.Collection;
 
@@ -22,33 +22,34 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Legacy Fares</b></em>'.
+ * An implementation of the model object '<em><b>Legacy Series List</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Gtm.impl.LegacyFaresImpl#getFares <em>Fares</em>}</li>
+ *   <li>{@link Gtm.impl.LegacySeriesListImpl#getSeries <em>Series</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements LegacyFares {
+public class LegacySeriesListImpl extends MinimalEObjectImpl.Container implements LegacySeriesList {
 	/**
-	 * The cached value of the '{@link #getFares() <em>Fares</em>}' containment reference list.
+	 * The cached value of the '{@link #getSeries() <em>Series</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFares()
+	 * @see #getSeries()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LegacyFare> fares;
+	protected EList<LegacySeries> series;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LegacyFaresImpl() {
+	protected LegacySeriesListImpl() {
 		super();
 	}
 
@@ -59,7 +60,7 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GtmPackage.Literals.LEGACY_FARES;
+		return GtmPackage.Literals.LEGACY_SERIES_LIST;
 	}
 
 	/**
@@ -67,11 +68,11 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LegacyFare> getFares() {
-		if (fares == null) {
-			fares = new EObjectContainmentEList<LegacyFare>(LegacyFare.class, this, GtmPackage.LEGACY_FARES__FARES);
+	public EList<LegacySeries> getSeries() {
+		if (series == null) {
+			series = new EObjectContainmentEList<LegacySeries>(LegacySeries.class, this, GtmPackage.LEGACY_SERIES_LIST__SERIES);
 		}
-		return fares;
+		return series;
 	}
 
 	/**
@@ -82,8 +83,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return ((InternalEList<?>)getFares()).basicRemove(otherEnd, msgs);
+			case GtmPackage.LEGACY_SERIES_LIST__SERIES:
+				return ((InternalEList<?>)getSeries()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -96,8 +97,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return getFares();
+			case GtmPackage.LEGACY_SERIES_LIST__SERIES:
+				return getSeries();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,9 +112,9 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				getFares().clear();
-				getFares().addAll((Collection<? extends LegacyFare>)newValue);
+			case GtmPackage.LEGACY_SERIES_LIST__SERIES:
+				getSeries().clear();
+				getSeries().addAll((Collection<? extends LegacySeries>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,8 +128,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				getFares().clear();
+			case GtmPackage.LEGACY_SERIES_LIST__SERIES:
+				getSeries().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -142,10 +143,10 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return fares != null && !fares.isEmpty();
+			case GtmPackage.LEGACY_SERIES_LIST__SERIES:
+				return series != null && !series.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //LegacyFaresImpl
+} //LegacySeriesListImpl
