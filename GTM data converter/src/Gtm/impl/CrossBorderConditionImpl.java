@@ -7,13 +7,16 @@ import Gtm.CrossBorderCondition;
 import Gtm.GtmPackage;
 import Gtm.ServiceBrand;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,14 +55,14 @@ public class CrossBorderConditionImpl extends MinimalEObjectImpl.Container imple
 	protected Country toCountry;
 
 	/**
-	 * The cached value of the '{@link #getAffectedServiceBrands() <em>Affected Service Brands</em>}' reference.
+	 * The cached value of the '{@link #getAffectedServiceBrands() <em>Affected Service Brands</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getAffectedServiceBrands()
 	 * @generated
 	 * @ordered
 	 */
-	protected ServiceBrand affectedServiceBrands;
+	protected EList<ServiceBrand> affectedServiceBrands;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,37 +164,11 @@ public class CrossBorderConditionImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ServiceBrand getAffectedServiceBrands() {
-		if (affectedServiceBrands != null && affectedServiceBrands.eIsProxy()) {
-			InternalEObject oldAffectedServiceBrands = (InternalEObject)affectedServiceBrands;
-			affectedServiceBrands = (ServiceBrand)eResolveProxy(oldAffectedServiceBrands);
-			if (affectedServiceBrands != oldAffectedServiceBrands) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.CROSS_BORDER_CONDITION__AFFECTED_SERVICE_BRANDS, oldAffectedServiceBrands, affectedServiceBrands));
-			}
+	public EList<ServiceBrand> getAffectedServiceBrands() {
+		if (affectedServiceBrands == null) {
+			affectedServiceBrands = new EObjectResolvingEList<ServiceBrand>(ServiceBrand.class, this, GtmPackage.CROSS_BORDER_CONDITION__AFFECTED_SERVICE_BRANDS);
 		}
 		return affectedServiceBrands;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ServiceBrand basicGetAffectedServiceBrands() {
-		return affectedServiceBrands;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAffectedServiceBrands(ServiceBrand newAffectedServiceBrands) {
-		ServiceBrand oldAffectedServiceBrands = affectedServiceBrands;
-		affectedServiceBrands = newAffectedServiceBrands;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CROSS_BORDER_CONDITION__AFFECTED_SERVICE_BRANDS, oldAffectedServiceBrands, affectedServiceBrands));
 	}
 
 	/**
@@ -209,8 +186,7 @@ public class CrossBorderConditionImpl extends MinimalEObjectImpl.Container imple
 				if (resolve) return getToCountry();
 				return basicGetToCountry();
 			case GtmPackage.CROSS_BORDER_CONDITION__AFFECTED_SERVICE_BRANDS:
-				if (resolve) return getAffectedServiceBrands();
-				return basicGetAffectedServiceBrands();
+				return getAffectedServiceBrands();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -220,6 +196,7 @@ public class CrossBorderConditionImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -230,7 +207,8 @@ public class CrossBorderConditionImpl extends MinimalEObjectImpl.Container imple
 				setToCountry((Country)newValue);
 				return;
 			case GtmPackage.CROSS_BORDER_CONDITION__AFFECTED_SERVICE_BRANDS:
-				setAffectedServiceBrands((ServiceBrand)newValue);
+				getAffectedServiceBrands().clear();
+				getAffectedServiceBrands().addAll((Collection<? extends ServiceBrand>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -251,7 +229,7 @@ public class CrossBorderConditionImpl extends MinimalEObjectImpl.Container imple
 				setToCountry((Country)null);
 				return;
 			case GtmPackage.CROSS_BORDER_CONDITION__AFFECTED_SERVICE_BRANDS:
-				setAffectedServiceBrands((ServiceBrand)null);
+				getAffectedServiceBrands().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -270,7 +248,7 @@ public class CrossBorderConditionImpl extends MinimalEObjectImpl.Container imple
 			case GtmPackage.CROSS_BORDER_CONDITION__TO_COUNTRY:
 				return toCountry != null;
 			case GtmPackage.CROSS_BORDER_CONDITION__AFFECTED_SERVICE_BRANDS:
-				return affectedServiceBrands != null;
+				return affectedServiceBrands != null && !affectedServiceBrands.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

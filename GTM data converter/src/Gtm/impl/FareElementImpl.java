@@ -2,13 +2,21 @@
  */
 package Gtm.impl;
 
+import Gtm.AfterSalesRule;
 import Gtm.CarrierConstraint;
 import Gtm.CombinationConstraint;
+import Gtm.DataSource;
 import Gtm.FareElement;
 import Gtm.FareType;
+import Gtm.FulfillmentConstraint;
 import Gtm.GtmPackage;
+import Gtm.LegacyAccountingIdentifier;
+import Gtm.PassengerConstraint;
+import Gtm.PersonalDataConstraint;
 import Gtm.Price;
+import Gtm.ReductionConstraint;
 import Gtm.RegionalConstraint;
+import Gtm.ReservationParameter;
 import Gtm.SalesAvailabilityConstraint;
 import Gtm.ServiceClass;
 import Gtm.ServiceConstraint;
@@ -18,6 +26,7 @@ import Gtm.TravelValidityConstraint;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -45,6 +54,15 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.FareElementImpl#getSalesAvailability <em>Sales Availability</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getTravelValidity <em>Travel Validity</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getCombinationConstraint <em>Combination Constraint</em>}</li>
+ *   <li>{@link Gtm.impl.FareElementImpl#getFareDetailDescription <em>Fare Detail Description</em>}</li>
+ *   <li>{@link Gtm.impl.FareElementImpl#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
+ *   <li>{@link Gtm.impl.FareElementImpl#getPersonalDataConstraint <em>Personal Data Constraint</em>}</li>
+ *   <li>{@link Gtm.impl.FareElementImpl#getReservationParameter <em>Reservation Parameter</em>}</li>
+ *   <li>{@link Gtm.impl.FareElementImpl#getReductionConstraint <em>Reduction Constraint</em>}</li>
+ *   <li>{@link Gtm.impl.FareElementImpl#getFulfillmentConstraint <em>Fulfillment Constraint</em>}</li>
+ *   <li>{@link Gtm.impl.FareElementImpl#getPassengerConstraint <em>Passenger Constraint</em>}</li>
+ *   <li>{@link Gtm.impl.FareElementImpl#getAfterSalesRule <em>After Sales Rule</em>}</li>
+ *   <li>{@link Gtm.impl.FareElementImpl#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @generated
@@ -209,6 +227,106 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 	 * @ordered
 	 */
 	protected CombinationConstraint combinationConstraint;
+
+	/**
+	 * The cached value of the '{@link #getFareDetailDescription() <em>Fare Detail Description</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFareDetailDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected Text fareDetailDescription;
+
+	/**
+	 * The cached value of the '{@link #getLegacyAccountingIdentifier() <em>Legacy Accounting Identifier</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyAccountingIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected LegacyAccountingIdentifier legacyAccountingIdentifier;
+
+	/**
+	 * The cached value of the '{@link #getPersonalDataConstraint() <em>Personal Data Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPersonalDataConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected PersonalDataConstraint personalDataConstraint;
+
+	/**
+	 * The cached value of the '{@link #getReservationParameter() <em>Reservation Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReservationParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected ReservationParameter reservationParameter;
+
+	/**
+	 * The cached value of the '{@link #getReductionConstraint() <em>Reduction Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReductionConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected ReductionConstraint reductionConstraint;
+
+	/**
+	 * The cached value of the '{@link #getFulfillmentConstraint() <em>Fulfillment Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFulfillmentConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected FulfillmentConstraint fulfillmentConstraint;
+
+	/**
+	 * The cached value of the '{@link #getPassengerConstraint() <em>Passenger Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPassengerConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected PassengerConstraint passengerConstraint;
+
+	/**
+	 * The cached value of the '{@link #getAfterSalesRule() <em>After Sales Rule</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAfterSalesRule()
+	 * @generated
+	 * @ordered
+	 */
+	protected AfterSalesRule afterSalesRule;
+
+	/**
+	 * The default value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final DataSource DATA_SOURCE_EDEFAULT = DataSource.MANUAL;
+
+	/**
+	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected DataSource dataSource = DATA_SOURCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -677,6 +795,350 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Text getFareDetailDescription() {
+		if (fareDetailDescription != null && fareDetailDescription.eIsProxy()) {
+			InternalEObject oldFareDetailDescription = (InternalEObject)fareDetailDescription;
+			fareDetailDescription = (Text)eResolveProxy(oldFareDetailDescription);
+			if (fareDetailDescription != oldFareDetailDescription) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.FARE_ELEMENT__FARE_DETAIL_DESCRIPTION, oldFareDetailDescription, fareDetailDescription));
+			}
+		}
+		return fareDetailDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Text basicGetFareDetailDescription() {
+		return fareDetailDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFareDetailDescription(Text newFareDetailDescription) {
+		Text oldFareDetailDescription = fareDetailDescription;
+		fareDetailDescription = newFareDetailDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__FARE_DETAIL_DESCRIPTION, oldFareDetailDescription, fareDetailDescription));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyAccountingIdentifier getLegacyAccountingIdentifier() {
+		return legacyAccountingIdentifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLegacyAccountingIdentifier(LegacyAccountingIdentifier newLegacyAccountingIdentifier, NotificationChain msgs) {
+		LegacyAccountingIdentifier oldLegacyAccountingIdentifier = legacyAccountingIdentifier;
+		legacyAccountingIdentifier = newLegacyAccountingIdentifier;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER, oldLegacyAccountingIdentifier, newLegacyAccountingIdentifier);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyAccountingIdentifier(LegacyAccountingIdentifier newLegacyAccountingIdentifier) {
+		if (newLegacyAccountingIdentifier != legacyAccountingIdentifier) {
+			NotificationChain msgs = null;
+			if (legacyAccountingIdentifier != null)
+				msgs = ((InternalEObject)legacyAccountingIdentifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER, null, msgs);
+			if (newLegacyAccountingIdentifier != null)
+				msgs = ((InternalEObject)newLegacyAccountingIdentifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER, null, msgs);
+			msgs = basicSetLegacyAccountingIdentifier(newLegacyAccountingIdentifier, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER, newLegacyAccountingIdentifier, newLegacyAccountingIdentifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PersonalDataConstraint getPersonalDataConstraint() {
+		if (personalDataConstraint != null && personalDataConstraint.eIsProxy()) {
+			InternalEObject oldPersonalDataConstraint = (InternalEObject)personalDataConstraint;
+			personalDataConstraint = (PersonalDataConstraint)eResolveProxy(oldPersonalDataConstraint);
+			if (personalDataConstraint != oldPersonalDataConstraint) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.FARE_ELEMENT__PERSONAL_DATA_CONSTRAINT, oldPersonalDataConstraint, personalDataConstraint));
+			}
+		}
+		return personalDataConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PersonalDataConstraint basicGetPersonalDataConstraint() {
+		return personalDataConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPersonalDataConstraint(PersonalDataConstraint newPersonalDataConstraint) {
+		PersonalDataConstraint oldPersonalDataConstraint = personalDataConstraint;
+		personalDataConstraint = newPersonalDataConstraint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__PERSONAL_DATA_CONSTRAINT, oldPersonalDataConstraint, personalDataConstraint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReservationParameter getReservationParameter() {
+		if (reservationParameter != null && reservationParameter.eIsProxy()) {
+			InternalEObject oldReservationParameter = (InternalEObject)reservationParameter;
+			reservationParameter = (ReservationParameter)eResolveProxy(oldReservationParameter);
+			if (reservationParameter != oldReservationParameter) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.FARE_ELEMENT__RESERVATION_PARAMETER, oldReservationParameter, reservationParameter));
+			}
+		}
+		return reservationParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReservationParameter basicGetReservationParameter() {
+		return reservationParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReservationParameter(ReservationParameter newReservationParameter) {
+		ReservationParameter oldReservationParameter = reservationParameter;
+		reservationParameter = newReservationParameter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__RESERVATION_PARAMETER, oldReservationParameter, reservationParameter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReductionConstraint getReductionConstraint() {
+		if (reductionConstraint != null && reductionConstraint.eIsProxy()) {
+			InternalEObject oldReductionConstraint = (InternalEObject)reductionConstraint;
+			reductionConstraint = (ReductionConstraint)eResolveProxy(oldReductionConstraint);
+			if (reductionConstraint != oldReductionConstraint) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.FARE_ELEMENT__REDUCTION_CONSTRAINT, oldReductionConstraint, reductionConstraint));
+			}
+		}
+		return reductionConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReductionConstraint basicGetReductionConstraint() {
+		return reductionConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReductionConstraint(ReductionConstraint newReductionConstraint) {
+		ReductionConstraint oldReductionConstraint = reductionConstraint;
+		reductionConstraint = newReductionConstraint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__REDUCTION_CONSTRAINT, oldReductionConstraint, reductionConstraint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FulfillmentConstraint getFulfillmentConstraint() {
+		if (fulfillmentConstraint != null && fulfillmentConstraint.eIsProxy()) {
+			InternalEObject oldFulfillmentConstraint = (InternalEObject)fulfillmentConstraint;
+			fulfillmentConstraint = (FulfillmentConstraint)eResolveProxy(oldFulfillmentConstraint);
+			if (fulfillmentConstraint != oldFulfillmentConstraint) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.FARE_ELEMENT__FULFILLMENT_CONSTRAINT, oldFulfillmentConstraint, fulfillmentConstraint));
+			}
+		}
+		return fulfillmentConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FulfillmentConstraint basicGetFulfillmentConstraint() {
+		return fulfillmentConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFulfillmentConstraint(FulfillmentConstraint newFulfillmentConstraint) {
+		FulfillmentConstraint oldFulfillmentConstraint = fulfillmentConstraint;
+		fulfillmentConstraint = newFulfillmentConstraint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__FULFILLMENT_CONSTRAINT, oldFulfillmentConstraint, fulfillmentConstraint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PassengerConstraint getPassengerConstraint() {
+		if (passengerConstraint != null && passengerConstraint.eIsProxy()) {
+			InternalEObject oldPassengerConstraint = (InternalEObject)passengerConstraint;
+			passengerConstraint = (PassengerConstraint)eResolveProxy(oldPassengerConstraint);
+			if (passengerConstraint != oldPassengerConstraint) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.FARE_ELEMENT__PASSENGER_CONSTRAINT, oldPassengerConstraint, passengerConstraint));
+			}
+		}
+		return passengerConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PassengerConstraint basicGetPassengerConstraint() {
+		return passengerConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPassengerConstraint(PassengerConstraint newPassengerConstraint) {
+		PassengerConstraint oldPassengerConstraint = passengerConstraint;
+		passengerConstraint = newPassengerConstraint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__PASSENGER_CONSTRAINT, oldPassengerConstraint, passengerConstraint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AfterSalesRule getAfterSalesRule() {
+		if (afterSalesRule != null && afterSalesRule.eIsProxy()) {
+			InternalEObject oldAfterSalesRule = (InternalEObject)afterSalesRule;
+			afterSalesRule = (AfterSalesRule)eResolveProxy(oldAfterSalesRule);
+			if (afterSalesRule != oldAfterSalesRule) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.FARE_ELEMENT__AFTER_SALES_RULE, oldAfterSalesRule, afterSalesRule));
+			}
+		}
+		return afterSalesRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AfterSalesRule basicGetAfterSalesRule() {
+		return afterSalesRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAfterSalesRule(AfterSalesRule newAfterSalesRule) {
+		AfterSalesRule oldAfterSalesRule = afterSalesRule;
+		afterSalesRule = newAfterSalesRule;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__AFTER_SALES_RULE, oldAfterSalesRule, afterSalesRule));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataSource(DataSource newDataSource) {
+		DataSource oldDataSource = dataSource;
+		dataSource = newDataSource == null ? DATA_SOURCE_EDEFAULT : newDataSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__DATA_SOURCE, oldDataSource, dataSource));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
+				return basicSetLegacyAccountingIdentifier(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -716,6 +1178,31 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 			case GtmPackage.FARE_ELEMENT__COMBINATION_CONSTRAINT:
 				if (resolve) return getCombinationConstraint();
 				return basicGetCombinationConstraint();
+			case GtmPackage.FARE_ELEMENT__FARE_DETAIL_DESCRIPTION:
+				if (resolve) return getFareDetailDescription();
+				return basicGetFareDetailDescription();
+			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
+				return getLegacyAccountingIdentifier();
+			case GtmPackage.FARE_ELEMENT__PERSONAL_DATA_CONSTRAINT:
+				if (resolve) return getPersonalDataConstraint();
+				return basicGetPersonalDataConstraint();
+			case GtmPackage.FARE_ELEMENT__RESERVATION_PARAMETER:
+				if (resolve) return getReservationParameter();
+				return basicGetReservationParameter();
+			case GtmPackage.FARE_ELEMENT__REDUCTION_CONSTRAINT:
+				if (resolve) return getReductionConstraint();
+				return basicGetReductionConstraint();
+			case GtmPackage.FARE_ELEMENT__FULFILLMENT_CONSTRAINT:
+				if (resolve) return getFulfillmentConstraint();
+				return basicGetFulfillmentConstraint();
+			case GtmPackage.FARE_ELEMENT__PASSENGER_CONSTRAINT:
+				if (resolve) return getPassengerConstraint();
+				return basicGetPassengerConstraint();
+			case GtmPackage.FARE_ELEMENT__AFTER_SALES_RULE:
+				if (resolve) return getAfterSalesRule();
+				return basicGetAfterSalesRule();
+			case GtmPackage.FARE_ELEMENT__DATA_SOURCE:
+				return getDataSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -766,6 +1253,33 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return;
 			case GtmPackage.FARE_ELEMENT__COMBINATION_CONSTRAINT:
 				setCombinationConstraint((CombinationConstraint)newValue);
+				return;
+			case GtmPackage.FARE_ELEMENT__FARE_DETAIL_DESCRIPTION:
+				setFareDetailDescription((Text)newValue);
+				return;
+			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
+				setLegacyAccountingIdentifier((LegacyAccountingIdentifier)newValue);
+				return;
+			case GtmPackage.FARE_ELEMENT__PERSONAL_DATA_CONSTRAINT:
+				setPersonalDataConstraint((PersonalDataConstraint)newValue);
+				return;
+			case GtmPackage.FARE_ELEMENT__RESERVATION_PARAMETER:
+				setReservationParameter((ReservationParameter)newValue);
+				return;
+			case GtmPackage.FARE_ELEMENT__REDUCTION_CONSTRAINT:
+				setReductionConstraint((ReductionConstraint)newValue);
+				return;
+			case GtmPackage.FARE_ELEMENT__FULFILLMENT_CONSTRAINT:
+				setFulfillmentConstraint((FulfillmentConstraint)newValue);
+				return;
+			case GtmPackage.FARE_ELEMENT__PASSENGER_CONSTRAINT:
+				setPassengerConstraint((PassengerConstraint)newValue);
+				return;
+			case GtmPackage.FARE_ELEMENT__AFTER_SALES_RULE:
+				setAfterSalesRule((AfterSalesRule)newValue);
+				return;
+			case GtmPackage.FARE_ELEMENT__DATA_SOURCE:
+				setDataSource((DataSource)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -818,6 +1332,33 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 			case GtmPackage.FARE_ELEMENT__COMBINATION_CONSTRAINT:
 				setCombinationConstraint((CombinationConstraint)null);
 				return;
+			case GtmPackage.FARE_ELEMENT__FARE_DETAIL_DESCRIPTION:
+				setFareDetailDescription((Text)null);
+				return;
+			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
+				setLegacyAccountingIdentifier((LegacyAccountingIdentifier)null);
+				return;
+			case GtmPackage.FARE_ELEMENT__PERSONAL_DATA_CONSTRAINT:
+				setPersonalDataConstraint((PersonalDataConstraint)null);
+				return;
+			case GtmPackage.FARE_ELEMENT__RESERVATION_PARAMETER:
+				setReservationParameter((ReservationParameter)null);
+				return;
+			case GtmPackage.FARE_ELEMENT__REDUCTION_CONSTRAINT:
+				setReductionConstraint((ReductionConstraint)null);
+				return;
+			case GtmPackage.FARE_ELEMENT__FULFILLMENT_CONSTRAINT:
+				setFulfillmentConstraint((FulfillmentConstraint)null);
+				return;
+			case GtmPackage.FARE_ELEMENT__PASSENGER_CONSTRAINT:
+				setPassengerConstraint((PassengerConstraint)null);
+				return;
+			case GtmPackage.FARE_ELEMENT__AFTER_SALES_RULE:
+				setAfterSalesRule((AfterSalesRule)null);
+				return;
+			case GtmPackage.FARE_ELEMENT__DATA_SOURCE:
+				setDataSource(DATA_SOURCE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -856,6 +1397,24 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return travelValidity != null;
 			case GtmPackage.FARE_ELEMENT__COMBINATION_CONSTRAINT:
 				return combinationConstraint != null;
+			case GtmPackage.FARE_ELEMENT__FARE_DETAIL_DESCRIPTION:
+				return fareDetailDescription != null;
+			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
+				return legacyAccountingIdentifier != null;
+			case GtmPackage.FARE_ELEMENT__PERSONAL_DATA_CONSTRAINT:
+				return personalDataConstraint != null;
+			case GtmPackage.FARE_ELEMENT__RESERVATION_PARAMETER:
+				return reservationParameter != null;
+			case GtmPackage.FARE_ELEMENT__REDUCTION_CONSTRAINT:
+				return reductionConstraint != null;
+			case GtmPackage.FARE_ELEMENT__FULFILLMENT_CONSTRAINT:
+				return fulfillmentConstraint != null;
+			case GtmPackage.FARE_ELEMENT__PASSENGER_CONSTRAINT:
+				return passengerConstraint != null;
+			case GtmPackage.FARE_ELEMENT__AFTER_SALES_RULE:
+				return afterSalesRule != null;
+			case GtmPackage.FARE_ELEMENT__DATA_SOURCE:
+				return dataSource != DATA_SOURCE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -876,6 +1435,8 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 		result.append(type);
 		result.append(", dataDescription: ");
 		result.append(dataDescription);
+		result.append(", dataSource: ");
+		result.append(dataSource);
 		result.append(')');
 		return result.toString();
 	}

@@ -2,9 +2,9 @@
  */
 package Gtm.impl;
 
+import Gtm.FulfillmentConstraint;
+import Gtm.FulfillmentConstraints;
 import Gtm.GtmPackage;
-import Gtm.LegacyFare;
-import Gtm.LegacyFares;
 
 import java.util.Collection;
 
@@ -22,33 +22,33 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Legacy Fares</b></em>'.
+ * An implementation of the model object '<em><b>Fulfillment Constraints</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Gtm.impl.LegacyFaresImpl#getFares <em>Fares</em>}</li>
+ *   <li>{@link Gtm.impl.FulfillmentConstraintsImpl#getFulfillmentConstraints <em>Fulfillment Constraints</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements LegacyFares {
+public class FulfillmentConstraintsImpl extends MinimalEObjectImpl.Container implements FulfillmentConstraints {
 	/**
-	 * The cached value of the '{@link #getFares() <em>Fares</em>}' containment reference list.
+	 * The cached value of the '{@link #getFulfillmentConstraints() <em>Fulfillment Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFares()
+	 * @see #getFulfillmentConstraints()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<LegacyFare> fares;
+	protected EList<FulfillmentConstraint> fulfillmentConstraints;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LegacyFaresImpl() {
+	protected FulfillmentConstraintsImpl() {
 		super();
 	}
 
@@ -59,7 +59,7 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GtmPackage.Literals.LEGACY_FARES;
+		return GtmPackage.Literals.FULFILLMENT_CONSTRAINTS;
 	}
 
 	/**
@@ -67,11 +67,11 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LegacyFare> getFares() {
-		if (fares == null) {
-			fares = new EObjectContainmentEList<LegacyFare>(LegacyFare.class, this, GtmPackage.LEGACY_FARES__FARES);
+	public EList<FulfillmentConstraint> getFulfillmentConstraints() {
+		if (fulfillmentConstraints == null) {
+			fulfillmentConstraints = new EObjectContainmentEList<FulfillmentConstraint>(FulfillmentConstraint.class, this, GtmPackage.FULFILLMENT_CONSTRAINTS__FULFILLMENT_CONSTRAINTS);
 		}
-		return fares;
+		return fulfillmentConstraints;
 	}
 
 	/**
@@ -82,8 +82,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return ((InternalEList<?>)getFares()).basicRemove(otherEnd, msgs);
+			case GtmPackage.FULFILLMENT_CONSTRAINTS__FULFILLMENT_CONSTRAINTS:
+				return ((InternalEList<?>)getFulfillmentConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -96,8 +96,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return getFares();
+			case GtmPackage.FULFILLMENT_CONSTRAINTS__FULFILLMENT_CONSTRAINTS:
+				return getFulfillmentConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,9 +111,9 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				getFares().clear();
-				getFares().addAll((Collection<? extends LegacyFare>)newValue);
+			case GtmPackage.FULFILLMENT_CONSTRAINTS__FULFILLMENT_CONSTRAINTS:
+				getFulfillmentConstraints().clear();
+				getFulfillmentConstraints().addAll((Collection<? extends FulfillmentConstraint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,8 +127,8 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				getFares().clear();
+			case GtmPackage.FULFILLMENT_CONSTRAINTS__FULFILLMENT_CONSTRAINTS:
+				getFulfillmentConstraints().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -142,10 +142,10 @@ public class LegacyFaresImpl extends MinimalEObjectImpl.Container implements Leg
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_FARES__FARES:
-				return fares != null && !fares.isEmpty();
+			case GtmPackage.FULFILLMENT_CONSTRAINTS__FULFILLMENT_CONSTRAINTS:
+				return fulfillmentConstraints != null && !fulfillmentConstraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //LegacyFaresImpl
+} //FulfillmentConstraintsImpl

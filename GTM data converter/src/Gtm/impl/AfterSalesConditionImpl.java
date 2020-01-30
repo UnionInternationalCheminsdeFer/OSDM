@@ -4,10 +4,9 @@ package Gtm.impl;
 
 import Gtm.AfterSalesCondition;
 import Gtm.AfterSalesTransactionType;
+import Gtm.ApplicationTime;
 import Gtm.GtmPackage;
 import Gtm.Price;
-import Gtm.RelativeTime;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -113,7 +112,7 @@ public class AfterSalesConditionImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected RelativeTime applicationTime;
+	protected ApplicationTime applicationTime;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -240,7 +239,7 @@ public class AfterSalesConditionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RelativeTime getApplicationTime() {
+	public ApplicationTime getApplicationTime() {
 		return applicationTime;
 	}
 
@@ -249,8 +248,8 @@ public class AfterSalesConditionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetApplicationTime(RelativeTime newApplicationTime, NotificationChain msgs) {
-		RelativeTime oldApplicationTime = applicationTime;
+	public NotificationChain basicSetApplicationTime(ApplicationTime newApplicationTime, NotificationChain msgs) {
+		ApplicationTime oldApplicationTime = applicationTime;
 		applicationTime = newApplicationTime;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.AFTER_SALES_CONDITION__APPLICATION_TIME, oldApplicationTime, newApplicationTime);
@@ -264,7 +263,7 @@ public class AfterSalesConditionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setApplicationTime(RelativeTime newApplicationTime) {
+	public void setApplicationTime(ApplicationTime newApplicationTime) {
 		if (newApplicationTime != applicationTime) {
 			NotificationChain msgs = null;
 			if (applicationTime != null)
@@ -336,7 +335,7 @@ public class AfterSalesConditionImpl extends MinimalEObjectImpl.Container implem
 				setFee((Price)newValue);
 				return;
 			case GtmPackage.AFTER_SALES_CONDITION__APPLICATION_TIME:
-				setApplicationTime((RelativeTime)newValue);
+				setApplicationTime((ApplicationTime)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -363,7 +362,7 @@ public class AfterSalesConditionImpl extends MinimalEObjectImpl.Container implem
 				setFee((Price)null);
 				return;
 			case GtmPackage.AFTER_SALES_CONDITION__APPLICATION_TIME:
-				setApplicationTime((RelativeTime)null);
+				setApplicationTime((ApplicationTime)null);
 				return;
 		}
 		super.eUnset(featureID);

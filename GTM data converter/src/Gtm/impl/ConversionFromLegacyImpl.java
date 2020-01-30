@@ -3,7 +3,7 @@
 package Gtm.impl;
 
 import Gtm.ConversionFromLegacy;
-import Gtm.CoversionParams;
+import Gtm.ConversionParams;
 import Gtm.GtmPackage;
 import Gtm.Legacy108;
 
@@ -49,7 +49,7 @@ public class ConversionFromLegacyImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected CoversionParams params;
+	protected ConversionParams params;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,7 +118,7 @@ public class ConversionFromLegacyImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CoversionParams getParams() {
+	public ConversionParams getParams() {
 		return params;
 	}
 
@@ -127,8 +127,8 @@ public class ConversionFromLegacyImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetParams(CoversionParams newParams, NotificationChain msgs) {
-		CoversionParams oldParams = params;
+	public NotificationChain basicSetParams(ConversionParams newParams, NotificationChain msgs) {
+		ConversionParams oldParams = params;
 		params = newParams;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_FROM_LEGACY__PARAMS, oldParams, newParams);
@@ -142,7 +142,7 @@ public class ConversionFromLegacyImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParams(CoversionParams newParams) {
+	public void setParams(ConversionParams newParams) {
 		if (newParams != params) {
 			NotificationChain msgs = null;
 			if (params != null)
@@ -200,7 +200,7 @@ public class ConversionFromLegacyImpl extends MinimalEObjectImpl.Container imple
 				setLegacy108((Legacy108)newValue);
 				return;
 			case GtmPackage.CONVERSION_FROM_LEGACY__PARAMS:
-				setParams((CoversionParams)newValue);
+				setParams((ConversionParams)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -218,7 +218,7 @@ public class ConversionFromLegacyImpl extends MinimalEObjectImpl.Container imple
 				setLegacy108((Legacy108)null);
 				return;
 			case GtmPackage.CONVERSION_FROM_LEGACY__PARAMS:
-				setParams((CoversionParams)null);
+				setParams((ConversionParams)null);
 				return;
 		}
 		super.eUnset(featureID);

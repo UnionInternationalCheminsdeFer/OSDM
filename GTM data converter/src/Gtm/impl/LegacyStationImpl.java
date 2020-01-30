@@ -2,32 +2,29 @@
  */
 package Gtm.impl;
 
-import Gtm.Country;
 import Gtm.GtmPackage;
-
+import Gtm.LegacyStation;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Country</b></em>'.
+ * An implementation of the model object '<em><b>Legacy Station</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Gtm.impl.CountryImpl#getCode <em>Code</em>}</li>
- *   <li>{@link Gtm.impl.CountryImpl#getName <em>Name</em>}</li>
- *   <li>{@link Gtm.impl.CountryImpl#getISOcode <em>IS Ocode</em>}</li>
+ *   <li>{@link Gtm.impl.LegacyStationImpl#getCode <em>Code</em>}</li>
+ *   <li>{@link Gtm.impl.LegacyStationImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class CountryImpl extends MinimalEObjectImpl.Container implements Country {
+public class LegacyStationImpl extends MinimalEObjectImpl.Container implements LegacyStation {
 	/**
 	 * The default value of the '{@link #getCode() <em>Code</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -47,6 +44,15 @@ public class CountryImpl extends MinimalEObjectImpl.Container implements Country
 	 * @ordered
 	 */
 	protected int code = CODE_EDEFAULT;
+
+	/**
+	 * This is true if the Code attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean codeESet;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -69,31 +75,11 @@ public class CountryImpl extends MinimalEObjectImpl.Container implements Country
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getISOcode() <em>IS Ocode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getISOcode()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String IS_OCODE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getISOcode() <em>IS Ocode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getISOcode()
-	 * @generated
-	 * @ordered
-	 */
-	protected String isOcode = IS_OCODE_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CountryImpl() {
+	protected LegacyStationImpl() {
 		super();
 	}
 
@@ -104,7 +90,7 @@ public class CountryImpl extends MinimalEObjectImpl.Container implements Country
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GtmPackage.Literals.COUNTRY;
+		return GtmPackage.Literals.LEGACY_STATION;
 	}
 
 	/**
@@ -124,8 +110,33 @@ public class CountryImpl extends MinimalEObjectImpl.Container implements Country
 	public void setCode(int newCode) {
 		int oldCode = code;
 		code = newCode;
+		boolean oldCodeESet = codeESet;
+		codeESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.COUNTRY__CODE, oldCode, code));
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY_STATION__CODE, oldCode, code, !oldCodeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetCode() {
+		int oldCode = code;
+		boolean oldCodeESet = codeESet;
+		code = CODE_EDEFAULT;
+		codeESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, GtmPackage.LEGACY_STATION__CODE, oldCode, CODE_EDEFAULT, oldCodeESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCode() {
+		return codeESet;
 	}
 
 	/**
@@ -146,28 +157,7 @@ public class CountryImpl extends MinimalEObjectImpl.Container implements Country
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.COUNTRY__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getISOcode() {
-		return isOcode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setISOcode(String newISOcode) {
-		String oldISOcode = isOcode;
-		isOcode = newISOcode;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.COUNTRY__IS_OCODE, oldISOcode, isOcode));
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY_STATION__NAME, oldName, name));
 	}
 
 	/**
@@ -178,12 +168,10 @@ public class CountryImpl extends MinimalEObjectImpl.Container implements Country
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GtmPackage.COUNTRY__CODE:
+			case GtmPackage.LEGACY_STATION__CODE:
 				return getCode();
-			case GtmPackage.COUNTRY__NAME:
+			case GtmPackage.LEGACY_STATION__NAME:
 				return getName();
-			case GtmPackage.COUNTRY__IS_OCODE:
-				return getISOcode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -196,14 +184,11 @@ public class CountryImpl extends MinimalEObjectImpl.Container implements Country
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GtmPackage.COUNTRY__CODE:
+			case GtmPackage.LEGACY_STATION__CODE:
 				setCode((Integer)newValue);
 				return;
-			case GtmPackage.COUNTRY__NAME:
+			case GtmPackage.LEGACY_STATION__NAME:
 				setName((String)newValue);
-				return;
-			case GtmPackage.COUNTRY__IS_OCODE:
-				setISOcode((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -217,14 +202,11 @@ public class CountryImpl extends MinimalEObjectImpl.Container implements Country
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GtmPackage.COUNTRY__CODE:
-				setCode(CODE_EDEFAULT);
+			case GtmPackage.LEGACY_STATION__CODE:
+				unsetCode();
 				return;
-			case GtmPackage.COUNTRY__NAME:
+			case GtmPackage.LEGACY_STATION__NAME:
 				setName(NAME_EDEFAULT);
-				return;
-			case GtmPackage.COUNTRY__IS_OCODE:
-				setISOcode(IS_OCODE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -238,12 +220,10 @@ public class CountryImpl extends MinimalEObjectImpl.Container implements Country
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GtmPackage.COUNTRY__CODE:
-				return code != CODE_EDEFAULT;
-			case GtmPackage.COUNTRY__NAME:
+			case GtmPackage.LEGACY_STATION__CODE:
+				return isSetCode();
+			case GtmPackage.LEGACY_STATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case GtmPackage.COUNTRY__IS_OCODE:
-				return IS_OCODE_EDEFAULT == null ? isOcode != null : !IS_OCODE_EDEFAULT.equals(isOcode);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -259,13 +239,11 @@ public class CountryImpl extends MinimalEObjectImpl.Container implements Country
 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (code: ");
-		result.append(code);
+		if (codeESet) result.append(code); else result.append("<unset>");
 		result.append(", name: ");
 		result.append(name);
-		result.append(", ISOcode: ");
-		result.append(isOcode);
 		result.append(')');
 		return result.toString();
 	}
 
-} //CountryImpl
+} //LegacyStationImpl

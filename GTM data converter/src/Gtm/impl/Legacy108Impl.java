@@ -2,28 +2,23 @@
  */
 package Gtm.impl;
 
+import Gtm.Carrier;
+import Gtm.CharacterSet;
 import Gtm.GtmPackage;
 import Gtm.Legacy108;
-import Gtm.LegacyDistanceFare;
+import Gtm.Legacy108Stations;
+import Gtm.LegacyDistanceFares;
 import Gtm.LegacyFares;
-import Gtm.LegacyRouteFare;
-import Gtm.LegacySeries;
-
-import java.util.Collection;
-
+import Gtm.LegacyRouteFares;
+import Gtm.LegacySeriesList;
+import Gtm.TimeZone;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,75 +28,118 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link Gtm.impl.Legacy108Impl#getCharacterSet <em>Character Set</em>}</li>
+ *   <li>{@link Gtm.impl.Legacy108Impl#getLegacySeriesList <em>Legacy Series List</em>}</li>
+ *   <li>{@link Gtm.impl.Legacy108Impl#getLegacyFares <em>Legacy Fares</em>}</li>
+ *   <li>{@link Gtm.impl.Legacy108Impl#getLegacyDistanceFares <em>Legacy Distance Fares</em>}</li>
+ *   <li>{@link Gtm.impl.Legacy108Impl#getLegacyRouteFares <em>Legacy Route Fares</em>}</li>
+ *   <li>{@link Gtm.impl.Legacy108Impl#getLegacyStations <em>Legacy Stations</em>}</li>
+ *   <li>{@link Gtm.impl.Legacy108Impl#getTimeZone <em>Time Zone</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getCarrier <em>Carrier</em>}</li>
- *   <li>{@link Gtm.impl.Legacy108Impl#getSeries <em>Series</em>}</li>
- *   <li>{@link Gtm.impl.Legacy108Impl#getFares <em>Fares</em>}</li>
- *   <li>{@link Gtm.impl.Legacy108Impl#getDistanceFare <em>Distance Fare</em>}</li>
- *   <li>{@link Gtm.impl.Legacy108Impl#getRouteFare <em>Route Fare</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legacy108 {
 	/**
-	 * The default value of the '{@link #getCarrier() <em>Carrier</em>}' attribute.
+	 * The default value of the '{@link #getCharacterSet() <em>Character Set</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCharacterSet()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final CharacterSet CHARACTER_SET_EDEFAULT = CharacterSet.LATIN1_ISO88591;
+
+	/**
+	 * The cached value of the '{@link #getCharacterSet() <em>Character Set</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCharacterSet()
+	 * @generated
+	 * @ordered
+	 */
+	protected CharacterSet characterSet = CHARACTER_SET_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getLegacySeriesList() <em>Legacy Series List</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacySeriesList()
+	 * @generated
+	 * @ordered
+	 */
+	protected LegacySeriesList legacySeriesList;
+
+	/**
+	 * The cached value of the '{@link #getLegacyFares() <em>Legacy Fares</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyFares()
+	 * @generated
+	 * @ordered
+	 */
+	protected LegacyFares legacyFares;
+
+	/**
+	 * The cached value of the '{@link #getLegacyDistanceFares() <em>Legacy Distance Fares</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyDistanceFares()
+	 * @generated
+	 * @ordered
+	 */
+	protected LegacyDistanceFares legacyDistanceFares;
+
+	/**
+	 * The cached value of the '{@link #getLegacyRouteFares() <em>Legacy Route Fares</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyRouteFares()
+	 * @generated
+	 * @ordered
+	 */
+	protected LegacyRouteFares legacyRouteFares;
+
+	/**
+	 * The cached value of the '{@link #getLegacyStations() <em>Legacy Stations</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyStations()
+	 * @generated
+	 * @ordered
+	 */
+	protected Legacy108Stations legacyStations;
+
+	/**
+	 * The default value of the '{@link #getTimeZone() <em>Time Zone</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeZone()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final TimeZone TIME_ZONE_EDEFAULT = TimeZone.CET;
+
+	/**
+	 * The cached value of the '{@link #getTimeZone() <em>Time Zone</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeZone()
+	 * @generated
+	 * @ordered
+	 */
+	protected TimeZone timeZone = TIME_ZONE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getCarrier() <em>Carrier</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCarrier()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CARRIER_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCarrier() <em>Carrier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCarrier()
-	 * @generated
-	 * @ordered
-	 */
-	protected String carrier = CARRIER_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getSeries() <em>Series</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSeries()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LegacySeries> series;
-
-	/**
-	 * The cached value of the '{@link #getFares() <em>Fares</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFares()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LegacyFares> fares;
-
-	/**
-	 * The cached value of the '{@link #getDistanceFare() <em>Distance Fare</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDistanceFare()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LegacyDistanceFare> distanceFare;
-
-	/**
-	 * The cached value of the '{@link #getRouteFare() <em>Route Fare</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRouteFare()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LegacyRouteFare> routeFare;
+	protected Carrier carrier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -127,7 +165,36 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCarrier() {
+	public CharacterSet getCharacterSet() {
+		return characterSet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCharacterSet(CharacterSet newCharacterSet) {
+		CharacterSet oldCharacterSet = characterSet;
+		characterSet = newCharacterSet == null ? CHARACTER_SET_EDEFAULT : newCharacterSet;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__CHARACTER_SET, oldCharacterSet, characterSet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Carrier getCarrier() {
+		if (carrier != null && carrier.eIsProxy()) {
+			InternalEObject oldCarrier = (InternalEObject)carrier;
+			carrier = (Carrier)eResolveProxy(oldCarrier);
+			if (carrier != oldCarrier) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.LEGACY108__CARRIER, oldCarrier, carrier));
+			}
+		}
 		return carrier;
 	}
 
@@ -136,8 +203,17 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCarrier(String newCarrier) {
-		String oldCarrier = carrier;
+	public Carrier basicGetCarrier() {
+		return carrier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCarrier(Carrier newCarrier) {
+		Carrier oldCarrier = carrier;
 		carrier = newCarrier;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__CARRIER, oldCarrier, carrier));
@@ -148,11 +224,8 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LegacySeries> getSeries() {
-		if (series == null) {
-			series = new EObjectContainmentEList<LegacySeries>(LegacySeries.class, this, GtmPackage.LEGACY108__SERIES);
-		}
-		return series;
+	public LegacySeriesList getLegacySeriesList() {
+		return legacySeriesList;
 	}
 
 	/**
@@ -160,11 +233,14 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LegacyFares> getFares() {
-		if (fares == null) {
-			fares = new EObjectContainmentEList<LegacyFares>(LegacyFares.class, this, GtmPackage.LEGACY108__FARES);
+	public NotificationChain basicSetLegacySeriesList(LegacySeriesList newLegacySeriesList, NotificationChain msgs) {
+		LegacySeriesList oldLegacySeriesList = legacySeriesList;
+		legacySeriesList = newLegacySeriesList;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_SERIES_LIST, oldLegacySeriesList, newLegacySeriesList);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return fares;
+		return msgs;
 	}
 
 	/**
@@ -172,11 +248,18 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LegacyDistanceFare> getDistanceFare() {
-		if (distanceFare == null) {
-			distanceFare = new EObjectContainmentEList<LegacyDistanceFare>(LegacyDistanceFare.class, this, GtmPackage.LEGACY108__DISTANCE_FARE);
+	public void setLegacySeriesList(LegacySeriesList newLegacySeriesList) {
+		if (newLegacySeriesList != legacySeriesList) {
+			NotificationChain msgs = null;
+			if (legacySeriesList != null)
+				msgs = ((InternalEObject)legacySeriesList).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_SERIES_LIST, null, msgs);
+			if (newLegacySeriesList != null)
+				msgs = ((InternalEObject)newLegacySeriesList).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_SERIES_LIST, null, msgs);
+			msgs = basicSetLegacySeriesList(newLegacySeriesList, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return distanceFare;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_SERIES_LIST, newLegacySeriesList, newLegacySeriesList));
 	}
 
 	/**
@@ -184,11 +267,192 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<LegacyRouteFare> getRouteFare() {
-		if (routeFare == null) {
-			routeFare = new EObjectContainmentEList<LegacyRouteFare>(LegacyRouteFare.class, this, GtmPackage.LEGACY108__ROUTE_FARE);
+	public LegacyFares getLegacyFares() {
+		return legacyFares;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLegacyFares(LegacyFares newLegacyFares, NotificationChain msgs) {
+		LegacyFares oldLegacyFares = legacyFares;
+		legacyFares = newLegacyFares;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_FARES, oldLegacyFares, newLegacyFares);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return routeFare;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyFares(LegacyFares newLegacyFares) {
+		if (newLegacyFares != legacyFares) {
+			NotificationChain msgs = null;
+			if (legacyFares != null)
+				msgs = ((InternalEObject)legacyFares).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_FARES, null, msgs);
+			if (newLegacyFares != null)
+				msgs = ((InternalEObject)newLegacyFares).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_FARES, null, msgs);
+			msgs = basicSetLegacyFares(newLegacyFares, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_FARES, newLegacyFares, newLegacyFares));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyDistanceFares getLegacyDistanceFares() {
+		return legacyDistanceFares;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLegacyDistanceFares(LegacyDistanceFares newLegacyDistanceFares, NotificationChain msgs) {
+		LegacyDistanceFares oldLegacyDistanceFares = legacyDistanceFares;
+		legacyDistanceFares = newLegacyDistanceFares;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES, oldLegacyDistanceFares, newLegacyDistanceFares);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyDistanceFares(LegacyDistanceFares newLegacyDistanceFares) {
+		if (newLegacyDistanceFares != legacyDistanceFares) {
+			NotificationChain msgs = null;
+			if (legacyDistanceFares != null)
+				msgs = ((InternalEObject)legacyDistanceFares).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES, null, msgs);
+			if (newLegacyDistanceFares != null)
+				msgs = ((InternalEObject)newLegacyDistanceFares).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES, null, msgs);
+			msgs = basicSetLegacyDistanceFares(newLegacyDistanceFares, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES, newLegacyDistanceFares, newLegacyDistanceFares));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyRouteFares getLegacyRouteFares() {
+		return legacyRouteFares;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLegacyRouteFares(LegacyRouteFares newLegacyRouteFares, NotificationChain msgs) {
+		LegacyRouteFares oldLegacyRouteFares = legacyRouteFares;
+		legacyRouteFares = newLegacyRouteFares;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_ROUTE_FARES, oldLegacyRouteFares, newLegacyRouteFares);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyRouteFares(LegacyRouteFares newLegacyRouteFares) {
+		if (newLegacyRouteFares != legacyRouteFares) {
+			NotificationChain msgs = null;
+			if (legacyRouteFares != null)
+				msgs = ((InternalEObject)legacyRouteFares).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_ROUTE_FARES, null, msgs);
+			if (newLegacyRouteFares != null)
+				msgs = ((InternalEObject)newLegacyRouteFares).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_ROUTE_FARES, null, msgs);
+			msgs = basicSetLegacyRouteFares(newLegacyRouteFares, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_ROUTE_FARES, newLegacyRouteFares, newLegacyRouteFares));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Legacy108Stations getLegacyStations() {
+		return legacyStations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLegacyStations(Legacy108Stations newLegacyStations, NotificationChain msgs) {
+		Legacy108Stations oldLegacyStations = legacyStations;
+		legacyStations = newLegacyStations;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_STATIONS, oldLegacyStations, newLegacyStations);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyStations(Legacy108Stations newLegacyStations) {
+		if (newLegacyStations != legacyStations) {
+			NotificationChain msgs = null;
+			if (legacyStations != null)
+				msgs = ((InternalEObject)legacyStations).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_STATIONS, null, msgs);
+			if (newLegacyStations != null)
+				msgs = ((InternalEObject)newLegacyStations).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_STATIONS, null, msgs);
+			msgs = basicSetLegacyStations(newLegacyStations, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_STATIONS, newLegacyStations, newLegacyStations));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TimeZone getTimeZone() {
+		return timeZone;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTimeZone(TimeZone newTimeZone) {
+		TimeZone oldTimeZone = timeZone;
+		timeZone = newTimeZone == null ? TIME_ZONE_EDEFAULT : newTimeZone;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__TIME_ZONE, oldTimeZone, timeZone));
 	}
 
 	/**
@@ -199,14 +463,16 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GtmPackage.LEGACY108__SERIES:
-				return ((InternalEList<?>)getSeries()).basicRemove(otherEnd, msgs);
-			case GtmPackage.LEGACY108__FARES:
-				return ((InternalEList<?>)getFares()).basicRemove(otherEnd, msgs);
-			case GtmPackage.LEGACY108__DISTANCE_FARE:
-				return ((InternalEList<?>)getDistanceFare()).basicRemove(otherEnd, msgs);
-			case GtmPackage.LEGACY108__ROUTE_FARE:
-				return ((InternalEList<?>)getRouteFare()).basicRemove(otherEnd, msgs);
+			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:
+				return basicSetLegacySeriesList(null, msgs);
+			case GtmPackage.LEGACY108__LEGACY_FARES:
+				return basicSetLegacyFares(null, msgs);
+			case GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES:
+				return basicSetLegacyDistanceFares(null, msgs);
+			case GtmPackage.LEGACY108__LEGACY_ROUTE_FARES:
+				return basicSetLegacyRouteFares(null, msgs);
+			case GtmPackage.LEGACY108__LEGACY_STATIONS:
+				return basicSetLegacyStations(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -219,16 +485,23 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case GtmPackage.LEGACY108__CHARACTER_SET:
+				return getCharacterSet();
+			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:
+				return getLegacySeriesList();
+			case GtmPackage.LEGACY108__LEGACY_FARES:
+				return getLegacyFares();
+			case GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES:
+				return getLegacyDistanceFares();
+			case GtmPackage.LEGACY108__LEGACY_ROUTE_FARES:
+				return getLegacyRouteFares();
+			case GtmPackage.LEGACY108__LEGACY_STATIONS:
+				return getLegacyStations();
+			case GtmPackage.LEGACY108__TIME_ZONE:
+				return getTimeZone();
 			case GtmPackage.LEGACY108__CARRIER:
-				return getCarrier();
-			case GtmPackage.LEGACY108__SERIES:
-				return getSeries();
-			case GtmPackage.LEGACY108__FARES:
-				return getFares();
-			case GtmPackage.LEGACY108__DISTANCE_FARE:
-				return getDistanceFare();
-			case GtmPackage.LEGACY108__ROUTE_FARE:
-				return getRouteFare();
+				if (resolve) return getCarrier();
+				return basicGetCarrier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -242,24 +515,29 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case GtmPackage.LEGACY108__CHARACTER_SET:
+				setCharacterSet((CharacterSet)newValue);
+				return;
+			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:
+				setLegacySeriesList((LegacySeriesList)newValue);
+				return;
+			case GtmPackage.LEGACY108__LEGACY_FARES:
+				setLegacyFares((LegacyFares)newValue);
+				return;
+			case GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES:
+				setLegacyDistanceFares((LegacyDistanceFares)newValue);
+				return;
+			case GtmPackage.LEGACY108__LEGACY_ROUTE_FARES:
+				setLegacyRouteFares((LegacyRouteFares)newValue);
+				return;
+			case GtmPackage.LEGACY108__LEGACY_STATIONS:
+				setLegacyStations((Legacy108Stations)newValue);
+				return;
+			case GtmPackage.LEGACY108__TIME_ZONE:
+				setTimeZone((TimeZone)newValue);
+				return;
 			case GtmPackage.LEGACY108__CARRIER:
-				setCarrier((String)newValue);
-				return;
-			case GtmPackage.LEGACY108__SERIES:
-				getSeries().clear();
-				getSeries().addAll((Collection<? extends LegacySeries>)newValue);
-				return;
-			case GtmPackage.LEGACY108__FARES:
-				getFares().clear();
-				getFares().addAll((Collection<? extends LegacyFares>)newValue);
-				return;
-			case GtmPackage.LEGACY108__DISTANCE_FARE:
-				getDistanceFare().clear();
-				getDistanceFare().addAll((Collection<? extends LegacyDistanceFare>)newValue);
-				return;
-			case GtmPackage.LEGACY108__ROUTE_FARE:
-				getRouteFare().clear();
-				getRouteFare().addAll((Collection<? extends LegacyRouteFare>)newValue);
+				setCarrier((Carrier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -273,20 +551,29 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case GtmPackage.LEGACY108__CHARACTER_SET:
+				setCharacterSet(CHARACTER_SET_EDEFAULT);
+				return;
+			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:
+				setLegacySeriesList((LegacySeriesList)null);
+				return;
+			case GtmPackage.LEGACY108__LEGACY_FARES:
+				setLegacyFares((LegacyFares)null);
+				return;
+			case GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES:
+				setLegacyDistanceFares((LegacyDistanceFares)null);
+				return;
+			case GtmPackage.LEGACY108__LEGACY_ROUTE_FARES:
+				setLegacyRouteFares((LegacyRouteFares)null);
+				return;
+			case GtmPackage.LEGACY108__LEGACY_STATIONS:
+				setLegacyStations((Legacy108Stations)null);
+				return;
+			case GtmPackage.LEGACY108__TIME_ZONE:
+				setTimeZone(TIME_ZONE_EDEFAULT);
+				return;
 			case GtmPackage.LEGACY108__CARRIER:
-				setCarrier(CARRIER_EDEFAULT);
-				return;
-			case GtmPackage.LEGACY108__SERIES:
-				getSeries().clear();
-				return;
-			case GtmPackage.LEGACY108__FARES:
-				getFares().clear();
-				return;
-			case GtmPackage.LEGACY108__DISTANCE_FARE:
-				getDistanceFare().clear();
-				return;
-			case GtmPackage.LEGACY108__ROUTE_FARE:
-				getRouteFare().clear();
+				setCarrier((Carrier)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -300,16 +587,22 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case GtmPackage.LEGACY108__CHARACTER_SET:
+				return characterSet != CHARACTER_SET_EDEFAULT;
+			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:
+				return legacySeriesList != null;
+			case GtmPackage.LEGACY108__LEGACY_FARES:
+				return legacyFares != null;
+			case GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES:
+				return legacyDistanceFares != null;
+			case GtmPackage.LEGACY108__LEGACY_ROUTE_FARES:
+				return legacyRouteFares != null;
+			case GtmPackage.LEGACY108__LEGACY_STATIONS:
+				return legacyStations != null;
+			case GtmPackage.LEGACY108__TIME_ZONE:
+				return timeZone != TIME_ZONE_EDEFAULT;
 			case GtmPackage.LEGACY108__CARRIER:
-				return CARRIER_EDEFAULT == null ? carrier != null : !CARRIER_EDEFAULT.equals(carrier);
-			case GtmPackage.LEGACY108__SERIES:
-				return series != null && !series.isEmpty();
-			case GtmPackage.LEGACY108__FARES:
-				return fares != null && !fares.isEmpty();
-			case GtmPackage.LEGACY108__DISTANCE_FARE:
-				return distanceFare != null && !distanceFare.isEmpty();
-			case GtmPackage.LEGACY108__ROUTE_FARE:
-				return routeFare != null && !routeFare.isEmpty();
+				return carrier != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -324,8 +617,10 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (carrier: ");
-		result.append(carrier);
+		result.append(" (characterSet: ");
+		result.append(characterSet);
+		result.append(", timeZone: ");
+		result.append(timeZone);
 		result.append(')');
 		return result.toString();
 	}
