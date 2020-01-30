@@ -159,11 +159,14 @@ public class ViaStationItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ViaStation_type");
+		String label = ((ViaStation) object).getDescription();
+		return label == null || label.length() == 0 ?
+				getString("_UI_AfterSalesCondition_type") :
+				getString("_UI_AfterSalesCondition_type") + " " + label;
 	}
 
 
@@ -201,35 +204,12 @@ public class ViaStationItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.VIA_STATION__ROUTE,
-				 GtmFactory.eINSTANCE.createViaStation()));
+				 GtmFactory.eINSTANCE.createRoute()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.VIA_STATION__ALTERNATIVE_ROUTES,
-				 GtmFactory.eINSTANCE.createViaStation()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == GtmPackage.Literals.VIA_STATION__ROUTE ||
-			childFeature == GtmPackage.Literals.VIA_STATION__ALTERNATIVE_ROUTES;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
+				 GtmFactory.eINSTANCE.createAlternativeRoute()));
 	}
 
 	/**

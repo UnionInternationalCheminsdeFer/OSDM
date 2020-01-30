@@ -3,6 +3,7 @@
 package Gtm.provider;
 
 
+import Gtm.ClassId;
 import Gtm.GtmPackage;
 import Gtm.ServiceClass;
 
@@ -153,7 +154,8 @@ public class ServiceClassItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ServiceClass)object).getId();
+		ClassId labelValue = ((ServiceClass)object).getId();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ServiceClass_type") :
 			getString("_UI_ServiceClass_type") + " " + label;

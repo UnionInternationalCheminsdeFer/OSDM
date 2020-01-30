@@ -63,6 +63,13 @@ public class StationItemProvider
 
 			addNamePropertyDescriptor(object);
 			addCountryPropertyDescriptor(object);
+			addCodePropertyDescriptor(object);
+			addLongitudePropertyDescriptor(object);
+			addLatitudePropertyDescriptor(object);
+			addTimetableNamePropertyDescriptor(object);
+			addBorderStationPropertyDescriptor(object);
+			addNameCaseUTF8PropertyDescriptor(object);
+			addNameCaseASCIIPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,6 +119,160 @@ public class StationItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Code feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCodePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Station_code_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Station_code_feature", "_UI_Station_type"),
+				 GtmPackage.Literals.STATION__CODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Longitude feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLongitudePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Station_longitude_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Station_longitude_feature", "_UI_Station_type"),
+				 GtmPackage.Literals.STATION__LONGITUDE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Latitude feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLatitudePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Station_latitude_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Station_latitude_feature", "_UI_Station_type"),
+				 GtmPackage.Literals.STATION__LATITUDE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Timetable Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTimetableNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Station_timetableName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Station_timetableName_feature", "_UI_Station_type"),
+				 GtmPackage.Literals.STATION__TIMETABLE_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Border Station feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBorderStationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Station_borderStation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Station_borderStation_feature", "_UI_Station_type"),
+				 GtmPackage.Literals.STATION__BORDER_STATION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Name Case UTF8 feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNameCaseUTF8PropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Station_nameCaseUTF8_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Station_nameCaseUTF8_feature", "_UI_Station_type"),
+				 GtmPackage.Literals.STATION__NAME_CASE_UTF8,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Name Case ASCII feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNameCaseASCIIPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Station_nameCaseASCII_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Station_nameCaseASCII_feature", "_UI_Station_type"),
+				 GtmPackage.Literals.STATION__NAME_CASE_ASCII,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Station.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -150,6 +311,13 @@ public class StationItemProvider
 
 		switch (notification.getFeatureID(Station.class)) {
 			case GtmPackage.STATION__NAME:
+			case GtmPackage.STATION__CODE:
+			case GtmPackage.STATION__LONGITUDE:
+			case GtmPackage.STATION__LATITUDE:
+			case GtmPackage.STATION__TIMETABLE_NAME:
+			case GtmPackage.STATION__BORDER_STATION:
+			case GtmPackage.STATION__NAME_CASE_UTF8:
+			case GtmPackage.STATION__NAME_CASE_ASCII:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
