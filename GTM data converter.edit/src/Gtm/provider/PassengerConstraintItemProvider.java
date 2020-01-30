@@ -7,6 +7,7 @@ import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.PassengerConstraint;
 
+import Gtm.TravelerType;
 import java.util.Collection;
 import java.util.List;
 
@@ -272,7 +273,7 @@ public class PassengerConstraintItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -294,7 +295,7 @@ public class PassengerConstraintItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -316,7 +317,7 @@ public class PassengerConstraintItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -371,7 +372,8 @@ public class PassengerConstraintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PassengerConstraint)object).getId();
+		TravelerType labelValue = ((PassengerConstraint)object).getTravelerType();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_PassengerConstraint_type") :
 			getString("_UI_PassengerConstraint_type") + " " + label;
@@ -424,35 +426,12 @@ public class PassengerConstraintItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS,
-				 GtmFactory.eINSTANCE.createPassengerCombinationConstraint()));
+				 GtmFactory.eINSTANCE.createIncludedFreePassengers()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS,
 				 GtmFactory.eINSTANCE.createPassengerCombinationConstraint()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == GtmPackage.Literals.PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS ||
-			childFeature == GtmPackage.Literals.PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

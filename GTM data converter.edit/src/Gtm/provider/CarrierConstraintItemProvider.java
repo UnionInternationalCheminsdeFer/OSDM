@@ -64,6 +64,7 @@ public class CarrierConstraintItemProvider
 			addIdPropertyDescriptor(object);
 			addIncludedCarriersPropertyDescriptor(object);
 			addExcludedCarriersPropertyDescriptor(object);
+			addDataDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -135,6 +136,28 @@ public class CarrierConstraintItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Data Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CarrierConstraint_dataDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CarrierConstraint_dataDescription_feature", "_UI_CarrierConstraint_type"),
+				 GtmPackage.Literals.CARRIER_CONSTRAINT__DATA_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns CarrierConstraint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -153,7 +176,7 @@ public class CarrierConstraintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CarrierConstraint)object).getId();
+		String label = ((CarrierConstraint)object).getDataDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_CarrierConstraint_type") :
 			getString("_UI_CarrierConstraint_type") + " " + label;
@@ -173,6 +196,7 @@ public class CarrierConstraintItemProvider
 
 		switch (notification.getFeatureID(CarrierConstraint.class)) {
 			case GtmPackage.CARRIER_CONSTRAINT__ID:
+			case GtmPackage.CARRIER_CONSTRAINT__DATA_DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

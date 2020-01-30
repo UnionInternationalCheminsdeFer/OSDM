@@ -65,6 +65,10 @@ public class LegacyDistanceFareItemProvider
 			addFare2ndPropertyDescriptor(object);
 			addFare1stPropertyDescriptor(object);
 			addFareTableNumberPropertyDescriptor(object);
+			addReturnFare1stPropertyDescriptor(object);
+			addReturnFare2ndPropertyDescriptor(object);
+			addValidFromPropertyDescriptor(object);
+			addValidUntilPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -158,6 +162,94 @@ public class LegacyDistanceFareItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Return Fare1st feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReturnFare1stPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacyDistanceFare_returnFare1st_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyDistanceFare_returnFare1st_feature", "_UI_LegacyDistanceFare_type"),
+				 GtmPackage.Literals.LEGACY_DISTANCE_FARE__RETURN_FARE1ST,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Return Fare2nd feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReturnFare2ndPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacyDistanceFare_returnFare2nd_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyDistanceFare_returnFare2nd_feature", "_UI_LegacyDistanceFare_type"),
+				 GtmPackage.Literals.LEGACY_DISTANCE_FARE__RETURN_FARE2ND,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Valid From feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addValidFromPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacyDistanceFare_validFrom_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyDistanceFare_validFrom_feature", "_UI_LegacyDistanceFare_type"),
+				 GtmPackage.Literals.LEGACY_DISTANCE_FARE__VALID_FROM,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Valid Until feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addValidUntilPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacyDistanceFare_validUntil_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyDistanceFare_validUntil_feature", "_UI_LegacyDistanceFare_type"),
+				 GtmPackage.Literals.LEGACY_DISTANCE_FARE__VALID_UNTIL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns LegacyDistanceFare.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -197,6 +289,10 @@ public class LegacyDistanceFareItemProvider
 			case GtmPackage.LEGACY_DISTANCE_FARE__FARE2ND:
 			case GtmPackage.LEGACY_DISTANCE_FARE__FARE1ST:
 			case GtmPackage.LEGACY_DISTANCE_FARE__FARE_TABLE_NUMBER:
+			case GtmPackage.LEGACY_DISTANCE_FARE__RETURN_FARE1ST:
+			case GtmPackage.LEGACY_DISTANCE_FARE__RETURN_FARE2ND:
+			case GtmPackage.LEGACY_DISTANCE_FARE__VALID_FROM:
+			case GtmPackage.LEGACY_DISTANCE_FARE__VALID_UNTIL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

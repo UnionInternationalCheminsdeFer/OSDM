@@ -5,6 +5,7 @@ package Gtm.provider;
 
 import Gtm.GtmPackage;
 import Gtm.RelativeTime;
+import Gtm.TimeReferenceType;
 import Gtm.TimeUnit;
 
 import java.util.Collection;
@@ -150,15 +151,19 @@ public class RelativeTimeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		TimeUnit labelValue = ((RelativeTime)object).getUnit();
+		TimeReferenceType relativeTime = ((RelativeTime)object).getReference();
+		String label3 = Integer.toString(((RelativeTime)object).getValue());
+
 		String label = labelValue == null ? null : labelValue.toString();
+		String label2 = relativeTime == null ? null : relativeTime.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_RelativeTime_type") :
-			getString("_UI_RelativeTime_type") + " " + label;
+			label3 + " " + label + " " + label2;
 	}
 
 

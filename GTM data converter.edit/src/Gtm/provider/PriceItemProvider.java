@@ -65,6 +65,7 @@ public class PriceItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIdPropertyDescriptor(object);
+			addDataSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -83,6 +84,28 @@ public class PriceItemProvider
 				 getString("_UI_Price_id_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Price_id_feature", "_UI_Price_type"),
 				 GtmPackage.Literals.PRICE__ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Data Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Price_dataSource_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Price_dataSource_feature", "_UI_Price_type"),
+				 GtmPackage.Literals.PRICE__DATA_SOURCE,
 				 true,
 				 false,
 				 false,
@@ -136,14 +159,17 @@ public class PriceItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Price)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Price_type") :
-			getString("_UI_Price_type") + " " + label;
+		Price price = (Price)object;
+		if (price.getCurrencies()!= null && !price.getCurrencies().isEmpty()) {
+			String label = price.getCurrencies().get(0).getCurrency().getName() + " "
+					+ Float.toString(price.getCurrencies().get(0).getAmount());
+			return label;
+		}
+		return getString("_UI_Price_type");
 	}
 
 
@@ -160,6 +186,7 @@ public class PriceItemProvider
 
 		switch (notification.getFeatureID(Price.class)) {
 			case GtmPackage.PRICE__ID:
+			case GtmPackage.PRICE__DATA_SOURCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.PRICE__CURRENCIES:

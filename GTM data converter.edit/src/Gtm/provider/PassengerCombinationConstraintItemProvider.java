@@ -6,6 +6,7 @@ package Gtm.provider;
 import Gtm.GtmPackage;
 import Gtm.PassengerCombinationConstraint;
 
+import Gtm.TravelerType;
 import java.util.Collection;
 import java.util.List;
 
@@ -106,7 +107,7 @@ public class PassengerCombinationConstraintItemProvider
 				 true,
 				 false,
 				 true,
-				 null,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -130,8 +131,11 @@ public class PassengerCombinationConstraintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		PassengerCombinationConstraint passengerCombinationConstraint = (PassengerCombinationConstraint)object;
-		return getString("_UI_PassengerCombinationConstraint_type") + " " + passengerCombinationConstraint.getMaxNumber();
+		TravelerType labelValue = ((PassengerCombinationConstraint)object).getPassengerType();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_PassengerCombinationConstraint_type") :
+			getString("_UI_PassengerCombinationConstraint_type") + " " + label;
 	}
 
 

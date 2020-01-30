@@ -63,6 +63,7 @@ public class CountryItemProvider
 
 			addCodePropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
+			addISOcodePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,6 +113,28 @@ public class CountryItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the IS Ocode feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addISOcodePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Country_ISOcode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Country_ISOcode_feature", "_UI_Country_type"),
+				 GtmPackage.Literals.COUNTRY__IS_OCODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Country.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -151,6 +174,7 @@ public class CountryItemProvider
 		switch (notification.getFeatureID(Country.class)) {
 			case GtmPackage.COUNTRY__CODE:
 			case GtmPackage.COUNTRY__NAME:
+			case GtmPackage.COUNTRY__IS_OCODE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

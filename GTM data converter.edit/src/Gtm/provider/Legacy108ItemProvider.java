@@ -3,6 +3,7 @@
 package Gtm.provider;
 
 
+import Gtm.Carrier;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.Legacy108;
@@ -64,9 +65,33 @@ public class Legacy108ItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addCharacterSetPropertyDescriptor(object);
+			addTimeZonePropertyDescriptor(object);
 			addCarrierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Character Set feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCharacterSetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Legacy108_characterSet_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Legacy108_characterSet_feature", "_UI_Legacy108_type"),
+				 GtmPackage.Literals.LEGACY108__CHARACTER_SET,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -83,6 +108,28 @@ public class Legacy108ItemProvider
 				 getString("_UI_Legacy108_carrier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Legacy108_carrier_feature", "_UI_Legacy108_type"),
 				 GtmPackage.Literals.LEGACY108__CARRIER,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Time Zone feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTimeZonePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Legacy108_timeZone_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Legacy108_timeZone_feature", "_UI_Legacy108_type"),
+				 GtmPackage.Literals.LEGACY108__TIME_ZONE,
 				 true,
 				 false,
 				 false,
@@ -103,10 +150,11 @@ public class Legacy108ItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GtmPackage.Literals.LEGACY108__SERIES);
-			childrenFeatures.add(GtmPackage.Literals.LEGACY108__FARES);
-			childrenFeatures.add(GtmPackage.Literals.LEGACY108__DISTANCE_FARE);
-			childrenFeatures.add(GtmPackage.Literals.LEGACY108__ROUTE_FARE);
+			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_SERIES_LIST);
+			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_FARES);
+			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_DISTANCE_FARES);
+			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_ROUTE_FARES);
+			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_STATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -143,7 +191,8 @@ public class Legacy108ItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Legacy108)object).getCarrier();
+		Carrier labelValue = ((Legacy108)object).getCarrier();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Legacy108_type") :
 			getString("_UI_Legacy108_type") + " " + label;
@@ -162,13 +211,16 @@ public class Legacy108ItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Legacy108.class)) {
+			case GtmPackage.LEGACY108__CHARACTER_SET:
+			case GtmPackage.LEGACY108__TIME_ZONE:
 			case GtmPackage.LEGACY108__CARRIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case GtmPackage.LEGACY108__SERIES:
-			case GtmPackage.LEGACY108__FARES:
-			case GtmPackage.LEGACY108__DISTANCE_FARE:
-			case GtmPackage.LEGACY108__ROUTE_FARE:
+			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:
+			case GtmPackage.LEGACY108__LEGACY_FARES:
+			case GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES:
+			case GtmPackage.LEGACY108__LEGACY_ROUTE_FARES:
+			case GtmPackage.LEGACY108__LEGACY_STATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -188,23 +240,28 @@ public class Legacy108ItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.LEGACY108__SERIES,
-				 GtmFactory.eINSTANCE.createLegacySeries()));
+				(GtmPackage.Literals.LEGACY108__LEGACY_SERIES_LIST,
+				 GtmFactory.eINSTANCE.createLegacySeriesList()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.LEGACY108__FARES,
+				(GtmPackage.Literals.LEGACY108__LEGACY_FARES,
 				 GtmFactory.eINSTANCE.createLegacyFares()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.LEGACY108__DISTANCE_FARE,
-				 GtmFactory.eINSTANCE.createLegacyDistanceFare()));
+				(GtmPackage.Literals.LEGACY108__LEGACY_DISTANCE_FARES,
+				 GtmFactory.eINSTANCE.createLegacyDistanceFares()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.LEGACY108__ROUTE_FARE,
-				 GtmFactory.eINSTANCE.createLegacyRouteFare()));
+				(GtmPackage.Literals.LEGACY108__LEGACY_ROUTE_FARES,
+				 GtmFactory.eINSTANCE.createLegacyRouteFares()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.LEGACY108__LEGACY_STATIONS,
+				 GtmFactory.eINSTANCE.createLegacy108Stations()));
 	}
 
 	/**
