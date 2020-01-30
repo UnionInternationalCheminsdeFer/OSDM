@@ -101,26 +101,20 @@
             contributorClass="Gtm.presentation.GtmActionBarContributor">
       </editor>
    </extension>
-   <extension
+   
+      <extension
          id="GTM"
          point="org.eclipse.core.runtime.products">
       <product
             application="GTM_data_converter.editor.GtmEditorAdvisorApplication"
             name="GTM">
+         <property
+               name="appName"
+               value="GTM">
+         </property>
       </product>
-   </extension>
+   </extension> 
    
-   
-      <extension
-         point="org.eclipse.ui.views">
-      <view
-            allowMultiple="false"
-            class="Gtm.presentation.ProblemView"
-            id="org.uic.gtm.GtmProblemView"
-            name="%_UI_VIEW_ERROR"
-            restorable="true">
-      </view>
-   </extension>
-   
+    
 
 </plugin>
