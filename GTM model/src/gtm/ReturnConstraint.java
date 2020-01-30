@@ -28,7 +28,7 @@ public class ReturnConstraint {
      */
     @JsonProperty("latestReturn")
     @JsonPropertyDescription("number of days after departure or start of validity of the last return ")
-    private Double latestReturn;
+    private Integer latestReturn;
     /**
      * number of days after departure or start of validity of the earliest return
      * (Required)
@@ -36,14 +36,14 @@ public class ReturnConstraint {
      */
     @JsonProperty("earliestReturn")
     @JsonPropertyDescription("number of days after departure or start of validity of the earliest return")
-    private Double earliestReturn;
+    private Integer earliestReturn;
     /**
      * weekdays (ISO day of the week, 1 = Monday) between travel and return where travel is not allowed
      * 
      */
     @JsonProperty("excludedWeekdays")
     @JsonPropertyDescription("weekdays (ISO day of the week, 1 = Monday) between travel and return where travel is not allowed")
-    private List<Double> excludedWeekdays = new ArrayList<Double>();
+    private List<Integer> excludedWeekdays = new ArrayList<Integer>();
 
     /**
      * number of days after departure or start of validity of the last return 
@@ -51,7 +51,7 @@ public class ReturnConstraint {
      * 
      */
     @JsonProperty("latestReturn")
-    public Double getLatestReturn() {
+    public Integer getLatestReturn() {
         return latestReturn;
     }
 
@@ -61,7 +61,7 @@ public class ReturnConstraint {
      * 
      */
     @JsonProperty("latestReturn")
-    public void setLatestReturn(Double latestReturn) {
+    public void setLatestReturn(Integer latestReturn) {
         this.latestReturn = latestReturn;
     }
 
@@ -71,7 +71,7 @@ public class ReturnConstraint {
      * 
      */
     @JsonProperty("earliestReturn")
-    public Double getEarliestReturn() {
+    public Integer getEarliestReturn() {
         return earliestReturn;
     }
 
@@ -81,7 +81,7 @@ public class ReturnConstraint {
      * 
      */
     @JsonProperty("earliestReturn")
-    public void setEarliestReturn(Double earliestReturn) {
+    public void setEarliestReturn(Integer earliestReturn) {
         this.earliestReturn = earliestReturn;
     }
 
@@ -90,7 +90,7 @@ public class ReturnConstraint {
      * 
      */
     @JsonProperty("excludedWeekdays")
-    public List<Double> getExcludedWeekdays() {
+    public List<Integer> getExcludedWeekdays() {
         return excludedWeekdays;
     }
 
@@ -99,7 +99,7 @@ public class ReturnConstraint {
      * 
      */
     @JsonProperty("excludedWeekdays")
-    public void setExcludedWeekdays(List<Double> excludedWeekdays) {
+    public void setExcludedWeekdays(List<Integer> excludedWeekdays) {
         this.excludedWeekdays = excludedWeekdays;
     }
 

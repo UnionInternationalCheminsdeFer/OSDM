@@ -30,7 +30,7 @@ public class CurrencyPriceDef {
      * 
      */
     @JsonProperty("amount")
-    private Double amount;
+    private Float amount;
     @JsonProperty("vatDetail")
     private List<VatDetail> vatDetail = new ArrayList<VatDetail>();
 
@@ -60,7 +60,7 @@ public class CurrencyPriceDef {
      * 
      */
     @JsonProperty("amount")
-    public Double getAmount() {
+    public Float getAmount() {
         return amount;
     }
 
@@ -70,7 +70,7 @@ public class CurrencyPriceDef {
      * 
      */
     @JsonProperty("amount")
-    public void setAmount(Double amount) {
+    public void setAmount(Float amount) {
         this.amount = amount;
     }
 

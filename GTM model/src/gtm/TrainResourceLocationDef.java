@@ -25,11 +25,12 @@ public class TrainResourceLocationDef {
     @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
     private String carrier;
     /**
-     * 
+     * ztrain number (without service brand abbreviation)
      * (Required)
      * 
      */
     @JsonProperty("trainId")
+    @JsonPropertyDescription("ztrain number (without service brand abbreviation)")
     private String trainId;
     /**
      * 
@@ -60,7 +61,7 @@ public class TrainResourceLocationDef {
     }
 
     /**
-     * 
+     * ztrain number (without service brand abbreviation)
      * (Required)
      * 
      */
@@ -70,7 +71,7 @@ public class TrainResourceLocationDef {
     }
 
     /**
-     * 
+     * ztrain number (without service brand abbreviation)
      * (Required)
      * 
      */

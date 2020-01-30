@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "cardId",
     "cardName",
-    "cardClass"
+    "cardClassId"
 })
 public class RequiredCard {
 
@@ -29,8 +29,13 @@ public class RequiredCard {
     @JsonProperty("cardName")
     @JsonPropertyDescription("card name for printing on tickets")
     private String cardName;
-    @JsonProperty("cardClass")
-    private ServiceClassDef cardClass;
+    /**
+     * reference to the service class of the card
+     * 
+     */
+    @JsonProperty("cardClassId")
+    @JsonPropertyDescription("reference to the service class of the card")
+    private String cardClassId;
 
     /**
      * code of the card type according to code list
@@ -70,14 +75,22 @@ public class RequiredCard {
         this.cardName = cardName;
     }
 
-    @JsonProperty("cardClass")
-    public ServiceClassDef getCardClass() {
-        return cardClass;
+    /**
+     * reference to the service class of the card
+     * 
+     */
+    @JsonProperty("cardClassId")
+    public String getCardClassId() {
+        return cardClassId;
     }
 
-    @JsonProperty("cardClass")
-    public void setCardClass(ServiceClassDef cardClass) {
-        this.cardClass = cardClass;
+    /**
+     * reference to the service class of the card
+     * 
+     */
+    @JsonProperty("cardClassId")
+    public void setCardClassId(String cardClassId) {
+        this.cardClassId = cardClassId;
     }
 
     @Override
@@ -92,9 +105,9 @@ public class RequiredCard {
         sb.append('=');
         sb.append(((this.cardName == null)?"<null>":this.cardName));
         sb.append(',');
-        sb.append("cardClass");
+        sb.append("cardClassId");
         sb.append('=');
-        sb.append(((this.cardClass == null)?"<null>":this.cardClass));
+        sb.append(((this.cardClassId == null)?"<null>":this.cardClassId));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -108,7 +121,7 @@ public class RequiredCard {
     public int hashCode() {
         int result = 1;
         result = ((result* 31)+((this.cardName == null)? 0 :this.cardName.hashCode()));
-        result = ((result* 31)+((this.cardClass == null)? 0 :this.cardClass.hashCode()));
+        result = ((result* 31)+((this.cardClassId == null)? 0 :this.cardClassId.hashCode()));
         result = ((result* 31)+((this.cardId == null)? 0 :this.cardId.hashCode()));
         return result;
     }
@@ -122,7 +135,7 @@ public class RequiredCard {
             return false;
         }
         RequiredCard rhs = ((RequiredCard) other);
-        return ((((this.cardName == rhs.cardName)||((this.cardName!= null)&&this.cardName.equals(rhs.cardName)))&&((this.cardClass == rhs.cardClass)||((this.cardClass!= null)&&this.cardClass.equals(rhs.cardClass))))&&((this.cardId == rhs.cardId)||((this.cardId!= null)&&this.cardId.equals(rhs.cardId))));
+        return ((((this.cardName == rhs.cardName)||((this.cardName!= null)&&this.cardName.equals(rhs.cardName)))&&((this.cardClassId == rhs.cardClassId)||((this.cardClassId!= null)&&this.cardClassId.equals(rhs.cardClassId))))&&((this.cardId == rhs.cardId)||((this.cardId!= null)&&this.cardId.equals(rhs.cardId))));
     }
 
 }

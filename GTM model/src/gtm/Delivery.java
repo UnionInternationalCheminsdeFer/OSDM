@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "deliveryId",
     "previousDeliveryId",
     "replacementDeliveryId",
-    "optionalDelivery"
+    "optionalDelivery",
+    "version",
+    "acceptedVersion"
 })
 public class Delivery {
 
@@ -48,6 +50,22 @@ public class Delivery {
     @JsonProperty("optionalDelivery")
     @JsonPropertyDescription("this delivery is not mandatory to be downloaded. ")
     private Boolean optionalDelivery = false;
+    /**
+     * version of the data schema
+     * (Required)
+     * 
+     */
+    @JsonProperty("version")
+    @JsonPropertyDescription("version of the data schema")
+    private String version;
+    /**
+     * minimal version required to use these data
+     * (Required)
+     * 
+     */
+    @JsonProperty("acceptedVersion")
+    @JsonPropertyDescription("minimal version required to use these data")
+    private String acceptedVersion;
 
     /**
      * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
@@ -135,6 +153,46 @@ public class Delivery {
         this.optionalDelivery = optionalDelivery;
     }
 
+    /**
+     * version of the data schema
+     * (Required)
+     * 
+     */
+    @JsonProperty("version")
+    public String getVersion() {
+        return version;
+    }
+
+    /**
+     * version of the data schema
+     * (Required)
+     * 
+     */
+    @JsonProperty("version")
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    /**
+     * minimal version required to use these data
+     * (Required)
+     * 
+     */
+    @JsonProperty("acceptedVersion")
+    public String getAcceptedVersion() {
+        return acceptedVersion;
+    }
+
+    /**
+     * minimal version required to use these data
+     * (Required)
+     * 
+     */
+    @JsonProperty("acceptedVersion")
+    public void setAcceptedVersion(String acceptedVersion) {
+        this.acceptedVersion = acceptedVersion;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -159,6 +217,14 @@ public class Delivery {
         sb.append('=');
         sb.append(((this.optionalDelivery == null)?"<null>":this.optionalDelivery));
         sb.append(',');
+        sb.append("version");
+        sb.append('=');
+        sb.append(((this.version == null)?"<null>":this.version));
+        sb.append(',');
+        sb.append("acceptedVersion");
+        sb.append('=');
+        sb.append(((this.acceptedVersion == null)?"<null>":this.acceptedVersion));
+        sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {
@@ -171,10 +237,12 @@ public class Delivery {
     public int hashCode() {
         int result = 1;
         result = ((result* 31)+((this.deliveryId == null)? 0 :this.deliveryId.hashCode()));
+        result = ((result* 31)+((this.acceptedVersion == null)? 0 :this.acceptedVersion.hashCode()));
         result = ((result* 31)+((this.replacementDeliveryId == null)? 0 :this.replacementDeliveryId.hashCode()));
         result = ((result* 31)+((this.optionalDelivery == null)? 0 :this.optionalDelivery.hashCode()));
         result = ((result* 31)+((this.fareProvider == null)? 0 :this.fareProvider.hashCode()));
         result = ((result* 31)+((this.previousDeliveryId == null)? 0 :this.previousDeliveryId.hashCode()));
+        result = ((result* 31)+((this.version == null)? 0 :this.version.hashCode()));
         return result;
     }
 
@@ -187,7 +255,7 @@ public class Delivery {
             return false;
         }
         Delivery rhs = ((Delivery) other);
-        return ((((((this.deliveryId == rhs.deliveryId)||((this.deliveryId!= null)&&this.deliveryId.equals(rhs.deliveryId)))&&((this.replacementDeliveryId == rhs.replacementDeliveryId)||((this.replacementDeliveryId!= null)&&this.replacementDeliveryId.equals(rhs.replacementDeliveryId))))&&((this.optionalDelivery == rhs.optionalDelivery)||((this.optionalDelivery!= null)&&this.optionalDelivery.equals(rhs.optionalDelivery))))&&((this.fareProvider == rhs.fareProvider)||((this.fareProvider!= null)&&this.fareProvider.equals(rhs.fareProvider))))&&((this.previousDeliveryId == rhs.previousDeliveryId)||((this.previousDeliveryId!= null)&&this.previousDeliveryId.equals(rhs.previousDeliveryId))));
+        return ((((((((this.deliveryId == rhs.deliveryId)||((this.deliveryId!= null)&&this.deliveryId.equals(rhs.deliveryId)))&&((this.acceptedVersion == rhs.acceptedVersion)||((this.acceptedVersion!= null)&&this.acceptedVersion.equals(rhs.acceptedVersion))))&&((this.replacementDeliveryId == rhs.replacementDeliveryId)||((this.replacementDeliveryId!= null)&&this.replacementDeliveryId.equals(rhs.replacementDeliveryId))))&&((this.optionalDelivery == rhs.optionalDelivery)||((this.optionalDelivery!= null)&&this.optionalDelivery.equals(rhs.optionalDelivery))))&&((this.fareProvider == rhs.fareProvider)||((this.fareProvider!= null)&&this.fareProvider.equals(rhs.fareProvider))))&&((this.previousDeliveryId == rhs.previousDeliveryId)||((this.previousDeliveryId!= null)&&this.previousDeliveryId.equals(rhs.previousDeliveryId))))&&((this.version == rhs.version)||((this.version!= null)&&this.version.equals(rhs.version))));
     }
 
 }

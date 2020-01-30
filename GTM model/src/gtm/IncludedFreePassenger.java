@@ -19,7 +19,7 @@ public class IncludedFreePassenger {
      */
     @JsonProperty("number")
     @JsonPropertyDescription("number of passengers that can be included with one passenger for free. The number is given in fractions. The calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog for free)")
-    private Double number;
+    private Integer number;
     @JsonProperty("passengerTypeRef")
     private String passengerTypeRef;
 
@@ -28,7 +28,7 @@ public class IncludedFreePassenger {
      * 
      */
     @JsonProperty("number")
-    public Double getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
@@ -37,7 +37,7 @@ public class IncludedFreePassenger {
      * 
      */
     @JsonProperty("number")
-    public void setNumber(Double number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 

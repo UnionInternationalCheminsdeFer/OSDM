@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "resourceType",
+    "offerType",
     "interfaceType",
     "version",
     "system"
@@ -16,19 +16,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class OnlineResourceDef {
 
     /**
-     * The resource provides offers bases on trains or based on areas. Train based offers must start and end at a read station and are not splitted inbetween a train run . Values TRAIN, AREA
+     * The resource provides offers bases on trains or based on areas. Train based offers must start and end at a real station and are not splitted inbetween a train run . Values TRAIN, AREA
      * 
      */
-    @JsonProperty("resourceType")
-    @JsonPropertyDescription("The resource provides offers bases on trains or based on areas. Train based offers must start and end at a read station and are not splitted inbetween a train run . Values TRAIN, AREA")
-    private String resourceType;
+    @JsonProperty("offerType")
+    @JsonPropertyDescription("The resource provides offers bases on trains or based on areas. Train based offers must start and end at a real station and are not splitted inbetween a train run . Values TRAIN, AREA")
+    private String offerType;
     /**
-     * "TAPTSI-B5", ""nTM",..
+     * GTM,...
      * (Required)
      * 
      */
     @JsonProperty("interfaceType")
-    @JsonPropertyDescription("\"TAPTSI-B5\", \"\"nTM\",..")
+    @JsonPropertyDescription("GTM,...")
     private String interfaceType;
     @JsonProperty("version")
     private String version;
@@ -41,25 +41,25 @@ public class OnlineResourceDef {
     private String system;
 
     /**
-     * The resource provides offers bases on trains or based on areas. Train based offers must start and end at a read station and are not splitted inbetween a train run . Values TRAIN, AREA
+     * The resource provides offers bases on trains or based on areas. Train based offers must start and end at a real station and are not splitted inbetween a train run . Values TRAIN, AREA
      * 
      */
-    @JsonProperty("resourceType")
-    public String getResourceType() {
-        return resourceType;
+    @JsonProperty("offerType")
+    public String getOfferType() {
+        return offerType;
     }
 
     /**
-     * The resource provides offers bases on trains or based on areas. Train based offers must start and end at a read station and are not splitted inbetween a train run . Values TRAIN, AREA
+     * The resource provides offers bases on trains or based on areas. Train based offers must start and end at a real station and are not splitted inbetween a train run . Values TRAIN, AREA
      * 
      */
-    @JsonProperty("resourceType")
-    public void setResourceType(String resourceType) {
-        this.resourceType = resourceType;
+    @JsonProperty("offerType")
+    public void setOfferType(String offerType) {
+        this.offerType = offerType;
     }
 
     /**
-     * "TAPTSI-B5", ""nTM",..
+     * GTM,...
      * (Required)
      * 
      */
@@ -69,7 +69,7 @@ public class OnlineResourceDef {
     }
 
     /**
-     * "TAPTSI-B5", ""nTM",..
+     * GTM,...
      * (Required)
      * 
      */
@@ -110,9 +110,9 @@ public class OnlineResourceDef {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(OnlineResourceDef.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("resourceType");
+        sb.append("offerType");
         sb.append('=');
-        sb.append(((this.resourceType == null)?"<null>":this.resourceType));
+        sb.append(((this.offerType == null)?"<null>":this.offerType));
         sb.append(',');
         sb.append("interfaceType");
         sb.append('=');
@@ -137,10 +137,10 @@ public class OnlineResourceDef {
     @Override
     public int hashCode() {
         int result = 1;
+        result = ((result* 31)+((this.offerType == null)? 0 :this.offerType.hashCode()));
         result = ((result* 31)+((this.interfaceType == null)? 0 :this.interfaceType.hashCode()));
         result = ((result* 31)+((this.system == null)? 0 :this.system.hashCode()));
         result = ((result* 31)+((this.version == null)? 0 :this.version.hashCode()));
-        result = ((result* 31)+((this.resourceType == null)? 0 :this.resourceType.hashCode()));
         return result;
     }
 
@@ -153,7 +153,7 @@ public class OnlineResourceDef {
             return false;
         }
         OnlineResourceDef rhs = ((OnlineResourceDef) other);
-        return (((((this.interfaceType == rhs.interfaceType)||((this.interfaceType!= null)&&this.interfaceType.equals(rhs.interfaceType)))&&((this.system == rhs.system)||((this.system!= null)&&this.system.equals(rhs.system))))&&((this.version == rhs.version)||((this.version!= null)&&this.version.equals(rhs.version))))&&((this.resourceType == rhs.resourceType)||((this.resourceType!= null)&&this.resourceType.equals(rhs.resourceType))));
+        return (((((this.offerType == rhs.offerType)||((this.offerType!= null)&&this.offerType.equals(rhs.offerType)))&&((this.interfaceType == rhs.interfaceType)||((this.interfaceType!= null)&&this.interfaceType.equals(rhs.interfaceType))))&&((this.system == rhs.system)||((this.system!= null)&&this.system.equals(rhs.system))))&&((this.version == rhs.version)||((this.version!= null)&&this.version.equals(rhs.version))));
     }
 
 }

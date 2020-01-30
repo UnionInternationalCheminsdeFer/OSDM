@@ -53,7 +53,7 @@ public class TravelValidityConstraintDef {
      */
     @JsonProperty("numberOfTravelDays")
     @JsonPropertyDescription("number of allowed travel days (e.g. 3 travel days within 2 weeks)")
-    private Double numberOfTravelDays;
+    private Integer numberOfTravelDays;
     /**
      * a return trip with the same carrier must be sold in combination
      * 
@@ -143,7 +143,7 @@ public class TravelValidityConstraintDef {
      * 
      */
     @JsonProperty("numberOfTravelDays")
-    public Double getNumberOfTravelDays() {
+    public Integer getNumberOfTravelDays() {
         return numberOfTravelDays;
     }
 
@@ -152,7 +152,7 @@ public class TravelValidityConstraintDef {
      * 
      */
     @JsonProperty("numberOfTravelDays")
-    public void setNumberOfTravelDays(Double numberOfTravelDays) {
+    public void setNumberOfTravelDays(Integer numberOfTravelDays) {
         this.numberOfTravelDays = numberOfTravelDays;
     }
 

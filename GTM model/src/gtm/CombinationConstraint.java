@@ -20,7 +20,7 @@ public class CombinationConstraint {
      */
     @JsonProperty("maxNumber")
     @JsonPropertyDescription("number of passengers allowed per accompanying passenger")
-    private Double maxNumber;
+    private Integer maxNumber;
     /**
      * reference to the type of the acompanying passenger
      * (Required)
@@ -36,7 +36,7 @@ public class CombinationConstraint {
      * 
      */
     @JsonProperty("maxNumber")
-    public Double getMaxNumber() {
+    public Integer getMaxNumber() {
         return maxNumber;
     }
 
@@ -46,7 +46,7 @@ public class CombinationConstraint {
      * 
      */
     @JsonProperty("maxNumber")
-    public void setMaxNumber(Double maxNumber) {
+    public void setMaxNumber(Integer maxNumber) {
         this.maxNumber = maxNumber;
     }
 

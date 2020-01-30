@@ -25,9 +25,9 @@ public class VatDetail {
     @JsonPropertyDescription("ISO 3166 2A codes, optional in case of web sales")
     private String country;
     @JsonProperty("Amount")
-    private Double amount;
+    private Float amount;
     @JsonProperty("Percentage")
-    private Double percentage;
+    private Float percentage;
     @JsonProperty("taxId")
     private String taxId;
     /**
@@ -59,22 +59,22 @@ public class VatDetail {
     }
 
     @JsonProperty("Amount")
-    public Double getAmount() {
+    public Float getAmount() {
         return amount;
     }
 
     @JsonProperty("Amount")
-    public void setAmount(Double amount) {
+    public void setAmount(Float amount) {
         this.amount = amount;
     }
 
     @JsonProperty("Percentage")
-    public Double getPercentage() {
+    public Float getPercentage() {
         return percentage;
     }
 
     @JsonProperty("Percentage")
-    public void setPercentage(Double percentage) {
+    public void setPercentage(Float percentage) {
         this.percentage = percentage;
     }
 

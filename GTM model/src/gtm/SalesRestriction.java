@@ -23,9 +23,9 @@ public class SalesRestriction {
     @JsonPropertyDescription("valid on all days in case no calendar is provided")
     private CalendarDef salesDates;
     @JsonProperty("startOfSale")
-    private TimeReferenceDef startOfSale;
+    private RelativeTimeDef startOfSale;
     @JsonProperty("endOfSale")
-    private TimeReferenceDef endOfSale;
+    private RelativeTimeDef endOfSale;
 
     /**
      * valid on all days in case no calendar is provided
@@ -48,22 +48,22 @@ public class SalesRestriction {
     }
 
     @JsonProperty("startOfSale")
-    public TimeReferenceDef getStartOfSale() {
+    public RelativeTimeDef getStartOfSale() {
         return startOfSale;
     }
 
     @JsonProperty("startOfSale")
-    public void setStartOfSale(TimeReferenceDef startOfSale) {
+    public void setStartOfSale(RelativeTimeDef startOfSale) {
         this.startOfSale = startOfSale;
     }
 
     @JsonProperty("endOfSale")
-    public TimeReferenceDef getEndOfSale() {
+    public RelativeTimeDef getEndOfSale() {
         return endOfSale;
     }
 
     @JsonProperty("endOfSale")
-    public void setEndOfSale(TimeReferenceDef endOfSale) {
+    public void setEndOfSale(RelativeTimeDef endOfSale) {
         this.endOfSale = endOfSale;
     }
 
