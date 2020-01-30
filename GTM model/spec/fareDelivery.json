@@ -3,6 +3,9 @@
 	"$id": "http://uic.org//schemas/passenger/eticket/v1/fareDelivery.json",
 	"type": "object",
 	"properties": {
-		"FareStructureDelivery": {"$ref": "farestructure.json#/definitions/FareStructureDeliveryDef"}
-	}
+		"FareStructureDelivery": {
+			"$ref": "farestructure.json#/definitions/FareStructureDeliveryDef"
+		}
+	},
+	"additionalProperties": false
 }

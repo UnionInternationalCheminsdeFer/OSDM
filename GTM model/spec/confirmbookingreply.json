@@ -9,6 +9,10 @@
 				"bookingId": {
 					"type": "string"
 				},
+				"legacyAccountingId": {
+					"description": "14 digit numeric id for current 301 accouning files",
+					"type": "number"
+				},
 				"ErrorDescription": {
 					"type": "object",
 					"properties": {

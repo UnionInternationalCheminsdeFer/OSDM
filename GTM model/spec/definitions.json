@@ -143,10 +143,10 @@
 					"$ref": "definitions.json#/definitions/GeoCoordinateUnitDef"
 				},
 				"Latitude": {
-					"type": "integer"
+					"type": "number"
 				},
 				"Longitude": {
-					"type": "integer"
+					"type": "number"
 				}
 			},
 			"required": [

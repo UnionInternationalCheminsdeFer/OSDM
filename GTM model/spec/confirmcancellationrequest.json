@@ -16,6 +16,9 @@
 				"offerContext": {
 					"description": "mandatory in case it was provided with the offer",
 					"type": "string"
+				},
+				"AppliedCarrierFee": {
+					"$ref": "faredefinitions.json#/definitions/PriceDef"
 				}
 			},
 			"required": [

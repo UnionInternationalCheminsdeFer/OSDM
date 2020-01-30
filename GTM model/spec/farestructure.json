@@ -28,11 +28,21 @@
 							"description": "this delivery is not mandatory to be downloaded. ",
 							"type": "boolean",
 							"default": false
+						},
+						"version": {
+							"description": "version of the data schema",
+							"type": "string"
+						},
+						"acceptedVersion": {
+							"description": "minimal version required to use these data",
+							"type": "string"
 						}
 					},
 					"required": [
 						"fareProvider",
-						"deliveryId"
+						"deliveryId",
+						"version",
+						"acceptedVersion"
 					],
 					"additionalProperties": false
 				},
@@ -98,18 +108,13 @@
 						},
 						"fareElements": {
 							"type": "array",
-							"minItems": 1,
-							"items": [
-								{
-									"$ref": "fareitems.json#/definitions/FareElementDef"
-								}
-							],
-							"additionalItems": false
+							"items": {
+								"$ref": "fareitems.json#/definitions/FareElementDef"
+							}
 						},
 						"afterSalesRules": {
 							"description": "list of allowed after sales transactions and conditions",
 							"type": "array",
-							"minItems": 1,
 							"items": {
 								"$ref": "faredefinitions.json#/definitions/AfterSalesRulesDef"
 							}
@@ -123,33 +128,27 @@
 						},
 						"combinationConstraints": {
 							"type": "array",
-							"minItems": 1,
 							"items": {
 								"$ref": "faredefinitions.json#/definitions/FareCombinationConstraintDef"
 							}
 						},
 						"salesAvailabilityConstraint": {
 							"type": "array",
-							"minItems": 1,
 							"items": {
 								"$ref": "faredefinitions.json#/definitions/SalesAvailabilityConstraintDef"
 							}
 						},
 						"travelValidityConstraints": {
 							"type": "array",
-							"minItems": 1,
 							"items": {
 								"$ref": "faredefinitions.json#/definitions/TravelValidityConstraintDef"
 							}
 						},
 						"fullfillmentConstraints": {
 							"type": "array",
-							"items": [
-								{
-									"$ref": "faredefinitions.json#/definitions/FullfillmentConstraintDef"
-								}
-							],
-							"additionalItems": false
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/FullfillmentConstraintDef"
+							}
 						},
 						"reductionConstraints": {
 							"type": "array",
@@ -191,7 +190,6 @@
 					"required": [
 						"calendars",
 						"serviceClassDefinitions",
-						"texts",
 						"regionalConstraints",
 						"fareElements",
 						"afterSalesRules",
