@@ -3,6 +3,7 @@
 package Gtm.presentation;
 
 import java.io.File;
+import java.io.PrintStream;
 import java.util.Arrays;
 
 import org.eclipse.equinox.app.IApplication;
@@ -38,7 +39,15 @@ import org.eclipse.ui.application.IWorkbenchConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchAdvisor;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
-
+import org.eclipse.ui.console.ConsolePlugin;
+import org.eclipse.ui.console.IConsole;
+import org.eclipse.ui.console.MessageConsole;
+import org.eclipse.ui.console.MessageConsoleStream;
+import org.osgi.service.log.LogEntry;
+import org.osgi.service.log.LogListener;
+import org.eclipse.core.runtime.ILogListener;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.ui.action.WorkbenchWindowActionDelegate;
 import org.eclipse.emf.common.util.URI;
@@ -46,6 +55,7 @@ import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import Gtm.presentation.GtmEditorPlugin;
+import console.ConsoleUtil;
 
 
 /**
@@ -143,24 +153,66 @@ public final class GtmEditorAdvisor extends WorkbenchAdvisor {
 		 * @see org.eclipse.ui.IPerspectiveFactory#createInitialLayout(org.eclipse.ui.IPageLayout)
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
+		 * @generated NOT
 		 */
 		public void createInitialLayout(IPageLayout layout) {
 			layout.setEditorAreaVisible(true);
 			layout.addPerspectiveShortcut(ID_PERSPECTIVE);
-			
-			//IFolderLayout bottom = layout.createFolder("bottom", IPageLayout.BOTTOM, (float)0.60, layout.getEditorArea());
-			//bottom.addView(GtmProblemView.ID);	
-			//bottom.addView(IPageLayout.ID_PROBLEM_VIEW);
-			//bottom.addView("org.eclipse.ui.console.ConsoleView");
-			//bottom.addView("org.eclipse.pde.runtime.LogView");
 
 			IFolderLayout right = layout.createFolder("right", IPageLayout.RIGHT, (float)0.66, layout.getEditorArea());
 			right.addView(IPageLayout.ID_OUTLINE);
 
-			IFolderLayout bottonRight = layout.createFolder("bottonRight", IPageLayout.BOTTOM, (float)0.60, "right");
-			bottonRight.addView(IPageLayout.ID_PROP_SHEET);
+			IFolderLayout bottomRight = layout.createFolder("bottonRight", IPageLayout.BOTTOM, (float)0.60, "right");
+			bottomRight.addView(IPageLayout.ID_PROP_SHEET);
 			
+			
+			bottomRight.addView(GtmProblemView.ID);
+			layout.addShowViewShortcut(GtmProblemView.ID);
+			
+			
+			bottomRight.addView(IPageLayout.ID_PROBLEM_VIEW);
+			
+			//addons
+			ConsoleUtil.showConsole("Infos");
+			
+			ConsoleUtil.showConsole("Errors");
+			
+			ConsoleUtil.showConsole("Data Issues");
+			
+		}
+
+		/**
+		 * @link log with error console
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated NOT
+		 */
+		protected void createErrorConsole() {
+			MessageConsole errorConsole = null;
+			
+			for (IConsole console :ConsolePlugin.getDefault().getConsoleManager().getConsoles()) {
+				if (console.getName() == "Errors") {
+					errorConsole = (MessageConsole) console;
+				}
+			}
+
+			MessageConsoleStream stream = errorConsole.newMessageStream();
+
+			PrintStream myS = new PrintStream(stream);
+			System.setOut(myS); // link standard output stream to the console
+			System.setErr(myS); // link error output stream to the console
+	
+			ConsolePlugin.getDefault().getConsoleManager().showConsoleView(errorConsole);
+			
+			Platform.addLogListener(new ILogListener() {
+				@Override
+				public void logging(IStatus status, String msg) {
+					if (status.matches(IStatus.ERROR)) {
+						ConsoleUtil.printError("Errors", msg);
+					}
+				};	
+			});
+
 		}
 	}
 	

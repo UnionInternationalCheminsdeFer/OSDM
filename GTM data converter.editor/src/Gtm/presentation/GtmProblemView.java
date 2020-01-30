@@ -1,6 +1,7 @@
 package Gtm.presentation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -10,6 +11,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.part.ViewPart;
@@ -19,6 +21,8 @@ public class GtmProblemView extends ViewPart {
 	// the ID needs to match the id set in the view's properties
 	public static final String ID = "org.uic.gtm.GtmProblemView"; //$NON-NLS-1$
 	private static TreeViewer contentTreeViewer;
+	
+	private static GtmProblemView me = null;
 	
 	private static ArrayList<Diagnostic> errors = new ArrayList<Diagnostic>();
 	private static ArrayList<Diagnostic> warnings = new ArrayList<Diagnostic>();
@@ -30,6 +34,7 @@ public class GtmProblemView extends ViewPart {
 	public GtmProblemView(){
 		super();
 		this.setPartName("Problems");
+		me = this;
 	}
 
 	@Override
@@ -60,6 +65,8 @@ public class GtmProblemView extends ViewPart {
 
 	
 	 public class ProblemViewTreeTableContentProvider implements ITreeContentProvider {
+		 
+
 			
 			public Object[] getChildren(Object arg0) {
 				return content;
@@ -137,7 +144,55 @@ public class GtmProblemView extends ViewPart {
 
 	@Override
 	public void setFocus() {
+		contentTreeViewer.getControl().setFocus();
 	}
-	 
+
+
+	public static GtmProblemView getInstance() {
+		if (me == null) {
+			me = new GtmProblemView();
+		}
+		return me;
+	}
+	
+	public void setRootDiagnostic(Diagnostic diagnostic) {
+		
+		errors.clear();
+		warnings.clear();
+		infos.clear();
+
+		if(diagnostic == null){
+			return;
+		}
+		
+		List<Diagnostic> diagnostics = diagnostic.getChildren();
+		for (Diagnostic childDiagnostic : diagnostics) {
+
+			switch (childDiagnostic.getSeverity()){
+			case Diagnostic.ERROR:
+				errors.add(childDiagnostic);
+				break;
+			case Diagnostic.WARNING:
+				warnings.add(childDiagnostic);
+				break;
+			case Diagnostic.INFO:
+				infos.add(childDiagnostic);
+				break;
+			}
+		}
+
+		// Refresh Viewer
+		Display.getDefault().asyncExec(new Runnable(){
+
+			@Override
+			public void run() {
+				if(contentTreeViewer != null){
+				   contentTreeViewer.refresh();
+				}
+			}
+
+		});
+	}
+
 
 }

@@ -2,21 +2,26 @@ package actions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.DeleteCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
 
+import Gtm.ConversionFromLegacy;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.Legacy108;
 import Gtm.LegacyCalculationType;
 import Gtm.LegacySeries;
+import Gtm.LegacySeriesList;
 import Gtm.LegacySeriesType;
 import Gtm.LegacyViastation;
 
@@ -40,24 +45,22 @@ public class ImportLegacySeriesAction extends ImportLegacyAction {
 		
 		BufferedReader br = super.getReader("import series TCVS");
 		
-		CompoundCommand command =  new CompoundCommand();
-		
-    	Command cmd =  DeleteCommand.create(editingDomainProvider.getEditingDomain(), legacy108.getSeries());
-    	if (cmd.canExecute()) {
-    		command.append(cmd);    	
-    	}
-		
       
         String st; 
+        
+        LegacySeriesList seriesList = GtmFactory.eINSTANCE.createLegacySeriesList();
+		ConversionFromLegacy converter = (ConversionFromLegacy) legacy108.eContainer();
+		String timeZone = converter.getLegacy108().getTimeZone().getName();
+		if (timeZone == null || timeZone.length() < 3) {
+			timeZone = "GMT";
+		}
+        
         try {
 			while ((st = br.readLine()) != null) {
 				
-			  LegacySeries series = decodeLine(st);
+			  LegacySeries series = decodeLine(st, timeZone);
 			  if (series != null) {
-				  Command cmd2 =  AddCommand.create(editingDomainProvider.getEditingDomain(), legacy108.getSeries(), GtmPackage.LEGACY108__SERIES,series);
-				  if (cmd2.canExecute()) {
-					  command.append(cmd2);
-				  }
+				  seriesList.getSeries().add(series);
 			  }
 			}
 		} catch (IOException e) {
@@ -68,47 +71,55 @@ public class ImportLegacySeriesAction extends ImportLegacyAction {
 			e.printStackTrace();
 			return;
 		} 
-        
-        if (command != null && !command.isEmpty()) {
-        	editingDomainProvider.getEditingDomain().getCommandStack().execute(command);
-        }
+           	
+		Command cmd =  SetCommand.create(editingDomainProvider.getEditingDomain(), legacy108, GtmPackage.Literals.LEGACY108__LEGACY_SERIES_LIST, seriesList );
+		if (cmd.canExecute()) {
+			editingDomainProvider.getEditingDomain().getCommandStack().execute(cmd);
+			GtmUtils.writeConsoleInfog("series imported: " + Integer.toString(seriesList.getSeries().size()));
+		}
+
 	}
 
 
 
-	private LegacySeries decodeLine(String st) {
+	private LegacySeries decodeLine(String st, String timeZone) {
+		
+		try {
 		
 		//String carrier 	= st.substring(0, 4);
 		String number  		= st.substring(4, 9);
-		String flag  		= st.substring(9,10);
+		String flag  		= st.substring(9, 10);
 		
 		if (flag.equals("2")) return null;
 		
-		String type 		= st.substring(11,12);
-		//String flag2 		= st.substring(12,13);		
-		String departure 	= st.substring(13,17);		
-		String destination	= st.substring(38,43);		
+		String type 		= st.substring(10,11);
+		//String flag2 		= st.substring(11,12);		
+		String departure 	= st.substring(12,17);		
+		String destination	= st.substring(37,42);		
 
-		String distanceKl2	= st.substring(139,144);
-		String distanceKl1	= st.substring(145,150);		
+		String distanceKl2	= st.substring(138,143);
+		String distanceKl1	= st.substring(144,149);		
 		
-		String calculation	= st.substring(151,152);		
+		String calculation	= st.substring(150,151);		
 		
 			
-		String via1	= st.substring(176,181);			
-		String pos1	= st.substring(181,182);			
+		String via1	= st.substring(175,180);			
+		String pos1	= st.substring(180,181);			
 
-		String via2	= st.substring(183,188);			
-		String pos2	= st.substring(188,189);	
+		String via2	= st.substring(182,187);			
+		String pos2	= st.substring(187,188);	
 		
-		String via3	= st.substring(190,195);			
-		String pos3	= st.substring(195,196);	
+		String via3	= st.substring(189,194);			
+		String pos3	= st.substring(194,195);	
 		
-		String via4	= st.substring(197,202);			
-		String pos4	= st.substring(202,203);	
+		String via4	= st.substring(196,201);			
+		String pos4	= st.substring(201,202);	
 		
-		String via5	= st.substring(204,209);			
-		String pos5	= st.substring(209,210);	
+		String via5	= st.substring(203,208);			
+		String pos5	= st.substring(208,209);	
+		
+		String validFromString = st.substring(211,219);		
+		String validUntilString = st.substring(221,229);				
 		
 		LegacySeries series = GtmFactory.eINSTANCE.createLegacySeries();
 		
@@ -126,6 +137,24 @@ public class ImportLegacySeriesAction extends ImportLegacyAction {
 		
 		series.setDistance1(Integer.parseInt(distanceKl1));
 		series.setDistance2(Integer.parseInt(distanceKl2));
+		
+		
+		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		df.setTimeZone(TimeZone.getTimeZone(timeZone)); 
+		Date dt = null;
+		try {
+		    dt = df.parse(validFromString);
+		    series.setValidFrom(dt);
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		} 
+		Date dt2 = null;
+		try {
+		    dt2 = df.parse(validUntilString);
+		    series.setValidUntil(dt2);
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		} 
 		
 		
 		int viaStation1 = Integer.parseInt(via1); 
@@ -153,8 +182,13 @@ public class ImportLegacySeriesAction extends ImportLegacyAction {
 		if (viaStation5 > 0) {
 			addViaStation(series, viaStation5, pos5);
 		}
-
+		
 		return series;
+		
+		} catch (Exception e) {
+			return null;
+		}
+
 	}
 
 

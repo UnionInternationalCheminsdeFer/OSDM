@@ -6,103 +6,35 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.ui.actions.BaseSelectionListenerAction;
-
 import Gtm.GTMTool;
-import Gtm.Legacy108;
 
 
-public class ConvertGtm2LegacyAction extends BaseSelectionListenerAction {
+public class ConvertGtm2LegacyAction extends BasicGtmAction {
 	
 		
 		protected IEditingDomainProvider editingDomainProvider = null;
 		
 		public ConvertGtm2LegacyAction(IEditingDomainProvider editingDomainProvider) {
-			super("Convert GTM to Legacy 108");
+			super("Convert GTM to Legacy 108", editingDomainProvider);
 			this.editingDomainProvider = editingDomainProvider;
 		}
 		
 		public ConvertGtm2LegacyAction(String text, IEditingDomainProvider editingDomainProvider) {
-			super(text);
+			super(text, editingDomainProvider);
 			this.editingDomainProvider = editingDomainProvider;
 		}
-
-		public void run() {
-			run( this.getStructuredSelection() );
-			return;
-		}
-		
-		protected void run(IStructuredSelection structuredSelection) {
-			
-			if (editingDomainProvider == null) return;
-			
-			if (!checkSelection( structuredSelection)) return;	
-			
-			EObject o = (EObject) structuredSelection.getFirstElement();
-			
-			GTMTool tool = (GTMTool) editingDomainProvider.getEditingDomain().getRoot(o);
-			
-			CompoundCommand preparationCommand = GtmUtils.getPreparationCommand(o, editingDomainProvider.getEditingDomain());
-			
-			if (preparationCommand != null && !preparationCommand.isEmpty()) {
-				editingDomainProvider.getEditingDomain().getCommandStack().execute(preparationCommand);
-			}
-				
-			CompoundCommand command = new CompoundCommand();
-			
-			convert(tool,command);
-			
-			if (command != null && !command.isEmpty() && command.canExecute()) {
-				editingDomainProvider.getEditingDomain().getCommandStack().execute(command);	
-			}
-
-		
-		}
-		
-
-
 
 		private void convert(GTMTool tool, CompoundCommand command) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 			dialog.setText("not yet implemented");
 			dialog.open(); 
 		}
-
-		protected boolean checkSelection(IStructuredSelection selection)
-		{
-			if (selection == null) return false;
-	    	
-	    	if (!(selection.getFirstElement() instanceof EObject )) return false;
-	    	    	
-			return true;
-		}
-		
-		/*
-		 * to be implemented by all actions
-		 */
-		protected void runAction(Legacy108 legacy108) {
-			
-		}
-		   	
-		
-	    public boolean updateSelection (IStructuredSelection selection)
-	    {
-	  		this.setEnabled(false);
-
-	  		if (checkSelection(selection)) 	{
-	  			this.setEnabled(true);
-	  			return true;
-	  		}
-	  		return false;
-	    }	
-	    
+    
 		protected BufferedReader getReader(String text){
 			
 	        FileDialog fd = new FileDialog( Display.getDefault().getActiveShell(), SWT.READ_ONLY);
@@ -130,6 +62,17 @@ public class ConvertGtm2LegacyAction extends BaseSelectionListenerAction {
 	        return br;
 
 			
+		}
+
+		@Override
+		protected void runAction(GTMTool tool) {
+			CompoundCommand command = new CompoundCommand();
+			
+			convert(tool,command);
+			
+			if (command != null && !command.isEmpty() && command.canExecute()) {
+				editingDomainProvider.getEditingDomain().getCommandStack().execute(command);	
+			}
 		}
 
 	

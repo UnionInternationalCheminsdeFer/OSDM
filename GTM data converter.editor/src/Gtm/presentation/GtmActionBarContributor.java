@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.ui.action.CreateChildAction;
 import org.eclipse.emf.edit.ui.action.CreateSiblingAction;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
-import org.eclipse.emf.edit.ui.action.ValidateAction;
+
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
@@ -48,11 +48,16 @@ import org.eclipse.ui.actions.BaseSelectionListenerAction;
 import actions.ConvertGtm2LegacyAction;
 import actions.ConvertLegacy2GtmAction;
 import actions.ExportGTMJsonAction;
-import actions.GenerateIdsAction;
+import actions.GtmValidateAction;
+import actions.ImportCarriersAction;
 import actions.ImportGTMJsonAction;
+import actions.ImportLegacyAllFareAction;
 import actions.ImportLegacyDistanceFareAction;
 import actions.ImportLegacyRouteFareAction;
 import actions.ImportLegacySeriesAction;
+import actions.ImportLegacyStationsAction;
+import actions.ImportServiceBrandsAction;
+import actions.ImportStationsAction;
 
 
 /**
@@ -206,7 +211,7 @@ public class GtmActionBarContributor
 	public GtmActionBarContributor() {
 		super(ADDITIONS_LAST_STYLE);
 		loadResourceAction = new LoadResourceAction();
-		validateAction = new ValidateAction();
+		validateAction = new GtmValidateAction();
 		controlAction = new ControlAction();
 		
 		/**
@@ -218,15 +223,22 @@ public class GtmActionBarContributor
 		if (gtmActions == null) {
 			gtmActions = new ArrayList<BaseSelectionListenerAction>();
 		}
-		
-		gtmActions.add(new ImportLegacySeriesAction(this));
-		gtmActions.add(new ImportLegacyDistanceFareAction(this));
-		gtmActions.add(new ImportLegacyRouteFareAction(this));
-		gtmActions.add(new ImportGTMJsonAction(this));	
-		gtmActions.add(new GenerateIdsAction(this));
-		gtmActions.add(new ExportGTMJsonAction(this));	
-		gtmActions.add(new ConvertLegacy2GtmAction(this));
-		gtmActions.add(new ConvertGtm2LegacyAction(this));
+		if (gtmActions.isEmpty()) {
+			gtmActions.add(new ImportStationsAction(this));
+			gtmActions.add(new ImportCarriersAction(this));
+			gtmActions.add(new ImportServiceBrandsAction(this));
+			gtmActions.add(new ImportLegacyStationsAction(this));			
+			gtmActions.add(new ImportLegacySeriesAction(this));
+			gtmActions.add(new ImportLegacyDistanceFareAction(this));
+			gtmActions.add(new ImportLegacyRouteFareAction(this));
+			gtmActions.add(new ImportLegacyAllFareAction(this));
+			gtmActions.add(new ImportGTMJsonAction(this));	
+			//gtmActions.add(new GenerateIdsAction(this));
+			gtmActions.add(new ExportGTMJsonAction(this));	
+			gtmActions.add(new ConvertLegacy2GtmAction(this));
+			gtmActions.add(new ConvertGtm2LegacyAction(this));
+		}
+
 		
 	}
 
@@ -337,9 +349,11 @@ public class GtmActionBarContributor
 		if (createSiblingMenuManager != null) {
 			depopulateManager(createSiblingMenuManager, createSiblingActions);
 		}
+		/*
 		if (gtmMenuManager != null) {
 			depopulateManager(gtmMenuManager, gtmActions);
-		}		
+		}	
+		*/	
 
 		// Query the new selection for appropriate new child/sibling descriptors
 		//
@@ -372,6 +386,7 @@ public class GtmActionBarContributor
 		}
 		
 		//additional actions
+		/*
 		for (BaseSelectionListenerAction action : gtmActions) {
 			action.selectionChanged(event);			
 		}
@@ -379,6 +394,7 @@ public class GtmActionBarContributor
 			populateManager(gtmMenuManager, gtmActions, null);
 			gtmMenuManager.update(true);
 		}
+		*/
 		
 
 		
@@ -533,7 +549,17 @@ public class GtmActionBarContributor
 	 * @generated NOT
 	 */
 	public EditingDomain getEditingDomain() {
-		return ((IEditingDomainProvider)activeEditorPart).getEditingDomain();
+		return ((GtmEditor)activeEditor).getEditingDomain();
+		//return ((IEditingDomainProvider)activeEditorPart).getEditingDomain();
 	}
-
+	
+	/*
+	 * This provides the active editor
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public IEditorPart getActiveEditor() {
+		return activeEditor;
+	}
 }

@@ -53,10 +53,11 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
+import Gtm.GTMTool;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.provider.GtmEditPlugin;
-
+import actions.GtmUtils;
 
 import java.io.File;
 
@@ -183,11 +184,16 @@ public class GtmModelWizard extends Wizard implements INewWizard {
 	 * Create a new model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected EObject createInitialModel() {
 		EClass eClass = (EClass)gtmPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
 		EObject rootObject = gtmFactory.create(eClass);
+		
+		if (rootObject instanceof GTMTool) {
+			GtmUtils.populateInitialModel((GTMTool) rootObject);
+		}
+		
 		return rootObject;
 	}
 
@@ -309,8 +315,7 @@ public class GtmModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE);
-			{
+			Composite composite = new Composite(parent, SWT.NONE); {
 				GridLayout layout = new GridLayout();
 				layout.numColumns = 1;
 				layout.verticalSpacing = 12;
