@@ -31,12 +31,12 @@ public interface ZoneDefinition extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Zone Id</em>' attribute.
-	 * @see #setZoneId(String)
+	 * @see #setZoneId(int)
 	 * @see Gtm.GtmPackage#getZoneDefinition_ZoneId()
 	 * @model
 	 * @generated
 	 */
-	String getZoneId();
+	int getZoneId();
 
 	/**
 	 * Sets the value of the '{@link Gtm.ZoneDefinition#getZoneId <em>Zone Id</em>}' attribute.
@@ -46,7 +46,7 @@ public interface ZoneDefinition extends EObject {
 	 * @see #getZoneId()
 	 * @generated
 	 */
-	void setZoneId(String value);
+	void setZoneId(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.

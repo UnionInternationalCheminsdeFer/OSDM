@@ -25,25 +25,28 @@ import org.eclipse.emf.ecore.EObject;
 public interface ServiceClass extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gtm.ClassId}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(String)
+	 * @see Gtm.ClassId
+	 * @see #setId(ClassId)
 	 * @see Gtm.GtmPackage#getServiceClass_Id()
 	 * @model
 	 * @generated
 	 */
-	String getId();
+	ClassId getId();
 
 	/**
 	 * Sets the value of the '{@link Gtm.ServiceClass#getId <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see Gtm.ClassId
 	 * @see #getId()
 	 * @generated
 	 */
-	void setId(String value);
+	void setId(ClassId value);
 
 	/**
 	 * Returns the value of the '<em><b>Classic Class</b></em>' attribute.

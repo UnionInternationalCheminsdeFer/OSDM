@@ -50,12 +50,12 @@ public interface SalesRestriction extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Of Sale</em>' containment reference.
-	 * @see #setStartOfSale(TimeReference)
+	 * @see #setStartOfSale(StartOfSale)
 	 * @see Gtm.GtmPackage#getSalesRestriction_StartOfSale()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TimeReference getStartOfSale();
+	StartOfSale getStartOfSale();
 
 	/**
 	 * Sets the value of the '{@link Gtm.SalesRestriction#getStartOfSale <em>Start Of Sale</em>}' containment reference.
@@ -65,19 +65,19 @@ public interface SalesRestriction extends EObject {
 	 * @see #getStartOfSale()
 	 * @generated
 	 */
-	void setStartOfSale(TimeReference value);
+	void setStartOfSale(StartOfSale value);
 
 	/**
 	 * Returns the value of the '<em><b>End Of Sale</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>End Of Sale</em>' containment reference.
-	 * @see #setEndOfSale(TimeReference)
+	 * @see #setEndOfSale(EndOfSale)
 	 * @see Gtm.GtmPackage#getSalesRestriction_EndOfSale()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TimeReference getEndOfSale();
+	EndOfSale getEndOfSale();
 
 	/**
 	 * Sets the value of the '{@link Gtm.SalesRestriction#getEndOfSale <em>End Of Sale</em>}' containment reference.
@@ -87,6 +87,6 @@ public interface SalesRestriction extends EObject {
 	 * @see #getEndOfSale()
 	 * @generated
 	 */
-	void setEndOfSale(TimeReference value);
+	void setEndOfSale(EndOfSale value);
 
 } // SalesRestriction

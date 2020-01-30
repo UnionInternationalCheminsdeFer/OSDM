@@ -220,12 +220,12 @@ public interface PassengerConstraint extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Passenger Weight</em>' attribute.
-	 * @see #setPassengerWeight(int)
+	 * @see #setPassengerWeight(float)
 	 * @see Gtm.GtmPackage#getPassengerConstraint_PassengerWeight()
 	 * @model
 	 * @generated
 	 */
-	int getPassengerWeight();
+	float getPassengerWeight();
 
 	/**
 	 * Sets the value of the '{@link Gtm.PassengerConstraint#getPassengerWeight <em>Passenger Weight</em>}' attribute.
@@ -235,19 +235,19 @@ public interface PassengerConstraint extends EObject {
 	 * @see #getPassengerWeight()
 	 * @generated
 	 */
-	void setPassengerWeight(int value);
+	void setPassengerWeight(float value);
 
 	/**
 	 * Returns the value of the '<em><b>Max Total Passenger Weight</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Max Total Passenger Weight</em>' attribute.
-	 * @see #setMaxTotalPassengerWeight(int)
+	 * @see #setMaxTotalPassengerWeight(float)
 	 * @see Gtm.GtmPackage#getPassengerConstraint_MaxTotalPassengerWeight()
 	 * @model
 	 * @generated
 	 */
-	int getMaxTotalPassengerWeight();
+	float getMaxTotalPassengerWeight();
 
 	/**
 	 * Sets the value of the '{@link Gtm.PassengerConstraint#getMaxTotalPassengerWeight <em>Max Total Passenger Weight</em>}' attribute.
@@ -257,19 +257,19 @@ public interface PassengerConstraint extends EObject {
 	 * @see #getMaxTotalPassengerWeight()
 	 * @generated
 	 */
-	void setMaxTotalPassengerWeight(int value);
+	void setMaxTotalPassengerWeight(float value);
 
 	/**
 	 * Returns the value of the '<em><b>Min Total Passenger Weight</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Min Total Passenger Weight</em>' attribute.
-	 * @see #setMinTotalPassengerWeight(int)
+	 * @see #setMinTotalPassengerWeight(float)
 	 * @see Gtm.GtmPackage#getPassengerConstraint_MinTotalPassengerWeight()
 	 * @model
 	 * @generated
 	 */
-	int getMinTotalPassengerWeight();
+	float getMinTotalPassengerWeight();
 
 	/**
 	 * Sets the value of the '{@link Gtm.PassengerConstraint#getMinTotalPassengerWeight <em>Min Total Passenger Weight</em>}' attribute.
@@ -279,19 +279,29 @@ public interface PassengerConstraint extends EObject {
 	 * @see #getMinTotalPassengerWeight()
 	 * @generated
 	 */
-	void setMinTotalPassengerWeight(int value);
+	void setMinTotalPassengerWeight(float value);
 
 	/**
-	 * Returns the value of the '<em><b>Included Free Passengers</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.PassengerCombinationConstraint}.
+	 * Returns the value of the '<em><b>Included Free Passengers</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Included Free Passengers</em>' containment reference list.
+	 * @return the value of the '<em>Included Free Passengers</em>' containment reference.
+	 * @see #setIncludedFreePassengers(IncludedFreePassengers)
 	 * @see Gtm.GtmPackage#getPassengerConstraint_IncludedFreePassengers()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<PassengerCombinationConstraint> getIncludedFreePassengers();
+	IncludedFreePassengers getIncludedFreePassengers();
+
+	/**
+	 * Sets the value of the '{@link Gtm.PassengerConstraint#getIncludedFreePassengers <em>Included Free Passengers</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Included Free Passengers</em>' containment reference.
+	 * @see #getIncludedFreePassengers()
+	 * @generated
+	 */
+	void setIncludedFreePassengers(IncludedFreePassengers value);
 
 	/**
 	 * Returns the value of the '<em><b>Excluded Passenger Combinations</b></em>' containment reference list.

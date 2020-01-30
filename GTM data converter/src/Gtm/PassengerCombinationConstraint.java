@@ -45,25 +45,28 @@ public interface PassengerCombinationConstraint extends EObject {
 	void setMaxNumber(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Passenger Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Passenger Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gtm.TravelerType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Passenger Type</em>' reference.
-	 * @see #setPassengerType(PassengerConstraint)
+	 * @return the value of the '<em>Passenger Type</em>' attribute.
+	 * @see Gtm.TravelerType
+	 * @see #setPassengerType(TravelerType)
 	 * @see Gtm.GtmPackage#getPassengerCombinationConstraint_PassengerType()
 	 * @model
 	 * @generated
 	 */
-	PassengerConstraint getPassengerType();
+	TravelerType getPassengerType();
 
 	/**
-	 * Sets the value of the '{@link Gtm.PassengerCombinationConstraint#getPassengerType <em>Passenger Type</em>}' reference.
+	 * Sets the value of the '{@link Gtm.PassengerCombinationConstraint#getPassengerType <em>Passenger Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Passenger Type</em>' reference.
+	 * @param value the new value of the '<em>Passenger Type</em>' attribute.
+	 * @see Gtm.TravelerType
 	 * @see #getPassengerType()
 	 * @generated
 	 */
-	void setPassengerType(PassengerConstraint value);
+	void setPassengerType(TravelerType value);
 
 } // PassengerCombinationConstraint

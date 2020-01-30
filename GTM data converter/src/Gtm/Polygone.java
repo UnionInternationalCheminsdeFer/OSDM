@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link Gtm.Polygone#getEgde <em>Egde</em>}</li>
+ *   <li>{@link Gtm.Polygone#getEdge <em>Edge</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getPolygone()
@@ -24,15 +24,15 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Polygone extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Egde</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Edge</b></em>' containment reference list.
 	 * The list contents are of type {@link Gtm.Edge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Egde</em>' containment reference list.
-	 * @see Gtm.GtmPackage#getPolygone_Egde()
+	 * @return the value of the '<em>Edge</em>' containment reference list.
+	 * @see Gtm.GtmPackage#getPolygone_Edge()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Edge> getEgde();
+	EList<Edge> getEdge();
 
 } // Polygone

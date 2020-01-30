@@ -2,8 +2,6 @@
  */
 package Gtm;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -50,51 +48,91 @@ public interface RegionalValidity extends EObject {
 	void setSeqNb(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Via Station</b></em>' reference list.
-	 * The list contents are of type {@link Gtm.ViaStation}.
+	 * Returns the value of the '<em><b>Via Station</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Via Station</em>' reference list.
+	 * @return the value of the '<em>Via Station</em>' containment reference.
+	 * @see #setViaStation(ViaStation)
 	 * @see Gtm.GtmPackage#getRegionalValidity_ViaStation()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ViaStation> getViaStation();
+	ViaStation getViaStation();
 
 	/**
-	 * Returns the value of the '<em><b>Zone</b></em>' reference list.
-	 * The list contents are of type {@link Gtm.Zone}.
+	 * Sets the value of the '{@link Gtm.RegionalValidity#getViaStation <em>Via Station</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Zone</em>' reference list.
+	 * @param value the new value of the '<em>Via Station</em>' containment reference.
+	 * @see #getViaStation()
+	 * @generated
+	 */
+	void setViaStation(ViaStation value);
+
+	/**
+	 * Returns the value of the '<em><b>Zone</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Zone</em>' reference.
+	 * @see #setZone(Zone)
 	 * @see Gtm.GtmPackage#getRegionalValidity_Zone()
 	 * @model
 	 * @generated
 	 */
-	EList<Zone> getZone();
+	Zone getZone();
 
 	/**
-	 * Returns the value of the '<em><b>Line</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.Line}.
+	 * Sets the value of the '{@link Gtm.RegionalValidity#getZone <em>Zone</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Line</em>' containment reference list.
+	 * @param value the new value of the '<em>Zone</em>' reference.
+	 * @see #getZone()
+	 * @generated
+	 */
+	void setZone(Zone value);
+
+	/**
+	 * Returns the value of the '<em><b>Line</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Line</em>' containment reference.
+	 * @see #setLine(Line)
 	 * @see Gtm.GtmPackage#getRegionalValidity_Line()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Line> getLine();
+	Line getLine();
 
 	/**
-	 * Returns the value of the '<em><b>Polygone</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.Polygone}.
+	 * Sets the value of the '{@link Gtm.RegionalValidity#getLine <em>Line</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Polygone</em>' containment reference list.
+	 * @param value the new value of the '<em>Line</em>' containment reference.
+	 * @see #getLine()
+	 * @generated
+	 */
+	void setLine(Line value);
+
+	/**
+	 * Returns the value of the '<em><b>Polygone</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Polygone</em>' containment reference.
+	 * @see #setPolygone(Polygone)
 	 * @see Gtm.GtmPackage#getRegionalValidity_Polygone()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Polygone> getPolygone();
+	Polygone getPolygone();
+
+	/**
+	 * Sets the value of the '{@link Gtm.RegionalValidity#getPolygone <em>Polygone</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Polygone</em>' containment reference.
+	 * @see #getPolygone()
+	 * @generated
+	 */
+	void setPolygone(Polygone value);
 
 } // RegionalValidity

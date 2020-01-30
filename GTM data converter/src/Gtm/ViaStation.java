@@ -16,9 +16,9 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link Gtm.ViaStation#getStation <em>Station</em>}</li>
+ *   <li>{@link Gtm.ViaStation#getCarrier <em>Carrier</em>}</li>
  *   <li>{@link Gtm.ViaStation#getRoute <em>Route</em>}</li>
  *   <li>{@link Gtm.ViaStation#getAlternativeRoutes <em>Alternative Routes</em>}</li>
- *   <li>{@link Gtm.ViaStation#getCarrier <em>Carrier</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getViaStation()
@@ -53,12 +53,12 @@ public interface ViaStation extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Route</em>' containment reference.
-	 * @see #setRoute(ViaStation)
+	 * @see #setRoute(Route)
 	 * @see Gtm.GtmPackage#getViaStation_Route()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ViaStation getRoute();
+	Route getRoute();
 
 	/**
 	 * Sets the value of the '{@link Gtm.ViaStation#getRoute <em>Route</em>}' containment reference.
@@ -68,11 +68,11 @@ public interface ViaStation extends EObject {
 	 * @see #getRoute()
 	 * @generated
 	 */
-	void setRoute(ViaStation value);
+	void setRoute(Route value);
 
 	/**
 	 * Returns the value of the '<em><b>Alternative Routes</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.ViaStation}.
+	 * The list contents are of type {@link Gtm.AlternativeRoute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Alternative Routes</em>' containment reference list.
@@ -80,7 +80,7 @@ public interface ViaStation extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ViaStation> getAlternativeRoutes();
+	EList<AlternativeRoute> getAlternativeRoutes();
 
 	/**
 	 * Returns the value of the '<em><b>Carrier</b></em>' reference.
@@ -103,5 +103,13 @@ public interface ViaStation extends EObject {
 	 * @generated
 	 */
 	void setCarrier(Carrier value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" dataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @generated
+	 */
+	String getDescription();
 
 } // ViaStation
