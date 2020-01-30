@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface ReservationOptions extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Preferences</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.ReservationPreference}.
+	 * The list contents are of type {@link Gtm.ReservationPreferenceGroup}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Preferences</em>' containment reference list.
@@ -35,7 +35,7 @@ public interface ReservationOptions extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ReservationPreference> getPreferences();
+	EList<ReservationPreferenceGroup> getPreferences();
 
 	/**
 	 * Returns the value of the '<em><b>Service Brands</b></em>' reference list.

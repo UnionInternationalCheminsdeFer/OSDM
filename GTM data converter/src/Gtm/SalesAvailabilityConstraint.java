@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.SalesAvailabilityConstraint#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.SalesAvailabilityConstraint#getDataDescription <em>Data Description</em>}</li>
  *   <li>{@link Gtm.SalesAvailabilityConstraint#getRestrictions <em>Restrictions</em>}</li>
+ *   <li>{@link Gtm.SalesAvailabilityConstraint#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getSalesAvailabilityConstraint()
@@ -80,5 +81,30 @@ public interface SalesAvailabilityConstraint extends EObject {
 	 * @generated
 	 */
 	EList<SalesRestriction> getRestrictions();
+
+	/**
+	 * Returns the value of the '<em><b>Data Source</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gtm.DataSource}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Source</em>' attribute.
+	 * @see Gtm.DataSource
+	 * @see #setDataSource(DataSource)
+	 * @see Gtm.GtmPackage#getSalesAvailabilityConstraint_DataSource()
+	 * @model
+	 * @generated
+	 */
+	DataSource getDataSource();
+
+	/**
+	 * Sets the value of the '{@link Gtm.SalesAvailabilityConstraint#getDataSource <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Source</em>' attribute.
+	 * @see Gtm.DataSource
+	 * @see #getDataSource()
+	 * @generated
+	 */
+	void setDataSource(DataSource value);
 
 } // SalesAvailabilityConstraint

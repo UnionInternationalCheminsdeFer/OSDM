@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.RegionalConstraint#getEntryConnectionPoint <em>Entry Connection Point</em>}</li>
  *   <li>{@link Gtm.RegionalConstraint#getExitConnectionPoint <em>Exit Connection Point</em>}</li>
  *   <li>{@link Gtm.RegionalConstraint#getRegionalValidity <em>Regional Validity</em>}</li>
+ *   <li>{@link Gtm.RegionalConstraint#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getRegionalConstraint()
@@ -54,12 +55,12 @@ public interface RegionalConstraint extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Distance</em>' attribute.
-	 * @see #setDistance(int)
+	 * @see #setDistance(float)
 	 * @see Gtm.GtmPackage#getRegionalConstraint_Distance()
 	 * @model
 	 * @generated
 	 */
-	int getDistance();
+	float getDistance();
 
 	/**
 	 * Sets the value of the '{@link Gtm.RegionalConstraint#getDistance <em>Distance</em>}' attribute.
@@ -69,7 +70,7 @@ public interface RegionalConstraint extends EObject {
 	 * @see #getDistance()
 	 * @generated
 	 */
-	void setDistance(int value);
+	void setDistance(float value);
 
 	/**
 	 * Returns the value of the '<em><b>Entry Connection Point</b></em>' reference.
@@ -126,5 +127,30 @@ public interface RegionalConstraint extends EObject {
 	 * @generated
 	 */
 	EList<RegionalValidity> getRegionalValidity();
+
+	/**
+	 * Returns the value of the '<em><b>Data Source</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gtm.DataSource}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Source</em>' attribute.
+	 * @see Gtm.DataSource
+	 * @see #setDataSource(DataSource)
+	 * @see Gtm.GtmPackage#getRegionalConstraint_DataSource()
+	 * @model
+	 * @generated
+	 */
+	DataSource getDataSource();
+
+	/**
+	 * Sets the value of the '{@link Gtm.RegionalConstraint#getDataSource <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Source</em>' attribute.
+	 * @see Gtm.DataSource
+	 * @see #getDataSource()
+	 * @generated
+	 */
+	void setDataSource(DataSource value);
 
 } // RegionalConstraint

@@ -2,6 +2,7 @@
  */
 package Gtm;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,10 +17,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.TravelValidityConstraint#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.TravelValidityConstraint#getDataDescription <em>Data Description</em>}</li>
  *   <li>{@link Gtm.TravelValidityConstraint#getValidDays <em>Valid Days</em>}</li>
- *   <li>{@link Gtm.TravelValidityConstraint#getExcludedTimeRange <em>Excluded Time Range</em>}</li>
  *   <li>{@link Gtm.TravelValidityConstraint#getTravelDays <em>Travel Days</em>}</li>
  *   <li>{@link Gtm.TravelValidityConstraint#getRange <em>Range</em>}</li>
  *   <li>{@link Gtm.TravelValidityConstraint#getReturnConstraint <em>Return Constraint</em>}</li>
+ *   <li>{@link Gtm.TravelValidityConstraint#getExcludedTimeRange <em>Excluded Time Range</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getTravelValidityConstraint()
@@ -94,29 +95,16 @@ public interface TravelValidityConstraint extends EObject {
 	void setValidDays(Calendar value);
 
 	/**
-	 * Returns the value of the '<em><b>Excluded Time Range</b></em>' attribute.
-	 * The literals are from the enumeration {@link Gtm.TimeRangeScope}.
+	 * Returns the value of the '<em><b>Excluded Time Range</b></em>' containment reference list.
+	 * The list contents are of type {@link Gtm.ExcludedTimeRange}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Excluded Time Range</em>' attribute.
-	 * @see Gtm.TimeRangeScope
-	 * @see #setExcludedTimeRange(TimeRangeScope)
+	 * @return the value of the '<em>Excluded Time Range</em>' containment reference list.
 	 * @see Gtm.GtmPackage#getTravelValidityConstraint_ExcludedTimeRange()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	TimeRangeScope getExcludedTimeRange();
-
-	/**
-	 * Sets the value of the '{@link Gtm.TravelValidityConstraint#getExcludedTimeRange <em>Excluded Time Range</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Excluded Time Range</em>' attribute.
-	 * @see Gtm.TimeRangeScope
-	 * @see #getExcludedTimeRange()
-	 * @generated
-	 */
-	void setExcludedTimeRange(TimeRangeScope value);
+	EList<ExcludedTimeRange> getExcludedTimeRange();
 
 	/**
 	 * Returns the value of the '<em><b>Travel Days</b></em>' attribute.

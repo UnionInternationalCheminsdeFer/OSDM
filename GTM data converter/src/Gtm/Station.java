@@ -15,6 +15,13 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Gtm.Station#getName <em>Name</em>}</li>
  *   <li>{@link Gtm.Station#getCountry <em>Country</em>}</li>
+ *   <li>{@link Gtm.Station#getCode <em>Code</em>}</li>
+ *   <li>{@link Gtm.Station#getLongitude <em>Longitude</em>}</li>
+ *   <li>{@link Gtm.Station#getLatitude <em>Latitude</em>}</li>
+ *   <li>{@link Gtm.Station#getTimetableName <em>Timetable Name</em>}</li>
+ *   <li>{@link Gtm.Station#isBorderStation <em>Border Station</em>}</li>
+ *   <li>{@link Gtm.Station#getNameCaseUTF8 <em>Name Case UTF8</em>}</li>
+ *   <li>{@link Gtm.Station#getNameCaseASCII <em>Name Case ASCII</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getStation()
@@ -65,5 +72,159 @@ public interface Station extends EObject {
 	 * @generated
 	 */
 	void setCountry(Country value);
+
+	/**
+	 * Returns the value of the '<em><b>Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Code</em>' attribute.
+	 * @see #setCode(String)
+	 * @see Gtm.GtmPackage#getStation_Code()
+	 * @model
+	 * @generated
+	 */
+	String getCode();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Station#getCode <em>Code</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Code</em>' attribute.
+	 * @see #getCode()
+	 * @generated
+	 */
+	void setCode(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Longitude</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Longitude</em>' attribute.
+	 * @see #setLongitude(float)
+	 * @see Gtm.GtmPackage#getStation_Longitude()
+	 * @model
+	 * @generated
+	 */
+	float getLongitude();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Station#getLongitude <em>Longitude</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Longitude</em>' attribute.
+	 * @see #getLongitude()
+	 * @generated
+	 */
+	void setLongitude(float value);
+
+	/**
+	 * Returns the value of the '<em><b>Latitude</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Latitude</em>' attribute.
+	 * @see #setLatitude(float)
+	 * @see Gtm.GtmPackage#getStation_Latitude()
+	 * @model
+	 * @generated
+	 */
+	float getLatitude();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Station#getLatitude <em>Latitude</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Latitude</em>' attribute.
+	 * @see #getLatitude()
+	 * @generated
+	 */
+	void setLatitude(float value);
+
+	/**
+	 * Returns the value of the '<em><b>Timetable Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Timetable Name</em>' attribute.
+	 * @see #setTimetableName(String)
+	 * @see Gtm.GtmPackage#getStation_TimetableName()
+	 * @model
+	 * @generated
+	 */
+	String getTimetableName();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Station#getTimetableName <em>Timetable Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Timetable Name</em>' attribute.
+	 * @see #getTimetableName()
+	 * @generated
+	 */
+	void setTimetableName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Border Station</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Border Station</em>' attribute.
+	 * @see #setBorderStation(boolean)
+	 * @see Gtm.GtmPackage#getStation_BorderStation()
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+	 * @generated
+	 */
+	boolean isBorderStation();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Station#isBorderStation <em>Border Station</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Border Station</em>' attribute.
+	 * @see #isBorderStation()
+	 * @generated
+	 */
+	void setBorderStation(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Name Case UTF8</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name Case UTF8</em>' attribute.
+	 * @see #setNameCaseUTF8(String)
+	 * @see Gtm.GtmPackage#getStation_NameCaseUTF8()
+	 * @model
+	 * @generated
+	 */
+	String getNameCaseUTF8();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Station#getNameCaseUTF8 <em>Name Case UTF8</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name Case UTF8</em>' attribute.
+	 * @see #getNameCaseUTF8()
+	 * @generated
+	 */
+	void setNameCaseUTF8(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Name Case ASCII</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name Case ASCII</em>' attribute.
+	 * @see #setNameCaseASCII(String)
+	 * @see Gtm.GtmPackage#getStation_NameCaseASCII()
+	 * @model
+	 * @generated
+	 */
+	String getNameCaseASCII();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Station#getNameCaseASCII <em>Name Case ASCII</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name Case ASCII</em>' attribute.
+	 * @see #getNameCaseASCII()
+	 * @generated
+	 */
+	void setNameCaseASCII(String value);
 
 } // Station

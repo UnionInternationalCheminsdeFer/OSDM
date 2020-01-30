@@ -76,29 +76,18 @@ public interface RequiredPersonalData extends EObject {
 	void setDataItem(PersonalDataItemsType value);
 
 	/**
-	 * Returns the value of the '<em><b>Transfer</b></em>' attribute.
+	 * Returns the value of the '<em><b>Transfer</b></em>' attribute list.
+	 * The list contents are of type {@link Gtm.PersonalDataTransferType}.
 	 * The literals are from the enumeration {@link Gtm.PersonalDataTransferType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Transfer</em>' attribute.
+	 * @return the value of the '<em>Transfer</em>' attribute list.
 	 * @see Gtm.PersonalDataTransferType
-	 * @see #setTransfer(PersonalDataTransferType)
 	 * @see Gtm.GtmPackage#getRequiredPersonalData_Transfer()
 	 * @model
 	 * @generated
 	 */
-	PersonalDataTransferType getTransfer();
-
-	/**
-	 * Sets the value of the '{@link Gtm.RequiredPersonalData#getTransfer <em>Transfer</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Transfer</em>' attribute.
-	 * @see Gtm.PersonalDataTransferType
-	 * @see #getTransfer()
-	 * @generated
-	 */
-	void setTransfer(PersonalDataTransferType value);
+	EList<PersonalDataTransferType> getTransfer();
 
 	/**
 	 * Returns the value of the '<em><b>Fulfillment Type</b></em>' attribute list.
