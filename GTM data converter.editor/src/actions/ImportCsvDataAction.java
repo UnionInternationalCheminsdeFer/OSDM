@@ -6,44 +6,48 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
-
 import Gtm.GTMTool;
-import Gtm.Legacy108;
 
 
-public abstract class ImportLegacyAction extends BasicGtmAction {
+
+public abstract class ImportCsvDataAction extends BasicGtmAction {
 	
 		
 		protected IEditingDomainProvider editingDomainProvider = null;
 		
-	
-		public ImportLegacyAction(String text, IEditingDomainProvider editingDomainProvider) {
+
+		public ImportCsvDataAction(String text, IEditingDomainProvider editingDomainProvider) {
 			super(text, editingDomainProvider);
 			this.editingDomainProvider = editingDomainProvider;
 		}
 		
-		protected void runAction(GTMTool tool) {
-			runAction(tool.getConversionFromLegacy().getLegacy108());
-		}
-
-		
 		/*
 		 * to be implemented by all actions
 		 */
-		abstract protected void runAction(Legacy108 o);
+		abstract protected void runAction(GTMTool tool);
 		   	
 		
-	
+	    public boolean updateSelection (IStructuredSelection selection)
+	    {
+	  		this.setEnabled(false);
+
+	  		if (checkSelection(selection)) 	{
+	  			this.setEnabled(true);
+	  			return true;
+	  		}
+	  		return false;
+	    }	
 	    
 		protected BufferedReader getReader(String text){
 			
 	        FileDialog fd = new FileDialog( Display.getDefault().getActiveShell(), SWT.READ_ONLY);
 	        fd.setText(text);
-	        String[] filterExt = { "*.txt" };
+	        String[] filterExt = { "*.csv" };
 	        fd.setFilterExtensions(filterExt);
 	        String path = fd.open();
 	        
@@ -65,7 +69,10 @@ public abstract class ImportLegacyAction extends BasicGtmAction {
 	        
 	        return br;
 
+			
 		}
+		
+		
 
 	
 
