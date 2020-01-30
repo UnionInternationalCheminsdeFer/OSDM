@@ -3,6 +3,7 @@
 package Gtm.provider;
 
 
+import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.TargetFareTemplate;
 
@@ -14,6 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -66,6 +68,8 @@ public class TargetFareTemplateItemProvider
 			addTypePropertyDescriptor(object);
 			addDataDescriptionPropertyDescriptor(object);
 			addTextPropertyDescriptor(object);
+			addPricePropertyDescriptor(object);
+			addRegionalConstraintPropertyDescriptor(object);
 			addServiceConstraintPropertyDescriptor(object);
 			addCarrierConstraintPropertyDescriptor(object);
 			addServiceClassPropertyDescriptor(object);
@@ -73,6 +77,13 @@ public class TargetFareTemplateItemProvider
 			addSalesAvailabilityPropertyDescriptor(object);
 			addTravelValidityPropertyDescriptor(object);
 			addCombinationConstraintPropertyDescriptor(object);
+			addFareDetailDescriptionPropertyDescriptor(object);
+			addPersonalDataConstraintPropertyDescriptor(object);
+			addReservationParameterPropertyDescriptor(object);
+			addReductionConstraintPropertyDescriptor(object);
+			addFulfillmentConstraintPropertyDescriptor(object);
+			addPassengerConstraintPropertyDescriptor(object);
+			addAfterSalesRulePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -179,6 +190,50 @@ public class TargetFareTemplateItemProvider
 				 getString("_UI_TargetFareTemplate_text_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_text_feature", "_UI_TargetFareTemplate_type"),
 				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__TEXT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Price feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPricePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetFareTemplate_price_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_price_feature", "_UI_TargetFareTemplate_type"),
+				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__PRICE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Regional Constraint feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRegionalConstraintPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetFareTemplate_regionalConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_regionalConstraint_feature", "_UI_TargetFareTemplate_type"),
+				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__REGIONAL_CONSTRAINT,
 				 true,
 				 false,
 				 true,
@@ -342,6 +397,190 @@ public class TargetFareTemplateItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Fare Detail Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFareDetailDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetFareTemplate_fareDetailDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_fareDetailDescription_feature", "_UI_TargetFareTemplate_type"),
+				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Personal Data Constraint feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPersonalDataConstraintPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetFareTemplate_personalDataConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_personalDataConstraint_feature", "_UI_TargetFareTemplate_type"),
+				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Reservation Parameter feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReservationParameterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetFareTemplate_reservationParameter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_reservationParameter_feature", "_UI_TargetFareTemplate_type"),
+				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__RESERVATION_PARAMETER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Reduction Constraint feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReductionConstraintPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetFareTemplate_reductionConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_reductionConstraint_feature", "_UI_TargetFareTemplate_type"),
+				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__REDUCTION_CONSTRAINT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Fulfillment Constraint feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFulfillmentConstraintPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetFareTemplate_fulfillmentConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_fulfillmentConstraint_feature", "_UI_TargetFareTemplate_type"),
+				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__FULFILLMENT_CONSTRAINT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Passenger Constraint feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPassengerConstraintPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetFareTemplate_passengerConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_passengerConstraint_feature", "_UI_TargetFareTemplate_type"),
+				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__PASSENGER_CONSTRAINT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the After Sales Rule feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAfterSalesRulePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetFareTemplate_afterSalesRule_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_afterSalesRule_feature", "_UI_TargetFareTemplate_type"),
+				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__AFTER_SALES_RULE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(GtmPackage.Literals.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
 	 * This returns TargetFareTemplate.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -360,7 +599,7 @@ public class TargetFareTemplateItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TargetFareTemplate)object).getId();
+		String label = ((TargetFareTemplate)object).getDataDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_TargetFareTemplate_type") :
 			getString("_UI_TargetFareTemplate_type") + " " + label;
@@ -385,6 +624,9 @@ public class TargetFareTemplateItemProvider
 			case GtmPackage.TARGET_FARE_TEMPLATE__DATA_DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -399,6 +641,11 @@ public class TargetFareTemplateItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER,
+				 GtmFactory.eINSTANCE.createLegacyAccountingIdentifier()));
 	}
 
 	/**

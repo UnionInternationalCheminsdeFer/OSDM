@@ -64,6 +64,7 @@ public class ServiceBrandItemProvider
 			addCodePropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 			addAbbreviationPropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -135,6 +136,28 @@ public class ServiceBrandItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ServiceBrand_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ServiceBrand_description_feature", "_UI_ServiceBrand_type"),
+				 GtmPackage.Literals.SERVICE_BRAND__DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns ServiceBrand.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -149,11 +172,18 @@ public class ServiceBrandItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ServiceBrand)object).getName();
+		String code = Integer.toString(((ServiceBrand)object).getCode());
+		String name = ((ServiceBrand)object).getName();
+		String desc = ((ServiceBrand)object).getDescription();
+		if (name == null || name.length() == 0) {
+			name = desc;
+		}
+		
+		String label = code + " - " + name;
 		return label == null || label.length() == 0 ?
 			getString("_UI_ServiceBrand_type") :
 			getString("_UI_ServiceBrand_type") + " " + label;
@@ -175,6 +205,7 @@ public class ServiceBrandItemProvider
 			case GtmPackage.SERVICE_BRAND__CODE:
 			case GtmPackage.SERVICE_BRAND__NAME:
 			case GtmPackage.SERVICE_BRAND__ABBREVIATION:
+			case GtmPackage.SERVICE_BRAND__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

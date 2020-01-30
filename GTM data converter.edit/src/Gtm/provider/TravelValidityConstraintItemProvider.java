@@ -67,7 +67,6 @@ public class TravelValidityConstraintItemProvider
 			addIdPropertyDescriptor(object);
 			addDataDescriptionPropertyDescriptor(object);
 			addValidDaysPropertyDescriptor(object);
-			addExcludedTimeRangePropertyDescriptor(object);
 			addTravelDaysPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -140,28 +139,6 @@ public class TravelValidityConstraintItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Excluded Time Range feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addExcludedTimeRangePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TravelValidityConstraint_excludedTimeRange_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TravelValidityConstraint_excludedTimeRange_feature", "_UI_TravelValidityConstraint_type"),
-				 GtmPackage.Literals.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Travel Days feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -197,6 +174,7 @@ public class TravelValidityConstraintItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GtmPackage.Literals.TRAVEL_VALIDITY_CONSTRAINT__RANGE);
 			childrenFeatures.add(GtmPackage.Literals.TRAVEL_VALIDITY_CONSTRAINT__RETURN_CONSTRAINT);
+			childrenFeatures.add(GtmPackage.Literals.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE);
 		}
 		return childrenFeatures;
 	}
@@ -233,7 +211,7 @@ public class TravelValidityConstraintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TravelValidityConstraint)object).getId();
+		String label = ((TravelValidityConstraint)object).getDataDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_TravelValidityConstraint_type") :
 			getString("_UI_TravelValidityConstraint_type") + " " + label;
@@ -254,12 +232,12 @@ public class TravelValidityConstraintItemProvider
 		switch (notification.getFeatureID(TravelValidityConstraint.class)) {
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__ID:
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__DATA_DESCRIPTION:
-			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE:
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__TRAVEL_DAYS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__RANGE:
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__RETURN_CONSTRAINT:
+			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -286,6 +264,11 @@ public class TravelValidityConstraintItemProvider
 			(createChildParameter
 				(GtmPackage.Literals.TRAVEL_VALIDITY_CONSTRAINT__RETURN_CONSTRAINT,
 				 GtmFactory.eINSTANCE.createReturnValidityConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE,
+				 GtmFactory.eINSTANCE.createExcludedTimeRange()));
 	}
 
 	/**

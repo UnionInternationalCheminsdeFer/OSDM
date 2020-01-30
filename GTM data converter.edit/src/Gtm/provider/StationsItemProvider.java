@@ -5,7 +5,7 @@ package Gtm.provider;
 
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
-import Gtm.SalesRestriction;
+import Gtm.Stations;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -29,12 +28,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link Gtm.SalesRestriction} object.
+ * This is the item provider adapter for a {@link Gtm.Stations} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SalesRestrictionItemProvider 
+public class StationsItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -48,7 +47,7 @@ public class SalesRestrictionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SalesRestrictionItemProvider(AdapterFactory adapterFactory) {
+	public StationsItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -63,31 +62,8 @@ public class SalesRestrictionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSalesDatesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Sales Dates feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSalesDatesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SalesRestriction_salesDates_feature"),
-				 getString("_UI_SalesRestriction_salesDates_description"),
-				 GtmPackage.Literals.SALES_RESTRICTION__SALES_DATES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -102,8 +78,7 @@ public class SalesRestrictionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GtmPackage.Literals.SALES_RESTRICTION__START_OF_SALE);
-			childrenFeatures.add(GtmPackage.Literals.SALES_RESTRICTION__END_OF_SALE);
+			childrenFeatures.add(GtmPackage.Literals.STATIONS__STATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -122,14 +97,14 @@ public class SalesRestrictionItemProvider
 	}
 
 	/**
-	 * This returns SalesRestriction.gif.
+	 * This returns Stations.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SalesRestriction"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Stations"));
 	}
 
 	/**
@@ -140,7 +115,7 @@ public class SalesRestrictionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_SalesRestriction_type");
+		return getString("_UI_Stations_type");
 	}
 
 
@@ -155,9 +130,8 @@ public class SalesRestrictionItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SalesRestriction.class)) {
-			case GtmPackage.SALES_RESTRICTION__START_OF_SALE:
-			case GtmPackage.SALES_RESTRICTION__END_OF_SALE:
+		switch (notification.getFeatureID(Stations.class)) {
+			case GtmPackage.STATIONS__STATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -177,13 +151,8 @@ public class SalesRestrictionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.SALES_RESTRICTION__START_OF_SALE,
-				 GtmFactory.eINSTANCE.createStartOfSale()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.SALES_RESTRICTION__END_OF_SALE,
-				 GtmFactory.eINSTANCE.createEndOfSale()));
+				(GtmPackage.Literals.STATIONS__STATIONS,
+				 GtmFactory.eINSTANCE.createStation()));
 	}
 
 	/**

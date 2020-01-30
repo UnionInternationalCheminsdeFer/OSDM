@@ -66,6 +66,7 @@ public class SalesAvailabilityConstraintItemProvider
 
 			addIdPropertyDescriptor(object);
 			addDataDescriptionPropertyDescriptor(object);
+			addDataSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -106,6 +107,28 @@ public class SalesAvailabilityConstraintItemProvider
 				 getString("_UI_SalesAvailabilityConstraint_dataDescription_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SalesAvailabilityConstraint_dataDescription_feature", "_UI_SalesAvailabilityConstraint_type"),
 				 GtmPackage.Literals.SALES_AVAILABILITY_CONSTRAINT__DATA_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Data Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SalesAvailabilityConstraint_dataSource_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SalesAvailabilityConstraint_dataSource_feature", "_UI_SalesAvailabilityConstraint_type"),
+				 GtmPackage.Literals.SALES_AVAILABILITY_CONSTRAINT__DATA_SOURCE,
 				 true,
 				 false,
 				 false,
@@ -163,7 +186,7 @@ public class SalesAvailabilityConstraintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SalesAvailabilityConstraint)object).getId();
+		String label = ((SalesAvailabilityConstraint)object).getDataDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_SalesAvailabilityConstraint_type") :
 			getString("_UI_SalesAvailabilityConstraint_type") + " " + label;
@@ -184,6 +207,7 @@ public class SalesAvailabilityConstraintItemProvider
 		switch (notification.getFeatureID(SalesAvailabilityConstraint.class)) {
 			case GtmPackage.SALES_AVAILABILITY_CONSTRAINT__ID:
 			case GtmPackage.SALES_AVAILABILITY_CONSTRAINT__DATA_DESCRIPTION:
+			case GtmPackage.SALES_AVAILABILITY_CONSTRAINT__DATA_SOURCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.SALES_AVAILABILITY_CONSTRAINT__RESTRICTIONS:
