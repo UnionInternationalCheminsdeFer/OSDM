@@ -542,79 +542,9 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConversionFromLegacy createConversionFromLegacy() {
-		ConversionFromLegacyImpl conversionFromLegacy = new ConversionFromLegacyImpl();
-		return conversionFromLegacy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConversionParams createConversionParams() {
-		ConversionParamsImpl conversionParams = new ConversionParamsImpl();
-		return conversionParams;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LegacyStationToServiceConstraintMappings createLegacyStationToServiceConstraintMappings() {
-		LegacyStationToServiceConstraintMappingsImpl legacyStationToServiceConstraintMappings = new LegacyStationToServiceConstraintMappingsImpl();
-		return legacyStationToServiceConstraintMappings;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LegacyStationToServiceConstraintMapping createLegacyStationToServiceConstraintMapping() {
-		LegacyStationToServiceConstraintMappingImpl legacyStationToServiceConstraintMapping = new LegacyStationToServiceConstraintMappingImpl();
-		return legacyStationToServiceConstraintMapping;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LegacyStationMappings createLegacyStationMappings() {
-		LegacyStationMappingsImpl legacyStationMappings = new LegacyStationMappingsImpl();
-		return legacyStationMappings;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LegacyStationMap createLegacyStationMap() {
-		LegacyStationMapImpl legacyStationMap = new LegacyStationMapImpl();
-		return legacyStationMap;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LegacyBoderPointMappings createLegacyBoderPointMappings() {
-		LegacyBoderPointMappingsImpl legacyBoderPointMappings = new LegacyBoderPointMappingsImpl();
-		return legacyBoderPointMappings;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LegacyBorderPointMapping createLegacyBorderPointMapping() {
-		LegacyBorderPointMappingImpl legacyBorderPointMapping = new LegacyBorderPointMappingImpl();
-		return legacyBorderPointMapping;
+	public Delivery createDelivery() {
+		DeliveryImpl delivery = new DeliveryImpl();
+		return delivery;
 	}
 
 	/**
@@ -625,6 +555,36 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public AfterSalesRules createAfterSalesRules() {
 		AfterSalesRulesImpl afterSalesRules = new AfterSalesRulesImpl();
 		return afterSalesRules;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AfterSalesRule createAfterSalesRule() {
+		AfterSalesRuleImpl afterSalesRule = new AfterSalesRuleImpl();
+		return afterSalesRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AfterSalesCondition createAfterSalesCondition() {
+		AfterSalesConditionImpl afterSalesCondition = new AfterSalesConditionImpl();
+		return afterSalesCondition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ApplicationTime createApplicationTime() {
+		ApplicationTimeImpl applicationTime = new ApplicationTimeImpl();
+		return applicationTime;
 	}
 
 	/**
@@ -712,6 +672,36 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TrainResourceLocation createTrainResourceLocation() {
+		TrainResourceLocationImpl trainResourceLocation = new TrainResourceLocationImpl();
+		return trainResourceLocation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StationResourceLocation createStationResourceLocation() {
+		StationResourceLocationImpl stationResourceLocation = new StationResourceLocationImpl();
+		return stationResourceLocation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OnlineResource createOnlineResource() {
+		OnlineResourceImpl onlineResource = new OnlineResourceImpl();
+		return onlineResource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public FulfillmentConstraints createFulfillmentConstraints() {
 		FulfillmentConstraintsImpl fulfillmentConstraints = new FulfillmentConstraintsImpl();
 		return fulfillmentConstraints;
@@ -742,9 +732,39 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public FareElement createFareElement() {
+		FareElementImpl fareElement = new FareElementImpl();
+		return fareElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyAccountingIdentifier createLegacyAccountingIdentifier() {
+		LegacyAccountingIdentifierImpl legacyAccountingIdentifier = new LegacyAccountingIdentifierImpl();
+		return legacyAccountingIdentifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ReductionConstraints createReductionConstraints() {
 		ReductionConstraintsImpl reductionConstraints = new ReductionConstraintsImpl();
 		return reductionConstraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FareElements createFareElements() {
+		FareElementsImpl fareElements = new FareElementsImpl();
+		return fareElements;
 	}
 
 	/**
@@ -762,9 +782,69 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PersonalDataConstraint createPersonalDataConstraint() {
+		PersonalDataConstraintImpl personalDataConstraint = new PersonalDataConstraintImpl();
+		return personalDataConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RequiredPersonalData createRequiredPersonalData() {
+		RequiredPersonalDataImpl requiredPersonalData = new RequiredPersonalDataImpl();
+		return requiredPersonalData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AllowedPersonalDataChanges createAllowedPersonalDataChanges() {
+		AllowedPersonalDataChangesImpl allowedPersonalDataChanges = new AllowedPersonalDataChangesImpl();
+		return allowedPersonalDataChanges;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PassengerConstraints createPassengerConstraints() {
 		PassengerConstraintsImpl passengerConstraints = new PassengerConstraintsImpl();
 		return passengerConstraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PassengerConstraint createPassengerConstraint() {
+		PassengerConstraintImpl passengerConstraint = new PassengerConstraintImpl();
+		return passengerConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IncludedFreePassengers createIncludedFreePassengers() {
+		IncludedFreePassengersImpl includedFreePassengers = new IncludedFreePassengersImpl();
+		return includedFreePassengers;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PassengerCombinationConstraint createPassengerCombinationConstraint() {
+		PassengerCombinationConstraintImpl passengerCombinationConstraint = new PassengerCombinationConstraintImpl();
+		return passengerCombinationConstraint;
 	}
 
 	/**
@@ -782,9 +862,29 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CombinationConstraint createCombinationConstraint() {
+		CombinationConstraintImpl combinationConstraint = new CombinationConstraintImpl();
+		return combinationConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TravelValidityConstraints createTravelValidityConstraints() {
 		TravelValidityConstraintsImpl travelValidityConstraints = new TravelValidityConstraintsImpl();
 		return travelValidityConstraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TravelValidityConstraint createTravelValidityConstraint() {
+		TravelValidityConstraintImpl travelValidityConstraint = new TravelValidityConstraintImpl();
+		return travelValidityConstraint;
 	}
 
 	/**
@@ -802,9 +902,59 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SalesAvailabilityConstraint createSalesAvailabilityConstraint() {
+		SalesAvailabilityConstraintImpl salesAvailabilityConstraint = new SalesAvailabilityConstraintImpl();
+		return salesAvailabilityConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SalesRestriction createSalesRestriction() {
+		SalesRestrictionImpl salesRestriction = new SalesRestrictionImpl();
+		return salesRestriction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EndOfSale createEndOfSale() {
+		EndOfSaleImpl endOfSale = new EndOfSaleImpl();
+		return endOfSale;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StartOfSale createStartOfSale() {
+		StartOfSaleImpl startOfSale = new StartOfSaleImpl();
+		return startOfSale;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ReductionCards createReductionCards() {
 		ReductionCardsImpl reductionCards = new ReductionCardsImpl();
 		return reductionCards;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReductionCard createReductionCard() {
+		ReductionCardImpl reductionCard = new ReductionCardImpl();
+		return reductionCard;
 	}
 
 	/**
@@ -822,6 +972,16 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CarrierConstraint createCarrierConstraint() {
+		CarrierConstraintImpl carrierConstraint = new CarrierConstraintImpl();
+		return carrierConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ServiceConstraints createServiceConstraints() {
 		ServiceConstraintsImpl serviceConstraints = new ServiceConstraintsImpl();
 		return serviceConstraints;
@@ -832,9 +992,9 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReservationParameters createReservationParameters() {
-		ReservationParametersImpl reservationParameters = new ReservationParametersImpl();
-		return reservationParameters;
+	public ServiceConstraint createServiceConstraint() {
+		ServiceConstraintImpl serviceConstraint = new ServiceConstraintImpl();
+		return serviceConstraint;
 	}
 
 	/**
@@ -845,6 +1005,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public RegionalConstraints createRegionalConstraints() {
 		RegionalConstraintsImpl regionalConstraints = new RegionalConstraintsImpl();
 		return regionalConstraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RegionalConstraint createRegionalConstraint() {
+		RegionalConstraintImpl regionalConstraint = new RegionalConstraintImpl();
+		return regionalConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RegionalValidity createRegionalValidity() {
+		RegionalValidityImpl regionalValidity = new RegionalValidityImpl();
+		return regionalValidity;
 	}
 
 	/**
@@ -872,9 +1052,59 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Text createText() {
+		TextImpl text = new TextImpl();
+		return text;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Translation createTranslation() {
+		TranslationImpl translation = new TranslationImpl();
+		return translation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Prices createPrices() {
 		PricesImpl prices = new PricesImpl();
 		return prices;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Price createPrice() {
+		PriceImpl price = new PriceImpl();
+		return price;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VATDetail createVATDetail() {
+		VATDetailImpl vatDetail = new VATDetailImpl();
+		return vatDetail;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CurrencyPrice createCurrencyPrice() {
+		CurrencyPriceImpl currencyPrice = new CurrencyPriceImpl();
+		return currencyPrice;
 	}
 
 	/**
@@ -902,29 +1132,389 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FareElements createFareElements() {
-		FareElementsImpl fareElements = new FareElementsImpl();
-		return fareElements;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Delivery createDelivery() {
-		DeliveryImpl delivery = new DeliveryImpl();
-		return delivery;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Calendar createCalendar() {
 		CalendarImpl calendar = new CalendarImpl();
 		return calendar;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReservationParameters createReservationParameters() {
+		ReservationParametersImpl reservationParameters = new ReservationParametersImpl();
+		return reservationParameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReservationParameter createReservationParameter() {
+		ReservationParameterImpl reservationParameter = new ReservationParameterImpl();
+		return reservationParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReservationParams9181 createReservationParams9181() {
+		ReservationParams9181Impl reservationParams9181 = new ReservationParams9181Impl();
+		return reservationParams9181;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReservationOptions createReservationOptions() {
+		ReservationOptionsImpl reservationOptions = new ReservationOptionsImpl();
+		return reservationOptions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReservationPreferenceGroup createReservationPreferenceGroup() {
+		ReservationPreferenceGroupImpl reservationPreferenceGroup = new ReservationPreferenceGroupImpl();
+		return reservationPreferenceGroup;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServiceClass createServiceClass() {
+		ServiceClassImpl serviceClass = new ServiceClassImpl();
+		return serviceClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServiceLevel createServiceLevel() {
+		ServiceLevelImpl serviceLevel = new ServiceLevelImpl();
+		return serviceLevel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TimeRange createTimeRange() {
+		TimeRangeImpl timeRange = new TimeRangeImpl();
+		return timeRange;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExcludedTimeRange createExcludedTimeRange() {
+		ExcludedTimeRangeImpl excludedTimeRange = new ExcludedTimeRangeImpl();
+		return excludedTimeRange;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValidityRange createValidityRange() {
+		ValidityRangeImpl validityRange = new ValidityRangeImpl();
+		return validityRange;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RelativeTime createRelativeTime() {
+		RelativeTimeImpl relativeTime = new RelativeTimeImpl();
+		return relativeTime;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReturnValidityConstraint createReturnValidityConstraint() {
+		ReturnValidityConstraintImpl returnValidityConstraint = new ReturnValidityConstraintImpl();
+		return returnValidityConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ViaStation createViaStation() {
+		ViaStationImpl viaStation = new ViaStationImpl();
+		return viaStation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AlternativeRoute createAlternativeRoute() {
+		AlternativeRouteImpl alternativeRoute = new AlternativeRouteImpl();
+		return alternativeRoute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Route createRoute() {
+		RouteImpl route = new RouteImpl();
+		return route;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Zone createZone() {
+		ZoneImpl zone = new ZoneImpl();
+		return zone;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ZoneDefinition createZoneDefinition() {
+		ZoneDefinitionImpl zoneDefinition = new ZoneDefinitionImpl();
+		return zoneDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Line createLine() {
+		LineImpl line = new LineImpl();
+		return line;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Polygone createPolygone() {
+		PolygoneImpl polygone = new PolygoneImpl();
+		return polygone;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Edge createEdge() {
+		EdgeImpl edge = new EdgeImpl();
+		return edge;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CarrierResourceLocation createCarrierResourceLocation() {
+		CarrierResourceLocationImpl carrierResourceLocation = new CarrierResourceLocationImpl();
+		return carrierResourceLocation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CrossBorderCondition createCrossBorderCondition() {
+		CrossBorderConditionImpl crossBorderCondition = new CrossBorderConditionImpl();
+		return crossBorderCondition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FareCombinationModel createFareCombinationModel() {
+		FareCombinationModelImpl fareCombinationModel = new FareCombinationModelImpl();
+		return fareCombinationModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FulfillmentConstraint createFulfillmentConstraint() {
+		FulfillmentConstraintImpl fulfillmentConstraint = new FulfillmentConstraintImpl();
+		return fulfillmentConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RequiredBarcodes createRequiredBarcodes() {
+		RequiredBarcodesImpl requiredBarcodes = new RequiredBarcodesImpl();
+		return requiredBarcodes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AcceptedBarcodes createAcceptedBarcodes() {
+		AcceptedBarcodesImpl acceptedBarcodes = new AcceptedBarcodesImpl();
+		return acceptedBarcodes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReductionConstraint createReductionConstraint() {
+		ReductionConstraintImpl reductionConstraint = new ReductionConstraintImpl();
+		return reductionConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RequiredReductionCard createRequiredReductionCard() {
+		RequiredReductionCardImpl requiredReductionCard = new RequiredReductionCardImpl();
+		return requiredReductionCard;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConversionFromLegacy createConversionFromLegacy() {
+		ConversionFromLegacyImpl conversionFromLegacy = new ConversionFromLegacyImpl();
+		return conversionFromLegacy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConversionParams createConversionParams() {
+		ConversionParamsImpl conversionParams = new ConversionParamsImpl();
+		return conversionParams;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetFareTemplate createTargetFareTemplate() {
+		TargetFareTemplateImpl targetFareTemplate = new TargetFareTemplateImpl();
+		return targetFareTemplate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyStationToServiceConstraintMappings createLegacyStationToServiceConstraintMappings() {
+		LegacyStationToServiceConstraintMappingsImpl legacyStationToServiceConstraintMappings = new LegacyStationToServiceConstraintMappingsImpl();
+		return legacyStationToServiceConstraintMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyStationToServiceConstraintMapping createLegacyStationToServiceConstraintMapping() {
+		LegacyStationToServiceConstraintMappingImpl legacyStationToServiceConstraintMapping = new LegacyStationToServiceConstraintMappingImpl();
+		return legacyStationToServiceConstraintMapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyStationMappings createLegacyStationMappings() {
+		LegacyStationMappingsImpl legacyStationMappings = new LegacyStationMappingsImpl();
+		return legacyStationMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyStationMap createLegacyStationMap() {
+		LegacyStationMapImpl legacyStationMap = new LegacyStationMapImpl();
+		return legacyStationMap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyStation createLegacyStation() {
+		LegacyStationImpl legacyStation = new LegacyStationImpl();
+		return legacyStation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyBoderPointMappings createLegacyBoderPointMappings() {
+		LegacyBoderPointMappingsImpl legacyBoderPointMappings = new LegacyBoderPointMappingsImpl();
+		return legacyBoderPointMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyBorderPointMapping createLegacyBorderPointMapping() {
+		LegacyBorderPointMappingImpl legacyBorderPointMapping = new LegacyBorderPointMappingImpl();
+		return legacyBorderPointMapping;
 	}
 
 	/**
@@ -955,16 +1545,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public LegacyZoneMap createLegacyZoneMap() {
 		LegacyZoneMapImpl legacyZoneMap = new LegacyZoneMapImpl();
 		return legacyZoneMap;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LegacyDistanceFare createLegacyDistanceFare() {
-		LegacyDistanceFareImpl legacyDistanceFare = new LegacyDistanceFareImpl();
-		return legacyDistanceFare;
 	}
 
 	/**
@@ -1072,6 +1652,16 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LegacyDistanceFare createLegacyDistanceFare() {
+		LegacyDistanceFareImpl legacyDistanceFare = new LegacyDistanceFareImpl();
+		return legacyDistanceFare;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public LegacyViastation createLegacyViastation() {
 		LegacyViastationImpl legacyViastation = new LegacyViastationImpl();
 		return legacyViastation;
@@ -1085,656 +1675,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public LegacyTargetFares createLegacyTargetFares() {
 		LegacyTargetFaresImpl legacyTargetFares = new LegacyTargetFaresImpl();
 		return legacyTargetFares;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SchemaVersion createSchemaVersionFromString(EDataType eDataType, String initialValue) {
-		SchemaVersion result = SchemaVersion.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSchemaVersionToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CarrierConstraint createCarrierConstraint() {
-		CarrierConstraintImpl carrierConstraint = new CarrierConstraintImpl();
-		return carrierConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Price createPrice() {
-		PriceImpl price = new PriceImpl();
-		return price;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CurrencyPrice createCurrencyPrice() {
-		CurrencyPriceImpl currencyPrice = new CurrencyPriceImpl();
-		return currencyPrice;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReductionCard createReductionCard() {
-		ReductionCardImpl reductionCard = new ReductionCardImpl();
-		return reductionCard;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RegionalConstraint createRegionalConstraint() {
-		RegionalConstraintImpl regionalConstraint = new RegionalConstraintImpl();
-		return regionalConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReservationParameter createReservationParameter() {
-		ReservationParameterImpl reservationParameter = new ReservationParameterImpl();
-		return reservationParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReservationParams9181 createReservationParams9181() {
-		ReservationParams9181Impl reservationParams9181 = new ReservationParams9181Impl();
-		return reservationParams9181;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReservationOptions createReservationOptions() {
-		ReservationOptionsImpl reservationOptions = new ReservationOptionsImpl();
-		return reservationOptions;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReservationPreferenceGroup createReservationPreferenceGroup() {
-		ReservationPreferenceGroupImpl reservationPreferenceGroup = new ReservationPreferenceGroupImpl();
-		return reservationPreferenceGroup;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ServiceClass createServiceClass() {
-		ServiceClassImpl serviceClass = new ServiceClassImpl();
-		return serviceClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ServiceLevel createServiceLevel() {
-		ServiceLevelImpl serviceLevel = new ServiceLevelImpl();
-		return serviceLevel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ServiceConstraint createServiceConstraint() {
-		ServiceConstraintImpl serviceConstraint = new ServiceConstraintImpl();
-		return serviceConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TargetFareTemplate createTargetFareTemplate() {
-		TargetFareTemplateImpl targetFareTemplate = new TargetFareTemplateImpl();
-		return targetFareTemplate;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TravelValidityConstraint createTravelValidityConstraint() {
-		TravelValidityConstraintImpl travelValidityConstraint = new TravelValidityConstraintImpl();
-		return travelValidityConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Text createText() {
-		TextImpl text = new TextImpl();
-		return text;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Translation createTranslation() {
-		TranslationImpl translation = new TranslationImpl();
-		return translation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public VATDetail createVATDetail() {
-		VATDetailImpl vatDetail = new VATDetailImpl();
-		return vatDetail;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FareElement createFareElement() {
-		FareElementImpl fareElement = new FareElementImpl();
-		return fareElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LegacyAccountingIdentifier createLegacyAccountingIdentifier() {
-		LegacyAccountingIdentifierImpl legacyAccountingIdentifier = new LegacyAccountingIdentifierImpl();
-		return legacyAccountingIdentifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SalesAvailabilityConstraint createSalesAvailabilityConstraint() {
-		SalesAvailabilityConstraintImpl salesAvailabilityConstraint = new SalesAvailabilityConstraintImpl();
-		return salesAvailabilityConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SalesRestriction createSalesRestriction() {
-		SalesRestrictionImpl salesRestriction = new SalesRestrictionImpl();
-		return salesRestriction;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EndOfSale createEndOfSale() {
-		EndOfSaleImpl endOfSale = new EndOfSaleImpl();
-		return endOfSale;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StartOfSale createStartOfSale() {
-		StartOfSaleImpl startOfSale = new StartOfSaleImpl();
-		return startOfSale;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CombinationConstraint createCombinationConstraint() {
-		CombinationConstraintImpl combinationConstraint = new CombinationConstraintImpl();
-		return combinationConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ValidityRange createValidityRange() {
-		ValidityRangeImpl validityRange = new ValidityRangeImpl();
-		return validityRange;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TimeRange createTimeRange() {
-		TimeRangeImpl timeRange = new TimeRangeImpl();
-		return timeRange;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExcludedTimeRange createExcludedTimeRange() {
-		ExcludedTimeRangeImpl excludedTimeRange = new ExcludedTimeRangeImpl();
-		return excludedTimeRange;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReturnValidityConstraint createReturnValidityConstraint() {
-		ReturnValidityConstraintImpl returnValidityConstraint = new ReturnValidityConstraintImpl();
-		return returnValidityConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RegionalValidity createRegionalValidity() {
-		RegionalValidityImpl regionalValidity = new RegionalValidityImpl();
-		return regionalValidity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ViaStation createViaStation() {
-		ViaStationImpl viaStation = new ViaStationImpl();
-		return viaStation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AlternativeRoute createAlternativeRoute() {
-		AlternativeRouteImpl alternativeRoute = new AlternativeRouteImpl();
-		return alternativeRoute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Route createRoute() {
-		RouteImpl route = new RouteImpl();
-		return route;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Zone createZone() {
-		ZoneImpl zone = new ZoneImpl();
-		return zone;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ZoneDefinition createZoneDefinition() {
-		ZoneDefinitionImpl zoneDefinition = new ZoneDefinitionImpl();
-		return zoneDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Line createLine() {
-		LineImpl line = new LineImpl();
-		return line;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Polygone createPolygone() {
-		PolygoneImpl polygone = new PolygoneImpl();
-		return polygone;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LegacyStation createLegacyStation() {
-		LegacyStationImpl legacyStation = new LegacyStationImpl();
-		return legacyStation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Edge createEdge() {
-		EdgeImpl edge = new EdgeImpl();
-		return edge;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PassengerConstraint createPassengerConstraint() {
-		PassengerConstraintImpl passengerConstraint = new PassengerConstraintImpl();
-		return passengerConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IncludedFreePassengers createIncludedFreePassengers() {
-		IncludedFreePassengersImpl includedFreePassengers = new IncludedFreePassengersImpl();
-		return includedFreePassengers;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PassengerCombinationConstraint createPassengerCombinationConstraint() {
-		PassengerCombinationConstraintImpl passengerCombinationConstraint = new PassengerCombinationConstraintImpl();
-		return passengerCombinationConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RelativeTime createRelativeTime() {
-		RelativeTimeImpl relativeTime = new RelativeTimeImpl();
-		return relativeTime;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AfterSalesCondition createAfterSalesCondition() {
-		AfterSalesConditionImpl afterSalesCondition = new AfterSalesConditionImpl();
-		return afterSalesCondition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ApplicationTime createApplicationTime() {
-		ApplicationTimeImpl applicationTime = new ApplicationTimeImpl();
-		return applicationTime;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AfterSalesRule createAfterSalesRule() {
-		AfterSalesRuleImpl afterSalesRule = new AfterSalesRuleImpl();
-		return afterSalesRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AllowedPersonalDataChanges createAllowedPersonalDataChanges() {
-		AllowedPersonalDataChangesImpl allowedPersonalDataChanges = new AllowedPersonalDataChangesImpl();
-		return allowedPersonalDataChanges;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CarrierResourceLocation createCarrierResourceLocation() {
-		CarrierResourceLocationImpl carrierResourceLocation = new CarrierResourceLocationImpl();
-		return carrierResourceLocation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CrossBorderCondition createCrossBorderCondition() {
-		CrossBorderConditionImpl crossBorderCondition = new CrossBorderConditionImpl();
-		return crossBorderCondition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FareCombinationModel createFareCombinationModel() {
-		FareCombinationModelImpl fareCombinationModel = new FareCombinationModelImpl();
-		return fareCombinationModel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RequiredBarcodes createRequiredBarcodes() {
-		RequiredBarcodesImpl requiredBarcodes = new RequiredBarcodesImpl();
-		return requiredBarcodes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AcceptedBarcodes createAcceptedBarcodes() {
-		AcceptedBarcodesImpl acceptedBarcodes = new AcceptedBarcodesImpl();
-		return acceptedBarcodes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FulfillmentConstraint createFulfillmentConstraint() {
-		FulfillmentConstraintImpl fulfillmentConstraint = new FulfillmentConstraintImpl();
-		return fulfillmentConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OnlineResource createOnlineResource() {
-		OnlineResourceImpl onlineResource = new OnlineResourceImpl();
-		return onlineResource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PersonalDataConstraint createPersonalDataConstraint() {
-		PersonalDataConstraintImpl personalDataConstraint = new PersonalDataConstraintImpl();
-		return personalDataConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RequiredPersonalData createRequiredPersonalData() {
-		RequiredPersonalDataImpl requiredPersonalData = new RequiredPersonalDataImpl();
-		return requiredPersonalData;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReductionConstraint createReductionConstraint() {
-		ReductionConstraintImpl reductionConstraint = new ReductionConstraintImpl();
-		return reductionConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RequiredReductionCard createRequiredReductionCard() {
-		RequiredReductionCardImpl requiredReductionCard = new RequiredReductionCardImpl();
-		return requiredReductionCard;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StationResourceLocation createStationResourceLocation() {
-		StationResourceLocationImpl stationResourceLocation = new StationResourceLocationImpl();
-		return stationResourceLocation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TrainResourceLocation createTrainResourceLocation() {
-		TrainResourceLocationImpl trainResourceLocation = new TrainResourceLocationImpl();
-		return trainResourceLocation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TimeZone createTimeZoneFromString(EDataType eDataType, String initialValue) {
-		TimeZone result = TimeZone.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertTimeZoneToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CharacterSet createCharacterSetFromString(EDataType eDataType, String initialValue) {
-		CharacterSet result = CharacterSet.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertCharacterSetToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
@@ -1794,6 +1734,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * @generated
 	 */
 	public String convertClassicClassTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CharacterSet createCharacterSetFromString(EDataType eDataType, String initialValue) {
+		CharacterSet result = CharacterSet.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCharacterSetToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
@@ -2022,86 +1982,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReservationTravelClass createReservationTravelClassFromString(EDataType eDataType, String initialValue) {
-		ReservationTravelClass result = ReservationTravelClass.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertReservationTravelClassToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReservationServiceLevel createReservationServiceLevelFromString(EDataType eDataType, String initialValue) {
-		ReservationServiceLevel result = ReservationServiceLevel.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertReservationServiceLevelToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReservationService createReservationServiceFromString(EDataType eDataType, String initialValue) {
-		ReservationService result = ReservationService.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertReservationServiceToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ReservationBerthType createReservationBerthTypeFromString(EDataType eDataType, String initialValue) {
-		ReservationBerthType result = ReservationBerthType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertReservationBerthTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public LegacyCalculationType createLegacyCalculationTypeFromString(EDataType eDataType, String initialValue) {
 		LegacyCalculationType result = LegacyCalculationType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -2254,6 +2134,126 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * @generated
 	 */
 	public String convertPersonalDataChangeReasonToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReservationTravelClass createReservationTravelClassFromString(EDataType eDataType, String initialValue) {
+		ReservationTravelClass result = ReservationTravelClass.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertReservationTravelClassToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReservationServiceLevel createReservationServiceLevelFromString(EDataType eDataType, String initialValue) {
+		ReservationServiceLevel result = ReservationServiceLevel.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertReservationServiceLevelToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReservationService createReservationServiceFromString(EDataType eDataType, String initialValue) {
+		ReservationService result = ReservationService.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertReservationServiceToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReservationBerthType createReservationBerthTypeFromString(EDataType eDataType, String initialValue) {
+		ReservationBerthType result = ReservationBerthType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertReservationBerthTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SchemaVersion createSchemaVersionFromString(EDataType eDataType, String initialValue) {
+		SchemaVersion result = SchemaVersion.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSchemaVersionToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TimeZone createTimeZoneFromString(EDataType eDataType, String initialValue) {
+		TimeZone result = TimeZone.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTimeZoneToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

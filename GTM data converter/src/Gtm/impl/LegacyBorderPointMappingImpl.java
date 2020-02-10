@@ -25,8 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link Gtm.impl.LegacyBorderPointMappingImpl#getCode <em>Code</em>}</li>
  *   <li>{@link Gtm.impl.LegacyBorderPointMappingImpl#getName <em>Name</em>}</li>
- *   <li>{@link Gtm.impl.LegacyBorderPointMappingImpl#getStation1 <em>Station1</em>}</li>
- *   <li>{@link Gtm.impl.LegacyBorderPointMappingImpl#getStation2 <em>Station2</em>}</li>
+ *   <li>{@link Gtm.impl.LegacyBorderPointMappingImpl#getStation <em>Station</em>}</li>
  *   <li>{@link Gtm.impl.LegacyBorderPointMappingImpl#getConnectionPoint <em>Connection Point</em>}</li>
  * </ul>
  *
@@ -83,24 +82,14 @@ public class LegacyBorderPointMappingImpl extends MinimalEObjectImpl.Container i
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getStation1() <em>Station1</em>}' reference.
+	 * The cached value of the '{@link #getStation() <em>Station</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStation1()
+	 * @see #getStation()
 	 * @generated
 	 * @ordered
 	 */
-	protected Station station1;
-
-	/**
-	 * The cached value of the '{@link #getStation2() <em>Station2</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStation2()
-	 * @generated
-	 * @ordered
-	 */
-	protected Station station2;
+	protected Station station;
 
 	/**
 	 * The cached value of the '{@link #getConnectionPoint() <em>Connection Point</em>}' reference.
@@ -203,16 +192,16 @@ public class LegacyBorderPointMappingImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Station getStation1() {
-		if (station1 != null && station1.eIsProxy()) {
-			InternalEObject oldStation1 = (InternalEObject)station1;
-			station1 = (Station)eResolveProxy(oldStation1);
-			if (station1 != oldStation1) {
+	public Station getStation() {
+		if (station != null && station.eIsProxy()) {
+			InternalEObject oldStation = (InternalEObject)station;
+			station = (Station)eResolveProxy(oldStation);
+			if (station != oldStation) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION1, oldStation1, station1));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION, oldStation, station));
 			}
 		}
-		return station1;
+		return station;
 	}
 
 	/**
@@ -220,8 +209,8 @@ public class LegacyBorderPointMappingImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Station basicGetStation1() {
-		return station1;
+	public Station basicGetStation() {
+		return station;
 	}
 
 	/**
@@ -229,49 +218,11 @@ public class LegacyBorderPointMappingImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStation1(Station newStation1) {
-		Station oldStation1 = station1;
-		station1 = newStation1;
+	public void setStation(Station newStation) {
+		Station oldStation = station;
+		station = newStation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION1, oldStation1, station1));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Station getStation2() {
-		if (station2 != null && station2.eIsProxy()) {
-			InternalEObject oldStation2 = (InternalEObject)station2;
-			station2 = (Station)eResolveProxy(oldStation2);
-			if (station2 != oldStation2) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION2, oldStation2, station2));
-			}
-		}
-		return station2;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Station basicGetStation2() {
-		return station2;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStation2(Station newStation2) {
-		Station oldStation2 = station2;
-		station2 = newStation2;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION2, oldStation2, station2));
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION, oldStation, station));
 	}
 
 	/**
@@ -324,12 +275,9 @@ public class LegacyBorderPointMappingImpl extends MinimalEObjectImpl.Container i
 				return getCode();
 			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__NAME:
 				return getName();
-			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION1:
-				if (resolve) return getStation1();
-				return basicGetStation1();
-			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION2:
-				if (resolve) return getStation2();
-				return basicGetStation2();
+			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION:
+				if (resolve) return getStation();
+				return basicGetStation();
 			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__CONNECTION_POINT:
 				if (resolve) return getConnectionPoint();
 				return basicGetConnectionPoint();
@@ -351,11 +299,8 @@ public class LegacyBorderPointMappingImpl extends MinimalEObjectImpl.Container i
 			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__NAME:
 				setName((String)newValue);
 				return;
-			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION1:
-				setStation1((Station)newValue);
-				return;
-			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION2:
-				setStation2((Station)newValue);
+			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION:
+				setStation((Station)newValue);
 				return;
 			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__CONNECTION_POINT:
 				setConnectionPoint((ConnectionPoint)newValue);
@@ -378,11 +323,8 @@ public class LegacyBorderPointMappingImpl extends MinimalEObjectImpl.Container i
 			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION1:
-				setStation1((Station)null);
-				return;
-			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION2:
-				setStation2((Station)null);
+			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION:
+				setStation((Station)null);
 				return;
 			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__CONNECTION_POINT:
 				setConnectionPoint((ConnectionPoint)null);
@@ -403,10 +345,8 @@ public class LegacyBorderPointMappingImpl extends MinimalEObjectImpl.Container i
 				return isSetCode();
 			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION1:
-				return station1 != null;
-			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION2:
-				return station2 != null;
+			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__STATION:
+				return station != null;
 			case GtmPackage.LEGACY_BORDER_POINT_MAPPING__CONNECTION_POINT:
 				return connectionPoint != null;
 		}

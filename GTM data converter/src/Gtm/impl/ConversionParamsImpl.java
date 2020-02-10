@@ -6,6 +6,7 @@ import Gtm.ConversionParams;
 import Gtm.Country;
 import Gtm.EndOfSale;
 import Gtm.GtmPackage;
+import Gtm.LegacyBoderPointMappings;
 import Gtm.LegacyStationMappings;
 import Gtm.LegacyStationToServiceConstraintMappings;
 import Gtm.LegacyTargetFares;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getTaxId <em>Tax Id</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getVATpercentage <em>VA Tpercentage</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getCountry <em>Country</em>}</li>
+ *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyBorderPointMappings <em>Legacy Border Point Mappings</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyStationMappings <em>Legacy Station Mappings</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyTargetFares <em>Legacy Target Fares</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyZoneMappings <em>Legacy Zone Mappings</em>}</li>
@@ -90,6 +92,16 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected Country country;
+
+	/**
+	 * The cached value of the '{@link #getLegacyBorderPointMappings() <em>Legacy Border Point Mappings</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyBorderPointMappings()
+	 * @generated
+	 * @ordered
+	 */
+	protected LegacyBoderPointMappings legacyBorderPointMappings;
 
 	/**
 	 * The cached value of the '{@link #getLegacyStationMappings() <em>Legacy Station Mappings</em>}' containment reference.
@@ -248,6 +260,49 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 		country = newCountry;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__COUNTRY, oldCountry, country));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyBoderPointMappings getLegacyBorderPointMappings() {
+		return legacyBorderPointMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLegacyBorderPointMappings(LegacyBoderPointMappings newLegacyBorderPointMappings, NotificationChain msgs) {
+		LegacyBoderPointMappings oldLegacyBorderPointMappings = legacyBorderPointMappings;
+		legacyBorderPointMappings = newLegacyBorderPointMappings;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS, oldLegacyBorderPointMappings, newLegacyBorderPointMappings);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyBorderPointMappings(LegacyBoderPointMappings newLegacyBorderPointMappings) {
+		if (newLegacyBorderPointMappings != legacyBorderPointMappings) {
+			NotificationChain msgs = null;
+			if (legacyBorderPointMappings != null)
+				msgs = ((InternalEObject)legacyBorderPointMappings).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS, null, msgs);
+			if (newLegacyBorderPointMappings != null)
+				msgs = ((InternalEObject)newLegacyBorderPointMappings).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS, null, msgs);
+			msgs = basicSetLegacyBorderPointMappings(newLegacyBorderPointMappings, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS, newLegacyBorderPointMappings, newLegacyBorderPointMappings));
 	}
 
 	/**
@@ -516,6 +571,8 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS:
+				return basicSetLegacyBorderPointMappings(null, msgs);
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_MAPPINGS:
 				return basicSetLegacyStationMappings(null, msgs);
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_TARGET_FARES:
@@ -547,6 +604,8 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.CONVERSION_PARAMS__COUNTRY:
 				if (resolve) return getCountry();
 				return basicGetCountry();
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS:
+				return getLegacyBorderPointMappings();
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_MAPPINGS:
 				return getLegacyStationMappings();
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_TARGET_FARES:
@@ -579,6 +638,9 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case GtmPackage.CONVERSION_PARAMS__COUNTRY:
 				setCountry((Country)newValue);
+				return;
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS:
+				setLegacyBorderPointMappings((LegacyBoderPointMappings)newValue);
 				return;
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_MAPPINGS:
 				setLegacyStationMappings((LegacyStationMappings)newValue);
@@ -619,6 +681,9 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.CONVERSION_PARAMS__COUNTRY:
 				setCountry((Country)null);
 				return;
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS:
+				setLegacyBorderPointMappings((LegacyBoderPointMappings)null);
+				return;
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_MAPPINGS:
 				setLegacyStationMappings((LegacyStationMappings)null);
 				return;
@@ -655,6 +720,8 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 				return vaTpercentage != VA_TPERCENTAGE_EDEFAULT;
 			case GtmPackage.CONVERSION_PARAMS__COUNTRY:
 				return country != null;
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS:
+				return legacyBorderPointMappings != null;
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_MAPPINGS:
 				return legacyStationMappings != null;
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_TARGET_FARES:
