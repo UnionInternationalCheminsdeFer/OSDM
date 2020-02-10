@@ -2,11 +2,14 @@
  */
 package Gtm.impl;
 
+import Gtm.AlternativeRoute;
 import Gtm.Carrier;
 import Gtm.GtmPackage;
+import Gtm.Route;
 import Gtm.Station;
 import Gtm.ViaStation;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -32,9 +35,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link Gtm.impl.ViaStationImpl#getStation <em>Station</em>}</li>
+ *   <li>{@link Gtm.impl.ViaStationImpl#getCarrier <em>Carrier</em>}</li>
  *   <li>{@link Gtm.impl.ViaStationImpl#getRoute <em>Route</em>}</li>
  *   <li>{@link Gtm.impl.ViaStationImpl#getAlternativeRoutes <em>Alternative Routes</em>}</li>
- *   <li>{@link Gtm.impl.ViaStationImpl#getCarrier <em>Carrier</em>}</li>
+ *   <li>{@link Gtm.impl.ViaStationImpl#getDataDescription <em>Data Description</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,6 +55,16 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 	protected Station station;
 
 	/**
+	 * The cached value of the '{@link #getCarrier() <em>Carrier</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCarrier()
+	 * @generated
+	 * @ordered
+	 */
+	protected Carrier carrier;
+
+	/**
 	 * The cached value of the '{@link #getRoute() <em>Route</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -58,7 +72,7 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 	 * @generated
 	 * @ordered
 	 */
-	protected ViaStation route;
+	protected Route route;
 
 	/**
 	 * The cached value of the '{@link #getAlternativeRoutes() <em>Alternative Routes</em>}' containment reference list.
@@ -68,17 +82,27 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ViaStation> alternativeRoutes;
+	protected EList<AlternativeRoute> alternativeRoutes;
 
 	/**
-	 * The cached value of the '{@link #getCarrier() <em>Carrier</em>}' reference.
+	 * The default value of the '{@link #getDataDescription() <em>Data Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCarrier()
+	 * @see #getDataDescription()
 	 * @generated
 	 * @ordered
 	 */
-	protected Carrier carrier;
+	protected static final String DATA_DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDataDescription() <em>Data Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String dataDescription = DATA_DESCRIPTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,7 +166,7 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ViaStation getRoute() {
+	public Route getRoute() {
 		return route;
 	}
 
@@ -151,8 +175,8 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRoute(ViaStation newRoute, NotificationChain msgs) {
-		ViaStation oldRoute = route;
+	public NotificationChain basicSetRoute(Route newRoute, NotificationChain msgs) {
+		Route oldRoute = route;
 		route = newRoute;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.VIA_STATION__ROUTE, oldRoute, newRoute);
@@ -166,7 +190,7 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRoute(ViaStation newRoute) {
+	public void setRoute(Route newRoute) {
 		if (newRoute != route) {
 			NotificationChain msgs = null;
 			if (route != null)
@@ -185,11 +209,32 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ViaStation> getAlternativeRoutes() {
+	public EList<AlternativeRoute> getAlternativeRoutes() {
 		if (alternativeRoutes == null) {
-			alternativeRoutes = new EObjectContainmentEList<ViaStation>(ViaStation.class, this, GtmPackage.VIA_STATION__ALTERNATIVE_ROUTES);
+			alternativeRoutes = new EObjectContainmentEList<AlternativeRoute>(AlternativeRoute.class, this, GtmPackage.VIA_STATION__ALTERNATIVE_ROUTES);
 		}
 		return alternativeRoutes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDataDescription() {
+		return dataDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataDescription(String newDataDescription) {
+		String oldDataDescription = dataDescription;
+		dataDescription = newDataDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.VIA_STATION__DATA_DESCRIPTION, oldDataDescription, dataDescription));
 	}
 
 	/**
@@ -233,6 +278,55 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getDescription() {
+		
+		if (this.getStation()!= null) return this.getStation().getName();
+		
+		String label = "";
+		
+		if (this.getRoute()!= null && this.getRoute() != null && this.getRoute().getStations() != null && !this.getRoute().getStations().isEmpty() ) {
+			
+			for (ViaStation station : this.getRoute().getStations()) {
+				
+				if (station.getStation()!= null) {
+					if (label.length() == 0) {
+						label.concat(station.getStation().getName());
+					} else {
+						label.concat("*").concat(station.getStation().getName());
+					}
+				}
+			}
+			return label;
+		}
+			
+		if (this.getAlternativeRoutes()!= null && !this.getAlternativeRoutes().isEmpty()) {
+			label.concat("(");
+			for (AlternativeRoute route : this.getAlternativeRoutes() ) {
+				if (label.length() > 1) {
+					label.concat("/");
+				}
+				String routeLable ="";
+				for (ViaStation via :  route.getStations()) {
+					if (routeLable.length() == 0) {
+						label.concat(via.getDescription());
+					} else {
+						label.concat("*").concat(via.getDescription());
+					}
+				}
+			}
+			label.concat(")");
+			
+		}
+			
+		
+		return label;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -257,13 +351,15 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 			case GtmPackage.VIA_STATION__STATION:
 				if (resolve) return getStation();
 				return basicGetStation();
+			case GtmPackage.VIA_STATION__CARRIER:
+				if (resolve) return getCarrier();
+				return basicGetCarrier();
 			case GtmPackage.VIA_STATION__ROUTE:
 				return getRoute();
 			case GtmPackage.VIA_STATION__ALTERNATIVE_ROUTES:
 				return getAlternativeRoutes();
-			case GtmPackage.VIA_STATION__CARRIER:
-				if (resolve) return getCarrier();
-				return basicGetCarrier();
+			case GtmPackage.VIA_STATION__DATA_DESCRIPTION:
+				return getDataDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -280,15 +376,18 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 			case GtmPackage.VIA_STATION__STATION:
 				setStation((Station)newValue);
 				return;
+			case GtmPackage.VIA_STATION__CARRIER:
+				setCarrier((Carrier)newValue);
+				return;
 			case GtmPackage.VIA_STATION__ROUTE:
-				setRoute((ViaStation)newValue);
+				setRoute((Route)newValue);
 				return;
 			case GtmPackage.VIA_STATION__ALTERNATIVE_ROUTES:
 				getAlternativeRoutes().clear();
-				getAlternativeRoutes().addAll((Collection<? extends ViaStation>)newValue);
+				getAlternativeRoutes().addAll((Collection<? extends AlternativeRoute>)newValue);
 				return;
-			case GtmPackage.VIA_STATION__CARRIER:
-				setCarrier((Carrier)newValue);
+			case GtmPackage.VIA_STATION__DATA_DESCRIPTION:
+				setDataDescription((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -305,14 +404,17 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 			case GtmPackage.VIA_STATION__STATION:
 				setStation((Station)null);
 				return;
+			case GtmPackage.VIA_STATION__CARRIER:
+				setCarrier((Carrier)null);
+				return;
 			case GtmPackage.VIA_STATION__ROUTE:
-				setRoute((ViaStation)null);
+				setRoute((Route)null);
 				return;
 			case GtmPackage.VIA_STATION__ALTERNATIVE_ROUTES:
 				getAlternativeRoutes().clear();
 				return;
-			case GtmPackage.VIA_STATION__CARRIER:
-				setCarrier((Carrier)null);
+			case GtmPackage.VIA_STATION__DATA_DESCRIPTION:
+				setDataDescription(DATA_DESCRIPTION_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -328,14 +430,46 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 		switch (featureID) {
 			case GtmPackage.VIA_STATION__STATION:
 				return station != null;
+			case GtmPackage.VIA_STATION__CARRIER:
+				return carrier != null;
 			case GtmPackage.VIA_STATION__ROUTE:
 				return route != null;
 			case GtmPackage.VIA_STATION__ALTERNATIVE_ROUTES:
 				return alternativeRoutes != null && !alternativeRoutes.isEmpty();
-			case GtmPackage.VIA_STATION__CARRIER:
-				return carrier != null;
+			case GtmPackage.VIA_STATION__DATA_DESCRIPTION:
+				return DATA_DESCRIPTION_EDEFAULT == null ? dataDescription != null : !DATA_DESCRIPTION_EDEFAULT.equals(dataDescription);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case GtmPackage.VIA_STATION___GET_DESCRIPTION:
+				return getDescription();
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (dataDescription: ");
+		result.append(dataDescription);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ViaStationImpl

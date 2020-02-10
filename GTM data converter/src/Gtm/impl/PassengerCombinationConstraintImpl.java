@@ -4,13 +4,10 @@ package Gtm.impl;
 
 import Gtm.GtmPackage;
 import Gtm.PassengerCombinationConstraint;
-import Gtm.PassengerConstraint;
-
+import Gtm.TravelerType;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -50,14 +47,24 @@ public class PassengerCombinationConstraintImpl extends MinimalEObjectImpl.Conta
 	protected int maxNumber = MAX_NUMBER_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPassengerType() <em>Passenger Type</em>}' reference.
+	 * The default value of the '{@link #getPassengerType() <em>Passenger Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPassengerType()
 	 * @generated
 	 * @ordered
 	 */
-	protected PassengerConstraint passengerType;
+	protected static final TravelerType PASSENGER_TYPE_EDEFAULT = TravelerType.ADULT;
+
+	/**
+	 * The cached value of the '{@link #getPassengerType() <em>Passenger Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPassengerType()
+	 * @generated
+	 * @ordered
+	 */
+	protected TravelerType passengerType = PASSENGER_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -104,15 +111,7 @@ public class PassengerCombinationConstraintImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PassengerConstraint getPassengerType() {
-		if (passengerType != null && passengerType.eIsProxy()) {
-			InternalEObject oldPassengerType = (InternalEObject)passengerType;
-			passengerType = (PassengerConstraint)eResolveProxy(oldPassengerType);
-			if (passengerType != oldPassengerType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.PASSENGER_COMBINATION_CONSTRAINT__PASSENGER_TYPE, oldPassengerType, passengerType));
-			}
-		}
+	public TravelerType getPassengerType() {
 		return passengerType;
 	}
 
@@ -121,18 +120,9 @@ public class PassengerCombinationConstraintImpl extends MinimalEObjectImpl.Conta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PassengerConstraint basicGetPassengerType() {
-		return passengerType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPassengerType(PassengerConstraint newPassengerType) {
-		PassengerConstraint oldPassengerType = passengerType;
-		passengerType = newPassengerType;
+	public void setPassengerType(TravelerType newPassengerType) {
+		TravelerType oldPassengerType = passengerType;
+		passengerType = newPassengerType == null ? PASSENGER_TYPE_EDEFAULT : newPassengerType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.PASSENGER_COMBINATION_CONSTRAINT__PASSENGER_TYPE, oldPassengerType, passengerType));
 	}
@@ -148,8 +138,7 @@ public class PassengerCombinationConstraintImpl extends MinimalEObjectImpl.Conta
 			case GtmPackage.PASSENGER_COMBINATION_CONSTRAINT__MAX_NUMBER:
 				return getMaxNumber();
 			case GtmPackage.PASSENGER_COMBINATION_CONSTRAINT__PASSENGER_TYPE:
-				if (resolve) return getPassengerType();
-				return basicGetPassengerType();
+				return getPassengerType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -166,7 +155,7 @@ public class PassengerCombinationConstraintImpl extends MinimalEObjectImpl.Conta
 				setMaxNumber((Integer)newValue);
 				return;
 			case GtmPackage.PASSENGER_COMBINATION_CONSTRAINT__PASSENGER_TYPE:
-				setPassengerType((PassengerConstraint)newValue);
+				setPassengerType((TravelerType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -184,7 +173,7 @@ public class PassengerCombinationConstraintImpl extends MinimalEObjectImpl.Conta
 				setMaxNumber(MAX_NUMBER_EDEFAULT);
 				return;
 			case GtmPackage.PASSENGER_COMBINATION_CONSTRAINT__PASSENGER_TYPE:
-				setPassengerType((PassengerConstraint)null);
+				setPassengerType(PASSENGER_TYPE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -201,7 +190,7 @@ public class PassengerCombinationConstraintImpl extends MinimalEObjectImpl.Conta
 			case GtmPackage.PASSENGER_COMBINATION_CONSTRAINT__MAX_NUMBER:
 				return maxNumber != MAX_NUMBER_EDEFAULT;
 			case GtmPackage.PASSENGER_COMBINATION_CONSTRAINT__PASSENGER_TYPE:
-				return passengerType != null;
+				return passengerType != PASSENGER_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -218,6 +207,8 @@ public class PassengerCombinationConstraintImpl extends MinimalEObjectImpl.Conta
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (maxNumber: ");
 		result.append(maxNumber);
+		result.append(", passengerType: ");
+		result.append(passengerType);
 		result.append(')');
 		return result.toString();
 	}

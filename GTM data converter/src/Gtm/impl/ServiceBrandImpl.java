@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.ServiceBrandImpl#getCode <em>Code</em>}</li>
  *   <li>{@link Gtm.impl.ServiceBrandImpl#getName <em>Name</em>}</li>
  *   <li>{@link Gtm.impl.ServiceBrandImpl#getAbbreviation <em>Abbreviation</em>}</li>
+ *   <li>{@link Gtm.impl.ServiceBrandImpl#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @generated
@@ -87,6 +88,26 @@ public class ServiceBrandImpl extends MinimalEObjectImpl.Container implements Se
 	 * @ordered
 	 */
 	protected String abbreviation = ABBREVIATION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -175,6 +196,27 @@ public class ServiceBrandImpl extends MinimalEObjectImpl.Container implements Se
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.SERVICE_BRAND__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -184,6 +226,8 @@ public class ServiceBrandImpl extends MinimalEObjectImpl.Container implements Se
 				return getName();
 			case GtmPackage.SERVICE_BRAND__ABBREVIATION:
 				return getAbbreviation();
+			case GtmPackage.SERVICE_BRAND__DESCRIPTION:
+				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -204,6 +248,9 @@ public class ServiceBrandImpl extends MinimalEObjectImpl.Container implements Se
 				return;
 			case GtmPackage.SERVICE_BRAND__ABBREVIATION:
 				setAbbreviation((String)newValue);
+				return;
+			case GtmPackage.SERVICE_BRAND__DESCRIPTION:
+				setDescription((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -226,6 +273,9 @@ public class ServiceBrandImpl extends MinimalEObjectImpl.Container implements Se
 			case GtmPackage.SERVICE_BRAND__ABBREVIATION:
 				setAbbreviation(ABBREVIATION_EDEFAULT);
 				return;
+			case GtmPackage.SERVICE_BRAND__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -244,6 +294,8 @@ public class ServiceBrandImpl extends MinimalEObjectImpl.Container implements Se
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GtmPackage.SERVICE_BRAND__ABBREVIATION:
 				return ABBREVIATION_EDEFAULT == null ? abbreviation != null : !ABBREVIATION_EDEFAULT.equals(abbreviation);
+			case GtmPackage.SERVICE_BRAND__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -264,6 +316,8 @@ public class ServiceBrandImpl extends MinimalEObjectImpl.Container implements Se
 		result.append(name);
 		result.append(", abbreviation: ");
 		result.append(abbreviation);
+		result.append(", description: ");
+		result.append(description);
 		result.append(')');
 		return result.toString();
 	}

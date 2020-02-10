@@ -2,6 +2,7 @@
  */
 package Gtm.impl;
 
+import Gtm.DataSource;
 import Gtm.GtmPackage;
 import Gtm.SalesAvailabilityConstraint;
 import Gtm.SalesRestriction;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link Gtm.impl.SalesAvailabilityConstraintImpl#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.impl.SalesAvailabilityConstraintImpl#getDataDescription <em>Data Description</em>}</li>
  *   <li>{@link Gtm.impl.SalesAvailabilityConstraintImpl#getRestrictions <em>Restrictions</em>}</li>
+ *   <li>{@link Gtm.impl.SalesAvailabilityConstraintImpl#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @generated
@@ -87,6 +89,26 @@ public class SalesAvailabilityConstraintImpl extends MinimalEObjectImpl.Containe
 	 * @ordered
 	 */
 	protected EList<SalesRestriction> restrictions;
+
+	/**
+	 * The default value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final DataSource DATA_SOURCE_EDEFAULT = DataSource.MANUAL;
+
+	/**
+	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected DataSource dataSource = DATA_SOURCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,6 +188,27 @@ public class SalesAvailabilityConstraintImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataSource(DataSource newDataSource) {
+		DataSource oldDataSource = dataSource;
+		dataSource = newDataSource == null ? DATA_SOURCE_EDEFAULT : newDataSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.SALES_AVAILABILITY_CONSTRAINT__DATA_SOURCE, oldDataSource, dataSource));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -189,6 +232,8 @@ public class SalesAvailabilityConstraintImpl extends MinimalEObjectImpl.Containe
 				return getDataDescription();
 			case GtmPackage.SALES_AVAILABILITY_CONSTRAINT__RESTRICTIONS:
 				return getRestrictions();
+			case GtmPackage.SALES_AVAILABILITY_CONSTRAINT__DATA_SOURCE:
+				return getDataSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -212,6 +257,9 @@ public class SalesAvailabilityConstraintImpl extends MinimalEObjectImpl.Containe
 				getRestrictions().clear();
 				getRestrictions().addAll((Collection<? extends SalesRestriction>)newValue);
 				return;
+			case GtmPackage.SALES_AVAILABILITY_CONSTRAINT__DATA_SOURCE:
+				setDataSource((DataSource)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -233,6 +281,9 @@ public class SalesAvailabilityConstraintImpl extends MinimalEObjectImpl.Containe
 			case GtmPackage.SALES_AVAILABILITY_CONSTRAINT__RESTRICTIONS:
 				getRestrictions().clear();
 				return;
+			case GtmPackage.SALES_AVAILABILITY_CONSTRAINT__DATA_SOURCE:
+				setDataSource(DATA_SOURCE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -251,6 +302,8 @@ public class SalesAvailabilityConstraintImpl extends MinimalEObjectImpl.Containe
 				return DATA_DESCRIPTION_EDEFAULT == null ? dataDescription != null : !DATA_DESCRIPTION_EDEFAULT.equals(dataDescription);
 			case GtmPackage.SALES_AVAILABILITY_CONSTRAINT__RESTRICTIONS:
 				return restrictions != null && !restrictions.isEmpty();
+			case GtmPackage.SALES_AVAILABILITY_CONSTRAINT__DATA_SOURCE:
+				return dataSource != DATA_SOURCE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -269,6 +322,8 @@ public class SalesAvailabilityConstraintImpl extends MinimalEObjectImpl.Containe
 		result.append(id);
 		result.append(", dataDescription: ");
 		result.append(dataDescription);
+		result.append(", dataSource: ");
+		result.append(dataSource);
 		result.append(')');
 		return result.toString();
 	}

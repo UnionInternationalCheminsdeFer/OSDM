@@ -2,9 +2,9 @@
  */
 package Gtm.impl;
 
-import Gtm.Edge;
 import Gtm.GtmPackage;
-import Gtm.Polygone;
+import Gtm.Text;
+import Gtm.Texts;
 
 import java.util.Collection;
 
@@ -22,33 +22,34 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Polygone</b></em>'.
+ * An implementation of the model object '<em><b>Texts</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Gtm.impl.PolygoneImpl#getEdge <em>Edge</em>}</li>
+ *   <li>{@link Gtm.impl.TextsImpl#getTexts <em>Texts</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygone {
+public class TextsImpl extends MinimalEObjectImpl.Container implements Texts {
 	/**
-	 * The cached value of the '{@link #getEdge() <em>Edge</em>}' containment reference list.
+	 * The cached value of the '{@link #getTexts() <em>Texts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEdge()
+	 * @see #getTexts()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Edge> edge;
+	protected EList<Text> texts;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PolygoneImpl() {
+	protected TextsImpl() {
 		super();
 	}
 
@@ -59,7 +60,7 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GtmPackage.Literals.POLYGONE;
+		return GtmPackage.Literals.TEXTS;
 	}
 
 	/**
@@ -67,11 +68,11 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Edge> getEdge() {
-		if (edge == null) {
-			edge = new EObjectContainmentEList<Edge>(Edge.class, this, GtmPackage.POLYGONE__EDGE);
+	public EList<Text> getTexts() {
+		if (texts == null) {
+			texts = new EObjectContainmentEList<Text>(Text.class, this, GtmPackage.TEXTS__TEXTS);
 		}
-		return edge;
+		return texts;
 	}
 
 	/**
@@ -82,8 +83,8 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GtmPackage.POLYGONE__EDGE:
-				return ((InternalEList<?>)getEdge()).basicRemove(otherEnd, msgs);
+			case GtmPackage.TEXTS__TEXTS:
+				return ((InternalEList<?>)getTexts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -96,8 +97,8 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GtmPackage.POLYGONE__EDGE:
-				return getEdge();
+			case GtmPackage.TEXTS__TEXTS:
+				return getTexts();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,9 +112,9 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GtmPackage.POLYGONE__EDGE:
-				getEdge().clear();
-				getEdge().addAll((Collection<? extends Edge>)newValue);
+			case GtmPackage.TEXTS__TEXTS:
+				getTexts().clear();
+				getTexts().addAll((Collection<? extends Text>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,8 +128,8 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GtmPackage.POLYGONE__EDGE:
-				getEdge().clear();
+			case GtmPackage.TEXTS__TEXTS:
+				getTexts().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -142,10 +143,10 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GtmPackage.POLYGONE__EDGE:
-				return edge != null && !edge.isEmpty();
+			case GtmPackage.TEXTS__TEXTS:
+				return texts != null && !texts.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //PolygoneImpl
+} //TextsImpl

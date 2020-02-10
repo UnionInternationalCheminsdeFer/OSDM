@@ -3,20 +3,24 @@
 package Gtm.impl;
 
 import Gtm.Calendar;
+import Gtm.ExcludedTimeRange;
 import Gtm.GtmPackage;
 import Gtm.ReturnValidityConstraint;
-import Gtm.TimeRangeScope;
 import Gtm.TravelValidityConstraint;
 import Gtm.ValidityRange;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,10 +33,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.TravelValidityConstraintImpl#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.impl.TravelValidityConstraintImpl#getDataDescription <em>Data Description</em>}</li>
  *   <li>{@link Gtm.impl.TravelValidityConstraintImpl#getValidDays <em>Valid Days</em>}</li>
- *   <li>{@link Gtm.impl.TravelValidityConstraintImpl#getExcludedTimeRange <em>Excluded Time Range</em>}</li>
  *   <li>{@link Gtm.impl.TravelValidityConstraintImpl#getTravelDays <em>Travel Days</em>}</li>
  *   <li>{@link Gtm.impl.TravelValidityConstraintImpl#getRange <em>Range</em>}</li>
  *   <li>{@link Gtm.impl.TravelValidityConstraintImpl#getReturnConstraint <em>Return Constraint</em>}</li>
+ *   <li>{@link Gtm.impl.TravelValidityConstraintImpl#getExcludedTimeRange <em>Excluded Time Range</em>}</li>
  * </ul>
  *
  * @generated
@@ -89,26 +93,6 @@ public class TravelValidityConstraintImpl extends MinimalEObjectImpl.Container i
 	protected Calendar validDays;
 
 	/**
-	 * The default value of the '{@link #getExcludedTimeRange() <em>Excluded Time Range</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExcludedTimeRange()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final TimeRangeScope EXCLUDED_TIME_RANGE_EDEFAULT = TimeRangeScope.START_OF_TRAVEL;
-
-	/**
-	 * The cached value of the '{@link #getExcludedTimeRange() <em>Excluded Time Range</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExcludedTimeRange()
-	 * @generated
-	 * @ordered
-	 */
-	protected TimeRangeScope excludedTimeRange = EXCLUDED_TIME_RANGE_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getTravelDays() <em>Travel Days</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -147,6 +131,16 @@ public class TravelValidityConstraintImpl extends MinimalEObjectImpl.Container i
 	 * @ordered
 	 */
 	protected ReturnValidityConstraint returnConstraint;
+
+	/**
+	 * The cached value of the '{@link #getExcludedTimeRange() <em>Excluded Time Range</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExcludedTimeRange()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ExcludedTimeRange> excludedTimeRange;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -252,20 +246,11 @@ public class TravelValidityConstraintImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeRangeScope getExcludedTimeRange() {
+	public EList<ExcludedTimeRange> getExcludedTimeRange() {
+		if (excludedTimeRange == null) {
+			excludedTimeRange = new EObjectContainmentEList<ExcludedTimeRange>(ExcludedTimeRange.class, this, GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE);
+		}
 		return excludedTimeRange;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setExcludedTimeRange(TimeRangeScope newExcludedTimeRange) {
-		TimeRangeScope oldExcludedTimeRange = excludedTimeRange;
-		excludedTimeRange = newExcludedTimeRange == null ? EXCLUDED_TIME_RANGE_EDEFAULT : newExcludedTimeRange;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE, oldExcludedTimeRange, excludedTimeRange));
 	}
 
 	/**
@@ -387,6 +372,8 @@ public class TravelValidityConstraintImpl extends MinimalEObjectImpl.Container i
 				return basicSetRange(null, msgs);
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__RETURN_CONSTRAINT:
 				return basicSetReturnConstraint(null, msgs);
+			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE:
+				return ((InternalEList<?>)getExcludedTimeRange()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -406,14 +393,14 @@ public class TravelValidityConstraintImpl extends MinimalEObjectImpl.Container i
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__VALID_DAYS:
 				if (resolve) return getValidDays();
 				return basicGetValidDays();
-			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE:
-				return getExcludedTimeRange();
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__TRAVEL_DAYS:
 				return getTravelDays();
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__RANGE:
 				return getRange();
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__RETURN_CONSTRAINT:
 				return getReturnConstraint();
+			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE:
+				return getExcludedTimeRange();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -423,6 +410,7 @@ public class TravelValidityConstraintImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -435,9 +423,6 @@ public class TravelValidityConstraintImpl extends MinimalEObjectImpl.Container i
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__VALID_DAYS:
 				setValidDays((Calendar)newValue);
 				return;
-			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE:
-				setExcludedTimeRange((TimeRangeScope)newValue);
-				return;
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__TRAVEL_DAYS:
 				setTravelDays((Integer)newValue);
 				return;
@@ -446,6 +431,10 @@ public class TravelValidityConstraintImpl extends MinimalEObjectImpl.Container i
 				return;
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__RETURN_CONSTRAINT:
 				setReturnConstraint((ReturnValidityConstraint)newValue);
+				return;
+			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE:
+				getExcludedTimeRange().clear();
+				getExcludedTimeRange().addAll((Collection<? extends ExcludedTimeRange>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -468,9 +457,6 @@ public class TravelValidityConstraintImpl extends MinimalEObjectImpl.Container i
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__VALID_DAYS:
 				setValidDays((Calendar)null);
 				return;
-			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE:
-				setExcludedTimeRange(EXCLUDED_TIME_RANGE_EDEFAULT);
-				return;
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__TRAVEL_DAYS:
 				setTravelDays(TRAVEL_DAYS_EDEFAULT);
 				return;
@@ -479,6 +465,9 @@ public class TravelValidityConstraintImpl extends MinimalEObjectImpl.Container i
 				return;
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__RETURN_CONSTRAINT:
 				setReturnConstraint((ReturnValidityConstraint)null);
+				return;
+			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE:
+				getExcludedTimeRange().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -498,14 +487,14 @@ public class TravelValidityConstraintImpl extends MinimalEObjectImpl.Container i
 				return DATA_DESCRIPTION_EDEFAULT == null ? dataDescription != null : !DATA_DESCRIPTION_EDEFAULT.equals(dataDescription);
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__VALID_DAYS:
 				return validDays != null;
-			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE:
-				return excludedTimeRange != EXCLUDED_TIME_RANGE_EDEFAULT;
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__TRAVEL_DAYS:
 				return travelDays != TRAVEL_DAYS_EDEFAULT;
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__RANGE:
 				return range != null;
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__RETURN_CONSTRAINT:
 				return returnConstraint != null;
+			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINT__EXCLUDED_TIME_RANGE:
+				return excludedTimeRange != null && !excludedTimeRange.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -524,8 +513,6 @@ public class TravelValidityConstraintImpl extends MinimalEObjectImpl.Container i
 		result.append(id);
 		result.append(", dataDescription: ");
 		result.append(dataDescription);
-		result.append(", excludedTimeRange: ");
-		result.append(excludedTimeRange);
 		result.append(", travelDays: ");
 		result.append(travelDays);
 		result.append(')');

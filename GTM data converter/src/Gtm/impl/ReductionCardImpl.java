@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link Gtm.impl.ReductionCardImpl#getCardIssuer <em>Card Issuer</em>}</li>
  *   <li>{@link Gtm.impl.ReductionCardImpl#getName <em>Name</em>}</li>
  *   <li>{@link Gtm.impl.ReductionCardImpl#getServiceClasses <em>Service Classes</em>}</li>
+ *   <li>{@link Gtm.impl.ReductionCardImpl#isIdRequiredForBooking <em>Id Required For Booking</em>}</li>
  * </ul>
  *
  * @generated
@@ -88,6 +89,26 @@ public class ReductionCardImpl extends MinimalEObjectImpl.Container implements R
 	 * @ordered
 	 */
 	protected EList<ServiceClass> serviceClasses;
+
+	/**
+	 * The default value of the '{@link #isIdRequiredForBooking() <em>Id Required For Booking</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIdRequiredForBooking()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ID_REQUIRED_FOR_BOOKING_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIdRequiredForBooking() <em>Id Required For Booking</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIdRequiredForBooking()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean idRequiredForBooking = ID_REQUIRED_FOR_BOOKING_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -222,6 +243,27 @@ public class ReductionCardImpl extends MinimalEObjectImpl.Container implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIdRequiredForBooking() {
+		return idRequiredForBooking;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdRequiredForBooking(boolean newIdRequiredForBooking) {
+		boolean oldIdRequiredForBooking = idRequiredForBooking;
+		idRequiredForBooking = newIdRequiredForBooking;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.REDUCTION_CARD__ID_REQUIRED_FOR_BOOKING, oldIdRequiredForBooking, idRequiredForBooking));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -235,6 +277,8 @@ public class ReductionCardImpl extends MinimalEObjectImpl.Container implements R
 				return basicGetName();
 			case GtmPackage.REDUCTION_CARD__SERVICE_CLASSES:
 				return getServiceClasses();
+			case GtmPackage.REDUCTION_CARD__ID_REQUIRED_FOR_BOOKING:
+				return isIdRequiredForBooking();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -261,6 +305,9 @@ public class ReductionCardImpl extends MinimalEObjectImpl.Container implements R
 				getServiceClasses().clear();
 				getServiceClasses().addAll((Collection<? extends ServiceClass>)newValue);
 				return;
+			case GtmPackage.REDUCTION_CARD__ID_REQUIRED_FOR_BOOKING:
+				setIdRequiredForBooking((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -285,6 +332,9 @@ public class ReductionCardImpl extends MinimalEObjectImpl.Container implements R
 			case GtmPackage.REDUCTION_CARD__SERVICE_CLASSES:
 				getServiceClasses().clear();
 				return;
+			case GtmPackage.REDUCTION_CARD__ID_REQUIRED_FOR_BOOKING:
+				setIdRequiredForBooking(ID_REQUIRED_FOR_BOOKING_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -305,6 +355,8 @@ public class ReductionCardImpl extends MinimalEObjectImpl.Container implements R
 				return name != null;
 			case GtmPackage.REDUCTION_CARD__SERVICE_CLASSES:
 				return serviceClasses != null && !serviceClasses.isEmpty();
+			case GtmPackage.REDUCTION_CARD__ID_REQUIRED_FOR_BOOKING:
+				return idRequiredForBooking != ID_REQUIRED_FOR_BOOKING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -321,6 +373,8 @@ public class ReductionCardImpl extends MinimalEObjectImpl.Container implements R
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (id: ");
 		result.append(id);
+		result.append(", idRequiredForBooking: ");
+		result.append(idRequiredForBooking);
 		result.append(')');
 		return result.toString();
 	}

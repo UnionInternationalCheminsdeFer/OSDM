@@ -2,10 +2,19 @@
  */
 package Gtm.impl;
 
+import Gtm.AfterSalesRule;
 import Gtm.CarrierConstraint;
 import Gtm.CombinationConstraint;
 import Gtm.FareType;
+import Gtm.FulfillmentConstraint;
 import Gtm.GtmPackage;
+import Gtm.LegacyAccountingIdentifier;
+import Gtm.PassengerConstraint;
+import Gtm.PersonalDataConstraint;
+import Gtm.Price;
+import Gtm.ReductionConstraint;
+import Gtm.RegionalConstraint;
+import Gtm.ReservationParameter;
 import Gtm.SalesAvailabilityConstraint;
 import Gtm.ServiceClass;
 import Gtm.ServiceConstraint;
@@ -16,6 +25,7 @@ import Gtm.TravelValidityConstraint;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -35,6 +45,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getType <em>Type</em>}</li>
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getDataDescription <em>Data Description</em>}</li>
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getText <em>Text</em>}</li>
+ *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getPrice <em>Price</em>}</li>
+ *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getRegionalConstraint <em>Regional Constraint</em>}</li>
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getServiceConstraint <em>Service Constraint</em>}</li>
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getCarrierConstraint <em>Carrier Constraint</em>}</li>
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getServiceClass <em>Service Class</em>}</li>
@@ -42,6 +54,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getSalesAvailability <em>Sales Availability</em>}</li>
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getTravelValidity <em>Travel Validity</em>}</li>
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getCombinationConstraint <em>Combination Constraint</em>}</li>
+ *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getFareDetailDescription <em>Fare Detail Description</em>}</li>
+ *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
+ *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getPersonalDataConstraint <em>Personal Data Constraint</em>}</li>
+ *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getReservationParameter <em>Reservation Parameter</em>}</li>
+ *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getReductionConstraint <em>Reduction Constraint</em>}</li>
+ *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getFulfillmentConstraint <em>Fulfillment Constraint</em>}</li>
+ *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getPassengerConstraint <em>Passenger Constraint</em>}</li>
+ *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getAfterSalesRule <em>After Sales Rule</em>}</li>
  * </ul>
  *
  * @generated
@@ -147,6 +167,26 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 	protected Text text;
 
 	/**
+	 * The cached value of the '{@link #getPrice() <em>Price</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrice()
+	 * @generated
+	 * @ordered
+	 */
+	protected Price price;
+
+	/**
+	 * The cached value of the '{@link #getRegionalConstraint() <em>Regional Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRegionalConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected RegionalConstraint regionalConstraint;
+
+	/**
 	 * The cached value of the '{@link #getServiceConstraint() <em>Service Constraint</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -215,6 +255,86 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected CombinationConstraint combinationConstraint;
+
+	/**
+	 * The cached value of the '{@link #getFareDetailDescription() <em>Fare Detail Description</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFareDetailDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected Text fareDetailDescription;
+
+	/**
+	 * The cached value of the '{@link #getLegacyAccountingIdentifier() <em>Legacy Accounting Identifier</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyAccountingIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected LegacyAccountingIdentifier legacyAccountingIdentifier;
+
+	/**
+	 * The cached value of the '{@link #getPersonalDataConstraint() <em>Personal Data Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPersonalDataConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected PersonalDataConstraint personalDataConstraint;
+
+	/**
+	 * The cached value of the '{@link #getReservationParameter() <em>Reservation Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReservationParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected ReservationParameter reservationParameter;
+
+	/**
+	 * The cached value of the '{@link #getReductionConstraint() <em>Reduction Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReductionConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected ReductionConstraint reductionConstraint;
+
+	/**
+	 * The cached value of the '{@link #getFulfillmentConstraint() <em>Fulfillment Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFulfillmentConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected FulfillmentConstraint fulfillmentConstraint;
+
+	/**
+	 * The cached value of the '{@link #getPassengerConstraint() <em>Passenger Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPassengerConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected PassengerConstraint passengerConstraint;
+
+	/**
+	 * The cached value of the '{@link #getAfterSalesRule() <em>After Sales Rule</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAfterSalesRule()
+	 * @generated
+	 * @ordered
+	 */
+	protected AfterSalesRule afterSalesRule;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -380,6 +500,82 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 		text = newText;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.TARGET_FARE_TEMPLATE__TEXT, oldText, text));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Price getPrice() {
+		if (price != null && price.eIsProxy()) {
+			InternalEObject oldPrice = (InternalEObject)price;
+			price = (Price)eResolveProxy(oldPrice);
+			if (price != oldPrice) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.TARGET_FARE_TEMPLATE__PRICE, oldPrice, price));
+			}
+		}
+		return price;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Price basicGetPrice() {
+		return price;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPrice(Price newPrice) {
+		Price oldPrice = price;
+		price = newPrice;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.TARGET_FARE_TEMPLATE__PRICE, oldPrice, price));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RegionalConstraint getRegionalConstraint() {
+		if (regionalConstraint != null && regionalConstraint.eIsProxy()) {
+			InternalEObject oldRegionalConstraint = (InternalEObject)regionalConstraint;
+			regionalConstraint = (RegionalConstraint)eResolveProxy(oldRegionalConstraint);
+			if (regionalConstraint != oldRegionalConstraint) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.TARGET_FARE_TEMPLATE__REGIONAL_CONSTRAINT, oldRegionalConstraint, regionalConstraint));
+			}
+		}
+		return regionalConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RegionalConstraint basicGetRegionalConstraint() {
+		return regionalConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRegionalConstraint(RegionalConstraint newRegionalConstraint) {
+		RegionalConstraint oldRegionalConstraint = regionalConstraint;
+		regionalConstraint = newRegionalConstraint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.TARGET_FARE_TEMPLATE__REGIONAL_CONSTRAINT, oldRegionalConstraint, regionalConstraint));
 	}
 
 	/**
@@ -653,6 +849,329 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Text getFareDetailDescription() {
+		if (fareDetailDescription != null && fareDetailDescription.eIsProxy()) {
+			InternalEObject oldFareDetailDescription = (InternalEObject)fareDetailDescription;
+			fareDetailDescription = (Text)eResolveProxy(oldFareDetailDescription);
+			if (fareDetailDescription != oldFareDetailDescription) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION, oldFareDetailDescription, fareDetailDescription));
+			}
+		}
+		return fareDetailDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Text basicGetFareDetailDescription() {
+		return fareDetailDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFareDetailDescription(Text newFareDetailDescription) {
+		Text oldFareDetailDescription = fareDetailDescription;
+		fareDetailDescription = newFareDetailDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION, oldFareDetailDescription, fareDetailDescription));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyAccountingIdentifier getLegacyAccountingIdentifier() {
+		return legacyAccountingIdentifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLegacyAccountingIdentifier(LegacyAccountingIdentifier newLegacyAccountingIdentifier, NotificationChain msgs) {
+		LegacyAccountingIdentifier oldLegacyAccountingIdentifier = legacyAccountingIdentifier;
+		legacyAccountingIdentifier = newLegacyAccountingIdentifier;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER, oldLegacyAccountingIdentifier, newLegacyAccountingIdentifier);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyAccountingIdentifier(LegacyAccountingIdentifier newLegacyAccountingIdentifier) {
+		if (newLegacyAccountingIdentifier != legacyAccountingIdentifier) {
+			NotificationChain msgs = null;
+			if (legacyAccountingIdentifier != null)
+				msgs = ((InternalEObject)legacyAccountingIdentifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER, null, msgs);
+			if (newLegacyAccountingIdentifier != null)
+				msgs = ((InternalEObject)newLegacyAccountingIdentifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER, null, msgs);
+			msgs = basicSetLegacyAccountingIdentifier(newLegacyAccountingIdentifier, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER, newLegacyAccountingIdentifier, newLegacyAccountingIdentifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PersonalDataConstraint getPersonalDataConstraint() {
+		if (personalDataConstraint != null && personalDataConstraint.eIsProxy()) {
+			InternalEObject oldPersonalDataConstraint = (InternalEObject)personalDataConstraint;
+			personalDataConstraint = (PersonalDataConstraint)eResolveProxy(oldPersonalDataConstraint);
+			if (personalDataConstraint != oldPersonalDataConstraint) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.TARGET_FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT, oldPersonalDataConstraint, personalDataConstraint));
+			}
+		}
+		return personalDataConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PersonalDataConstraint basicGetPersonalDataConstraint() {
+		return personalDataConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPersonalDataConstraint(PersonalDataConstraint newPersonalDataConstraint) {
+		PersonalDataConstraint oldPersonalDataConstraint = personalDataConstraint;
+		personalDataConstraint = newPersonalDataConstraint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.TARGET_FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT, oldPersonalDataConstraint, personalDataConstraint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReservationParameter getReservationParameter() {
+		if (reservationParameter != null && reservationParameter.eIsProxy()) {
+			InternalEObject oldReservationParameter = (InternalEObject)reservationParameter;
+			reservationParameter = (ReservationParameter)eResolveProxy(oldReservationParameter);
+			if (reservationParameter != oldReservationParameter) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.TARGET_FARE_TEMPLATE__RESERVATION_PARAMETER, oldReservationParameter, reservationParameter));
+			}
+		}
+		return reservationParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReservationParameter basicGetReservationParameter() {
+		return reservationParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReservationParameter(ReservationParameter newReservationParameter) {
+		ReservationParameter oldReservationParameter = reservationParameter;
+		reservationParameter = newReservationParameter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.TARGET_FARE_TEMPLATE__RESERVATION_PARAMETER, oldReservationParameter, reservationParameter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReductionConstraint getReductionConstraint() {
+		if (reductionConstraint != null && reductionConstraint.eIsProxy()) {
+			InternalEObject oldReductionConstraint = (InternalEObject)reductionConstraint;
+			reductionConstraint = (ReductionConstraint)eResolveProxy(oldReductionConstraint);
+			if (reductionConstraint != oldReductionConstraint) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.TARGET_FARE_TEMPLATE__REDUCTION_CONSTRAINT, oldReductionConstraint, reductionConstraint));
+			}
+		}
+		return reductionConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReductionConstraint basicGetReductionConstraint() {
+		return reductionConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReductionConstraint(ReductionConstraint newReductionConstraint) {
+		ReductionConstraint oldReductionConstraint = reductionConstraint;
+		reductionConstraint = newReductionConstraint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.TARGET_FARE_TEMPLATE__REDUCTION_CONSTRAINT, oldReductionConstraint, reductionConstraint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FulfillmentConstraint getFulfillmentConstraint() {
+		if (fulfillmentConstraint != null && fulfillmentConstraint.eIsProxy()) {
+			InternalEObject oldFulfillmentConstraint = (InternalEObject)fulfillmentConstraint;
+			fulfillmentConstraint = (FulfillmentConstraint)eResolveProxy(oldFulfillmentConstraint);
+			if (fulfillmentConstraint != oldFulfillmentConstraint) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.TARGET_FARE_TEMPLATE__FULFILLMENT_CONSTRAINT, oldFulfillmentConstraint, fulfillmentConstraint));
+			}
+		}
+		return fulfillmentConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FulfillmentConstraint basicGetFulfillmentConstraint() {
+		return fulfillmentConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFulfillmentConstraint(FulfillmentConstraint newFulfillmentConstraint) {
+		FulfillmentConstraint oldFulfillmentConstraint = fulfillmentConstraint;
+		fulfillmentConstraint = newFulfillmentConstraint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.TARGET_FARE_TEMPLATE__FULFILLMENT_CONSTRAINT, oldFulfillmentConstraint, fulfillmentConstraint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PassengerConstraint getPassengerConstraint() {
+		if (passengerConstraint != null && passengerConstraint.eIsProxy()) {
+			InternalEObject oldPassengerConstraint = (InternalEObject)passengerConstraint;
+			passengerConstraint = (PassengerConstraint)eResolveProxy(oldPassengerConstraint);
+			if (passengerConstraint != oldPassengerConstraint) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.TARGET_FARE_TEMPLATE__PASSENGER_CONSTRAINT, oldPassengerConstraint, passengerConstraint));
+			}
+		}
+		return passengerConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PassengerConstraint basicGetPassengerConstraint() {
+		return passengerConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPassengerConstraint(PassengerConstraint newPassengerConstraint) {
+		PassengerConstraint oldPassengerConstraint = passengerConstraint;
+		passengerConstraint = newPassengerConstraint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.TARGET_FARE_TEMPLATE__PASSENGER_CONSTRAINT, oldPassengerConstraint, passengerConstraint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AfterSalesRule getAfterSalesRule() {
+		if (afterSalesRule != null && afterSalesRule.eIsProxy()) {
+			InternalEObject oldAfterSalesRule = (InternalEObject)afterSalesRule;
+			afterSalesRule = (AfterSalesRule)eResolveProxy(oldAfterSalesRule);
+			if (afterSalesRule != oldAfterSalesRule) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.TARGET_FARE_TEMPLATE__AFTER_SALES_RULE, oldAfterSalesRule, afterSalesRule));
+			}
+		}
+		return afterSalesRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AfterSalesRule basicGetAfterSalesRule() {
+		return afterSalesRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAfterSalesRule(AfterSalesRule newAfterSalesRule) {
+		AfterSalesRule oldAfterSalesRule = afterSalesRule;
+		afterSalesRule = newAfterSalesRule;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.TARGET_FARE_TEMPLATE__AFTER_SALES_RULE, oldAfterSalesRule, afterSalesRule));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case GtmPackage.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER:
+				return basicSetLegacyAccountingIdentifier(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -667,6 +1186,12 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 			case GtmPackage.TARGET_FARE_TEMPLATE__TEXT:
 				if (resolve) return getText();
 				return basicGetText();
+			case GtmPackage.TARGET_FARE_TEMPLATE__PRICE:
+				if (resolve) return getPrice();
+				return basicGetPrice();
+			case GtmPackage.TARGET_FARE_TEMPLATE__REGIONAL_CONSTRAINT:
+				if (resolve) return getRegionalConstraint();
+				return basicGetRegionalConstraint();
 			case GtmPackage.TARGET_FARE_TEMPLATE__SERVICE_CONSTRAINT:
 				if (resolve) return getServiceConstraint();
 				return basicGetServiceConstraint();
@@ -688,6 +1213,29 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 			case GtmPackage.TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT:
 				if (resolve) return getCombinationConstraint();
 				return basicGetCombinationConstraint();
+			case GtmPackage.TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION:
+				if (resolve) return getFareDetailDescription();
+				return basicGetFareDetailDescription();
+			case GtmPackage.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER:
+				return getLegacyAccountingIdentifier();
+			case GtmPackage.TARGET_FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT:
+				if (resolve) return getPersonalDataConstraint();
+				return basicGetPersonalDataConstraint();
+			case GtmPackage.TARGET_FARE_TEMPLATE__RESERVATION_PARAMETER:
+				if (resolve) return getReservationParameter();
+				return basicGetReservationParameter();
+			case GtmPackage.TARGET_FARE_TEMPLATE__REDUCTION_CONSTRAINT:
+				if (resolve) return getReductionConstraint();
+				return basicGetReductionConstraint();
+			case GtmPackage.TARGET_FARE_TEMPLATE__FULFILLMENT_CONSTRAINT:
+				if (resolve) return getFulfillmentConstraint();
+				return basicGetFulfillmentConstraint();
+			case GtmPackage.TARGET_FARE_TEMPLATE__PASSENGER_CONSTRAINT:
+				if (resolve) return getPassengerConstraint();
+				return basicGetPassengerConstraint();
+			case GtmPackage.TARGET_FARE_TEMPLATE__AFTER_SALES_RULE:
+				if (resolve) return getAfterSalesRule();
+				return basicGetAfterSalesRule();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -715,6 +1263,12 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 			case GtmPackage.TARGET_FARE_TEMPLATE__TEXT:
 				setText((Text)newValue);
 				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__PRICE:
+				setPrice((Price)newValue);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__REGIONAL_CONSTRAINT:
+				setRegionalConstraint((RegionalConstraint)newValue);
+				return;
 			case GtmPackage.TARGET_FARE_TEMPLATE__SERVICE_CONSTRAINT:
 				setServiceConstraint((ServiceConstraint)newValue);
 				return;
@@ -735,6 +1289,30 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 				return;
 			case GtmPackage.TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT:
 				setCombinationConstraint((CombinationConstraint)newValue);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION:
+				setFareDetailDescription((Text)newValue);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER:
+				setLegacyAccountingIdentifier((LegacyAccountingIdentifier)newValue);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT:
+				setPersonalDataConstraint((PersonalDataConstraint)newValue);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__RESERVATION_PARAMETER:
+				setReservationParameter((ReservationParameter)newValue);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__REDUCTION_CONSTRAINT:
+				setReductionConstraint((ReductionConstraint)newValue);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__FULFILLMENT_CONSTRAINT:
+				setFulfillmentConstraint((FulfillmentConstraint)newValue);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__PASSENGER_CONSTRAINT:
+				setPassengerConstraint((PassengerConstraint)newValue);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__AFTER_SALES_RULE:
+				setAfterSalesRule((AfterSalesRule)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -763,6 +1341,12 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 			case GtmPackage.TARGET_FARE_TEMPLATE__TEXT:
 				setText((Text)null);
 				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__PRICE:
+				setPrice((Price)null);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__REGIONAL_CONSTRAINT:
+				setRegionalConstraint((RegionalConstraint)null);
+				return;
 			case GtmPackage.TARGET_FARE_TEMPLATE__SERVICE_CONSTRAINT:
 				setServiceConstraint((ServiceConstraint)null);
 				return;
@@ -783,6 +1367,30 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 				return;
 			case GtmPackage.TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT:
 				setCombinationConstraint((CombinationConstraint)null);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION:
+				setFareDetailDescription((Text)null);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER:
+				setLegacyAccountingIdentifier((LegacyAccountingIdentifier)null);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT:
+				setPersonalDataConstraint((PersonalDataConstraint)null);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__RESERVATION_PARAMETER:
+				setReservationParameter((ReservationParameter)null);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__REDUCTION_CONSTRAINT:
+				setReductionConstraint((ReductionConstraint)null);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__FULFILLMENT_CONSTRAINT:
+				setFulfillmentConstraint((FulfillmentConstraint)null);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__PASSENGER_CONSTRAINT:
+				setPassengerConstraint((PassengerConstraint)null);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__AFTER_SALES_RULE:
+				setAfterSalesRule((AfterSalesRule)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -806,6 +1414,10 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 				return DATA_DESCRIPTION_EDEFAULT == null ? dataDescription != null : !DATA_DESCRIPTION_EDEFAULT.equals(dataDescription);
 			case GtmPackage.TARGET_FARE_TEMPLATE__TEXT:
 				return text != null;
+			case GtmPackage.TARGET_FARE_TEMPLATE__PRICE:
+				return price != null;
+			case GtmPackage.TARGET_FARE_TEMPLATE__REGIONAL_CONSTRAINT:
+				return regionalConstraint != null;
 			case GtmPackage.TARGET_FARE_TEMPLATE__SERVICE_CONSTRAINT:
 				return serviceConstraint != null;
 			case GtmPackage.TARGET_FARE_TEMPLATE__CARRIER_CONSTRAINT:
@@ -820,6 +1432,22 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 				return travelValidity != null;
 			case GtmPackage.TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT:
 				return combinationConstraint != null;
+			case GtmPackage.TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION:
+				return fareDetailDescription != null;
+			case GtmPackage.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER:
+				return legacyAccountingIdentifier != null;
+			case GtmPackage.TARGET_FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT:
+				return personalDataConstraint != null;
+			case GtmPackage.TARGET_FARE_TEMPLATE__RESERVATION_PARAMETER:
+				return reservationParameter != null;
+			case GtmPackage.TARGET_FARE_TEMPLATE__REDUCTION_CONSTRAINT:
+				return reductionConstraint != null;
+			case GtmPackage.TARGET_FARE_TEMPLATE__FULFILLMENT_CONSTRAINT:
+				return fulfillmentConstraint != null;
+			case GtmPackage.TARGET_FARE_TEMPLATE__PASSENGER_CONSTRAINT:
+				return passengerConstraint != null;
+			case GtmPackage.TARGET_FARE_TEMPLATE__AFTER_SALES_RULE:
+				return afterSalesRule != null;
 		}
 		return super.eIsSet(featureID);
 	}

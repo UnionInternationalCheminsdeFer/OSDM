@@ -3,6 +3,7 @@
 package Gtm.impl;
 
 import Gtm.GtmPackage;
+import Gtm.IncludedFreePassengers;
 import Gtm.PassengerCombinationConstraint;
 import Gtm.PassengerConstraint;
 import Gtm.Text;
@@ -208,7 +209,7 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int PASSENGER_WEIGHT_EDEFAULT = 0;
+	protected static final float PASSENGER_WEIGHT_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getPassengerWeight() <em>Passenger Weight</em>}' attribute.
@@ -218,7 +219,7 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected int passengerWeight = PASSENGER_WEIGHT_EDEFAULT;
+	protected float passengerWeight = PASSENGER_WEIGHT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMaxTotalPassengerWeight() <em>Max Total Passenger Weight</em>}' attribute.
@@ -228,7 +229,7 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int MAX_TOTAL_PASSENGER_WEIGHT_EDEFAULT = 0;
+	protected static final float MAX_TOTAL_PASSENGER_WEIGHT_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getMaxTotalPassengerWeight() <em>Max Total Passenger Weight</em>}' attribute.
@@ -238,7 +239,7 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected int maxTotalPassengerWeight = MAX_TOTAL_PASSENGER_WEIGHT_EDEFAULT;
+	protected float maxTotalPassengerWeight = MAX_TOTAL_PASSENGER_WEIGHT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMinTotalPassengerWeight() <em>Min Total Passenger Weight</em>}' attribute.
@@ -248,7 +249,7 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int MIN_TOTAL_PASSENGER_WEIGHT_EDEFAULT = 0;
+	protected static final float MIN_TOTAL_PASSENGER_WEIGHT_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getMinTotalPassengerWeight() <em>Min Total Passenger Weight</em>}' attribute.
@@ -258,17 +259,17 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected int minTotalPassengerWeight = MIN_TOTAL_PASSENGER_WEIGHT_EDEFAULT;
+	protected float minTotalPassengerWeight = MIN_TOTAL_PASSENGER_WEIGHT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getIncludedFreePassengers() <em>Included Free Passengers</em>}' containment reference list.
+	 * The cached value of the '{@link #getIncludedFreePassengers() <em>Included Free Passengers</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getIncludedFreePassengers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PassengerCombinationConstraint> includedFreePassengers;
+	protected IncludedFreePassengers includedFreePassengers;
 
 	/**
 	 * The cached value of the '{@link #getExcludedPassengerCombinations() <em>Excluded Passenger Combinations</em>}' containment reference list.
@@ -489,7 +490,7 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getPassengerWeight() {
+	public float getPassengerWeight() {
 		return passengerWeight;
 	}
 
@@ -498,8 +499,8 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPassengerWeight(int newPassengerWeight) {
-		int oldPassengerWeight = passengerWeight;
+	public void setPassengerWeight(float newPassengerWeight) {
+		float oldPassengerWeight = passengerWeight;
 		passengerWeight = newPassengerWeight;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.PASSENGER_CONSTRAINT__PASSENGER_WEIGHT, oldPassengerWeight, passengerWeight));
@@ -510,7 +511,7 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getMaxTotalPassengerWeight() {
+	public float getMaxTotalPassengerWeight() {
 		return maxTotalPassengerWeight;
 	}
 
@@ -519,8 +520,8 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMaxTotalPassengerWeight(int newMaxTotalPassengerWeight) {
-		int oldMaxTotalPassengerWeight = maxTotalPassengerWeight;
+	public void setMaxTotalPassengerWeight(float newMaxTotalPassengerWeight) {
+		float oldMaxTotalPassengerWeight = maxTotalPassengerWeight;
 		maxTotalPassengerWeight = newMaxTotalPassengerWeight;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.PASSENGER_CONSTRAINT__MAX_TOTAL_PASSENGER_WEIGHT, oldMaxTotalPassengerWeight, maxTotalPassengerWeight));
@@ -531,7 +532,7 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getMinTotalPassengerWeight() {
+	public float getMinTotalPassengerWeight() {
 		return minTotalPassengerWeight;
 	}
 
@@ -540,8 +541,8 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMinTotalPassengerWeight(int newMinTotalPassengerWeight) {
-		int oldMinTotalPassengerWeight = minTotalPassengerWeight;
+	public void setMinTotalPassengerWeight(float newMinTotalPassengerWeight) {
+		float oldMinTotalPassengerWeight = minTotalPassengerWeight;
 		minTotalPassengerWeight = newMinTotalPassengerWeight;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.PASSENGER_CONSTRAINT__MIN_TOTAL_PASSENGER_WEIGHT, oldMinTotalPassengerWeight, minTotalPassengerWeight));
@@ -552,11 +553,42 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<PassengerCombinationConstraint> getIncludedFreePassengers() {
-		if (includedFreePassengers == null) {
-			includedFreePassengers = new EObjectContainmentEList<PassengerCombinationConstraint>(PassengerCombinationConstraint.class, this, GtmPackage.PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS);
-		}
+	public IncludedFreePassengers getIncludedFreePassengers() {
 		return includedFreePassengers;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetIncludedFreePassengers(IncludedFreePassengers newIncludedFreePassengers, NotificationChain msgs) {
+		IncludedFreePassengers oldIncludedFreePassengers = includedFreePassengers;
+		includedFreePassengers = newIncludedFreePassengers;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS, oldIncludedFreePassengers, newIncludedFreePassengers);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIncludedFreePassengers(IncludedFreePassengers newIncludedFreePassengers) {
+		if (newIncludedFreePassengers != includedFreePassengers) {
+			NotificationChain msgs = null;
+			if (includedFreePassengers != null)
+				msgs = ((InternalEObject)includedFreePassengers).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS, null, msgs);
+			if (newIncludedFreePassengers != null)
+				msgs = ((InternalEObject)newIncludedFreePassengers).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS, null, msgs);
+			msgs = basicSetIncludedFreePassengers(newIncludedFreePassengers, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS, newIncludedFreePassengers, newIncludedFreePassengers));
 	}
 
 	/**
@@ -580,7 +612,7 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case GtmPackage.PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS:
-				return ((InternalEList<?>)getIncludedFreePassengers()).basicRemove(otherEnd, msgs);
+				return basicSetIncludedFreePassengers(null, msgs);
 			case GtmPackage.PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS:
 				return ((InternalEList<?>)getExcludedPassengerCombinations()).basicRemove(otherEnd, msgs);
 		}
@@ -660,17 +692,16 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 				setIsAncilliary((Boolean)newValue);
 				return;
 			case GtmPackage.PASSENGER_CONSTRAINT__PASSENGER_WEIGHT:
-				setPassengerWeight((Integer)newValue);
+				setPassengerWeight((Float)newValue);
 				return;
 			case GtmPackage.PASSENGER_CONSTRAINT__MAX_TOTAL_PASSENGER_WEIGHT:
-				setMaxTotalPassengerWeight((Integer)newValue);
+				setMaxTotalPassengerWeight((Float)newValue);
 				return;
 			case GtmPackage.PASSENGER_CONSTRAINT__MIN_TOTAL_PASSENGER_WEIGHT:
-				setMinTotalPassengerWeight((Integer)newValue);
+				setMinTotalPassengerWeight((Float)newValue);
 				return;
 			case GtmPackage.PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS:
-				getIncludedFreePassengers().clear();
-				getIncludedFreePassengers().addAll((Collection<? extends PassengerCombinationConstraint>)newValue);
+				setIncludedFreePassengers((IncludedFreePassengers)newValue);
 				return;
 			case GtmPackage.PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS:
 				getExcludedPassengerCombinations().clear();
@@ -722,7 +753,7 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 				setMinTotalPassengerWeight(MIN_TOTAL_PASSENGER_WEIGHT_EDEFAULT);
 				return;
 			case GtmPackage.PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS:
-				getIncludedFreePassengers().clear();
+				setIncludedFreePassengers((IncludedFreePassengers)null);
 				return;
 			case GtmPackage.PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS:
 				getExcludedPassengerCombinations().clear();
@@ -762,7 +793,7 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 			case GtmPackage.PASSENGER_CONSTRAINT__MIN_TOTAL_PASSENGER_WEIGHT:
 				return minTotalPassengerWeight != MIN_TOTAL_PASSENGER_WEIGHT_EDEFAULT;
 			case GtmPackage.PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS:
-				return includedFreePassengers != null && !includedFreePassengers.isEmpty();
+				return includedFreePassengers != null;
 			case GtmPackage.PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS:
 				return excludedPassengerCombinations != null && !excludedPassengerCombinations.isEmpty();
 		}

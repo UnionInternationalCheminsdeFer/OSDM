@@ -3,6 +3,7 @@
 package Gtm.impl;
 
 import Gtm.CurrencyPrice;
+import Gtm.DataSource;
 import Gtm.GtmPackage;
 import Gtm.Price;
 
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link Gtm.impl.PriceImpl#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.impl.PriceImpl#getCurrencies <em>Currencies</em>}</li>
+ *   <li>{@link Gtm.impl.PriceImpl#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,6 +68,26 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price {
 	 * @ordered
 	 */
 	protected EList<CurrencyPrice> currencies;
+
+	/**
+	 * The default value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final DataSource DATA_SOURCE_EDEFAULT = DataSource.MANUAL;
+
+	/**
+	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected DataSource dataSource = DATA_SOURCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,6 +146,27 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataSource(DataSource newDataSource) {
+		DataSource oldDataSource = dataSource;
+		dataSource = newDataSource == null ? DATA_SOURCE_EDEFAULT : newDataSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.PRICE__DATA_SOURCE, oldDataSource, dataSource));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -145,6 +188,8 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price {
 				return getId();
 			case GtmPackage.PRICE__CURRENCIES:
 				return getCurrencies();
+			case GtmPackage.PRICE__DATA_SOURCE:
+				return getDataSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -165,6 +210,9 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price {
 				getCurrencies().clear();
 				getCurrencies().addAll((Collection<? extends CurrencyPrice>)newValue);
 				return;
+			case GtmPackage.PRICE__DATA_SOURCE:
+				setDataSource((DataSource)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -183,6 +231,9 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price {
 			case GtmPackage.PRICE__CURRENCIES:
 				getCurrencies().clear();
 				return;
+			case GtmPackage.PRICE__DATA_SOURCE:
+				setDataSource(DATA_SOURCE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -199,6 +250,8 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price {
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case GtmPackage.PRICE__CURRENCIES:
 				return currencies != null && !currencies.isEmpty();
+			case GtmPackage.PRICE__DATA_SOURCE:
+				return dataSource != DATA_SOURCE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -215,6 +268,8 @@ public class PriceImpl extends MinimalEObjectImpl.Container implements Price {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (id: ");
 		result.append(id);
+		result.append(", dataSource: ");
+		result.append(dataSource);
 		result.append(')');
 		return result.toString();
 	}
