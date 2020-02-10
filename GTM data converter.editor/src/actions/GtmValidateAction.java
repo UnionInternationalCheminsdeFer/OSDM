@@ -1,8 +1,12 @@
-package actions;
+package Gtm.actions;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.edit.ui.action.ValidateAction;
-import Gtm.presentation.GtmProblemView;
+
+import Gtm.problems.GtmProblemView;
+
+
+
 
 public class GtmValidateAction extends ValidateAction {
 	

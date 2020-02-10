@@ -1,5 +1,6 @@
-package actions;
+package Gtm.actions;
 
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -7,7 +8,7 @@ import org.eclipse.swt.widgets.MessageBox;
 
 import Gtm.Country;
 import Gtm.GTMTool;
-import actions.converter.ConverterUtil;
+import Gtm.actions.converter.ConverterUtil;
 
 
 public class ConvertLegacy2GtmAction extends BasicGtmAction {
@@ -31,7 +32,8 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 		@Override
 		protected void runAction(GTMTool tool) {
 			
-			
+
+			EditingDomain domain = GtmUtils.getActiveDomain();
 			
 			Country country = tool.getConversionFromLegacy().getParams().getCountry();
 			if (country == null) {
@@ -43,17 +45,21 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 				return;
 			}
 			
-			int deleted = ConverterUtil.deleteOldConversionResults(tool, editingDomainProvider.getEditingDomain());
+			ConverterUtil converter = new ConverterUtil();
+			
+			converter.prepare(tool);
+			
+			int deleted = ConverterUtil.deleteOldConversionResults(tool, domain);
 			GtmUtils.writeConsoleInfog("old series conversions deleted: " + Integer.toString(deleted));
 			
-			int added = ConverterUtil.convertBorderPoints(tool, editingDomainProvider.getEditingDomain());
+			int added = converter.convertBorderPoints(tool,  domain);
 			GtmUtils.writeConsoleInfog("border points converted: " + Integer.toString(added));			
 			
-			added = ConverterUtil.convertSalesAvailabilities(tool, editingDomainProvider.getEditingDomain());
+			added = converter.convertSalesAvailabilities(tool,  domain);
 			GtmUtils.writeConsoleInfog("sales avialabiliy ranges converted: " + Integer.toString(added));					
 			
 			
-			added = ConverterUtil.convert(tool, editingDomainProvider.getEditingDomain());
+			added = converter.convert(tool,  domain);
 			GtmUtils.writeConsoleInfog("series converted: " + Integer.toString(added));
 
 		}

@@ -1,4 +1,4 @@
-package actions;
+package Gtm.actions;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -209,6 +210,8 @@ public class ImportStationsAction extends BasicGtmAction {
 		protected void runAction(GTMTool tool) {
 			Stations newStations = readStationsByLine(tool);
 			
+			EditingDomain domain = GtmUtils.getActiveDomain();
+			
 			CompoundCommand command = new CompoundCommand();
 			 
 			int addedStations = 0;
@@ -219,17 +222,17 @@ public class ImportStationsAction extends BasicGtmAction {
 				Station station =  tool.getCodeLists().getStations().findStation(newStation.getCountry().getCode(), newStation.getCode());
 				
 				if (station == null) {
-					command.append(new AddCommand(editingDomainProvider.getEditingDomain(), tool.getCodeLists().getStations().getStations(), newStation));
+					command.append(new AddCommand(domain, tool.getCodeLists().getStations().getStations(), newStation));
                     addedStations++;
 				} else {
-					command.append(new SetCommand(editingDomainProvider.getEditingDomain(), station,GtmPackage.Literals.STATION__NAME, newStation.getName()));
+					command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__NAME, newStation.getName()));
 					updatedStations++;
 				}
 			
 			}
 			
 			if (command != null & !command.isEmpty() & command.canExecute()) {
-				editingDomainProvider.getEditingDomain().getCommandStack().execute(command);
+				domain.getCommandStack().execute(command);
 				GtmUtils.writeConsoleInfog("MERITS stations added: (" + Integer.toString(addedStations)+")" );
 				GtmUtils.writeConsoleInfog("MERITS stations updated: (" + Integer.toString(updatedStations) + ")" );
 			}

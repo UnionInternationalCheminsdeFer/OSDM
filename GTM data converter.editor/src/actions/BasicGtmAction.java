@@ -1,7 +1,7 @@
-package actions;
+package Gtm.actions;
 
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
@@ -10,7 +10,6 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.actions.BaseSelectionListenerAction;
 
 import Gtm.GTMTool;
-import Gtm.Legacy108;
 
 
 public abstract class BasicGtmAction extends BaseSelectionListenerAction {
@@ -30,11 +29,10 @@ public abstract class BasicGtmAction extends BaseSelectionListenerAction {
 		}
 		
 		protected void run(IStructuredSelection structuredSelection) {
+
+			GTMTool tool = GtmUtils.getGtmTool();
 			
-			if (editingDomainProvider == null) return;
-
-
-			GTMTool tool = GtmUtils.getGtmTool(editingDomainProvider);
+			EditingDomain domain = GtmUtils.getActiveDomain();
 			
 			if (tool == null) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
@@ -43,10 +41,10 @@ public abstract class BasicGtmAction extends BaseSelectionListenerAction {
 				return;
 			}
 			
-			CompoundCommand preparationCommand = GtmUtils.getPreparationCommand(tool, editingDomainProvider.getEditingDomain());
+			CompoundCommand preparationCommand = GtmUtils.getPreparationCommand(tool, domain);
 			
 			if (preparationCommand != null && !preparationCommand.isEmpty()) {
-				editingDomainProvider.getEditingDomain().getCommandStack().execute(preparationCommand);
+				domain.getCommandStack().execute(preparationCommand);
 			}
 			
 			runAction(tool);
@@ -58,9 +56,7 @@ public abstract class BasicGtmAction extends BaseSelectionListenerAction {
 
 		protected boolean checkSelection(IStructuredSelection selection)
 		{
-			if (editingDomainProvider == null) return false;
-
-			if (GtmUtils.getGtmTool(editingDomainProvider) == null) return false;
+			if (GtmUtils.getGtmTool() == null) return false;
 			
 			return true;
 		}

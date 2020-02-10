@@ -1,4 +1,4 @@
-package actions;
+package Gtm.actions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,6 +7,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -30,6 +31,8 @@ public class ImportCarriersAction extends ImportCsvDataAction {
 		BufferedReader br = super.getReader("import carrier codes (.csv)");
 		
 		CompoundCommand command =  new CompoundCommand();
+		
+		EditingDomain domain = GtmUtils.getActiveDomain();
 		    	
     	Carriers newCarriers = GtmFactory.eINSTANCE.createCarriers();
 
@@ -66,13 +69,13 @@ public class ImportCarriersAction extends ImportCsvDataAction {
         	Carrier carrier = tool.getCodeLists().getCarriers().findCarrier(newCarrier.getCode());
         	
         	if (carrier == null) {
-        		Command cmd2 = new AddCommand(editingDomainProvider.getEditingDomain(), tool.getCodeLists().getCarriers().getCarriers(), newCarrier);
+        		Command cmd2 = new AddCommand(domain, tool.getCodeLists().getCarriers().getCarriers(), newCarrier);
         		command.append(cmd2);
         		added++;
         	} else {
-        		Command cmd2 = new SetCommand(editingDomainProvider.getEditingDomain(), carrier, GtmPackage.Literals.CARRIER__NAME, newCarrier.getName());
+        		Command cmd2 = new SetCommand(domain, carrier, GtmPackage.Literals.CARRIER__NAME, newCarrier.getName());
                 command.append(cmd2);
-        		Command cmd3 = new SetCommand(editingDomainProvider.getEditingDomain(), carrier, GtmPackage.Literals.CARRIER__SHORT_NAME, newCarrier.getShortName());
+        		Command cmd3 = new SetCommand(domain, carrier, GtmPackage.Literals.CARRIER__SHORT_NAME, newCarrier.getShortName());
                 command.append(cmd3); 
                 updated++;
            	}
@@ -80,7 +83,7 @@ public class ImportCarriersAction extends ImportCsvDataAction {
         }
         
         if (command != null && !command.isEmpty()) {
-        	editingDomainProvider.getEditingDomain().getCommandStack().execute(command);
+        	domain.getCommandStack().execute(command);
 			GtmUtils.writeConsoleInfog("carriers added: (" + Integer.toString(added)+")" );
 			GtmUtils.writeConsoleInfog("carriers updated: (" + Integer.toString(updated) + ")" );
         }		

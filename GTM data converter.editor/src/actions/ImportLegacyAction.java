@@ -1,4 +1,4 @@
-package actions;
+package Gtm.actions;
 
 import java.io.BufferedReader;
 import java.io.File;

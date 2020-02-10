@@ -1,7 +1,8 @@
-package actions.converter;
+package Gtm.actions.converter;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.TimeZone;
@@ -12,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import Gtm.AlternativeRoute;
@@ -28,6 +30,7 @@ import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.Legacy108Station;
 import Gtm.LegacyAccountingIdentifier;
+import Gtm.LegacyBorderPointMapping;
 import Gtm.LegacyCalculationType;
 import Gtm.LegacyDistanceFare;
 import Gtm.LegacyRouteFare;
@@ -47,9 +50,19 @@ import Gtm.TargetFareTemplate;
 import Gtm.TaxScope;
 import Gtm.VATDetail;
 import Gtm.ViaStation;
-import actions.GtmUtils;
+import Gtm.actions.GtmUtils;
 
 public class ConverterUtil {
+	
+	
+	
+	private HashMap<Integer,Station> localStations = null;
+	private HashMap<Integer,Legacy108Station> legacyStations = null;
+	
+	public ConverterUtil() {
+		localStations = new HashMap<Integer,Station>();
+		legacyStations = new HashMap<Integer,Legacy108Station>();
+	}
 	
 	public static int deleteOldConversionResults(GTMTool tool, EditingDomain editingDomain) {
 		int deleted = 0;
@@ -57,35 +70,35 @@ public class ConverterUtil {
 		CompoundCommand command = new CompoundCommand();
 		
 		for (FareElement fare : tool.getGeneralTariffModel().getFareStructure().getFareElements().getFareElements()) {
-			if (fare.getDataSource() == DataSource.GENERATED) {
-				command.append(DeleteCommand.create(editingDomain, fare) );
+			if (fare.getDataSource() == DataSource.CONVERTED) {
+				command.append(RemoveCommand.create(editingDomain, fare) );
 			}
 		}
 		for (RegionalConstraint region : tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints().getRegionalConstraints()) {
-			if (region.getDataSource() == DataSource.GENERATED) {
-				command.append(DeleteCommand.create(editingDomain, region) );
+			if (region.getDataSource() == DataSource.CONVERTED) {
+				command.append(RemoveCommand.create(editingDomain, region) );
 			}
 		}
 		for (Price price : tool.getGeneralTariffModel().getFareStructure().getPrices().getPrices()) {
-			if (price.getDataSource() == DataSource.GENERATED) {
+			if (price.getDataSource() == DataSource.CONVERTED) {
 				command.append(DeleteCommand.create(editingDomain, price) );
 			}
 		}		
 		
 		for (ConnectionPoint point : tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().getConnectionPoints()) {
-			if (point.getDataSource() == DataSource.GENERATED) {
+			if (point.getDataSource() == DataSource.CONVERTED) {
 				command.append(DeleteCommand.create(editingDomain, point) );
 			}
 		}			
 		
 		for (SalesAvailabilityConstraint sa : tool.getGeneralTariffModel().getFareStructure().getSalesAvailabilityConstraints().getSalesAvailabilityConstraints()) {
-			if (sa.getDataSource() == DataSource.GENERATED) {
+			if (sa.getDataSource() == DataSource.CONVERTED) {
 				command.append(DeleteCommand.create(editingDomain, sa) );
 			}
 		}		
 		
 		for (Calendar sa : tool.getGeneralTariffModel().getFareStructure().getCalendars().getCalendars()) {
-			if (sa.getDataSource() == DataSource.GENERATED) {
+			if (sa.getDataSource() == DataSource.CONVERTED) {
 				command.append(DeleteCommand.create(editingDomain, sa) );
 			}
 		}	
@@ -105,7 +118,7 @@ public class ConverterUtil {
 	}
 
 
-	public static int convert(GTMTool tool, EditingDomain editingDomain) {
+	public int convert(GTMTool tool, EditingDomain editingDomain) {
 		
 		Country country = tool.getConversionFromLegacy().getParams().getCountry();
 		if (country == null) {
@@ -135,11 +148,28 @@ public class ConverterUtil {
 				//continue
 			}
 			
+			CompoundCommand command = new CompoundCommand();
+			if (regionalConstraint != null) {
+				command.append(new AddCommand(editingDomain, tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints().getRegionalConstraints(), regionalConstraint) );
+			}
+			if (regionalConstraintR != null) {
+				command.append(new AddCommand(editingDomain, tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints().getRegionalConstraints(), regionalConstraintR) );
+			}
+			
+			if (!command.isEmpty() && command.canExecute()) {
+				editingDomain.getCommandStack().execute(command);
+			} else {
+				String message = "error in series: " + Integer.toString(series.getNumber()) + " conversion of this series failed";
+				GtmUtils.writeConsoleError(message);
+			}
+			
 			
 			for (TargetFareTemplate fareTemplate: tool.getConversionFromLegacy().getParams().getLegacyTargetFares().getTargetFares()) {
 				
 				try {
-					convertSeries(tool, series, fareTemplate, editingDomain, added,validityRanges, regionalConstraint, regionalConstraintR,priceList);
+					for (DateRange dateRange : validityRanges) {
+						convertSeriesToFares(tool, series, fareTemplate,editingDomain,added, dateRange, regionalConstraint,regionalConstraintR ,priceList);
+					}
 					added++;
 				} catch (ConverterException e) {
 					// error already logged
@@ -149,20 +179,13 @@ public class ConverterUtil {
 		return added;
 	}
 
-	public static void convertSeries(GTMTool tool, LegacySeries series, TargetFareTemplate fareTemplate, EditingDomain domain, int number, ArrayList<DateRange>validityRanges,RegionalConstraint  regionalConstraint,RegionalConstraint  regionalConstraintR, ArrayList<Price> priceList) throws ConverterException{
 
-		
-		for (DateRange dateRange : validityRanges) {
-			convertSeriesToFares(tool, series, fareTemplate,domain,number, dateRange, regionalConstraint,regionalConstraintR ,priceList);
-		}
-		
-	}
 	
 	public static void convertSeriesToFares(GTMTool tool, LegacySeries series, TargetFareTemplate fareTemplate, EditingDomain domain, int number,DateRange dateRange, RegionalConstraint regionalConstraint, RegionalConstraint regionalConstraintR, ArrayList<Price> priceList) throws ConverterException{
 		
 		try {
 			
-			Price price = convertSeriesToPrice(tool, series,fareTemplate, tool.getConversionFromLegacy().getParams().getCountry(), dateRange);
+			Price price = convertSeriesToPrice(tool, series,fareTemplate, tool.getConversionFromLegacy().getParams().getCountry(), dateRange, false);
 			
 			Price oldPrice = findPrice(price, priceList);
 			boolean createNewPrice = false;
@@ -180,29 +203,30 @@ public class ConverterUtil {
 			FareElement fareElement = convertSeriesToFare(tool, series, fareTemplate, 1);
 			fareElement.setPrice(price);
 			fareElement.setRegionalConstraint(regionalConstraint);
-			
 			fareElement.setSalesAvailability(findSalesAvailability(tool,dateRange));
-			
 			fareElement.getLegacyAccountingIdentifier().setTariffId(number);
 			
-			
-			Price priceR = convertSeriesToPrice(tool, series,fareTemplate, tool.getConversionFromLegacy().getParams().getCountry(), dateRange);
-			Price oldPriceR = findPrice(priceR, priceList);
+			Price priceR = null;
+					
+			priceR = convertSeriesToPrice(tool, series,fareTemplate, tool.getConversionFromLegacy().getParams().getCountry(), dateRange, true);
+
+			FareElement fareElementR =  null;
 			boolean createNewPriceR = false;
-			if (oldPriceR == null) {
-				createNewPriceR = true;
-			} else {
-				priceR=oldPriceR;
-			}			
 			
-			
-			
-			
-			FareElement fareElementR = convertSeriesToFare(tool, series, fareTemplate, 2);
-			fareElementR.getLegacyAccountingIdentifier().setTariffId(number);
-			fareElementR.setPrice(priceR);
-			fareElementR.setRegionalConstraint(regionalConstraintR);
-			
+			if (priceR != null) {
+				Price oldPriceR = findPrice(priceR, priceList);
+				if (oldPriceR == null) {
+					createNewPriceR = true;
+				} else {
+					priceR=oldPriceR;
+				}	
+
+				fareElementR = convertSeriesToFare(tool, series, fareTemplate, 2);
+				fareElementR.getLegacyAccountingIdentifier().setTariffId(number);
+				fareElementR.setPrice(priceR);
+				fareElementR.setRegionalConstraint(regionalConstraintR);
+				
+			}
 			//get service constraints
 			ServiceConstraint serviceConstraint = null;
 			for (LegacyViastation via : series.getViastations()) {
@@ -210,42 +234,37 @@ public class ConverterUtil {
 			}
 			if (serviceConstraint != null) {
 				fareElement.setServiceConstraint(serviceConstraint);
-				fareElementR.setServiceConstraint(serviceConstraint);
+				if (fareElementR != null) {
+					fareElementR.setServiceConstraint(serviceConstraint);
+				}
 			}
 			
 			CompoundCommand command = new CompoundCommand();
-			if (regionalConstraint != null) {
-				command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints().getRegionalConstraints(), regionalConstraint) );
-			}
-			if (regionalConstraintR != null) {
-				command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints().getRegionalConstraints(), regionalConstraintR) );
-			}
-			if (price != null && createNewPrice) {
-				command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getPrices().getPrices(), price) );
-			}
-			if (priceR != null && createNewPriceR) {
-				command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getPrices().getPrices(), priceR) );
-			}
-			if (fareElement != null) {
+			
+			if (price != null && fareElement != null) {
+				if (createNewPrice) {
+					command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getPrices().getPrices(), price) );
+				}
 				command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getFareElements().getFareElements(), fareElement) );			
 			}
-			if (fareElementR != null) {
+			if (priceR != null && fareElementR != null) {
+				if (createNewPriceR) {
+					command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getPrices().getPrices(), priceR) );
+				}
 				command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getFareElements().getFareElements(), fareElementR) );			
 			}
 			
 			if (!command.isEmpty() && command.canExecute()) {
 				domain.getCommandStack().execute(command);
 			} else {
-				String message = "error in series: " + Integer.toString(series.getNumber()) + " conversion of this series failed";
+				String message = "error in series: " + Integer.toString(series.getNumber()) + " conversion of price failed";
 				GtmUtils.writeConsoleError(message);
-				throw new ConverterException(message);
 			}
 			
 			
 		} catch (ConverterException e) {
 			String message = "error in series: " + Integer.toString(series.getNumber()) + " conversion of this series failed";
 			GtmUtils.writeConsoleError(message);
-			throw new ConverterException(message);
 		}
 		return;
 	
@@ -320,7 +339,7 @@ public class ConverterUtil {
 	}
 
 
-	private static RegionalConstraint convertSeriesToReversedRegionalConstraint(GTMTool tool, LegacySeries series) throws ConverterException {
+	private RegionalConstraint convertSeriesToReversedRegionalConstraint(GTMTool tool, LegacySeries series) throws ConverterException {
 		RegionalConstraint constraint = GtmFactory.eINSTANCE.createRegionalConstraint();
 		constraint.setDataSource(DataSource.CONVERTED);
 		constraint.setDistance( (series.getDistance1() + series.getDistance2())/2 );
@@ -388,7 +407,9 @@ public class ConverterUtil {
 
 
 		ViaStation viaDeparture = GtmFactory.eINSTANCE.createViaStation();
-		viaDeparture.setStation(departureStation);
+		if (departureStation != null) {
+			viaDeparture.setStation(departureStation);
+		}
 		
 		mainViaStation.getRoute().getStations().add(viaDeparture);
 
@@ -454,15 +475,18 @@ public class ConverterUtil {
 		
 
 		Station arrival = getStation(tool, country,series.getFromStation());
-		if (arrival == null) {
+		if (arrival != null) {
 			//replacement of border point needed?
-			return null;
-		} else {
 			ViaStation via = GtmFactory.eINSTANCE.createViaStation();
 			via.setStation(arrival);
+			via.setDataDescription(via.getDescription());
 			mainRoute.add(via);
 		}
-
+		
+		setDescription(mainViaStation);
+		
+		constraint.setDataDescription(mainViaStation.getDataDescription());
+		
 		return constraint;
 	}
 	
@@ -475,6 +499,12 @@ public class ConverterUtil {
 
 
 	public static ConnectionPoint findConnectionPointviaBorderPointCode (GTMTool tool, int borderpointcode) {
+		LegacyBorderPointMapping map = tool.getConversionFromLegacy().getParams().getLegacyBorderPointMappings().getMappingByBorderPointCode(borderpointcode);
+		if (map != null && map.getConnectionPoint() != null) {
+			return map.getConnectionPoint();
+		}
+		
+		
 		if (tool.getGeneralTariffModel().getFareStructure() == null) return null;
 		if (tool.getGeneralTariffModel().getFareStructure() == null) return null;
 		if (tool.getGeneralTariffModel().getFareStructure().getConnectionPoints() == null) return null;
@@ -484,13 +514,14 @@ public class ConverterUtil {
 				return point;
 			}
 		}
+
 		return null;
 		
 		
 	}
 
 
-	public static RegionalConstraint convertSeriesToRegionalConstraint(GTMTool tool, LegacySeries series) throws ConverterException{
+	public RegionalConstraint convertSeriesToRegionalConstraint(GTMTool tool, LegacySeries series) throws ConverterException{
 		
 		RegionalConstraint constraint = GtmFactory.eINSTANCE.createRegionalConstraint();
 		constraint.setDataSource(DataSource.CONVERTED);
@@ -499,11 +530,7 @@ public class ConverterUtil {
 
 		
 		Country country = tool.getConversionFromLegacy().getParams().getCountry();
-		if (country == null) {
-			String message = "the country is missing in the conversion parameter";
-			GtmUtils.writeConsoleError(message);
-			throw new ConverterException(message);
-		}
+
 		
 		region.setSeqNb(1);
 		constraint.getRegionalValidity().add(region);
@@ -517,14 +544,12 @@ public class ConverterUtil {
 		if (departureStation == null) {
 			String message = "error in series: " + Integer.toString(series.getNumber()) + " - station unknown: " + Integer.toString(series.getToStation()) ;
 			GtmUtils.writeConsoleError(message);
-			throw new ConverterException(message);
 		}
 		
 		Station arrivalStation = getStation(tool, country, series.getToStation());
 		if (arrivalStation == null) {
 			String message = "error in series: " + Integer.toString(series.getNumber()) + " - station unknown: " + Integer.toString(series.getFromStation()) ;
 			GtmUtils.writeConsoleError(message);
-			throw new ConverterException(message);
 		}
 		
 		//find connection points
@@ -555,9 +580,9 @@ public class ConverterUtil {
 		//create route
 		
 		ViaStation viaDeparture = GtmFactory.eINSTANCE.createViaStation();
-		viaDeparture.setStation(departureStation);
-		
-		
+		if (departureStation != null) {
+			viaDeparture.setStation(departureStation);
+		}
 		mainViaStation.getRoute().getStations().add(viaDeparture);
 
 		int mainRoutePosition = 1;
@@ -620,14 +645,39 @@ public class ConverterUtil {
 			}
 		}
 		
-
-		ViaStation via = GtmFactory.eINSTANCE.createViaStation();
-		via.setStation(arrivalStation);
-		mainRoute.add(via);
+		if (arrivalStation != null) {
+			ViaStation via = GtmFactory.eINSTANCE.createViaStation();
+			mainRoute.add(via);
+		}
+		
+		setDescription(mainViaStation);
+		
+		constraint.setDataDescription(mainViaStation.getDataDescription());
+		
 
 		return constraint;
 	}
 	
+	private void setDescription(ViaStation via) {
+		if (via == null) return;
+		via.setDataDescription(via.getDescription());
+		if (via.getRoute() != null && via.getRoute().getStations() != null &&  !via.getRoute().getStations().isEmpty())
+		for (ViaStation v1 : via.getRoute().getStations() ) {
+			v1.setDataDescription(v1.getDescription());
+		}
+		if (via.getAlternativeRoutes() != null && !via.getAlternativeRoutes().isEmpty()) {
+			for (AlternativeRoute ar :  via.getAlternativeRoutes()) {
+				if (ar.getStations() != null && !ar.getStations().isEmpty()) {
+				  for (ViaStation v2: ar.getStations()){
+					  v2.setDataDescription(v2.getDescription());
+				  }
+				}
+			}
+		}
+		
+		
+	}
+
 	private static ConnectionPoint findConnectionPoint(GTMTool tool, int borderpointcode, Station station) {
 		ConnectionPoint point = findConnectionPointviaBorderPointCode(tool,borderpointcode);
 		if (point != null) return point;
@@ -637,7 +687,7 @@ public class ConverterUtil {
 	}
 
 
-	private static void addToRoute(EList<ViaStation> lastRoute, LegacyViastation legacyViaStation, GTMTool tool,
+	private void addToRoute(EList<ViaStation> lastRoute, LegacyViastation legacyViaStation, GTMTool tool,
 			Country country) throws ConverterException {
 		ViaStation via = GtmFactory.eINSTANCE.createViaStation();
 		Station station = getStation(tool, country,legacyViaStation.getCode());
@@ -647,7 +697,7 @@ public class ConverterUtil {
 		} 
 	}
 
-	public static Station getStation(GTMTool tool, Country country, int localCode) throws ConverterException {
+	public Station getStation(GTMTool tool, Country country, int localCode) throws ConverterException {
 		
 		//mapped station?
 		
@@ -659,28 +709,31 @@ public class ConverterUtil {
 		if (constraint != null){
 			return null;
 		}
-		station = tool.getCodeLists().getStations().findStation(country.getCode(), localCode);
 		
+		//borderpoint?	
+		if (tool.getConversionFromLegacy().getParams().getLegacyBorderPointMappings() != null) {
+			LegacyBorderPointMapping map = tool.getConversionFromLegacy().getParams().getLegacyBorderPointMappings().getMappingByBorderPointCode(localCode);
+			if (map != null) {
+				station = map.getStation();
+			}
+		}
+		
+		//real station
+		station = localStations.get(Integer.valueOf(localCode));
+
 		if (station == null) {
-			String message = "station not foundstation unknown: " + Integer.toString(localCode) ;
+			String message = "station not found station unknown: " + Integer.toString(localCode) ;
 			GtmUtils.writeConsoleError(message);
-			throw new ConverterException(message);
 		}
 		return station;
 	}
 	
 
-	public static Price convertSeriesToPrice(GTMTool tool, LegacySeries series, TargetFareTemplate fareTemplate, Country country, DateRange dateRange) throws ConverterException{
+	public static Price convertSeriesToPrice(GTMTool tool, LegacySeries series, TargetFareTemplate fareTemplate, Country country, DateRange dateRange, boolean returnFare) throws ConverterException{
 		
 		Price price = GtmFactory.eINSTANCE.createPrice();
 		price.setDataSource(DataSource.CONVERTED);
-		
-		boolean returnFare = false;
-		if (fareTemplate.getTravelValidity() != null &&
-			fareTemplate.getTravelValidity().getReturnConstraint()!= null) {
-			returnFare = true;
-		}
-		
+			
 		try {
 			Float amount = null;
 			//TODO special logic for zero price
@@ -724,26 +777,33 @@ public class ConverterUtil {
 		if (series.getPricetype() == LegacyCalculationType.ROUTE_BASED) {
 			
 			for (LegacyRouteFare fare : tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares().getRouteFare()){
-				if ( (     fare.getValidFrom().before(dateRange.getStartDate())
-						|| fare.getValidFrom().equals(dateRange.getStartDate()) )
-					&& ( fare.getValidUntil().after(dateRange.getEndDate())
-					   ||fare.getValidUntil().equals(dateRange.getEndDate()) ) )  {
-				
-					if (fare.getSeriesNumber() == series.getNumber()) {
-						if (travelClass == 1) {
+			
+				if (fare.getSeriesNumber() == series.getNumber() 
+						&& ( fare.getValidFrom().before(dateRange.getStartDate())
+								|| fare.getValidFrom().equals(dateRange.getStartDate()) )
+						&& ( fare.getValidUntil().after(dateRange.getEndDate())
+							   ||fare.getValidUntil().equals(dateRange.getEndDate()) ) )  {
+					if (travelClass == 1) {
 							if (returnFare) {							
+								if (fare.getReturnFare1st() == fare.getFare1st() * 2 ) {
+									//no real return fare
+									return null;
+								}
 								return ((float) fare.getReturnFare1st())/200; 
 							} else {
 								return ((float) fare.getFare1st())/100; 
 							}
-						} else {
+					} else {
 							if (returnFare) {
+								if (fare.getReturnFare2nd() == fare.getFare2nd() * 2 ) {
+									//no real return fare
+									return null;
+								}
 								return ((float) fare.getReturnFare2nd())/200; 			
 							} else {
 								return ((float) fare.getFare2nd())/100; 			
 							}
-						}
-					}	
+					}
 				}
 			}
 		}  else {
@@ -786,6 +846,7 @@ public class ConverterUtil {
 	public static FareElement convertSeriesToFare(GTMTool tool, LegacySeries series, TargetFareTemplate template, int direction) throws ConverterException{
 		
 		FareElement fare = GtmFactory.eINSTANCE.createFareElement();
+		fare.setDataSource(DataSource.CONVERTED);
 		fare.setAfterSalesRule(template.getAfterSalesRule());
 		fare.setCarrierConstraint(template.getCarrierConstraint());
 		fare.setCombinationConstraint(template.getCombinationConstraint());
@@ -795,9 +856,9 @@ public class ConverterUtil {
 		
 		LegacyAccountingIdentifier legacyAccountingIdentifier = GtmFactory.eINSTANCE.createLegacyAccountingIdentifier();
 		legacyAccountingIdentifier.setSeriesId(series.getNumber());
-		legacyAccountingIdentifier.setSeriesId(direction);
-					
+		legacyAccountingIdentifier.setAddSeriesId(direction);
 		fare.setLegacyAccountingIdentifier(legacyAccountingIdentifier);
+		
 		fare.setPassengerConstraint(template.getPassengerConstraint());
 		fare.setReductionConstraint(template.getReductionConstraint());
 		fare.setPersonalDataConstraint(template.getPersonalDataConstraint());
@@ -811,14 +872,11 @@ public class ConverterUtil {
 		fare.setType(template.getType());
 		
 		return fare;
-
-		
-
 		
 	}
 
 
-	public static int convertBorderPoints(GTMTool tool, EditingDomain domain) {
+	public int convertBorderPoints(GTMTool tool, EditingDomain domain) {
 		
 		List<ConnectionPoint> pointList = new ArrayList<ConnectionPoint>();
 		
@@ -886,7 +944,7 @@ public class ConverterUtil {
 	}
 
 
-	public static List<ConnectionPoint> convertSeriesToConnectionPoints(GTMTool tool, LegacySeries series) throws ConverterException{
+	public List<ConnectionPoint> convertSeriesToConnectionPoints(GTMTool tool, LegacySeries series) throws ConverterException{
 		 
 		List<ConnectionPoint> pointList = new ArrayList<ConnectionPoint>();
 			
@@ -907,6 +965,7 @@ public class ConverterUtil {
 					
 		}
 		
+		
 		if (series.getType() == LegacySeriesType.TRANSIT || series.getType() == LegacySeriesType.BORDER_DESTINATION) {
 			ConnectionPoint point = findConnectionPoint(tool, series.getToStation(), country);
 			if (point != null) {
@@ -922,7 +981,7 @@ public class ConverterUtil {
 
 
 
-	private static ConnectionPoint findConnectionPoint(GTMTool tool, int stationCode, Country country) {
+	private ConnectionPoint findConnectionPoint(GTMTool tool, int stationCode, Country country) {
 
 		
 		Station station = null;
@@ -933,7 +992,7 @@ public class ConverterUtil {
 		}
 		
 		int borderpoint = 0;
-		Legacy108Station legacyStation = tool.getConversionFromLegacy().getLegacy108().getLegacyStations().findStation(stationCode);
+		Legacy108Station legacyStation = legacyStations.get(Integer.valueOf(stationCode));
 		if (legacyStation != null) {
 			borderpoint = legacyStation.getBorderPointCode();
 		}
@@ -975,14 +1034,13 @@ public class ConverterUtil {
 			newPoint.setLegacyBorderPointCode(borderpoint);
 			newPoint.setName("incomplete -- stations need to be assigned!");
 			
-			
 			return newPoint;
 		}
 
 	}
 
 
-	public static int convertSalesAvailabilities(GTMTool tool, EditingDomain domain) {
+	public int convertSalesAvailabilities(GTMTool tool, EditingDomain domain) {
 		
 		ArrayList<DateRange> validityRanges = new ArrayList<DateRange>();
 
@@ -1034,5 +1092,25 @@ public class ConverterUtil {
 		}
 		
 		return validityRanges.size();
+	}
+
+	public void prepare(GTMTool tool) {
+		
+		int country = tool.getConversionFromLegacy().getParams().getCountry().getCode();
+		
+		for (Station station : tool.getCodeLists().getStations().getStations()) {
+			if (station.getCountry().getCode() == country) {
+				try {
+					localStations.put(Integer.parseInt(station.getCode()), station);
+				} catch (Exception e){
+					//do nothing 
+				}
+			}
+		}
+		
+		for (Legacy108Station station : tool.getConversionFromLegacy().getLegacy108().getLegacyStations().getLegacyStations()) {
+				legacyStations.put(Integer.valueOf(station.getStationCode()), station);
+		}
+
 	}
 }
