@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "id",
     "combiningServiceClasses",
     "textRef",
+    "text",
     "includesClassName",
     "reservationParameterId"
 })
@@ -39,6 +40,13 @@ public class ServiceLevelDef {
     @JsonProperty("textRef")
     @JsonPropertyDescription("id of the text describing the service level")
     private String textRef;
+    /**
+     * text
+     * 
+     */
+    @JsonProperty("text")
+    @JsonPropertyDescription("text")
+    private TextDef text;
     /**
      * indicates that the class name is included
      * 
@@ -106,6 +114,24 @@ public class ServiceLevelDef {
     }
 
     /**
+     * text
+     * 
+     */
+    @JsonProperty("text")
+    public TextDef getText() {
+        return text;
+    }
+
+    /**
+     * text
+     * 
+     */
+    @JsonProperty("text")
+    public void setText(TextDef text) {
+        this.text = text;
+    }
+
+    /**
      * indicates that the class name is included
      * 
      */
@@ -149,6 +175,10 @@ public class ServiceLevelDef {
         sb.append('=');
         sb.append(((this.textRef == null)?"<null>":this.textRef));
         sb.append(',');
+        sb.append("text");
+        sb.append('=');
+        sb.append(((this.text == null)?"<null>":this.text));
+        sb.append(',');
         sb.append("includesClassName");
         sb.append('=');
         sb.append(((this.includesClassName == null)?"<null>":this.includesClassName));
@@ -168,11 +198,12 @@ public class ServiceLevelDef {
     @Override
     public int hashCode() {
         int result = 1;
+        result = ((result* 31)+((this.reservationParameterId == null)? 0 :this.reservationParameterId.hashCode()));
+        result = ((result* 31)+((this.includesClassName == null)? 0 :this.includesClassName.hashCode()));
         result = ((result* 31)+((this.combiningServiceClasses == null)? 0 :this.combiningServiceClasses.hashCode()));
         result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
         result = ((result* 31)+((this.textRef == null)? 0 :this.textRef.hashCode()));
-        result = ((result* 31)+((this.reservationParameterId == null)? 0 :this.reservationParameterId.hashCode()));
-        result = ((result* 31)+((this.includesClassName == null)? 0 :this.includesClassName.hashCode()));
+        result = ((result* 31)+((this.text == null)? 0 :this.text.hashCode()));
         return result;
     }
 
@@ -185,7 +216,7 @@ public class ServiceLevelDef {
             return false;
         }
         ServiceLevelDef rhs = ((ServiceLevelDef) other);
-        return ((((((this.combiningServiceClasses == rhs.combiningServiceClasses)||((this.combiningServiceClasses!= null)&&this.combiningServiceClasses.equals(rhs.combiningServiceClasses)))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.textRef == rhs.textRef)||((this.textRef!= null)&&this.textRef.equals(rhs.textRef))))&&((this.reservationParameterId == rhs.reservationParameterId)||((this.reservationParameterId!= null)&&this.reservationParameterId.equals(rhs.reservationParameterId))))&&((this.includesClassName == rhs.includesClassName)||((this.includesClassName!= null)&&this.includesClassName.equals(rhs.includesClassName))));
+        return (((((((this.reservationParameterId == rhs.reservationParameterId)||((this.reservationParameterId!= null)&&this.reservationParameterId.equals(rhs.reservationParameterId)))&&((this.includesClassName == rhs.includesClassName)||((this.includesClassName!= null)&&this.includesClassName.equals(rhs.includesClassName))))&&((this.combiningServiceClasses == rhs.combiningServiceClasses)||((this.combiningServiceClasses!= null)&&this.combiningServiceClasses.equals(rhs.combiningServiceClasses))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.textRef == rhs.textRef)||((this.textRef!= null)&&this.textRef.equals(rhs.textRef))))&&((this.text == rhs.text)||((this.text!= null)&&this.text.equals(rhs.text))));
     }
 
 }

@@ -191,4 +191,5 @@ public class RequiredDatum {
         return ((((((this.dataItem == rhs.dataItem)||((this.dataItem!= null)&&this.dataItem.equals(rhs.dataItem)))&&((this.ticketHolderOnly == rhs.ticketHolderOnly)||((this.ticketHolderOnly!= null)&&this.ticketHolderOnly.equals(rhs.ticketHolderOnly))))&&((this.crossBorder == rhs.crossBorder)||((this.crossBorder!= null)&&this.crossBorder.equals(rhs.crossBorder))))&&((this.transfer == rhs.transfer)||((this.transfer!= null)&&this.transfer.equals(rhs.transfer))))&&((this.fulfillmentType == rhs.fulfillmentType)||((this.fulfillmentType!= null)&&this.fulfillmentType.equals(rhs.fulfillmentType))));
     }
 
+
 }

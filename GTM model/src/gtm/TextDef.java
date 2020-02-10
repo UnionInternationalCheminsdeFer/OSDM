@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * data type for texts with translations)
+ * text
  * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

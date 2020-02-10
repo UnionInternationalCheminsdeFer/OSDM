@@ -9,7 +9,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "id",
-    "textId",
+    "textRef",
+    "text",
     "classicClass"
 })
 public class ServiceClassDef {
@@ -26,9 +27,16 @@ public class ServiceClassDef {
      * id of the text describing the class
      * 
      */
-    @JsonProperty("textId")
+    @JsonProperty("textRef")
     @JsonPropertyDescription("id of the text describing the class")
-    private String textId;
+    private String textRef;
+    /**
+     * text
+     * 
+     */
+    @JsonProperty("text")
+    @JsonPropertyDescription("text")
+    private TextDef text;
     /**
      * FIRST,SECOND
      * 
@@ -61,18 +69,36 @@ public class ServiceClassDef {
      * id of the text describing the class
      * 
      */
-    @JsonProperty("textId")
-    public String getTextId() {
-        return textId;
+    @JsonProperty("textRef")
+    public String getTextRef() {
+        return textRef;
     }
 
     /**
      * id of the text describing the class
      * 
      */
-    @JsonProperty("textId")
-    public void setTextId(String textId) {
-        this.textId = textId;
+    @JsonProperty("textRef")
+    public void setTextRef(String textRef) {
+        this.textRef = textRef;
+    }
+
+    /**
+     * text
+     * 
+     */
+    @JsonProperty("text")
+    public TextDef getText() {
+        return text;
+    }
+
+    /**
+     * text
+     * 
+     */
+    @JsonProperty("text")
+    public void setText(TextDef text) {
+        this.text = text;
     }
 
     /**
@@ -101,9 +127,13 @@ public class ServiceClassDef {
         sb.append('=');
         sb.append(((this.id == null)?"<null>":this.id));
         sb.append(',');
-        sb.append("textId");
+        sb.append("textRef");
         sb.append('=');
-        sb.append(((this.textId == null)?"<null>":this.textId));
+        sb.append(((this.textRef == null)?"<null>":this.textRef));
+        sb.append(',');
+        sb.append("text");
+        sb.append('=');
+        sb.append(((this.text == null)?"<null>":this.text));
         sb.append(',');
         sb.append("classicClass");
         sb.append('=');
@@ -120,8 +150,9 @@ public class ServiceClassDef {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.textId == null)? 0 :this.textId.hashCode()));
         result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
+        result = ((result* 31)+((this.textRef == null)? 0 :this.textRef.hashCode()));
+        result = ((result* 31)+((this.text == null)? 0 :this.text.hashCode()));
         result = ((result* 31)+((this.classicClass == null)? 0 :this.classicClass.hashCode()));
         return result;
     }
@@ -135,7 +166,7 @@ public class ServiceClassDef {
             return false;
         }
         ServiceClassDef rhs = ((ServiceClassDef) other);
-        return ((((this.textId == rhs.textId)||((this.textId!= null)&&this.textId.equals(rhs.textId)))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.classicClass == rhs.classicClass)||((this.classicClass!= null)&&this.classicClass.equals(rhs.classicClass))));
+        return (((((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id)))&&((this.textRef == rhs.textRef)||((this.textRef!= null)&&this.textRef.equals(rhs.textRef))))&&((this.text == rhs.text)||((this.text!= null)&&this.text.equals(rhs.text))))&&((this.classicClass == rhs.classicClass)||((this.classicClass!= null)&&this.classicClass.equals(rhs.classicClass))));
     }
 
 }
