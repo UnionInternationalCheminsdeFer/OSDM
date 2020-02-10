@@ -83,6 +83,7 @@ public class ExcludedTimeRangeItemProvider extends TimeRangeItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**
