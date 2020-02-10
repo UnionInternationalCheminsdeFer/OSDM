@@ -10,11 +10,29 @@
 				"trip": {
 					"$ref": "anxilliarydefinitions.json#/definitions/TripDef"
 				},
+				"requester": {
+					"type": "object",
+					"properties": {
+						"role": {
+							"description": "DISTRIBUTOR,ALOCATOR",
+							"type": "string"
+						},
+						"company": {
+							"$ref": "file:///D:/Users/BKU/ClemensGantert/OneDrive%20-%20Deutsche%20Bahn/Anlagen/UIC/2020/nTM/Json%20SCHEMA%20Def/definitions.json#/definitions/CompanyDef"
+						},
+						"distributionChannel": {
+							"$ref": "anxilliarydefinitions.json#/definitions/DistributionChannelDef",
+							"description": "requested travel section"
+						}
+					},
+					"required": [
+						"role",
+						"distributionChannel"
+					],
+					"additionalProperties": false
+				},
 				"requestedSection": {
 					"$ref": "anxilliarydefinitions.json#/definitions/TravelSectionDef"
-				},
-				"salesChannel": {
-					"$ref": "anxilliarydefinitions.json#/definitions/SalesChannelDef"
 				},
 				"passengers": {
 					"type": "array",
@@ -53,12 +71,17 @@
 								}
 							},
 							"gender": {
-								"description": "MALE,FEMALE (only in case of night trains)",
+								"description": "MALE,FEMALE,X (only in case of night trains)",
 								"type": "string"
 							},
-							"travelerType": {
+							"type": {
 								"description": "for traveler types other than age dependent types (accompagning for PRM)",
 								"type": "string"
+							},
+							"familyChild": {
+								"description": "child accomagnied by a family member",
+								"type": "boolean",
+								"default": false
 							}
 						},
 						"required": [
@@ -68,93 +91,73 @@
 						"additionalProperties": false
 					}
 				},
-				"anxilliaries": {
+				"transportables": {
 					"type": "array",
 					"items": {
 						"type": "object",
 						"properties": {
-							"anxilliaryType": {
-								"description": "type of an anxilliary service (e.g. DOG)",
+							"type": {
+								"description": "traveller type",
 								"type": "string"
+							},
+							"car": {
+								"type": "object",
+								"properties": {
+									"weight": {
+										"type": "number"
+									},
+									"length": {
+										"type": "number"
+									},
+									"width": {
+										"type": "number"
+									},
+									"height": {
+										"type": "number"
+									},
+									"attachedItems": {
+										"description": "TODO code list according IRS90918-1",
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									}
+								},
+								"additionalProperties": false
+							},
+							"motoCycle": {
+								"type": "object",
+								"properties": {
+									"includingSideCar": {
+										"type": "boolean",
+										"default": false
+									}
+								},
+								"additionalProperties": false
+							},
+							"trailer": {
+								"type": "object",
+								"properties": {
+									"weight": {
+										"type": "number"
+									},
+									"length": {
+										"type": "number"
+									},
+									"width": {
+										"type": "number"
+									},
+									"height": {
+										"type": "number"
+									}
+								},
+								"additionalProperties": false
 							}
 						},
 						"required": [
-							"anxilliaryType"
+							"type"
 						],
-						"additionalProperties": false,
-						"oneOf": [
-							{
-								"type": "object",
-								"properties": {
-									"car": {
-										"type": "object",
-										"properties": {
-											"weight": {
-												"type": "number"
-											},
-											"length": {
-												"type": "number"
-											},
-											"width": {
-												"type": "number"
-											},
-											"height": {
-												"type": "number"
-											},
-											"attachedItems": {
-												"description": "TODO code list according IRS90918-1",
-												"type": "array",
-												"items": {
-													"type": "string"
-												}
-											}
-										},
-										"additionalProperties": false
-									}
-								},
-								"additionalProperties": false
-							},
-							{
-								"type": "object",
-								"properties": {
-									"motoCycle": {
-										"type": "object",
-										"properties": {
-											"includingSideCar": {
-												"type": "boolean",
-												"default": false
-											}
-										},
-										"additionalProperties": false
-									}
-								},
-								"additionalProperties": false
-							},
-							{
-								"type": "object",
-								"properties": {
-									"trailer": {
-										"type": "object",
-										"properties": {
-											"weight": {
-												"type": "number"
-											},
-											"length": {
-												"type": "number"
-											},
-											"width": {
-												"type": "number"
-											},
-											"height": {
-												"type": "number"
-											}
-										},
-										"additionalProperties": false
-									}
-								},
-								"additionalProperties": false
-							}
-						]
+						"additionalProperties": false
 					}
 				},
 				"promoRequest": {
@@ -171,7 +174,7 @@
 					"description": "list of available fullfillment SIP,SiD,..",
 					"type": "array",
 					"items": {
-						"type": "string"
+						"$ref": "definitions.json#/definitions/FulfillmentTypeDef"
 					}
 				},
 				"partialOfferAccepted": {
@@ -206,7 +209,6 @@
 			"required": [
 				"trip",
 				"requestedSection",
-				"salesChannel",
 				"passengers"
 			],
 			"additionalProperties": false

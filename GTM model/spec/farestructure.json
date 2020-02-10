@@ -106,17 +106,17 @@
 								"$ref": "faredefinitions.json#/definitions/PassengerConstraintDef"
 							}
 						},
-						"fareElements": {
+						"fares": {
 							"type": "array",
 							"items": {
-								"$ref": "fareitems.json#/definitions/FareElementDef"
+								"$ref": "fareitems.json#/definitions/FareDef"
 							}
 						},
-						"afterSalesRules": {
+						"afterSalesConditions": {
 							"description": "list of allowed after sales transactions and conditions",
 							"type": "array",
 							"items": {
-								"$ref": "faredefinitions.json#/definitions/AfterSalesRulesDef"
+								"$ref": "faredefinitions.json#/definitions/AfterSalesConditionDef"
 							}
 						},
 						"supportedOnlineServices": {
@@ -191,8 +191,8 @@
 						"calendars",
 						"serviceClassDefinitions",
 						"regionalConstraints",
-						"fareElements",
-						"afterSalesRules",
+						"fares",
+						"afterSalesConditions",
 						"combinationConstraints",
 						"salesAvailabilityConstraint"
 					],

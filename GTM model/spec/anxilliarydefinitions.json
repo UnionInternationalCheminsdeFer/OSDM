@@ -107,51 +107,27 @@
 			"properties": {
 				"start": {
 					"type": "object",
-					"additionalProperties": false,
-					"oneOf": [
-						{
-							"type": "object",
-							"properties": {
-								"station": {
-									"$ref": "definitions.json#/definitions/StationDef"
-								}
-							},
-							"additionalProperties": false
+					"properties": {
+						"station": {
+							"$ref": "definitions.json#/definitions/StationDef"
 						},
-						{
-							"type": "object",
-							"properties": {
-								"connectionPoint": {
-									"$ref": "faredefinitions.json#/definitions/ConnectionPointDef"
-								}
-							},
-							"additionalProperties": false
+						"connectionPoint": {
+							"$ref": "faredefinitions.json#/definitions/ConnectionPointDef"
 						}
-					]
+					},
+					"additionalProperties": false
 				},
 				"end": {
 					"type": "object",
-					"additionalProperties": false,
-					"oneOf": [
-						{
-							"type": "object",
-							"properties": {
-								"station": {
-									"$ref": "definitions.json#/definitions/StationDef"
-								}
-							},
-							"additionalProperties": false
+					"properties": {
+						"station": {
+							"$ref": "definitions.json#/definitions/StationDef"
 						},
-						{
-							"type": "object",
-							"properties": {
-								"connectionPoint": {
-									"$ref": "faredefinitions.json#/definitions/ConnectionPointDef"
-								}
-							},
-							"additionalProperties": false
+						"connectionPoint": {
+							"$ref": "faredefinitions.json#/definitions/ConnectionPointDef"
 						}
-					]
+					},
+					"additionalProperties": false
 				}
 			},
 			"required": [
@@ -160,18 +136,15 @@
 			],
 			"additionalProperties": false
 		},
-		"SalesChannelDef": {
+		"DistributionChannelDef": {
 			"type": "object",
 			"properties": {
-				"allocator": {
-					"$ref": "definitions.json#/definitions/CompanyDef"
-				},
-				"countryOfSale": {
-					"$ref": "definitions.json#/definitions/CountryDef"
-				},
 				"channelType": {
 					"description": "MACHINE,OFFICE,THIRDPARTY,WEB_MOBILE,CALL_CENTER",
 					"type": "string"
+				},
+				"countryOfSale": {
+					"$ref": "definitions.json#/definitions/CountryDef"
 				},
 				"sellerId": {
 					"description": "identification of the selling office or channel",
@@ -179,16 +152,14 @@
 				}
 			},
 			"required": [
-				"allocator",
-				"channelType",
-				"sellerId"
+				"channelType"
 			],
 			"additionalProperties": false
 		},
-		"OfferDef": {
+		"FareOfferDef": {
 			"type": "object",
 			"properties": {
-				"offerId": {
+				"fareOfferId": {
 					"description": "used to book the offer",
 					"type": "string"
 				},
@@ -201,7 +172,7 @@
 							"type": "object",
 							"properties": {
 								"fareElement": {
-									"$ref": "fareitems.json#/definitions/FareElementDef"
+									"$ref": "fareitems.json#/definitions/FareOnlineDef"
 								},
 								"passengers": {
 									"type": "array",
@@ -263,8 +234,132 @@
 				}
 			},
 			"required": [
-				"offerId"
+				"fareOfferId"
 			],
+			"additionalProperties": false
+		},
+		"OfferDef": {
+			"type": "object",
+			"properties": {
+				"offerParts": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/OfferPartDef"
+					}
+				},
+				"fareBundles": {
+					"description": "bundles of fares that provide a set of fares for all travellers on a travel section",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"travelSection": {
+								"$ref": "#/definitions/TravelSectionDef"
+							},
+							"fares": {
+								"description": "on a request of an allocator the reply should prefereable contain fares. offerPrest only incase no fare is possible parts.",
+								"type": "array",
+								"items": {
+									"$ref": "fareitems.json#/definitions/FareOnlineDef"
+								}
+							}
+						},
+						"additionalProperties": false
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"RequesterDef": {
+			"type": "object",
+			"properties": {
+				"role": {
+					"description": "DISTRIBUTOR,ALLOCATOR",
+					"type": "string"
+				},
+				"company": {
+					"$ref": "file:///D:/Users/BKU/ClemensGantert/OneDrive%20-%20Deutsche%20Bahn/Anlagen/UIC/2020/nTM/Json%20SCHEMA%20Def/definitions.json#/definitions/CompanyDef"
+				},
+				"distributionChannel": {
+					"$ref": "anxilliarydefinitions.json#/definitions/DistributionChannelDef"
+				}
+			},
+			"required": [
+				"role",
+				"company",
+				"distributionChannel"
+			],
+			"additionalProperties": false
+		},
+		"OfferPartDef": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"description": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"type": {
+					"$ref": "definitions.json#/definitions/FareTypeDef"
+				},
+				"mainServiceClass": {
+					"$ref": "faredefinitions.json#/definitions/ServiceClassDef"
+				},
+				"price": {
+					"$ref": "faredefinitions.json#/definitions/PriceDef"
+				},
+				"serviceDescription": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"regionalConstraintDescription": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"regionalConstraintPolygone": {
+					"$ref": "ticketdefinitions.json#/definitions/PolygoneDef"
+				},
+				"travelValidity": {
+					"$ref": "faredefinitions.json#/definitions/TravelValidityConstraintDef"
+				},
+				"fulfillmentMediaTypes": {
+					"description": "TODO: define content, this is not the fulfillment type of the fare as the allocator handles the securits. here we need the real formats the distributor is allowed to use",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"requiredReductions": {
+					"type": "array",
+					"items": {
+						"$ref": "faredefinitions.json#/definitions/ReductionCardDef"
+					}
+				},
+				"personalDataConstraint": {
+					"$ref": "faredefinitions.json#/definitions/PersonalDataConstraintDef"
+				},
+				"serviceConstraintDescription": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"carrierConstraintDescription": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"passengerConstraintDescription": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"afterSalesCondition": {
+					"$ref": "faredefinitions.json#/definitions/AfterSalesConditionDef"
+				},
+				"from": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"to": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"ticketHolders": {
+					"description": "number of ticket holders where passenger data are needed for seperate tickets",
+					"type": "integer"
+				}
+			},
 			"additionalProperties": false
 		}
 	}

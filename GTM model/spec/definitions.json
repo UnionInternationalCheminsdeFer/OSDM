@@ -359,6 +359,24 @@
 				"id"
 			],
 			"additionalProperties": false
+		},
+		"FareTypeDef": {
+			"type": "string",
+			"enum": [
+				"NRT, IRT, NON_RESERVATION",
+				"INTEGRATED_RESERVATION",
+				"RESERVATION",
+				"ANXILLIARY"
+			]
+		},
+		"FulfillmentTypeDef": {
+			"description": "SIP - secure paper tickets; SID - security in data (signed bar code); SIS - security in system",
+			"type": "string",
+			"enum": [
+				"SIP",
+				"SID",
+				"SIS"
+			]
 		}
 	}
 }
