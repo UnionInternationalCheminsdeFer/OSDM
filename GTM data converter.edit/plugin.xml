@@ -7,7 +7,7 @@
 <plugin>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated gtm -->
+      <!-- @generated Gtm -->
       <factory
             uri="platform:/resource/GTM%20data%20converter/model/gtm.xsd"
             class="Gtm.provider.GtmItemProviderAdapterFactory"
