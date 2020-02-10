@@ -32,7 +32,7 @@ public class FullfillmentConstraintDef {
      * 
      */
     @JsonProperty("acceptedFullfillmentTypes")
-    private List<String> acceptedFullfillmentTypes = new ArrayList<String>();
+    private List<FulfillmentTypeDef> acceptedFullfillmentTypes = new ArrayList<FulfillmentTypeDef>();
     /**
      * for SiD fulllfillment one of the listed bar codes is required
      * 
@@ -89,7 +89,7 @@ public class FullfillmentConstraintDef {
      * 
      */
     @JsonProperty("acceptedFullfillmentTypes")
-    public List<String> getAcceptedFullfillmentTypes() {
+    public List<FulfillmentTypeDef> getAcceptedFullfillmentTypes() {
         return acceptedFullfillmentTypes;
     }
 
@@ -99,7 +99,7 @@ public class FullfillmentConstraintDef {
      * 
      */
     @JsonProperty("acceptedFullfillmentTypes")
-    public void setAcceptedFullfillmentTypes(List<String> acceptedFullfillmentTypes) {
+    public void setAcceptedFullfillmentTypes(List<FulfillmentTypeDef> acceptedFullfillmentTypes) {
         this.acceptedFullfillmentTypes = acceptedFullfillmentTypes;
     }
 

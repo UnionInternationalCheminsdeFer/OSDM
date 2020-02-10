@@ -17,8 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "id",
     "legacyBorderPointCode",
     "name",
-    "stationSets",
-    "station"
+    "stationSets"
 })
 public class ConnectionPointDef {
 
@@ -35,8 +34,6 @@ public class ConnectionPointDef {
     private String name;
     @JsonProperty("stationSets")
     private List<List<StationDef>> stationSets = new ArrayList<List<StationDef>>();
-    @JsonProperty("station")
-    private StationDef station;
 
     /**
      * 
@@ -88,16 +85,6 @@ public class ConnectionPointDef {
         this.stationSets = stationSets;
     }
 
-    @JsonProperty("station")
-    public StationDef getStation() {
-        return station;
-    }
-
-    @JsonProperty("station")
-    public void setStation(StationDef station) {
-        this.station = station;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -118,10 +105,6 @@ public class ConnectionPointDef {
         sb.append('=');
         sb.append(((this.stationSets == null)?"<null>":this.stationSets));
         sb.append(',');
-        sb.append("station");
-        sb.append('=');
-        sb.append(((this.station == null)?"<null>":this.station));
-        sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {
@@ -134,7 +117,6 @@ public class ConnectionPointDef {
     public int hashCode() {
         int result = 1;
         result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
-        result = ((result* 31)+((this.station == null)? 0 :this.station.hashCode()));
         result = ((result* 31)+((this.stationSets == null)? 0 :this.stationSets.hashCode()));
         result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
         result = ((result* 31)+((this.legacyBorderPointCode == null)? 0 :this.legacyBorderPointCode.hashCode()));
@@ -150,7 +132,7 @@ public class ConnectionPointDef {
             return false;
         }
         ConnectionPointDef rhs = ((ConnectionPointDef) other);
-        return ((((((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name)))&&((this.station == rhs.station)||((this.station!= null)&&this.station.equals(rhs.station))))&&((this.stationSets == rhs.stationSets)||((this.stationSets!= null)&&this.stationSets.equals(rhs.stationSets))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.legacyBorderPointCode == rhs.legacyBorderPointCode)||((this.legacyBorderPointCode!= null)&&this.legacyBorderPointCode.equals(rhs.legacyBorderPointCode))));
+        return (((((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name)))&&((this.stationSets == rhs.stationSets)||((this.stationSets!= null)&&this.stationSets.equals(rhs.stationSets))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.legacyBorderPointCode == rhs.legacyBorderPointCode)||((this.legacyBorderPointCode!= null)&&this.legacyBorderPointCode.equals(rhs.legacyBorderPointCode))));
     }
 
 }

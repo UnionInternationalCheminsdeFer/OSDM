@@ -10,10 +10,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "CardIssuer",
-    "CardName",
-    "CardId",
-    "serviceClasses"
+    "issuer",
+    "Id",
+    "name",
+    "serviceClasses",
+    "type",
+    "cardIdRequired"
 })
 public class ReductionCardDef {
 
@@ -22,24 +24,25 @@ public class ReductionCardDef {
      * (Required)
      * 
      */
-    @JsonProperty("CardIssuer")
+    @JsonProperty("issuer")
     @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
-    private String cardIssuer;
+    private String issuer;
     /**
-     * data type for texts with translations)
+     * id of the card within the issuer
      * (Required)
      * 
      */
-    @JsonProperty("CardName")
-    @JsonPropertyDescription("data type for texts with translations)")
-    private TextDef cardName;
+    @JsonProperty("Id")
+    @JsonPropertyDescription("id of the card within the issuer")
+    private String id;
     /**
-     * 
+     * text
      * (Required)
      * 
      */
-    @JsonProperty("CardId")
-    private String cardId;
+    @JsonProperty("name")
+    @JsonPropertyDescription("text")
+    private TextDef name;
     /**
      * list of service classes in case this class is available for different classes
      * 
@@ -47,15 +50,29 @@ public class ReductionCardDef {
     @JsonProperty("serviceClasses")
     @JsonPropertyDescription("list of service classes in case this class is available for different classes")
     private List<ServiceClassDef> serviceClasses = new ArrayList<ServiceClassDef>();
+    /**
+     * LOYALTY_CARD,REDUCTION_CARD,PASS
+     * 
+     */
+    @JsonProperty("type")
+    @JsonPropertyDescription("LOYALTY_CARD,REDUCTION_CARD,PASS")
+    private String type;
+    /**
+     * the card id must be delivered in online sales 
+     * 
+     */
+    @JsonProperty("cardIdRequired")
+    @JsonPropertyDescription("the card id must be delivered in online sales ")
+    private Boolean cardIdRequired = false;
 
     /**
      * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
-    @JsonProperty("CardIssuer")
-    public String getCardIssuer() {
-        return cardIssuer;
+    @JsonProperty("issuer")
+    public String getIssuer() {
+        return issuer;
     }
 
     /**
@@ -63,49 +80,49 @@ public class ReductionCardDef {
      * (Required)
      * 
      */
-    @JsonProperty("CardIssuer")
-    public void setCardIssuer(String cardIssuer) {
-        this.cardIssuer = cardIssuer;
+    @JsonProperty("issuer")
+    public void setIssuer(String issuer) {
+        this.issuer = issuer;
     }
 
     /**
-     * data type for texts with translations)
+     * id of the card within the issuer
      * (Required)
      * 
      */
-    @JsonProperty("CardName")
-    public TextDef getCardName() {
-        return cardName;
+    @JsonProperty("Id")
+    public String getId() {
+        return id;
     }
 
     /**
-     * data type for texts with translations)
+     * id of the card within the issuer
      * (Required)
      * 
      */
-    @JsonProperty("CardName")
-    public void setCardName(TextDef cardName) {
-        this.cardName = cardName;
+    @JsonProperty("Id")
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
-     * 
+     * text
      * (Required)
      * 
      */
-    @JsonProperty("CardId")
-    public String getCardId() {
-        return cardId;
+    @JsonProperty("name")
+    public TextDef getName() {
+        return name;
     }
 
     /**
-     * 
+     * text
      * (Required)
      * 
      */
-    @JsonProperty("CardId")
-    public void setCardId(String cardId) {
-        this.cardId = cardId;
+    @JsonProperty("name")
+    public void setName(TextDef name) {
+        this.name = name;
     }
 
     /**
@@ -126,25 +143,69 @@ public class ReductionCardDef {
         this.serviceClasses = serviceClasses;
     }
 
+    /**
+     * LOYALTY_CARD,REDUCTION_CARD,PASS
+     * 
+     */
+    @JsonProperty("type")
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * LOYALTY_CARD,REDUCTION_CARD,PASS
+     * 
+     */
+    @JsonProperty("type")
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * the card id must be delivered in online sales 
+     * 
+     */
+    @JsonProperty("cardIdRequired")
+    public Boolean getCardIdRequired() {
+        return cardIdRequired;
+    }
+
+    /**
+     * the card id must be delivered in online sales 
+     * 
+     */
+    @JsonProperty("cardIdRequired")
+    public void setCardIdRequired(Boolean cardIdRequired) {
+        this.cardIdRequired = cardIdRequired;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(ReductionCardDef.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("cardIssuer");
+        sb.append("issuer");
         sb.append('=');
-        sb.append(((this.cardIssuer == null)?"<null>":this.cardIssuer));
+        sb.append(((this.issuer == null)?"<null>":this.issuer));
         sb.append(',');
-        sb.append("cardName");
+        sb.append("id");
         sb.append('=');
-        sb.append(((this.cardName == null)?"<null>":this.cardName));
+        sb.append(((this.id == null)?"<null>":this.id));
         sb.append(',');
-        sb.append("cardId");
+        sb.append("name");
         sb.append('=');
-        sb.append(((this.cardId == null)?"<null>":this.cardId));
+        sb.append(((this.name == null)?"<null>":this.name));
         sb.append(',');
         sb.append("serviceClasses");
         sb.append('=');
         sb.append(((this.serviceClasses == null)?"<null>":this.serviceClasses));
+        sb.append(',');
+        sb.append("type");
+        sb.append('=');
+        sb.append(((this.type == null)?"<null>":this.type));
+        sb.append(',');
+        sb.append("cardIdRequired");
+        sb.append('=');
+        sb.append(((this.cardIdRequired == null)?"<null>":this.cardIdRequired));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -158,9 +219,11 @@ public class ReductionCardDef {
     public int hashCode() {
         int result = 1;
         result = ((result* 31)+((this.serviceClasses == null)? 0 :this.serviceClasses.hashCode()));
-        result = ((result* 31)+((this.cardName == null)? 0 :this.cardName.hashCode()));
-        result = ((result* 31)+((this.cardIssuer == null)? 0 :this.cardIssuer.hashCode()));
-        result = ((result* 31)+((this.cardId == null)? 0 :this.cardId.hashCode()));
+        result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
+        result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
+        result = ((result* 31)+((this.type == null)? 0 :this.type.hashCode()));
+        result = ((result* 31)+((this.issuer == null)? 0 :this.issuer.hashCode()));
+        result = ((result* 31)+((this.cardIdRequired == null)? 0 :this.cardIdRequired.hashCode()));
         return result;
     }
 
@@ -173,7 +236,7 @@ public class ReductionCardDef {
             return false;
         }
         ReductionCardDef rhs = ((ReductionCardDef) other);
-        return (((((this.serviceClasses == rhs.serviceClasses)||((this.serviceClasses!= null)&&this.serviceClasses.equals(rhs.serviceClasses)))&&((this.cardName == rhs.cardName)||((this.cardName!= null)&&this.cardName.equals(rhs.cardName))))&&((this.cardIssuer == rhs.cardIssuer)||((this.cardIssuer!= null)&&this.cardIssuer.equals(rhs.cardIssuer))))&&((this.cardId == rhs.cardId)||((this.cardId!= null)&&this.cardId.equals(rhs.cardId))));
+        return (((((((this.serviceClasses == rhs.serviceClasses)||((this.serviceClasses!= null)&&this.serviceClasses.equals(rhs.serviceClasses)))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.type == rhs.type)||((this.type!= null)&&this.type.equals(rhs.type))))&&((this.issuer == rhs.issuer)||((this.issuer!= null)&&this.issuer.equals(rhs.issuer))))&&((this.cardIdRequired == rhs.cardIdRequired)||((this.cardIdRequired!= null)&&this.cardIdRequired.equals(rhs.cardIdRequired))));
     }
 
 }
