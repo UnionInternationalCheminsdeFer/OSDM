@@ -2,6 +2,7 @@
  */
 package Gtm.impl;
 
+import Gtm.ClassId;
 import Gtm.ClassicClassType;
 import Gtm.GtmPackage;
 import Gtm.ServiceClass;
@@ -39,7 +40,7 @@ public class ServiceClassImpl extends MinimalEObjectImpl.Container implements Se
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ID_EDEFAULT = null;
+	protected static final ClassId ID_EDEFAULT = ClassId.A;
 
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -49,7 +50,7 @@ public class ServiceClassImpl extends MinimalEObjectImpl.Container implements Se
 	 * @generated
 	 * @ordered
 	 */
-	protected String id = ID_EDEFAULT;
+	protected ClassId id = ID_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getClassicClass() <em>Classic Class</em>}' attribute.
@@ -105,7 +106,7 @@ public class ServiceClassImpl extends MinimalEObjectImpl.Container implements Se
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getId() {
+	public ClassId getId() {
 		return id;
 	}
 
@@ -114,9 +115,9 @@ public class ServiceClassImpl extends MinimalEObjectImpl.Container implements Se
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(String newId) {
-		String oldId = id;
-		id = newId;
+	public void setId(ClassId newId) {
+		ClassId oldId = id;
+		id = newId == null ? ID_EDEFAULT : newId;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.SERVICE_CLASS__ID, oldId, id));
 	}
@@ -208,7 +209,7 @@ public class ServiceClassImpl extends MinimalEObjectImpl.Container implements Se
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case GtmPackage.SERVICE_CLASS__ID:
-				setId((String)newValue);
+				setId((ClassId)newValue);
 				return;
 			case GtmPackage.SERVICE_CLASS__CLASSIC_CLASS:
 				setClassicClass((ClassicClassType)newValue);
@@ -250,7 +251,7 @@ public class ServiceClassImpl extends MinimalEObjectImpl.Container implements Se
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case GtmPackage.SERVICE_CLASS__ID:
-				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+				return id != ID_EDEFAULT;
 			case GtmPackage.SERVICE_CLASS__CLASSIC_CLASS:
 				return classicClass != CLASSIC_CLASS_EDEFAULT;
 			case GtmPackage.SERVICE_CLASS__TEXT:

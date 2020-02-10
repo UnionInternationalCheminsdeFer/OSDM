@@ -3,6 +3,7 @@
 package Gtm.impl;
 
 import Gtm.ConnectionPoint;
+import Gtm.DataSource;
 import Gtm.GtmPackage;
 import Gtm.RegionalConstraint;
 import Gtm.RegionalValidity;
@@ -36,6 +37,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link Gtm.impl.RegionalConstraintImpl#getEntryConnectionPoint <em>Entry Connection Point</em>}</li>
  *   <li>{@link Gtm.impl.RegionalConstraintImpl#getExitConnectionPoint <em>Exit Connection Point</em>}</li>
  *   <li>{@link Gtm.impl.RegionalConstraintImpl#getRegionalValidity <em>Regional Validity</em>}</li>
+ *   <li>{@link Gtm.impl.RegionalConstraintImpl#getDataSource <em>Data Source</em>}</li>
+ *   <li>{@link Gtm.impl.RegionalConstraintImpl#getDataDescription <em>Data Description</em>}</li>
  * </ul>
  *
  * @generated
@@ -69,7 +72,7 @@ public class RegionalConstraintImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int DISTANCE_EDEFAULT = 0;
+	protected static final float DISTANCE_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getDistance() <em>Distance</em>}' attribute.
@@ -79,7 +82,7 @@ public class RegionalConstraintImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected int distance = DISTANCE_EDEFAULT;
+	protected float distance = DISTANCE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getEntryConnectionPoint() <em>Entry Connection Point</em>}' reference.
@@ -110,6 +113,46 @@ public class RegionalConstraintImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected EList<RegionalValidity> regionalValidity;
+
+	/**
+	 * The default value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final DataSource DATA_SOURCE_EDEFAULT = DataSource.MANUAL;
+
+	/**
+	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected DataSource dataSource = DATA_SOURCE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDataDescription() <em>Data Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DATA_DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDataDescription() <em>Data Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String dataDescription = DATA_DESCRIPTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,7 +199,7 @@ public class RegionalConstraintImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getDistance() {
+	public float getDistance() {
 		return distance;
 	}
 
@@ -165,8 +208,8 @@ public class RegionalConstraintImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDistance(int newDistance) {
-		int oldDistance = distance;
+	public void setDistance(float newDistance) {
+		float oldDistance = distance;
 		distance = newDistance;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.REGIONAL_CONSTRAINT__DISTANCE, oldDistance, distance));
@@ -265,6 +308,48 @@ public class RegionalConstraintImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataSource(DataSource newDataSource) {
+		DataSource oldDataSource = dataSource;
+		dataSource = newDataSource == null ? DATA_SOURCE_EDEFAULT : newDataSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.REGIONAL_CONSTRAINT__DATA_SOURCE, oldDataSource, dataSource));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDataDescription() {
+		return dataDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataDescription(String newDataDescription) {
+		String oldDataDescription = dataDescription;
+		dataDescription = newDataDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.REGIONAL_CONSTRAINT__DATA_DESCRIPTION, oldDataDescription, dataDescription));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -294,6 +379,10 @@ public class RegionalConstraintImpl extends MinimalEObjectImpl.Container impleme
 				return basicGetExitConnectionPoint();
 			case GtmPackage.REGIONAL_CONSTRAINT__REGIONAL_VALIDITY:
 				return getRegionalValidity();
+			case GtmPackage.REGIONAL_CONSTRAINT__DATA_SOURCE:
+				return getDataSource();
+			case GtmPackage.REGIONAL_CONSTRAINT__DATA_DESCRIPTION:
+				return getDataDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -311,7 +400,7 @@ public class RegionalConstraintImpl extends MinimalEObjectImpl.Container impleme
 				setId((String)newValue);
 				return;
 			case GtmPackage.REGIONAL_CONSTRAINT__DISTANCE:
-				setDistance((Integer)newValue);
+				setDistance((Float)newValue);
 				return;
 			case GtmPackage.REGIONAL_CONSTRAINT__ENTRY_CONNECTION_POINT:
 				setEntryConnectionPoint((ConnectionPoint)newValue);
@@ -322,6 +411,12 @@ public class RegionalConstraintImpl extends MinimalEObjectImpl.Container impleme
 			case GtmPackage.REGIONAL_CONSTRAINT__REGIONAL_VALIDITY:
 				getRegionalValidity().clear();
 				getRegionalValidity().addAll((Collection<? extends RegionalValidity>)newValue);
+				return;
+			case GtmPackage.REGIONAL_CONSTRAINT__DATA_SOURCE:
+				setDataSource((DataSource)newValue);
+				return;
+			case GtmPackage.REGIONAL_CONSTRAINT__DATA_DESCRIPTION:
+				setDataDescription((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -350,6 +445,12 @@ public class RegionalConstraintImpl extends MinimalEObjectImpl.Container impleme
 			case GtmPackage.REGIONAL_CONSTRAINT__REGIONAL_VALIDITY:
 				getRegionalValidity().clear();
 				return;
+			case GtmPackage.REGIONAL_CONSTRAINT__DATA_SOURCE:
+				setDataSource(DATA_SOURCE_EDEFAULT);
+				return;
+			case GtmPackage.REGIONAL_CONSTRAINT__DATA_DESCRIPTION:
+				setDataDescription(DATA_DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -372,6 +473,10 @@ public class RegionalConstraintImpl extends MinimalEObjectImpl.Container impleme
 				return exitConnectionPoint != null;
 			case GtmPackage.REGIONAL_CONSTRAINT__REGIONAL_VALIDITY:
 				return regionalValidity != null && !regionalValidity.isEmpty();
+			case GtmPackage.REGIONAL_CONSTRAINT__DATA_SOURCE:
+				return dataSource != DATA_SOURCE_EDEFAULT;
+			case GtmPackage.REGIONAL_CONSTRAINT__DATA_DESCRIPTION:
+				return DATA_DESCRIPTION_EDEFAULT == null ? dataDescription != null : !DATA_DESCRIPTION_EDEFAULT.equals(dataDescription);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -390,6 +495,10 @@ public class RegionalConstraintImpl extends MinimalEObjectImpl.Container impleme
 		result.append(id);
 		result.append(", distance: ");
 		result.append(distance);
+		result.append(", dataSource: ");
+		result.append(dataSource);
+		result.append(", dataDescription: ");
+		result.append(dataDescription);
 		result.append(')');
 		return result.toString();
 	}

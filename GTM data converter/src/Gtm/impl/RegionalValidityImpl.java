@@ -8,23 +8,13 @@ import Gtm.Polygone;
 import Gtm.RegionalValidity;
 import Gtm.ViaStation;
 import Gtm.Zone;
-
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,44 +55,44 @@ public class RegionalValidityImpl extends MinimalEObjectImpl.Container implement
 	protected int seqNb = SEQ_NB_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getViaStation() <em>Via Station</em>}' reference list.
+	 * The cached value of the '{@link #getViaStation() <em>Via Station</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getViaStation()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ViaStation> viaStation;
+	protected ViaStation viaStation;
 
 	/**
-	 * The cached value of the '{@link #getZone() <em>Zone</em>}' reference list.
+	 * The cached value of the '{@link #getZone() <em>Zone</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getZone()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Zone> zone;
+	protected Zone zone;
 
 	/**
-	 * The cached value of the '{@link #getLine() <em>Line</em>}' containment reference list.
+	 * The cached value of the '{@link #getLine() <em>Line</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLine()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Line> line;
+	protected Line line;
 
 	/**
-	 * The cached value of the '{@link #getPolygone() <em>Polygone</em>}' containment reference list.
+	 * The cached value of the '{@link #getPolygone() <em>Polygone</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPolygone()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Polygone> polygone;
+	protected Polygone polygone;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -149,10 +139,7 @@ public class RegionalValidityImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ViaStation> getViaStation() {
-		if (viaStation == null) {
-			viaStation = new EObjectResolvingEList<ViaStation>(ViaStation.class, this, GtmPackage.REGIONAL_VALIDITY__VIA_STATION);
-		}
+	public ViaStation getViaStation() {
 		return viaStation;
 	}
 
@@ -161,9 +148,48 @@ public class RegionalValidityImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Zone> getZone() {
-		if (zone == null) {
-			zone = new EObjectResolvingEList<Zone>(Zone.class, this, GtmPackage.REGIONAL_VALIDITY__ZONE);
+	public NotificationChain basicSetViaStation(ViaStation newViaStation, NotificationChain msgs) {
+		ViaStation oldViaStation = viaStation;
+		viaStation = newViaStation;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.REGIONAL_VALIDITY__VIA_STATION, oldViaStation, newViaStation);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setViaStation(ViaStation newViaStation) {
+		if (newViaStation != viaStation) {
+			NotificationChain msgs = null;
+			if (viaStation != null)
+				msgs = ((InternalEObject)viaStation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.REGIONAL_VALIDITY__VIA_STATION, null, msgs);
+			if (newViaStation != null)
+				msgs = ((InternalEObject)newViaStation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.REGIONAL_VALIDITY__VIA_STATION, null, msgs);
+			msgs = basicSetViaStation(newViaStation, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.REGIONAL_VALIDITY__VIA_STATION, newViaStation, newViaStation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Zone getZone() {
+		if (zone != null && zone.eIsProxy()) {
+			InternalEObject oldZone = (InternalEObject)zone;
+			zone = (Zone)eResolveProxy(oldZone);
+			if (zone != oldZone) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.REGIONAL_VALIDITY__ZONE, oldZone, zone));
+			}
 		}
 		return zone;
 	}
@@ -173,10 +199,28 @@ public class RegionalValidityImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Line> getLine() {
-		if (line == null) {
-			line = new EObjectContainmentEList<Line>(Line.class, this, GtmPackage.REGIONAL_VALIDITY__LINE);
-		}
+	public Zone basicGetZone() {
+		return zone;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setZone(Zone newZone) {
+		Zone oldZone = zone;
+		zone = newZone;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.REGIONAL_VALIDITY__ZONE, oldZone, zone));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Line getLine() {
 		return line;
 	}
 
@@ -185,11 +229,76 @@ public class RegionalValidityImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Polygone> getPolygone() {
-		if (polygone == null) {
-			polygone = new EObjectContainmentEList<Polygone>(Polygone.class, this, GtmPackage.REGIONAL_VALIDITY__POLYGONE);
+	public NotificationChain basicSetLine(Line newLine, NotificationChain msgs) {
+		Line oldLine = line;
+		line = newLine;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.REGIONAL_VALIDITY__LINE, oldLine, newLine);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLine(Line newLine) {
+		if (newLine != line) {
+			NotificationChain msgs = null;
+			if (line != null)
+				msgs = ((InternalEObject)line).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.REGIONAL_VALIDITY__LINE, null, msgs);
+			if (newLine != null)
+				msgs = ((InternalEObject)newLine).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.REGIONAL_VALIDITY__LINE, null, msgs);
+			msgs = basicSetLine(newLine, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.REGIONAL_VALIDITY__LINE, newLine, newLine));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Polygone getPolygone() {
 		return polygone;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPolygone(Polygone newPolygone, NotificationChain msgs) {
+		Polygone oldPolygone = polygone;
+		polygone = newPolygone;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.REGIONAL_VALIDITY__POLYGONE, oldPolygone, newPolygone);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPolygone(Polygone newPolygone) {
+		if (newPolygone != polygone) {
+			NotificationChain msgs = null;
+			if (polygone != null)
+				msgs = ((InternalEObject)polygone).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.REGIONAL_VALIDITY__POLYGONE, null, msgs);
+			if (newPolygone != null)
+				msgs = ((InternalEObject)newPolygone).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.REGIONAL_VALIDITY__POLYGONE, null, msgs);
+			msgs = basicSetPolygone(newPolygone, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.REGIONAL_VALIDITY__POLYGONE, newPolygone, newPolygone));
 	}
 
 	/**
@@ -200,10 +309,12 @@ public class RegionalValidityImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case GtmPackage.REGIONAL_VALIDITY__VIA_STATION:
+				return basicSetViaStation(null, msgs);
 			case GtmPackage.REGIONAL_VALIDITY__LINE:
-				return ((InternalEList<?>)getLine()).basicRemove(otherEnd, msgs);
+				return basicSetLine(null, msgs);
 			case GtmPackage.REGIONAL_VALIDITY__POLYGONE:
-				return ((InternalEList<?>)getPolygone()).basicRemove(otherEnd, msgs);
+				return basicSetPolygone(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -221,7 +332,8 @@ public class RegionalValidityImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.REGIONAL_VALIDITY__VIA_STATION:
 				return getViaStation();
 			case GtmPackage.REGIONAL_VALIDITY__ZONE:
-				return getZone();
+				if (resolve) return getZone();
+				return basicGetZone();
 			case GtmPackage.REGIONAL_VALIDITY__LINE:
 				return getLine();
 			case GtmPackage.REGIONAL_VALIDITY__POLYGONE:
@@ -243,20 +355,16 @@ public class RegionalValidityImpl extends MinimalEObjectImpl.Container implement
 				setSeqNb((Integer)newValue);
 				return;
 			case GtmPackage.REGIONAL_VALIDITY__VIA_STATION:
-				getViaStation().clear();
-				getViaStation().addAll((Collection<? extends ViaStation>)newValue);
+				setViaStation((ViaStation)newValue);
 				return;
 			case GtmPackage.REGIONAL_VALIDITY__ZONE:
-				getZone().clear();
-				getZone().addAll((Collection<? extends Zone>)newValue);
+				setZone((Zone)newValue);
 				return;
 			case GtmPackage.REGIONAL_VALIDITY__LINE:
-				getLine().clear();
-				getLine().addAll((Collection<? extends Line>)newValue);
+				setLine((Line)newValue);
 				return;
 			case GtmPackage.REGIONAL_VALIDITY__POLYGONE:
-				getPolygone().clear();
-				getPolygone().addAll((Collection<? extends Polygone>)newValue);
+				setPolygone((Polygone)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -274,16 +382,16 @@ public class RegionalValidityImpl extends MinimalEObjectImpl.Container implement
 				setSeqNb(SEQ_NB_EDEFAULT);
 				return;
 			case GtmPackage.REGIONAL_VALIDITY__VIA_STATION:
-				getViaStation().clear();
+				setViaStation((ViaStation)null);
 				return;
 			case GtmPackage.REGIONAL_VALIDITY__ZONE:
-				getZone().clear();
+				setZone((Zone)null);
 				return;
 			case GtmPackage.REGIONAL_VALIDITY__LINE:
-				getLine().clear();
+				setLine((Line)null);
 				return;
 			case GtmPackage.REGIONAL_VALIDITY__POLYGONE:
-				getPolygone().clear();
+				setPolygone((Polygone)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -300,13 +408,13 @@ public class RegionalValidityImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.REGIONAL_VALIDITY__SEQ_NB:
 				return seqNb != SEQ_NB_EDEFAULT;
 			case GtmPackage.REGIONAL_VALIDITY__VIA_STATION:
-				return viaStation != null && !viaStation.isEmpty();
+				return viaStation != null;
 			case GtmPackage.REGIONAL_VALIDITY__ZONE:
-				return zone != null && !zone.isEmpty();
+				return zone != null;
 			case GtmPackage.REGIONAL_VALIDITY__LINE:
-				return line != null && !line.isEmpty();
+				return line != null;
 			case GtmPackage.REGIONAL_VALIDITY__POLYGONE:
-				return polygone != null && !polygone.isEmpty();
+				return polygone != null;
 		}
 		return super.eIsSet(featureID);
 	}

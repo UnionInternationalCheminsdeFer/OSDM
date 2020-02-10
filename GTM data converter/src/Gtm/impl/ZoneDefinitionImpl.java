@@ -44,7 +44,7 @@ public class ZoneDefinitionImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ZONE_ID_EDEFAULT = null;
+	protected static final int ZONE_ID_EDEFAULT = 0;
 
 	/**
 	 * The cached value of the '{@link #getZoneId() <em>Zone Id</em>}' attribute.
@@ -54,7 +54,7 @@ public class ZoneDefinitionImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected String zoneId = ZONE_ID_EDEFAULT;
+	protected int zoneId = ZONE_ID_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -130,7 +130,7 @@ public class ZoneDefinitionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getZoneId() {
+	public int getZoneId() {
 		return zoneId;
 	}
 
@@ -139,8 +139,8 @@ public class ZoneDefinitionImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setZoneId(String newZoneId) {
-		String oldZoneId = zoneId;
+	public void setZoneId(int newZoneId) {
+		int oldZoneId = zoneId;
 		zoneId = newZoneId;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.ZONE_DEFINITION__ZONE_ID, oldZoneId, zoneId));
@@ -230,7 +230,7 @@ public class ZoneDefinitionImpl extends MinimalEObjectImpl.Container implements 
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case GtmPackage.ZONE_DEFINITION__ZONE_ID:
-				setZoneId((String)newValue);
+				setZoneId((Integer)newValue);
 				return;
 			case GtmPackage.ZONE_DEFINITION__ID:
 				setId((String)newValue);
@@ -279,7 +279,7 @@ public class ZoneDefinitionImpl extends MinimalEObjectImpl.Container implements 
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case GtmPackage.ZONE_DEFINITION__ZONE_ID:
-				return ZONE_ID_EDEFAULT == null ? zoneId != null : !ZONE_ID_EDEFAULT.equals(zoneId);
+				return zoneId != ZONE_ID_EDEFAULT;
 			case GtmPackage.ZONE_DEFINITION__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case GtmPackage.ZONE_DEFINITION__NAME:

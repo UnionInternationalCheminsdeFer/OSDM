@@ -5,7 +5,7 @@ package Gtm.impl;
 import Gtm.GraphicalReservationType;
 import Gtm.GtmPackage;
 import Gtm.ReservationOptions;
-import Gtm.ReservationPreference;
+import Gtm.ReservationPreferenceGroup;
 import Gtm.ServiceBrand;
 
 import java.util.Collection;
@@ -49,7 +49,7 @@ public class ReservationOptionsImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ReservationPreference> preferences;
+	protected EList<ReservationPreferenceGroup> preferences;
 
 	/**
 	 * The cached value of the '{@link #getServiceBrands() <em>Service Brands</em>}' reference list.
@@ -105,9 +105,9 @@ public class ReservationOptionsImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ReservationPreference> getPreferences() {
+	public EList<ReservationPreferenceGroup> getPreferences() {
 		if (preferences == null) {
-			preferences = new EObjectContainmentEList<ReservationPreference>(ReservationPreference.class, this, GtmPackage.RESERVATION_OPTIONS__PREFERENCES);
+			preferences = new EObjectContainmentEList<ReservationPreferenceGroup>(ReservationPreferenceGroup.class, this, GtmPackage.RESERVATION_OPTIONS__PREFERENCES);
 		}
 		return preferences;
 	}
@@ -188,7 +188,7 @@ public class ReservationOptionsImpl extends MinimalEObjectImpl.Container impleme
 		switch (featureID) {
 			case GtmPackage.RESERVATION_OPTIONS__PREFERENCES:
 				getPreferences().clear();
-				getPreferences().addAll((Collection<? extends ReservationPreference>)newValue);
+				getPreferences().addAll((Collection<? extends ReservationPreferenceGroup>)newValue);
 				return;
 			case GtmPackage.RESERVATION_OPTIONS__SERVICE_BRANDS:
 				getServiceBrands().clear();

@@ -85,24 +85,14 @@ public class RequiredPersonalDataImpl extends MinimalEObjectImpl.Container imple
 	protected PersonalDataItemsType dataItem = DATA_ITEM_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTransfer() <em>Transfer</em>}' attribute.
+	 * The cached value of the '{@link #getTransfer() <em>Transfer</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTransfer()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final PersonalDataTransferType TRANSFER_EDEFAULT = PersonalDataTransferType.SID;
-
-	/**
-	 * The cached value of the '{@link #getTransfer() <em>Transfer</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTransfer()
-	 * @generated
-	 * @ordered
-	 */
-	protected PersonalDataTransferType transfer = TRANSFER_EDEFAULT;
+	protected EList<PersonalDataTransferType> transfer;
 
 	/**
 	 * The cached value of the '{@link #getFulfillmentType() <em>Fulfillment Type</em>}' attribute list.
@@ -190,20 +180,11 @@ public class RequiredPersonalDataImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PersonalDataTransferType getTransfer() {
+	public EList<PersonalDataTransferType> getTransfer() {
+		if (transfer == null) {
+			transfer = new EDataTypeUniqueEList<PersonalDataTransferType>(PersonalDataTransferType.class, this, GtmPackage.REQUIRED_PERSONAL_DATA__TRANSFER);
+		}
 		return transfer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTransfer(PersonalDataTransferType newTransfer) {
-		PersonalDataTransferType oldTransfer = transfer;
-		transfer = newTransfer == null ? TRANSFER_EDEFAULT : newTransfer;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.REQUIRED_PERSONAL_DATA__TRANSFER, oldTransfer, transfer));
 	}
 
 	/**
@@ -282,7 +263,8 @@ public class RequiredPersonalDataImpl extends MinimalEObjectImpl.Container imple
 				setDataItem((PersonalDataItemsType)newValue);
 				return;
 			case GtmPackage.REQUIRED_PERSONAL_DATA__TRANSFER:
-				setTransfer((PersonalDataTransferType)newValue);
+				getTransfer().clear();
+				getTransfer().addAll((Collection<? extends PersonalDataTransferType>)newValue);
 				return;
 			case GtmPackage.REQUIRED_PERSONAL_DATA__FULFILLMENT_TYPE:
 				getFulfillmentType().clear();
@@ -311,7 +293,7 @@ public class RequiredPersonalDataImpl extends MinimalEObjectImpl.Container imple
 				setDataItem(DATA_ITEM_EDEFAULT);
 				return;
 			case GtmPackage.REQUIRED_PERSONAL_DATA__TRANSFER:
-				setTransfer(TRANSFER_EDEFAULT);
+				getTransfer().clear();
 				return;
 			case GtmPackage.REQUIRED_PERSONAL_DATA__FULFILLMENT_TYPE:
 				getFulfillmentType().clear();
@@ -336,7 +318,7 @@ public class RequiredPersonalDataImpl extends MinimalEObjectImpl.Container imple
 			case GtmPackage.REQUIRED_PERSONAL_DATA__DATA_ITEM:
 				return dataItem != DATA_ITEM_EDEFAULT;
 			case GtmPackage.REQUIRED_PERSONAL_DATA__TRANSFER:
-				return transfer != TRANSFER_EDEFAULT;
+				return transfer != null && !transfer.isEmpty();
 			case GtmPackage.REQUIRED_PERSONAL_DATA__FULFILLMENT_TYPE:
 				return fulfillmentType != null && !fulfillmentType.isEmpty();
 			case GtmPackage.REQUIRED_PERSONAL_DATA__CROSS_BORDER:

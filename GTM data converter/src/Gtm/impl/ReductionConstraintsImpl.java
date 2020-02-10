@@ -2,9 +2,9 @@
  */
 package Gtm.impl;
 
-import Gtm.Edge;
 import Gtm.GtmPackage;
-import Gtm.Polygone;
+import Gtm.ReductionConstraint;
+import Gtm.ReductionConstraints;
 
 import java.util.Collection;
 
@@ -22,33 +22,34 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Polygone</b></em>'.
+ * An implementation of the model object '<em><b>Reduction Constraints</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Gtm.impl.PolygoneImpl#getEdge <em>Edge</em>}</li>
+ *   <li>{@link Gtm.impl.ReductionConstraintsImpl#getReductionConstraints <em>Reduction Constraints</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygone {
+public class ReductionConstraintsImpl extends MinimalEObjectImpl.Container implements ReductionConstraints {
 	/**
-	 * The cached value of the '{@link #getEdge() <em>Edge</em>}' containment reference list.
+	 * The cached value of the '{@link #getReductionConstraints() <em>Reduction Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEdge()
+	 * @see #getReductionConstraints()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Edge> edge;
+	protected EList<ReductionConstraint> reductionConstraints;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PolygoneImpl() {
+	protected ReductionConstraintsImpl() {
 		super();
 	}
 
@@ -59,7 +60,7 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GtmPackage.Literals.POLYGONE;
+		return GtmPackage.Literals.REDUCTION_CONSTRAINTS;
 	}
 
 	/**
@@ -67,11 +68,11 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Edge> getEdge() {
-		if (edge == null) {
-			edge = new EObjectContainmentEList<Edge>(Edge.class, this, GtmPackage.POLYGONE__EDGE);
+	public EList<ReductionConstraint> getReductionConstraints() {
+		if (reductionConstraints == null) {
+			reductionConstraints = new EObjectContainmentEList<ReductionConstraint>(ReductionConstraint.class, this, GtmPackage.REDUCTION_CONSTRAINTS__REDUCTION_CONSTRAINTS);
 		}
-		return edge;
+		return reductionConstraints;
 	}
 
 	/**
@@ -82,8 +83,8 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GtmPackage.POLYGONE__EDGE:
-				return ((InternalEList<?>)getEdge()).basicRemove(otherEnd, msgs);
+			case GtmPackage.REDUCTION_CONSTRAINTS__REDUCTION_CONSTRAINTS:
+				return ((InternalEList<?>)getReductionConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -96,8 +97,8 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GtmPackage.POLYGONE__EDGE:
-				return getEdge();
+			case GtmPackage.REDUCTION_CONSTRAINTS__REDUCTION_CONSTRAINTS:
+				return getReductionConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,9 +112,9 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GtmPackage.POLYGONE__EDGE:
-				getEdge().clear();
-				getEdge().addAll((Collection<? extends Edge>)newValue);
+			case GtmPackage.REDUCTION_CONSTRAINTS__REDUCTION_CONSTRAINTS:
+				getReductionConstraints().clear();
+				getReductionConstraints().addAll((Collection<? extends ReductionConstraint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,8 +128,8 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GtmPackage.POLYGONE__EDGE:
-				getEdge().clear();
+			case GtmPackage.REDUCTION_CONSTRAINTS__REDUCTION_CONSTRAINTS:
+				getReductionConstraints().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -142,10 +143,10 @@ public class PolygoneImpl extends MinimalEObjectImpl.Container implements Polygo
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GtmPackage.POLYGONE__EDGE:
-				return edge != null && !edge.isEmpty();
+			case GtmPackage.REDUCTION_CONSTRAINTS__REDUCTION_CONSTRAINTS:
+				return reductionConstraints != null && !reductionConstraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //PolygoneImpl
+} //ReductionConstraintsImpl

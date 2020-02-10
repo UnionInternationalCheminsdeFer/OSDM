@@ -8,6 +8,7 @@ import Gtm.NutsCode;
 import Gtm.Station;
 import Gtm.Zone;
 
+import Gtm.ZoneDefinition;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -19,8 +20,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,12 +31,12 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * </p>
  * <ul>
  *   <li>{@link Gtm.impl.ZoneImpl#getBinaryZoneId <em>Binary Zone Id</em>}</li>
- *   <li>{@link Gtm.impl.ZoneImpl#getZoneId <em>Zone Id</em>}</li>
  *   <li>{@link Gtm.impl.ZoneImpl#getCarrier <em>Carrier</em>}</li>
  *   <li>{@link Gtm.impl.ZoneImpl#getEntryStation <em>Entry Station</em>}</li>
  *   <li>{@link Gtm.impl.ZoneImpl#getTerminalStation <em>Terminal Station</em>}</li>
  *   <li>{@link Gtm.impl.ZoneImpl#getNutsCode <em>Nuts Code</em>}</li>
  *   <li>{@link Gtm.impl.ZoneImpl#getCity <em>City</em>}</li>
+ *   <li>{@link Gtm.impl.ZoneImpl#getZoneDefinitions <em>Zone Definitions</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,16 +61,6 @@ public class ZoneImpl extends MinimalEObjectImpl.Container implements Zone {
 	 * @ordered
 	 */
 	protected byte[] binaryZoneId = BINARY_ZONE_ID_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getZoneId() <em>Zone Id</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getZoneId()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> zoneId;
 
 	/**
 	 * The cached value of the '{@link #getCarrier() <em>Carrier</em>}' reference.
@@ -133,6 +123,16 @@ public class ZoneImpl extends MinimalEObjectImpl.Container implements Zone {
 	protected int city = CITY_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getZoneDefinitions() <em>Zone Definitions</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getZoneDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ZoneDefinition> zoneDefinitions;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -170,18 +170,6 @@ public class ZoneImpl extends MinimalEObjectImpl.Container implements Zone {
 		binaryZoneId = newBinaryZoneId;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.ZONE__BINARY_ZONE_ID, oldBinaryZoneId, binaryZoneId));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<String> getZoneId() {
-		if (zoneId == null) {
-			zoneId = new EDataTypeUniqueEList<String>(String.class, this, GtmPackage.ZONE__ZONE_ID);
-		}
-		return zoneId;
 	}
 
 	/**
@@ -362,13 +350,23 @@ public class ZoneImpl extends MinimalEObjectImpl.Container implements Zone {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ZoneDefinition> getZoneDefinitions() {
+		if (zoneDefinitions == null) {
+			zoneDefinitions = new EObjectResolvingEList<ZoneDefinition>(ZoneDefinition.class, this, GtmPackage.ZONE__ZONE_DEFINITIONS);
+		}
+		return zoneDefinitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case GtmPackage.ZONE__BINARY_ZONE_ID:
 				return getBinaryZoneId();
-			case GtmPackage.ZONE__ZONE_ID:
-				return getZoneId();
 			case GtmPackage.ZONE__CARRIER:
 				if (resolve) return getCarrier();
 				return basicGetCarrier();
@@ -383,6 +381,8 @@ public class ZoneImpl extends MinimalEObjectImpl.Container implements Zone {
 				return basicGetNutsCode();
 			case GtmPackage.ZONE__CITY:
 				return getCity();
+			case GtmPackage.ZONE__ZONE_DEFINITIONS:
+				return getZoneDefinitions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -399,10 +399,6 @@ public class ZoneImpl extends MinimalEObjectImpl.Container implements Zone {
 			case GtmPackage.ZONE__BINARY_ZONE_ID:
 				setBinaryZoneId((byte[])newValue);
 				return;
-			case GtmPackage.ZONE__ZONE_ID:
-				getZoneId().clear();
-				getZoneId().addAll((Collection<? extends String>)newValue);
-				return;
 			case GtmPackage.ZONE__CARRIER:
 				setCarrier((Carrier)newValue);
 				return;
@@ -417,6 +413,10 @@ public class ZoneImpl extends MinimalEObjectImpl.Container implements Zone {
 				return;
 			case GtmPackage.ZONE__CITY:
 				setCity((Integer)newValue);
+				return;
+			case GtmPackage.ZONE__ZONE_DEFINITIONS:
+				getZoneDefinitions().clear();
+				getZoneDefinitions().addAll((Collection<? extends ZoneDefinition>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -433,9 +433,6 @@ public class ZoneImpl extends MinimalEObjectImpl.Container implements Zone {
 			case GtmPackage.ZONE__BINARY_ZONE_ID:
 				setBinaryZoneId(BINARY_ZONE_ID_EDEFAULT);
 				return;
-			case GtmPackage.ZONE__ZONE_ID:
-				getZoneId().clear();
-				return;
 			case GtmPackage.ZONE__CARRIER:
 				setCarrier((Carrier)null);
 				return;
@@ -451,6 +448,9 @@ public class ZoneImpl extends MinimalEObjectImpl.Container implements Zone {
 			case GtmPackage.ZONE__CITY:
 				setCity(CITY_EDEFAULT);
 				return;
+			case GtmPackage.ZONE__ZONE_DEFINITIONS:
+				getZoneDefinitions().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -465,8 +465,6 @@ public class ZoneImpl extends MinimalEObjectImpl.Container implements Zone {
 		switch (featureID) {
 			case GtmPackage.ZONE__BINARY_ZONE_ID:
 				return BINARY_ZONE_ID_EDEFAULT == null ? binaryZoneId != null : !BINARY_ZONE_ID_EDEFAULT.equals(binaryZoneId);
-			case GtmPackage.ZONE__ZONE_ID:
-				return zoneId != null && !zoneId.isEmpty();
 			case GtmPackage.ZONE__CARRIER:
 				return carrier != null;
 			case GtmPackage.ZONE__ENTRY_STATION:
@@ -477,6 +475,8 @@ public class ZoneImpl extends MinimalEObjectImpl.Container implements Zone {
 				return nutsCode != null;
 			case GtmPackage.ZONE__CITY:
 				return city != CITY_EDEFAULT;
+			case GtmPackage.ZONE__ZONE_DEFINITIONS:
+				return zoneDefinitions != null && !zoneDefinitions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -493,8 +493,6 @@ public class ZoneImpl extends MinimalEObjectImpl.Container implements Zone {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (binaryZoneId: ");
 		result.append(binaryZoneId);
-		result.append(", zoneId: ");
-		result.append(zoneId);
 		result.append(", city: ");
 		result.append(city);
 		result.append(')');

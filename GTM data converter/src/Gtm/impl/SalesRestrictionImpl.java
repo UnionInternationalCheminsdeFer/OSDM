@@ -3,10 +3,10 @@
 package Gtm.impl;
 
 import Gtm.Calendar;
+import Gtm.EndOfSale;
 import Gtm.GtmPackage;
 import Gtm.SalesRestriction;
-import Gtm.TimeReference;
-
+import Gtm.StartOfSale;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -50,7 +50,7 @@ public class SalesRestrictionImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected TimeReference startOfSale;
+	protected StartOfSale startOfSale;
 
 	/**
 	 * The cached value of the '{@link #getEndOfSale() <em>End Of Sale</em>}' containment reference.
@@ -60,7 +60,7 @@ public class SalesRestrictionImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected TimeReference endOfSale;
+	protected EndOfSale endOfSale;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,7 +124,7 @@ public class SalesRestrictionImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeReference getStartOfSale() {
+	public StartOfSale getStartOfSale() {
 		return startOfSale;
 	}
 
@@ -133,8 +133,8 @@ public class SalesRestrictionImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetStartOfSale(TimeReference newStartOfSale, NotificationChain msgs) {
-		TimeReference oldStartOfSale = startOfSale;
+	public NotificationChain basicSetStartOfSale(StartOfSale newStartOfSale, NotificationChain msgs) {
+		StartOfSale oldStartOfSale = startOfSale;
 		startOfSale = newStartOfSale;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.SALES_RESTRICTION__START_OF_SALE, oldStartOfSale, newStartOfSale);
@@ -148,7 +148,7 @@ public class SalesRestrictionImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStartOfSale(TimeReference newStartOfSale) {
+	public void setStartOfSale(StartOfSale newStartOfSale) {
 		if (newStartOfSale != startOfSale) {
 			NotificationChain msgs = null;
 			if (startOfSale != null)
@@ -167,7 +167,7 @@ public class SalesRestrictionImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeReference getEndOfSale() {
+	public EndOfSale getEndOfSale() {
 		return endOfSale;
 	}
 
@@ -176,8 +176,8 @@ public class SalesRestrictionImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetEndOfSale(TimeReference newEndOfSale, NotificationChain msgs) {
-		TimeReference oldEndOfSale = endOfSale;
+	public NotificationChain basicSetEndOfSale(EndOfSale newEndOfSale, NotificationChain msgs) {
+		EndOfSale oldEndOfSale = endOfSale;
 		endOfSale = newEndOfSale;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.SALES_RESTRICTION__END_OF_SALE, oldEndOfSale, newEndOfSale);
@@ -191,7 +191,7 @@ public class SalesRestrictionImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEndOfSale(TimeReference newEndOfSale) {
+	public void setEndOfSale(EndOfSale newEndOfSale) {
 		if (newEndOfSale != endOfSale) {
 			NotificationChain msgs = null;
 			if (endOfSale != null)
@@ -252,10 +252,10 @@ public class SalesRestrictionImpl extends MinimalEObjectImpl.Container implement
 				setSalesDates((Calendar)newValue);
 				return;
 			case GtmPackage.SALES_RESTRICTION__START_OF_SALE:
-				setStartOfSale((TimeReference)newValue);
+				setStartOfSale((StartOfSale)newValue);
 				return;
 			case GtmPackage.SALES_RESTRICTION__END_OF_SALE:
-				setEndOfSale((TimeReference)newValue);
+				setEndOfSale((EndOfSale)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -273,10 +273,10 @@ public class SalesRestrictionImpl extends MinimalEObjectImpl.Container implement
 				setSalesDates((Calendar)null);
 				return;
 			case GtmPackage.SALES_RESTRICTION__START_OF_SALE:
-				setStartOfSale((TimeReference)null);
+				setStartOfSale((StartOfSale)null);
 				return;
 			case GtmPackage.SALES_RESTRICTION__END_OF_SALE:
-				setEndOfSale((TimeReference)null);
+				setEndOfSale((EndOfSale)null);
 				return;
 		}
 		super.eUnset(featureID);
