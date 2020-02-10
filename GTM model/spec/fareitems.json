@@ -4,7 +4,96 @@
 	"title": "fareElement",
 	"description": "definition for a single fare element for an offer",
 	"definitions": {
-		"FareElementDef": {
+		"FareOnlineDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "unique id of the fare item to be included in accountings",
+					"type": "string"
+				},
+				"type": {
+					"$ref": "definitions.json#/definitions/FareTypeDef"
+				},
+				"name": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"fareDetailDescription": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"price": {
+					"$ref": "faredefinitions.json#/definitions/PriceDef"
+				},
+				"regionalConstraint": {
+					"$ref": "faredefinitions.json#/definitions/RegionalConstraintDef"
+				},
+				"serviceConstraint": {
+					"$ref": "faredefinitions.json#/definitions/ServiceConstraintDef"
+				},
+				"carrierConstraint": {
+					"$ref": "faredefinitions.json#/definitions/CarrierConstraintDef"
+				},
+				"serviceClass": {
+					"$ref": "faredefinitions.json#/definitions/ServiceClassDef"
+				},
+				"serviceLevel": {
+					"$ref": "faredefinitions.json#/definitions/ServiceLevelDef"
+				},
+				"passengerConstraint": {
+					"$ref": "faredefinitions.json#/definitions/PassengerConstraintDef"
+				},
+				"afterSalesCondition": {
+					"$ref": "faredefinitions.json#/definitions/AfterSalesConditionDef"
+				},
+				"combinationConstraint": {
+					"$ref": "faredefinitions.json#/definitions/FareCombinationConstraintDef"
+				},
+				"fullfillmentConstraint": {
+					"$ref": "faredefinitions.json#/definitions/FullfillmentConstraintDef"
+				},
+				"reductionConstraint": {
+					"$ref": "faredefinitions.json#/definitions/ReductionConstraintDef"
+				},
+				"reservationParameter": {
+					"$ref": "faredefinitions.json#/definitions/ReservationParameterDef"
+				},
+				"personalDataConstraint": {
+					"$ref": "faredefinitions.json#/definitions/PersonalDataConstraintDef"
+				},
+				"legacyAccountingIdentifier": {
+					"description": "identifier of the fare in the current 301 accounting file data",
+					"type": "object",
+					"properties": {
+						"serialId": {
+							"description": "sequential number of regional validities",
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 99999
+						},
+						"addId": {
+							"description": "sequential number of regional validities (leading positions in case the series is too short",
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 99
+						},
+						"tariffId": {
+							"description": "sequential number of the fares for one regional validity",
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 9999
+						}
+					},
+					"additionalProperties": false
+				},
+				"travelValidityConstraint": {
+					"$ref": "faredefinitions.json#/definitions/TravelValidityConstraintDef"
+				}
+			},
+			"required": [
+				"type"
+			],
+			"additionalProperties": false
+		},
+		"FareDef": {
 			"type": "object",
 			"properties": {
 				"id": {

@@ -4,6 +4,7 @@
 	"description": "provides offers for combining fares",
 	"definitions": {
 		"prebookingReply": {
+			"description": "TODO: changed price per part?",
 			"type": "object",
 			"properties": {
 				"prebookingId": {
@@ -13,7 +14,7 @@
 					"description": "Expiry time in UTC until which the prebooking is guaranteed. The expiryTime might be already passed in case the carrier does not guarantee the prebooking",
 					"type": "string"
 				},
-				"ErrorDescription": {
+				"errorDescription": {
 					"type": "object",
 					"properties": {
 						"Type": {
@@ -43,6 +44,13 @@
 				},
 				"prebookingContext": {
 					"type": "string"
+				},
+				"reservations": {
+					"description": "optional description of places to be expected in the booking confirmation. it is sufficient to deliver these data inthe confoirmation only.",
+					"type": "array",
+					"items": {
+						"$ref": "reservationdefinitions.json#/definitions/ReservedPlacesDef"
+					}
 				}
 			},
 			"additionalProperties": false

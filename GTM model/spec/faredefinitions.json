@@ -3,19 +3,27 @@
 	"$id": "http://uic.org/schemas/passenger/farestructure/v1/faredefinitions.json",
 	"description": "object definitions used in a fare structure",
 	"definitions": {
-		"AfterSalesConditionDef": {
+		"AfterSalesRuleDef": {
 			"type": "object",
 			"properties": {
 				"transactionType": {
 					"description": "code list Reason for after sale",
 					"type": "string"
 				},
-				"feeId": {
-					"description": "reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction is allowed",
+				"feeRef": {
+					"description": "reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction is allowed. Online services will include fee directly in the fee tag",
 					"type": "string"
+				},
+				"fee": {
+					"$ref": "#/definitions/PriceDef"
 				},
 				"applicationTime": {
 					"$ref": "#/definitions/RelativeTimeDef"
+				},
+				"applicationTimeStamp": {
+					"description": "absolute application time (UTC) in case of online serices",
+					"type": "string",
+					"format": "date-time"
 				},
 				"carrierFee": {
 					"description": "indicates that the fee belongs to the carrier",
@@ -29,12 +37,11 @@
 				}
 			},
 			"required": [
-				"transactionType",
-				"applicationTime"
+				"transactionType"
 			],
 			"additionalProperties": false
 		},
-		"AfterSalesRulesDef": {
+		"AfterSalesConditionDef": {
 			"type": "object",
 			"properties": {
 				"id": {
@@ -44,7 +51,7 @@
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"$ref": "#/definitions/AfterSalesConditionDef"
+						"$ref": "#/definitions/AfterSalesRuleDef"
 					}
 				}
 			},
@@ -151,9 +158,6 @@
 							"$ref": "definitions.json#/definitions/StationDef"
 						}
 					}
-				},
-				"station": {
-					"$ref": "definitions.json#/definitions/StationDef"
 				}
 			},
 			"required": [
@@ -286,8 +290,7 @@
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"description": "SIP - secure paper tickets; SID - security in data (signed bar code); SIS - security in system",
-						"type": "string"
+						"$ref": "definitions.json#/definitions/FulfillmentTypeDef"
 					}
 				},
 				"acceptedBarCodes": {
@@ -686,14 +689,15 @@
 		"ReductionCardDef": {
 			"type": "object",
 			"properties": {
-				"CardIssuer": {
+				"issuer": {
 					"$ref": "definitions.json#/definitions/CompanyDef"
 				},
-				"CardName": {
-					"$ref": "#/definitions/TextDef"
-				},
-				"CardId": {
+				"Id": {
+					"description": "id of the card within the issuer",
 					"type": "string"
+				},
+				"name": {
+					"$ref": "#/definitions/TextDef"
 				},
 				"serviceClasses": {
 					"description": "list of service classes in case this class is available for different classes",
@@ -701,12 +705,21 @@
 					"items": {
 						"$ref": "#/definitions/ServiceClassDef"
 					}
+				},
+				"type": {
+					"description": "LOYALTY_CARD,REDUCTION_CARD,PASS",
+					"type": "string"
+				},
+				"cardIdRequired": {
+					"description": "the card id must be delivered in online sales ",
+					"type": "boolean",
+					"default": false
 				}
 			},
 			"required": [
-				"CardIssuer",
-				"CardName",
-				"CardId"
+				"issuer",
+				"Id",
+				"name"
 			],
 			"additionalProperties": false
 		},
@@ -752,9 +765,12 @@
 					"description": "A,B,C,D",
 					"type": "string"
 				},
-				"textId": {
+				"textRef": {
 					"description": "id of the text describing the class",
 					"type": "string"
+				},
+				"text": {
+					"$ref": "#/definitions/TextDef"
 				},
 				"classicClass": {
 					"description": "FIRST,SECOND",
@@ -809,6 +825,9 @@
 					"description": "id of the text describing the service level",
 					"type": "string"
 				},
+				"text": {
+					"$ref": "#/definitions/TextDef"
+				},
 				"includesClassName": {
 					"description": "indicates that the class name is included",
 					"type": "boolean",
@@ -851,7 +870,7 @@
 			"additionalProperties": false
 		},
 		"TextDef": {
-			"description": "data type for texts with translations)",
+			"description": "text",
 			"type": "object",
 			"properties": {
 				"id": {
