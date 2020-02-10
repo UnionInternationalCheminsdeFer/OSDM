@@ -3,10 +3,12 @@ Bundle-ManifestVersion: 2
 Bundle-Name: GTM_model
 Bundle-SymbolicName: GTM_model
 Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: UIC
 Automatic-Module-Name: GTM_model
-Export-Package: export;uses:="gtm",
+Bundle-RequiredExecutionEnvironment: JavaSE-13
+Require-Bundle: org.eclipse.swt;bundle-version="3.113.0",
+ fasterxml;bundle-version="1.0.0"
+Bundle-ClassPath: lib/,
+ .
+Export-Package: export,
  gtm
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: com.fasterxml.jackson.core.jackson-annotations,
- com.fasterxml.jackson.core.jackson-databind,
- com.fasterxml.jackson.core.jackson-core
