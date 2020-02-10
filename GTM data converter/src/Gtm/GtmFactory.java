@@ -175,76 +175,13 @@ public interface GtmFactory extends EFactory {
 	GeneralTariffModel createGeneralTariffModel();
 
 	/**
-	 * Returns a new object of class '<em>Conversion From Legacy</em>'.
+	 * Returns a new object of class '<em>Delivery</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conversion From Legacy</em>'.
+	 * @return a new object of class '<em>Delivery</em>'.
 	 * @generated
 	 */
-	ConversionFromLegacy createConversionFromLegacy();
-
-	/**
-	 * Returns a new object of class '<em>Conversion Params</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conversion Params</em>'.
-	 * @generated
-	 */
-	ConversionParams createConversionParams();
-
-	/**
-	 * Returns a new object of class '<em>Legacy Station To Service Constraint Mappings</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Station To Service Constraint Mappings</em>'.
-	 * @generated
-	 */
-	LegacyStationToServiceConstraintMappings createLegacyStationToServiceConstraintMappings();
-
-	/**
-	 * Returns a new object of class '<em>Legacy Station To Service Constraint Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Station To Service Constraint Mapping</em>'.
-	 * @generated
-	 */
-	LegacyStationToServiceConstraintMapping createLegacyStationToServiceConstraintMapping();
-
-	/**
-	 * Returns a new object of class '<em>Legacy Station Mappings</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Station Mappings</em>'.
-	 * @generated
-	 */
-	LegacyStationMappings createLegacyStationMappings();
-
-	/**
-	 * Returns a new object of class '<em>Legacy Station Map</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Station Map</em>'.
-	 * @generated
-	 */
-	LegacyStationMap createLegacyStationMap();
-
-	/**
-	 * Returns a new object of class '<em>Legacy Boder Point Mappings</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Boder Point Mappings</em>'.
-	 * @generated
-	 */
-	LegacyBoderPointMappings createLegacyBoderPointMappings();
-
-	/**
-	 * Returns a new object of class '<em>Legacy Border Point Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Border Point Mapping</em>'.
-	 * @generated
-	 */
-	LegacyBorderPointMapping createLegacyBorderPointMapping();
+	Delivery createDelivery();
 
 	/**
 	 * Returns a new object of class '<em>After Sales Rules</em>'.
@@ -254,6 +191,33 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	AfterSalesRules createAfterSalesRules();
+
+	/**
+	 * Returns a new object of class '<em>After Sales Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>After Sales Rule</em>'.
+	 * @generated
+	 */
+	AfterSalesRule createAfterSalesRule();
+
+	/**
+	 * Returns a new object of class '<em>After Sales Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>After Sales Condition</em>'.
+	 * @generated
+	 */
+	AfterSalesCondition createAfterSalesCondition();
+
+	/**
+	 * Returns a new object of class '<em>Application Time</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Application Time</em>'.
+	 * @generated
+	 */
+	ApplicationTime createApplicationTime();
 
 	/**
 	 * Returns a new object of class '<em>Fare Structure</em>'.
@@ -328,6 +292,33 @@ public interface GtmFactory extends EFactory {
 	CarrierResourceLocations createCarrierResourceLocations();
 
 	/**
+	 * Returns a new object of class '<em>Train Resource Location</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Train Resource Location</em>'.
+	 * @generated
+	 */
+	TrainResourceLocation createTrainResourceLocation();
+
+	/**
+	 * Returns a new object of class '<em>Station Resource Location</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Station Resource Location</em>'.
+	 * @generated
+	 */
+	StationResourceLocation createStationResourceLocation();
+
+	/**
+	 * Returns a new object of class '<em>Online Resource</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Online Resource</em>'.
+	 * @generated
+	 */
+	OnlineResource createOnlineResource();
+
+	/**
 	 * Returns a new object of class '<em>Fulfillment Constraints</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -355,6 +346,24 @@ public interface GtmFactory extends EFactory {
 	ZoneDefinitions createZoneDefinitions();
 
 	/**
+	 * Returns a new object of class '<em>Fare Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fare Element</em>'.
+	 * @generated
+	 */
+	FareElement createFareElement();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Accounting Identifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Accounting Identifier</em>'.
+	 * @generated
+	 */
+	LegacyAccountingIdentifier createLegacyAccountingIdentifier();
+
+	/**
 	 * Returns a new object of class '<em>Reduction Constraints</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -362,6 +371,15 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	ReductionConstraints createReductionConstraints();
+
+	/**
+	 * Returns a new object of class '<em>Fare Elements</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fare Elements</em>'.
+	 * @generated
+	 */
+	FareElements createFareElements();
 
 	/**
 	 * Returns a new object of class '<em>Personal Data Constraints</em>'.
@@ -373,6 +391,33 @@ public interface GtmFactory extends EFactory {
 	PersonalDataConstraints createPersonalDataConstraints();
 
 	/**
+	 * Returns a new object of class '<em>Personal Data Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Personal Data Constraint</em>'.
+	 * @generated
+	 */
+	PersonalDataConstraint createPersonalDataConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Required Personal Data</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Required Personal Data</em>'.
+	 * @generated
+	 */
+	RequiredPersonalData createRequiredPersonalData();
+
+	/**
+	 * Returns a new object of class '<em>Allowed Personal Data Changes</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Allowed Personal Data Changes</em>'.
+	 * @generated
+	 */
+	AllowedPersonalDataChanges createAllowedPersonalDataChanges();
+
+	/**
 	 * Returns a new object of class '<em>Passenger Constraints</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -380,6 +425,33 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	PassengerConstraints createPassengerConstraints();
+
+	/**
+	 * Returns a new object of class '<em>Passenger Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Passenger Constraint</em>'.
+	 * @generated
+	 */
+	PassengerConstraint createPassengerConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Included Free Passengers</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Included Free Passengers</em>'.
+	 * @generated
+	 */
+	IncludedFreePassengers createIncludedFreePassengers();
+
+	/**
+	 * Returns a new object of class '<em>Passenger Combination Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Passenger Combination Constraint</em>'.
+	 * @generated
+	 */
+	PassengerCombinationConstraint createPassengerCombinationConstraint();
 
 	/**
 	 * Returns a new object of class '<em>Combination Constraints</em>'.
@@ -391,6 +463,15 @@ public interface GtmFactory extends EFactory {
 	CombinationConstraints createCombinationConstraints();
 
 	/**
+	 * Returns a new object of class '<em>Combination Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Combination Constraint</em>'.
+	 * @generated
+	 */
+	CombinationConstraint createCombinationConstraint();
+
+	/**
 	 * Returns a new object of class '<em>Travel Validity Constraints</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -398,6 +479,15 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	TravelValidityConstraints createTravelValidityConstraints();
+
+	/**
+	 * Returns a new object of class '<em>Travel Validity Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Travel Validity Constraint</em>'.
+	 * @generated
+	 */
+	TravelValidityConstraint createTravelValidityConstraint();
 
 	/**
 	 * Returns a new object of class '<em>Sales Availability Constraints</em>'.
@@ -409,6 +499,42 @@ public interface GtmFactory extends EFactory {
 	SalesAvailabilityConstraints createSalesAvailabilityConstraints();
 
 	/**
+	 * Returns a new object of class '<em>Sales Availability Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sales Availability Constraint</em>'.
+	 * @generated
+	 */
+	SalesAvailabilityConstraint createSalesAvailabilityConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Sales Restriction</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sales Restriction</em>'.
+	 * @generated
+	 */
+	SalesRestriction createSalesRestriction();
+
+	/**
+	 * Returns a new object of class '<em>End Of Sale</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>End Of Sale</em>'.
+	 * @generated
+	 */
+	EndOfSale createEndOfSale();
+
+	/**
+	 * Returns a new object of class '<em>Start Of Sale</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Start Of Sale</em>'.
+	 * @generated
+	 */
+	StartOfSale createStartOfSale();
+
+	/**
 	 * Returns a new object of class '<em>Reduction Cards</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -416,6 +542,15 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	ReductionCards createReductionCards();
+
+	/**
+	 * Returns a new object of class '<em>Reduction Card</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reduction Card</em>'.
+	 * @generated
+	 */
+	ReductionCard createReductionCard();
 
 	/**
 	 * Returns a new object of class '<em>Carrier Constraints</em>'.
@@ -427,6 +562,15 @@ public interface GtmFactory extends EFactory {
 	CarrierConstraints createCarrierConstraints();
 
 	/**
+	 * Returns a new object of class '<em>Carrier Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Carrier Constraint</em>'.
+	 * @generated
+	 */
+	CarrierConstraint createCarrierConstraint();
+
+	/**
 	 * Returns a new object of class '<em>Service Constraints</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -436,13 +580,13 @@ public interface GtmFactory extends EFactory {
 	ServiceConstraints createServiceConstraints();
 
 	/**
-	 * Returns a new object of class '<em>Reservation Parameters</em>'.
+	 * Returns a new object of class '<em>Service Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reservation Parameters</em>'.
+	 * @return a new object of class '<em>Service Constraint</em>'.
 	 * @generated
 	 */
-	ReservationParameters createReservationParameters();
+	ServiceConstraint createServiceConstraint();
 
 	/**
 	 * Returns a new object of class '<em>Regional Constraints</em>'.
@@ -452,6 +596,24 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	RegionalConstraints createRegionalConstraints();
+
+	/**
+	 * Returns a new object of class '<em>Regional Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Regional Constraint</em>'.
+	 * @generated
+	 */
+	RegionalConstraint createRegionalConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Regional Validity</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Regional Validity</em>'.
+	 * @generated
+	 */
+	RegionalValidity createRegionalValidity();
 
 	/**
 	 * Returns a new object of class '<em>Service Level Definitions</em>'.
@@ -472,6 +634,24 @@ public interface GtmFactory extends EFactory {
 	Texts createTexts();
 
 	/**
+	 * Returns a new object of class '<em>Text</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Text</em>'.
+	 * @generated
+	 */
+	Text createText();
+
+	/**
+	 * Returns a new object of class '<em>Translation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Translation</em>'.
+	 * @generated
+	 */
+	Translation createTranslation();
+
+	/**
 	 * Returns a new object of class '<em>Prices</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -479,6 +659,33 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	Prices createPrices();
+
+	/**
+	 * Returns a new object of class '<em>Price</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Price</em>'.
+	 * @generated
+	 */
+	Price createPrice();
+
+	/**
+	 * Returns a new object of class '<em>VAT Detail</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>VAT Detail</em>'.
+	 * @generated
+	 */
+	VATDetail createVATDetail();
+
+	/**
+	 * Returns a new object of class '<em>Currency Price</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Currency Price</em>'.
+	 * @generated
+	 */
+	CurrencyPrice createCurrencyPrice();
 
 	/**
 	 * Returns a new object of class '<em>Service Class Definitions</em>'.
@@ -499,24 +706,6 @@ public interface GtmFactory extends EFactory {
 	Calendars createCalendars();
 
 	/**
-	 * Returns a new object of class '<em>Fare Elements</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fare Elements</em>'.
-	 * @generated
-	 */
-	FareElements createFareElements();
-
-	/**
-	 * Returns a new object of class '<em>Delivery</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Delivery</em>'.
-	 * @generated
-	 */
-	Delivery createDelivery();
-
-	/**
 	 * Returns a new object of class '<em>Calendar</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -524,6 +713,348 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	Calendar createCalendar();
+
+	/**
+	 * Returns a new object of class '<em>Reservation Parameters</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reservation Parameters</em>'.
+	 * @generated
+	 */
+	ReservationParameters createReservationParameters();
+
+	/**
+	 * Returns a new object of class '<em>Reservation Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reservation Parameter</em>'.
+	 * @generated
+	 */
+	ReservationParameter createReservationParameter();
+
+	/**
+	 * Returns a new object of class '<em>Reservation Params9181</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reservation Params9181</em>'.
+	 * @generated
+	 */
+	ReservationParams9181 createReservationParams9181();
+
+	/**
+	 * Returns a new object of class '<em>Reservation Options</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reservation Options</em>'.
+	 * @generated
+	 */
+	ReservationOptions createReservationOptions();
+
+	/**
+	 * Returns a new object of class '<em>Reservation Preference Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reservation Preference Group</em>'.
+	 * @generated
+	 */
+	ReservationPreferenceGroup createReservationPreferenceGroup();
+
+	/**
+	 * Returns a new object of class '<em>Service Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Service Class</em>'.
+	 * @generated
+	 */
+	ServiceClass createServiceClass();
+
+	/**
+	 * Returns a new object of class '<em>Service Level</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Service Level</em>'.
+	 * @generated
+	 */
+	ServiceLevel createServiceLevel();
+
+	/**
+	 * Returns a new object of class '<em>Time Range</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Time Range</em>'.
+	 * @generated
+	 */
+	TimeRange createTimeRange();
+
+	/**
+	 * Returns a new object of class '<em>Excluded Time Range</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Excluded Time Range</em>'.
+	 * @generated
+	 */
+	ExcludedTimeRange createExcludedTimeRange();
+
+	/**
+	 * Returns a new object of class '<em>Validity Range</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Validity Range</em>'.
+	 * @generated
+	 */
+	ValidityRange createValidityRange();
+
+	/**
+	 * Returns a new object of class '<em>Relative Time</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Relative Time</em>'.
+	 * @generated
+	 */
+	RelativeTime createRelativeTime();
+
+	/**
+	 * Returns a new object of class '<em>Return Validity Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Return Validity Constraint</em>'.
+	 * @generated
+	 */
+	ReturnValidityConstraint createReturnValidityConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Via Station</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Via Station</em>'.
+	 * @generated
+	 */
+	ViaStation createViaStation();
+
+	/**
+	 * Returns a new object of class '<em>Alternative Route</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Alternative Route</em>'.
+	 * @generated
+	 */
+	AlternativeRoute createAlternativeRoute();
+
+	/**
+	 * Returns a new object of class '<em>Route</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Route</em>'.
+	 * @generated
+	 */
+	Route createRoute();
+
+	/**
+	 * Returns a new object of class '<em>Zone</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Zone</em>'.
+	 * @generated
+	 */
+	Zone createZone();
+
+	/**
+	 * Returns a new object of class '<em>Zone Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Zone Definition</em>'.
+	 * @generated
+	 */
+	ZoneDefinition createZoneDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Line</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Line</em>'.
+	 * @generated
+	 */
+	Line createLine();
+
+	/**
+	 * Returns a new object of class '<em>Polygone</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Polygone</em>'.
+	 * @generated
+	 */
+	Polygone createPolygone();
+
+	/**
+	 * Returns a new object of class '<em>Edge</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Edge</em>'.
+	 * @generated
+	 */
+	Edge createEdge();
+
+	/**
+	 * Returns a new object of class '<em>Carrier Resource Location</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Carrier Resource Location</em>'.
+	 * @generated
+	 */
+	CarrierResourceLocation createCarrierResourceLocation();
+
+	/**
+	 * Returns a new object of class '<em>Cross Border Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cross Border Condition</em>'.
+	 * @generated
+	 */
+	CrossBorderCondition createCrossBorderCondition();
+
+	/**
+	 * Returns a new object of class '<em>Fare Combination Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fare Combination Model</em>'.
+	 * @generated
+	 */
+	FareCombinationModel createFareCombinationModel();
+
+	/**
+	 * Returns a new object of class '<em>Fulfillment Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fulfillment Constraint</em>'.
+	 * @generated
+	 */
+	FulfillmentConstraint createFulfillmentConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Required Barcodes</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Required Barcodes</em>'.
+	 * @generated
+	 */
+	RequiredBarcodes createRequiredBarcodes();
+
+	/**
+	 * Returns a new object of class '<em>Accepted Barcodes</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Accepted Barcodes</em>'.
+	 * @generated
+	 */
+	AcceptedBarcodes createAcceptedBarcodes();
+
+	/**
+	 * Returns a new object of class '<em>Reduction Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reduction Constraint</em>'.
+	 * @generated
+	 */
+	ReductionConstraint createReductionConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Required Reduction Card</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Required Reduction Card</em>'.
+	 * @generated
+	 */
+	RequiredReductionCard createRequiredReductionCard();
+
+	/**
+	 * Returns a new object of class '<em>Conversion From Legacy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conversion From Legacy</em>'.
+	 * @generated
+	 */
+	ConversionFromLegacy createConversionFromLegacy();
+
+	/**
+	 * Returns a new object of class '<em>Conversion Params</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conversion Params</em>'.
+	 * @generated
+	 */
+	ConversionParams createConversionParams();
+
+	/**
+	 * Returns a new object of class '<em>Target Fare Template</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Target Fare Template</em>'.
+	 * @generated
+	 */
+	TargetFareTemplate createTargetFareTemplate();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Station To Service Constraint Mappings</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Station To Service Constraint Mappings</em>'.
+	 * @generated
+	 */
+	LegacyStationToServiceConstraintMappings createLegacyStationToServiceConstraintMappings();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Station To Service Constraint Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Station To Service Constraint Mapping</em>'.
+	 * @generated
+	 */
+	LegacyStationToServiceConstraintMapping createLegacyStationToServiceConstraintMapping();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Station Mappings</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Station Mappings</em>'.
+	 * @generated
+	 */
+	LegacyStationMappings createLegacyStationMappings();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Station Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Station Map</em>'.
+	 * @generated
+	 */
+	LegacyStationMap createLegacyStationMap();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Station</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Station</em>'.
+	 * @generated
+	 */
+	LegacyStation createLegacyStation();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Boder Point Mappings</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Boder Point Mappings</em>'.
+	 * @generated
+	 */
+	LegacyBoderPointMappings createLegacyBoderPointMappings();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Border Point Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Border Point Mapping</em>'.
+	 * @generated
+	 */
+	LegacyBorderPointMapping createLegacyBorderPointMapping();
 
 	/**
 	 * Returns a new object of class '<em>Legacy Description</em>'.
@@ -551,15 +1082,6 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	LegacyZoneMap createLegacyZoneMap();
-
-	/**
-	 * Returns a new object of class '<em>Legacy Distance Fare</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Distance Fare</em>'.
-	 * @generated
-	 */
-	LegacyDistanceFare createLegacyDistanceFare();
 
 	/**
 	 * Returns a new object of class '<em>Legacy Fares</em>'.
@@ -652,6 +1174,15 @@ public interface GtmFactory extends EFactory {
 	LegacyDistanceFares createLegacyDistanceFares();
 
 	/**
+	 * Returns a new object of class '<em>Legacy Distance Fare</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Distance Fare</em>'.
+	 * @generated
+	 */
+	LegacyDistanceFare createLegacyDistanceFare();
+
+	/**
 	 * Returns a new object of class '<em>Legacy Viastation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -668,537 +1199,6 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	LegacyTargetFares createLegacyTargetFares();
-
-	/**
-	 * Returns a new object of class '<em>Carrier Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Carrier Constraint</em>'.
-	 * @generated
-	 */
-	CarrierConstraint createCarrierConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Price</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Price</em>'.
-	 * @generated
-	 */
-	Price createPrice();
-
-	/**
-	 * Returns a new object of class '<em>Currency Price</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Currency Price</em>'.
-	 * @generated
-	 */
-	CurrencyPrice createCurrencyPrice();
-
-	/**
-	 * Returns a new object of class '<em>Reduction Card</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reduction Card</em>'.
-	 * @generated
-	 */
-	ReductionCard createReductionCard();
-
-	/**
-	 * Returns a new object of class '<em>Regional Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Regional Constraint</em>'.
-	 * @generated
-	 */
-	RegionalConstraint createRegionalConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Reservation Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reservation Parameter</em>'.
-	 * @generated
-	 */
-	ReservationParameter createReservationParameter();
-
-	/**
-	 * Returns a new object of class '<em>Reservation Params9181</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reservation Params9181</em>'.
-	 * @generated
-	 */
-	ReservationParams9181 createReservationParams9181();
-
-	/**
-	 * Returns a new object of class '<em>Reservation Options</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reservation Options</em>'.
-	 * @generated
-	 */
-	ReservationOptions createReservationOptions();
-
-	/**
-	 * Returns a new object of class '<em>Reservation Preference Group</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reservation Preference Group</em>'.
-	 * @generated
-	 */
-	ReservationPreferenceGroup createReservationPreferenceGroup();
-
-	/**
-	 * Returns a new object of class '<em>Service Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Service Class</em>'.
-	 * @generated
-	 */
-	ServiceClass createServiceClass();
-
-	/**
-	 * Returns a new object of class '<em>Service Level</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Service Level</em>'.
-	 * @generated
-	 */
-	ServiceLevel createServiceLevel();
-
-	/**
-	 * Returns a new object of class '<em>Service Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Service Constraint</em>'.
-	 * @generated
-	 */
-	ServiceConstraint createServiceConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Target Fare Template</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Target Fare Template</em>'.
-	 * @generated
-	 */
-	TargetFareTemplate createTargetFareTemplate();
-
-	/**
-	 * Returns a new object of class '<em>Travel Validity Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Travel Validity Constraint</em>'.
-	 * @generated
-	 */
-	TravelValidityConstraint createTravelValidityConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Text</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Text</em>'.
-	 * @generated
-	 */
-	Text createText();
-
-	/**
-	 * Returns a new object of class '<em>Translation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Translation</em>'.
-	 * @generated
-	 */
-	Translation createTranslation();
-
-	/**
-	 * Returns a new object of class '<em>VAT Detail</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>VAT Detail</em>'.
-	 * @generated
-	 */
-	VATDetail createVATDetail();
-
-	/**
-	 * Returns a new object of class '<em>Fare Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fare Element</em>'.
-	 * @generated
-	 */
-	FareElement createFareElement();
-
-	/**
-	 * Returns a new object of class '<em>Legacy Accounting Identifier</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Accounting Identifier</em>'.
-	 * @generated
-	 */
-	LegacyAccountingIdentifier createLegacyAccountingIdentifier();
-
-	/**
-	 * Returns a new object of class '<em>Sales Availability Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sales Availability Constraint</em>'.
-	 * @generated
-	 */
-	SalesAvailabilityConstraint createSalesAvailabilityConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Sales Restriction</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sales Restriction</em>'.
-	 * @generated
-	 */
-	SalesRestriction createSalesRestriction();
-
-	/**
-	 * Returns a new object of class '<em>End Of Sale</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>End Of Sale</em>'.
-	 * @generated
-	 */
-	EndOfSale createEndOfSale();
-
-	/**
-	 * Returns a new object of class '<em>Start Of Sale</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Start Of Sale</em>'.
-	 * @generated
-	 */
-	StartOfSale createStartOfSale();
-
-	/**
-	 * Returns a new object of class '<em>Combination Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Combination Constraint</em>'.
-	 * @generated
-	 */
-	CombinationConstraint createCombinationConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Validity Range</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Validity Range</em>'.
-	 * @generated
-	 */
-	ValidityRange createValidityRange();
-
-	/**
-	 * Returns a new object of class '<em>Time Range</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Time Range</em>'.
-	 * @generated
-	 */
-	TimeRange createTimeRange();
-
-	/**
-	 * Returns a new object of class '<em>Excluded Time Range</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Excluded Time Range</em>'.
-	 * @generated
-	 */
-	ExcludedTimeRange createExcludedTimeRange();
-
-	/**
-	 * Returns a new object of class '<em>Return Validity Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Return Validity Constraint</em>'.
-	 * @generated
-	 */
-	ReturnValidityConstraint createReturnValidityConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Regional Validity</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Regional Validity</em>'.
-	 * @generated
-	 */
-	RegionalValidity createRegionalValidity();
-
-	/**
-	 * Returns a new object of class '<em>Via Station</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Via Station</em>'.
-	 * @generated
-	 */
-	ViaStation createViaStation();
-
-	/**
-	 * Returns a new object of class '<em>Alternative Route</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Alternative Route</em>'.
-	 * @generated
-	 */
-	AlternativeRoute createAlternativeRoute();
-
-	/**
-	 * Returns a new object of class '<em>Route</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Route</em>'.
-	 * @generated
-	 */
-	Route createRoute();
-
-	/**
-	 * Returns a new object of class '<em>Zone</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Zone</em>'.
-	 * @generated
-	 */
-	Zone createZone();
-
-	/**
-	 * Returns a new object of class '<em>Zone Definition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Zone Definition</em>'.
-	 * @generated
-	 */
-	ZoneDefinition createZoneDefinition();
-
-	/**
-	 * Returns a new object of class '<em>Line</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Line</em>'.
-	 * @generated
-	 */
-	Line createLine();
-
-	/**
-	 * Returns a new object of class '<em>Polygone</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Polygone</em>'.
-	 * @generated
-	 */
-	Polygone createPolygone();
-
-	/**
-	 * Returns a new object of class '<em>Legacy Station</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Station</em>'.
-	 * @generated
-	 */
-	LegacyStation createLegacyStation();
-
-	/**
-	 * Returns a new object of class '<em>Edge</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Edge</em>'.
-	 * @generated
-	 */
-	Edge createEdge();
-
-	/**
-	 * Returns a new object of class '<em>Passenger Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Passenger Constraint</em>'.
-	 * @generated
-	 */
-	PassengerConstraint createPassengerConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Included Free Passengers</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Included Free Passengers</em>'.
-	 * @generated
-	 */
-	IncludedFreePassengers createIncludedFreePassengers();
-
-	/**
-	 * Returns a new object of class '<em>Passenger Combination Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Passenger Combination Constraint</em>'.
-	 * @generated
-	 */
-	PassengerCombinationConstraint createPassengerCombinationConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Relative Time</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Relative Time</em>'.
-	 * @generated
-	 */
-	RelativeTime createRelativeTime();
-
-	/**
-	 * Returns a new object of class '<em>After Sales Condition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>After Sales Condition</em>'.
-	 * @generated
-	 */
-	AfterSalesCondition createAfterSalesCondition();
-
-	/**
-	 * Returns a new object of class '<em>Application Time</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Application Time</em>'.
-	 * @generated
-	 */
-	ApplicationTime createApplicationTime();
-
-	/**
-	 * Returns a new object of class '<em>After Sales Rule</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>After Sales Rule</em>'.
-	 * @generated
-	 */
-	AfterSalesRule createAfterSalesRule();
-
-	/**
-	 * Returns a new object of class '<em>Allowed Personal Data Changes</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Allowed Personal Data Changes</em>'.
-	 * @generated
-	 */
-	AllowedPersonalDataChanges createAllowedPersonalDataChanges();
-
-	/**
-	 * Returns a new object of class '<em>Carrier Resource Location</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Carrier Resource Location</em>'.
-	 * @generated
-	 */
-	CarrierResourceLocation createCarrierResourceLocation();
-
-	/**
-	 * Returns a new object of class '<em>Cross Border Condition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Cross Border Condition</em>'.
-	 * @generated
-	 */
-	CrossBorderCondition createCrossBorderCondition();
-
-	/**
-	 * Returns a new object of class '<em>Fare Combination Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fare Combination Model</em>'.
-	 * @generated
-	 */
-	FareCombinationModel createFareCombinationModel();
-
-	/**
-	 * Returns a new object of class '<em>Required Barcodes</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Required Barcodes</em>'.
-	 * @generated
-	 */
-	RequiredBarcodes createRequiredBarcodes();
-
-	/**
-	 * Returns a new object of class '<em>Accepted Barcodes</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Accepted Barcodes</em>'.
-	 * @generated
-	 */
-	AcceptedBarcodes createAcceptedBarcodes();
-
-	/**
-	 * Returns a new object of class '<em>Fulfillment Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fulfillment Constraint</em>'.
-	 * @generated
-	 */
-	FulfillmentConstraint createFulfillmentConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Online Resource</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Online Resource</em>'.
-	 * @generated
-	 */
-	OnlineResource createOnlineResource();
-
-	/**
-	 * Returns a new object of class '<em>Personal Data Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Personal Data Constraint</em>'.
-	 * @generated
-	 */
-	PersonalDataConstraint createPersonalDataConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Required Personal Data</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Required Personal Data</em>'.
-	 * @generated
-	 */
-	RequiredPersonalData createRequiredPersonalData();
-
-	/**
-	 * Returns a new object of class '<em>Reduction Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reduction Constraint</em>'.
-	 * @generated
-	 */
-	ReductionConstraint createReductionConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Required Reduction Card</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Required Reduction Card</em>'.
-	 * @generated
-	 */
-	RequiredReductionCard createRequiredReductionCard();
-
-	/**
-	 * Returns a new object of class '<em>Station Resource Location</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Station Resource Location</em>'.
-	 * @generated
-	 */
-	StationResourceLocation createStationResourceLocation();
-
-	/**
-	 * Returns a new object of class '<em>Train Resource Location</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Train Resource Location</em>'.
-	 * @generated
-	 */
-	TrainResourceLocation createTrainResourceLocation();
 
 	/**
 	 * Returns the package supported by this factory.

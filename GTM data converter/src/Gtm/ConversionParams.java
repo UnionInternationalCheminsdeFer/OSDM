@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.ConversionParams#getTaxId <em>Tax Id</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getVATpercentage <em>VA Tpercentage</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getCountry <em>Country</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getLegacyBorderPointMappings <em>Legacy Border Point Mappings</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getLegacyStationMappings <em>Legacy Station Mappings</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getLegacyTargetFares <em>Legacy Target Fares</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getLegacyZoneMappings <em>Legacy Zone Mappings</em>}</li>
@@ -94,6 +95,28 @@ public interface ConversionParams extends EObject {
 	 * @generated
 	 */
 	void setCountry(Country value);
+
+	/**
+	 * Returns the value of the '<em><b>Legacy Border Point Mappings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Legacy Border Point Mappings</em>' containment reference.
+	 * @see #setLegacyBorderPointMappings(LegacyBoderPointMappings)
+	 * @see Gtm.GtmPackage#getConversionParams_LegacyBorderPointMappings()
+	 * @model containment="true"
+	 * @generated
+	 */
+	LegacyBoderPointMappings getLegacyBorderPointMappings();
+
+	/**
+	 * Sets the value of the '{@link Gtm.ConversionParams#getLegacyBorderPointMappings <em>Legacy Border Point Mappings</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Legacy Border Point Mappings</em>' containment reference.
+	 * @see #getLegacyBorderPointMappings()
+	 * @generated
+	 */
+	void setLegacyBorderPointMappings(LegacyBoderPointMappings value);
 
 	/**
 	 * Returns the value of the '<em><b>Legacy Station Mappings</b></em>' containment reference.

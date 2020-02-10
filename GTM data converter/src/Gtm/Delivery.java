@@ -56,7 +56,7 @@ public interface Delivery extends EObject {
 	 * @return the value of the '<em>Previous Delivery Id</em>' attribute.
 	 * @see #setPreviousDeliveryId(String)
 	 * @see Gtm.GtmPackage#getDelivery_PreviousDeliveryId()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	String getPreviousDeliveryId();
@@ -80,7 +80,7 @@ public interface Delivery extends EObject {
 	 * @see #unsetReplacedDeliveryId()
 	 * @see #setReplacedDeliveryId(String)
 	 * @see Gtm.GtmPackage#getDelivery_ReplacedDeliveryId()
-	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	String getReplacedDeliveryId();
@@ -130,7 +130,7 @@ public interface Delivery extends EObject {
 	 * @see #unsetOptional()
 	 * @see #setOptional(boolean)
 	 * @see Gtm.GtmPackage#getDelivery_Optional()
-	 * @model default="false" unsettable="true" required="true"
+	 * @model default="false" unsettable="true"
 	 * @generated
 	 */
 	boolean isOptional();

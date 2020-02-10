@@ -65,6 +65,43 @@ public interface FulfillmentConstraint extends EObject {
 	EList<FulfillmentType> getAcceptedFulfilmentTypes();
 
 	/**
+	 * Returns the value of the '<em><b>Required Control Data Exchange</b></em>' attribute list.
+	 * The list contents are of type {@link Gtm.ControlDataExchangeTypes}.
+	 * The literals are from the enumeration {@link Gtm.ControlDataExchangeTypes}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Required Control Data Exchange</em>' attribute list.
+	 * @see Gtm.ControlDataExchangeTypes
+	 * @see Gtm.GtmPackage#getFulfillmentConstraint_RequiredControlDataExchange()
+	 * @model
+	 * @generated
+	 */
+	EList<ControlDataExchangeTypes> getRequiredControlDataExchange();
+
+	/**
+	 * Returns the value of the '<em><b>Individual Ticketing Permitted</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Individual Ticketing Permitted</em>' attribute.
+	 * @see #setIndividualTicketingPermitted(boolean)
+	 * @see Gtm.GtmPackage#getFulfillmentConstraint_IndividualTicketingPermitted()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isIndividualTicketingPermitted();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FulfillmentConstraint#isIndividualTicketingPermitted <em>Individual Ticketing Permitted</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Individual Ticketing Permitted</em>' attribute.
+	 * @see #isIndividualTicketingPermitted()
+	 * @generated
+	 */
+	void setIndividualTicketingPermitted(boolean value);
+
+	/**
 	 * Returns the value of the '<em><b>Accepted Barcodes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,42 +144,5 @@ public interface FulfillmentConstraint extends EObject {
 	 * @generated
 	 */
 	void setRequiredBarcodes(RequiredBarcodes value);
-
-	/**
-	 * Returns the value of the '<em><b>Required Control Data Exchange</b></em>' attribute list.
-	 * The list contents are of type {@link Gtm.ControlDataExchangeTypes}.
-	 * The literals are from the enumeration {@link Gtm.ControlDataExchangeTypes}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Required Control Data Exchange</em>' attribute list.
-	 * @see Gtm.ControlDataExchangeTypes
-	 * @see Gtm.GtmPackage#getFulfillmentConstraint_RequiredControlDataExchange()
-	 * @model
-	 * @generated
-	 */
-	EList<ControlDataExchangeTypes> getRequiredControlDataExchange();
-
-	/**
-	 * Returns the value of the '<em><b>Individual Ticketing Permitted</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Individual Ticketing Permitted</em>' attribute.
-	 * @see #setIndividualTicketingPermitted(boolean)
-	 * @see Gtm.GtmPackage#getFulfillmentConstraint_IndividualTicketingPermitted()
-	 * @model default="false"
-	 * @generated
-	 */
-	boolean isIndividualTicketingPermitted();
-
-	/**
-	 * Sets the value of the '{@link Gtm.FulfillmentConstraint#isIndividualTicketingPermitted <em>Individual Ticketing Permitted</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Individual Ticketing Permitted</em>' attribute.
-	 * @see #isIndividualTicketingPermitted()
-	 * @generated
-	 */
-	void setIndividualTicketingPermitted(boolean value);
 
 } // FulfillmentConstraint

@@ -54,28 +54,6 @@ public interface Legacy108 extends EObject {
 	void setCharacterSet(CharacterSet value);
 
 	/**
-	 * Returns the value of the '<em><b>Carrier</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Carrier</em>' reference.
-	 * @see #setCarrier(Carrier)
-	 * @see Gtm.GtmPackage#getLegacy108_Carrier()
-	 * @model
-	 * @generated
-	 */
-	Carrier getCarrier();
-
-	/**
-	 * Sets the value of the '{@link Gtm.Legacy108#getCarrier <em>Carrier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Carrier</em>' reference.
-	 * @see #getCarrier()
-	 * @generated
-	 */
-	void setCarrier(Carrier value);
-
-	/**
 	 * Returns the value of the '<em><b>Legacy Series List</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -209,5 +187,27 @@ public interface Legacy108 extends EObject {
 	 * @generated
 	 */
 	void setTimeZone(TimeZone value);
+
+	/**
+	 * Returns the value of the '<em><b>Carrier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Carrier</em>' reference.
+	 * @see #setCarrier(Carrier)
+	 * @see Gtm.GtmPackage#getLegacy108_Carrier()
+	 * @model
+	 * @generated
+	 */
+	Carrier getCarrier();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Legacy108#getCarrier <em>Carrier</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Carrier</em>' reference.
+	 * @see #getCarrier()
+	 * @generated
+	 */
+	void setCarrier(Carrier value);
 
 } // Legacy108
