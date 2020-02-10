@@ -3,7 +3,6 @@
 package Gtm.provider;
 
 
-import Gtm.Carrier;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.Legacy108;
@@ -187,12 +186,15 @@ public class Legacy108ItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		Carrier labelValue = ((Legacy108)object).getCarrier();
-		String label = labelValue == null ? null : labelValue.toString();
+		String labelValue = null;
+		if (((Legacy108)object).getCarrier() != null) {
+			labelValue = ((Legacy108)object).getCarrier().getShortName();
+		}
+		String label = labelValue == null ? null : labelValue;
 		return label == null || label.length() == 0 ?
 			getString("_UI_Legacy108_type") :
 			getString("_UI_Legacy108_type") + " " + label;

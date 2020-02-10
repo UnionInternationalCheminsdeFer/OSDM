@@ -149,6 +149,7 @@ public class ConversionParamsItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_STATION_MAPPINGS);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_TARGET_FARES);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_ZONE_MAPPINGS);
@@ -214,6 +215,7 @@ public class ConversionParamsItemProvider
 			case GtmPackage.CONVERSION_PARAMS__VA_TPERCENTAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS:
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_MAPPINGS:
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_TARGET_FARES:
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_ZONE_MAPPINGS:
@@ -236,6 +238,11 @@ public class ConversionParamsItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS,
+				 GtmFactory.eINSTANCE.createLegacyBoderPointMappings()));
 
 		newChildDescriptors.add
 			(createChildParameter

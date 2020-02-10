@@ -83,6 +83,7 @@ public class ApplicationTimeItemProvider extends RelativeTimeItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

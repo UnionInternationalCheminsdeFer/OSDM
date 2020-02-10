@@ -63,8 +63,7 @@ public class LegacyBorderPointMappingItemProvider
 
 			addCodePropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
-			addStation1PropertyDescriptor(object);
-			addStation2PropertyDescriptor(object);
+			addStationPropertyDescriptor(object);
 			addConnectionPointPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -115,41 +114,19 @@ public class LegacyBorderPointMappingItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Station1 feature.
+	 * This adds a property descriptor for the Station feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStation1PropertyDescriptor(Object object) {
+	protected void addStationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LegacyBorderPointMapping_station1_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyBorderPointMapping_station1_feature", "_UI_LegacyBorderPointMapping_type"),
-				 GtmPackage.Literals.LEGACY_BORDER_POINT_MAPPING__STATION1,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Station2 feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStation2PropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LegacyBorderPointMapping_station2_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyBorderPointMapping_station2_feature", "_UI_LegacyBorderPointMapping_type"),
-				 GtmPackage.Literals.LEGACY_BORDER_POINT_MAPPING__STATION2,
+				 getString("_UI_LegacyBorderPointMapping_station_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyBorderPointMapping_station_feature", "_UI_LegacyBorderPointMapping_type"),
+				 GtmPackage.Literals.LEGACY_BORDER_POINT_MAPPING__STATION,
 				 true,
 				 false,
 				 true,

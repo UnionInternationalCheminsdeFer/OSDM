@@ -78,28 +78,28 @@ public class FareStructureItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__FARE_ELEMENTS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__AFTER_SALES_RULES);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__CALENDARS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__PRICES);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__REGIONAL_CONSTRAINTS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__TEXTS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__RESERVATION_PARAMETERS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__SERVICE_CONSTRAINTS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__CARRIER_CONSTRAINTS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__REDUCTION_CARDS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__COMBINATION_CONSTRAINTS);
 			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__SALES_AVAILABILITY_CONSTRAINTS);
 			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__TRAVEL_VALIDITY_CONSTRAINTS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__COMBINATION_CONSTRAINTS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__PASSENGER_CONSTRAINTS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__REDUCTION_CONSTRAINTS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__ZONE_DEFINITIONS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__FULFILLMENT_CONSTRAINTS);
-			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__PRICES);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__REGIONAL_CONSTRAINTS);
 			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__CONNECTION_POINTS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__CARRIER_CONSTRAINTS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__SERVICE_CONSTRAINTS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__PASSENGER_CONSTRAINTS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__REDUCTION_CONSTRAINTS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__AFTER_SALES_RULES);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__FULFILLMENT_CONSTRAINTS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__REDUCTION_CARDS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__CALENDARS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__TEXTS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__ZONE_DEFINITIONS);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__RESERVATION_PARAMETERS);
 			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__SUPPORTED_ONLINE_SERVICES);
+			childrenFeatures.add(GtmPackage.Literals.FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -153,28 +153,28 @@ public class FareStructureItemProvider
 
 		switch (notification.getFeatureID(FareStructure.class)) {
 			case GtmPackage.FARE_STRUCTURE__FARE_ELEMENTS:
-			case GtmPackage.FARE_STRUCTURE__AFTER_SALES_RULES:
-			case GtmPackage.FARE_STRUCTURE__CALENDARS:
-			case GtmPackage.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS:
-			case GtmPackage.FARE_STRUCTURE__PRICES:
-			case GtmPackage.FARE_STRUCTURE__REGIONAL_CONSTRAINTS:
-			case GtmPackage.FARE_STRUCTURE__TEXTS:
-			case GtmPackage.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS:
-			case GtmPackage.FARE_STRUCTURE__RESERVATION_PARAMETERS:
-			case GtmPackage.FARE_STRUCTURE__SERVICE_CONSTRAINTS:
-			case GtmPackage.FARE_STRUCTURE__CARRIER_CONSTRAINTS:
-			case GtmPackage.FARE_STRUCTURE__REDUCTION_CARDS:
+			case GtmPackage.FARE_STRUCTURE__COMBINATION_CONSTRAINTS:
 			case GtmPackage.FARE_STRUCTURE__SALES_AVAILABILITY_CONSTRAINTS:
 			case GtmPackage.FARE_STRUCTURE__TRAVEL_VALIDITY_CONSTRAINTS:
-			case GtmPackage.FARE_STRUCTURE__COMBINATION_CONSTRAINTS:
-			case GtmPackage.FARE_STRUCTURE__PASSENGER_CONSTRAINTS:
-			case GtmPackage.FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS:
-			case GtmPackage.FARE_STRUCTURE__REDUCTION_CONSTRAINTS:
-			case GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS:
-			case GtmPackage.FARE_STRUCTURE__FULFILLMENT_CONSTRAINTS:
-			case GtmPackage.FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS:
+			case GtmPackage.FARE_STRUCTURE__PRICES:
+			case GtmPackage.FARE_STRUCTURE__REGIONAL_CONSTRAINTS:
 			case GtmPackage.FARE_STRUCTURE__CONNECTION_POINTS:
+			case GtmPackage.FARE_STRUCTURE__CARRIER_CONSTRAINTS:
+			case GtmPackage.FARE_STRUCTURE__SERVICE_CONSTRAINTS:
+			case GtmPackage.FARE_STRUCTURE__PASSENGER_CONSTRAINTS:
+			case GtmPackage.FARE_STRUCTURE__REDUCTION_CONSTRAINTS:
+			case GtmPackage.FARE_STRUCTURE__AFTER_SALES_RULES:
+			case GtmPackage.FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS:
+			case GtmPackage.FARE_STRUCTURE__FULFILLMENT_CONSTRAINTS:
+			case GtmPackage.FARE_STRUCTURE__REDUCTION_CARDS:
+			case GtmPackage.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS:
+			case GtmPackage.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS:
+			case GtmPackage.FARE_STRUCTURE__CALENDARS:
+			case GtmPackage.FARE_STRUCTURE__TEXTS:
+			case GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS:
+			case GtmPackage.FARE_STRUCTURE__RESERVATION_PARAMETERS:
 			case GtmPackage.FARE_STRUCTURE__SUPPORTED_ONLINE_SERVICES:
+			case GtmPackage.FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -199,58 +199,8 @@ public class FareStructureItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__AFTER_SALES_RULES,
-				 GtmFactory.eINSTANCE.createAfterSalesRules()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__CALENDARS,
-				 GtmFactory.eINSTANCE.createCalendars()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS,
-				 GtmFactory.eINSTANCE.createServiceClassDefinitions()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__PRICES,
-				 GtmFactory.eINSTANCE.createPrices()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__REGIONAL_CONSTRAINTS,
-				 GtmFactory.eINSTANCE.createRegionalConstraints()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__TEXTS,
-				 GtmFactory.eINSTANCE.createTexts()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS,
-				 GtmFactory.eINSTANCE.createServiceLevelDefinitions()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__RESERVATION_PARAMETERS,
-				 GtmFactory.eINSTANCE.createReservationParameters()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__SERVICE_CONSTRAINTS,
-				 GtmFactory.eINSTANCE.createServiceConstraints()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__CARRIER_CONSTRAINTS,
-				 GtmFactory.eINSTANCE.createCarrierConstraints()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__REDUCTION_CARDS,
-				 GtmFactory.eINSTANCE.createReductionCards()));
+				(GtmPackage.Literals.FARE_STRUCTURE__COMBINATION_CONSTRAINTS,
+				 GtmFactory.eINSTANCE.createCombinationConstraints()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -264,38 +214,13 @@ public class FareStructureItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__COMBINATION_CONSTRAINTS,
-				 GtmFactory.eINSTANCE.createCombinationConstraints()));
+				(GtmPackage.Literals.FARE_STRUCTURE__PRICES,
+				 GtmFactory.eINSTANCE.createPrices()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__PASSENGER_CONSTRAINTS,
-				 GtmFactory.eINSTANCE.createPassengerConstraints()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS,
-				 GtmFactory.eINSTANCE.createPersonalDataConstraints()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__REDUCTION_CONSTRAINTS,
-				 GtmFactory.eINSTANCE.createReductionConstraints()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__ZONE_DEFINITIONS,
-				 GtmFactory.eINSTANCE.createZoneDefinitions()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__FULFILLMENT_CONSTRAINTS,
-				 GtmFactory.eINSTANCE.createFulfillmentConstraints()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS,
-				 GtmFactory.eINSTANCE.createFareResourceLocations()));
+				(GtmPackage.Literals.FARE_STRUCTURE__REGIONAL_CONSTRAINTS,
+				 GtmFactory.eINSTANCE.createRegionalConstraints()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -304,8 +229,83 @@ public class FareStructureItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__CARRIER_CONSTRAINTS,
+				 GtmFactory.eINSTANCE.createCarrierConstraints()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__SERVICE_CONSTRAINTS,
+				 GtmFactory.eINSTANCE.createServiceConstraints()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__PASSENGER_CONSTRAINTS,
+				 GtmFactory.eINSTANCE.createPassengerConstraints()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__REDUCTION_CONSTRAINTS,
+				 GtmFactory.eINSTANCE.createReductionConstraints()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__AFTER_SALES_RULES,
+				 GtmFactory.eINSTANCE.createAfterSalesRules()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS,
+				 GtmFactory.eINSTANCE.createPersonalDataConstraints()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__FULFILLMENT_CONSTRAINTS,
+				 GtmFactory.eINSTANCE.createFulfillmentConstraints()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__REDUCTION_CARDS,
+				 GtmFactory.eINSTANCE.createReductionCards()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS,
+				 GtmFactory.eINSTANCE.createServiceLevelDefinitions()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS,
+				 GtmFactory.eINSTANCE.createServiceClassDefinitions()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__CALENDARS,
+				 GtmFactory.eINSTANCE.createCalendars()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__TEXTS,
+				 GtmFactory.eINSTANCE.createTexts()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__ZONE_DEFINITIONS,
+				 GtmFactory.eINSTANCE.createZoneDefinitions()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__RESERVATION_PARAMETERS,
+				 GtmFactory.eINSTANCE.createReservationParameters()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(GtmPackage.Literals.FARE_STRUCTURE__SUPPORTED_ONLINE_SERVICES,
 				 GtmFactory.eINSTANCE.createSupportedOnlineServices()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS,
+				 GtmFactory.eINSTANCE.createFareResourceLocations()));
 	}
 
 	/**
