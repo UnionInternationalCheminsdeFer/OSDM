@@ -8,7 +8,7 @@ Bundle-ClassPath: .
 Bundle-Activator: Gtm.provider.GtmEditPlugin$Implementation$Activator
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: Gtm.provider
 Require-Bundle: org.eclipse.core.runtime;resolution:=optional;x-installation:=greedy,
  GTM_data_converter;visibility:=reexport,
