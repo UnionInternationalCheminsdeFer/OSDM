@@ -15,8 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Gtm.LegacyBorderPointMapping#getCode <em>Code</em>}</li>
  *   <li>{@link Gtm.LegacyBorderPointMapping#getName <em>Name</em>}</li>
- *   <li>{@link Gtm.LegacyBorderPointMapping#getStation1 <em>Station1</em>}</li>
- *   <li>{@link Gtm.LegacyBorderPointMapping#getStation2 <em>Station2</em>}</li>
+ *   <li>{@link Gtm.LegacyBorderPointMapping#getStation <em>Station</em>}</li>
  *   <li>{@link Gtm.LegacyBorderPointMapping#getConnectionPoint <em>Connection Point</em>}</li>
  * </ul>
  *
@@ -97,48 +96,26 @@ public interface LegacyBorderPointMapping extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Station1</b></em>' reference.
+	 * Returns the value of the '<em><b>Station</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Station1</em>' reference.
-	 * @see #setStation1(Station)
-	 * @see Gtm.GtmPackage#getLegacyBorderPointMapping_Station1()
+	 * @return the value of the '<em>Station</em>' reference.
+	 * @see #setStation(Station)
+	 * @see Gtm.GtmPackage#getLegacyBorderPointMapping_Station()
 	 * @model
 	 * @generated
 	 */
-	Station getStation1();
+	Station getStation();
 
 	/**
-	 * Sets the value of the '{@link Gtm.LegacyBorderPointMapping#getStation1 <em>Station1</em>}' reference.
+	 * Sets the value of the '{@link Gtm.LegacyBorderPointMapping#getStation <em>Station</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Station1</em>' reference.
-	 * @see #getStation1()
+	 * @param value the new value of the '<em>Station</em>' reference.
+	 * @see #getStation()
 	 * @generated
 	 */
-	void setStation1(Station value);
-
-	/**
-	 * Returns the value of the '<em><b>Station2</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Station2</em>' reference.
-	 * @see #setStation2(Station)
-	 * @see Gtm.GtmPackage#getLegacyBorderPointMapping_Station2()
-	 * @model
-	 * @generated
-	 */
-	Station getStation2();
-
-	/**
-	 * Sets the value of the '{@link Gtm.LegacyBorderPointMapping#getStation2 <em>Station2</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Station2</em>' reference.
-	 * @see #getStation2()
-	 * @generated
-	 */
-	void setStation2(Station value);
+	void setStation(Station value);
 
 	/**
 	 * Returns the value of the '<em><b>Connection Point</b></em>' reference.

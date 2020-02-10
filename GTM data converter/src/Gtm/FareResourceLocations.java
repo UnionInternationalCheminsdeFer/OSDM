@@ -24,26 +24,26 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface FareResourceLocations extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Carrier Resource Locations</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Train Resource Locations</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Carrier Resource Locations</em>' containment reference.
-	 * @see #setCarrierResourceLocations(CarrierResourceLocations)
-	 * @see Gtm.GtmPackage#getFareResourceLocations_CarrierResourceLocations()
+	 * @return the value of the '<em>Train Resource Locations</em>' containment reference.
+	 * @see #setTrainResourceLocations(TrainResourceLocations)
+	 * @see Gtm.GtmPackage#getFareResourceLocations_TrainResourceLocations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	CarrierResourceLocations getCarrierResourceLocations();
+	TrainResourceLocations getTrainResourceLocations();
 
 	/**
-	 * Sets the value of the '{@link Gtm.FareResourceLocations#getCarrierResourceLocations <em>Carrier Resource Locations</em>}' containment reference.
+	 * Sets the value of the '{@link Gtm.FareResourceLocations#getTrainResourceLocations <em>Train Resource Locations</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Carrier Resource Locations</em>' containment reference.
-	 * @see #getCarrierResourceLocations()
+	 * @param value the new value of the '<em>Train Resource Locations</em>' containment reference.
+	 * @see #getTrainResourceLocations()
 	 * @generated
 	 */
-	void setCarrierResourceLocations(CarrierResourceLocations value);
+	void setTrainResourceLocations(TrainResourceLocations value);
 
 	/**
 	 * Returns the value of the '<em><b>Station Resource Locations</b></em>' containment reference.
@@ -68,25 +68,25 @@ public interface FareResourceLocations extends EObject {
 	void setStationResourceLocations(StationResourceLocations value);
 
 	/**
-	 * Returns the value of the '<em><b>Train Resource Locations</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Carrier Resource Locations</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Train Resource Locations</em>' containment reference.
-	 * @see #setTrainResourceLocations(TrainResourceLocations)
-	 * @see Gtm.GtmPackage#getFareResourceLocations_TrainResourceLocations()
+	 * @return the value of the '<em>Carrier Resource Locations</em>' containment reference.
+	 * @see #setCarrierResourceLocations(CarrierResourceLocations)
+	 * @see Gtm.GtmPackage#getFareResourceLocations_CarrierResourceLocations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TrainResourceLocations getTrainResourceLocations();
+	CarrierResourceLocations getCarrierResourceLocations();
 
 	/**
-	 * Sets the value of the '{@link Gtm.FareResourceLocations#getTrainResourceLocations <em>Train Resource Locations</em>}' containment reference.
+	 * Sets the value of the '{@link Gtm.FareResourceLocations#getCarrierResourceLocations <em>Carrier Resource Locations</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Train Resource Locations</em>' containment reference.
-	 * @see #getTrainResourceLocations()
+	 * @param value the new value of the '<em>Carrier Resource Locations</em>' containment reference.
+	 * @see #getCarrierResourceLocations()
 	 * @generated
 	 */
-	void setTrainResourceLocations(TrainResourceLocations value);
+	void setCarrierResourceLocations(CarrierResourceLocations value);
 
 } // FareResourceLocations
