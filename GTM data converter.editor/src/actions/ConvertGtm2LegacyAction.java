@@ -1,4 +1,4 @@
-package actions;
+package Gtm.actions;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -64,14 +65,19 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 			
 		}
 
+		
 		@Override
 		protected void runAction(GTMTool tool) {
+			
+		
+			EditingDomain domain = GtmUtils.getActiveDomain();
+			
 			CompoundCommand command = new CompoundCommand();
 			
 			convert(tool,command);
 			
 			if (command != null && !command.isEmpty() && command.canExecute()) {
-				editingDomainProvider.getEditingDomain().getCommandStack().execute(command);	
+				domain.getCommandStack().execute(command);	
 			}
 		}
 

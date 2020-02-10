@@ -1,4 +1,4 @@
-package jsonImportExport;
+package Gtm.jsonImportExport;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -96,7 +96,7 @@ import Gtm.Zone;
 import Gtm.ZoneDefinition;
 import Gtm.ZoneDefinitions;
 import gtm.AfterSalesConditionDef;
-import gtm.AfterSalesRulesDef;
+import gtm.AfterSalesRuleDef;
 import gtm.AllowedChange;
 import gtm.CalendarDef;
 import gtm.CarrierConstraintDef;
@@ -109,11 +109,12 @@ import gtm.Delivery;
 import gtm.ExcludedTimeRange;
 import gtm.FareCombinationConstraintDef;
 import gtm.FareCombinationModelDef;
+import gtm.FareDef;
 import gtm.FareDelivery;
-import gtm.FareElementDef;
 import gtm.FareResourceLocationDef;
 import gtm.FareStructure;
 import gtm.FareStructureDeliveryDef;
+import gtm.FulfillmentTypeDef;
 import gtm.FullfillmentConstraintDef;
 import gtm.GeoCoordinateDef;
 import gtm.IncludedFreePassenger;
@@ -173,7 +174,7 @@ public class GtmJsonUtils {
 
 					
 		if (gtm.getFareStructure().getAfterSalesRules() != null) {
-			fares.setAfterSalesRules(convertAfterSalesConditionsToJson(gtm.getFareStructure().getAfterSalesRules()));
+			fares.setAfterSalesConditions(convertAfterSalesConditionsToJson(gtm.getFareStructure().getAfterSalesRules()));
 		}
 		
 		if (gtm.getFareStructure().getCalendars() != null) {
@@ -193,7 +194,7 @@ public class GtmJsonUtils {
 		}
 				
 		if (gtm.getFareStructure().getFareElements() != null) {
-			fares.setFareElements(convertFareElements(gtm.getFareStructure().getFareElements()));
+			fares.setFares(convertFareElements(gtm.getFareStructure().getFareElements()));
 		}
 		
 		if (gtm.getFareStructure().getFareResourceLocations() != null) {
@@ -268,13 +269,14 @@ public class GtmJsonUtils {
 			fares.setZoneDefinitions(convertZoneDefinitions(gtm.getFareStructure().getZoneDefinitions()));
 		}
 		
-		return null;
+		return export;
 	}
 
 
 
 
 	private static List<ZoneDefinitionDef> convertZoneDefinitions(ZoneDefinitions list) {
+		if (list == null) return null;
 		if (list.getZoneDefinitions().isEmpty()) return null;
 		ArrayList<ZoneDefinitionDef> listJson = new ArrayList<ZoneDefinitionDef>();
 		for (ZoneDefinition element: list.getZoneDefinitions()) {
@@ -285,6 +287,7 @@ public class GtmJsonUtils {
 
 
 	private static ZoneDefinitionDef convertToJson(ZoneDefinition zone) {
+		if (zone == null) return null;
 		ZoneDefinitionDef zoneJ = new ZoneDefinitionDef();
 		
 		zoneJ.setId(zone.getId());
@@ -310,8 +313,8 @@ public class GtmJsonUtils {
 
 
 
-	private static List<TravelValidityConstraintDef> convertTravelValidityConstraints(
-			TravelValidityConstraints list) {
+	private static List<TravelValidityConstraintDef> convertTravelValidityConstraints(TravelValidityConstraints list) {
+		if (list == null) return null;
 		if (list.getTravelValidityConstraints().isEmpty()) return null;
 		ArrayList<TravelValidityConstraintDef> listJson = new ArrayList<TravelValidityConstraintDef>();
 		for (TravelValidityConstraint element: list.getTravelValidityConstraints()) {
@@ -324,7 +327,7 @@ public class GtmJsonUtils {
 
 
 	private static TravelValidityConstraintDef convertToJson(TravelValidityConstraint tv) {
-		
+		if (tv == null) return null;
 		TravelValidityConstraintDef tvJ = new TravelValidityConstraintDef();
 		
 		tvJ.setId(tv.getId());
@@ -355,7 +358,7 @@ public class GtmJsonUtils {
 
 
 	private static ExcludedTimeRange convertToJson(TimeRange tr) {
-		
+		if (tr == null) return null;
 		ExcludedTimeRange trJ = new ExcludedTimeRange();
 		trJ.setFrom(tr.getFrom());
 		trJ.setUntil(tr.getUntil());
@@ -366,7 +369,7 @@ public class GtmJsonUtils {
 
 
 	private static ReturnConstraint convertToJson(ReturnValidityConstraint rc) {
-		
+		if (rc == null) return null;
 		ReturnConstraint rcJ = new ReturnConstraint();
 		rcJ.setEarliestReturn(rc.getEarliestReturn());
 		rcJ.setLatestReturn(rc.getLatestReturn());
@@ -376,7 +379,7 @@ public class GtmJsonUtils {
 			ArrayList<Integer> listJ = new ArrayList<Integer>();
 			
 			for (WeekDay day : rc.getExcludedWeekdays()) {
-				listJ.add(new Integer(day.getValue()));
+				listJ.add(Integer.valueOf(day.getValue()));
 			}		
 			rcJ.setExcludedWeekdays(listJ);
 		}
@@ -387,6 +390,7 @@ public class GtmJsonUtils {
 
 
 	private static List<TextDef> convertTexts(Texts list) {
+		if (list == null) return null;
 		if (list.getTexts().isEmpty()) return null;
 		ArrayList<TextDef> listJson = new ArrayList<TextDef>();
 		for (Text element: list.getTexts()) {
@@ -399,7 +403,7 @@ public class GtmJsonUtils {
 
 
 	private static TextDef convertToJson(Text text) {
-		
+		if (text == null) return null;
 		TextDef textJ = new TextDef();
 		
 		textJ.setId(text.getId());
@@ -438,8 +442,8 @@ public class GtmJsonUtils {
 
 
 
-	private static List<ServiceLevelDef> convertServiceLevelDefinitions(
-			ServiceLevelDefinitions list) {
+	private static List<ServiceLevelDef> convertServiceLevelDefinitions(ServiceLevelDefinitions list) {
+		if (list == null) return null;
 		if (list.getServiceLevelDefinition().isEmpty()) return null;
 		ArrayList<ServiceLevelDef> listJson = new ArrayList<ServiceLevelDef>();
 		for (ServiceLevel element: list.getServiceLevelDefinition()) {
@@ -452,7 +456,7 @@ public class GtmJsonUtils {
 
 
 	private static ServiceLevelDef convertToJson(ServiceLevel sl) {
-		
+		if (sl == null) return null;
 		 ServiceLevelDef slJ = new  ServiceLevelDef();
 		 
 		 slJ.setId(sl.getId());
@@ -471,6 +475,7 @@ public class GtmJsonUtils {
 
 
 	private static List<ServiceConstraintDef> convertServiceConstraints(ServiceConstraints list) {
+		if (list == null) return null;
 		if (list.getServiceConstraints().isEmpty()) return null;
 		ArrayList<ServiceConstraintDef> listJson = new ArrayList<ServiceConstraintDef>();
 		for (ServiceConstraint element: list.getServiceConstraints()) {
@@ -483,7 +488,7 @@ public class GtmJsonUtils {
 
 
 	private static ServiceConstraintDef convertToJson(ServiceConstraint sc) {
-		
+		if (sc == null) return null;
 		ServiceConstraintDef scJ = new ServiceConstraintDef();
 		
 		scJ.setId(sc.getId());
@@ -503,7 +508,7 @@ public class GtmJsonUtils {
 			
 		ArrayList<Integer> listJ = new ArrayList<Integer>();
 		for (ServiceBrand sb : sbl) {
-				listJ.add(new Integer(sb.getCode()));				
+				listJ.add(Integer.valueOf(sb.getCode()));				
 		}
 			
 		return listJ;
@@ -522,6 +527,7 @@ public class GtmJsonUtils {
 
 
 	private static List<ServiceClassDef> convertServiceClassDefinitions(ServiceClassDefinitions list) {
+		if (list == null) return null;
 		if (list.getServiceClassDefinitions().isEmpty()) return null;
 		ArrayList<ServiceClassDef> listJson = new ArrayList<ServiceClassDef>();
 		for (ServiceClass element: list.getServiceClassDefinitions()) {
@@ -534,14 +540,14 @@ public class GtmJsonUtils {
 
 
 	private static ServiceClassDef convertToJson(ServiceClass sc) {
-		
+		if (sc == null) return null;
 		ServiceClassDef scJ = new ServiceClassDef();
 		
 		if (sc.getId()!= null) {
 			scJ.setId(sc.getId().getName());
 		}
 		if (sc.getText()!=null) {
-			scJ.setTextId(sc.getText().getId());
+			scJ.setTextRef(sc.getText().getId());
 		}
 		if (sc.getClassicClass()!= null) {
 			scJ.setClassicClass(sc.getClassicClass().getName());
@@ -553,6 +559,7 @@ public class GtmJsonUtils {
 
 
 	private static List<ReservationParameterDef> convertReservationParameters(ReservationParameters list) {
+		if (list == null) return null;
 		if (list.getReservationParameters().isEmpty()) return null;
 		ArrayList<ReservationParameterDef> listJson = new ArrayList<ReservationParameterDef>();
 		for (ReservationParameter element: list.getReservationParameters()) {
@@ -565,7 +572,7 @@ public class GtmJsonUtils {
 
 
 	private static ReservationParameterDef convertToJson(ReservationParameter r) {
-		
+		if (r == null) return null;
 		ReservationParameterDef rJ = new ReservationParameterDef();
 		
 		rJ.setId(r.getId());
@@ -603,7 +610,7 @@ public class GtmJsonUtils {
 
 
 	private static ReservationOptionGroupDef convertToJson(ReservationPreferenceGroup p) {
-		
+		if (p == null) return null;
 		ReservationOptionGroupDef oJ = new ReservationOptionGroupDef();
 		oJ.setPreferenceGroup(p.getGroup());
 		
@@ -650,20 +657,20 @@ public class GtmJsonUtils {
 
 
 	private static List<SalesAvailabilityConstraintDef> convertSalesAvailabilityConstraints(SalesAvailabilityConstraints list){
-			
-			if (list.getSalesAvailabilityConstraints().isEmpty()) return null;
-			ArrayList<SalesAvailabilityConstraintDef> listJson = new ArrayList<SalesAvailabilityConstraintDef>();
-			for (SalesAvailabilityConstraint element: list.getSalesAvailabilityConstraints()) {
-				listJson.add(convertToJson(element));
-			}
-			return listJson;
+		if (list == null) return null;
+		if (list.getSalesAvailabilityConstraints().isEmpty()) return null;
+		ArrayList<SalesAvailabilityConstraintDef> listJson = new ArrayList<SalesAvailabilityConstraintDef>();
+		for (SalesAvailabilityConstraint element: list.getSalesAvailabilityConstraints()) {
+			listJson.add(convertToJson(element));
+		}
+		return listJson;
 	}
 
 
 
 
 	private static SalesAvailabilityConstraintDef convertToJson(SalesAvailabilityConstraint sa) {
-		
+		if (sa == null) return null;
 		SalesAvailabilityConstraintDef saJ = new SalesAvailabilityConstraintDef();
 		saJ.setId(sa.getId());
 		
@@ -682,6 +689,7 @@ public class GtmJsonUtils {
 
 
 	private static gtm.SalesRestriction convertToJson(SalesRestriction r) {
+		if (r == null) return null;
 		gtm.SalesRestriction rJ = new gtm.SalesRestriction();
 		
 		rJ.setEndOfSale(convertToJson(r.getEndOfSale()));
@@ -695,6 +703,7 @@ public class GtmJsonUtils {
 
 
 	private static List<RegionalConstraintDef> convertRegionalConstraints(RegionalConstraints list) {
+		if (list == null) return null;
 		if (list.getRegionalConstraints().isEmpty()) return null;
 		ArrayList<RegionalConstraintDef> listJson = new ArrayList<RegionalConstraintDef>();
 		for (RegionalConstraint element: list.getRegionalConstraints()) {
@@ -707,7 +716,7 @@ public class GtmJsonUtils {
 
 
 	private static RegionalConstraintDef convertToJson(RegionalConstraint r) {
-		
+		if (r == null) return null;
 		RegionalConstraintDef rJ = new RegionalConstraintDef();
 		rJ.setId(r.getId());
 		rJ.setDistance(r.getDistance());
@@ -733,7 +742,7 @@ public class GtmJsonUtils {
 
 
 	private static RegionalValidityDef convertToJson(RegionalValidity rv) {
-		
+		if (rv == null) return null;
 		RegionalValidityDef rvJ = new RegionalValidityDef();
 		rvJ.setSeqNb(rv.getSeqNb());
 		rvJ.setViaStations(convertToJson(rv.getViaStation()));
@@ -748,7 +757,7 @@ public class GtmJsonUtils {
 
 
 	private static PolygoneDef convertToJson(Polygone p) {
-		
+		if (p == null) return null;
 		PolygoneDef pJ = new PolygoneDef();
 		
 		if (p.getEdge()!= null && !p.getEdge().isEmpty()){
@@ -769,6 +778,7 @@ public class GtmJsonUtils {
 
 
 	private static GeoCoordinateDef convertToJson(Edge e) {
+		if (e == null) return null;
 		GeoCoordinateDef gJ = new GeoCoordinateDef();
 		
 		gJ.setAccuracy(e.getAccuracy().getName());
@@ -784,7 +794,7 @@ public class GtmJsonUtils {
 
 
 	private static ZoneDef convertToJson(Zone z) {
-		
+		if (z == null) return null;
 		ZoneDef zJ = new ZoneDef();
 		if (z.getBinaryZoneId()!= null && z.getBinaryZoneId().length > 0) {
 			zJ.setBinaryZoneId(Base64.encode(z.getBinaryZoneId()));
@@ -827,6 +837,7 @@ public class GtmJsonUtils {
 
 
 	private static LineDef convertToJson(Line z) {
+		if (z == null) return null;
 		LineDef zJ = new LineDef();
 		if (z.getBinaryZoneId()!= null && z.getBinaryZoneId().length > 0) {
 			zJ.setBinaryZoneId(Base64.encode(z.getBinaryZoneId()));
@@ -862,17 +873,21 @@ public class GtmJsonUtils {
 
 
 	private static ViaStationsDef convertToJson(ViaStation v) {
-		
+		if (v == null) return null;
 		ViaStationsDef vJ = new ViaStationsDef();
 		if (v.getCarrier()!= null) {
 			vJ.setCarrier(v.getCarrier().getCode());
 		}
-		
-		vJ.setAlternativeRoute(convertToJson(v.getAlternativeRoutes()));
+		if (v.getAlternativeRoutes()!=null) {
+			vJ.setAlternativeRoute(convertToJson(v.getAlternativeRoutes()));
+		}
 		vJ.setIsBorder(false);
-		vJ.setRoute(convertToJson(v.getRoute()));
-		vJ.setStation(convertToJson(v.getStation()));
-
+		if (v.getRoute()!=null) {
+			vJ.setRoute(convertToJson(v.getRoute()));
+		}
+		if (v.getStation() != null) {
+			vJ.setStation(convertToJson(v.getStation()));
+		}
 		return vJ;
 	}
 
@@ -924,6 +939,7 @@ public class GtmJsonUtils {
 
 
 	private static List<ReductionConstraintDef> convertReductionConstraints(ReductionConstraints list) {
+		if (list == null) return null;
 		if (list.getReductionConstraints().isEmpty()) return null;
 		ArrayList<ReductionConstraintDef> listJson = new ArrayList<ReductionConstraintDef>();
 		for (ReductionConstraint element: list.getReductionConstraints()) {
@@ -936,7 +952,7 @@ public class GtmJsonUtils {
 
 
 	private static ReductionConstraintDef convertToJson(ReductionConstraint rc) {
-		
+		if (rc == null) return null;
 		ReductionConstraintDef rcJ = new ReductionConstraintDef();
 		
 		rcJ.setId(rc.getId());
@@ -968,6 +984,7 @@ public class GtmJsonUtils {
 
 
 	private static List<ReductionCardDef> convertReductionCards(ReductionCards list) {
+		if (list == null) return null;
 		if (list.getReductionCards().isEmpty()) return null;
 		ArrayList<ReductionCardDef> listJson = new ArrayList<ReductionCardDef>();
 		for (ReductionCard element: list.getReductionCards()) {
@@ -979,12 +996,13 @@ public class GtmJsonUtils {
 
 
 	private static ReductionCardDef convertToJson(ReductionCard card) {
-		
+		if (card == null) return null;
 		ReductionCardDef cardJ = new ReductionCardDef();
 		
-		cardJ.setCardId(card.getId());
-		cardJ.setCardIssuer(card.getCardIssuer().getCode());
-		
+		cardJ.setId(card.getId());
+		if (card.getCardIssuer() != null) {
+			cardJ.setIssuer(card.getCardIssuer().getCode());
+		}
 		if (card.getServiceClasses()!= null && !card.getServiceClasses().isEmpty()) {
 			
 			ArrayList<ServiceClassDef> listJ = new ArrayList<ServiceClassDef>();
@@ -996,9 +1014,10 @@ public class GtmJsonUtils {
 			cardJ.setServiceClasses(listJ);
 		}
 
+		cardJ.setCardIdRequired(card.isIdRequiredForBooking());
 		
 		if (card.getName() != null) {
-			cardJ.setCardName(convertToJson(card.getName()));
+			cardJ.setName(convertToJson(card.getName()));
 		}
 
 		return cardJ;
@@ -1008,6 +1027,7 @@ public class GtmJsonUtils {
 
 
 	private static List<PriceDef> convertPrices(Prices list) {
+		if (list == null) return null;
 		if (list.getPrices().isEmpty()) return null;
 		ArrayList<PriceDef> listJson = new ArrayList<PriceDef>();
 		for (Price element: list.getPrices()) {
@@ -1020,6 +1040,7 @@ public class GtmJsonUtils {
 
 
 	private static List<PersonalDataConstraintDef> convertPersonalDataConstraints(PersonalDataConstraints list) {
+		if (list == null) return null;
 		if (list.getPersonalDataConstraints().isEmpty()) return null;
 		ArrayList<PersonalDataConstraintDef> listJson = new ArrayList<PersonalDataConstraintDef>();
 		for (PersonalDataConstraint element: list.getPersonalDataConstraints()) {
@@ -1032,7 +1053,7 @@ public class GtmJsonUtils {
 
 
 	private static PersonalDataConstraintDef convertToJson(PersonalDataConstraint pc) {
-		
+		if (pc == null) return null;
 		PersonalDataConstraintDef pcJ = new PersonalDataConstraintDef();
 		
 		pcJ.setId(pc.getId());
@@ -1075,7 +1096,7 @@ public class GtmJsonUtils {
 			RequiredDatum it = new RequiredDatum();
 			it.setCrossBorder(convertCrossBorderConditionToJson(rpd.getCrossBorder()));
 			it.setDataItem(rpd.getDataItem().getName());
-			it.setFulfillmentType(convertFulFillmentTypesToJson(rpd.getFulfillmentType()));
+			it.setFulfillmentType(convertFulFillmentTypesToJsonString(rpd.getFulfillmentType()));
 			it.setTicketHolderOnly(rpd.isTicketHolderOnly());
 			it.setTransfer(convertPersonalDataTransferToJson(rpd.getTransfer()));
 			
@@ -1084,6 +1105,11 @@ public class GtmJsonUtils {
 
 		return listJ;
 	}
+
+
+
+
+
 
 
 
@@ -1102,8 +1128,17 @@ public class GtmJsonUtils {
 
 
 
-	private static List<String> convertFulFillmentTypesToJson(EList<FulfillmentType> ftl) {
+	private static List<FulfillmentTypeDef> convertFulFillmentTypesToJson(EList<FulfillmentType> ftl) {
 		
+		if (ftl == null || ftl.isEmpty()) return null;
+		ArrayList<FulfillmentTypeDef> listJ = new ArrayList<FulfillmentTypeDef>();
+		for (FulfillmentType f : ftl) {
+			listJ.add(FulfillmentTypeDef.fromValue(f.getName()));
+		}
+		return listJ;
+	}
+	
+	private static List<String> convertFulFillmentTypesToJsonString(EList<FulfillmentType> ftl) {
 		if (ftl == null || ftl.isEmpty()) return null;
 		ArrayList<String> listJ = new ArrayList<String>();
 		for (FulfillmentType f : ftl) {
@@ -1135,6 +1170,7 @@ public class GtmJsonUtils {
 
 
 	private static List<PassengerConstraintDef> convertPassengerConstraints(PassengerConstraints list) {
+		if (list == null) return null;
 		if (list.getPassengerConstraints().isEmpty()) return null;
 		ArrayList<PassengerConstraintDef> listJson = new ArrayList<PassengerConstraintDef>();
 		for (PassengerConstraint element: list.getPassengerConstraints()) {
@@ -1147,7 +1183,7 @@ public class GtmJsonUtils {
 
 
 	private static PassengerConstraintDef convertToJson(PassengerConstraint pass) {
-		
+		if (pass == null) return null;
 		PassengerConstraintDef passJ = new PassengerConstraintDef();
 		
 		passJ.setId(pass.getId());
@@ -1211,6 +1247,7 @@ public class GtmJsonUtils {
 
 
 	private static List<FullfillmentConstraintDef> convertFullfillmentConstraints(FulfillmentConstraints list) {
+		if (list == null) return null;
 		if (list.getFulfillmentConstraints().isEmpty()) return null;
 		ArrayList<FullfillmentConstraintDef> listJson = new ArrayList<FullfillmentConstraintDef>();
 		for (FulfillmentConstraint element: list.getFulfillmentConstraints()) {
@@ -1223,7 +1260,7 @@ public class GtmJsonUtils {
 
 
 	private static FullfillmentConstraintDef convertToJson(FulfillmentConstraint fc) {
-		
+		if (fc == null) return null;
 		FullfillmentConstraintDef fcJ = new FullfillmentConstraintDef();
 		fcJ.setId(fc.getId());
 		
@@ -1263,7 +1300,7 @@ public class GtmJsonUtils {
 
 
 	private static FareResourceLocationDef convertFareResourceLocation(FareResourceLocations rl) {
-		
+		if (rl == null) return null;
 		FareResourceLocationDef rlJ = new FareResourceLocationDef();
 		rlJ.setCarrierLocations(convertResourceCarrierLocations(rl.getCarrierResourceLocations()));
 		rlJ.setStationLocations(convertStationResourceLocations(rl.getStationResourceLocations()));
@@ -1289,7 +1326,7 @@ public class GtmJsonUtils {
 
 
 	private static TrainResourceLocationDef convertToJson(TrainResourceLocation t) {
-		
+		if (t == null) return null;
 		TrainResourceLocationDef trJ = new TrainResourceLocationDef();
 		if (t.getCarrier()!= null) {
 			trJ.setCarrier(t.getCarrier().getCode());
@@ -1345,6 +1382,7 @@ public class GtmJsonUtils {
 
 
 	private static StationResourceLocationDef convertToJson(StationResourceLocation t) {
+		if (t == null) return null;
 		StationResourceLocationDef srJ = new StationResourceLocationDef();
 		
 		srJ.setOnlineResource(convertOnlineResourcesToJson(t.getOnlineResources()));
@@ -1387,7 +1425,7 @@ public class GtmJsonUtils {
 
 
 	private static CarrierResourceLocationDef convertToJson(CarrierResourceLocation t) {
-		
+		if (t == null) return null;
 		CarrierResourceLocationDef lJ = new CarrierResourceLocationDef();
 		
 		if (t.getCarrier()!= null) {
@@ -1404,10 +1442,10 @@ public class GtmJsonUtils {
 
 
 
-	private static List<FareElementDef> convertFareElements(FareElements list) {
-
+	private static List<FareDef> convertFareElements(FareElements list) {
+		if (list == null) return null;
 		if (list.getFareElements().isEmpty()) return null;
-		ArrayList<FareElementDef> listJson = new ArrayList<FareElementDef>();
+		ArrayList<FareDef> listJson = new ArrayList<FareDef>();
 		for (FareElement element: list.getFareElements()) {
 			listJson.add(convertToJson(element));
 		}
@@ -1417,9 +1455,9 @@ public class GtmJsonUtils {
 
 
 
-	private static FareElementDef convertToJson(FareElement fare) {
-		
-		FareElementDef fareJ = new FareElementDef();
+	private static FareDef convertToJson(FareElement fare) {
+		if (fare == null) return null;
+		FareDef fareJ = new FareDef();
 		
 		fareJ.setId(fare.getId());
 		
@@ -1514,6 +1552,7 @@ public class GtmJsonUtils {
 
 
 	private static List<ConnectionPointDef> convertConnectionPoints(ConnectionPoints list) {
+		if (list == null) return null;
 		if (list.getConnectionPoints().isEmpty()) return null;
 		ArrayList<ConnectionPointDef> listJson = new ArrayList<ConnectionPointDef>();
 		for (ConnectionPoint element: list.getConnectionPoints()) {
@@ -1526,7 +1565,7 @@ public class GtmJsonUtils {
 
 
 	private static ConnectionPointDef convertToJson(ConnectionPoint cp) {
-		
+		if (cp == null) return null;
 		ConnectionPointDef cpJ = new ConnectionPointDef();
 		cpJ.setId(cp.getId());
 		cpJ.setLegacyBorderPointCode(Integer.toString(cp.getLegacyBorderPointCode()));
@@ -1564,8 +1603,13 @@ public class GtmJsonUtils {
 
 
 	private static StationDef convertToJson(Station s) {
+		if (s == null) return null;
 		StationDef sJ = new StationDef();
-		sJ.setCountry(Integer.toString(s.getCountry().getCode()));
+		if (s.getCountry() == null) {
+			sJ.setCountry("missing country");
+		} else {
+			sJ.setCountry(Integer.toString(s.getCountry().getCode()));
+		}
 		sJ.setLocalCode(s.getCode());
 		return sJ;
 	}
@@ -1574,6 +1618,7 @@ public class GtmJsonUtils {
 
 
 	private static List<FareCombinationConstraintDef> convertCombinationConstraints(CombinationConstraints list) {
+		if (list == null) return null;
 		if (list.getCombinationConstraints().isEmpty()) return null;
 		ArrayList<FareCombinationConstraintDef> listJson = new ArrayList<FareCombinationConstraintDef>();
 		for (Gtm.CombinationConstraint element: list.getCombinationConstraints()) {
@@ -1586,6 +1631,7 @@ public class GtmJsonUtils {
 
 
 	private static FareCombinationConstraintDef convertToJson(Gtm.CombinationConstraint fc) {
+		if (fc == null) return null;
 		FareCombinationConstraintDef fcJ = new FareCombinationConstraintDef();
 		
 		fcJ.setId(fc.getId());
@@ -1640,6 +1686,7 @@ public class GtmJsonUtils {
 
 
 	private static List<CarrierConstraintDef> convertCarrierConstraints(CarrierConstraints list) {
+		if (list == null) return null;
 		if (list.getCarrierConstraints().isEmpty()) return null;
 		ArrayList<CarrierConstraintDef> listJson = new ArrayList<CarrierConstraintDef>();
 		for (CarrierConstraint element: list.getCarrierConstraints()) {
@@ -1652,6 +1699,7 @@ public class GtmJsonUtils {
 
 
 	private static List<CalendarDef> convertCalendars(Calendars list) {
+		if (list == null) return null;
 		if (list.getCalendars().isEmpty()) return null;
 		ArrayList<CalendarDef> listJson = new ArrayList<CalendarDef>();
 		for (Calendar element: list.getCalendars()) {
@@ -1664,7 +1712,7 @@ public class GtmJsonUtils {
 
 
 	private static CalendarDef convertToJson(Calendar cal) {
-		
+		if (cal == null) return null;
 		CalendarDef calJ = new CalendarDef();
 		calJ.setId(cal.getId());
 		calJ.setUTCoffset(cal.getUtcOffset());		
@@ -1686,33 +1734,34 @@ public class GtmJsonUtils {
 
 
 
-	private static List<AfterSalesRulesDef> convertAfterSalesConditionsToJson(AfterSalesRules afterSalesRules) {
-		
+	private static List<AfterSalesConditionDef> convertAfterSalesConditionsToJson(AfterSalesRules afterSalesRules) {
+		if (afterSalesRules == null) return null;
 		if (afterSalesRules.getAfterSalesRules().isEmpty()) return null;
 		
-		ArrayList<AfterSalesRulesDef> result = new ArrayList<AfterSalesRulesDef>();
+		ArrayList<AfterSalesConditionDef> result = new ArrayList<AfterSalesConditionDef>();
 
 		
 		for (AfterSalesRule rule :  afterSalesRules.getAfterSalesRules()) {
-			AfterSalesRulesDef ruleJ = new AfterSalesRulesDef();
-			ruleJ.setId(rule.getId());
+			AfterSalesConditionDef condJ = new AfterSalesConditionDef();
+			condJ.setId(rule.getId());
+			condJ.setAfterSalesRules(new ArrayList<AfterSalesRuleDef>());
 			
 			for (AfterSalesCondition cond : rule.getConditions()) {
 				
-				AfterSalesConditionDef condJ = new AfterSalesConditionDef();
+				AfterSalesRuleDef ruleJ = new AfterSalesRuleDef();
 				
-				condJ.setCarrierFee(cond.isCarrierFee());
-				condJ.setIndividualContracts(cond.isIndividualContracts());
-				condJ.setTransactionType(cond.getTransactionType().getName());
+				ruleJ.setCarrierFee(cond.isCarrierFee());
+				ruleJ.setIndividualContracts(cond.isIndividualContracts());
+				ruleJ.setTransactionType(cond.getTransactionType().getName());
 				
-				condJ.setApplicationTime(convertToJson(cond.getApplicationTime()));
+				ruleJ.setApplicationTime(convertToJson(cond.getApplicationTime()));
 												
-				condJ.setFeeId(cond.getFee().getId());
-				ruleJ.getAfterSalesRules().add(condJ);
+				ruleJ.setFeeRef(cond.getFee().getId());
+				condJ.getAfterSalesRules().add(ruleJ);
 				
 			}
 
-			result.add(ruleJ);
+			result.add(condJ);
 		}
 
 		return result;
@@ -1733,7 +1782,7 @@ public class GtmJsonUtils {
 
 
 	private static CarrierConstraintDef convertToJson(CarrierConstraint constraint) {
-		
+		if (constraint == null) return null;
 		CarrierConstraintDef constraintDef = new CarrierConstraintDef();
 		
 		constraintDef.setId(constraint.getId());
@@ -1761,7 +1810,7 @@ public class GtmJsonUtils {
 	}
 	
 	private static PriceDef convertToJson(Price price) {
-		
+		if (price == null) return null;
 		PriceDef priceDef = new PriceDef();
 		
 		priceDef.setId(price.getId());
@@ -1798,12 +1847,19 @@ public class GtmJsonUtils {
 	
 
 	private static Delivery convertDeliveryToJson(Gtm.Delivery idelivery) {
+		if (idelivery == null) return null;
 		Delivery delivery = new Delivery();
 		delivery.setFareProvider(idelivery.getProvider().getCode());
 		delivery.setDeliveryId(idelivery.getId());
 		delivery.setOptionalDelivery(idelivery.isOptional());
 		delivery.setReplacementDeliveryId(idelivery.getReplacedDeliveryId());
 		delivery.setPreviousDeliveryId(idelivery.getPreviousDeliveryId());
+		if (idelivery.getSchemaVersion()!=null)	{
+			delivery.setVersion(idelivery.getSchemaVersion().getName());
+		}
+		if (idelivery.getAcceptedSchemaVersion()!=null) {
+			delivery.setAcceptedVersion(idelivery.getAcceptedSchemaVersion().getName());
+		}
 		return delivery;
 	}
 

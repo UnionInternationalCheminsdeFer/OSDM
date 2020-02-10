@@ -15,7 +15,7 @@
  * $Id$
  */
 
-package console;
+package Gtm.console;
 
 import java.util.HashMap;
 import java.util.Map;

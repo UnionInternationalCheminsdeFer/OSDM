@@ -1,4 +1,4 @@
-package actions;
+package Gtm.actions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,7 @@ import java.nio.charset.Charset;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -76,10 +77,12 @@ public class ImportLegacyStationsAction extends ImportLegacyAction {
 			e.printStackTrace();
 			return;
 		} 
+        
+		EditingDomain domain = GtmUtils.getActiveDomain();
            	
-		Command cmd =  SetCommand.create(editingDomainProvider.getEditingDomain(), legacy108, GtmPackage.Literals.LEGACY108__LEGACY_STATIONS, stations );
+		Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_STATIONS, stations );
 		if (cmd.canExecute()) {
-			editingDomainProvider.getEditingDomain().getCommandStack().execute(cmd);
+			domain.getCommandStack().execute(cmd);
 			GtmUtils.writeConsoleInfog("stations imported: " + Integer.toString(stations.getLegacyStations().size()));
 		}
 

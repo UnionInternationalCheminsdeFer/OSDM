@@ -1,4 +1,4 @@
-package actions;
+package Gtm.actions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +10,7 @@ import java.util.TimeZone;
 
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -84,18 +85,20 @@ public class ImportLegacyAllFareAction extends ImportLegacyAction {
 			return;
 		} 
         
+		EditingDomain domain = GtmUtils.getActiveDomain();
+        
         CompoundCommand command = new CompoundCommand();
         
         if (!resultListRouteFares.getRouteFare().isEmpty()) {
-    		command.append(SetCommand.create(editingDomainProvider.getEditingDomain(), legacy108, GtmPackage.Literals.LEGACY108__LEGACY_ROUTE_FARES, resultListRouteFares) );
+    		command.append(SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_ROUTE_FARES, resultListRouteFares) );
         }
         if (!resultListDistanceFares.getDistanceFare().isEmpty()) {        
-        	command.append(SetCommand.create(editingDomainProvider.getEditingDomain(), legacy108, GtmPackage.Literals.LEGACY108__LEGACY_DISTANCE_FARES, resultListDistanceFares) );
+        	command.append(SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_DISTANCE_FARES, resultListDistanceFares) );
         }
 
 
 		if (!command.isEmpty() && command.canExecute()) {
-			editingDomainProvider.getEditingDomain().getCommandStack().execute(command);
+			domain.getCommandStack().execute(command);
 			GtmUtils.writeConsoleInfog("route prices imported: " + Integer.toString(resultListRouteFares.getRouteFare().size()));
 		}
 		
@@ -107,7 +110,7 @@ public class ImportLegacyAllFareAction extends ImportLegacyAction {
 		if (st.length() != 174)	return null;
 		
 		//String carrier 		= st.substring(0, 4);
-		String number  			= st.substring(4, 8);
+		//String number  			= st.substring(4, 8);
 		String series    		= st.substring(8,13);
 
 		String fare1st 	 		= st.substring(132,139);	

@@ -1,4 +1,4 @@
-package actions;
+package Gtm.actions;
 
 
 import org.eclipse.emf.common.command.Command;
@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PlatformUI;
 
 import Gtm.AfterSalesRule;
 import Gtm.Calendar;
@@ -49,15 +51,19 @@ import Gtm.ServiceLevel;
 import Gtm.Text;
 import Gtm.TravelValidityConstraint;
 import Gtm.ZoneDefinition;
-import console.ConsoleUtil;
+import Gtm.console.ConsoleUtil;
+import Gtm.presentation.GtmEditor;
 
 public class GtmUtils {
 	
 	
 	public static GTMTool getGtmTool(IEditingDomainProvider editingDomainProvider) {
-		
-		Resource resource = editingDomainProvider.getEditingDomain().getResourceSet().getResources().get(0);
-	
+	   	
+	   	
+	   	IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		EditingDomain domain = ((GtmEditor) editor).getEditingDomain();
+		Resource resource = domain.getResourceSet().getResources().get(0);
+	   	
 		TreeIterator<EObject> it = resource.getAllContents();
 		EObject object = it.next();
 		
@@ -69,6 +75,30 @@ public class GtmUtils {
 			return null;
 		}
 	}
+	
+	public static GTMTool getGtmTool() {
+	   	
+	   	IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		EditingDomain domain = ((GtmEditor) editor).getEditingDomain();
+		Resource resource = domain.getResourceSet().getResources().get(0);
+	   	
+		TreeIterator<EObject> it = resource.getAllContents();
+		EObject object = it.next();
+		
+		if (object == null) return null;
+
+		if (object instanceof GTMTool){
+			return (GTMTool) object;
+		} else {
+			return null;
+		}
+	}
+	
+	public static EditingDomain getActiveDomain() {
+	   	IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		return ((GtmEditor) editor).getEditingDomain();
+	}
+	
 	
 	
 	
@@ -114,6 +144,9 @@ public class GtmUtils {
 				}
 				if (tool.getConversionFromLegacy().getParams().getLegacyStationToServiceBrandMappings() == null) {
 					command.append(new SetCommand(domain,tool.getConversionFromLegacy().getParams(),GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS,GtmFactory.eINSTANCE.createLegacyStationToServiceConstraintMappings()));									
+				}
+				if (tool.getConversionFromLegacy().getParams().getLegacyBorderPointMappings() == null) {
+					command.append(new SetCommand(domain,tool.getConversionFromLegacy().getParams(),GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS,GtmFactory.eINSTANCE.createLegacyBoderPointMappings()));									
 				}
 			}
 		}
@@ -370,6 +403,7 @@ public class GtmUtils {
 		params.setLegacyStationMappings(GtmFactory.eINSTANCE.createLegacyStationMappings());
 		params.setLegacyTargetFares(GtmFactory.eINSTANCE.createLegacyTargetFares());
 		params.setLegacyZoneMappings(GtmFactory.eINSTANCE.createLegacyZoneMappings());
+		params.setLegacyBorderPointMappings(GtmFactory.eINSTANCE.createLegacyBoderPointMappings());
 		params.setLegacyStationToServiceBrandMappings(GtmFactory.eINSTANCE.createLegacyStationToServiceConstraintMappings());
 		return params;
 	}

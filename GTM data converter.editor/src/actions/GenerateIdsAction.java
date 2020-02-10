@@ -1,4 +1,4 @@
-package actions;
+package Gtm.actions;
 
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;

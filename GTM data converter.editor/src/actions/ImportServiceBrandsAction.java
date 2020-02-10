@@ -1,4 +1,4 @@
-package actions;
+package Gtm.actions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -62,21 +63,22 @@ public class ImportServiceBrandsAction extends ImportCsvDataAction {
         int added = 0;
         int updated = 0;
         
+		EditingDomain domain = GtmUtils.getActiveDomain();
 
 		for (ServiceBrand newBrand : newBrands.getServiceBrands()) {
        	
         	ServiceBrand brand = tool.getCodeLists().getServiceBrands().findServiceBRand(newBrand.getCode());
         	
         	if (brand == null) {
-        		Command cmd2 = new AddCommand(editingDomainProvider.getEditingDomain(), tool.getCodeLists().getServiceBrands().getServiceBrands(), newBrand);
+        		Command cmd2 = new AddCommand(domain, tool.getCodeLists().getServiceBrands().getServiceBrands(), newBrand);
         		command.append(cmd2);
         		added++;
         	} else {
-        		Command cmd2 = new SetCommand(editingDomainProvider.getEditingDomain(), brand, GtmPackage.Literals.SERVICE_BRAND__NAME, newBrand.getName());
+        		Command cmd2 = new SetCommand(domain, brand, GtmPackage.Literals.SERVICE_BRAND__NAME, newBrand.getName());
                 command.append(cmd2);
-        		Command cmd3 = new SetCommand(editingDomainProvider.getEditingDomain(), brand, GtmPackage.Literals.SERVICE_BRAND__ABBREVIATION, newBrand.getAbbreviation());
+        		Command cmd3 = new SetCommand(domain, brand, GtmPackage.Literals.SERVICE_BRAND__ABBREVIATION, newBrand.getAbbreviation());
                 command.append(cmd3);        	
-        		Command cmd4 = new SetCommand(editingDomainProvider.getEditingDomain(), brand, GtmPackage.Literals.SERVICE_BRAND__DESCRIPTION, newBrand.getDescription());
+        		Command cmd4 = new SetCommand(domain, brand, GtmPackage.Literals.SERVICE_BRAND__DESCRIPTION, newBrand.getDescription());
                 command.append(cmd4);   
                 updated++;
            	}
@@ -84,7 +86,7 @@ public class ImportServiceBrandsAction extends ImportCsvDataAction {
         }
         
         if (command != null && !command.isEmpty()) {
-        	editingDomainProvider.getEditingDomain().getCommandStack().execute(command);
+        	domain.getCommandStack().execute(command);
 			GtmUtils.writeConsoleInfog("service brands added: (" + Integer.toString(added)+")" );
 			GtmUtils.writeConsoleInfog("service brands updated: (" + Integer.toString(updated) + ")" );
         }		

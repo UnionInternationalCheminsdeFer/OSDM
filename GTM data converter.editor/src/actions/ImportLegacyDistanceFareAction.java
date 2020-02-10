@@ -1,4 +1,4 @@
-package actions;
+package Gtm.actions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +10,7 @@ import java.util.TimeZone;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -65,10 +66,12 @@ public class ImportLegacyDistanceFareAction extends ImportLegacyAction {
 			e.printStackTrace();
 			return;
 		} 
+
+		EditingDomain domain = GtmUtils.getActiveDomain();
         
-		Command cmd =  SetCommand.create(editingDomainProvider.getEditingDomain(), legacy108, GtmPackage.Literals.LEGACY108__LEGACY_DISTANCE_FARES, resultList );
+		Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_DISTANCE_FARES, resultList );
 		if (cmd.canExecute()) {
-			editingDomainProvider.getEditingDomain().getCommandStack().execute(cmd);
+			domain.getCommandStack().execute(cmd);
 			GtmUtils.writeConsoleInfog("distance prices imported: " + Integer.toString(resultList.getDistanceFare().size()));
 		}
 		
