@@ -79,12 +79,14 @@ public class LegacyBoderPointMappingsImpl extends MinimalEObjectImpl.Container i
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public LegacyBorderPointMapping getMappingByBorderPointCode(int borderPointCode) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if (borderPoints == null) return null;
+		for (LegacyBorderPointMapping map : borderPoints) {
+			if (map.getCode() == borderPointCode) return map;
+		}
+		return null;
 	}
 
 	/**
