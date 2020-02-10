@@ -7,14 +7,14 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated gtm -->
+      <!-- @generated Gtm -->
       <package
             uri="platform:/resource/GTM%20data%20converter/model/gtm.xsd"
             class="Gtm.GtmPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated gtm -->
+      <!-- @generated Gtm -->
       <parser
             type="gtm"
             class="Gtm.util.GtmResourceFactoryImpl"/>
