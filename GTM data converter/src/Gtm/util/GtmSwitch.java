@@ -162,6 +162,12 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GtmPackage.STATION_SET: {
+				StationSet stationSet = (StationSet)theEObject;
+				T result = caseStationSet(stationSet);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GtmPackage.GENERAL_TARIFF_MODEL: {
 				GeneralTariffModel generalTariffModel = (GeneralTariffModel)theEObject;
 				T result = caseGeneralTariffModel(generalTariffModel);
@@ -217,12 +223,6 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.STATION_SET: {
-				StationSet stationSet = (StationSet)theEObject;
-				T result = caseStationSet(stationSet);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case GtmPackage.FARE_RESOURCE_LOCATIONS: {
 				FareResourceLocations fareResourceLocations = (FareResourceLocations)theEObject;
 				T result = caseFareResourceLocations(fareResourceLocations);
@@ -271,21 +271,51 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GtmPackage.FULFILLMENT_CONSTRAINT: {
+				FulfillmentConstraint fulfillmentConstraint = (FulfillmentConstraint)theEObject;
+				T result = caseFulfillmentConstraint(fulfillmentConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.REQUIRED_BARCODES: {
+				RequiredBarcodes requiredBarcodes = (RequiredBarcodes)theEObject;
+				T result = caseRequiredBarcodes(requiredBarcodes);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.ACCEPTED_BARCODES: {
+				AcceptedBarcodes acceptedBarcodes = (AcceptedBarcodes)theEObject;
+				T result = caseAcceptedBarcodes(acceptedBarcodes);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GtmPackage.SUPPORTED_ONLINE_SERVICES: {
 				SupportedOnlineServices supportedOnlineServices = (SupportedOnlineServices)theEObject;
 				T result = caseSupportedOnlineServices(supportedOnlineServices);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.ZONE_DEFINITIONS: {
-				ZoneDefinitions zoneDefinitions = (ZoneDefinitions)theEObject;
-				T result = caseZoneDefinitions(zoneDefinitions);
+			case GtmPackage.STATION_NAMES: {
+				StationNames stationNames = (StationNames)theEObject;
+				T result = caseStationNames(stationNames);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GtmPackage.FARE_ELEMENT: {
 				FareElement fareElement = (FareElement)theEObject;
 				T result = caseFareElement(fareElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.FARE_STATION_SET_DEFINITIONS: {
+				FareStationSetDefinitions fareStationSetDefinitions = (FareStationSetDefinitions)theEObject;
+				T result = caseFareStationSetDefinitions(fareStationSetDefinitions);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.FARE_STATION_SET_DEFINITION: {
+				FareStationSetDefinition fareStationSetDefinition = (FareStationSetDefinition)theEObject;
+				T result = caseFareStationSetDefinition(fareStationSetDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -343,15 +373,15 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.INCLUDED_FREE_PASSENGERS: {
-				IncludedFreePassengers includedFreePassengers = (IncludedFreePassengers)theEObject;
-				T result = caseIncludedFreePassengers(includedFreePassengers);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case GtmPackage.PASSENGER_COMBINATION_CONSTRAINT: {
 				PassengerCombinationConstraint passengerCombinationConstraint = (PassengerCombinationConstraint)theEObject;
 				T result = casePassengerCombinationConstraint(passengerCombinationConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.INCLUDED_FREE_PASSENGER_LIMIT: {
+				IncludedFreePassengerLimit includedFreePassengerLimit = (IncludedFreePassengerLimit)theEObject;
+				T result = caseIncludedFreePassengerLimit(includedFreePassengerLimit);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -628,12 +658,6 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.ZONE_DEFINITION: {
-				ZoneDefinition zoneDefinition = (ZoneDefinition)theEObject;
-				T result = caseZoneDefinition(zoneDefinition);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case GtmPackage.LINE: {
 				Line line = (Line)theEObject;
 				T result = caseLine(line);
@@ -667,24 +691,6 @@ public class GtmSwitch<T> extends Switch<T> {
 			case GtmPackage.FARE_COMBINATION_MODEL: {
 				FareCombinationModel fareCombinationModel = (FareCombinationModel)theEObject;
 				T result = caseFareCombinationModel(fareCombinationModel);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.FULFILLMENT_CONSTRAINT: {
-				FulfillmentConstraint fulfillmentConstraint = (FulfillmentConstraint)theEObject;
-				T result = caseFulfillmentConstraint(fulfillmentConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.REQUIRED_BARCODES: {
-				RequiredBarcodes requiredBarcodes = (RequiredBarcodes)theEObject;
-				T result = caseRequiredBarcodes(requiredBarcodes);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.ACCEPTED_BARCODES: {
-				AcceptedBarcodes acceptedBarcodes = (AcceptedBarcodes)theEObject;
-				T result = caseAcceptedBarcodes(acceptedBarcodes);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -766,15 +772,15 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.LEGACY_ZONE_MAPPINGS: {
-				LegacyZoneMappings legacyZoneMappings = (LegacyZoneMappings)theEObject;
-				T result = caseLegacyZoneMappings(legacyZoneMappings);
+			case GtmPackage.LEGACY_FARE_STATION_SET_MAPPINGS: {
+				LegacyFareStationSetMappings legacyFareStationSetMappings = (LegacyFareStationSetMappings)theEObject;
+				T result = caseLegacyFareStationSetMappings(legacyFareStationSetMappings);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.LEGACY_ZONE_MAP: {
-				LegacyZoneMap legacyZoneMap = (LegacyZoneMap)theEObject;
-				T result = caseLegacyZoneMap(legacyZoneMap);
+			case GtmPackage.LEGACY_FARE_STATION_SET_MAP: {
+				LegacyFareStationSetMap legacyFareStationSetMap = (LegacyFareStationSetMap)theEObject;
+				T result = caseLegacyFareStationSetMap(legacyFareStationSetMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1161,17 +1167,17 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Zone Definitions</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Station Names</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Zone Definitions</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Station Names</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseZoneDefinitions(ZoneDefinitions object) {
+	public T caseStationNames(StationNames object) {
 		return null;
 	}
 
@@ -1536,32 +1542,32 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Legacy Zone Mappings</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Fare Station Set Mappings</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Legacy Zone Mappings</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Fare Station Set Mappings</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLegacyZoneMappings(LegacyZoneMappings object) {
+	public T caseLegacyFareStationSetMappings(LegacyFareStationSetMappings object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Legacy Zone Map</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Fare Station Set Map</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Legacy Zone Map</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Fare Station Set Map</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLegacyZoneMap(LegacyZoneMap object) {
+	public T caseLegacyFareStationSetMap(LegacyFareStationSetMap object) {
 		return null;
 	}
 
@@ -2151,6 +2157,36 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fare Station Set Definitions</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fare Station Set Definitions</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFareStationSetDefinitions(FareStationSetDefinitions object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fare Station Set Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fare Station Set Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFareStationSetDefinition(FareStationSetDefinition object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Legacy Accounting Identifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2556,17 +2592,17 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Included Free Passengers</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Included Free Passenger Limit</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Included Free Passengers</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Included Free Passenger Limit</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIncludedFreePassengers(IncludedFreePassengers object) {
+	public T caseIncludedFreePassengerLimit(IncludedFreePassengerLimit object) {
 		return null;
 	}
 
@@ -2597,21 +2633,6 @@ public class GtmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRelativeTime(RelativeTime object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Zone Definition</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Zone Definition</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseZoneDefinition(ZoneDefinition object) {
 		return null;
 	}
 

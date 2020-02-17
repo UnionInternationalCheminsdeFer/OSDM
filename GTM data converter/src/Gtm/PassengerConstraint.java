@@ -282,26 +282,16 @@ public interface PassengerConstraint extends EObject {
 	void setMinTotalPassengerWeight(float value);
 
 	/**
-	 * Returns the value of the '<em><b>Included Free Passengers</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Included Free Passengers</b></em>' containment reference list.
+	 * The list contents are of type {@link Gtm.IncludedFreePassengerLimit}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Included Free Passengers</em>' containment reference.
-	 * @see #setIncludedFreePassengers(IncludedFreePassengers)
+	 * @return the value of the '<em>Included Free Passengers</em>' containment reference list.
 	 * @see Gtm.GtmPackage#getPassengerConstraint_IncludedFreePassengers()
 	 * @model containment="true"
 	 * @generated
 	 */
-	IncludedFreePassengers getIncludedFreePassengers();
-
-	/**
-	 * Sets the value of the '{@link Gtm.PassengerConstraint#getIncludedFreePassengers <em>Included Free Passengers</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Included Free Passengers</em>' containment reference.
-	 * @see #getIncludedFreePassengers()
-	 * @generated
-	 */
-	void setIncludedFreePassengers(IncludedFreePassengers value);
+	EList<IncludedFreePassengerLimit> getIncludedFreePassengers();
 
 	/**
 	 * Returns the value of the '<em><b>Excluded Passenger Combinations</b></em>' containment reference list.

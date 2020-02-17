@@ -55,6 +55,32 @@
 			],
 			"additionalProperties": false
 		},
+		"StationDetailsDef": {
+			"type": "object",
+			"properties": {
+				"Country": {
+					"type": "string"
+				},
+				"localCode": {
+					"type": "string"
+				},
+				"name": {
+					"description": "station name in ASCII characters (a-z,A-Z,0-9,/,:,(,) )",
+					"type": "string"
+				},
+				"nameUtf8": {
+					"description": "station name in local characters",
+					"type": "string"
+				},
+				"longitude": {
+					"type": "number"
+				},
+				"latitude": {
+					"type": "number"
+				}
+			},
+			"additionalProperties": false
+		},
 		"StationCodeListDef": {
 			"description": "code list used for the station codes: UIC = UIC codes as used by merits (UIC country code + local code) = Default// UIC-R = UIC codes for reservation (UIC country code + local code reservation) // ERA = future ERA station code",
 			"type": "string",

@@ -46,7 +46,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AH(2, "AH", "AH"), /**
+	AH(2, "AH", "AH"),
+
+	/**
 	 * The '<em><b>AM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,7 +56,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AM(3, "AM", "AM"), /**
+	AM(3, "AM", "AM"),
+
+	/**
 	 * The '<em><b>AR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,7 +66,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AR(4, "AR", "AR"), /**
+	AR(4, "AR", "AR"),
+
+	/**
 	 * The '<em><b>AS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +76,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AS(5, "AS", "AS"), /**
+	AS(5, "AS", "AS"),
+
+	/**
 	 * The '<em><b>AV</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,7 +86,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AV(6, "AV", "AV"), /**
+	AV(6, "AV", "AV"),
+
+	/**
 	 * The '<em><b>AW</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,7 +96,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AW(7, "AW", "AW"), /**
+	AW(7, "AW", "AW"),
+
+	/**
 	 * The '<em><b>BC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,7 +106,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BC(8, "BC", "BC"), /**
+	BC(8, "BC", "BC"),
+
+	/**
 	 * The '<em><b>BD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102,7 +116,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BD(9, "BD", "BD"), /**
+	BD(9, "BD", "BD"),
+
+	/**
 	 * The '<em><b>BE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,7 +126,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BE(10, "BE", "BE"), /**
+	BE(10, "BE", "BE"),
+
+	/**
 	 * The '<em><b>BH</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -118,7 +136,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BH(11, "BH", "BH"), /**
+	BH(11, "BH", "BH"),
+
+	/**
 	 * The '<em><b>BN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -126,7 +146,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BN(12, "BN", "BN"), /**
+	BN(12, "BN", "BN"),
+
+	/**
 	 * The '<em><b>BR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -134,7 +156,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BR(13, "BR", "BR"), /**
+	BR(13, "BR", "BR"),
+
+	/**
 	 * The '<em><b>BS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -142,7 +166,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BS(14, "BS", "BS"), /**
+	BS(14, "BS", "BS"),
+
+	/**
 	 * The '<em><b>C</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -150,7 +176,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	C(15, "C", "C"), /**
+	C(15, "C", "C"),
+
+	/**
 	 * The '<em><b>D</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -158,7 +186,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	D(16, "D", "D"), /**
+	D(16, "D", "D"),
+
+	/**
 	 * The '<em><b>DR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,7 +196,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DR(17, "DR", "DR"), /**
+	DR(17, "DR", "DR"),
+
+	/**
 	 * The '<em><b>D2</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -174,7 +206,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	D2(18, "D2", "D2"), /**
+	D2(18, "D2", "D2"),
+
+	/**
 	 * The '<em><b>D4</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,7 +216,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	D4(19, "D4", "D4"), /**
+	D4(19, "D4", "D4"),
+
+	/**
 	 * The '<em><b>D5</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -190,7 +226,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	D5(20, "D5", "D5"), /**
+	D5(20, "D5", "D5"),
+
+	/**
 	 * The '<em><b>D6</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -198,7 +236,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	D6(21, "D6", "D6"), /**
+	D6(21, "D6", "D6"),
+
+	/**
 	 * The '<em><b>E</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -206,7 +246,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	E(22, "E", "E"), /**
+	E(22, "E", "E"),
+
+	/**
 	 * The '<em><b>EX</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -214,7 +256,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EX(23, "EX", "EX"), /**
+	EX(23, "EX", "EX"),
+
+	/**
 	 * The '<em><b>F</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -222,7 +266,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	F(24, "F", "F"), /**
+	F(24, "F", "F"),
+
+	/**
 	 * The '<em><b>G</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -230,7 +276,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	G(25, "G", "G"), /**
+	G(25, "G", "G"),
+
+	/**
 	 * The '<em><b>G2</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -238,7 +286,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	G2(26, "G2", "G2"), /**
+	G2(26, "G2", "G2"),
+
+	/**
 	 * The '<em><b>H</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -246,7 +296,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	H(27, "H", "H"), /**
+	H(27, "H", "H"),
+
+	/**
 	 * The '<em><b>K</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -254,7 +306,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	K(28, "K", "K"), /**
+	K(28, "K", "K"),
+
+	/**
 	 * The '<em><b>L</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -262,7 +316,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	L(29, "L", "L"), /**
+	L(29, "L", "L"),
+
+	/**
 	 * The '<em><b>M</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -270,7 +326,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	M(30, "M", "M"), /**
+	M(30, "M", "M"),
+
+	/**
 	 * The '<em><b>N</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -278,7 +336,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	N(31, "N", "N"), /**
+	N(31, "N", "N"),
+
+	/**
 	 * The '<em><b>O</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -286,7 +346,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	O(32, "O", "O"), /**
+	O(32, "O", "O"),
+
+	/**
 	 * The '<em><b>O3</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -294,7 +356,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	O3(33, "O3", "O3"), /**
+	O3(33, "O3", "O3"),
+
+	/**
 	 * The '<em><b>O4</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -302,7 +366,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	O4(34, "O4", "O4"), /**
+	O4(34, "O4", "O4"),
+
+	/**
 	 * The '<em><b>O5</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -310,7 +376,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	O5(35, "O5", "O5"), /**
+	O5(35, "O5", "O5"),
+
+	/**
 	 * The '<em><b>O8</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -318,7 +386,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	O8(36, "O8", "O8"), /**
+	O8(36, "O8", "O8"),
+
+	/**
 	 * The '<em><b>OB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -326,7 +396,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OB(37, "OB", "OB"), /**
+	OB(37, "OB", "OB"),
+
+	/**
 	 * The '<em><b>OL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -334,7 +406,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OL(38, "OL", "OL"), /**
+	OL(38, "OL", "OL"),
+
+	/**
 	 * The '<em><b>OS</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -342,7 +416,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OS(39, "OS", "OS"), /**
+	OS(39, "OS", "OS"),
+
+	/**
 	 * The '<em><b>OT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -350,7 +426,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OT(40, "OT", "OT"), /**
+	OT(40, "OT", "OT"),
+
+	/**
 	 * The '<em><b>P</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -358,7 +436,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	P(41, "P", "P"), /**
+	P(41, "P", "P"),
+
+	/**
 	 * The '<em><b>Q</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -366,7 +446,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	Q(42, "Q", "Q"), /**
+	Q(42, "Q", "Q"),
+
+	/**
 	 * The '<em><b>R</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -374,7 +456,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	R(43, "R", "R"), /**
+	R(43, "R", "R"),
+
+	/**
 	 * The '<em><b>S</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -382,7 +466,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	S(44, "S", "S"), /**
+	S(44, "S", "S"),
+
+	/**
 	 * The '<em><b>SL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -390,7 +476,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SL(45, "SL", "SL"), /**
+	SL(45, "SL", "SL"),
+
+	/**
 	 * The '<em><b>T</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -398,7 +486,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	T(46, "T", "T"), /**
+	T(46, "T", "T"),
+
+	/**
 	 * The '<em><b>TL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -406,7 +496,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TL(47, "TL", "TL"), /**
+	TL(47, "TL", "TL"),
+
+	/**
 	 * The '<em><b>U</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -414,7 +506,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	U(48, "U", "U"), /**
+	U(48, "U", "U"),
+
+	/**
 	 * The '<em><b>W</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -422,7 +516,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	W(49, "W", "W"), /**
+	W(49, "W", "W"),
+
+	/**
 	 * The '<em><b>X</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -430,7 +526,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	X(50, "X", "X"), /**
+	X(50, "X", "X"),
+
+	/**
 	 * The '<em><b>Y</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -438,7 +536,9 @@ public enum ReservationServiceLevel implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	Y(51, "Y", "Y"), /**
+	Y(51, "Y", "Y"),
+
+	/**
 	 * The '<em><b>Z</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

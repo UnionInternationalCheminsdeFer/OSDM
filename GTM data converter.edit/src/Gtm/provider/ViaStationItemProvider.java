@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -65,6 +66,8 @@ public class ViaStationItemProvider
 
 			addStationPropertyDescriptor(object);
 			addCarrierPropertyDescriptor(object);
+			addDataDescriptionPropertyDescriptor(object);
+			addFareStationSetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -105,6 +108,50 @@ public class ViaStationItemProvider
 				 getString("_UI_ViaStation_carrier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ViaStation_carrier_feature", "_UI_ViaStation_type"),
 				 GtmPackage.Literals.VIA_STATION__CARRIER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Data Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ViaStation_dataDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ViaStation_dataDescription_feature", "_UI_ViaStation_type"),
+				 GtmPackage.Literals.VIA_STATION__DATA_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Fare Station Set feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFareStationSetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ViaStation_fareStationSet_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ViaStation_fareStationSet_feature", "_UI_ViaStation_type"),
+				 GtmPackage.Literals.VIA_STATION__FARE_STATION_SET,
 				 true,
 				 false,
 				 true,
@@ -159,14 +206,14 @@ public class ViaStationItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ViaStation) object).getDescription();
+		String label = ((ViaStation)object).getDataDescription();
 		return label == null || label.length() == 0 ?
-				getString("_UI_AfterSalesCondition_type") :
-				getString("_UI_AfterSalesCondition_type") + " " + label;
+			getString("_UI_ViaStation_type") :
+			getString("_UI_ViaStation_type") + " " + label;
 	}
 
 
@@ -182,6 +229,9 @@ public class ViaStationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ViaStation.class)) {
+			case GtmPackage.VIA_STATION__DATA_DESCRIPTION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case GtmPackage.VIA_STATION__ROUTE:
 			case GtmPackage.VIA_STATION__ALTERNATIVE_ROUTES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));

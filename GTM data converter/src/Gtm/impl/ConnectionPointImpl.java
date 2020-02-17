@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link Gtm.impl.ConnectionPointImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link Gtm.impl.ConnectionPointImpl#getConnectedStationSets <em>Connected Station Sets</em>}</li>
  *   <li>{@link Gtm.impl.ConnectionPointImpl#getDataSource <em>Data Source</em>}</li>
+ *   <li>{@link Gtm.impl.ConnectionPointImpl#getNameUtf8 <em>Name Utf8</em>}</li>
  * </ul>
  *
  * @generated
@@ -147,6 +148,25 @@ public class ConnectionPointImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected DataSource dataSource = DATA_SOURCE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getNameUtf8() <em>Name Utf8</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNameUtf8()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_UTF8_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getNameUtf8() <em>Name Utf8</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNameUtf8()
+	 * @generated
+	 * @ordered
+	 */
+	protected String nameUtf8 = NAME_UTF8_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -289,6 +309,27 @@ public class ConnectionPointImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getNameUtf8() {
+		return nameUtf8;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNameUtf8(String newNameUtf8) {
+		String oldNameUtf8 = nameUtf8;
+		nameUtf8 = newNameUtf8;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CONNECTION_POINT__NAME_UTF8, oldNameUtf8, nameUtf8));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -318,6 +359,8 @@ public class ConnectionPointImpl extends MinimalEObjectImpl.Container implements
 				return getConnectedStationSets();
 			case GtmPackage.CONNECTION_POINT__DATA_SOURCE:
 				return getDataSource();
+			case GtmPackage.CONNECTION_POINT__NAME_UTF8:
+				return getNameUtf8();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -350,6 +393,9 @@ public class ConnectionPointImpl extends MinimalEObjectImpl.Container implements
 			case GtmPackage.CONNECTION_POINT__DATA_SOURCE:
 				setDataSource((DataSource)newValue);
 				return;
+			case GtmPackage.CONNECTION_POINT__NAME_UTF8:
+				setNameUtf8((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -380,6 +426,9 @@ public class ConnectionPointImpl extends MinimalEObjectImpl.Container implements
 			case GtmPackage.CONNECTION_POINT__DATA_SOURCE:
 				setDataSource(DATA_SOURCE_EDEFAULT);
 				return;
+			case GtmPackage.CONNECTION_POINT__NAME_UTF8:
+				setNameUtf8(NAME_UTF8_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -404,6 +453,8 @@ public class ConnectionPointImpl extends MinimalEObjectImpl.Container implements
 				return connectedStationSets != null && !connectedStationSets.isEmpty();
 			case GtmPackage.CONNECTION_POINT__DATA_SOURCE:
 				return dataSource != DATA_SOURCE_EDEFAULT;
+			case GtmPackage.CONNECTION_POINT__NAME_UTF8:
+				return NAME_UTF8_EDEFAULT == null ? nameUtf8 != null : !NAME_UTF8_EDEFAULT.equals(nameUtf8);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -428,6 +479,8 @@ public class ConnectionPointImpl extends MinimalEObjectImpl.Container implements
 		result.append(description);
 		result.append(", dataSource: ");
 		result.append(dataSource);
+		result.append(", nameUtf8: ");
+		result.append(nameUtf8);
 		result.append(')');
 		return result.toString();
 	}

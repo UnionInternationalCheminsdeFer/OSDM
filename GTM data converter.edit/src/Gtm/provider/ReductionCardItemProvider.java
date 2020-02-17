@@ -65,6 +65,7 @@ public class ReductionCardItemProvider
 			addCardIssuerPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 			addServiceClassesPropertyDescriptor(object);
+			addIdRequiredForBookingPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -158,6 +159,28 @@ public class ReductionCardItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Id Required For Booking feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdRequiredForBookingPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReductionCard_idRequiredForBooking_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReductionCard_idRequiredForBooking_feature", "_UI_ReductionCard_type"),
+				 GtmPackage.Literals.REDUCTION_CARD__ID_REQUIRED_FOR_BOOKING,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns ReductionCard.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -196,6 +219,7 @@ public class ReductionCardItemProvider
 
 		switch (notification.getFeatureID(ReductionCard.class)) {
 			case GtmPackage.REDUCTION_CARD__ID:
+			case GtmPackage.REDUCTION_CARD__ID_REQUIRED_FOR_BOOKING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

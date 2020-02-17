@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "issuer",
     "Id",
     "name",
+    "nameRef",
     "serviceClasses",
     "type",
     "cardIdRequired"
@@ -36,13 +37,20 @@ public class ReductionCardDef {
     @JsonPropertyDescription("id of the card within the issuer")
     private String id;
     /**
-     * text
+     * directly included text in case of online services
      * (Required)
      * 
      */
     @JsonProperty("name")
-    @JsonPropertyDescription("text")
+    @JsonPropertyDescription("directly included text in case of online services")
     private TextDef name;
+    /**
+     * referenced text in bulk data
+     * 
+     */
+    @JsonProperty("nameRef")
+    @JsonPropertyDescription("referenced text in bulk data")
+    private String nameRef;
     /**
      * list of service classes in case this class is available for different classes
      * 
@@ -106,7 +114,7 @@ public class ReductionCardDef {
     }
 
     /**
-     * text
+     * directly included text in case of online services
      * (Required)
      * 
      */
@@ -116,13 +124,31 @@ public class ReductionCardDef {
     }
 
     /**
-     * text
+     * directly included text in case of online services
      * (Required)
      * 
      */
     @JsonProperty("name")
     public void setName(TextDef name) {
         this.name = name;
+    }
+
+    /**
+     * referenced text in bulk data
+     * 
+     */
+    @JsonProperty("nameRef")
+    public String getNameRef() {
+        return nameRef;
+    }
+
+    /**
+     * referenced text in bulk data
+     * 
+     */
+    @JsonProperty("nameRef")
+    public void setNameRef(String nameRef) {
+        this.nameRef = nameRef;
     }
 
     /**
@@ -195,6 +221,10 @@ public class ReductionCardDef {
         sb.append('=');
         sb.append(((this.name == null)?"<null>":this.name));
         sb.append(',');
+        sb.append("nameRef");
+        sb.append('=');
+        sb.append(((this.nameRef == null)?"<null>":this.nameRef));
+        sb.append(',');
         sb.append("serviceClasses");
         sb.append('=');
         sb.append(((this.serviceClasses == null)?"<null>":this.serviceClasses));
@@ -220,6 +250,7 @@ public class ReductionCardDef {
         int result = 1;
         result = ((result* 31)+((this.serviceClasses == null)? 0 :this.serviceClasses.hashCode()));
         result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
+        result = ((result* 31)+((this.nameRef == null)? 0 :this.nameRef.hashCode()));
         result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
         result = ((result* 31)+((this.type == null)? 0 :this.type.hashCode()));
         result = ((result* 31)+((this.issuer == null)? 0 :this.issuer.hashCode()));
@@ -236,7 +267,7 @@ public class ReductionCardDef {
             return false;
         }
         ReductionCardDef rhs = ((ReductionCardDef) other);
-        return (((((((this.serviceClasses == rhs.serviceClasses)||((this.serviceClasses!= null)&&this.serviceClasses.equals(rhs.serviceClasses)))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.type == rhs.type)||((this.type!= null)&&this.type.equals(rhs.type))))&&((this.issuer == rhs.issuer)||((this.issuer!= null)&&this.issuer.equals(rhs.issuer))))&&((this.cardIdRequired == rhs.cardIdRequired)||((this.cardIdRequired!= null)&&this.cardIdRequired.equals(rhs.cardIdRequired))));
+        return ((((((((this.serviceClasses == rhs.serviceClasses)||((this.serviceClasses!= null)&&this.serviceClasses.equals(rhs.serviceClasses)))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.nameRef == rhs.nameRef)||((this.nameRef!= null)&&this.nameRef.equals(rhs.nameRef))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.type == rhs.type)||((this.type!= null)&&this.type.equals(rhs.type))))&&((this.issuer == rhs.issuer)||((this.issuer!= null)&&this.issuer.equals(rhs.issuer))))&&((this.cardIdRequired == rhs.cardIdRequired)||((this.cardIdRequired!= null)&&this.cardIdRequired.equals(rhs.cardIdRequired))));
     }
 
 }

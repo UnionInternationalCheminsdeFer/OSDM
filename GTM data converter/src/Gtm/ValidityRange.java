@@ -53,12 +53,12 @@ public interface ValidityRange extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
-	 * @see #setValue(int)
+	 * @see #setValue(float)
 	 * @see Gtm.GtmPackage#getValidityRange_Value()
 	 * @model
 	 * @generated
 	 */
-	int getValue();
+	float getValue();
 
 	/**
 	 * Sets the value of the '{@link Gtm.ValidityRange#getValue <em>Value</em>}' attribute.
@@ -68,19 +68,19 @@ public interface ValidityRange extends EObject {
 	 * @see #getValue()
 	 * @generated
 	 */
-	void setValue(int value);
+	void setValue(float value);
 
 	/**
 	 * Returns the value of the '<em><b>Hours After Midnight</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hours After Midnight</em>' attribute.
-	 * @see #setHoursAfterMidnight(int)
+	 * @see #setHoursAfterMidnight(float)
 	 * @see Gtm.GtmPackage#getValidityRange_HoursAfterMidnight()
 	 * @model
 	 * @generated
 	 */
-	int getHoursAfterMidnight();
+	float getHoursAfterMidnight();
 
 	/**
 	 * Sets the value of the '{@link Gtm.ValidityRange#getHoursAfterMidnight <em>Hours After Midnight</em>}' attribute.
@@ -90,6 +90,6 @@ public interface ValidityRange extends EObject {
 	 * @see #getHoursAfterMidnight()
 	 * @generated
 	 */
-	void setHoursAfterMidnight(int value);
+	void setHoursAfterMidnight(float value);
 
 } // ValidityRange

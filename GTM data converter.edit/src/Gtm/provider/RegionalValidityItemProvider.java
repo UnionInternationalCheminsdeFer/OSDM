@@ -183,16 +183,11 @@ public class RegionalValidityItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		RegionalValidity regionalValidity = (RegionalValidity)object;
-		
-		if (regionalValidity.getViaStation() != null) {
-			return getString("_UI_RegionalValidity_type") + " " + regionalValidity.getViaStation().getDescription();
-		}
-		
 		return getString("_UI_RegionalValidity_type") + " " + regionalValidity.getSeqNb();
 	}
 

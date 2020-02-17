@@ -4,6 +4,7 @@ package Gtm.impl;
 
 import Gtm.AlternativeRoute;
 import Gtm.Carrier;
+import Gtm.FareStationSetDefinition;
 import Gtm.GtmPackage;
 import Gtm.Route;
 import Gtm.Station;
@@ -39,6 +40,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link Gtm.impl.ViaStationImpl#getRoute <em>Route</em>}</li>
  *   <li>{@link Gtm.impl.ViaStationImpl#getAlternativeRoutes <em>Alternative Routes</em>}</li>
  *   <li>{@link Gtm.impl.ViaStationImpl#getDataDescription <em>Data Description</em>}</li>
+ *   <li>{@link Gtm.impl.ViaStationImpl#getFareStationSet <em>Fare Station Set</em>}</li>
  * </ul>
  *
  * @generated
@@ -103,6 +105,16 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 	 * @ordered
 	 */
 	protected String dataDescription = DATA_DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getFareStationSet() <em>Fare Station Set</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFareStationSet()
+	 * @generated
+	 * @ordered
+	 */
+	protected FareStationSetDefinition fareStationSet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -242,6 +254,44 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public FareStationSetDefinition getFareStationSet() {
+		if (fareStationSet != null && fareStationSet.eIsProxy()) {
+			InternalEObject oldFareStationSet = (InternalEObject)fareStationSet;
+			fareStationSet = (FareStationSetDefinition)eResolveProxy(oldFareStationSet);
+			if (fareStationSet != oldFareStationSet) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.VIA_STATION__FARE_STATION_SET, oldFareStationSet, fareStationSet));
+			}
+		}
+		return fareStationSet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FareStationSetDefinition basicGetFareStationSet() {
+		return fareStationSet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFareStationSet(FareStationSetDefinition newFareStationSet) {
+		FareStationSetDefinition oldFareStationSet = fareStationSet;
+		fareStationSet = newFareStationSet;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.VIA_STATION__FARE_STATION_SET, oldFareStationSet, fareStationSet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Carrier getCarrier() {
 		if (carrier != null && carrier.eIsProxy()) {
 			InternalEObject oldCarrier = (InternalEObject)carrier;
@@ -360,6 +410,9 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 				return getAlternativeRoutes();
 			case GtmPackage.VIA_STATION__DATA_DESCRIPTION:
 				return getDataDescription();
+			case GtmPackage.VIA_STATION__FARE_STATION_SET:
+				if (resolve) return getFareStationSet();
+				return basicGetFareStationSet();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -389,6 +442,9 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 			case GtmPackage.VIA_STATION__DATA_DESCRIPTION:
 				setDataDescription((String)newValue);
 				return;
+			case GtmPackage.VIA_STATION__FARE_STATION_SET:
+				setFareStationSet((FareStationSetDefinition)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -416,6 +472,9 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 			case GtmPackage.VIA_STATION__DATA_DESCRIPTION:
 				setDataDescription(DATA_DESCRIPTION_EDEFAULT);
 				return;
+			case GtmPackage.VIA_STATION__FARE_STATION_SET:
+				setFareStationSet((FareStationSetDefinition)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -438,6 +497,8 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 				return alternativeRoutes != null && !alternativeRoutes.isEmpty();
 			case GtmPackage.VIA_STATION__DATA_DESCRIPTION:
 				return DATA_DESCRIPTION_EDEFAULT == null ? dataDescription != null : !DATA_DESCRIPTION_EDEFAULT.equals(dataDescription);
+			case GtmPackage.VIA_STATION__FARE_STATION_SET:
+				return fareStationSet != null;
 		}
 		return super.eIsSet(featureID);
 	}

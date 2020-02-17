@@ -68,6 +68,7 @@ public class ConnectionPointItemProvider
 			addLegacyBorderPointCodePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addDataSourcePropertyDescriptor(object);
+			addNameUtf8PropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -183,6 +184,28 @@ public class ConnectionPointItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Name Utf8 feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNameUtf8PropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConnectionPoint_nameUtf8_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConnectionPoint_nameUtf8_feature", "_UI_ConnectionPoint_type"),
+				 GtmPackage.Literals.CONNECTION_POINT__NAME_UTF8,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -255,6 +278,7 @@ public class ConnectionPointItemProvider
 			case GtmPackage.CONNECTION_POINT__LEGACY_BORDER_POINT_CODE:
 			case GtmPackage.CONNECTION_POINT__DESCRIPTION:
 			case GtmPackage.CONNECTION_POINT__DATA_SOURCE:
+			case GtmPackage.CONNECTION_POINT__NAME_UTF8:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.CONNECTION_POINT__CONNECTED_STATION_SETS:

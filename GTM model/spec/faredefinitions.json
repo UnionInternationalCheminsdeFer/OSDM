@@ -84,7 +84,8 @@
 				"UTCoffset": {
 					"description": "offsett to UTC in minutes (number of minutes to be added to get UTC dates)",
 					"type": "integer"
-				}
+				},
+				"NewProperty": {}
 			},
 			"required": [
 				"id",
@@ -495,7 +496,7 @@
 								"description": "type of fulfillment in case the presonal data are required for that type only",
 								"type": "array",
 								"items": {
-									"type": "string"
+									"$ref": "definitions.json#/definitions/FulfillmentTypeDef"
 								}
 							}
 						},
@@ -699,6 +700,10 @@
 				"name": {
 					"$ref": "#/definitions/TextDef"
 				},
+				"nameRef": {
+					"description": "referenced text in bulk data",
+					"type": "string"
+				},
 				"serviceClasses": {
 					"description": "list of service classes in case this class is available for different classes",
 					"type": "array",
@@ -735,19 +740,17 @@
 					"items": {
 						"type": "object",
 						"properties": {
-							"salesDates": {
-								"$ref": "#/definitions/CalendarDef"
-							},
 							"startOfSale": {
 								"$ref": "#/definitions/RelativeTimeDef"
 							},
 							"endOfSale": {
 								"$ref": "#/definitions/RelativeTimeDef"
+							},
+							"salesDatesRef": {
+								"description": "reference to the calendar woith valid sales dates",
+								"type": "string"
 							}
 						},
-						"required": [
-							"salesDates"
-						],
 						"additionalProperties": false
 					}
 				}
@@ -870,7 +873,7 @@
 			"additionalProperties": false
 		},
 		"TextDef": {
-			"description": "text",
+			"description": "directly included text in case of online services",
 			"type": "object",
 			"properties": {
 				"id": {
@@ -1044,13 +1047,18 @@
 			],
 			"additionalProperties": false
 		},
-		"ZoneDefinitionDef": {
+		"FareReferenceStationSetDef": {
+			"description": "set of stations used in the fare equivalentely. E.g. Brussels-Region). The set is identified by the fare provicer and a code unique within the fare provider.",
 			"type": "object",
 			"properties": {
-				"id": {
+				"fareProvider": {
+					"$ref": "definitions.json#/definitions/CompanyDef"
+				},
+				"code": {
+					"description": "code of the fare reference station set used in regional validity. Unique within the fare provider.",
 					"type": "string"
 				},
-				"Stations": {
+				"stations": {
 					"type": "array",
 					"minItems": 2,
 					"uniqueItems": true,
@@ -1058,19 +1066,23 @@
 						"$ref": "definitions.json#/definitions/StationDef"
 					}
 				},
-				"zoneId": {
-					"description": "short zone id to be used in bar codes",
-					"type": "string"
+				"legacyCode": {
+					"description": "id used in 108 as local station code ",
+					"type": "integer"
 				},
 				"name": {
 					"description": "name to be used in route descriptions",
 					"type": "string"
+				},
+				"nameUTF8": {
+					"type": "string"
 				}
 			},
 			"required": [
-				"id",
-				"Stations",
-				"zoneId"
+				"fareProvider",
+				"code",
+				"stations",
+				"legacyCode"
 			],
 			"additionalProperties": false
 		},
@@ -1142,6 +1154,29 @@
 				"textUTF8",
 				"text"
 			],
+			"additionalProperties": false
+		},
+		"StationNamesDef": {
+			"description": "station names included temporarily until MERITS can provide the names",
+			"type": "object",
+			"properties": {
+				"country": {
+					"description": "uic country code",
+					"type": "integer"
+				},
+				"localCode": {
+					"description": "local code ",
+					"type": "integer"
+				},
+				"name": {
+					"description": "station name with upper and lower case letters in ASCII",
+					"type": "string"
+				},
+				"nameUtf8": {
+					"description": "station name with upper and lower case letters in UTF8",
+					"type": "string"
+				}
+			},
 			"additionalProperties": false
 		}
 	}

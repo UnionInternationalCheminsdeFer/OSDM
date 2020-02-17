@@ -48,7 +48,7 @@ public class RequiredDatum {
      */
     @JsonProperty("fulfillmentType")
     @JsonPropertyDescription("type of fulfillment in case the presonal data are required for that type only")
-    private List<String> fulfillmentType = new ArrayList<String>();
+    private List<FulfillmentTypeDef> fulfillmentType = new ArrayList<FulfillmentTypeDef>();
 
     /**
      * 
@@ -123,7 +123,7 @@ public class RequiredDatum {
      * 
      */
     @JsonProperty("fulfillmentType")
-    public List<String> getFulfillmentType() {
+    public List<FulfillmentTypeDef> getFulfillmentType() {
         return fulfillmentType;
     }
 
@@ -132,7 +132,7 @@ public class RequiredDatum {
      * 
      */
     @JsonProperty("fulfillmentType")
-    public void setFulfillmentType(List<String> fulfillmentType) {
+    public void setFulfillmentType(List<FulfillmentTypeDef> fulfillmentType) {
         this.fulfillmentType = fulfillmentType;
     }
 
@@ -190,6 +190,5 @@ public class RequiredDatum {
         RequiredDatum rhs = ((RequiredDatum) other);
         return ((((((this.dataItem == rhs.dataItem)||((this.dataItem!= null)&&this.dataItem.equals(rhs.dataItem)))&&((this.ticketHolderOnly == rhs.ticketHolderOnly)||((this.ticketHolderOnly!= null)&&this.ticketHolderOnly.equals(rhs.ticketHolderOnly))))&&((this.crossBorder == rhs.crossBorder)||((this.crossBorder!= null)&&this.crossBorder.equals(rhs.crossBorder))))&&((this.transfer == rhs.transfer)||((this.transfer!= null)&&this.transfer.equals(rhs.transfer))))&&((this.fulfillmentType == rhs.fulfillmentType)||((this.fulfillmentType!= null)&&this.fulfillmentType.equals(rhs.fulfillmentType))));
     }
-
 
 }

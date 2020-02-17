@@ -73,6 +73,7 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.STATION: return createStation();
 			case GtmPackage.CARRIER: return createCarrier();
 			case GtmPackage.CARRIERS: return createCarriers();
+			case GtmPackage.STATION_SET: return createStationSet();
 			case GtmPackage.GENERAL_TARIFF_MODEL: return createGeneralTariffModel();
 			case GtmPackage.DELIVERY: return createDelivery();
 			case GtmPackage.AFTER_SALES_RULES: return createAfterSalesRules();
@@ -82,7 +83,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.FARE_STRUCTURE: return createFareStructure();
 			case GtmPackage.CONNECTION_POINTS: return createConnectionPoints();
 			case GtmPackage.CONNECTION_POINT: return createConnectionPoint();
-			case GtmPackage.STATION_SET: return createStationSet();
 			case GtmPackage.FARE_RESOURCE_LOCATIONS: return createFareResourceLocations();
 			case GtmPackage.TRAIN_RESOURCE_LOCATIONS: return createTrainResourceLocations();
 			case GtmPackage.STATION_RESOURCE_LOCATIONS: return createStationResourceLocations();
@@ -91,9 +91,14 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.STATION_RESOURCE_LOCATION: return createStationResourceLocation();
 			case GtmPackage.ONLINE_RESOURCE: return createOnlineResource();
 			case GtmPackage.FULFILLMENT_CONSTRAINTS: return createFulfillmentConstraints();
+			case GtmPackage.FULFILLMENT_CONSTRAINT: return createFulfillmentConstraint();
+			case GtmPackage.REQUIRED_BARCODES: return createRequiredBarcodes();
+			case GtmPackage.ACCEPTED_BARCODES: return createAcceptedBarcodes();
 			case GtmPackage.SUPPORTED_ONLINE_SERVICES: return createSupportedOnlineServices();
-			case GtmPackage.ZONE_DEFINITIONS: return createZoneDefinitions();
+			case GtmPackage.STATION_NAMES: return createStationNames();
 			case GtmPackage.FARE_ELEMENT: return createFareElement();
+			case GtmPackage.FARE_STATION_SET_DEFINITIONS: return createFareStationSetDefinitions();
+			case GtmPackage.FARE_STATION_SET_DEFINITION: return createFareStationSetDefinition();
 			case GtmPackage.LEGACY_ACCOUNTING_IDENTIFIER: return createLegacyAccountingIdentifier();
 			case GtmPackage.REDUCTION_CONSTRAINTS: return createReductionConstraints();
 			case GtmPackage.FARE_ELEMENTS: return createFareElements();
@@ -103,8 +108,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.ALLOWED_PERSONAL_DATA_CHANGES: return createAllowedPersonalDataChanges();
 			case GtmPackage.PASSENGER_CONSTRAINTS: return createPassengerConstraints();
 			case GtmPackage.PASSENGER_CONSTRAINT: return createPassengerConstraint();
-			case GtmPackage.INCLUDED_FREE_PASSENGERS: return createIncludedFreePassengers();
 			case GtmPackage.PASSENGER_COMBINATION_CONSTRAINT: return createPassengerCombinationConstraint();
+			case GtmPackage.INCLUDED_FREE_PASSENGER_LIMIT: return createIncludedFreePassengerLimit();
 			case GtmPackage.COMBINATION_CONSTRAINTS: return createCombinationConstraints();
 			case GtmPackage.COMBINATION_CONSTRAINT: return createCombinationConstraint();
 			case GtmPackage.TRAVEL_VALIDITY_CONSTRAINTS: return createTravelValidityConstraints();
@@ -150,16 +155,12 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.ALTERNATIVE_ROUTE: return createAlternativeRoute();
 			case GtmPackage.ROUTE: return createRoute();
 			case GtmPackage.ZONE: return createZone();
-			case GtmPackage.ZONE_DEFINITION: return createZoneDefinition();
 			case GtmPackage.LINE: return createLine();
 			case GtmPackage.POLYGONE: return createPolygone();
 			case GtmPackage.EDGE: return createEdge();
 			case GtmPackage.CARRIER_RESOURCE_LOCATION: return createCarrierResourceLocation();
 			case GtmPackage.CROSS_BORDER_CONDITION: return createCrossBorderCondition();
 			case GtmPackage.FARE_COMBINATION_MODEL: return createFareCombinationModel();
-			case GtmPackage.FULFILLMENT_CONSTRAINT: return createFulfillmentConstraint();
-			case GtmPackage.REQUIRED_BARCODES: return createRequiredBarcodes();
-			case GtmPackage.ACCEPTED_BARCODES: return createAcceptedBarcodes();
 			case GtmPackage.REDUCTION_CONSTRAINT: return createReductionConstraint();
 			case GtmPackage.REQUIRED_REDUCTION_CARD: return createRequiredReductionCard();
 			case GtmPackage.CONVERSION_FROM_LEGACY: return createConversionFromLegacy();
@@ -173,8 +174,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.LEGACY_BODER_POINT_MAPPINGS: return createLegacyBoderPointMappings();
 			case GtmPackage.LEGACY_BORDER_POINT_MAPPING: return createLegacyBorderPointMapping();
 			case GtmPackage.LEGACY_DESCRIPTION: return createLegacyDescription();
-			case GtmPackage.LEGACY_ZONE_MAPPINGS: return createLegacyZoneMappings();
-			case GtmPackage.LEGACY_ZONE_MAP: return createLegacyZoneMap();
+			case GtmPackage.LEGACY_FARE_STATION_SET_MAPPINGS: return createLegacyFareStationSetMappings();
+			case GtmPackage.LEGACY_FARE_STATION_SET_MAP: return createLegacyFareStationSetMap();
 			case GtmPackage.LEGACY_FARES: return createLegacyFares();
 			case GtmPackage.LEGACY_FARE: return createLegacyFare();
 			case GtmPackage.LEGACY108: return createLegacy108();
@@ -722,9 +723,9 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ZoneDefinitions createZoneDefinitions() {
-		ZoneDefinitionsImpl zoneDefinitions = new ZoneDefinitionsImpl();
-		return zoneDefinitions;
+	public StationNames createStationNames() {
+		StationNamesImpl stationNames = new StationNamesImpl();
+		return stationNames;
 	}
 
 	/**
@@ -735,6 +736,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public FareElement createFareElement() {
 		FareElementImpl fareElement = new FareElementImpl();
 		return fareElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FareStationSetDefinitions createFareStationSetDefinitions() {
+		FareStationSetDefinitionsImpl fareStationSetDefinitions = new FareStationSetDefinitionsImpl();
+		return fareStationSetDefinitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FareStationSetDefinition createFareStationSetDefinition() {
+		FareStationSetDefinitionImpl fareStationSetDefinition = new FareStationSetDefinitionImpl();
+		return fareStationSetDefinition;
 	}
 
 	/**
@@ -832,9 +853,9 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IncludedFreePassengers createIncludedFreePassengers() {
-		IncludedFreePassengersImpl includedFreePassengers = new IncludedFreePassengersImpl();
-		return includedFreePassengers;
+	public IncludedFreePassengerLimit createIncludedFreePassengerLimit() {
+		IncludedFreePassengerLimitImpl includedFreePassengerLimit = new IncludedFreePassengerLimitImpl();
+		return includedFreePassengerLimit;
 	}
 
 	/**
@@ -1302,16 +1323,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ZoneDefinition createZoneDefinition() {
-		ZoneDefinitionImpl zoneDefinition = new ZoneDefinitionImpl();
-		return zoneDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Line createLine() {
 		LineImpl line = new LineImpl();
 		return line;
@@ -1532,9 +1543,9 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LegacyZoneMappings createLegacyZoneMappings() {
-		LegacyZoneMappingsImpl legacyZoneMappings = new LegacyZoneMappingsImpl();
-		return legacyZoneMappings;
+	public LegacyFareStationSetMappings createLegacyFareStationSetMappings() {
+		LegacyFareStationSetMappingsImpl legacyFareStationSetMappings = new LegacyFareStationSetMappingsImpl();
+		return legacyFareStationSetMappings;
 	}
 
 	/**
@@ -1542,9 +1553,9 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LegacyZoneMap createLegacyZoneMap() {
-		LegacyZoneMapImpl legacyZoneMap = new LegacyZoneMapImpl();
-		return legacyZoneMap;
+	public LegacyFareStationSetMap createLegacyFareStationSetMap() {
+		LegacyFareStationSetMapImpl legacyFareStationSetMap = new LegacyFareStationSetMapImpl();
+		return legacyFareStationSetMap;
 	}
 
 	/**

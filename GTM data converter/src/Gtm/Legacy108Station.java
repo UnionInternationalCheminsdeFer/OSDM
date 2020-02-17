@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.Legacy108Station#getBorderPointCode <em>Border Point Code</em>}</li>
  *   <li>{@link Gtm.Legacy108Station#getNameUTF8 <em>Name UTF8</em>}</li>
  *   <li>{@link Gtm.Legacy108Station#getStationCode <em>Station Code</em>}</li>
+ *   <li>{@link Gtm.Legacy108Station#getFareReferenceStationCode <em>Fare Reference Station Code</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getLegacy108Station()
@@ -111,5 +112,27 @@ public interface Legacy108Station extends EObject {
 	 * @generated
 	 */
 	void setStationCode(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Fare Reference Station Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fare Reference Station Code</em>' attribute.
+	 * @see #setFareReferenceStationCode(int)
+	 * @see Gtm.GtmPackage#getLegacy108Station_FareReferenceStationCode()
+	 * @model
+	 * @generated
+	 */
+	int getFareReferenceStationCode();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Legacy108Station#getFareReferenceStationCode <em>Fare Reference Station Code</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fare Reference Station Code</em>' attribute.
+	 * @see #getFareReferenceStationCode()
+	 * @generated
+	 */
+	void setFareReferenceStationCode(int value);
 
 } // Legacy108Station

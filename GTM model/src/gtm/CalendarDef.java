@@ -19,7 +19,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "fromDate",
     "untilDate",
     "dates",
-    "UTCoffset"
+    "UTCoffset",
+    "NewProperty"
 })
 public class CalendarDef {
 
@@ -59,6 +60,8 @@ public class CalendarDef {
     @JsonProperty("UTCoffset")
     @JsonPropertyDescription("offsett to UTC in minutes (number of minutes to be added to get UTC dates)")
     private Integer uTCoffset;
+    @JsonProperty("NewProperty")
+    private Object newProperty;
 
     /**
      * 
@@ -156,6 +159,16 @@ public class CalendarDef {
         this.uTCoffset = uTCoffset;
     }
 
+    @JsonProperty("NewProperty")
+    public Object getNewProperty() {
+        return newProperty;
+    }
+
+    @JsonProperty("NewProperty")
+    public void setNewProperty(Object newProperty) {
+        this.newProperty = newProperty;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -180,6 +193,10 @@ public class CalendarDef {
         sb.append('=');
         sb.append(((this.uTCoffset == null)?"<null>":this.uTCoffset));
         sb.append(',');
+        sb.append("newProperty");
+        sb.append('=');
+        sb.append(((this.newProperty == null)?"<null>":this.newProperty));
+        sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {
@@ -192,10 +209,11 @@ public class CalendarDef {
     public int hashCode() {
         int result = 1;
         result = ((result* 31)+((this.fromDate == null)? 0 :this.fromDate.hashCode()));
-        result = ((result* 31)+((this.dates == null)? 0 :this.dates.hashCode()));
-        result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
+        result = ((result* 31)+((this.newProperty == null)? 0 :this.newProperty.hashCode()));
         result = ((result* 31)+((this.uTCoffset == null)? 0 :this.uTCoffset.hashCode()));
         result = ((result* 31)+((this.untilDate == null)? 0 :this.untilDate.hashCode()));
+        result = ((result* 31)+((this.dates == null)? 0 :this.dates.hashCode()));
+        result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
         return result;
     }
 
@@ -208,7 +226,7 @@ public class CalendarDef {
             return false;
         }
         CalendarDef rhs = ((CalendarDef) other);
-        return ((((((this.fromDate == rhs.fromDate)||((this.fromDate!= null)&&this.fromDate.equals(rhs.fromDate)))&&((this.dates == rhs.dates)||((this.dates!= null)&&this.dates.equals(rhs.dates))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.uTCoffset == rhs.uTCoffset)||((this.uTCoffset!= null)&&this.uTCoffset.equals(rhs.uTCoffset))))&&((this.untilDate == rhs.untilDate)||((this.untilDate!= null)&&this.untilDate.equals(rhs.untilDate))));
+        return (((((((this.fromDate == rhs.fromDate)||((this.fromDate!= null)&&this.fromDate.equals(rhs.fromDate)))&&((this.newProperty == rhs.newProperty)||((this.newProperty!= null)&&this.newProperty.equals(rhs.newProperty))))&&((this.uTCoffset == rhs.uTCoffset)||((this.uTCoffset!= null)&&this.uTCoffset.equals(rhs.uTCoffset))))&&((this.untilDate == rhs.untilDate)||((this.untilDate!= null)&&this.untilDate.equals(rhs.untilDate))))&&((this.dates == rhs.dates)||((this.dates!= null)&&this.dates.equals(rhs.dates))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))));
     }
 
 }

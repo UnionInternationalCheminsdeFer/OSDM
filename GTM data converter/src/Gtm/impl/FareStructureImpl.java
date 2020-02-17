@@ -9,6 +9,7 @@ import Gtm.CombinationConstraints;
 import Gtm.ConnectionPoints;
 import Gtm.FareElements;
 import Gtm.FareResourceLocations;
+import Gtm.FareStationSetDefinitions;
 import Gtm.FareStructure;
 import Gtm.FulfillmentConstraints;
 import Gtm.GtmPackage;
@@ -23,10 +24,10 @@ import Gtm.SalesAvailabilityConstraints;
 import Gtm.ServiceClassDefinitions;
 import Gtm.ServiceConstraints;
 import Gtm.ServiceLevelDefinitions;
+import Gtm.StationNames;
 import Gtm.SupportedOnlineServices;
 import Gtm.Texts;
 import Gtm.TravelValidityConstraints;
-import Gtm.ZoneDefinitions;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -43,26 +44,27 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link Gtm.impl.FareStructureImpl#getServiceClassDefinitions <em>Service Class Definitions</em>}</li>
+ *   <li>{@link Gtm.impl.FareStructureImpl#getServiceLevelDefinitions <em>Service Level Definitions</em>}</li>
+ *   <li>{@link Gtm.impl.FareStructureImpl#getStationNames <em>Station Names</em>}</li>
+ *   <li>{@link Gtm.impl.FareStructureImpl#getFareStationSetDefinitions <em>Fare Station Set Definitions</em>}</li>
+ *   <li>{@link Gtm.impl.FareStructureImpl#getCalendars <em>Calendars</em>}</li>
+ *   <li>{@link Gtm.impl.FareStructureImpl#getTexts <em>Texts</em>}</li>
+ *   <li>{@link Gtm.impl.FareStructureImpl#getReductionCards <em>Reduction Cards</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getFareElements <em>Fare Elements</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getCombinationConstraints <em>Combination Constraints</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getSalesAvailabilityConstraints <em>Sales Availability Constraints</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getTravelValidityConstraints <em>Travel Validity Constraints</em>}</li>
- *   <li>{@link Gtm.impl.FareStructureImpl#getPrices <em>Prices</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getRegionalConstraints <em>Regional Constraints</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getConnectionPoints <em>Connection Points</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getCarrierConstraints <em>Carrier Constraints</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getServiceConstraints <em>Service Constraints</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getPassengerConstraints <em>Passenger Constraints</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getReductionConstraints <em>Reduction Constraints</em>}</li>
- *   <li>{@link Gtm.impl.FareStructureImpl#getAfterSalesRules <em>After Sales Rules</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getPersonalDataConstraints <em>Personal Data Constraints</em>}</li>
+ *   <li>{@link Gtm.impl.FareStructureImpl#getAfterSalesRules <em>After Sales Rules</em>}</li>
+ *   <li>{@link Gtm.impl.FareStructureImpl#getPrices <em>Prices</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getFulfillmentConstraints <em>Fulfillment Constraints</em>}</li>
- *   <li>{@link Gtm.impl.FareStructureImpl#getReductionCards <em>Reduction Cards</em>}</li>
- *   <li>{@link Gtm.impl.FareStructureImpl#getServiceLevelDefinitions <em>Service Level Definitions</em>}</li>
- *   <li>{@link Gtm.impl.FareStructureImpl#getServiceClassDefinitions <em>Service Class Definitions</em>}</li>
- *   <li>{@link Gtm.impl.FareStructureImpl#getCalendars <em>Calendars</em>}</li>
- *   <li>{@link Gtm.impl.FareStructureImpl#getTexts <em>Texts</em>}</li>
- *   <li>{@link Gtm.impl.FareStructureImpl#getZoneDefinitions <em>Zone Definitions</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getReservationParameters <em>Reservation Parameters</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getSupportedOnlineServices <em>Supported Online Services</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getFareResourceLocations <em>Fare Resource Locations</em>}</li>
@@ -71,6 +73,76 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * @generated
  */
 public class FareStructureImpl extends MinimalEObjectImpl.Container implements FareStructure {
+	/**
+	 * The cached value of the '{@link #getServiceClassDefinitions() <em>Service Class Definitions</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getServiceClassDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected ServiceClassDefinitions serviceClassDefinitions;
+
+	/**
+	 * The cached value of the '{@link #getServiceLevelDefinitions() <em>Service Level Definitions</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getServiceLevelDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected ServiceLevelDefinitions serviceLevelDefinitions;
+
+	/**
+	 * The cached value of the '{@link #getStationNames() <em>Station Names</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStationNames()
+	 * @generated
+	 * @ordered
+	 */
+	protected StationNames stationNames;
+
+	/**
+	 * The cached value of the '{@link #getFareStationSetDefinitions() <em>Fare Station Set Definitions</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFareStationSetDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected FareStationSetDefinitions fareStationSetDefinitions;
+
+	/**
+	 * The cached value of the '{@link #getCalendars() <em>Calendars</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCalendars()
+	 * @generated
+	 * @ordered
+	 */
+	protected Calendars calendars;
+
+	/**
+	 * The cached value of the '{@link #getTexts() <em>Texts</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTexts()
+	 * @generated
+	 * @ordered
+	 */
+	protected Texts texts;
+
+	/**
+	 * The cached value of the '{@link #getReductionCards() <em>Reduction Cards</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReductionCards()
+	 * @generated
+	 * @ordered
+	 */
+	protected ReductionCards reductionCards;
+
 	/**
 	 * The cached value of the '{@link #getFareElements() <em>Fare Elements</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -110,16 +182,6 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 	 * @ordered
 	 */
 	protected TravelValidityConstraints travelValidityConstraints;
-
-	/**
-	 * The cached value of the '{@link #getPrices() <em>Prices</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrices()
-	 * @generated
-	 * @ordered
-	 */
-	protected Prices prices;
 
 	/**
 	 * The cached value of the '{@link #getRegionalConstraints() <em>Regional Constraints</em>}' containment reference.
@@ -182,16 +244,6 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 	protected ReductionConstraints reductionConstraints;
 
 	/**
-	 * The cached value of the '{@link #getAfterSalesRules() <em>After Sales Rules</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAfterSalesRules()
-	 * @generated
-	 * @ordered
-	 */
-	protected AfterSalesRules afterSalesRules;
-
-	/**
 	 * The cached value of the '{@link #getPersonalDataConstraints() <em>Personal Data Constraints</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -202,6 +254,26 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 	protected PersonalDataConstraints personalDataConstraints;
 
 	/**
+	 * The cached value of the '{@link #getAfterSalesRules() <em>After Sales Rules</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAfterSalesRules()
+	 * @generated
+	 * @ordered
+	 */
+	protected AfterSalesRules afterSalesRules;
+
+	/**
+	 * The cached value of the '{@link #getPrices() <em>Prices</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrices()
+	 * @generated
+	 * @ordered
+	 */
+	protected Prices prices;
+
+	/**
 	 * The cached value of the '{@link #getFulfillmentConstraints() <em>Fulfillment Constraints</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -210,66 +282,6 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 	 * @ordered
 	 */
 	protected FulfillmentConstraints fulfillmentConstraints;
-
-	/**
-	 * The cached value of the '{@link #getReductionCards() <em>Reduction Cards</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReductionCards()
-	 * @generated
-	 * @ordered
-	 */
-	protected ReductionCards reductionCards;
-
-	/**
-	 * The cached value of the '{@link #getServiceLevelDefinitions() <em>Service Level Definitions</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getServiceLevelDefinitions()
-	 * @generated
-	 * @ordered
-	 */
-	protected ServiceLevelDefinitions serviceLevelDefinitions;
-
-	/**
-	 * The cached value of the '{@link #getServiceClassDefinitions() <em>Service Class Definitions</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getServiceClassDefinitions()
-	 * @generated
-	 * @ordered
-	 */
-	protected ServiceClassDefinitions serviceClassDefinitions;
-
-	/**
-	 * The cached value of the '{@link #getCalendars() <em>Calendars</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCalendars()
-	 * @generated
-	 * @ordered
-	 */
-	protected Calendars calendars;
-
-	/**
-	 * The cached value of the '{@link #getTexts() <em>Texts</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTexts()
-	 * @generated
-	 * @ordered
-	 */
-	protected Texts texts;
-
-	/**
-	 * The cached value of the '{@link #getZoneDefinitions() <em>Zone Definitions</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getZoneDefinitions()
-	 * @generated
-	 * @ordered
-	 */
-	protected ZoneDefinitions zoneDefinitions;
 
 	/**
 	 * The cached value of the '{@link #getReservationParameters() <em>Reservation Parameters</em>}' containment reference.
@@ -662,6 +674,92 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS, newServiceLevelDefinitions, newServiceLevelDefinitions));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StationNames getStationNames() {
+		return stationNames;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetStationNames(StationNames newStationNames, NotificationChain msgs) {
+		StationNames oldStationNames = stationNames;
+		stationNames = newStationNames;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_STRUCTURE__STATION_NAMES, oldStationNames, newStationNames);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStationNames(StationNames newStationNames) {
+		if (newStationNames != stationNames) {
+			NotificationChain msgs = null;
+			if (stationNames != null)
+				msgs = ((InternalEObject)stationNames).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_STRUCTURE__STATION_NAMES, null, msgs);
+			if (newStationNames != null)
+				msgs = ((InternalEObject)newStationNames).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_STRUCTURE__STATION_NAMES, null, msgs);
+			msgs = basicSetStationNames(newStationNames, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_STRUCTURE__STATION_NAMES, newStationNames, newStationNames));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FareStationSetDefinitions getFareStationSetDefinitions() {
+		return fareStationSetDefinitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFareStationSetDefinitions(FareStationSetDefinitions newFareStationSetDefinitions, NotificationChain msgs) {
+		FareStationSetDefinitions oldFareStationSetDefinitions = fareStationSetDefinitions;
+		fareStationSetDefinitions = newFareStationSetDefinitions;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_STRUCTURE__FARE_STATION_SET_DEFINITIONS, oldFareStationSetDefinitions, newFareStationSetDefinitions);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFareStationSetDefinitions(FareStationSetDefinitions newFareStationSetDefinitions) {
+		if (newFareStationSetDefinitions != fareStationSetDefinitions) {
+			NotificationChain msgs = null;
+			if (fareStationSetDefinitions != null)
+				msgs = ((InternalEObject)fareStationSetDefinitions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_STRUCTURE__FARE_STATION_SET_DEFINITIONS, null, msgs);
+			if (newFareStationSetDefinitions != null)
+				msgs = ((InternalEObject)newFareStationSetDefinitions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_STRUCTURE__FARE_STATION_SET_DEFINITIONS, null, msgs);
+			msgs = basicSetFareStationSetDefinitions(newFareStationSetDefinitions, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_STRUCTURE__FARE_STATION_SET_DEFINITIONS, newFareStationSetDefinitions, newFareStationSetDefinitions));
 	}
 
 	/**
@@ -1099,49 +1197,6 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ZoneDefinitions getZoneDefinitions() {
-		return zoneDefinitions;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetZoneDefinitions(ZoneDefinitions newZoneDefinitions, NotificationChain msgs) {
-		ZoneDefinitions oldZoneDefinitions = zoneDefinitions;
-		zoneDefinitions = newZoneDefinitions;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS, oldZoneDefinitions, newZoneDefinitions);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setZoneDefinitions(ZoneDefinitions newZoneDefinitions) {
-		if (newZoneDefinitions != zoneDefinitions) {
-			NotificationChain msgs = null;
-			if (zoneDefinitions != null)
-				msgs = ((InternalEObject)zoneDefinitions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS, null, msgs);
-			if (newZoneDefinitions != null)
-				msgs = ((InternalEObject)newZoneDefinitions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS, null, msgs);
-			msgs = basicSetZoneDefinitions(newZoneDefinitions, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS, newZoneDefinitions, newZoneDefinitions));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public FulfillmentConstraints getFulfillmentConstraints() {
 		return fulfillmentConstraints;
 	}
@@ -1317,6 +1372,20 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case GtmPackage.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS:
+				return basicSetServiceClassDefinitions(null, msgs);
+			case GtmPackage.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS:
+				return basicSetServiceLevelDefinitions(null, msgs);
+			case GtmPackage.FARE_STRUCTURE__STATION_NAMES:
+				return basicSetStationNames(null, msgs);
+			case GtmPackage.FARE_STRUCTURE__FARE_STATION_SET_DEFINITIONS:
+				return basicSetFareStationSetDefinitions(null, msgs);
+			case GtmPackage.FARE_STRUCTURE__CALENDARS:
+				return basicSetCalendars(null, msgs);
+			case GtmPackage.FARE_STRUCTURE__TEXTS:
+				return basicSetTexts(null, msgs);
+			case GtmPackage.FARE_STRUCTURE__REDUCTION_CARDS:
+				return basicSetReductionCards(null, msgs);
 			case GtmPackage.FARE_STRUCTURE__FARE_ELEMENTS:
 				return basicSetFareElements(null, msgs);
 			case GtmPackage.FARE_STRUCTURE__COMBINATION_CONSTRAINTS:
@@ -1325,8 +1394,6 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 				return basicSetSalesAvailabilityConstraints(null, msgs);
 			case GtmPackage.FARE_STRUCTURE__TRAVEL_VALIDITY_CONSTRAINTS:
 				return basicSetTravelValidityConstraints(null, msgs);
-			case GtmPackage.FARE_STRUCTURE__PRICES:
-				return basicSetPrices(null, msgs);
 			case GtmPackage.FARE_STRUCTURE__REGIONAL_CONSTRAINTS:
 				return basicSetRegionalConstraints(null, msgs);
 			case GtmPackage.FARE_STRUCTURE__CONNECTION_POINTS:
@@ -1339,24 +1406,14 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 				return basicSetPassengerConstraints(null, msgs);
 			case GtmPackage.FARE_STRUCTURE__REDUCTION_CONSTRAINTS:
 				return basicSetReductionConstraints(null, msgs);
-			case GtmPackage.FARE_STRUCTURE__AFTER_SALES_RULES:
-				return basicSetAfterSalesRules(null, msgs);
 			case GtmPackage.FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS:
 				return basicSetPersonalDataConstraints(null, msgs);
+			case GtmPackage.FARE_STRUCTURE__AFTER_SALES_RULES:
+				return basicSetAfterSalesRules(null, msgs);
+			case GtmPackage.FARE_STRUCTURE__PRICES:
+				return basicSetPrices(null, msgs);
 			case GtmPackage.FARE_STRUCTURE__FULFILLMENT_CONSTRAINTS:
 				return basicSetFulfillmentConstraints(null, msgs);
-			case GtmPackage.FARE_STRUCTURE__REDUCTION_CARDS:
-				return basicSetReductionCards(null, msgs);
-			case GtmPackage.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS:
-				return basicSetServiceLevelDefinitions(null, msgs);
-			case GtmPackage.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS:
-				return basicSetServiceClassDefinitions(null, msgs);
-			case GtmPackage.FARE_STRUCTURE__CALENDARS:
-				return basicSetCalendars(null, msgs);
-			case GtmPackage.FARE_STRUCTURE__TEXTS:
-				return basicSetTexts(null, msgs);
-			case GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS:
-				return basicSetZoneDefinitions(null, msgs);
 			case GtmPackage.FARE_STRUCTURE__RESERVATION_PARAMETERS:
 				return basicSetReservationParameters(null, msgs);
 			case GtmPackage.FARE_STRUCTURE__SUPPORTED_ONLINE_SERVICES:
@@ -1375,6 +1432,20 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case GtmPackage.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS:
+				return getServiceClassDefinitions();
+			case GtmPackage.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS:
+				return getServiceLevelDefinitions();
+			case GtmPackage.FARE_STRUCTURE__STATION_NAMES:
+				return getStationNames();
+			case GtmPackage.FARE_STRUCTURE__FARE_STATION_SET_DEFINITIONS:
+				return getFareStationSetDefinitions();
+			case GtmPackage.FARE_STRUCTURE__CALENDARS:
+				return getCalendars();
+			case GtmPackage.FARE_STRUCTURE__TEXTS:
+				return getTexts();
+			case GtmPackage.FARE_STRUCTURE__REDUCTION_CARDS:
+				return getReductionCards();
 			case GtmPackage.FARE_STRUCTURE__FARE_ELEMENTS:
 				return getFareElements();
 			case GtmPackage.FARE_STRUCTURE__COMBINATION_CONSTRAINTS:
@@ -1383,8 +1454,6 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 				return getSalesAvailabilityConstraints();
 			case GtmPackage.FARE_STRUCTURE__TRAVEL_VALIDITY_CONSTRAINTS:
 				return getTravelValidityConstraints();
-			case GtmPackage.FARE_STRUCTURE__PRICES:
-				return getPrices();
 			case GtmPackage.FARE_STRUCTURE__REGIONAL_CONSTRAINTS:
 				return getRegionalConstraints();
 			case GtmPackage.FARE_STRUCTURE__CONNECTION_POINTS:
@@ -1397,24 +1466,14 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 				return getPassengerConstraints();
 			case GtmPackage.FARE_STRUCTURE__REDUCTION_CONSTRAINTS:
 				return getReductionConstraints();
-			case GtmPackage.FARE_STRUCTURE__AFTER_SALES_RULES:
-				return getAfterSalesRules();
 			case GtmPackage.FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS:
 				return getPersonalDataConstraints();
+			case GtmPackage.FARE_STRUCTURE__AFTER_SALES_RULES:
+				return getAfterSalesRules();
+			case GtmPackage.FARE_STRUCTURE__PRICES:
+				return getPrices();
 			case GtmPackage.FARE_STRUCTURE__FULFILLMENT_CONSTRAINTS:
 				return getFulfillmentConstraints();
-			case GtmPackage.FARE_STRUCTURE__REDUCTION_CARDS:
-				return getReductionCards();
-			case GtmPackage.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS:
-				return getServiceLevelDefinitions();
-			case GtmPackage.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS:
-				return getServiceClassDefinitions();
-			case GtmPackage.FARE_STRUCTURE__CALENDARS:
-				return getCalendars();
-			case GtmPackage.FARE_STRUCTURE__TEXTS:
-				return getTexts();
-			case GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS:
-				return getZoneDefinitions();
 			case GtmPackage.FARE_STRUCTURE__RESERVATION_PARAMETERS:
 				return getReservationParameters();
 			case GtmPackage.FARE_STRUCTURE__SUPPORTED_ONLINE_SERVICES:
@@ -1434,6 +1493,27 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case GtmPackage.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS:
+				setServiceClassDefinitions((ServiceClassDefinitions)newValue);
+				return;
+			case GtmPackage.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS:
+				setServiceLevelDefinitions((ServiceLevelDefinitions)newValue);
+				return;
+			case GtmPackage.FARE_STRUCTURE__STATION_NAMES:
+				setStationNames((StationNames)newValue);
+				return;
+			case GtmPackage.FARE_STRUCTURE__FARE_STATION_SET_DEFINITIONS:
+				setFareStationSetDefinitions((FareStationSetDefinitions)newValue);
+				return;
+			case GtmPackage.FARE_STRUCTURE__CALENDARS:
+				setCalendars((Calendars)newValue);
+				return;
+			case GtmPackage.FARE_STRUCTURE__TEXTS:
+				setTexts((Texts)newValue);
+				return;
+			case GtmPackage.FARE_STRUCTURE__REDUCTION_CARDS:
+				setReductionCards((ReductionCards)newValue);
+				return;
 			case GtmPackage.FARE_STRUCTURE__FARE_ELEMENTS:
 				setFareElements((FareElements)newValue);
 				return;
@@ -1445,9 +1525,6 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 				return;
 			case GtmPackage.FARE_STRUCTURE__TRAVEL_VALIDITY_CONSTRAINTS:
 				setTravelValidityConstraints((TravelValidityConstraints)newValue);
-				return;
-			case GtmPackage.FARE_STRUCTURE__PRICES:
-				setPrices((Prices)newValue);
 				return;
 			case GtmPackage.FARE_STRUCTURE__REGIONAL_CONSTRAINTS:
 				setRegionalConstraints((RegionalConstraints)newValue);
@@ -1467,32 +1544,17 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 			case GtmPackage.FARE_STRUCTURE__REDUCTION_CONSTRAINTS:
 				setReductionConstraints((ReductionConstraints)newValue);
 				return;
-			case GtmPackage.FARE_STRUCTURE__AFTER_SALES_RULES:
-				setAfterSalesRules((AfterSalesRules)newValue);
-				return;
 			case GtmPackage.FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS:
 				setPersonalDataConstraints((PersonalDataConstraints)newValue);
 				return;
+			case GtmPackage.FARE_STRUCTURE__AFTER_SALES_RULES:
+				setAfterSalesRules((AfterSalesRules)newValue);
+				return;
+			case GtmPackage.FARE_STRUCTURE__PRICES:
+				setPrices((Prices)newValue);
+				return;
 			case GtmPackage.FARE_STRUCTURE__FULFILLMENT_CONSTRAINTS:
 				setFulfillmentConstraints((FulfillmentConstraints)newValue);
-				return;
-			case GtmPackage.FARE_STRUCTURE__REDUCTION_CARDS:
-				setReductionCards((ReductionCards)newValue);
-				return;
-			case GtmPackage.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS:
-				setServiceLevelDefinitions((ServiceLevelDefinitions)newValue);
-				return;
-			case GtmPackage.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS:
-				setServiceClassDefinitions((ServiceClassDefinitions)newValue);
-				return;
-			case GtmPackage.FARE_STRUCTURE__CALENDARS:
-				setCalendars((Calendars)newValue);
-				return;
-			case GtmPackage.FARE_STRUCTURE__TEXTS:
-				setTexts((Texts)newValue);
-				return;
-			case GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS:
-				setZoneDefinitions((ZoneDefinitions)newValue);
 				return;
 			case GtmPackage.FARE_STRUCTURE__RESERVATION_PARAMETERS:
 				setReservationParameters((ReservationParameters)newValue);
@@ -1515,6 +1577,27 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case GtmPackage.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS:
+				setServiceClassDefinitions((ServiceClassDefinitions)null);
+				return;
+			case GtmPackage.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS:
+				setServiceLevelDefinitions((ServiceLevelDefinitions)null);
+				return;
+			case GtmPackage.FARE_STRUCTURE__STATION_NAMES:
+				setStationNames((StationNames)null);
+				return;
+			case GtmPackage.FARE_STRUCTURE__FARE_STATION_SET_DEFINITIONS:
+				setFareStationSetDefinitions((FareStationSetDefinitions)null);
+				return;
+			case GtmPackage.FARE_STRUCTURE__CALENDARS:
+				setCalendars((Calendars)null);
+				return;
+			case GtmPackage.FARE_STRUCTURE__TEXTS:
+				setTexts((Texts)null);
+				return;
+			case GtmPackage.FARE_STRUCTURE__REDUCTION_CARDS:
+				setReductionCards((ReductionCards)null);
+				return;
 			case GtmPackage.FARE_STRUCTURE__FARE_ELEMENTS:
 				setFareElements((FareElements)null);
 				return;
@@ -1526,9 +1609,6 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 				return;
 			case GtmPackage.FARE_STRUCTURE__TRAVEL_VALIDITY_CONSTRAINTS:
 				setTravelValidityConstraints((TravelValidityConstraints)null);
-				return;
-			case GtmPackage.FARE_STRUCTURE__PRICES:
-				setPrices((Prices)null);
 				return;
 			case GtmPackage.FARE_STRUCTURE__REGIONAL_CONSTRAINTS:
 				setRegionalConstraints((RegionalConstraints)null);
@@ -1548,32 +1628,17 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 			case GtmPackage.FARE_STRUCTURE__REDUCTION_CONSTRAINTS:
 				setReductionConstraints((ReductionConstraints)null);
 				return;
-			case GtmPackage.FARE_STRUCTURE__AFTER_SALES_RULES:
-				setAfterSalesRules((AfterSalesRules)null);
-				return;
 			case GtmPackage.FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS:
 				setPersonalDataConstraints((PersonalDataConstraints)null);
 				return;
+			case GtmPackage.FARE_STRUCTURE__AFTER_SALES_RULES:
+				setAfterSalesRules((AfterSalesRules)null);
+				return;
+			case GtmPackage.FARE_STRUCTURE__PRICES:
+				setPrices((Prices)null);
+				return;
 			case GtmPackage.FARE_STRUCTURE__FULFILLMENT_CONSTRAINTS:
 				setFulfillmentConstraints((FulfillmentConstraints)null);
-				return;
-			case GtmPackage.FARE_STRUCTURE__REDUCTION_CARDS:
-				setReductionCards((ReductionCards)null);
-				return;
-			case GtmPackage.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS:
-				setServiceLevelDefinitions((ServiceLevelDefinitions)null);
-				return;
-			case GtmPackage.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS:
-				setServiceClassDefinitions((ServiceClassDefinitions)null);
-				return;
-			case GtmPackage.FARE_STRUCTURE__CALENDARS:
-				setCalendars((Calendars)null);
-				return;
-			case GtmPackage.FARE_STRUCTURE__TEXTS:
-				setTexts((Texts)null);
-				return;
-			case GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS:
-				setZoneDefinitions((ZoneDefinitions)null);
 				return;
 			case GtmPackage.FARE_STRUCTURE__RESERVATION_PARAMETERS:
 				setReservationParameters((ReservationParameters)null);
@@ -1596,6 +1661,20 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case GtmPackage.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS:
+				return serviceClassDefinitions != null;
+			case GtmPackage.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS:
+				return serviceLevelDefinitions != null;
+			case GtmPackage.FARE_STRUCTURE__STATION_NAMES:
+				return stationNames != null;
+			case GtmPackage.FARE_STRUCTURE__FARE_STATION_SET_DEFINITIONS:
+				return fareStationSetDefinitions != null;
+			case GtmPackage.FARE_STRUCTURE__CALENDARS:
+				return calendars != null;
+			case GtmPackage.FARE_STRUCTURE__TEXTS:
+				return texts != null;
+			case GtmPackage.FARE_STRUCTURE__REDUCTION_CARDS:
+				return reductionCards != null;
 			case GtmPackage.FARE_STRUCTURE__FARE_ELEMENTS:
 				return fareElements != null;
 			case GtmPackage.FARE_STRUCTURE__COMBINATION_CONSTRAINTS:
@@ -1604,8 +1683,6 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 				return salesAvailabilityConstraints != null;
 			case GtmPackage.FARE_STRUCTURE__TRAVEL_VALIDITY_CONSTRAINTS:
 				return travelValidityConstraints != null;
-			case GtmPackage.FARE_STRUCTURE__PRICES:
-				return prices != null;
 			case GtmPackage.FARE_STRUCTURE__REGIONAL_CONSTRAINTS:
 				return regionalConstraints != null;
 			case GtmPackage.FARE_STRUCTURE__CONNECTION_POINTS:
@@ -1618,24 +1695,14 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 				return passengerConstraints != null;
 			case GtmPackage.FARE_STRUCTURE__REDUCTION_CONSTRAINTS:
 				return reductionConstraints != null;
-			case GtmPackage.FARE_STRUCTURE__AFTER_SALES_RULES:
-				return afterSalesRules != null;
 			case GtmPackage.FARE_STRUCTURE__PERSONAL_DATA_CONSTRAINTS:
 				return personalDataConstraints != null;
+			case GtmPackage.FARE_STRUCTURE__AFTER_SALES_RULES:
+				return afterSalesRules != null;
+			case GtmPackage.FARE_STRUCTURE__PRICES:
+				return prices != null;
 			case GtmPackage.FARE_STRUCTURE__FULFILLMENT_CONSTRAINTS:
 				return fulfillmentConstraints != null;
-			case GtmPackage.FARE_STRUCTURE__REDUCTION_CARDS:
-				return reductionCards != null;
-			case GtmPackage.FARE_STRUCTURE__SERVICE_LEVEL_DEFINITIONS:
-				return serviceLevelDefinitions != null;
-			case GtmPackage.FARE_STRUCTURE__SERVICE_CLASS_DEFINITIONS:
-				return serviceClassDefinitions != null;
-			case GtmPackage.FARE_STRUCTURE__CALENDARS:
-				return calendars != null;
-			case GtmPackage.FARE_STRUCTURE__TEXTS:
-				return texts != null;
-			case GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS:
-				return zoneDefinitions != null;
 			case GtmPackage.FARE_STRUCTURE__RESERVATION_PARAMETERS:
 				return reservationParameters != null;
 			case GtmPackage.FARE_STRUCTURE__SUPPORTED_ONLINE_SERVICES:

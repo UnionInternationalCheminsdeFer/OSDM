@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.StringTokenizer;
 
@@ -19,14 +17,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.ecore.xmi.XMLResource;
-
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -57,7 +48,7 @@ import Gtm.GTMTool;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.provider.GtmEditPlugin;
-import actions.GtmUtils;
+import Gtm.actions.GtmUtils;
 
 import java.io.File;
 
@@ -160,7 +151,7 @@ public class GtmModelWizard extends Wizard implements INewWizard {
 	 * Returns the names of the types that can be created as the root object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
@@ -169,9 +160,7 @@ public class GtmModelWizard extends Wizard implements INewWizard {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
-						if (eClass.getName().equals("GTMTool")) {
-							initialObjectNames.add(eClass.getName());
-						}
+						initialObjectNames.add(eClass.getName());
 					}
 				}
 			}
@@ -201,7 +190,7 @@ public class GtmModelWizard extends Wizard implements INewWizard {
 	 * Do the work after everything is specified.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean performFinish() {
@@ -224,13 +213,9 @@ public class GtmModelWizard extends Wizard implements INewWizard {
 			IRunnableWithProgress operation = new IRunnableWithProgress() {
 				public void run(IProgressMonitor progressMonitor) {
 						try {
-							// Create a resource set
-							//
-							ResourceSet resourceSet = new ResourceSetImpl();
-
 							// Create a resource for this file.
 							//
-							Resource resource = resourceSet.createResource(fileURI);
+							Resource resource = GtmResourceUtils.createResource(fileURI);
 
 							// Add the initial model object to the contents.
 							//
@@ -238,12 +223,8 @@ public class GtmModelWizard extends Wizard implements INewWizard {
 							if (rootObject != null) {
 								resource.getContents().add(rootObject);
 							}
-
 							// Save the contents of the resource to the file system.
-							//
-							Map<Object, Object> options = new HashMap<Object, Object>();
-							options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
-							resource.save(options);
+							resource.save(GtmResourceUtils.getBinaryOptions());
 						}
 						catch (Exception exception) {
 							GtmEditorPlugin.INSTANCE.log(exception);

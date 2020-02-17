@@ -65,6 +65,7 @@ public class Legacy108StationItemProvider
 			addBorderPointCodePropertyDescriptor(object);
 			addNameUTF8PropertyDescriptor(object);
 			addStationCodePropertyDescriptor(object);
+			addFareReferenceStationCodePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -158,6 +159,28 @@ public class Legacy108StationItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Fare Reference Station Code feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFareReferenceStationCodePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Legacy108Station_fareReferenceStationCode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Legacy108Station_fareReferenceStationCode_feature", "_UI_Legacy108Station_type"),
+				 GtmPackage.Literals.LEGACY108_STATION__FARE_REFERENCE_STATION_CODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Legacy108Station.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -199,6 +222,7 @@ public class Legacy108StationItemProvider
 			case GtmPackage.LEGACY108_STATION__BORDER_POINT_CODE:
 			case GtmPackage.LEGACY108_STATION__NAME_UTF8:
 			case GtmPackage.LEGACY108_STATION__STATION_CODE:
+			case GtmPackage.LEGACY108_STATION__FARE_REFERENCE_STATION_CODE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

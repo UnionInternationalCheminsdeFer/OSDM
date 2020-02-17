@@ -31,11 +31,11 @@ public class ServiceClassDef {
     @JsonPropertyDescription("id of the text describing the class")
     private String textRef;
     /**
-     * text
+     * directly included text in case of online services
      * 
      */
     @JsonProperty("text")
-    @JsonPropertyDescription("text")
+    @JsonPropertyDescription("directly included text in case of online services")
     private TextDef text;
     /**
      * FIRST,SECOND
@@ -84,7 +84,7 @@ public class ServiceClassDef {
     }
 
     /**
-     * text
+     * directly included text in case of online services
      * 
      */
     @JsonProperty("text")
@@ -93,7 +93,7 @@ public class ServiceClassDef {
     }
 
     /**
-     * text
+     * directly included text in case of online services
      * 
      */
     @JsonProperty("text")

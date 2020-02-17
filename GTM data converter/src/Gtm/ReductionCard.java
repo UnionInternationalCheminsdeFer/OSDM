@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.ReductionCard#getCardIssuer <em>Card Issuer</em>}</li>
  *   <li>{@link Gtm.ReductionCard#getName <em>Name</em>}</li>
  *   <li>{@link Gtm.ReductionCard#getServiceClasses <em>Service Classes</em>}</li>
+ *   <li>{@link Gtm.ReductionCard#isIdRequiredForBooking <em>Id Required For Booking</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getReductionCard()
@@ -103,5 +104,28 @@ public interface ReductionCard extends EObject {
 	 * @generated
 	 */
 	EList<ServiceClass> getServiceClasses();
+
+	/**
+	 * Returns the value of the '<em><b>Id Required For Booking</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Id Required For Booking</em>' attribute.
+	 * @see #setIdRequiredForBooking(boolean)
+	 * @see Gtm.GtmPackage#getReductionCard_IdRequiredForBooking()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isIdRequiredForBooking();
+
+	/**
+	 * Sets the value of the '{@link Gtm.ReductionCard#isIdRequiredForBooking <em>Id Required For Booking</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Id Required For Booking</em>' attribute.
+	 * @see #isIdRequiredForBooking()
+	 * @generated
+	 */
+	void setIdRequiredForBooking(boolean value);
 
 } // ReductionCard

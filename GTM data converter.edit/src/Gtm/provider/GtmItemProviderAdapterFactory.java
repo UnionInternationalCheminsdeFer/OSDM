@@ -917,26 +917,26 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.ZoneDefinitions} instances.
+	 * This keeps track of the one adapter used for all {@link Gtm.StationNames} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ZoneDefinitionsItemProvider zoneDefinitionsItemProvider;
+	protected StationNamesItemProvider stationNamesItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gtm.ZoneDefinitions}.
+	 * This creates an adapter for a {@link Gtm.StationNames}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createZoneDefinitionsAdapter() {
-		if (zoneDefinitionsItemProvider == null) {
-			zoneDefinitionsItemProvider = new ZoneDefinitionsItemProvider(this);
+	public Adapter createStationNamesAdapter() {
+		if (stationNamesItemProvider == null) {
+			stationNamesItemProvider = new StationNamesItemProvider(this);
 		}
 
-		return zoneDefinitionsItemProvider;
+		return stationNamesItemProvider;
 	}
 
 	/**
@@ -1400,49 +1400,49 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.LegacyZoneMappings} instances.
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyFareStationSetMappings} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LegacyZoneMappingsItemProvider legacyZoneMappingsItemProvider;
+	protected LegacyFareStationSetMappingsItemProvider legacyFareStationSetMappingsItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gtm.LegacyZoneMappings}.
+	 * This creates an adapter for a {@link Gtm.LegacyFareStationSetMappings}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createLegacyZoneMappingsAdapter() {
-		if (legacyZoneMappingsItemProvider == null) {
-			legacyZoneMappingsItemProvider = new LegacyZoneMappingsItemProvider(this);
+	public Adapter createLegacyFareStationSetMappingsAdapter() {
+		if (legacyFareStationSetMappingsItemProvider == null) {
+			legacyFareStationSetMappingsItemProvider = new LegacyFareStationSetMappingsItemProvider(this);
 		}
 
-		return legacyZoneMappingsItemProvider;
+		return legacyFareStationSetMappingsItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.LegacyZoneMap} instances.
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyFareStationSetMap} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LegacyZoneMapItemProvider legacyZoneMapItemProvider;
+	protected LegacyFareStationSetMapItemProvider legacyFareStationSetMapItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gtm.LegacyZoneMap}.
+	 * This creates an adapter for a {@link Gtm.LegacyFareStationSetMap}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createLegacyZoneMapAdapter() {
-		if (legacyZoneMapItemProvider == null) {
-			legacyZoneMapItemProvider = new LegacyZoneMapItemProvider(this);
+	public Adapter createLegacyFareStationSetMapAdapter() {
+		if (legacyFareStationSetMapItemProvider == null) {
+			legacyFareStationSetMapItemProvider = new LegacyFareStationSetMapItemProvider(this);
 		}
 
-		return legacyZoneMapItemProvider;
+		return legacyFareStationSetMapItemProvider;
 	}
 
 	/**
@@ -2159,6 +2159,52 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.FareStationSetDefinitions} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FareStationSetDefinitionsItemProvider fareStationSetDefinitionsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.FareStationSetDefinitions}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFareStationSetDefinitionsAdapter() {
+		if (fareStationSetDefinitionsItemProvider == null) {
+			fareStationSetDefinitionsItemProvider = new FareStationSetDefinitionsItemProvider(this);
+		}
+
+		return fareStationSetDefinitionsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.FareStationSetDefinition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FareStationSetDefinitionItemProvider fareStationSetDefinitionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.FareStationSetDefinition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFareStationSetDefinitionAdapter() {
+		if (fareStationSetDefinitionItemProvider == null) {
+			fareStationSetDefinitionItemProvider = new FareStationSetDefinitionItemProvider(this);
+		}
+
+		return fareStationSetDefinitionItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.LegacyAccountingIdentifier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2504,29 +2550,6 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.ZoneDefinition} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ZoneDefinitionItemProvider zoneDefinitionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.ZoneDefinition}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createZoneDefinitionAdapter() {
-		if (zoneDefinitionItemProvider == null) {
-			zoneDefinitionItemProvider = new ZoneDefinitionItemProvider(this);
-		}
-
-		return zoneDefinitionItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.Line} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2642,26 +2665,26 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.IncludedFreePassengers} instances.
+	 * This keeps track of the one adapter used for all {@link Gtm.IncludedFreePassengerLimit} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IncludedFreePassengersItemProvider includedFreePassengersItemProvider;
+	protected IncludedFreePassengerLimitItemProvider includedFreePassengerLimitItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gtm.IncludedFreePassengers}.
+	 * This creates an adapter for a {@link Gtm.IncludedFreePassengerLimit}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createIncludedFreePassengersAdapter() {
-		if (includedFreePassengersItemProvider == null) {
-			includedFreePassengersItemProvider = new IncludedFreePassengersItemProvider(this);
+	public Adapter createIncludedFreePassengerLimitAdapter() {
+		if (includedFreePassengerLimitItemProvider == null) {
+			includedFreePassengerLimitItemProvider = new IncludedFreePassengerLimitItemProvider(this);
 		}
 
-		return includedFreePassengersItemProvider;
+		return includedFreePassengerLimitItemProvider;
 	}
 
 	/**
@@ -3243,6 +3266,7 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (stationItemProvider != null) stationItemProvider.dispose();
 		if (carrierItemProvider != null) carrierItemProvider.dispose();
 		if (carriersItemProvider != null) carriersItemProvider.dispose();
+		if (stationSetItemProvider != null) stationSetItemProvider.dispose();
 		if (generalTariffModelItemProvider != null) generalTariffModelItemProvider.dispose();
 		if (deliveryItemProvider != null) deliveryItemProvider.dispose();
 		if (afterSalesRulesItemProvider != null) afterSalesRulesItemProvider.dispose();
@@ -3252,7 +3276,6 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (fareStructureItemProvider != null) fareStructureItemProvider.dispose();
 		if (connectionPointsItemProvider != null) connectionPointsItemProvider.dispose();
 		if (connectionPointItemProvider != null) connectionPointItemProvider.dispose();
-		if (stationSetItemProvider != null) stationSetItemProvider.dispose();
 		if (fareResourceLocationsItemProvider != null) fareResourceLocationsItemProvider.dispose();
 		if (trainResourceLocationsItemProvider != null) trainResourceLocationsItemProvider.dispose();
 		if (stationResourceLocationsItemProvider != null) stationResourceLocationsItemProvider.dispose();
@@ -3261,9 +3284,14 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (stationResourceLocationItemProvider != null) stationResourceLocationItemProvider.dispose();
 		if (onlineResourceItemProvider != null) onlineResourceItemProvider.dispose();
 		if (fulfillmentConstraintsItemProvider != null) fulfillmentConstraintsItemProvider.dispose();
+		if (fulfillmentConstraintItemProvider != null) fulfillmentConstraintItemProvider.dispose();
+		if (requiredBarcodesItemProvider != null) requiredBarcodesItemProvider.dispose();
+		if (acceptedBarcodesItemProvider != null) acceptedBarcodesItemProvider.dispose();
 		if (supportedOnlineServicesItemProvider != null) supportedOnlineServicesItemProvider.dispose();
-		if (zoneDefinitionsItemProvider != null) zoneDefinitionsItemProvider.dispose();
+		if (stationNamesItemProvider != null) stationNamesItemProvider.dispose();
 		if (fareElementItemProvider != null) fareElementItemProvider.dispose();
+		if (fareStationSetDefinitionsItemProvider != null) fareStationSetDefinitionsItemProvider.dispose();
+		if (fareStationSetDefinitionItemProvider != null) fareStationSetDefinitionItemProvider.dispose();
 		if (legacyAccountingIdentifierItemProvider != null) legacyAccountingIdentifierItemProvider.dispose();
 		if (reductionConstraintsItemProvider != null) reductionConstraintsItemProvider.dispose();
 		if (fareElementsItemProvider != null) fareElementsItemProvider.dispose();
@@ -3273,8 +3301,8 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (allowedPersonalDataChangesItemProvider != null) allowedPersonalDataChangesItemProvider.dispose();
 		if (passengerConstraintsItemProvider != null) passengerConstraintsItemProvider.dispose();
 		if (passengerConstraintItemProvider != null) passengerConstraintItemProvider.dispose();
-		if (includedFreePassengersItemProvider != null) includedFreePassengersItemProvider.dispose();
 		if (passengerCombinationConstraintItemProvider != null) passengerCombinationConstraintItemProvider.dispose();
+		if (includedFreePassengerLimitItemProvider != null) includedFreePassengerLimitItemProvider.dispose();
 		if (combinationConstraintsItemProvider != null) combinationConstraintsItemProvider.dispose();
 		if (combinationConstraintItemProvider != null) combinationConstraintItemProvider.dispose();
 		if (travelValidityConstraintsItemProvider != null) travelValidityConstraintsItemProvider.dispose();
@@ -3320,16 +3348,12 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (alternativeRouteItemProvider != null) alternativeRouteItemProvider.dispose();
 		if (routeItemProvider != null) routeItemProvider.dispose();
 		if (zoneItemProvider != null) zoneItemProvider.dispose();
-		if (zoneDefinitionItemProvider != null) zoneDefinitionItemProvider.dispose();
 		if (lineItemProvider != null) lineItemProvider.dispose();
 		if (polygoneItemProvider != null) polygoneItemProvider.dispose();
 		if (edgeItemProvider != null) edgeItemProvider.dispose();
 		if (carrierResourceLocationItemProvider != null) carrierResourceLocationItemProvider.dispose();
 		if (crossBorderConditionItemProvider != null) crossBorderConditionItemProvider.dispose();
 		if (fareCombinationModelItemProvider != null) fareCombinationModelItemProvider.dispose();
-		if (fulfillmentConstraintItemProvider != null) fulfillmentConstraintItemProvider.dispose();
-		if (requiredBarcodesItemProvider != null) requiredBarcodesItemProvider.dispose();
-		if (acceptedBarcodesItemProvider != null) acceptedBarcodesItemProvider.dispose();
 		if (reductionConstraintItemProvider != null) reductionConstraintItemProvider.dispose();
 		if (requiredReductionCardItemProvider != null) requiredReductionCardItemProvider.dispose();
 		if (conversionFromLegacyItemProvider != null) conversionFromLegacyItemProvider.dispose();
@@ -3343,8 +3367,8 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (legacyBoderPointMappingsItemProvider != null) legacyBoderPointMappingsItemProvider.dispose();
 		if (legacyBorderPointMappingItemProvider != null) legacyBorderPointMappingItemProvider.dispose();
 		if (legacyDescriptionItemProvider != null) legacyDescriptionItemProvider.dispose();
-		if (legacyZoneMappingsItemProvider != null) legacyZoneMappingsItemProvider.dispose();
-		if (legacyZoneMapItemProvider != null) legacyZoneMapItemProvider.dispose();
+		if (legacyFareStationSetMappingsItemProvider != null) legacyFareStationSetMappingsItemProvider.dispose();
+		if (legacyFareStationSetMapItemProvider != null) legacyFareStationSetMapItemProvider.dispose();
 		if (legacyFaresItemProvider != null) legacyFaresItemProvider.dispose();
 		if (legacyFareItemProvider != null) legacyFareItemProvider.dispose();
 		if (legacy108ItemProvider != null) legacy108ItemProvider.dispose();

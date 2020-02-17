@@ -337,13 +337,13 @@ public interface GtmFactory extends EFactory {
 	SupportedOnlineServices createSupportedOnlineServices();
 
 	/**
-	 * Returns a new object of class '<em>Zone Definitions</em>'.
+	 * Returns a new object of class '<em>Station Names</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Zone Definitions</em>'.
+	 * @return a new object of class '<em>Station Names</em>'.
 	 * @generated
 	 */
-	ZoneDefinitions createZoneDefinitions();
+	StationNames createStationNames();
 
 	/**
 	 * Returns a new object of class '<em>Fare Element</em>'.
@@ -353,6 +353,24 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	FareElement createFareElement();
+
+	/**
+	 * Returns a new object of class '<em>Fare Station Set Definitions</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fare Station Set Definitions</em>'.
+	 * @generated
+	 */
+	FareStationSetDefinitions createFareStationSetDefinitions();
+
+	/**
+	 * Returns a new object of class '<em>Fare Station Set Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fare Station Set Definition</em>'.
+	 * @generated
+	 */
+	FareStationSetDefinition createFareStationSetDefinition();
 
 	/**
 	 * Returns a new object of class '<em>Legacy Accounting Identifier</em>'.
@@ -436,13 +454,13 @@ public interface GtmFactory extends EFactory {
 	PassengerConstraint createPassengerConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Included Free Passengers</em>'.
+	 * Returns a new object of class '<em>Included Free Passenger Limit</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Included Free Passengers</em>'.
+	 * @return a new object of class '<em>Included Free Passenger Limit</em>'.
 	 * @generated
 	 */
-	IncludedFreePassengers createIncludedFreePassengers();
+	IncludedFreePassengerLimit createIncludedFreePassengerLimit();
 
 	/**
 	 * Returns a new object of class '<em>Passenger Combination Constraint</em>'.
@@ -859,15 +877,6 @@ public interface GtmFactory extends EFactory {
 	Zone createZone();
 
 	/**
-	 * Returns a new object of class '<em>Zone Definition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Zone Definition</em>'.
-	 * @generated
-	 */
-	ZoneDefinition createZoneDefinition();
-
-	/**
 	 * Returns a new object of class '<em>Line</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1066,22 +1075,22 @@ public interface GtmFactory extends EFactory {
 	LegacyDescription createLegacyDescription();
 
 	/**
-	 * Returns a new object of class '<em>Legacy Zone Mappings</em>'.
+	 * Returns a new object of class '<em>Legacy Fare Station Set Mappings</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Zone Mappings</em>'.
+	 * @return a new object of class '<em>Legacy Fare Station Set Mappings</em>'.
 	 * @generated
 	 */
-	LegacyZoneMappings createLegacyZoneMappings();
+	LegacyFareStationSetMappings createLegacyFareStationSetMappings();
 
 	/**
-	 * Returns a new object of class '<em>Legacy Zone Map</em>'.
+	 * Returns a new object of class '<em>Legacy Fare Station Set Map</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Zone Map</em>'.
+	 * @return a new object of class '<em>Legacy Fare Station Set Map</em>'.
 	 * @generated
 	 */
-	LegacyZoneMap createLegacyZoneMap();
+	LegacyFareStationSetMap createLegacyFareStationSetMap();
 
 	/**
 	 * Returns a new object of class '<em>Legacy Fares</em>'.

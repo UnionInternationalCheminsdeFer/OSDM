@@ -31,6 +31,7 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ColumnWeightData;
+import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -133,8 +134,6 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import Gtm.provider.GtmItemProviderAdapterFactory;
-import console.ConsoleUtil;
-
 import org.eclipse.emf.common.ui.URIEditorInput;
 
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -195,6 +194,7 @@ public class GtmEditor
 	 */
 	protected IContentOutlinePage contentOutlinePage;
 
+
 	/**
 	 * This is a kludge...
 	 * <!-- begin-user-doc -->
@@ -210,6 +210,15 @@ public class GtmEditor
 	 * @generated
 	 */
 	protected TreeViewer contentOutlineViewer;
+	
+	/**
+	 * This is the saved content during bulk actions
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	protected IContentProvider outlineContentProvider;
+
 
 	/**
 	 * This is the property sheet page.
@@ -243,6 +252,14 @@ public class GtmEditor
 	 * @generated
 	 */
 	protected TreeViewer treeViewer;
+	
+	/**
+	 * This is the saved content during bulk actions
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	IContentProvider treeContentProvider;	
 
 	/**
 	 * This shows how a list view works.
@@ -252,6 +269,15 @@ public class GtmEditor
 	 * @generated
 	 */
 	protected ListViewer listViewer;
+	
+	/**
+	 * This is the saved content during bulk actions
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	
+	IContentProvider listContentProvider;
 
 	/**
 	 * This shows how a table view works.
@@ -1201,6 +1227,8 @@ public class GtmEditor
 				selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 				viewerPane.setTitle(editingDomain.getResourceSet());
 
+				selectionViewer.setAutoExpandLevel(2);
+				
 				new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
 
 				createContextMenuFor(selectionViewer);
@@ -1450,7 +1478,7 @@ public class GtmEditor
 	 * This is for implementing {@link IEditorPart} and simply tests the command stack.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isDirty() {
@@ -1461,10 +1489,69 @@ public class GtmEditor
 	 * This is for implementing {@link IEditorPart} and simply saves the model file.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
+		// Save only resources that have actually changed.
+		//
+		final Map<Object, Object> saveOptions = GtmResourceUtils.getBinarySaveOptions();
+
+		// Do the work within an operation because this is a long running activity that modifies the workbench.
+		//
+		IRunnableWithProgress operation =
+			new IRunnableWithProgress() {
+				// This is the method that gets invoked when the operation runs.
+				//
+				public void run(IProgressMonitor monitor) {
+					// Save the resources to the file system.
+					//
+					boolean first = true;
+					List<Resource> resources = editingDomain.getResourceSet().getResources();
+					for (int i = 0; i < resources.size(); ++i) {
+						Resource resource = resources.get(i);
+						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
+							try {
+								long timeStamp = resource.getTimeStamp();
+								resource.save(saveOptions);
+								if (resource.getTimeStamp() != timeStamp) {
+									savedResources.add(resource);
+								}
+							}
+							catch (Exception exception) {
+								resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+							}
+							first = false;
+						}
+					}
+				}
+			};
+
+		updateProblemIndication = false;
+		try {
+			// This runs the options, and shows progress.
+			//
+			new ProgressMonitorDialog(getSite().getShell()).run(true, false, operation);
+
+			// Refresh the necessary state.
+			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
+			firePropertyChange(IEditorPart.PROP_DIRTY);
+		}
+		catch (Exception exception) {
+			// Something went wrong that shouldn't.
+			GtmEditorPlugin.INSTANCE.log(exception);
+		}
+		updateProblemIndication = true;
+		//updateProblemIndication();
+	}
+
+	/**
+	 * This is for implementing {@link IEditorPart} and simply saves the model file.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void doSaveGen(IProgressMonitor progressMonitor) {
 		// Save only resources that have actually changed.
 		//
 		final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
@@ -1520,7 +1607,7 @@ public class GtmEditor
 		updateProblemIndication = true;
 		updateProblemIndication();
 	}
-
+	
 	/**
 	 * This returns whether something has been persisted to the URI of the specified resource.
 	 * The implementation uses the URI converter from the editor's resource set to try to open an input stream.
@@ -1785,9 +1872,57 @@ public class GtmEditor
 	 * Returns whether the outline view should be presented to the user.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean showOutlineView() {
-		return true;
+		return false;
 	}
+	
+	/**
+	 * Disconnect the viewers from their content during bulk actions
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void disconnectViews() {
+		
+		if (outlineContentProvider != null) {
+			outlineContentProvider = this.contentOutlineViewer.getContentProvider();
+			this.contentOutlineViewer.setContentProvider(null);
+		}
+		if (listContentProvider != null) {
+			listContentProvider = treeViewer.getContentProvider();
+			treeViewer.setContentProvider(null);
+		}
+		if (treeContentProvider!= null) {
+			treeContentProvider = listViewer.getContentProvider();
+			listViewer.setContentProvider(null);
+		}
+		
+	}
+	
+	/**
+	 * Disconnect the viewers from their content during bulk actions
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void reconnectViews() {
+		
+		if (outlineContentProvider != null) {
+			this.contentOutlineViewer.setContentProvider(outlineContentProvider);
+			this.contentOutlineViewer.refresh();
+		}
+		if (listContentProvider != null) {
+			treeViewer.setContentProvider(listContentProvider);
+			treeViewer.refresh();
+		}
+		if (treeContentProvider!= null) {
+			listViewer.setContentProvider(treeContentProvider);
+			listViewer.refresh();
+		}
+		
+	}
+	
+	
 }
