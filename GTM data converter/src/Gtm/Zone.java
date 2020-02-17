@@ -16,12 +16,12 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link Gtm.Zone#getBinaryZoneId <em>Binary Zone Id</em>}</li>
+ *   <li>{@link Gtm.Zone#getZoneId <em>Zone Id</em>}</li>
+ *   <li>{@link Gtm.Zone#getCity <em>City</em>}</li>
  *   <li>{@link Gtm.Zone#getCarrier <em>Carrier</em>}</li>
  *   <li>{@link Gtm.Zone#getEntryStation <em>Entry Station</em>}</li>
  *   <li>{@link Gtm.Zone#getTerminalStation <em>Terminal Station</em>}</li>
  *   <li>{@link Gtm.Zone#getNutsCode <em>Nuts Code</em>}</li>
- *   <li>{@link Gtm.Zone#getCity <em>City</em>}</li>
- *   <li>{@link Gtm.Zone#getZoneDefinitions <em>Zone Definitions</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getZone()
@@ -50,6 +50,18 @@ public interface Zone extends EObject {
 	 * @generated
 	 */
 	void setBinaryZoneId(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Zone Id</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Zone Id</em>' attribute list.
+	 * @see Gtm.GtmPackage#getZone_ZoneId()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getZoneId();
 
 	/**
 	 * Returns the value of the '<em><b>Carrier</b></em>' reference.
@@ -160,17 +172,5 @@ public interface Zone extends EObject {
 	 * @generated
 	 */
 	void setCity(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Zone Definitions</b></em>' reference list.
-	 * The list contents are of type {@link Gtm.ZoneDefinition}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Zone Definitions</em>' reference list.
-	 * @see Gtm.GtmPackage#getZone_ZoneDefinitions()
-	 * @model
-	 * @generated
-	 */
-	EList<ZoneDefinition> getZoneDefinitions();
 
 } // Zone

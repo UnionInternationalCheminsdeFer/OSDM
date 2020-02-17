@@ -36,7 +36,7 @@ public class AllowedPersonalDataChangesImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int TIME_LIMIT_EDEFAULT = 0;
+	protected static final float TIME_LIMIT_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getTimeLimit() <em>Time Limit</em>}' attribute.
@@ -46,7 +46,7 @@ public class AllowedPersonalDataChangesImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	protected int timeLimit = TIME_LIMIT_EDEFAULT;
+	protected float timeLimit = TIME_LIMIT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getAcceptedReason() <em>Accepted Reason</em>}' attribute.
@@ -92,7 +92,7 @@ public class AllowedPersonalDataChangesImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getTimeLimit() {
+	public float getTimeLimit() {
 		return timeLimit;
 	}
 
@@ -101,8 +101,8 @@ public class AllowedPersonalDataChangesImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTimeLimit(int newTimeLimit) {
-		int oldTimeLimit = timeLimit;
+	public void setTimeLimit(float newTimeLimit) {
+		float oldTimeLimit = timeLimit;
 		timeLimit = newTimeLimit;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.ALLOWED_PERSONAL_DATA_CHANGES__TIME_LIMIT, oldTimeLimit, timeLimit));
@@ -154,7 +154,7 @@ public class AllowedPersonalDataChangesImpl extends MinimalEObjectImpl.Container
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case GtmPackage.ALLOWED_PERSONAL_DATA_CHANGES__TIME_LIMIT:
-				setTimeLimit((Integer)newValue);
+				setTimeLimit((Float)newValue);
 				return;
 			case GtmPackage.ALLOWED_PERSONAL_DATA_CHANGES__ACCEPTED_REASON:
 				setAcceptedReason((PersonalDataChangeReason)newValue);

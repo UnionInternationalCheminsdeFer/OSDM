@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.ConversionParams#getLegacyBorderPointMappings <em>Legacy Border Point Mappings</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getLegacyStationMappings <em>Legacy Station Mappings</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getLegacyTargetFares <em>Legacy Target Fares</em>}</li>
- *   <li>{@link Gtm.ConversionParams#getLegacyZoneMappings <em>Legacy Zone Mappings</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getLegacyFareStationMappings <em>Legacy Fare Station Mappings</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getLegacyStationToServiceBrandMappings <em>Legacy Station To Service Brand Mappings</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getEndOfSale <em>End Of Sale</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getStartOfSale <em>Start Of Sale</em>}</li>
@@ -163,26 +163,26 @@ public interface ConversionParams extends EObject {
 	void setLegacyTargetFares(LegacyTargetFares value);
 
 	/**
-	 * Returns the value of the '<em><b>Legacy Zone Mappings</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Legacy Fare Station Mappings</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Legacy Zone Mappings</em>' containment reference.
-	 * @see #setLegacyZoneMappings(LegacyZoneMappings)
-	 * @see Gtm.GtmPackage#getConversionParams_LegacyZoneMappings()
+	 * @return the value of the '<em>Legacy Fare Station Mappings</em>' containment reference.
+	 * @see #setLegacyFareStationMappings(LegacyFareStationSetMappings)
+	 * @see Gtm.GtmPackage#getConversionParams_LegacyFareStationMappings()
 	 * @model containment="true"
 	 * @generated
 	 */
-	LegacyZoneMappings getLegacyZoneMappings();
+	LegacyFareStationSetMappings getLegacyFareStationMappings();
 
 	/**
-	 * Sets the value of the '{@link Gtm.ConversionParams#getLegacyZoneMappings <em>Legacy Zone Mappings</em>}' containment reference.
+	 * Sets the value of the '{@link Gtm.ConversionParams#getLegacyFareStationMappings <em>Legacy Fare Station Mappings</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Legacy Zone Mappings</em>' containment reference.
-	 * @see #getLegacyZoneMappings()
+	 * @param value the new value of the '<em>Legacy Fare Station Mappings</em>' containment reference.
+	 * @see #getLegacyFareStationMappings()
 	 * @generated
 	 */
-	void setLegacyZoneMappings(LegacyZoneMappings value);
+	void setLegacyFareStationMappings(LegacyFareStationSetMappings value);
 
 	/**
 	 * Returns the value of the '<em><b>Legacy Station To Service Brand Mappings</b></em>' containment reference.

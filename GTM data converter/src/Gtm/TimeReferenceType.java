@@ -46,7 +46,9 @@ public enum TimeReferenceType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BEFORE_VALIDITY(3, "BEFORE_VALIDITY", "BEFORE_VALIDITY"), /**
+	BEFORE_VALIDITY(3, "BEFORE_VALIDITY", "BEFORE_VALIDITY"),
+
+	/**
 	 * The '<em><b>BEFORE START VALIDITY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,7 +56,9 @@ public enum TimeReferenceType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BEFORE_START_VALIDITY(4, "BEFORE_START_VALIDITY", "BEFORE_START_VALIDITY"), /**
+	BEFORE_START_VALIDITY(4, "BEFORE_START_VALIDITY", "BEFORE_START_VALIDITY"),
+
+	/**
 	 * The '<em><b>AFTER END VALIDITY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

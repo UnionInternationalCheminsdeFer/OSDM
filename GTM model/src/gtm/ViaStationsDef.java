@@ -16,8 +16,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "AlternativeRoute",
     "Carrier",
     "Route",
+    "serviceBrand",
     "Station",
-    "serviceBrand"
+    "fareReferenceStationSet"
 })
 public class ViaStationsDef {
 
@@ -39,6 +40,13 @@ public class ViaStationsDef {
     @JsonProperty("Route")
     private List<ViaStationsDef> route = new ArrayList<ViaStationsDef>();
     /**
+     * restriction  to a specific service brand
+     * 
+     */
+    @JsonProperty("serviceBrand")
+    @JsonPropertyDescription("restriction  to a specific service brand")
+    private String serviceBrand;
+    /**
      * 
      * (Required)
      * 
@@ -46,12 +54,12 @@ public class ViaStationsDef {
     @JsonProperty("Station")
     private StationDef station;
     /**
-     * restriction  to a specific service brand
+     * reference to a list of stations included in the fare
      * 
      */
-    @JsonProperty("serviceBrand")
-    @JsonPropertyDescription("restriction  to a specific service brand")
-    private String serviceBrand;
+    @JsonProperty("fareReferenceStationSet")
+    @JsonPropertyDescription("reference to a list of stations included in the fare")
+    private FareReferenceStationSet fareReferenceStationSet;
 
     @JsonProperty("isBorder")
     public Boolean getIsBorder() {
@@ -122,6 +130,24 @@ public class ViaStationsDef {
     }
 
     /**
+     * restriction  to a specific service brand
+     * 
+     */
+    @JsonProperty("serviceBrand")
+    public String getServiceBrand() {
+        return serviceBrand;
+    }
+
+    /**
+     * restriction  to a specific service brand
+     * 
+     */
+    @JsonProperty("serviceBrand")
+    public void setServiceBrand(String serviceBrand) {
+        this.serviceBrand = serviceBrand;
+    }
+
+    /**
      * 
      * (Required)
      * 
@@ -142,21 +168,21 @@ public class ViaStationsDef {
     }
 
     /**
-     * restriction  to a specific service brand
+     * reference to a list of stations included in the fare
      * 
      */
-    @JsonProperty("serviceBrand")
-    public String getServiceBrand() {
-        return serviceBrand;
+    @JsonProperty("fareReferenceStationSet")
+    public FareReferenceStationSet getFareReferenceStationSet() {
+        return fareReferenceStationSet;
     }
 
     /**
-     * restriction  to a specific service brand
+     * reference to a list of stations included in the fare
      * 
      */
-    @JsonProperty("serviceBrand")
-    public void setServiceBrand(String serviceBrand) {
-        this.serviceBrand = serviceBrand;
+    @JsonProperty("fareReferenceStationSet")
+    public void setFareReferenceStationSet(FareReferenceStationSet fareReferenceStationSet) {
+        this.fareReferenceStationSet = fareReferenceStationSet;
     }
 
     @Override
@@ -187,13 +213,17 @@ public class ViaStationsDef {
         sb.append('=');
         sb.append(((this.route == null)?"<null>":this.route));
         sb.append(',');
+        sb.append("serviceBrand");
+        sb.append('=');
+        sb.append(((this.serviceBrand == null)?"<null>":this.serviceBrand));
+        sb.append(',');
         sb.append("station");
         sb.append('=');
         sb.append(((this.station == null)?"<null>":this.station));
         sb.append(',');
-        sb.append("serviceBrand");
+        sb.append("fareReferenceStationSet");
         sb.append('=');
-        sb.append(((this.serviceBrand == null)?"<null>":this.serviceBrand));
+        sb.append(((this.fareReferenceStationSet == null)?"<null>":this.fareReferenceStationSet));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -213,6 +243,7 @@ public class ViaStationsDef {
         result = ((result* 31)+((this.station == null)? 0 :this.station.hashCode()));
         result = ((result* 31)+((this.seriesId == null)? 0 :this.seriesId.hashCode()));
         result = ((result* 31)+((this.serviceBrand == null)? 0 :this.serviceBrand.hashCode()));
+        result = ((result* 31)+((this.fareReferenceStationSet == null)? 0 :this.fareReferenceStationSet.hashCode()));
         result = ((result* 31)+((this.isBorder == null)? 0 :this.isBorder.hashCode()));
         return result;
     }
@@ -226,7 +257,7 @@ public class ViaStationsDef {
             return false;
         }
         ViaStationsDef rhs = ((ViaStationsDef) other);
-        return (((((((((this.carrier == rhs.carrier)||((this.carrier!= null)&&this.carrier.equals(rhs.carrier)))&&((this.routeId == rhs.routeId)||((this.routeId!= null)&&this.routeId.equals(rhs.routeId))))&&((this.route == rhs.route)||((this.route!= null)&&this.route.equals(rhs.route))))&&((this.alternativeRoute == rhs.alternativeRoute)||((this.alternativeRoute!= null)&&this.alternativeRoute.equals(rhs.alternativeRoute))))&&((this.station == rhs.station)||((this.station!= null)&&this.station.equals(rhs.station))))&&((this.seriesId == rhs.seriesId)||((this.seriesId!= null)&&this.seriesId.equals(rhs.seriesId))))&&((this.serviceBrand == rhs.serviceBrand)||((this.serviceBrand!= null)&&this.serviceBrand.equals(rhs.serviceBrand))))&&((this.isBorder == rhs.isBorder)||((this.isBorder!= null)&&this.isBorder.equals(rhs.isBorder))));
+        return ((((((((((this.carrier == rhs.carrier)||((this.carrier!= null)&&this.carrier.equals(rhs.carrier)))&&((this.routeId == rhs.routeId)||((this.routeId!= null)&&this.routeId.equals(rhs.routeId))))&&((this.route == rhs.route)||((this.route!= null)&&this.route.equals(rhs.route))))&&((this.alternativeRoute == rhs.alternativeRoute)||((this.alternativeRoute!= null)&&this.alternativeRoute.equals(rhs.alternativeRoute))))&&((this.station == rhs.station)||((this.station!= null)&&this.station.equals(rhs.station))))&&((this.seriesId == rhs.seriesId)||((this.seriesId!= null)&&this.seriesId.equals(rhs.seriesId))))&&((this.serviceBrand == rhs.serviceBrand)||((this.serviceBrand!= null)&&this.serviceBrand.equals(rhs.serviceBrand))))&&((this.fareReferenceStationSet == rhs.fareReferenceStationSet)||((this.fareReferenceStationSet!= null)&&this.fareReferenceStationSet.equals(rhs.fareReferenceStationSet))))&&((this.isBorder == rhs.isBorder)||((this.isBorder!= null)&&this.isBorder.equals(rhs.isBorder))));
     }
 
 }

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * text
+ * directly included text in case of online services
  * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

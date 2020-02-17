@@ -7,10 +7,10 @@ import Gtm.Country;
 import Gtm.EndOfSale;
 import Gtm.GtmPackage;
 import Gtm.LegacyBoderPointMappings;
+import Gtm.LegacyFareStationSetMappings;
 import Gtm.LegacyStationMappings;
 import Gtm.LegacyStationToServiceConstraintMappings;
 import Gtm.LegacyTargetFares;
-import Gtm.LegacyZoneMappings;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyBorderPointMappings <em>Legacy Border Point Mappings</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyStationMappings <em>Legacy Station Mappings</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyTargetFares <em>Legacy Target Fares</em>}</li>
- *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyZoneMappings <em>Legacy Zone Mappings</em>}</li>
+ *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyFareStationMappings <em>Legacy Fare Station Mappings</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyStationToServiceBrandMappings <em>Legacy Station To Service Brand Mappings</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getEndOfSale <em>End Of Sale</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getStartOfSale <em>Start Of Sale</em>}</li>
@@ -124,14 +124,14 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 	protected LegacyTargetFares legacyTargetFares;
 
 	/**
-	 * The cached value of the '{@link #getLegacyZoneMappings() <em>Legacy Zone Mappings</em>}' containment reference.
+	 * The cached value of the '{@link #getLegacyFareStationMappings() <em>Legacy Fare Station Mappings</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLegacyZoneMappings()
+	 * @see #getLegacyFareStationMappings()
 	 * @generated
 	 * @ordered
 	 */
-	protected LegacyZoneMappings legacyZoneMappings;
+	protected LegacyFareStationSetMappings legacyFareStationMappings;
 
 	/**
 	 * The cached value of the '{@link #getLegacyStationToServiceBrandMappings() <em>Legacy Station To Service Brand Mappings</em>}' containment reference.
@@ -396,8 +396,8 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LegacyZoneMappings getLegacyZoneMappings() {
-		return legacyZoneMappings;
+	public LegacyFareStationSetMappings getLegacyFareStationMappings() {
+		return legacyFareStationMappings;
 	}
 
 	/**
@@ -405,11 +405,11 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLegacyZoneMappings(LegacyZoneMappings newLegacyZoneMappings, NotificationChain msgs) {
-		LegacyZoneMappings oldLegacyZoneMappings = legacyZoneMappings;
-		legacyZoneMappings = newLegacyZoneMappings;
+	public NotificationChain basicSetLegacyFareStationMappings(LegacyFareStationSetMappings newLegacyFareStationMappings, NotificationChain msgs) {
+		LegacyFareStationSetMappings oldLegacyFareStationMappings = legacyFareStationMappings;
+		legacyFareStationMappings = newLegacyFareStationMappings;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__LEGACY_ZONE_MAPPINGS, oldLegacyZoneMappings, newLegacyZoneMappings);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS, oldLegacyFareStationMappings, newLegacyFareStationMappings);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -420,18 +420,18 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLegacyZoneMappings(LegacyZoneMappings newLegacyZoneMappings) {
-		if (newLegacyZoneMappings != legacyZoneMappings) {
+	public void setLegacyFareStationMappings(LegacyFareStationSetMappings newLegacyFareStationMappings) {
+		if (newLegacyFareStationMappings != legacyFareStationMappings) {
 			NotificationChain msgs = null;
-			if (legacyZoneMappings != null)
-				msgs = ((InternalEObject)legacyZoneMappings).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CONVERSION_PARAMS__LEGACY_ZONE_MAPPINGS, null, msgs);
-			if (newLegacyZoneMappings != null)
-				msgs = ((InternalEObject)newLegacyZoneMappings).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CONVERSION_PARAMS__LEGACY_ZONE_MAPPINGS, null, msgs);
-			msgs = basicSetLegacyZoneMappings(newLegacyZoneMappings, msgs);
+			if (legacyFareStationMappings != null)
+				msgs = ((InternalEObject)legacyFareStationMappings).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS, null, msgs);
+			if (newLegacyFareStationMappings != null)
+				msgs = ((InternalEObject)newLegacyFareStationMappings).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS, null, msgs);
+			msgs = basicSetLegacyFareStationMappings(newLegacyFareStationMappings, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__LEGACY_ZONE_MAPPINGS, newLegacyZoneMappings, newLegacyZoneMappings));
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS, newLegacyFareStationMappings, newLegacyFareStationMappings));
 	}
 
 	/**
@@ -577,8 +577,8 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 				return basicSetLegacyStationMappings(null, msgs);
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_TARGET_FARES:
 				return basicSetLegacyTargetFares(null, msgs);
-			case GtmPackage.CONVERSION_PARAMS__LEGACY_ZONE_MAPPINGS:
-				return basicSetLegacyZoneMappings(null, msgs);
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS:
+				return basicSetLegacyFareStationMappings(null, msgs);
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS:
 				return basicSetLegacyStationToServiceBrandMappings(null, msgs);
 			case GtmPackage.CONVERSION_PARAMS__END_OF_SALE:
@@ -610,8 +610,8 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 				return getLegacyStationMappings();
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_TARGET_FARES:
 				return getLegacyTargetFares();
-			case GtmPackage.CONVERSION_PARAMS__LEGACY_ZONE_MAPPINGS:
-				return getLegacyZoneMappings();
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS:
+				return getLegacyFareStationMappings();
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS:
 				return getLegacyStationToServiceBrandMappings();
 			case GtmPackage.CONVERSION_PARAMS__END_OF_SALE:
@@ -648,8 +648,8 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_TARGET_FARES:
 				setLegacyTargetFares((LegacyTargetFares)newValue);
 				return;
-			case GtmPackage.CONVERSION_PARAMS__LEGACY_ZONE_MAPPINGS:
-				setLegacyZoneMappings((LegacyZoneMappings)newValue);
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS:
+				setLegacyFareStationMappings((LegacyFareStationSetMappings)newValue);
 				return;
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS:
 				setLegacyStationToServiceBrandMappings((LegacyStationToServiceConstraintMappings)newValue);
@@ -690,8 +690,8 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_TARGET_FARES:
 				setLegacyTargetFares((LegacyTargetFares)null);
 				return;
-			case GtmPackage.CONVERSION_PARAMS__LEGACY_ZONE_MAPPINGS:
-				setLegacyZoneMappings((LegacyZoneMappings)null);
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS:
+				setLegacyFareStationMappings((LegacyFareStationSetMappings)null);
 				return;
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS:
 				setLegacyStationToServiceBrandMappings((LegacyStationToServiceConstraintMappings)null);
@@ -726,8 +726,8 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 				return legacyStationMappings != null;
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_TARGET_FARES:
 				return legacyTargetFares != null;
-			case GtmPackage.CONVERSION_PARAMS__LEGACY_ZONE_MAPPINGS:
-				return legacyZoneMappings != null;
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS:
+				return legacyFareStationMappings != null;
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS:
 				return legacyStationToServiceBrandMappings != null;
 			case GtmPackage.CONVERSION_PARAMS__END_OF_SALE:

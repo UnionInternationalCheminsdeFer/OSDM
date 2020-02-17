@@ -126,11 +126,11 @@ public class NutsCodeItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((NutsCode)object).getName();
+		String label = ((NutsCode)object).getCode() + " - " + ((NutsCode)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_NutsCode_type") :
 			getString("_UI_NutsCode_type") + " " + label;

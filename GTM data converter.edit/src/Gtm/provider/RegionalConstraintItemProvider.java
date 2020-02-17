@@ -67,6 +67,7 @@ public class RegionalConstraintItemProvider
 			addIdPropertyDescriptor(object);
 			addDistancePropertyDescriptor(object);
 			addDataSourcePropertyDescriptor(object);
+			addDataDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -138,6 +139,28 @@ public class RegionalConstraintItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Data Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RegionalConstraint_dataDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RegionalConstraint_dataDescription_feature", "_UI_RegionalConstraint_type"),
+				 GtmPackage.Literals.REGIONAL_CONSTRAINT__DATA_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -184,18 +207,11 @@ public class RegionalConstraintItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		RegionalConstraint constraint = (RegionalConstraint)object;
-		String label = "";
-		if (constraint.getRegionalValidity()!=null && !constraint.getRegionalValidity().isEmpty()) {
-			if (constraint.getRegionalValidity().get(0).getViaStation()!= null) {
-				return constraint.getRegionalValidity().get(0).getViaStation().getDescription();
-			}
-		}
-		
+		String label = ((RegionalConstraint)object).getDataDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_RegionalConstraint_type") :
 			getString("_UI_RegionalConstraint_type") + " " + label;
@@ -217,6 +233,7 @@ public class RegionalConstraintItemProvider
 			case GtmPackage.REGIONAL_CONSTRAINT__ID:
 			case GtmPackage.REGIONAL_CONSTRAINT__DISTANCE:
 			case GtmPackage.REGIONAL_CONSTRAINT__DATA_SOURCE:
+			case GtmPackage.REGIONAL_CONSTRAINT__DATA_DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.REGIONAL_CONSTRAINT__ENTRY_CONNECTION_POINT:

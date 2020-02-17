@@ -136,7 +136,9 @@ public enum TravelerType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TRAILER(33, "TRAILER", "TRAILER"), /**
+	TRAILER(33, "TRAILER", "TRAILER"),
+
+	/**
 	 * The '<em><b>GRAPHICAL RES</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -144,7 +146,9 @@ public enum TravelerType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GRAPHICAL_RES(40, "GRAPHICAL_RES", "GRAPHICAL_RES"), /**
+	GRAPHICAL_RES(40, "GRAPHICAL_RES", "GRAPHICAL_RES"),
+
+	/**
 	 * The '<em><b>OPT RESERVATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -426,7 +426,7 @@ public class PassengerConstraintItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS,
-				 GtmFactory.eINSTANCE.createIncludedFreePassengers()));
+				 GtmFactory.eINSTANCE.createIncludedFreePassengerLimit()));
 
 		newChildDescriptors.add
 			(createChildParameter

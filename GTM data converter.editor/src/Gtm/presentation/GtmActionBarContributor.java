@@ -45,19 +45,18 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.BaseSelectionListenerAction;
 
-import actions.ConvertGtm2LegacyAction;
-import actions.ConvertLegacy2GtmAction;
-import actions.ExportGTMJsonAction;
-import actions.GtmValidateAction;
-import actions.ImportCarriersAction;
-import actions.ImportGTMJsonAction;
-import actions.ImportLegacyAllFareAction;
-import actions.ImportLegacyDistanceFareAction;
-import actions.ImportLegacyRouteFareAction;
-import actions.ImportLegacySeriesAction;
-import actions.ImportLegacyStationsAction;
-import actions.ImportServiceBrandsAction;
-import actions.ImportStationsAction;
+import Gtm.actions.ConvertGtm2LegacyAction;
+import Gtm.actions.ConvertLegacy2GtmAction;
+import Gtm.actions.ExportGTMJsonAction;
+import Gtm.actions.GtmValidateAction;
+import Gtm.actions.ImportCarriersAction;
+import Gtm.actions.ImportGTMJsonAction;
+import Gtm.actions.ImportLegacyAllFareAction;
+import Gtm.actions.ImportLegacySeriesAction;
+import Gtm.actions.ImportLegacyStationsAction;
+import Gtm.actions.ImportNutsCodesAction;
+import Gtm.actions.ImportServiceBrandsAction;
+import Gtm.actions.ImportStationsAction;
 
 
 /**
@@ -227,10 +226,11 @@ public class GtmActionBarContributor
 			gtmActions.add(new ImportStationsAction(this));
 			gtmActions.add(new ImportCarriersAction(this));
 			gtmActions.add(new ImportServiceBrandsAction(this));
+			gtmActions.add(new ImportNutsCodesAction(this));			
 			gtmActions.add(new ImportLegacyStationsAction(this));			
 			gtmActions.add(new ImportLegacySeriesAction(this));
-			gtmActions.add(new ImportLegacyDistanceFareAction(this));
-			gtmActions.add(new ImportLegacyRouteFareAction(this));
+			//gtmActions.add(new ImportLegacyDistanceFareAction(this));
+			//gtmActions.add(new ImportLegacyRouteFareAction(this));
 			gtmActions.add(new ImportLegacyAllFareAction(this));
 			gtmActions.add(new ImportGTMJsonAction(this));	
 			//gtmActions.add(new GenerateIdsAction(this));

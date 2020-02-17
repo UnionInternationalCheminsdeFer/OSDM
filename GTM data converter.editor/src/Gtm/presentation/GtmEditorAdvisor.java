@@ -43,8 +43,6 @@ import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
-import org.osgi.service.log.LogEntry;
-import org.osgi.service.log.LogListener;
 import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
@@ -55,7 +53,8 @@ import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import Gtm.presentation.GtmEditorPlugin;
-import console.ConsoleUtil;
+import Gtm.problems.GtmProblemView;
+import Gtm.console.ConsoleUtil;
 
 
 /**
@@ -205,7 +204,6 @@ public final class GtmEditorAdvisor extends WorkbenchAdvisor {
 			ConsolePlugin.getDefault().getConsoleManager().showConsoleView(errorConsole);
 			
 			Platform.addLogListener(new ILogListener() {
-				@Override
 				public void logging(IStatus status, String msg) {
 					if (status.matches(IStatus.ERROR)) {
 						ConsoleUtil.printError("Errors", msg);

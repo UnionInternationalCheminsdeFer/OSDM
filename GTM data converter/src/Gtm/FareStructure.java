@@ -13,26 +13,27 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link Gtm.FareStructure#getServiceClassDefinitions <em>Service Class Definitions</em>}</li>
+ *   <li>{@link Gtm.FareStructure#getServiceLevelDefinitions <em>Service Level Definitions</em>}</li>
+ *   <li>{@link Gtm.FareStructure#getStationNames <em>Station Names</em>}</li>
+ *   <li>{@link Gtm.FareStructure#getFareStationSetDefinitions <em>Fare Station Set Definitions</em>}</li>
+ *   <li>{@link Gtm.FareStructure#getCalendars <em>Calendars</em>}</li>
+ *   <li>{@link Gtm.FareStructure#getTexts <em>Texts</em>}</li>
+ *   <li>{@link Gtm.FareStructure#getReductionCards <em>Reduction Cards</em>}</li>
  *   <li>{@link Gtm.FareStructure#getFareElements <em>Fare Elements</em>}</li>
  *   <li>{@link Gtm.FareStructure#getCombinationConstraints <em>Combination Constraints</em>}</li>
  *   <li>{@link Gtm.FareStructure#getSalesAvailabilityConstraints <em>Sales Availability Constraints</em>}</li>
  *   <li>{@link Gtm.FareStructure#getTravelValidityConstraints <em>Travel Validity Constraints</em>}</li>
- *   <li>{@link Gtm.FareStructure#getPrices <em>Prices</em>}</li>
  *   <li>{@link Gtm.FareStructure#getRegionalConstraints <em>Regional Constraints</em>}</li>
  *   <li>{@link Gtm.FareStructure#getConnectionPoints <em>Connection Points</em>}</li>
  *   <li>{@link Gtm.FareStructure#getCarrierConstraints <em>Carrier Constraints</em>}</li>
  *   <li>{@link Gtm.FareStructure#getServiceConstraints <em>Service Constraints</em>}</li>
  *   <li>{@link Gtm.FareStructure#getPassengerConstraints <em>Passenger Constraints</em>}</li>
  *   <li>{@link Gtm.FareStructure#getReductionConstraints <em>Reduction Constraints</em>}</li>
- *   <li>{@link Gtm.FareStructure#getAfterSalesRules <em>After Sales Rules</em>}</li>
  *   <li>{@link Gtm.FareStructure#getPersonalDataConstraints <em>Personal Data Constraints</em>}</li>
+ *   <li>{@link Gtm.FareStructure#getAfterSalesRules <em>After Sales Rules</em>}</li>
+ *   <li>{@link Gtm.FareStructure#getPrices <em>Prices</em>}</li>
  *   <li>{@link Gtm.FareStructure#getFulfillmentConstraints <em>Fulfillment Constraints</em>}</li>
- *   <li>{@link Gtm.FareStructure#getReductionCards <em>Reduction Cards</em>}</li>
- *   <li>{@link Gtm.FareStructure#getServiceLevelDefinitions <em>Service Level Definitions</em>}</li>
- *   <li>{@link Gtm.FareStructure#getServiceClassDefinitions <em>Service Class Definitions</em>}</li>
- *   <li>{@link Gtm.FareStructure#getCalendars <em>Calendars</em>}</li>
- *   <li>{@link Gtm.FareStructure#getTexts <em>Texts</em>}</li>
- *   <li>{@link Gtm.FareStructure#getZoneDefinitions <em>Zone Definitions</em>}</li>
  *   <li>{@link Gtm.FareStructure#getReservationParameters <em>Reservation Parameters</em>}</li>
  *   <li>{@link Gtm.FareStructure#getSupportedOnlineServices <em>Supported Online Services</em>}</li>
  *   <li>{@link Gtm.FareStructure#getFareResourceLocations <em>Fare Resource Locations</em>}</li>
@@ -396,6 +397,50 @@ public interface FareStructure extends EObject {
 	void setServiceLevelDefinitions(ServiceLevelDefinitions value);
 
 	/**
+	 * Returns the value of the '<em><b>Station Names</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Station Names</em>' containment reference.
+	 * @see #setStationNames(StationNames)
+	 * @see Gtm.GtmPackage#getFareStructure_StationNames()
+	 * @model containment="true"
+	 * @generated
+	 */
+	StationNames getStationNames();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareStructure#getStationNames <em>Station Names</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Station Names</em>' containment reference.
+	 * @see #getStationNames()
+	 * @generated
+	 */
+	void setStationNames(StationNames value);
+
+	/**
+	 * Returns the value of the '<em><b>Fare Station Set Definitions</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fare Station Set Definitions</em>' containment reference.
+	 * @see #setFareStationSetDefinitions(FareStationSetDefinitions)
+	 * @see Gtm.GtmPackage#getFareStructure_FareStationSetDefinitions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	FareStationSetDefinitions getFareStationSetDefinitions();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareStructure#getFareStationSetDefinitions <em>Fare Station Set Definitions</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fare Station Set Definitions</em>' containment reference.
+	 * @see #getFareStationSetDefinitions()
+	 * @generated
+	 */
+	void setFareStationSetDefinitions(FareStationSetDefinitions value);
+
+	/**
 	 * Returns the value of the '<em><b>Service Class Definitions</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -460,28 +505,6 @@ public interface FareStructure extends EObject {
 	 * @generated
 	 */
 	void setTexts(Texts value);
-
-	/**
-	 * Returns the value of the '<em><b>Zone Definitions</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Zone Definitions</em>' containment reference.
-	 * @see #setZoneDefinitions(ZoneDefinitions)
-	 * @see Gtm.GtmPackage#getFareStructure_ZoneDefinitions()
-	 * @model containment="true"
-	 * @generated
-	 */
-	ZoneDefinitions getZoneDefinitions();
-
-	/**
-	 * Sets the value of the '{@link Gtm.FareStructure#getZoneDefinitions <em>Zone Definitions</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Zone Definitions</em>' containment reference.
-	 * @see #getZoneDefinitions()
-	 * @generated
-	 */
-	void setZoneDefinitions(ZoneDefinitions value);
 
 	/**
 	 * Returns the value of the '<em><b>Reservation Parameters</b></em>' containment reference.

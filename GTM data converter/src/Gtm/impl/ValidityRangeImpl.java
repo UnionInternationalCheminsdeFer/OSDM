@@ -57,7 +57,7 @@ public class ValidityRangeImpl extends MinimalEObjectImpl.Container implements V
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int VALUE_EDEFAULT = 0;
+	protected static final float VALUE_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -67,7 +67,7 @@ public class ValidityRangeImpl extends MinimalEObjectImpl.Container implements V
 	 * @generated
 	 * @ordered
 	 */
-	protected int value = VALUE_EDEFAULT;
+	protected float value = VALUE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getHoursAfterMidnight() <em>Hours After Midnight</em>}' attribute.
@@ -77,7 +77,7 @@ public class ValidityRangeImpl extends MinimalEObjectImpl.Container implements V
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int HOURS_AFTER_MIDNIGHT_EDEFAULT = 0;
+	protected static final float HOURS_AFTER_MIDNIGHT_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getHoursAfterMidnight() <em>Hours After Midnight</em>}' attribute.
@@ -87,7 +87,7 @@ public class ValidityRangeImpl extends MinimalEObjectImpl.Container implements V
 	 * @generated
 	 * @ordered
 	 */
-	protected int hoursAfterMidnight = HOURS_AFTER_MIDNIGHT_EDEFAULT;
+	protected float hoursAfterMidnight = HOURS_AFTER_MIDNIGHT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -134,7 +134,7 @@ public class ValidityRangeImpl extends MinimalEObjectImpl.Container implements V
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getValue() {
+	public float getValue() {
 		return value;
 	}
 
@@ -143,8 +143,8 @@ public class ValidityRangeImpl extends MinimalEObjectImpl.Container implements V
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(int newValue) {
-		int oldValue = value;
+	public void setValue(float newValue) {
+		float oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.VALIDITY_RANGE__VALUE, oldValue, value));
@@ -155,7 +155,7 @@ public class ValidityRangeImpl extends MinimalEObjectImpl.Container implements V
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getHoursAfterMidnight() {
+	public float getHoursAfterMidnight() {
 		return hoursAfterMidnight;
 	}
 
@@ -164,8 +164,8 @@ public class ValidityRangeImpl extends MinimalEObjectImpl.Container implements V
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHoursAfterMidnight(int newHoursAfterMidnight) {
-		int oldHoursAfterMidnight = hoursAfterMidnight;
+	public void setHoursAfterMidnight(float newHoursAfterMidnight) {
+		float oldHoursAfterMidnight = hoursAfterMidnight;
 		hoursAfterMidnight = newHoursAfterMidnight;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.VALIDITY_RANGE__HOURS_AFTER_MIDNIGHT, oldHoursAfterMidnight, hoursAfterMidnight));
@@ -201,10 +201,10 @@ public class ValidityRangeImpl extends MinimalEObjectImpl.Container implements V
 				setUnit((TimeUnit)newValue);
 				return;
 			case GtmPackage.VALIDITY_RANGE__VALUE:
-				setValue((Integer)newValue);
+				setValue((Float)newValue);
 				return;
 			case GtmPackage.VALIDITY_RANGE__HOURS_AFTER_MIDNIGHT:
-				setHoursAfterMidnight((Integer)newValue);
+				setHoursAfterMidnight((Float)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

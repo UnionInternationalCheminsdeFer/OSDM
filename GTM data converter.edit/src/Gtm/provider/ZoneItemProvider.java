@@ -62,12 +62,12 @@ public class ZoneItemProvider
 			super.getPropertyDescriptors(object);
 
 			addBinaryZoneIdPropertyDescriptor(object);
+			addZoneIdPropertyDescriptor(object);
+			addCityPropertyDescriptor(object);
 			addCarrierPropertyDescriptor(object);
 			addEntryStationPropertyDescriptor(object);
 			addTerminalStationPropertyDescriptor(object);
 			addNutsCodePropertyDescriptor(object);
-			addCityPropertyDescriptor(object);
-			addZoneDefinitionsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,6 +86,28 @@ public class ZoneItemProvider
 				 getString("_UI_Zone_binaryZoneId_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Zone_binaryZoneId_feature", "_UI_Zone_type"),
 				 GtmPackage.Literals.ZONE__BINARY_ZONE_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Zone Id feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addZoneIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Zone_zoneId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Zone_zoneId_feature", "_UI_Zone_type"),
+				 GtmPackage.Literals.ZONE__ZONE_ID,
 				 true,
 				 false,
 				 false,
@@ -205,28 +227,6 @@ public class ZoneItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Zone Definitions feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addZoneDefinitionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Zone_zoneDefinitions_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Zone_zoneDefinitions_feature", "_UI_Zone_type"),
-				 GtmPackage.Literals.ZONE__ZONE_DEFINITIONS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns Zone.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -266,6 +266,7 @@ public class ZoneItemProvider
 
 		switch (notification.getFeatureID(Zone.class)) {
 			case GtmPackage.ZONE__BINARY_ZONE_ID:
+			case GtmPackage.ZONE__ZONE_ID:
 			case GtmPackage.ZONE__CITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

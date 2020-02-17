@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.Legacy108StationImpl#getBorderPointCode <em>Border Point Code</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108StationImpl#getNameUTF8 <em>Name UTF8</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108StationImpl#getStationCode <em>Station Code</em>}</li>
+ *   <li>{@link Gtm.impl.Legacy108StationImpl#getFareReferenceStationCode <em>Fare Reference Station Code</em>}</li>
  * </ul>
  *
  * @generated
@@ -106,6 +107,26 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected int stationCode = STATION_CODE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFareReferenceStationCode() <em>Fare Reference Station Code</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFareReferenceStationCode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int FARE_REFERENCE_STATION_CODE_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getFareReferenceStationCode() <em>Fare Reference Station Code</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFareReferenceStationCode()
+	 * @generated
+	 * @ordered
+	 */
+	protected int fareReferenceStationCode = FARE_REFERENCE_STATION_CODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -215,6 +236,27 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getFareReferenceStationCode() {
+		return fareReferenceStationCode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFareReferenceStationCode(int newFareReferenceStationCode) {
+		int oldFareReferenceStationCode = fareReferenceStationCode;
+		fareReferenceStationCode = newFareReferenceStationCode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108_STATION__FARE_REFERENCE_STATION_CODE, oldFareReferenceStationCode, fareReferenceStationCode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -226,6 +268,8 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 				return getNameUTF8();
 			case GtmPackage.LEGACY108_STATION__STATION_CODE:
 				return getStationCode();
+			case GtmPackage.LEGACY108_STATION__FARE_REFERENCE_STATION_CODE:
+				return getFareReferenceStationCode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -249,6 +293,9 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case GtmPackage.LEGACY108_STATION__STATION_CODE:
 				setStationCode((Integer)newValue);
+				return;
+			case GtmPackage.LEGACY108_STATION__FARE_REFERENCE_STATION_CODE:
+				setFareReferenceStationCode((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -274,6 +321,9 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.LEGACY108_STATION__STATION_CODE:
 				setStationCode(STATION_CODE_EDEFAULT);
 				return;
+			case GtmPackage.LEGACY108_STATION__FARE_REFERENCE_STATION_CODE:
+				setFareReferenceStationCode(FARE_REFERENCE_STATION_CODE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -294,6 +344,8 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 				return NAME_UTF8_EDEFAULT == null ? nameUTF8 != null : !NAME_UTF8_EDEFAULT.equals(nameUTF8);
 			case GtmPackage.LEGACY108_STATION__STATION_CODE:
 				return stationCode != STATION_CODE_EDEFAULT;
+			case GtmPackage.LEGACY108_STATION__FARE_REFERENCE_STATION_CODE:
+				return fareReferenceStationCode != FARE_REFERENCE_STATION_CODE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -316,6 +368,8 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 		result.append(nameUTF8);
 		result.append(", stationCode: ");
 		result.append(stationCode);
+		result.append(", fareReferenceStationCode: ");
+		result.append(fareReferenceStationCode);
 		result.append(')');
 		return result.toString();
 	}

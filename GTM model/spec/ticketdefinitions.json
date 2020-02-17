@@ -1764,12 +1764,32 @@
 						"$ref": "ticketdefinitions.json#/definitions/ViaStationsDef"
 					}
 				},
-				"Station": {
-					"$ref": "definitions.json#/definitions/StationDef"
-				},
 				"serviceBrand": {
 					"description": "restriction  to a specific service brand",
 					"type": "string"
+				},
+				"Station": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"fareReferenceStationSet": {
+					"description": "reference to a list of stations included in the fare",
+					"type": "object",
+					"properties": {
+						"carrier": {
+							"$ref": "definitions.json#/definitions/CompanyDef"
+						},
+						"code": {
+							"type": "string"
+						},
+						"name": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"carrier",
+						"code"
+					],
+					"additionalProperties": false
 				}
 			},
 			"required": [
@@ -1821,13 +1841,6 @@
 				"nutsCode": {
 					"description": "Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011",
 					"type": "string"
-				},
-				"ZoneDefinitionIds": {
-					"description": "reference to zoe definitions in the afre data",
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
 				}
 			},
 			"required": [

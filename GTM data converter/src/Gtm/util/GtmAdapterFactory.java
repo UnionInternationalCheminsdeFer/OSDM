@@ -132,6 +132,10 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createCarriersAdapter();
 			}
 			@Override
+			public Adapter caseStationSet(StationSet object) {
+				return createStationSetAdapter();
+			}
+			@Override
 			public Adapter caseGeneralTariffModel(GeneralTariffModel object) {
 				return createGeneralTariffModelAdapter();
 			}
@@ -168,10 +172,6 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createConnectionPointAdapter();
 			}
 			@Override
-			public Adapter caseStationSet(StationSet object) {
-				return createStationSetAdapter();
-			}
-			@Override
 			public Adapter caseFareResourceLocations(FareResourceLocations object) {
 				return createFareResourceLocationsAdapter();
 			}
@@ -204,16 +204,36 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createFulfillmentConstraintsAdapter();
 			}
 			@Override
+			public Adapter caseFulfillmentConstraint(FulfillmentConstraint object) {
+				return createFulfillmentConstraintAdapter();
+			}
+			@Override
+			public Adapter caseRequiredBarcodes(RequiredBarcodes object) {
+				return createRequiredBarcodesAdapter();
+			}
+			@Override
+			public Adapter caseAcceptedBarcodes(AcceptedBarcodes object) {
+				return createAcceptedBarcodesAdapter();
+			}
+			@Override
 			public Adapter caseSupportedOnlineServices(SupportedOnlineServices object) {
 				return createSupportedOnlineServicesAdapter();
 			}
 			@Override
-			public Adapter caseZoneDefinitions(ZoneDefinitions object) {
-				return createZoneDefinitionsAdapter();
+			public Adapter caseStationNames(StationNames object) {
+				return createStationNamesAdapter();
 			}
 			@Override
 			public Adapter caseFareElement(FareElement object) {
 				return createFareElementAdapter();
+			}
+			@Override
+			public Adapter caseFareStationSetDefinitions(FareStationSetDefinitions object) {
+				return createFareStationSetDefinitionsAdapter();
+			}
+			@Override
+			public Adapter caseFareStationSetDefinition(FareStationSetDefinition object) {
+				return createFareStationSetDefinitionAdapter();
 			}
 			@Override
 			public Adapter caseLegacyAccountingIdentifier(LegacyAccountingIdentifier object) {
@@ -252,12 +272,12 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createPassengerConstraintAdapter();
 			}
 			@Override
-			public Adapter caseIncludedFreePassengers(IncludedFreePassengers object) {
-				return createIncludedFreePassengersAdapter();
-			}
-			@Override
 			public Adapter casePassengerCombinationConstraint(PassengerCombinationConstraint object) {
 				return createPassengerCombinationConstraintAdapter();
+			}
+			@Override
+			public Adapter caseIncludedFreePassengerLimit(IncludedFreePassengerLimit object) {
+				return createIncludedFreePassengerLimitAdapter();
 			}
 			@Override
 			public Adapter caseCombinationConstraints(CombinationConstraints object) {
@@ -440,10 +460,6 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createZoneAdapter();
 			}
 			@Override
-			public Adapter caseZoneDefinition(ZoneDefinition object) {
-				return createZoneDefinitionAdapter();
-			}
-			@Override
 			public Adapter caseLine(Line object) {
 				return createLineAdapter();
 			}
@@ -466,18 +482,6 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseFareCombinationModel(FareCombinationModel object) {
 				return createFareCombinationModelAdapter();
-			}
-			@Override
-			public Adapter caseFulfillmentConstraint(FulfillmentConstraint object) {
-				return createFulfillmentConstraintAdapter();
-			}
-			@Override
-			public Adapter caseRequiredBarcodes(RequiredBarcodes object) {
-				return createRequiredBarcodesAdapter();
-			}
-			@Override
-			public Adapter caseAcceptedBarcodes(AcceptedBarcodes object) {
-				return createAcceptedBarcodesAdapter();
 			}
 			@Override
 			public Adapter caseReductionConstraint(ReductionConstraint object) {
@@ -532,12 +536,12 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createLegacyDescriptionAdapter();
 			}
 			@Override
-			public Adapter caseLegacyZoneMappings(LegacyZoneMappings object) {
-				return createLegacyZoneMappingsAdapter();
+			public Adapter caseLegacyFareStationSetMappings(LegacyFareStationSetMappings object) {
+				return createLegacyFareStationSetMappingsAdapter();
 			}
 			@Override
-			public Adapter caseLegacyZoneMap(LegacyZoneMap object) {
-				return createLegacyZoneMapAdapter();
+			public Adapter caseLegacyFareStationSetMap(LegacyFareStationSetMap object) {
+				return createLegacyFareStationSetMapAdapter();
 			}
 			@Override
 			public Adapter caseLegacyFares(LegacyFares object) {
@@ -892,16 +896,16 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.ZoneDefinitions <em>Zone Definitions</em>}'.
+	 * Creates a new adapter for an object of class '{@link Gtm.StationNames <em>Station Names</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Gtm.ZoneDefinitions
+	 * @see Gtm.StationNames
 	 * @generated
 	 */
-	public Adapter createZoneDefinitionsAdapter() {
+	public Adapter createStationNamesAdapter() {
 		return null;
 	}
 
@@ -1242,30 +1246,30 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.LegacyZoneMappings <em>Legacy Zone Mappings</em>}'.
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyFareStationSetMappings <em>Legacy Fare Station Set Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Gtm.LegacyZoneMappings
+	 * @see Gtm.LegacyFareStationSetMappings
 	 * @generated
 	 */
-	public Adapter createLegacyZoneMappingsAdapter() {
+	public Adapter createLegacyFareStationSetMappingsAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.LegacyZoneMap <em>Legacy Zone Map</em>}'.
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyFareStationSetMap <em>Legacy Fare Station Set Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Gtm.LegacyZoneMap
+	 * @see Gtm.LegacyFareStationSetMap
 	 * @generated
 	 */
-	public Adapter createLegacyZoneMapAdapter() {
+	public Adapter createLegacyFareStationSetMapAdapter() {
 		return null;
 	}
 
@@ -1816,6 +1820,34 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.FareStationSetDefinitions <em>Fare Station Set Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.FareStationSetDefinitions
+	 * @generated
+	 */
+	public Adapter createFareStationSetDefinitionsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.FareStationSetDefinition <em>Fare Station Set Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.FareStationSetDefinition
+	 * @generated
+	 */
+	public Adapter createFareStationSetDefinitionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link Gtm.LegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -2194,16 +2226,16 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.IncludedFreePassengers <em>Included Free Passengers</em>}'.
+	 * Creates a new adapter for an object of class '{@link Gtm.IncludedFreePassengerLimit <em>Included Free Passenger Limit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Gtm.IncludedFreePassengers
+	 * @see Gtm.IncludedFreePassengerLimit
 	 * @generated
 	 */
-	public Adapter createIncludedFreePassengersAdapter() {
+	public Adapter createIncludedFreePassengerLimitAdapter() {
 		return null;
 	}
 
@@ -2232,20 +2264,6 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRelativeTimeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.ZoneDefinition <em>Zone Definition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see Gtm.ZoneDefinition
-	 * @generated
-	 */
-	public Adapter createZoneDefinitionAdapter() {
 		return null;
 	}
 

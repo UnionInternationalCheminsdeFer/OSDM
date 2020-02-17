@@ -27,12 +27,12 @@ public interface AllowedPersonalDataChanges extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Time Limit</em>' attribute.
-	 * @see #setTimeLimit(int)
+	 * @see #setTimeLimit(float)
 	 * @see Gtm.GtmPackage#getAllowedPersonalDataChanges_TimeLimit()
 	 * @model
 	 * @generated
 	 */
-	int getTimeLimit();
+	float getTimeLimit();
 
 	/**
 	 * Sets the value of the '{@link Gtm.AllowedPersonalDataChanges#getTimeLimit <em>Time Limit</em>}' attribute.
@@ -42,7 +42,7 @@ public interface AllowedPersonalDataChanges extends EObject {
 	 * @see #getTimeLimit()
 	 * @generated
 	 */
-	void setTimeLimit(int value);
+	void setTimeLimit(float value);
 
 	/**
 	 * Returns the value of the '<em><b>Accepted Reason</b></em>' attribute.

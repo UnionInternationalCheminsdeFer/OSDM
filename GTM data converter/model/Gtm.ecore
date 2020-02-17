@@ -113,6 +113,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="carriers" upperBound="-1"
         eType="#//Carrier" containment="true" resolveProxies="false"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StationSet">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stations" upperBound="-1"
+        eType="#//Station"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GeneralTariffModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="delivery" lowerBound="1"
         eType="#//Delivery" containment="true" resolveProxies="false"/>
@@ -152,6 +156,20 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ApplicationTime" eSuperTypes="#//RelativeTime"/>
   <eClassifiers xsi:type="ecore:EClass" name="FareStructure">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceClassDefinitions"
+        eType="#//ServiceClassDefinitions" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceLevelDefinitions"
+        eType="#//ServiceLevelDefinitions" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stationNames" eType="#//StationNames"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fareStationSetDefinitions"
+        eType="#//FareStationSetDefinitions" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="calendars" eType="#//Calendars"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="texts" eType="#//Texts"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reductionCards" eType="#//ReductionCards"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fareElements" eType="#//FareElements"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="combinationConstraints"
@@ -160,8 +178,6 @@
         eType="#//SalesAvailabilityConstraints" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="travelValidityConstraints"
         eType="#//TravelValidityConstraints" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="prices" eType="#//Prices"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="regionalConstraints" eType="#//RegionalConstraints"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectionPoints" eType="#//ConnectionPoints"
@@ -174,24 +190,14 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="reductionConstraints" eType="#//ReductionConstraints"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="afterSalesRules" eType="#//AfterSalesRules"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="personalDataConstraints"
         eType="#//PersonalDataConstraints" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="afterSalesRules" eType="#//AfterSalesRules"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prices" eType="#//Prices"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fulfillmentConstraints"
         eType="#//FulfillmentConstraints" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="reductionCards" eType="#//ReductionCards"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceLevelDefinitions"
-        eType="#//ServiceLevelDefinitions" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceClassDefinitions"
-        eType="#//ServiceClassDefinitions" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="calendars" eType="#//Calendars"
-        containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="texts" eType="#//Texts"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="zoneDefinitions" eType="#//ZoneDefinitions"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="reservationParameters"
         eType="#//ReservationParameters" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supportedOnlineServices"
@@ -215,10 +221,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectedStationSets" upperBound="-1"
         eType="#//StationSet" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//DataSource"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StationSet">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stations" upperBound="-1"
-        eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nameUtf8" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FareResourceLocations">
     <eStructuralFeatures xsi:type="ecore:EReference" name="trainResourceLocations"
@@ -265,13 +268,33 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="fulfillmentConstraints"
         upperBound="-1" eType="#//FulfillmentConstraint" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FulfillmentConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="acceptedFulfilmentTypes"
+        upperBound="-1" eType="#//FulfillmentType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredControlDataExchange"
+        upperBound="-1" eType="#//ControlDataExchangeTypes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="individualTicketingPermitted"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="acceptedBarcodes" eType="#//AcceptedBarcodes"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requiredBarcodes" eType="#//RequiredBarcodes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RequiredBarcodes">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredBarcodes" upperBound="-1"
+        eType="#//BarcodeTypes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AcceptedBarcodes">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="acceptedBarcodes" upperBound="-1"
+        eType="#//BarcodeTypes"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SupportedOnlineServices">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="supportedOnlineServices"
         upperBound="-1" eType="#//OnlineServiceType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ZoneDefinitions">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="zoneDefinitions" upperBound="-1"
-        eType="#//ZoneDefinition" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StationNames">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stationName" upperBound="-1"
+        eType="#//Station"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FareElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -301,6 +324,25 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="passengerConstraint" eType="#//PassengerConstraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="afterSalesRule" eType="#//AfterSalesRule"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//DataSource"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FareStationSetDefinitions">
+    <eOperations name="findFareSet" eType="#//FareStationSetDefinition">
+      <eParameters name="carrier" eType="#//Carrier"/>
+      <eParameters name="legacyCode" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fareStationSetDefinitions"
+        upperBound="-1" eType="#//FareStationSetDefinition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FareStationSetDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//DataSource"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" eType="#//Carrier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="legacyCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nameUtf8" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stations" upperBound="-1"
+        eType="#//Station"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyAccountingIdentifier">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="seriesId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -338,7 +380,7 @@
         eType="#//CrossBorderCondition" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AllowedPersonalDataChanges">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeLimit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeLimit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="acceptedReason" eType="#//PersonalDataChangeReason"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PassengerConstraints">
@@ -361,16 +403,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minTotalPassengerWeight"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="includedFreePassengers"
-        eType="#//IncludedFreePassengers" containment="true"/>
+        upperBound="-1" eType="#//IncludedFreePassengerLimit" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="excludedPassengerCombinations"
-        upperBound="-1" eType="#//PassengerCombinationConstraint" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IncludedFreePassengers">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="includedFreePassengers"
         upperBound="-1" eType="#//PassengerCombinationConstraint" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PassengerCombinationConstraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="passengerType" eType="#//TravelerType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IncludedFreePassengerLimit">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="passengerType" eType="#//TravelerType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CombinationConstraints">
@@ -606,8 +648,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExcludedTimeRange" eSuperTypes="#//TimeRange"/>
   <eClassifiers xsi:type="ecore:EClass" name="ValidityRange">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="#//TimeUnit"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hoursAfterMidnight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hoursAfterMidnight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RelativeTime">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="#//TimeUnit"/>
@@ -629,6 +671,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="alternativeRoutes" upperBound="-1"
         eType="#//AlternativeRoute" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fareStationSet" eType="#//FareStationSetDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AlternativeRoute">
     <eStructuralFeatures xsi:type="ecore:EReference" name="stations" upperBound="-1"
@@ -640,20 +683,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Zone">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="binaryZoneId" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Base64Binary"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="zoneId" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="city" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" eType="#//Carrier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entryStation" eType="#//Station"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="terminalStation" eType="#//Station"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nutsCode" eType="#//NutsCode"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="city" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="zoneDefinitions" upperBound="-1"
-        eType="#//ZoneDefinition"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ZoneDefinition">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="zoneId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stations" upperBound="-1"
-        eType="#//Station"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Line">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="binaryZoneId" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Base64Binary"/>
@@ -704,26 +740,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="allowedCommonContracts"
         upperBound="-1" eType="#//Carrier"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FulfillmentConstraint">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="acceptedFulfilmentTypes"
-        upperBound="-1" eType="#//FulfillmentType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredControlDataExchange"
-        upperBound="-1" eType="#//ControlDataExchangeTypes"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="individualTicketingPermitted"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="acceptedBarcodes" eType="#//AcceptedBarcodes"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="requiredBarcodes" eType="#//RequiredBarcodes"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RequiredBarcodes">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredBarcodes" upperBound="-1"
-        eType="#//BarcodeTypes"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AcceptedBarcodes">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="acceptedBarcodes" upperBound="-1"
-        eType="#//BarcodeTypes"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReductionConstraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requiredReductionCards"
@@ -750,8 +766,8 @@
         eType="#//LegacyStationMappings" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacyTargetFares" eType="#//LegacyTargetFares"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="legacyZoneMappings" eType="#//LegacyZoneMappings"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="legacyFareStationMappings"
+        eType="#//LegacyFareStationSetMappings" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacyStationToServiceBrandMappings"
         eType="#//LegacyStationToServiceConstraintMappings" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="endOfSale" eType="#//EndOfSale"
@@ -836,13 +852,13 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LegacyZoneMappings">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="legacyZoneMap" upperBound="-1"
-        eType="#//LegacyZoneMap" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacyFareStationSetMappings">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="legacyFareStationSetMap"
+        upperBound="-1" eType="#//LegacyFareStationSetMap" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LegacyZoneMap">
+  <eClassifiers xsi:type="ecore:EClass" name="LegacyFareStationSetMap">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="legacyCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="zone" eType="#//Zone"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stationSet" eType="#//FareStationSetDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyFares">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fares" lowerBound="1" upperBound="-1"
@@ -882,6 +898,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderPointCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nameUTF8" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stationCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fareReferenceStationCode"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyRouteFares">
     <eStructuralFeatures xsi:type="ecore:EReference" name="routeFare" lowerBound="1"

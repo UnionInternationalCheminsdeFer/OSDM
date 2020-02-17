@@ -41,11 +41,11 @@ public class ServiceLevelDef {
     @JsonPropertyDescription("id of the text describing the service level")
     private String textRef;
     /**
-     * text
+     * directly included text in case of online services
      * 
      */
     @JsonProperty("text")
-    @JsonPropertyDescription("text")
+    @JsonPropertyDescription("directly included text in case of online services")
     private TextDef text;
     /**
      * indicates that the class name is included
@@ -114,7 +114,7 @@ public class ServiceLevelDef {
     }
 
     /**
-     * text
+     * directly included text in case of online services
      * 
      */
     @JsonProperty("text")
@@ -123,7 +123,7 @@ public class ServiceLevelDef {
     }
 
     /**
-     * text
+     * directly included text in case of online services
      * 
      */
     @JsonProperty("text")

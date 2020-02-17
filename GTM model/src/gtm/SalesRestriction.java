@@ -8,44 +8,23 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "salesDates",
     "startOfSale",
-    "endOfSale"
+    "endOfSale",
+    "salesDatesRef"
 })
 public class SalesRestriction {
 
-    /**
-     * valid on all days in case no calendar is provided
-     * (Required)
-     * 
-     */
-    @JsonProperty("salesDates")
-    @JsonPropertyDescription("valid on all days in case no calendar is provided")
-    private CalendarDef salesDates;
     @JsonProperty("startOfSale")
     private RelativeTimeDef startOfSale;
     @JsonProperty("endOfSale")
     private RelativeTimeDef endOfSale;
-
     /**
-     * valid on all days in case no calendar is provided
-     * (Required)
+     * reference to the calendar woith valid sales dates
      * 
      */
-    @JsonProperty("salesDates")
-    public CalendarDef getSalesDates() {
-        return salesDates;
-    }
-
-    /**
-     * valid on all days in case no calendar is provided
-     * (Required)
-     * 
-     */
-    @JsonProperty("salesDates")
-    public void setSalesDates(CalendarDef salesDates) {
-        this.salesDates = salesDates;
-    }
+    @JsonProperty("salesDatesRef")
+    @JsonPropertyDescription("reference to the calendar woith valid sales dates")
+    private String salesDatesRef;
 
     @JsonProperty("startOfSale")
     public RelativeTimeDef getStartOfSale() {
@@ -67,14 +46,28 @@ public class SalesRestriction {
         this.endOfSale = endOfSale;
     }
 
+    /**
+     * reference to the calendar woith valid sales dates
+     * 
+     */
+    @JsonProperty("salesDatesRef")
+    public String getSalesDatesRef() {
+        return salesDatesRef;
+    }
+
+    /**
+     * reference to the calendar woith valid sales dates
+     * 
+     */
+    @JsonProperty("salesDatesRef")
+    public void setSalesDatesRef(String salesDatesRef) {
+        this.salesDatesRef = salesDatesRef;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(SalesRestriction.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("salesDates");
-        sb.append('=');
-        sb.append(((this.salesDates == null)?"<null>":this.salesDates));
-        sb.append(',');
         sb.append("startOfSale");
         sb.append('=');
         sb.append(((this.startOfSale == null)?"<null>":this.startOfSale));
@@ -82,6 +75,10 @@ public class SalesRestriction {
         sb.append("endOfSale");
         sb.append('=');
         sb.append(((this.endOfSale == null)?"<null>":this.endOfSale));
+        sb.append(',');
+        sb.append("salesDatesRef");
+        sb.append('=');
+        sb.append(((this.salesDatesRef == null)?"<null>":this.salesDatesRef));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -94,8 +91,8 @@ public class SalesRestriction {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.salesDates == null)? 0 :this.salesDates.hashCode()));
         result = ((result* 31)+((this.endOfSale == null)? 0 :this.endOfSale.hashCode()));
+        result = ((result* 31)+((this.salesDatesRef == null)? 0 :this.salesDatesRef.hashCode()));
         result = ((result* 31)+((this.startOfSale == null)? 0 :this.startOfSale.hashCode()));
         return result;
     }
@@ -109,7 +106,7 @@ public class SalesRestriction {
             return false;
         }
         SalesRestriction rhs = ((SalesRestriction) other);
-        return ((((this.salesDates == rhs.salesDates)||((this.salesDates!= null)&&this.salesDates.equals(rhs.salesDates)))&&((this.endOfSale == rhs.endOfSale)||((this.endOfSale!= null)&&this.endOfSale.equals(rhs.endOfSale))))&&((this.startOfSale == rhs.startOfSale)||((this.startOfSale!= null)&&this.startOfSale.equals(rhs.startOfSale))));
+        return ((((this.endOfSale == rhs.endOfSale)||((this.endOfSale!= null)&&this.endOfSale.equals(rhs.endOfSale)))&&((this.salesDatesRef == rhs.salesDatesRef)||((this.salesDatesRef!= null)&&this.salesDatesRef.equals(rhs.salesDatesRef))))&&((this.startOfSale == rhs.startOfSale)||((this.startOfSale!= null)&&this.startOfSale.equals(rhs.startOfSale))));
     }
 
 }

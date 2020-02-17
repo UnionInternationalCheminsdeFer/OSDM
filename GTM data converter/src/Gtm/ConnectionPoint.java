@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.ConnectionPoint#getDescription <em>Description</em>}</li>
  *   <li>{@link Gtm.ConnectionPoint#getConnectedStationSets <em>Connected Station Sets</em>}</li>
  *   <li>{@link Gtm.ConnectionPoint#getDataSource <em>Data Source</em>}</li>
+ *   <li>{@link Gtm.ConnectionPoint#getNameUtf8 <em>Name Utf8</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getConnectionPoint()
@@ -152,5 +153,27 @@ public interface ConnectionPoint extends EObject {
 	 * @generated
 	 */
 	void setDataSource(DataSource value);
+
+	/**
+	 * Returns the value of the '<em><b>Name Utf8</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name Utf8</em>' attribute.
+	 * @see #setNameUtf8(String)
+	 * @see Gtm.GtmPackage#getConnectionPoint_NameUtf8()
+	 * @model
+	 * @generated
+	 */
+	String getNameUtf8();
+
+	/**
+	 * Sets the value of the '{@link Gtm.ConnectionPoint#getNameUtf8 <em>Name Utf8</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name Utf8</em>' attribute.
+	 * @see #getNameUtf8()
+	 * @generated
+	 */
+	void setNameUtf8(String value);
 
 } // ConnectionPoint

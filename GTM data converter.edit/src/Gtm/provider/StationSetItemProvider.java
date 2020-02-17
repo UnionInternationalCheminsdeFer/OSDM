@@ -118,6 +118,7 @@ public class StationSetItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+		super.notifyChanged(notification);
 	}
 
 	/**

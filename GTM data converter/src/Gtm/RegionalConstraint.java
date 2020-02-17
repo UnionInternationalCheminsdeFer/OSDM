@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.RegionalConstraint#getExitConnectionPoint <em>Exit Connection Point</em>}</li>
  *   <li>{@link Gtm.RegionalConstraint#getRegionalValidity <em>Regional Validity</em>}</li>
  *   <li>{@link Gtm.RegionalConstraint#getDataSource <em>Data Source</em>}</li>
+ *   <li>{@link Gtm.RegionalConstraint#getDataDescription <em>Data Description</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getRegionalConstraint()
@@ -152,5 +153,27 @@ public interface RegionalConstraint extends EObject {
 	 * @generated
 	 */
 	void setDataSource(DataSource value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Description</em>' attribute.
+	 * @see #setDataDescription(String)
+	 * @see Gtm.GtmPackage#getRegionalConstraint_DataDescription()
+	 * @model
+	 * @generated
+	 */
+	String getDataDescription();
+
+	/**
+	 * Sets the value of the '{@link Gtm.RegionalConstraint#getDataDescription <em>Data Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Description</em>' attribute.
+	 * @see #getDataDescription()
+	 * @generated
+	 */
+	void setDataDescription(String value);
 
 } // RegionalConstraint

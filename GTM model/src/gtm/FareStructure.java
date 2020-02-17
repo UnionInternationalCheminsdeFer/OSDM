@@ -27,12 +27,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "salesAvailabilityConstraint",
     "travelValidityConstraints",
     "fullfillmentConstraints",
+    "fareReferenceStationSetDefinitions",
     "reductionConstraints",
-    "zoneDefinitions",
     "reductionCards",
     "personalDataConstraints",
     "reservationParameters",
-    "connectionPoints"
+    "connectionPoints",
+    "StationNames",
+    "stations"
 })
 public class FareStructure {
 
@@ -111,10 +113,10 @@ public class FareStructure {
     private List<TravelValidityConstraintDef> travelValidityConstraints = new ArrayList<TravelValidityConstraintDef>();
     @JsonProperty("fullfillmentConstraints")
     private List<FullfillmentConstraintDef> fullfillmentConstraints = new ArrayList<FullfillmentConstraintDef>();
+    @JsonProperty("fareReferenceStationSetDefinitions")
+    private List<FareReferenceStationSetDef> fareReferenceStationSetDefinitions = new ArrayList<FareReferenceStationSetDef>();
     @JsonProperty("reductionConstraints")
     private List<ReductionConstraintDef> reductionConstraints = new ArrayList<ReductionConstraintDef>();
-    @JsonProperty("zoneDefinitions")
-    private List<ZoneDefinitionDef> zoneDefinitions = new ArrayList<ZoneDefinitionDef>();
     @JsonProperty("reductionCards")
     private List<ReductionCardDef> reductionCards = new ArrayList<ReductionCardDef>();
     @JsonProperty("personalDataConstraints")
@@ -123,6 +125,15 @@ public class FareStructure {
     private List<ReservationParameterDef> reservationParameters = new ArrayList<ReservationParameterDef>();
     @JsonProperty("connectionPoints")
     private List<ConnectionPointDef> connectionPoints = new ArrayList<ConnectionPointDef>();
+    @JsonProperty("StationNames")
+    private List<StationNamesDef> stationNames = new ArrayList<StationNamesDef>();
+    /**
+     * temporary option to include station details as long as MERITS can not provide them. Station codes must be those of merits
+     * 
+     */
+    @JsonProperty("stations")
+    @JsonPropertyDescription("temporary option to include station details as long as MERITS can not provide them. Station codes must be those of merits")
+    private List<StationDetailsDef> stations = new ArrayList<StationDetailsDef>();
 
     /**
      * 
@@ -372,6 +383,16 @@ public class FareStructure {
         this.fullfillmentConstraints = fullfillmentConstraints;
     }
 
+    @JsonProperty("fareReferenceStationSetDefinitions")
+    public List<FareReferenceStationSetDef> getFareReferenceStationSetDefinitions() {
+        return fareReferenceStationSetDefinitions;
+    }
+
+    @JsonProperty("fareReferenceStationSetDefinitions")
+    public void setFareReferenceStationSetDefinitions(List<FareReferenceStationSetDef> fareReferenceStationSetDefinitions) {
+        this.fareReferenceStationSetDefinitions = fareReferenceStationSetDefinitions;
+    }
+
     @JsonProperty("reductionConstraints")
     public List<ReductionConstraintDef> getReductionConstraints() {
         return reductionConstraints;
@@ -380,16 +401,6 @@ public class FareStructure {
     @JsonProperty("reductionConstraints")
     public void setReductionConstraints(List<ReductionConstraintDef> reductionConstraints) {
         this.reductionConstraints = reductionConstraints;
-    }
-
-    @JsonProperty("zoneDefinitions")
-    public List<ZoneDefinitionDef> getZoneDefinitions() {
-        return zoneDefinitions;
-    }
-
-    @JsonProperty("zoneDefinitions")
-    public void setZoneDefinitions(List<ZoneDefinitionDef> zoneDefinitions) {
-        this.zoneDefinitions = zoneDefinitions;
     }
 
     @JsonProperty("reductionCards")
@@ -430,6 +441,34 @@ public class FareStructure {
     @JsonProperty("connectionPoints")
     public void setConnectionPoints(List<ConnectionPointDef> connectionPoints) {
         this.connectionPoints = connectionPoints;
+    }
+
+    @JsonProperty("StationNames")
+    public List<StationNamesDef> getStationNames() {
+        return stationNames;
+    }
+
+    @JsonProperty("StationNames")
+    public void setStationNames(List<StationNamesDef> stationNames) {
+        this.stationNames = stationNames;
+    }
+
+    /**
+     * temporary option to include station details as long as MERITS can not provide them. Station codes must be those of merits
+     * 
+     */
+    @JsonProperty("stations")
+    public List<StationDetailsDef> getStations() {
+        return stations;
+    }
+
+    /**
+     * temporary option to include station details as long as MERITS can not provide them. Station codes must be those of merits
+     * 
+     */
+    @JsonProperty("stations")
+    public void setStations(List<StationDetailsDef> stations) {
+        this.stations = stations;
     }
 
     @Override
@@ -504,13 +543,13 @@ public class FareStructure {
         sb.append('=');
         sb.append(((this.fullfillmentConstraints == null)?"<null>":this.fullfillmentConstraints));
         sb.append(',');
+        sb.append("fareReferenceStationSetDefinitions");
+        sb.append('=');
+        sb.append(((this.fareReferenceStationSetDefinitions == null)?"<null>":this.fareReferenceStationSetDefinitions));
+        sb.append(',');
         sb.append("reductionConstraints");
         sb.append('=');
         sb.append(((this.reductionConstraints == null)?"<null>":this.reductionConstraints));
-        sb.append(',');
-        sb.append("zoneDefinitions");
-        sb.append('=');
-        sb.append(((this.zoneDefinitions == null)?"<null>":this.zoneDefinitions));
         sb.append(',');
         sb.append("reductionCards");
         sb.append('=');
@@ -528,6 +567,14 @@ public class FareStructure {
         sb.append('=');
         sb.append(((this.connectionPoints == null)?"<null>":this.connectionPoints));
         sb.append(',');
+        sb.append("stationNames");
+        sb.append('=');
+        sb.append(((this.stationNames == null)?"<null>":this.stationNames));
+        sb.append(',');
+        sb.append("stations");
+        sb.append('=');
+        sb.append(((this.stations == null)?"<null>":this.stations));
+        sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {
@@ -540,28 +587,30 @@ public class FareStructure {
     public int hashCode() {
         int result = 1;
         result = ((result* 31)+((this.serviceConstraints == null)? 0 :this.serviceConstraints.hashCode()));
-        result = ((result* 31)+((this.serviceLevelDefinitions == null)? 0 :this.serviceLevelDefinitions.hashCode()));
         result = ((result* 31)+((this.carrierConstraints == null)? 0 :this.carrierConstraints.hashCode()));
-        result = ((result* 31)+((this.travelValidityConstraints == null)? 0 :this.travelValidityConstraints.hashCode()));
         result = ((result* 31)+((this.connectionPoints == null)? 0 :this.connectionPoints.hashCode()));
-        result = ((result* 31)+((this.fareResourceLocation == null)? 0 :this.fareResourceLocation.hashCode()));
         result = ((result* 31)+((this.passengerConstraints == null)? 0 :this.passengerConstraints.hashCode()));
         result = ((result* 31)+((this.salesAvailabilityConstraint == null)? 0 :this.salesAvailabilityConstraint.hashCode()));
         result = ((result* 31)+((this.afterSalesConditions == null)? 0 :this.afterSalesConditions.hashCode()));
         result = ((result* 31)+((this.fares == null)? 0 :this.fares.hashCode()));
-        result = ((result* 31)+((this.personalDataConstraints == null)? 0 :this.personalDataConstraints.hashCode()));
         result = ((result* 31)+((this.regionalConstraints == null)? 0 :this.regionalConstraints.hashCode()));
-        result = ((result* 31)+((this.zoneDefinitions == null)? 0 :this.zoneDefinitions.hashCode()));
         result = ((result* 31)+((this.supportedOnlineServices == null)? 0 :this.supportedOnlineServices.hashCode()));
         result = ((result* 31)+((this.reservationParameters == null)? 0 :this.reservationParameters.hashCode()));
+        result = ((result* 31)+((this.stationNames == null)? 0 :this.stationNames.hashCode()));
+        result = ((result* 31)+((this.combinationConstraints == null)? 0 :this.combinationConstraints.hashCode()));
+        result = ((result* 31)+((this.prices == null)? 0 :this.prices.hashCode()));
+        result = ((result* 31)+((this.fullfillmentConstraints == null)? 0 :this.fullfillmentConstraints.hashCode()));
+        result = ((result* 31)+((this.serviceLevelDefinitions == null)? 0 :this.serviceLevelDefinitions.hashCode()));
+        result = ((result* 31)+((this.travelValidityConstraints == null)? 0 :this.travelValidityConstraints.hashCode()));
+        result = ((result* 31)+((this.fareResourceLocation == null)? 0 :this.fareResourceLocation.hashCode()));
+        result = ((result* 31)+((this.stations == null)? 0 :this.stations.hashCode()));
+        result = ((result* 31)+((this.personalDataConstraints == null)? 0 :this.personalDataConstraints.hashCode()));
         result = ((result* 31)+((this.serviceClassDefinitions == null)? 0 :this.serviceClassDefinitions.hashCode()));
         result = ((result* 31)+((this.texts == null)? 0 :this.texts.hashCode()));
         result = ((result* 31)+((this.calendars == null)? 0 :this.calendars.hashCode()));
-        result = ((result* 31)+((this.combinationConstraints == null)? 0 :this.combinationConstraints.hashCode()));
+        result = ((result* 31)+((this.fareReferenceStationSetDefinitions == null)? 0 :this.fareReferenceStationSetDefinitions.hashCode()));
         result = ((result* 31)+((this.reductionCards == null)? 0 :this.reductionCards.hashCode()));
-        result = ((result* 31)+((this.prices == null)? 0 :this.prices.hashCode()));
         result = ((result* 31)+((this.reductionConstraints == null)? 0 :this.reductionConstraints.hashCode()));
-        result = ((result* 31)+((this.fullfillmentConstraints == null)? 0 :this.fullfillmentConstraints.hashCode()));
         return result;
     }
 
@@ -574,7 +623,7 @@ public class FareStructure {
             return false;
         }
         FareStructure rhs = ((FareStructure) other);
-        return ((((((((((((((((((((((((this.serviceConstraints == rhs.serviceConstraints)||((this.serviceConstraints!= null)&&this.serviceConstraints.equals(rhs.serviceConstraints)))&&((this.serviceLevelDefinitions == rhs.serviceLevelDefinitions)||((this.serviceLevelDefinitions!= null)&&this.serviceLevelDefinitions.equals(rhs.serviceLevelDefinitions))))&&((this.carrierConstraints == rhs.carrierConstraints)||((this.carrierConstraints!= null)&&this.carrierConstraints.equals(rhs.carrierConstraints))))&&((this.travelValidityConstraints == rhs.travelValidityConstraints)||((this.travelValidityConstraints!= null)&&this.travelValidityConstraints.equals(rhs.travelValidityConstraints))))&&((this.connectionPoints == rhs.connectionPoints)||((this.connectionPoints!= null)&&this.connectionPoints.equals(rhs.connectionPoints))))&&((this.fareResourceLocation == rhs.fareResourceLocation)||((this.fareResourceLocation!= null)&&this.fareResourceLocation.equals(rhs.fareResourceLocation))))&&((this.passengerConstraints == rhs.passengerConstraints)||((this.passengerConstraints!= null)&&this.passengerConstraints.equals(rhs.passengerConstraints))))&&((this.salesAvailabilityConstraint == rhs.salesAvailabilityConstraint)||((this.salesAvailabilityConstraint!= null)&&this.salesAvailabilityConstraint.equals(rhs.salesAvailabilityConstraint))))&&((this.afterSalesConditions == rhs.afterSalesConditions)||((this.afterSalesConditions!= null)&&this.afterSalesConditions.equals(rhs.afterSalesConditions))))&&((this.fares == rhs.fares)||((this.fares!= null)&&this.fares.equals(rhs.fares))))&&((this.personalDataConstraints == rhs.personalDataConstraints)||((this.personalDataConstraints!= null)&&this.personalDataConstraints.equals(rhs.personalDataConstraints))))&&((this.regionalConstraints == rhs.regionalConstraints)||((this.regionalConstraints!= null)&&this.regionalConstraints.equals(rhs.regionalConstraints))))&&((this.zoneDefinitions == rhs.zoneDefinitions)||((this.zoneDefinitions!= null)&&this.zoneDefinitions.equals(rhs.zoneDefinitions))))&&((this.supportedOnlineServices == rhs.supportedOnlineServices)||((this.supportedOnlineServices!= null)&&this.supportedOnlineServices.equals(rhs.supportedOnlineServices))))&&((this.reservationParameters == rhs.reservationParameters)||((this.reservationParameters!= null)&&this.reservationParameters.equals(rhs.reservationParameters))))&&((this.serviceClassDefinitions == rhs.serviceClassDefinitions)||((this.serviceClassDefinitions!= null)&&this.serviceClassDefinitions.equals(rhs.serviceClassDefinitions))))&&((this.texts == rhs.texts)||((this.texts!= null)&&this.texts.equals(rhs.texts))))&&((this.calendars == rhs.calendars)||((this.calendars!= null)&&this.calendars.equals(rhs.calendars))))&&((this.combinationConstraints == rhs.combinationConstraints)||((this.combinationConstraints!= null)&&this.combinationConstraints.equals(rhs.combinationConstraints))))&&((this.reductionCards == rhs.reductionCards)||((this.reductionCards!= null)&&this.reductionCards.equals(rhs.reductionCards))))&&((this.prices == rhs.prices)||((this.prices!= null)&&this.prices.equals(rhs.prices))))&&((this.reductionConstraints == rhs.reductionConstraints)||((this.reductionConstraints!= null)&&this.reductionConstraints.equals(rhs.reductionConstraints))))&&((this.fullfillmentConstraints == rhs.fullfillmentConstraints)||((this.fullfillmentConstraints!= null)&&this.fullfillmentConstraints.equals(rhs.fullfillmentConstraints))));
+        return ((((((((((((((((((((((((((this.serviceConstraints == rhs.serviceConstraints)||((this.serviceConstraints!= null)&&this.serviceConstraints.equals(rhs.serviceConstraints)))&&((this.carrierConstraints == rhs.carrierConstraints)||((this.carrierConstraints!= null)&&this.carrierConstraints.equals(rhs.carrierConstraints))))&&((this.connectionPoints == rhs.connectionPoints)||((this.connectionPoints!= null)&&this.connectionPoints.equals(rhs.connectionPoints))))&&((this.passengerConstraints == rhs.passengerConstraints)||((this.passengerConstraints!= null)&&this.passengerConstraints.equals(rhs.passengerConstraints))))&&((this.salesAvailabilityConstraint == rhs.salesAvailabilityConstraint)||((this.salesAvailabilityConstraint!= null)&&this.salesAvailabilityConstraint.equals(rhs.salesAvailabilityConstraint))))&&((this.afterSalesConditions == rhs.afterSalesConditions)||((this.afterSalesConditions!= null)&&this.afterSalesConditions.equals(rhs.afterSalesConditions))))&&((this.fares == rhs.fares)||((this.fares!= null)&&this.fares.equals(rhs.fares))))&&((this.regionalConstraints == rhs.regionalConstraints)||((this.regionalConstraints!= null)&&this.regionalConstraints.equals(rhs.regionalConstraints))))&&((this.supportedOnlineServices == rhs.supportedOnlineServices)||((this.supportedOnlineServices!= null)&&this.supportedOnlineServices.equals(rhs.supportedOnlineServices))))&&((this.reservationParameters == rhs.reservationParameters)||((this.reservationParameters!= null)&&this.reservationParameters.equals(rhs.reservationParameters))))&&((this.stationNames == rhs.stationNames)||((this.stationNames!= null)&&this.stationNames.equals(rhs.stationNames))))&&((this.combinationConstraints == rhs.combinationConstraints)||((this.combinationConstraints!= null)&&this.combinationConstraints.equals(rhs.combinationConstraints))))&&((this.prices == rhs.prices)||((this.prices!= null)&&this.prices.equals(rhs.prices))))&&((this.fullfillmentConstraints == rhs.fullfillmentConstraints)||((this.fullfillmentConstraints!= null)&&this.fullfillmentConstraints.equals(rhs.fullfillmentConstraints))))&&((this.serviceLevelDefinitions == rhs.serviceLevelDefinitions)||((this.serviceLevelDefinitions!= null)&&this.serviceLevelDefinitions.equals(rhs.serviceLevelDefinitions))))&&((this.travelValidityConstraints == rhs.travelValidityConstraints)||((this.travelValidityConstraints!= null)&&this.travelValidityConstraints.equals(rhs.travelValidityConstraints))))&&((this.fareResourceLocation == rhs.fareResourceLocation)||((this.fareResourceLocation!= null)&&this.fareResourceLocation.equals(rhs.fareResourceLocation))))&&((this.stations == rhs.stations)||((this.stations!= null)&&this.stations.equals(rhs.stations))))&&((this.personalDataConstraints == rhs.personalDataConstraints)||((this.personalDataConstraints!= null)&&this.personalDataConstraints.equals(rhs.personalDataConstraints))))&&((this.serviceClassDefinitions == rhs.serviceClassDefinitions)||((this.serviceClassDefinitions!= null)&&this.serviceClassDefinitions.equals(rhs.serviceClassDefinitions))))&&((this.texts == rhs.texts)||((this.texts!= null)&&this.texts.equals(rhs.texts))))&&((this.calendars == rhs.calendars)||((this.calendars!= null)&&this.calendars.equals(rhs.calendars))))&&((this.fareReferenceStationSetDefinitions == rhs.fareReferenceStationSetDefinitions)||((this.fareReferenceStationSetDefinitions!= null)&&this.fareReferenceStationSetDefinitions.equals(rhs.fareReferenceStationSetDefinitions))))&&((this.reductionCards == rhs.reductionCards)||((this.reductionCards!= null)&&this.reductionCards.equals(rhs.reductionCards))))&&((this.reductionConstraints == rhs.reductionConstraints)||((this.reductionConstraints!= null)&&this.reductionConstraints.equals(rhs.reductionConstraints))));
     }
 
 }

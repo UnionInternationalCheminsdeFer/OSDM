@@ -3,6 +3,7 @@
 package Gtm;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -95,18 +96,6 @@ public interface TravelValidityConstraint extends EObject {
 	void setValidDays(Calendar value);
 
 	/**
-	 * Returns the value of the '<em><b>Excluded Time Range</b></em>' containment reference list.
-	 * The list contents are of type {@link Gtm.ExcludedTimeRange}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Excluded Time Range</em>' containment reference list.
-	 * @see Gtm.GtmPackage#getTravelValidityConstraint_ExcludedTimeRange()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ExcludedTimeRange> getExcludedTimeRange();
-
-	/**
 	 * Returns the value of the '<em><b>Travel Days</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -171,5 +160,17 @@ public interface TravelValidityConstraint extends EObject {
 	 * @generated
 	 */
 	void setReturnConstraint(ReturnValidityConstraint value);
+
+	/**
+	 * Returns the value of the '<em><b>Excluded Time Range</b></em>' containment reference list.
+	 * The list contents are of type {@link Gtm.ExcludedTimeRange}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Excluded Time Range</em>' containment reference list.
+	 * @see Gtm.GtmPackage#getTravelValidityConstraint_ExcludedTimeRange()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ExcludedTimeRange> getExcludedTimeRange();
 
 } // TravelValidityConstraint
