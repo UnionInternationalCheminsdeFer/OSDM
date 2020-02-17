@@ -52,6 +52,7 @@ import Gtm.actions.GtmValidateAction;
 import Gtm.actions.ImportCarriersAction;
 import Gtm.actions.ImportGTMJsonAction;
 import Gtm.actions.ImportLegacyAllFareAction;
+import Gtm.actions.ImportLegacyIndividualSeriesAction;
 import Gtm.actions.ImportLegacySeriesAction;
 import Gtm.actions.ImportLegacyStationsAction;
 import Gtm.actions.ImportNutsCodesAction;
@@ -232,6 +233,7 @@ public class GtmActionBarContributor
 			//gtmActions.add(new ImportLegacyDistanceFareAction(this));
 			//gtmActions.add(new ImportLegacyRouteFareAction(this));
 			gtmActions.add(new ImportLegacyAllFareAction(this));
+			gtmActions.add(new ImportLegacyIndividualSeriesAction(this));
 			gtmActions.add(new ImportGTMJsonAction(this));	
 			//gtmActions.add(new GenerateIdsAction(this));
 			gtmActions.add(new ExportGTMJsonAction(this));	

@@ -45,11 +45,11 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 				return;
 			}
 			
+			
 			GtmUtils.disconnectViews();
 			
 			try {
-			
-			
+
 				ConverterUtil converter = new ConverterUtil(tool);
 
 				int deleted = ConverterUtil.deleteOldConversionResults(tool, domain);
@@ -69,14 +69,12 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 			
 			
 				added = converter.convertToGtm(tool,  domain);
-				GtmUtils.writeConsoleInfog("series converted: " + Integer.toString(added));
+				GtmUtils.writeConsoleInfog("fares converted: " + Integer.toString(added));
 				
-				GtmUtils.reconnectViews();
-
 			} catch (Exception e) {
-				
+				//
+			} finally {
 				GtmUtils.reconnectViews();
-				
 			}
 				
 		}

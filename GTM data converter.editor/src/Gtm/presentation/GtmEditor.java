@@ -133,6 +133,7 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
+import Gtm.actions.GtmUtils;
 import Gtm.provider.GtmItemProviderAdapterFactory;
 import org.eclipse.emf.common.ui.URIEditorInput;
 
@@ -1531,16 +1532,23 @@ public class GtmEditor
 		try {
 			// This runs the options, and shows progress.
 			//
+			GtmUtils.disconnectViews();
+			
+
+			
 			new ProgressMonitorDialog(getSite().getShell()).run(true, false, operation);
 
 			// Refresh the necessary state.
 			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
-			firePropertyChange(IEditorPart.PROP_DIRTY);
+		firePropertyChange(IEditorPart.PROP_DIRTY);
 		}
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			GtmEditorPlugin.INSTANCE.log(exception);
+		} finally {
+			GtmUtils.reconnectViews();
 		}
+		
 		updateProblemIndication = true;
 		//updateProblemIndication();
 	}
@@ -1596,6 +1604,7 @@ public class GtmEditor
 
 			// Refresh the necessary state.
 			//
+			((BasicCommandStack)editingDomain.getCommandStack()).flush();
 			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		}
@@ -1899,6 +1908,8 @@ public class GtmEditor
 			listViewer.setContentProvider(null);
 		}
 		
+		System.gc();
+		
 	}
 	
 	/**
@@ -1911,16 +1922,20 @@ public class GtmEditor
 		
 		if (outlineContentProvider != null) {
 			this.contentOutlineViewer.setContentProvider(outlineContentProvider);
+			this.contentOutlineViewer.collapseAll();
 			this.contentOutlineViewer.refresh();
 		}
 		if (listContentProvider != null) {
 			treeViewer.setContentProvider(listContentProvider);
+			treeViewer.collapseAll();
 			treeViewer.refresh();
 		}
 		if (treeContentProvider!= null) {
 			listViewer.setContentProvider(treeContentProvider);
 			listViewer.refresh();
 		}
+		GtmUtils.getActiveDomain().getCommandStack().flush();
+		firePropertyChange(IEditorPart.PROP_DIRTY);
 		
 	}
 	

@@ -39,6 +39,7 @@ public class ImportLegacyStationsAction extends ImportLegacyAction {
 		
 		BufferedReader br = super.getReader("import stations TCVG");
 		
+		if (br == null) return;
       
         String st; 
         
@@ -54,11 +55,13 @@ public class ImportLegacyStationsAction extends ImportLegacyAction {
 				String message = "local character set not supported - local station names will not be imported";
 				GtmUtils.writeConsoleError(message);
 				charset = null; 
+				return;
 			};
 
 		} catch (Exception e) {
 			String message = "no local character set provided - local station names will not be imported";
 			GtmUtils.writeConsoleError(message);
+			return;
 		}
         
         try {

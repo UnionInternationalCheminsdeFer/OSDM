@@ -39,6 +39,7 @@ import Gtm.LegacyDistanceFare;
 import Gtm.LegacyFareStationSetMap;
 import Gtm.LegacyFareStationSetMappings;
 import Gtm.LegacyRouteFare;
+import Gtm.LegacySeparateContractSeries;
 import Gtm.LegacySeries;
 import Gtm.LegacySeriesType;
 import Gtm.LegacyViastation;
@@ -216,11 +217,12 @@ public class ConverterUtil {
 
 
 	
-	public static void convertSeriesToFares(GTMTool tool, LegacySeries series, TargetFareTemplate fareTemplate, EditingDomain domain, int number,DateRange dateRange, RegionalConstraint regionalConstraint, RegionalConstraint regionalConstraintR, ArrayList<Price> priceList) throws ConverterException{
+	public void convertSeriesToFares(GTMTool tool, LegacySeries series, TargetFareTemplate fareTemplate, EditingDomain domain, int number,DateRange dateRange, RegionalConstraint regionalConstraint, RegionalConstraint regionalConstraintR, ArrayList<Price> priceList) throws ConverterException{
 		
 		try {
 			
-			Price price = convertSeriesToPrice(tool, series,fareTemplate, tool.getConversionFromLegacy().getParams().getCountry(), dateRange, false);
+			Price price = convertSeriesToPrice(tool, series, fareTemplate, tool.getConversionFromLegacy().getParams().getCountry(), dateRange);
+			if (price == null) return;
 			
 			Price oldPrice = findPrice(price, priceList);
 			boolean createNewPrice = false;
@@ -229,39 +231,21 @@ public class ConverterUtil {
 			} else {
 				price=oldPrice;
 			}
-			
-			if (price == null) {
-				String message = "could not calculate price " + Integer.toString(series.getNumber());
-				GtmUtils.writeConsoleError(message);
-			}
-			
+					
 			FareElement fareElement = convertSeriesToFare(tool, series, fareTemplate, 1);
 			fareElement.setPrice(price);
 			fareElement.setRegionalConstraint(regionalConstraint);
 			fareElement.setSalesAvailability(findSalesAvailability(tool,dateRange));
 			fareElement.getLegacyAccountingIdentifier().setTariffId(number);
 			
-			Price priceR = null;
-					
-			priceR = convertSeriesToPrice(tool, series,fareTemplate, tool.getConversionFromLegacy().getParams().getCountry(), dateRange, true);
 
 			FareElement fareElementR =  null;
-			boolean createNewPriceR = false;
 			
-			if (priceR != null) {
-				Price oldPriceR = findPrice(priceR, priceList);
-				if (oldPriceR == null) {
-					createNewPriceR = true;
-				} else {
-					priceR=oldPriceR;
-				}	
-
-				fareElementR = convertSeriesToFare(tool, series, fareTemplate, 2);
-				fareElementR.getLegacyAccountingIdentifier().setTariffId(number);
-				fareElementR.setPrice(priceR);
-				fareElementR.setRegionalConstraint(regionalConstraintR);
+			fareElementR = convertSeriesToFare(tool, series, fareTemplate, 2);
+			fareElementR.getLegacyAccountingIdentifier().setTariffId(number);
+			fareElementR.setPrice(price);
+			fareElementR.setRegionalConstraint(regionalConstraintR);
 				
-			}
 			//get service constraints
 			ServiceConstraint serviceConstraint = null;
 			for (LegacyViastation via : series.getViastations()) {
@@ -281,12 +265,6 @@ public class ConverterUtil {
 					command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getPrices().getPrices(), price) );
 				}
 				command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getFareElements().getFareElements(), fareElement) );			
-			}
-			if (priceR != null && fareElementR != null) {
-				if (createNewPriceR) {
-					command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getPrices().getPrices(), priceR) );
-				}
-				command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getFareElements().getFareElements(), fareElementR) );			
 			}
 			
 			if (!command.isEmpty() && command.canExecute()) {
@@ -840,40 +818,37 @@ public class ConverterUtil {
 	}
 	
 
-	public static Price convertSeriesToPrice(GTMTool tool, LegacySeries series, TargetFareTemplate fareTemplate, Country country, DateRange dateRange, boolean returnFare) throws ConverterException{
+	public static Price convertSeriesToPrice(GTMTool tool, LegacySeries series, TargetFareTemplate fareTemplate, Country country, DateRange dateRange) throws ConverterException{
 		
 		Price price = GtmFactory.eINSTANCE.createPrice();
 		price.setDataSource(DataSource.CONVERTED);
 			
 		try {
 			Float amount = null;
-			//TODO special logic for zero price
-		if (fareTemplate.getServiceClass().getClassicClass() == ClassicClassType.FIRST) {
-			amount = getAdultAmount(tool, series,1,returnFare,dateRange);
-		} else {
-			amount = getAdultAmount(tool, series,2,returnFare,dateRange);			
-		}
-		
-		if (amount == null) return null;
+			if (fareTemplate.getServiceClass().getClassicClass() == ClassicClassType.FIRST) {
+				amount = getAdultAmount(tool, series,1,dateRange);
+			} else {
+				amount = getAdultAmount(tool, series,2,dateRange);	
+			}	
+			if (amount == null) return null;
 
-		amount = amount * fareTemplate.getPriceFactor();
+			amount = amount * fareTemplate.getPriceFactor();
 		
-		CurrencyPrice curPrice = GtmFactory.eINSTANCE.createCurrencyPrice();
-		curPrice.setAmount(amount);
-		curPrice.setCurrency(tool.getCodeLists().getCurrencies().findCurrency("EUR"));
+			CurrencyPrice curPrice = GtmFactory.eINSTANCE.createCurrencyPrice();
+			curPrice.setAmount(amount);
+			curPrice.setCurrency(tool.getCodeLists().getCurrencies().findCurrency("EUR"));
 		
-		VATDetail vatDetail = GtmFactory.eINSTANCE.createVATDetail();
-		vatDetail.setPercentage(tool.getConversionFromLegacy().getParams().getVATpercentage());
-		vatDetail.setCountry(country);
-		vatDetail.setTaxId(tool.getConversionFromLegacy().getParams().getTaxId());
-		vatDetail.setScope(TaxScope.ANY);
-		vatDetail.setAmount(amount * tool.getConversionFromLegacy().getParams().getVATpercentage()/100);
-		curPrice.getVATdetails().add(vatDetail);
+			VATDetail vatDetail = GtmFactory.eINSTANCE.createVATDetail();
+			vatDetail.setPercentage(tool.getConversionFromLegacy().getParams().getVATpercentage());
+			vatDetail.setCountry(country);
+			vatDetail.setTaxId(tool.getConversionFromLegacy().getParams().getTaxId());
+			vatDetail.setScope(TaxScope.ANY);
+			vatDetail.setAmount(amount * tool.getConversionFromLegacy().getParams().getVATpercentage()/100);
+			curPrice.getVATdetails().add(vatDetail);
 		
-		price.getCurrencies().add(curPrice);
+			price.getCurrencies().add(curPrice);
 
-		
-		return price;
+			return price;
 		
 		} catch (Exception e) {
 			String message = "Price calculation failed for series: (" + Integer.toString(series.getNumber()) + ")";
@@ -883,7 +858,7 @@ public class ConverterUtil {
 		
 	}
 	
-	private static Float getAdultAmount(GTMTool tool, LegacySeries series, int travelClass, boolean returnFare, DateRange dateRange) {
+	private static Float getAdultAmount(GTMTool tool, LegacySeries series, int travelClass, DateRange dateRange) {
 		
 		if (series.getPricetype() == LegacyCalculationType.ROUTE_BASED) {
 			
@@ -895,25 +870,9 @@ public class ConverterUtil {
 						&& ( fare.getValidUntil().after(dateRange.getEndDate())
 							   ||fare.getValidUntil().equals(dateRange.getEndDate()) ) )  {
 					if (travelClass == 1) {
-							if (returnFare) {							
-								if (fare.getReturnFare1st() == fare.getFare1st() * 2 ) {
-									//no real return fare
-									return null;
-								}
-								return ((float) fare.getReturnFare1st())/200; 
-							} else {
-								return ((float) fare.getFare1st())/100; 
-							}
+						return ((float) fare.getFare1st())/100; 
 					} else {
-							if (returnFare) {
-								if (fare.getReturnFare2nd() == fare.getFare2nd() * 2 ) {
-									//no real return fare
-									return null;
-								}
-								return ((float) fare.getReturnFare2nd())/200; 			
-							} else {
-								return ((float) fare.getFare2nd())/100; 			
-							}
+						return ((float) fare.getFare2nd())/100; 			
 					}
 				}
 			}
@@ -923,9 +882,15 @@ public class ConverterUtil {
 			int distance = 0;
 			if (travelClass == 1) {
 				distance = series.getDistance1();
+				//distance = 0 indicates no price in that class!
+				if (distance== 0) return null;
 			} else {
-				distance = series.getDistance2();					
+				distance = series.getDistance2();
+				//distance = 0 indicates no price in that class!
+				if (distance == 0) return null;
 			}
+			
+			
 					
 			//get the lowest price where the distance is ok
 			for (LegacyDistanceFare fare : tool.getConversionFromLegacy().getLegacy108().getLegacyDistanceFares().getDistanceFare()) {
@@ -954,13 +919,17 @@ public class ConverterUtil {
 	
 
 
-	public static FareElement convertSeriesToFare(GTMTool tool, LegacySeries series, TargetFareTemplate template, int direction) throws ConverterException{
+	public FareElement convertSeriesToFare(GTMTool tool, LegacySeries series, TargetFareTemplate template, int direction) throws ConverterException{
 		
 		FareElement fare = GtmFactory.eINSTANCE.createFareElement();
 		fare.setDataSource(DataSource.CONVERTED);
 		fare.setAfterSalesRule(template.getAfterSalesRule());
 		fare.setCarrierConstraint(template.getCarrierConstraint());
-		fare.setCombinationConstraint(template.getCombinationConstraint());
+		if (isSeparateContract(series)) {
+			fare.setCombinationConstraint(template.getSeparateContractCombinationConstraint());
+		} else {
+			fare.setCombinationConstraint(template.getCombinationConstraint());
+		}
 		fare.setDataDescription("converted from series: " + Integer.toString(series.getNumber()) +" and temolate: " + template.getDataDescription());;
 		fare.setFareDetailDescription(template.getFareDetailDescription());
 		fare.setFulfillmentConstraint(template.getFulfillmentConstraint());
@@ -985,6 +954,19 @@ public class ConverterUtil {
 		return fare;
 		
 	}
+
+
+	private boolean isSeparateContract(LegacySeries series) {
+		if (tool.getConversionFromLegacy().getLegacy108().getLegacySeparateContractSeries() == null || tool.getConversionFromLegacy().getLegacy108().getLegacySeparateContractSeries().getSeparateContractSeries().isEmpty()) {
+			return false;
+		}
+		for (LegacySeparateContractSeries sep : tool.getConversionFromLegacy().getLegacy108().getLegacySeparateContractSeries().getSeparateContractSeries()) {
+			if (sep.getSeriesNumber() == series.getNumber()) return true;
+		}
+		return false;
+	}
+
+
 
 
 	public int convertBorderPoints(GTMTool tool, EditingDomain domain) {
@@ -1246,6 +1228,8 @@ public class ConverterUtil {
 			
 			FareStationSetDefinition def = GtmFactory.eINSTANCE.createFareStationSetDefinition();
 			LegacyFareStationSetMap map = GtmFactory.eINSTANCE.createLegacyFareStationSetMap();
+			fareStationSetDefinitions.getFareStationSetDefinitions().add(def);
+			fareStationSetMappings.getLegacyFareStationSetMap().add(map);
 			map.setLegacyCode(code.intValue());
 			map.setStationSet(def);
 			def.setDataSource(DataSource.CONVERTED);
@@ -1283,20 +1267,23 @@ public class ConverterUtil {
 			
 		}
 		
-		CompoundCommand command = new CompoundCommand();
-		command.append(SetCommand.create(domain,tool.getGeneralTariffModel().getFareStructure().getFareStationSetDefinitions(), GtmPackage.FARE_STRUCTURE__FARE_STATION_SET_DEFINITIONS, fareStationSetDefinitions));
+		Command cmd = SetCommand.create(domain,tool.getGeneralTariffModel().getFareStructure(), GtmPackage.Literals.FARE_STRUCTURE__FARE_STATION_SET_DEFINITIONS, fareStationSetDefinitions);
+		if (cmd.canExecute()) {
+			domain.getCommandStack().execute(cmd);
+		} else {
+			return 0;
+		}
 
 		if (fareStationSetDefinitions.getFareStationSetDefinitions().size() == 0) return 0;
 		
-
-		command.append(SetCommand.create(domain,tool.getConversionFromLegacy().getParams(), GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS, fareStationSetMappings));
-
-		
-		if (command != null && !command.isEmpty() && command.canExecute()) {
-			domain.getCommandStack().execute(command);
+		Command cmd2 = SetCommand.create(domain,tool.getConversionFromLegacy().getParams(), GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS, fareStationSetMappings);
+		if (cmd.canExecute()) {
+			domain.getCommandStack().execute(cmd2);
+			return fareStationSetMappings.getLegacyFareStationSetMap().size();
+		} else {
+			return 0;
 		}
-		
-		return fareStationSetDefinitions.getFareStationSetDefinitions().size();
+
 	}
 
 

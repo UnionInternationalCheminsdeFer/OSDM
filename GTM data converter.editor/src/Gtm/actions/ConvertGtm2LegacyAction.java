@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
 import Gtm.GTMTool;
+import Gtm.actions.converter.ConverterToLegacy;
 
 
 public class ConvertGtm2LegacyAction extends BasicGtmAction {
@@ -30,11 +31,6 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 			this.editingDomainProvider = editingDomainProvider;
 		}
 
-		private void convert(GTMTool tool, CompoundCommand command) {
-			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("not yet implemented");
-			dialog.open(); 
-		}
     
 		protected BufferedReader getReader(String text){
 			
@@ -69,18 +65,31 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 		@Override
 		protected void runAction(GTMTool tool) {
 			
-		
+			ConverterToLegacy converter = new ConverterToLegacy(tool);
+			
+			CompoundCommand command = null;
 			EditingDomain domain = GtmUtils.getActiveDomain();
 			
-			CompoundCommand command = new CompoundCommand();
-			
-			convert(tool,command);
-			
-			if (command != null && !command.isEmpty() && command.canExecute()) {
-				domain.getCommandStack().execute(command);	
+			GtmUtils.disconnectViews();
+			try {
+				command = converter.convert();
+				
+				if (command != null && !command.isEmpty() && command.canExecute()) {
+					domain.getCommandStack().execute(command);	
+				}
+				
+			} catch (Exception e) {
+				//
+			} finally {
+				GtmUtils.reconnectViews();
 			}
+
+			return;
 		}
 
+	
+		
+		
 	
 
 }

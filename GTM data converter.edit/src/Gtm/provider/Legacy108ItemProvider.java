@@ -150,6 +150,7 @@ public class Legacy108ItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_SERIES_LIST);
+			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES);
 			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_FARES);
 			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_DISTANCE_FARES);
 			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_ROUTE_FARES);
@@ -219,6 +220,7 @@ public class Legacy108ItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:
+			case GtmPackage.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES:
 			case GtmPackage.LEGACY108__LEGACY_FARES:
 			case GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES:
 			case GtmPackage.LEGACY108__LEGACY_ROUTE_FARES:
@@ -244,6 +246,11 @@ public class Legacy108ItemProvider
 			(createChildParameter
 				(GtmPackage.Literals.LEGACY108__LEGACY_SERIES_LIST,
 				 GtmFactory.eINSTANCE.createLegacySeriesList()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES,
+				 GtmFactory.eINSTANCE.createLegacySeparateContractSeries()));
 
 		newChildDescriptors.add
 			(createChildParameter

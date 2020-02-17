@@ -376,8 +376,9 @@ public class GtmUtils {
 		//add generic reduction cards
 		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_EURAIL","Eurail Pass", findCarrier(tool,"9902"));
 		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_INTERRAIL","Interrail Pass", findCarrier(tool,"9902"));		
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_FIP","FIP duty", null);			
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_FIP_FREE_COUPON","FIP leasure", null);	
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_FIP_DUTY","FIP duty", null);			
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_FIP_LEISURE_FREE","FIP leasure", null);	
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_FIP_LEISURE_REDU","FIP leasure reduction", null);
 		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RAILPLUS","RailPlus", null);	
 		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RIT_1","Rail Inclusive Toures 1", null);	
 		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RIT_2","Rail Inclusive Toures 2", null);	

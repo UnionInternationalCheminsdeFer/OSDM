@@ -826,15 +826,27 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GtmPackage.LEGACY_SERIES_LIST: {
+				LegacySeriesList legacySeriesList = (LegacySeriesList)theEObject;
+				T result = caseLegacySeriesList(legacySeriesList);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GtmPackage.LEGACY_SERIES: {
 				LegacySeries legacySeries = (LegacySeries)theEObject;
 				T result = caseLegacySeries(legacySeries);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.LEGACY_SERIES_LIST: {
-				LegacySeriesList legacySeriesList = (LegacySeriesList)theEObject;
-				T result = caseLegacySeriesList(legacySeriesList);
+			case GtmPackage.LEGACY_SEPARATE_CONTRACT_SERIES_LIST: {
+				LegacySeparateContractSeriesList legacySeparateContractSeriesList = (LegacySeparateContractSeriesList)theEObject;
+				T result = caseLegacySeparateContractSeriesList(legacySeparateContractSeriesList);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_SEPARATE_CONTRACT_SERIES: {
+				LegacySeparateContractSeries legacySeparateContractSeries = (LegacySeparateContractSeries)theEObject;
+				T result = caseLegacySeparateContractSeries(legacySeparateContractSeries);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1703,6 +1715,36 @@ public class GtmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLegacySeries(LegacySeries object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Separate Contract Series List</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Separate Contract Series List</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacySeparateContractSeriesList(LegacySeparateContractSeriesList object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Separate Contract Series</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Separate Contract Series</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacySeparateContractSeries(LegacySeparateContractSeries object) {
 		return null;
 	}
 

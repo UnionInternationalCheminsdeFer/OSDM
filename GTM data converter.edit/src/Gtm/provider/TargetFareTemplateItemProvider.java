@@ -77,6 +77,7 @@ public class TargetFareTemplateItemProvider
 			addSalesAvailabilityPropertyDescriptor(object);
 			addTravelValidityPropertyDescriptor(object);
 			addCombinationConstraintPropertyDescriptor(object);
+			addSeparateContractCombinationConstraintPropertyDescriptor(object);
 			addFareDetailDescriptionPropertyDescriptor(object);
 			addPersonalDataConstraintPropertyDescriptor(object);
 			addReservationParameterPropertyDescriptor(object);
@@ -388,6 +389,28 @@ public class TargetFareTemplateItemProvider
 				 getString("_UI_TargetFareTemplate_combinationConstraint_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_combinationConstraint_feature", "_UI_TargetFareTemplate_type"),
 				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Separate Contract Combination Constraint feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSeparateContractCombinationConstraintPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetFareTemplate_separateContractCombinationConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_separateContractCombinationConstraint_feature", "_UI_TargetFareTemplate_type"),
+				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT,
 				 true,
 				 false,
 				 true,
