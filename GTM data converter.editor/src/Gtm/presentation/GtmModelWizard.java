@@ -151,7 +151,7 @@ public class GtmModelWizard extends Wizard implements INewWizard {
 	 * Returns the names of the types that can be created as the root object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Collection<String> getInitialObjectNames() {
 		if (initialObjectNames == null) {
@@ -160,7 +160,9 @@ public class GtmModelWizard extends Wizard implements INewWizard {
 				if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
 					if (!eClass.isAbstract()) {
-						initialObjectNames.add(eClass.getName());
+						if (eClass.getName() == "GTMTool") {
+							initialObjectNames.add(eClass.getName());
+						}
 					}
 				}
 			}

@@ -1653,6 +1653,52 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacySeparateContractSeriesList} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacySeparateContractSeriesListItemProvider legacySeparateContractSeriesListItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacySeparateContractSeriesList}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacySeparateContractSeriesListAdapter() {
+		if (legacySeparateContractSeriesListItemProvider == null) {
+			legacySeparateContractSeriesListItemProvider = new LegacySeparateContractSeriesListItemProvider(this);
+		}
+
+		return legacySeparateContractSeriesListItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacySeparateContractSeries} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacySeparateContractSeriesItemProvider legacySeparateContractSeriesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacySeparateContractSeries}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacySeparateContractSeriesAdapter() {
+		if (legacySeparateContractSeriesItemProvider == null) {
+			legacySeparateContractSeriesItemProvider = new LegacySeparateContractSeriesItemProvider(this);
+		}
+
+		return legacySeparateContractSeriesItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.LegacySeriesList} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3376,8 +3422,10 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (legacy108StationItemProvider != null) legacy108StationItemProvider.dispose();
 		if (legacyRouteFaresItemProvider != null) legacyRouteFaresItemProvider.dispose();
 		if (legacyRouteFareItemProvider != null) legacyRouteFareItemProvider.dispose();
-		if (legacySeriesItemProvider != null) legacySeriesItemProvider.dispose();
 		if (legacySeriesListItemProvider != null) legacySeriesListItemProvider.dispose();
+		if (legacySeriesItemProvider != null) legacySeriesItemProvider.dispose();
+		if (legacySeparateContractSeriesListItemProvider != null) legacySeparateContractSeriesListItemProvider.dispose();
+		if (legacySeparateContractSeriesItemProvider != null) legacySeparateContractSeriesItemProvider.dispose();
 		if (legacyDistanceFaresItemProvider != null) legacyDistanceFaresItemProvider.dispose();
 		if (legacyDistanceFareItemProvider != null) legacyDistanceFareItemProvider.dispose();
 		if (legacyViastationItemProvider != null) legacyViastationItemProvider.dispose();

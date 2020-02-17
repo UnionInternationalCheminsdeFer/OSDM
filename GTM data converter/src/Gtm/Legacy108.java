@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Gtm.Legacy108#getCharacterSet <em>Character Set</em>}</li>
  *   <li>{@link Gtm.Legacy108#getLegacySeriesList <em>Legacy Series List</em>}</li>
+ *   <li>{@link Gtm.Legacy108#getLegacySeparateContractSeries <em>Legacy Separate Contract Series</em>}</li>
  *   <li>{@link Gtm.Legacy108#getLegacyFares <em>Legacy Fares</em>}</li>
  *   <li>{@link Gtm.Legacy108#getLegacyDistanceFares <em>Legacy Distance Fares</em>}</li>
  *   <li>{@link Gtm.Legacy108#getLegacyRouteFares <em>Legacy Route Fares</em>}</li>
@@ -74,6 +75,28 @@ public interface Legacy108 extends EObject {
 	 * @generated
 	 */
 	void setLegacySeriesList(LegacySeriesList value);
+
+	/**
+	 * Returns the value of the '<em><b>Legacy Separate Contract Series</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Legacy Separate Contract Series</em>' containment reference.
+	 * @see #setLegacySeparateContractSeries(LegacySeparateContractSeriesList)
+	 * @see Gtm.GtmPackage#getLegacy108_LegacySeparateContractSeries()
+	 * @model containment="true"
+	 * @generated
+	 */
+	LegacySeparateContractSeriesList getLegacySeparateContractSeries();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Legacy108#getLegacySeparateContractSeries <em>Legacy Separate Contract Series</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Legacy Separate Contract Series</em>' containment reference.
+	 * @see #getLegacySeparateContractSeries()
+	 * @generated
+	 */
+	void setLegacySeparateContractSeries(LegacySeparateContractSeriesList value);
 
 	/**
 	 * Returns the value of the '<em><b>Legacy Fares</b></em>' containment reference.

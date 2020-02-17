@@ -54,6 +54,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getSalesAvailability <em>Sales Availability</em>}</li>
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getTravelValidity <em>Travel Validity</em>}</li>
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getCombinationConstraint <em>Combination Constraint</em>}</li>
+ *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getSeparateContractCombinationConstraint <em>Separate Contract Combination Constraint</em>}</li>
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getFareDetailDescription <em>Fare Detail Description</em>}</li>
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
  *   <li>{@link Gtm.impl.TargetFareTemplateImpl#getPersonalDataConstraint <em>Personal Data Constraint</em>}</li>
@@ -255,6 +256,16 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected CombinationConstraint combinationConstraint;
+
+	/**
+	 * The cached value of the '{@link #getSeparateContractCombinationConstraint() <em>Separate Contract Combination Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSeparateContractCombinationConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected CombinationConstraint separateContractCombinationConstraint;
 
 	/**
 	 * The cached value of the '{@link #getFareDetailDescription() <em>Fare Detail Description</em>}' reference.
@@ -849,6 +860,44 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CombinationConstraint getSeparateContractCombinationConstraint() {
+		if (separateContractCombinationConstraint != null && separateContractCombinationConstraint.eIsProxy()) {
+			InternalEObject oldSeparateContractCombinationConstraint = (InternalEObject)separateContractCombinationConstraint;
+			separateContractCombinationConstraint = (CombinationConstraint)eResolveProxy(oldSeparateContractCombinationConstraint);
+			if (separateContractCombinationConstraint != oldSeparateContractCombinationConstraint) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.TARGET_FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT, oldSeparateContractCombinationConstraint, separateContractCombinationConstraint));
+			}
+		}
+		return separateContractCombinationConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CombinationConstraint basicGetSeparateContractCombinationConstraint() {
+		return separateContractCombinationConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSeparateContractCombinationConstraint(CombinationConstraint newSeparateContractCombinationConstraint) {
+		CombinationConstraint oldSeparateContractCombinationConstraint = separateContractCombinationConstraint;
+		separateContractCombinationConstraint = newSeparateContractCombinationConstraint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.TARGET_FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT, oldSeparateContractCombinationConstraint, separateContractCombinationConstraint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Text getFareDetailDescription() {
 		if (fareDetailDescription != null && fareDetailDescription.eIsProxy()) {
 			InternalEObject oldFareDetailDescription = (InternalEObject)fareDetailDescription;
@@ -1213,6 +1262,9 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 			case GtmPackage.TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT:
 				if (resolve) return getCombinationConstraint();
 				return basicGetCombinationConstraint();
+			case GtmPackage.TARGET_FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT:
+				if (resolve) return getSeparateContractCombinationConstraint();
+				return basicGetSeparateContractCombinationConstraint();
 			case GtmPackage.TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION:
 				if (resolve) return getFareDetailDescription();
 				return basicGetFareDetailDescription();
@@ -1289,6 +1341,9 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 				return;
 			case GtmPackage.TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT:
 				setCombinationConstraint((CombinationConstraint)newValue);
+				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT:
+				setSeparateContractCombinationConstraint((CombinationConstraint)newValue);
 				return;
 			case GtmPackage.TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION:
 				setFareDetailDescription((Text)newValue);
@@ -1368,6 +1423,9 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 			case GtmPackage.TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT:
 				setCombinationConstraint((CombinationConstraint)null);
 				return;
+			case GtmPackage.TARGET_FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT:
+				setSeparateContractCombinationConstraint((CombinationConstraint)null);
+				return;
 			case GtmPackage.TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION:
 				setFareDetailDescription((Text)null);
 				return;
@@ -1432,6 +1490,8 @@ public class TargetFareTemplateImpl extends MinimalEObjectImpl.Container impleme
 				return travelValidity != null;
 			case GtmPackage.TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT:
 				return combinationConstraint != null;
+			case GtmPackage.TARGET_FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT:
+				return separateContractCombinationConstraint != null;
 			case GtmPackage.TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION:
 				return fareDetailDescription != null;
 			case GtmPackage.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER:

@@ -10,6 +10,7 @@ import Gtm.Legacy108Stations;
 import Gtm.LegacyDistanceFares;
 import Gtm.LegacyFares;
 import Gtm.LegacyRouteFares;
+import Gtm.LegacySeparateContractSeriesList;
 import Gtm.LegacySeriesList;
 import Gtm.TimeZone;
 import org.eclipse.emf.common.notify.Notification;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link Gtm.impl.Legacy108Impl#getCharacterSet <em>Character Set</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getLegacySeriesList <em>Legacy Series List</em>}</li>
+ *   <li>{@link Gtm.impl.Legacy108Impl#getLegacySeparateContractSeries <em>Legacy Separate Contract Series</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getLegacyFares <em>Legacy Fares</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getLegacyDistanceFares <em>Legacy Distance Fares</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getLegacyRouteFares <em>Legacy Route Fares</em>}</li>
@@ -70,6 +72,16 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	 * @ordered
 	 */
 	protected LegacySeriesList legacySeriesList;
+
+	/**
+	 * The cached value of the '{@link #getLegacySeparateContractSeries() <em>Legacy Separate Contract Series</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacySeparateContractSeries()
+	 * @generated
+	 * @ordered
+	 */
+	protected LegacySeparateContractSeriesList legacySeparateContractSeries;
 
 	/**
 	 * The cached value of the '{@link #getLegacyFares() <em>Legacy Fares</em>}' containment reference.
@@ -260,6 +272,49 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_SERIES_LIST, newLegacySeriesList, newLegacySeriesList));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacySeparateContractSeriesList getLegacySeparateContractSeries() {
+		return legacySeparateContractSeries;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLegacySeparateContractSeries(LegacySeparateContractSeriesList newLegacySeparateContractSeries, NotificationChain msgs) {
+		LegacySeparateContractSeriesList oldLegacySeparateContractSeries = legacySeparateContractSeries;
+		legacySeparateContractSeries = newLegacySeparateContractSeries;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES, oldLegacySeparateContractSeries, newLegacySeparateContractSeries);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacySeparateContractSeries(LegacySeparateContractSeriesList newLegacySeparateContractSeries) {
+		if (newLegacySeparateContractSeries != legacySeparateContractSeries) {
+			NotificationChain msgs = null;
+			if (legacySeparateContractSeries != null)
+				msgs = ((InternalEObject)legacySeparateContractSeries).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES, null, msgs);
+			if (newLegacySeparateContractSeries != null)
+				msgs = ((InternalEObject)newLegacySeparateContractSeries).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES, null, msgs);
+			msgs = basicSetLegacySeparateContractSeries(newLegacySeparateContractSeries, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES, newLegacySeparateContractSeries, newLegacySeparateContractSeries));
 	}
 
 	/**
@@ -465,6 +520,8 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 		switch (featureID) {
 			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:
 				return basicSetLegacySeriesList(null, msgs);
+			case GtmPackage.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES:
+				return basicSetLegacySeparateContractSeries(null, msgs);
 			case GtmPackage.LEGACY108__LEGACY_FARES:
 				return basicSetLegacyFares(null, msgs);
 			case GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES:
@@ -489,6 +546,8 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 				return getCharacterSet();
 			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:
 				return getLegacySeriesList();
+			case GtmPackage.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES:
+				return getLegacySeparateContractSeries();
 			case GtmPackage.LEGACY108__LEGACY_FARES:
 				return getLegacyFares();
 			case GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES:
@@ -520,6 +579,9 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 				return;
 			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:
 				setLegacySeriesList((LegacySeriesList)newValue);
+				return;
+			case GtmPackage.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES:
+				setLegacySeparateContractSeries((LegacySeparateContractSeriesList)newValue);
 				return;
 			case GtmPackage.LEGACY108__LEGACY_FARES:
 				setLegacyFares((LegacyFares)newValue);
@@ -557,6 +619,9 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:
 				setLegacySeriesList((LegacySeriesList)null);
 				return;
+			case GtmPackage.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES:
+				setLegacySeparateContractSeries((LegacySeparateContractSeriesList)null);
+				return;
 			case GtmPackage.LEGACY108__LEGACY_FARES:
 				setLegacyFares((LegacyFares)null);
 				return;
@@ -591,6 +656,8 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 				return characterSet != CHARACTER_SET_EDEFAULT;
 			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:
 				return legacySeriesList != null;
+			case GtmPackage.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES:
+				return legacySeparateContractSeries != null;
 			case GtmPackage.LEGACY108__LEGACY_FARES:
 				return legacyFares != null;
 			case GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES:

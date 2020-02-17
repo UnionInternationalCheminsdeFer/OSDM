@@ -341,10 +341,14 @@ public class GtmValidator extends EObjectValidator {
 				return validateLegacyRouteFares((LegacyRouteFares)value, diagnostics, context);
 			case GtmPackage.LEGACY_ROUTE_FARE:
 				return validateLegacyRouteFare((LegacyRouteFare)value, diagnostics, context);
-			case GtmPackage.LEGACY_SERIES:
-				return validateLegacySeries((LegacySeries)value, diagnostics, context);
 			case GtmPackage.LEGACY_SERIES_LIST:
 				return validateLegacySeriesList((LegacySeriesList)value, diagnostics, context);
+			case GtmPackage.LEGACY_SERIES:
+				return validateLegacySeries((LegacySeries)value, diagnostics, context);
+			case GtmPackage.LEGACY_SEPARATE_CONTRACT_SERIES_LIST:
+				return validateLegacySeparateContractSeriesList((LegacySeparateContractSeriesList)value, diagnostics, context);
+			case GtmPackage.LEGACY_SEPARATE_CONTRACT_SERIES:
+				return validateLegacySeparateContractSeries((LegacySeparateContractSeries)value, diagnostics, context);
 			case GtmPackage.LEGACY_DISTANCE_FARES:
 				return validateLegacyDistanceFares((LegacyDistanceFares)value, diagnostics, context);
 			case GtmPackage.LEGACY_DISTANCE_FARE:
@@ -935,6 +939,24 @@ public class GtmValidator extends EObjectValidator {
 	 */
 	public boolean validateLegacySeries(LegacySeries legacySeries, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(legacySeries, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLegacySeparateContractSeriesList(LegacySeparateContractSeriesList legacySeparateContractSeriesList, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(legacySeparateContractSeriesList, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLegacySeparateContractSeries(LegacySeparateContractSeries legacySeparateContractSeries, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(legacySeparateContractSeries, diagnostics, context);
 	}
 
 	/**

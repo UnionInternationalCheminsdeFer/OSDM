@@ -183,8 +183,10 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.LEGACY108_STATION: return createLegacy108Station();
 			case GtmPackage.LEGACY_ROUTE_FARES: return createLegacyRouteFares();
 			case GtmPackage.LEGACY_ROUTE_FARE: return createLegacyRouteFare();
-			case GtmPackage.LEGACY_SERIES: return createLegacySeries();
 			case GtmPackage.LEGACY_SERIES_LIST: return createLegacySeriesList();
+			case GtmPackage.LEGACY_SERIES: return createLegacySeries();
+			case GtmPackage.LEGACY_SEPARATE_CONTRACT_SERIES_LIST: return createLegacySeparateContractSeriesList();
+			case GtmPackage.LEGACY_SEPARATE_CONTRACT_SERIES: return createLegacySeparateContractSeries();
 			case GtmPackage.LEGACY_DISTANCE_FARES: return createLegacyDistanceFares();
 			case GtmPackage.LEGACY_DISTANCE_FARE: return createLegacyDistanceFare();
 			case GtmPackage.LEGACY_VIASTATION: return createLegacyViastation();
@@ -1636,6 +1638,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public LegacySeries createLegacySeries() {
 		LegacySeriesImpl legacySeries = new LegacySeriesImpl();
 		return legacySeries;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacySeparateContractSeriesList createLegacySeparateContractSeriesList() {
+		LegacySeparateContractSeriesListImpl legacySeparateContractSeriesList = new LegacySeparateContractSeriesListImpl();
+		return legacySeparateContractSeriesList;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacySeparateContractSeries createLegacySeparateContractSeries() {
+		LegacySeparateContractSeriesImpl legacySeparateContractSeries = new LegacySeparateContractSeriesImpl();
+		return legacySeparateContractSeries;
 	}
 
 	/**

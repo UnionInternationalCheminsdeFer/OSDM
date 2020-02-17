@@ -1165,6 +1165,24 @@ public interface GtmFactory extends EFactory {
 	LegacySeries createLegacySeries();
 
 	/**
+	 * Returns a new object of class '<em>Legacy Separate Contract Series List</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Separate Contract Series List</em>'.
+	 * @generated
+	 */
+	LegacySeparateContractSeriesList createLegacySeparateContractSeriesList();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Separate Contract Series</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Separate Contract Series</em>'.
+	 * @generated
+	 */
+	LegacySeparateContractSeries createLegacySeparateContractSeries();
+
+	/**
 	 * Returns a new object of class '<em>Legacy Series List</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

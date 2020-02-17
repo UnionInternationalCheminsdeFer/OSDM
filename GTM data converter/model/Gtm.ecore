@@ -792,6 +792,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="travelValidity" eType="#//TravelValidityConstraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="combinationConstraint"
         eType="#//CombinationConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="separateContractCombinationConstraint"
+        eType="#//CombinationConstraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fareDetailDescription"
         eType="#//Text"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacyAccountingIdentifier"
@@ -872,6 +874,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="characterSet" eType="#//CharacterSet"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacySeriesList" eType="#//LegacySeriesList"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="legacySeparateContractSeries"
+        eType="#//LegacySeparateContractSeriesList" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacyFares" eType="#//LegacyFares"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacyDistanceFares" eType="#//LegacyDistanceFares"
@@ -918,6 +922,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="validFrom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="validUntil" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacySeriesList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="series" lowerBound="1"
+        upperBound="-1" eType="#//LegacySeries" containment="true" resolveProxies="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacySeries">
     <eStructuralFeatures xsi:type="ecore:EReference" name="viastations" upperBound="-1"
         eType="#//LegacyViastation" containment="true" resolveProxies="false"/>
@@ -936,9 +944,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="toStation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LegacySeriesList">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="series" lowerBound="1"
-        upperBound="-1" eType="#//LegacySeries" containment="true" resolveProxies="false"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacySeparateContractSeriesList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="separateContractSeries"
+        upperBound="-1" eType="#//LegacySeparateContractSeries" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacySeparateContractSeries">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="seriesNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validFrom" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validUntil" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyDistanceFares">
     <eStructuralFeatures xsi:type="ecore:EReference" name="distanceFare" lowerBound="1"

@@ -211,6 +211,17 @@ public class ImportStationsAction extends BasicGtmAction {
 		protected void runAction(GTMTool tool) {
 			Stations newStations = readStationsByLine(tool);
 			
+			GtmUtils.disconnectViews();
+			try {
+				updateStations(tool, newStations);
+			} catch (Exception e) {
+				// something went wrong
+			} finally {
+				GtmUtils.reconnectViews();
+			}
+		}
+
+		private void updateStations(GTMTool tool, Stations newStations) {
 			EditingDomain domain = GtmUtils.getActiveDomain();
 			
 			CompoundCommand command = new CompoundCommand();
@@ -233,7 +244,7 @@ public class ImportStationsAction extends BasicGtmAction {
 				
 				Station station = null;
 				try {
-					Integer code = Integer.valueOf(station.getCountry().getCode() * 100000 + Integer.parseInt(station.getCode()));
+					Integer code = Integer.valueOf(newStation.getCountry().getCode() * 100000 + Integer.parseInt(newStation.getCode()));
 					station = oldStations.get(code);
 				} catch (Exception e) {
 					//not important, might be proprietary code
@@ -243,7 +254,9 @@ public class ImportStationsAction extends BasicGtmAction {
 					command.append(new AddCommand(domain, tool.getCodeLists().getStations().getStations(), newStation));
                     addedStations++;
 				} else {
-					command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__NAME, newStation.getName()));
+					command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__NAME, newStation.getTimetableName()));
+					command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__LATITUDE, newStation.getLatitude()));
+					command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__LONGITUDE, newStation.getLongitude()));					
 					updatedStations++;
 				}
 			
@@ -255,7 +268,6 @@ public class ImportStationsAction extends BasicGtmAction {
 				GtmUtils.writeConsoleInfog("MERITS stations updated: (" + Integer.toString(updatedStations) + ")" );
 			}
 			
-
 		}
 	
 

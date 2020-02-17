@@ -16,5 +16,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  GTM_model;bundle-version="1.0.0",
  org.eclipse.emf.validation;bundle-version="1.8.0",
- org.eclipse.ui.console;bundle-version="3.9.0"
+ org.eclipse.ui.console;bundle-version="3.9.0",
+ GTM_data_converter
 Bundle-ActivationPolicy: lazy

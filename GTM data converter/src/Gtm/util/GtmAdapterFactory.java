@@ -572,12 +572,20 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createLegacyRouteFareAdapter();
 			}
 			@Override
+			public Adapter caseLegacySeriesList(LegacySeriesList object) {
+				return createLegacySeriesListAdapter();
+			}
+			@Override
 			public Adapter caseLegacySeries(LegacySeries object) {
 				return createLegacySeriesAdapter();
 			}
 			@Override
-			public Adapter caseLegacySeriesList(LegacySeriesList object) {
-				return createLegacySeriesListAdapter();
+			public Adapter caseLegacySeparateContractSeriesList(LegacySeparateContractSeriesList object) {
+				return createLegacySeparateContractSeriesListAdapter();
+			}
+			@Override
+			public Adapter caseLegacySeparateContractSeries(LegacySeparateContractSeries object) {
+				return createLegacySeparateContractSeriesAdapter();
 			}
 			@Override
 			public Adapter caseLegacyDistanceFares(LegacyDistanceFares object) {
@@ -1396,6 +1404,34 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLegacySeriesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacySeparateContractSeriesList <em>Legacy Separate Contract Series List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacySeparateContractSeriesList
+	 * @generated
+	 */
+	public Adapter createLegacySeparateContractSeriesListAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacySeparateContractSeries <em>Legacy Separate Contract Series</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacySeparateContractSeries
+	 * @generated
+	 */
+	public Adapter createLegacySeparateContractSeriesAdapter() {
 		return null;
 	}
 

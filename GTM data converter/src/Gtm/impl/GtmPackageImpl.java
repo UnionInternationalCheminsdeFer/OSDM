@@ -918,6 +918,20 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass legacySeparateContractSeriesListEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass legacySeparateContractSeriesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass legacySeriesListEClass = null;
 
 	/**
@@ -5740,7 +5754,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetFareTemplate_FareDetailDescription() {
+	public EReference getTargetFareTemplate_SeparateContractCombinationConstraint() {
 		return (EReference)targetFareTemplateEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -5749,7 +5763,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetFareTemplate_LegacyAccountingIdentifier() {
+	public EReference getTargetFareTemplate_FareDetailDescription() {
 		return (EReference)targetFareTemplateEClass.getEStructuralFeatures().get(15);
 	}
 
@@ -5758,7 +5772,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetFareTemplate_PersonalDataConstraint() {
+	public EReference getTargetFareTemplate_LegacyAccountingIdentifier() {
 		return (EReference)targetFareTemplateEClass.getEStructuralFeatures().get(16);
 	}
 
@@ -5767,7 +5781,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetFareTemplate_ReservationParameter() {
+	public EReference getTargetFareTemplate_PersonalDataConstraint() {
 		return (EReference)targetFareTemplateEClass.getEStructuralFeatures().get(17);
 	}
 
@@ -5776,7 +5790,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetFareTemplate_ReductionConstraint() {
+	public EReference getTargetFareTemplate_ReservationParameter() {
 		return (EReference)targetFareTemplateEClass.getEStructuralFeatures().get(18);
 	}
 
@@ -5785,7 +5799,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetFareTemplate_FulfillmentConstraint() {
+	public EReference getTargetFareTemplate_ReductionConstraint() {
 		return (EReference)targetFareTemplateEClass.getEStructuralFeatures().get(19);
 	}
 
@@ -5794,7 +5808,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetFareTemplate_PassengerConstraint() {
+	public EReference getTargetFareTemplate_FulfillmentConstraint() {
 		return (EReference)targetFareTemplateEClass.getEStructuralFeatures().get(20);
 	}
 
@@ -5803,8 +5817,17 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetFareTemplate_AfterSalesRule() {
+	public EReference getTargetFareTemplate_PassengerConstraint() {
 		return (EReference)targetFareTemplateEClass.getEStructuralFeatures().get(21);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTargetFareTemplate_AfterSalesRule() {
+		return (EReference)targetFareTemplateEClass.getEStructuralFeatures().get(22);
 	}
 
 	/**
@@ -6163,7 +6186,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLegacy108_LegacyFares() {
+	public EReference getLegacy108_LegacySeparateContractSeries() {
 		return (EReference)legacy108EClass.getEStructuralFeatures().get(2);
 	}
 
@@ -6172,7 +6195,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLegacy108_LegacyDistanceFares() {
+	public EReference getLegacy108_LegacyFares() {
 		return (EReference)legacy108EClass.getEStructuralFeatures().get(3);
 	}
 
@@ -6181,7 +6204,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLegacy108_LegacyRouteFares() {
+	public EReference getLegacy108_LegacyDistanceFares() {
 		return (EReference)legacy108EClass.getEStructuralFeatures().get(4);
 	}
 
@@ -6190,7 +6213,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLegacy108_LegacyStations() {
+	public EReference getLegacy108_LegacyRouteFares() {
 		return (EReference)legacy108EClass.getEStructuralFeatures().get(5);
 	}
 
@@ -6199,8 +6222,17 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getLegacy108_LegacyStations() {
+		return (EReference)legacy108EClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getLegacy108_TimeZone() {
-		return (EAttribute)legacy108EClass.getEStructuralFeatures().get(6);
+		return (EAttribute)legacy108EClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -6209,7 +6241,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	public EReference getLegacy108_Carrier() {
-		return (EReference)legacy108EClass.getEStructuralFeatures().get(7);
+		return (EReference)legacy108EClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -6507,6 +6539,60 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 */
 	public EAttribute getLegacySeries_Distance2() {
 		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLegacySeparateContractSeriesList() {
+		return legacySeparateContractSeriesListEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLegacySeparateContractSeriesList_SeparateContractSeries() {
+		return (EReference)legacySeparateContractSeriesListEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLegacySeparateContractSeries() {
+		return legacySeparateContractSeriesEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacySeparateContractSeries_SeriesNumber() {
+		return (EAttribute)legacySeparateContractSeriesEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacySeparateContractSeries_ValidFrom() {
+		return (EAttribute)legacySeparateContractSeriesEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacySeparateContractSeries_ValidUntil() {
+		return (EAttribute)legacySeparateContractSeriesEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -7635,6 +7721,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEReference(targetFareTemplateEClass, TARGET_FARE_TEMPLATE__SALES_AVAILABILITY);
 		createEReference(targetFareTemplateEClass, TARGET_FARE_TEMPLATE__TRAVEL_VALIDITY);
 		createEReference(targetFareTemplateEClass, TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT);
+		createEReference(targetFareTemplateEClass, TARGET_FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT);
 		createEReference(targetFareTemplateEClass, TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION);
 		createEReference(targetFareTemplateEClass, TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER);
 		createEReference(targetFareTemplateEClass, TARGET_FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT);
@@ -7695,6 +7782,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		legacy108EClass = createEClass(LEGACY108);
 		createEAttribute(legacy108EClass, LEGACY108__CHARACTER_SET);
 		createEReference(legacy108EClass, LEGACY108__LEGACY_SERIES_LIST);
+		createEReference(legacy108EClass, LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES);
 		createEReference(legacy108EClass, LEGACY108__LEGACY_FARES);
 		createEReference(legacy108EClass, LEGACY108__LEGACY_DISTANCE_FARES);
 		createEReference(legacy108EClass, LEGACY108__LEGACY_ROUTE_FARES);
@@ -7727,6 +7815,9 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEAttribute(legacyRouteFareEClass, LEGACY_ROUTE_FARE__VALID_FROM);
 		createEAttribute(legacyRouteFareEClass, LEGACY_ROUTE_FARE__VALID_UNTIL);
 
+		legacySeriesListEClass = createEClass(LEGACY_SERIES_LIST);
+		createEReference(legacySeriesListEClass, LEGACY_SERIES_LIST__SERIES);
+
 		legacySeriesEClass = createEClass(LEGACY_SERIES);
 		createEReference(legacySeriesEClass, LEGACY_SERIES__VIASTATIONS);
 		createEAttribute(legacySeriesEClass, LEGACY_SERIES__DISTANCE1);
@@ -7740,8 +7831,13 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEAttribute(legacySeriesEClass, LEGACY_SERIES__TO_STATION);
 		createEAttribute(legacySeriesEClass, LEGACY_SERIES__DISTANCE2);
 
-		legacySeriesListEClass = createEClass(LEGACY_SERIES_LIST);
-		createEReference(legacySeriesListEClass, LEGACY_SERIES_LIST__SERIES);
+		legacySeparateContractSeriesListEClass = createEClass(LEGACY_SEPARATE_CONTRACT_SERIES_LIST);
+		createEReference(legacySeparateContractSeriesListEClass, LEGACY_SEPARATE_CONTRACT_SERIES_LIST__SEPARATE_CONTRACT_SERIES);
+
+		legacySeparateContractSeriesEClass = createEClass(LEGACY_SEPARATE_CONTRACT_SERIES);
+		createEAttribute(legacySeparateContractSeriesEClass, LEGACY_SEPARATE_CONTRACT_SERIES__SERIES_NUMBER);
+		createEAttribute(legacySeparateContractSeriesEClass, LEGACY_SEPARATE_CONTRACT_SERIES__VALID_FROM);
+		createEAttribute(legacySeparateContractSeriesEClass, LEGACY_SEPARATE_CONTRACT_SERIES__VALID_UNTIL);
 
 		legacyDistanceFaresEClass = createEClass(LEGACY_DISTANCE_FARES);
 		createEReference(legacyDistanceFaresEClass, LEGACY_DISTANCE_FARES__DISTANCE_FARE);
@@ -8463,6 +8559,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEReference(getTargetFareTemplate_SalesAvailability(), this.getSalesAvailabilityConstraint(), null, "salesAvailability", null, 0, 1, TargetFareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTargetFareTemplate_TravelValidity(), this.getTravelValidityConstraint(), null, "travelValidity", null, 0, 1, TargetFareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTargetFareTemplate_CombinationConstraint(), this.getCombinationConstraint(), null, "combinationConstraint", null, 0, 1, TargetFareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTargetFareTemplate_SeparateContractCombinationConstraint(), this.getCombinationConstraint(), null, "separateContractCombinationConstraint", null, 0, 1, TargetFareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTargetFareTemplate_FareDetailDescription(), this.getText(), null, "fareDetailDescription", null, 0, 1, TargetFareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTargetFareTemplate_LegacyAccountingIdentifier(), this.getLegacyAccountingIdentifier(), null, "legacyAccountingIdentifier", null, 0, 1, TargetFareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTargetFareTemplate_PersonalDataConstraint(), this.getPersonalDataConstraint(), null, "personalDataConstraint", null, 0, 1, TargetFareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -8529,6 +8626,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEClass(legacy108EClass, Legacy108.class, "Legacy108", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLegacy108_CharacterSet(), this.getCharacterSet(), "characterSet", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLegacy108_LegacySeriesList(), this.getLegacySeriesList(), null, "legacySeriesList", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLegacy108_LegacySeparateContractSeries(), this.getLegacySeparateContractSeriesList(), null, "legacySeparateContractSeries", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLegacy108_LegacyFares(), this.getLegacyFares(), null, "legacyFares", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLegacy108_LegacyDistanceFares(), this.getLegacyDistanceFares(), null, "legacyDistanceFares", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLegacy108_LegacyRouteFares(), this.getLegacyRouteFares(), null, "legacyRouteFares", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -8565,6 +8663,9 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEAttribute(getLegacyRouteFare_ValidFrom(), ecorePackage.getEDate(), "validFrom", null, 0, 1, LegacyRouteFare.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacyRouteFare_ValidUntil(), ecorePackage.getEDate(), "validUntil", null, 0, 1, LegacyRouteFare.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(legacySeriesListEClass, LegacySeriesList.class, "LegacySeriesList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLegacySeriesList_Series(), this.getLegacySeries(), null, "series", null, 1, -1, LegacySeriesList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(legacySeriesEClass, LegacySeries.class, "LegacySeries", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLegacySeries_Viastations(), this.getLegacyViastation(), null, "viastations", null, 0, -1, LegacySeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacySeries_Distance1(), theXMLTypePackage.getInt(), "distance1", null, 1, 1, LegacySeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -8578,8 +8679,13 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEAttribute(getLegacySeries_ToStation(), ecorePackage.getEInt(), "toStation", null, 0, 1, LegacySeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacySeries_Distance2(), ecorePackage.getEInt(), "distance2", null, 0, 1, LegacySeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(legacySeriesListEClass, LegacySeriesList.class, "LegacySeriesList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLegacySeriesList_Series(), this.getLegacySeries(), null, "series", null, 1, -1, LegacySeriesList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(legacySeparateContractSeriesListEClass, LegacySeparateContractSeriesList.class, "LegacySeparateContractSeriesList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLegacySeparateContractSeriesList_SeparateContractSeries(), this.getLegacySeparateContractSeries(), null, "separateContractSeries", null, 0, -1, LegacySeparateContractSeriesList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(legacySeparateContractSeriesEClass, LegacySeparateContractSeries.class, "LegacySeparateContractSeries", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLegacySeparateContractSeries_SeriesNumber(), ecorePackage.getEInt(), "seriesNumber", null, 0, 1, LegacySeparateContractSeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacySeparateContractSeries_ValidFrom(), ecorePackage.getEDate(), "validFrom", null, 1, 1, LegacySeparateContractSeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacySeparateContractSeries_ValidUntil(), ecorePackage.getEDate(), "validUntil", null, 1, 1, LegacySeparateContractSeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(legacyDistanceFaresEClass, LegacyDistanceFares.class, "LegacyDistanceFares", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLegacyDistanceFares_DistanceFare(), this.getLegacyDistanceFare(), null, "distanceFare", null, 1, -1, LegacyDistanceFares.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

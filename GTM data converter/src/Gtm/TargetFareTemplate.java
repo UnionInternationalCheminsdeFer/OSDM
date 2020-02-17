@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.TargetFareTemplate#getSalesAvailability <em>Sales Availability</em>}</li>
  *   <li>{@link Gtm.TargetFareTemplate#getTravelValidity <em>Travel Validity</em>}</li>
  *   <li>{@link Gtm.TargetFareTemplate#getCombinationConstraint <em>Combination Constraint</em>}</li>
+ *   <li>{@link Gtm.TargetFareTemplate#getSeparateContractCombinationConstraint <em>Separate Contract Combination Constraint</em>}</li>
  *   <li>{@link Gtm.TargetFareTemplate#getFareDetailDescription <em>Fare Detail Description</em>}</li>
  *   <li>{@link Gtm.TargetFareTemplate#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
  *   <li>{@link Gtm.TargetFareTemplate#getPersonalDataConstraint <em>Personal Data Constraint</em>}</li>
@@ -379,6 +380,28 @@ public interface TargetFareTemplate extends EObject {
 	 * @generated
 	 */
 	void setCombinationConstraint(CombinationConstraint value);
+
+	/**
+	 * Returns the value of the '<em><b>Separate Contract Combination Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Separate Contract Combination Constraint</em>' reference.
+	 * @see #setSeparateContractCombinationConstraint(CombinationConstraint)
+	 * @see Gtm.GtmPackage#getTargetFareTemplate_SeparateContractCombinationConstraint()
+	 * @model
+	 * @generated
+	 */
+	CombinationConstraint getSeparateContractCombinationConstraint();
+
+	/**
+	 * Sets the value of the '{@link Gtm.TargetFareTemplate#getSeparateContractCombinationConstraint <em>Separate Contract Combination Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Separate Contract Combination Constraint</em>' reference.
+	 * @see #getSeparateContractCombinationConstraint()
+	 * @generated
+	 */
+	void setSeparateContractCombinationConstraint(CombinationConstraint value);
 
 	/**
 	 * Returns the value of the '<em><b>Fare Detail Description</b></em>' reference.
