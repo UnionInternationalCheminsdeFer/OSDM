@@ -6,17 +6,112 @@
 
 <plugin>
 
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+   <extension
+         point="org.eclipse.core.runtime.applications"
+         id="GtmEditorAdvisorApplication">
       <!-- @generated Gtm -->
-      <factory
-            uri="platform:/resource/GTM%20data%20converter/model/gtm.xsd"
-            class="Gtm.provider.GtmItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+      <application>
+         <run class="Gtm.presentation.GtmEditorAdvisor$Application"/>
+      </application>
+   </extension>
+
+   <extension point="org.eclipse.ui.perspectives">
+      <!-- @generated Gtm -->
+      <perspective
+            name="%_UI_Perspective_label"
+            class="Gtm.presentation.GtmEditorAdvisor$Perspective"
+            id="Gtm.presentation.GtmEditorAdvisorPerspective">
+      </perspective>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands">
+      <!-- @generated Gtm -->
+      <command
+            name="%_UI_Menu_OpenURI_label"
+            description="%_UI_Menu_OpenURI_description"
+            categoryId="org.eclipse.ui.category.file"
+            id="Gtm.presentation.GtmEditorAdvisorOpenURICommand"/>
+      <command
+            name="%_UI_Menu_Open_label"
+            description="%_UI_Menu_Open_description"
+            categoryId="org.eclipse.ui.category.file"
+            id="Gtm.presentation.GtmEditorAdvisorOpenCommand"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.bindings">
+      <!-- @generated Gtm -->
+      <key
+            commandId="Gtm.presentation.GtmEditorAdvisorOpenURICommand"
+            sequence="M1+U"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="Gtm.presentation.GtmEditorAdvisorOpenCommand"
+            sequence="M1+O"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.actionSets">
+      <!-- @generated Gtm -->
+      <actionSet
+            label="%_UI_GtmEditorAdvisor_ActionSet_label"
+            visible="true"
+            id="GtmEditorAdvisorActionSet">
+         <action
+               label="%_UI_Menu_About_label"
+               class="Gtm.presentation.GtmEditorAdvisor$AboutAction"
+               menubarPath="help/additions"
+               id="Gtm.presentation.GtmEditorAdvisorAboutAction"/>
+         <action
+               label="%_UI_Menu_OpenURI_label"
+               definitionId="Gtm.presentation.GtmEditorAdvisorOpenURICommand"
+               class="Gtm.presentation.GtmEditorAdvisor$OpenURIAction"
+               menubarPath="file/additions"
+               id="Gtm.presentation.GtmEditorAdvisorOpenURIAction"/>
+         <action
+               label="%_UI_Menu_Open_label"
+               definitionId="Gtm.presentation.GtmEditorAdvisorOpenCommand"
+               class="Gtm.presentation.GtmEditorAdvisor$OpenAction"
+               menubarPath="file/additions"
+               id="Gtm.presentation.GtmEditorAdvisorOpenAction"/>
+      </actionSet>
+   </extension>
+
+   <extension point="org.eclipse.ui.actionSets">
+      <!-- @generated Gtm -->
+      <actionSet
+            label="%_UI_GtmModelWizard_ActionSet_label"
+            visible="true"
+            id="Gtm.presentation.GtmActionBarContributorActionSet">
+         <action
+               label="%_UI_GtmModelWizard_label"
+               class="Gtm.presentation.GtmActionBarContributor$NewAction"
+               menubarPath="file/new/additions"
+               id="Gtm.presentation.GtmActionBarContributorNewAction"/>
+      </actionSet>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated Gtm -->
+      <editor
+            id="Gtm.presentation.GtmEditorID"
+            name="%_UI_GtmEditor_label"
+            icon="icons/full/obj16/GtmModelFile.gif"
+            extensions="gtm"
+            class="Gtm.presentation.GtmEditor"
+            contributorClass="Gtm.presentation.GtmActionBarContributor">
+      </editor>
+   </extension>
+   <extension
+         id="GTMproduct"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="GTM_data_converter.editor.GtmEditorAdvisorApplication"
+            name="GTM data converter">
+         <property
+               name="appName"
+               value="GTM data converter">
+         </property>
+      </product>
    </extension>
 
 </plugin>
