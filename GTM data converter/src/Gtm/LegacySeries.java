@@ -17,17 +17,22 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link Gtm.LegacySeries#getViastations <em>Viastations</em>}</li>
- *   <li>{@link Gtm.LegacySeries#getDistance1 <em>Distance1</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getSupplyingCarrierCode <em>Supplying Carrier Code</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getNumber <em>Number</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getType <em>Type</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getFromStation <em>From Station</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getFromStationName <em>From Station Name</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getToStation <em>To Station</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getToStationName <em>To Station Name</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getRouteNumber <em>Route Number</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getCarrierCode <em>Carrier Code</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getRouteDescription <em>Route Description</em>}</li>
  *   <li>{@link Gtm.LegacySeries#getPricetype <em>Pricetype</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getDistance1 <em>Distance1</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getDistance2 <em>Distance2</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getViastations <em>Viastations</em>}</li>
  *   <li>{@link Gtm.LegacySeries#getValidFrom <em>Valid From</em>}</li>
  *   <li>{@link Gtm.LegacySeries#getValidUntil <em>Valid Until</em>}</li>
- *   <li>{@link Gtm.LegacySeries#getPricing <em>Pricing</em>}</li>
- *   <li>{@link Gtm.LegacySeries#getType <em>Type</em>}</li>
- *   <li>{@link Gtm.LegacySeries#getNumber <em>Number</em>}</li>
- *   <li>{@link Gtm.LegacySeries#getFromStation <em>From Station</em>}</li>
- *   <li>{@link Gtm.LegacySeries#getToStation <em>To Station</em>}</li>
- *   <li>{@link Gtm.LegacySeries#getDistance2 <em>Distance2</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getLegacySeries()
@@ -35,6 +40,28 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface LegacySeries extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Supplying Carrier Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Supplying Carrier Code</em>' attribute.
+	 * @see #setSupplyingCarrierCode(String)
+	 * @see Gtm.GtmPackage#getLegacySeries_SupplyingCarrierCode()
+	 * @model
+	 * @generated
+	 */
+	String getSupplyingCarrierCode();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacySeries#getSupplyingCarrierCode <em>Supplying Carrier Code</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Supplying Carrier Code</em>' attribute.
+	 * @see #getSupplyingCarrierCode()
+	 * @generated
+	 */
+	void setSupplyingCarrierCode(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Viastations</b></em>' containment reference list.
 	 * The list contents are of type {@link Gtm.LegacyViastation}.
@@ -56,7 +83,7 @@ public interface LegacySeries extends EObject {
 	 * @see #unsetDistance1()
 	 * @see #setDistance1(int)
 	 * @see Gtm.GtmPackage#getLegacySeries_Distance1()
-	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int" required="true"
+	 * @model unsettable="true" required="true"
 	 * @generated
 	 */
 	int getDistance1();
@@ -193,28 +220,6 @@ public interface LegacySeries extends EObject {
 	void setValidUntil(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Pricing</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pricing</em>' attribute.
-	 * @see #setPricing(String)
-	 * @see Gtm.GtmPackage#getLegacySeries_Pricing()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-	 * @generated
-	 */
-	String getPricing();
-
-	/**
-	 * Sets the value of the '{@link Gtm.LegacySeries#getPricing <em>Pricing</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pricing</em>' attribute.
-	 * @see #getPricing()
-	 * @generated
-	 */
-	void setPricing(String value);
-
-	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link Gtm.LegacySeriesType}.
 	 * <!-- begin-user-doc -->
@@ -284,6 +289,28 @@ public interface LegacySeries extends EObject {
 	void setFromStation(int value);
 
 	/**
+	 * Returns the value of the '<em><b>From Station Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>From Station Name</em>' attribute.
+	 * @see #setFromStationName(String)
+	 * @see Gtm.GtmPackage#getLegacySeries_FromStationName()
+	 * @model
+	 * @generated
+	 */
+	String getFromStationName();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacySeries#getFromStationName <em>From Station Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>From Station Name</em>' attribute.
+	 * @see #getFromStationName()
+	 * @generated
+	 */
+	void setFromStationName(String value);
+
+	/**
 	 * Returns the value of the '<em><b>To Station</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -304,6 +331,94 @@ public interface LegacySeries extends EObject {
 	 * @generated
 	 */
 	void setToStation(int value);
+
+	/**
+	 * Returns the value of the '<em><b>To Station Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>To Station Name</em>' attribute.
+	 * @see #setToStationName(String)
+	 * @see Gtm.GtmPackage#getLegacySeries_ToStationName()
+	 * @model
+	 * @generated
+	 */
+	String getToStationName();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacySeries#getToStationName <em>To Station Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>To Station Name</em>' attribute.
+	 * @see #getToStationName()
+	 * @generated
+	 */
+	void setToStationName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Route Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Route Number</em>' attribute.
+	 * @see #setRouteNumber(int)
+	 * @see Gtm.GtmPackage#getLegacySeries_RouteNumber()
+	 * @model
+	 * @generated
+	 */
+	int getRouteNumber();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacySeries#getRouteNumber <em>Route Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Route Number</em>' attribute.
+	 * @see #getRouteNumber()
+	 * @generated
+	 */
+	void setRouteNumber(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Carrier Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Carrier Code</em>' attribute.
+	 * @see #setCarrierCode(String)
+	 * @see Gtm.GtmPackage#getLegacySeries_CarrierCode()
+	 * @model
+	 * @generated
+	 */
+	String getCarrierCode();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacySeries#getCarrierCode <em>Carrier Code</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Carrier Code</em>' attribute.
+	 * @see #getCarrierCode()
+	 * @generated
+	 */
+	void setCarrierCode(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Route Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Route Description</em>' attribute.
+	 * @see #setRouteDescription(String)
+	 * @see Gtm.GtmPackage#getLegacySeries_RouteDescription()
+	 * @model
+	 * @generated
+	 */
+	String getRouteDescription();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacySeries#getRouteDescription <em>Route Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Route Description</em>' attribute.
+	 * @see #getRouteDescription()
+	 * @generated
+	 */
+	void setRouteDescription(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Distance2</b></em>' attribute.

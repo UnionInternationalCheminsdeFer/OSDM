@@ -64,18 +64,45 @@ public class LegacySeriesItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addDistance1PropertyDescriptor(object);
+			addSupplyingCarrierCodePropertyDescriptor(object);
+			addNumberPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
+			addFromStationPropertyDescriptor(object);
+			addFromStationNamePropertyDescriptor(object);
+			addToStationPropertyDescriptor(object);
+			addToStationNamePropertyDescriptor(object);
+			addRouteNumberPropertyDescriptor(object);
+			addCarrierCodePropertyDescriptor(object);
+			addRouteDescriptionPropertyDescriptor(object);
 			addPricetypePropertyDescriptor(object);
+			addDistance1PropertyDescriptor(object);
+			addDistance2PropertyDescriptor(object);
 			addValidFromPropertyDescriptor(object);
 			addValidUntilPropertyDescriptor(object);
-			addPricingPropertyDescriptor(object);
-			addTypePropertyDescriptor(object);
-			addNumberPropertyDescriptor(object);
-			addFromStationPropertyDescriptor(object);
-			addToStationPropertyDescriptor(object);
-			addDistance2PropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Supplying Carrier Code feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSupplyingCarrierCodePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacySeries_supplyingCarrierCode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacySeries_supplyingCarrierCode_feature", "_UI_LegacySeries_type"),
+				 GtmPackage.Literals.LEGACY_SERIES__SUPPLYING_CARRIER_CODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -167,28 +194,6 @@ public class LegacySeriesItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Pricing feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPricingPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LegacySeries_pricing_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LegacySeries_pricing_feature", "_UI_LegacySeries_type"),
-				 GtmPackage.Literals.LEGACY_SERIES__PRICING,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -255,6 +260,28 @@ public class LegacySeriesItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the From Station Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFromStationNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacySeries_fromStationName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacySeries_fromStationName_feature", "_UI_LegacySeries_type"),
+				 GtmPackage.Literals.LEGACY_SERIES__FROM_STATION_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the To Station feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -272,6 +299,94 @@ public class LegacySeriesItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the To Station Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addToStationNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacySeries_toStationName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacySeries_toStationName_feature", "_UI_LegacySeries_type"),
+				 GtmPackage.Literals.LEGACY_SERIES__TO_STATION_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Route Number feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRouteNumberPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacySeries_routeNumber_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacySeries_routeNumber_feature", "_UI_LegacySeries_type"),
+				 GtmPackage.Literals.LEGACY_SERIES__ROUTE_NUMBER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Carrier Code feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCarrierCodePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacySeries_carrierCode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacySeries_carrierCode_feature", "_UI_LegacySeries_type"),
+				 GtmPackage.Literals.LEGACY_SERIES__CARRIER_CODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Route Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRouteDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacySeries_routeDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacySeries_routeDescription_feature", "_UI_LegacySeries_type"),
+				 GtmPackage.Literals.LEGACY_SERIES__ROUTE_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -364,16 +479,21 @@ public class LegacySeriesItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LegacySeries.class)) {
-			case GtmPackage.LEGACY_SERIES__DISTANCE1:
+			case GtmPackage.LEGACY_SERIES__SUPPLYING_CARRIER_CODE:
+			case GtmPackage.LEGACY_SERIES__NUMBER:
+			case GtmPackage.LEGACY_SERIES__TYPE:
+			case GtmPackage.LEGACY_SERIES__FROM_STATION:
+			case GtmPackage.LEGACY_SERIES__FROM_STATION_NAME:
+			case GtmPackage.LEGACY_SERIES__TO_STATION:
+			case GtmPackage.LEGACY_SERIES__TO_STATION_NAME:
+			case GtmPackage.LEGACY_SERIES__ROUTE_NUMBER:
+			case GtmPackage.LEGACY_SERIES__CARRIER_CODE:
+			case GtmPackage.LEGACY_SERIES__ROUTE_DESCRIPTION:
 			case GtmPackage.LEGACY_SERIES__PRICETYPE:
+			case GtmPackage.LEGACY_SERIES__DISTANCE1:
+			case GtmPackage.LEGACY_SERIES__DISTANCE2:
 			case GtmPackage.LEGACY_SERIES__VALID_FROM:
 			case GtmPackage.LEGACY_SERIES__VALID_UNTIL:
-			case GtmPackage.LEGACY_SERIES__PRICING:
-			case GtmPackage.LEGACY_SERIES__TYPE:
-			case GtmPackage.LEGACY_SERIES__NUMBER:
-			case GtmPackage.LEGACY_SERIES__FROM_STATION:
-			case GtmPackage.LEGACY_SERIES__TO_STATION:
-			case GtmPackage.LEGACY_SERIES__DISTANCE2:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.LEGACY_SERIES__VIASTATIONS:

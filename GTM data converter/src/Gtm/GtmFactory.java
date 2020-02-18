@@ -1066,15 +1066,6 @@ public interface GtmFactory extends EFactory {
 	LegacyBorderPointMapping createLegacyBorderPointMapping();
 
 	/**
-	 * Returns a new object of class '<em>Legacy Description</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Description</em>'.
-	 * @generated
-	 */
-	LegacyDescription createLegacyDescription();
-
-	/**
 	 * Returns a new object of class '<em>Legacy Fare Station Set Mappings</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1091,24 +1082,6 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	LegacyFareStationSetMap createLegacyFareStationSetMap();
-
-	/**
-	 * Returns a new object of class '<em>Legacy Fares</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Fares</em>'.
-	 * @generated
-	 */
-	LegacyFares createLegacyFares();
-
-	/**
-	 * Returns a new object of class '<em>Legacy Fare</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Fare</em>'.
-	 * @generated
-	 */
-	LegacyFare createLegacyFare();
 
 	/**
 	 * Returns a new object of class '<em>Legacy108</em>'.

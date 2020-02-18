@@ -8,7 +8,7 @@ import org.eclipse.swt.widgets.MessageBox;
 
 import Gtm.Country;
 import Gtm.GTMTool;
-import Gtm.actions.converter.ConverterUtil;
+import Gtm.actions.converter.ConverterFromLegacy;
 
 
 public class ConvertLegacy2GtmAction extends BasicGtmAction {
@@ -50,9 +50,9 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 			
 			try {
 
-				ConverterUtil converter = new ConverterUtil(tool);
+				ConverterFromLegacy converter = new ConverterFromLegacy(tool);
 
-				int deleted = ConverterUtil.deleteOldConversionResults(tool, domain);
+				int deleted = ConverterFromLegacy.deleteOldConversionResults(tool, domain);
 				GtmUtils.writeConsoleInfog("old series conversions deleted: " + Integer.toString(deleted));
 				
 				int added = converter.convertFareStationSets(tool,  domain);

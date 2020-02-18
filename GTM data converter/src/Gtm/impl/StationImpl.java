@@ -31,6 +31,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.StationImpl#isBorderStation <em>Border Station</em>}</li>
  *   <li>{@link Gtm.impl.StationImpl#getNameCaseUTF8 <em>Name Case UTF8</em>}</li>
  *   <li>{@link Gtm.impl.StationImpl#getNameCaseASCII <em>Name Case ASCII</em>}</li>
+ *   <li>{@link Gtm.impl.StationImpl#getShortNameCaseASCII <em>Short Name Case ASCII</em>}</li>
+ *   <li>{@link Gtm.impl.StationImpl#getShortNameCaseUTF8 <em>Short Name Case UTF8</em>}</li>
  * </ul>
  *
  * @generated
@@ -205,6 +207,46 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 	 * @ordered
 	 */
 	protected String nameCaseASCII = NAME_CASE_ASCII_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getShortNameCaseASCII() <em>Short Name Case ASCII</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getShortNameCaseASCII()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SHORT_NAME_CASE_ASCII_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getShortNameCaseASCII() <em>Short Name Case ASCII</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getShortNameCaseASCII()
+	 * @generated
+	 * @ordered
+	 */
+	protected String shortNameCaseASCII = SHORT_NAME_CASE_ASCII_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getShortNameCaseUTF8() <em>Short Name Case UTF8</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getShortNameCaseUTF8()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SHORT_NAME_CASE_UTF8_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getShortNameCaseUTF8() <em>Short Name Case UTF8</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getShortNameCaseUTF8()
+	 * @generated
+	 * @ordered
+	 */
+	protected String shortNameCaseUTF8 = SHORT_NAME_CASE_UTF8_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -436,6 +478,48 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getShortNameCaseASCII() {
+		return shortNameCaseASCII;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setShortNameCaseASCII(String newShortNameCaseASCII) {
+		String oldShortNameCaseASCII = shortNameCaseASCII;
+		shortNameCaseASCII = newShortNameCaseASCII;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.STATION__SHORT_NAME_CASE_ASCII, oldShortNameCaseASCII, shortNameCaseASCII));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getShortNameCaseUTF8() {
+		return shortNameCaseUTF8;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setShortNameCaseUTF8(String newShortNameCaseUTF8) {
+		String oldShortNameCaseUTF8 = shortNameCaseUTF8;
+		shortNameCaseUTF8 = newShortNameCaseUTF8;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.STATION__SHORT_NAME_CASE_UTF8, oldShortNameCaseUTF8, shortNameCaseUTF8));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -458,6 +542,10 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 				return getNameCaseUTF8();
 			case GtmPackage.STATION__NAME_CASE_ASCII:
 				return getNameCaseASCII();
+			case GtmPackage.STATION__SHORT_NAME_CASE_ASCII:
+				return getShortNameCaseASCII();
+			case GtmPackage.STATION__SHORT_NAME_CASE_UTF8:
+				return getShortNameCaseUTF8();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -496,6 +584,12 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 				return;
 			case GtmPackage.STATION__NAME_CASE_ASCII:
 				setNameCaseASCII((String)newValue);
+				return;
+			case GtmPackage.STATION__SHORT_NAME_CASE_ASCII:
+				setShortNameCaseASCII((String)newValue);
+				return;
+			case GtmPackage.STATION__SHORT_NAME_CASE_UTF8:
+				setShortNameCaseUTF8((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -536,6 +630,12 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 			case GtmPackage.STATION__NAME_CASE_ASCII:
 				setNameCaseASCII(NAME_CASE_ASCII_EDEFAULT);
 				return;
+			case GtmPackage.STATION__SHORT_NAME_CASE_ASCII:
+				setShortNameCaseASCII(SHORT_NAME_CASE_ASCII_EDEFAULT);
+				return;
+			case GtmPackage.STATION__SHORT_NAME_CASE_UTF8:
+				setShortNameCaseUTF8(SHORT_NAME_CASE_UTF8_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -566,6 +666,10 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 				return NAME_CASE_UTF8_EDEFAULT == null ? nameCaseUTF8 != null : !NAME_CASE_UTF8_EDEFAULT.equals(nameCaseUTF8);
 			case GtmPackage.STATION__NAME_CASE_ASCII:
 				return NAME_CASE_ASCII_EDEFAULT == null ? nameCaseASCII != null : !NAME_CASE_ASCII_EDEFAULT.equals(nameCaseASCII);
+			case GtmPackage.STATION__SHORT_NAME_CASE_ASCII:
+				return SHORT_NAME_CASE_ASCII_EDEFAULT == null ? shortNameCaseASCII != null : !SHORT_NAME_CASE_ASCII_EDEFAULT.equals(shortNameCaseASCII);
+			case GtmPackage.STATION__SHORT_NAME_CASE_UTF8:
+				return SHORT_NAME_CASE_UTF8_EDEFAULT == null ? shortNameCaseUTF8 != null : !SHORT_NAME_CASE_UTF8_EDEFAULT.equals(shortNameCaseUTF8);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -596,6 +700,10 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 		result.append(nameCaseUTF8);
 		result.append(", nameCaseASCII: ");
 		result.append(nameCaseASCII);
+		result.append(", shortNameCaseASCII: ");
+		result.append(shortNameCaseASCII);
+		result.append(", shortNameCaseUTF8: ");
+		result.append(shortNameCaseUTF8);
 		result.append(')');
 		return result.toString();
 	}

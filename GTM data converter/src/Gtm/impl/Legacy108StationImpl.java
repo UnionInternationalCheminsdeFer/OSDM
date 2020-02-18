@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.Legacy108StationImpl#getNameUTF8 <em>Name UTF8</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108StationImpl#getStationCode <em>Station Code</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108StationImpl#getFareReferenceStationCode <em>Fare Reference Station Code</em>}</li>
+ *   <li>{@link Gtm.impl.Legacy108StationImpl#getShortName <em>Short Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -127,6 +128,26 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected int fareReferenceStationCode = FARE_REFERENCE_STATION_CODE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getShortName() <em>Short Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getShortName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SHORT_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getShortName() <em>Short Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getShortName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String shortName = SHORT_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -257,6 +278,27 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getShortName() {
+		return shortName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setShortName(String newShortName) {
+		String oldShortName = shortName;
+		shortName = newShortName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108_STATION__SHORT_NAME, oldShortName, shortName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -270,6 +312,8 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 				return getStationCode();
 			case GtmPackage.LEGACY108_STATION__FARE_REFERENCE_STATION_CODE:
 				return getFareReferenceStationCode();
+			case GtmPackage.LEGACY108_STATION__SHORT_NAME:
+				return getShortName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -296,6 +340,9 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case GtmPackage.LEGACY108_STATION__FARE_REFERENCE_STATION_CODE:
 				setFareReferenceStationCode((Integer)newValue);
+				return;
+			case GtmPackage.LEGACY108_STATION__SHORT_NAME:
+				setShortName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -324,6 +371,9 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.LEGACY108_STATION__FARE_REFERENCE_STATION_CODE:
 				setFareReferenceStationCode(FARE_REFERENCE_STATION_CODE_EDEFAULT);
 				return;
+			case GtmPackage.LEGACY108_STATION__SHORT_NAME:
+				setShortName(SHORT_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -346,6 +396,8 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 				return stationCode != STATION_CODE_EDEFAULT;
 			case GtmPackage.LEGACY108_STATION__FARE_REFERENCE_STATION_CODE:
 				return fareReferenceStationCode != FARE_REFERENCE_STATION_CODE_EDEFAULT;
+			case GtmPackage.LEGACY108_STATION__SHORT_NAME:
+				return SHORT_NAME_EDEFAULT == null ? shortName != null : !SHORT_NAME_EDEFAULT.equals(shortName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -370,6 +422,8 @@ public class Legacy108StationImpl extends MinimalEObjectImpl.Container implement
 		result.append(stationCode);
 		result.append(", fareReferenceStationCode: ");
 		result.append(fareReferenceStationCode);
+		result.append(", shortName: ");
+		result.append(shortName);
 		result.append(')');
 		return result.toString();
 	}

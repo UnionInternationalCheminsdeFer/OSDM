@@ -61,14 +61,15 @@ public class LegacyRouteFareItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addFareTableNumberPropertyDescriptor(object);
 			addSeriesNumberPropertyDescriptor(object);
 			addFare2ndPropertyDescriptor(object);
 			addFare1stPropertyDescriptor(object);
-			addFareTableNumberPropertyDescriptor(object);
 			addReturnFare1stPropertyDescriptor(object);
 			addReturnFare2ndPropertyDescriptor(object);
 			addValidFromPropertyDescriptor(object);
 			addValidUntilPropertyDescriptor(object);
+			addSeriesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -250,6 +251,28 @@ public class LegacyRouteFareItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Series feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSeriesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacyRouteFare_series_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyRouteFare_series_feature", "_UI_LegacyRouteFare_type"),
+				 GtmPackage.Literals.LEGACY_ROUTE_FARE__SERIES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns LegacyRouteFare.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -269,7 +292,7 @@ public class LegacyRouteFareItemProvider
 	@Override
 	public String getText(Object object) {
 		LegacyRouteFare legacyRouteFare = (LegacyRouteFare)object;
-		return getString("_UI_LegacyRouteFare_type") + " " + legacyRouteFare.getSeriesNumber();
+		return getString("_UI_LegacyRouteFare_type") + " " + legacyRouteFare.getFareTableNumber();
 	}
 
 
@@ -285,10 +308,10 @@ public class LegacyRouteFareItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LegacyRouteFare.class)) {
+			case GtmPackage.LEGACY_ROUTE_FARE__FARE_TABLE_NUMBER:
 			case GtmPackage.LEGACY_ROUTE_FARE__SERIES_NUMBER:
 			case GtmPackage.LEGACY_ROUTE_FARE__FARE2ND:
 			case GtmPackage.LEGACY_ROUTE_FARE__FARE1ST:
-			case GtmPackage.LEGACY_ROUTE_FARE__FARE_TABLE_NUMBER:
 			case GtmPackage.LEGACY_ROUTE_FARE__RETURN_FARE1ST:
 			case GtmPackage.LEGACY_ROUTE_FARE__RETURN_FARE2ND:
 			case GtmPackage.LEGACY_ROUTE_FARE__VALID_FROM:

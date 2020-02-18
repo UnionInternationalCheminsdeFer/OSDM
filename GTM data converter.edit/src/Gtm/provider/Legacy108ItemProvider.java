@@ -151,7 +151,6 @@ public class Legacy108ItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_SERIES_LIST);
 			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES);
-			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_FARES);
 			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_DISTANCE_FARES);
 			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_ROUTE_FARES);
 			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_STATIONS);
@@ -221,7 +220,6 @@ public class Legacy108ItemProvider
 				return;
 			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:
 			case GtmPackage.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES:
-			case GtmPackage.LEGACY108__LEGACY_FARES:
 			case GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES:
 			case GtmPackage.LEGACY108__LEGACY_ROUTE_FARES:
 			case GtmPackage.LEGACY108__LEGACY_STATIONS:
@@ -250,12 +248,7 @@ public class Legacy108ItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(GtmPackage.Literals.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES,
-				 GtmFactory.eINSTANCE.createLegacySeparateContractSeries()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.LEGACY108__LEGACY_FARES,
-				 GtmFactory.eINSTANCE.createLegacyFares()));
+				 GtmFactory.eINSTANCE.createLegacySeparateContractSeriesList()));
 
 		newChildDescriptors.add
 			(createChildParameter

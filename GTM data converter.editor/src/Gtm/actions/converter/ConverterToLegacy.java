@@ -1,23 +1,34 @@
 package Gtm.actions.converter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import org.eclipse.emf.common.command.CompoundCommand;
+import java.util.Set;
+
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import Gtm.AlternativeRoute;
+import Gtm.ClassId;
 import Gtm.Clusters;
 import Gtm.CombinationModel;
+import Gtm.CurrencyPrice;
 import Gtm.FareCombinationModel;
 import Gtm.FareElement;
 import Gtm.FareStationSetDefinition;
-import Gtm.FareStationSetDefinitions;
 import Gtm.GTMTool;
+import Gtm.GtmFactory;
 import Gtm.GtmPackage;
+import Gtm.Legacy108Station;
+import Gtm.LegacyCalculationType;
 import Gtm.LegacyRouteFare;
 import Gtm.LegacySeries;
+import Gtm.LegacySeriesType;
+import Gtm.Price;
+import Gtm.RegionalConstraint;
 import Gtm.RegionalValidity;
 import Gtm.Station;
 import Gtm.TravelerType;
@@ -28,53 +39,123 @@ public class 	ConverterToLegacy {
 	
 	
 	private GTMTool tool = null;
-	private HashSet<Station> convertibleStations = new HashSet<Station>();
-	private HashSet<FareStationSetDefinitions> convertibleFareStationSets = new HashSet<FareStationSetDefinitions>();
-	
+	private HashMap<String,LegacyRouteFare> legacyFares = new HashMap<String,LegacyRouteFare>(); 
+	private HashSet<LegacyRouteFare> routeFares = new HashSet<LegacyRouteFare>();
+	private HashSet<LegacySeries> series = new HashSet<LegacySeries>();	
+	private HashSet<Legacy108Station> legacyStations = new HashSet<Legacy108Station>();	
 		
 	public ConverterToLegacy(GTMTool tool) {
 		this.tool = tool;
 	}
 	
-	public CompoundCommand convert() {
+	public int convert() {
 		
+		convertStations();
 		
-		List<FareElement> convertableFares = selectFares();
+		convertfareStations();	
 
-		CompoundCommand command = new CompoundCommand();
-		
+		List<FareElement> convertableFares = selectFares();
 		for (FareElement fare : convertableFares) {
-			CompoundCommand com = covertFare(fare, convertableFares.indexOf(fare));
-			if (com != null && !com.isEmpty() && com.canExecute()) {
-				command.append(com);
+
+			try {
+				LegacyRouteFare  legacyFare = convertFare(fare, convertableFares.indexOf(fare));
+				routeFares.add(legacyFare);
+				series.add(legacyFare.getSeries());
+			} catch (ConverterException e) {
+				String message = "error in fare: " + fare.getId() + " " + e.getMessage();
+				GtmUtils.writeConsoleError(message);
 			}
 		}
 		
-		CompoundCommand com2 = convertStations(convertibleStations);
-		if (com2 != null && !com2.isEmpty() && com2.canExecute()) {
-			command.append(com2);
+		//check for missing fares in specific classes, set distance to 0
+		for (LegacyRouteFare lf : routeFares) {
+			if (!lf.isSetFare1st()) {
+				lf.getSeries().setDistance1(0);
+			}
+			if (!lf.isSetFare2nd()) {
+				lf.getSeries().setDistance2(0);
+			}			
 		}
 		
-		CompoundCommand com3 = convertFareStationSets(convertibleFareStationSets);
-		if (com3 != null && !com3.isEmpty() && com3.canExecute()) {
-			command.append(com3);
+		EditingDomain domain = GtmUtils.getActiveDomain(); 
+	
+		Command com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList(), GtmPackage.Literals.LEGACY_SERIES_LIST__SERIES, series);
+		if (com != null && com.canExecute()) {
+			domain.getCommandStack().execute(com);
 		}
 		
-		return command;
+		com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares(), GtmPackage.Literals.LEGACY_ROUTE_FARES__ROUTE_FARE, routeFares);
+		if (com != null && com.canExecute()) {
+			domain.getCommandStack().execute(com);
+		}
+		
+		com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacyStations(), tool.getConversionFromLegacy().getLegacy108().getLegacyStations(), legacyStations);
+		if (com != null && com.canExecute()) {
+			domain.getCommandStack().execute(com);
+		}
+		
+		return series.size();
 	}
 	
 	
-	private CompoundCommand convertFareStationSets(HashSet<FareStationSetDefinitions> convertibleFareStationSets2) {
-		// TODO Auto-generated method stub
-		return null;
+	private void convertfareStations() {
+		for (FareStationSetDefinition fs : tool.getGeneralTariffModel().getFareStructure().getFareStationSetDefinitions().getFareStationSetDefinitions()) {
+			
+			Legacy108Station ls = GtmFactory.eINSTANCE.createLegacy108Station();
+				
+			ls.setStationCode(Integer.parseInt(fs.getCode()));
+			ls.setName(fs.getName());
+			ls.setNameUTF8(fs.getNameUtf8());
+			if (fs.getLegacyCode() != 0) {
+				ls.setFareReferenceStationCode(fs.getLegacyCode());
+			} else {
+				return;
+			}
+			legacyStations.add(ls);
+		}
+		return;
+		
 	}
 
-	private CompoundCommand convertStations(HashSet<Station> convertibleStations2) {
-		// TODO Auto-generated method stub
-		return null;
+
+
+	private void convertStations() {
+
+		for (Station station : tool.getCodeLists().getStations().getStations()) {
+			
+			if (station.getCountry() == tool.getConversionFromLegacy().getParams().getCountry()) {
+				Legacy108Station ls = GtmFactory.eINSTANCE.createLegacy108Station();
+				
+				ls.setStationCode(Integer.parseInt(station.getCode()));
+				ls.setName(station.getNameCaseASCII());
+				ls.setNameUTF8(station.getNameCaseUTF8());
+				ls.setFareReferenceStationCode(getFareReferenceCode(station));
+				
+				legacyStations.add(ls);
+
+			}
+		}
+		return;
 	}
 
-	private CompoundCommand covertFare(FareElement fare,int index) {
+	private int getFareReferenceCode(Station station) {
+		
+		int fareCode = 0;
+		Set<Integer> fareCodes = new HashSet<Integer>();
+		for (FareStationSetDefinition f : tool.getGeneralTariffModel().getFareStructure().getFareStationSetDefinitions().getFareStationSetDefinitions()) {
+			if (f.getLegacyCode() > 0 && f.getStations().indexOf(station) >= 0 ) {
+				fareCodes.add(Integer.valueOf(f.getLegacyCode()));
+				fareCode = f.getLegacyCode();
+			}
+		}
+		
+		if (fareCodes.size() > 0) {
+			//TODO What to do now?
+		}
+		return fareCode;
+	}
+
+	private LegacyRouteFare convertFare(FareElement fare,int index) throws ConverterException {
 		
 		LegacySeries series = convertToSeries(fare,index);
 		if (series == null) return null;
@@ -82,26 +163,123 @@ public class 	ConverterToLegacy {
 		LegacyRouteFare routeFare = convertToFare(fare,series,index);
 		if (routeFare == null) return null;
 
-		CompoundCommand com = new CompoundCommand();
-		
-		EditingDomain domain = GtmUtils.getActiveDomain(); 
-	
-		com.append(AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList(), GtmPackage.Literals.LEGACY_SERIES_LIST__SERIES, series));
-		
-		com.append(AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares(), GtmPackage.Literals.LEGACY_ROUTE_FARES__ROUTE_FARE, routeFare));
-		
-		return null;
+		return routeFare;
 	}
 
-	private LegacyRouteFare convertToFare(FareElement fare, LegacySeries series, int index) {
-		// TODO Auto-generated method stub
-		return null;
+	private LegacyRouteFare convertToFare(FareElement fare, LegacySeries series, int index) throws ConverterException {
+
+		//search for legacy route fare to add class
+		LegacyRouteFare legacyFare = legacyFares.get(series.getRouteDescription());
+		if (legacyFare == null) {	
+			legacyFare = GtmFactory.eINSTANCE.createLegacyRouteFare();
+			legacyFare.setSeriesNumber(series.getNumber());
+			legacyFare.setValidFrom(fare.getSalesAvailability().getRestrictions().get(0).getSalesDates().getFromDate());
+			legacyFare.setValidUntil(fare.getSalesAvailability().getRestrictions().get(0).getSalesDates().getUntilDate());	
+			legacyFare.setSeries(series);
+			
+		} 
+		if (fare.getServiceClass().getId() == ClassId.B) {
+			legacyFare.setFare1st(getPrice(fare.getPrice()));
+		}
+		if (fare.getServiceClass().getId() == ClassId.D) {
+			legacyFare.setFare2nd(getPrice(fare.getPrice()));
+		}
+
+
+		return legacyFare;
+	}
+
+	private int getPrice(Price price) throws ConverterException {
+		
+		for (CurrencyPrice  cp : price.getCurrencies()) {
+
+			float value = cp.getAmount() * 100;
+			return (int)value;
+		}
+		throw new ConverterException("price convertion failed");
+
 	}
 
 	private LegacySeries convertToSeries(FareElement fare, int index) {
-		// TODO Auto-generated method stub
+		LegacySeries series = GtmFactory.eINSTANCE.createLegacySeries();
+		
+		series.setCarrierCode(tool.getGeneralTariffModel().getDelivery().getProvider().getCode());
+		series.setCarrierCode(fare.getCarrierConstraint().getIncludedCarriers().get(0).getCode());
+		
+		series.setDistance1((int) fare.getRegionalConstraint().getDistance());
+		series.setDistance2((int) fare.getRegionalConstraint().getDistance());
+		series.setFromStation(getFirstStationCode(fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation()));
+		series.setFromStationName(getFirstStationCodeName(fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation()));
+		series.setNumber(fare.getLegacyAccountingIdentifier().getSeriesId());
+		series.setPricetype(LegacyCalculationType.ROUTE_BASED);
+		series.setRouteDescription(getDescription(fare.getRegionalConstraint().getRegionalValidity()));
+		series.setSupplyingCarrierCode(tool.getGeneralTariffModel().getDelivery().getProvider().getCode());
+		series.setToStation(getLastStationCode(fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation()));
+		series.setToStationName(getLastStationCodeName(fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation()));
+		series.setType(getType(fare.getRegionalConstraint()));
+		
+		series.setValidFrom(fare.getSalesAvailability().getRestrictions().get(0).getSalesDates().getFromDate());
+		series.setValidUntil(fare.getSalesAvailability().getRestrictions().get(0).getSalesDates().getUntilDate());	
+
+		return series;
+	}
+
+
+	private LegacySeriesType getType(RegionalConstraint regionalConstraint) {
+		if (regionalConstraint.getEntryConnectionPoint() != null && regionalConstraint.getExitConnectionPoint() != null) {
+			return LegacySeriesType.TRANSIT;
+		}
+		if (regionalConstraint.getEntryConnectionPoint() == null && regionalConstraint.getExitConnectionPoint() == null) {
+			return LegacySeriesType.BORDER_DESTINATION;
+		}
+		return LegacySeriesType.STATION_STATION;
+
+	}
+
+	private String getLastStationCodeName(ViaStation viaStation) {
+		ViaStation via = viaStation.getRoute().getStations().get(viaStation.getRoute().getStations().size() - 1);
+		if (via.getStation() != null) {
+			return via.getStation().getNameCaseASCII();
+		} else if (via.getFareStationSet() != null) {
+			return via.getFareStationSet().getName();
+		}
 		return null;
 	}
+
+	private String getFirstStationCodeName(ViaStation viaStation) {
+		ViaStation via = viaStation.getRoute().getStations().get(0);
+		if (via.getStation() != null) {
+			return via.getStation().getNameCaseASCII();
+		} else if (via.getFareStationSet() != null) {
+			return via.getFareStationSet().getName();
+		}
+		return null;
+	}
+
+	private String getDescription(EList<RegionalValidity> regionalValidity) {
+		return regionalValidity.get(0).getViaStation().getDescription();
+	}
+
+	private int getLastStationCode(ViaStation viaStation) {
+		ViaStation via = viaStation.getRoute().getStations().get(viaStation.getRoute().getStations().size() - 1);
+		if (via.getStation() != null) {
+			return Integer.parseInt(via.getStation().getCode());
+		} else if (via.getFareStationSet() != null) {
+			return Integer.parseInt(via.getFareStationSet().getCode());
+		}
+		return 0;
+	}
+
+	private int getFirstStationCode(ViaStation viaStation) {
+		ViaStation via = viaStation.getRoute().getStations().get(0);
+		if (via.getStation() != null) {
+			return Integer.parseInt(via.getStation().getCode());
+		} else if (via.getFareStationSet() != null) {
+			return Integer.parseInt(via.getFareStationSet().getCode());
+		}
+		return 0;		
+	}
+
 
 	private List<FareElement> selectFares() {
 		
@@ -120,6 +298,12 @@ public class 	ConverterToLegacy {
 			
 			//must be convertible in legacy series
 			if (!hasSimpleRegionalValidity(fare)) break;
+			
+			//must have one sales availability 
+			if (fare.getSalesAvailability().getRestrictions().size() > 0) break;
+			
+			//must have one calendar
+			if (fare.getSalesAvailability().getRestrictions().get(0).getSalesDates() != null ) break;
 			
 			fares.add(fare);
 			
@@ -154,13 +338,16 @@ public class 	ConverterToLegacy {
 		//has foreign stations
 		if (hasForeignStations(stations)) return false;
 		
-		//is return route 
-		if (isReturnRoute(via)) return false;
-		
-		return false;
+		if (fare.getRegionalConstraint().getEntryConnectionPoint() == null && fare.getRegionalConstraint().getEntryConnectionPoint() != null) return false;
+			
+		if ((fare.getRegionalConstraint().getEntryConnectionPoint() == null && fare.getRegionalConstraint().getEntryConnectionPoint() == null) ||
+			(fare.getRegionalConstraint().getEntryConnectionPoint() != null && fare.getRegionalConstraint().getEntryConnectionPoint() != null)) {
+			if (isreversedRoute(via)) return false;
+		}
+		return true;
 	}
 
-	private boolean isReturnRoute(ViaStation via) {
+	private boolean isreversedRoute(ViaStation via) {
 		
 		int start  = 0;
 		int end = 0;
