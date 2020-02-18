@@ -532,24 +532,12 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createLegacyBorderPointMappingAdapter();
 			}
 			@Override
-			public Adapter caseLegacyDescription(LegacyDescription object) {
-				return createLegacyDescriptionAdapter();
-			}
-			@Override
 			public Adapter caseLegacyFareStationSetMappings(LegacyFareStationSetMappings object) {
 				return createLegacyFareStationSetMappingsAdapter();
 			}
 			@Override
 			public Adapter caseLegacyFareStationSetMap(LegacyFareStationSetMap object) {
 				return createLegacyFareStationSetMapAdapter();
-			}
-			@Override
-			public Adapter caseLegacyFares(LegacyFares object) {
-				return createLegacyFaresAdapter();
-			}
-			@Override
-			public Adapter caseLegacyFare(LegacyFare object) {
-				return createLegacyFareAdapter();
 			}
 			@Override
 			public Adapter caseLegacy108(Legacy108 object) {
@@ -1240,20 +1228,6 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.LegacyDescription <em>Legacy Description</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see Gtm.LegacyDescription
-	 * @generated
-	 */
-	public Adapter createLegacyDescriptionAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link Gtm.LegacyFareStationSetMappings <em>Legacy Fare Station Set Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1292,34 +1266,6 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLegacyDistanceFareAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.LegacyFares <em>Legacy Fares</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see Gtm.LegacyFares
-	 * @generated
-	 */
-	public Adapter createLegacyFaresAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link Gtm.LegacyFare <em>Legacy Fare</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see Gtm.LegacyFare
-	 * @generated
-	 */
-	public Adapter createLegacyFareAdapter() {
 		return null;
 	}
 

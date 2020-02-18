@@ -105,6 +105,8 @@ public class ImportLegacyStationsAction extends ImportLegacyAction {
 		String nameUTF8 = new String(st.substring(15,50).getBytes(charset));
 	
 		String nameASCII 	= st.substring(51,68);	
+
+		String shortNameASCII 	= st.substring(51,68);	
 		
 		int code	= 0;
 		try  {
@@ -133,6 +135,7 @@ public class ImportLegacyStationsAction extends ImportLegacyAction {
 		station.setBorderPointCode(borderPointCode);
 		station.setName(nameASCII);
 		station.setNameUTF8(nameUTF8);
+		station.setShortName(shortNameASCII);
 		station.setStationCode(code);
 		station.setFareReferenceStationCode(fareReferenceStationCode);
 		

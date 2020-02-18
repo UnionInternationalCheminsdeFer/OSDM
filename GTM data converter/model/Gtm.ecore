@@ -100,6 +100,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderStation" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nameCaseUTF8" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nameCaseASCII" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortNameCaseASCII" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortNameCaseUTF8" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Carrier">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
@@ -313,8 +315,6 @@
         eType="#//CombinationConstraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fareDetailDescription"
         eType="#//Text"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="legacyAccountingIdentifier"
-        eType="#//LegacyAccountingIdentifier" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="personalDataConstraint"
         eType="#//PersonalDataConstraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="reservationParameter" eType="#//ReservationParameter"/>
@@ -324,6 +324,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="passengerConstraint" eType="#//PassengerConstraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="afterSalesRule" eType="#//AfterSalesRule"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//DataSource"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="legacyAccountingIdentifier"
+        eType="#//LegacyAccountingIdentifier" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FareStationSetDefinitions">
     <eOperations name="findFareSet" eType="#//FareStationSetDefinition">
@@ -849,11 +851,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="station" eType="#//Station"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectionPoint" eType="#//ConnectionPoint"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LegacyDescription">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyFareStationSetMappings">
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacyFareStationSetMap"
         upperBound="-1" eType="#//LegacyFareStationSetMap" containment="true"/>
@@ -862,22 +859,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="legacyCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stationSet" eType="#//FareStationSetDefinition"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LegacyFares">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fares" lowerBound="1" upperBound="-1"
-        eType="#//LegacyFare" containment="true" resolveProxies="false"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LegacyFare">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="description" upperBound="5"
-        eType="#//LegacyDescription" containment="true" resolveProxies="false"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Legacy108">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="characterSet" eType="#//CharacterSet"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacySeriesList" eType="#//LegacySeriesList"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacySeparateContractSeries"
         eType="#//LegacySeparateContractSeriesList" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="legacyFares" eType="#//LegacyFares"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacyDistanceFares" eType="#//LegacyDistanceFares"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacyRouteFares" eType="#//LegacyRouteFares"
@@ -904,45 +891,52 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stationCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fareReferenceStationCode"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyRouteFares">
     <eStructuralFeatures xsi:type="ecore:EReference" name="routeFare" lowerBound="1"
         upperBound="-1" eType="#//LegacyRouteFare" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyRouteFare">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fareTableNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="seriesNumber" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fare2nd" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fare1st" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fareTableNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnFare1st" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnFare2nd" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="validFrom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="validUntil" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="series" eType="#//LegacySeries"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacySeriesList">
     <eStructuralFeatures xsi:type="ecore:EReference" name="series" lowerBound="1"
         upperBound="-1" eType="#//LegacySeries" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacySeries">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viastations" upperBound="-1"
-        eType="#//LegacyViastation" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance1" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="supplyingCarrierCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//LegacySeriesType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fromStation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fromStationName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="toStation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="toStationName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="routeNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="carrierCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="routeDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pricetype" lowerBound="1"
         eType="#//LegacyCalculationType" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance1" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viastations" upperBound="-1"
+        eType="#//LegacyViastation" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="validFrom" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="validUntil" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pricing" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//LegacySeriesType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fromStation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="toStation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacySeparateContractSeriesList">
     <eStructuralFeatures xsi:type="ecore:EReference" name="separateContractSeries"

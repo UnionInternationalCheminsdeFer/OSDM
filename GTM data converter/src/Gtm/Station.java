@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.Station#isBorderStation <em>Border Station</em>}</li>
  *   <li>{@link Gtm.Station#getNameCaseUTF8 <em>Name Case UTF8</em>}</li>
  *   <li>{@link Gtm.Station#getNameCaseASCII <em>Name Case ASCII</em>}</li>
+ *   <li>{@link Gtm.Station#getShortNameCaseASCII <em>Short Name Case ASCII</em>}</li>
+ *   <li>{@link Gtm.Station#getShortNameCaseUTF8 <em>Short Name Case UTF8</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getStation()
@@ -226,5 +228,49 @@ public interface Station extends EObject {
 	 * @generated
 	 */
 	void setNameCaseASCII(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Short Name Case ASCII</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Short Name Case ASCII</em>' attribute.
+	 * @see #setShortNameCaseASCII(String)
+	 * @see Gtm.GtmPackage#getStation_ShortNameCaseASCII()
+	 * @model
+	 * @generated
+	 */
+	String getShortNameCaseASCII();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Station#getShortNameCaseASCII <em>Short Name Case ASCII</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Short Name Case ASCII</em>' attribute.
+	 * @see #getShortNameCaseASCII()
+	 * @generated
+	 */
+	void setShortNameCaseASCII(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Short Name Case UTF8</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Short Name Case UTF8</em>' attribute.
+	 * @see #setShortNameCaseUTF8(String)
+	 * @see Gtm.GtmPackage#getStation_ShortNameCaseUTF8()
+	 * @model
+	 * @generated
+	 */
+	String getShortNameCaseUTF8();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Station#getShortNameCaseUTF8 <em>Short Name Case UTF8</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Short Name Case UTF8</em>' attribute.
+	 * @see #getShortNameCaseUTF8()
+	 * @generated
+	 */
+	void setShortNameCaseUTF8(String value);
 
 } // Station

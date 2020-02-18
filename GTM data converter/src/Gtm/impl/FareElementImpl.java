@@ -25,8 +25,8 @@ import Gtm.Text;
 import Gtm.TravelValidityConstraint;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -55,7 +55,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.FareElementImpl#getTravelValidity <em>Travel Validity</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getCombinationConstraint <em>Combination Constraint</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getFareDetailDescription <em>Fare Detail Description</em>}</li>
- *   <li>{@link Gtm.impl.FareElementImpl#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getPersonalDataConstraint <em>Personal Data Constraint</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getReservationParameter <em>Reservation Parameter</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getReductionConstraint <em>Reduction Constraint</em>}</li>
@@ -63,6 +62,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.FareElementImpl#getPassengerConstraint <em>Passenger Constraint</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getAfterSalesRule <em>After Sales Rule</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getDataSource <em>Data Source</em>}</li>
+ *   <li>{@link Gtm.impl.FareElementImpl#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
  * </ul>
  *
  * @generated
@@ -239,16 +239,6 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 	protected Text fareDetailDescription;
 
 	/**
-	 * The cached value of the '{@link #getLegacyAccountingIdentifier() <em>Legacy Accounting Identifier</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLegacyAccountingIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected LegacyAccountingIdentifier legacyAccountingIdentifier;
-
-	/**
 	 * The cached value of the '{@link #getPersonalDataConstraint() <em>Personal Data Constraint</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -327,6 +317,16 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 	 * @ordered
 	 */
 	protected DataSource dataSource = DATA_SOURCE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getLegacyAccountingIdentifier() <em>Legacy Accounting Identifier</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyAccountingIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected LegacyAccountingIdentifier legacyAccountingIdentifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -833,49 +833,6 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LegacyAccountingIdentifier getLegacyAccountingIdentifier() {
-		return legacyAccountingIdentifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetLegacyAccountingIdentifier(LegacyAccountingIdentifier newLegacyAccountingIdentifier, NotificationChain msgs) {
-		LegacyAccountingIdentifier oldLegacyAccountingIdentifier = legacyAccountingIdentifier;
-		legacyAccountingIdentifier = newLegacyAccountingIdentifier;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER, oldLegacyAccountingIdentifier, newLegacyAccountingIdentifier);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLegacyAccountingIdentifier(LegacyAccountingIdentifier newLegacyAccountingIdentifier) {
-		if (newLegacyAccountingIdentifier != legacyAccountingIdentifier) {
-			NotificationChain msgs = null;
-			if (legacyAccountingIdentifier != null)
-				msgs = ((InternalEObject)legacyAccountingIdentifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER, null, msgs);
-			if (newLegacyAccountingIdentifier != null)
-				msgs = ((InternalEObject)newLegacyAccountingIdentifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER, null, msgs);
-			msgs = basicSetLegacyAccountingIdentifier(newLegacyAccountingIdentifier, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER, newLegacyAccountingIdentifier, newLegacyAccountingIdentifier));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public PersonalDataConstraint getPersonalDataConstraint() {
 		if (personalDataConstraint != null && personalDataConstraint.eIsProxy()) {
 			InternalEObject oldPersonalDataConstraint = (InternalEObject)personalDataConstraint;
@@ -1125,6 +1082,49 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LegacyAccountingIdentifier getLegacyAccountingIdentifier() {
+		return legacyAccountingIdentifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLegacyAccountingIdentifier(LegacyAccountingIdentifier newLegacyAccountingIdentifier, NotificationChain msgs) {
+		LegacyAccountingIdentifier oldLegacyAccountingIdentifier = legacyAccountingIdentifier;
+		legacyAccountingIdentifier = newLegacyAccountingIdentifier;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER, oldLegacyAccountingIdentifier, newLegacyAccountingIdentifier);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyAccountingIdentifier(LegacyAccountingIdentifier newLegacyAccountingIdentifier) {
+		if (newLegacyAccountingIdentifier != legacyAccountingIdentifier) {
+			NotificationChain msgs = null;
+			if (legacyAccountingIdentifier != null)
+				msgs = ((InternalEObject)legacyAccountingIdentifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER, null, msgs);
+			if (newLegacyAccountingIdentifier != null)
+				msgs = ((InternalEObject)newLegacyAccountingIdentifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER, null, msgs);
+			msgs = basicSetLegacyAccountingIdentifier(newLegacyAccountingIdentifier, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER, newLegacyAccountingIdentifier, newLegacyAccountingIdentifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -1181,8 +1181,6 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 			case GtmPackage.FARE_ELEMENT__FARE_DETAIL_DESCRIPTION:
 				if (resolve) return getFareDetailDescription();
 				return basicGetFareDetailDescription();
-			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
-				return getLegacyAccountingIdentifier();
 			case GtmPackage.FARE_ELEMENT__PERSONAL_DATA_CONSTRAINT:
 				if (resolve) return getPersonalDataConstraint();
 				return basicGetPersonalDataConstraint();
@@ -1203,6 +1201,8 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return basicGetAfterSalesRule();
 			case GtmPackage.FARE_ELEMENT__DATA_SOURCE:
 				return getDataSource();
+			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
+				return getLegacyAccountingIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1257,9 +1257,6 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 			case GtmPackage.FARE_ELEMENT__FARE_DETAIL_DESCRIPTION:
 				setFareDetailDescription((Text)newValue);
 				return;
-			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
-				setLegacyAccountingIdentifier((LegacyAccountingIdentifier)newValue);
-				return;
 			case GtmPackage.FARE_ELEMENT__PERSONAL_DATA_CONSTRAINT:
 				setPersonalDataConstraint((PersonalDataConstraint)newValue);
 				return;
@@ -1280,6 +1277,9 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return;
 			case GtmPackage.FARE_ELEMENT__DATA_SOURCE:
 				setDataSource((DataSource)newValue);
+				return;
+			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
+				setLegacyAccountingIdentifier((LegacyAccountingIdentifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1335,9 +1335,6 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 			case GtmPackage.FARE_ELEMENT__FARE_DETAIL_DESCRIPTION:
 				setFareDetailDescription((Text)null);
 				return;
-			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
-				setLegacyAccountingIdentifier((LegacyAccountingIdentifier)null);
-				return;
 			case GtmPackage.FARE_ELEMENT__PERSONAL_DATA_CONSTRAINT:
 				setPersonalDataConstraint((PersonalDataConstraint)null);
 				return;
@@ -1358,6 +1355,9 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return;
 			case GtmPackage.FARE_ELEMENT__DATA_SOURCE:
 				setDataSource(DATA_SOURCE_EDEFAULT);
+				return;
+			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
+				setLegacyAccountingIdentifier((LegacyAccountingIdentifier)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -1399,8 +1399,6 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return combinationConstraint != null;
 			case GtmPackage.FARE_ELEMENT__FARE_DETAIL_DESCRIPTION:
 				return fareDetailDescription != null;
-			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
-				return legacyAccountingIdentifier != null;
 			case GtmPackage.FARE_ELEMENT__PERSONAL_DATA_CONSTRAINT:
 				return personalDataConstraint != null;
 			case GtmPackage.FARE_ELEMENT__RESERVATION_PARAMETER:
@@ -1415,6 +1413,8 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return afterSalesRule != null;
 			case GtmPackage.FARE_ELEMENT__DATA_SOURCE:
 				return dataSource != DATA_SOURCE_EDEFAULT;
+			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
+				return legacyAccountingIdentifier != null;
 		}
 		return super.eIsSet(featureID);
 	}

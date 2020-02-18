@@ -173,11 +173,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.LEGACY_STATION: return createLegacyStation();
 			case GtmPackage.LEGACY_BODER_POINT_MAPPINGS: return createLegacyBoderPointMappings();
 			case GtmPackage.LEGACY_BORDER_POINT_MAPPING: return createLegacyBorderPointMapping();
-			case GtmPackage.LEGACY_DESCRIPTION: return createLegacyDescription();
 			case GtmPackage.LEGACY_FARE_STATION_SET_MAPPINGS: return createLegacyFareStationSetMappings();
 			case GtmPackage.LEGACY_FARE_STATION_SET_MAP: return createLegacyFareStationSetMap();
-			case GtmPackage.LEGACY_FARES: return createLegacyFares();
-			case GtmPackage.LEGACY_FARE: return createLegacyFare();
 			case GtmPackage.LEGACY108: return createLegacy108();
 			case GtmPackage.LEGACY108_STATIONS: return createLegacy108Stations();
 			case GtmPackage.LEGACY108_STATION: return createLegacy108Station();
@@ -1535,16 +1532,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LegacyDescription createLegacyDescription() {
-		LegacyDescriptionImpl legacyDescription = new LegacyDescriptionImpl();
-		return legacyDescription;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public LegacyFareStationSetMappings createLegacyFareStationSetMappings() {
 		LegacyFareStationSetMappingsImpl legacyFareStationSetMappings = new LegacyFareStationSetMappingsImpl();
 		return legacyFareStationSetMappings;
@@ -1558,26 +1545,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public LegacyFareStationSetMap createLegacyFareStationSetMap() {
 		LegacyFareStationSetMapImpl legacyFareStationSetMap = new LegacyFareStationSetMapImpl();
 		return legacyFareStationSetMap;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LegacyFares createLegacyFares() {
-		LegacyFaresImpl legacyFares = new LegacyFaresImpl();
-		return legacyFares;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LegacyFare createLegacyFare() {
-		LegacyFareImpl legacyFare = new LegacyFareImpl();
-		return legacyFare;
 	}
 
 	/**

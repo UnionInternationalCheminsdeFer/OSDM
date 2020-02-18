@@ -59,7 +59,7 @@ import Gtm.VATDetail;
 import Gtm.ViaStation;
 import Gtm.actions.GtmUtils;
 
-public class ConverterUtil {
+public class ConverterFromLegacy {
 	
 	
 	
@@ -69,7 +69,7 @@ public class ConverterUtil {
 	private GTMTool tool = null;
 	
 	
-	public ConverterUtil(GTMTool tool) {
+	public ConverterFromLegacy(GTMTool tool) {
 		localStations = new HashMap<Integer,Station>();
 		legacyStations = new HashMap<Integer,Legacy108Station>();
 		this.tool = tool;
@@ -199,12 +199,12 @@ public class ConverterUtil {
 				GtmUtils.writeConsoleError(message);
 			}
 			
-			
+			int legacyFareCounter = 0;
 			for (TargetFareTemplate fareTemplate: tool.getConversionFromLegacy().getParams().getLegacyTargetFares().getTargetFares()) {
 				
 				try {
 					for (DateRange dateRange : validityRanges) {
-						convertSeriesToFares(tool, series, fareTemplate,editingDomain,added, dateRange, regionalConstraint,regionalConstraintR ,priceList);
+						convertSeriesToFares(tool, series, fareTemplate,editingDomain,added, dateRange, regionalConstraint,regionalConstraintR ,priceList, legacyFareCounter);
 					}
 					added++;
 				} catch (ConverterException e) {
@@ -217,7 +217,7 @@ public class ConverterUtil {
 
 
 	
-	public void convertSeriesToFares(GTMTool tool, LegacySeries series, TargetFareTemplate fareTemplate, EditingDomain domain, int number,DateRange dateRange, RegionalConstraint regionalConstraint, RegionalConstraint regionalConstraintR, ArrayList<Price> priceList) throws ConverterException{
+	public void convertSeriesToFares(GTMTool tool, LegacySeries series, TargetFareTemplate fareTemplate, EditingDomain domain, int number,DateRange dateRange, RegionalConstraint regionalConstraint, RegionalConstraint regionalConstraintR, ArrayList<Price> priceList, int legacyFareCounter) throws ConverterException{
 		
 		try {
 			
@@ -233,6 +233,7 @@ public class ConverterUtil {
 			}
 					
 			FareElement fareElement = convertSeriesToFare(tool, series, fareTemplate, 1);
+			fareElement.getLegacyAccountingIdentifier().setTariffId(legacyFareCounter++);
 			fareElement.setPrice(price);
 			fareElement.setRegionalConstraint(regionalConstraint);
 			fareElement.setSalesAvailability(findSalesAvailability(tool,dateRange));
@@ -242,6 +243,7 @@ public class ConverterUtil {
 			FareElement fareElementR =  null;
 			
 			fareElementR = convertSeriesToFare(tool, series, fareTemplate, 2);
+			fareElement.getLegacyAccountingIdentifier().setTariffId(legacyFareCounter++);
 			fareElementR.getLegacyAccountingIdentifier().setTariffId(number);
 			fareElementR.setPrice(price);
 			fareElementR.setRegionalConstraint(regionalConstraintR);
@@ -922,6 +924,11 @@ public class ConverterUtil {
 	public FareElement convertSeriesToFare(GTMTool tool, LegacySeries series, TargetFareTemplate template, int direction) throws ConverterException{
 		
 		FareElement fare = GtmFactory.eINSTANCE.createFareElement();
+		LegacyAccountingIdentifier accountingIdentifier = GtmFactory.eINSTANCE.createLegacyAccountingIdentifier();
+		accountingIdentifier.setAddSeriesId(0);
+		accountingIdentifier.setTariffId(0);
+		accountingIdentifier.setSeriesId(series.getNumber());
+		fare.setLegacyAccountingIdentifier(accountingIdentifier);
 		fare.setDataSource(DataSource.CONVERTED);
 		fare.setAfterSalesRule(template.getAfterSalesRule());
 		fare.setCarrierConstraint(template.getCarrierConstraint());
@@ -930,7 +937,7 @@ public class ConverterUtil {
 		} else {
 			fare.setCombinationConstraint(template.getCombinationConstraint());
 		}
-		fare.setDataDescription("converted from series: " + Integer.toString(series.getNumber()) +" and temolate: " + template.getDataDescription());;
+		fare.setDataDescription("converted from series: " + Integer.toString(series.getNumber()) +" and template: " + template.getDataDescription());;
 		fare.setFareDetailDescription(template.getFareDetailDescription());
 		fare.setFulfillmentConstraint(template.getFulfillmentConstraint());
 		

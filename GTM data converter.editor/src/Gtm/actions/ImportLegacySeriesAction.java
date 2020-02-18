@@ -89,42 +89,54 @@ public class ImportLegacySeriesAction extends ImportLegacyAction {
 		
 		try {
 		
-		//String carrier 	= st.substring(0, 4);
-		String number  		= st.substring(4, 9);
-		String flag  		= st.substring(9, 10);
+		String supplier   				= st.substring(0, 4);
+		String number  					= st.substring(4, 9);
+		String flag  					= st.substring(9, 10);
 		
 		if (flag.equals("2")) return null;
 		
-		String type 		= st.substring(10,11);
-		//String flag2 		= st.substring(11,12);		
-		String departure 	= st.substring(12,17);		
-		String destination	= st.substring(37,42);		
-
-		String distanceKl2	= st.substring(138,143);
-		String distanceKl1	= st.substring(144,149);		
+		String type 					= st.substring(10,11);
+		//String flag2 					= st.substring(11,12);		
+		String departure 				= st.substring(12,17);		
+		String departureStationName 	= st.substring(19,36);	
 		
-		String calculation	= st.substring(150,151);		
+		String destination				= st.substring(37,42);		
+		String arrivalStationName 		= st.substring(44,61);	
+
+		String carrier   	        	= st.substring(74,78);
+		String routeDescription 		= st.substring(79,137);	
+
+		String distanceKl2				= st.substring(138,143);
+		String distanceKl1				= st.substring(144,149);		
+		
+		String calculation				= st.substring(150,151);		
 		
 			
-		String via1	= st.substring(175,180);			
-		String pos1	= st.substring(180,181);			
+		String via1						= st.substring(175,180);			
+		String pos1						= st.substring(180,181);			
 
-		String via2	= st.substring(182,187);			
-		String pos2	= st.substring(187,188);	
+		String via2						= st.substring(182,187);			
+		String pos2						= st.substring(187,188);	
 		
-		String via3	= st.substring(189,194);			
-		String pos3	= st.substring(194,195);	
+		String via3						= st.substring(189,194);			
+		String pos3						= st.substring(194,195);	
 		
-		String via4	= st.substring(196,201);			
-		String pos4	= st.substring(201,202);	
+		String via4						= st.substring(196,201);			
+		String pos4						= st.substring(201,202);	
 		
-		String via5	= st.substring(203,208);			
-		String pos5	= st.substring(208,209);	
+		String via5						= st.substring(203,208);			
+		String pos5						= st.substring(208,209);	
 		
-		String validFromString = st.substring(211,219);		
-		String validUntilString = st.substring(221,229);				
+		String validFromString 			= st.substring(211,219);		
+		String validUntilString 		= st.substring(221,229);				
 		
 		LegacySeries series = GtmFactory.eINSTANCE.createLegacySeries();
+		
+		series.setCarrierCode(carrier);
+		series.setSupplyingCarrierCode(supplier);
+		series.setRouteDescription(routeDescription);
+		series.setFromStationName(departureStationName);
+		series.setToStationName(arrivalStationName);
 		
 		series.setNumber(Integer.parseInt(number));
 		

@@ -321,16 +321,10 @@ public class GtmValidator extends EObjectValidator {
 				return validateLegacyBoderPointMappings((LegacyBoderPointMappings)value, diagnostics, context);
 			case GtmPackage.LEGACY_BORDER_POINT_MAPPING:
 				return validateLegacyBorderPointMapping((LegacyBorderPointMapping)value, diagnostics, context);
-			case GtmPackage.LEGACY_DESCRIPTION:
-				return validateLegacyDescription((LegacyDescription)value, diagnostics, context);
 			case GtmPackage.LEGACY_FARE_STATION_SET_MAPPINGS:
 				return validateLegacyFareStationSetMappings((LegacyFareStationSetMappings)value, diagnostics, context);
 			case GtmPackage.LEGACY_FARE_STATION_SET_MAP:
 				return validateLegacyFareStationSetMap((LegacyFareStationSetMap)value, diagnostics, context);
-			case GtmPackage.LEGACY_FARES:
-				return validateLegacyFares((LegacyFares)value, diagnostics, context);
-			case GtmPackage.LEGACY_FARE:
-				return validateLegacyFare((LegacyFare)value, diagnostics, context);
 			case GtmPackage.LEGACY108:
 				return validateLegacy108((Legacy108)value, diagnostics, context);
 			case GtmPackage.LEGACY108_STATIONS:
@@ -837,15 +831,6 @@ public class GtmValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLegacyDescription(LegacyDescription legacyDescription, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(legacyDescription, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateLegacyFareStationSetMappings(LegacyFareStationSetMappings legacyFareStationSetMappings, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(legacyFareStationSetMappings, diagnostics, context);
 	}
@@ -866,24 +851,6 @@ public class GtmValidator extends EObjectValidator {
 	 */
 	public boolean validateLegacyDistanceFare(LegacyDistanceFare legacyDistanceFare, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(legacyDistanceFare, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLegacyFares(LegacyFares legacyFares, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(legacyFares, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLegacyFare(LegacyFare legacyFare, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(legacyFare, diagnostics, context);
 	}
 
 	/**

@@ -5,11 +5,13 @@ package Gtm.impl;
 import Gtm.GtmPackage;
 import Gtm.LegacyRouteFare;
 
+import Gtm.LegacySeries;
 import java.util.Date;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -21,19 +23,40 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link Gtm.impl.LegacyRouteFareImpl#getFareTableNumber <em>Fare Table Number</em>}</li>
  *   <li>{@link Gtm.impl.LegacyRouteFareImpl#getSeriesNumber <em>Series Number</em>}</li>
  *   <li>{@link Gtm.impl.LegacyRouteFareImpl#getFare2nd <em>Fare2nd</em>}</li>
  *   <li>{@link Gtm.impl.LegacyRouteFareImpl#getFare1st <em>Fare1st</em>}</li>
- *   <li>{@link Gtm.impl.LegacyRouteFareImpl#getFareTableNumber <em>Fare Table Number</em>}</li>
  *   <li>{@link Gtm.impl.LegacyRouteFareImpl#getReturnFare1st <em>Return Fare1st</em>}</li>
  *   <li>{@link Gtm.impl.LegacyRouteFareImpl#getReturnFare2nd <em>Return Fare2nd</em>}</li>
  *   <li>{@link Gtm.impl.LegacyRouteFareImpl#getValidFrom <em>Valid From</em>}</li>
  *   <li>{@link Gtm.impl.LegacyRouteFareImpl#getValidUntil <em>Valid Until</em>}</li>
+ *   <li>{@link Gtm.impl.LegacyRouteFareImpl#getSeries <em>Series</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements LegacyRouteFare {
+	/**
+	 * The default value of the '{@link #getFareTableNumber() <em>Fare Table Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFareTableNumber()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int FARE_TABLE_NUMBER_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getFareTableNumber() <em>Fare Table Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFareTableNumber()
+	 * @generated
+	 * @ordered
+	 */
+	protected int fareTableNumber = FARE_TABLE_NUMBER_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getSeriesNumber() <em>Series Number</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -122,26 +145,6 @@ public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements
 	protected boolean fare1stESet;
 
 	/**
-	 * The default value of the '{@link #getFareTableNumber() <em>Fare Table Number</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFareTableNumber()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int FARE_TABLE_NUMBER_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getFareTableNumber() <em>Fare Table Number</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFareTableNumber()
-	 * @generated
-	 * @ordered
-	 */
-	protected int fareTableNumber = FARE_TABLE_NUMBER_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getReturnFare1st() <em>Return Fare1st</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -220,6 +223,16 @@ public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected Date validUntil = VALID_UNTIL_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSeries() <em>Series</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSeries()
+	 * @generated
+	 * @ordered
+	 */
+	protected LegacySeries series;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -488,17 +501,55 @@ public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LegacySeries getSeries() {
+		if (series != null && series.eIsProxy()) {
+			InternalEObject oldSeries = (InternalEObject)series;
+			series = (LegacySeries)eResolveProxy(oldSeries);
+			if (series != oldSeries) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.LEGACY_ROUTE_FARE__SERIES, oldSeries, series));
+			}
+		}
+		return series;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacySeries basicGetSeries() {
+		return series;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSeries(LegacySeries newSeries) {
+		LegacySeries oldSeries = series;
+		series = newSeries;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY_ROUTE_FARE__SERIES, oldSeries, series));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case GtmPackage.LEGACY_ROUTE_FARE__FARE_TABLE_NUMBER:
+				return getFareTableNumber();
 			case GtmPackage.LEGACY_ROUTE_FARE__SERIES_NUMBER:
 				return getSeriesNumber();
 			case GtmPackage.LEGACY_ROUTE_FARE__FARE2ND:
 				return getFare2nd();
 			case GtmPackage.LEGACY_ROUTE_FARE__FARE1ST:
 				return getFare1st();
-			case GtmPackage.LEGACY_ROUTE_FARE__FARE_TABLE_NUMBER:
-				return getFareTableNumber();
 			case GtmPackage.LEGACY_ROUTE_FARE__RETURN_FARE1ST:
 				return getReturnFare1st();
 			case GtmPackage.LEGACY_ROUTE_FARE__RETURN_FARE2ND:
@@ -507,6 +558,9 @@ public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements
 				return getValidFrom();
 			case GtmPackage.LEGACY_ROUTE_FARE__VALID_UNTIL:
 				return getValidUntil();
+			case GtmPackage.LEGACY_ROUTE_FARE__SERIES:
+				if (resolve) return getSeries();
+				return basicGetSeries();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -519,6 +573,9 @@ public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case GtmPackage.LEGACY_ROUTE_FARE__FARE_TABLE_NUMBER:
+				setFareTableNumber((Integer)newValue);
+				return;
 			case GtmPackage.LEGACY_ROUTE_FARE__SERIES_NUMBER:
 				setSeriesNumber((Integer)newValue);
 				return;
@@ -527,9 +584,6 @@ public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case GtmPackage.LEGACY_ROUTE_FARE__FARE1ST:
 				setFare1st((Integer)newValue);
-				return;
-			case GtmPackage.LEGACY_ROUTE_FARE__FARE_TABLE_NUMBER:
-				setFareTableNumber((Integer)newValue);
 				return;
 			case GtmPackage.LEGACY_ROUTE_FARE__RETURN_FARE1ST:
 				setReturnFare1st((Integer)newValue);
@@ -543,6 +597,9 @@ public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements
 			case GtmPackage.LEGACY_ROUTE_FARE__VALID_UNTIL:
 				setValidUntil((Date)newValue);
 				return;
+			case GtmPackage.LEGACY_ROUTE_FARE__SERIES:
+				setSeries((LegacySeries)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -555,6 +612,9 @@ public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case GtmPackage.LEGACY_ROUTE_FARE__FARE_TABLE_NUMBER:
+				setFareTableNumber(FARE_TABLE_NUMBER_EDEFAULT);
+				return;
 			case GtmPackage.LEGACY_ROUTE_FARE__SERIES_NUMBER:
 				unsetSeriesNumber();
 				return;
@@ -563,9 +623,6 @@ public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements
 				return;
 			case GtmPackage.LEGACY_ROUTE_FARE__FARE1ST:
 				unsetFare1st();
-				return;
-			case GtmPackage.LEGACY_ROUTE_FARE__FARE_TABLE_NUMBER:
-				setFareTableNumber(FARE_TABLE_NUMBER_EDEFAULT);
 				return;
 			case GtmPackage.LEGACY_ROUTE_FARE__RETURN_FARE1ST:
 				setReturnFare1st(RETURN_FARE1ST_EDEFAULT);
@@ -579,6 +636,9 @@ public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements
 			case GtmPackage.LEGACY_ROUTE_FARE__VALID_UNTIL:
 				setValidUntil(VALID_UNTIL_EDEFAULT);
 				return;
+			case GtmPackage.LEGACY_ROUTE_FARE__SERIES:
+				setSeries((LegacySeries)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -591,14 +651,14 @@ public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case GtmPackage.LEGACY_ROUTE_FARE__FARE_TABLE_NUMBER:
+				return fareTableNumber != FARE_TABLE_NUMBER_EDEFAULT;
 			case GtmPackage.LEGACY_ROUTE_FARE__SERIES_NUMBER:
 				return isSetSeriesNumber();
 			case GtmPackage.LEGACY_ROUTE_FARE__FARE2ND:
 				return isSetFare2nd();
 			case GtmPackage.LEGACY_ROUTE_FARE__FARE1ST:
 				return isSetFare1st();
-			case GtmPackage.LEGACY_ROUTE_FARE__FARE_TABLE_NUMBER:
-				return fareTableNumber != FARE_TABLE_NUMBER_EDEFAULT;
 			case GtmPackage.LEGACY_ROUTE_FARE__RETURN_FARE1ST:
 				return returnFare1st != RETURN_FARE1ST_EDEFAULT;
 			case GtmPackage.LEGACY_ROUTE_FARE__RETURN_FARE2ND:
@@ -607,6 +667,8 @@ public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements
 				return VALID_FROM_EDEFAULT == null ? validFrom != null : !VALID_FROM_EDEFAULT.equals(validFrom);
 			case GtmPackage.LEGACY_ROUTE_FARE__VALID_UNTIL:
 				return VALID_UNTIL_EDEFAULT == null ? validUntil != null : !VALID_UNTIL_EDEFAULT.equals(validUntil);
+			case GtmPackage.LEGACY_ROUTE_FARE__SERIES:
+				return series != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -621,14 +683,14 @@ public class LegacyRouteFareImpl extends MinimalEObjectImpl.Container implements
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (seriesNumber: ");
+		result.append(" (fareTableNumber: ");
+		result.append(fareTableNumber);
+		result.append(", seriesNumber: ");
 		if (seriesNumberESet) result.append(seriesNumber); else result.append("<unset>");
 		result.append(", fare2nd: ");
 		if (fare2ndESet) result.append(fare2nd); else result.append("<unset>");
 		result.append(", fare1st: ");
 		if (fare1stESet) result.append(fare1st); else result.append("<unset>");
-		result.append(", fareTableNumber: ");
-		result.append(fareTableNumber);
 		result.append(", returnFare1st: ");
 		result.append(returnFare1st);
 		result.append(", returnFare2nd: ");

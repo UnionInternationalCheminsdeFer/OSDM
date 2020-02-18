@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.FareElement#getTravelValidity <em>Travel Validity</em>}</li>
  *   <li>{@link Gtm.FareElement#getCombinationConstraint <em>Combination Constraint</em>}</li>
  *   <li>{@link Gtm.FareElement#getFareDetailDescription <em>Fare Detail Description</em>}</li>
- *   <li>{@link Gtm.FareElement#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
  *   <li>{@link Gtm.FareElement#getPersonalDataConstraint <em>Personal Data Constraint</em>}</li>
  *   <li>{@link Gtm.FareElement#getReservationParameter <em>Reservation Parameter</em>}</li>
  *   <li>{@link Gtm.FareElement#getReductionConstraint <em>Reduction Constraint</em>}</li>
@@ -35,6 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.FareElement#getPassengerConstraint <em>Passenger Constraint</em>}</li>
  *   <li>{@link Gtm.FareElement#getAfterSalesRule <em>After Sales Rule</em>}</li>
  *   <li>{@link Gtm.FareElement#getDataSource <em>Data Source</em>}</li>
+ *   <li>{@link Gtm.FareElement#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getFareElement()
@@ -354,28 +354,6 @@ public interface FareElement extends EObject {
 	void setFareDetailDescription(Text value);
 
 	/**
-	 * Returns the value of the '<em><b>Legacy Accounting Identifier</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Legacy Accounting Identifier</em>' containment reference.
-	 * @see #setLegacyAccountingIdentifier(LegacyAccountingIdentifier)
-	 * @see Gtm.GtmPackage#getFareElement_LegacyAccountingIdentifier()
-	 * @model containment="true"
-	 * @generated
-	 */
-	LegacyAccountingIdentifier getLegacyAccountingIdentifier();
-
-	/**
-	 * Sets the value of the '{@link Gtm.FareElement#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Legacy Accounting Identifier</em>' containment reference.
-	 * @see #getLegacyAccountingIdentifier()
-	 * @generated
-	 */
-	void setLegacyAccountingIdentifier(LegacyAccountingIdentifier value);
-
-	/**
 	 * Returns the value of the '<em><b>Personal Data Constraint</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -531,5 +509,27 @@ public interface FareElement extends EObject {
 	 * @generated
 	 */
 	void setDataSource(DataSource value);
+
+	/**
+	 * Returns the value of the '<em><b>Legacy Accounting Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Legacy Accounting Identifier</em>' containment reference.
+	 * @see #setLegacyAccountingIdentifier(LegacyAccountingIdentifier)
+	 * @see Gtm.GtmPackage#getFareElement_LegacyAccountingIdentifier()
+	 * @model containment="true"
+	 * @generated
+	 */
+	LegacyAccountingIdentifier getLegacyAccountingIdentifier();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareElement#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Legacy Accounting Identifier</em>' containment reference.
+	 * @see #getLegacyAccountingIdentifier()
+	 * @generated
+	 */
+	void setLegacyAccountingIdentifier(LegacyAccountingIdentifier value);
 
 } // FareElement

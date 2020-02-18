@@ -1377,29 +1377,6 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.LegacyDescription} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LegacyDescriptionItemProvider legacyDescriptionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.LegacyDescription}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLegacyDescriptionAdapter() {
-		if (legacyDescriptionItemProvider == null) {
-			legacyDescriptionItemProvider = new LegacyDescriptionItemProvider(this);
-		}
-
-		return legacyDescriptionItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.LegacyFareStationSetMappings} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1466,52 +1443,6 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		}
 
 		return legacyDistanceFareItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.LegacyFares} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LegacyFaresItemProvider legacyFaresItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.LegacyFares}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLegacyFaresAdapter() {
-		if (legacyFaresItemProvider == null) {
-			legacyFaresItemProvider = new LegacyFaresItemProvider(this);
-		}
-
-		return legacyFaresItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link Gtm.LegacyFare} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LegacyFareItemProvider legacyFareItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link Gtm.LegacyFare}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLegacyFareAdapter() {
-		if (legacyFareItemProvider == null) {
-			legacyFareItemProvider = new LegacyFareItemProvider(this);
-		}
-
-		return legacyFareItemProvider;
 	}
 
 	/**
@@ -3412,11 +3343,8 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (legacyStationItemProvider != null) legacyStationItemProvider.dispose();
 		if (legacyBoderPointMappingsItemProvider != null) legacyBoderPointMappingsItemProvider.dispose();
 		if (legacyBorderPointMappingItemProvider != null) legacyBorderPointMappingItemProvider.dispose();
-		if (legacyDescriptionItemProvider != null) legacyDescriptionItemProvider.dispose();
 		if (legacyFareStationSetMappingsItemProvider != null) legacyFareStationSetMappingsItemProvider.dispose();
 		if (legacyFareStationSetMapItemProvider != null) legacyFareStationSetMapItemProvider.dispose();
-		if (legacyFaresItemProvider != null) legacyFaresItemProvider.dispose();
-		if (legacyFareItemProvider != null) legacyFareItemProvider.dispose();
 		if (legacy108ItemProvider != null) legacy108ItemProvider.dispose();
 		if (legacy108StationsItemProvider != null) legacy108StationsItemProvider.dispose();
 		if (legacy108StationItemProvider != null) legacy108StationItemProvider.dispose();

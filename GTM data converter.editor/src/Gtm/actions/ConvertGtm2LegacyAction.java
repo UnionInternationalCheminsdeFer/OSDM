@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -66,17 +64,13 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 		protected void runAction(GTMTool tool) {
 			
 			ConverterToLegacy converter = new ConverterToLegacy(tool);
-			
-			CompoundCommand command = null;
-			EditingDomain domain = GtmUtils.getActiveDomain();
-			
+						
 			GtmUtils.disconnectViews();
 			try {
-				command = converter.convert();
+				int created = converter.convert();
 				
-				if (command != null && !command.isEmpty() && command.canExecute()) {
-					domain.getCommandStack().execute(command);	
-				}
+				String message = "series converted: " + Integer.toString(created);
+				GtmUtils.writeConsoleError(message);
 				
 			} catch (Exception e) {
 				//

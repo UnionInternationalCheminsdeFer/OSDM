@@ -70,6 +70,8 @@ public class StationItemProvider
 			addBorderStationPropertyDescriptor(object);
 			addNameCaseUTF8PropertyDescriptor(object);
 			addNameCaseASCIIPropertyDescriptor(object);
+			addShortNameCaseASCIIPropertyDescriptor(object);
+			addShortNameCaseUTF8PropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -273,6 +275,50 @@ public class StationItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Short Name Case ASCII feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addShortNameCaseASCIIPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Station_shortNameCaseASCII_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Station_shortNameCaseASCII_feature", "_UI_Station_type"),
+				 GtmPackage.Literals.STATION__SHORT_NAME_CASE_ASCII,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Short Name Case UTF8 feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addShortNameCaseUTF8PropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Station_shortNameCaseUTF8_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Station_shortNameCaseUTF8_feature", "_UI_Station_type"),
+				 GtmPackage.Literals.STATION__SHORT_NAME_CASE_UTF8,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Station.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -318,6 +364,8 @@ public class StationItemProvider
 			case GtmPackage.STATION__BORDER_STATION:
 			case GtmPackage.STATION__NAME_CASE_UTF8:
 			case GtmPackage.STATION__NAME_CASE_ASCII:
+			case GtmPackage.STATION__SHORT_NAME_CASE_ASCII:
+			case GtmPackage.STATION__SHORT_NAME_CASE_UTF8:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

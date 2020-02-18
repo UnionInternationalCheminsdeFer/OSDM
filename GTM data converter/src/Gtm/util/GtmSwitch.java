@@ -766,12 +766,6 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GtmPackage.LEGACY_DESCRIPTION: {
-				LegacyDescription legacyDescription = (LegacyDescription)theEObject;
-				T result = caseLegacyDescription(legacyDescription);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case GtmPackage.LEGACY_FARE_STATION_SET_MAPPINGS: {
 				LegacyFareStationSetMappings legacyFareStationSetMappings = (LegacyFareStationSetMappings)theEObject;
 				T result = caseLegacyFareStationSetMappings(legacyFareStationSetMappings);
@@ -781,18 +775,6 @@ public class GtmSwitch<T> extends Switch<T> {
 			case GtmPackage.LEGACY_FARE_STATION_SET_MAP: {
 				LegacyFareStationSetMap legacyFareStationSetMap = (LegacyFareStationSetMap)theEObject;
 				T result = caseLegacyFareStationSetMap(legacyFareStationSetMap);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.LEGACY_FARES: {
-				LegacyFares legacyFares = (LegacyFares)theEObject;
-				T result = caseLegacyFares(legacyFares);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.LEGACY_FARE: {
-				LegacyFare legacyFare = (LegacyFare)theEObject;
-				T result = caseLegacyFare(legacyFare);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1539,21 +1521,6 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Legacy Description</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Legacy Description</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLegacyDescription(LegacyDescription object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Legacy Fare Station Set Mappings</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1595,36 +1562,6 @@ public class GtmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLegacyDistanceFare(LegacyDistanceFare object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Legacy Fares</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Legacy Fares</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLegacyFares(LegacyFares object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Legacy Fare</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Legacy Fare</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLegacyFare(LegacyFare object) {
 		return null;
 	}
 

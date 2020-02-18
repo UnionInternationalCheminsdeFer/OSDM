@@ -123,9 +123,6 @@ public class GtmUtils {
 				if (tool.getConversionFromLegacy().getLegacy108().getLegacyDistanceFares() == null) {
 					command.append(new SetCommand(domain,tool.getConversionFromLegacy().getLegacy108(), GtmPackage.Literals.LEGACY108__LEGACY_DISTANCE_FARES,GtmFactory.eINSTANCE.createLegacyDistanceFares()));
 				}
-				if (tool.getConversionFromLegacy().getLegacy108().getLegacyFares() == null) {
-					command.append(new SetCommand(domain,tool.getConversionFromLegacy().getLegacy108(),GtmPackage.Literals.LEGACY108__LEGACY_FARES,GtmFactory.eINSTANCE.createLegacyFares()));				
-				}
 				if (tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares() == null) {
 					command.append(new SetCommand(domain,tool.getConversionFromLegacy().getLegacy108(),GtmPackage.Literals.LEGACY108__LEGACY_ROUTE_FARES,GtmFactory.eINSTANCE.createLegacyRouteFares()));									
 				}
@@ -352,7 +349,6 @@ public class GtmUtils {
 		
 		legacy108.setLegacyDistanceFares(GtmFactory.eINSTANCE.createLegacyDistanceFares());
 		legacy108.setLegacyRouteFares(GtmFactory.eINSTANCE.createLegacyRouteFares());
-		legacy108.setLegacyFares(GtmFactory.eINSTANCE.createLegacyFares());
 		legacy108.setLegacyDistanceFares(GtmFactory.eINSTANCE.createLegacyDistanceFares());
 		legacy108.setLegacySeriesList(GtmFactory.eINSTANCE.createLegacySeriesList());
 		legacy108.setLegacyStations(GtmFactory.eINSTANCE.createLegacy108Stations());
