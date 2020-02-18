@@ -12,6 +12,7 @@ import Gtm.LegacyRouteFares;
 import Gtm.LegacySeparateContractSeriesList;
 import Gtm.LegacySeriesList;
 import Gtm.TimeZone;
+import java.util.Date;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -36,6 +37,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.Legacy108Impl#getLegacyStations <em>Legacy Stations</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getTimeZone <em>Time Zone</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getCarrier <em>Carrier</em>}</li>
+ *   <li>{@link Gtm.impl.Legacy108Impl#getStartDate <em>Start Date</em>}</li>
+ *   <li>{@link Gtm.impl.Legacy108Impl#getEndDate <em>End Date</em>}</li>
  * </ul>
  *
  * @generated
@@ -142,6 +145,46 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	protected Carrier carrier;
 
 	/**
+	 * The default value of the '{@link #getStartDate() <em>Start Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStartDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date START_DATE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getStartDate() <em>Start Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStartDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date startDate = START_DATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getEndDate() <em>End Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date END_DATE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getEndDate() <em>End Date</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndDate()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date endDate = END_DATE_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -217,6 +260,48 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 		carrier = newCarrier;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__CARRIER, oldCarrier, carrier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStartDate(Date newStartDate) {
+		Date oldStartDate = startDate;
+		startDate = newStartDate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__START_DATE, oldStartDate, startDate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEndDate(Date newEndDate) {
+		Date oldEndDate = endDate;
+		endDate = newEndDate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__END_DATE, oldEndDate, endDate));
 	}
 
 	/**
@@ -502,6 +587,10 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 			case GtmPackage.LEGACY108__CARRIER:
 				if (resolve) return getCarrier();
 				return basicGetCarrier();
+			case GtmPackage.LEGACY108__START_DATE:
+				return getStartDate();
+			case GtmPackage.LEGACY108__END_DATE:
+				return getEndDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -539,6 +628,12 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 			case GtmPackage.LEGACY108__CARRIER:
 				setCarrier((Carrier)newValue);
 				return;
+			case GtmPackage.LEGACY108__START_DATE:
+				setStartDate((Date)newValue);
+				return;
+			case GtmPackage.LEGACY108__END_DATE:
+				setEndDate((Date)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -575,6 +670,12 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 			case GtmPackage.LEGACY108__CARRIER:
 				setCarrier((Carrier)null);
 				return;
+			case GtmPackage.LEGACY108__START_DATE:
+				setStartDate(START_DATE_EDEFAULT);
+				return;
+			case GtmPackage.LEGACY108__END_DATE:
+				setEndDate(END_DATE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -603,6 +704,10 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 				return timeZone != TIME_ZONE_EDEFAULT;
 			case GtmPackage.LEGACY108__CARRIER:
 				return carrier != null;
+			case GtmPackage.LEGACY108__START_DATE:
+				return START_DATE_EDEFAULT == null ? startDate != null : !START_DATE_EDEFAULT.equals(startDate);
+			case GtmPackage.LEGACY108__END_DATE:
+				return END_DATE_EDEFAULT == null ? endDate != null : !END_DATE_EDEFAULT.equals(endDate);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -621,6 +726,10 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 		result.append(characterSet);
 		result.append(", timeZone: ");
 		result.append(timeZone);
+		result.append(", startDate: ");
+		result.append(startDate);
+		result.append(", endDate: ");
+		result.append(endDate);
 		result.append(')');
 		return result.toString();
 	}
