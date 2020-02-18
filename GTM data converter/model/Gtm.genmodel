@@ -1000,6 +1000,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Legacy108/legacyStations"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Legacy108/timeZone"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EReference Gtm.ecore#//Legacy108/carrier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Legacy108/startDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Legacy108/endDate"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Legacy108Stations">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Legacy108Stations/legacyStations"/>

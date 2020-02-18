@@ -873,6 +873,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeZone" eType="#//TimeZone"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" eType="#//Carrier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Legacy108Stations">
     <eOperations name="findStation" eType="#//Legacy108Station">

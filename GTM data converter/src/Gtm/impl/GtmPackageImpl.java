@@ -6344,6 +6344,24 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getLegacy108_StartDate() {
+		return (EAttribute)legacy108EClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacy108_EndDate() {
+		return (EAttribute)legacy108EClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLegacy108Stations() {
 		return legacy108StationsEClass;
 	}
@@ -7938,6 +7956,8 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEReference(legacy108EClass, LEGACY108__LEGACY_STATIONS);
 		createEAttribute(legacy108EClass, LEGACY108__TIME_ZONE);
 		createEReference(legacy108EClass, LEGACY108__CARRIER);
+		createEAttribute(legacy108EClass, LEGACY108__START_DATE);
+		createEAttribute(legacy108EClass, LEGACY108__END_DATE);
 
 		legacy108StationsEClass = createEClass(LEGACY108_STATIONS);
 		createEReference(legacy108StationsEClass, LEGACY108_STATIONS__LEGACY_STATIONS);
@@ -8780,6 +8800,8 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEReference(getLegacy108_LegacyStations(), this.getLegacy108Stations(), null, "legacyStations", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacy108_TimeZone(), this.getTimeZone(), "timeZone", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLegacy108_Carrier(), this.getCarrier(), null, "carrier", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacy108_StartDate(), ecorePackage.getEDate(), "startDate", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacy108_EndDate(), ecorePackage.getEDate(), "endDate", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(legacy108StationsEClass, Legacy108Stations.class, "Legacy108Stations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLegacy108Stations_LegacyStations(), this.getLegacy108Station(), null, "legacyStations", null, 0, -1, Legacy108Stations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

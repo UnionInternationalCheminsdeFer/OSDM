@@ -67,6 +67,8 @@ public class Legacy108ItemProvider
 			addCharacterSetPropertyDescriptor(object);
 			addTimeZonePropertyDescriptor(object);
 			addCarrierPropertyDescriptor(object);
+			addStartDatePropertyDescriptor(object);
+			addEndDatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -111,6 +113,50 @@ public class Legacy108ItemProvider
 				 false,
 				 false,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Start Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStartDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Legacy108_startDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Legacy108_startDate_feature", "_UI_Legacy108_type"),
+				 GtmPackage.Literals.LEGACY108__START_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the End Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEndDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Legacy108_endDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Legacy108_endDate_feature", "_UI_Legacy108_type"),
+				 GtmPackage.Literals.LEGACY108__END_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -216,6 +262,8 @@ public class Legacy108ItemProvider
 			case GtmPackage.LEGACY108__CHARACTER_SET:
 			case GtmPackage.LEGACY108__TIME_ZONE:
 			case GtmPackage.LEGACY108__CARRIER:
+			case GtmPackage.LEGACY108__START_DATE:
+			case GtmPackage.LEGACY108__END_DATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.LEGACY108__LEGACY_SERIES_LIST:

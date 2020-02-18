@@ -38,6 +38,16 @@ import Gtm.actions.GtmUtils;
 public class 	ConverterToLegacy {
 	
 	
+	//TODO
+	/*
+	 * check length of ids not to create legacy data if length is too big
+	 * 
+	 * check regional validity vs. stations, no series if stations are missing
+	 * 
+	 * logging of errors
+	 * 
+	 */
+	
 	private GTMTool tool = null;
 	private HashMap<String,LegacyRouteFare> legacyFares = new HashMap<String,LegacyRouteFare>(); 
 	private HashSet<LegacyRouteFare> routeFares = new HashSet<LegacyRouteFare>();

@@ -7306,13 +7306,31 @@ public interface GtmPackage extends EPackage {
 	int LEGACY108__CARRIER = 7;
 
 	/**
+	 * The feature id for the '<em><b>Start Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY108__START_DATE = 8;
+
+	/**
+	 * The feature id for the '<em><b>End Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY108__END_DATE = 9;
+
+	/**
 	 * The number of structural features of the '<em>Legacy108</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY108_FEATURE_COUNT = 8;
+	int LEGACY108_FEATURE_COUNT = 10;
 
 	/**
 	 * The number of operations of the '<em>Legacy108</em>' class.
@@ -14352,6 +14370,28 @@ public interface GtmPackage extends EPackage {
 	EReference getLegacy108_Carrier();
 
 	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Legacy108#getStartDate <em>Start Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Start Date</em>'.
+	 * @see Gtm.Legacy108#getStartDate()
+	 * @see #getLegacy108()
+	 * @generated
+	 */
+	EAttribute getLegacy108_StartDate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Legacy108#getEndDate <em>End Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>End Date</em>'.
+	 * @see Gtm.Legacy108#getEndDate()
+	 * @see #getLegacy108()
+	 * @generated
+	 */
+	EAttribute getLegacy108_EndDate();
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.Legacy108Stations <em>Legacy108 Stations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20023,6 +20063,22 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LEGACY108__CARRIER = eINSTANCE.getLegacy108_Carrier();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY108__START_DATE = eINSTANCE.getLegacy108_StartDate();
+
+		/**
+		 * The meta object literal for the '<em><b>End Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY108__END_DATE = eINSTANCE.getLegacy108_EndDate();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.Legacy108StationsImpl <em>Legacy108 Stations</em>}' class.
