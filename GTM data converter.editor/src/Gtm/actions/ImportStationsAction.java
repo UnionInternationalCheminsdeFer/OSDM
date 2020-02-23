@@ -36,11 +36,15 @@ public class ImportStationsAction extends BasicGtmAction {
 
 		public ImportStationsAction(IEditingDomainProvider editingDomainProvider) {
 			super("Import stations (TSDUPD)", editingDomainProvider);
+			this.setToolTipText(this.getText());
+			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importStations.png")); //$NON-NLS-1$
 			this.editingDomainProvider = editingDomainProvider;
 		}
 	
 		public ImportStationsAction(String text, IEditingDomainProvider editingDomainProvider) {
 			super(text, editingDomainProvider);
+			this.setToolTipText(this.getText());
+			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importStations.png")); //$NON-NLS-1$
 			this.editingDomainProvider = editingDomainProvider;
 		}
 

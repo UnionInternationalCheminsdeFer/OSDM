@@ -24,12 +24,15 @@ import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.Legacy108Station;
 import Gtm.LegacyCalculationType;
+import Gtm.LegacyConversionType;
 import Gtm.LegacyRouteFare;
 import Gtm.LegacySeries;
 import Gtm.LegacySeriesType;
+import Gtm.LegacyViastation;
 import Gtm.Price;
 import Gtm.RegionalConstraint;
 import Gtm.RegionalValidity;
+import Gtm.Route;
 import Gtm.Station;
 import Gtm.TravelerType;
 import Gtm.ViaStation;
@@ -69,12 +72,29 @@ public class 	ConverterToLegacy {
 
 			try {
 				LegacyRouteFare  legacyFare = convertFare(fare, convertableFares.indexOf(fare));
-				routeFares.add(legacyFare);
-				series.add(legacyFare.getSeries());
+				if (series.size() < 99999) {
+					routeFares.add(legacyFare);
+					series.add(legacyFare.getSeries());
+				}
+				
 			} catch (ConverterException e) {
 				String message = "error in fare: " + fare.getId() + " " + e.getMessage();
 				GtmUtils.writeConsoleError(message);
 			}
+		}
+		
+		//check numbering. if numbers are missing renumber
+		boolean numberingOk = true;
+		for (LegacySeries serie : series) {
+			if (serie.getNumber() == 0) numberingOk = false;
+		}
+		if (!numberingOk) {
+			int i = 0;
+			for (LegacySeries serie : series) {
+				serie.setNumber(i++);
+			}
+			String message = "error in series numbering: series renumbered";
+			GtmUtils.writeConsoleError(message);
 		}
 		
 		//check for missing fares in specific classes, set distance to 0
@@ -170,6 +190,12 @@ public class 	ConverterToLegacy {
 		LegacySeries series = convertToSeries(fare,index);
 		if (series == null) return null;
 		
+		if (series.getNumber() > 99999) {
+			String message = "too  many series";
+			GtmUtils.writeConsoleError(message);
+			return null;
+		}
+
 		LegacyRouteFare routeFare = convertToFare(fare,series,index);
 		if (routeFare == null) return null;
 
@@ -222,7 +248,28 @@ public class 	ConverterToLegacy {
 		series.setFromStationName(getFirstStationCodeName(fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation()));
 		series.setNumber(fare.getLegacyAccountingIdentifier().getSeriesId());
 		series.setPricetype(LegacyCalculationType.ROUTE_BASED);
-		series.setRouteDescription(getDescription(fare.getRegionalConstraint().getRegionalValidity()));
+		
+		String routeDescription = getDescription(fare.getRegionalConstraint().getRegionalValidity());
+		if (routeDescription.length() < 59) {
+			series.setRouteDescription(routeDescription);
+		} else	{
+			String message = "route description tool long: " + routeDescription;
+			GtmUtils.writeConsoleError(message);
+			return null;
+		}
+		
+		
+		ViaStation mainVia = fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation();
+		Route mainRoute = mainVia.getRoute();
+		int altRoute = 1;
+		addViaStations (series.getViastations(), mainRoute.getStations(), altRoute);
+		if (series.getViastations().size() > 5) {
+			String message = "too many stations: " + routeDescription;
+			GtmUtils.writeConsoleError(message);
+			return null;
+		}
+		
+		
 		series.setSupplyingCarrierCode(tool.getGeneralTariffModel().getDelivery().getProvider().getCode());
 		series.setToStation(getLastStationCode(fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation()));
 		series.setToStationName(getLastStationCodeName(fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation()));
@@ -234,6 +281,28 @@ public class 	ConverterToLegacy {
 		return series;
 	}
 
+
+	private void addViaStations(EList<LegacyViastation> viastations, EList<ViaStation> vias, int altRoute) {
+		for (ViaStation station :  vias) {
+			if (station.getStation() != null) {
+				LegacyViastation lvia = GtmFactory.eINSTANCE.createLegacyViastation();
+				lvia.setPosition(altRoute);
+				lvia.setCode(Integer.parseInt(station.getStation().getCode()));
+				viastations.add(lvia);
+			} else if (station.getFareStationSet() != null){
+				LegacyViastation lvia = GtmFactory.eINSTANCE.createLegacyViastation();
+				lvia.setPosition(altRoute);
+				lvia.setCode(Integer.parseInt(station.getFareStationSet().getCode()));
+				viastations.add(lvia);			
+			} else if (station.getAlternativeRoutes() != null) {
+				for (AlternativeRoute altr : station.getAlternativeRoutes()) {
+					altRoute++;
+					addViaStations(viastations, altr.getStations(), altRoute);
+				}
+				altRoute = 1;
+			} 
+		}
+	}
 
 	private LegacySeriesType getType(RegionalConstraint regionalConstraint) {
 		if (regionalConstraint.getEntryConnectionPoint() != null && regionalConstraint.getExitConnectionPoint() != null) {
@@ -296,6 +365,10 @@ public class 	ConverterToLegacy {
 		ArrayList<FareElement> fares = new ArrayList<FareElement>();
 		
 		for (FareElement fare :  tool.getGeneralTariffModel().getFareStructure().getFareElements().getFareElements()) {
+			
+			
+			//fare excluded from conversion
+			if (fare.getLegacyConversion() == LegacyConversionType.NO) break;
 			
 			//only ADULT
 			if (fare.getPassengerConstraint().getTravelerType() != TravelerType.ADULT) break;

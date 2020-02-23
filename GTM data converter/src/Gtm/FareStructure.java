@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.FareStructure#getReservationParameters <em>Reservation Parameters</em>}</li>
  *   <li>{@link Gtm.FareStructure#getSupportedOnlineServices <em>Supported Online Services</em>}</li>
  *   <li>{@link Gtm.FareStructure#getFareResourceLocations <em>Fare Resource Locations</em>}</li>
+ *   <li>{@link Gtm.FareStructure#getZoneDefinitions <em>Zone Definitions</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getFareStructure()
@@ -571,5 +572,27 @@ public interface FareStructure extends EObject {
 	 * @generated
 	 */
 	void setFareResourceLocations(FareResourceLocations value);
+
+	/**
+	 * Returns the value of the '<em><b>Zone Definitions</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Zone Definitions</em>' containment reference.
+	 * @see #setZoneDefinitions(ZoneDefinitions)
+	 * @see Gtm.GtmPackage#getFareStructure_ZoneDefinitions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ZoneDefinitions getZoneDefinitions();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareStructure#getZoneDefinitions <em>Zone Definitions</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Zone Definitions</em>' containment reference.
+	 * @see #getZoneDefinitions()
+	 * @generated
+	 */
+	void setZoneDefinitions(ZoneDefinitions value);
 
 } // FareStructure

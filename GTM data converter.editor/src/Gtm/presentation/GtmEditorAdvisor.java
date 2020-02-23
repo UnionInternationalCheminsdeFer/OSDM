@@ -237,13 +237,13 @@ public final class GtmEditorAdvisor extends WorkbenchAdvisor {
 		 * @see org.eclipse.ui.application.WorkbenchWindowAdvisor#preWindowOpen()
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
+		 * @generated NOT
 		 */
 		@Override
 		public void preWindowOpen() {
 			IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
 			configurer.setInitialSize(new Point(600, 450));
-			configurer.setShowCoolBar(false);
+			configurer.setShowCoolBar(true);
 			configurer.setShowStatusLine(true);
 			configurer.setTitle(getString("_UI_Application_title"));
 		}

@@ -151,7 +151,7 @@ public class ConversionParamsItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_STATION_MAPPINGS);
-			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_TARGET_FARES);
+			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_FARE_TEMPLATES);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__END_OF_SALE);
@@ -217,7 +217,7 @@ public class ConversionParamsItemProvider
 				return;
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS:
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_MAPPINGS:
-			case GtmPackage.CONVERSION_PARAMS__LEGACY_TARGET_FARES:
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_FARE_TEMPLATES:
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS:
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS:
 			case GtmPackage.CONVERSION_PARAMS__END_OF_SALE:
@@ -251,8 +251,8 @@ public class ConversionParamsItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_TARGET_FARES,
-				 GtmFactory.eINSTANCE.createLegacyTargetFares()));
+				(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_FARE_TEMPLATES,
+				 GtmFactory.eINSTANCE.createLegacyFareTemplates()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -2,9 +2,9 @@
  */
 package Gtm.impl;
 
+import Gtm.FareTemplate;
 import Gtm.GtmPackage;
-import Gtm.LegacyTargetFares;
-import Gtm.TargetFareTemplate;
+import Gtm.LegacyFareTemplates;
 
 import java.util.Collection;
 
@@ -22,34 +22,34 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Legacy Target Fares</b></em>'.
+ * An implementation of the model object '<em><b>Legacy Fare Templates</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Gtm.impl.LegacyTargetFaresImpl#getTargetFares <em>Target Fares</em>}</li>
+ *   <li>{@link Gtm.impl.LegacyFareTemplatesImpl#getFareTemplates <em>Fare Templates</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LegacyTargetFaresImpl extends MinimalEObjectImpl.Container implements LegacyTargetFares {
+public class LegacyFareTemplatesImpl extends MinimalEObjectImpl.Container implements LegacyFareTemplates {
 	/**
-	 * The cached value of the '{@link #getTargetFares() <em>Target Fares</em>}' containment reference list.
+	 * The cached value of the '{@link #getFareTemplates() <em>Fare Templates</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTargetFares()
+	 * @see #getFareTemplates()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TargetFareTemplate> targetFares;
+	protected EList<FareTemplate> fareTemplates;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LegacyTargetFaresImpl() {
+	protected LegacyFareTemplatesImpl() {
 		super();
 	}
 
@@ -60,7 +60,7 @@ public class LegacyTargetFaresImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GtmPackage.Literals.LEGACY_TARGET_FARES;
+		return GtmPackage.Literals.LEGACY_FARE_TEMPLATES;
 	}
 
 	/**
@@ -68,11 +68,11 @@ public class LegacyTargetFaresImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TargetFareTemplate> getTargetFares() {
-		if (targetFares == null) {
-			targetFares = new EObjectContainmentEList<TargetFareTemplate>(TargetFareTemplate.class, this, GtmPackage.LEGACY_TARGET_FARES__TARGET_FARES);
+	public EList<FareTemplate> getFareTemplates() {
+		if (fareTemplates == null) {
+			fareTemplates = new EObjectContainmentEList<FareTemplate>(FareTemplate.class, this, GtmPackage.LEGACY_FARE_TEMPLATES__FARE_TEMPLATES);
 		}
-		return targetFares;
+		return fareTemplates;
 	}
 
 	/**
@@ -83,8 +83,8 @@ public class LegacyTargetFaresImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_TARGET_FARES__TARGET_FARES:
-				return ((InternalEList<?>)getTargetFares()).basicRemove(otherEnd, msgs);
+			case GtmPackage.LEGACY_FARE_TEMPLATES__FARE_TEMPLATES:
+				return ((InternalEList<?>)getFareTemplates()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -97,8 +97,8 @@ public class LegacyTargetFaresImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_TARGET_FARES__TARGET_FARES:
-				return getTargetFares();
+			case GtmPackage.LEGACY_FARE_TEMPLATES__FARE_TEMPLATES:
+				return getFareTemplates();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -112,9 +112,9 @@ public class LegacyTargetFaresImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_TARGET_FARES__TARGET_FARES:
-				getTargetFares().clear();
-				getTargetFares().addAll((Collection<? extends TargetFareTemplate>)newValue);
+			case GtmPackage.LEGACY_FARE_TEMPLATES__FARE_TEMPLATES:
+				getFareTemplates().clear();
+				getFareTemplates().addAll((Collection<? extends FareTemplate>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -128,8 +128,8 @@ public class LegacyTargetFaresImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_TARGET_FARES__TARGET_FARES:
-				getTargetFares().clear();
+			case GtmPackage.LEGACY_FARE_TEMPLATES__FARE_TEMPLATES:
+				getFareTemplates().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -143,10 +143,10 @@ public class LegacyTargetFaresImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GtmPackage.LEGACY_TARGET_FARES__TARGET_FARES:
-				return targetFares != null && !targetFares.isEmpty();
+			case GtmPackage.LEGACY_FARE_TEMPLATES__FARE_TEMPLATES:
+				return fareTemplates != null && !fareTemplates.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //LegacyTargetFaresImpl
+} //LegacyFareTemplatesImpl

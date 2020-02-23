@@ -7,9 +7,6 @@
 		"checkNearbyPlacesRequest": {
 			"type": "object",
 			"properties": {
-				"offerId": {
-					"type": "string"
-				},
 				"train": {
 					"type": "string"
 				},
@@ -30,7 +27,6 @@
 				}
 			},
 			"required": [
-				"offerId",
 				"train",
 				"bookingId"
 			],

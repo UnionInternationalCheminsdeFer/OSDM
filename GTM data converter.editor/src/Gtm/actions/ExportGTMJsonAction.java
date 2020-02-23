@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.osgi.service.prefs.BackingStoreException;
 
 import Gtm.GTMTool;
-import Gtm.jsonImportExport.GtmJsonUtils;
+import Gtm.jsonImportExport.GtmJsonExporter;
 import Gtm.presentation.GtmEditorPlugin;
 import export.ExportFareDelivery;
 import gtm.FareDelivery;
@@ -32,10 +32,14 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 		public ExportGTMJsonAction(IEditingDomainProvider editingDomainProvider) {
 			super("Export GTM data", editingDomainProvider);
 			this.editingDomainProvider = editingDomainProvider;
+			this.setToolTipText(this.getText());
+			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/exportGtm.png")); //$NON-NLS-1$
 		}
 		
 		public ExportGTMJsonAction(String text, IEditingDomainProvider editingDomainProvider) {
 			super(text, editingDomainProvider);
+			this.setToolTipText(this.getText());
+			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/exportGtm.png")); //$NON-NLS-1$
 			this.editingDomainProvider = editingDomainProvider;
 		}
 
@@ -81,7 +85,7 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 					
 				FareDelivery fares = null;
 				try {
-					fares = GtmJsonUtils.convertToJson(tool.getGeneralTariffModel());
+					fares = GtmJsonExporter.convertToJson(tool.getGeneralTariffModel());
 				} catch (Exception e) {
 					MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 					dialog.setText("json formating error");

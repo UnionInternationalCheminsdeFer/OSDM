@@ -211,6 +211,26 @@
 			],
 			"additionalProperties": false
 		},
+		"CrossBorderCondition": {
+			"type": "object",
+			"properties": {
+				"fromCountry": {
+					"description": "ISO coutry code (2A)",
+					"type": "string"
+				},
+				"toCountry": {
+					"description": "ISO country code (A2)",
+					"type": "string"
+				},
+				"affectedServiceBrands": {
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
 		"FareCombinationModelDef": {
 			"type": "object",
 			"properties": {
@@ -278,6 +298,45 @@
 			"required": [
 				"id",
 				"combinationModels"
+			],
+			"additionalProperties": false
+		},
+		"FareReferenceStationSetDef": {
+			"description": "set of stations used in the fare equivalentely. E.g. Brussels-Region). The set is identified by the fare provicer and a code unique within the fare provider.",
+			"type": "object",
+			"properties": {
+				"fareProvider": {
+					"$ref": "definitions.json#/definitions/CompanyDef"
+				},
+				"code": {
+					"description": "code of the fare reference station set used in regional validity. Unique within the fare provider.",
+					"type": "string"
+				},
+				"stations": {
+					"type": "array",
+					"minItems": 2,
+					"uniqueItems": true,
+					"items": {
+						"$ref": "definitions.json#/definitions/StationDef"
+					}
+				},
+				"legacyCode": {
+					"description": "id used in 108 as local station code ",
+					"type": "integer"
+				},
+				"name": {
+					"description": "name to be used in route descriptions",
+					"type": "string"
+				},
+				"nameUTF8": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"fareProvider",
+				"code",
+				"stations",
+				"legacyCode"
 			],
 			"additionalProperties": false
 		},
@@ -728,6 +787,28 @@
 			],
 			"additionalProperties": false
 		},
+		"RelativeTimeDef": {
+			"type": "object",
+			"properties": {
+				"timeUnit": {
+					"description": "MINUTES,DAYS,HOURS",
+					"type": "string"
+				},
+				"timeValue": {
+					"type": "integer"
+				},
+				"timeReference": {
+					"description": "BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY",
+					"type": "string"
+				}
+			},
+			"required": [
+				"timeUnit",
+				"timeValue",
+				"timeReference"
+			],
+			"additionalProperties": false
+		},
 		"SalesAvailabilityConstraintDef": {
 			"type": "object",
 			"properties": {
@@ -845,6 +926,29 @@
 			],
 			"additionalProperties": false
 		},
+		"StationNamesDef": {
+			"description": "station names included temporarily until MERITS can provide the names",
+			"type": "object",
+			"properties": {
+				"country": {
+					"description": "uic country code",
+					"type": "integer"
+				},
+				"localCode": {
+					"description": "local code ",
+					"type": "integer"
+				},
+				"name": {
+					"description": "station name with upper and lower case letters in ASCII",
+					"type": "string"
+				},
+				"nameUtf8": {
+					"description": "station name with upper and lower case letters in UTF8",
+					"type": "string"
+				}
+			},
+			"additionalProperties": false
+		},
 		"StationResourceLocationDef": {
 			"type": "object",
 			"properties": {
@@ -953,6 +1057,34 @@
 			],
 			"additionalProperties": false
 		},
+		"TranslationDef": {
+			"type": "object",
+			"properties": {
+				"language": {
+					"$ref": "definitions.json#/definitions/LanguageDef"
+				},
+				"textUTF8": {
+					"type": "string"
+				},
+				"text": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				},
+				"shortTextUtf8": {
+					"type": "string"
+				},
+				"shortText": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				}
+			},
+			"required": [
+				"language",
+				"textUTF8",
+				"text"
+			],
+			"additionalProperties": false
+		},
 		"TravelValidityConstraintDef": {
 			"type": "object",
 			"properties": {
@@ -1047,136 +1179,40 @@
 			],
 			"additionalProperties": false
 		},
-		"FareReferenceStationSetDef": {
-			"description": "set of stations used in the fare equivalentely. E.g. Brussels-Region). The set is identified by the fare provicer and a code unique within the fare provider.",
+		"ZoneDefinitionDef": {
+			"description": "definition of a zone used to define regional validity. The area of the zone can be defined via a geo-poligone, a complte list of all contained stations or area codes from the NUTS code list. The carrier is eigther the carrier or transport authority responsible for the definition.",
 			"type": "object",
 			"properties": {
-				"fareProvider": {
+				"carrier": {
 					"$ref": "definitions.json#/definitions/CompanyDef"
 				},
-				"code": {
-					"description": "code of the fare reference station set used in regional validity. Unique within the fare provider.",
+				"zoneId": {
 					"type": "string"
 				},
-				"stations": {
+				"name": {
+					"type": "string"
+				},
+				"nameUTF8": {},
+				"ploygone": {
+					"$ref": "ticketdefinitions.json#/definitions/PolygoneDef"
+				},
+				"stationList": {
 					"type": "array",
-					"minItems": 2,
-					"uniqueItems": true,
 					"items": {
 						"$ref": "definitions.json#/definitions/StationDef"
 					}
 				},
-				"legacyCode": {
-					"description": "id used in 108 as local station code ",
-					"type": "integer"
-				},
-				"name": {
-					"description": "name to be used in route descriptions",
-					"type": "string"
-				},
-				"nameUTF8": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"fareProvider",
-				"code",
-				"stations",
-				"legacyCode"
-			],
-			"additionalProperties": false
-		},
-		"RelativeTimeDef": {
-			"type": "object",
-			"properties": {
-				"timeUnit": {
-					"description": "MINUTES,DAYS,HOURS",
-					"type": "string"
-				},
-				"timeValue": {
-					"type": "integer"
-				},
-				"timeReference": {
-					"description": "BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY",
-					"type": "string"
-				}
-			},
-			"required": [
-				"timeUnit",
-				"timeValue",
-				"timeReference"
-			],
-			"additionalProperties": false
-		},
-		"CrossBorderCondition": {
-			"type": "object",
-			"properties": {
-				"fromCountry": {
-					"description": "ISO coutry code (2A)",
-					"type": "string"
-				},
-				"toCountry": {
-					"description": "ISO country code (A2)",
-					"type": "string"
-				},
-				"affectedServiceBrands": {
+				"nutsCodes": {
 					"type": "array",
 					"items": {
-						"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+						"type": "string"
 					}
 				}
 			},
-			"additionalProperties": false
-		},
-		"TranslationDef": {
-			"type": "object",
-			"properties": {
-				"language": {
-					"$ref": "definitions.json#/definitions/LanguageDef"
-				},
-				"textUTF8": {
-					"type": "string"
-				},
-				"text": {
-					"description": "text without special characters according to ICAO specification",
-					"type": "string"
-				},
-				"shortTextUtf8": {
-					"type": "string"
-				},
-				"shortText": {
-					"description": "text without special characters according to ICAO specification",
-					"type": "string"
-				}
-			},
 			"required": [
-				"language",
-				"textUTF8",
-				"text"
+				"carrier",
+				"zoneId"
 			],
-			"additionalProperties": false
-		},
-		"StationNamesDef": {
-			"description": "station names included temporarily until MERITS can provide the names",
-			"type": "object",
-			"properties": {
-				"country": {
-					"description": "uic country code",
-					"type": "integer"
-				},
-				"localCode": {
-					"description": "local code ",
-					"type": "integer"
-				},
-				"name": {
-					"description": "station name with upper and lower case letters in ASCII",
-					"type": "string"
-				},
-				"nameUtf8": {
-					"description": "station name with upper and lower case letters in UTF8",
-					"type": "string"
-				}
-			},
 			"additionalProperties": false
 		}
 	}

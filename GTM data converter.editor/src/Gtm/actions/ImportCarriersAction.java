@@ -24,6 +24,8 @@ public class ImportCarriersAction extends ImportCsvDataAction {
 
 	public ImportCarriersAction(IEditingDomainProvider editingDomainProvider) {
 		super("import carrier codes", editingDomainProvider);
+		this.setToolTipText(this.getText());
+		setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importCarriers.png")); //$NON-NLS-1$
 	}
 
 	@Override

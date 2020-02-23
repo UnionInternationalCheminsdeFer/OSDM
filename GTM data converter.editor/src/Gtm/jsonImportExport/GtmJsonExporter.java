@@ -44,6 +44,7 @@ import Gtm.FulfillmentType;
 import Gtm.GeneralTariffModel;
 import Gtm.IncludedFreePassengerLimit;
 import Gtm.Line;
+import Gtm.NutsCode;
 import Gtm.OnlineResource;
 import Gtm.OnlineServiceType;
 import Gtm.PassengerCombinationConstraint;
@@ -96,6 +97,8 @@ import Gtm.VATDetail;
 import Gtm.ViaStation;
 import Gtm.WeekDay;
 import Gtm.Zone;
+import Gtm.ZoneDefinition;
+import Gtm.ZoneDefinitions;
 import gtm.AfterSalesConditionDef;
 import gtm.AfterSalesRuleDef;
 import gtm.AllowedChange;
@@ -152,8 +155,9 @@ import gtm.TravelValidityConstraintDef;
 import gtm.VatDetail;
 import gtm.ViaStationsDef;
 import gtm.ZoneDef;
+import gtm.ZoneDefinitionDef;
 
-public class GtmJsonUtils {
+public class GtmJsonExporter {
 	
 	
 	private static DateFormat jsondf = new SimpleDateFormat("yyyy-MM-dd HH:mm a z");
@@ -269,8 +273,57 @@ public class GtmJsonUtils {
 		if (gtm.getFareStructure().getFareStationSetDefinitions() != null) {
 			fares.setFareReferenceStationSetDefinitions(convertFareStationSetDefinitions(gtm.getFareStructure().getFareStationSetDefinitions()));
 		}
+
+		if (gtm.getFareStructure().getZoneDefinitions() != null) {
+			fares.setZoneDefinitions(convert(gtm.getFareStructure().getZoneDefinitions()));
+		}
 		
 		return export;
+	}
+
+
+
+
+	private static List<ZoneDefinitionDef> convert(ZoneDefinitions zones) {
+		if (zones == null) return null;
+		if (zones.getZoneDefinition().isEmpty()) return null;
+		ArrayList<ZoneDefinitionDef> listJson = new ArrayList<ZoneDefinitionDef>();
+		for (ZoneDefinition element: zones.getZoneDefinition()) {
+			listJson.add(convertToJson(element));
+		}
+		return listJson;
+	}
+
+
+
+
+	private static ZoneDefinitionDef convertToJson(ZoneDefinition z) {
+		ZoneDefinitionDef jz = new ZoneDefinitionDef();
+		if (z.getProvider()!=null) {
+			jz.setCarrier(z.getProvider().getCode());
+		}
+		jz.setName(z.getName());
+		jz.setNameUTF8(z.getNameUtf8());
+		jz.setZoneId(z.getZoneId());
+		jz.setNutsCodes(convertNuts(z.getNutsCodes()));
+		jz.setPloygone(convertToJson(z.getPolygone()));
+		jz.setStationList(convertStationsToJson(z.getStationSet().getStations()));
+		
+		return jz;
+	}
+
+
+
+
+	private static List<String> convertNuts(EList<NutsCode> nutsCodes) {
+		if (nutsCodes == null || nutsCodes.isEmpty()) return null;
+		
+		List<String> jl = new ArrayList<String>();
+		
+		for (NutsCode code : nutsCodes) {
+			jl.add(code.getCode());
+		}
+		return jl;
 	}
 
 
@@ -1521,6 +1574,10 @@ public class GtmJsonUtils {
 		
 		if (fare.getServiceLevel()!=null) {
 			fareJ.setServiceLevelRef(fare.getServiceLevel().getId());
+		}
+		
+		if (fare.getLegacyConversion() != null) {
+			fareJ.setLegacyConversion("NO");
 		}
 		
 		return fareJ;

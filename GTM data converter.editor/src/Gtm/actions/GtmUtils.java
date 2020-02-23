@@ -1,6 +1,9 @@
 package Gtm.actions;
 
 
+import java.net.URL;
+
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -11,8 +14,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
+import org.osgi.framework.Bundle;
 
 import Gtm.AfterSalesRule;
 import Gtm.Calendar;
@@ -52,7 +57,9 @@ import Gtm.ServiceLevel;
 import Gtm.Text;
 import Gtm.TravelValidityConstraint;
 import Gtm.console.ConsoleUtil;
+import Gtm.presentation.DirtyCommand;
 import Gtm.presentation.GtmEditor;
+import Gtm.presentation.GtmEditorPlugin;
 
 public class GtmUtils {
 	
@@ -140,8 +147,8 @@ public class GtmUtils {
 				if (tool.getConversionFromLegacy().getParams().getLegacyStationMappings() == null) {
 					command.append(new SetCommand(domain,tool.getConversionFromLegacy().getParams(),GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_STATION_MAPPINGS,GtmFactory.eINSTANCE.createLegacyStationMappings()));									
 				}
-				if (tool.getConversionFromLegacy().getParams().getLegacyTargetFares() == null) {
-					command.append(new SetCommand(domain,tool.getConversionFromLegacy().getParams(),GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_TARGET_FARES,GtmFactory.eINSTANCE.createLegacyTargetFares()));									
+				if (tool.getConversionFromLegacy().getParams().getLegacyFareTemplates() == null) {
+					command.append(new SetCommand(domain,tool.getConversionFromLegacy().getParams(),GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_FARE_TEMPLATES,GtmFactory.eINSTANCE.createLegacyFareTemplates()));									
 				}
 				if (tool.getConversionFromLegacy().getParams().getLegacyFareStationMappings() == null) {
 					command.append(new SetCommand(domain,tool.getConversionFromLegacy().getParams(),GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS,GtmFactory.eINSTANCE.createLegacyFareStationSetMappings()));									
@@ -294,7 +301,10 @@ public class GtmUtils {
 				if (fare.getFareStationSetDefinitions() == null) {
 					command.append(new SetCommand(domain, fare, GtmPackage.Literals.FARE_STRUCTURE__FARE_STATION_SET_DEFINITIONS, GtmFactory.eINSTANCE.createFareStationSetDefinitions()));
 				}				
-				
+
+				if (fare.getZoneDefinitions() == null) {
+					command.append(new SetCommand(domain, fare, GtmPackage.Literals.FARE_STRUCTURE__ZONE_DEFINITIONS, GtmFactory.eINSTANCE.createZoneDefinitions()));
+				}	
 			}
 		}
 		return command;
@@ -327,6 +337,7 @@ public class GtmUtils {
 		fareStructure.setTexts(GtmFactory.eINSTANCE.createTexts());
 		fareStructure.setTravelValidityConstraints(GtmFactory.eINSTANCE.createTravelValidityConstraints());
 		fareStructure.setFareStationSetDefinitions(GtmFactory.eINSTANCE.createFareStationSetDefinitions());	
+		fareStructure.setZoneDefinitions(GtmFactory.eINSTANCE.createZoneDefinitions());
 		return fareStructure;
 	}
 
@@ -405,7 +416,7 @@ public class GtmUtils {
 	private static ConversionParams createInitialConversionParams() {
 		ConversionParams params = GtmFactory.eINSTANCE.createConversionParams();
 		params.setLegacyStationMappings(GtmFactory.eINSTANCE.createLegacyStationMappings());
-		params.setLegacyTargetFares(GtmFactory.eINSTANCE.createLegacyTargetFares());
+		params.setLegacyFareTemplates(GtmFactory.eINSTANCE.createLegacyFareTemplates());
 		params.setLegacyFareStationMappings(GtmFactory.eINSTANCE.createLegacyFareStationSetMappings());
 		params.setLegacyBorderPointMappings(GtmFactory.eINSTANCE.createLegacyBoderPointMappings());
 		params.setLegacyStationToServiceBrandMappings(GtmFactory.eINSTANCE.createLegacyStationToServiceConstraintMappings());
@@ -778,6 +789,34 @@ public class GtmUtils {
 		SetCommand cmd = new SetCommand(domain, object,feature, EcoreUtil.generateUUID());
 		if (cmd.canExecute()) {
 			command.append(cmd);
+		}
+	}
+	
+	
+	/**
+	 * Returns an image descriptor for the image file at the given
+	 * plug-in relative path
+	 *
+	 * @param path the path
+	 * @return the image descriptor
+	 */
+	public static ImageDescriptor getImageDescriptor(String path) {
+		
+		Bundle bundle = Platform.getBundle(GtmEditorPlugin.PLUGIN_ID);
+		URL fileURL = bundle.getEntry(path); //$NON-NLS-1$
+		return ImageDescriptor.createFromURL(fileURL);
+	}
+	
+	public static void clearCommandStack() {
+		//clears the command stack to reduce the memory footprint
+		boolean isDirty = false;
+		if (GtmUtils.getActiveDomain().getCommandStack().getMostRecentCommand() != null) {
+			isDirty = true;
+		}
+		GtmUtils.getActiveDomain().getCommandStack().flush();
+		System.gc();
+		if (isDirty) {
+			GtmUtils.getActiveDomain().getCommandStack().execute(new DirtyCommand());
 		}
 	}
 	

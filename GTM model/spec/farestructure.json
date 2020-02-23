@@ -150,12 +150,6 @@
 								"$ref": "faredefinitions.json#/definitions/FullfillmentConstraintDef"
 							}
 						},
-						"fareReferenceStationSetDefinitions": {
-							"type": "array",
-							"items": {
-								"$ref": "faredefinitions.json#/definitions/FareReferenceStationSetDef"
-							}
-						},
 						"reductionConstraints": {
 							"type": "array",
 							"items": {
@@ -192,11 +186,23 @@
 								"$ref": "faredefinitions.json#/definitions/StationNamesDef"
 							}
 						},
+						"fareReferenceStationSetDefinitions": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/FareReferenceStationSetDef"
+							}
+						},
 						"stations": {
 							"description": "temporary option to include station details as long as MERITS can not provide them. Station codes must be those of merits",
 							"type": "array",
 							"items": {
 								"$ref": "definitions.json#/definitions/StationDetailsDef"
+							}
+						},
+						"zoneDefinitions": {
+							"type": "array",
+							"items": {
+								"$ref": "faredefinitions.json#/definitions/ZoneDefinitionDef"
 							}
 						}
 					},

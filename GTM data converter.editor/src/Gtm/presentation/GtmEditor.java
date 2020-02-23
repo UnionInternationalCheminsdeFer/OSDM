@@ -1540,9 +1540,8 @@ public class GtmEditor
 
 			// Refresh the necessary state.
 			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
-		firePropertyChange(IEditorPart.PROP_DIRTY);
-		}
-		catch (Exception exception) {
+			firePropertyChange(IEditorPart.PROP_DIRTY);
+		} catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			GtmEditorPlugin.INSTANCE.log(exception);
 		} finally {
@@ -1895,6 +1894,13 @@ public class GtmEditor
 	 */
 	public void disconnectViews() {
 		
+		if (this.contentOutlineViewer != null && this.contentOutlineViewer.getTree() != null) {
+			this.contentOutlineViewer.getTree().setRedraw(false);
+		}
+		if (getPropertySheetPage() != null && getPropertySheetPage().getControl() != null) {
+			getPropertySheetPage().getControl().setRedraw(false);
+		}
+		
 		if (outlineContentProvider != null) {
 			outlineContentProvider = this.contentOutlineViewer.getContentProvider();
 			this.contentOutlineViewer.setContentProvider(null);
@@ -1920,9 +1926,11 @@ public class GtmEditor
 	 */
 	public void reconnectViews() {
 		
+	
 		if (outlineContentProvider != null) {
 			this.contentOutlineViewer.setContentProvider(outlineContentProvider);
 			this.contentOutlineViewer.collapseAll();
+			this.contentOutlineViewer.getControl().setRedraw(true);
 			this.contentOutlineViewer.refresh();
 		}
 		if (listContentProvider != null) {
@@ -1934,8 +1942,9 @@ public class GtmEditor
 			listViewer.setContentProvider(treeContentProvider);
 			listViewer.refresh();
 		}
-		GtmUtils.getActiveDomain().getCommandStack().flush();
+
 		firePropertyChange(IEditorPart.PROP_DIRTY);
+		
 		
 	}
 	
