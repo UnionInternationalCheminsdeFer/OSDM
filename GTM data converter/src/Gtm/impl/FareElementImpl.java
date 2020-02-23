@@ -11,6 +11,7 @@ import Gtm.FareType;
 import Gtm.FulfillmentConstraint;
 import Gtm.GtmPackage;
 import Gtm.LegacyAccountingIdentifier;
+import Gtm.LegacyConversionType;
 import Gtm.PassengerConstraint;
 import Gtm.PersonalDataConstraint;
 import Gtm.Price;
@@ -63,6 +64,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.FareElementImpl#getAfterSalesRule <em>After Sales Rule</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getDataSource <em>Data Source</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
+ *   <li>{@link Gtm.impl.FareElementImpl#getLegacyConversion <em>Legacy Conversion</em>}</li>
  * </ul>
  *
  * @generated
@@ -327,6 +329,26 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 	 * @ordered
 	 */
 	protected LegacyAccountingIdentifier legacyAccountingIdentifier;
+
+	/**
+	 * The default value of the '{@link #getLegacyConversion() <em>Legacy Conversion</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyConversion()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final LegacyConversionType LEGACY_CONVERSION_EDEFAULT = LegacyConversionType.NO;
+
+	/**
+	 * The cached value of the '{@link #getLegacyConversion() <em>Legacy Conversion</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyConversion()
+	 * @generated
+	 * @ordered
+	 */
+	protected LegacyConversionType legacyConversion = LEGACY_CONVERSION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1125,6 +1147,27 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LegacyConversionType getLegacyConversion() {
+		return legacyConversion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyConversion(LegacyConversionType newLegacyConversion) {
+		LegacyConversionType oldLegacyConversion = legacyConversion;
+		legacyConversion = newLegacyConversion == null ? LEGACY_CONVERSION_EDEFAULT : newLegacyConversion;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__LEGACY_CONVERSION, oldLegacyConversion, legacyConversion));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -1203,6 +1246,8 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return getDataSource();
 			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
 				return getLegacyAccountingIdentifier();
+			case GtmPackage.FARE_ELEMENT__LEGACY_CONVERSION:
+				return getLegacyConversion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1280,6 +1325,9 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return;
 			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
 				setLegacyAccountingIdentifier((LegacyAccountingIdentifier)newValue);
+				return;
+			case GtmPackage.FARE_ELEMENT__LEGACY_CONVERSION:
+				setLegacyConversion((LegacyConversionType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1359,6 +1407,9 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
 				setLegacyAccountingIdentifier((LegacyAccountingIdentifier)null);
 				return;
+			case GtmPackage.FARE_ELEMENT__LEGACY_CONVERSION:
+				setLegacyConversion(LEGACY_CONVERSION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1415,6 +1466,8 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return dataSource != DATA_SOURCE_EDEFAULT;
 			case GtmPackage.FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER:
 				return legacyAccountingIdentifier != null;
+			case GtmPackage.FARE_ELEMENT__LEGACY_CONVERSION:
+				return legacyConversion != LEGACY_CONVERSION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1437,6 +1490,8 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 		result.append(dataDescription);
 		result.append(", dataSource: ");
 		result.append(dataSource);
+		result.append(", legacyConversion: ");
+		result.append(legacyConversion);
 		result.append(')');
 		return result.toString();
 	}

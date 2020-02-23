@@ -291,6 +291,10 @@ public class GtmValidator extends EObjectValidator {
 				return validatePolygone((Polygone)value, diagnostics, context);
 			case GtmPackage.EDGE:
 				return validateEdge((Edge)value, diagnostics, context);
+			case GtmPackage.ZONE_DEFINITIONS:
+				return validateZoneDefinitions((ZoneDefinitions)value, diagnostics, context);
+			case GtmPackage.ZONE_DEFINITION:
+				return validateZoneDefinition((ZoneDefinition)value, diagnostics, context);
 			case GtmPackage.CARRIER_RESOURCE_LOCATION:
 				return validateCarrierResourceLocation((CarrierResourceLocation)value, diagnostics, context);
 			case GtmPackage.CROSS_BORDER_CONDITION:
@@ -305,8 +309,8 @@ public class GtmValidator extends EObjectValidator {
 				return validateConversionFromLegacy((ConversionFromLegacy)value, diagnostics, context);
 			case GtmPackage.CONVERSION_PARAMS:
 				return validateConversionParams((ConversionParams)value, diagnostics, context);
-			case GtmPackage.TARGET_FARE_TEMPLATE:
-				return validateTargetFareTemplate((TargetFareTemplate)value, diagnostics, context);
+			case GtmPackage.FARE_TEMPLATE:
+				return validateFareTemplate((FareTemplate)value, diagnostics, context);
 			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS:
 				return validateLegacyStationToServiceConstraintMappings((LegacyStationToServiceConstraintMappings)value, diagnostics, context);
 			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING:
@@ -349,8 +353,8 @@ public class GtmValidator extends EObjectValidator {
 				return validateLegacyDistanceFare((LegacyDistanceFare)value, diagnostics, context);
 			case GtmPackage.LEGACY_VIASTATION:
 				return validateLegacyViastation((LegacyViastation)value, diagnostics, context);
-			case GtmPackage.LEGACY_TARGET_FARES:
-				return validateLegacyTargetFares((LegacyTargetFares)value, diagnostics, context);
+			case GtmPackage.LEGACY_FARE_TEMPLATES:
+				return validateLegacyFareTemplates((LegacyFareTemplates)value, diagnostics, context);
 			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
 				return validateAfterSalesTransactionType((AfterSalesTransactionType)value, diagnostics, context);
 			case GtmPackage.BARCODE_TYPES:
@@ -387,6 +391,8 @@ public class GtmValidator extends EObjectValidator {
 				return validateLegacyPassengerType((LegacyPassengerType)value, diagnostics, context);
 			case GtmPackage.LEGACY_SERIES_TYPE:
 				return validateLegacySeriesType((LegacySeriesType)value, diagnostics, context);
+			case GtmPackage.LEGACY_CONVERSION_TYPE:
+				return validateLegacyConversionType((LegacyConversionType)value, diagnostics, context);
 			case GtmPackage.OFFER_REQUEST_TYPE:
 				return validateOfferRequestType((OfferRequestType)value, diagnostics, context);
 			case GtmPackage.ONLINE_SERVICE_TYPE:
@@ -536,6 +542,15 @@ public class GtmValidator extends EObjectValidator {
 	 */
 	public boolean validateConversionParams(ConversionParams conversionParams, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(conversionParams, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFareTemplate(FareTemplate fareTemplate, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(fareTemplate, diagnostics, context);
 	}
 
 	/**
@@ -958,6 +973,15 @@ public class GtmValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateLegacyFareTemplates(LegacyFareTemplates legacyFareTemplates, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(legacyFareTemplates, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateLegacyStationMappings(LegacyStationMappings legacyStationMappings, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(legacyStationMappings, diagnostics, context);
 	}
@@ -988,15 +1012,6 @@ public class GtmValidator extends EObjectValidator {
 	 */
 	public boolean validateLegacyBorderPointMapping(LegacyBorderPointMapping legacyBorderPointMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(legacyBorderPointMapping, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLegacyTargetFares(LegacyTargetFares legacyTargetFares, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(legacyTargetFares, diagnostics, context);
 	}
 
 	/**
@@ -1237,15 +1252,6 @@ public class GtmValidator extends EObjectValidator {
 	 */
 	public boolean validateStation(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(station, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTargetFareTemplate(TargetFareTemplate targetFareTemplate, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(targetFareTemplate, diagnostics, context);
 	}
 
 	/**
@@ -1525,6 +1531,24 @@ public class GtmValidator extends EObjectValidator {
 	 */
 	public boolean validateEdge(Edge edge, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(edge, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateZoneDefinitions(ZoneDefinitions zoneDefinitions, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(zoneDefinitions, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateZoneDefinition(ZoneDefinition zoneDefinition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(zoneDefinition, diagnostics, context);
 	}
 
 	/**
@@ -1893,6 +1917,15 @@ public class GtmValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateLegacySeriesType(LegacySeriesType legacySeriesType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLegacyConversionType(LegacyConversionType legacyConversionType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

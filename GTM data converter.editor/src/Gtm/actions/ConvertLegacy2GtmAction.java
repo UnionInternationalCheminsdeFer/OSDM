@@ -18,13 +18,17 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 		
 		public ConvertLegacy2GtmAction(IEditingDomainProvider editingDomainProvider) {
 			super("Convert Legacy 108 to GTM", editingDomainProvider);
+			this.setToolTipText(this.getText());
+			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/convertFromLegacy.png")); //$NON-NLS-1$
 			this.editingDomainProvider = editingDomainProvider;
 		}
 			
 		
 		public ConvertLegacy2GtmAction(String text, IEditingDomainProvider editingDomainProvider) {
 			super(text, editingDomainProvider);
+			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/convertFromLegacy.png")); //$NON-NLS-1$
 			this.editingDomainProvider = editingDomainProvider;
+			this.setToolTipText(this.getText());
 		}
 
 		

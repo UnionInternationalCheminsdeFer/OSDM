@@ -28,7 +28,7 @@ public final class GtmEditorPlugin extends EMFPlugin {
 	/**
 	 * @generated NOT
 	 */
-	public static final String PLUGIN_ID = "UIC.GTM.editor";
+	public static final String PLUGIN_ID = "GTM_data_converter.editor";
 	
 	
 	/**
@@ -94,6 +94,7 @@ public final class GtmEditorPlugin extends EMFPlugin {
 			//
 			plugin = this;
 		}
+		
 		
 		/**
 		 * Create an entry in the error log view (org.eclipse.ui.views.log)

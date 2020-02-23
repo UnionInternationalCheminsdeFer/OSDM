@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.FareElement#getAfterSalesRule <em>After Sales Rule</em>}</li>
  *   <li>{@link Gtm.FareElement#getDataSource <em>Data Source</em>}</li>
  *   <li>{@link Gtm.FareElement#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
+ *   <li>{@link Gtm.FareElement#getLegacyConversion <em>Legacy Conversion</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getFareElement()
@@ -531,5 +532,30 @@ public interface FareElement extends EObject {
 	 * @generated
 	 */
 	void setLegacyAccountingIdentifier(LegacyAccountingIdentifier value);
+
+	/**
+	 * Returns the value of the '<em><b>Legacy Conversion</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gtm.LegacyConversionType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Legacy Conversion</em>' attribute.
+	 * @see Gtm.LegacyConversionType
+	 * @see #setLegacyConversion(LegacyConversionType)
+	 * @see Gtm.GtmPackage#getFareElement_LegacyConversion()
+	 * @model
+	 * @generated
+	 */
+	LegacyConversionType getLegacyConversion();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareElement#getLegacyConversion <em>Legacy Conversion</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Legacy Conversion</em>' attribute.
+	 * @see Gtm.LegacyConversionType
+	 * @see #getLegacyConversion()
+	 * @generated
+	 */
+	void setLegacyConversion(LegacyConversionType value);
 
 } // FareElement

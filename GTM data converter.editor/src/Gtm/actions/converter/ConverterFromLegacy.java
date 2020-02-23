@@ -28,6 +28,7 @@ import Gtm.EndOfSale;
 import Gtm.FareElement;
 import Gtm.FareStationSetDefinition;
 import Gtm.FareStationSetDefinitions;
+import Gtm.FareTemplate;
 import Gtm.GTMTool;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
@@ -53,7 +54,6 @@ import Gtm.StartOfSale;
 import Gtm.Station;
 import Gtm.StationNames;
 import Gtm.StationSet;
-import Gtm.TargetFareTemplate;
 import Gtm.TaxScope;
 import Gtm.VATDetail;
 import Gtm.ViaStation;
@@ -200,7 +200,7 @@ public class ConverterFromLegacy {
 			}
 			
 			int legacyFareCounter = 0;
-			for (TargetFareTemplate fareTemplate: tool.getConversionFromLegacy().getParams().getLegacyTargetFares().getTargetFares()) {
+			for (FareTemplate fareTemplate: tool.getConversionFromLegacy().getParams().getLegacyFareTemplates().getFareTemplates()) {
 				
 				try {
 					for (DateRange dateRange : validityRanges) {
@@ -217,7 +217,7 @@ public class ConverterFromLegacy {
 
 
 	
-	public void convertSeriesToFares(GTMTool tool, LegacySeries series, TargetFareTemplate fareTemplate, EditingDomain domain, int number,DateRange dateRange, RegionalConstraint regionalConstraint, RegionalConstraint regionalConstraintR, ArrayList<Price> priceList, int legacyFareCounter) throws ConverterException{
+	public void convertSeriesToFares(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, EditingDomain domain, int number,DateRange dateRange, RegionalConstraint regionalConstraint, RegionalConstraint regionalConstraintR, ArrayList<Price> priceList, int legacyFareCounter) throws ConverterException{
 		
 		try {
 			
@@ -820,7 +820,7 @@ public class ConverterFromLegacy {
 	}
 	
 
-	public static Price convertSeriesToPrice(GTMTool tool, LegacySeries series, TargetFareTemplate fareTemplate, Country country, DateRange dateRange) throws ConverterException{
+	public static Price convertSeriesToPrice(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, Country country, DateRange dateRange) throws ConverterException{
 		
 		Price price = GtmFactory.eINSTANCE.createPrice();
 		price.setDataSource(DataSource.CONVERTED);
@@ -921,7 +921,7 @@ public class ConverterFromLegacy {
 	
 
 
-	public FareElement convertSeriesToFare(GTMTool tool, LegacySeries series, TargetFareTemplate template, int direction) throws ConverterException{
+	public FareElement convertSeriesToFare(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, int direction) throws ConverterException{
 		
 		FareElement fare = GtmFactory.eINSTANCE.createFareElement();
 		LegacyAccountingIdentifier accountingIdentifier = GtmFactory.eINSTANCE.createLegacyAccountingIdentifier();
@@ -930,33 +930,33 @@ public class ConverterFromLegacy {
 		accountingIdentifier.setSeriesId(series.getNumber());
 		fare.setLegacyAccountingIdentifier(accountingIdentifier);
 		fare.setDataSource(DataSource.CONVERTED);
-		fare.setAfterSalesRule(template.getAfterSalesRule());
-		fare.setCarrierConstraint(template.getCarrierConstraint());
+		fare.setAfterSalesRule(fareTemplate.getAfterSalesRule());
+		fare.setCarrierConstraint(fareTemplate.getCarrierConstraint());
 		if (isSeparateContract(series)) {
-			fare.setCombinationConstraint(template.getSeparateContractCombinationConstraint());
+			fare.setCombinationConstraint(fareTemplate.getSeparateContractCombinationConstraint());
 		} else {
-			fare.setCombinationConstraint(template.getCombinationConstraint());
+			fare.setCombinationConstraint(fareTemplate.getCombinationConstraint());
 		}
-		fare.setDataDescription("converted from series: " + Integer.toString(series.getNumber()) +" and template: " + template.getDataDescription());;
-		fare.setFareDetailDescription(template.getFareDetailDescription());
-		fare.setFulfillmentConstraint(template.getFulfillmentConstraint());
+		fare.setDataDescription("converted from series: " + Integer.toString(series.getNumber()) +" and template: " + fareTemplate.getDataDescription());;
+		fare.setFareDetailDescription(fareTemplate.getFareDetailDescription());
+		fare.setFulfillmentConstraint(fareTemplate.getFulfillmentConstraint());
 		
 		LegacyAccountingIdentifier legacyAccountingIdentifier = GtmFactory.eINSTANCE.createLegacyAccountingIdentifier();
 		legacyAccountingIdentifier.setSeriesId(series.getNumber());
 		legacyAccountingIdentifier.setAddSeriesId(direction);
 		fare.setLegacyAccountingIdentifier(legacyAccountingIdentifier);
 		
-		fare.setPassengerConstraint(template.getPassengerConstraint());
-		fare.setReductionConstraint(template.getReductionConstraint());
-		fare.setPersonalDataConstraint(template.getPersonalDataConstraint());
-		fare.setReservationParameter(template.getReservationParameter());
-		fare.setSalesAvailability(template.getSalesAvailability());
-		fare.setServiceClass(template.getServiceClass());
-		fare.setServiceConstraint(template.getServiceConstraint());
-		fare.setServiceLevel(template.getServiceLevel());
-		fare.setText(template.getText());
-		fare.setTravelValidity(template.getTravelValidity());
-		fare.setType(template.getType());
+		fare.setPassengerConstraint(fareTemplate.getPassengerConstraint());
+		fare.setReductionConstraint(fareTemplate.getReductionConstraint());
+		fare.setPersonalDataConstraint(fareTemplate.getPersonalDataConstraint());
+		fare.setReservationParameter(fareTemplate.getReservationParameter());
+		fare.setSalesAvailability(fareTemplate.getSalesAvailability());
+		fare.setServiceClass(fareTemplate.getServiceClass());
+		fare.setServiceConstraint(fareTemplate.getServiceConstraint());
+		fare.setServiceLevel(fareTemplate.getServiceLevel());
+		fare.setText(fareTemplate.getText());
+		fare.setTravelValidity(fareTemplate.getTravelValidity());
+		fare.setType(fareTemplate.getType());
 		
 		return fare;
 		

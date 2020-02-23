@@ -22,11 +22,15 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 		
 		public ImportGTMJsonAction(IEditingDomainProvider editingDomainProvider) {
 			super("Import GTM data", editingDomainProvider);
+			this.setToolTipText(this.getText());
+			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importGtm.png")); //$NON-NLS-1$
 			this.editingDomainProvider = editingDomainProvider;
 		}
 		
 		public ImportGTMJsonAction(String text, IEditingDomainProvider editingDomainProvider) {
 			super(text, editingDomainProvider);
+			this.setToolTipText(this.getText());
+			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importGtm.png")); //$NON-NLS-1$
 			this.editingDomainProvider = editingDomainProvider;
 		}
 

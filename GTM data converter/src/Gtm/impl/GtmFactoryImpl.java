@@ -158,6 +158,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.LINE: return createLine();
 			case GtmPackage.POLYGONE: return createPolygone();
 			case GtmPackage.EDGE: return createEdge();
+			case GtmPackage.ZONE_DEFINITIONS: return createZoneDefinitions();
+			case GtmPackage.ZONE_DEFINITION: return createZoneDefinition();
 			case GtmPackage.CARRIER_RESOURCE_LOCATION: return createCarrierResourceLocation();
 			case GtmPackage.CROSS_BORDER_CONDITION: return createCrossBorderCondition();
 			case GtmPackage.FARE_COMBINATION_MODEL: return createFareCombinationModel();
@@ -165,7 +167,7 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.REQUIRED_REDUCTION_CARD: return createRequiredReductionCard();
 			case GtmPackage.CONVERSION_FROM_LEGACY: return createConversionFromLegacy();
 			case GtmPackage.CONVERSION_PARAMS: return createConversionParams();
-			case GtmPackage.TARGET_FARE_TEMPLATE: return createTargetFareTemplate();
+			case GtmPackage.FARE_TEMPLATE: return createFareTemplate();
 			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS: return createLegacyStationToServiceConstraintMappings();
 			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING: return createLegacyStationToServiceConstraintMapping();
 			case GtmPackage.LEGACY_STATION_MAPPINGS: return createLegacyStationMappings();
@@ -187,7 +189,7 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.LEGACY_DISTANCE_FARES: return createLegacyDistanceFares();
 			case GtmPackage.LEGACY_DISTANCE_FARE: return createLegacyDistanceFare();
 			case GtmPackage.LEGACY_VIASTATION: return createLegacyViastation();
-			case GtmPackage.LEGACY_TARGET_FARES: return createLegacyTargetFares();
+			case GtmPackage.LEGACY_FARE_TEMPLATES: return createLegacyFareTemplates();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -237,6 +239,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return createLegacyPassengerTypeFromString(eDataType, initialValue);
 			case GtmPackage.LEGACY_SERIES_TYPE:
 				return createLegacySeriesTypeFromString(eDataType, initialValue);
+			case GtmPackage.LEGACY_CONVERSION_TYPE:
+				return createLegacyConversionTypeFromString(eDataType, initialValue);
 			case GtmPackage.OFFER_REQUEST_TYPE:
 				return createOfferRequestTypeFromString(eDataType, initialValue);
 			case GtmPackage.ONLINE_SERVICE_TYPE:
@@ -324,6 +328,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return convertLegacyPassengerTypeToString(eDataType, instanceValue);
 			case GtmPackage.LEGACY_SERIES_TYPE:
 				return convertLegacySeriesTypeToString(eDataType, instanceValue);
+			case GtmPackage.LEGACY_CONVERSION_TYPE:
+				return convertLegacyConversionTypeToString(eDataType, instanceValue);
 			case GtmPackage.OFFER_REQUEST_TYPE:
 				return convertOfferRequestTypeToString(eDataType, instanceValue);
 			case GtmPackage.ONLINE_SERVICE_TYPE:
@@ -532,6 +538,16 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public StationSet createStationSet() {
+		StationSetImpl stationSet = new StationSetImpl();
+		return stationSet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GeneralTariffModel createGeneralTariffModel() {
 		GeneralTariffModelImpl generalTariffModel = new GeneralTariffModelImpl();
 		return generalTariffModel;
@@ -622,16 +638,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StationSet createStationSet() {
-		StationSetImpl stationSet = new StationSetImpl();
-		return stationSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public FareResourceLocations createFareResourceLocations() {
 		FareResourceLocationsImpl fareResourceLocations = new FareResourceLocationsImpl();
 		return fareResourceLocations;
@@ -705,6 +711,36 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public FulfillmentConstraints createFulfillmentConstraints() {
 		FulfillmentConstraintsImpl fulfillmentConstraints = new FulfillmentConstraintsImpl();
 		return fulfillmentConstraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FulfillmentConstraint createFulfillmentConstraint() {
+		FulfillmentConstraintImpl fulfillmentConstraint = new FulfillmentConstraintImpl();
+		return fulfillmentConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RequiredBarcodes createRequiredBarcodes() {
+		RequiredBarcodesImpl requiredBarcodes = new RequiredBarcodesImpl();
+		return requiredBarcodes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AcceptedBarcodes createAcceptedBarcodes() {
+		AcceptedBarcodesImpl acceptedBarcodes = new AcceptedBarcodesImpl();
+		return acceptedBarcodes;
 	}
 
 	/**
@@ -852,9 +888,9 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IncludedFreePassengerLimit createIncludedFreePassengerLimit() {
-		IncludedFreePassengerLimitImpl includedFreePassengerLimit = new IncludedFreePassengerLimitImpl();
-		return includedFreePassengerLimit;
+	public PassengerCombinationConstraint createPassengerCombinationConstraint() {
+		PassengerCombinationConstraintImpl passengerCombinationConstraint = new PassengerCombinationConstraintImpl();
+		return passengerCombinationConstraint;
 	}
 
 	/**
@@ -862,9 +898,9 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PassengerCombinationConstraint createPassengerCombinationConstraint() {
-		PassengerCombinationConstraintImpl passengerCombinationConstraint = new PassengerCombinationConstraintImpl();
-		return passengerCombinationConstraint;
+	public IncludedFreePassengerLimit createIncludedFreePassengerLimit() {
+		IncludedFreePassengerLimitImpl includedFreePassengerLimit = new IncludedFreePassengerLimitImpl();
+		return includedFreePassengerLimit;
 	}
 
 	/**
@@ -1352,6 +1388,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ZoneDefinitions createZoneDefinitions() {
+		ZoneDefinitionsImpl zoneDefinitions = new ZoneDefinitionsImpl();
+		return zoneDefinitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ZoneDefinition createZoneDefinition() {
+		ZoneDefinitionImpl zoneDefinition = new ZoneDefinitionImpl();
+		return zoneDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CarrierResourceLocation createCarrierResourceLocation() {
 		CarrierResourceLocationImpl carrierResourceLocation = new CarrierResourceLocationImpl();
 		return carrierResourceLocation;
@@ -1375,36 +1431,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public FareCombinationModel createFareCombinationModel() {
 		FareCombinationModelImpl fareCombinationModel = new FareCombinationModelImpl();
 		return fareCombinationModel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FulfillmentConstraint createFulfillmentConstraint() {
-		FulfillmentConstraintImpl fulfillmentConstraint = new FulfillmentConstraintImpl();
-		return fulfillmentConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RequiredBarcodes createRequiredBarcodes() {
-		RequiredBarcodesImpl requiredBarcodes = new RequiredBarcodesImpl();
-		return requiredBarcodes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AcceptedBarcodes createAcceptedBarcodes() {
-		AcceptedBarcodesImpl acceptedBarcodes = new AcceptedBarcodesImpl();
-		return acceptedBarcodes;
 	}
 
 	/**
@@ -1452,9 +1478,9 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetFareTemplate createTargetFareTemplate() {
-		TargetFareTemplateImpl targetFareTemplate = new TargetFareTemplateImpl();
-		return targetFareTemplate;
+	public FareTemplate createFareTemplate() {
+		FareTemplateImpl fareTemplate = new FareTemplateImpl();
+		return fareTemplate;
 	}
 
 	/**
@@ -1602,6 +1628,16 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LegacySeriesList createLegacySeriesList() {
+		LegacySeriesListImpl legacySeriesList = new LegacySeriesListImpl();
+		return legacySeriesList;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public LegacySeries createLegacySeries() {
 		LegacySeriesImpl legacySeries = new LegacySeriesImpl();
 		return legacySeries;
@@ -1625,16 +1661,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public LegacySeparateContractSeries createLegacySeparateContractSeries() {
 		LegacySeparateContractSeriesImpl legacySeparateContractSeries = new LegacySeparateContractSeriesImpl();
 		return legacySeparateContractSeries;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LegacySeriesList createLegacySeriesList() {
-		LegacySeriesListImpl legacySeriesList = new LegacySeriesListImpl();
-		return legacySeriesList;
 	}
 
 	/**
@@ -1672,9 +1698,9 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LegacyTargetFares createLegacyTargetFares() {
-		LegacyTargetFaresImpl legacyTargetFares = new LegacyTargetFaresImpl();
-		return legacyTargetFares;
+	public LegacyFareTemplates createLegacyFareTemplates() {
+		LegacyFareTemplatesImpl legacyFareTemplates = new LegacyFareTemplatesImpl();
+		return legacyFareTemplates;
 	}
 
 	/**
@@ -2034,6 +2060,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * @generated
 	 */
 	public String convertLegacySeriesTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyConversionType createLegacyConversionTypeFromString(EDataType eDataType, String initialValue) {
+		LegacyConversionType result = LegacyConversionType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertLegacyConversionTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

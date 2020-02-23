@@ -7,9 +7,6 @@
 		"placeAvailabilityRequest": {
 			"type": "object",
 			"properties": {
-				"offerId": {
-					"type": "string"
-				},
 				"train": {
 					"type": "string"
 				},
@@ -26,7 +23,6 @@
 				}
 			},
 			"required": [
-				"offerId",
 				"train"
 			],
 			"additionalProperties": false

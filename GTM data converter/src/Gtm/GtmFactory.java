@@ -904,6 +904,24 @@ public interface GtmFactory extends EFactory {
 	Edge createEdge();
 
 	/**
+	 * Returns a new object of class '<em>Zone Definitions</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Zone Definitions</em>'.
+	 * @generated
+	 */
+	ZoneDefinitions createZoneDefinitions();
+
+	/**
+	 * Returns a new object of class '<em>Zone Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Zone Definition</em>'.
+	 * @generated
+	 */
+	ZoneDefinition createZoneDefinition();
+
+	/**
 	 * Returns a new object of class '<em>Carrier Resource Location</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -994,13 +1012,13 @@ public interface GtmFactory extends EFactory {
 	ConversionParams createConversionParams();
 
 	/**
-	 * Returns a new object of class '<em>Target Fare Template</em>'.
+	 * Returns a new object of class '<em>Fare Template</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Target Fare Template</em>'.
+	 * @return a new object of class '<em>Fare Template</em>'.
 	 * @generated
 	 */
-	TargetFareTemplate createTargetFareTemplate();
+	FareTemplate createFareTemplate();
 
 	/**
 	 * Returns a new object of class '<em>Legacy Station To Service Constraint Mappings</em>'.
@@ -1192,13 +1210,13 @@ public interface GtmFactory extends EFactory {
 	LegacyViastation createLegacyViastation();
 
 	/**
-	 * Returns a new object of class '<em>Legacy Target Fares</em>'.
+	 * Returns a new object of class '<em>Legacy Fare Templates</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Target Fares</em>'.
+	 * @return a new object of class '<em>Legacy Fare Templates</em>'.
 	 * @generated
 	 */
-	LegacyTargetFares createLegacyTargetFares();
+	LegacyFareTemplates createLegacyFareTemplates();
 
 	/**
 	 * Returns the package supported by this factory.

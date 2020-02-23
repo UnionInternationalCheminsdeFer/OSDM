@@ -15,6 +15,13 @@
 				"Offers": {
 					"$ref": "anxilliarydefinitions.json#/definitions/OfferDef"
 				},
+				"travelDescriptionChange": {
+					"description": "TRAIN_NUMBER_CHANGE,TIME_CHANGE, CONNECTION_TIME_CHANGE",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
 				"ErrorDescription": {
 					"type": "object",
 					"properties": {
@@ -35,13 +42,6 @@
 						"Code"
 					],
 					"additionalProperties": false
-				},
-				"travelDescriptionChange": {
-					"description": "TRAIN_NUMBER_CHANGE,TIME_CHANGE, CONNECTION_TIME_CHANGE",
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
 				}
 			},
 			"required": [

@@ -5,7 +5,7 @@ package Gtm.provider;
 
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
-import Gtm.LegacyTargetFares;
+import Gtm.LegacyFareTemplates;
 
 import java.util.Collection;
 import java.util.List;
@@ -28,12 +28,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link Gtm.LegacyTargetFares} object.
+ * This is the item provider adapter for a {@link Gtm.LegacyFareTemplates} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LegacyTargetFaresItemProvider 
+public class LegacyFareTemplatesItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -47,7 +47,7 @@ public class LegacyTargetFaresItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LegacyTargetFaresItemProvider(AdapterFactory adapterFactory) {
+	public LegacyFareTemplatesItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -78,7 +78,7 @@ public class LegacyTargetFaresItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GtmPackage.Literals.LEGACY_TARGET_FARES__TARGET_FARES);
+			childrenFeatures.add(GtmPackage.Literals.LEGACY_FARE_TEMPLATES__FARE_TEMPLATES);
 		}
 		return childrenFeatures;
 	}
@@ -97,14 +97,14 @@ public class LegacyTargetFaresItemProvider
 	}
 
 	/**
-	 * This returns LegacyTargetFares.gif.
+	 * This returns LegacyFareTemplates.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LegacyTargetFares"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/LegacyFareTemplates"));
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class LegacyTargetFaresItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_LegacyTargetFares_type");
+		return getString("_UI_LegacyFareTemplates_type");
 	}
 
 
@@ -130,8 +130,8 @@ public class LegacyTargetFaresItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LegacyTargetFares.class)) {
-			case GtmPackage.LEGACY_TARGET_FARES__TARGET_FARES:
+		switch (notification.getFeatureID(LegacyFareTemplates.class)) {
+			case GtmPackage.LEGACY_FARE_TEMPLATES__FARE_TEMPLATES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -151,8 +151,8 @@ public class LegacyTargetFaresItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.LEGACY_TARGET_FARES__TARGET_FARES,
-				 GtmFactory.eINSTANCE.createTargetFareTemplate()));
+				(GtmPackage.Literals.LEGACY_FARE_TEMPLATES__FARE_TEMPLATES,
+				 GtmFactory.eINSTANCE.createFareTemplate()));
 	}
 
 	/**

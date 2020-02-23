@@ -24,6 +24,8 @@ public class ImportServiceBrandsAction extends ImportCsvDataAction {
 
 	public ImportServiceBrandsAction(IEditingDomainProvider editingDomainProvider) {
 		super("import service brands", editingDomainProvider);
+		this.setToolTipText(this.getText());
+		setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importBrands.png")); //$NON-NLS-1$
 	}
 
 	@Override

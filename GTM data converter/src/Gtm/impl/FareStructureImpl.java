@@ -28,6 +28,7 @@ import Gtm.StationNames;
 import Gtm.SupportedOnlineServices;
 import Gtm.Texts;
 import Gtm.TravelValidityConstraints;
+import Gtm.ZoneDefinitions;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -68,6 +69,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.FareStructureImpl#getReservationParameters <em>Reservation Parameters</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getSupportedOnlineServices <em>Supported Online Services</em>}</li>
  *   <li>{@link Gtm.impl.FareStructureImpl#getFareResourceLocations <em>Fare Resource Locations</em>}</li>
+ *   <li>{@link Gtm.impl.FareStructureImpl#getZoneDefinitions <em>Zone Definitions</em>}</li>
  * </ul>
  *
  * @generated
@@ -312,6 +314,16 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 	 * @ordered
 	 */
 	protected FareResourceLocations fareResourceLocations;
+
+	/**
+	 * The cached value of the '{@link #getZoneDefinitions() <em>Zone Definitions</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getZoneDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected ZoneDefinitions zoneDefinitions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1326,6 +1338,49 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ZoneDefinitions getZoneDefinitions() {
+		return zoneDefinitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetZoneDefinitions(ZoneDefinitions newZoneDefinitions, NotificationChain msgs) {
+		ZoneDefinitions oldZoneDefinitions = zoneDefinitions;
+		zoneDefinitions = newZoneDefinitions;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS, oldZoneDefinitions, newZoneDefinitions);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setZoneDefinitions(ZoneDefinitions newZoneDefinitions) {
+		if (newZoneDefinitions != zoneDefinitions) {
+			NotificationChain msgs = null;
+			if (zoneDefinitions != null)
+				msgs = ((InternalEObject)zoneDefinitions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS, null, msgs);
+			if (newZoneDefinitions != null)
+				msgs = ((InternalEObject)newZoneDefinitions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS, null, msgs);
+			msgs = basicSetZoneDefinitions(newZoneDefinitions, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS, newZoneDefinitions, newZoneDefinitions));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ConnectionPoints getConnectionPoints() {
 		return connectionPoints;
 	}
@@ -1420,6 +1475,8 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 				return basicSetSupportedOnlineServices(null, msgs);
 			case GtmPackage.FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS:
 				return basicSetFareResourceLocations(null, msgs);
+			case GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS:
+				return basicSetZoneDefinitions(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1480,6 +1537,8 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 				return getSupportedOnlineServices();
 			case GtmPackage.FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS:
 				return getFareResourceLocations();
+			case GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS:
+				return getZoneDefinitions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1565,6 +1624,9 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 			case GtmPackage.FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS:
 				setFareResourceLocations((FareResourceLocations)newValue);
 				return;
+			case GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS:
+				setZoneDefinitions((ZoneDefinitions)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1649,6 +1711,9 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 			case GtmPackage.FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS:
 				setFareResourceLocations((FareResourceLocations)null);
 				return;
+			case GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS:
+				setZoneDefinitions((ZoneDefinitions)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1709,6 +1774,8 @@ public class FareStructureImpl extends MinimalEObjectImpl.Container implements F
 				return supportedOnlineServices != null;
 			case GtmPackage.FARE_STRUCTURE__FARE_RESOURCE_LOCATIONS:
 				return fareResourceLocations != null;
+			case GtmPackage.FARE_STRUCTURE__ZONE_DEFINITIONS:
+				return zoneDefinitions != null;
 		}
 		return super.eIsSet(featureID);
 	}

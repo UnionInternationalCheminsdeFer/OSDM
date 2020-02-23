@@ -38,6 +38,12 @@
 				"serviceLevel": {
 					"$ref": "faredefinitions.json#/definitions/ServiceLevelDef"
 				},
+				"reservationParameter": {
+					"$ref": "faredefinitions.json#/definitions/ReservationParameterDef"
+				},
+				"personalDataConstraint": {
+					"$ref": "faredefinitions.json#/definitions/PersonalDataConstraintDef"
+				},
 				"passengerConstraint": {
 					"$ref": "faredefinitions.json#/definitions/PassengerConstraintDef"
 				},
@@ -52,12 +58,6 @@
 				},
 				"reductionConstraint": {
 					"$ref": "faredefinitions.json#/definitions/ReductionConstraintDef"
-				},
-				"reservationParameter": {
-					"$ref": "faredefinitions.json#/definitions/ReservationParameterDef"
-				},
-				"personalDataConstraint": {
-					"$ref": "faredefinitions.json#/definitions/PersonalDataConstraintDef"
 				},
 				"legacyAccountingIdentifier": {
 					"description": "identifier of the fare in the current 301 accounting file data",
@@ -101,7 +101,7 @@
 					"type": "string"
 				},
 				"fareType": {
-					"description": "open, IRT, reservation without ticket",
+					"description": "IRT,NRT,RES,ANX",
 					"type": "string"
 				},
 				"nameRef": {
@@ -183,6 +183,11 @@
 				},
 				"TravelValidityConstraintRef": {
 					"type": "string"
+				},
+				"legacyConversion": {
+					"description": "options for legacy conversion to 108.1: NO ( no conversion) YES (conversion allowed), ONLY (fare is provided only for conversion and should not be used otherwise ",
+					"type": "string",
+					"default": "NO"
 				}
 			},
 			"required": [

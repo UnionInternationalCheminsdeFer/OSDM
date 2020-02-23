@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.ConversionParams#getCountry <em>Country</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getLegacyBorderPointMappings <em>Legacy Border Point Mappings</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getLegacyStationMappings <em>Legacy Station Mappings</em>}</li>
- *   <li>{@link Gtm.ConversionParams#getLegacyTargetFares <em>Legacy Target Fares</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getLegacyFareTemplates <em>Legacy Fare Templates</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getLegacyFareStationMappings <em>Legacy Fare Station Mappings</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getLegacyStationToServiceBrandMappings <em>Legacy Station To Service Brand Mappings</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getEndOfSale <em>End Of Sale</em>}</li>
@@ -141,26 +141,26 @@ public interface ConversionParams extends EObject {
 	void setLegacyStationMappings(LegacyStationMappings value);
 
 	/**
-	 * Returns the value of the '<em><b>Legacy Target Fares</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Legacy Fare Templates</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Legacy Target Fares</em>' containment reference.
-	 * @see #setLegacyTargetFares(LegacyTargetFares)
-	 * @see Gtm.GtmPackage#getConversionParams_LegacyTargetFares()
+	 * @return the value of the '<em>Legacy Fare Templates</em>' containment reference.
+	 * @see #setLegacyFareTemplates(LegacyFareTemplates)
+	 * @see Gtm.GtmPackage#getConversionParams_LegacyFareTemplates()
 	 * @model containment="true"
 	 * @generated
 	 */
-	LegacyTargetFares getLegacyTargetFares();
+	LegacyFareTemplates getLegacyFareTemplates();
 
 	/**
-	 * Sets the value of the '{@link Gtm.ConversionParams#getLegacyTargetFares <em>Legacy Target Fares</em>}' containment reference.
+	 * Sets the value of the '{@link Gtm.ConversionParams#getLegacyFareTemplates <em>Legacy Fare Templates</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Legacy Target Fares</em>' containment reference.
-	 * @see #getLegacyTargetFares()
+	 * @param value the new value of the '<em>Legacy Fare Templates</em>' containment reference.
+	 * @see #getLegacyFareTemplates()
 	 * @generated
 	 */
-	void setLegacyTargetFares(LegacyTargetFares value);
+	void setLegacyFareTemplates(LegacyFareTemplates value);
 
 	/**
 	 * Returns the value of the '<em><b>Legacy Fare Station Mappings</b></em>' containment reference.

@@ -3,9 +3,9 @@
 package Gtm.provider;
 
 
+import Gtm.FareTemplate;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
-import Gtm.TargetFareTemplate;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -29,12 +30,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link Gtm.TargetFareTemplate} object.
+ * This is the item provider adapter for a {@link Gtm.FareTemplate} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TargetFareTemplateItemProvider 
+public class FareTemplateItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -48,7 +49,7 @@ public class TargetFareTemplateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetFareTemplateItemProvider(AdapterFactory adapterFactory) {
+	public FareTemplateItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -85,6 +86,7 @@ public class TargetFareTemplateItemProvider
 			addFulfillmentConstraintPropertyDescriptor(object);
 			addPassengerConstraintPropertyDescriptor(object);
 			addAfterSalesRulePropertyDescriptor(object);
+			addLegacyConversionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -100,9 +102,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_priceFactor_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_priceFactor_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__PRICE_FACTOR,
+				 getString("_UI_FareTemplate_priceFactor_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_priceFactor_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__PRICE_FACTOR,
 				 true,
 				 false,
 				 false,
@@ -122,9 +124,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_id_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_id_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__ID,
+				 getString("_UI_FareTemplate_id_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_id_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__ID,
 				 true,
 				 false,
 				 false,
@@ -144,9 +146,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_type_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__TYPE,
+				 getString("_UI_FareTemplate_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_type_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__TYPE,
 				 true,
 				 false,
 				 false,
@@ -166,9 +168,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_dataDescription_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_dataDescription_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__DATA_DESCRIPTION,
+				 getString("_UI_FareTemplate_dataDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_dataDescription_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__DATA_DESCRIPTION,
 				 true,
 				 false,
 				 false,
@@ -188,9 +190,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_text_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_text_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__TEXT,
+				 getString("_UI_FareTemplate_text_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_text_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__TEXT,
 				 true,
 				 false,
 				 true,
@@ -210,9 +212,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_price_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_price_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__PRICE,
+				 getString("_UI_FareTemplate_price_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_price_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__PRICE,
 				 true,
 				 false,
 				 true,
@@ -232,9 +234,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_regionalConstraint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_regionalConstraint_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__REGIONAL_CONSTRAINT,
+				 getString("_UI_FareTemplate_regionalConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_regionalConstraint_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__REGIONAL_CONSTRAINT,
 				 true,
 				 false,
 				 true,
@@ -254,9 +256,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_serviceConstraint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_serviceConstraint_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__SERVICE_CONSTRAINT,
+				 getString("_UI_FareTemplate_serviceConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_serviceConstraint_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__SERVICE_CONSTRAINT,
 				 true,
 				 false,
 				 true,
@@ -276,9 +278,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_carrierConstraint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_carrierConstraint_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__CARRIER_CONSTRAINT,
+				 getString("_UI_FareTemplate_carrierConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_carrierConstraint_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__CARRIER_CONSTRAINT,
 				 true,
 				 false,
 				 true,
@@ -298,9 +300,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_serviceClass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_serviceClass_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__SERVICE_CLASS,
+				 getString("_UI_FareTemplate_serviceClass_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_serviceClass_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__SERVICE_CLASS,
 				 true,
 				 false,
 				 true,
@@ -320,9 +322,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_serviceLevel_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_serviceLevel_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__SERVICE_LEVEL,
+				 getString("_UI_FareTemplate_serviceLevel_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_serviceLevel_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__SERVICE_LEVEL,
 				 true,
 				 false,
 				 true,
@@ -342,9 +344,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_salesAvailability_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_salesAvailability_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__SALES_AVAILABILITY,
+				 getString("_UI_FareTemplate_salesAvailability_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_salesAvailability_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__SALES_AVAILABILITY,
 				 true,
 				 false,
 				 true,
@@ -364,9 +366,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_travelValidity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_travelValidity_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__TRAVEL_VALIDITY,
+				 getString("_UI_FareTemplate_travelValidity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_travelValidity_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__TRAVEL_VALIDITY,
 				 true,
 				 false,
 				 true,
@@ -386,9 +388,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_combinationConstraint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_combinationConstraint_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__COMBINATION_CONSTRAINT,
+				 getString("_UI_FareTemplate_combinationConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_combinationConstraint_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__COMBINATION_CONSTRAINT,
 				 true,
 				 false,
 				 true,
@@ -408,9 +410,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_separateContractCombinationConstraint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_separateContractCombinationConstraint_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT,
+				 getString("_UI_FareTemplate_separateContractCombinationConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_separateContractCombinationConstraint_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT,
 				 true,
 				 false,
 				 true,
@@ -430,9 +432,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_fareDetailDescription_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_fareDetailDescription_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION,
+				 getString("_UI_FareTemplate_fareDetailDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_fareDetailDescription_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION,
 				 true,
 				 false,
 				 true,
@@ -452,9 +454,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_personalDataConstraint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_personalDataConstraint_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT,
+				 getString("_UI_FareTemplate_personalDataConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_personalDataConstraint_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT,
 				 true,
 				 false,
 				 true,
@@ -474,9 +476,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_reservationParameter_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_reservationParameter_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__RESERVATION_PARAMETER,
+				 getString("_UI_FareTemplate_reservationParameter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_reservationParameter_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__RESERVATION_PARAMETER,
 				 true,
 				 false,
 				 true,
@@ -496,9 +498,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_reductionConstraint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_reductionConstraint_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__REDUCTION_CONSTRAINT,
+				 getString("_UI_FareTemplate_reductionConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_reductionConstraint_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__REDUCTION_CONSTRAINT,
 				 true,
 				 false,
 				 true,
@@ -518,9 +520,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_fulfillmentConstraint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_fulfillmentConstraint_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__FULFILLMENT_CONSTRAINT,
+				 getString("_UI_FareTemplate_fulfillmentConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_fulfillmentConstraint_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__FULFILLMENT_CONSTRAINT,
 				 true,
 				 false,
 				 true,
@@ -540,9 +542,9 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_passengerConstraint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_passengerConstraint_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__PASSENGER_CONSTRAINT,
+				 getString("_UI_FareTemplate_passengerConstraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_passengerConstraint_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__PASSENGER_CONSTRAINT,
 				 true,
 				 false,
 				 true,
@@ -562,13 +564,35 @@ public class TargetFareTemplateItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetFareTemplate_afterSalesRule_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetFareTemplate_afterSalesRule_feature", "_UI_TargetFareTemplate_type"),
-				 GtmPackage.Literals.TARGET_FARE_TEMPLATE__AFTER_SALES_RULE,
+				 getString("_UI_FareTemplate_afterSalesRule_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_afterSalesRule_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__AFTER_SALES_RULE,
 				 true,
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Legacy Conversion feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLegacyConversionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FareTemplate_legacyConversion_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_legacyConversion_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__LEGACY_CONVERSION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -585,7 +609,7 @@ public class TargetFareTemplateItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GtmPackage.Literals.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER);
+			childrenFeatures.add(GtmPackage.Literals.FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER);
 		}
 		return childrenFeatures;
 	}
@@ -604,14 +628,14 @@ public class TargetFareTemplateItemProvider
 	}
 
 	/**
-	 * This returns TargetFareTemplate.gif.
+	 * This returns FareTemplate.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetFareTemplate"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FareTemplate"));
 	}
 
 	/**
@@ -622,10 +646,10 @@ public class TargetFareTemplateItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TargetFareTemplate)object).getDataDescription();
+		String label = ((FareTemplate)object).getId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_TargetFareTemplate_type") :
-			getString("_UI_TargetFareTemplate_type") + " " + label;
+			getString("_UI_FareTemplate_type") :
+			getString("_UI_FareTemplate_type") + " " + label;
 	}
 
 
@@ -640,14 +664,15 @@ public class TargetFareTemplateItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TargetFareTemplate.class)) {
-			case GtmPackage.TARGET_FARE_TEMPLATE__PRICE_FACTOR:
-			case GtmPackage.TARGET_FARE_TEMPLATE__ID:
-			case GtmPackage.TARGET_FARE_TEMPLATE__TYPE:
-			case GtmPackage.TARGET_FARE_TEMPLATE__DATA_DESCRIPTION:
+		switch (notification.getFeatureID(FareTemplate.class)) {
+			case GtmPackage.FARE_TEMPLATE__PRICE_FACTOR:
+			case GtmPackage.FARE_TEMPLATE__ID:
+			case GtmPackage.FARE_TEMPLATE__TYPE:
+			case GtmPackage.FARE_TEMPLATE__DATA_DESCRIPTION:
+			case GtmPackage.FARE_TEMPLATE__LEGACY_CONVERSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case GtmPackage.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER:
+			case GtmPackage.FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -667,7 +692,7 @@ public class TargetFareTemplateItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.TARGET_FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER,
+				(GtmPackage.Literals.FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER,
 				 GtmFactory.eINSTANCE.createLegacyAccountingIdentifier()));
 	}
 

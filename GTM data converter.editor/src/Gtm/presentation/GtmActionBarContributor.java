@@ -51,6 +51,7 @@ import Gtm.actions.ExportGTMJsonAction;
 import Gtm.actions.GtmValidateAction;
 import Gtm.actions.ImportCarriersAction;
 import Gtm.actions.ImportGTMJsonAction;
+import Gtm.actions.ImportLegacy108Action;
 import Gtm.actions.ImportLegacyAllFareAction;
 import Gtm.actions.ImportLegacyIndividualSeriesAction;
 import Gtm.actions.ImportLegacySeriesAction;
@@ -227,18 +228,19 @@ public class GtmActionBarContributor
 			gtmActions.add(new ImportStationsAction(this));
 			gtmActions.add(new ImportCarriersAction(this));
 			gtmActions.add(new ImportServiceBrandsAction(this));
-			gtmActions.add(new ImportNutsCodesAction(this));			
-			gtmActions.add(new ImportLegacyStationsAction(this));			
-			gtmActions.add(new ImportLegacySeriesAction(this));
-			//gtmActions.add(new ImportLegacyDistanceFareAction(this));
-			//gtmActions.add(new ImportLegacyRouteFareAction(this));
-			gtmActions.add(new ImportLegacyAllFareAction(this));
-			gtmActions.add(new ImportLegacyIndividualSeriesAction(this));
+			gtmActions.add(new ImportNutsCodesAction(this));		
+			gtmActions.add(new ImportLegacy108Action(this));				
 			gtmActions.add(new ImportGTMJsonAction(this));	
-			//gtmActions.add(new GenerateIdsAction(this));
 			gtmActions.add(new ExportGTMJsonAction(this));	
 			gtmActions.add(new ConvertLegacy2GtmAction(this));
 			gtmActions.add(new ConvertGtm2LegacyAction(this));
+			
+			//gtmActions.add(new ImportLegacyDistanceFareAction(this));
+			//gtmActions.add(new ImportLegacyRouteFareAction(this));
+			//gtmActions.add(new ImportLegacyStationsAction(this));			
+			//gtmActions.add(new ImportLegacySeriesAction(this));
+			//gtmActions.add(new ImportLegacyAllFareAction(this));
+			//gtmActions.add(new ImportLegacyIndividualSeriesAction(this));
 		}
 
 		
@@ -248,10 +250,23 @@ public class GtmActionBarContributor
 	 * This adds Separators for editor additions to the tool bar.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		contributeToToolBarGen(toolBarManager);
+		for (Action action : gtmActions) {
+			toolBarManager.insertAfter("gtm-additions",action);
+		}
+	}
+	
+	/**
+	 * This adds Separators for editor additions to the tool bar.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void contributeToToolBarGen(IToolBarManager toolBarManager) {
 		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("gtm-settings"));
 		toolBarManager.add(new Separator("gtm-additions"));

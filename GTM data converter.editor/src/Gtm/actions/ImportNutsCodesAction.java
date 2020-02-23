@@ -25,6 +25,8 @@ public class ImportNutsCodesAction extends ImportCsvDataAction {
 
 	public ImportNutsCodesAction(IEditingDomainProvider editingDomainProvider) {
 		super("import NUTS codes", editingDomainProvider);
+		this.setToolTipText(this.getText());
+		setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importNuts.png")); //$NON-NLS-1$
 	}
 
 	@Override
