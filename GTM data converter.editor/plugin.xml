@@ -113,5 +113,45 @@
          </property>
       </product>
    </extension>
+   
+      <extension
+         point="org.eclipse.ui.menus">
+	     <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu">
+           <command
+                  commandId="org.eclipse.ui.help.aboutAction"
+                  label="About"
+                  style="push">
+            </command>   
+      </menuContribution>   
+	</extension>
+	
+	<extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="Gtm.presentation.HelpHandler"
+            id="gtm.contents"
+            name="Help">
+      </command>  
+	</extension>
+	
+	   <extension point="org.eclipse.help.toc">
+      <toc  file="$nl$\toc.xml"
+            primary="true">
+      </toc>
+   	  <index
+         path="searchindex/">
+      </index>
+   </extension>
+
+   <extension point="org.eclipse.help.index">
+     	<index file="$nl$\index.xml"/>
+   </extension>
+   <extension point="org.eclipse.help.contexts">
+     	<contexts
+           file="$nl$\contexts.xml"
+           plugin="barCodeExportFile.editor">
+     	</contexts>
+   </extension>
 
 </plugin>

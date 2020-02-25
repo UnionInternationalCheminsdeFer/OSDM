@@ -17,5 +17,8 @@ Require-Bundle: org.eclipse.core.runtime,
  GTM_model;bundle-version="1.0.0",
  org.eclipse.emf.validation;bundle-version="1.8.0",
  org.eclipse.ui.console;bundle-version="3.9.0",
- GTM_data_converter
+ GTM_data_converter,
+ org.eclipse.help.ui;bundle-version="4.1.700",
+ org.eclipse.help.webapp;bundle-version="3.9.700",
+ org.eclipse.equinox.http.jetty;bundle-version="3.7.300"
 Bundle-ActivationPolicy: lazy

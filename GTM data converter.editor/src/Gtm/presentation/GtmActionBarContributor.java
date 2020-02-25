@@ -48,14 +48,11 @@ import org.eclipse.ui.actions.BaseSelectionListenerAction;
 import Gtm.actions.ConvertGtm2LegacyAction;
 import Gtm.actions.ConvertLegacy2GtmAction;
 import Gtm.actions.ExportGTMJsonAction;
+import Gtm.actions.ExportLegacyAction;
 import Gtm.actions.GtmValidateAction;
 import Gtm.actions.ImportCarriersAction;
 import Gtm.actions.ImportGTMJsonAction;
 import Gtm.actions.ImportLegacy108Action;
-import Gtm.actions.ImportLegacyAllFareAction;
-import Gtm.actions.ImportLegacyIndividualSeriesAction;
-import Gtm.actions.ImportLegacySeriesAction;
-import Gtm.actions.ImportLegacyStationsAction;
 import Gtm.actions.ImportNutsCodesAction;
 import Gtm.actions.ImportServiceBrandsAction;
 import Gtm.actions.ImportStationsAction;
@@ -204,6 +201,23 @@ public class GtmActionBarContributor
 	protected IMenuManager gtmMenuManager;
 	
 	/**
+	 * This is the menu manager into which menu contribution items should be added for CreateSibling actions.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */	
+	protected ImportStationsAction importStationsAction = null;
+	protected ImportCarriersAction importCarriersAction = null;
+	protected ImportServiceBrandsAction importServiceBrandsAction = null;
+	protected ImportNutsCodesAction importNutsCodesAction = null;		
+	protected ImportLegacy108Action importLegacy108Action = null;				
+	protected ImportGTMJsonAction importGTMJsonAction = null;	
+	protected ExportGTMJsonAction exportGTMJsonAction = null;	
+	protected ExportLegacyAction exportLegacyAction = null;	
+	protected ConvertLegacy2GtmAction convertLegacy2GtmAction = null;
+	protected ConvertGtm2LegacyAction convertGtm2LegacyAction = null;
+	
+	/**
 	 * This creates an instance of the contributor.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -225,15 +239,26 @@ public class GtmActionBarContributor
 			gtmActions = new ArrayList<BaseSelectionListenerAction>();
 		}
 		if (gtmActions.isEmpty()) {
-			gtmActions.add(new ImportStationsAction(this));
-			gtmActions.add(new ImportCarriersAction(this));
-			gtmActions.add(new ImportServiceBrandsAction(this));
-			gtmActions.add(new ImportNutsCodesAction(this));		
-			gtmActions.add(new ImportLegacy108Action(this));				
-			gtmActions.add(new ImportGTMJsonAction(this));	
-			gtmActions.add(new ExportGTMJsonAction(this));	
-			gtmActions.add(new ConvertLegacy2GtmAction(this));
-			gtmActions.add(new ConvertGtm2LegacyAction(this));
+			importStationsAction = new ImportStationsAction(this);
+			gtmActions.add(importStationsAction);
+			importCarriersAction = new ImportCarriersAction(this);
+			gtmActions.add(importCarriersAction);
+			importServiceBrandsAction = new ImportServiceBrandsAction(this);
+			gtmActions.add(importServiceBrandsAction);
+			importNutsCodesAction = new ImportNutsCodesAction(this);
+			gtmActions.add(importNutsCodesAction);		
+			importLegacy108Action = new ImportLegacy108Action(this);
+			gtmActions.add(importLegacy108Action);		
+			importGTMJsonAction = new ImportGTMJsonAction(this);
+			gtmActions.add(importGTMJsonAction);	
+			exportGTMJsonAction = new ExportGTMJsonAction(this);
+			gtmActions.add(exportGTMJsonAction);	
+			exportLegacyAction = new ExportLegacyAction(this);
+			gtmActions.add(exportLegacyAction);	
+			convertLegacy2GtmAction = new ConvertLegacy2GtmAction(this);
+			gtmActions.add(convertLegacy2GtmAction);
+			convertGtm2LegacyAction = new ConvertGtm2LegacyAction(this);
+			gtmActions.add(convertGtm2LegacyAction);
 			
 			//gtmActions.add(new ImportLegacyDistanceFareAction(this));
 			//gtmActions.add(new ImportLegacyRouteFareAction(this));
@@ -255,9 +280,24 @@ public class GtmActionBarContributor
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
 		contributeToToolBarGen(toolBarManager);
-		for (Action action : gtmActions) {
-			toolBarManager.insertAfter("gtm-additions",action);
-		}
+				
+		toolBarManager.insertAfter("gtm-additions",importNutsCodesAction);
+		toolBarManager.insertAfter("gtm-additions",importServiceBrandsAction);
+		toolBarManager.insertAfter("gtm-additions",importCarriersAction);
+		toolBarManager.insertAfter("gtm-additions",importStationsAction);
+		
+		toolBarManager.add(new Separator("gtm-convert-l-2-g"));
+
+		toolBarManager.insertAfter("gtm-convert-l-2-g",exportGTMJsonAction);	
+		toolBarManager.insertAfter("gtm-convert-l-2-g",convertLegacy2GtmAction);
+		toolBarManager.insertAfter("gtm-convert-l-2-g",importLegacy108Action);	
+		
+		toolBarManager.add(new Separator("gtm-convert-g-2-l"));
+		
+		toolBarManager.insertAfter("gtm-convert-g-2-l",exportLegacyAction);	
+		toolBarManager.insertAfter("gtm-convert-g-2-l",convertGtm2LegacyAction);
+		toolBarManager.insertAfter("gtm-convert-g-2-l",importGTMJsonAction);	
+
 	}
 	
 	/**
