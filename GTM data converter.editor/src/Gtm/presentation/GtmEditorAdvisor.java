@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
@@ -19,6 +19,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorDescriptor;
@@ -360,15 +361,17 @@ public final class GtmEditorAdvisor extends WorkbenchAdvisor {
 		 * Creates the 'Window' menu.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
+		 * @generated NOT
 		 */
 		protected IMenuManager createWindowMenu(IWorkbenchWindow window) {
 			IMenuManager menu = new MenuManager(getString("_UI_Menu_Window_label"),
 			IWorkbenchActionConstants.M_WINDOW);
 	
 			addToMenuAndRegister(menu, ActionFactory.OPEN_NEW_WINDOW.create(window));
+			addToMenuAndRegister(menu, ActionFactory.RESET_PERSPECTIVE.create(window));
 			menu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
 			menu.add(ContributionItemFactory.OPEN_WINDOWS.create(window));
+			
 	
 			return menu;
 		}
@@ -377,12 +380,61 @@ public final class GtmEditorAdvisor extends WorkbenchAdvisor {
 		 * Creates the 'Help' menu.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
+		 * @generated NOT
 		 */
 		protected IMenuManager createHelpMenu(IWorkbenchWindow window) {
 			IMenuManager menu = new MenuManager(getString("_UI_Menu_Help_label"), IWorkbenchActionConstants.M_HELP);
 			// Welcome or intro page would go here
+			
 			// Help contents would go here
+			menu.add(new Action(){
+
+				@Override
+				public String getDescription() {
+					return "Help...";
+				}
+
+
+				@Override
+				public String getText() {
+					return "Help...";
+				}
+
+				@Override
+				public String getToolTipText() {
+					return "starts the help application";
+				}
+
+				@Override
+				public boolean isEnabled() {
+					return true;
+				}
+
+				@Override
+				public void run() {
+					
+					IWorkbenchWindow win = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+					
+					if (win == null) {
+						 win = getActionBarConfigurer().getWindowConfigurer().getWindow();
+					}
+					win.getWorkbench().getHelpSystem().displayHelp();					
+
+				}
+
+				@Override
+				public void runWithEvent(Event event) {
+					
+					IWorkbenchWindow win = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+					
+					if (win == null) {
+						 win = getActionBarConfigurer().getWindowConfigurer().getWindow();
+					}
+					win.getWorkbench().getHelpSystem().displayHelp();	
+				}
+
+			});			
+			
 			// Tips and tricks page would go here
 			menu.add(new GroupMarker(IWorkbenchActionConstants.HELP_START));
 			menu.add(new GroupMarker(IWorkbenchActionConstants.HELP_END));

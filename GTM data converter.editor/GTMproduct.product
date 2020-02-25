@@ -3,6 +3,14 @@
 
 <product name="GTM data converter" uid="GTMproduct" id="GTM_data_converter.editor.GTMproduct" application="GTM_data_converter.editor.GtmEditorAdvisorApplication" version="1.0" useFeatures="false" includeLaunchers="true">
 
+   <aboutInfo>
+      <image path="/GTM_data_converter.editor/icons/UIC_GIF_square_96.gif"/>
+      <text>
+         UIC fare data converter 
+
+The tool provides conversion between fare data according to UIC standards 108.1 and IRS 90918-10.
+      </text>
+   </aboutInfo>
 
    <configIni use="default">
    </configIni>
@@ -14,15 +22,13 @@
       </vmArgsMac>
    </launcherArgs>
 
-   <windowImages/>
-
+   <windowImages i16="/GTM data converter.editor/icons/UIC GIF square_16.gif" i32="/GTM data converter.editor/icons/UIC GIF square_32.gif" i48="/GTM data converter.editor/icons/UIC GIF square_48.gif" i64="/GTM data converter.editor/icons/UIC GIF square_64.gif"/>
 
    <launcher>
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
       <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-13</windows>
@@ -46,8 +52,10 @@ This application includes third party packages. Please see the plugin list to vi
       <plugin id="com.ibm.icu"/>
       <plugin id="fasterxml"/>
       <plugin id="javax.annotation"/>
+      <plugin id="javax.el"/>
       <plugin id="javax.inject"/>
       <plugin id="javax.servlet"/>
+      <plugin id="javax.servlet.jsp"/>
       <plugin id="javax.xml"/>
       <plugin id="org.apache.batik.constants"/>
       <plugin id="org.apache.batik.css"/>
@@ -58,7 +66,11 @@ This application includes third party packages. Please see the plugin list to vi
       <plugin id="org.apache.commons.logging"/>
       <plugin id="org.apache.felix.gogo.runtime"/>
       <plugin id="org.apache.felix.scr"/>
+      <plugin id="org.apache.jasper.glassfish"/>
       <plugin id="org.apache.log4j"/>
+      <plugin id="org.apache.lucene.analyzers-common"/>
+      <plugin id="org.apache.lucene.analyzers-smartcn"/>
+      <plugin id="org.apache.lucene.core"/>
       <plugin id="org.apache.xmlgraphics"/>
       <plugin id="org.eclipse.ant.core"/>
       <plugin id="org.eclipse.compare.core"/>
@@ -71,6 +83,8 @@ This application includes third party packages. Please see the plugin list to vi
       <plugin id="org.eclipse.core.filesystem"/>
       <plugin id="org.eclipse.core.filesystem.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.jobs"/>
+      <plugin id="org.eclipse.core.net"/>
+      <plugin id="org.eclipse.core.net.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.resources"/>
       <plugin id="org.eclipse.core.resources.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.runtime"/>
@@ -109,6 +123,11 @@ This application includes third party packages. Please see the plugin list to vi
       <plugin id="org.eclipse.equinox.bidi"/>
       <plugin id="org.eclipse.equinox.common"/>
       <plugin id="org.eclipse.equinox.event"/>
+      <plugin id="org.eclipse.equinox.http.jetty"/>
+      <plugin id="org.eclipse.equinox.http.registry"/>
+      <plugin id="org.eclipse.equinox.http.servlet"/>
+      <plugin id="org.eclipse.equinox.jsp.jasper"/>
+      <plugin id="org.eclipse.equinox.jsp.jasper.registry"/>
       <plugin id="org.eclipse.equinox.p2.core"/>
       <plugin id="org.eclipse.equinox.p2.engine"/>
       <plugin id="org.eclipse.equinox.p2.metadata"/>
@@ -119,7 +138,16 @@ This application includes third party packages. Please see the plugin list to vi
       <plugin id="org.eclipse.equinox.security"/>
       <plugin id="org.eclipse.equinox.security.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.help"/>
+      <plugin id="org.eclipse.help.base"/>
+      <plugin id="org.eclipse.help.ui"/>
+      <plugin id="org.eclipse.help.webapp"/>
       <plugin id="org.eclipse.jdt.annotation"/>
+      <plugin id="org.eclipse.jetty.http"/>
+      <plugin id="org.eclipse.jetty.io"/>
+      <plugin id="org.eclipse.jetty.security"/>
+      <plugin id="org.eclipse.jetty.server"/>
+      <plugin id="org.eclipse.jetty.servlet"/>
+      <plugin id="org.eclipse.jetty.util"/>
       <plugin id="org.eclipse.jface"/>
       <plugin id="org.eclipse.jface.databinding"/>
       <plugin id="org.eclipse.jface.text"/>
