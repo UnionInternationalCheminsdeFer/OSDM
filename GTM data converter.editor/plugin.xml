@@ -111,6 +111,18 @@
                name="appName"
                value="GTM data converter">
          </property>
+         <property
+               name="aboutImage"
+               value="icons/UIC GIF square_96.gif">
+         </property>
+         <property
+               name="aboutText"
+               value="UIC fare data converter &#x0A;&#x0A;The tool provides conversion between fare data according to UIC standards 108.1 and IRS 90918-10.">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/UIC GIF square_16.gif,icons/UIC GIF square_32.gif,icons/UIC GIF square_48.gif,icons/UIC GIF square_64.gif">
+         </property>
       </product>
    </extension>
    
