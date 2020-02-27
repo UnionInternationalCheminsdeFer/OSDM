@@ -4,7 +4,7 @@
 <product name="GTM data converter" uid="GTMproduct" id="GTM_data_converter.editor.GTMproduct" application="GTM_data_converter.editor.GtmEditorAdvisorApplication" version="1.0" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
-      <image path="/GTM_data_converter.editor/icons/UIC_GIF_square_96.gif"/>
+      <image path="/GTM data converter.editor/icons/UIC GIF square_96.gif"/>
       <text>
          UIC fare data converter 
 
@@ -24,14 +24,16 @@ The tool provides conversion between fare data according to UIC standards 108.1 
 
    <windowImages i16="/GTM data converter.editor/icons/UIC GIF square_16.gif" i32="/GTM data converter.editor/icons/UIC GIF square_32.gif" i48="/GTM data converter.editor/icons/UIC GIF square_48.gif" i64="/GTM data converter.editor/icons/UIC GIF square_64.gif"/>
 
+
    <launcher>
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
 
+
    <vm>
-      <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-13</windows>
+      <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5</windows>
    </vm>
 
    <license>
