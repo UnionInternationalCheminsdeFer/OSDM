@@ -6,6 +6,14 @@ import java.io.File;
 import java.io.PrintStream;
 import java.util.Arrays;
 
+import org.eclipse.core.runtime.ILogListener;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.ui.action.WorkbenchWindowActionDelegate;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.edit.ui.action.LoadResourceAction;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.action.Action;
@@ -44,18 +52,9 @@ import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
-import org.eclipse.core.runtime.ILogListener;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.ui.action.WorkbenchWindowActionDelegate;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.edit.ui.action.LoadResourceAction;
-import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
-import Gtm.presentation.GtmEditorPlugin;
-import Gtm.problems.GtmProblemView;
 import Gtm.console.ConsoleUtil;
+import Gtm.problems.GtmProblemView;
 
 
 /**
@@ -165,12 +164,10 @@ public final class GtmEditorAdvisor extends WorkbenchAdvisor {
 			IFolderLayout bottomRight = layout.createFolder("bottonRight", IPageLayout.BOTTOM, (float)0.60, "right");
 			bottomRight.addView(IPageLayout.ID_PROP_SHEET);
 			
-			
 			bottomRight.addView(GtmProblemView.ID);
 			layout.addShowViewShortcut(GtmProblemView.ID);
 			
-			
-			bottomRight.addView(IPageLayout.ID_PROBLEM_VIEW);
+			//bottomRight.addView(IPageLayout.ID_PROBLEM_VIEW);
 			
 			//addons
 			ConsoleUtil.showConsole("Infos");
@@ -248,6 +245,7 @@ public final class GtmEditorAdvisor extends WorkbenchAdvisor {
 			configurer.setShowStatusLine(true);
 			configurer.setTitle(getString("_UI_Application_title"));
 		}
+		
 		
 		/**
 		 * @see org.eclipse.ui.application.WorkbenchWindowAdvisor#createActionBarAdvisor(org.eclipse.ui.application.IActionBarConfigurer)

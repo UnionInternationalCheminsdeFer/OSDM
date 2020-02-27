@@ -4,9 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -16,20 +22,19 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.part.ViewPart;
 
+import Gtm.actions.GtmUtils;
+import Gtm.presentation.GtmEditor;
+
 public class GtmProblemView extends ViewPart {
 	
 	// the ID needs to match the id set in the view's properties
 	public static final String ID = "org.uic.gtm.GtmProblemView"; //$NON-NLS-1$
-	private static TreeViewer contentTreeViewer;
+	private TreeViewer contentTreeViewer;
 	
 	private static GtmProblemView me = null;
 	
-	private static ArrayList<Diagnostic> errors = new ArrayList<Diagnostic>();
-	private static ArrayList<Diagnostic> warnings = new ArrayList<Diagnostic>();
-	private static ArrayList<Diagnostic> infos = new ArrayList<Diagnostic>();
+	private ArrayList<ProblemCategory> content = null;
 	
-	protected static ArrayList<Diagnostic>[] content = null;
-
 
 	public GtmProblemView(){
 		super();
@@ -39,7 +44,6 @@ public class GtmProblemView extends ViewPart {
 	
 	@Override
 	public void createPartControl(Composite parent) {
-
 
 		// Create TreeViewer
 
@@ -58,41 +62,86 @@ public class GtmProblemView extends ViewPart {
 		column2.setWidth(300);
 		
 		contentTreeViewer.setContentProvider(new ProblemViewTreeTableContentProvider());
+		
+		contentTreeViewer.addDoubleClickListener(new IDoubleClickListener(){
+			public void doubleClick(DoubleClickEvent event){
+				TreeSelection ts = (TreeSelection) event.getSelection();
+				Object firstElement = ts.getFirstElement();
+				if(firstElement instanceof Diagnostic){
+					Diagnostic diagnostic = (Diagnostic) firstElement;
+					List<?> data = diagnostic.getData();
+					if(data != null && data.size() > 0 ){
+						Object object = (EObject) data.get(0);												
+						// Select eObject in navigation
+						GtmEditor editor = GtmUtils.getActiveEditor();
+						ISelection selection = new StructuredSelection(object);
+						editor.setSelection(selection);
+						
+						editor.getContentOutlinePage().setSelection(selection);
+						//editor.expandTreeViews(object);
+					}
+				}
+			}
+		});
+
 				
 		contentTreeViewer.setLabelProvider(new ProblemViewTreeTableLabelProvider());
 
+		
+		contentTreeViewer.setInput(content);
+		contentTreeViewer.expandAll();
 	}
 
 	
 	 public class ProblemViewTreeTableContentProvider implements ITreeContentProvider {
 		 
+		 private final ProblemCategory errors = new ProblemCategory(Diagnostic.ERROR, "Error");
+		 
+		 private final ProblemCategory warnings = new ProblemCategory(Diagnostic.WARNING, "Warning");
+		 
+		 private final ProblemCategory infos = new ProblemCategory(Diagnostic.INFO, "Info");
+		 
+		 public ProblemViewTreeTableContentProvider() {
+		 
+			 content = new ArrayList<ProblemCategory>();
+			 content.add(0,errors);
+			 content.add(1,warnings);
+			 content.add(2,infos);
+			 
+		 }	
 
-			
-			public Object[] getChildren(Object arg0) {
-				return content;
-			}
-
-			public Object[] getElements(Object arg) {
-				if(arg instanceof  ArrayList<?>){
-					return (( ArrayList<?>) arg).toArray();
-				} else if(arg instanceof Diagnostic){
-					return ((Diagnostic) arg).getChildren().toArray();
-				}
+		 
+		 public Object[] getChildren(Object arg) {
+			 	if (arg instanceof ProblemCategory) {
+			 		return ((ProblemCategory)arg).getChildren().toArray();
+			 	}
 				return null;
-			}
+		 }
 
-			public Object getParent(Object arg) {
-				return null;
+		 public Object[] getElements(Object arg) {
+			if(arg instanceof  ArrayList<?>){
+				return ((ArrayList<?>) arg).toArray();
+			} else if(arg instanceof  ProblemCategory){
+				return ((ProblemCategory) arg).getChildren().toArray();
+			} else if(arg instanceof Diagnostic){
+				return ((Diagnostic) arg).getChildren().toArray();
 			}
+			return null;
+		}
 
-			public boolean hasChildren(Object arg) {
-				if(arg instanceof ArrayList<?>){
-					return ((ArrayList<?>) arg).size() > 0;
-				} else if(arg instanceof Diagnostic){
-					return ((Diagnostic) arg).getChildren().size() > 0;
-				}
-				return false;
-			}
+		public Object getParent(Object arg) {
+			return null;
+		}
+
+		public boolean hasChildren(Object arg) {
+			if(arg instanceof ArrayList<?>){
+				return ((ArrayList<?>) arg).size() > 0;
+			} 
+			if(arg instanceof ProblemCategory){
+				return ((ProblemCategory) arg).getChildren().size() > 0;
+			} 
+			return false;
+		}
 			
 	}
 	 
@@ -120,24 +169,24 @@ public class GtmProblemView extends ViewPart {
 		}
 
 		public String getColumnText(Object o, int column) {
-			if(o instanceof ArrayList<?> && column == 0)
-				
-				if (o == errors) {
-					return errors.size() + " " + "Errors";
-				} else if (o == warnings) {
-					return warnings.size() + " " + "Warnings";
-				} else if (o == infos) {
-					return infos.size() + " " + "Infos";
-				} else if (o instanceof Diagnostic){
-					Diagnostic diagnostic = ((Diagnostic) o);
-					if(column == 0){
-						return diagnostic.getMessage(); 
-					} else if(column == 1){
-						return diagnostic.getSource();
+			if(o instanceof ProblemCategory && column == 0) {
+				if (((ProblemCategory)o).getSeverity() == Diagnostic.ERROR) return "Errors";
+				if (((ProblemCategory)o).getSeverity() == Diagnostic.WARNING) return "Warnings";
+				if (((ProblemCategory)o).getSeverity() == Diagnostic.INFO) return "Infos";			
+			} else if (o instanceof Diagnostic){
+				Diagnostic diagnostic = ((Diagnostic) o);
+				if(column == 0){
+					return diagnostic.getMessage(); 
+				} else if(column == 1){
+					if (diagnostic.getData()!= null && !diagnostic.getData().isEmpty()) {
+						if (diagnostic.getData().get(0) instanceof EObject) {
+							return GtmUtils.getTypedDescription((EObject)diagnostic.getData().get(0));
+						}
 					}
 				}
-				return null;
 			}
+			return null;
+		}
 		
 	}
 
@@ -157,9 +206,9 @@ public class GtmProblemView extends ViewPart {
 	
 	public void setRootDiagnostic(Diagnostic diagnostic) {
 		
-		errors.clear();
-		warnings.clear();
-		infos.clear();
+		for (ProblemCategory list : content) {
+			list.clear();
+		}
 
 		if(diagnostic == null){
 			return;
@@ -170,23 +219,24 @@ public class GtmProblemView extends ViewPart {
 
 			switch (childDiagnostic.getSeverity()){
 			case Diagnostic.ERROR:
-				errors.add(childDiagnostic);
+				content.get(0).addChild(childDiagnostic);
 				break;
 			case Diagnostic.WARNING:
-				warnings.add(childDiagnostic);
+				content.get(1).addChild(childDiagnostic);
 				break;
 			case Diagnostic.INFO:
-				infos.add(childDiagnostic);
+				content.get(2).addChild(childDiagnostic);
 				break;
 			}
 		}
-
+		
 		// Refresh Viewer
 		Display.getDefault().asyncExec(new Runnable(){
 
 			public void run() {
 				if(contentTreeViewer != null){
 				   contentTreeViewer.refresh();
+				   contentTreeViewer.expandAll();
 				}
 			}
 

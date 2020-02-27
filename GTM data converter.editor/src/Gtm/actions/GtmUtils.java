@@ -2,10 +2,14 @@ package Gtm.actions;
 
 
 import java.net.URL;
+import java.util.MissingResourceException;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -14,6 +18,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
@@ -63,6 +69,13 @@ import Gtm.presentation.GtmEditorPlugin;
 
 public class GtmUtils {
 	
+	
+	public static GtmEditor getActiveEditor() {
+	   	
+	   	IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		return (GtmEditor) editor;
+
+	}
 	
 	public static GTMTool getGtmTool(IEditingDomainProvider editingDomainProvider) {
 	   	
@@ -819,6 +832,85 @@ public class GtmUtils {
 			GtmUtils.getActiveDomain().getCommandStack().execute(new DirtyCommand());
 		}
 	}
+	
+	
+	/**
+	 * Gets the description.
+	 *
+	 * @param object the object
+	 * @return the description
+	 */
+	public static String getTypedDescription(EObject object) {
+		String typeName = "";
+		EObject eObject = ((EObject) object);
+
+		typeName = getTypeDescription(eObject);
+		String adapterText = getItemLabelProviderText(object);
+
+		if (adapterText != null && typeName != null) {
+			if (adapterText.startsWith(typeName)) {
+				return adapterText;
+			} else {
+				return typeName + " " + adapterText;
+			}
+		}
+		return typeName;
+	}
+
+	private static String getItemLabelProviderText(EObject object) {
+		if(object == null){
+			return "";
+		}
+		String adapterText = null;
+		EList<Adapter> eAdapters = object.eAdapters();
+		for (Adapter adapter : eAdapters) {
+			if(adapter instanceof IItemLabelProvider){
+				adapterText = ((IItemLabelProvider) adapter).getText(object);
+				break;
+			}
+		}	
+		
+		return adapterText;
+
+	}
+
+	private static String getTypeDescription(EObject object) {
+			String typeName = "";
+			if (object instanceof EObject) {
+				EObject eObject = ((EObject) object);
+				String typeKey = eObject.eClass().getName();
+
+
+				ItemProviderAdapter provider = null;
+				EList<Adapter> eAdapters = object.eAdapters();
+				for (Adapter adapter : eAdapters) {
+					if(adapter instanceof ItemProviderAdapter){
+						provider = ((ItemProviderAdapter) adapter);
+					}
+				}
+
+				if (provider != null) {
+					String resource = "_UI_" + typeKey + "_type";
+					if (resource.equals("_UI_EReference_type")  ) {
+						typeName = "";
+					} else if ( resource.equals("_UI_EObject_type")) {
+						typeName = "";
+					} else if ( resource.equals("_UI_EAttribute_type")) {
+						typeName = "";					
+					} else {
+						try {
+							typeName = provider.getString(resource, true);
+						} catch (MissingResourceException e) {
+							//
+						}
+					}
+
+				}
+			}
+			return typeName;
+		}
+
+
 	
 	
 }

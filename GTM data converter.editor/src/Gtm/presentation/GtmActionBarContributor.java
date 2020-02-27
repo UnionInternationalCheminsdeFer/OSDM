@@ -221,7 +221,7 @@ public class GtmActionBarContributor
 	 * This creates an instance of the contributor.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public GtmActionBarContributor() {
 		super(ADDITIONS_LAST_STYLE);
@@ -229,12 +229,19 @@ public class GtmActionBarContributor
 		validateAction = new GtmValidateAction();
 		controlAction = new ControlAction();
 		
-		/**
-		 * This creates an instance of the contributor.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated NOT
-		 */
+		extendActionBarContributor();
+
+		
+	}
+	
+	/**
+	 * This creates an instance of the contributor.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void extendActionBarContributor() {
+		
 		if (gtmActions == null) {
 			gtmActions = new ArrayList<BaseSelectionListenerAction>();
 		}
@@ -270,6 +277,7 @@ public class GtmActionBarContributor
 
 		
 	}
+
 
 	/**
 	 * This adds Separators for editor additions to the tool bar.
