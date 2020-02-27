@@ -153,5 +153,18 @@
            plugin="barCodeExportFile.editor">
      	</contexts>
    </extension>
+   
+      <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            class="Gtm.problems.GtmProblemView"
+            id="org.uic.gtm.GtmProblemView"
+            name="%_UI_VIEW_ERROR"
+            restorable="true">
+      </view>
+   </extension>
+   
+
 
 </plugin>

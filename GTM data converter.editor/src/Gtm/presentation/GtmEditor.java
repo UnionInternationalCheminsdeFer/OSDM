@@ -1603,7 +1603,6 @@ public class GtmEditor
 
 			// Refresh the necessary state.
 			//
-			((BasicCommandStack)editingDomain.getCommandStack()).flush();
 			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		}
@@ -1880,10 +1879,10 @@ public class GtmEditor
 	 * Returns whether the outline view should be presented to the user.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected boolean showOutlineView() {
-		return false;
+		return true;
 	}
 	
 	/**
@@ -1946,6 +1945,24 @@ public class GtmEditor
 		firePropertyChange(IEditorPart.PROP_DIRTY);
 		
 		
+	}
+
+	/**
+	 * select an element in the navigation views
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void expandTreeViews(Object o) {
+		if (this.contentOutlineViewer != null) {
+			this.contentOutlineViewer.setExpandedElements(o);
+		}
+		if (treeContentProvider!= null) {	
+			this.treeViewer.setExpandedElements(o);
+		}
+		if (currentViewer != null && currentViewer instanceof TreeViewer) {	
+			((TreeViewer)this.currentViewer).setExpandedElements(o);
+		}
 	}
 	
 	
