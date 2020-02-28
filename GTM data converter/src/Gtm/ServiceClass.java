@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getServiceClass()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TEXT_MUST CLASSIC_CLASS_MUST'"
  * @generated
  */
 public interface ServiceClass extends EObject {

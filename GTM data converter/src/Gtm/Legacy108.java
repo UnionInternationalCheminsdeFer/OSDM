@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getLegacy108()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='CHARACTER_SET_MUST TIME_ZONE_MUST CARRIER_MUST'"
  * @generated
  */
 public interface Legacy108 extends EObject {

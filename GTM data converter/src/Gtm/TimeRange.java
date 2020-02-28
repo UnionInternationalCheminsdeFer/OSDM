@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getTimeRange()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='FROM_TO_ORDER'"
  * @generated
  */
 public interface TimeRange extends EObject {

@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getTravelValidityConstraint()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TRAVEL_DAYS_NOT_NULL WARNING_TRAVEL_DAYS_TOO_LONG'"
  * @generated
  */
 public interface TravelValidityConstraint extends EObject {

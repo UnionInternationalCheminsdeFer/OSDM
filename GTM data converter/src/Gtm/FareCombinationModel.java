@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getFareCombinationModel()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MODEL_MUST REFERENCE_CLUSTER_MUST'"
  * @generated
  */
 public interface FareCombinationModel extends EObject {

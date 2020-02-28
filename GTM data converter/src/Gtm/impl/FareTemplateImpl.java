@@ -13,7 +13,6 @@ import Gtm.LegacyAccountingIdentifier;
 import Gtm.LegacyConversionType;
 import Gtm.PassengerConstraint;
 import Gtm.PersonalDataConstraint;
-import Gtm.Price;
 import Gtm.ReductionConstraint;
 import Gtm.RegionalConstraint;
 import Gtm.ReservationParameter;
@@ -46,7 +45,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.FareTemplateImpl#getType <em>Type</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getDataDescription <em>Data Description</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getText <em>Text</em>}</li>
- *   <li>{@link Gtm.impl.FareTemplateImpl#getPrice <em>Price</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getRegionalConstraint <em>Regional Constraint</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getServiceConstraint <em>Service Constraint</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getCarrierConstraint <em>Carrier Constraint</em>}</li>
@@ -168,16 +166,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 	 * @ordered
 	 */
 	protected Text text;
-
-	/**
-	 * The cached value of the '{@link #getPrice() <em>Price</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrice()
-	 * @generated
-	 * @ordered
-	 */
-	protected Price price;
 
 	/**
 	 * The cached value of the '{@link #getRegionalConstraint() <em>Regional Constraint</em>}' reference.
@@ -533,44 +521,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 		text = newText;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_TEMPLATE__TEXT, oldText, text));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Price getPrice() {
-		if (price != null && price.eIsProxy()) {
-			InternalEObject oldPrice = (InternalEObject)price;
-			price = (Price)eResolveProxy(oldPrice);
-			if (price != oldPrice) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.FARE_TEMPLATE__PRICE, oldPrice, price));
-			}
-		}
-		return price;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Price basicGetPrice() {
-		return price;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPrice(Price newPrice) {
-		Price oldPrice = price;
-		price = newPrice;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_TEMPLATE__PRICE, oldPrice, price));
 	}
 
 	/**
@@ -1278,9 +1228,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 			case GtmPackage.FARE_TEMPLATE__TEXT:
 				if (resolve) return getText();
 				return basicGetText();
-			case GtmPackage.FARE_TEMPLATE__PRICE:
-				if (resolve) return getPrice();
-				return basicGetPrice();
 			case GtmPackage.FARE_TEMPLATE__REGIONAL_CONSTRAINT:
 				if (resolve) return getRegionalConstraint();
 				return basicGetRegionalConstraint();
@@ -1359,9 +1306,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 				return;
 			case GtmPackage.FARE_TEMPLATE__TEXT:
 				setText((Text)newValue);
-				return;
-			case GtmPackage.FARE_TEMPLATE__PRICE:
-				setPrice((Price)newValue);
 				return;
 			case GtmPackage.FARE_TEMPLATE__REGIONAL_CONSTRAINT:
 				setRegionalConstraint((RegionalConstraint)newValue);
@@ -1444,9 +1388,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 			case GtmPackage.FARE_TEMPLATE__TEXT:
 				setText((Text)null);
 				return;
-			case GtmPackage.FARE_TEMPLATE__PRICE:
-				setPrice((Price)null);
-				return;
 			case GtmPackage.FARE_TEMPLATE__REGIONAL_CONSTRAINT:
 				setRegionalConstraint((RegionalConstraint)null);
 				return;
@@ -1523,8 +1464,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 				return DATA_DESCRIPTION_EDEFAULT == null ? dataDescription != null : !DATA_DESCRIPTION_EDEFAULT.equals(dataDescription);
 			case GtmPackage.FARE_TEMPLATE__TEXT:
 				return text != null;
-			case GtmPackage.FARE_TEMPLATE__PRICE:
-				return price != null;
 			case GtmPackage.FARE_TEMPLATE__REGIONAL_CONSTRAINT:
 				return regionalConstraint != null;
 			case GtmPackage.FARE_TEMPLATE__SERVICE_CONSTRAINT:

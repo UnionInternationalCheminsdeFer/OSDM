@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getReservationPreferenceGroup()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AT_LEAST_ONE_PREFERENCE GROUP_FORMAT'"
  * @generated
  */
 public interface ReservationPreferenceGroup extends EObject {
@@ -31,7 +31,7 @@ public interface ReservationPreferenceGroup extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Preference</em>' attribute list.
 	 * @see Gtm.GtmPackage#getReservationPreferenceGroup_Preference()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	EList<String> getPreference();

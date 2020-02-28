@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getCodeLists()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='CARRIERS_MUST SERVICE_BRANDS_MUST STATIONS_MUST COUNTRIES_MUST CURRENCIES_MUST LANGUAGES_MUST'"
  * @generated
  */
 public interface CodeLists extends EObject {

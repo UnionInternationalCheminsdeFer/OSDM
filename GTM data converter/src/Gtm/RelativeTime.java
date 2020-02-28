@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getRelativeTime()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WARNING_TOO_LONG WARNING_TOO_SHORT'"
  * @generated
  */
 public interface RelativeTime extends EObject {

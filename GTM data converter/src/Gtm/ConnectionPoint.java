@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getConnectionPoint()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='NAME_FORMAT LEGACY_BORDER_POINT_MISSING STATION_SET_AT_LEAST_ONE NAME_UTF8_FORMAT'"
  * @generated
  */
 public interface ConnectionPoint extends EObject {

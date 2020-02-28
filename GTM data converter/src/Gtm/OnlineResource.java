@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getOnlineResource()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='REQUEST_TYPE_MUST INTERFACE_TYPE_MUST SYSTEM_MUST'"
  * @generated
  */
 public interface OnlineResource extends EObject {

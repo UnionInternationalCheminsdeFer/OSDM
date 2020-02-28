@@ -14,8 +14,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link Gtm.Edge#getSystem <em>System</em>}</li>
- *   <li>{@link Gtm.Edge#getEastWest <em>East West</em>}</li>
- *   <li>{@link Gtm.Edge#getNorthSouth <em>North South</em>}</li>
  *   <li>{@link Gtm.Edge#getUnit <em>Unit</em>}</li>
  *   <li>{@link Gtm.Edge#getAccuracy <em>Accuracy</em>}</li>
  *   <li>{@link Gtm.Edge#getLongitude <em>Longitude</em>}</li>
@@ -23,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getEdge()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='COORDINATE_LIMITS'"
  * @generated
  */
 public interface Edge extends EObject {
@@ -51,56 +49,6 @@ public interface Edge extends EObject {
 	 * @generated
 	 */
 	void setSystem(GeoSystem value);
-
-	/**
-	 * Returns the value of the '<em><b>East West</b></em>' attribute.
-	 * The literals are from the enumeration {@link Gtm.HemisphereEW}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>East West</em>' attribute.
-	 * @see Gtm.HemisphereEW
-	 * @see #setEastWest(HemisphereEW)
-	 * @see Gtm.GtmPackage#getEdge_EastWest()
-	 * @model
-	 * @generated
-	 */
-	HemisphereEW getEastWest();
-
-	/**
-	 * Sets the value of the '{@link Gtm.Edge#getEastWest <em>East West</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>East West</em>' attribute.
-	 * @see Gtm.HemisphereEW
-	 * @see #getEastWest()
-	 * @generated
-	 */
-	void setEastWest(HemisphereEW value);
-
-	/**
-	 * Returns the value of the '<em><b>North South</b></em>' attribute.
-	 * The literals are from the enumeration {@link Gtm.HemisphereNS}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>North South</em>' attribute.
-	 * @see Gtm.HemisphereNS
-	 * @see #setNorthSouth(HemisphereNS)
-	 * @see Gtm.GtmPackage#getEdge_NorthSouth()
-	 * @model
-	 * @generated
-	 */
-	HemisphereNS getNorthSouth();
-
-	/**
-	 * Sets the value of the '{@link Gtm.Edge#getNorthSouth <em>North South</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>North South</em>' attribute.
-	 * @see Gtm.HemisphereNS
-	 * @see #getNorthSouth()
-	 * @generated
-	 */
-	void setNorthSouth(HemisphereNS value);
 
 	/**
 	 * Returns the value of the '<em><b>Unit</b></em>' attribute.

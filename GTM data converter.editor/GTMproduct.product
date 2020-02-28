@@ -25,7 +25,7 @@ The tool provides conversion between fare data according to UIC standards 108.1 
    <windowImages i16="/GTM data converter.editor/icons/UIC GIF square_16.gif" i32="/GTM data converter.editor/icons/UIC GIF square_32.gif" i48="/GTM data converter.editor/icons/UIC GIF square_48.gif" i64="/GTM data converter.editor/icons/UIC GIF square_64.gif"/>
 
 
-   <launcher>
+   <launcher name="gtm">
       <win useIco="false">
          <bmp/>
       </win>

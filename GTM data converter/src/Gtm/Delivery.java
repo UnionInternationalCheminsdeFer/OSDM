@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getDelivery()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='CARRIER_MUST DELIVERY_ID_CHARACTERS VERSION_MUST ACCEPTED_VERSIONS_MUST'"
  * @generated
  */
 public interface Delivery extends EObject {
@@ -34,7 +34,7 @@ public interface Delivery extends EObject {
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see Gtm.GtmPackage#getDelivery_Id()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	String getId();

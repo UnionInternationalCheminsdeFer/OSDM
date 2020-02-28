@@ -6,9 +6,6 @@ import Gtm.Edge;
 import Gtm.GeoSystem;
 import Gtm.GeoUnit;
 import Gtm.GtmPackage;
-import Gtm.HemisphereEW;
-import Gtm.HemisphereNS;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -25,8 +22,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link Gtm.impl.EdgeImpl#getSystem <em>System</em>}</li>
- *   <li>{@link Gtm.impl.EdgeImpl#getEastWest <em>East West</em>}</li>
- *   <li>{@link Gtm.impl.EdgeImpl#getNorthSouth <em>North South</em>}</li>
  *   <li>{@link Gtm.impl.EdgeImpl#getUnit <em>Unit</em>}</li>
  *   <li>{@link Gtm.impl.EdgeImpl#getAccuracy <em>Accuracy</em>}</li>
  *   <li>{@link Gtm.impl.EdgeImpl#getLongitude <em>Longitude</em>}</li>
@@ -55,46 +50,6 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * @ordered
 	 */
 	protected GeoSystem system = SYSTEM_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getEastWest() <em>East West</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEastWest()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final HemisphereEW EAST_WEST_EDEFAULT = HemisphereEW.EAST;
-
-	/**
-	 * The cached value of the '{@link #getEastWest() <em>East West</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEastWest()
-	 * @generated
-	 * @ordered
-	 */
-	protected HemisphereEW eastWest = EAST_WEST_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getNorthSouth() <em>North South</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNorthSouth()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final HemisphereNS NORTH_SOUTH_EDEFAULT = HemisphereNS.NORTH;
-
-	/**
-	 * The cached value of the '{@link #getNorthSouth() <em>North South</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNorthSouth()
-	 * @generated
-	 * @ordered
-	 */
-	protected HemisphereNS northSouth = NORTH_SOUTH_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getUnit() <em>Unit</em>}' attribute.
@@ -221,48 +176,6 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HemisphereEW getEastWest() {
-		return eastWest;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEastWest(HemisphereEW newEastWest) {
-		HemisphereEW oldEastWest = eastWest;
-		eastWest = newEastWest == null ? EAST_WEST_EDEFAULT : newEastWest;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.EDGE__EAST_WEST, oldEastWest, eastWest));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public HemisphereNS getNorthSouth() {
-		return northSouth;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNorthSouth(HemisphereNS newNorthSouth) {
-		HemisphereNS oldNorthSouth = northSouth;
-		northSouth = newNorthSouth == null ? NORTH_SOUTH_EDEFAULT : newNorthSouth;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.EDGE__NORTH_SOUTH, oldNorthSouth, northSouth));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public GeoUnit getUnit() {
 		return unit;
 	}
@@ -352,10 +265,6 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 		switch (featureID) {
 			case GtmPackage.EDGE__SYSTEM:
 				return getSystem();
-			case GtmPackage.EDGE__EAST_WEST:
-				return getEastWest();
-			case GtmPackage.EDGE__NORTH_SOUTH:
-				return getNorthSouth();
 			case GtmPackage.EDGE__UNIT:
 				return getUnit();
 			case GtmPackage.EDGE__ACCURACY:
@@ -378,12 +287,6 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 		switch (featureID) {
 			case GtmPackage.EDGE__SYSTEM:
 				setSystem((GeoSystem)newValue);
-				return;
-			case GtmPackage.EDGE__EAST_WEST:
-				setEastWest((HemisphereEW)newValue);
-				return;
-			case GtmPackage.EDGE__NORTH_SOUTH:
-				setNorthSouth((HemisphereNS)newValue);
 				return;
 			case GtmPackage.EDGE__UNIT:
 				setUnit((GeoUnit)newValue);
@@ -412,12 +315,6 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 			case GtmPackage.EDGE__SYSTEM:
 				setSystem(SYSTEM_EDEFAULT);
 				return;
-			case GtmPackage.EDGE__EAST_WEST:
-				setEastWest(EAST_WEST_EDEFAULT);
-				return;
-			case GtmPackage.EDGE__NORTH_SOUTH:
-				setNorthSouth(NORTH_SOUTH_EDEFAULT);
-				return;
 			case GtmPackage.EDGE__UNIT:
 				setUnit(UNIT_EDEFAULT);
 				return;
@@ -444,10 +341,6 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 		switch (featureID) {
 			case GtmPackage.EDGE__SYSTEM:
 				return system != SYSTEM_EDEFAULT;
-			case GtmPackage.EDGE__EAST_WEST:
-				return eastWest != EAST_WEST_EDEFAULT;
-			case GtmPackage.EDGE__NORTH_SOUTH:
-				return northSouth != NORTH_SOUTH_EDEFAULT;
 			case GtmPackage.EDGE__UNIT:
 				return unit != UNIT_EDEFAULT;
 			case GtmPackage.EDGE__ACCURACY:
@@ -472,10 +365,6 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (system: ");
 		result.append(system);
-		result.append(", eastWest: ");
-		result.append(eastWest);
-		result.append(", northSouth: ");
-		result.append(northSouth);
 		result.append(", unit: ");
 		result.append(unit);
 		result.append(", accuracy: ");

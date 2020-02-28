@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getGeneralTariffModel()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='DELIVERY_MUST FARE_MUST'"
  * @generated
  */
 public interface GeneralTariffModel extends EObject {
@@ -29,7 +29,7 @@ public interface GeneralTariffModel extends EObject {
 	 * @return the value of the '<em>Delivery</em>' containment reference.
 	 * @see #setDelivery(Delivery)
 	 * @see Gtm.GtmPackage#getGeneralTariffModel_Delivery()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	Delivery getDelivery();
@@ -51,7 +51,7 @@ public interface GeneralTariffModel extends EObject {
 	 * @return the value of the '<em>Fare Structure</em>' containment reference.
 	 * @see #setFareStructure(FareStructure)
 	 * @see Gtm.GtmPackage#getGeneralTariffModel_FareStructure()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	FareStructure getFareStructure();

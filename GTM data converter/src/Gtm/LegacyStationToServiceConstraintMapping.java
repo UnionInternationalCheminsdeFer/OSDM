@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getLegacyStationToServiceConstraintMapping()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SERVICE_CONSTRAINT_MUST CODE_NOT_NULL'"
  * @generated
  */
 public interface LegacyStationToServiceConstraintMapping extends EObject {

@@ -30,7 +30,7 @@ public interface LegacyRouteFares extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Route Fare</em>' containment reference list.
 	 * @see Gtm.GtmPackage#getLegacyRouteFares_RouteFare()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<LegacyRouteFare> getRouteFare();

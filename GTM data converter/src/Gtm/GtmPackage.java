@@ -6037,31 +6037,13 @@ public interface GtmPackage extends EPackage {
 	int EDGE__SYSTEM = 0;
 
 	/**
-	 * The feature id for the '<em><b>East West</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDGE__EAST_WEST = 1;
-
-	/**
-	 * The feature id for the '<em><b>North South</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EDGE__NORTH_SOUTH = 2;
-
-	/**
 	 * The feature id for the '<em><b>Unit</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__UNIT = 3;
+	int EDGE__UNIT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Accuracy</b></em>' attribute.
@@ -6070,7 +6052,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__ACCURACY = 4;
+	int EDGE__ACCURACY = 2;
 
 	/**
 	 * The feature id for the '<em><b>Longitude</b></em>' attribute.
@@ -6079,7 +6061,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__LONGITUDE = 5;
+	int EDGE__LONGITUDE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Latitude</b></em>' attribute.
@@ -6088,7 +6070,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__LATITUDE = 6;
+	int EDGE__LATITUDE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Edge</em>' class.
@@ -6097,7 +6079,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE_FEATURE_COUNT = 7;
+	int EDGE_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Edge</em>' class.
@@ -6758,22 +6740,13 @@ public interface GtmPackage extends EPackage {
 	int FARE_TEMPLATE__TEXT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Price</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_TEMPLATE__PRICE = 5;
-
-	/**
 	 * The feature id for the '<em><b>Regional Constraint</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__REGIONAL_CONSTRAINT = 6;
+	int FARE_TEMPLATE__REGIONAL_CONSTRAINT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Service Constraint</b></em>' reference.
@@ -6782,7 +6755,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__SERVICE_CONSTRAINT = 7;
+	int FARE_TEMPLATE__SERVICE_CONSTRAINT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Carrier Constraint</b></em>' reference.
@@ -6791,7 +6764,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__CARRIER_CONSTRAINT = 8;
+	int FARE_TEMPLATE__CARRIER_CONSTRAINT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Service Class</b></em>' reference.
@@ -6800,7 +6773,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__SERVICE_CLASS = 9;
+	int FARE_TEMPLATE__SERVICE_CLASS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Service Level</b></em>' reference.
@@ -6809,7 +6782,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__SERVICE_LEVEL = 10;
+	int FARE_TEMPLATE__SERVICE_LEVEL = 9;
 
 	/**
 	 * The feature id for the '<em><b>Sales Availability</b></em>' reference.
@@ -6818,7 +6791,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__SALES_AVAILABILITY = 11;
+	int FARE_TEMPLATE__SALES_AVAILABILITY = 10;
 
 	/**
 	 * The feature id for the '<em><b>Travel Validity</b></em>' reference.
@@ -6827,7 +6800,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__TRAVEL_VALIDITY = 12;
+	int FARE_TEMPLATE__TRAVEL_VALIDITY = 11;
 
 	/**
 	 * The feature id for the '<em><b>Combination Constraint</b></em>' reference.
@@ -6836,7 +6809,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__COMBINATION_CONSTRAINT = 13;
+	int FARE_TEMPLATE__COMBINATION_CONSTRAINT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Separate Contract Combination Constraint</b></em>' reference.
@@ -6845,7 +6818,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT = 14;
+	int FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT = 13;
 
 	/**
 	 * The feature id for the '<em><b>Fare Detail Description</b></em>' reference.
@@ -6854,7 +6827,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION = 15;
+	int FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION = 14;
 
 	/**
 	 * The feature id for the '<em><b>Legacy Accounting Identifier</b></em>' containment reference.
@@ -6863,7 +6836,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER = 16;
+	int FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER = 15;
 
 	/**
 	 * The feature id for the '<em><b>Personal Data Constraint</b></em>' reference.
@@ -6872,7 +6845,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT = 17;
+	int FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT = 16;
 
 	/**
 	 * The feature id for the '<em><b>Reservation Parameter</b></em>' reference.
@@ -6881,7 +6854,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__RESERVATION_PARAMETER = 18;
+	int FARE_TEMPLATE__RESERVATION_PARAMETER = 17;
 
 	/**
 	 * The feature id for the '<em><b>Reduction Constraint</b></em>' reference.
@@ -6890,7 +6863,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__REDUCTION_CONSTRAINT = 19;
+	int FARE_TEMPLATE__REDUCTION_CONSTRAINT = 18;
 
 	/**
 	 * The feature id for the '<em><b>Fulfillment Constraint</b></em>' reference.
@@ -6899,7 +6872,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__FULFILLMENT_CONSTRAINT = 20;
+	int FARE_TEMPLATE__FULFILLMENT_CONSTRAINT = 19;
 
 	/**
 	 * The feature id for the '<em><b>Passenger Constraint</b></em>' reference.
@@ -6908,7 +6881,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__PASSENGER_CONSTRAINT = 21;
+	int FARE_TEMPLATE__PASSENGER_CONSTRAINT = 20;
 
 	/**
 	 * The feature id for the '<em><b>After Sales Rule</b></em>' reference.
@@ -6917,7 +6890,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__AFTER_SALES_RULE = 22;
+	int FARE_TEMPLATE__AFTER_SALES_RULE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Legacy Conversion</b></em>' attribute.
@@ -6926,7 +6899,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__LEGACY_CONVERSION = 23;
+	int FARE_TEMPLATE__LEGACY_CONVERSION = 22;
 
 	/**
 	 * The number of structural features of the '<em>Fare Template</em>' class.
@@ -6935,7 +6908,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE_FEATURE_COUNT = 24;
+	int FARE_TEMPLATE_FEATURE_COUNT = 23;
 
 	/**
 	 * The number of operations of the '<em>Fare Template</em>' class.
@@ -13423,28 +13396,6 @@ public interface GtmPackage extends EPackage {
 	EAttribute getEdge_System();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Edge#getEastWest <em>East West</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>East West</em>'.
-	 * @see Gtm.Edge#getEastWest()
-	 * @see #getEdge()
-	 * @generated
-	 */
-	EAttribute getEdge_EastWest();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.Edge#getNorthSouth <em>North South</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>North South</em>'.
-	 * @see Gtm.Edge#getNorthSouth()
-	 * @see #getEdge()
-	 * @generated
-	 */
-	EAttribute getEdge_NorthSouth();
-
-	/**
 	 * Returns the meta object for the attribute '{@link Gtm.Edge#getUnit <em>Unit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14060,17 +14011,6 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFareTemplate_Text();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.FareTemplate#getPrice <em>Price</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Price</em>'.
-	 * @see Gtm.FareTemplate#getPrice()
-	 * @see #getFareTemplate()
-	 * @generated
-	 */
-	EReference getFareTemplate_Price();
 
 	/**
 	 * Returns the meta object for the reference '{@link Gtm.FareTemplate#getRegionalConstraint <em>Regional Constraint</em>}'.
@@ -19521,22 +19461,6 @@ public interface GtmPackage extends EPackage {
 		EAttribute EDGE__SYSTEM = eINSTANCE.getEdge_System();
 
 		/**
-		 * The meta object literal for the '<em><b>East West</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EDGE__EAST_WEST = eINSTANCE.getEdge_EastWest();
-
-		/**
-		 * The meta object literal for the '<em><b>North South</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EDGE__NORTH_SOUTH = eINSTANCE.getEdge_NorthSouth();
-
-		/**
 		 * The meta object literal for the '<em><b>Unit</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -20011,14 +19935,6 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FARE_TEMPLATE__TEXT = eINSTANCE.getFareTemplate_Text();
-
-		/**
-		 * The meta object literal for the '<em><b>Price</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FARE_TEMPLATE__PRICE = eINSTANCE.getFareTemplate_Price();
 
 		/**
 		 * The meta object literal for the '<em><b>Regional Constraint</b></em>' reference feature.

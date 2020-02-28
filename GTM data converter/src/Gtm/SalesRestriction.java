@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getSalesRestriction()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='START_END_DATE_ORDER'"
  * @generated
  */
 public interface SalesRestriction extends EObject {

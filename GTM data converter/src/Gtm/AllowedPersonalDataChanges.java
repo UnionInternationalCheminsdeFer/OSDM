@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getAllowedPersonalDataChanges()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TIME_LIMIT_TOO_SHORT TIME_LIMIT_TOO_LONG'"
  * @generated
  */
 public interface AllowedPersonalDataChanges extends EObject {

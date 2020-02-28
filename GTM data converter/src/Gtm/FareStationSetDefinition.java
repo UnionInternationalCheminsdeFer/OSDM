@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getFareStationSetDefinition()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AT_LEAST_ONE_STATION LEGACY_CODE_MISSING CARRIER_MUST CODE_MUST NAME_FORMAT NAME_UTF8_FORMAT'"
  * @generated
  */
 public interface FareStationSetDefinition extends EObject {

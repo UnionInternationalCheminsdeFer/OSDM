@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getViaStation()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AT_LEAST_ONE_OBJECT_SET IF_ALTERNATIVE_ROUTES_AT_LEAST_TWO'"
  * @generated
  */
 public interface ViaStation extends EObject {

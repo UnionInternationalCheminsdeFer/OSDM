@@ -30,7 +30,7 @@ public interface LegacyDistanceFares extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Distance Fare</em>' containment reference list.
 	 * @see Gtm.GtmPackage#getLegacyDistanceFares_DistanceFare()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<LegacyDistanceFare> getDistanceFare();

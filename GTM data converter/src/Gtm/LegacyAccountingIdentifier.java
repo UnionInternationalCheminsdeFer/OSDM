@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getLegacyAccountingIdentifier()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SERIES_ID_MUST TARIFF_ID_MUST'"
  * @generated
  */
 public interface LegacyAccountingIdentifier extends EObject {
