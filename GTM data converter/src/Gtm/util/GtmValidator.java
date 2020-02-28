@@ -985,21 +985,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the COUNTRY_MUST constraint of '<em>Conversion Params</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateConversionParams_COUNTRY_MUST(ConversionParams conversionParams, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (conversionParams.getCountry() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Country is missing",
 						 new Object[] { "COUNTRY_MUST", getObjectLabel(conversionParams, context) },
 						 new Object[] { conversionParams },
 						 context));
@@ -1013,21 +1009,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_LEGACY_FARE_TEMPLATE constraint of '<em>Conversion Params</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateConversionParams_AT_LEAST_ONE_LEGACY_FARE_TEMPLATE(ConversionParams conversionParams, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (conversionParams.getLegacyFareTemplates() == null || conversionParams.getLegacyFareTemplates().getFareTemplates().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "No fare templates defined",
 						 new Object[] { "AT_LEAST_ONE_LEGACY_FARE_TEMPLATE", getObjectLabel(conversionParams, context) },
 						 new Object[] { conversionParams },
 						 context));
@@ -1067,21 +1059,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the PRICE_FACTOR_MUST constraint of '<em>Fare Template</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareTemplate_PRICE_FACTOR_MUST(FareTemplate fareTemplate, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (fareTemplate.getPriceFactor() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
-						(Diagnostic.ERROR,
+						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Price factor in fare template is zero",
 						 new Object[] { "PRICE_FACTOR_MUST", getObjectLabel(fareTemplate, context) },
 						 new Object[] { fareTemplate },
 						 context));
@@ -1095,21 +1083,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TYPE_MUST constraint of '<em>Fare Template</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareTemplate_TYPE_MUST(FareTemplate fareTemplate, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareTemplate.getType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Fare type is missing in fare template",
 						 new Object[] { "TYPE_MUST", getObjectLabel(fareTemplate, context) },
 						 new Object[] { fareTemplate },
 						 context));
@@ -1123,21 +1108,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TRAVEL_VALIDITY_MUST constraint of '<em>Fare Template</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareTemplate_TRAVEL_VALIDITY_MUST(FareTemplate fareTemplate, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (fareTemplate.getTravelValidity() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Travel validity is missing in fare template",
 						 new Object[] { "TRAVEL_VALIDITY_MUST", getObjectLabel(fareTemplate, context) },
 						 new Object[] { fareTemplate },
 						 context));
@@ -1151,21 +1132,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the COMBINATION_CONSTRAINT_MUST constraint of '<em>Fare Template</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareTemplate_COMBINATION_CONSTRAINT_MUST(FareTemplate fareTemplate, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (fareTemplate.getCombinationConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Combination constraint is missing in fare template",
 						 new Object[] { "COMBINATION_CONSTRAINT_MUST", getObjectLabel(fareTemplate, context) },
 						 new Object[] { fareTemplate },
 						 context));
@@ -1179,21 +1156,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the PASSENGER_CONSTRAINT_MUST constraint of '<em>Fare Template</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareTemplate_PASSENGER_CONSTRAINT_MUST(FareTemplate fareTemplate, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (fareTemplate.getPassengerConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Passenger constraint is missing in fare template",
 						 new Object[] { "PASSENGER_CONSTRAINT_MUST", getObjectLabel(fareTemplate, context) },
 						 new Object[] { fareTemplate },
 						 context));
@@ -1207,21 +1180,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the FULFILMENT_CONSTRAINT_MUST constraint of '<em>Fare Template</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareTemplate_FULFILMENT_CONSTRAINT_MUST(FareTemplate fareTemplate, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (fareTemplate.getFulfillmentConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Fulfillment constraint is missing in fare template",
 						 new Object[] { "FULFILMENT_CONSTRAINT_MUST", getObjectLabel(fareTemplate, context) },
 						 new Object[] { fareTemplate },
 						 context));
@@ -1235,21 +1204,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the LEGACY_CONVERSION_MUST constraint of '<em>Fare Template</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareTemplate_LEGACY_CONVERSION_MUST(FareTemplate fareTemplate, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (fareTemplate.getLegacyConversion() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Legacy conversion rule not set in fare template",
 						 new Object[] { "LEGACY_CONVERSION_MUST", getObjectLabel(fareTemplate, context) },
 						 new Object[] { fareTemplate },
 						 context));
@@ -1263,21 +1228,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the SERVICE_CLASS_MUST constraint of '<em>Fare Template</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareTemplate_SERVICE_CLASS_MUST(FareTemplate fareTemplate, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareTemplate.getServiceClass() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Service class not defined in fare template",
 						 new Object[] { "SERVICE_CLASS_MUST", getObjectLabel(fareTemplate, context) },
 						 new Object[] { fareTemplate },
 						 context));
@@ -1436,21 +1398,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE constraint of '<em>Sales Availability Constraints</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateSalesAvailabilityConstraints_AT_LEAST_ONE(SalesAvailabilityConstraints salesAvailabilityConstraints, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (salesAvailabilityConstraints.getSalesAvailabilityConstraints().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "No sales availability constraints defined",
 						 new Object[] { "AT_LEAST_ONE", getObjectLabel(salesAvailabilityConstraints, context) },
 						 new Object[] { salesAvailabilityConstraints },
 						 context));
@@ -1555,21 +1514,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE constraint of '<em>Service Class Definitions</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateServiceClassDefinitions_AT_LEAST_ONE(ServiceClassDefinitions serviceClassDefinitions, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (serviceClassDefinitions.getServiceClassDefinitions().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "No service classes defined",
 						 new Object[] { "AT_LEAST_ONE", getObjectLabel(serviceClassDefinitions, context) },
 						 new Object[] { serviceClassDefinitions },
 						 context));
@@ -1602,21 +1557,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE constraint of '<em>Calendars</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT 
 	 */
 	public boolean validateCalendars_AT_LEAST_ONE(Calendars calendars, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (calendars.getCalendars().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "No calendars defined",
 						 new Object[] { "AT_LEAST_ONE", getObjectLabel(calendars, context) },
 						 new Object[] { calendars },
 						 context));
@@ -1670,21 +1622,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CARRIER_MUST constraint of '<em>Delivery</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateDelivery_CARRIER_MUST(Delivery delivery, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (delivery.getProvider() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Privider is missing",
 						 new Object[] { "CARRIER_MUST", getObjectLabel(delivery, context) },
 						 new Object[] { delivery },
 						 context));
@@ -1698,27 +1646,41 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the DELIVERY_ID_CHARACTERS constraint of '<em>Delivery</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateDelivery_DELIVERY_ID_CHARACTERS(Delivery delivery, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (delivery.getId() == null || delivery.getId().length() < 1) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Delivery ID is not defined",
 						 new Object[] { "DELIVERY_ID_CHARACTERS", getObjectLabel(delivery, context) },
 						 new Object[] { delivery },
 						 context));
 			}
 			return false;
 		}
+		
+		if (delivery.getId().contains(" ")) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "Delivery ID must not contain blancs",
+						 new Object[] { "DELIVERY_ID_CHARACTERS", getObjectLabel(delivery, context) },
+						 new Object[] { delivery },
+						 context));
+			}
+			return false;
+		}
+		
+		
 		return true;
 	}
 
@@ -1726,21 +1688,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the VERSION_MUST constraint of '<em>Delivery</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateDelivery_VERSION_MUST(Delivery delivery, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (delivery.getSchemaVersion() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Schema version missing in delivery",
 						 new Object[] { "VERSION_MUST", getObjectLabel(delivery, context) },
 						 new Object[] { delivery },
 						 context));
@@ -1754,21 +1713,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the ACCEPTED_VERSIONS_MUST constraint of '<em>Delivery</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateDelivery_ACCEPTED_VERSIONS_MUST(Delivery delivery, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (delivery.getAcceptedSchemaVersion() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Accepted schema version is missing in delivery",
 						 new Object[] { "ACCEPTED_VERSIONS_MUST", getObjectLabel(delivery, context) },
 						 new Object[] { delivery },
 						 context));
