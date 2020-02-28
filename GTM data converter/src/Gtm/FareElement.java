@@ -39,7 +39,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getFareElement()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TYPE_MUST PRICE_MUST TEXT_MUST SERVICE_CLASS_MUST SALES_AVAILABILITY_MUST TRAVEL_VALIDITY_MUST COMBINATION_CONSTRAINT_MUST FULFILLMENT_CONSTRAINT_MUST PASSENGER_CONSTRAINT_MUST LEGACY_ACCOUNTING_MISSING CE\322NVERSION_MISSING'"
  * @generated
  */
 public interface FareElement extends EObject {

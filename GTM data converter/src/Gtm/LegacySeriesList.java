@@ -30,7 +30,7 @@ public interface LegacySeriesList extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Series</em>' containment reference list.
 	 * @see Gtm.GtmPackage#getLegacySeriesList_Series()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<LegacySeries> getSeries();

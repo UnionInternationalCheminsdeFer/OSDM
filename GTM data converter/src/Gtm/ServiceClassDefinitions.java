@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getServiceClassDefinitions()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AT_LEAST_ONE'"
  * @generated
  */
 public interface ServiceClassDefinitions extends EObject {
@@ -30,7 +30,7 @@ public interface ServiceClassDefinitions extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Service Class Definitions</em>' containment reference list.
 	 * @see Gtm.GtmPackage#getServiceClassDefinitions_ServiceClassDefinitions()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<ServiceClass> getServiceClassDefinitions();

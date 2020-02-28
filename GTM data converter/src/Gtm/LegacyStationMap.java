@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getLegacyStationMap()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='CODE_NOU_NULL STATION_MUST'"
  * @generated
  */
 public interface LegacyStationMap extends EObject {

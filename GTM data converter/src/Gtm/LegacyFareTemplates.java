@@ -30,7 +30,7 @@ public interface LegacyFareTemplates extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fare Templates</em>' containment reference list.
 	 * @see Gtm.GtmPackage#getLegacyFareTemplates_FareTemplates()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<FareTemplate> getFareTemplates();

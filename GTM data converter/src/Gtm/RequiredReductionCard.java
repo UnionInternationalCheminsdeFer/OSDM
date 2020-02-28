@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getRequiredReductionCard()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='NAME_FORMAT CARD_MUST'"
  * @generated
  */
 public interface RequiredReductionCard extends EObject {
@@ -52,7 +52,7 @@ public interface RequiredReductionCard extends EObject {
 	 * @return the value of the '<em>Card</em>' reference.
 	 * @see #setCard(ReductionCard)
 	 * @see Gtm.GtmPackage#getRequiredReductionCard_Card()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	ReductionCard getCard();

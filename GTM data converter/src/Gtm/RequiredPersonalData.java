@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getRequiredPersonalData()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AT_LEAST_ONE_ITEM ADD_LEAST_ONE_TRANSFER'"
  * @generated
  */
 public interface RequiredPersonalData extends EObject {

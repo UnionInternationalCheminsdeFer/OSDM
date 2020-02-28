@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getTrainResourceLocation()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='CARRIER_MUST AT_LEAST_ONE_ONLINE_RESOURCE'"
  * @generated
  */
 public interface TrainResourceLocation extends EObject {
@@ -32,7 +32,7 @@ public interface TrainResourceLocation extends EObject {
 	 * @return the value of the '<em>Carrier</em>' reference.
 	 * @see #setCarrier(Carrier)
 	 * @see Gtm.GtmPackage#getTrainResourceLocation_Carrier()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Carrier getCarrier();

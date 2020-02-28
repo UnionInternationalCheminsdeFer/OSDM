@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getText()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='FORMAT_TEXT FORMAT_TEXT_SHORT FORMAT_TEXT_UTF8 FORMAT_TEXT_SHORT_UTF8'"
  * @generated
  */
 public interface Text extends EObject {

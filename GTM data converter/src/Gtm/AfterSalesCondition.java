@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getAfterSalesCondition()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='FEE_MUST'"
  * @generated
  */
 public interface AfterSalesCondition extends EObject {

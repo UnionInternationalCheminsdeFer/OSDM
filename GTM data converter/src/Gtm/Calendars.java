@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getCalendars()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AT_LEAST_ONE'"
  * @generated
  */
 public interface Calendars extends EObject {
@@ -30,7 +30,7 @@ public interface Calendars extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Calendars</em>' containment reference list.
 	 * @see Gtm.GtmPackage#getCalendars_Calendars()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Calendar> getCalendars();

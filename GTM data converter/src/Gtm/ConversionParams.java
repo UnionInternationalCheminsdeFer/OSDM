@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getConversionParams()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='COUNTRY_MUST AT_LEAST_ONE_LEGACY_FARE_TEMPLATE'"
  * @generated
  */
 public interface ConversionParams extends EObject {

@@ -69,7 +69,6 @@ public class FareTemplateItemProvider
 			addTypePropertyDescriptor(object);
 			addDataDescriptionPropertyDescriptor(object);
 			addTextPropertyDescriptor(object);
-			addPricePropertyDescriptor(object);
 			addRegionalConstraintPropertyDescriptor(object);
 			addServiceConstraintPropertyDescriptor(object);
 			addCarrierConstraintPropertyDescriptor(object);
@@ -193,28 +192,6 @@ public class FareTemplateItemProvider
 				 getString("_UI_FareTemplate_text_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_text_feature", "_UI_FareTemplate_type"),
 				 GtmPackage.Literals.FARE_TEMPLATE__TEXT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Price feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPricePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FareTemplate_price_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_price_feature", "_UI_FareTemplate_type"),
-				 GtmPackage.Literals.FARE_TEMPLATE__PRICE,
 				 true,
 				 false,
 				 true,

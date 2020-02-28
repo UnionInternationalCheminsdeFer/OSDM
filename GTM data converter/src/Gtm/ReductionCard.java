@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getReductionCard()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ISUER_MUST_FOR_NON_GENERIC'"
  * @generated
  */
 public interface ReductionCard extends EObject {
@@ -56,7 +56,7 @@ public interface ReductionCard extends EObject {
 	 * @return the value of the '<em>Card Issuer</em>' reference.
 	 * @see #setCardIssuer(Carrier)
 	 * @see Gtm.GtmPackage#getReductionCard_CardIssuer()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Carrier getCardIssuer();

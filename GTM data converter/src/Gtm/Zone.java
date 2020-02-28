@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getZone()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='CARRIER_MUST ONE_OF_ZONE_ID_NUTS_CITY'"
  * @generated
  */
 public interface Zone extends EObject {

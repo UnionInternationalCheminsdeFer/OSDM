@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getPassengerCombinationConstraint()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='NUMBER_AT_LEAST_ONE TRAVELLER_TYPE_MUST'"
  * @generated
  */
 public interface PassengerCombinationConstraint extends EObject {

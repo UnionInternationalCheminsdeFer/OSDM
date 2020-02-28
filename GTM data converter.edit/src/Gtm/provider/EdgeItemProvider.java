@@ -63,8 +63,6 @@ public class EdgeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addSystemPropertyDescriptor(object);
-			addEastWestPropertyDescriptor(object);
-			addNorthSouthPropertyDescriptor(object);
 			addUnitPropertyDescriptor(object);
 			addAccuracyPropertyDescriptor(object);
 			addLongitudePropertyDescriptor(object);
@@ -87,50 +85,6 @@ public class EdgeItemProvider
 				 getString("_UI_Edge_system_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Edge_system_feature", "_UI_Edge_type"),
 				 GtmPackage.Literals.EDGE__SYSTEM,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the East West feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEastWestPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Edge_eastWest_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Edge_eastWest_feature", "_UI_Edge_type"),
-				 GtmPackage.Literals.EDGE__EAST_WEST,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the North South feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNorthSouthPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Edge_northSouth_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Edge_northSouth_feature", "_UI_Edge_type"),
-				 GtmPackage.Literals.EDGE__NORTH_SOUTH,
 				 true,
 				 false,
 				 false,
@@ -267,8 +221,6 @@ public class EdgeItemProvider
 
 		switch (notification.getFeatureID(Edge.class)) {
 			case GtmPackage.EDGE__SYSTEM:
-			case GtmPackage.EDGE__EAST_WEST:
-			case GtmPackage.EDGE__NORTH_SOUTH:
 			case GtmPackage.EDGE__UNIT:
 			case GtmPackage.EDGE__ACCURACY:
 			case GtmPackage.EDGE__LONGITUDE:

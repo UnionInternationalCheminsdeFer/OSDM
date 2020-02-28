@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getCalendar()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='START_END_DATE_ORDER DATES_WITHIN_RANGE'"
  * @generated
  */
 public interface Calendar extends EObject {
@@ -38,7 +38,7 @@ public interface Calendar extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see Gtm.GtmPackage#getCalendar_Name()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	String getName();

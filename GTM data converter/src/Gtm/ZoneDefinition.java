@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getZoneDefinition()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='CARRIER_MUST_BE_SET AT_LEAST_ONE_OF_SET_NUTS_POLYGON IF_STATION_SET_AT_LEAST_TWO_STATIONS'"
  * @generated
  */
 public interface ZoneDefinition extends EObject {

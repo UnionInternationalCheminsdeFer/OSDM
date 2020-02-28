@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getStation()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='NAME_FORMAT NAME_CASE_UTF8_FORMAT NAME_CASE_ASCII_FORMAT SHORT_NAME_CASE_ASCII_FORMAT SHORT_NAME_CASE_UTF8_FORMAT TT_NAME_FORMAT LATITUDE_VALUE_RANGE LONGITUDE_VALUE_RANGE COUNTRY_MUST'"
  * @generated
  */
 public interface Station extends EObject {

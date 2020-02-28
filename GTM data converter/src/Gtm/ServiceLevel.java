@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see Gtm.GtmPackage#getServiceLevel()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TEXT_MUST ID_FORMAT'"
  * @generated
  */
 public interface ServiceLevel extends EObject {
@@ -56,7 +56,7 @@ public interface ServiceLevel extends EObject {
 	 * @return the value of the '<em>Text</em>' reference.
 	 * @see #setText(Text)
 	 * @see Gtm.GtmPackage#getServiceLevel_Text()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Text getText();
