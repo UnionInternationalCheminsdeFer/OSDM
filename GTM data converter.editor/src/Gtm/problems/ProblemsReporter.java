@@ -14,7 +14,7 @@ public class ProblemsReporter implements IValidationListener {
     public void validationOccurred(ValidationEvent event) {
         if (event.matches(IStatus.WARNING | IStatus.ERROR)) {
             // fabricate a multi-status for the MarkerUtil to consume
-            List results = event.getValidationResults(); 
+            List<?> results = event.getValidationResults(); 
             IConstraintStatus multi = (IConstraintStatus) new MultiStatus(
                   "org.eclipse.example.MyPlugin", 1,
                   (IStatus[]) results.toArray(new IStatus[results.size()]),

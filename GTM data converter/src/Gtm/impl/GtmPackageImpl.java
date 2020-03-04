@@ -2,180 +2,7 @@
  */
 package Gtm.impl;
 
-import Gtm.AcceptedBarcodes;
-import Gtm.AfterSalesCondition;
-import Gtm.AfterSalesRule;
-import Gtm.AfterSalesRules;
-import Gtm.AfterSalesTransactionType;
-import Gtm.AllowedPersonalDataChanges;
-import Gtm.AlternativeRoute;
-import Gtm.ApplicationTime;
-import Gtm.BarcodeTypes;
-import Gtm.Calendar;
-import Gtm.Calendars;
-import Gtm.Carrier;
-import Gtm.CarrierConstraint;
-import Gtm.CarrierConstraints;
-import Gtm.CarrierResourceLocation;
-import Gtm.CarrierResourceLocations;
-import Gtm.Carriers;
-import Gtm.CharacterSet;
-import Gtm.ClassId;
-import Gtm.ClassicClassType;
-import Gtm.Clusters;
-import Gtm.CodeLists;
-import Gtm.CombinationConstraint;
-import Gtm.CombinationConstraints;
-import Gtm.CombinationModel;
-import Gtm.ConnectionPoint;
-import Gtm.ConnectionPoints;
-import Gtm.ControlDataExchangeTypes;
-import Gtm.ConversionFromLegacy;
-import Gtm.ConversionParams;
-import Gtm.Countries;
-import Gtm.Country;
-import Gtm.CrossBorderCondition;
-import Gtm.Currencies;
-import Gtm.Currency;
-import Gtm.CurrencyPrice;
-import Gtm.DataSource;
-import Gtm.Delivery;
-import Gtm.Edge;
-import Gtm.EndOfSale;
-import Gtm.ExcludedTimeRange;
-import Gtm.FareCombinationModel;
-import Gtm.FareElement;
-import Gtm.FareElements;
-import Gtm.FareResourceLocations;
-import Gtm.FareStationSetDefinition;
-import Gtm.FareStationSetDefinitions;
-import Gtm.FareStructure;
-import Gtm.FareTemplate;
-import Gtm.FareType;
-import Gtm.FulfillmentConstraint;
-import Gtm.FulfillmentConstraints;
-import Gtm.FulfillmentType;
-import Gtm.GTMTool;
-import Gtm.GeneralTariffModel;
-import Gtm.GeoSystem;
-import Gtm.GeoUnit;
-import Gtm.GraphicalReservationType;
-import Gtm.GtmFactory;
-import Gtm.GtmPackage;
-import Gtm.HemisphereEW;
-import Gtm.HemisphereNS;
-import Gtm.IncludedFreePassengerLimit;
-import Gtm.InterfaceType;
-import Gtm.Language;
-import Gtm.Languages;
-import Gtm.Legacy108;
-import Gtm.Legacy108Station;
-import Gtm.Legacy108Stations;
-import Gtm.LegacyAccountingIdentifier;
-import Gtm.LegacyBoderPointMappings;
-import Gtm.LegacyBorderPointMapping;
-import Gtm.LegacyCalculationType;
-import Gtm.LegacyConversionType;
-import Gtm.LegacyDistanceFare;
-import Gtm.LegacyDistanceFares;
-import Gtm.LegacyFareStationSetMap;
-import Gtm.LegacyFareStationSetMappings;
-import Gtm.LegacyFareTemplates;
-import Gtm.LegacyPassengerType;
-import Gtm.LegacyRouteFare;
-import Gtm.LegacyRouteFares;
-import Gtm.LegacySeparateContractSeries;
-import Gtm.LegacySeparateContractSeriesList;
-import Gtm.LegacySeries;
-import Gtm.LegacySeriesList;
-import Gtm.LegacySeriesType;
-import Gtm.LegacyStation;
-import Gtm.LegacyStationMap;
-import Gtm.LegacyStationMappings;
-import Gtm.LegacyStationToServiceConstraintMapping;
-import Gtm.LegacyStationToServiceConstraintMappings;
-import Gtm.LegacyViastation;
-import Gtm.Line;
-import Gtm.NUTSCodes;
-import Gtm.NutsCode;
-import Gtm.OfferRequestType;
-import Gtm.OnlineResource;
-import Gtm.OnlineServiceType;
-import Gtm.PassengerCombinationConstraint;
-import Gtm.PassengerConstraint;
-import Gtm.PassengerConstraints;
-import Gtm.PersonalDataChangeReason;
-import Gtm.PersonalDataConstraint;
-import Gtm.PersonalDataConstraints;
-import Gtm.PersonalDataItemsType;
-import Gtm.PersonalDataTransferType;
-import Gtm.Polygone;
-import Gtm.Price;
-import Gtm.Prices;
-import Gtm.ReductionCard;
-import Gtm.ReductionCards;
-import Gtm.ReductionConstraint;
-import Gtm.ReductionConstraints;
-import Gtm.RegionalConstraint;
-import Gtm.RegionalConstraints;
-import Gtm.RegionalValidity;
-import Gtm.RelativeTime;
-import Gtm.RequiredBarcodes;
-import Gtm.RequiredPersonalData;
-import Gtm.RequiredReductionCard;
-import Gtm.ReservationBerthType;
-import Gtm.ReservationOptions;
-import Gtm.ReservationParameter;
-import Gtm.ReservationParameters;
-import Gtm.ReservationParams9181;
-import Gtm.ReservationPreferenceGroup;
-import Gtm.ReservationService;
-import Gtm.ReservationServiceLevel;
-import Gtm.ReservationTravelClass;
-import Gtm.ReturnValidityConstraint;
-import Gtm.Route;
-import Gtm.SalesAvailabilityConstraint;
-import Gtm.SalesAvailabilityConstraints;
-import Gtm.SalesRestriction;
-import Gtm.SchemaVersion;
-import Gtm.ServiceBrand;
-import Gtm.ServiceBrands;
-import Gtm.ServiceClass;
-import Gtm.ServiceClassDefinitions;
-import Gtm.ServiceConstraint;
-import Gtm.ServiceConstraints;
-import Gtm.ServiceLevel;
-import Gtm.ServiceLevelDefinitions;
-import Gtm.StartOfSale;
-import Gtm.Station;
-import Gtm.StationNames;
-import Gtm.StationResourceLocation;
-import Gtm.StationResourceLocations;
-import Gtm.StationSet;
-import Gtm.Stations;
-import Gtm.SupportedOnlineServices;
-import Gtm.TaxScope;
-import Gtm.Text;
-import Gtm.Texts;
-import Gtm.TimeRange;
-import Gtm.TimeRangeScope;
-import Gtm.TimeReferenceType;
-import Gtm.TimeUnit;
-import Gtm.TimeZone;
-import Gtm.TrainResourceLocation;
-import Gtm.TrainResourceLocations;
-import Gtm.Translation;
-import Gtm.TravelValidityConstraint;
-import Gtm.TravelValidityConstraints;
-import Gtm.TravelerType;
-import Gtm.VATDetail;
-import Gtm.ValidityRange;
-import Gtm.ViaStation;
-import Gtm.WeekDay;
-import Gtm.Zone;
-import Gtm.ZoneDefinition;
-import Gtm.ZoneDefinitions;
-
+import Gtm.*;
 import Gtm.util.GtmValidator;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -1393,6 +1220,13 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	private EEnum classIdEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum genericReductionCardsEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -7394,6 +7228,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getGenericReductionCards() {
+		return genericReductionCardsEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GtmFactory getGtmFactory() {
 		return (GtmFactory)getEFactoryInstance();
 	}
@@ -8209,6 +8052,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		weekDayEEnum = createEEnum(WEEK_DAY);
 		dataSourceEEnum = createEEnum(DATA_SOURCE);
 		classIdEEnum = createEEnum(CLASS_ID);
+		genericReductionCardsEEnum = createEEnum(GENERIC_REDUCTION_CARDS);
 	}
 
 	/**
@@ -9336,6 +9180,17 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		addEEnumLiteral(classIdEEnum, ClassId.C);
 		addEEnumLiteral(classIdEEnum, ClassId.D);
 
+		initEEnum(genericReductionCardsEEnum, GenericReductionCards.class, "GenericReductionCards");
+		addEEnumLiteral(genericReductionCardsEEnum, GenericReductionCards.UIC_EURAIL);
+		addEEnumLiteral(genericReductionCardsEEnum, GenericReductionCards.UIC_INTERRAIL);
+		addEEnumLiteral(genericReductionCardsEEnum, GenericReductionCards.UIC_FIP_DUTY);
+		addEEnumLiteral(genericReductionCardsEEnum, GenericReductionCards.UIC_FIP_LEISURE_FREE);
+		addEEnumLiteral(genericReductionCardsEEnum, GenericReductionCards.UIC_FIP_LEISURE_REDU);
+		addEEnumLiteral(genericReductionCardsEEnum, GenericReductionCards.UIC_RAILPLUS);
+		addEEnumLiteral(genericReductionCardsEEnum, GenericReductionCards.UIC_RIT_1);
+		addEEnumLiteral(genericReductionCardsEEnum, GenericReductionCards.UIC_RIT_2);
+		addEEnumLiteral(genericReductionCardsEEnum, GenericReductionCards.UIC_RIT_3);
+
 		// Create resource
 		createResource(eNS_URI);
 
@@ -9476,7 +9331,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		  (fareElementEClass,
 		   source,
 		   new String[] {
-			   "constraints", "TYPE_MUST PRICE_MUST TEXT_MUST SERVICE_CLASS_MUST SALES_AVAILABILITY_MUST TRAVEL_VALIDITY_MUST COMBINATION_CONSTRAINT_MUST FULFILLMENT_CONSTRAINT_MUST PASSENGER_CONSTRAINT_MUST LEGACY_ACCOUNTING_MISSING CE\u00d2NVERSION_MISSING"
+			   "constraints", "TYPE_MUST PRICE_MUST TEXT_MUST SERVICE_CLASS_MUST SALES_AVAILABILITY_MUST TRAVEL_VALIDITY_MUST COMBINATION_CONSTRAINT_MUST FULFILLMENT_CONSTRAINT_MUST PASSENGER_CONSTRAINT_MUST LEGACY_ACCOUNTING_MISSING CONVERSION_MISSING"
 		   });
 		addAnnotation
 		  (fareStationSetDefinitionEClass,
@@ -9603,6 +9458,12 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		   source,
 		   new String[] {
 			   "constraints", "AT_LEAST_ONE_PRICE"
+		   });
+		addAnnotation
+		  (vatDetailEClass,
+		   source,
+		   new String[] {
+			   "constraints", "VALID_AMOUNT COUNTRY_MUST PERCENTAGE_VALUES"
 		   });
 		addAnnotation
 		  (currencyPriceEClass,

@@ -314,6 +314,17 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassId/C"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassId/D"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//GenericReductionCards">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_EURAIL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_INTERRAIL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_FIP_DUTY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_FIP_LEISURE_FREE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_FIP_LEISURE_REDU"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RAILPLUS"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RIT_1"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RIT_2"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RIT_3"/>
+    </genEnums>
     <genClasses ecoreClass="Gtm.ecore#//GTMTool">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//GTMTool/conversionFromLegacy"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//GTMTool/codeLists"/>

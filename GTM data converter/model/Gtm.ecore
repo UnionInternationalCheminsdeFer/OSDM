@@ -361,7 +361,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FareElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="TYPE_MUST PRICE_MUST TEXT_MUST SERVICE_CLASS_MUST SALES_AVAILABILITY_MUST TRAVEL_VALIDITY_MUST COMBINATION_CONSTRAINT_MUST FULFILLMENT_CONSTRAINT_MUST PASSENGER_CONSTRAINT_MUST LEGACY_ACCOUNTING_MISSING CEÒNVERSION_MISSING"/>
+      <details key="constraints" value="TYPE_MUST PRICE_MUST TEXT_MUST SERVICE_CLASS_MUST SALES_AVAILABILITY_MUST TRAVEL_VALIDITY_MUST COMBINATION_CONSTRAINT_MUST FULFILLMENT_CONSTRAINT_MUST PASSENGER_CONSTRAINT_MUST LEGACY_ACCOUNTING_MISSING CONVERSION_MISSING"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//FareType"/>
@@ -685,6 +685,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//DataSource"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VATDetail">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="VALID_AMOUNT COUNTRY_MUST PERCENTAGE_VALUES"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="percentage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="country" lowerBound="1"
@@ -1505,5 +1508,16 @@
     <eLiterals name="B" value="2"/>
     <eLiterals name="C" value="3"/>
     <eLiterals name="D" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="GenericReductionCards">
+    <eLiterals name="UIC_EURAIL" value="1"/>
+    <eLiterals name="UIC_INTERRAIL" value="2"/>
+    <eLiterals name="UIC_FIP_DUTY" value="3"/>
+    <eLiterals name="UIC_FIP_LEISURE_FREE" value="4"/>
+    <eLiterals name="UIC_FIP_LEISURE_REDU" value="5"/>
+    <eLiterals name="UIC_RAILPLUS" value="6"/>
+    <eLiterals name="UIC_RIT_1" value="7"/>
+    <eLiterals name="UIC_RIT_2" value="8"/>
+    <eLiterals name="UIC_RIT_3" value="9"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -60,7 +60,10 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 		@Override
 		protected void runAction(GTMTool tool) {
 			
-			FareDelivery fareDelivery = ImportFareDelivery.importFareDelivery(getFile());
+			File file = getFile();
+			if (file == null) return;
+			
+			FareDelivery fareDelivery = ImportFareDelivery.importFareDelivery(file);
 					
 			if (fareDelivery == null) return;
 

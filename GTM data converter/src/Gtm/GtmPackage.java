@@ -8655,6 +8655,16 @@ public interface GtmPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link Gtm.GenericReductionCards <em>Generic Reduction Cards</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.GenericReductionCards
+	 * @see Gtm.impl.GtmPackageImpl#getGenericReductionCards()
+	 * @generated
+	 */
+	int GENERIC_REDUCTION_CARDS = 171;
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.GTMTool <em>GTM Tool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15708,6 +15718,16 @@ public interface GtmPackage extends EPackage {
 	EEnum getClassId();
 
 	/**
+	 * Returns the meta object for enum '{@link Gtm.GenericReductionCards <em>Generic Reduction Cards</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Generic Reduction Cards</em>'.
+	 * @see Gtm.GenericReductionCards
+	 * @generated
+	 */
+	EEnum getGenericReductionCards();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21335,6 +21355,16 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum CLASS_ID = eINSTANCE.getClassId();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.GenericReductionCards <em>Generic Reduction Cards</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.GenericReductionCards
+		 * @see Gtm.impl.GtmPackageImpl#getGenericReductionCards()
+		 * @generated
+		 */
+		EEnum GENERIC_REDUCTION_CARDS = eINSTANCE.getGenericReductionCards();
 
 	}
 
