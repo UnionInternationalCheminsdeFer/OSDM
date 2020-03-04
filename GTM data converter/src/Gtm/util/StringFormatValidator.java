@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 public class StringFormatValidator {
 	
 	
-   private static Pattern stationUTFForbiddenPattern = Pattern.compile("(|)|/|*");
-   private static Pattern stationASCPattern = Pattern.compile("[a-zA-Z0-9.,;:+-]");
-   private static Pattern ASCPattern = Pattern.compile("[a-zA-Z0-9.,;:+-]");
+   private static Pattern stationUTFForbiddenPattern = Pattern.compile("\\*");
+   private static Pattern stationASCPattern = Pattern.compile("[^a-zA-Z0-9.,;:+ -]+");
+   private static Pattern ASCPattern = Pattern.compile("[^a-zA-Z0-9.,;:+ -]+");
 	
 	public static boolean isASCII(String s) {
 		if (s == null) return false;

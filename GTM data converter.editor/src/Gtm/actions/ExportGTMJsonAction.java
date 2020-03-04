@@ -1,13 +1,14 @@
 package Gtm.actions;
 
 import java.io.File;
-
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -43,32 +44,17 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 			this.editingDomainProvider = editingDomainProvider;
 		}
 
-
-
-		protected boolean checkSelection(IStructuredSelection selection)
-		{
-			if (selection == null) return false;
-	    	
-	    	if (!(selection.getFirstElement() instanceof EObject )) return false;
-    	
-			return true;
-		}
 		
-	   	
-		
-	    public boolean updateSelection (IStructuredSelection selection)
-	    {
-	  		this.setEnabled(false);
-
-	  		if (checkSelection(selection)) 	{
-	  			this.setEnabled(true);
-	  			return true;
-	  		}
-	  		return false;
-	    }	
-	    
-		@Override
-		protected void runAction(GTMTool tool) {
+		protected void run (IStructuredSelection structuredSelection) {
+			
+			GTMTool tool = GtmUtils.getGtmTool();
+			
+			if (tool == null) {
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText("no data found");
+				dialog.open(); 
+				return;
+			}
 			
 			String name = tool.getGeneralTariffModel().getDelivery().getProvider().getCode().trim() 
 					+ "_" + tool.getGeneralTariffModel().getDelivery().getId().trim()+".gtm.json";
@@ -76,40 +62,70 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 			if (file == null) {
 				return;
 			}
-			
-			GtmUtils.disconnectViews();
-			
-			try {
-			
-				insertIds(tool);
-					
-				FareDelivery fares = null;
-				try {
-					fares = GtmJsonExporter.convertToJson(tool.getGeneralTariffModel());
-				} catch (Exception e) {
-					MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-					dialog.setText("json formating error");
-					if (e.getMessage()!= null) {
-						dialog.setMessage(e.getMessage());
-					} else {
-						dialog.setMessage("unknown error");
-					}
-				
-					dialog.open(); 
-					e.printStackTrace();
-					return;
-				}
-	 	
-				ExportFareDelivery.exportFareDelivery(fares, file);
 
-				GtmUtils.reconnectViews();
-				
-			} catch (Exception e) {
-				GtmUtils.reconnectViews();
+			IRunnableWithProgress operation =	new IRunnableWithProgress() {
+				// This is the method that gets invoked when the operation runs.
+
+				public void run(IProgressMonitor monitor) {
+					
+					monitor.beginTask("Exporting fare data to json", 5); 
+
+					monitor.subTask("Initialize main structure");
+					prepareStructure();
+					monitor.worked(1);
+
+					try {
+					
+						monitor.subTask("create IDs");
+						insertIds(tool);
+						monitor.worked(1);
+							
+						monitor.subTask("convert to json");						
+						FareDelivery fares = null;
+						try {
+							fares = GtmJsonExporter.convertToJson(tool.getGeneralTariffModel());
+						} catch (Exception e) {
+							MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+							dialog.setText("json formating error");
+							if (e.getMessage()!= null) {
+								dialog.setMessage(e.getMessage());
+							} else {
+								dialog.setMessage("unknown error");
+							}
+							dialog.open(); 
+							monitor.done();
+							return;
+						}
+						monitor.worked(1);
+			 	
+						monitor.subTask("write json file");
+						ExportFareDelivery.exportFareDelivery(fares, file);
+						monitor.worked(1);
+
+					} catch (Exception exception) {
+						// Something went wrong that shouldn't.
+						GtmEditorPlugin.INSTANCE.log(exception);					
+					}
+					
+					monitor.done();
+				}
+			};
+
+			try {
+				// This runs the operation, and shows progress.
+				GtmUtils.disconnectViews();
+		
+				new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(true, false, operation);
+
+			} catch (Exception exception) {
+					// Something went wrong that shouldn't.
+					GtmEditorPlugin.INSTANCE.log(exception);
+			} finally {
+					GtmUtils.reconnectViews();
 			}
-				
-		}
-	    
+		}		
+
+  
 		private void insertIds(GTMTool tool) {
 			
 			EditingDomain domain = GtmUtils.getActiveDomain();
@@ -179,6 +195,7 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 		  // you might want to call prefs.sync() if you're worried about others changing your settings
 		  return prefs.get("LAST_PATH","c:\\");
 		}
+
 		
 		
 

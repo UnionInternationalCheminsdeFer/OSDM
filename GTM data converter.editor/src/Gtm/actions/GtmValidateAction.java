@@ -24,6 +24,7 @@ public class GtmValidateAction extends ValidateAction {
 	  
 	  
 	  public void run() {
+		  GtmProblemView.getInstance().clearContent();
 		  GtmProblemView.getInstance().setRootDiagnostic(null);
 		  super.run();
 	  }
