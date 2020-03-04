@@ -482,7 +482,7 @@ public class GtmValidator extends EObjectValidator {
 		if (codeLists.getCarriers() == null || codeLists.getCarriers().getCarriers().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -506,7 +506,7 @@ public class GtmValidator extends EObjectValidator {
 		if (codeLists.getServiceBrands() == null || codeLists.getServiceBrands().getServiceBrands().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -531,7 +531,7 @@ public class GtmValidator extends EObjectValidator {
 		if (codeLists.getStations() == null || codeLists.getStations().getStations().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -555,7 +555,7 @@ public class GtmValidator extends EObjectValidator {
 		if (codeLists.getCountries() == null || codeLists.getCountries().getCountries().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -580,7 +580,7 @@ public class GtmValidator extends EObjectValidator {
 		if (codeLists.getCurrencies() == null || codeLists.getCurrencies().getCurrencies().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -605,7 +605,7 @@ public class GtmValidator extends EObjectValidator {
 		if (codeLists.getLanguages() == null || codeLists.getLanguages().getLanguages().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -657,7 +657,7 @@ public class GtmValidator extends EObjectValidator {
 		if (serviceBrands.getServiceBrands().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -700,7 +700,7 @@ public class GtmValidator extends EObjectValidator {
 		if (languages.getLanguages().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -743,7 +743,7 @@ public class GtmValidator extends EObjectValidator {
 		if (currencies.getCurrencies().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -786,7 +786,7 @@ public class GtmValidator extends EObjectValidator {
 		if (countries.getCountries().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -829,7 +829,7 @@ public class GtmValidator extends EObjectValidator {
 		if (stations.getStations().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -872,7 +872,7 @@ public class GtmValidator extends EObjectValidator {
 		if (carriers.getCarriers().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -917,7 +917,7 @@ public class GtmValidator extends EObjectValidator {
 		if (generalTariffModel.getDelivery() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -941,7 +941,7 @@ public class GtmValidator extends EObjectValidator {
 		if (generalTariffModel.getFareStructure() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -994,7 +994,7 @@ public class GtmValidator extends EObjectValidator {
 		if (conversionParams.getCountry() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1018,7 +1018,7 @@ public class GtmValidator extends EObjectValidator {
 		if (conversionParams.getLegacyFareTemplates() == null || conversionParams.getLegacyFareTemplates().getFareTemplates().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1068,7 +1068,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareTemplate.getPriceFactor() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1093,7 +1093,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareTemplate.getType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1117,7 +1117,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareTemplate.getTravelValidity() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1141,7 +1141,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareTemplate.getCombinationConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1165,7 +1165,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareTemplate.getPassengerConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1189,7 +1189,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareTemplate.getFulfillmentConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1213,7 +1213,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareTemplate.getLegacyConversion() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1238,7 +1238,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareTemplate.getServiceClass() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1408,7 +1408,7 @@ public class GtmValidator extends EObjectValidator {
 		if (salesAvailabilityConstraints.getSalesAvailabilityConstraints().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1523,7 +1523,7 @@ public class GtmValidator extends EObjectValidator {
 		if (serviceClassDefinitions.getServiceClassDefinitions().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1567,7 +1567,7 @@ public class GtmValidator extends EObjectValidator {
 		if (calendars.getCalendars().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1631,7 +1631,7 @@ public class GtmValidator extends EObjectValidator {
 		if (delivery.getProvider() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1656,7 +1656,7 @@ public class GtmValidator extends EObjectValidator {
 		if (delivery.getId() == null || delivery.getId().length() < 1) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1671,7 +1671,7 @@ public class GtmValidator extends EObjectValidator {
 		if (delivery.getId().contains(" ")) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1698,7 +1698,7 @@ public class GtmValidator extends EObjectValidator {
 		if (delivery.getSchemaVersion() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1723,7 +1723,7 @@ public class GtmValidator extends EObjectValidator {
 		if (delivery.getAcceptedSchemaVersion() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1767,7 +1767,7 @@ public class GtmValidator extends EObjectValidator {
 		if (calendar.getFromDate() == null || calendar.getUntilDate() == null || calendar.getFromDate().after(calendar.getUntilDate()) ) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1801,7 +1801,7 @@ public class GtmValidator extends EObjectValidator {
 		if (result == false) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1864,7 +1864,7 @@ public class GtmValidator extends EObjectValidator {
 		if (legacyStationToServiceConstraintMapping.getServiceConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1889,7 +1889,7 @@ public class GtmValidator extends EObjectValidator {
 		if (legacyStationToServiceConstraintMapping.getCode() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1943,7 +1943,7 @@ public class GtmValidator extends EObjectValidator {
 		if (legacyFareStationSetMap.getLegacyCode() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -1968,7 +1968,7 @@ public class GtmValidator extends EObjectValidator {
 		if (legacyFareStationSetMap.getStationSet() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2023,7 +2023,7 @@ public class GtmValidator extends EObjectValidator {
 		if (legacy108.getCharacterSet() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2047,7 +2047,7 @@ public class GtmValidator extends EObjectValidator {
 		if (legacy108.getTimeZone() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2072,7 +2072,7 @@ public class GtmValidator extends EObjectValidator {
 		if (legacy108.getCarrier() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2226,7 +2226,7 @@ public class GtmValidator extends EObjectValidator {
 		if (legacyStationMap.getLegacyCode() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2251,7 +2251,7 @@ public class GtmValidator extends EObjectValidator {
 		if (legacyStationMap.getStation() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2305,7 +2305,7 @@ public class GtmValidator extends EObjectValidator {
 		if (legacyBorderPointMapping.getCode() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2329,7 +2329,7 @@ public class GtmValidator extends EObjectValidator {
 		if (legacyBorderPointMapping.getConnectionPoint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2438,7 +2438,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isStationASCII(connectionPoint.getName())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2463,7 +2463,7 @@ public class GtmValidator extends EObjectValidator {
 		if (connectionPoint.getLegacyBorderPointCode() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2488,7 +2488,7 @@ public class GtmValidator extends EObjectValidator {
 		if (connectionPoint.getConnectedStationSets() == null || connectionPoint.getConnectedStationSets().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2513,7 +2513,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isStationUTF8(connectionPoint.getNameUtf8())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2557,7 +2557,7 @@ public class GtmValidator extends EObjectValidator {
 		if (stationSet.getStations() != null || stationSet.getStations().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2618,7 +2618,7 @@ public class GtmValidator extends EObjectValidator {
 		if (sumVat > currencyPrice.getAmount()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2643,7 +2643,7 @@ public class GtmValidator extends EObjectValidator {
 		if (currencyPrice.getCurrency() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2669,7 +2669,7 @@ public class GtmValidator extends EObjectValidator {
 				currencyPrice.getAmount() > 10000	) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2683,7 +2683,7 @@ public class GtmValidator extends EObjectValidator {
 		if (currencyPrice.getAmount() < 0	) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2736,7 +2736,7 @@ public class GtmValidator extends EObjectValidator {
 		if (price.getCurrencies() == null || price.getCurrencies().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2781,7 +2781,7 @@ public class GtmValidator extends EObjectValidator {
 			GenericReductionCards.getByName(reductionCard.getId()) == null ) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2827,7 +2827,7 @@ public class GtmValidator extends EObjectValidator {
 		if (regionalConstraint.getRegionalValidity() == null || regionalConstraint.getRegionalValidity().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2852,7 +2852,7 @@ public class GtmValidator extends EObjectValidator {
 		if (regionalConstraint.getDistance() < 1) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2877,7 +2877,7 @@ public class GtmValidator extends EObjectValidator {
 		if (regionalConstraint.getDistance() > 10000) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2949,7 +2949,7 @@ public class GtmValidator extends EObjectValidator {
 		if (reservationPreferenceGroup.getPreference() == null || reservationPreferenceGroup.getPreference().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -2973,7 +2973,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isASCII(reservationPreferenceGroup.getGroup())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3018,7 +3018,7 @@ public class GtmValidator extends EObjectValidator {
 		if (serviceClass.getText() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3043,7 +3043,7 @@ public class GtmValidator extends EObjectValidator {
 		if (serviceClass.getClassicClass() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3088,7 +3088,7 @@ public class GtmValidator extends EObjectValidator {
 		if (serviceLevel.getText() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3112,7 +3112,7 @@ public class GtmValidator extends EObjectValidator {
 		if (serviceLevel.getId() == null || serviceLevel.getId().length() > 2 || !StringFormatValidator.isASCII(serviceLevel.getId())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3207,7 +3207,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isStationASCII(station.getName())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3232,7 +3232,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isStationUTF8(station.getNameCaseASCII())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3257,7 +3257,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isStationASCII(station.getNameCaseASCII())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3281,7 +3281,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isStationASCII(station.getShortNameCaseASCII())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3305,7 +3305,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isStationUTF8(station.getShortNameCaseUTF8())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3330,7 +3330,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isStationUTF8(station.getName())) {		
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3355,7 +3355,7 @@ public class GtmValidator extends EObjectValidator {
 		if (station.getLatitude() > 180 || station.getLatitude() < -180) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3380,7 +3380,7 @@ public class GtmValidator extends EObjectValidator {
 
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3405,7 +3405,7 @@ public class GtmValidator extends EObjectValidator {
 		if (station.getCountry() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3450,7 +3450,7 @@ public class GtmValidator extends EObjectValidator {
 		if (travelValidityConstraint.getTravelDays() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3475,7 +3475,7 @@ public class GtmValidator extends EObjectValidator {
 		if (travelValidityConstraint.getTravelDays() > 15) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3522,7 +3522,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isASCII(text.getTextICAO())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3546,7 +3546,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isASCII(text.getShortTextICAO())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3570,7 +3570,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isUTF8(text.getTextUTF8())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3594,7 +3594,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isUTF8(text.getShortTextUTF8())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3642,7 +3642,7 @@ public class GtmValidator extends EObjectValidator {
 		if (translation.getLanguage() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3666,7 +3666,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isASCII(translation.getTextICAO())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3690,7 +3690,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isASCII(translation.getShortTextICAO())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3714,7 +3714,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isUTF8(translation.getTextUTF8())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3738,7 +3738,7 @@ public class GtmValidator extends EObjectValidator {
 			if (!StringFormatValidator.isUTF8(translation.getShortTextUTF8())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3784,7 +3784,7 @@ public class GtmValidator extends EObjectValidator {
 		if (vatDetail.getAmount() < 0) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3809,7 +3809,7 @@ public class GtmValidator extends EObjectValidator {
 		if (vatDetail.getCountry() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3834,7 +3834,7 @@ public class GtmValidator extends EObjectValidator {
 		if (vatDetail.getPercentage() < 0 || vatDetail.getPercentage() > 99) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3888,7 +3888,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareElement.getType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3913,7 +3913,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareElement.getPrice() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3938,7 +3938,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareElement.getText() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3963,7 +3963,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareElement.getServiceClass() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -3988,7 +3988,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareElement.getSalesAvailability() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4012,7 +4012,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareElement.getTravelValidity() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4037,7 +4037,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareElement.getCombinationConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4062,7 +4062,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareElement.getFulfillmentConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4087,7 +4087,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareElement.getPassengerConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4112,7 +4112,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareElement.getLegacyAccountingIdentifier() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4137,7 +4137,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareElement.getLegacyConversion() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4195,7 +4195,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareStationSetDefinition.getStations() == null || fareStationSetDefinition.getStations().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4220,7 +4220,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareStationSetDefinition.getLegacyCode() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4245,7 +4245,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareStationSetDefinition.getCarrier() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4269,7 +4269,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareStationSetDefinition.getCode() == null || fareStationSetDefinition.getCode().length() < 1) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4293,7 +4293,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isStationASCII(fareStationSetDefinition.getName())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4317,7 +4317,7 @@ public class GtmValidator extends EObjectValidator {
 		if (!StringFormatValidator.isStationASCII(fareStationSetDefinition.getNameUtf8())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4362,7 +4362,7 @@ public class GtmValidator extends EObjectValidator {
 		if (legacyAccountingIdentifier.getSeriesId() < 1 || legacyAccountingIdentifier.getSeriesId() > 99999 ) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4388,7 +4388,7 @@ public class GtmValidator extends EObjectValidator {
 		if (legacyAccountingIdentifier.getTariffId() < 1 || legacyAccountingIdentifier.getTariffId() > 9999 ) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4441,7 +4441,7 @@ public class GtmValidator extends EObjectValidator {
 		if (salesAvailabilityConstraint.getRestrictions() == null || salesAvailabilityConstraint.getRestrictions().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4485,7 +4485,7 @@ public class GtmValidator extends EObjectValidator {
 		if (salesRestriction.getStartOfSale() == null || salesRestriction.getEndOfSale() == null ) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4502,7 +4502,7 @@ public class GtmValidator extends EObjectValidator {
 			salesRestriction.getStartOfSale().getValue() > salesRestriction.getEndOfSale().getValue()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4588,7 +4588,7 @@ public class GtmValidator extends EObjectValidator {
 		if (combinationConstraint.getCombinationModels() == null || combinationConstraint.getCombinationModels().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4634,7 +4634,7 @@ public class GtmValidator extends EObjectValidator {
 
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4651,7 +4651,7 @@ public class GtmValidator extends EObjectValidator {
 
 		if (diagnostics != null) {
 			diagnostics.add
-				(createDiagnostic
+				(createSimpleDiagnostic
 					(Diagnostic.ERROR,
 					 DIAGNOSTIC_SOURCE,
 					 0,
@@ -4677,7 +4677,7 @@ public class GtmValidator extends EObjectValidator {
 
 				if (diagnostics != null) {
 					diagnostics.add
-						(createDiagnostic
+						(createSimpleDiagnostic
 							(Diagnostic.ERROR,
 							 DIAGNOSTIC_SOURCE,
 							 0,
@@ -4696,7 +4696,7 @@ public class GtmValidator extends EObjectValidator {
 
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4741,7 +4741,7 @@ public class GtmValidator extends EObjectValidator {
 		if (timeRange.getFrom() >= timeRange.getUntil()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4804,7 +4804,7 @@ public class GtmValidator extends EObjectValidator {
 		if (returnValidityConstraint.getEarliestReturn() < 0 || returnValidityConstraint.getEarliestReturn() > returnValidityConstraint.getLatestReturn() || returnValidityConstraint.getLatestReturn() < 0) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4849,7 +4849,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareCombinationModel.getModel() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4874,7 +4874,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fareCombinationModel.getModel() == CombinationModel.CLUSTERING && fareCombinationModel.getReferenceCluster() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4918,7 +4918,7 @@ public class GtmValidator extends EObjectValidator {
 		if (requiredBarcodes.getRequiredBarcodes() == null || requiredBarcodes.getRequiredBarcodes().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -4962,7 +4962,7 @@ public class GtmValidator extends EObjectValidator {
 		if (acceptedBarcodes.getAcceptedBarcodes() == null || acceptedBarcodes.getAcceptedBarcodes().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5006,7 +5006,7 @@ public class GtmValidator extends EObjectValidator {
 		if (regionalValidity.getLine() == null && regionalValidity.getPolygone() == null && regionalValidity.getViaStation() == null && regionalValidity.getZone() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5050,7 +5050,7 @@ public class GtmValidator extends EObjectValidator {
 		if (viaStation.getAlternativeRoutes() == null && viaStation.getRoute() == null && viaStation.getStation() == null && viaStation.getFareStationSet() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5075,7 +5075,7 @@ public class GtmValidator extends EObjectValidator {
 		if (viaStation.getAlternativeRoutes() != null && viaStation.getAlternativeRoutes().size() < 2) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5119,7 +5119,7 @@ public class GtmValidator extends EObjectValidator {
 		if (alternativeRoute.getStations() == null || alternativeRoute.getStations().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5163,7 +5163,7 @@ public class GtmValidator extends EObjectValidator {
 		if ( route.getStations() == null ||  route.getStations().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5208,7 +5208,7 @@ public class GtmValidator extends EObjectValidator {
 		if (zone.getCarrier() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5233,7 +5233,7 @@ public class GtmValidator extends EObjectValidator {
 		if (zone.getNutsCode() == null && zone.getZoneId() == null && zone.getCity() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5286,7 +5286,7 @@ public class GtmValidator extends EObjectValidator {
 		if (line.getCarrier() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5330,7 +5330,7 @@ public class GtmValidator extends EObjectValidator {
 		if (polygone.getEdge() == null || polygone.getEdge().size() < 3) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5383,7 +5383,7 @@ public class GtmValidator extends EObjectValidator {
 		if (edge.getLongitude() > 160 || edge.getLongitude() < -160 || edge.getLatitude() > 160 || edge.getLatitude() < -160) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5438,7 +5438,7 @@ public class GtmValidator extends EObjectValidator {
 		if (zoneDefinition.getProvider() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5463,7 +5463,7 @@ public class GtmValidator extends EObjectValidator {
 		if (zoneDefinition.getNutsCodes() == null && zoneDefinition.getPolygone() == null && zoneDefinition.getStationSet() == null && (zoneDefinition.getZoneId() == null || zoneDefinition.getZoneId().length() < 0)){
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5488,7 +5488,7 @@ public class GtmValidator extends EObjectValidator {
 		if (zoneDefinition.getStationSet() != null && zoneDefinition.getStationSet().getStations().size() < 3) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5532,7 +5532,7 @@ public class GtmValidator extends EObjectValidator {
 		if (passengerConstraint.getTravelerType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5577,7 +5577,7 @@ public class GtmValidator extends EObjectValidator {
 		if (includedFreePassengerLimit.getNumber() <= 0) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5602,7 +5602,7 @@ public class GtmValidator extends EObjectValidator {
 		if (includedFreePassengerLimit.getPassengerType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5647,7 +5647,7 @@ public class GtmValidator extends EObjectValidator {
 		if (passengerCombinationConstraint.getMaxNumber() < 1) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5672,7 +5672,7 @@ public class GtmValidator extends EObjectValidator {
 		if (passengerCombinationConstraint.getPassengerType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5717,7 +5717,7 @@ public class GtmValidator extends EObjectValidator {
 		if (relativeTime.getUnit() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5732,7 +5732,7 @@ public class GtmValidator extends EObjectValidator {
 		if (relativeTime.getValue() < 1) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5750,7 +5750,7 @@ public class GtmValidator extends EObjectValidator {
 			(relativeTime.getUnit() == TimeUnit.MINUTE && relativeTime.getValue() > 1008000)) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5777,7 +5777,7 @@ public class GtmValidator extends EObjectValidator {
 		if (relativeTime.getValue() < 1) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5822,7 +5822,7 @@ public class GtmValidator extends EObjectValidator {
 		if (afterSalesCondition.getFee() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5886,7 +5886,7 @@ public class GtmValidator extends EObjectValidator {
 		if ( afterSalesRule.getConditions() == null ||  afterSalesRule.getConditions().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5930,7 +5930,7 @@ public class GtmValidator extends EObjectValidator {
 		if (personalDataConstraint.getRequiredPersonalData() == null || personalDataConstraint.getRequiredPersonalData().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -5975,7 +5975,7 @@ public class GtmValidator extends EObjectValidator {
 		if (requiredPersonalData.getDataItem() == null ) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6000,7 +6000,7 @@ public class GtmValidator extends EObjectValidator {
 		if (requiredPersonalData.getTransfer() == null || requiredPersonalData.getTransfer().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6043,7 +6043,7 @@ public class GtmValidator extends EObjectValidator {
 		if (crossBorderCondition.getFromCountry() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6058,7 +6058,7 @@ public class GtmValidator extends EObjectValidator {
 		if (crossBorderCondition.getToCountry() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6104,7 +6104,7 @@ public class GtmValidator extends EObjectValidator {
 		if (allowedPersonalDataChanges.getTimeLimit() < 10) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6129,7 +6129,7 @@ public class GtmValidator extends EObjectValidator {
 		if (allowedPersonalDataChanges.getTimeLimit() > 1008000) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6173,7 +6173,7 @@ public class GtmValidator extends EObjectValidator {
 		if (reductionConstraint.getRequiredReductionCards() == null || reductionConstraint.getRequiredReductionCards().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6218,7 +6218,7 @@ public class GtmValidator extends EObjectValidator {
 		if (requiredReductionCard.getName() == null || requiredReductionCard.getName().length() < 1) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6233,7 +6233,7 @@ public class GtmValidator extends EObjectValidator {
 		if (StringFormatValidator.isASCII(requiredReductionCard.getName())) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6258,7 +6258,7 @@ public class GtmValidator extends EObjectValidator {
 		if (requiredReductionCard.getCard() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6302,7 +6302,7 @@ public class GtmValidator extends EObjectValidator {
 		if (fulfillmentConstraint.getAcceptedFulfilmentTypes() == null || fulfillmentConstraint.getAcceptedFulfilmentTypes().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6347,7 +6347,7 @@ public class GtmValidator extends EObjectValidator {
 		if (trainResourceLocation.getCarrier() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6372,7 +6372,7 @@ public class GtmValidator extends EObjectValidator {
 		if (trainResourceLocation.getOnlineResources() == null || trainResourceLocation.getOnlineResources().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6444,7 +6444,7 @@ public class GtmValidator extends EObjectValidator {
 		if (stationResourceLocation.getOnlineResources() == null || stationResourceLocation.getOnlineResources().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6470,7 +6470,7 @@ public class GtmValidator extends EObjectValidator {
 			(stationResourceLocation.getConnectionPoints() == null || stationResourceLocation.getConnectionPoints().isEmpty()) ) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6516,7 +6516,7 @@ public class GtmValidator extends EObjectValidator {
 		if (onlineResource.getOfferRequestType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6541,7 +6541,7 @@ public class GtmValidator extends EObjectValidator {
 		if (onlineResource.getInterfaceType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
@@ -6566,7 +6566,7 @@ public class GtmValidator extends EObjectValidator {
 		if (onlineResource.getSystem() == null || onlineResource.getSystem().length()<1) {
 			if (diagnostics != null) {
 				diagnostics.add
-					(createDiagnostic
+					(createGtmDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0, 
@@ -6912,13 +6912,30 @@ public class GtmValidator extends EObjectValidator {
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		// TODO
 		// Specialize this to return a resource locator for messages specific to this validator.
 		// Ensure that you remove @generated or mark it @generated NOT
 		return super.getResourceLocator();
 	}
+
+	/**
+	 * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	protected BasicDiagnostic createSimpleDiagnostic
+    (int severity, String source, int code, String message, Object[] messageSubstitutions, Object[] data, Map<Object, Object> context)
+	{
+        return new BasicDiagnostic(severity, source, code, message, data);
+	}
 	
-	  protected BasicDiagnostic createGtmDiagnostic
+	/**
+	 * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	protected BasicDiagnostic createGtmDiagnostic
 	    (int severity, String source, int code, String messageKey, Object[] messageSubstitutions, Object[] data, Map<Object, Object> context)
 	  {
 	    String message = NationalLanguageSupport.bind(messageKey, messageSubstitutions);

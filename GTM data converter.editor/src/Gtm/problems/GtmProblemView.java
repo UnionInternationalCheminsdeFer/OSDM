@@ -40,6 +40,17 @@ public class GtmProblemView extends ViewPart {
 		super();
 		this.setPartName("Problems");
 		me = this;
+		
+		ProblemCategory errors = new ProblemCategory(Diagnostic.ERROR, "Error");
+		 
+		ProblemCategory warnings = new ProblemCategory(Diagnostic.WARNING, "Warning");
+		 
+		ProblemCategory infos = new ProblemCategory(Diagnostic.INFO, "Info");
+		
+		content = new ArrayList<ProblemCategory>();
+		content.add(0,errors);
+		content.add(1,warnings);
+		content.add(2,infos);
 	}
 	
 	@Override
@@ -95,22 +106,7 @@ public class GtmProblemView extends ViewPart {
 	
 	 public class ProblemViewTreeTableContentProvider implements ITreeContentProvider {
 		 
-		 private final ProblemCategory errors = new ProblemCategory(Diagnostic.ERROR, "Error");
-		 
-		 private final ProblemCategory warnings = new ProblemCategory(Diagnostic.WARNING, "Warning");
-		 
-		 private final ProblemCategory infos = new ProblemCategory(Diagnostic.INFO, "Info");
-		 
-		 public ProblemViewTreeTableContentProvider() {
-		 
-			 content = new ArrayList<ProblemCategory>();
-			 content.add(0,errors);
-			 content.add(1,warnings);
-			 content.add(2,infos);
-			 
-		 }	
-
-		 
+	 
 		 public Object[] getChildren(Object arg) {
 			 	if (arg instanceof ProblemCategory) {
 			 		return ((ProblemCategory)arg).getChildren().toArray();
@@ -206,9 +202,6 @@ public class GtmProblemView extends ViewPart {
 	
 	public void setRootDiagnostic(Diagnostic diagnostic) {
 		
-		for (ProblemCategory list : content) {
-			list.clear();
-		}
 
 		if(diagnostic == null){
 			return;
@@ -241,6 +234,12 @@ public class GtmProblemView extends ViewPart {
 			}
 
 		});
+	}
+
+	public void clearContent() {
+		for (ProblemCategory list : content) {
+			list.clear();
+		}		
 	}
 	
 

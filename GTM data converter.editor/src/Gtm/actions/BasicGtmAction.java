@@ -52,7 +52,21 @@ public abstract class BasicGtmAction extends BaseSelectionListenerAction {
 		}		
 
 
-		protected abstract void runAction(GTMTool tool);
+		protected void runAction(GTMTool tool) {			
+		};
+		
+		protected void prepareStructure() {
+			GTMTool tool = GtmUtils.getGtmTool();
+			if (tool == null) return;
+
+			EditingDomain domain = GtmUtils.getActiveDomain();
+			if (domain == null) return;
+			
+			CompoundCommand preparationCommand = GtmUtils.getPreparationCommand(tool, domain);
+			if (preparationCommand != null && !preparationCommand.isEmpty() && preparationCommand.canExecute()) {
+				domain.getCommandStack().execute(preparationCommand);
+			}
+		}
 
 		protected boolean checkSelection(IStructuredSelection selection)
 		{

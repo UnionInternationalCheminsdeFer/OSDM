@@ -399,9 +399,9 @@ public class GtmUtils {
 		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_FIP_LEISURE_FREE","FIP leasure", null);	
 		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_FIP_LEISURE_REDU","FIP leasure reduction", null);
 		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RAILPLUS","RailPlus", null);	
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RIT_1","Rail Inclusive Toures 1", null);	
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RIT_2","Rail Inclusive Toures 2", null);	
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RIT_3","Rail Inclusive Toures 3", null);	
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RIT_1","Rail Inclusive Tours 1", null);	
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RIT_2","Rail Inclusive Tours 2", null);	
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RIT_3","Rail Inclusive Tours 3", null);	
 	
 		
 	}
@@ -456,6 +456,9 @@ public class GtmUtils {
 		Text text =  GtmFactory.eINSTANCE.createText();
 		ReductionCard card =  GtmFactory.eINSTANCE.createReductionCard();
 		text.setTextUTF8(name);
+		text.setShortTextUTF8(name);
+		text.setTextICAO(name);
+		text.setShortTextICAO(name);
 		card.setCardIssuer(carrier);
 		card.setId(id);
 		card.setName(text);

@@ -1,7 +1,11 @@
 package Gtm.actions;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
@@ -9,6 +13,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import Gtm.Country;
 import Gtm.GTMTool;
 import Gtm.actions.converter.ConverterFromLegacy;
+import Gtm.presentation.GtmEditorPlugin;
 
 
 public class ConvertLegacy2GtmAction extends BasicGtmAction {
@@ -32,13 +37,17 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 		}
 
 		
-
-
-		@Override
-		protected void runAction(GTMTool tool) {
+		
+		protected void run (IStructuredSelection structuredSelection) {
 			
-
-			EditingDomain domain = GtmUtils.getActiveDomain();
+			GTMTool tool = GtmUtils.getGtmTool();
+			
+			if (tool == null) {
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText("no data found");
+				dialog.open(); 
+				return;
+			}
 			
 			Country country = tool.getConversionFromLegacy().getParams().getCountry();
 			if (country == null) {
@@ -50,37 +59,75 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 				return;
 			}
 			
+			EditingDomain domain = GtmUtils.getActiveDomain();
+			if (domain == null) return;
 			
-			GtmUtils.disconnectViews();
+			ConverterFromLegacy converter = new ConverterFromLegacy(tool);
 			
+			IRunnableWithProgress operation =	new IRunnableWithProgress() {
+				// This is the method that gets invoked when the operation runs.
+
+				public void run(IProgressMonitor monitor) {
+					
+					monitor.beginTask("Convert Legacy 108 fare data to GTM", 7); 
+
+					monitor.setTaskName("Initialize main structure");
+					prepareStructure();
+					monitor.worked(1);
+
+					try {
+			
+						monitor.subTask("deleting old conversion data");						
+						int deleted = ConverterFromLegacy.deleteOldConversionResults(tool, domain);
+						GtmUtils.writeConsoleInfog("old series conversions deleted: " + Integer.toString(deleted));
+						monitor.worked(1);
+				
+						monitor.subTask("convert fare reference stations");
+						int added = converter.convertFareStationSets(tool,  domain);
+						GtmUtils.writeConsoleInfog("fare reference station sets converted: " + Integer.toString(added));	
+						monitor.worked(1);
+			
+						monitor.subTask("convert border points");						
+						added = converter.convertBorderPoints(tool,  domain);
+						GtmUtils.writeConsoleInfog("border points converted: " + Integer.toString(added));	
+						monitor.worked(1);
+				
+						monitor.subTask("convert station names");
+						added = converter.convertStationNames(tool,  domain);
+						GtmUtils.writeConsoleInfog("station names converted: " + Integer.toString(added));		
+						monitor.worked(1);
+			
+						monitor.subTask("convert sales availabilities");
+						added = converter.convertSalesAvailabilities(tool,  domain);
+						GtmUtils.writeConsoleInfog("sales avialabiliy ranges converted: " + Integer.toString(added));					
+						monitor.worked(1);
+			
+						monitor.subTask("convert fares");
+						added = converter.convertToGtm(tool,  domain);
+						GtmUtils.writeConsoleInfog("fares converted: " + Integer.toString(added));
+						monitor.worked(1);
+						
+					} catch (Exception e) {
+						//
+					} finally {
+						GtmUtils.reconnectViews();
+					}
+					monitor.done();
+				}
+			};
 			try {
+				// This runs the operation, and shows progress.
+				GtmUtils.disconnectViews();
+		
+				new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(true, false, operation);
 
-				ConverterFromLegacy converter = new ConverterFromLegacy(tool);
-
-				int deleted = ConverterFromLegacy.deleteOldConversionResults(tool, domain);
-				GtmUtils.writeConsoleInfog("old series conversions deleted: " + Integer.toString(deleted));
-				
-				int added = converter.convertFareStationSets(tool,  domain);
-				GtmUtils.writeConsoleInfog("fare reference station sets converted: " + Integer.toString(added));			
-			
-				added = converter.convertBorderPoints(tool,  domain);
-				GtmUtils.writeConsoleInfog("border points converted: " + Integer.toString(added));	
-				
-				added = converter.convertStationNames(tool,  domain);
-				GtmUtils.writeConsoleInfog("station names converted: " + Integer.toString(added));		
-			
-				added = converter.convertSalesAvailabilities(tool,  domain);
-				GtmUtils.writeConsoleInfog("sales avialabiliy ranges converted: " + Integer.toString(added));					
-			
-			
-				added = converter.convertToGtm(tool,  domain);
-				GtmUtils.writeConsoleInfog("fares converted: " + Integer.toString(added));
-				
-			} catch (Exception e) {
-				//
+			} catch (Exception exception) {
+					// Something went wrong that shouldn't.
+					GtmEditorPlugin.INSTANCE.log(exception);
 			} finally {
-				GtmUtils.reconnectViews();
+					GtmUtils.reconnectViews();
 			}
+
 				
 		}
 
