@@ -4,6 +4,7 @@ package Gtm.util;
 
 import Gtm.*;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -431,6 +432,8 @@ public class GtmValidator extends EObjectValidator {
 				return validateDataSource((DataSource)value, diagnostics, context);
 			case GtmPackage.CLASS_ID:
 				return validateClassId((ClassId)value, diagnostics, context);
+			case GtmPackage.GENERIC_REDUCTION_CARDS:
+				return validateGenericReductionCards((GenericReductionCards)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -1758,21 +1761,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the START_END_DATE_ORDER constraint of '<em>Calendar</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateCalendar_START_END_DATE_ORDER(Calendar calendar, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (calendar.getFromDate() == null || calendar.getUntilDate() == null || calendar.getFromDate().after(calendar.getUntilDate()) ) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Start and end date of the calendar missing or in wrong order",
 						 new Object[] { "START_END_DATE_ORDER", getObjectLabel(calendar, context) },
 						 new Object[] { calendar },
 						 context));
@@ -1786,21 +1785,27 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the DATES_WITHIN_RANGE constraint of '<em>Calendar</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateCalendar_DATES_WITHIN_RANGE(Calendar calendar, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		boolean result = true;
+		
+		for (Date date : calendar.getDates()) {
+			if (calendar.getFromDate().after(date) || 
+				calendar.getUntilDate().before(date)) {
+				result = false;
+				break;
+			}
+		}
+		
+		if (result == false) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Dates listed in the calendar are outside the from - until date range",
 						 new Object[] { "DATES_WITHIN_RANGE", getObjectLabel(calendar, context) },
 						 new Object[] { calendar },
 						 context));
@@ -1852,21 +1857,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the SERVICE_CONSTRAINT_MUST constraint of '<em>Legacy Station To Service Constraint Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLegacyStationToServiceConstraintMapping_SERVICE_CONSTRAINT_MUST(LegacyStationToServiceConstraintMapping legacyStationToServiceConstraintMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (legacyStationToServiceConstraintMapping.getServiceConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Service brand missing in legacy service brand mapping",
 						 new Object[] { "SERVICE_CONSTRAINT_MUST", getObjectLabel(legacyStationToServiceConstraintMapping, context) },
 						 new Object[] { legacyStationToServiceConstraintMapping },
 						 context));
@@ -1880,21 +1882,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CODE_NOT_NULL constraint of '<em>Legacy Station To Service Constraint Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLegacyStationToServiceConstraintMapping_CODE_NOT_NULL(LegacyStationToServiceConstraintMapping legacyStationToServiceConstraintMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (legacyStationToServiceConstraintMapping.getCode() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Station code missing in legacy station to service Brand mapping",
 						 new Object[] { "CODE_NOT_NULL", getObjectLabel(legacyStationToServiceConstraintMapping, context) },
 						 new Object[] { legacyStationToServiceConstraintMapping },
 						 context));
@@ -1937,21 +1936,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CODE_NOT_NULL constraint of '<em>Legacy Fare Station Set Map</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLegacyFareStationSetMap_CODE_NOT_NULL(LegacyFareStationSetMap legacyFareStationSetMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (legacyFareStationSetMap.getLegacyCode() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Station code missing in legacy station for fare reference station set missing",
 						 new Object[] { "CODE_NOT_NULL", getObjectLabel(legacyFareStationSetMap, context) },
 						 new Object[] { legacyFareStationSetMap },
 						 context));
@@ -1965,21 +1961,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the STATION_SET_MUST constraint of '<em>Legacy Fare Station Set Map</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLegacyFareStationSetMap_STATION_SET_MUST(LegacyFareStationSetMap legacyFareStationSetMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (legacyFareStationSetMap.getStationSet() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Fare reference station set missing in legacy station to fare reference station set mapping ",
 						 new Object[] { "STATION_SET_MUST", getObjectLabel(legacyFareStationSetMap, context) },
 						 new Object[] { legacyFareStationSetMap },
 						 context));
@@ -2023,21 +2016,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CHARACTER_SET_MUST constraint of '<em>Legacy108</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLegacy108_CHARACTER_SET_MUST(Legacy108 legacy108, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (legacy108.getCharacterSet() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Character set not defined in legacy data",
 						 new Object[] { "CHARACTER_SET_MUST", getObjectLabel(legacy108, context) },
 						 new Object[] { legacy108 },
 						 context));
@@ -2051,21 +2041,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TIME_ZONE_MUST constraint of '<em>Legacy108</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLegacy108_TIME_ZONE_MUST(Legacy108 legacy108, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (legacy108.getTimeZone() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Time zone not set in legacy data",
 						 new Object[] { "TIME_ZONE_MUST", getObjectLabel(legacy108, context) },
 						 new Object[] { legacy108 },
 						 context));
@@ -2079,21 +2065,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CARRIER_MUST constraint of '<em>Legacy108</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLegacy108_CARRIER_MUST(Legacy108 legacy108, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (legacy108.getCarrier() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Carrier missing in legacy data",
 						 new Object[] { "CARRIER_MUST", getObjectLabel(legacy108, context) },
 						 new Object[] { legacy108 },
 						 context));
@@ -2237,21 +2220,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CODE_NOU_NULL constraint of '<em>Legacy Station Map</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLegacyStationMap_CODE_NOU_NULL(LegacyStationMap legacyStationMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (legacyStationMap.getLegacyCode() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Station code missing in legacy station to station mapping",
 						 new Object[] { "CODE_NOU_NULL", getObjectLabel(legacyStationMap, context) },
 						 new Object[] { legacyStationMap },
 						 context));
@@ -2265,21 +2244,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the STATION_MUST constraint of '<em>Legacy Station Map</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLegacyStationMap_STATION_MUST(LegacyStationMap legacyStationMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (legacyStationMap.getStation() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Station missing in legacy ststion to station mapping",
 						 new Object[] { "STATION_MUST", getObjectLabel(legacyStationMap, context) },
 						 new Object[] { legacyStationMap },
 						 context));
@@ -2322,21 +2298,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CODE_NOT_NULL constraint of '<em>Legacy Border Point Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLegacyBorderPointMapping_CODE_NOT_NULL(LegacyBorderPointMapping legacyBorderPointMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (legacyBorderPointMapping.getCode() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Border point code missing in legacy order point mapping",
 						 new Object[] { "CODE_NOT_NULL", getObjectLabel(legacyBorderPointMapping, context) },
 						 new Object[] { legacyBorderPointMapping },
 						 context));
@@ -2350,21 +2323,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CONNECTION_POINT_MUST constraint of '<em>Legacy Border Point Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT 
 	 */
 	public boolean validateLegacyBorderPointMapping_CONNECTION_POINT_MUST(LegacyBorderPointMapping legacyBorderPointMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (legacyBorderPointMapping.getConnectionPoint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Connection point missing in legacy border point mapping",
 						 new Object[] { "CONNECTION_POINT_MUST", getObjectLabel(legacyBorderPointMapping, context) },
 						 new Object[] { legacyBorderPointMapping },
 						 context));
@@ -2462,21 +2431,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the NAME_FORMAT constraint of '<em>Connection Point</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateConnectionPoint_NAME_FORMAT(ConnectionPoint connectionPoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (!StringFormatValidator.isStationASCII(connectionPoint.getName())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Connection point name contains invalid characters",
 						 new Object[] { "NAME_FORMAT", getObjectLabel(connectionPoint, context) },
 						 new Object[] { connectionPoint },
 						 context));
@@ -2490,21 +2456,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the LEGACY_BORDER_POINT_MISSING constraint of '<em>Connection Point</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateConnectionPoint_LEGACY_BORDER_POINT_MISSING(ConnectionPoint connectionPoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (connectionPoint.getLegacyBorderPointCode() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
-						(Diagnostic.ERROR,
+						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Border point code missing in connection point",
 						 new Object[] { "LEGACY_BORDER_POINT_MISSING", getObjectLabel(connectionPoint, context) },
 						 new Object[] { connectionPoint },
 						 context));
@@ -2518,21 +2481,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the STATION_SET_AT_LEAST_ONE constraint of '<em>Connection Point</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateConnectionPoint_STATION_SET_AT_LEAST_ONE(ConnectionPoint connectionPoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (connectionPoint.getConnectedStationSets() == null || connectionPoint.getConnectedStationSets().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Station set missing in connection point",
 						 new Object[] { "STATION_SET_AT_LEAST_ONE", getObjectLabel(connectionPoint, context) },
 						 new Object[] { connectionPoint },
 						 context));
@@ -2546,21 +2506,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the NAME_UTF8_FORMAT constraint of '<em>Connection Point</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateConnectionPoint_NAME_UTF8_FORMAT(ConnectionPoint connectionPoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (!StringFormatValidator.isStationUTF8(connectionPoint.getNameUtf8())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Connection pount name does contain invalid characters in UTF8 name",
 						 new Object[] { "NAME_UTF8_FORMAT", getObjectLabel(connectionPoint, context) },
 						 new Object[] { connectionPoint },
 						 context));
@@ -2593,21 +2550,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE constraint of '<em>Station Set</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateStationSet_AT_LEAST_ONE(StationSet stationSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (stationSet.getStations() != null || stationSet.getStations().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "The station set does not include a station",
 						 new Object[] { "AT_LEAST_ONE", getObjectLabel(stationSet, context) },
 						 new Object[] { stationSet },
 						 context));
@@ -2651,21 +2605,24 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the VAT_PLAUSIBILITY_CHECK constraint of '<em>Currency Price</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateCurrencyPrice_VAT_PLAUSIBILITY_CHECK(CurrencyPrice currencyPrice, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		float sumVat = 0;
+		for (VATDetail vat : currencyPrice.getVATdetails()) {
+			sumVat = sumVat + vat.getAmount();
+		}
+		
+		
+		if (sumVat > currencyPrice.getAmount()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "VAT larger than the price",
 						 new Object[] { "VAT_PLAUSIBILITY_CHECK", getObjectLabel(currencyPrice, context) },
 						 new Object[] { currencyPrice },
 						 context));
@@ -2679,21 +2636,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CURRENCY_MUST constraint of '<em>Currency Price</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateCurrencyPrice_CURRENCY_MUST(CurrencyPrice currencyPrice, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (currencyPrice.getCurrency() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Ciurrency is missing n price",
 						 new Object[] { "CURRENCY_MUST", getObjectLabel(currencyPrice, context) },
 						 new Object[] { currencyPrice },
 						 context));
@@ -2707,21 +2661,33 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AMOUNT_MUST constraint of '<em>Currency Price</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateCurrencyPrice_AMOUNT_MUST(CurrencyPrice currencyPrice, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (currencyPrice.getCurrency().getIsoCode() == "EUR" && 
+				currencyPrice.getAmount() > 10000	) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
-						(Diagnostic.ERROR,
+						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Price too large",
+						 new Object[] { "AMOUNT_MUST", getObjectLabel(currencyPrice, context) },
+						 new Object[] { currencyPrice },
+						 context));
+			}
+			return false;
+		}
+		if (currencyPrice.getAmount() < 0	) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.WARNING,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "Price must not be negative",
 						 new Object[] { "AMOUNT_MUST", getObjectLabel(currencyPrice, context) },
 						 new Object[] { currencyPrice },
 						 context));
@@ -2763,21 +2729,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_PRICE constraint of '<em>Price</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validatePrice_AT_LEAST_ONE_PRICE(Price price, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (price.getCurrencies() == null || price.getCurrencies().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Price is missing",
 						 new Object[] { "AT_LEAST_ONE_PRICE", getObjectLabel(price, context) },
 						 new Object[] { price },
 						 context));
@@ -2810,21 +2773,19 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the ISUER_MUST_FOR_NON_GENERIC constraint of '<em>Reduction Card</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateReductionCard_ISUER_MUST_FOR_NON_GENERIC(ReductionCard reductionCard, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (reductionCard.getCardIssuer() == null &&
+			GenericReductionCards.getByName(reductionCard.getId()) == null ) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Reduction card issuer is missing",
 						 new Object[] { "ISUER_MUST_FOR_NON_GENERIC", getObjectLabel(reductionCard, context) },
 						 new Object[] { reductionCard },
 						 context));
@@ -2859,21 +2820,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_REGIONAL_VALIDITY constraint of '<em>Regional Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateRegionalConstraint_AT_LEAST_ONE_REGIONAL_VALIDITY(RegionalConstraint regionalConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (regionalConstraint.getRegionalValidity() == null || regionalConstraint.getRegionalValidity().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Regional validity ios missing",
 						 new Object[] { "AT_LEAST_ONE_REGIONAL_VALIDITY", getObjectLabel(regionalConstraint, context) },
 						 new Object[] { regionalConstraint },
 						 context));
@@ -2887,21 +2845,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the WARNING_DISTANCE_TOO_SHORT constraint of '<em>Regional Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateRegionalConstraint_WARNING_DISTANCE_TOO_SHORT(RegionalConstraint regionalConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (regionalConstraint.getDistance() < 1) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
-						(Diagnostic.ERROR,
+						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Distance is very short",
 						 new Object[] { "WARNING_DISTANCE_TOO_SHORT", getObjectLabel(regionalConstraint, context) },
 						 new Object[] { regionalConstraint },
 						 context));
@@ -2915,21 +2870,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the WARNING_DISTANCE_TOO_LONG constraint of '<em>Regional Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateRegionalConstraint_WARNING_DISTANCE_TOO_LONG(RegionalConstraint regionalConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (regionalConstraint.getDistance() > 10000) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
-						(Diagnostic.ERROR,
+						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Distance is very long",
 						 new Object[] { "WARNING_DISTANCE_TOO_LONG", getObjectLabel(regionalConstraint, context) },
 						 new Object[] { regionalConstraint },
 						 context));
@@ -2990,21 +2942,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_PREFERENCE constraint of '<em>Reservation Preference Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateReservationPreferenceGroup_AT_LEAST_ONE_PREFERENCE(ReservationPreferenceGroup reservationPreferenceGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (reservationPreferenceGroup.getPreference() == null || reservationPreferenceGroup.getPreference().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Reservation prefeences missing in preferences group",
 						 new Object[] { "AT_LEAST_ONE_PREFERENCE", getObjectLabel(reservationPreferenceGroup, context) },
 						 new Object[] { reservationPreferenceGroup },
 						 context));
@@ -3018,21 +2967,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the GROUP_FORMAT constraint of '<em>Reservation Preference Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateReservationPreferenceGroup_GROUP_FORMAT(ReservationPreferenceGroup reservationPreferenceGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (!StringFormatValidator.isASCII(reservationPreferenceGroup.getGroup())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Invalid format of group name",
 						 new Object[] { "GROUP_FORMAT", getObjectLabel(reservationPreferenceGroup, context) },
 						 new Object[] { reservationPreferenceGroup },
 						 context));
@@ -3066,21 +3011,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TEXT_MUST constraint of '<em>Service Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateServiceClass_TEXT_MUST(ServiceClass serviceClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (serviceClass.getText() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Text is missing in service class definition",
 						 new Object[] { "TEXT_MUST", getObjectLabel(serviceClass, context) },
 						 new Object[] { serviceClass },
 						 context));
@@ -3094,21 +3036,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CLASSIC_CLASS_MUST constraint of '<em>Service Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateServiceClass_CLASSIC_CLASS_MUST(ServiceClass serviceClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (serviceClass.getClassicClass() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Classic class is missing in service class",
 						 new Object[] { "CLASSIC_CLASS_MUST", getObjectLabel(serviceClass, context) },
 						 new Object[] { serviceClass },
 						 context));
@@ -3142,21 +3081,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TEXT_MUST constraint of '<em>Service Level</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateServiceLevel_TEXT_MUST(ServiceLevel serviceLevel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (serviceLevel.getText() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Text is missing in service level",
 						 new Object[] { "TEXT_MUST", getObjectLabel(serviceLevel, context) },
 						 new Object[] { serviceLevel },
 						 context));
@@ -3170,21 +3106,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the ID_FORMAT constraint of '<em>Service Level</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateServiceLevel_ID_FORMAT(ServiceLevel serviceLevel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (serviceLevel.getId() == null || serviceLevel.getId().length() > 2 || !StringFormatValidator.isASCII(serviceLevel.getId())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Service level id is invalid",
 						 new Object[] { "ID_FORMAT", getObjectLabel(serviceLevel, context) },
 						 new Object[] { serviceLevel },
 						 context));
@@ -3268,21 +3200,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the NAME_FORMAT constraint of '<em>Station</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateStation_NAME_FORMAT(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (!StringFormatValidator.isStationASCII(station.getName())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Station name invalid",
 						 new Object[] { "NAME_FORMAT", getObjectLabel(station, context) },
 						 new Object[] { station },
 						 context));
@@ -3296,21 +3225,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the NAME_CASE_UTF8_FORMAT constraint of '<em>Station</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateStation_NAME_CASE_UTF8_FORMAT(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (!StringFormatValidator.isStationUTF8(station.getNameCaseASCII())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Station name UTF8 with case characters invalid",
 						 new Object[] { "NAME_CASE_UTF8_FORMAT", getObjectLabel(station, context) },
 						 new Object[] { station },
 						 context));
@@ -3324,21 +3250,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the NAME_CASE_ASCII_FORMAT constraint of '<em>Station</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateStation_NAME_CASE_ASCII_FORMAT(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (!StringFormatValidator.isStationASCII(station.getNameCaseASCII())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Station name ASCII with case characters invalid",
 						 new Object[] { "NAME_CASE_ASCII_FORMAT", getObjectLabel(station, context) },
 						 new Object[] { station },
 						 context));
@@ -3352,21 +3275,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the SHORT_NAME_CASE_ASCII_FORMAT constraint of '<em>Station</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateStation_SHORT_NAME_CASE_ASCII_FORMAT(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (!StringFormatValidator.isStationASCII(station.getShortNameCaseASCII())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Short statiuon name ASCII invalid",
 						 new Object[] { "SHORT_NAME_CASE_ASCII_FORMAT", getObjectLabel(station, context) },
 						 new Object[] { station },
 						 context));
@@ -3380,21 +3299,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the SHORT_NAME_CASE_UTF8_FORMAT constraint of '<em>Station</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	 * @generated NOT
+	 */  
 	public boolean validateStation_SHORT_NAME_CASE_UTF8_FORMAT(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (!StringFormatValidator.isStationUTF8(station.getShortNameCaseUTF8())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Short statiuon name UTF8 invalid",
 						 new Object[] { "SHORT_NAME_CASE_UTF8_FORMAT", getObjectLabel(station, context) },
 						 new Object[] { station },
 						 context));
@@ -3408,21 +3323,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TT_NAME_FORMAT constraint of '<em>Station</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateStation_TT_NAME_FORMAT(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (!StringFormatValidator.isStationUTF8(station.getName())) {		
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
-						(Diagnostic.ERROR,
+						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Station name MERITS invalid",
 						 new Object[] { "TT_NAME_FORMAT", getObjectLabel(station, context) },
 						 new Object[] { station },
 						 context));
@@ -3436,21 +3348,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the LATITUDE_VALUE_RANGE constraint of '<em>Station</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateStation_LATITUDE_VALUE_RANGE(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (station.getLatitude() > 180 || station.getLatitude() < -180) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Latitude out of range",
 						 new Object[] { "LATITUDE_VALUE_RANGE", getObjectLabel(station, context) },
 						 new Object[] { station },
 						 context));
@@ -3464,21 +3373,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the LONGITUDE_VALUE_RANGE constraint of '<em>Station</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateStation_LONGITUDE_VALUE_RANGE(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (station.getLongitude() > 180 || station.getLongitude() < -180) {
+
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Longitude out of range",
 						 new Object[] { "LONGITUDE_VALUE_RANGE", getObjectLabel(station, context) },
 						 new Object[] { station },
 						 context));
@@ -3492,21 +3398,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the COUNTRY_MUST constraint of '<em>Station</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateStation_COUNTRY_MUST(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (station.getCountry() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Country missing in station",
 						 new Object[] { "COUNTRY_MUST", getObjectLabel(station, context) },
 						 new Object[] { station },
 						 context));
@@ -3540,21 +3443,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TRAVEL_DAYS_NOT_NULL constraint of '<em>Travel Validity Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTravelValidityConstraint_TRAVEL_DAYS_NOT_NULL(TravelValidityConstraint travelValidityConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (travelValidityConstraint.getTravelDays() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Travel days missing in travel validity",
 						 new Object[] { "TRAVEL_DAYS_NOT_NULL", getObjectLabel(travelValidityConstraint, context) },
 						 new Object[] { travelValidityConstraint },
 						 context));
@@ -3568,21 +3468,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the WARNING_TRAVEL_DAYS_TOO_LONG constraint of '<em>Travel Validity Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTravelValidityConstraint_WARNING_TRAVEL_DAYS_TOO_LONG(TravelValidityConstraint travelValidityConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (travelValidityConstraint.getTravelDays() > 15) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
-						(Diagnostic.ERROR,
+						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Travel days too long",
 						 new Object[] { "WARNING_TRAVEL_DAYS_TOO_LONG", getObjectLabel(travelValidityConstraint, context) },
 						 new Object[] { travelValidityConstraint },
 						 context));
@@ -3618,21 +3515,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the FORMAT_TEXT constraint of '<em>Text</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateText_FORMAT_TEXT(Text text, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (!StringFormatValidator.isASCII(text.getTextICAO())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Text contains invalid characters",
 						 new Object[] { "FORMAT_TEXT", getObjectLabel(text, context) },
 						 new Object[] { text },
 						 context));
@@ -3646,21 +3540,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the FORMAT_TEXT_SHORT constraint of '<em>Text</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateText_FORMAT_TEXT_SHORT(Text text, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (!StringFormatValidator.isASCII(text.getShortTextICAO())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Short text contains invalid characters",
 						 new Object[] { "FORMAT_TEXT_SHORT", getObjectLabel(text, context) },
 						 new Object[] { text },
 						 context));
@@ -3674,21 +3564,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the FORMAT_TEXT_UTF8 constraint of '<em>Text</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateText_FORMAT_TEXT_UTF8(Text text, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (!StringFormatValidator.isUTF8(text.getTextUTF8())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Text UTF8 missing or wrong",
 						 new Object[] { "FORMAT_TEXT_UTF8", getObjectLabel(text, context) },
 						 new Object[] { text },
 						 context));
@@ -3702,21 +3588,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the FORMAT_TEXT_SHORT_UTF8 constraint of '<em>Text</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateText_FORMAT_TEXT_SHORT_UTF8(Text text, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (!StringFormatValidator.isUTF8(text.getShortTextUTF8())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Short text UTF8 missing or wrong",
 						 new Object[] { "FORMAT_TEXT_SHORT_UTF8", getObjectLabel(text, context) },
 						 new Object[] { text },
 						 context));
@@ -3753,21 +3635,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the LANGUAGE_MUST constraint of '<em>Translation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTranslation_LANGUAGE_MUST(Translation translation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (translation.getLanguage() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Language is missing",
 						 new Object[] { "LANGUAGE_MUST", getObjectLabel(translation, context) },
 						 new Object[] { translation },
 						 context));
@@ -3781,21 +3660,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the FORMAT_TEXT constraint of '<em>Translation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTranslation_FORMAT_TEXT(Translation translation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (!StringFormatValidator.isASCII(translation.getTextICAO())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Text is missing or contains invalid characters",
 						 new Object[] { "FORMAT_TEXT", getObjectLabel(translation, context) },
 						 new Object[] { translation },
 						 context));
@@ -3809,21 +3684,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the FORMAT_TEXT_SHORT constraint of '<em>Translation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTranslation_FORMAT_TEXT_SHORT(Translation translation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (!StringFormatValidator.isASCII(translation.getShortTextICAO())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Text is missing or contains invalid characters",
 						 new Object[] { "FORMAT_TEXT_SHORT", getObjectLabel(translation, context) },
 						 new Object[] { translation },
 						 context));
@@ -3837,21 +3708,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the FORMAT_TEXT_UTF8 constraint of '<em>Translation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTranslation_FORMAT_TEXT_UTF8(Translation translation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (!StringFormatValidator.isUTF8(translation.getTextUTF8())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Text UTF8 is missing",
 						 new Object[] { "FORMAT_TEXT_UTF8", getObjectLabel(translation, context) },
 						 new Object[] { translation },
 						 context));
@@ -3865,21 +3732,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the FORMAT_TEXT_SHORT_UTF8 constraint of '<em>Translation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	 * @generated NOT
+	 */ 
 	public boolean validateTranslation_FORMAT_TEXT_SHORT_UTF8(Translation translation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+			if (!StringFormatValidator.isUTF8(translation.getShortTextUTF8())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Short text UTF8 is missing",
 						 new Object[] { "FORMAT_TEXT_SHORT_UTF8", getObjectLabel(translation, context) },
 						 new Object[] { translation },
 						 context));
@@ -3895,7 +3758,94 @@ public class GtmValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateVATDetail(VATDetail vatDetail, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(vatDetail, diagnostics, context);
+		if (!validate_NoCircularContainment(vatDetail, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(vatDetail, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(vatDetail, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(vatDetail, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(vatDetail, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(vatDetail, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(vatDetail, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(vatDetail, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(vatDetail, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVATDetail_VALID_AMOUNT(vatDetail, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVATDetail_COUNTRY_MUST(vatDetail, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVATDetail_PERCENTAGE_VALUES(vatDetail, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the VALID_AMOUNT constraint of '<em>VAT Detail</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateVATDetail_VALID_AMOUNT(VATDetail vatDetail, DiagnosticChain diagnostics, Map<Object, Object> context) {
+
+		if (vatDetail.getAmount() < 0) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "VAT amount must not be negative",
+						 new Object[] { "VALID_AMOUNT", getObjectLabel(vatDetail, context) },
+						 new Object[] { vatDetail },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the COUNTRY_MUST constraint of '<em>VAT Detail</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateVATDetail_COUNTRY_MUST(VATDetail vatDetail, DiagnosticChain diagnostics, Map<Object, Object> context) {
+
+		if (vatDetail.getCountry() == null) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "Country is missing",
+						 new Object[] { "COUNTRY_MUST", getObjectLabel(vatDetail, context) },
+						 new Object[] { vatDetail },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the PERCENTAGE_VALUES constraint of '<em>VAT Detail</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateVATDetail_PERCENTAGE_VALUES(VATDetail vatDetail, DiagnosticChain diagnostics, Map<Object, Object> context) {
+
+		if (vatDetail.getPercentage() < 0 || vatDetail.getPercentage() > 99) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "VAT percentage is wrong",
+						 new Object[] { "PERCENTAGE_VALUES", getObjectLabel(vatDetail, context) },
+						 new Object[] { vatDetail },
+						 context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -3923,7 +3873,7 @@ public class GtmValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateFareElement_FULFILLMENT_CONSTRAINT_MUST(fareElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateFareElement_PASSENGER_CONSTRAINT_MUST(fareElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateFareElement_LEGACY_ACCOUNTING_MISSING(fareElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFareElement_CEÒNVERSION_MISSING(fareElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFareElement_CONVERSION_MISSING(fareElement, diagnostics, context);
 		return result;
 	}
 
@@ -3931,21 +3881,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TYPE_MUST constraint of '<em>Fare Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareElement_TYPE_MUST(FareElement fareElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareElement.getType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Type of fare is missing",
 						 new Object[] { "TYPE_MUST", getObjectLabel(fareElement, context) },
 						 new Object[] { fareElement },
 						 context));
@@ -3959,21 +3906,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the PRICE_MUST constraint of '<em>Fare Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareElement_PRICE_MUST(FareElement fareElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareElement.getPrice() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Price is missing in fare",
 						 new Object[] { "PRICE_MUST", getObjectLabel(fareElement, context) },
 						 new Object[] { fareElement },
 						 context));
@@ -3987,21 +3931,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TEXT_MUST constraint of '<em>Fare Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareElement_TEXT_MUST(FareElement fareElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareElement.getText() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Text of fare is missing",
 						 new Object[] { "TEXT_MUST", getObjectLabel(fareElement, context) },
 						 new Object[] { fareElement },
 						 context));
@@ -4015,21 +3956,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the SERVICE_CLASS_MUST constraint of '<em>Fare Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareElement_SERVICE_CLASS_MUST(FareElement fareElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareElement.getServiceClass() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Service class of fare is missing",
 						 new Object[] { "SERVICE_CLASS_MUST", getObjectLabel(fareElement, context) },
 						 new Object[] { fareElement },
 						 context));
@@ -4043,21 +3981,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the SALES_AVAILABILITY_MUST constraint of '<em>Fare Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareElement_SALES_AVAILABILITY_MUST(FareElement fareElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareElement.getSalesAvailability() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Sales availability is missing in fare",
 						 new Object[] { "SALES_AVAILABILITY_MUST", getObjectLabel(fareElement, context) },
 						 new Object[] { fareElement },
 						 context));
@@ -4071,21 +4006,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TRAVEL_VALIDITY_MUST constraint of '<em>Fare Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareElement_TRAVEL_VALIDITY_MUST(FareElement fareElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (fareElement.getTravelValidity() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Travel validity is missing in fare",
 						 new Object[] { "TRAVEL_VALIDITY_MUST", getObjectLabel(fareElement, context) },
 						 new Object[] { fareElement },
 						 context));
@@ -4099,21 +4030,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the COMBINATION_CONSTRAINT_MUST constraint of '<em>Fare Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareElement_COMBINATION_CONSTRAINT_MUST(FareElement fareElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareElement.getCombinationConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "combination constraint is missimng in fare",
 						 new Object[] { "COMBINATION_CONSTRAINT_MUST", getObjectLabel(fareElement, context) },
 						 new Object[] { fareElement },
 						 context));
@@ -4127,21 +4055,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the FULFILLMENT_CONSTRAINT_MUST constraint of '<em>Fare Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareElement_FULFILLMENT_CONSTRAINT_MUST(FareElement fareElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareElement.getFulfillmentConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Fulfillment cnstraint is missing in fare",
 						 new Object[] { "FULFILLMENT_CONSTRAINT_MUST", getObjectLabel(fareElement, context) },
 						 new Object[] { fareElement },
 						 context));
@@ -4155,21 +4080,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the PASSENGER_CONSTRAINT_MUST constraint of '<em>Fare Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareElement_PASSENGER_CONSTRAINT_MUST(FareElement fareElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareElement.getPassengerConstraint() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Passenger constraint is missing in fare",
 						 new Object[] { "PASSENGER_CONSTRAINT_MUST", getObjectLabel(fareElement, context) },
 						 new Object[] { fareElement },
 						 context));
@@ -4183,21 +4105,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the LEGACY_ACCOUNTING_MISSING constraint of '<em>Fare Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareElement_LEGACY_ACCOUNTING_MISSING(FareElement fareElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareElement.getLegacyAccountingIdentifier() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Legacy accounting identifier is missing in fare",
 						 new Object[] { "LEGACY_ACCOUNTING_MISSING", getObjectLabel(fareElement, context) },
 						 new Object[] { fareElement },
 						 context));
@@ -4211,21 +4130,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CEÒNVERSION_MISSING constraint of '<em>Fare Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public boolean validateFareElement_CEÒNVERSION_MISSING(FareElement fareElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+	public boolean validateFareElement_CONVERSION_MISSING(FareElement fareElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+
+		if (fareElement.getLegacyConversion() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Legacy conversion rule missing in fare",
 						 new Object[] { "CEÒNVERSION_MISSING", getObjectLabel(fareElement, context) },
 						 new Object[] { fareElement },
 						 context));
@@ -4272,21 +4188,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_STATION constraint of '<em>Fare Station Set Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareStationSetDefinition_AT_LEAST_ONE_STATION(FareStationSetDefinition fareStationSetDefinition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareStationSetDefinition.getStations() == null || fareStationSetDefinition.getStations().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Fare reference station definition contains no stations",
 						 new Object[] { "AT_LEAST_ONE_STATION", getObjectLabel(fareStationSetDefinition, context) },
 						 new Object[] { fareStationSetDefinition },
 						 context));
@@ -4300,21 +4213,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the LEGACY_CODE_MISSING constraint of '<em>Fare Station Set Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT 
 	 */
 	public boolean validateFareStationSetDefinition_LEGACY_CODE_MISSING(FareStationSetDefinition fareStationSetDefinition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareStationSetDefinition.getLegacyCode() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Legacy station code of fare reference station set is missing",
 						 new Object[] { "LEGACY_CODE_MISSING", getObjectLabel(fareStationSetDefinition, context) },
 						 new Object[] { fareStationSetDefinition },
 						 context));
@@ -4328,21 +4238,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CARRIER_MUST constraint of '<em>Fare Station Set Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareStationSetDefinition_CARRIER_MUST(FareStationSetDefinition fareStationSetDefinition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareStationSetDefinition.getCarrier() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Carrier in fare reference station set is missing",
 						 new Object[] { "CARRIER_MUST", getObjectLabel(fareStationSetDefinition, context) },
 						 new Object[] { fareStationSetDefinition },
 						 context));
@@ -4356,21 +4263,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CODE_MUST constraint of '<em>Fare Station Set Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareStationSetDefinition_CODE_MUST(FareStationSetDefinition fareStationSetDefinition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (fareStationSetDefinition.getCode() == null || fareStationSetDefinition.getCode().length() < 1) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Code of fare reference station set is missing",
 						 new Object[] { "CODE_MUST", getObjectLabel(fareStationSetDefinition, context) },
 						 new Object[] { fareStationSetDefinition },
 						 context));
@@ -4384,21 +4287,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the NAME_FORMAT constraint of '<em>Fare Station Set Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareStationSetDefinition_NAME_FORMAT(FareStationSetDefinition fareStationSetDefinition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (!StringFormatValidator.isStationASCII(fareStationSetDefinition.getName())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Name ACII of fare reference station set is missing or wrong",
 						 new Object[] { "NAME_FORMAT", getObjectLabel(fareStationSetDefinition, context) },
 						 new Object[] { fareStationSetDefinition },
 						 context));
@@ -4412,21 +4311,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the NAME_UTF8_FORMAT constraint of '<em>Fare Station Set Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareStationSetDefinition_NAME_UTF8_FORMAT(FareStationSetDefinition fareStationSetDefinition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (!StringFormatValidator.isStationASCII(fareStationSetDefinition.getNameUtf8())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Name UTF8 of fare reference station set is missing or wrong",
 						 new Object[] { "NAME_UTF8_FORMAT", getObjectLabel(fareStationSetDefinition, context) },
 						 new Object[] { fareStationSetDefinition },
 						 context));
@@ -4460,27 +4355,25 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the SERIES_ID_MUST constraint of '<em>Legacy Accounting Identifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLegacyAccountingIdentifier_SERIES_ID_MUST(LegacyAccountingIdentifier legacyAccountingIdentifier, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (legacyAccountingIdentifier.getSeriesId() < 1 || legacyAccountingIdentifier.getSeriesId() > 99999 ) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Series id missing or wrong in legacy accounting identifier",
 						 new Object[] { "SERIES_ID_MUST", getObjectLabel(legacyAccountingIdentifier, context) },
 						 new Object[] { legacyAccountingIdentifier },
 						 context));
 			}
 			return false;
 		}
+		
 		return true;
 	}
 
@@ -4488,22 +4381,19 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TARIFF_ID_MUST constraint of '<em>Legacy Accounting Identifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLegacyAccountingIdentifier_TARIFF_ID_MUST(LegacyAccountingIdentifier legacyAccountingIdentifier, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (legacyAccountingIdentifier.getTariffId() < 1 || legacyAccountingIdentifier.getTariffId() > 9999 ) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "TARIFF_ID_MUST", getObjectLabel(legacyAccountingIdentifier, context) },
+						 "Tariff id missing or wrong in legacy accounting identifier",
+						 new Object[] { "SERIES_ID_MUST", getObjectLabel(legacyAccountingIdentifier, context) },
 						 new Object[] { legacyAccountingIdentifier },
 						 context));
 			}
@@ -4544,21 +4434,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE constraint of '<em>Sales Availability Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateSalesAvailabilityConstraint_AT_LEAST_ONE(SalesAvailabilityConstraint salesAvailabilityConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (salesAvailabilityConstraint.getRestrictions() == null || salesAvailabilityConstraint.getRestrictions().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Sales availabiloity constraint has no restriction",
 						 new Object[] { "AT_LEAST_ONE", getObjectLabel(salesAvailabilityConstraint, context) },
 						 new Object[] { salesAvailabilityConstraint },
 						 context));
@@ -4591,27 +4478,43 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the START_END_DATE_ORDER constraint of '<em>Sales Restriction</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateSalesRestriction_START_END_DATE_ORDER(SalesRestriction salesRestriction, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (salesRestriction.getStartOfSale() == null || salesRestriction.getEndOfSale() == null ) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Start of End date is missing",
 						 new Object[] { "START_END_DATE_ORDER", getObjectLabel(salesRestriction, context) },
 						 new Object[] { salesRestriction },
 						 context));
 			}
 			return false;
 		}
+		
+		if (salesRestriction.getStartOfSale().getUnit() == salesRestriction.getEndOfSale().getUnit() &&
+			salesRestriction.getStartOfSale().getReference() == salesRestriction.getEndOfSale().getReference() &&	
+			salesRestriction.getStartOfSale().getValue() > salesRestriction.getEndOfSale().getValue()) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "Start of sale after end of sale",
+						 new Object[] { "START_END_DATE_ORDER", getObjectLabel(salesRestriction, context) },
+						 new Object[] { salesRestriction },
+						 context));
+			}
+			return false;
+		}
+		
+		
 		return true;
 	}
 
@@ -4678,21 +4581,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE constraint of '<em>Combination Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateCombinationConstraint_AT_LEAST_ONE(CombinationConstraint combinationConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (combinationConstraint.getCombinationModels() == null || combinationConstraint.getCombinationModels().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Combination constraint does not include combination models",
 						 new Object[] { "AT_LEAST_ONE", getObjectLabel(combinationConstraint, context) },
 						 new Object[] { combinationConstraint },
 						 context));
@@ -4726,27 +4626,42 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the WARNING_TOO_LONG constraint of '<em>Validity Range</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateValidityRange_WARNING_TOO_LONG(ValidityRange validityRange, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		
+		if (validityRange.getUnit() == null) {
+
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "WARNING_TOO_LONG", getObjectLabel(validityRange, context) },
+						 "Time unit is missing",
+						 new Object[] { "WARNING_TOO_SHORT", getObjectLabel(validityRange, context) },
 						 new Object[] { validityRange },
 						 context));
 			}
 			return false;
+	}
+
+	
+	if ((validityRange.getValue() < 1) ) {
+
+		if (diagnostics != null) {
+			diagnostics.add
+				(createDiagnostic
+					(Diagnostic.ERROR,
+					 DIAGNOSTIC_SOURCE,
+					 0,
+					 "validity range too short",
+					 new Object[] { "WARNING_TOO_SHORT", getObjectLabel(validityRange, context) },
+					 new Object[] { validityRange },
+					 context));
 		}
+		return false;
+	}
 		return true;
 	}
 
@@ -4754,27 +4669,45 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the WARNING_TOO_SHORT constraint of '<em>Validity Range</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateValidityRange_WARNING_TOO_SHORT(ValidityRange validityRange, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		
+		if (validityRange.getUnit() == null) {
+
+				if (diagnostics != null) {
+					diagnostics.add
+						(createDiagnostic
+							(Diagnostic.ERROR,
+							 DIAGNOSTIC_SOURCE,
+							 0,
+							 "Time unit is missing",
+							 new Object[] { "WARNING_TOO_SHORT", getObjectLabel(validityRange, context) },
+							 new Object[] { validityRange },
+							 context));
+				}
+				return false;
+		}
+
+		
+		if ((validityRange.getUnit() == TimeUnit.DAY && validityRange.getValue() > 700) || 
+			(validityRange.getUnit() == TimeUnit.HOUR && validityRange.getValue() > 16800) ||
+			(validityRange.getUnit() == TimeUnit.MINUTE && validityRange.getValue() > 1008000)) {
+
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "validity range too long",
 						 new Object[] { "WARNING_TOO_SHORT", getObjectLabel(validityRange, context) },
 						 new Object[] { validityRange },
 						 context));
 			}
 			return false;
 		}
+		
 		return true;
 	}
 
@@ -4801,21 +4734,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the FROM_TO_ORDER constraint of '<em>Time Range</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTimeRange_FROM_TO_ORDER(TimeRange timeRange, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (timeRange.getFrom() >= timeRange.getUntil()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Time range is empty",
 						 new Object[] { "FROM_TO_ORDER", getObjectLabel(timeRange, context) },
 						 new Object[] { timeRange },
 						 context));
@@ -4867,21 +4797,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the EARLIEST_LAST_RETURN_ORDER constraint of '<em>Return Validity Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateReturnValidityConstraint_EARLIEST_LAST_RETURN_ORDER(ReturnValidityConstraint returnValidityConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (returnValidityConstraint.getEarliestReturn() < 0 || returnValidityConstraint.getEarliestReturn() > returnValidityConstraint.getLatestReturn() || returnValidityConstraint.getLatestReturn() < 0) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Earliest and latest return values missing or wrong",
 						 new Object[] { "EARLIEST_LAST_RETURN_ORDER", getObjectLabel(returnValidityConstraint, context) },
 						 new Object[] { returnValidityConstraint },
 						 context));
@@ -4915,21 +4842,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the MODEL_MUST constraint of '<em>Fare Combination Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareCombinationModel_MODEL_MUST(FareCombinationModel fareCombinationModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareCombinationModel.getModel() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Combination model is missing",
 						 new Object[] { "MODEL_MUST", getObjectLabel(fareCombinationModel, context) },
 						 new Object[] { fareCombinationModel },
 						 context));
@@ -4943,21 +4867,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the REFERENCE_CLUSTER_MUST constraint of '<em>Fare Combination Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFareCombinationModel_REFERENCE_CLUSTER_MUST(FareCombinationModel fareCombinationModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fareCombinationModel.getModel() == CombinationModel.CLUSTERING && fareCombinationModel.getReferenceCluster() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Reference cluster is missing",
 						 new Object[] { "REFERENCE_CLUSTER_MUST", getObjectLabel(fareCombinationModel, context) },
 						 new Object[] { fareCombinationModel },
 						 context));
@@ -4990,21 +4911,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE constraint of '<em>Required Barcodes</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateRequiredBarcodes_AT_LEAST_ONE(RequiredBarcodes requiredBarcodes, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (requiredBarcodes.getRequiredBarcodes() == null || requiredBarcodes.getRequiredBarcodes().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Required bar code liust is empty",
 						 new Object[] { "AT_LEAST_ONE", getObjectLabel(requiredBarcodes, context) },
 						 new Object[] { requiredBarcodes },
 						 context));
@@ -5037,21 +4955,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE constraint of '<em>Accepted Barcodes</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateAcceptedBarcodes_AT_LEAST_ONE(AcceptedBarcodes acceptedBarcodes, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (acceptedBarcodes.getAcceptedBarcodes() == null || acceptedBarcodes.getAcceptedBarcodes().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "List of accepted bar codes is empty",
 						 new Object[] { "AT_LEAST_ONE", getObjectLabel(acceptedBarcodes, context) },
 						 new Object[] { acceptedBarcodes },
 						 context));
@@ -5084,21 +4999,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_OF_VIA_ZONE_LINE_POLYGON constraint of '<em>Regional Validity</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateRegionalValidity_AT_LEAST_ONE_OF_VIA_ZONE_LINE_POLYGON(RegionalValidity regionalValidity, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (regionalValidity.getLine() == null && regionalValidity.getPolygone() == null && regionalValidity.getViaStation() == null && regionalValidity.getZone() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Regional validity is empty",
 						 new Object[] { "AT_LEAST_ONE_OF_VIA_ZONE_LINE_POLYGON", getObjectLabel(regionalValidity, context) },
 						 new Object[] { regionalValidity },
 						 context));
@@ -5132,21 +5044,17 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_OBJECT_SET constraint of '<em>Via Station</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateViaStation_AT_LEAST_ONE_OBJECT_SET(ViaStation viaStation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (viaStation.getAlternativeRoutes() == null && viaStation.getRoute() == null && viaStation.getStation() == null && viaStation.getFareStationSet() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Via ststion is empty",
 						 new Object[] { "AT_LEAST_ONE_OBJECT_SET", getObjectLabel(viaStation, context) },
 						 new Object[] { viaStation },
 						 context));
@@ -5160,21 +5068,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the IF_ALTERNATIVE_ROUTES_AT_LEAST_TWO constraint of '<em>Via Station</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateViaStation_IF_ALTERNATIVE_ROUTES_AT_LEAST_TWO(ViaStation viaStation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (viaStation.getAlternativeRoutes() != null && viaStation.getAlternativeRoutes().size() < 2) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Alternative routes must include at leas two alternatives",
 						 new Object[] { "IF_ALTERNATIVE_ROUTES_AT_LEAST_TWO", getObjectLabel(viaStation, context) },
 						 new Object[] { viaStation },
 						 context));
@@ -5207,21 +5112,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_VIA constraint of '<em>Alternative Route</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateAlternativeRoute_AT_LEAST_ONE_VIA(AlternativeRoute alternativeRoute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (alternativeRoute.getStations() == null || alternativeRoute.getStations().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Alternative route is empty",
 						 new Object[] { "AT_LEAST_ONE_VIA", getObjectLabel(alternativeRoute, context) },
 						 new Object[] { alternativeRoute },
 						 context));
@@ -5254,21 +5156,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_VIA constraint of '<em>Route</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateRoute_AT_LEAST_ONE_VIA(Route route, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if ( route.getStations() == null ||  route.getStations().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Route is empty",
 						 new Object[] { "AT_LEAST_ONE_VIA", getObjectLabel(route, context) },
 						 new Object[] { route },
 						 context));
@@ -5302,21 +5201,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CARRIER_MUST constraint of '<em>Zone</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateZone_CARRIER_MUST(Zone zone, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		
+		if (zone.getCarrier() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Carrier is missing in zone",
 						 new Object[] { "CARRIER_MUST", getObjectLabel(zone, context) },
 						 new Object[] { zone },
 						 context));
@@ -5330,21 +5226,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the ONE_OF_ZONE_ID_NUTS_CITY constraint of '<em>Zone</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateZone_ONE_OF_ZONE_ID_NUTS_CITY(Zone zone, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (zone.getNutsCode() == null && zone.getZoneId() == null && zone.getCity() == 0) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Zonre is empty, must include NUTS code, city or zone id",
 						 new Object[] { "ONE_OF_ZONE_ID_NUTS_CITY", getObjectLabel(zone, context) },
 						 new Object[] { zone },
 						 context));
@@ -5386,21 +5279,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CARRIER_MUST constraint of '<em>Line</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateLine_CARRIER_MUST(Line line, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (line.getCarrier() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Carrier is missing in line",
 						 new Object[] { "CARRIER_MUST", getObjectLabel(line, context) },
 						 new Object[] { line },
 						 context));
@@ -5433,21 +5323,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_THREE_EDGES constraint of '<em>Polygone</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validatePolygone_AT_LEAST_THREE_EDGES(Polygone polygone, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (polygone.getEdge() == null || polygone.getEdge().size() < 3) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Polygon has not enough edges",
 						 new Object[] { "AT_LEAST_THREE_EDGES", getObjectLabel(polygone, context) },
 						 new Object[] { polygone },
 						 context));
@@ -5489,21 +5376,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the COORDINATE_LIMITS constraint of '<em>Edge</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateEdge_COORDINATE_LIMITS(Edge edge, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (edge.getLongitude() > 160 || edge.getLongitude() < -160 || edge.getLatitude() > 160 || edge.getLatitude() < -160) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Wrong geo-coordinates in edge",
 						 new Object[] { "COORDINATE_LIMITS", getObjectLabel(edge, context) },
 						 new Object[] { edge },
 						 context));
@@ -5547,21 +5431,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CARRIER_MUST_BE_SET constraint of '<em>Zone Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateZoneDefinition_CARRIER_MUST_BE_SET(ZoneDefinition zoneDefinition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (zoneDefinition.getProvider() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Provider is missing in zone definition",
 						 new Object[] { "CARRIER_MUST_BE_SET", getObjectLabel(zoneDefinition, context) },
 						 new Object[] { zoneDefinition },
 						 context));
@@ -5575,21 +5456,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_OF_SET_NUTS_POLYGON constraint of '<em>Zone Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateZoneDefinition_AT_LEAST_ONE_OF_SET_NUTS_POLYGON(ZoneDefinition zoneDefinition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (zoneDefinition.getNutsCodes() == null && zoneDefinition.getPolygone() == null && zoneDefinition.getStationSet() == null && (zoneDefinition.getZoneId() == null || zoneDefinition.getZoneId().length() < 0)){
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Zone definition is empty",
 						 new Object[] { "AT_LEAST_ONE_OF_SET_NUTS_POLYGON", getObjectLabel(zoneDefinition, context) },
 						 new Object[] { zoneDefinition },
 						 context));
@@ -5603,21 +5481,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the IF_STATION_SET_AT_LEAST_TWO_STATIONS constraint of '<em>Zone Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateZoneDefinition_IF_STATION_SET_AT_LEAST_TWO_STATIONS(ZoneDefinition zoneDefinition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (zoneDefinition.getStationSet() != null && zoneDefinition.getStationSet().getStations().size() < 3) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Station set of zone definition contains too few stations",
 						 new Object[] { "IF_STATION_SET_AT_LEAST_TWO_STATIONS", getObjectLabel(zoneDefinition, context) },
 						 new Object[] { zoneDefinition },
 						 context));
@@ -5650,21 +5525,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TRAVELLER_TYPE_MUST constraint of '<em>Passenger Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validatePassengerConstraint_TRAVELLER_TYPE_MUST(PassengerConstraint passengerConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (passengerConstraint.getTravelerType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Traveller type is missing",
 						 new Object[] { "TRAVELLER_TYPE_MUST", getObjectLabel(passengerConstraint, context) },
 						 new Object[] { passengerConstraint },
 						 context));
@@ -5698,21 +5570,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the NUMBER_AT_LEAST_ONE constraint of '<em>Included Free Passenger Limit</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateIncludedFreePassengerLimit_NUMBER_AT_LEAST_ONE(IncludedFreePassengerLimit includedFreePassengerLimit, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (includedFreePassengerLimit.getNumber() <= 0) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Number of free pasengers is too small",
 						 new Object[] { "NUMBER_AT_LEAST_ONE", getObjectLabel(includedFreePassengerLimit, context) },
 						 new Object[] { includedFreePassengerLimit },
 						 context));
@@ -5726,21 +5595,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TRAVELLER_TYPE_MUST constraint of '<em>Included Free Passenger Limit</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateIncludedFreePassengerLimit_TRAVELLER_TYPE_MUST(IncludedFreePassengerLimit includedFreePassengerLimit, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (includedFreePassengerLimit.getPassengerType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Passenger type is missing",
 						 new Object[] { "TRAVELLER_TYPE_MUST", getObjectLabel(includedFreePassengerLimit, context) },
 						 new Object[] { includedFreePassengerLimit },
 						 context));
@@ -5774,21 +5640,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the NUMBER_AT_LEAST_ONE constraint of '<em>Passenger Combination Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validatePassengerCombinationConstraint_NUMBER_AT_LEAST_ONE(PassengerCombinationConstraint passengerCombinationConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (passengerCombinationConstraint.getMaxNumber() < 1) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Maximum number must at least be one in passenger comination constraint",
 						 new Object[] { "NUMBER_AT_LEAST_ONE", getObjectLabel(passengerCombinationConstraint, context) },
 						 new Object[] { passengerCombinationConstraint },
 						 context));
@@ -5802,21 +5665,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TRAVELLER_TYPE_MUST constraint of '<em>Passenger Combination Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validatePassengerCombinationConstraint_TRAVELLER_TYPE_MUST(PassengerCombinationConstraint passengerCombinationConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (passengerCombinationConstraint.getPassengerType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Traveller type is missing",
 						 new Object[] { "TRAVELLER_TYPE_MUST", getObjectLabel(passengerCombinationConstraint, context) },
 						 new Object[] { passengerCombinationConstraint },
 						 context));
@@ -5850,27 +5710,59 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the WARNING_TOO_LONG constraint of '<em>Relative Time</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateRelativeTime_WARNING_TOO_LONG(RelativeTime relativeTime, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (relativeTime.getUnit() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Time unit is missing",
 						 new Object[] { "WARNING_TOO_LONG", getObjectLabel(relativeTime, context) },
 						 new Object[] { relativeTime },
 						 context));
 			}
 			return false;
 		}
+		
+		if (relativeTime.getValue() < 1) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "Time value is too small",
+						 new Object[] { "WARNING_TOO_LONG", getObjectLabel(relativeTime, context) },
+						 new Object[] { relativeTime },
+						 context));
+			}
+			return false;
+		}
+		
+		
+		if ((relativeTime.getUnit() == TimeUnit.DAY && relativeTime.getValue() > 700) || 
+			(relativeTime.getUnit() == TimeUnit.HOUR && relativeTime.getValue() > 16800) ||
+			(relativeTime.getUnit() == TimeUnit.MINUTE && relativeTime.getValue() > 1008000)) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.WARNING,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "Time is too long",
+						 new Object[] { "WARNING_TOO_LONG", getObjectLabel(relativeTime, context) },
+						 new Object[] { relativeTime },
+						 context));
+			}
+			return false;
+		}
+
+		
 		return true;
 	}
 
@@ -5878,27 +5770,25 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the WARNING_TOO_SHORT constraint of '<em>Relative Time</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateRelativeTime_WARNING_TOO_SHORT(RelativeTime relativeTime, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		
+		if (relativeTime.getValue() < 1) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "WARNING_TOO_SHORT", getObjectLabel(relativeTime, context) },
+						 "Time value is too small",
+						 new Object[] { "WARNING_TOO_LONG", getObjectLabel(relativeTime, context) },
 						 new Object[] { relativeTime },
 						 context));
 			}
 			return false;
 		}
+		
 		return true;
 	}
 
@@ -5925,21 +5815,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the FEE_MUST constraint of '<em>After Sales Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateAfterSalesCondition_FEE_MUST(AfterSalesCondition afterSalesCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (afterSalesCondition.getFee() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "After sales condition without fee",
 						 new Object[] { "FEE_MUST", getObjectLabel(afterSalesCondition, context) },
 						 new Object[] { afterSalesCondition },
 						 context));
@@ -5992,21 +5879,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE constraint of '<em>After Sales Rule</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateAfterSalesRule_AT_LEAST_ONE(AfterSalesRule afterSalesRule, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if ( afterSalesRule.getConditions() == null ||  afterSalesRule.getConditions().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "After sales rule is empty",
 						 new Object[] { "AT_LEAST_ONE", getObjectLabel(afterSalesRule, context) },
 						 new Object[] { afterSalesRule },
 						 context));
@@ -6039,21 +5923,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_REQUIRED_ITEM constraint of '<em>Personal Data Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validatePersonalDataConstraint_AT_LEAST_ONE_REQUIRED_ITEM(PersonalDataConstraint personalDataConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (personalDataConstraint.getRequiredPersonalData() == null || personalDataConstraint.getRequiredPersonalData().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Personal data requirements are present but empty",
 						 new Object[] { "AT_LEAST_ONE_REQUIRED_ITEM", getObjectLabel(personalDataConstraint, context) },
 						 new Object[] { personalDataConstraint },
 						 context));
@@ -6087,21 +5968,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_ITEM constraint of '<em>Required Personal Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateRequiredPersonalData_AT_LEAST_ONE_ITEM(RequiredPersonalData requiredPersonalData, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (requiredPersonalData.getDataItem() == null ) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "No data item given in required personal data",
 						 new Object[] { "AT_LEAST_ONE_ITEM", getObjectLabel(requiredPersonalData, context) },
 						 new Object[] { requiredPersonalData },
 						 context));
@@ -6115,21 +5993,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the ADD_LEAST_ONE_TRANSFER constraint of '<em>Required Personal Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateRequiredPersonalData_ADD_LEAST_ONE_TRANSFER(RequiredPersonalData requiredPersonalData, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (requiredPersonalData.getTransfer() == null || requiredPersonalData.getTransfer().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Transfer is missin g in required personal data",
 						 new Object[] { "ADD_LEAST_ONE_TRANSFER", getObjectLabel(requiredPersonalData, context) },
 						 new Object[] { requiredPersonalData },
 						 context));
@@ -6162,27 +6037,39 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the FROM_TO_COUNTRY_MUST constraint of '<em>Cross Border Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateCrossBorderCondition_FROM_TO_COUNTRY_MUST(CrossBorderCondition crossBorderCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		if (crossBorderCondition.getFromCountry() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "From country missing in border crossing",
 						 new Object[] { "FROM_TO_COUNTRY_MUST", getObjectLabel(crossBorderCondition, context) },
 						 new Object[] { crossBorderCondition },
 						 context));
 			}
 			return false;
 		}
+		
+		if (crossBorderCondition.getToCountry() == null) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "To country missing in border crossing",
+						 new Object[] { "FROM_TO_COUNTRY_MUST", getObjectLabel(crossBorderCondition, context) },
+						 new Object[] { crossBorderCondition },
+						 context));
+			}
+			return false;
+		}
+		
 		return true;
 	}
 
@@ -6210,21 +6097,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TIME_LIMIT_TOO_SHORT constraint of '<em>Allowed Personal Data Changes</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateAllowedPersonalDataChanges_TIME_LIMIT_TOO_SHORT(AllowedPersonalDataChanges allowedPersonalDataChanges, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (allowedPersonalDataChanges.getTimeLimit() < 10) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Time limit for changes on personal data too short",
 						 new Object[] { "TIME_LIMIT_TOO_SHORT", getObjectLabel(allowedPersonalDataChanges, context) },
 						 new Object[] { allowedPersonalDataChanges },
 						 context));
@@ -6238,21 +6122,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the TIME_LIMIT_TOO_LONG constraint of '<em>Allowed Personal Data Changes</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateAllowedPersonalDataChanges_TIME_LIMIT_TOO_LONG(AllowedPersonalDataChanges allowedPersonalDataChanges, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (allowedPersonalDataChanges.getTimeLimit() > 1008000) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
-						(Diagnostic.ERROR,
+						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Time limit for personal data changes too long",
 						 new Object[] { "TIME_LIMIT_TOO_LONG", getObjectLabel(allowedPersonalDataChanges, context) },
 						 new Object[] { allowedPersonalDataChanges },
 						 context));
@@ -6285,21 +6166,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE constraint of '<em>Reduction Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateReductionConstraint_AT_LEAST_ONE(ReductionConstraint reductionConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (reductionConstraint.getRequiredReductionCards() == null || reductionConstraint.getRequiredReductionCards().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Reduction constraint does not contain reduction cards",
 						 new Object[] { "AT_LEAST_ONE", getObjectLabel(reductionConstraint, context) },
 						 new Object[] { reductionConstraint },
 						 context));
@@ -6333,21 +6211,33 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the NAME_FORMAT constraint of '<em>Required Reduction Card</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateRequiredReductionCard_NAME_FORMAT(RequiredReductionCard requiredReductionCard, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (requiredReductionCard.getName() == null || requiredReductionCard.getName().length() < 1) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Name of reduction card is missing",
+						 new Object[] { "NAME_FORMAT", getObjectLabel(requiredReductionCard, context) },
+						 new Object[] { requiredReductionCard },
+						 context));
+			}
+			return false;
+		}
+		
+		if (StringFormatValidator.isASCII(requiredReductionCard.getName())) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "Name of reduction card contains invalid characters",
 						 new Object[] { "NAME_FORMAT", getObjectLabel(requiredReductionCard, context) },
 						 new Object[] { requiredReductionCard },
 						 context));
@@ -6361,21 +6251,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CARD_MUST constraint of '<em>Required Reduction Card</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateRequiredReductionCard_CARD_MUST(RequiredReductionCard requiredReductionCard, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (requiredReductionCard.getCard() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Reduction card is missing",
 						 new Object[] { "CARD_MUST", getObjectLabel(requiredReductionCard, context) },
 						 new Object[] { requiredReductionCard },
 						 context));
@@ -6408,21 +6295,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_ACCEPTED_TYPE constraint of '<em>Fulfillment Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateFulfillmentConstraint_AT_LEAST_ONE_ACCEPTED_TYPE(FulfillmentConstraint fulfillmentConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (fulfillmentConstraint.getAcceptedFulfilmentTypes() == null || fulfillmentConstraint.getAcceptedFulfilmentTypes().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "No accepted fulfillment types",
 						 new Object[] { "AT_LEAST_ONE_ACCEPTED_TYPE", getObjectLabel(fulfillmentConstraint, context) },
 						 new Object[] { fulfillmentConstraint },
 						 context));
@@ -6456,21 +6340,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the CARRIER_MUST constraint of '<em>Train Resource Location</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTrainResourceLocation_CARRIER_MUST(TrainResourceLocation trainResourceLocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (trainResourceLocation.getCarrier() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Carrier is missing",
 						 new Object[] { "CARRIER_MUST", getObjectLabel(trainResourceLocation, context) },
 						 new Object[] { trainResourceLocation },
 						 context));
@@ -6484,21 +6365,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_ONLINE_RESOURCE constraint of '<em>Train Resource Location</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateTrainResourceLocation_AT_LEAST_ONE_ONLINE_RESOURCE(TrainResourceLocation trainResourceLocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (trainResourceLocation.getOnlineResources() == null || trainResourceLocation.getOnlineResources().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Online resources are missing",
 						 new Object[] { "AT_LEAST_ONE_ONLINE_RESOURCE", getObjectLabel(trainResourceLocation, context) },
 						 new Object[] { trainResourceLocation },
 						 context));
@@ -6559,21 +6437,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_ONLINE_RESOURCE constraint of '<em>Station Resource Location</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateStationResourceLocation_AT_LEAST_ONE_ONLINE_RESOURCE(StationResourceLocation stationResourceLocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (stationResourceLocation.getOnlineResources() == null || stationResourceLocation.getOnlineResources().isEmpty()) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Online resources are missing",
 						 new Object[] { "AT_LEAST_ONE_ONLINE_RESOURCE", getObjectLabel(stationResourceLocation, context) },
 						 new Object[] { stationResourceLocation },
 						 context));
@@ -6587,21 +6462,19 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the AT_LEAST_ONE_STATION_OR_CONNECTION_POINT constraint of '<em>Station Resource Location</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateStationResourceLocation_AT_LEAST_ONE_STATION_OR_CONNECTION_POINT(StationResourceLocation stationResourceLocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if ((stationResourceLocation.getStations() == null || stationResourceLocation.getStations().isEmpty()) &&
+			(stationResourceLocation.getConnectionPoints() == null || stationResourceLocation.getConnectionPoints().isEmpty()) ) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Stations and connection points are missing",
 						 new Object[] { "AT_LEAST_ONE_STATION_OR_CONNECTION_POINT", getObjectLabel(stationResourceLocation, context) },
 						 new Object[] { stationResourceLocation },
 						 context));
@@ -6636,21 +6509,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the REQUEST_TYPE_MUST constraint of '<em>Online Resource</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateOnlineResource_REQUEST_TYPE_MUST(OnlineResource onlineResource, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (onlineResource.getOfferRequestType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Offer request type is missing",
 						 new Object[] { "REQUEST_TYPE_MUST", getObjectLabel(onlineResource, context) },
 						 new Object[] { onlineResource },
 						 context));
@@ -6664,21 +6534,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the INTERFACE_TYPE_MUST constraint of '<em>Online Resource</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateOnlineResource_INTERFACE_TYPE_MUST(OnlineResource onlineResource, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (onlineResource.getInterfaceType() == null) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 "Interface type is missing",
 						 new Object[] { "INTERFACE_TYPE_MUST", getObjectLabel(onlineResource, context) },
 						 new Object[] { onlineResource },
 						 context));
@@ -6692,21 +6559,18 @@ public class GtmValidator extends EObjectValidator {
 	 * Validates the SYSTEM_MUST constraint of '<em>Online Resource</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateOnlineResource_SYSTEM_MUST(OnlineResource onlineResource, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		if (onlineResource.getSystem() == null || onlineResource.getSystem().length()<1) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
+						 0, 
+						 "System is missing",
 						 new Object[] { "SYSTEM_MUST", getObjectLabel(onlineResource, context) },
 						 new Object[] { onlineResource },
 						 context));
@@ -7028,6 +6892,15 @@ public class GtmValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateClassId(ClassId classId, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateGenericReductionCards(GenericReductionCards genericReductionCards, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

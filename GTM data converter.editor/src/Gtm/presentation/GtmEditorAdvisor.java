@@ -160,21 +160,22 @@ public final class GtmEditorAdvisor extends WorkbenchAdvisor {
 
 			IFolderLayout right = layout.createFolder("right", IPageLayout.RIGHT, (float)0.66, layout.getEditorArea());
 			right.addView(IPageLayout.ID_OUTLINE);
-
+			right.addView(IPageLayout.ID_PROP_SHEET);
+			
+			
 			IFolderLayout bottomRight = layout.createFolder("bottonRight", IPageLayout.BOTTOM, (float)0.60, "right");
 			bottomRight.addView(IPageLayout.ID_PROP_SHEET);
 			
 			bottomRight.addView(GtmProblemView.ID);
 			layout.addShowViewShortcut(GtmProblemView.ID);
 			
-			//bottomRight.addView(IPageLayout.ID_PROBLEM_VIEW);
-			
+
 			//addons
 			ConsoleUtil.showConsole("Infos");
 			
 			ConsoleUtil.showConsole("Errors");
 			
-			ConsoleUtil.showConsole("Data Issues");
+			ConsoleUtil.showConsole("Warnings");
 			
 		}
 
@@ -367,7 +368,8 @@ public final class GtmEditorAdvisor extends WorkbenchAdvisor {
 	
 			addToMenuAndRegister(menu, ActionFactory.OPEN_NEW_WINDOW.create(window));
 			addToMenuAndRegister(menu, ActionFactory.RESET_PERSPECTIVE.create(window));
-			menu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+			addToMenuAndRegister(menu, ActionFactory.PREFERENCES.create(window));
+
 			menu.add(ContributionItemFactory.OPEN_WINDOWS.create(window));
 			
 	
@@ -436,7 +438,9 @@ public final class GtmEditorAdvisor extends WorkbenchAdvisor {
 			// Tips and tricks page would go here
 			menu.add(new GroupMarker(IWorkbenchActionConstants.HELP_START));
 			menu.add(new GroupMarker(IWorkbenchActionConstants.HELP_END));
+			addToMenuAndRegister(menu, ActionFactory.ABOUT.create(window));			
 			menu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+			
 			return menu;
 		}
 		

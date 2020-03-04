@@ -279,6 +279,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return createDataSourceFromString(eDataType, initialValue);
 			case GtmPackage.CLASS_ID:
 				return createClassIdFromString(eDataType, initialValue);
+			case GtmPackage.GENERIC_REDUCTION_CARDS:
+				return createGenericReductionCardsFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -368,6 +370,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return convertDataSourceToString(eDataType, instanceValue);
 			case GtmPackage.CLASS_ID:
 				return convertClassIdToString(eDataType, instanceValue);
+			case GtmPackage.GENERIC_REDUCTION_CARDS:
+				return convertGenericReductionCardsToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -2460,6 +2464,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * @generated
 	 */
 	public String convertClassIdToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GenericReductionCards createGenericReductionCardsFromString(EDataType eDataType, String initialValue) {
+		GenericReductionCards result = GenericReductionCards.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertGenericReductionCardsToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

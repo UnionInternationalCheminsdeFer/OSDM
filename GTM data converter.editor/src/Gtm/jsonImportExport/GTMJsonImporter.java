@@ -1053,6 +1053,7 @@ public class GTMJsonImporter {
 		f.setServiceLevel(findServiceLevel(jf.getServiceLevelRef()));
 		f.setText(findText(jf.getNameRef()));
 		f.setTravelValidity(findTravelValidity(jf.getTravelValidityConstraintRef()));
+		f.setLegacyConversion(LegacyConversionType.getByName(jf.getLegacyConversion()));
 		return f;
 	}
 

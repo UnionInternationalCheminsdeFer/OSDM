@@ -957,6 +957,7 @@ public class ConverterFromLegacy {
 		fare.setText(fareTemplate.getText());
 		fare.setTravelValidity(fareTemplate.getTravelValidity());
 		fare.setType(fareTemplate.getType());
+		fare.setLegacyConversion(fareTemplate.getLegacyConversion());
 		
 		return fare;
 		

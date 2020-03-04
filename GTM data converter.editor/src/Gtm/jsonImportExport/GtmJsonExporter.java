@@ -1576,7 +1576,9 @@ public class GtmJsonExporter {
 			fareJ.setServiceLevelRef(fare.getServiceLevel().getId());
 		}
 		
-		if (fare.getLegacyConversion() != null) {
+		if (fare.getLegacyConversion() == null) {
+			fareJ.setLegacyConversion(fare.getLegacyConversion().getName());
+		} else {
 			fareJ.setLegacyConversion("NO");
 		}
 		

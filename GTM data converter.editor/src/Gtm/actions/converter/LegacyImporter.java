@@ -87,7 +87,7 @@ public class LegacyImporter {
 		
 		Path namePath = TCVfilePath.getFileName();
 		String name = namePath.toString();
-		String provider = name.substring(3,8);
+		String provider = name.substring(3,7);
 		
 	
 		

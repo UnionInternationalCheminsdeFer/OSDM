@@ -9,6 +9,7 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.jface.preference.IPreferenceStore;
 
 /**
  * This is the central singleton for the Gtm editor plugin.
@@ -50,6 +51,9 @@ public final class GtmEditorPlugin extends EMFPlugin {
 			(new ResourceLocator [] {
 			});
 	}
+	
+	
+	
 
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
@@ -62,6 +66,7 @@ public final class GtmEditorPlugin extends EMFPlugin {
 	public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}
+
 	
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
@@ -72,6 +77,17 @@ public final class GtmEditorPlugin extends EMFPlugin {
 	 */
 	public static Implementation getPlugin() {
 		return plugin;
+	}
+	
+	/**
+	 * Returns the singleton instance of the Preference store.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the singleton instance.
+	 * @generated NOT
+	 */
+	public static IPreferenceStore getPreferenceStore() {
+		return plugin.getPreferenceStore();
 	}
 	
 	/**
