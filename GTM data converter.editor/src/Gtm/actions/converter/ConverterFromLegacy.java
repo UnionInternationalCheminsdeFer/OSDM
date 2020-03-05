@@ -1164,6 +1164,7 @@ public class ConverterFromLegacy {
 			constraint.setDataSource(DataSource.CONVERTED);
 			SalesRestriction rest = GtmFactory.eINSTANCE.createSalesRestriction();
 			Calendar cal = GtmFactory.eINSTANCE.createCalendar();
+			cal.setDataSource(DataSource.CONVERTED);
 			cal.setFromDate(r.startDate);
 			cal.setUntilDate(r.getEndDate());
 			TimeZone tz = TimeZone.getTimeZone(tool.getConversionFromLegacy().getLegacy108().getTimeZone().getName());
