@@ -1437,10 +1437,7 @@ public class GTMJsonImporter {
 		return stations.get(Integer.valueOf(country * 1000000 + localCode));
 	}
 
-	private Station getStation (Integer code) {
-		return stations.get(code);
-	}
-	
+
 	private ServiceBrand getServiceBrand (int code) {
 		return serviceBrands.get(code);
 	}
@@ -1453,13 +1450,7 @@ public class GTMJsonImporter {
 		return languages.get(code);
 	}
 
-	private Country getCountry (Integer code) {
-		return countries.get(code);
-	}
-	
-	private Country getCountry (int code) {
-		return countries.get(Integer.valueOf(code));
-	}
+
 
 	private Country getCountry (String code) {
 		return countriesISO.get(code);

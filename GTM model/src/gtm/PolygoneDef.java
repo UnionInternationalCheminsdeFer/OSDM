@@ -9,19 +9,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "Edge"
+    "edge"
 })
 public class PolygoneDef {
 
-    @JsonProperty("Edge")
+    @JsonProperty("edge")
     private List<GeoCoordinateDef> edge = new ArrayList<GeoCoordinateDef>();
 
-    @JsonProperty("Edge")
+    @JsonProperty("edge")
     public List<GeoCoordinateDef> getEdge() {
         return edge;
     }
 
-    @JsonProperty("Edge")
+    @JsonProperty("edge")
     public void setEdge(List<GeoCoordinateDef> edge) {
         this.edge = edge;
     }

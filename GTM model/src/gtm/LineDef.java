@@ -10,12 +10,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "BinaryZoneId",
-    "Carrier",
-    "City",
-    "EntryStation",
-    "LineId",
-    "TerminalStation",
+    "binaryZoneId",
+    "carrier",
+    "city",
+    "entryStation",
+    "lineId",
+    "terminalStation",
     "nutsCode"
 })
 public class LineDef {
@@ -24,7 +24,7 @@ public class LineDef {
      * base 64 encoded data
      * 
      */
-    @JsonProperty("BinaryZoneId")
+    @JsonProperty("binaryZoneId")
     @JsonPropertyDescription("base 64 encoded data")
     private String binaryZoneId;
     /**
@@ -32,16 +32,16 @@ public class LineDef {
      * (Required)
      * 
      */
-    @JsonProperty("Carrier")
+    @JsonProperty("carrier")
     @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
     private String carrier;
-    @JsonProperty("City")
+    @JsonProperty("city")
     private Integer city;
-    @JsonProperty("EntryStation")
+    @JsonProperty("entryStation")
     private StationDef entryStation;
-    @JsonProperty("LineId")
+    @JsonProperty("lineId")
     private List<String> lineId = new ArrayList<String>();
-    @JsonProperty("TerminalStation")
+    @JsonProperty("terminalStation")
     private StationDef terminalStation;
     /**
      * Nomenclature des units territoriales statistiques  
@@ -56,7 +56,7 @@ public class LineDef {
      * base 64 encoded data
      * 
      */
-    @JsonProperty("BinaryZoneId")
+    @JsonProperty("binaryZoneId")
     public String getBinaryZoneId() {
         return binaryZoneId;
     }
@@ -65,7 +65,7 @@ public class LineDef {
      * base 64 encoded data
      * 
      */
-    @JsonProperty("BinaryZoneId")
+    @JsonProperty("binaryZoneId")
     public void setBinaryZoneId(String binaryZoneId) {
         this.binaryZoneId = binaryZoneId;
     }
@@ -75,7 +75,7 @@ public class LineDef {
      * (Required)
      * 
      */
-    @JsonProperty("Carrier")
+    @JsonProperty("carrier")
     public String getCarrier() {
         return carrier;
     }
@@ -85,47 +85,47 @@ public class LineDef {
      * (Required)
      * 
      */
-    @JsonProperty("Carrier")
+    @JsonProperty("carrier")
     public void setCarrier(String carrier) {
         this.carrier = carrier;
     }
 
-    @JsonProperty("City")
+    @JsonProperty("city")
     public Integer getCity() {
         return city;
     }
 
-    @JsonProperty("City")
+    @JsonProperty("city")
     public void setCity(Integer city) {
         this.city = city;
     }
 
-    @JsonProperty("EntryStation")
+    @JsonProperty("entryStation")
     public StationDef getEntryStation() {
         return entryStation;
     }
 
-    @JsonProperty("EntryStation")
+    @JsonProperty("entryStation")
     public void setEntryStation(StationDef entryStation) {
         this.entryStation = entryStation;
     }
 
-    @JsonProperty("LineId")
+    @JsonProperty("lineId")
     public List<String> getLineId() {
         return lineId;
     }
 
-    @JsonProperty("LineId")
+    @JsonProperty("lineId")
     public void setLineId(List<String> lineId) {
         this.lineId = lineId;
     }
 
-    @JsonProperty("TerminalStation")
+    @JsonProperty("terminalStation")
     public StationDef getTerminalStation() {
         return terminalStation;
     }
 
-    @JsonProperty("TerminalStation")
+    @JsonProperty("terminalStation")
     public void setTerminalStation(StationDef terminalStation) {
         this.terminalStation = terminalStation;
     }

@@ -84,8 +84,7 @@
 				"UTCoffset": {
 					"description": "offsett to UTC in minutes (number of minutes to be added to get UTC dates)",
 					"type": "integer"
-				},
-				"NewProperty": {}
+				}
 			},
 			"required": [
 				"id",
@@ -1192,7 +1191,9 @@
 				"name": {
 					"type": "string"
 				},
-				"nameUTF8": {},
+				"nameUTF8": {
+					"type": "string"
+				},
 				"ploygone": {
 					"$ref": "ticketdefinitions.json#/definitions/PolygoneDef"
 				},

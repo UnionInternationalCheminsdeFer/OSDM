@@ -13,12 +13,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "SeqNb",
-    "Zone",
-    "ViaStations",
-    "TrainLink",
-    "Line",
-    "Polygone"
+    "seqNb",
+    "zone",
+    "viaStations",
+    "trainLink",
+    "line",
+    "polygone"
 })
 public class RegionalValidityDef {
 
@@ -26,25 +26,25 @@ public class RegionalValidityDef {
      * order number of the list item
      * 
      */
-    @JsonProperty("SeqNb")
+    @JsonProperty("seqNb")
     @JsonPropertyDescription("order number of the list item")
     private Integer seqNb;
-    @JsonProperty("Zone")
+    @JsonProperty("zone")
     private ZoneDef zone;
-    @JsonProperty("ViaStations")
+    @JsonProperty("viaStations")
     private ViaStationsDef viaStations;
-    @JsonProperty("TrainLink")
+    @JsonProperty("trainLink")
     private TrainLinkDef trainLink;
-    @JsonProperty("Line")
+    @JsonProperty("line")
     private LineDef line;
-    @JsonProperty("Polygone")
+    @JsonProperty("polygone")
     private PolygoneDef polygone;
 
     /**
      * order number of the list item
      * 
      */
-    @JsonProperty("SeqNb")
+    @JsonProperty("seqNb")
     public Integer getSeqNb() {
         return seqNb;
     }
@@ -53,57 +53,57 @@ public class RegionalValidityDef {
      * order number of the list item
      * 
      */
-    @JsonProperty("SeqNb")
+    @JsonProperty("seqNb")
     public void setSeqNb(Integer seqNb) {
         this.seqNb = seqNb;
     }
 
-    @JsonProperty("Zone")
+    @JsonProperty("zone")
     public ZoneDef getZone() {
         return zone;
     }
 
-    @JsonProperty("Zone")
+    @JsonProperty("zone")
     public void setZone(ZoneDef zone) {
         this.zone = zone;
     }
 
-    @JsonProperty("ViaStations")
+    @JsonProperty("viaStations")
     public ViaStationsDef getViaStations() {
         return viaStations;
     }
 
-    @JsonProperty("ViaStations")
+    @JsonProperty("viaStations")
     public void setViaStations(ViaStationsDef viaStations) {
         this.viaStations = viaStations;
     }
 
-    @JsonProperty("TrainLink")
+    @JsonProperty("trainLink")
     public TrainLinkDef getTrainLink() {
         return trainLink;
     }
 
-    @JsonProperty("TrainLink")
+    @JsonProperty("trainLink")
     public void setTrainLink(TrainLinkDef trainLink) {
         this.trainLink = trainLink;
     }
 
-    @JsonProperty("Line")
+    @JsonProperty("line")
     public LineDef getLine() {
         return line;
     }
 
-    @JsonProperty("Line")
+    @JsonProperty("line")
     public void setLine(LineDef line) {
         this.line = line;
     }
 
-    @JsonProperty("Polygone")
+    @JsonProperty("polygone")
     public PolygoneDef getPolygone() {
         return polygone;
     }
 
-    @JsonProperty("Polygone")
+    @JsonProperty("polygone")
     public void setPolygone(PolygoneDef polygone) {
         this.polygone = polygone;
     }

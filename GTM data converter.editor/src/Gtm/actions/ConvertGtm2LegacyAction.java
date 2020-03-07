@@ -5,13 +5,21 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
+
+import Gtm.Country;
 import Gtm.GTMTool;
 import Gtm.actions.converter.ConverterToLegacy;
+import Gtm.presentation.GtmEditorPlugin;
 
 
 public class ConvertGtm2LegacyAction extends BasicGtmAction {
@@ -62,31 +70,72 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 
 			
 		}
-
 		
-		@Override
-		protected void runAction(GTMTool tool) {
+		protected void run (IStructuredSelection structuredSelection) {
+			
+			GTMTool tool = GtmUtils.getGtmTool();
+			
+			if (tool == null) {
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText("no data found");
+				dialog.open(); 
+				return;
+			}
+			
+			Country country = tool.getConversionFromLegacy().getParams().getCountry();
+			if (country == null) {
+				String message = "the country is missing in the conversion parameter";
+				GtmUtils.writeConsoleError(message);
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText("the country is missing in the conversion parameter");
+				dialog.open(); 
+				return;
+			}
+			
+			EditingDomain domain = GtmUtils.getActiveDomain();
+			if (domain == null) return;
+			
 			
 			ConverterToLegacy converter = new ConverterToLegacy(tool);
-						
-			GtmUtils.disconnectViews();
+			
+			
+			IRunnableWithProgress operation =	new IRunnableWithProgress() {
+				// This is the method that gets invoked when the operation runs.
+
+				public void run(IProgressMonitor monitor) {
+					
+					monitor.beginTask("Convert GTM fares to legacy 108.1 data", converter.getMonitorTasks() + 1); 
+
+					monitor.setTaskName("Initialize main structure");
+					prepareStructure();
+					monitor.worked(1);
+					
+					int created = converter.convert(monitor);
+					String message = "series converted: " + Integer.toString(created);
+					GtmUtils.writeConsoleError(message);
+
+					monitor.done();
+				}
+			};	
 			try {
-				int created = converter.convert();
-				
-				String message = "series converted: " + Integer.toString(created);
-				GtmUtils.writeConsoleError(message);
-				
-			} catch (Exception e) {
-				//
+				// This runs the operation, and shows progress.
+				GtmUtils.disconnectViews();
+		
+				new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(true, false, operation);
+
+			} catch (Exception exception) {
+					// Something went wrong that shouldn't.
+					GtmEditorPlugin.INSTANCE.log(exception);
 			} finally {
-				GtmUtils.reconnectViews();
-			}
+					GtmUtils.reconnectViews();
+			}			
+
 
 			return;
+
 		}
 
-	
-		
+
 		
 	
 

@@ -10,12 +10,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "BinaryZoneId",
-    "Carrier",
-    "City",
-    "EntryStation",
-    "TerminalStation",
-    "ZoneId",
+    "binaryZoneId",
+    "carrier",
+    "city",
+    "entryStation",
+    "terminalStation",
+    "zoneId",
     "nutsCode"
 })
 public class ZoneDef {
@@ -24,7 +24,7 @@ public class ZoneDef {
      * base 64 encoded data
      * 
      */
-    @JsonProperty("BinaryZoneId")
+    @JsonProperty("binaryZoneId")
     @JsonPropertyDescription("base 64 encoded data")
     private String binaryZoneId;
     /**
@@ -32,20 +32,20 @@ public class ZoneDef {
      * (Required)
      * 
      */
-    @JsonProperty("Carrier")
+    @JsonProperty("carrier")
     @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
     private String carrier;
-    @JsonProperty("City")
+    @JsonProperty("city")
     private Integer city;
-    @JsonProperty("EntryStation")
+    @JsonProperty("entryStation")
     private StationDef entryStation;
-    @JsonProperty("TerminalStation")
+    @JsonProperty("terminalStation")
     private StationDef terminalStation;
     /**
      * to be used in bar codes
      * 
      */
-    @JsonProperty("ZoneId")
+    @JsonProperty("zoneId")
     @JsonPropertyDescription("to be used in bar codes")
     private List<Integer> zoneId = new ArrayList<Integer>();
     /**
@@ -60,7 +60,7 @@ public class ZoneDef {
      * base 64 encoded data
      * 
      */
-    @JsonProperty("BinaryZoneId")
+    @JsonProperty("binaryZoneId")
     public String getBinaryZoneId() {
         return binaryZoneId;
     }
@@ -69,7 +69,7 @@ public class ZoneDef {
      * base 64 encoded data
      * 
      */
-    @JsonProperty("BinaryZoneId")
+    @JsonProperty("binaryZoneId")
     public void setBinaryZoneId(String binaryZoneId) {
         this.binaryZoneId = binaryZoneId;
     }
@@ -79,7 +79,7 @@ public class ZoneDef {
      * (Required)
      * 
      */
-    @JsonProperty("Carrier")
+    @JsonProperty("carrier")
     public String getCarrier() {
         return carrier;
     }
@@ -89,37 +89,37 @@ public class ZoneDef {
      * (Required)
      * 
      */
-    @JsonProperty("Carrier")
+    @JsonProperty("carrier")
     public void setCarrier(String carrier) {
         this.carrier = carrier;
     }
 
-    @JsonProperty("City")
+    @JsonProperty("city")
     public Integer getCity() {
         return city;
     }
 
-    @JsonProperty("City")
+    @JsonProperty("city")
     public void setCity(Integer city) {
         this.city = city;
     }
 
-    @JsonProperty("EntryStation")
+    @JsonProperty("entryStation")
     public StationDef getEntryStation() {
         return entryStation;
     }
 
-    @JsonProperty("EntryStation")
+    @JsonProperty("entryStation")
     public void setEntryStation(StationDef entryStation) {
         this.entryStation = entryStation;
     }
 
-    @JsonProperty("TerminalStation")
+    @JsonProperty("terminalStation")
     public StationDef getTerminalStation() {
         return terminalStation;
     }
 
-    @JsonProperty("TerminalStation")
+    @JsonProperty("terminalStation")
     public void setTerminalStation(StationDef terminalStation) {
         this.terminalStation = terminalStation;
     }
@@ -128,7 +128,7 @@ public class ZoneDef {
      * to be used in bar codes
      * 
      */
-    @JsonProperty("ZoneId")
+    @JsonProperty("zoneId")
     public List<Integer> getZoneId() {
         return zoneId;
     }
@@ -137,7 +137,7 @@ public class ZoneDef {
      * to be used in bar codes
      * 
      */
-    @JsonProperty("ZoneId")
+    @JsonProperty("zoneId")
     public void setZoneId(List<Integer> zoneId) {
         this.zoneId = zoneId;
     }

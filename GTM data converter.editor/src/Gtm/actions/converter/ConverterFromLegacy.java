@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 import Gtm.AlternativeRoute;
 import Gtm.Calendar;
+import Gtm.Carrier;
 import Gtm.ClassicClassType;
 import Gtm.ConnectionPoint;
 import Gtm.Country;
@@ -65,12 +66,14 @@ public class ConverterFromLegacy {
 	
 	private HashMap<Integer,Station> localStations = null;
 	private HashMap<Integer,Legacy108Station> legacyStations = null;
+	private HashMap<String,Carrier> carriers = null;
 	private Country myCountry = null;
 	private GTMTool tool = null;
 	
 	
 	public ConverterFromLegacy(GTMTool tool) {
 		localStations = new HashMap<Integer,Station>();
+		carriers = new HashMap<String,Carrier>();
 		legacyStations = new HashMap<Integer,Legacy108Station>();
 		this.tool = tool;
 
@@ -85,6 +88,12 @@ public class ConverterFromLegacy {
 				}
 			}
 		}
+		
+		for (Carrier carrier : tool.getCodeLists().getCarriers().getCarriers()) {
+			carriers.put(carrier.getCode(), carrier);
+		}
+		
+		
 		
 		for (Legacy108Station station : tool.getConversionFromLegacy().getLegacy108().getLegacyStations().getLegacyStations()) {
 				legacyStations.put(Integer.valueOf(station.getStationCode()), station);
@@ -427,6 +436,7 @@ public class ConverterFromLegacy {
 		seqNb++;
 		
 		ViaStation mainViaStation = GtmFactory.eINSTANCE.createViaStation();
+		mainViaStation.setCarrier(carriers.get(series.getCarrierCode()));
 		region.setViaStation(mainViaStation);
 		mainViaStation.setRoute(GtmFactory.eINSTANCE.createRoute());
 		
@@ -627,6 +637,7 @@ public class ConverterFromLegacy {
 		
 		ViaStation mainViaStation = GtmFactory.eINSTANCE.createViaStation();
 		mainViaStation.setRoute(GtmFactory.eINSTANCE.createRoute());
+		mainViaStation.setCarrier(carriers.get(series.getCarrierCode()));
 		RegionalValidity region = GtmFactory.eINSTANCE.createRegionalValidity();
 		region.setSeqNb(seqNb);
 		seqNb++;

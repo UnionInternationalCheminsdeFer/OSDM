@@ -13,9 +13,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "isBorder",
     "routeId",
     "seriesId",
-    "AlternativeRoute",
-    "Carrier",
-    "Route",
+    "alternativeRoute",
+    "carrier",
+    "route",
     "serviceBrand",
     "Station",
     "fareReferenceStationSet"
@@ -28,16 +28,16 @@ public class ViaStationsDef {
     private Integer routeId;
     @JsonProperty("seriesId")
     private Integer seriesId;
-    @JsonProperty("AlternativeRoute")
+    @JsonProperty("alternativeRoute")
     private List<ViaStationsDef> alternativeRoute = new ArrayList<ViaStationsDef>();
     /**
      * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
      * 
      */
-    @JsonProperty("Carrier")
+    @JsonProperty("carrier")
     @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
     private String carrier;
-    @JsonProperty("Route")
+    @JsonProperty("route")
     private List<ViaStationsDef> route = new ArrayList<ViaStationsDef>();
     /**
      * restriction  to a specific service brand
@@ -91,12 +91,12 @@ public class ViaStationsDef {
         this.seriesId = seriesId;
     }
 
-    @JsonProperty("AlternativeRoute")
+    @JsonProperty("alternativeRoute")
     public List<ViaStationsDef> getAlternativeRoute() {
         return alternativeRoute;
     }
 
-    @JsonProperty("AlternativeRoute")
+    @JsonProperty("alternativeRoute")
     public void setAlternativeRoute(List<ViaStationsDef> alternativeRoute) {
         this.alternativeRoute = alternativeRoute;
     }
@@ -105,7 +105,7 @@ public class ViaStationsDef {
      * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
      * 
      */
-    @JsonProperty("Carrier")
+    @JsonProperty("carrier")
     public String getCarrier() {
         return carrier;
     }
@@ -114,17 +114,17 @@ public class ViaStationsDef {
      * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
      * 
      */
-    @JsonProperty("Carrier")
+    @JsonProperty("carrier")
     public void setCarrier(String carrier) {
         this.carrier = carrier;
     }
 
-    @JsonProperty("Route")
+    @JsonProperty("route")
     public List<ViaStationsDef> getRoute() {
         return route;
     }
 
-    @JsonProperty("Route")
+    @JsonProperty("route")
     public void setRoute(List<ViaStationsDef> route) {
         this.route = route;
     }

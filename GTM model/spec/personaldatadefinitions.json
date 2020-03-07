@@ -6,47 +6,47 @@
 		"PassengerDetailsDef": {
 			"type": "object",
 			"properties": {
-				"DateOfBirth": {
+				"dateOfBirth": {
 					"$ref": "definitions.json#/definitions/date"
 				},
-				"Email": {
+				"eMail": {
 					"type": "array",
 					"items": {
 						"type": "string",
 						"format": "email"
 					}
 				},
-				"FirstName": {
+				"firstName": {
 					"type": "string"
 				},
-				"FirstNameICAO": {
+				"firstNameICAO": {
 					"description": "ICAO transliteration",
 					"type": "string"
 				},
-				"Language": {
+				"language": {
 					"type": "array",
 					"items": {
 						"$ref": "definitions.json#/definitions/LanguageDef",
 						"description": "Languages spoken by the traveler (ISO Language code)"
 					}
 				},
-				"LastName": {
+				"lastName": {
 					"type": "string"
 				},
-				"LastNameICAO": {
+				"lastNameICAO": {
 					"description": "ICAO transliteration",
 					"type": "string"
 				},
-				"Title": {
+				"title": {
 					"type": "string"
 				},
-				"Phone": {
+				"phone": {
 					"type": "array",
 					"items": {
 						"type": "string"
 					}
 				},
-				"SocialMediaAccount": {
+				"socialMediaAccount": {
 					"type": "array",
 					"items": {
 						"type": "object",
@@ -66,7 +66,7 @@
 						"additionalProperties": false
 					}
 				},
-				"TrainStaffInfo": {
+				"trainStaffInfo": {
 					"description": "Information Text provided by the issuing system in a controled way (e.g. VIP customer)",
 					"type": "string"
 				}
@@ -89,53 +89,53 @@
 			"description": "Travel document data to be exchanged for border control in case of legal requirements",
 			"type": "object",
 			"properties": {
-				"CityOfBirth": {
+				"cityOfBirth": {
 					"type": "string"
 				},
-				"CityOfIssue": {
+				"cityOfIssue": {
 					"description": "place where the document is issued",
 					"type": "string"
 				},
-				"CityOfResidence": {
+				"cityOfResidence": {
 					"type": "string"
 				},
-				"CountryOfBirth": {
+				"countryOfBirth": {
 					"$ref": "definitions.json#/definitions/CountryDef"
 				},
-				"CountryOfIssue": {
+				"countryOfIssue": {
 					"$ref": "definitions.json#/definitions/CountryDef"
 				},
-				"CountryOfResidence": {
+				"countryOfResidence": {
 					"$ref": "definitions.json#/definitions/CountryDef"
 				},
-				"DateOfIssue": {
+				"dateOfIssue": {
 					"$ref": "definitions.json#/definitions/date"
 				},
-				"DocumentId": {
+				"documentId": {
 					"type": "string"
 				},
-				"DocumentType": {
+				"documentType": {
 					"description": "values: passport,id-card,diplomatic passport,refugee travel document",
 					"type": "string"
 				},
-				"Gender": {
+				"gender": {
 					"description": "values: male, female",
 					"type": "string"
 				},
-				"LimitOfValidity": {
+				"limitOfValidity": {
 					"$ref": "definitions.json#/definitions/date"
 				},
-				"Name": {
+				"name": {
 					"description": "ICAO transliteration identical as written in the document",
 					"type": "string"
 				},
-				"Nationality": {
+				"nationality": {
 					"$ref": "definitions.json#/definitions/CountryDef"
 				}
 			},
 			"required": [
-				"DocumentType",
-				"Name"
+				"documentType",
+				"name"
 			],
 			"patternProperties": {
 				"^P_": {
@@ -154,21 +154,21 @@
 		"CardIdentificationDef": {
 			"type": "object",
 			"properties": {
-				"CardId": {
+				"cardId": {
 					"type": "string"
 				},
-				"CardIssuer": {
+				"cardIssuer": {
 					"$ref": "definitions.json#/definitions/CompanyDef",
 					"description": "RICS code in case of Railways, otherwise starting with "
 				},
-				"CardType": {
+				"cardType": {
 					"description": "Code table to be defined in tariff description data",
 					"type": "string"
 				},
-				"LeadingCardId": {
+				"leadingCardId": {
 					"type": "string"
 				},
-				"TrailingCardId": {
+				"trailingCardId": {
 					"type": "string"
 				},
 				"cardNumber": {
@@ -176,8 +176,8 @@
 				}
 			},
 			"required": [
-				"CardIssuer",
-				"CardType"
+				"cardIssuer",
+				"cardType"
 			],
 			"patternProperties": {
 				"^P_": {
