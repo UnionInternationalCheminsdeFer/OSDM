@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "Country",
+    "country",
     "localCode",
     "name",
     "nameUtf8",
@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 })
 public class StationDetailsDef {
 
-    @JsonProperty("Country")
+    @JsonProperty("country")
     private String country;
     @JsonProperty("localCode")
     private String localCode;
@@ -40,12 +40,12 @@ public class StationDetailsDef {
     @JsonProperty("latitude")
     private Float latitude;
 
-    @JsonProperty("Country")
+    @JsonProperty("country")
     public String getCountry() {
         return country;
     }
 
-    @JsonProperty("Country")
+    @JsonProperty("country")
     public void setCountry(String country) {
         this.country = country;
     }

@@ -8,10 +8,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "CodeList",
-    "Country",
-    "LocalCode",
-    "Name"
+    "codeList",
+    "country",
+    "localCode",
+    "name"
 })
 public class StationDef {
 
@@ -19,7 +19,7 @@ public class StationDef {
      * code list used for the station codes: UIC = UIC codes as used by merits (UIC country code + local code) = Default// UIC-R = UIC codes for reservation (UIC country code + local code reservation) // ERA = future ERA station code
      * 
      */
-    @JsonProperty("CodeList")
+    @JsonProperty("codeList")
     @JsonPropertyDescription("code list used for the station codes: UIC = UIC codes as used by merits (UIC country code + local code) = Default// UIC-R = UIC codes for reservation (UIC country code + local code reservation) // ERA = future ERA station code")
     private String codeList = "UIC";
     /**
@@ -27,23 +27,23 @@ public class StationDef {
      * (Required)
      * 
      */
-    @JsonProperty("Country")
+    @JsonProperty("country")
     private String country;
     /**
      * 
      * (Required)
      * 
      */
-    @JsonProperty("LocalCode")
+    @JsonProperty("localCode")
     private String localCode;
-    @JsonProperty("Name")
+    @JsonProperty("name")
     private String name;
 
     /**
      * code list used for the station codes: UIC = UIC codes as used by merits (UIC country code + local code) = Default// UIC-R = UIC codes for reservation (UIC country code + local code reservation) // ERA = future ERA station code
      * 
      */
-    @JsonProperty("CodeList")
+    @JsonProperty("codeList")
     public String getCodeList() {
         return codeList;
     }
@@ -52,7 +52,7 @@ public class StationDef {
      * code list used for the station codes: UIC = UIC codes as used by merits (UIC country code + local code) = Default// UIC-R = UIC codes for reservation (UIC country code + local code reservation) // ERA = future ERA station code
      * 
      */
-    @JsonProperty("CodeList")
+    @JsonProperty("codeList")
     public void setCodeList(String codeList) {
         this.codeList = codeList;
     }
@@ -62,7 +62,7 @@ public class StationDef {
      * (Required)
      * 
      */
-    @JsonProperty("Country")
+    @JsonProperty("country")
     public String getCountry() {
         return country;
     }
@@ -72,7 +72,7 @@ public class StationDef {
      * (Required)
      * 
      */
-    @JsonProperty("Country")
+    @JsonProperty("country")
     public void setCountry(String country) {
         this.country = country;
     }
@@ -82,7 +82,7 @@ public class StationDef {
      * (Required)
      * 
      */
-    @JsonProperty("LocalCode")
+    @JsonProperty("localCode")
     public String getLocalCode() {
         return localCode;
     }
@@ -92,17 +92,17 @@ public class StationDef {
      * (Required)
      * 
      */
-    @JsonProperty("LocalCode")
+    @JsonProperty("localCode")
     public void setLocalCode(String localCode) {
         this.localCode = localCode;
     }
 
-    @JsonProperty("Name")
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
 
-    @JsonProperty("Name")
+    @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
     }

@@ -36,29 +36,29 @@
 		"StationDef": {
 			"type": "object",
 			"properties": {
-				"CodeList": {
+				"codeList": {
 					"$ref": "definitions.json#/definitions/StationCodeListDef"
 				},
-				"Country": {
+				"country": {
 					"type": "string"
 				},
-				"LocalCode": {
+				"localCode": {
 					"type": "string"
 				},
-				"Name": {
+				"name": {
 					"type": "string"
 				}
 			},
 			"required": [
-				"Country",
-				"LocalCode"
+				"country",
+				"localCode"
 			],
 			"additionalProperties": false
 		},
 		"StationDetailsDef": {
 			"type": "object",
 			"properties": {
-				"Country": {
+				"country": {
 					"type": "string"
 				},
 				"localCode": {
@@ -115,29 +115,29 @@
 		"SignatureParamsDef": {
 			"type": "object",
 			"properties": {
-				"SecurityProvider": {
+				"securityProvider": {
 					"$ref": "definitions.json#/definitions/CompanyDef",
 					"description": "Provider of the signature"
 				},
-				"KeyId": {
+				"keyId": {
 					"description": "id of the key used to sign the data",
 					"type": "string"
 				},
-				"Alg": {
+				"alg": {
 					"description": "algorithm used to sign the data",
 					"type": "string"
 				}
 			},
 			"required": [
-				"SecurityProvider",
-				"KeyId"
+				"securityProvider",
+				"keyId"
 			],
 			"additionalProperties": false
 		},
 		"GeoCoordinateDef": {
 			"type": "object",
 			"properties": {
-				"System": {
+				"system": {
 					"description": "geo coordinate system indication: wgs84 = WGS 84 standard system, grs80 = (outdated) GRS 80 coordinate system",
 					"type": "string",
 					"enum": [
@@ -168,17 +168,17 @@
 				"unit": {
 					"$ref": "definitions.json#/definitions/GeoCoordinateUnitDef"
 				},
-				"Latitude": {
+				"latitude": {
 					"type": "number"
 				},
-				"Longitude": {
+				"longitude": {
 					"type": "number"
 				}
 			},
 			"required": [
 				"unit",
-				"Latitude",
-				"Longitude"
+				"latitude",
+				"longitude"
 			],
 			"additionalProperties": false
 		},
@@ -211,42 +211,42 @@
 			"description": "Informations on the service brand",
 			"type": "object",
 			"properties": {
-				"Abbreviation": {
+				"abbreviation": {
 					"$ref": "definitions.json#/definitions/ServiceBrandAbbreviationDef",
 					"description": "The abbreviation has to be included if there is an abbreviation defined for the service brand. "
 				},
-				"Code": {
+				"code": {
 					"$ref": "definitions.json#/definitions/ServiceBrandCodeDef",
 					"description": "service btrand code according to the UIC service brand code list "
 				},
-				"Description": {
+				"description": {
 					"$ref": "definitions.json#/definitions/ServiceBrandDescriptionDef",
 					"description": "The description text has to be included if the service brand has defined a description text for printing."
 				}
 			},
 			"required": [
-				"Code"
+				"code"
 			],
 			"additionalProperties": false
 		},
 		"TokenDef": {
 			"type": "object",
 			"properties": {
-				"Content": {
+				"content": {
 					"$ref": "definitions.json#/definitions/base64Binary"
 				},
-				"Provider": {
+				"provider": {
 					"$ref": "definitions.json#/definitions/CompanyDef",
 					"description": "RICS code in case of railways"
 				},
-				"Specification": {
+				"specification": {
 					"type": "string"
 				}
 			},
 			"required": [
-				"Content",
-				"Provider",
-				"Specification"
+				"content",
+				"provider",
+				"specification"
 			],
 			"additionalProperties": false
 		},

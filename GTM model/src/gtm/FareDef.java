@@ -26,8 +26,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "personalDataConstraintRef",
     "legacyAccountingIdentifier",
     "fareDetailDescriptionRef",
-    "SalesAvailabilityConstraintRef",
-    "TravelValidityConstraintRef",
+    "salesAvailabilityConstraintRef",
+    "travelValidityConstraintRef",
     "legacyConversion"
 })
 public class FareDef {
@@ -104,9 +104,9 @@ public class FareDef {
     @JsonProperty("fareDetailDescriptionRef")
     @JsonPropertyDescription("reference to a text with the details of the fare ")
     private String fareDetailDescriptionRef;
-    @JsonProperty("SalesAvailabilityConstraintRef")
+    @JsonProperty("salesAvailabilityConstraintRef")
     private String salesAvailabilityConstraintRef;
-    @JsonProperty("TravelValidityConstraintRef")
+    @JsonProperty("travelValidityConstraintRef")
     private String travelValidityConstraintRef;
     /**
      * options for legacy conversion to 108.1: NO ( no conversion) YES (conversion allowed), ONLY (fare is provided only for conversion and should not be used otherwise 
@@ -354,22 +354,22 @@ public class FareDef {
         this.fareDetailDescriptionRef = fareDetailDescriptionRef;
     }
 
-    @JsonProperty("SalesAvailabilityConstraintRef")
+    @JsonProperty("salesAvailabilityConstraintRef")
     public String getSalesAvailabilityConstraintRef() {
         return salesAvailabilityConstraintRef;
     }
 
-    @JsonProperty("SalesAvailabilityConstraintRef")
+    @JsonProperty("salesAvailabilityConstraintRef")
     public void setSalesAvailabilityConstraintRef(String salesAvailabilityConstraintRef) {
         this.salesAvailabilityConstraintRef = salesAvailabilityConstraintRef;
     }
 
-    @JsonProperty("TravelValidityConstraintRef")
+    @JsonProperty("travelValidityConstraintRef")
     public String getTravelValidityConstraintRef() {
         return travelValidityConstraintRef;
     }
 
-    @JsonProperty("TravelValidityConstraintRef")
+    @JsonProperty("travelValidityConstraintRef")
     public void setTravelValidityConstraintRef(String travelValidityConstraintRef) {
         this.travelValidityConstraintRef = travelValidityConstraintRef;
     }

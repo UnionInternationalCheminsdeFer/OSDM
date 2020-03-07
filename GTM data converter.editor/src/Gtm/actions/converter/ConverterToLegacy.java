@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -61,13 +62,26 @@ public class 	ConverterToLegacy {
 		this.tool = tool;
 	}
 	
-	public int convert() {
+	public int getMonitorTasks() {
+		return 9;
+	}
+	
+	public int convert(IProgressMonitor monitor) {
 		
+		
+		monitor.subTask("convert stations");	
 		convertStations();
+		monitor.worked(1);
 		
+		monitor.subTask("convert fare reference stations");	
 		convertfareStations();	
+		monitor.worked(1);
 
+		monitor.subTask("select fares");	
 		List<FareElement> convertableFares = selectFares();
+		monitor.worked(1);
+		
+		monitor.subTask("convert fares");	
 		for (FareElement fare : convertableFares) {
 
 			try {
@@ -82,7 +96,9 @@ public class 	ConverterToLegacy {
 				GtmUtils.writeConsoleError(message);
 			}
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("correct series numbering");	
 		//check numbering. if numbers are missing renumber
 		boolean numberingOk = true;
 		for (LegacySeries serie : series) {
@@ -96,7 +112,9 @@ public class 	ConverterToLegacy {
 			String message = "error in series numbering: series renumbered";
 			GtmUtils.writeConsoleError(message);
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("adjuct distance for missing price in class");	
 		//check for missing fares in specific classes, set distance to 0
 		for (LegacyRouteFare lf : routeFares) {
 			if (!lf.isSetFare1st()) {
@@ -106,23 +124,30 @@ public class 	ConverterToLegacy {
 				lf.getSeries().setDistance2(0);
 			}			
 		}
+		monitor.worked(1);
 		
 		EditingDomain domain = GtmUtils.getActiveDomain(); 
 	
+		monitor.subTask("add converted series");	
 		Command com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList(), GtmPackage.Literals.LEGACY_SERIES_LIST__SERIES, series);
 		if (com != null && com.canExecute()) {
 			domain.getCommandStack().execute(com);
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("add converted fares");	
 		com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares(), GtmPackage.Literals.LEGACY_ROUTE_FARES__ROUTE_FARE, routeFares);
 		if (com != null && com.canExecute()) {
 			domain.getCommandStack().execute(com);
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("add converted stations");	
 		com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacyStations(), tool.getConversionFromLegacy().getLegacy108().getLegacyStations(), legacyStations);
 		if (com != null && com.canExecute()) {
 			domain.getCommandStack().execute(com);
 		}
+		monitor.worked(1);
 		
 		return series.size();
 	}
@@ -504,6 +529,8 @@ public class 	ConverterToLegacy {
 		}
 		return false;
 	}
+
+
 	
 	
 

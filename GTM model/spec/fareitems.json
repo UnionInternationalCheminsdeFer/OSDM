@@ -178,10 +178,10 @@
 					"description": "reference to a text with the details of the fare ",
 					"type": "string"
 				},
-				"SalesAvailabilityConstraintRef": {
+				"salesAvailabilityConstraintRef": {
 					"type": "string"
 				},
-				"TravelValidityConstraintRef": {
+				"travelValidityConstraintRef": {
 					"type": "string"
 				},
 				"legacyConversion": {

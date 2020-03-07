@@ -170,14 +170,14 @@
 					"description": "train number",
 					"type": "string"
 				},
-				"DepartureStation": {
+				"departureStation": {
 					"$ref": "definitions.json#/definitions/StationDef"
 				},
-				"DepartureDateTime": {
+				"departureDateTime": {
 					"type": "string",
 					"format": "date-time"
 				},
-				"ArrivalStation": {
+				"arrivalStation": {
 					"$ref": "definitions.json#/definitions/StationDef"
 				}
 			},

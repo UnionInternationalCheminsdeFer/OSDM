@@ -8,10 +8,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "FromStation",
-    "ToStation",
-    "Train",
-    "TravelDate"
+    "fromStation",
+    "toStation",
+    "train",
+    "travelDate"
 })
 public class TrainLinkDef {
 
@@ -20,28 +20,28 @@ public class TrainLinkDef {
      * (Required)
      * 
      */
-    @JsonProperty("FromStation")
+    @JsonProperty("fromStation")
     private StationDef fromStation;
     /**
      * 
      * (Required)
      * 
      */
-    @JsonProperty("ToStation")
+    @JsonProperty("toStation")
     private StationDef toStation;
     /**
      * 
      * (Required)
      * 
      */
-    @JsonProperty("Train")
+    @JsonProperty("train")
     private String train;
     /**
      * UTC date in format YYYY-MM-DDThh:mm:ssTZD. TDZ should be given as offset: (eg. 1997-07-16T19:20:30.45+01:00)
      * (Required)
      * 
      */
-    @JsonProperty("TravelDate")
+    @JsonProperty("travelDate")
     @JsonPropertyDescription("UTC date in format YYYY-MM-DDThh:mm:ssTZD. TDZ should be given as offset: (eg. 1997-07-16T19:20:30.45+01:00)")
     private String travelDate;
 
@@ -50,7 +50,7 @@ public class TrainLinkDef {
      * (Required)
      * 
      */
-    @JsonProperty("FromStation")
+    @JsonProperty("fromStation")
     public StationDef getFromStation() {
         return fromStation;
     }
@@ -60,7 +60,7 @@ public class TrainLinkDef {
      * (Required)
      * 
      */
-    @JsonProperty("FromStation")
+    @JsonProperty("fromStation")
     public void setFromStation(StationDef fromStation) {
         this.fromStation = fromStation;
     }
@@ -70,7 +70,7 @@ public class TrainLinkDef {
      * (Required)
      * 
      */
-    @JsonProperty("ToStation")
+    @JsonProperty("toStation")
     public StationDef getToStation() {
         return toStation;
     }
@@ -80,7 +80,7 @@ public class TrainLinkDef {
      * (Required)
      * 
      */
-    @JsonProperty("ToStation")
+    @JsonProperty("toStation")
     public void setToStation(StationDef toStation) {
         this.toStation = toStation;
     }
@@ -90,7 +90,7 @@ public class TrainLinkDef {
      * (Required)
      * 
      */
-    @JsonProperty("Train")
+    @JsonProperty("train")
     public String getTrain() {
         return train;
     }
@@ -100,7 +100,7 @@ public class TrainLinkDef {
      * (Required)
      * 
      */
-    @JsonProperty("Train")
+    @JsonProperty("train")
     public void setTrain(String train) {
         this.train = train;
     }
@@ -110,7 +110,7 @@ public class TrainLinkDef {
      * (Required)
      * 
      */
-    @JsonProperty("TravelDate")
+    @JsonProperty("travelDate")
     public String getTravelDate() {
         return travelDate;
     }
@@ -120,7 +120,7 @@ public class TrainLinkDef {
      * (Required)
      * 
      */
-    @JsonProperty("TravelDate")
+    @JsonProperty("travelDate")
     public void setTravelDate(String travelDate) {
         this.travelDate = travelDate;
     }

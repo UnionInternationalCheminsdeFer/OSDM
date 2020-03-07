@@ -12,13 +12,13 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "System",
+    "system",
     "accuracy",
     "hemisphereEW",
     "hemisphereNS",
     "unit",
-    "Latitude",
-    "Longitude"
+    "latitude",
+    "longitude"
 })
 public class GeoCoordinateDef {
 
@@ -26,7 +26,7 @@ public class GeoCoordinateDef {
      * geo coordinate system indication: wgs84 = WGS 84 standard system, grs80 = (outdated) GRS 80 coordinate system
      * 
      */
-    @JsonProperty("System")
+    @JsonProperty("system")
     @JsonPropertyDescription("geo coordinate system indication: wgs84 = WGS 84 standard system, grs80 = (outdated) GRS 80 coordinate system")
     private GeoCoordinateDef.System system = GeoCoordinateDef.System.fromValue("wgs84");
     @JsonProperty("accuracy")
@@ -48,21 +48,21 @@ public class GeoCoordinateDef {
      * (Required)
      * 
      */
-    @JsonProperty("Latitude")
+    @JsonProperty("latitude")
     private Float latitude;
     /**
      * 
      * (Required)
      * 
      */
-    @JsonProperty("Longitude")
+    @JsonProperty("longitude")
     private Float longitude;
 
     /**
      * geo coordinate system indication: wgs84 = WGS 84 standard system, grs80 = (outdated) GRS 80 coordinate system
      * 
      */
-    @JsonProperty("System")
+    @JsonProperty("system")
     public GeoCoordinateDef.System getSystem() {
         return system;
     }
@@ -71,7 +71,7 @@ public class GeoCoordinateDef {
      * geo coordinate system indication: wgs84 = WGS 84 standard system, grs80 = (outdated) GRS 80 coordinate system
      * 
      */
-    @JsonProperty("System")
+    @JsonProperty("system")
     public void setSystem(GeoCoordinateDef.System system) {
         this.system = system;
     }
@@ -131,7 +131,7 @@ public class GeoCoordinateDef {
      * (Required)
      * 
      */
-    @JsonProperty("Latitude")
+    @JsonProperty("latitude")
     public Float getLatitude() {
         return latitude;
     }
@@ -141,7 +141,7 @@ public class GeoCoordinateDef {
      * (Required)
      * 
      */
-    @JsonProperty("Latitude")
+    @JsonProperty("latitude")
     public void setLatitude(Float latitude) {
         this.latitude = latitude;
     }
@@ -151,7 +151,7 @@ public class GeoCoordinateDef {
      * (Required)
      * 
      */
-    @JsonProperty("Longitude")
+    @JsonProperty("longitude")
     public Float getLongitude() {
         return longitude;
     }
@@ -161,7 +161,7 @@ public class GeoCoordinateDef {
      * (Required)
      * 
      */
-    @JsonProperty("Longitude")
+    @JsonProperty("longitude")
     public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
