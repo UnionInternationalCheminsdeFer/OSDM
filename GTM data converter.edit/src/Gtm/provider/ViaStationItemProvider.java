@@ -66,6 +66,8 @@ public class ViaStationItemProvider
 
 			addStationPropertyDescriptor(object);
 			addCarrierPropertyDescriptor(object);
+			addRoutePropertyDescriptor(object);
+			addAlternativeRoutesPropertyDescriptor(object);
 			addDataDescriptionPropertyDescriptor(object);
 			addFareStationSetPropertyDescriptor(object);
 		}
@@ -111,6 +113,50 @@ public class ViaStationItemProvider
 				 true,
 				 false,
 				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Route feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRoutePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ViaStation_route_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ViaStation_route_feature", "_UI_ViaStation_type"),
+				 GtmPackage.Literals.VIA_STATION__ROUTE,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Alternative Routes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAlternativeRoutesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ViaStation_alternativeRoutes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ViaStation_alternativeRoutes_feature", "_UI_ViaStation_type"),
+				 GtmPackage.Literals.VIA_STATION__ALTERNATIVE_ROUTES,
+				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));

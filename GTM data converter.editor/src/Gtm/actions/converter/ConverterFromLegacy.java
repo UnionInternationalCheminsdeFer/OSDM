@@ -110,30 +110,41 @@ public class ConverterFromLegacy {
 
 		CompoundCommand command = new CompoundCommand();
 		
+		ArrayList<FareElement> fares = new ArrayList<FareElement>();
 		for (FareElement fare : tool.getGeneralTariffModel().getFareStructure().getFareElements().getFareElements()) {
 			if (fare.getDataSource() == DataSource.CONVERTED) {
-				command.append(RemoveCommand.create(domain, fare) );
+				fares.add(fare);
 			}
 		}
+		command.append(RemoveCommand.create(domain,tool.getGeneralTariffModel().getFareStructure().getFareElements(),GtmPackage.Literals.FARE_ELEMENTS__FARE_ELEMENTS, fares) );
 		GtmUtils.executeAndFlush(command,domain);
-		command = new CompoundCommand();
+		fares.clear();
 		
+		command = new CompoundCommand();
+		ArrayList<RegionalConstraint> regions = new ArrayList<RegionalConstraint>();
 		for (RegionalConstraint region : tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints().getRegionalConstraints()) {
 			if (region.getDataSource() == DataSource.CONVERTED) {
-				command.append(RemoveCommand.create(domain, region) );
+				regions.add(region);
+				
 			}
 		}
+		command.append(RemoveCommand.create(domain,tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints(),GtmPackage.Literals.REGIONAL_CONSTRAINTS__REGIONAL_CONSTRAINTS, regions) );
 		GtmUtils.executeAndFlush(command,domain);
-		command = new CompoundCommand();
+		regions.clear();
 		
+		
+		command = new CompoundCommand();
+		ArrayList<Price> prices = new ArrayList<Price>();
 		for (Price price : tool.getGeneralTariffModel().getFareStructure().getPrices().getPrices()) {
 			if (price.getDataSource() == DataSource.CONVERTED) {
-				command.append(DeleteCommand.create(domain, price) );
+				prices.add(price);
 			}
 		}	
+		command.append(RemoveCommand.create(domain,tool.getGeneralTariffModel().getFareStructure().getPrices(),GtmPackage.Literals.PRICES__PRICES, prices) );
 		GtmUtils.executeAndFlush(command,domain);
-		command = new CompoundCommand();		
+		prices.clear();
 		
+		command = new CompoundCommand();		
 		for (ConnectionPoint point : tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().getConnectionPoints()) {
 			if (point.getDataSource() == DataSource.CONVERTED) {
 				command.append(DeleteCommand.create(domain, point) );
@@ -146,25 +157,24 @@ public class ConverterFromLegacy {
 			}
 		}		
 		GtmUtils.executeAndFlush(command,domain);
-		command = new CompoundCommand();		
 		
+		command = new CompoundCommand();		
 		for (Calendar sa : tool.getGeneralTariffModel().getFareStructure().getCalendars().getCalendars()) {
 			if (sa.getDataSource() == DataSource.CONVERTED) {
 				command.append(DeleteCommand.create(domain, sa) );
 			}
 		}	
 		GtmUtils.executeAndFlush(command,domain);
-		command = new CompoundCommand();		
 		
+		command = new CompoundCommand();		
 		for (FareStationSetDefinition sa : tool.getGeneralTariffModel().getFareStructure().getFareStationSetDefinitions().getFareStationSetDefinitions()) {
 			if (sa.getDataSource() == DataSource.CONVERTED) {
 				command.append(DeleteCommand.create(domain, sa) );
 			}
 		}
 		GtmUtils.executeAndFlush(command,domain);
-		command = new CompoundCommand();		
-		
-	
+
+
 		return deleted;
 	}
 
@@ -179,7 +189,6 @@ public class ConverterFromLegacy {
 		}
 		
 		ArrayList<Price> priceList = new ArrayList<Price>();
-		
 		ArrayList<RegionalConstraint> regions = new ArrayList<RegionalConstraint>();
 		ArrayList<FareElement> fares = new ArrayList<FareElement>();
 		
@@ -188,7 +197,7 @@ public class ConverterFromLegacy {
 		int worked = 100000 / tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries().size();
 		if (worked < 1 ) worked = 1;
 		int added = 0;
-		CompoundCommand command = new CompoundCommand();
+		
 		
 		for (LegacySeries series: tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries()) {
 			
@@ -210,9 +219,14 @@ public class ConverterFromLegacy {
 				//continue
 			}
 			
-			regions.add(regionalConstraint);
-			regions.add(regionalConstraintR);			
+			if (regionalConstraint != null) {
+				regions.add(regionalConstraint);
+			}
+			if (regionalConstraintR != null) {
+				regions.add(regionalConstraintR);
+			}
 		
+
 			int legacyFareCounter = 0;
 			for (FareTemplate fareTemplate: tool.getConversionFromLegacy().getParams().getLegacyFareTemplates().getFareTemplates()) {
 				
@@ -235,25 +249,23 @@ public class ConverterFromLegacy {
 			
 		}
 		
+		CompoundCommand command = new CompoundCommand();
 		Command com1 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints(), GtmPackage.Literals.REGIONAL_CONSTRAINTS__REGIONAL_CONSTRAINTS, regions);
 		command.append(com1);
 		GtmUtils.executeAndFlush(command, domain);
 		monitor.worked(1);
+		
 		command = new CompoundCommand();
-		
-		
 		Command com2 = AddCommand.create(domain,tool.getGeneralTariffModel().getFareStructure().getPrices(), GtmPackage.Literals.PRICES__PRICES, priceList);
 		command.append(com2);
 		GtmUtils.executeAndFlush(command, domain);
 		monitor.worked(1);
-		command = new CompoundCommand();
 		
+		command = new CompoundCommand();
 		Command com3 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getFareElements(),GtmPackage.Literals.FARE_ELEMENTS__FARE_ELEMENTS , fares);		
 		command.append(com3);	
 		GtmUtils.executeAndFlush(command, domain);
 		monitor.worked(1);
-		command = new CompoundCommand();
-
 		
 		return added;
 	}
@@ -1018,6 +1030,8 @@ public class ConverterFromLegacy {
 		
 		List<ConnectionPoint> uniquePointList = new ArrayList<ConnectionPoint>();
 		
+		List<LegacyBorderPointMapping> maps = new ArrayList<LegacyBorderPointMapping>();
+		
 		for (LegacySeries series : tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries()) {
 			
 			List<ConnectionPoint> points = null;
@@ -1030,7 +1044,6 @@ public class ConverterFromLegacy {
 			if (points != null && !points.isEmpty()) {
 				pointList.addAll(points);
 			}
-
 		}
 		
 		for (ConnectionPoint point : pointList ) {
@@ -1044,9 +1057,23 @@ public class ConverterFromLegacy {
 		Command command = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getConnectionPoints(), GtmPackage.Literals.CONNECTION_POINTS__CONNECTION_POINTS, uniquePointList);
 		if  (command != null && command.canExecute()) {
 			domain.getCommandStack().execute(command);
-			return uniquePointList.size();
 		}
-		return 0;
+		
+		for (ConnectionPoint point : pointList) {
+			if (point.getLegacyBorderPointCode() > 0) {
+				LegacyBorderPointMapping map = GtmFactory.eINSTANCE.createLegacyBorderPointMapping();
+				map.setCode(point.getLegacyBorderPointCode());
+				map.setConnectionPoint(point);
+				maps.add(map);
+			}
+		}
+		
+		Command command2 = AddCommand.create(domain, tool.getConversionFromLegacy().getParams().getLegacyBorderPointMappings(), GtmPackage.Literals.LEGACY_BODER_POINT_MAPPINGS__BORDER_POINTS, maps);
+		if  (command2 != null && command2.canExecute()) {
+			domain.getCommandStack().execute(command2);
+		}
+		
+		return pointList.size();
 
 
 	}
@@ -1134,7 +1161,6 @@ public class ConverterFromLegacy {
 		}
 		
 		ConnectionPoint point = null;
-		
 		
 		if (borderpoint > 0) {
 			point = findConnectionPointviaBorderPointCode(tool,borderpoint);
