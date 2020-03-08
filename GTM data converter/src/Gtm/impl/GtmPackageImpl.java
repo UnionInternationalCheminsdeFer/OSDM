@@ -2746,6 +2746,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFulfillmentConstraint_DataDescription() {
+		return (EAttribute)fulfillmentConstraintEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRequiredBarcodes() {
 		return requiredBarcodesEClass;
 	}
@@ -3486,6 +3495,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 */
 	public EReference getPassengerConstraint_ExcludedPassengerCombinations() {
 		return (EReference)passengerConstraintEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPassengerConstraint_DataDescription() {
+		return (EAttribute)passengerConstraintEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -7454,6 +7472,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEAttribute(fulfillmentConstraintEClass, FULFILLMENT_CONSTRAINT__INDIVIDUAL_TICKETING_PERMITTED);
 		createEReference(fulfillmentConstraintEClass, FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES);
 		createEReference(fulfillmentConstraintEClass, FULFILLMENT_CONSTRAINT__REQUIRED_BARCODES);
+		createEAttribute(fulfillmentConstraintEClass, FULFILLMENT_CONSTRAINT__DATA_DESCRIPTION);
 
 		requiredBarcodesEClass = createEClass(REQUIRED_BARCODES);
 		createEAttribute(requiredBarcodesEClass, REQUIRED_BARCODES__REQUIRED_BARCODES);
@@ -7553,6 +7572,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEAttribute(passengerConstraintEClass, PASSENGER_CONSTRAINT__MIN_TOTAL_PASSENGER_WEIGHT);
 		createEReference(passengerConstraintEClass, PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS);
 		createEReference(passengerConstraintEClass, PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS);
+		createEAttribute(passengerConstraintEClass, PASSENGER_CONSTRAINT__DATA_DESCRIPTION);
 
 		passengerCombinationConstraintEClass = createEClass(PASSENGER_COMBINATION_CONSTRAINT);
 		createEAttribute(passengerCombinationConstraintEClass, PASSENGER_COMBINATION_CONSTRAINT__MAX_NUMBER);
@@ -8301,7 +8321,8 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEAttribute(getFulfillmentConstraint_RequiredControlDataExchange(), this.getControlDataExchangeTypes(), "requiredControlDataExchange", null, 0, -1, FulfillmentConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFulfillmentConstraint_IndividualTicketingPermitted(), ecorePackage.getEBoolean(), "individualTicketingPermitted", "false", 0, 1, FulfillmentConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFulfillmentConstraint_AcceptedBarcodes(), this.getAcceptedBarcodes(), null, "acceptedBarcodes", null, 0, 1, FulfillmentConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFulfillmentConstraint_RequiredBarcodes(), this.getRequiredBarcodes(), null, "requiredBarcodes", null, 0, 1, FulfillmentConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFulfillmentConstraint_RequiredBarcodes(), this.getRequiredBarcodes(), null, "requiredBarcodes", null, 0, 1, FulfillmentConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFulfillmentConstraint_DataDescription(), ecorePackage.getEString(), "dataDescription", null, 0, 1, FulfillmentConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(requiredBarcodesEClass, RequiredBarcodes.class, "RequiredBarcodes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRequiredBarcodes_RequiredBarcodes(), this.getBarcodeTypes(), "requiredBarcodes", null, 0, -1, RequiredBarcodes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -8404,6 +8425,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEAttribute(getPassengerConstraint_MinTotalPassengerWeight(), ecorePackage.getEFloat(), "minTotalPassengerWeight", null, 0, 1, PassengerConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPassengerConstraint_IncludedFreePassengers(), this.getIncludedFreePassengerLimit(), null, "includedFreePassengers", null, 0, -1, PassengerConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPassengerConstraint_ExcludedPassengerCombinations(), this.getPassengerCombinationConstraint(), null, "excludedPassengerCombinations", null, 0, -1, PassengerConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPassengerConstraint_DataDescription(), ecorePackage.getEString(), "dataDescription", null, 0, 1, PassengerConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(passengerCombinationConstraintEClass, PassengerCombinationConstraint.class, "PassengerCombinationConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPassengerCombinationConstraint_MaxNumber(), ecorePackage.getEInt(), "maxNumber", null, 0, 1, PassengerCombinationConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

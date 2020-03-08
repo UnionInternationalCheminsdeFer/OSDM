@@ -623,7 +623,7 @@ public class FareTemplateItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FareTemplate)object).getId();
+		String label = ((FareTemplate)object).getDataDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_FareTemplate_type") :
 			getString("_UI_FareTemplate_type") + " " + label;

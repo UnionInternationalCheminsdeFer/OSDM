@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.xml.type.internal.DataValue.Base64;
@@ -163,7 +164,7 @@ public class GtmJsonExporter {
 	private static DateFormat jsondf = new SimpleDateFormat("yyyy-MM-dd HH:mm a z");
 
 	
-	public static FareDelivery convertToJson(GeneralTariffModel gtm) {
+	public static FareDelivery convertToJson(GeneralTariffModel gtm, IProgressMonitor monitor) {
 		
 		if (gtm == null || gtm.getDelivery() == null || gtm.getFareStructure() == null) return null;
 		
@@ -178,82 +179,121 @@ public class GtmJsonExporter {
 		exportData.setFareStructure(fares);
 
 					
+		monitor.subTask("convert after sales conditions");
 		if (gtm.getFareStructure().getAfterSalesRules() != null) {
 			fares.setAfterSalesConditions(convertAfterSalesConditionsToJson(gtm.getFareStructure().getAfterSalesRules()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert calendars");
 		if (gtm.getFareStructure().getCalendars() != null) {
 			fares.setCalendars(convertCalendars(gtm.getFareStructure().getCalendars()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert carrier constraints");
 		if (gtm.getFareStructure().getCarrierConstraints() != null) {
 			fares.setCarrierConstraints(convertCarrierConstraints(gtm.getFareStructure().getCarrierConstraints()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert combination constraints");
 		if (gtm.getFareStructure().getCombinationConstraints() != null) {
 			fares.setCombinationConstraints(convertCombinationConstraints(gtm.getFareStructure().getCombinationConstraints()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert connection points");
 		if (gtm.getFareStructure().getConnectionPoints() != null) {
 			fares.setConnectionPoints(convertConnectionPoints(gtm.getFareStructure().getConnectionPoints()));
 		}
+		monitor.worked(1);
 				
+		monitor.subTask("convert fares");
 		if (gtm.getFareStructure().getFareElements() != null) {
 			fares.setFares(convertFareElements(gtm.getFareStructure().getFareElements()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert fare resource locations");
 		if (gtm.getFareStructure().getFareResourceLocations() != null) {
 			fares.setFareResourceLocation(convertFareResourceLocation(gtm.getFareStructure().getFareResourceLocations()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert fulfillment constraints");
 		if (gtm.getFareStructure().getFulfillmentConstraints() != null) {
 			fares.setFullfillmentConstraints(convertFullfillmentConstraints(gtm.getFareStructure().getFulfillmentConstraints()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert passenger constraints");
 		if (gtm.getFareStructure().getPassengerConstraints() != null) {
 			fares.setPassengerConstraints(convertPassengerConstraints(gtm.getFareStructure().getPassengerConstraints()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert personal data constraints");
 		if (gtm.getFareStructure().getPersonalDataConstraints() != null) {
 			fares.setPersonalDataConstraints(convertPersonalDataConstraints(gtm.getFareStructure().getPersonalDataConstraints()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert prices");
 		if (gtm.getFareStructure().getPrices() != null) {
 			fares.setPrices(convertPrices(gtm.getFareStructure().getPrices()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert reduction cards");
 		if (gtm.getFareStructure().getReductionCards() != null) {
 			fares.setReductionCards(convertReductionCards(gtm.getFareStructure().getReductionCards()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert reduction constraints");
 		if (gtm.getFareStructure().getReductionConstraints() != null) {
 			fares.setReductionConstraints(convertReductionConstraints(gtm.getFareStructure().getReductionConstraints()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert regional constraints");
 		if (gtm.getFareStructure().getRegionalConstraints() != null) {
 			fares.setRegionalConstraints(convertRegionalConstraints(gtm.getFareStructure().getRegionalConstraints()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert reservation parameter");
 		if (gtm.getFareStructure().getReservationParameters() != null) {
 			fares.setReservationParameters(convertReservationParameters(gtm.getFareStructure().getReservationParameters()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert sales availabilities");
 		if (gtm.getFareStructure().getSalesAvailabilityConstraints() != null) {
 			fares.setSalesAvailabilityConstraint(convertSalesAvailabilityConstraints(gtm.getFareStructure().getSalesAvailabilityConstraints()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert service classes");
 		if (gtm.getFareStructure().getServiceClassDefinitions() != null) {
 			fares.setServiceClassDefinitions(convertServiceClassDefinitions(gtm.getFareStructure().getServiceClassDefinitions()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert service constraints");
 		if (gtm.getFareStructure().getServiceConstraints() != null) {
 			fares.setServiceConstraints(convertServiceConstraints(gtm.getFareStructure().getServiceConstraints()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert service level definitions");
 		if (gtm.getFareStructure().getServiceLevelDefinitions() != null) {
 			fares.setServiceLevelDefinitions(convertServiceLevelDefinitions(gtm.getFareStructure().getServiceLevelDefinitions()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert supported online services");
 		if (gtm.getFareStructure().getSupportedOnlineServices() != null && !gtm.getFareStructure().getSupportedOnlineServices().getSupportedOnlineServices().isEmpty()) {
 			ArrayList<String> services = new ArrayList<String>();
 			for (OnlineServiceType serviceType : gtm.getFareStructure().getSupportedOnlineServices().getSupportedOnlineServices()) {
@@ -261,22 +301,31 @@ public class GtmJsonExporter {
 			}
 			fares.setSupportedOnlineServices(services);
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert texts");
 		if (gtm.getFareStructure().getTexts() != null) {
 			fares.setTexts(convertTexts(gtm.getFareStructure().getTexts()));
 		}
+		monitor.worked(1);
 			
+		monitor.subTask("convert travel validity constraints");
 		if (gtm.getFareStructure().getTravelValidityConstraints() != null) {
 			fares.setTravelValidityConstraints(convertTravelValidityConstraints(gtm.getFareStructure().getTravelValidityConstraints()));
 		}
+		monitor.worked(1);
 		
+		monitor.subTask("convert fare reference station definitions");
 		if (gtm.getFareStructure().getFareStationSetDefinitions() != null) {
 			fares.setFareReferenceStationSetDefinitions(convertFareStationSetDefinitions(gtm.getFareStructure().getFareStationSetDefinitions()));
 		}
+		monitor.worked(1);
 
+		monitor.subTask("convert zone definitions");
 		if (gtm.getFareStructure().getZoneDefinitions() != null) {
 			fares.setZoneDefinitions(convert(gtm.getFareStructure().getZoneDefinitions()));
 		}
+		monitor.worked(1);
 		
 		return export;
 	}

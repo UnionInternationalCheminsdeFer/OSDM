@@ -3203,6 +3203,9 @@ public class GtmValidator extends EObjectValidator {
 	 * @generated NOT
 	 */
 	public boolean validateStation_NAME_FORMAT(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		
+		//don't check missing data in MERITS for the time being
+		if (station.getName() == null || station.getName().length() == 0) return true;
 
 		if (!StringFormatValidator.isStationASCII(station.getName())) {
 			if (diagnostics != null) {
@@ -3229,7 +3232,10 @@ public class GtmValidator extends EObjectValidator {
 	 */
 	public boolean validateStation_NAME_CASE_UTF8_FORMAT(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
 
-		if (!StringFormatValidator.isStationUTF8(station.getNameCaseASCII())) {
+		//don't check missing data in MERITS for the time being
+		if (station.getNameCaseUTF8() == null) return true;
+		
+		if (!StringFormatValidator.isStationUTF8(station.getNameCaseUTF8())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createSimpleDiagnostic
@@ -3254,6 +3260,9 @@ public class GtmValidator extends EObjectValidator {
 	 */
 	public boolean validateStation_NAME_CASE_ASCII_FORMAT(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
 
+		//don't check missing data in MERITS for the time being
+		if (station.getNameCaseASCII() == null) return true;
+		
 		if (!StringFormatValidator.isStationASCII(station.getNameCaseASCII())) {
 			if (diagnostics != null) {
 				diagnostics.add
@@ -3278,6 +3287,10 @@ public class GtmValidator extends EObjectValidator {
 	 * @generated NOT
 	 */
 	public boolean validateStation_SHORT_NAME_CASE_ASCII_FORMAT(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		
+		//don't check missing data in MERITS for the time being
+		if (station.getShortNameCaseASCII() == null) return true;
+		
 		if (!StringFormatValidator.isStationASCII(station.getShortNameCaseASCII())) {
 			if (diagnostics != null) {
 				diagnostics.add
@@ -3302,6 +3315,10 @@ public class GtmValidator extends EObjectValidator {
 	 * @generated NOT
 	 */  
 	public boolean validateStation_SHORT_NAME_CASE_UTF8_FORMAT(Station station, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		
+		//don't check missing data in MERITS for the time being
+		if (station.getShortNameCaseUTF8() == null) return true;
+		
 		if (!StringFormatValidator.isStationUTF8(station.getShortNameCaseUTF8())) {
 			if (diagnostics != null) {
 				diagnostics.add
@@ -6912,6 +6929,7 @@ public class GtmValidator extends EObjectValidator {
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
+		// TODO
 		// Specialize this to return a resource locator for messages specific to this validator.
 		// Ensure that you remove @generated or mark it @generated NOT
 		return super.getResourceLocator();

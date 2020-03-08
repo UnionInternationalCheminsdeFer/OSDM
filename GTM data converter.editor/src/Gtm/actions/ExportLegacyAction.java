@@ -3,13 +3,20 @@ package Gtm.actions;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
+
 import Gtm.GTMTool;
 import Gtm.actions.converter.LegacyExporter;
+import Gtm.presentation.GtmEditor;
+import Gtm.presentation.GtmEditorPlugin;
 
 
 public class ExportLegacyAction extends BasicGtmAction {
@@ -44,16 +51,54 @@ public class ExportLegacyAction extends BasicGtmAction {
 	        
 			
 		}
-
-		@Override
-		protected void runAction(GTMTool tool) {
+		
+		
+		protected void run (IStructuredSelection structuredSelection) {
+			
+			GTMTool tool = GtmUtils.getGtmTool();
+			
+			GtmEditor editor = GtmUtils.getActiveEditor();
+			
+			if (tool == null) {
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText("no data found");
+				dialog.open(); 
+				return;
+			}
 			
 			Path path =  getPath("Select export directory");
+			if (path == null) return;
 			
 			LegacyExporter exporter = new LegacyExporter(tool, path);
+
 			
-			exporter.export();
+			IRunnableWithProgress operation =	new IRunnableWithProgress() {
+				// This is the method that gets invoked when the operation runs.
+
+				public void run(IProgressMonitor monitor) {
+					
+					monitor.beginTask("Export 108.1 data", exporter.getMonitorTasks()); 
+					
+					exporter.export(monitor);
+
+					monitor.done();
+				}
+			};	
+			try {
+				// This runs the operation, and shows progress.
+				editor.disconnectViews();
 		
+				new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
+
+			} catch (Exception exception) {
+					// Something went wrong that shouldn't.
+					GtmEditorPlugin.INSTANCE.log(exception);
+			} finally {
+					editor.reconnectViews();
+			}			
+
+			return;
+
 		}
 
 	

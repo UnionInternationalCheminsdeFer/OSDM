@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
@@ -42,16 +44,40 @@ public class LegacyExporter {
 
 	}
 	
+
+	public int getMonitorTasks() {
+		return 4;
+	}
 	
-	public void export() {
+	
+	public void export(IProgressMonitor monitor) {
 		try {
+			
+			monitor.subTask("Export TCV file");
 			exportTCVfile();
+			monitor.worked(1);
+			
+			monitor.subTask("Export TCVG file");
 			exportTCVGfile();
+			monitor.worked(1);
+			
+			monitor.subTask("Export TCVS file");
 			exportTCVSfile();
+			monitor.worked(1);
+			
+			monitor.subTask("Export TCV fare file");
 			exportFareFile();
+			monitor.worked(1);
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+			String message = "Export file error: " + e.getLocalizedMessage();
+			dialog.setText(message);
+			dialog.open(); 
+			GtmUtils.writeConsoleError(message);
+			return;
+
 		}
 	}
 	
@@ -509,5 +535,7 @@ public class LegacyExporter {
 
 		
 	}
+
+
 
 }

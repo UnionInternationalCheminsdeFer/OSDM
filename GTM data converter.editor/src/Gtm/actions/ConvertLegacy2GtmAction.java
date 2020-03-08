@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import Gtm.Country;
 import Gtm.GTMTool;
 import Gtm.actions.converter.ConverterFromLegacy;
+import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 
 
@@ -62,6 +63,8 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 			EditingDomain domain = GtmUtils.getActiveDomain();
 			if (domain == null) return;
 			
+			GtmEditor editor = GtmUtils.getActiveEditor(); 
+			
 			ConverterFromLegacy converter = new ConverterFromLegacy(tool);
 			
 			IRunnableWithProgress operation =	new IRunnableWithProgress() {
@@ -69,14 +72,14 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 
 				public void run(IProgressMonitor monitor) {
 					
-					monitor.beginTask("Convert Legacy 108 fare data to GTM", 7); 
-
-					monitor.setTaskName("Initialize main structure");
-					prepareStructure();
-					monitor.worked(1);
+					monitor.beginTask("Convert Legacy 108 fare data to GTM", 107); 
 
 					try {
 			
+						monitor.subTask("Initialize main structure");
+						prepareStructure(tool, domain);
+						monitor.worked(1);
+						
 						monitor.subTask("deleting old conversion data");						
 						int deleted = ConverterFromLegacy.deleteOldConversionResults(tool, domain);
 						GtmUtils.writeConsoleInfog("old series conversions deleted: " + Integer.toString(deleted));
@@ -103,29 +106,30 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 						monitor.worked(1);
 			
 						monitor.subTask("convert fares");
-						added = converter.convertToGtm(tool,  domain);
+						added = converter.convertToGtm(tool, domain, monitor);
 						GtmUtils.writeConsoleInfog("fares converted: " + Integer.toString(added));
 						monitor.worked(1);
 						
 					} catch (Exception e) {
 						//
+						e.printStackTrace();
 					} finally {
-						GtmUtils.reconnectViews();
+						editor.reconnectViews();
 					}
 					monitor.done();
 				}
 			};
 			try {
 				// This runs the operation, and shows progress.
-				GtmUtils.disconnectViews();
-		
-				new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(true, false, operation);
+				editor.disconnectViews();
+
+				new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
 
 			} catch (Exception exception) {
 					// Something went wrong that shouldn't.
 					GtmEditorPlugin.INSTANCE.log(exception);
 			} finally {
-					GtmUtils.reconnectViews();
+					editor.reconnectViews();
 			}
 
 				

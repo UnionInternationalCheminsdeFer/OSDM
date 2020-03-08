@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.TimeZone;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
@@ -104,66 +105,71 @@ public class ConverterFromLegacy {
 	
 	
 	
-	public static int deleteOldConversionResults(GTMTool tool, EditingDomain editingDomain) {
+	public static int deleteOldConversionResults(GTMTool tool, EditingDomain domain) {
 		int deleted = 0;
 
 		CompoundCommand command = new CompoundCommand();
 		
 		for (FareElement fare : tool.getGeneralTariffModel().getFareStructure().getFareElements().getFareElements()) {
 			if (fare.getDataSource() == DataSource.CONVERTED) {
-				command.append(RemoveCommand.create(editingDomain, fare) );
+				command.append(RemoveCommand.create(domain, fare) );
 			}
 		}
+		GtmUtils.executeAndFlush(command,domain);
+		command = new CompoundCommand();
+		
 		for (RegionalConstraint region : tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints().getRegionalConstraints()) {
 			if (region.getDataSource() == DataSource.CONVERTED) {
-				command.append(RemoveCommand.create(editingDomain, region) );
+				command.append(RemoveCommand.create(domain, region) );
 			}
 		}
+		GtmUtils.executeAndFlush(command,domain);
+		command = new CompoundCommand();
+		
 		for (Price price : tool.getGeneralTariffModel().getFareStructure().getPrices().getPrices()) {
 			if (price.getDataSource() == DataSource.CONVERTED) {
-				command.append(DeleteCommand.create(editingDomain, price) );
+				command.append(DeleteCommand.create(domain, price) );
 			}
-		}		
+		}	
+		GtmUtils.executeAndFlush(command,domain);
+		command = new CompoundCommand();		
 		
 		for (ConnectionPoint point : tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().getConnectionPoints()) {
 			if (point.getDataSource() == DataSource.CONVERTED) {
-				command.append(DeleteCommand.create(editingDomain, point) );
+				command.append(DeleteCommand.create(domain, point) );
 			}
 		}			
 		
 		for (SalesAvailabilityConstraint sa : tool.getGeneralTariffModel().getFareStructure().getSalesAvailabilityConstraints().getSalesAvailabilityConstraints()) {
 			if (sa.getDataSource() == DataSource.CONVERTED) {
-				command.append(DeleteCommand.create(editingDomain, sa) );
+				command.append(DeleteCommand.create(domain, sa) );
 			}
 		}		
+		GtmUtils.executeAndFlush(command,domain);
+		command = new CompoundCommand();		
 		
 		for (Calendar sa : tool.getGeneralTariffModel().getFareStructure().getCalendars().getCalendars()) {
 			if (sa.getDataSource() == DataSource.CONVERTED) {
-				command.append(DeleteCommand.create(editingDomain, sa) );
+				command.append(DeleteCommand.create(domain, sa) );
 			}
 		}	
+		GtmUtils.executeAndFlush(command,domain);
+		command = new CompoundCommand();		
 		
 		for (FareStationSetDefinition sa : tool.getGeneralTariffModel().getFareStructure().getFareStationSetDefinitions().getFareStationSetDefinitions()) {
 			if (sa.getDataSource() == DataSource.CONVERTED) {
-				command.append(DeleteCommand.create(editingDomain, sa) );
+				command.append(DeleteCommand.create(domain, sa) );
 			}
 		}
+		GtmUtils.executeAndFlush(command,domain);
+		command = new CompoundCommand();		
 		
-		if (!command.isEmpty()) {
-			
-			if (command.canExecute()) {
-				editingDomain.getCommandStack().execute(command);
-			} else {
-				String message = "could not delete old converted data";
-				GtmUtils.writeConsoleError(message);
-			}
-		}
-		
+	
 		return deleted;
 	}
 
 
-	public int convertToGtm(GTMTool tool, EditingDomain editingDomain) {
+	public int convertToGtm(GTMTool tool, EditingDomain domain, IProgressMonitor monitor) {
 		
 		Country country = tool.getConversionFromLegacy().getParams().getCountry();
 		if (country == null) {
@@ -174,8 +180,19 @@ public class ConverterFromLegacy {
 		
 		ArrayList<Price> priceList = new ArrayList<Price>();
 		
+		ArrayList<RegionalConstraint> regions = new ArrayList<RegionalConstraint>();
+		ArrayList<FareElement> fares = new ArrayList<FareElement>();
+		
+		
+		int nbSeries = 0;
+		int worked = 100000 / tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries().size();
+		if (worked < 1 ) worked = 1;
 		int added = 0;
+		CompoundCommand command = new CompoundCommand();
+		
 		for (LegacySeries series: tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries()) {
+			
+			nbSeries++;
 			
 			ArrayList<DateRange> validityRanges = findValidRanges (tool, series);
 			
@@ -193,51 +210,66 @@ public class ConverterFromLegacy {
 				//continue
 			}
 			
-			CompoundCommand command = new CompoundCommand();
-			if (regionalConstraint != null) {
-				command.append(new AddCommand(editingDomain, tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints().getRegionalConstraints(), regionalConstraint) );
-			}
-			if (regionalConstraintR != null) {
-				command.append(new AddCommand(editingDomain, tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints().getRegionalConstraints(), regionalConstraintR) );
-			}
-			
-			if (!command.isEmpty() && command.canExecute()) {
-				editingDomain.getCommandStack().execute(command);
-			} else {
-				String message = "error in series: " + Integer.toString(series.getNumber()) + " conversion of this series failed";
-				GtmUtils.writeConsoleError(message);
-			}
-			
+			regions.add(regionalConstraint);
+			regions.add(regionalConstraintR);			
+		
 			int legacyFareCounter = 0;
 			for (FareTemplate fareTemplate: tool.getConversionFromLegacy().getParams().getLegacyFareTemplates().getFareTemplates()) {
 				
 				try {
 					for (DateRange dateRange : validityRanges) {
-						convertSeriesToFares(tool, series, fareTemplate,editingDomain,added, dateRange, regionalConstraint,regionalConstraintR ,priceList, legacyFareCounter);
+						convertSeriesToFares(tool, series, fareTemplate,domain,added, dateRange, regionalConstraint,regionalConstraintR ,priceList, legacyFareCounter, fares);
 					}
 					added++;
 				} catch (ConverterException e) {
 					// error already logged
 				}
-			}
+			}		
+			
+						
+			if (nbSeries % 1000 == 0 ) {			
+				monitor.subTask("convert series: "+ String.valueOf(nbSeries));
+				monitor.worked(worked);
+			} 
+			
+			
 		}
+		
+		
+		
+		Command com1 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getReductionConstraints(), GtmPackage.Literals.REGIONAL_CONSTRAINTS__REGIONAL_CONSTRAINTS, regions);
+		command.append(com1);
+		GtmUtils.executeAndFlush(command, domain);
+		monitor.worked(1);
+		command = new CompoundCommand();
+		
+		
+		Command com2 = AddCommand.create(domain,tool.getGeneralTariffModel().getFareStructure().getPrices(), GtmPackage.Literals.PRICES__PRICES, priceList);
+		command.append(com2);
+		GtmUtils.executeAndFlush(command, domain);
+		monitor.worked(1);
+		command = new CompoundCommand();
+		
+		Command com3 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getFareElements(),GtmPackage.Literals.FARE_ELEMENTS__FARE_ELEMENTS , fares);		
+		command.append(com3);	
+		GtmUtils.executeAndFlush(command, domain);
+		monitor.worked(1);
+		command = new CompoundCommand();
+
+		
 		return added;
 	}
 
 
 	
-	public void convertSeriesToFares(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, EditingDomain domain, int number,DateRange dateRange, RegionalConstraint regionalConstraint, RegionalConstraint regionalConstraintR, ArrayList<Price> priceList, int legacyFareCounter) throws ConverterException{
+	public void convertSeriesToFares(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, EditingDomain domain, int number,DateRange dateRange, RegionalConstraint regionalConstraint, RegionalConstraint regionalConstraintR, ArrayList<Price> priceList, int legacyFareCounter, ArrayList<FareElement> fares) throws ConverterException{
 		
 		try {
 			
 			Price price = convertSeriesToPrice(tool, series, fareTemplate, tool.getConversionFromLegacy().getParams().getCountry(), dateRange);
 			if (price == null) return;
-			
 			Price oldPrice = findPrice(price, priceList);
-			boolean createNewPrice = false;
-			if (oldPrice == null) {
-				createNewPrice = true;
-			} else {
+			if (oldPrice != null) {
 				price=oldPrice;
 			}
 					
@@ -269,20 +301,9 @@ public class ConverterFromLegacy {
 				}
 			}
 			
-			CompoundCommand command = new CompoundCommand();
-			
 			if (price != null && fareElement != null) {
-				if (createNewPrice) {
-					command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getPrices().getPrices(), price) );
-				}
-				command.append(new AddCommand(domain, tool.getGeneralTariffModel().getFareStructure().getFareElements().getFareElements(), fareElement) );			
-			}
-			
-			if (!command.isEmpty() && command.canExecute()) {
-				domain.getCommandStack().execute(command);
-			} else {
-				String message = "error in series: " + Integer.toString(series.getNumber()) + " conversion of price failed";
-				GtmUtils.writeConsoleError(message);
+				fares.add(fareElement);			
+				fares.add(fareElementR);	
 			}
 			
 			
@@ -846,6 +867,11 @@ public class ConverterFromLegacy {
 			if (amount == null) return null;
 
 			amount = amount * fareTemplate.getPriceFactor();
+			
+			// 2 digits for EUR
+			double scale = Math.pow(10, 2);
+		    amount = (float) (Math.round(amount * scale) / scale);
+			
 		
 			CurrencyPrice curPrice = GtmFactory.eINSTANCE.createCurrencyPrice();
 			curPrice.setAmount(amount);
@@ -1333,6 +1359,8 @@ public class ConverterFromLegacy {
 
 		CompoundCommand command = new CompoundCommand();
 		command.append(SetCommand.create(domain, tool.getGeneralTariffModel().getFareStructure(), GtmPackage.Literals.FARE_STRUCTURE__STATION_NAMES, stationNames));
+		
+		GtmUtils.executeAndFlush(command,domain);
 		
 		return 0;
 	}

@@ -6,8 +6,6 @@ package Gtm.provider;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.PassengerConstraint;
-
-import Gtm.TravelerType;
 import java.util.Collection;
 import java.util.List;
 
@@ -76,6 +74,7 @@ public class PassengerConstraintItemProvider
 			addPassengerWeightPropertyDescriptor(object);
 			addMaxTotalPassengerWeightPropertyDescriptor(object);
 			addMinTotalPassengerWeightPropertyDescriptor(object);
+			addDataDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -323,6 +322,28 @@ public class PassengerConstraintItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Data Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PassengerConstraint_dataDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PassengerConstraint_dataDescription_feature", "_UI_PassengerConstraint_type"),
+				 GtmPackage.Literals.PASSENGER_CONSTRAINT__DATA_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -372,8 +393,7 @@ public class PassengerConstraintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		TravelerType labelValue = ((PassengerConstraint)object).getTravelerType();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((PassengerConstraint)object).getDataDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_PassengerConstraint_type") :
 			getString("_UI_PassengerConstraint_type") + " " + label;
@@ -402,6 +422,7 @@ public class PassengerConstraintItemProvider
 			case GtmPackage.PASSENGER_CONSTRAINT__PASSENGER_WEIGHT:
 			case GtmPackage.PASSENGER_CONSTRAINT__MAX_TOTAL_PASSENGER_WEIGHT:
 			case GtmPackage.PASSENGER_CONSTRAINT__MIN_TOTAL_PASSENGER_WEIGHT:
+			case GtmPackage.PASSENGER_CONSTRAINT__DATA_DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.PASSENGER_CONSTRAINT__INCLUDED_FREE_PASSENGERS:

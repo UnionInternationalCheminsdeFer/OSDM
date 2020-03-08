@@ -54,6 +54,16 @@ public abstract class BasicGtmAction extends BaseSelectionListenerAction {
 
 		protected void runAction(GTMTool tool) {			
 		};
+
+		protected void prepareStructure(GTMTool tool, EditingDomain domain) {
+			if (tool == null) return;
+			if (domain == null) return;
+			
+			CompoundCommand preparationCommand = GtmUtils.getPreparationCommand(tool, domain);
+			if (preparationCommand != null && !preparationCommand.isEmpty() && preparationCommand.canExecute()) {
+				domain.getCommandStack().execute(preparationCommand);
+			}
+		}
 		
 		protected void prepareStructure() {
 			GTMTool tool = GtmUtils.getGtmTool();

@@ -19,6 +19,7 @@ import org.osgi.service.prefs.BackingStoreException;
 
 import Gtm.GTMTool;
 import Gtm.jsonImportExport.GtmJsonExporter;
+import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 import export.ExportFareDelivery;
 import gtm.FareDelivery;
@@ -49,6 +50,8 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 			
 			GTMTool tool = GtmUtils.getGtmTool();
 			
+			EditingDomain domain = GtmUtils.getActiveDomain();
+			
 			if (tool == null) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 				dialog.setText("no data found");
@@ -63,27 +66,29 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 				return;
 			}
 
+			GtmEditor editor = GtmUtils.getActiveEditor();
+			
 			IRunnableWithProgress operation =	new IRunnableWithProgress() {
 				// This is the method that gets invoked when the operation runs.
 
 				public void run(IProgressMonitor monitor) {
 					
-					monitor.beginTask("Exporting fare data to json", 5); 
+					monitor.beginTask("Exporting fare data to json", 30); 
 
 					monitor.subTask("Initialize main structure");
-					prepareStructure();
+					prepareStructure(tool,domain);
 					monitor.worked(1);
 
 					try {
 					
 						monitor.subTask("create IDs");
-						insertIds(tool);
+						insertIds(tool,domain);
 						monitor.worked(1);
 							
 						monitor.subTask("convert to json");						
 						FareDelivery fares = null;
 						try {
-							fares = GtmJsonExporter.convertToJson(tool.getGeneralTariffModel());
+							fares = GtmJsonExporter.convertToJson(tool.getGeneralTariffModel(), monitor);
 						} catch (Exception e) {
 							MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 							dialog.setText("json formating error");
@@ -113,22 +118,22 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 
 			try {
 				// This runs the operation, and shows progress.
-				GtmUtils.disconnectViews();
+				editor.disconnectViews();
 		
-				new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(true, false, operation);
+				new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
 
 			} catch (Exception exception) {
 					// Something went wrong that shouldn't.
 					GtmEditorPlugin.INSTANCE.log(exception);
 			} finally {
-					GtmUtils.reconnectViews();
+					editor.reconnectViews();
 			}
 		}		
 
   
-		private void insertIds(GTMTool tool) {
+		private void insertIds(GTMTool tool,EditingDomain domain) {
 			
-			EditingDomain domain = GtmUtils.getActiveDomain();
+		
 			
 			CompoundCommand command =  GtmUtils.setIds(tool,domain);
 			

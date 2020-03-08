@@ -67,6 +67,7 @@ public class FulfillmentConstraintItemProvider
 			addAcceptedFulfilmentTypesPropertyDescriptor(object);
 			addRequiredControlDataExchangePropertyDescriptor(object);
 			addIndividualTicketingPermittedPropertyDescriptor(object);
+			addDataDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -160,6 +161,28 @@ public class FulfillmentConstraintItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Data Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FulfillmentConstraint_dataDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FulfillmentConstraint_dataDescription_feature", "_UI_FulfillmentConstraint_type"),
+				 GtmPackage.Literals.FULFILLMENT_CONSTRAINT__DATA_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -209,7 +232,7 @@ public class FulfillmentConstraintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FulfillmentConstraint)object).getId();
+		String label = ((FulfillmentConstraint)object).getDataDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_FulfillmentConstraint_type") :
 			getString("_UI_FulfillmentConstraint_type") + " " + label;
@@ -232,6 +255,7 @@ public class FulfillmentConstraintItemProvider
 			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_FULFILMENT_TYPES:
 			case GtmPackage.FULFILLMENT_CONSTRAINT__REQUIRED_CONTROL_DATA_EXCHANGE:
 			case GtmPackage.FULFILLMENT_CONSTRAINT__INDIVIDUAL_TICKETING_PERMITTED:
+			case GtmPackage.FULFILLMENT_CONSTRAINT__DATA_DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES:
