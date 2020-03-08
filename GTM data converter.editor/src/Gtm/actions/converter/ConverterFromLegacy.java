@@ -235,9 +235,7 @@ public class ConverterFromLegacy {
 			
 		}
 		
-		
-		
-		Command com1 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getReductionConstraints(), GtmPackage.Literals.REGIONAL_CONSTRAINTS__REGIONAL_CONSTRAINTS, regions);
+		Command com1 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints(), GtmPackage.Literals.REGIONAL_CONSTRAINTS__REGIONAL_CONSTRAINTS, regions);
 		command.append(com1);
 		GtmUtils.executeAndFlush(command, domain);
 		monitor.worked(1);
