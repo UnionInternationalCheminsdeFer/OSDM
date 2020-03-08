@@ -856,17 +856,17 @@
     <genClasses ecoreClass="Gtm.ecore#//ViaStation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/station"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/carrier"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/route"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/alternativeRoutes"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/route"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/alternativeRoutes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ViaStation/dataDescription"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/fareStationSet"/>
       <genOperations ecoreOperation="Gtm.ecore#//ViaStation/getDescription"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//AlternativeRoute">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//AlternativeRoute/stations"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//AlternativeRoute/stations"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Route">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Route/stations"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Route/stations"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Zone">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Zone/binaryZoneId"/>
