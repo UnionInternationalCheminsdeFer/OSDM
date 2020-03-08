@@ -110,9 +110,11 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 					} catch (Exception exception) {
 						// Something went wrong that shouldn't.
 						GtmEditorPlugin.INSTANCE.log(exception);					
+					} finally {
+						monitor.done();
 					}
 					
-					monitor.done();
+					
 				}
 			};
 
@@ -132,8 +134,6 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 
   
 		private void insertIds(GTMTool tool,EditingDomain domain) {
-			
-		
 			
 			CompoundCommand command =  GtmUtils.setIds(tool,domain);
 			

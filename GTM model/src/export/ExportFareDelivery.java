@@ -1,9 +1,11 @@
 package export;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.Writer;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -26,7 +28,7 @@ public class ExportFareDelivery {
 				file.createNewFile();
 			}
 		
-			OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
+			Writer writer = new BufferedWriter (new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
 			mapper.writeValue(writer, fares);
 			writer.close();
 		} catch (JsonGenerationException e) {
@@ -48,6 +50,7 @@ public class ExportFareDelivery {
 			dialog.open(); 
 			e.printStackTrace();
 		}
+		return;
 	}
 
 }
