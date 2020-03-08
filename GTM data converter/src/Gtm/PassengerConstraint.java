@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.PassengerConstraint#getMinTotalPassengerWeight <em>Min Total Passenger Weight</em>}</li>
  *   <li>{@link Gtm.PassengerConstraint#getIncludedFreePassengers <em>Included Free Passengers</em>}</li>
  *   <li>{@link Gtm.PassengerConstraint#getExcludedPassengerCombinations <em>Excluded Passenger Combinations</em>}</li>
+ *   <li>{@link Gtm.PassengerConstraint#getDataDescription <em>Data Description</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getPassengerConstraint()
@@ -304,5 +305,27 @@ public interface PassengerConstraint extends EObject {
 	 * @generated
 	 */
 	EList<PassengerCombinationConstraint> getExcludedPassengerCombinations();
+
+	/**
+	 * Returns the value of the '<em><b>Data Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Description</em>' attribute.
+	 * @see #setDataDescription(String)
+	 * @see Gtm.GtmPackage#getPassengerConstraint_DataDescription()
+	 * @model
+	 * @generated
+	 */
+	String getDataDescription();
+
+	/**
+	 * Sets the value of the '{@link Gtm.PassengerConstraint#getDataDescription <em>Data Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Description</em>' attribute.
+	 * @see #getDataDescription()
+	 * @generated
+	 */
+	void setDataDescription(String value);
 
 } // PassengerConstraint

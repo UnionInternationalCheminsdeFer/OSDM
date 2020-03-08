@@ -335,7 +335,9 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="acceptedBarcodes" eType="#//AcceptedBarcodes"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="requiredBarcodes" eType="#//RequiredBarcodes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requiredBarcodes" eType="#//RequiredBarcodes"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RequiredBarcodes">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -491,6 +493,7 @@
         upperBound="-1" eType="#//IncludedFreePassengerLimit" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="excludedPassengerCombinations"
         upperBound="-1" eType="#//PassengerCombinationConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PassengerCombinationConstraint">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

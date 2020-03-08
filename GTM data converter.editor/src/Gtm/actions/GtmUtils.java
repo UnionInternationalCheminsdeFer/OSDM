@@ -43,6 +43,7 @@ import Gtm.FareStructure;
 import Gtm.FulfillmentConstraint;
 import Gtm.GTMTool;
 import Gtm.GeneralTariffModel;
+import Gtm.GenericReductionCards;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.Language;
@@ -113,20 +114,27 @@ public class GtmUtils {
 		}
 	}
 	
+	public static void executeAndFlush(CompoundCommand command, EditingDomain domain) {
+		
+		if (command != null && domain != null && !command.isEmpty() && command.canExecute()) {
+			domain.getCommandStack().execute(command);
+			domain.getCommandStack().flush();
+			domain.getCommandStack().execute(new DirtyCommand());
+		} else {
+			String message = "could not change data: " + command.getDescription();
+			GtmUtils.writeConsoleError(message);
+		}
+		
+		System.gc();
+		
+	}
+	
 	public static EditingDomain getActiveDomain() {
 	   	IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		return ((GtmEditor) editor).getEditingDomain();
 	}
 	
-	public static void disconnectViews() {
-		GtmEditor editor = (GtmEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		editor.disconnectViews();
-	}
-	
-	public static void reconnectViews() {
-		GtmEditor editor = (GtmEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		editor.reconnectViews();
-	}
+
 	
 	public static CompoundCommand getPreparationCommand (GTMTool tool, EditingDomain domain) {
 		
@@ -393,15 +401,16 @@ public class GtmUtils {
 		populateUICLaguages(tool.getCodeLists().getLanguages());
 
 		//add generic reduction cards
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_EURAIL","Eurail Pass", findCarrier(tool,"9902"));
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_INTERRAIL","Interrail Pass", findCarrier(tool,"9902"));		
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_FIP_DUTY","FIP duty", null);			
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_FIP_LEISURE_FREE","FIP leasure", null);	
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_FIP_LEISURE_REDU","FIP leasure reduction", null);
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RAILPLUS","RailPlus", null);	
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RIT_1","Rail Inclusive Tours 1", null);	
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RIT_2","Rail Inclusive Tours 2", null);	
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),"UIC_RIT_3","Rail Inclusive Tours 3", null);	
+			
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_EURAIL.getName(),"Eurail Pass", findCarrier(tool,"9902"));
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_INTERRAIL.getName(),"Interrail Pass", findCarrier(tool,"9902"));		
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_FIP_DUTY.getName(),"FIP duty", null);			
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_FIP_LEISURE_FREE.getName(),"FIP leasure", null);	
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_FIP_LEISURE_REDU.getName(),"FIP leasure reduction", null);
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_RAILPLUS.getName(),"RailPlus", null);	
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_RIT_1.getName(),"Rail Inclusive Tours 1", null);	
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_RIT_2.getName(),"Rail Inclusive Tours 2", null);	
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_RIT_3.getName(),"Rail Inclusive Tours 3", null);	
 	
 		
 	}

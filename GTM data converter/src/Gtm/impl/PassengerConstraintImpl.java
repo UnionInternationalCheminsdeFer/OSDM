@@ -46,6 +46,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link Gtm.impl.PassengerConstraintImpl#getMinTotalPassengerWeight <em>Min Total Passenger Weight</em>}</li>
  *   <li>{@link Gtm.impl.PassengerConstraintImpl#getIncludedFreePassengers <em>Included Free Passengers</em>}</li>
  *   <li>{@link Gtm.impl.PassengerConstraintImpl#getExcludedPassengerCombinations <em>Excluded Passenger Combinations</em>}</li>
+ *   <li>{@link Gtm.impl.PassengerConstraintImpl#getDataDescription <em>Data Description</em>}</li>
  * </ul>
  *
  * @generated
@@ -280,6 +281,26 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * @ordered
 	 */
 	protected EList<PassengerCombinationConstraint> excludedPassengerCombinations;
+
+	/**
+	 * The default value of the '{@link #getDataDescription() <em>Data Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DATA_DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDataDescription() <em>Data Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String dataDescription = DATA_DESCRIPTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -577,6 +598,27 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDataDescription() {
+		return dataDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataDescription(String newDataDescription) {
+		String oldDataDescription = dataDescription;
+		dataDescription = newDataDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.PASSENGER_CONSTRAINT__DATA_DESCRIPTION, oldDataDescription, dataDescription));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -623,6 +665,8 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 				return getIncludedFreePassengers();
 			case GtmPackage.PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS:
 				return getExcludedPassengerCombinations();
+			case GtmPackage.PASSENGER_CONSTRAINT__DATA_DESCRIPTION:
+				return getDataDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -677,6 +721,9 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 				getExcludedPassengerCombinations().clear();
 				getExcludedPassengerCombinations().addAll((Collection<? extends PassengerCombinationConstraint>)newValue);
 				return;
+			case GtmPackage.PASSENGER_CONSTRAINT__DATA_DESCRIPTION:
+				setDataDescription((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -728,6 +775,9 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 			case GtmPackage.PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS:
 				getExcludedPassengerCombinations().clear();
 				return;
+			case GtmPackage.PASSENGER_CONSTRAINT__DATA_DESCRIPTION:
+				setDataDescription(DATA_DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -766,6 +816,8 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 				return includedFreePassengers != null && !includedFreePassengers.isEmpty();
 			case GtmPackage.PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS:
 				return excludedPassengerCombinations != null && !excludedPassengerCombinations.isEmpty();
+			case GtmPackage.PASSENGER_CONSTRAINT__DATA_DESCRIPTION:
+				return DATA_DESCRIPTION_EDEFAULT == null ? dataDescription != null : !DATA_DESCRIPTION_EDEFAULT.equals(dataDescription);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -800,6 +852,8 @@ public class PassengerConstraintImpl extends MinimalEObjectImpl.Container implem
 		result.append(maxTotalPassengerWeight);
 		result.append(", minTotalPassengerWeight: ");
 		result.append(minTotalPassengerWeight);
+		result.append(", dataDescription: ");
+		result.append(dataDescription);
 		result.append(')');
 		return result.toString();
 	}

@@ -2219,7 +2219,7 @@ public interface GtmPackage extends EPackage {
 	int FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES = 4;
 
 	/**
-	 * The feature id for the '<em><b>Required Barcodes</b></em>' reference.
+	 * The feature id for the '<em><b>Required Barcodes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2228,13 +2228,22 @@ public interface GtmPackage extends EPackage {
 	int FULFILLMENT_CONSTRAINT__REQUIRED_BARCODES = 5;
 
 	/**
+	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FULFILLMENT_CONSTRAINT__DATA_DESCRIPTION = 6;
+
+	/**
 	 * The number of structural features of the '<em>Fulfillment Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FULFILLMENT_CONSTRAINT_FEATURE_COUNT = 6;
+	int FULFILLMENT_CONSTRAINT_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Fulfillment Constraint</em>' class.
@@ -3279,13 +3288,22 @@ public interface GtmPackage extends EPackage {
 	int PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS = 12;
 
 	/**
+	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASSENGER_CONSTRAINT__DATA_DESCRIPTION = 13;
+
+	/**
 	 * The number of structural features of the '<em>Passenger Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PASSENGER_CONSTRAINT_FEATURE_COUNT = 13;
+	int PASSENGER_CONSTRAINT_FEATURE_COUNT = 14;
 
 	/**
 	 * The number of operations of the '<em>Passenger Constraint</em>' class.
@@ -10372,15 +10390,26 @@ public interface GtmPackage extends EPackage {
 	EReference getFulfillmentConstraint_AcceptedBarcodes();
 
 	/**
-	 * Returns the meta object for the reference '{@link Gtm.FulfillmentConstraint#getRequiredBarcodes <em>Required Barcodes</em>}'.
+	 * Returns the meta object for the containment reference '{@link Gtm.FulfillmentConstraint#getRequiredBarcodes <em>Required Barcodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Required Barcodes</em>'.
+	 * @return the meta object for the containment reference '<em>Required Barcodes</em>'.
 	 * @see Gtm.FulfillmentConstraint#getRequiredBarcodes()
 	 * @see #getFulfillmentConstraint()
 	 * @generated
 	 */
 	EReference getFulfillmentConstraint_RequiredBarcodes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.FulfillmentConstraint#getDataDescription <em>Data Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Description</em>'.
+	 * @see Gtm.FulfillmentConstraint#getDataDescription()
+	 * @see #getFulfillmentConstraint()
+	 * @generated
+	 */
+	EAttribute getFulfillmentConstraint_DataDescription();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.RequiredBarcodes <em>Required Barcodes</em>}'.
@@ -11277,6 +11306,17 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPassengerConstraint_ExcludedPassengerCombinations();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.PassengerConstraint#getDataDescription <em>Data Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Description</em>'.
+	 * @see Gtm.PassengerConstraint#getDataDescription()
+	 * @see #getPassengerConstraint()
+	 * @generated
+	 */
+	EAttribute getPassengerConstraint_DataDescription();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.PassengerCombinationConstraint <em>Passenger Combination Constraint</em>}'.
@@ -17093,12 +17133,20 @@ public interface GtmPackage extends EPackage {
 		EReference FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES = eINSTANCE.getFulfillmentConstraint_AcceptedBarcodes();
 
 		/**
-		 * The meta object literal for the '<em><b>Required Barcodes</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Required Barcodes</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference FULFILLMENT_CONSTRAINT__REQUIRED_BARCODES = eINSTANCE.getFulfillmentConstraint_RequiredBarcodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FULFILLMENT_CONSTRAINT__DATA_DESCRIPTION = eINSTANCE.getFulfillmentConstraint_DataDescription();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.RequiredBarcodesImpl <em>Required Barcodes</em>}' class.
@@ -17795,6 +17843,14 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PASSENGER_CONSTRAINT__EXCLUDED_PASSENGER_COMBINATIONS = eINSTANCE.getPassengerConstraint_ExcludedPassengerCombinations();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PASSENGER_CONSTRAINT__DATA_DESCRIPTION = eINSTANCE.getPassengerConstraint_DataDescription();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.PassengerCombinationConstraintImpl <em>Passenger Combination Constraint</em>}' class.

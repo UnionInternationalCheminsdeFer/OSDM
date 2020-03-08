@@ -140,6 +140,8 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 
 
+
+
 /**
  * This is an example of a Gtm model editor.
  * <!-- begin-user-doc -->
@@ -170,6 +172,15 @@ public class GtmEditor
 		}
 		return Collections.unmodifiableList(result);
 	}
+	
+	/**
+	 * This is an example of a Gtm model editor.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public static boolean doSelectionChange = true;
+
 
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model.
@@ -1439,10 +1450,24 @@ public class GtmEditor
 	/**
 	 * This deals with how we want selection in the outliner to affect the other views.
 	 * <!-- begin-user-doc -->
+	 * swich for selection handling
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void handleContentOutlineSelection(ISelection selection) {
+		
+		if (!doSelectionChange) return;
+		
+		handleContentOutlineSelectionGen(selection);
+	}
+	
+	/**
+	 * This deals with how we want selection in the outliner to affect the other views.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void handleContentOutlineSelection(ISelection selection) {
+	public void handleContentOutlineSelectionGen(ISelection selection) {
 		if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
 			Iterator<?> selectedElements = ((IStructuredSelection)selection).iterator();
 			if (selectedElements.hasNext()) {
@@ -1483,6 +1508,8 @@ public class GtmEditor
 	 */
 	@Override
 	public boolean isDirty() {
+		if (!doSelectionChange) return true;
+		
 		return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
 	}
 
@@ -1532,9 +1559,7 @@ public class GtmEditor
 		try {
 			// This runs the options, and shows progress.
 			//
-			GtmUtils.disconnectViews();
-			
-
+			disconnectViews();
 			
 			new ProgressMonitorDialog(getSite().getShell()).run(true, false, operation);
 
@@ -1545,7 +1570,7 @@ public class GtmEditor
 			// Something went wrong that shouldn't.
 			GtmEditorPlugin.INSTANCE.log(exception);
 		} finally {
-			GtmUtils.reconnectViews();
+			reconnectViews();
 		}
 		
 		updateProblemIndication = true;
@@ -1744,10 +1769,26 @@ public class GtmEditor
 	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to set this editor's overall selection.
 	 * Calling this result will notify the listeners.
 	 * <!-- begin-user-doc -->
+	 * selection change switch
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setSelection(ISelection selection) {
+		
+		if (!doSelectionChange) return;
+		
+		setSelectionGen(selection);
+		
+	}
+	
+	/**
+	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to set this editor's overall selection.
+	 * Calling this result will notify the listeners.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSelection(ISelection selection) {
+	public void setSelectionGen(ISelection selection) {
 		editorSelection = selection;
 
 		for (ISelectionChangedListener listener : selectionChangedListeners) {
@@ -1893,27 +1934,30 @@ public class GtmEditor
 	 */
 	public void disconnectViews() {
 		
+		doSelectionChange = false;
+		
+		/*
+		
 		if (this.contentOutlineViewer != null && this.contentOutlineViewer.getTree() != null) {
 			this.contentOutlineViewer.getTree().setRedraw(false);
+			outlineContentProvider = this.contentOutlineViewer.getContentProvider();
+			this.contentOutlineViewer.setContentProvider(null);
 		}
 		if (getPropertySheetPage() != null && getPropertySheetPage().getControl() != null) {
 			getPropertySheetPage().getControl().setRedraw(false);
 		}
 		
-		if (outlineContentProvider != null) {
-			outlineContentProvider = this.contentOutlineViewer.getContentProvider();
-			this.contentOutlineViewer.setContentProvider(null);
-		}
-		if (listContentProvider != null) {
+		if (treeViewer != null) {
 			listContentProvider = treeViewer.getContentProvider();
 			treeViewer.setContentProvider(null);
 		}
-		if (treeContentProvider!= null) {
+		if (listViewer!= null) {
 			treeContentProvider = listViewer.getContentProvider();
 			listViewer.setContentProvider(null);
 		}
 		
 		System.gc();
+		*/
 		
 	}
 	
@@ -1925,7 +1969,9 @@ public class GtmEditor
 	 */
 	public void reconnectViews() {
 		
-	
+		doSelectionChange = true;
+		
+		/*
 		if (outlineContentProvider != null) {
 			this.contentOutlineViewer.setContentProvider(outlineContentProvider);
 			this.contentOutlineViewer.collapseAll();
@@ -1943,8 +1989,10 @@ public class GtmEditor
 		}
 
 		firePropertyChange(IEditorPart.PROP_DIRTY);
+
 		
-		
+		System.gc();
+		*/
 	}
 
 	/**

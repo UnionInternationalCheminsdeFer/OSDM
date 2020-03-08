@@ -528,7 +528,7 @@
     <genClasses ecoreClass="Gtm.ecore#//FulfillmentConstraints">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FulfillmentConstraints/fulfillmentConstraints"/>
     </genClasses>
-    <genClasses ecoreClass="Gtm.ecore#//FulfillmentConstraint">
+    <genClasses ecoreClass="Gtm.ecore#//FulfillmentConstraint" labelFeature="#//Gtm/FulfillmentConstraint/dataDescription">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FulfillmentConstraint/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FulfillmentConstraint/acceptedFulfilmentTypes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FulfillmentConstraint/requiredControlDataExchange"/>
@@ -536,6 +536,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FulfillmentConstraint/acceptedBarcodes"/>
       <genFeatures property="None" children="true" createChild="true" propertySortChoices="true"
           ecoreFeature="ecore:EReference Gtm.ecore#//FulfillmentConstraint/requiredBarcodes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FulfillmentConstraint/dataDescription"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//RequiredBarcodes">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RequiredBarcodes/requiredBarcodes"/>
@@ -624,7 +625,7 @@
     <genClasses ecoreClass="Gtm.ecore#//PassengerConstraints">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PassengerConstraints/passengerConstraints"/>
     </genClasses>
-    <genClasses ecoreClass="Gtm.ecore#//PassengerConstraint" labelFeature="#//Gtm/PassengerConstraint/travelerType">
+    <genClasses ecoreClass="Gtm.ecore#//PassengerConstraint" labelFeature="#//Gtm/PassengerConstraint/dataDescription">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/travelerType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//PassengerConstraint/text"/>
@@ -640,6 +641,7 @@
           ecoreFeature="ecore:EReference Gtm.ecore#//PassengerConstraint/includedFreePassengers"/>
       <genFeatures property="None" children="true" createChild="true" propertyDescription="excluded free passengers"
           ecoreFeature="ecore:EReference Gtm.ecore#//PassengerConstraint/excludedPassengerCombinations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/dataDescription"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//PassengerCombinationConstraint" labelFeature="#//Gtm/PassengerCombinationConstraint/passengerType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerCombinationConstraint/maxNumber"/>
@@ -950,7 +952,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ConversionParams/endOfSale"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ConversionParams/StartOfSale"/>
     </genClasses>
-    <genClasses ecoreClass="Gtm.ecore#//FareTemplate">
+    <genClasses ecoreClass="Gtm.ecore#//FareTemplate" labelFeature="#//Gtm/FareTemplate/dataDescription">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/priceFactor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/type"/>

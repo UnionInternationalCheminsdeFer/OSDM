@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.FulfillmentConstraint#isIndividualTicketingPermitted <em>Individual Ticketing Permitted</em>}</li>
  *   <li>{@link Gtm.FulfillmentConstraint#getAcceptedBarcodes <em>Accepted Barcodes</em>}</li>
  *   <li>{@link Gtm.FulfillmentConstraint#getRequiredBarcodes <em>Required Barcodes</em>}</li>
+ *   <li>{@link Gtm.FulfillmentConstraint#getDataDescription <em>Data Description</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getFulfillmentConstraint()
@@ -124,25 +125,47 @@ public interface FulfillmentConstraint extends EObject {
 	void setAcceptedBarcodes(AcceptedBarcodes value);
 
 	/**
-	 * Returns the value of the '<em><b>Required Barcodes</b></em>' reference.
+	 * Returns the value of the '<em><b>Required Barcodes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Required Barcodes</em>' reference.
+	 * @return the value of the '<em>Required Barcodes</em>' containment reference.
 	 * @see #setRequiredBarcodes(RequiredBarcodes)
 	 * @see Gtm.GtmPackage#getFulfillmentConstraint_RequiredBarcodes()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	RequiredBarcodes getRequiredBarcodes();
 
 	/**
-	 * Sets the value of the '{@link Gtm.FulfillmentConstraint#getRequiredBarcodes <em>Required Barcodes</em>}' reference.
+	 * Sets the value of the '{@link Gtm.FulfillmentConstraint#getRequiredBarcodes <em>Required Barcodes</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Required Barcodes</em>' reference.
+	 * @param value the new value of the '<em>Required Barcodes</em>' containment reference.
 	 * @see #getRequiredBarcodes()
 	 * @generated
 	 */
 	void setRequiredBarcodes(RequiredBarcodes value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Description</em>' attribute.
+	 * @see #setDataDescription(String)
+	 * @see Gtm.GtmPackage#getFulfillmentConstraint_DataDescription()
+	 * @model
+	 * @generated
+	 */
+	String getDataDescription();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FulfillmentConstraint#getDataDescription <em>Data Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Description</em>' attribute.
+	 * @see #getDataDescription()
+	 * @generated
+	 */
+	void setDataDescription(String value);
 
 } // FulfillmentConstraint

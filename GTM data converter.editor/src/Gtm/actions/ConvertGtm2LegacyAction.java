@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import Gtm.Country;
 import Gtm.GTMTool;
 import Gtm.actions.converter.ConverterToLegacy;
+import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 
 
@@ -75,6 +76,8 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 			
 			GTMTool tool = GtmUtils.getGtmTool();
 			
+			GtmEditor editor = GtmUtils.getActiveEditor();
+			
 			if (tool == null) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 				dialog.setText("no data found");
@@ -106,8 +109,8 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 					
 					monitor.beginTask("Convert GTM fares to legacy 108.1 data", converter.getMonitorTasks() + 1); 
 
-					monitor.setTaskName("Initialize main structure");
-					prepareStructure();
+					monitor.subTask("Initialize main structure");
+					prepareStructure(tool,domain);
 					monitor.worked(1);
 					
 					int created = converter.convert(monitor);
@@ -119,15 +122,15 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 			};	
 			try {
 				// This runs the operation, and shows progress.
-				GtmUtils.disconnectViews();
+				editor.disconnectViews();
 		
-				new ProgressMonitorDialog(Display.getDefault().getActiveShell()).run(true, false, operation);
+				new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
 
 			} catch (Exception exception) {
 					// Something went wrong that shouldn't.
-					GtmEditorPlugin.INSTANCE.log(exception);
+					GtmEditorPlugin.INSTANCE.log(exception);				
 			} finally {
-					GtmUtils.reconnectViews();
+					editor.reconnectViews();
 			}			
 
 

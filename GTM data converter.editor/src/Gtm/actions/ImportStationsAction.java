@@ -23,6 +23,7 @@ import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.Station;
 import Gtm.Stations;
+import Gtm.presentation.GtmEditor;
 
 
 public class ImportStationsAction extends BasicGtmAction {
@@ -215,13 +216,15 @@ public class ImportStationsAction extends BasicGtmAction {
 		protected void runAction(GTMTool tool) {
 			Stations newStations = readStationsByLine(tool);
 			
-			GtmUtils.disconnectViews();
+			GtmEditor editor = GtmUtils.getActiveEditor();
+			
+			editor.disconnectViews();
 			try {
 				updateStations(tool, newStations);
 			} catch (Exception e) {
 				// something went wrong
 			} finally {
-				GtmUtils.reconnectViews();
+				editor.reconnectViews();
 			}
 		}
 
