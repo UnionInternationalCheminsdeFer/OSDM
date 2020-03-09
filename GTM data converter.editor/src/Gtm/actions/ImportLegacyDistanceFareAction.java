@@ -72,7 +72,7 @@ public class ImportLegacyDistanceFareAction extends ImportLegacyAction {
 		Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_DISTANCE_FARES, resultList );
 		if (cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
-			GtmUtils.writeConsoleInfog("distance prices imported: " + Integer.toString(resultList.getDistanceFare().size()));
+			GtmUtils.writeConsoleInfo("distance prices imported: " + Integer.toString(resultList.getDistanceFare().size()));
 		}
 		
 	}

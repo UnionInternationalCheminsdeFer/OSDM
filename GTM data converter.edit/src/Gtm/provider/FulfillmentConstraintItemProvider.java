@@ -67,6 +67,8 @@ public class FulfillmentConstraintItemProvider
 			addAcceptedFulfilmentTypesPropertyDescriptor(object);
 			addRequiredControlDataExchangePropertyDescriptor(object);
 			addIndividualTicketingPermittedPropertyDescriptor(object);
+			addAcceptedBarcodesPropertyDescriptor(object);
+			addRequiredBarcodesPropertyDescriptor(object);
 			addDataDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -156,6 +158,50 @@ public class FulfillmentConstraintItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Accepted Barcodes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAcceptedBarcodesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FulfillmentConstraint_acceptedBarcodes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FulfillmentConstraint_acceptedBarcodes_feature", "_UI_FulfillmentConstraint_type"),
+				 GtmPackage.Literals.FULFILLMENT_CONSTRAINT__ACCEPTED_BARCODES,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Required Barcodes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRequiredBarcodesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FulfillmentConstraint_requiredBarcodes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FulfillmentConstraint_requiredBarcodes_feature", "_UI_FulfillmentConstraint_type"),
+				 GtmPackage.Literals.FULFILLMENT_CONSTRAINT__REQUIRED_BARCODES,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

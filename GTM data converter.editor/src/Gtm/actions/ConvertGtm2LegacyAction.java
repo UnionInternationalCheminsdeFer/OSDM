@@ -99,7 +99,7 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 			if (domain == null) return;
 			
 			
-			ConverterToLegacy converter = new ConverterToLegacy(tool);
+			ConverterToLegacy converter = new ConverterToLegacy(tool,editor,domain);
 			
 			
 			IRunnableWithProgress operation =	new IRunnableWithProgress() {
@@ -127,10 +127,10 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 				new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
 
 			} catch (Exception exception) {
-					// Something went wrong that shouldn't.
-					GtmEditorPlugin.INSTANCE.log(exception);				
+				// Something went wrong that shouldn't.
+				GtmEditorPlugin.INSTANCE.log(exception);				
 			} finally {
-					editor.reconnectViews();
+				editor.reconnectViews();
 			}			
 
 

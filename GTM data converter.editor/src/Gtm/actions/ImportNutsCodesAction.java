@@ -86,8 +86,8 @@ public class ImportNutsCodesAction extends ImportCsvDataAction {
         
         if (command != null && !command.isEmpty()) {
         	domain.getCommandStack().execute(command);
-			GtmUtils.writeConsoleInfog("nuts codes added: (" + Integer.toString(added)+")" );
-			GtmUtils.writeConsoleInfog("nits codes updated: (" + Integer.toString(updated) + ")" );
+			GtmUtils.writeConsoleInfo("nuts codes added: (" + Integer.toString(added)+")" );
+			GtmUtils.writeConsoleInfo("nits codes updated: (" + Integer.toString(updated) + ")" );
         }		
 	}
 

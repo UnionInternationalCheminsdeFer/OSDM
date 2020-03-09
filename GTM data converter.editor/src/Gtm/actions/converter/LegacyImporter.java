@@ -144,7 +144,7 @@ public class LegacyImporter {
 			Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_STATIONS, stations );
 			if (cmd.canExecute()) {
 				domain.getCommandStack().execute(cmd);
-				GtmUtils.writeConsoleInfog("stations imported: " + Integer.toString(stations.getLegacyStations().size()));
+				GtmUtils.writeConsoleInfo("stations imported: " + Integer.toString(stations.getLegacyStations().size()));
 			}
 		
 	}
@@ -185,7 +185,7 @@ public class LegacyImporter {
 		Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_SERIES_LIST, seriesList );
 		if (cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
-			GtmUtils.writeConsoleInfog("series imported: " + Integer.toString(seriesList.getSeries().size()));
+			GtmUtils.writeConsoleInfo("series imported: " + Integer.toString(seriesList.getSeries().size()));
 		}
 
 		
@@ -249,7 +249,7 @@ public class LegacyImporter {
 
 			if (!command.isEmpty() && command.canExecute()) {
 				domain.getCommandStack().execute(command);
-				GtmUtils.writeConsoleInfog("route prices imported: " + Integer.toString(resultListRouteFares.getRouteFare().size()));
+				GtmUtils.writeConsoleInfo("route prices imported: " + Integer.toString(resultListRouteFares.getRouteFare().size()));
 			}
 			
 	}

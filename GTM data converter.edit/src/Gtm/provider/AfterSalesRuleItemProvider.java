@@ -64,6 +64,7 @@ public class AfterSalesRuleItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIdPropertyDescriptor(object);
+			addConditionsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,6 +87,28 @@ public class AfterSalesRuleItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Conditions feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConditionsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AfterSalesRule_conditions_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AfterSalesRule_conditions_feature", "_UI_AfterSalesRule_type"),
+				 GtmPackage.Literals.AFTER_SALES_RULE__CONDITIONS,
+				 true,
+				 false,
+				 false,
+				 null,
 				 null,
 				 null));
 	}

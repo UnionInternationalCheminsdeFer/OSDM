@@ -65,6 +65,8 @@ public class PersonalDataConstraintItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIdPropertyDescriptor(object);
+			addRequiredPersonalDataPropertyDescriptor(object);
+			addAllowedChangesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -87,6 +89,50 @@ public class PersonalDataConstraintItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Required Personal Data feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRequiredPersonalDataPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PersonalDataConstraint_requiredPersonalData_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PersonalDataConstraint_requiredPersonalData_feature", "_UI_PersonalDataConstraint_type"),
+				 GtmPackage.Literals.PERSONAL_DATA_CONSTRAINT__REQUIRED_PERSONAL_DATA,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Allowed Changes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAllowedChangesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PersonalDataConstraint_allowedChanges_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PersonalDataConstraint_allowedChanges_feature", "_UI_PersonalDataConstraint_type"),
+				 GtmPackage.Literals.PERSONAL_DATA_CONSTRAINT__ALLOWED_CHANGES,
+				 true,
+				 false,
+				 false,
+				 null,
 				 null,
 				 null));
 	}

@@ -99,7 +99,7 @@ public class ImportLegacyAllFareAction extends ImportLegacyAction {
 
 		if (!command.isEmpty() && command.canExecute()) {
 			domain.getCommandStack().execute(command);
-			GtmUtils.writeConsoleInfog("route prices imported: " + Integer.toString(resultListRouteFares.getRouteFare().size()));
+			GtmUtils.writeConsoleInfo("route prices imported: " + Integer.toString(resultListRouteFares.getRouteFare().size()));
 		}
 		
 	}

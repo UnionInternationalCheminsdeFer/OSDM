@@ -75,7 +75,7 @@ public class ImportLegacyIndividualSeriesAction extends ImportLegacyAction {
 		Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_SERIES_LIST, seriesList );
 		if (cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
-			GtmUtils.writeConsoleInfog("separate contract series imported: " + Integer.toString(seriesList.getSeparateContractSeries().size()));
+			GtmUtils.writeConsoleInfo("separate contract series imported: " + Integer.toString(seriesList.getSeparateContractSeries().size()));
 		}
 
 	}

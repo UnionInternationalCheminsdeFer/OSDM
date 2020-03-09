@@ -66,6 +66,7 @@ public class CombinationConstraintItemProvider
 
 			addIdPropertyDescriptor(object);
 			addDataDescriptionPropertyDescriptor(object);
+			addCombinationModelsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -110,6 +111,28 @@ public class CombinationConstraintItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Combination Models feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCombinationModelsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CombinationConstraint_combinationModels_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CombinationConstraint_combinationModels_feature", "_UI_CombinationConstraint_type"),
+				 GtmPackage.Literals.COMBINATION_CONSTRAINT__COMBINATION_MODELS,
+				 true,
+				 false,
+				 false,
+				 null,
 				 null,
 				 null));
 	}

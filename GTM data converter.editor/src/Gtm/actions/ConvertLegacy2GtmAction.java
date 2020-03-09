@@ -65,7 +65,7 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 			
 			GtmEditor editor = GtmUtils.getActiveEditor(); 
 			
-			ConverterFromLegacy converter = new ConverterFromLegacy(tool);
+			ConverterFromLegacy converter = new ConverterFromLegacy(tool,domain,editor);
 			
 			IRunnableWithProgress operation =	new IRunnableWithProgress() {
 				// This is the method that gets invoked when the operation runs.
@@ -81,33 +81,33 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 						monitor.worked(1);
 						
 						monitor.subTask("deleting old conversion data");						
-						int deleted = ConverterFromLegacy.deleteOldConversionResults(tool, domain);
-						GtmUtils.writeConsoleInfog("old series conversions deleted: " + Integer.toString(deleted));
+						int deleted = converter.deleteOldConversionResults();
+						GtmUtils.writeConsoleInfo("old series conversions deleted: " + Integer.toString(deleted));
 						monitor.worked(1);
 				
 						monitor.subTask("convert fare reference stations");
-						int added = converter.convertFareStationSets(tool,  domain);
-						GtmUtils.writeConsoleInfog("fare reference station sets converted: " + Integer.toString(added));	
+						int added = converter.convertFareStationSets();
+						GtmUtils.writeConsoleInfo("fare reference station sets converted: " + Integer.toString(added));	
 						monitor.worked(1);
 			
 						monitor.subTask("convert border points");						
-						added = converter.convertBorderPoints(tool,  domain);
-						GtmUtils.writeConsoleInfog("border points converted: " + Integer.toString(added));	
+						added = converter.convertBorderPoints();
+						GtmUtils.writeConsoleInfo("border points converted: " + Integer.toString(added));	
 						monitor.worked(1);
 				
 						monitor.subTask("convert station names");
-						added = converter.convertStationNames(tool,  domain);
-						GtmUtils.writeConsoleInfog("station names converted: " + Integer.toString(added));		
+						added = converter.convertStationNames();
+						GtmUtils.writeConsoleInfo("station names converted: " + Integer.toString(added));		
 						monitor.worked(1);
 			
 						monitor.subTask("convert sales availabilities");
-						added = converter.convertSalesAvailabilities(tool,  domain);
-						GtmUtils.writeConsoleInfog("sales avialabiliy ranges converted: " + Integer.toString(added));					
+						added = converter.convertSalesAvailabilities();
+						GtmUtils.writeConsoleInfo("sales avialabiliy ranges converted: " + Integer.toString(added));					
 						monitor.worked(1);
 			
 						monitor.subTask("convert fares");
-						added = converter.convertToGtm(tool, domain, monitor);
-						GtmUtils.writeConsoleInfog("fares converted: " + Integer.toString(added));
+						added = converter.convertToGtm(monitor);
+						GtmUtils.writeConsoleInfo("fares converted: " + Integer.toString(added));
 						monitor.worked(1);
 						
 					} catch (Exception e) {

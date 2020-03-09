@@ -161,10 +161,14 @@ import gtm.ZoneDefinitionDef;
 public class GtmJsonExporter {
 	
 	
-	private static DateFormat jsondf = new SimpleDateFormat("yyyy-MM-dd HH:mm a z");
+	private DateFormat jsondf = new SimpleDateFormat("yyyy-MM-dd HH:mm a z");
 
 	
-	public static FareDelivery convertToJson(GeneralTariffModel gtm, IProgressMonitor monitor) {
+	public GtmJsonExporter () {
+		
+	}
+	
+	public FareDelivery convertToJson(GeneralTariffModel gtm, IProgressMonitor monitor) {
 		
 		if (gtm == null || gtm.getDelivery() == null || gtm.getFareStructure() == null) return null;
 		
@@ -333,7 +337,7 @@ public class GtmJsonExporter {
 
 
 
-	private static List<ZoneDefinitionDef> convert(ZoneDefinitions zones) {
+	private List<ZoneDefinitionDef> convert(ZoneDefinitions zones) {
 		if (zones == null) return null;
 		if (zones.getZoneDefinition().isEmpty()) return null;
 		ArrayList<ZoneDefinitionDef> listJson = new ArrayList<ZoneDefinitionDef>();
@@ -346,7 +350,7 @@ public class GtmJsonExporter {
 
 
 
-	private static ZoneDefinitionDef convertToJson(ZoneDefinition z) {
+	private ZoneDefinitionDef convertToJson(ZoneDefinition z) {
 		ZoneDefinitionDef jz = new ZoneDefinitionDef();
 		if (z.getProvider()!=null) {
 			jz.setCarrier(z.getProvider().getCode());
@@ -364,7 +368,7 @@ public class GtmJsonExporter {
 
 
 
-	private static List<String> convertNuts(EList<NutsCode> nutsCodes) {
+	private List<String> convertNuts(EList<NutsCode> nutsCodes) {
 		if (nutsCodes == null || nutsCodes.isEmpty()) return null;
 		
 		List<String> jl = new ArrayList<String>();
@@ -378,7 +382,7 @@ public class GtmJsonExporter {
 
 
 
-	private static List<FareReferenceStationSetDef> convertFareStationSetDefinitions(FareStationSetDefinitions fareStationSetDefinitions) {
+	private List<FareReferenceStationSetDef> convertFareStationSetDefinitions(FareStationSetDefinitions fareStationSetDefinitions) {
 		if (fareStationSetDefinitions == null) return null;
 		if (fareStationSetDefinitions.getFareStationSetDefinitions().isEmpty()) return null;
 		ArrayList<FareReferenceStationSetDef> listJson = new ArrayList<FareReferenceStationSetDef>();
@@ -389,7 +393,7 @@ public class GtmJsonExporter {
 	}
 
 
-	private static FareReferenceStationSetDef convertToJson(FareStationSetDefinition o) {
+	private FareReferenceStationSetDef convertToJson(FareStationSetDefinition o) {
 		if (o == null) return null;
 		FareReferenceStationSetDef oJ = new FareReferenceStationSetDef();
 		
@@ -421,7 +425,7 @@ public class GtmJsonExporter {
 
 
 
-	private static List<TravelValidityConstraintDef> convertTravelValidityConstraints(TravelValidityConstraints list) {
+	private List<TravelValidityConstraintDef> convertTravelValidityConstraints(TravelValidityConstraints list) {
 		if (list == null) return null;
 		if (list.getTravelValidityConstraints().isEmpty()) return null;
 		ArrayList<TravelValidityConstraintDef> listJson = new ArrayList<TravelValidityConstraintDef>();
@@ -434,7 +438,7 @@ public class GtmJsonExporter {
 
 
 
-	private static TravelValidityConstraintDef convertToJson(TravelValidityConstraint tv) {
+	private TravelValidityConstraintDef convertToJson(TravelValidityConstraint tv) {
 		if (tv == null) return null;
 		TravelValidityConstraintDef tvJ = new TravelValidityConstraintDef();
 		
@@ -801,7 +805,9 @@ public class GtmJsonExporter {
 		gtm.SalesRestriction rJ = new gtm.SalesRestriction();
 		
 		rJ.setEndOfSale(convertToJson(r.getEndOfSale()));
-		rJ.setSalesDatesRef(r.getSalesDates().getId());
+		if (r.getSalesDates() != null) {
+			rJ.setSalesDatesRef(r.getSalesDates().getId());
+		}
 		rJ.setStartOfSale(convertToJson(r.getStartOfSale()));
 
 		return rJ;
@@ -1532,9 +1538,6 @@ public class GtmJsonExporter {
 		return listJson;
 	}
 
-
-
-
 	private static FareDef convertToJson(FareElement fare) {
 		if (fare == null) return null;
 		FareDef fareJ = new FareDef();
@@ -1784,7 +1787,7 @@ public class GtmJsonExporter {
 
 
 
-	private static List<CalendarDef> convertCalendars(Calendars list) {
+	private List<CalendarDef> convertCalendars(Calendars list) {
 		if (list == null) return null;
 		if (list.getCalendars().isEmpty()) return null;
 		ArrayList<CalendarDef> listJson = new ArrayList<CalendarDef>();
@@ -1797,7 +1800,7 @@ public class GtmJsonExporter {
 
 
 
-	private static CalendarDef convertToJson(Calendar cal) {
+	private CalendarDef convertToJson(Calendar cal) {
 		if (cal == null) return null;
 		CalendarDef calJ = new CalendarDef();
 		calJ.setId(cal.getId());
@@ -1820,7 +1823,7 @@ public class GtmJsonExporter {
 
 
 
-	private static List<AfterSalesConditionDef> convertAfterSalesConditionsToJson(AfterSalesRules afterSalesRules) {
+	private List<AfterSalesConditionDef> convertAfterSalesConditionsToJson(AfterSalesRules afterSalesRules) {
 		if (afterSalesRules == null) return null;
 		if (afterSalesRules.getAfterSalesRules().isEmpty()) return null;
 		

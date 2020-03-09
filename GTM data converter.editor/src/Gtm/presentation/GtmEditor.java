@@ -99,9 +99,9 @@ import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-
-
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -133,7 +133,7 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import Gtm.actions.GtmUtils;
+import Gtm.GTMTool;
 import Gtm.provider.GtmItemProviderAdapterFactory;
 import org.eclipse.emf.common.ui.URIEditorInput;
 
@@ -695,14 +695,31 @@ public class GtmEditor
 	protected void firePropertyChange(int action) {
 		super.firePropertyChange(action);
 	}
+			
 
+	/**
+	 * This sets the selection into whichever viewer is active.
+	 * <!-- begin-user-doc -->
+	 * selection switch
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setSelectionToViewer(Collection<?> collection) {
+		if (doSelectionChange) {
+			setSelectionToViewerGen(collection);
+		}
+	}
+			
 	/**
 	 * This sets the selection into whichever viewer is active.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSelectionToViewer(Collection<?> collection) {
+	public void setSelectionToViewerGen(Collection<?> collection) {
+		
+		
+		
 		final Collection<?> theSelection = collection;
 		// Make sure it's okay.
 		//
@@ -1558,8 +1575,7 @@ public class GtmEditor
 		updateProblemIndication = false;
 		try {
 			// This runs the options, and shows progress.
-			//
-			disconnectViews();
+			//	disconnectViews();
 			
 			new ProgressMonitorDialog(getSite().getShell()).run(true, false, operation);
 
@@ -1570,7 +1586,7 @@ public class GtmEditor
 			// Something went wrong that shouldn't.
 			GtmEditorPlugin.INSTANCE.log(exception);
 		} finally {
-			reconnectViews();
+			//reconnectViews();
 		}
 		
 		updateProblemIndication = true;
@@ -1936,29 +1952,6 @@ public class GtmEditor
 		
 		doSelectionChange = false;
 		
-		/*
-		
-		if (this.contentOutlineViewer != null && this.contentOutlineViewer.getTree() != null) {
-			this.contentOutlineViewer.getTree().setRedraw(false);
-			outlineContentProvider = this.contentOutlineViewer.getContentProvider();
-			this.contentOutlineViewer.setContentProvider(null);
-		}
-		if (getPropertySheetPage() != null && getPropertySheetPage().getControl() != null) {
-			getPropertySheetPage().getControl().setRedraw(false);
-		}
-		
-		if (treeViewer != null) {
-			listContentProvider = treeViewer.getContentProvider();
-			treeViewer.setContentProvider(null);
-		}
-		if (listViewer!= null) {
-			treeContentProvider = listViewer.getContentProvider();
-			listViewer.setContentProvider(null);
-		}
-		
-		System.gc();
-		*/
-		
 	}
 	
 	/**
@@ -1971,28 +1964,22 @@ public class GtmEditor
 		
 		doSelectionChange = true;
 		
-		/*
-		if (outlineContentProvider != null) {
-			this.contentOutlineViewer.setContentProvider(outlineContentProvider);
-			this.contentOutlineViewer.collapseAll();
-			this.contentOutlineViewer.getControl().setRedraw(true);
-			this.contentOutlineViewer.refresh();
-		}
-		if (listContentProvider != null) {
-			treeViewer.setContentProvider(listContentProvider);
-			treeViewer.collapseAll();
-			treeViewer.refresh();
-		}
-		if (treeContentProvider!= null) {
-			listViewer.setContentProvider(treeContentProvider);
-			listViewer.refresh();
-		}
-
-		firePropertyChange(IEditorPart.PROP_DIRTY);
-
+		EditingDomain domain = getEditingDomain();
+		Resource resource = domain.getResourceSet().getResources().get(0);
+	   	
+		TreeIterator<EObject> it = resource.getAllContents();
+		EObject object = it.next();
 		
-		System.gc();
-		*/
+		if (object == null) return;
+
+		if (object instanceof GTMTool){
+			setSelection(new StructuredSelection((GTMTool) object));
+		} else {
+			return;
+		}
+		
+		
+
 	}
 
 	/**

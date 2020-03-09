@@ -63,10 +63,33 @@ public class StationResourceLocationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addOnlineResourcesPropertyDescriptor(object);
 			addStationsPropertyDescriptor(object);
 			addConnectionPointsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Online Resources feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOnlineResourcesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_StationResourceLocation_onlineResources_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StationResourceLocation_onlineResources_feature", "_UI_StationResourceLocation_type"),
+				 GtmPackage.Literals.STATION_RESOURCE_LOCATION__ONLINE_RESOURCES,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
