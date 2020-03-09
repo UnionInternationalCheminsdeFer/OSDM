@@ -38,7 +38,7 @@ import Gtm.Route;
 import Gtm.Station;
 import Gtm.TravelerType;
 import Gtm.ViaStation;
-import Gtm.actions.GtmUtils;
+import Gtm.console.ConsoleUtil;
 import Gtm.presentation.DirtyCommand;
 import Gtm.presentation.GtmEditor;
 
@@ -543,7 +543,7 @@ public class 	ConverterToLegacy {
 	
 	private void writeConsoleError(String message) {
 		editor.getSite().getShell().getDisplay().asyncExec(() -> {
-			GtmUtils.writeConsoleError(message);
+			ConsoleUtil.printError("Errors", message);
 		});
 	}
 	
