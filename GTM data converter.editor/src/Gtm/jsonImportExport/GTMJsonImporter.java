@@ -426,7 +426,7 @@ public class GTMJsonImporter {
 	private Calendar findCalendar(String id) {
 		if (id == null || id.length() < 1) return null;
 		for (Calendar cal : fareStructure.getCalendars().getCalendars()) {
-			if (cal.getId() == id) return cal;
+			if (cal.getId().equals(id)) return cal;
 		}
 		return null;
 	}
@@ -698,7 +698,7 @@ public class GTMJsonImporter {
 	private ReductionCard findReductionCard(String id) {
 		if (id == null || id.length() < 1) return null;
 		for (ReductionCard card : fareStructure.getReductionCards().getReductionCards()) {
-			if (card.getId() == id) return card;
+			if (card.getId().equals(id)) return card;
 		}
 		return null;
 	}

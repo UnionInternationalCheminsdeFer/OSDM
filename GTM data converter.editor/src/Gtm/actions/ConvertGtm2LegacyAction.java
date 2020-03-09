@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import Gtm.Country;
 import Gtm.GTMTool;
 import Gtm.actions.converter.ConverterToLegacy;
+import Gtm.console.ConsoleUtil;
 import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 
@@ -115,7 +116,9 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 					
 					int created = converter.convert(monitor);
 					String message = "series converted: " + Integer.toString(created);
-					GtmUtils.writeConsoleError(message);
+					editor.getSite().getShell().getDisplay().asyncExec(() -> {
+						ConsoleUtil.printError("Errors", message);
+					});
 
 					monitor.done();
 				}
