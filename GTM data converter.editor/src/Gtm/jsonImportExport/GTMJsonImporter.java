@@ -50,6 +50,7 @@ import gtm.ServiceClassDef;
 import gtm.ServiceConstraintDef;
 import gtm.ServiceLevelDef;
 import gtm.StationDef;
+import gtm.StationNamesDef;
 import gtm.StationResourceLocationDef;
 import gtm.TextDef;
 import gtm.TrainResourceLocationDef;
@@ -134,6 +135,8 @@ public class GTMJsonImporter {
 		
 		fareStructure.setTexts(convertTextList(jo.getTexts()));
 		
+		fareStructure.setStationNames(convertStationNames(jo.getStationNames()));
+		
 		fareStructure.setAfterSalesRules(convertAfterSalesRulesList(jo.getAfterSalesConditions()));
 		
 		fareStructure.setCarrierConstraints(convertCarrierConstraintList(jo.getCarrierConstraints()));
@@ -181,6 +184,24 @@ public class GTMJsonImporter {
 		return fareStructure;
 	}
 	
+
+	private StationNames convertStationNames(List<StationNamesDef> jl) {
+		
+		StationNames n = GtmFactory.eINSTANCE.createStationNames();
+		
+		if (jl == null || jl.isEmpty()) return n;
+		
+		for (StationNamesDef jn : jl) {
+			
+			Station s = getStation(jn.getCountry(), jn.getLocalCode());
+			
+			n.getStationName().add(s);
+			
+		}
+		return n;
+	}
+
+
 	private ZoneDefinitions convertZoneDefinitions(List<ZoneDefinitionDef> jl) {
 		if (jl == null || jl.isEmpty()) return null;
 		ZoneDefinitions zs = GtmFactory.eINSTANCE.createZoneDefinitions();
