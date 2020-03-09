@@ -1,9 +1,8 @@
 package Gtm.actions;
 
 import java.io.File;
-import java.nio.file.Path;
-
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -17,12 +16,13 @@ import org.eclipse.swt.widgets.MessageBox;
 import Gtm.GTMTool;
 import Gtm.GeneralTariffModel;
 import Gtm.GtmPackage;
-import Gtm.actions.converter.LegacyExporter;
+import Gtm.Station;
 import Gtm.jsonImportExport.GTMJsonImporter;
 import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 import export.ImportFareDelivery;
 import gtm.FareDelivery;
+import gtm.StationNamesDef;
 
 
 public class ImportGTMJsonAction extends BasicGtmAction {
@@ -88,7 +88,7 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 					
 					try {
 					
-						monitor.beginTask("Import GTM data", 4); 
+						monitor.beginTask("Import GTM data", 5); 
 						
 						monitor.subTask("Initialize main structure");
 						prepareStructure(tool,domain);
@@ -111,6 +111,24 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 							}	
 							monitor.worked(1);
 						} 
+						
+						monitor.subTask("Update station names");
+						
+						CompoundCommand command = new CompoundCommand();
+							
+						for (StationNamesDef jS : fareDelivery.getFareStructureDelivery().getFareStructure().getStationNames() ) {
+								
+							Station s = tool.getCodeLists().getStations().findStation(jS.getCountry(), jS.getLocalCode());
+							if (s != null) {
+									
+								command.append(SetCommand.create(domain, s,GtmPackage.Literals.STATION__NAME_CASE_ASCII,jS.getName()));
+								command.append(SetCommand.create(domain, s,GtmPackage.Literals.STATION__NAME_CASE_UTF8,jS.getNameUtf8()));								
+								if (command.canExecute()) {
+									domain.getCommandStack().execute(command);
+								}	
+							}
+						}
+						monitor.worked(1);
 					
 					} catch (Exception e) {
 						//
