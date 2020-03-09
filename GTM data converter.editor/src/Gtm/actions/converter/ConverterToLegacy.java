@@ -79,6 +79,11 @@ public class 	ConverterToLegacy {
 		List<FareElement> convertableFares = selectFares();
 		monitor.worked(1);
 		
+		if (convertableFares == null || convertableFares.isEmpty()) {
+			monitor.done();
+			return 0;
+		}
+		
 		monitor.subTask("convert fares");	
 		for (FareElement fare : convertableFares) {
 
@@ -385,35 +390,44 @@ public class 	ConverterToLegacy {
 		
 		ArrayList<FareElement> fares = new ArrayList<FareElement>();
 		
-		for (FareElement fare :  tool.getGeneralTariffModel().getFareStructure().getFareElements().getFareElements()) {
-			
-			
-			//fare excluded from conversion
-			if (fare.getLegacyConversion() == LegacyConversionType.NO) break;
-			
-			//only ADULT
-			if (fare.getPassengerConstraint().getTravelerType() != TravelerType.ADULT) break;
-			
-			//only FULL_FLEX combination
-			if (!isFullFlexCombi(fare)) break;
-			
-			//no reductions
-			if (fare.getReductionConstraint() != null) break;
-			
-			//must be convertible in legacy series
-			if (!hasSimpleRegionalValidity(fare)) break;
-			
-			//must have one sales availability 
-			if (fare.getSalesAvailability().getRestrictions().size() > 0) break;
-			
-			//must have one calendar
-			if (fare.getSalesAvailability().getRestrictions().get(0).getSalesDates() != null ) break;
-			
-			fares.add(fare);
-			
+		for (FareElement fare :  tool.getGeneralTariffModel().getFareStructure().getFareElements().getFareElements()) {		
+			if (isConvertable(fare)) {
+				fares.add(fare);
+			}
 		}
 		
 		return null;
+	}
+	
+	
+	
+
+	private boolean isConvertable(FareElement fare) {
+		//fare excluded from conversion
+		if (fare.getLegacyConversion() == LegacyConversionType.NO) return false;
+		
+		//only ADULT
+		if (fare.getPassengerConstraint().getTravelerType() != TravelerType.ADULT)  return false;
+		
+		//only FULL_FLEX combination
+		if (!isFullFlexCombi(fare))  return false;
+		
+		//no reductions
+		if (fare.getReductionConstraint() != null)  return false;
+		
+		//must be convertible in legacy series
+		if (!hasSimpleRegionalValidity(fare))  return false;
+		
+		//must have one sales availability 
+		if (fare.getSalesAvailability() == null) return false;
+		if (fare.getSalesAvailability().getRestrictions() == null) return false;
+		if (fare.getSalesAvailability().getRestrictions().isEmpty()) return false;
+		if (fare.getSalesAvailability().getRestrictions().size() == 0) return false;
+		
+		//must have one calendar
+		if (fare.getSalesAvailability().getRestrictions().get(0).getSalesDates() == null ) return false;
+		
+		return true;
 	}
 
 	private boolean hasSimpleRegionalValidity(FareElement fare) {
@@ -493,12 +507,16 @@ public class 	ConverterToLegacy {
 
 	private void addStations(ViaStation via, List<Station> stations, List<FareStationSetDefinition> fareStations) {
 		
+		if (via == null) return;
 		if (via.getStation() != null) stations.add(via.getStation());
 		if (via.getFareStationSet()!= null) fareStations.add(via.getFareStationSet());
 		
-		for (ViaStation via2 :via.getRoute().getStations()) {
-			addStations(via2, stations, fareStations);
+		if (via.getRoute() != null) {
+			for (ViaStation via2 :via.getRoute().getStations()) {
+				addStations(via2, stations, fareStations);
+			}
 		}
+		
 		for (AlternativeRoute route: via.getAlternativeRoutes()) {
 			for (ViaStation via3 : route.getStations()) {
 				addStations(via3, stations,fareStations);

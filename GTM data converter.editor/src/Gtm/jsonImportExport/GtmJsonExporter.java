@@ -83,6 +83,7 @@ import Gtm.ServiceConstraints;
 import Gtm.ServiceLevel;
 import Gtm.ServiceLevelDefinitions;
 import Gtm.Station;
+import Gtm.StationNames;
 import Gtm.StationResourceLocation;
 import Gtm.StationResourceLocations;
 import Gtm.StationSet;
@@ -148,6 +149,7 @@ import gtm.ServiceClassDef;
 import gtm.ServiceConstraintDef;
 import gtm.ServiceLevelDef;
 import gtm.StationDef;
+import gtm.StationNamesDef;
 import gtm.StationResourceLocationDef;
 import gtm.TextDef;
 import gtm.TrainResourceLocationDef;
@@ -331,11 +333,40 @@ public class GtmJsonExporter {
 		}
 		monitor.worked(1);
 		
+		monitor.subTask("convert sation names");
+		if (gtm.getFareStructure().getStationNames()!= null) {
+			fares.setStationNames(convertStationNames(gtm.getFareStructure().getStationNames()));
+		}
+		monitor.worked(1);
+		
+		
 		return export;
 	}
 
 
 
+
+	private List<StationNamesDef> convertStationNames(StationNames names) {
+		ArrayList<StationNamesDef> jl = new ArrayList<StationNamesDef>();
+		if (names == null || names.getStationName() == null || names.getStationName().isEmpty()) return jl;
+		
+		for (Station s : names.getStationName()) {
+			
+			try {
+				StationNamesDef js = new StationNamesDef();
+				js.setCountry(s.getCountry().getCode());
+				js.setLocalCode(Integer.parseInt(s.getCode()));
+				js.setName(s.getNameCaseASCII());
+				js.setNameUtf8(s.getNameCaseUTF8());
+				jl.add(js);
+			}
+			catch (Exception e) {
+				//alphanumeric station code
+			}
+			
+		}
+		return jl;
+	}
 
 	private List<ZoneDefinitionDef> convert(ZoneDefinitions zones) {
 		if (zones == null) return null;
