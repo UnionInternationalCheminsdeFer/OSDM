@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import Gtm.AlternativeRoute;
 import Gtm.Calendar;
 import Gtm.Carrier;
+import Gtm.CarrierConstraint;
 import Gtm.ClassicClassType;
 import Gtm.ConnectionPoint;
 import Gtm.Country;
@@ -70,6 +71,7 @@ public class ConverterFromLegacy {
 	private HashMap<Integer,Station> localStations = null;
 	private HashMap<Integer,Legacy108Station> legacyStations = null;
 	private HashMap<String,Carrier> carriers = null;
+	private HashMap<String, CarrierConstraint> carrierConstraints = null;
 	private Country myCountry = null;
 	private GTMTool tool = null;
 	private EditingDomain domain = null;
@@ -80,6 +82,7 @@ public class ConverterFromLegacy {
 		localStations = new HashMap<Integer,Station>();
 		carriers = new HashMap<String,Carrier>();
 		legacyStations = new HashMap<Integer,Legacy108Station>();
+		carrierConstraints = new HashMap<String,CarrierConstraint>();
 		this.tool = tool;
 		this.editor = editor;
 		this.domain = domain;
@@ -198,11 +201,33 @@ public class ConverterFromLegacy {
 		ArrayList<RegionalConstraint> regions = new ArrayList<RegionalConstraint>();
 		ArrayList<FareElement> fares = new ArrayList<FareElement>();
 		
+
+		
 		
 		int nbSeries = 0;
 		int worked = 100000 / tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries().size();
 		if (worked < 1 ) worked = 1;
 		int added = 0;
+		
+		
+		monitor.subTask("create carrier constraints");
+		for (LegacySeries series: tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries()) {
+			
+			if (carrierConstraints.get(series.getCarrierCode()) == null)  {
+				Carrier carrier = tool.getCodeLists().getCarriers().findCarrier(series.getCarrierCode());
+				CarrierConstraint constraint = GtmFactory.eINSTANCE.createCarrierConstraint();
+				constraint.setDataDescription("only " + carrier.getName());
+				constraint.getIncludedCarriers().add(carrier);
+				carrierConstraints.put(carrier.getCode(),constraint);
+			}
+
+		}
+
+		CompoundCommand command = new CompoundCommand();
+		Command com0 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getCarrierConstraints(), GtmPackage.Literals.CARRIER_CONSTRAINTS__CARRIER_CONSTRAINTS, carrierConstraints);
+		command.append(com0);
+		executeAndFlush(command, domain);
+		monitor.worked(1);
 		
 		
 		for (LegacySeries series: tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries()) {
@@ -255,7 +280,6 @@ public class ConverterFromLegacy {
 			
 		}
 		
-		CompoundCommand command = new CompoundCommand();
 		Command com1 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints(), GtmPackage.Literals.REGIONAL_CONSTRAINTS__REGIONAL_CONSTRAINTS, regions);
 		command.append(com1);
 		executeAndFlush(command, domain);
@@ -986,7 +1010,14 @@ public class ConverterFromLegacy {
 		fare.setLegacyAccountingIdentifier(accountingIdentifier);
 		fare.setDataSource(DataSource.CONVERTED);
 		fare.setAfterSalesRule(fareTemplate.getAfterSalesRule());
-		fare.setCarrierConstraint(fareTemplate.getCarrierConstraint());
+		
+		
+		
+		fare.setCarrierConstraint(carrierConstraints.get(series.getCarrierCode()));
+		if (fare.getCarrierConstraint() == null) {
+			fare.setCarrierConstraint(fareTemplate.getCarrierConstraint());
+		}
+		
 		if (isSeparateContract(series)) {
 			fare.setCombinationConstraint(fareTemplate.getSeparateContractCombinationConstraint());
 		} else {

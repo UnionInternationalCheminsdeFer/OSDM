@@ -88,8 +88,8 @@ public class 	ConverterToLegacy {
 		for (FareElement fare : convertableFares) {
 
 			try {
-				LegacyRouteFare  legacyFare = convertFare(fare, convertableFares.indexOf(fare));
-				if (series.size() < 99999) {
+				LegacyRouteFare  legacyFare = convertFare(fare, convertableFares.indexOf(fare) + 1);
+				if (series.size() < 99999 && legacyFare != null) {
 					routeFares.add(legacyFare);
 					series.add(legacyFare.getSeries());
 				}
@@ -216,7 +216,7 @@ public class 	ConverterToLegacy {
 		LegacySeries series = convertToSeries(fare,index);
 		if (series == null) return null;
 		
-		if (series.getNumber() > 99999) {
+		if (series.getNumber() > 99999 ) {
 			String message = "too  many series";
 			writeConsoleError(message);			
 			return null;
@@ -265,13 +265,32 @@ public class 	ConverterToLegacy {
 	private LegacySeries convertToSeries(FareElement fare, int index) {
 		LegacySeries series = GtmFactory.eINSTANCE.createLegacySeries();
 		
-		series.setCarrierCode(tool.getGeneralTariffModel().getDelivery().getProvider().getCode());
-		series.setCarrierCode(fare.getCarrierConstraint().getIncludedCarriers().get(0).getCode());
+	
+		if (fare.getCarrierConstraint() != null && fare.getCarrierConstraint().getIncludedCarriers() != null && !fare.getCarrierConstraint().getIncludedCarriers().isEmpty()) {
+			series.setCarrierCode(fare.getCarrierConstraint().getIncludedCarriers().get(0).getCode());	
+		} else {
+			if (fare.getRegionalConstraint() != null &&
+				fare.getRegionalConstraint().getRegionalValidity() != null &&
+				!fare.getRegionalConstraint().getRegionalValidity().isEmpty() &&
+				fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation() != null &&
+				fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation().getCarrier() != null
+				) {
+				series.setCarrierCode(fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation().getCarrier().getCode());
+			}
+		}
+		
+		if (fare.getRegionalConstraint() != null &&
+			fare.getRegionalConstraint().getRegionalValidity() != null &&
+			!fare.getRegionalConstraint().getRegionalValidity().isEmpty() &&
+			fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation() != null 
+			) {
+			series.setFromStation(getFirstStationCode(fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation()));
+			series.setFromStationName(getFirstStationCodeName(fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation()));
+		}
+		
 		
 		series.setDistance1((int) fare.getRegionalConstraint().getDistance());
 		series.setDistance2((int) fare.getRegionalConstraint().getDistance());
-		series.setFromStation(getFirstStationCode(fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation()));
-		series.setFromStationName(getFirstStationCodeName(fare.getRegionalConstraint().getRegionalValidity().get(0).getViaStation()));
 		series.setNumber(fare.getLegacyAccountingIdentifier().getSeriesId());
 		series.setPricetype(LegacyCalculationType.ROUTE_BASED);
 		
@@ -362,7 +381,62 @@ public class 	ConverterToLegacy {
 	}
 
 	private String getDescription(EList<RegionalValidity> regionalValidity) {
-		return regionalValidity.get(0).getViaStation().getDescription();
+		
+		//TODO remove first and last station
+		
+		ViaStation via = regionalValidity.get(0).getViaStation();
+		
+		StringBuilder label = new StringBuilder();
+		
+		label.append(routeDescription(via));
+		
+		return label.toString();
+
+
+	}
+
+	private String routeDescription(ViaStation via) {
+		
+		if (via.getStation()!= null) return via.getStation().getName();
+		
+		StringBuilder label = new StringBuilder();
+		
+		if (via.getRoute()!= null && via.getRoute().getStations() != null && !via.getRoute().getStations().isEmpty() ) {
+			
+			for (ViaStation station : via.getRoute().getStations()) {
+				
+				if (station.getStation()!= null) {
+					if (label.length() == 0) {
+						label.append(station.getStation().getName());
+					} else {
+						label.append("*").append(station.getStation().getName());
+					}
+				}
+			}
+			return label.toString();
+		}
+			
+		if (via.getAlternativeRoutes()!= null && !via.getAlternativeRoutes().isEmpty()) {
+			label.append("(");
+			for (AlternativeRoute route : via.getAlternativeRoutes() ) {
+				if (label.length() > 1) {
+					label.append("/");
+				}
+				String routeLable ="";
+				for (ViaStation via2 :  route.getStations()) {
+					if (routeLable.length() == 0) {
+						label.append(via2.getDescription());
+					} else {
+						label.append("*").append(routeDescription(via2));
+					}
+				}
+			}
+			label.append(")");
+			
+		}
+			
+		return label.toString();
+
 	}
 
 	private int getLastStationCode(ViaStation viaStation) {
@@ -396,7 +470,7 @@ public class 	ConverterToLegacy {
 			}
 		}
 		
-		return null;
+		return fares;
 	}
 	
 	

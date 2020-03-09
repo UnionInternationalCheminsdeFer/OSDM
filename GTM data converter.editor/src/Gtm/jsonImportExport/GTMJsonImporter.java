@@ -1163,7 +1163,7 @@ public class GTMJsonImporter {
 	private ServiceClass findServiceClass(String id) {
 		if (id == null || id.length() < 1) return null;
 		for (ServiceClass  o : fareStructure.getServiceClassDefinitions().getServiceClassDefinitions()) {
-			if (o.getId().getName() == id) return o;
+			if (o.getId().getName().equals(id)) return o;
 		}
 		return null;
 	}

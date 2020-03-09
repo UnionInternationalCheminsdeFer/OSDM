@@ -334,44 +334,44 @@ public class ViaStationImpl extends MinimalEObjectImpl.Container implements ViaS
 		
 		if (this.getStation()!= null) return this.getStation().getName();
 		
-		String label = "";
+		StringBuilder label = new StringBuilder();
 		
-		if (this.getRoute()!= null && this.getRoute() != null && this.getRoute().getStations() != null && !this.getRoute().getStations().isEmpty() ) {
+		if (this.getRoute()!= null && this.getRoute().getStations() != null && !this.getRoute().getStations().isEmpty() ) {
 			
 			for (ViaStation station : this.getRoute().getStations()) {
 				
 				if (station.getStation()!= null) {
 					if (label.length() == 0) {
-						label.concat(station.getStation().getName());
+						label.append(station.getStation().getName());
 					} else {
-						label.concat("*").concat(station.getStation().getName());
+						label.append("*").append(station.getStation().getName());
 					}
 				}
 			}
-			return label;
+			return label.toString();
 		}
 			
 		if (this.getAlternativeRoutes()!= null && !this.getAlternativeRoutes().isEmpty()) {
-			label.concat("(");
+			label.append("(");
 			for (AlternativeRoute route : this.getAlternativeRoutes() ) {
 				if (label.length() > 1) {
-					label.concat("/");
+					label.append("/");
 				}
 				String routeLable ="";
 				for (ViaStation via :  route.getStations()) {
 					if (routeLable.length() == 0) {
-						label.concat(via.getDescription());
+						label.append(via.getDescription());
 					} else {
-						label.concat("*").concat(via.getDescription());
+						label.append("*").append(via.getDescription());
 					}
 				}
 			}
-			label.concat(")");
+			label.append(")");
 			
 		}
 			
 		
-		return label;
+		return label.toString();
 	}
 
 	/**
