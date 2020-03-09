@@ -605,7 +605,7 @@ public class GtmUtils {
 		ConsoleUtil.printWarning("Errors", message);
 	}
 	
-	public static void writeConsoleInfog(String message) {
+	public static void writeConsoleInfo(String message) {
 		ConsoleUtil.printInfo("Errors", message);
 	}	
 

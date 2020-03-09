@@ -22,3 +22,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.help.webapp;bundle-version="3.9.700",
  org.eclipse.equinox.http.jetty;bundle-version="3.7.300"
 Bundle-ActivationPolicy: lazy
+Import-Package: com.fasterxml.jackson.core,
+ com.fasterxml.jackson.databind

@@ -52,6 +52,8 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 			
 			EditingDomain domain = GtmUtils.getActiveDomain();
 			
+			GtmEditor editor = GtmUtils.getActiveEditor();
+			
 			if (tool == null) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 				dialog.setText("no data found");
@@ -65,80 +67,76 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 			if (file == null) {
 				return;
 			}
-
-			GtmEditor editor = GtmUtils.getActiveEditor();
 			
+			GtmJsonExporter jsonModelExporter = new GtmJsonExporter();
+			
+			ExportFareDelivery fileExporter = new ExportFareDelivery(editor.getSite().getShell());
+
+		
 			IRunnableWithProgress operation =	new IRunnableWithProgress() {
 				// This is the method that gets invoked when the operation runs.
 
 				public void run(IProgressMonitor monitor) {
 					
-					monitor.beginTask("Exporting fare data to json", 30); 
-
-					monitor.subTask("Initialize main structure");
-					prepareStructure(tool,domain);
-					monitor.worked(1);
-
 					try {
+						
+						monitor.beginTask("Exporting fare data to json", 31); 
+
+						monitor.subTask("Initialize main structure");
+						prepareStructure(tool,domain);
+						monitor.worked(1);
 					
 						monitor.subTask("create IDs");
-						insertIds(tool,domain);
+						insertIds(tool,domain,editor);
 						monitor.worked(1);
 							
 						monitor.subTask("convert to json");						
-						FareDelivery fares = null;
-						try {
-							fares = GtmJsonExporter.convertToJson(tool.getGeneralTariffModel(), monitor);
-						} catch (Exception e) {
-							MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-							dialog.setText("json formating error");
-							if (e.getMessage()!= null) {
-								dialog.setMessage(e.getMessage());
-							} else {
-								dialog.setMessage("unknown error");
-							}
-							dialog.open(); 
-							monitor.done();
-							return;
-						}
+						FareDelivery fares= jsonModelExporter.convertToJson(tool.getGeneralTariffModel(), monitor);
 						monitor.worked(1);
 			 	
 						monitor.subTask("write json file");
-						ExportFareDelivery.exportFareDelivery(fares, file);
+						fileExporter.exportFareDelivery(fares, file);
 						monitor.worked(1);
-
-					} catch (Exception exception) {
-						// Something went wrong that shouldn't.
-						GtmEditorPlugin.INSTANCE.log(exception);					
-					} finally {
+						
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+					}  finally {
 						monitor.done();
 					}
-					
-					
 				}
 			};
 
 			try {
 				// This runs the operation, and shows progress.
 				editor.disconnectViews();
-		
+				
 				new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
-
-			} catch (Exception exception) {
-					// Something went wrong that shouldn't.
-					GtmEditorPlugin.INSTANCE.log(exception);
+			
+			} catch (Exception e) {
+				MessageBox dialog =  new MessageBox(editor.getSite().getShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText("json formating error");
+				if (e.getMessage()!= null) {
+					dialog.setMessage(e.getMessage());
+				} else {
+					dialog.setMessage("unknown error");
+				}
+				dialog.open(); 
+				GtmEditorPlugin.INSTANCE.log(e);
 			} finally {
-					editor.reconnectViews();
+				editor.reconnectViews();
 			}
 		}		
+		
+		
+
 
   
-		private void insertIds(GTMTool tool,EditingDomain domain) {
+		private void insertIds(GTMTool tool,EditingDomain domain, GtmEditor editor) {
 			
 			CompoundCommand command =  GtmUtils.setIds(tool,domain);
 			
 			if (command == null) {
-				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				MessageBox dialog =  new MessageBox(editor.getSite().getShell(), SWT.ICON_ERROR | SWT.OK);
 				dialog.setText("no export data found");
 				dialog.open(); 
 				return;
@@ -147,7 +145,7 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 	        if (command != null && !command.isEmpty()) {
 	        	
 				if (!command.canExecute()) {
-					MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+					MessageBox dialog =  new MessageBox(editor.getSite().getShell(), SWT.ICON_ERROR | SWT.OK);
 					dialog.setText("ids can not be created");
 					dialog.open(); 
 					return;

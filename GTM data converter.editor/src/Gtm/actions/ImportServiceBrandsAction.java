@@ -89,8 +89,8 @@ public class ImportServiceBrandsAction extends ImportCsvDataAction {
         
         if (command != null && !command.isEmpty()) {
         	domain.getCommandStack().execute(command);
-			GtmUtils.writeConsoleInfog("service brands added: (" + Integer.toString(added)+")" );
-			GtmUtils.writeConsoleInfog("service brands updated: (" + Integer.toString(updated) + ")" );
+			GtmUtils.writeConsoleInfo("service brands added: (" + Integer.toString(added)+")" );
+			GtmUtils.writeConsoleInfo("service brands updated: (" + Integer.toString(updated) + ")" );
         }		
 	}
 

@@ -18,12 +18,16 @@ The tool provides conversion between fare data according to UIC standards 108.1 
    <launcherArgs>
       <programArgs>-consoleLog
       </programArgs>
+      <vmArgs>-Xms512m
+-Xmx3000m
+-XX:PermSize=256m
+-XX:MaxPermSize=512m
+      </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
 
    <windowImages i16="/GTM data converter.editor/icons/UIC GIF square_16.gif" i32="/GTM data converter.editor/icons/UIC GIF square_32.gif" i48="/GTM data converter.editor/icons/UIC GIF square_48.gif" i64="/GTM data converter.editor/icons/UIC GIF square_64.gif"/>
-
 
    <launcher name="gtm">
       <win useIco="false">

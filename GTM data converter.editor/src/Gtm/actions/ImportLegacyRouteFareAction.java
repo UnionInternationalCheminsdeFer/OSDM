@@ -73,7 +73,7 @@ public class ImportLegacyRouteFareAction extends ImportLegacyAction {
 		Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_ROUTE_FARES, resultList );
 		if (cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
-			GtmUtils.writeConsoleInfog("route prices imported: " + Integer.toString(resultList.getRouteFare().size()));
+			GtmUtils.writeConsoleInfo("route prices imported: " + Integer.toString(resultList.getRouteFare().size()));
 		}
 		
 	}

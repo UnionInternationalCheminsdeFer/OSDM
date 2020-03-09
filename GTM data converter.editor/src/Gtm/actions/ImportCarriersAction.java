@@ -86,8 +86,8 @@ public class ImportCarriersAction extends ImportCsvDataAction {
         
         if (command != null && !command.isEmpty()) {
         	domain.getCommandStack().execute(command);
-			GtmUtils.writeConsoleInfog("carriers added: (" + Integer.toString(added)+")" );
-			GtmUtils.writeConsoleInfog("carriers updated: (" + Integer.toString(updated) + ")" );
+			GtmUtils.writeConsoleInfo("carriers added: (" + Integer.toString(added)+")" );
+			GtmUtils.writeConsoleInfo("carriers updated: (" + Integer.toString(updated) + ")" );
         }		
 	}
 

@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -38,33 +39,28 @@ import Gtm.Station;
 import Gtm.TravelerType;
 import Gtm.ViaStation;
 import Gtm.actions.GtmUtils;
+import Gtm.presentation.DirtyCommand;
+import Gtm.presentation.GtmEditor;
 
 public class 	ConverterToLegacy {
 	
 	
-	//TODO
-	/*
-	 * check length of ids not to create legacy data if length is too big
-	 * 
-	 * check regional validity vs. stations, no series if stations are missing
-	 * 
-	 * logging of errors
-	 * 
-	 */
-	
+
 	private GTMTool tool = null;
+	private EditingDomain domain = null;
+	private GtmEditor editor = null;
 	private HashMap<String,LegacyRouteFare> legacyFares = new HashMap<String,LegacyRouteFare>(); 
 	private HashSet<LegacyRouteFare> routeFares = new HashSet<LegacyRouteFare>();
 	private HashSet<LegacySeries> series = new HashSet<LegacySeries>();	
 	private HashSet<Legacy108Station> legacyStations = new HashSet<Legacy108Station>();	
 		
-	public ConverterToLegacy(GTMTool tool) {
+	public ConverterToLegacy(GTMTool tool, GtmEditor editor, EditingDomain domain) {
 		this.tool = tool;
+		this.editor = editor;
+		this.domain = domain;
 	}
 	
 	public int getMonitorTasks() {
-		
-		
 		return 9;
 	}
 	
@@ -95,7 +91,7 @@ public class 	ConverterToLegacy {
 				
 			} catch (ConverterException e) {
 				String message = "error in fare: " + fare.getId() + " " + e.getMessage();
-				GtmUtils.writeConsoleError(message);
+				writeConsoleError(message);
 			}
 		}
 		monitor.worked(1);
@@ -112,7 +108,7 @@ public class 	ConverterToLegacy {
 				serie.setNumber(i++);
 			}
 			String message = "error in series numbering: series renumbered";
-			GtmUtils.writeConsoleError(message);
+			writeConsoleError(message);
 		}
 		monitor.worked(1);
 		
@@ -127,8 +123,6 @@ public class 	ConverterToLegacy {
 			}			
 		}
 		monitor.worked(1);
-		
-		EditingDomain domain = GtmUtils.getActiveDomain(); 
 	
 		monitor.subTask("add converted series");	
 		Command com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList(), GtmPackage.Literals.LEGACY_SERIES_LIST__SERIES, series);
@@ -219,7 +213,7 @@ public class 	ConverterToLegacy {
 		
 		if (series.getNumber() > 99999) {
 			String message = "too  many series";
-			GtmUtils.writeConsoleError(message);
+			writeConsoleError(message);			
 			return null;
 		}
 
@@ -281,7 +275,7 @@ public class 	ConverterToLegacy {
 			series.setRouteDescription(routeDescription);
 		} else	{
 			String message = "route description tool long: " + routeDescription;
-			GtmUtils.writeConsoleError(message);
+			writeConsoleError(message);	
 			return null;
 		}
 		
@@ -292,7 +286,7 @@ public class 	ConverterToLegacy {
 		addViaStations (series.getViastations(), mainRoute.getStations(), altRoute);
 		if (series.getViastations().size() > 5) {
 			String message = "too many stations: " + routeDescription;
-			GtmUtils.writeConsoleError(message);
+			writeConsoleError(message);	
 			return null;
 		}
 		
@@ -532,7 +526,26 @@ public class 	ConverterToLegacy {
 		return false;
 	}
 
-
+	public void executeAndFlush(CompoundCommand command, EditingDomain domain) {
+		
+		if (command != null && domain != null && !command.isEmpty() && command.canExecute()) {
+			domain.getCommandStack().execute(command);
+			domain.getCommandStack().flush();
+			domain.getCommandStack().execute(new DirtyCommand());
+		} else {
+			String message = "could not change data: " + command.getDescription();
+			writeConsoleError(message);
+		}
+		
+		System.gc();
+		
+	}
+	
+	private void writeConsoleError(String message) {
+		editor.getSite().getShell().getDisplay().asyncExec(() -> {
+			GtmUtils.writeConsoleError(message);
+		});
+	}
 	
 	
 

@@ -78,7 +78,7 @@ public class ImportLegacySeriesAction extends ImportLegacyAction {
 		Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_SERIES_LIST, seriesList );
 		if (cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
-			GtmUtils.writeConsoleInfog("series imported: " + Integer.toString(seriesList.getSeries().size()));
+			GtmUtils.writeConsoleInfo("series imported: " + Integer.toString(seriesList.getSeries().size()));
 		}
 
 	}

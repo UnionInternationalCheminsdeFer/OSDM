@@ -5,14 +5,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
@@ -22,8 +28,8 @@ import Gtm.GTMTool;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.Station;
-import Gtm.Stations;
 import Gtm.presentation.GtmEditor;
+import Gtm.presentation.GtmEditorPlugin;
 
 
 public class ImportStationsAction extends BasicGtmAction {
@@ -49,37 +55,157 @@ public class ImportStationsAction extends BasicGtmAction {
 			this.editingDomainProvider = editingDomainProvider;
 		}
 
-		
-		private Stations readStationsByLine(GTMTool tool) {
+		protected void run (IStructuredSelection structuredSelection) {
 			
-			Stations newStations = GtmFactory.eINSTANCE.createStations();
+			GTMTool tool = GtmUtils.getGtmTool();
+			
+			GtmEditor editor = GtmUtils.getActiveEditor(); 
+			
+			EditingDomain domain = GtmUtils.getActiveDomain();
+			if (domain == null) return;
+			
+			if (tool == null) {
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText("no data found");
+				dialog.open(); 
+				return;
+			}
+			
+			Country country = tool.getConversionFromLegacy().getParams().getCountry();
+			if (country == null) {
+				String message = "the country is missing in the conversion parameter";
+				GtmUtils.writeConsoleError(message);
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText("the country is missing in the conversion parameter");
+				dialog.open(); 
+				return;
+			}
 			
 			BufferedReader reader = getReader("Station file (MERITS TSDUPD)");
 			
+
+
+			IRunnableWithProgress operation =	new IRunnableWithProgress() {
+				// This is the method that gets invoked when the operation runs.
+
+				public void run(IProgressMonitor monitor) {
+					
+					try {
+						
+						monitor.beginTask("Import stations", 90000); 
 			
-			String st = null;
-	        try {
-				while ((st = reader.readLine()) != null) {
-					
-					Station newStation =  decodeLine(st,tool);
-					
-					if (newStation != null) {
-						newStations.getStations().add(newStation);
+						monitor.subTask("Initialize main structure");
+						prepareStructure(tool, domain);
+						monitor.worked(1000);
+										
+						
+						monitor.subTask("Read stations");
+						ArrayList<Station> importedStations = new ArrayList<Station>();
+						ArrayList<Station> newStations = new ArrayList<Station>();
+						ArrayList<Station> updatedStations = new ArrayList<Station>();
+						
+						String st = null;
+						int stationNb = 0;
+						while ((st = reader.readLine()) != null) {
+								
+							Station newStation =  decodeLine(st,tool);
+							
+							if (newStation != null) {
+								stationNb++;
+								importedStations.add(newStation);
+								if (stationNb % 100 == 0) {
+									monitor.subTask("Read station - " + String.valueOf(stationNb));
+									monitor.worked(1000);
+								}
+							}
+						} 
+						
+						monitor.subTask("Select new stations");
+						HashMap<Integer,Station> oldStations = new HashMap<Integer,Station>();
+						for (Station station: tool.getCodeLists().getStations().getStations()) {
+							try {
+								Integer code = Integer.valueOf(station.getCountry().getCode() * 100000 + Integer.parseInt(station.getCode()));
+								oldStations.put(code, station);
+							} catch (Exception e) {
+								//not important, might be proprietary code
+							}
+						}
+						
+						for (Station newStation : importedStations) {
+							Station station = null;
+							try {
+								Integer code = Integer.valueOf(newStation.getCountry().getCode() * 100000 + Integer.parseInt(newStation.getCode()));
+								station = oldStations.get(code);
+							} catch (Exception e) {
+								//not important, might be proprietary code
+							}
+						
+							if (station == null) {
+								newStations.add(newStation);
+							} else {
+								updatedStations.add(newStation);
+							}
+						}
+						monitor.worked(1000);
+						
+						monitor.subTask("Add new stations to data");
+						final int addedStationsF = newStations.size();
+						Command addCommand = AddCommand.create(domain, tool.getCodeLists().getStations(), GtmPackage.Literals.STATIONS__STATIONS, newStations);
+						if (addCommand != null & addCommand.canExecute()) {
+							domain.getCommandStack().execute(addCommand);
+							editor.getSite().getShell().getDisplay().asyncExec(() -> {
+								GtmUtils.writeConsoleInfo("MERITS stations added: (" + Integer.toString(addedStationsF)+")" );
+							});
+
+						}
+						monitor.worked(1000);
+						
+						monitor.subTask("Update stations");						
+						final int updatedStationsF = updatedStations.size();
+						CompoundCommand command = new CompoundCommand();
+						for (Station newStation : updatedStations) {
+							Integer code = Integer.valueOf(newStation.getCountry().getCode() * 100000 + Integer.parseInt(newStation.getCode()));
+							Station station = oldStations.get(code);
+							command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__NAME, newStation.getTimetableName()));
+							command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__LATITUDE, newStation.getLatitude()));
+							command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__LONGITUDE, newStation.getLongitude()));										
+						}
+						if (command != null & !command.isEmpty() & command.canExecute()) {
+							domain.getCommandStack().execute(command);
+							editor.getSite().getShell().getDisplay().asyncExec(() -> {
+								GtmUtils.writeConsoleInfo("MERITS stations updated: (" + Integer.toString(updatedStationsF) + ")" );
+							});
+						}
+						monitor.worked(1000);
+						
+					} catch (IOException e) {
+						MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+						dialog.setText("station file read error");
+						dialog.setMessage(e.getMessage());
+						dialog.open(); 
+					} catch (Exception e) {
+						MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+						dialog.setText("station import error");
+						dialog.setMessage(e.getMessage());
+						dialog.open(); 
+					} finally {
+						monitor.done();
 					}
 				}
-			} catch (IOException e) {
-				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("service brand file read error");
-				dialog.setMessage(e.getMessage());
-				dialog.open(); 
-				e.printStackTrace();
-				return null;
-			} 
-			
-			return newStations;
+			};
+			try {
+				// This runs the operation, and shows progress.
+				editor.disconnectViews();
+				new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
+			} catch (Exception exception) {
+				// Something went wrong that shouldn't.
+				GtmEditorPlugin.INSTANCE.log(exception);
+			} finally {
+				editor.reconnectViews();
+			}
 
+				
 		}
-		
 
 
 		private Station decodeLine(String st, GTMTool tool) {
@@ -212,70 +338,5 @@ public class ImportStationsAction extends BasicGtmAction {
 
 		}
 
-		@Override
-		protected void runAction(GTMTool tool) {
-			Stations newStations = readStationsByLine(tool);
-			
-			GtmEditor editor = GtmUtils.getActiveEditor();
-			
-			editor.disconnectViews();
-			try {
-				updateStations(tool, newStations);
-			} catch (Exception e) {
-				// something went wrong
-			} finally {
-				editor.reconnectViews();
-			}
-		}
-
-		private void updateStations(GTMTool tool, Stations newStations) {
-			EditingDomain domain = GtmUtils.getActiveDomain();
-			
-			CompoundCommand command = new CompoundCommand();
-			 
-			int addedStations = 0;
-			int updatedStations = 0;
-			
-			HashMap<Integer,Station> oldStations = new HashMap<Integer,Station>();
-			for (Station station: tool.getCodeLists().getStations().getStations()) {
-				try {
-					Integer code = Integer.valueOf(station.getCountry().getCode() * 100000 + Integer.parseInt(station.getCode()));
-					oldStations.put(code, station);
-				} catch (Exception e) {
-					//not important, might be proprietary code
-				}
-			}
-			
-			
-			for (Station newStation : newStations.getStations()) {
-				
-				Station station = null;
-				try {
-					Integer code = Integer.valueOf(newStation.getCountry().getCode() * 100000 + Integer.parseInt(newStation.getCode()));
-					station = oldStations.get(code);
-				} catch (Exception e) {
-					//not important, might be proprietary code
-				}
-			
-				if (station == null) {
-					command.append(new AddCommand(domain, tool.getCodeLists().getStations().getStations(), newStation));
-                    addedStations++;
-				} else {
-					command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__NAME, newStation.getTimetableName()));
-					command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__LATITUDE, newStation.getLatitude()));
-					command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__LONGITUDE, newStation.getLongitude()));					
-					updatedStations++;
-				}
-			
-			}
-			
-			if (command != null & !command.isEmpty() & command.canExecute()) {
-				domain.getCommandStack().execute(command);
-				GtmUtils.writeConsoleInfog("MERITS stations added: (" + Integer.toString(addedStations)+")" );
-				GtmUtils.writeConsoleInfog("MERITS stations updated: (" + Integer.toString(updatedStations) + ")" );
-			}
-			
-		}
-	
 
 }

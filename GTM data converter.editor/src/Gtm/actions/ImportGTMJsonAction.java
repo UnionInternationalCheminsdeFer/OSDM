@@ -1,9 +1,15 @@
 package Gtm.actions;
 
 import java.io.File;
+import java.nio.file.Path;
+
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
@@ -11,6 +17,10 @@ import org.eclipse.swt.widgets.MessageBox;
 import Gtm.GTMTool;
 import Gtm.GeneralTariffModel;
 import Gtm.GtmPackage;
+import Gtm.actions.converter.LegacyExporter;
+import Gtm.jsonImportExport.GTMJsonImporter;
+import Gtm.presentation.GtmEditor;
+import Gtm.presentation.GtmEditorPlugin;
 import export.ImportFareDelivery;
 import gtm.FareDelivery;
 
@@ -34,15 +44,7 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 			this.editingDomainProvider = editingDomainProvider;
 		}
 
-
-		private GeneralTariffModel convertFareData(FareDelivery fareDelivery) {
-			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("Not yet implemented");
-			dialog.open(); 
-			return null;
-		}
-
-    
+   
 		protected File getFile(){
 			
 	        FileDialog fd = new FileDialog( Display.getDefault().getActiveShell(), SWT.READ_ONLY);
@@ -56,26 +58,86 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 	        return new File(path);
 			
 		}
-
-		@Override
-		protected void runAction(GTMTool tool) {
+		
+		
+		protected void run (IStructuredSelection structuredSelection) {
+			
+			GTMTool tool = GtmUtils.getGtmTool();
+			
+			GtmEditor editor = GtmUtils.getActiveEditor();
+			
+			EditingDomain domain = GtmUtils.getActiveDomain();
+			
+			if (tool == null) {
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText("no data found");
+				dialog.open(); 
+				return;
+			}
+			
 			
 			File file = getFile();
 			if (file == null) return;
 			
-			FareDelivery fareDelivery = ImportFareDelivery.importFareDelivery(file);
-					
-			if (fareDelivery == null) return;
-
-			GeneralTariffModel model = convertFareData(fareDelivery);
-			EditingDomain domain = GtmUtils.getActiveDomain();
+			GTMJsonImporter importer = new GTMJsonImporter(tool);
 			
-			SetCommand command = new SetCommand(domain, tool, GtmPackage.Literals.GTM_TOOL__GENERAL_TARIFF_MODEL, model);
-				
-			if (command.canExecute()) {
-				domain.getCommandStack().execute(command);
-			}
+			IRunnableWithProgress operation =	new IRunnableWithProgress() {
+				// This is the method that gets invoked when the operation runs.
+
+				public void run(IProgressMonitor monitor) {
+					
+					try {
+					
+						monitor.beginTask("Import GTM data", 4); 
+						
+						monitor.subTask("Initialize main structure");
+						prepareStructure(tool,domain);
+						monitor.worked(1);
+					
+						monitor.subTask("Import file");
+						FareDelivery fareDelivery = ImportFareDelivery.importFareDelivery(file);
+						monitor.worked(1);
+					
+						if (fareDelivery != null) {
+
+							monitor.subTask("Convert to model");
+							GeneralTariffModel model = importer.convertFromJson(fareDelivery);
+							monitor.worked(1);
+
+							monitor.subTask("Add data to model");
+							SetCommand command = new SetCommand(domain, tool, GtmPackage.Literals.GTM_TOOL__GENERAL_TARIFF_MODEL, model);
+							if (command.canExecute()) {
+								domain.getCommandStack().execute(command);
+							}	
+							monitor.worked(1);
+						} 
+					
+					} catch (Exception e) {
+						//
+					} finally {
+						monitor.done();
+					}
+				}
+			};	
+			
+			try {
+				// This runs the operation, and shows progress.
+				editor.disconnectViews();
+		
+				new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
+
+			} catch (Exception exception) {
+				// Something went wrong that shouldn't.
+				GtmEditorPlugin.INSTANCE.log(exception);
+			} finally {
+				editor.reconnectViews();
+			}			
+
+			return;
+
 		}
+
+
 
 	
 
