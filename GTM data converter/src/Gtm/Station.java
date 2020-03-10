@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.Station#getNameCaseASCII <em>Name Case ASCII</em>}</li>
  *   <li>{@link Gtm.Station#getShortNameCaseASCII <em>Short Name Case ASCII</em>}</li>
  *   <li>{@link Gtm.Station#getShortNameCaseUTF8 <em>Short Name Case UTF8</em>}</li>
+ *   <li>{@link Gtm.Station#getLegacyBorderPointCode <em>Legacy Border Point Code</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getStation()
@@ -272,5 +273,27 @@ public interface Station extends EObject {
 	 * @generated
 	 */
 	void setShortNameCaseUTF8(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Legacy Border Point Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Legacy Border Point Code</em>' attribute.
+	 * @see #setLegacyBorderPointCode(int)
+	 * @see Gtm.GtmPackage#getStation_LegacyBorderPointCode()
+	 * @model
+	 * @generated
+	 */
+	int getLegacyBorderPointCode();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Station#getLegacyBorderPointCode <em>Legacy Border Point Code</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Legacy Border Point Code</em>' attribute.
+	 * @see #getLegacyBorderPointCode()
+	 * @generated
+	 */
+	void setLegacyBorderPointCode(int value);
 
 } // Station

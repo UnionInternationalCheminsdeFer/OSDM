@@ -1412,6 +1412,7 @@ public class ConverterFromLegacy {
 				if (station != null) {
 					station.setNameCaseASCII(lStation.getName());
 					station.setNameCaseUTF8(lStation.getNameUTF8());
+					station.setLegacyBorderPointCode(lStation.getBorderPointCode());
 					stationNames.getStationName().add(station);
 				}
 			} catch (ConverterException e) {

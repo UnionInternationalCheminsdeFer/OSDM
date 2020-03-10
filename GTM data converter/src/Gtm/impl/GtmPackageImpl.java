@@ -1837,6 +1837,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getStation_LegacyBorderPointCode() {
+		return (EAttribute)stationEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCarrier() {
 		return carrierEClass;
 	}
@@ -7350,6 +7359,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEAttribute(stationEClass, STATION__NAME_CASE_ASCII);
 		createEAttribute(stationEClass, STATION__SHORT_NAME_CASE_ASCII);
 		createEAttribute(stationEClass, STATION__SHORT_NAME_CASE_UTF8);
+		createEAttribute(stationEClass, STATION__LEGACY_BORDER_POINT_CODE);
 
 		carrierEClass = createEClass(CARRIER);
 		createEAttribute(carrierEClass, CARRIER__CODE);
@@ -8196,6 +8206,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEAttribute(getStation_NameCaseASCII(), ecorePackage.getEString(), "nameCaseASCII", null, 0, 1, Station.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStation_ShortNameCaseASCII(), ecorePackage.getEString(), "shortNameCaseASCII", null, 0, 1, Station.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStation_ShortNameCaseUTF8(), ecorePackage.getEString(), "shortNameCaseUTF8", null, 0, 1, Station.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStation_LegacyBorderPointCode(), ecorePackage.getEInt(), "legacyBorderPointCode", null, 0, 1, Station.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(carrierEClass, Carrier.class, "Carrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCarrier_Code(), theXMLTypePackage.getString(), "code", null, 1, 1, Carrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

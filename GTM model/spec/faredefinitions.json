@@ -944,6 +944,9 @@
 				"nameUtf8": {
 					"description": "station name with upper and lower case letters in UTF8",
 					"type": "string"
+				},
+				"legacyBorderPointCode": {
+					"type": "integer"
 				}
 			},
 			"additionalProperties": false

@@ -72,6 +72,18 @@ public class GTMJsonImporter {
 	private HashMap<Integer,ServiceBrand> serviceBrands = null;
 	private HashMap<String,NutsCode> nutsCodes = null;
 	
+	/*
+	 *   y   = year   (yy or yyyy)
+	 *	M   = month  (MM)
+	 *	d   = day in month (dd)
+	 *	h   = hour (0-12)  (hh)
+	 *	H   = hour (0-23)  (HH)
+	 *	m   = minute in hour (mm)
+	 *	s   = seconds (ss)
+	 *	S   = milliseconds (SSS)
+	 *	z   = time zone  text        (e.g. Pacific Standard Time...)
+	 *	Z   = time zone, time offset (e.g. -0800)
+	 */
 	final DateFormat fmtZ = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 	final DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 	final DateFormat pmdf = new SimpleDateFormat("yyyy-MM-dd hh:mm a z");
@@ -1414,7 +1426,7 @@ public class GTMJsonImporter {
 	    		return fmt.parse(dateString);
 	    	}
 		} catch (ParseException e) {
-			// something strange happend
+			// something strange happened
 			try {
 				return pmdf.parse(dateString);
 			} catch (ParseException ee) {

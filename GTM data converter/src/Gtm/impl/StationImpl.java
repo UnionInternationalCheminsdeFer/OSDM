@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.StationImpl#getNameCaseASCII <em>Name Case ASCII</em>}</li>
  *   <li>{@link Gtm.impl.StationImpl#getShortNameCaseASCII <em>Short Name Case ASCII</em>}</li>
  *   <li>{@link Gtm.impl.StationImpl#getShortNameCaseUTF8 <em>Short Name Case UTF8</em>}</li>
+ *   <li>{@link Gtm.impl.StationImpl#getLegacyBorderPointCode <em>Legacy Border Point Code</em>}</li>
  * </ul>
  *
  * @generated
@@ -247,6 +248,26 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 	 * @ordered
 	 */
 	protected String shortNameCaseUTF8 = SHORT_NAME_CASE_UTF8_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLegacyBorderPointCode() <em>Legacy Border Point Code</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyBorderPointCode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int LEGACY_BORDER_POINT_CODE_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getLegacyBorderPointCode() <em>Legacy Border Point Code</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyBorderPointCode()
+	 * @generated
+	 * @ordered
+	 */
+	protected int legacyBorderPointCode = LEGACY_BORDER_POINT_CODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -520,6 +541,27 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getLegacyBorderPointCode() {
+		return legacyBorderPointCode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyBorderPointCode(int newLegacyBorderPointCode) {
+		int oldLegacyBorderPointCode = legacyBorderPointCode;
+		legacyBorderPointCode = newLegacyBorderPointCode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.STATION__LEGACY_BORDER_POINT_CODE, oldLegacyBorderPointCode, legacyBorderPointCode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -546,6 +588,8 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 				return getShortNameCaseASCII();
 			case GtmPackage.STATION__SHORT_NAME_CASE_UTF8:
 				return getShortNameCaseUTF8();
+			case GtmPackage.STATION__LEGACY_BORDER_POINT_CODE:
+				return getLegacyBorderPointCode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -590,6 +634,9 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 				return;
 			case GtmPackage.STATION__SHORT_NAME_CASE_UTF8:
 				setShortNameCaseUTF8((String)newValue);
+				return;
+			case GtmPackage.STATION__LEGACY_BORDER_POINT_CODE:
+				setLegacyBorderPointCode((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -636,6 +683,9 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 			case GtmPackage.STATION__SHORT_NAME_CASE_UTF8:
 				setShortNameCaseUTF8(SHORT_NAME_CASE_UTF8_EDEFAULT);
 				return;
+			case GtmPackage.STATION__LEGACY_BORDER_POINT_CODE:
+				setLegacyBorderPointCode(LEGACY_BORDER_POINT_CODE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -670,6 +720,8 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 				return SHORT_NAME_CASE_ASCII_EDEFAULT == null ? shortNameCaseASCII != null : !SHORT_NAME_CASE_ASCII_EDEFAULT.equals(shortNameCaseASCII);
 			case GtmPackage.STATION__SHORT_NAME_CASE_UTF8:
 				return SHORT_NAME_CASE_UTF8_EDEFAULT == null ? shortNameCaseUTF8 != null : !SHORT_NAME_CASE_UTF8_EDEFAULT.equals(shortNameCaseUTF8);
+			case GtmPackage.STATION__LEGACY_BORDER_POINT_CODE:
+				return legacyBorderPointCode != LEGACY_BORDER_POINT_CODE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -704,6 +756,8 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 		result.append(shortNameCaseASCII);
 		result.append(", shortNameCaseUTF8: ");
 		result.append(shortNameCaseUTF8);
+		result.append(", legacyBorderPointCode: ");
+		result.append(legacyBorderPointCode);
 		result.append(')');
 		return result.toString();
 	}

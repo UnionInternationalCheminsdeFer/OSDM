@@ -838,13 +838,22 @@ public interface GtmPackage extends EPackage {
 	int STATION__SHORT_NAME_CASE_UTF8 = 10;
 
 	/**
+	 * The feature id for the '<em><b>Legacy Border Point Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__LEGACY_BORDER_POINT_CODE = 11;
+
+	/**
 	 * The number of structural features of the '<em>Station</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATION_FEATURE_COUNT = 11;
+	int STATION_FEATURE_COUNT = 12;
 
 	/**
 	 * The number of operations of the '<em>Station</em>' class.
@@ -9313,6 +9322,17 @@ public interface GtmPackage extends EPackage {
 	EAttribute getStation_ShortNameCaseUTF8();
 
 	/**
+	 * Returns the meta object for the attribute '{@link Gtm.Station#getLegacyBorderPointCode <em>Legacy Border Point Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Legacy Border Point Code</em>'.
+	 * @see Gtm.Station#getLegacyBorderPointCode()
+	 * @see #getStation()
+	 * @generated
+	 */
+	EAttribute getStation_LegacyBorderPointCode();
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.Carrier <em>Carrier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16289,6 +16309,14 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STATION__SHORT_NAME_CASE_UTF8 = eINSTANCE.getStation_ShortNameCaseUTF8();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Border Point Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATION__LEGACY_BORDER_POINT_CODE = eINSTANCE.getStation_LegacyBorderPointCode();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.CarrierImpl <em>Carrier</em>}' class.
