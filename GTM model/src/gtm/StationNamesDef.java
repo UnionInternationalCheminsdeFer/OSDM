@@ -16,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "country",
     "localCode",
     "name",
-    "nameUtf8"
+    "nameUtf8",
+    "legacyBorderPointCode"
 })
 public class StationNamesDef {
 
@@ -48,6 +49,8 @@ public class StationNamesDef {
     @JsonProperty("nameUtf8")
     @JsonPropertyDescription("station name with upper and lower case letters in UTF8")
     private String nameUtf8;
+    @JsonProperty("legacyBorderPointCode")
+    private Integer legacyBorderPointCode;
 
     /**
      * uic country code
@@ -121,6 +124,16 @@ public class StationNamesDef {
         this.nameUtf8 = nameUtf8;
     }
 
+    @JsonProperty("legacyBorderPointCode")
+    public Integer getLegacyBorderPointCode() {
+        return legacyBorderPointCode;
+    }
+
+    @JsonProperty("legacyBorderPointCode")
+    public void setLegacyBorderPointCode(Integer legacyBorderPointCode) {
+        this.legacyBorderPointCode = legacyBorderPointCode;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -141,6 +154,10 @@ public class StationNamesDef {
         sb.append('=');
         sb.append(((this.nameUtf8 == null)?"<null>":this.nameUtf8));
         sb.append(',');
+        sb.append("legacyBorderPointCode");
+        sb.append('=');
+        sb.append(((this.legacyBorderPointCode == null)?"<null>":this.legacyBorderPointCode));
+        sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {
@@ -156,6 +173,7 @@ public class StationNamesDef {
         result = ((result* 31)+((this.country == null)? 0 :this.country.hashCode()));
         result = ((result* 31)+((this.nameUtf8 == null)? 0 :this.nameUtf8 .hashCode()));
         result = ((result* 31)+((this.localCode == null)? 0 :this.localCode.hashCode()));
+        result = ((result* 31)+((this.legacyBorderPointCode == null)? 0 :this.legacyBorderPointCode.hashCode()));
         return result;
     }
 
@@ -168,7 +186,7 @@ public class StationNamesDef {
             return false;
         }
         StationNamesDef rhs = ((StationNamesDef) other);
-        return (((((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name)))&&((this.country == rhs.country)||((this.country!= null)&&this.country.equals(rhs.country))))&&((this.nameUtf8 == rhs.nameUtf8)||((this.nameUtf8 != null)&&this.nameUtf8 .equals(rhs.nameUtf8))))&&((this.localCode == rhs.localCode)||((this.localCode!= null)&&this.localCode.equals(rhs.localCode))));
+        return ((((((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name)))&&((this.country == rhs.country)||((this.country!= null)&&this.country.equals(rhs.country))))&&((this.nameUtf8 == rhs.nameUtf8)||((this.nameUtf8 != null)&&this.nameUtf8 .equals(rhs.nameUtf8))))&&((this.localCode == rhs.localCode)||((this.localCode!= null)&&this.localCode.equals(rhs.localCode))))&&((this.legacyBorderPointCode == rhs.legacyBorderPointCode)||((this.legacyBorderPointCode!= null)&&this.legacyBorderPointCode.equals(rhs.legacyBorderPointCode))));
     }
 
 }

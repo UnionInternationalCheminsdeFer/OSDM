@@ -409,6 +409,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Station/nameCaseASCII"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Station/shortNameCaseASCII"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Station/shortNameCaseUTF8"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Station/legacyBorderPointCode"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Carrier">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Carrier/code"/>

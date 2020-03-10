@@ -72,6 +72,7 @@ public class StationItemProvider
 			addNameCaseASCIIPropertyDescriptor(object);
 			addShortNameCaseASCIIPropertyDescriptor(object);
 			addShortNameCaseUTF8PropertyDescriptor(object);
+			addLegacyBorderPointCodePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -319,6 +320,28 @@ public class StationItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Legacy Border Point Code feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLegacyBorderPointCodePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Station_legacyBorderPointCode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Station_legacyBorderPointCode_feature", "_UI_Station_type"),
+				 GtmPackage.Literals.STATION__LEGACY_BORDER_POINT_CODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Station.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -366,6 +389,7 @@ public class StationItemProvider
 			case GtmPackage.STATION__NAME_CASE_ASCII:
 			case GtmPackage.STATION__SHORT_NAME_CASE_ASCII:
 			case GtmPackage.STATION__SHORT_NAME_CASE_UTF8:
+			case GtmPackage.STATION__LEGACY_BORDER_POINT_CODE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

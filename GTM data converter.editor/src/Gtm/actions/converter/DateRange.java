@@ -57,7 +57,7 @@ public class DateRange {
 		
 		for (int i = 0; i < dateList.size() - 1; i++) {
 			
-			DateRange r = new DateRange(dateList.get(i), dateList.get(i));
+			DateRange r = new DateRange(dateList.get(i), dateList.get(i + 1));
 			ranges.add(r);
 
 		}

@@ -163,7 +163,22 @@ import gtm.ZoneDefinitionDef;
 public class GtmJsonExporter {
 	
 	
-	private DateFormat jsondf = new SimpleDateFormat("yyyy-MM-dd HH:mm a z");
+	/*
+	 *  y   = year   (yy or yyyy)
+	 *	M   = month  (MM)
+	 *	d   = day in month (dd)
+	 *	h   = hour (0-12)  (hh)
+	 *	H   = hour (0-23)  (HH)
+	 *	m   = minute in hour (mm)
+	 *	s   = seconds (ss)
+	 *	S   = milliseconds (SSS)
+	 *	z   = time zone  text        (e.g. Pacific Standard Time...)
+	 *	Z   = time zone, time offset (e.g. -0800)
+	 *
+	 *
+	 * "2012-04-21T18:25:43-05:00"             ISO 8601
+	 */
+	private DateFormat jsondf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 
 	
 	public GtmJsonExporter () {
@@ -358,6 +373,7 @@ public class GtmJsonExporter {
 				js.setLocalCode(Integer.parseInt(s.getCode()));
 				js.setName(s.getNameCaseASCII());
 				js.setNameUtf8(s.getNameCaseUTF8());
+				js.setLegacyBorderPointCode(s.getLegacyBorderPointCode());
 				jl.add(js);
 			}
 			catch (Exception e) {

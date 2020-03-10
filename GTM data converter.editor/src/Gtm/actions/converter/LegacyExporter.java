@@ -1,6 +1,7 @@
 package Gtm.actions.converter;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -165,6 +166,7 @@ public class LegacyExporter {
 			writer.write(line1);
 			writer.newLine();
 			writer.write(line2);
+			writer.close();
 		} catch (IOException e) {
 			String message = "could not write TCV file in: " + exportPath.toString();
 			GtmUtils.writeConsoleError(message);
@@ -517,11 +519,11 @@ public class LegacyExporter {
 
 	private BufferedWriter getWriter(Path path, String fileName)  {
 		
-		Path file = Paths.get(path + fileName);
+		File file = new File(path.toString(), fileName);
 		
         BufferedWriter br;
 		try {
-			br = new BufferedWriter(new FileWriter(file.toFile()));
+			br = new BufferedWriter(new FileWriter(file));
 		} catch (IOException e) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 			dialog.setText("file write error: " + file.toString());

@@ -122,7 +122,11 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 							if (s != null) {
 									
 								command.append(SetCommand.create(domain, s,GtmPackage.Literals.STATION__NAME_CASE_ASCII,jS.getName()));
-								command.append(SetCommand.create(domain, s,GtmPackage.Literals.STATION__NAME_CASE_UTF8,jS.getNameUtf8()));								
+								command.append(SetCommand.create(domain, s,GtmPackage.Literals.STATION__NAME_CASE_UTF8,jS.getNameUtf8()));		
+								command.append(SetCommand.create(domain, s,GtmPackage.Literals.STATION__SHORT_NAME_CASE_ASCII,jS.getName()));		
+								command.append(SetCommand.create(domain, s,GtmPackage.Literals.STATION__SHORT_NAME_CASE_UTF8,jS.getNameUtf8()));	
+								command.append(SetCommand.create(domain, s,GtmPackage.Literals.STATION__LEGACY_BORDER_POINT_CODE, jS.getLegacyBorderPointCode()));
+								
 								if (command.canExecute()) {
 									domain.getCommandStack().execute(command);
 								}	
