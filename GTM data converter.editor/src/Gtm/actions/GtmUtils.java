@@ -933,5 +933,10 @@ public class GtmUtils {
 
 	}
 	
+	public static String limitStringLength(String s, int maxChar) {
+		if (s == null) return " ";
+		return s.substring(0, Math.min(maxChar, s.length()));
+	}
+	
 	
 }

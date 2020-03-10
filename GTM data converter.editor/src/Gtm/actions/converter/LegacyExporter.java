@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -93,8 +92,8 @@ public class LegacyExporter {
 		for (LegacyRouteFare fare : tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares().getRouteFare()) {
 			if (!firstLine) {
 				writer.newLine();
-				firstLine = false;
 			}
+			firstLine = false;
 			writer.write(getFareLine(fare));
 		}
 		writer.close();
@@ -114,8 +113,8 @@ public class LegacyExporter {
 		for (LegacySeries series : tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries()) {
 			if (!firstLine) {
 				writer.newLine();
-				firstLine = false;
 			}
+			firstLine = false;
 			writer.write(getSeriesLine(series));
 		}
 		writer.close();
@@ -131,8 +130,8 @@ public class LegacyExporter {
 		for (Legacy108Station station : tool.getConversionFromLegacy().getLegacy108().getLegacyStations().getLegacyStations()) {
 			if (!firstLine) {
 				writer.newLine();
-				firstLine = false;
 			}
+			firstLine = false;
 			writer.write(getStationLine(station));
 		}
 		writer.close();
@@ -183,11 +182,13 @@ public class LegacyExporter {
 		// 	1 Code of the supplier RU numeric 4 M TAP TSI Technical Document B.8 1-4 e.g. 0081 for ÖBB 
 		sb.append(String.format("%4s", provider));  
 		//	2 Shortened name of the supplier RU alpha numeric 30 M  5-34 e.g. ÖBB
-		sb.append(String.format("%30s", providerName));
+		sb.append(String.format("%-30s", providerName));
 		//	3 File name alpha numeric 8 M  35-42 e.g. TCVG0081 The file is to be made available in ascending order of this field 
-		sb.append(String.format("%8s", fileName));
-		//	4 Number of records numeric 6 M  43-48  5 Number of new records numeric 6 O  49-54
+		sb.append(String.format("%-8s", fileName));
+		//	4 Number of records numeric 6 M  43-48 4 Number of records numeric 6 O  43-48
 		sb.append(String.format("%06d", size));
+		//	5 Number of new records numeric 6 M  5 Number of new records numeric 6 O  49-54
+		sb.append(String.format("%06d", size));		
 		//	6 Number of deleted records numeric 6 O  55-60
 		sb.append("000000");
 		//	7 Number of amendments to Flag 1 numeric 6 O  61-66  
@@ -221,7 +222,7 @@ public class LegacyExporter {
 		//	21 First day of validity of fare numeric 8 M  145-152 Expressed as: 'YYYYMMDD' 
 		sb.append(dateFormat.format(startDate));
 		//	22 Version number numeric 2 M  153-154 Sequential version number related to the fare date; '01' for the first issue, '02' for the second etc. 
-		sb.append("1");
+		sb.append("01");
 		//	23 Last day of validity of fare numeric 8 M  155-162 Expressed as: 'YYYYMMDD' 
 		sb.append(dateFormat.format(endDate)); 
 
@@ -242,13 +243,13 @@ public class LegacyExporter {
 		//	4 code for departure station numeric 5 M TAP TSI Technical Document B.9 14-18  
 		sb.append(String.format("%05d",fare.getSeries().getFromStation()));
 		//	5 17-character designation for departure station alpha numeric 17 M  19-35 1st sorting criterion, ascending
-		sb.append(String.format("%16s",fare.getSeries().getFromStationName()));
+		sb.append(String.format("%-17s",GtmUtils.limitStringLength(fare.getSeries().getFromStationName(),17)));
 		//	6 Flag 1 for departure station designation numeric 1 M  36 0 or 3 (see point 2.2)
 		sb.append("1");
 		//	7 code for destination station numeric 5 M  37-41
 		sb.append(String.format("%05d",fare.getSeries().getToStation()));		
 		//	8 17-character designation for destination station alpha numeric 17 M  42-58 2nd sorting criterion, ascending 
-		sb.append(String.format("%16s",fare.getSeries().getToStationName()));
+		sb.append(String.format("%-17s",GtmUtils.limitStringLength(fare.getSeries().getToStationName(),17)));
 		//	9 Flag 2 for destination station designation numeric 1 M  59 0 or 3 (see point 2.2) 
 		sb.append("0");
 		//	10 Carrier code separator 1 '<' 1 M  60 This field always contains the symbol '<' 
@@ -258,7 +259,7 @@ public class LegacyExporter {
 		//  12 Carrier code separator 2 '>' 1 M  65 This field always contains the symbol '>'. 
 		sb.append(">");
 		//	13 Route alpha numeric 58 O TAP TSI Technical Document B.5 66-123  
-		sb.append(String.format("%65s", fare.getSeries().getRouteDescription()));
+		sb.append(String.format("%-58s", GtmUtils.limitStringLength(fare.getSeries().getRouteDescription(),58)));
 		//	14 Flag 3 for combination of carrier code and route numeric 1 M  124 Relates to Fields 11 and 13; 0 or 3 (see point 2.2) 
 		sb.append("0");		
 		//	15 2nd Class single fare numeric 7 M  125-131 5 digits before the decimal point, 2 digits after the decimal point, 3rd sorting criterion, ascending 
@@ -280,7 +281,7 @@ public class LegacyExporter {
 		//	23 First day of validity of fare numeric 8 M  157-164 Expressed as: 'YYYYMMDD' 
 		sb.append(dateFormat.format(fare.getValidFrom()));
 		//	24 Version number numeric 2 M  165-166 Sequential version number related to the fare date; '01' for the first issue, '02' for the second etc. 
-		sb.append("1");
+		sb.append("01");
 		//	25 Last day of validity of fare numeric 8 M  167-174 Expressed as: 'YYYYMMDD' 
 		sb.append(dateFormat.format(fare.getValidUntil())); 
 
@@ -305,15 +306,15 @@ public class LegacyExporter {
 		//	4 Old railway code numeric 5 O TAP TSI Technical Document B.9 11-15 This field is only used when stations are first introduced. 
 		sb.append("00000");
 		//	5 35-character station designation alpha numeric 35 M  16-50 Station designation in the national language including accents and in upper and lower case. 
-		sb.append(String.format("37s",station.getNameUTF8()));
+		sb.append(String.format("%-35s",GtmUtils.limitStringLength(station.getNameUTF8(),35)));
 		//	6 Flag 1 for the 35- character station designation numeric 1 M  51 0 or 3 (see point 2.2) 
 		sb.append("0");
 		//	7 17-character station designation alpha numeric 17 M  52-68 Computer notation with no accents but in upper and lower case. The file is to be transferred in the ascending alphanumeric order of this field. 
-		sb.append(String.format("17s",station.getShortName()));		
+		sb.append(String.format("%-17s",GtmUtils.limitStringLength(station.getShortName(),17)));		
 		//	8 Flag 2 for the 17- character station designation numeric 1 M  69 0 or 3 (see point 2.2) 
 		sb.append("0");		
 		//	9 17-character route description of station alpha numeric 17 O  70-86 Field 7 notation for route instruction purposes. 
-		sb.append(String.format("17s",station.getShortName()));			
+		sb.append(String.format("%-17s",GtmUtils.limitStringLength(station.getShortName(),17)));			
 		//	10 Flag 3 for the 17- character route description of the station numeric 1 M  87 0 or 3 (see point 2.2) 
 		sb.append("0");				
 		//	11 Zone numeric 4 O  88-91  
@@ -365,7 +366,7 @@ public class LegacyExporter {
 		//	34 First day of validity of fare numeric 8 M  163-170 Expressed as: 'YYYYMMDD' 
 		sb.append(dateFormat.format(fromDate));
 		//	35 Version number numeric 2 M  171-172 Sequential version number related to the fare date; '01' for the first issue, '02' for the second, etc. 
-		sb.append("1");			
+		sb.append("01");			
 		//	36 Last day of validity of fare numeric 8 M  173-180 Expressed as: 'YYYYMMDD' 
 		sb.append(dateFormat.format(untilDate));
 		
@@ -392,7 +393,7 @@ public class LegacyExporter {
 		//	7 Connecting code for departure station numeric 2 O  18-19 cf. Notes to Appendix B, point B.2. 			
 		sb.append("00");
 		//	8 17-character designation for departure station alpha numeric 17 M  20-36 17-character designation in station list (17-character route description in case of fare reference stations) 2nd sorting criterion 
-		sb.append(String.format("%17s",series.getFromStationName()));
+		sb.append(String.format("%-17s",GtmUtils.limitStringLength(series.getFromStationName(),17)));
 		//	9 Flag 2 for departure station designation numeric 1 M  37 0 or 3 (see point 2.2) 
 		sb.append("0");			
 		//	10  code for destination station numeric 5 M TAP TSI Technical Document B.9 38-42  
@@ -400,7 +401,7 @@ public class LegacyExporter {
 		//	11 Connecting code for destination station numeric 2 O  43-44 cf. Notes to Appendix B, point B.2. 
 		sb.append("00");
 		//	12 17-character designation for destination station alpha numeric 17 M  45-61 17-character designation in station list (17-character route description in case of fare reference stations) 3rd sorting criterion 			
-		sb.append(String.format("%17s",series.getToStationName()));
+		sb.append(String.format("%-17s",GtmUtils.limitStringLength(series.getToStationName(),17)));
 		//	13 Flag 3 for destination station designation numeric 1 M  62 0 or 3 (see point 2.2) 
 		sb.append("0");				
 		//	14 Route number numeric 1 M  63 4th sorting criterion 
@@ -428,7 +429,7 @@ public class LegacyExporter {
 		//	25 Carrier code separator 2 '>' 1 M  79 This field always contains the symbol '>'’ 
 		sb.append(">");		
 		//	26 Itinerary alpha numeric 58 O TAP TSI Technical Document B.5 80-1 37  
-		sb.append(String.format("%58s",series.getRouteDescription()));		
+		sb.append(String.format("%-58s",GtmUtils.limitStringLength(series.getRouteDescription(),58)));		
 		//	27 Flag 7 for combination of carrier code and itinerary numeric 1 M  138 Indicates combination of fields 24 and 26; 0 or 3 (see point 2.2) 
 		sb.append("0");			
 		//	28 Kilometres in 2nd Class numeric 5 M  139-1 43  
@@ -492,9 +493,9 @@ public class LegacyExporter {
 		}		
 		if (series.getViastations() != null && series.getViastations().size() > 4) {
 			//	42  code for 1st station in route description numeric 5 O TAP TSI Technical Document B.9 176-1 80
-			sb.append(String.format("%05d", series.getViastations().get(5).getCode()));  			
+			sb.append(String.format("%05d", series.getViastations().get(4).getCode()));  			
 			//	43 Position of 1st station numeric 1 O  181 1 = centre 2 = left 3 = right 
-			sb.append(String.format("%05d", series.getViastations().get(0).getPosition()));  	
+			sb.append(String.format("%05d", series.getViastations().get(4).getPosition()));  	
 			//	44 Abridging code for 1st station numeric 1 O  182  
 			sb.append("0");
 		}		
