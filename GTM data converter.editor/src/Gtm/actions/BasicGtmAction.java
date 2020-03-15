@@ -11,7 +11,6 @@ import org.eclipse.ui.actions.BaseSelectionListenerAction;
 
 import Gtm.GTMTool;
 
-
 public abstract class BasicGtmAction extends BaseSelectionListenerAction {
 	
 		

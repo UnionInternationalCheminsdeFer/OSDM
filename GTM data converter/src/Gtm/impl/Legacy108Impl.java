@@ -6,6 +6,7 @@ import Gtm.Carrier;
 import Gtm.CharacterSet;
 import Gtm.GtmPackage;
 import Gtm.Legacy108;
+import Gtm.Legacy108FaresDescriptions;
 import Gtm.Legacy108Stations;
 import Gtm.LegacyDistanceFares;
 import Gtm.LegacyRouteFares;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.Legacy108Impl#getLegacyDistanceFares <em>Legacy Distance Fares</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getLegacyRouteFares <em>Legacy Route Fares</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getLegacyStations <em>Legacy Stations</em>}</li>
+ *   <li>{@link Gtm.impl.Legacy108Impl#getLegacyFareDescriptions <em>Legacy Fare Descriptions</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getTimeZone <em>Time Zone</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getCarrier <em>Carrier</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getStartDate <em>Start Date</em>}</li>
@@ -113,6 +115,16 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	 * @ordered
 	 */
 	protected Legacy108Stations legacyStations;
+
+	/**
+	 * The cached value of the '{@link #getLegacyFareDescriptions() <em>Legacy Fare Descriptions</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyFareDescriptions()
+	 * @generated
+	 * @ordered
+	 */
+	protected Legacy108FaresDescriptions legacyFareDescriptions;
 
 	/**
 	 * The default value of the '{@link #getTimeZone() <em>Time Zone</em>}' attribute.
@@ -524,6 +536,49 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Legacy108FaresDescriptions getLegacyFareDescriptions() {
+		return legacyFareDescriptions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLegacyFareDescriptions(Legacy108FaresDescriptions newLegacyFareDescriptions, NotificationChain msgs) {
+		Legacy108FaresDescriptions oldLegacyFareDescriptions = legacyFareDescriptions;
+		legacyFareDescriptions = newLegacyFareDescriptions;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_FARE_DESCRIPTIONS, oldLegacyFareDescriptions, newLegacyFareDescriptions);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyFareDescriptions(Legacy108FaresDescriptions newLegacyFareDescriptions) {
+		if (newLegacyFareDescriptions != legacyFareDescriptions) {
+			NotificationChain msgs = null;
+			if (legacyFareDescriptions != null)
+				msgs = ((InternalEObject)legacyFareDescriptions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_FARE_DESCRIPTIONS, null, msgs);
+			if (newLegacyFareDescriptions != null)
+				msgs = ((InternalEObject)newLegacyFareDescriptions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_FARE_DESCRIPTIONS, null, msgs);
+			msgs = basicSetLegacyFareDescriptions(newLegacyFareDescriptions, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_FARE_DESCRIPTIONS, newLegacyFareDescriptions, newLegacyFareDescriptions));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TimeZone getTimeZone() {
 		return timeZone;
 	}
@@ -558,6 +613,8 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 				return basicSetLegacyRouteFares(null, msgs);
 			case GtmPackage.LEGACY108__LEGACY_STATIONS:
 				return basicSetLegacyStations(null, msgs);
+			case GtmPackage.LEGACY108__LEGACY_FARE_DESCRIPTIONS:
+				return basicSetLegacyFareDescriptions(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -582,6 +639,8 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 				return getLegacyRouteFares();
 			case GtmPackage.LEGACY108__LEGACY_STATIONS:
 				return getLegacyStations();
+			case GtmPackage.LEGACY108__LEGACY_FARE_DESCRIPTIONS:
+				return getLegacyFareDescriptions();
 			case GtmPackage.LEGACY108__TIME_ZONE:
 				return getTimeZone();
 			case GtmPackage.LEGACY108__CARRIER:
@@ -621,6 +680,9 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 				return;
 			case GtmPackage.LEGACY108__LEGACY_STATIONS:
 				setLegacyStations((Legacy108Stations)newValue);
+				return;
+			case GtmPackage.LEGACY108__LEGACY_FARE_DESCRIPTIONS:
+				setLegacyFareDescriptions((Legacy108FaresDescriptions)newValue);
 				return;
 			case GtmPackage.LEGACY108__TIME_ZONE:
 				setTimeZone((TimeZone)newValue);
@@ -664,6 +726,9 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 			case GtmPackage.LEGACY108__LEGACY_STATIONS:
 				setLegacyStations((Legacy108Stations)null);
 				return;
+			case GtmPackage.LEGACY108__LEGACY_FARE_DESCRIPTIONS:
+				setLegacyFareDescriptions((Legacy108FaresDescriptions)null);
+				return;
 			case GtmPackage.LEGACY108__TIME_ZONE:
 				setTimeZone(TIME_ZONE_EDEFAULT);
 				return;
@@ -700,6 +765,8 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 				return legacyRouteFares != null;
 			case GtmPackage.LEGACY108__LEGACY_STATIONS:
 				return legacyStations != null;
+			case GtmPackage.LEGACY108__LEGACY_FARE_DESCRIPTIONS:
+				return legacyFareDescriptions != null;
 			case GtmPackage.LEGACY108__TIME_ZONE:
 				return timeZone != TIME_ZONE_EDEFAULT;
 			case GtmPackage.LEGACY108__CARRIER:

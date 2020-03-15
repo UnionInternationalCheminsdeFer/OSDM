@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Gtm.LegacySeries#getSupplyingCarrierCode <em>Supplying Carrier Code</em>}</li>
  *   <li>{@link Gtm.LegacySeries#getNumber <em>Number</em>}</li>
+ *   <li>{@link Gtm.LegacySeries#getFareTableNumber <em>Fare Table Number</em>}</li>
  *   <li>{@link Gtm.LegacySeries#getType <em>Type</em>}</li>
  *   <li>{@link Gtm.LegacySeries#getFromStation <em>From Station</em>}</li>
  *   <li>{@link Gtm.LegacySeries#getFromStationName <em>From Station Name</em>}</li>
@@ -265,6 +266,28 @@ public interface LegacySeries extends EObject {
 	 * @generated
 	 */
 	void setNumber(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Fare Table Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fare Table Number</em>' attribute.
+	 * @see #setFareTableNumber(int)
+	 * @see Gtm.GtmPackage#getLegacySeries_FareTableNumber()
+	 * @model
+	 * @generated
+	 */
+	int getFareTableNumber();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacySeries#getFareTableNumber <em>Fare Table Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fare Table Number</em>' attribute.
+	 * @see #getFareTableNumber()
+	 * @generated
+	 */
+	void setFareTableNumber(int value);
 
 	/**
 	 * Returns the value of the '<em><b>From Station</b></em>' attribute.

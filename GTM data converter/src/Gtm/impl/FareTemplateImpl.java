@@ -13,6 +13,7 @@ import Gtm.LegacyAccountingIdentifier;
 import Gtm.LegacyConversionType;
 import Gtm.PassengerConstraint;
 import Gtm.PersonalDataConstraint;
+import Gtm.Price;
 import Gtm.ReductionConstraint;
 import Gtm.RegionalConstraint;
 import Gtm.ReservationParameter;
@@ -41,6 +42,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getPriceFactor <em>Price Factor</em>}</li>
+ *   <li>{@link Gtm.impl.FareTemplateImpl#getPrice <em>Price</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getType <em>Type</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getDataDescription <em>Data Description</em>}</li>
@@ -96,6 +98,16 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 	 * @ordered
 	 */
 	protected boolean priceFactorESet;
+
+	/**
+	 * The cached value of the '{@link #getPrice() <em>Price</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrice()
+	 * @generated
+	 * @ordered
+	 */
+	protected Price price;
 
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -420,6 +432,44 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 	 */
 	public boolean isSetPriceFactor() {
 		return priceFactorESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Price getPrice() {
+		if (price != null && price.eIsProxy()) {
+			InternalEObject oldPrice = (InternalEObject)price;
+			price = (Price)eResolveProxy(oldPrice);
+			if (price != oldPrice) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.FARE_TEMPLATE__PRICE, oldPrice, price));
+			}
+		}
+		return price;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Price basicGetPrice() {
+		return price;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPrice(Price newPrice) {
+		Price oldPrice = price;
+		price = newPrice;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_TEMPLATE__PRICE, oldPrice, price));
 	}
 
 	/**
@@ -1219,6 +1269,9 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 		switch (featureID) {
 			case GtmPackage.FARE_TEMPLATE__PRICE_FACTOR:
 				return getPriceFactor();
+			case GtmPackage.FARE_TEMPLATE__PRICE:
+				if (resolve) return getPrice();
+				return basicGetPrice();
 			case GtmPackage.FARE_TEMPLATE__ID:
 				return getId();
 			case GtmPackage.FARE_TEMPLATE__TYPE:
@@ -1294,6 +1347,9 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 		switch (featureID) {
 			case GtmPackage.FARE_TEMPLATE__PRICE_FACTOR:
 				setPriceFactor((Float)newValue);
+				return;
+			case GtmPackage.FARE_TEMPLATE__PRICE:
+				setPrice((Price)newValue);
 				return;
 			case GtmPackage.FARE_TEMPLATE__ID:
 				setId((String)newValue);
@@ -1376,6 +1432,9 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 			case GtmPackage.FARE_TEMPLATE__PRICE_FACTOR:
 				unsetPriceFactor();
 				return;
+			case GtmPackage.FARE_TEMPLATE__PRICE:
+				setPrice((Price)null);
+				return;
 			case GtmPackage.FARE_TEMPLATE__ID:
 				setId(ID_EDEFAULT);
 				return;
@@ -1456,6 +1515,8 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 		switch (featureID) {
 			case GtmPackage.FARE_TEMPLATE__PRICE_FACTOR:
 				return isSetPriceFactor();
+			case GtmPackage.FARE_TEMPLATE__PRICE:
+				return price != null;
 			case GtmPackage.FARE_TEMPLATE__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case GtmPackage.FARE_TEMPLATE__TYPE:

@@ -15,14 +15,18 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
 
 import Gtm.GTMTool;
+import Gtm.Legacy108FareDescription;
 import Gtm.Legacy108Station;
 import Gtm.LegacyRouteFare;
+import Gtm.LegacySeparateContractSeries;
 import Gtm.LegacySeries;
 import Gtm.actions.GtmUtils;
+import Gtm.presentation.GtmEditor;
 
 public class LegacyExporter {
 	
 	private GTMTool tool = null;
+	private GtmEditor editor = null;
 	private Path exportPath = null;
 	private DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 	private String provider = null;
@@ -30,23 +34,29 @@ public class LegacyExporter {
 	private Date untilDate = null;	
 	
 		
-	public LegacyExporter(GTMTool tool, Path path) {
+	public LegacyExporter(GTMTool tool, Path path, GtmEditor editor) {
 		this.tool = tool;
 		this.exportPath = path;
+		this.editor = editor;
 		
 		if (tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries().isEmpty()) return;
 		
-		LegacySeries firstSeries = tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries().get(0);
-		
-		this.provider = firstSeries.getSupplyingCarrierCode();
-		this.fromDate = firstSeries.getValidFrom();
-		this.untilDate = firstSeries.getValidUntil();
+		this.provider = tool.getConversionFromLegacy().getLegacy108().getCarrier().getCode();
+		this.fromDate = tool.getConversionFromLegacy().getLegacy108().getStartDate();
+		this.untilDate = tool.getConversionFromLegacy().getLegacy108().getEndDate();
 
 	}
 	
 
 	public int getMonitorTasks() {
-		return 4;
+		int fareTables = 1;
+		if (tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions() != null &&
+			!tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions().getLegacyFares().isEmpty()) {
+			fareTables = tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions().getLegacyFares().size();
+		}
+		
+		return 5 + fareTables;
+		
 	}
 	
 	
@@ -65,9 +75,22 @@ public class LegacyExporter {
 			exportTCVSfile();
 			monitor.worked(1);
 			
-			monitor.subTask("Export TCV fare file");
-			exportFareFile();
+			monitor.subTask("Export TCVP file");
+			exportTCVPfile();
 			monitor.worked(1);
+			
+			monitor.subTask("Export TCVL file");
+			exportTCVLfile();
+			monitor.worked(1);
+			
+			
+			for (Legacy108FareDescription fare : tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions().getLegacyFares()) {
+						
+				monitor.subTask("Export TCV fare file");
+				exportFareFile(fare.getTableId());
+				monitor.worked(1);
+			
+			}
 			
 		} catch (IOException e) {
 			
@@ -82,19 +105,149 @@ public class LegacyExporter {
 	}
 	
 
-	private void exportFareFile() throws IOException {
+	private void exportTCVLfile() throws IOException {
 		
-
-		BufferedWriter writer = getWriter(exportPath, "0001" + provider);
+		if (tool.getConversionFromLegacy().getLegacy108().getLegacySeparateContractSeries() == null || 
+			tool.getConversionFromLegacy().getLegacy108().getLegacySeparateContractSeries().getSeparateContractSeries().isEmpty()) {
+			return;
+		}
+		
+		String provider = tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries().get(0).getSupplyingCarrierCode();
+		
+		BufferedWriter writer = getWriter(exportPath, "TCVL" + provider);
 		
 		boolean firstLine = true;
 		
-		for (LegacyRouteFare fare : tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares().getRouteFare()) {
+		for (LegacySeparateContractSeries ticket : tool.getConversionFromLegacy().getLegacy108().getLegacySeparateContractSeries().getSeparateContractSeries()) {
+			if (!firstLine) {
+				writer.newLine();
+			}
+			firstLine = false;
+			writer.write(getSeparateTicketLine(ticket));
+		}
+ 		writer.close();
+	}
+
+
+	private String getSeparateTicketLine(LegacySeparateContractSeries ticket) {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		// 	1 Code of the supplier RU numeric 4 M TAP TSI Technical Document B.8 1-4 e.g. 0081 for ÖBB 
+		sb.append(String.format("%4s", provider));  
+		// 2 Series numeric 5 M  5-9 Serves to assign fares to a specific series 
+		sb.append(String.format("%05d",ticket.getSeriesNumber()));
+		// 3 Flag for series numeric 5 M  10-14 0, 1 or 2 (cf. Subsection 2.2) 
+		sb.append("00000");
+		// 4 First day of validity of fare numeric 8 M  15-22 Expressed as: "YYYYMMDD" 
+		sb.append(dateFormat.format(fromDate)); 		
+		// 5 version number numeric 2 M  23-24 Serial numbering for versions on the fare date; "01" for the first issue; "02" for the second 
+		sb.append("01");
+		// 6 Last day of validity of fare numeric 8 M  25-32 Expressed as: "YYYYMMDD
+		sb.append(dateFormat.format(untilDate)); 
+		
+		return sb.toString();
+	}
+
+
+	private void exportTCVPfile() throws IOException {
+		
+		String provider = tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries().get(0).getSupplyingCarrierCode();
+		
+		BufferedWriter writer = getWriter(exportPath, "TCVL" + provider);
+		
+		boolean firstLine = true;
+		
+		for (Legacy108FareDescription fare : tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions().getLegacyFares()) {
 			if (!firstLine) {
 				writer.newLine();
 			}
 			firstLine = false;
 			writer.write(getFareLine(fare));
+		}
+ 		writer.close();
+	}
+
+
+	private String getFareLine(Legacy108FareDescription fare) {
+		
+		
+		StringBuilder sb = new StringBuilder();
+
+		// 	1 Code of the supplier RU numeric 4 M TAP TSI Technical Document B.8 1-4 e.g. 0081 for ÖBB 
+		sb.append(String.format("%4s", provider));  
+		//	2 Fare table number numeric 4 M  5-8 The file is to be made available in ascending order of this field. 
+		sb.append(String.format("%04d", fare.getTableId()));  
+		//	3 Key flag for fare table number numeric 1 M  9 0,1 or 2 (see point 2.2) 
+		sb.append("0");
+		//	4 Type of table numeric 1 M  10 1 = distance-based 2 = route-based 3 = set fare 
+		sb.append("3");
+		//	5 Description in country's official language(s) alpha numeric 30 M  11-40  
+		sb.append(String.format("%-30s",GtmUtils.limitStringLengthWithConsoleEntry(fare.getDescriptionLocal(),30,editor,"TCVP exort - fare description ")));
+		//	6 Description in French alpha numeric 30 O  41-70  	
+		sb.append(String.format("%-30s",GtmUtils.limitStringLengthWithConsoleEntry(fare.getDescriptionFr(),30,editor,"TCVP exort - fare description ")));
+		//	7 Description in German alpha numeric 30 O  71 -1 00  
+		sb.append(String.format("%-30s",GtmUtils.limitStringLengthWithConsoleEntry(fare.getDescriptionGe(),30,editor,"TCVP exort - fare description ")));
+		//	8 Description in English alpha numeric 30 O  101 -1 30  
+		sb.append(String.format("%-30s",GtmUtils.limitStringLengthWithConsoleEntry(fare.getDescriptionEn(),30,editor,"TCVP exort - fare description ")));
+		//	9 Reserved alpha numeric 30 M  131 -1 60  
+		sb.append("          ").append("          ").append("          ");
+		//	10 Flag 1 for fare table description  numeric 1 M  161 0 or 3 (see point 2.2) 
+		sb.append("0");
+		//	11 Currency acronym alpha numeric 3 M ISO 4217 162-164 'EUR' 
+		sb.append("EUR");
+		//	12 Flag 2 for currency acronym numeric 1 M  165 0 or 3 (see point 2.2)
+		sb.append("0");
+		//	13 Fare type numeric 2 O code list B.1.1 166-167  
+		sb.append("01");
+		//	14 Code indicating whether return fare is twice the single fare numeric 1 M  168 '1' if it is, otherwise '0'. 
+		sb.append("1");
+		//	15 Flag 3 for code indicating whether return fare is twice the single fare numeric 1 M  169 0 or 3 (see point 2.2) 
+		sb.append("0");
+		//	16 Number of adults numeric 2 O  170-171 Not to be completed if '3' is entered in Field 4. 
+		sb.append("01");
+		//  17 Number of children numeric 2 O  172-173 Not to be completed if '3' is entered in Field 4. 
+		sb.append("00");
+		//	18 Discount on standard fare numeric 3 O  174-176 2 digits before the decimal point and one after; e.g. 125 for 12.5% discount 
+		sb.append("000");
+		//	19 Flag 4 for discount numeric 1 O  177  
+		sb.append("0");
+		//	20 File name alpha numeric 8 M  178-1 85  
+		sb.append(String.format("%04d", fare.getTableId())).append(String.format("%4s", provider));  
+		//	21 Fare table replaced numeric 4 O  186-189 Number of fare table being replaced. 
+		sb.append("0000");
+		//	22 First day of validity of fare numeric 8 M  190-197 Expressed as: 'YYYYMMDD' 
+		sb.append(dateFormat.format(fromDate)); 	
+		//	23 Version number numeric 2 M  198-199 Sequential version number related to the fare date; '01' for the first issue, '02' for the second etc. 
+		sb.append("01");
+		//	24 Last day of validity of fare numeric 8 M  200-207 Expressed as: 'YYYYMMDD' 
+		sb.append(dateFormat.format(untilDate)); 
+
+		return sb.toString();
+	}
+
+	private void exportFareFile(int fareTableNumber) throws IOException {
+		
+		String fileName = null;
+		if (fareTableNumber == 0 || fareTableNumber > 9998) {
+			fileName = 9999 + provider;  
+		} else {
+			fileName = String.format("%04d", fareTableNumber) + provider;  
+		}
+		
+		BufferedWriter writer = getWriter(exportPath,fileName);
+		
+		boolean firstLine = true;
+		
+		for (LegacyRouteFare fare : tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares().getRouteFare()) {
+			if (fareTableNumber == 9999 || fare.getSeries().getFareTableNumber() == fareTableNumber) {
+			
+				if (!firstLine) {
+					writer.newLine();
+				}
+				firstLine = false;
+				writer.write(getFareLine(fare));
+			}
 		}
 		writer.close();
 		
@@ -144,24 +297,34 @@ public class LegacyExporter {
 				
 		BufferedWriter writer = getWriter(exportPath, "TCV" + provider);
 		
-		String line0 = getHeaderLine("0001"+provider, provider, providerName,
-				tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares().getRouteFare().size(),
-				tool.getConversionFromLegacy().getLegacy108().getStartDate(),
-				tool.getConversionFromLegacy().getLegacy108().getEndDate());
+		try {
+		
+			for (Legacy108FareDescription fare : tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions().getLegacyFares()) {
 			
-		String line1 = getHeaderLine("TCVS" + provider, provider, providerName,
+				String fileName = String.format("%04d", fare.getTableId())+provider;  
+				
+				String line0 = getHeaderLine(fileName, provider, providerName,
+					tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares().getRouteFare().size(),
+					tool.getConversionFromLegacy().getLegacy108().getStartDate(),
+					tool.getConversionFromLegacy().getLegacy108().getEndDate());
+				
+				writer.write(line0);
+				writer.newLine();
+			
+			}
+
+			String line1 = getHeaderLine("TCVS" + provider, provider, providerName,
 				tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries().size(),
 				tool.getConversionFromLegacy().getLegacy108().getStartDate(),
 				tool.getConversionFromLegacy().getLegacy108().getEndDate());
 		
-		String line2 = getHeaderLine("TCVG" + provider, provider, providerName,
+			String line2 = getHeaderLine("TCVG" + provider, provider, providerName,
 				tool.getConversionFromLegacy().getLegacy108().getLegacyStations().getLegacyStations().size(),
 				tool.getConversionFromLegacy().getLegacy108().getStartDate(),
 				tool.getConversionFromLegacy().getLegacy108().getEndDate());
 		
-		try {
-			writer.write(line0);
-			writer.newLine();
+
+
 			writer.write(line1);
 			writer.newLine();
 			writer.write(line2);
@@ -243,13 +406,13 @@ public class LegacyExporter {
 		//	4 code for departure station numeric 5 M TAP TSI Technical Document B.9 14-18  
 		sb.append(String.format("%05d",fare.getSeries().getFromStation()));
 		//	5 17-character designation for departure station alpha numeric 17 M  19-35 1st sorting criterion, ascending
-		sb.append(String.format("%-17s",GtmUtils.limitStringLength(fare.getSeries().getFromStationName(),17)));
+		sb.append(String.format("%-17s",GtmUtils.limitStringLengthWithConsoleEntry(fare.getSeries().getFromStationName(),17,editor,"fare export - departure station ")));
 		//	6 Flag 1 for departure station designation numeric 1 M  36 0 or 3 (see point 2.2)
 		sb.append("1");
 		//	7 code for destination station numeric 5 M  37-41
 		sb.append(String.format("%05d",fare.getSeries().getToStation()));		
 		//	8 17-character designation for destination station alpha numeric 17 M  42-58 2nd sorting criterion, ascending 
-		sb.append(String.format("%-17s",GtmUtils.limitStringLength(fare.getSeries().getToStationName(),17)));
+		sb.append(String.format("%-17s",GtmUtils.limitStringLengthWithConsoleEntry(fare.getSeries().getToStationName(),17,editor,"fare export - destination station ")));		
 		//	9 Flag 2 for destination station designation numeric 1 M  59 0 or 3 (see point 2.2) 
 		sb.append("0");
 		//	10 Carrier code separator 1 '<' 1 M  60 This field always contains the symbol '<' 
@@ -259,7 +422,7 @@ public class LegacyExporter {
 		//  12 Carrier code separator 2 '>' 1 M  65 This field always contains the symbol '>'. 
 		sb.append(">");
 		//	13 Route alpha numeric 58 O TAP TSI Technical Document B.5 66-123  
-		sb.append(String.format("%-58s", GtmUtils.limitStringLength(fare.getSeries().getRouteDescription(),58)));
+		sb.append(String.format("%-58s", GtmUtils.limitStringLengthWithConsoleEntry(fare.getSeries().getRouteDescription(),58,editor,"fare export - itinerary ")));		
 		//	14 Flag 3 for combination of carrier code and route numeric 1 M  124 Relates to Fields 11 and 13; 0 or 3 (see point 2.2) 
 		sb.append("0");		
 		//	15 2nd Class single fare numeric 7 M  125-131 5 digits before the decimal point, 2 digits after the decimal point, 3rd sorting criterion, ascending 
@@ -306,15 +469,15 @@ public class LegacyExporter {
 		//	4 Old railway code numeric 5 O TAP TSI Technical Document B.9 11-15 This field is only used when stations are first introduced. 
 		sb.append("00000");
 		//	5 35-character station designation alpha numeric 35 M  16-50 Station designation in the national language including accents and in upper and lower case. 
-		sb.append(String.format("%-35s",GtmUtils.limitStringLength(station.getNameUTF8(),35)));
+		sb.append(String.format("%-35s",GtmUtils.limitStringLengthWithConsoleEntry(station.getNameUTF8(),35,editor,"TCVG export - long station name ")));		
 		//	6 Flag 1 for the 35- character station designation numeric 1 M  51 0 or 3 (see point 2.2) 
 		sb.append("0");
 		//	7 17-character station designation alpha numeric 17 M  52-68 Computer notation with no accents but in upper and lower case. The file is to be transferred in the ascending alphanumeric order of this field. 
-		sb.append(String.format("%-17s",GtmUtils.limitStringLength(station.getShortName(),17)));		
+		sb.append(String.format("%-17s",GtmUtils.limitStringLengthWithConsoleEntry(station.getShortName(),17,editor,"TCVG export - station name ")));				
 		//	8 Flag 2 for the 17- character station designation numeric 1 M  69 0 or 3 (see point 2.2) 
 		sb.append("0");		
 		//	9 17-character route description of station alpha numeric 17 O  70-86 Field 7 notation for route instruction purposes. 
-		sb.append(String.format("%-17s",GtmUtils.limitStringLength(station.getShortName(),17)));			
+		sb.append(String.format("%-17s",GtmUtils.limitStringLengthWithConsoleEntry(station.getShortName(),17,editor,"TCVG export - station name ")));			
 		//	10 Flag 3 for the 17- character route description of the station numeric 1 M  87 0 or 3 (see point 2.2) 
 		sb.append("0");				
 		//	11 Zone numeric 4 O  88-91  
@@ -393,7 +556,7 @@ public class LegacyExporter {
 		//	7 Connecting code for departure station numeric 2 O  18-19 cf. Notes to Appendix B, point B.2. 			
 		sb.append("00");
 		//	8 17-character designation for departure station alpha numeric 17 M  20-36 17-character designation in station list (17-character route description in case of fare reference stations) 2nd sorting criterion 
-		sb.append(String.format("%-17s",GtmUtils.limitStringLength(series.getFromStationName(),17)));
+		sb.append(String.format("%-17s",GtmUtils.limitStringLengthWithConsoleEntry(series.getFromStationName(),17,editor,"TCVS export - station name ")));	
 		//	9 Flag 2 for departure station designation numeric 1 M  37 0 or 3 (see point 2.2) 
 		sb.append("0");			
 		//	10  code for destination station numeric 5 M TAP TSI Technical Document B.9 38-42  
@@ -401,7 +564,7 @@ public class LegacyExporter {
 		//	11 Connecting code for destination station numeric 2 O  43-44 cf. Notes to Appendix B, point B.2. 
 		sb.append("00");
 		//	12 17-character designation for destination station alpha numeric 17 M  45-61 17-character designation in station list (17-character route description in case of fare reference stations) 3rd sorting criterion 			
-		sb.append(String.format("%-17s",GtmUtils.limitStringLength(series.getToStationName(),17)));
+		sb.append(String.format("%-17s",GtmUtils.limitStringLengthWithConsoleEntry(series.getToStationName(),17,editor,"TCVS export - station name ")));	
 		//	13 Flag 3 for destination station designation numeric 1 M  62 0 or 3 (see point 2.2) 
 		sb.append("0");				
 		//	14 Route number numeric 1 M  63 4th sorting criterion 
@@ -429,7 +592,7 @@ public class LegacyExporter {
 		//	25 Carrier code separator 2 '>' 1 M  79 This field always contains the symbol '>'’ 
 		sb.append(">");		
 		//	26 Itinerary alpha numeric 58 O TAP TSI Technical Document B.5 80-1 37  
-		sb.append(String.format("%-58s",GtmUtils.limitStringLength(series.getRouteDescription(),58)));		
+		sb.append(String.format("%-58s",GtmUtils.limitStringLengthWithConsoleEntry(series.getRouteDescription(),58,editor,"TCVS export - itinarary ")));		
 		//	27 Flag 7 for combination of carrier code and itinerary numeric 1 M  138 Indicates combination of fields 24 and 26; 0 or 3 (see point 2.2) 
 		sb.append("0");			
 		//	28 Kilometres in 2nd Class numeric 5 M  139-1 43  
@@ -445,7 +608,11 @@ public class LegacyExporter {
 		//	33 Flag 10 for standard fare calculation numeric 1 M  152 0 or 3 (see point 2.2) 
 		sb.append("0");			
 		//	34 Standard fare table number numeric 4 M  153-1 56  
-		sb.append("0001");			
+		if (series.getFareTableNumber() == 0) {
+			sb.append("9999");		
+		} else {
+			sb.append(String.format("%04d",series.getFareTableNumber()));
+		}
 		//	35 Flag 11 for standard fare table number numeric 1 M  157 0 or 3 (see point 2.2) 
 		sb.append("0");	
 		//	36 Ferry link code numeric 2 O  158-159  37 Flag 12 for ferry link code numeric 1 M  160 0 or 3 (see point 2.2) 

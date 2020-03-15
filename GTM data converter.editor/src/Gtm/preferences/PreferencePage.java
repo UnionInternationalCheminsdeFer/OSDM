@@ -3,6 +3,7 @@ package Gtm.preferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
@@ -37,7 +38,14 @@ public class PreferencePage
 						"Import convertable fares only",
 						getFieldEditorParent()));
 
-	}
+	
+    	addField(
+					new StringFieldEditor(
+							PreferenceConstants.P_IMPORT_CONTRY_FILTER,
+							"Limit import of stations in these countries only (UIC codes e.g.: 80,88)",
+							getFieldEditorParent()));
+	};
+
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)

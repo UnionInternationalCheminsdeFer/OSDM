@@ -834,6 +834,20 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass legacyFareDetailMapsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass legacyFareDetailMapEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass legacyStationEClass = null;
 
 	/**
@@ -870,6 +884,20 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	private EClass legacy108EClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass legacy108FareDescriptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass legacy108FaresDescriptionsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -954,6 +982,13 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	private EClass legacyFareTemplatesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum stationFareDetailTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -5743,7 +5778,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConversionParams_EndOfSale() {
+	public EReference getConversionParams_LegacyStationToFareDetailMappings() {
 		return (EReference)conversionParamsEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -5752,8 +5787,44 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConversionParams_StartOfSale() {
+	public EReference getConversionParams_EndOfSale() {
 		return (EReference)conversionParamsEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConversionParams_StartOfSale() {
+		return (EReference)conversionParamsEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConversionParams_StationImportFilter() {
+		return (EAttribute)conversionParamsEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConversionParams_ConvertFareDescriptions() {
+		return (EAttribute)conversionParamsEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConversionParams_ConvertServiceConstraints() {
+		return (EAttribute)conversionParamsEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -5779,8 +5850,8 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFareTemplate_Id() {
-		return (EAttribute)fareTemplateEClass.getEStructuralFeatures().get(1);
+	public EReference getFareTemplate_Price() {
+		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -5788,7 +5859,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFareTemplate_Type() {
+	public EAttribute getFareTemplate_Id() {
 		return (EAttribute)fareTemplateEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5797,7 +5868,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFareTemplate_DataDescription() {
+	public EAttribute getFareTemplate_Type() {
 		return (EAttribute)fareTemplateEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -5806,8 +5877,8 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_Text() {
-		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(4);
+	public EAttribute getFareTemplate_DataDescription() {
+		return (EAttribute)fareTemplateEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -5815,7 +5886,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_RegionalConstraint() {
+	public EReference getFareTemplate_Text() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -5824,7 +5895,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_ServiceConstraint() {
+	public EReference getFareTemplate_RegionalConstraint() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -5833,7 +5904,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_CarrierConstraint() {
+	public EReference getFareTemplate_ServiceConstraint() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -5842,7 +5913,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_ServiceClass() {
+	public EReference getFareTemplate_CarrierConstraint() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -5851,7 +5922,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_ServiceLevel() {
+	public EReference getFareTemplate_ServiceClass() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -5860,7 +5931,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_SalesAvailability() {
+	public EReference getFareTemplate_ServiceLevel() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -5869,7 +5940,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_TravelValidity() {
+	public EReference getFareTemplate_SalesAvailability() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -5878,7 +5949,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_CombinationConstraint() {
+	public EReference getFareTemplate_TravelValidity() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -5887,7 +5958,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_SeparateContractCombinationConstraint() {
+	public EReference getFareTemplate_CombinationConstraint() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -5896,7 +5967,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_FareDetailDescription() {
+	public EReference getFareTemplate_SeparateContractCombinationConstraint() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -5905,7 +5976,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_LegacyAccountingIdentifier() {
+	public EReference getFareTemplate_FareDetailDescription() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(15);
 	}
 
@@ -5914,7 +5985,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_PersonalDataConstraint() {
+	public EReference getFareTemplate_LegacyAccountingIdentifier() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(16);
 	}
 
@@ -5923,7 +5994,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_ReservationParameter() {
+	public EReference getFareTemplate_PersonalDataConstraint() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(17);
 	}
 
@@ -5932,7 +6003,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_ReductionConstraint() {
+	public EReference getFareTemplate_ReservationParameter() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(18);
 	}
 
@@ -5941,7 +6012,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_FulfillmentConstraint() {
+	public EReference getFareTemplate_ReductionConstraint() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(19);
 	}
 
@@ -5950,7 +6021,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_PassengerConstraint() {
+	public EReference getFareTemplate_FulfillmentConstraint() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(20);
 	}
 
@@ -5959,7 +6030,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFareTemplate_AfterSalesRule() {
+	public EReference getFareTemplate_PassengerConstraint() {
 		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(21);
 	}
 
@@ -5968,8 +6039,17 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFareTemplate_AfterSalesRule() {
+		return (EReference)fareTemplateEClass.getEStructuralFeatures().get(22);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getFareTemplate_LegacyConversion() {
-		return (EAttribute)fareTemplateEClass.getEStructuralFeatures().get(22);
+		return (EAttribute)fareTemplateEClass.getEStructuralFeatures().get(23);
 	}
 
 	/**
@@ -6087,6 +6167,60 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 */
 	public EReference getLegacyStationMap_Station() {
 		return (EReference)legacyStationMapEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLegacyFareDetailMaps() {
+		return legacyFareDetailMapsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLegacyFareDetailMaps_LegacyFareDetailMaps() {
+		return (EReference)legacyFareDetailMapsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLegacyFareDetailMap() {
+		return legacyFareDetailMapEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacyFareDetailMap_LegacyCode() {
+		return (EAttribute)legacyFareDetailMapEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLegacyFareDetailMap_FareDetailDescription() {
+		return (EReference)legacyFareDetailMapEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacyFareDetailMap_FareDetailMappingType() {
+		return (EAttribute)legacyFareDetailMapEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -6301,8 +6435,17 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getLegacy108_LegacyFareDescriptions() {
+		return (EReference)legacy108EClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getLegacy108_TimeZone() {
-		return (EAttribute)legacy108EClass.getEStructuralFeatures().get(6);
+		return (EAttribute)legacy108EClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -6311,7 +6454,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	public EReference getLegacy108_Carrier() {
-		return (EReference)legacy108EClass.getEStructuralFeatures().get(7);
+		return (EReference)legacy108EClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -6320,7 +6463,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	public EAttribute getLegacy108_StartDate() {
-		return (EAttribute)legacy108EClass.getEStructuralFeatures().get(8);
+		return (EAttribute)legacy108EClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -6329,7 +6472,88 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	public EAttribute getLegacy108_EndDate() {
-		return (EAttribute)legacy108EClass.getEStructuralFeatures().get(9);
+		return (EAttribute)legacy108EClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLegacy108FareDescription() {
+		return legacy108FareDescriptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacy108FareDescription_TableId() {
+		return (EAttribute)legacy108FareDescriptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacy108FareDescription_DescriptionFr() {
+		return (EAttribute)legacy108FareDescriptionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacy108FareDescription_DescriptionGe() {
+		return (EAttribute)legacy108FareDescriptionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacy108FareDescription_DescriptionEn() {
+		return (EAttribute)legacy108FareDescriptionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacy108FareDescription_DescriptionLocal() {
+		return (EAttribute)legacy108FareDescriptionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacy108FareDescription_CalculationType() {
+		return (EAttribute)legacy108FareDescriptionEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLegacy108FaresDescriptions() {
+		return legacy108FaresDescriptionsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLegacy108FaresDescriptions_LegacyFares() {
+		return (EReference)legacy108FaresDescriptionsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -6589,7 +6813,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLegacySeries_Type() {
+	public EAttribute getLegacySeries_FareTableNumber() {
 		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -6598,7 +6822,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLegacySeries_FromStation() {
+	public EAttribute getLegacySeries_Type() {
 		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -6607,7 +6831,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLegacySeries_FromStationName() {
+	public EAttribute getLegacySeries_FromStation() {
 		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -6616,7 +6840,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLegacySeries_ToStation() {
+	public EAttribute getLegacySeries_FromStationName() {
 		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -6625,7 +6849,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLegacySeries_ToStationName() {
+	public EAttribute getLegacySeries_ToStation() {
 		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -6634,7 +6858,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLegacySeries_RouteNumber() {
+	public EAttribute getLegacySeries_ToStationName() {
 		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -6643,7 +6867,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLegacySeries_CarrierCode() {
+	public EAttribute getLegacySeries_RouteNumber() {
 		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -6652,7 +6876,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLegacySeries_RouteDescription() {
+	public EAttribute getLegacySeries_CarrierCode() {
 		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -6661,7 +6885,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLegacySeries_Pricetype() {
+	public EAttribute getLegacySeries_RouteDescription() {
 		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -6670,7 +6894,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLegacySeries_Distance1() {
+	public EAttribute getLegacySeries_Pricetype() {
 		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -6679,7 +6903,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLegacySeries_Distance2() {
+	public EAttribute getLegacySeries_Distance1() {
 		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -6688,8 +6912,17 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getLegacySeries_Distance2() {
+		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getLegacySeries_Viastations() {
-		return (EReference)legacySeriesEClass.getEStructuralFeatures().get(13);
+		return (EReference)legacySeriesEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -6698,7 +6931,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	public EAttribute getLegacySeries_ValidFrom() {
-		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(14);
+		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -6707,7 +6940,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	public EAttribute getLegacySeries_ValidUntil() {
-		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(15);
+		return (EAttribute)legacySeriesEClass.getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -6762,6 +6995,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 */
 	public EAttribute getLegacySeparateContractSeries_ValidUntil() {
 		return (EAttribute)legacySeparateContractSeriesEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLegacySeparateContractSeries_Series() {
+		return (EReference)legacySeparateContractSeriesEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -6906,6 +7148,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 */
 	public EReference getLegacyFareTemplates_FareTemplates() {
 		return (EReference)legacyFareTemplatesEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getStationFareDetailType() {
+		return stationFareDetailTypeEEnum;
 	}
 
 	/**
@@ -7889,11 +8140,16 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEReference(conversionParamsEClass, CONVERSION_PARAMS__LEGACY_FARE_TEMPLATES);
 		createEReference(conversionParamsEClass, CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS);
 		createEReference(conversionParamsEClass, CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS);
+		createEReference(conversionParamsEClass, CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS);
 		createEReference(conversionParamsEClass, CONVERSION_PARAMS__END_OF_SALE);
 		createEReference(conversionParamsEClass, CONVERSION_PARAMS__START_OF_SALE);
+		createEAttribute(conversionParamsEClass, CONVERSION_PARAMS__STATION_IMPORT_FILTER);
+		createEAttribute(conversionParamsEClass, CONVERSION_PARAMS__CONVERT_FARE_DESCRIPTIONS);
+		createEAttribute(conversionParamsEClass, CONVERSION_PARAMS__CONVERT_SERVICE_CONSTRAINTS);
 
 		fareTemplateEClass = createEClass(FARE_TEMPLATE);
 		createEAttribute(fareTemplateEClass, FARE_TEMPLATE__PRICE_FACTOR);
+		createEReference(fareTemplateEClass, FARE_TEMPLATE__PRICE);
 		createEAttribute(fareTemplateEClass, FARE_TEMPLATE__ID);
 		createEAttribute(fareTemplateEClass, FARE_TEMPLATE__TYPE);
 		createEAttribute(fareTemplateEClass, FARE_TEMPLATE__DATA_DESCRIPTION);
@@ -7934,6 +8190,14 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEAttribute(legacyStationMapEClass, LEGACY_STATION_MAP__LEGACY_CODE);
 		createEReference(legacyStationMapEClass, LEGACY_STATION_MAP__STATION);
 
+		legacyFareDetailMapsEClass = createEClass(LEGACY_FARE_DETAIL_MAPS);
+		createEReference(legacyFareDetailMapsEClass, LEGACY_FARE_DETAIL_MAPS__LEGACY_FARE_DETAIL_MAPS);
+
+		legacyFareDetailMapEClass = createEClass(LEGACY_FARE_DETAIL_MAP);
+		createEAttribute(legacyFareDetailMapEClass, LEGACY_FARE_DETAIL_MAP__LEGACY_CODE);
+		createEReference(legacyFareDetailMapEClass, LEGACY_FARE_DETAIL_MAP__FARE_DETAIL_DESCRIPTION);
+		createEAttribute(legacyFareDetailMapEClass, LEGACY_FARE_DETAIL_MAP__FARE_DETAIL_MAPPING_TYPE);
+
 		legacyStationEClass = createEClass(LEGACY_STATION);
 		createEAttribute(legacyStationEClass, LEGACY_STATION__CODE);
 		createEAttribute(legacyStationEClass, LEGACY_STATION__NAME);
@@ -7962,10 +8226,22 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEReference(legacy108EClass, LEGACY108__LEGACY_DISTANCE_FARES);
 		createEReference(legacy108EClass, LEGACY108__LEGACY_ROUTE_FARES);
 		createEReference(legacy108EClass, LEGACY108__LEGACY_STATIONS);
+		createEReference(legacy108EClass, LEGACY108__LEGACY_FARE_DESCRIPTIONS);
 		createEAttribute(legacy108EClass, LEGACY108__TIME_ZONE);
 		createEReference(legacy108EClass, LEGACY108__CARRIER);
 		createEAttribute(legacy108EClass, LEGACY108__START_DATE);
 		createEAttribute(legacy108EClass, LEGACY108__END_DATE);
+
+		legacy108FareDescriptionEClass = createEClass(LEGACY108_FARE_DESCRIPTION);
+		createEAttribute(legacy108FareDescriptionEClass, LEGACY108_FARE_DESCRIPTION__TABLE_ID);
+		createEAttribute(legacy108FareDescriptionEClass, LEGACY108_FARE_DESCRIPTION__DESCRIPTION_FR);
+		createEAttribute(legacy108FareDescriptionEClass, LEGACY108_FARE_DESCRIPTION__DESCRIPTION_GE);
+		createEAttribute(legacy108FareDescriptionEClass, LEGACY108_FARE_DESCRIPTION__DESCRIPTION_EN);
+		createEAttribute(legacy108FareDescriptionEClass, LEGACY108_FARE_DESCRIPTION__DESCRIPTION_LOCAL);
+		createEAttribute(legacy108FareDescriptionEClass, LEGACY108_FARE_DESCRIPTION__CALCULATION_TYPE);
+
+		legacy108FaresDescriptionsEClass = createEClass(LEGACY108_FARES_DESCRIPTIONS);
+		createEReference(legacy108FaresDescriptionsEClass, LEGACY108_FARES_DESCRIPTIONS__LEGACY_FARES);
 
 		legacy108StationsEClass = createEClass(LEGACY108_STATIONS);
 		createEReference(legacy108StationsEClass, LEGACY108_STATIONS__LEGACY_STATIONS);
@@ -8000,6 +8276,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		legacySeriesEClass = createEClass(LEGACY_SERIES);
 		createEAttribute(legacySeriesEClass, LEGACY_SERIES__SUPPLYING_CARRIER_CODE);
 		createEAttribute(legacySeriesEClass, LEGACY_SERIES__NUMBER);
+		createEAttribute(legacySeriesEClass, LEGACY_SERIES__FARE_TABLE_NUMBER);
 		createEAttribute(legacySeriesEClass, LEGACY_SERIES__TYPE);
 		createEAttribute(legacySeriesEClass, LEGACY_SERIES__FROM_STATION);
 		createEAttribute(legacySeriesEClass, LEGACY_SERIES__FROM_STATION_NAME);
@@ -8022,6 +8299,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEAttribute(legacySeparateContractSeriesEClass, LEGACY_SEPARATE_CONTRACT_SERIES__SERIES_NUMBER);
 		createEAttribute(legacySeparateContractSeriesEClass, LEGACY_SEPARATE_CONTRACT_SERIES__VALID_FROM);
 		createEAttribute(legacySeparateContractSeriesEClass, LEGACY_SEPARATE_CONTRACT_SERIES__VALID_UNTIL);
+		createEReference(legacySeparateContractSeriesEClass, LEGACY_SEPARATE_CONTRACT_SERIES__SERIES);
 
 		legacyDistanceFaresEClass = createEClass(LEGACY_DISTANCE_FARES);
 		createEReference(legacyDistanceFaresEClass, LEGACY_DISTANCE_FARES__DISTANCE_FARE);
@@ -8044,6 +8322,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEReference(legacyFareTemplatesEClass, LEGACY_FARE_TEMPLATES__FARE_TEMPLATES);
 
 		// Create enums
+		stationFareDetailTypeEEnum = createEEnum(STATION_FARE_DETAIL_TYPE);
 		afterSalesTransactionTypeEEnum = createEEnum(AFTER_SALES_TRANSACTION_TYPE);
 		barcodeTypesEEnum = createEEnum(BARCODE_TYPES);
 		classicClassTypeEEnum = createEEnum(CLASSIC_CLASS_TYPE);
@@ -8744,11 +9023,16 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEReference(getConversionParams_LegacyFareTemplates(), this.getLegacyFareTemplates(), null, "legacyFareTemplates", null, 0, 1, ConversionParams.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConversionParams_LegacyFareStationMappings(), this.getLegacyFareStationSetMappings(), null, "legacyFareStationMappings", null, 0, 1, ConversionParams.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConversionParams_LegacyStationToServiceBrandMappings(), this.getLegacyStationToServiceConstraintMappings(), null, "legacyStationToServiceBrandMappings", null, 0, 1, ConversionParams.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConversionParams_LegacyStationToFareDetailMappings(), this.getLegacyFareDetailMaps(), null, "legacyStationToFareDetailMappings", null, 0, 1, ConversionParams.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConversionParams_EndOfSale(), this.getEndOfSale(), null, "endOfSale", null, 0, 1, ConversionParams.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConversionParams_StartOfSale(), this.getEndOfSale(), null, "StartOfSale", null, 0, 1, ConversionParams.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConversionParams_StationImportFilter(), ecorePackage.getEString(), "stationImportFilter", null, 0, 1, ConversionParams.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConversionParams_ConvertFareDescriptions(), ecorePackage.getEBoolean(), "convertFareDescriptions", null, 0, 1, ConversionParams.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConversionParams_ConvertServiceConstraints(), ecorePackage.getEBoolean(), "convertServiceConstraints", null, 0, 1, ConversionParams.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fareTemplateEClass, FareTemplate.class, "FareTemplate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFareTemplate_PriceFactor(), theXMLTypePackage.getFloat(), "priceFactor", null, 0, 1, FareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFareTemplate_Price(), this.getPrice(), null, "price", null, 0, 1, FareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFareTemplate_Id(), ecorePackage.getEString(), "id", null, 0, 1, FareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFareTemplate_Type(), this.getFareType(), "type", null, 0, 1, FareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFareTemplate_DataDescription(), ecorePackage.getEString(), "dataDescription", null, 0, 1, FareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -8793,6 +9077,14 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEAttribute(getLegacyStationMap_LegacyCode(), ecorePackage.getEInt(), "legacyCode", null, 0, 1, LegacyStationMap.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLegacyStationMap_Station(), this.getStation(), null, "station", null, 0, 1, LegacyStationMap.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(legacyFareDetailMapsEClass, LegacyFareDetailMaps.class, "LegacyFareDetailMaps", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLegacyFareDetailMaps_LegacyFareDetailMaps(), this.getLegacyFareDetailMap(), null, "legacyFareDetailMaps", null, 0, -1, LegacyFareDetailMaps.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(legacyFareDetailMapEClass, LegacyFareDetailMap.class, "LegacyFareDetailMap", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLegacyFareDetailMap_LegacyCode(), ecorePackage.getEInt(), "legacyCode", null, 0, 1, LegacyFareDetailMap.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLegacyFareDetailMap_FareDetailDescription(), this.getText(), null, "fareDetailDescription", null, 0, 1, LegacyFareDetailMap.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacyFareDetailMap_FareDetailMappingType(), this.getStationFareDetailType(), "fareDetailMappingType", null, 0, 1, LegacyFareDetailMap.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(legacyStationEClass, LegacyStation.class, "LegacyStation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLegacyStation_Code(), theXMLTypePackage.getInt(), "code", null, 1, 1, LegacyStation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacyStation_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, LegacyStation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -8823,10 +9115,22 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEReference(getLegacy108_LegacyDistanceFares(), this.getLegacyDistanceFares(), null, "legacyDistanceFares", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLegacy108_LegacyRouteFares(), this.getLegacyRouteFares(), null, "legacyRouteFares", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLegacy108_LegacyStations(), this.getLegacy108Stations(), null, "legacyStations", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLegacy108_LegacyFareDescriptions(), this.getLegacy108FaresDescriptions(), null, "legacyFareDescriptions", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacy108_TimeZone(), this.getTimeZone(), "timeZone", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLegacy108_Carrier(), this.getCarrier(), null, "carrier", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacy108_StartDate(), ecorePackage.getEDate(), "startDate", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacy108_EndDate(), ecorePackage.getEDate(), "endDate", null, 0, 1, Legacy108.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(legacy108FareDescriptionEClass, Legacy108FareDescription.class, "Legacy108FareDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLegacy108FareDescription_TableId(), ecorePackage.getEInt(), "tableId", null, 0, 1, Legacy108FareDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacy108FareDescription_DescriptionFr(), ecorePackage.getEString(), "descriptionFr", null, 0, 1, Legacy108FareDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacy108FareDescription_DescriptionGe(), ecorePackage.getEString(), "descriptionGe", null, 0, 1, Legacy108FareDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacy108FareDescription_DescriptionEn(), ecorePackage.getEString(), "descriptionEn", null, 0, 1, Legacy108FareDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacy108FareDescription_DescriptionLocal(), ecorePackage.getEString(), "descriptionLocal", null, 0, 1, Legacy108FareDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacy108FareDescription_CalculationType(), this.getLegacyCalculationType(), "calculationType", null, 0, 1, Legacy108FareDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(legacy108FaresDescriptionsEClass, Legacy108FaresDescriptions.class, "Legacy108FaresDescriptions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLegacy108FaresDescriptions_LegacyFares(), this.getLegacy108FareDescription(), null, "legacyFares", null, 0, -1, Legacy108FaresDescriptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(legacy108StationsEClass, Legacy108Stations.class, "Legacy108Stations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLegacy108Stations_LegacyStations(), this.getLegacy108Station(), null, "legacyStations", null, 0, -1, Legacy108Stations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -8865,6 +9169,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEClass(legacySeriesEClass, LegacySeries.class, "LegacySeries", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLegacySeries_SupplyingCarrierCode(), ecorePackage.getEString(), "supplyingCarrierCode", null, 0, 1, LegacySeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacySeries_Number(), ecorePackage.getEInt(), "number", null, 0, 1, LegacySeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacySeries_FareTableNumber(), ecorePackage.getEInt(), "fareTableNumber", null, 0, 1, LegacySeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacySeries_Type(), this.getLegacySeriesType(), "type", null, 0, 1, LegacySeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacySeries_FromStation(), ecorePackage.getEInt(), "fromStation", null, 0, 1, LegacySeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacySeries_FromStationName(), ecorePackage.getEString(), "fromStationName", null, 0, 1, LegacySeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -8887,6 +9192,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEAttribute(getLegacySeparateContractSeries_SeriesNumber(), ecorePackage.getEInt(), "seriesNumber", null, 0, 1, LegacySeparateContractSeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacySeparateContractSeries_ValidFrom(), ecorePackage.getEDate(), "validFrom", null, 1, 1, LegacySeparateContractSeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacySeparateContractSeries_ValidUntil(), ecorePackage.getEDate(), "validUntil", null, 1, 1, LegacySeparateContractSeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLegacySeparateContractSeries_Series(), this.getLegacySeries(), null, "series", null, 0, 1, LegacySeparateContractSeries.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(legacyDistanceFaresEClass, LegacyDistanceFares.class, "LegacyDistanceFares", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLegacyDistanceFares_DistanceFare(), this.getLegacyDistanceFare(), null, "distanceFare", null, 0, -1, LegacyDistanceFares.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -8909,6 +9215,12 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEReference(getLegacyFareTemplates_FareTemplates(), this.getFareTemplate(), null, "fareTemplates", null, 0, -1, LegacyFareTemplates.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
+		initEEnum(stationFareDetailTypeEEnum, StationFareDetailType.class, "StationFareDetailType");
+		addEEnumLiteral(stationFareDetailTypeEEnum, StationFareDetailType.NO_DESCRIPTION);
+		addEEnumLiteral(stationFareDetailTypeEEnum, StationFareDetailType.ON_ARRIVAL);
+		addEEnumLiteral(stationFareDetailTypeEEnum, StationFareDetailType.ON_DEPARTURE);
+		addEEnumLiteral(stationFareDetailTypeEEnum, StationFareDetailType.ON_ARRIVAL_ON_DEPARTURE);
+
 		initEEnum(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.class, "AfterSalesTransactionType");
 		addEEnumLiteral(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.REFUND);
 		addEEnumLiteral(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.EXCHANGE);
@@ -9646,7 +9958,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		  (fareTemplateEClass,
 		   source,
 		   new String[] {
-			   "constraints", "PRICE_FACTOR_MUST TYPE_MUST TRAVEL_VALIDITY_MUST COMBINATION_CONSTRAINT_MUST PASSENGER_CONSTRAINT_MUST FULFILMENT_CONSTRAINT_MUST LEGACY_CONVERSION_MUST SERVICE_CLASS_MUST"
+			   "constraints", "PRICE_FACTOR_MUST TYPE_MUST TRAVEL_VALIDITY_MUST COMBINATION_CONSTRAINT_MUST PASSENGER_CONSTRAINT_MUST FULFILMENT_CONSTRAINT_MUST LEGACY_CONVERSION_MUST SERVICE_CLASS_MUST PRICE_OR_FACTOR"
 		   });
 		addAnnotation
 		  (legacyStationToServiceConstraintMappingEClass,

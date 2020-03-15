@@ -255,18 +255,18 @@ public class GtmActionBarContributor
 			importNutsCodesAction = new ImportNutsCodesAction(this);
 			gtmActions.add(importNutsCodesAction);		
 			importLegacy108Action = new ImportLegacy108Action(this);
-			gtmActions.add(importLegacy108Action);		
+			gtmActions.add(importLegacy108Action);	
+			convertLegacy2GtmAction = new ConvertLegacy2GtmAction(this);
+			gtmActions.add(convertLegacy2GtmAction);	
+			exportGTMJsonAction = new ExportGTMJsonAction(this);
+			gtmActions.add(exportGTMJsonAction);				
 			importGTMJsonAction = new ImportGTMJsonAction(this);
 			gtmActions.add(importGTMJsonAction);	
-			exportGTMJsonAction = new ExportGTMJsonAction(this);
-			gtmActions.add(exportGTMJsonAction);	
-			exportLegacyAction = new ExportLegacyAction(this);
-			gtmActions.add(exportLegacyAction);	
-			convertLegacy2GtmAction = new ConvertLegacy2GtmAction(this);
-			gtmActions.add(convertLegacy2GtmAction);
 			convertGtm2LegacyAction = new ConvertGtm2LegacyAction(this);
 			gtmActions.add(convertGtm2LegacyAction);
-			
+			exportLegacyAction = new ExportLegacyAction(this);
+			gtmActions.add(exportLegacyAction);	
+
 			//gtmActions.add(new ImportLegacyDistanceFareAction(this));
 			//gtmActions.add(new ImportLegacyRouteFareAction(this));
 			//gtmActions.add(new ImportLegacyStationsAction(this));			

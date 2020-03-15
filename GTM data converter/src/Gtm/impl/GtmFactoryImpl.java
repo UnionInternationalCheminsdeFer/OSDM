@@ -172,12 +172,16 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING: return createLegacyStationToServiceConstraintMapping();
 			case GtmPackage.LEGACY_STATION_MAPPINGS: return createLegacyStationMappings();
 			case GtmPackage.LEGACY_STATION_MAP: return createLegacyStationMap();
+			case GtmPackage.LEGACY_FARE_DETAIL_MAPS: return createLegacyFareDetailMaps();
+			case GtmPackage.LEGACY_FARE_DETAIL_MAP: return createLegacyFareDetailMap();
 			case GtmPackage.LEGACY_STATION: return createLegacyStation();
 			case GtmPackage.LEGACY_BODER_POINT_MAPPINGS: return createLegacyBoderPointMappings();
 			case GtmPackage.LEGACY_BORDER_POINT_MAPPING: return createLegacyBorderPointMapping();
 			case GtmPackage.LEGACY_FARE_STATION_SET_MAPPINGS: return createLegacyFareStationSetMappings();
 			case GtmPackage.LEGACY_FARE_STATION_SET_MAP: return createLegacyFareStationSetMap();
 			case GtmPackage.LEGACY108: return createLegacy108();
+			case GtmPackage.LEGACY108_FARE_DESCRIPTION: return createLegacy108FareDescription();
+			case GtmPackage.LEGACY108_FARES_DESCRIPTIONS: return createLegacy108FaresDescriptions();
 			case GtmPackage.LEGACY108_STATIONS: return createLegacy108Stations();
 			case GtmPackage.LEGACY108_STATION: return createLegacy108Station();
 			case GtmPackage.LEGACY_ROUTE_FARES: return createLegacyRouteFares();
@@ -203,6 +207,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case GtmPackage.STATION_FARE_DETAIL_TYPE:
+				return createStationFareDetailTypeFromString(eDataType, initialValue);
 			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
 				return createAfterSalesTransactionTypeFromString(eDataType, initialValue);
 			case GtmPackage.BARCODE_TYPES:
@@ -294,6 +300,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case GtmPackage.STATION_FARE_DETAIL_TYPE:
+				return convertStationFareDetailTypeToString(eDataType, instanceValue);
 			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
 				return convertAfterSalesTransactionTypeToString(eDataType, instanceValue);
 			case GtmPackage.BARCODE_TYPES:
@@ -1532,6 +1540,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LegacyFareDetailMaps createLegacyFareDetailMaps() {
+		LegacyFareDetailMapsImpl legacyFareDetailMaps = new LegacyFareDetailMapsImpl();
+		return legacyFareDetailMaps;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyFareDetailMap createLegacyFareDetailMap() {
+		LegacyFareDetailMapImpl legacyFareDetailMap = new LegacyFareDetailMapImpl();
+		return legacyFareDetailMap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public LegacyStation createLegacyStation() {
 		LegacyStationImpl legacyStation = new LegacyStationImpl();
 		return legacyStation;
@@ -1585,6 +1613,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public Legacy108 createLegacy108() {
 		Legacy108Impl legacy108 = new Legacy108Impl();
 		return legacy108;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Legacy108FareDescription createLegacy108FareDescription() {
+		Legacy108FareDescriptionImpl legacy108FareDescription = new Legacy108FareDescriptionImpl();
+		return legacy108FareDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Legacy108FaresDescriptions createLegacy108FaresDescriptions() {
+		Legacy108FaresDescriptionsImpl legacy108FaresDescriptions = new Legacy108FaresDescriptionsImpl();
+		return legacy108FaresDescriptions;
 	}
 
 	/**
@@ -1705,6 +1753,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public LegacyFareTemplates createLegacyFareTemplates() {
 		LegacyFareTemplatesImpl legacyFareTemplates = new LegacyFareTemplatesImpl();
 		return legacyFareTemplates;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StationFareDetailType createStationFareDetailTypeFromString(EDataType eDataType, String initialValue) {
+		StationFareDetailType result = StationFareDetailType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertStationFareDetailTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

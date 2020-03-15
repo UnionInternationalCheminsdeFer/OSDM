@@ -66,6 +66,7 @@ public class LegacySeriesItemProvider
 
 			addSupplyingCarrierCodePropertyDescriptor(object);
 			addNumberPropertyDescriptor(object);
+			addFareTableNumberPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 			addFromStationPropertyDescriptor(object);
 			addFromStationNamePropertyDescriptor(object);
@@ -229,6 +230,28 @@ public class LegacySeriesItemProvider
 				 getString("_UI_LegacySeries_number_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LegacySeries_number_feature", "_UI_LegacySeries_type"),
 				 GtmPackage.Literals.LEGACY_SERIES__NUMBER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Fare Table Number feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFareTableNumberPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacySeries_fareTableNumber_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacySeries_fareTableNumber_feature", "_UI_LegacySeries_type"),
+				 GtmPackage.Literals.LEGACY_SERIES__FARE_TABLE_NUMBER,
 				 true,
 				 false,
 				 false,
@@ -481,6 +504,7 @@ public class LegacySeriesItemProvider
 		switch (notification.getFeatureID(LegacySeries.class)) {
 			case GtmPackage.LEGACY_SERIES__SUPPLYING_CARRIER_CODE:
 			case GtmPackage.LEGACY_SERIES__NUMBER:
+			case GtmPackage.LEGACY_SERIES__FARE_TABLE_NUMBER:
 			case GtmPackage.LEGACY_SERIES__TYPE:
 			case GtmPackage.LEGACY_SERIES__FROM_STATION:
 			case GtmPackage.LEGACY_SERIES__FROM_STATION_NAME:

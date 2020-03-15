@@ -63,6 +63,8 @@ import Gtm.ServiceLevel;
 import Gtm.Text;
 import Gtm.TravelValidityConstraint;
 import Gtm.console.ConsoleUtil;
+import Gtm.preferences.PreferenceConstants;
+import Gtm.preferences.PreferencesAccess;
 import Gtm.presentation.DirtyCommand;
 import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
@@ -937,6 +939,36 @@ public class GtmUtils {
 		if (s == null) return " ";
 		return s.substring(0, Math.min(maxChar, s.length()));
 	}
+
+	public static String limitStringLengthWithConsoleEntry(String s, int maxChar, GtmEditor editor, String text) {
+		if (s == null) return " ";
+		if (s.length() <= maxChar) return s;
+		
+		
+		String truncated = s.substring(0, Math.min(maxChar, s.length()));
+
+		editor.getSite().getShell().getDisplay().asyncExec(() -> {
+			GtmUtils.writeConsoleInfo("text" + " truncated:" + s + " -> " + truncated);
+		});
+		
+		return truncated;
+	}
 	
+	public static boolean importStation(String filter, int country) {
+		if (country < 1 || country > 99) return false;
+		
+		if (filter != null && filter.length() > 0) {
+			if (!filter.contains(String.valueOf(country))) return false;
+		}
+		
+		String filterP = PreferencesAccess.getStringFromPreferenceStore(PreferenceConstants.P_IMPORT_CONTRY_FILTER);
+		
+		if (filterP != null && filterP.length() > 0) {
+			if (!filter.contains(String.valueOf(country))) return false;
+		}		
+		
+		return true;
+		
+	}
 	
 }

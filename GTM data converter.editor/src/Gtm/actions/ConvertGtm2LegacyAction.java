@@ -75,9 +75,9 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 		
 		protected void run (IStructuredSelection structuredSelection) {
 			
-			GTMTool tool = GtmUtils.getGtmTool();
+			final GTMTool tool = GtmUtils.getGtmTool();
 			
-			GtmEditor editor = GtmUtils.getActiveEditor();
+			final GtmEditor editor = GtmUtils.getActiveEditor();
 			
 			if (tool == null) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
@@ -96,11 +96,11 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 				return;
 			}
 			
-			EditingDomain domain = GtmUtils.getActiveDomain();
+			final EditingDomain domain = GtmUtils.getActiveDomain();
 			if (domain == null) return;
 			
 			
-			ConverterToLegacy converter = new ConverterToLegacy(tool,editor,domain);
+			final ConverterToLegacy converter = new ConverterToLegacy(tool,editor,domain);
 			
 			
 			IRunnableWithProgress operation =	new IRunnableWithProgress() {
@@ -115,7 +115,7 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 					monitor.worked(1);
 					
 					int created = converter.convert(monitor);
-					String message = "series converted: " + Integer.toString(created);
+					final String message = "series converted: " + Integer.toString(created);
 					editor.getSite().getShell().getDisplay().asyncExec(() -> {
 						ConsoleUtil.printError("Errors", message);
 					});

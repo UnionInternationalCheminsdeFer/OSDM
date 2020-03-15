@@ -11,7 +11,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
-import Gtm.GTMTool;
 
 
 
@@ -26,11 +25,7 @@ public abstract class ImportCsvDataAction extends BasicGtmAction {
 			this.editingDomainProvider = editingDomainProvider;
 		}
 		
-		/*
-		 * to be implemented by all actions
-		 */
-		abstract protected void runAction(GTMTool tool);
-		   	
+
 		
 	    public boolean updateSelection (IStructuredSelection selection)
 	    {

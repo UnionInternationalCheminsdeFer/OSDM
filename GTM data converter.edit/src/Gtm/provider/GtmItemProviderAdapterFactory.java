@@ -2734,6 +2734,52 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyFareDetailMaps} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyFareDetailMapsItemProvider legacyFareDetailMapsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyFareDetailMaps}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyFareDetailMapsAdapter() {
+		if (legacyFareDetailMapsItemProvider == null) {
+			legacyFareDetailMapsItemProvider = new LegacyFareDetailMapsItemProvider(this);
+		}
+
+		return legacyFareDetailMapsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyFareDetailMap} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyFareDetailMapItemProvider legacyFareDetailMapItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyFareDetailMap}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyFareDetailMapAdapter() {
+		if (legacyFareDetailMapItemProvider == null) {
+			legacyFareDetailMapItemProvider = new LegacyFareDetailMapItemProvider(this);
+		}
+
+		return legacyFareDetailMapItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.LegacyStation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2869,6 +2915,52 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		}
 
 		return legacy108ItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Legacy108FareDescription} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Legacy108FareDescriptionItemProvider legacy108FareDescriptionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Legacy108FareDescription}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacy108FareDescriptionAdapter() {
+		if (legacy108FareDescriptionItemProvider == null) {
+			legacy108FareDescriptionItemProvider = new Legacy108FareDescriptionItemProvider(this);
+		}
+
+		return legacy108FareDescriptionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.Legacy108FaresDescriptions} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Legacy108FaresDescriptionsItemProvider legacy108FaresDescriptionsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.Legacy108FaresDescriptions}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacy108FaresDescriptionsAdapter() {
+		if (legacy108FaresDescriptionsItemProvider == null) {
+			legacy108FaresDescriptionsItemProvider = new Legacy108FaresDescriptionsItemProvider(this);
+		}
+
+		return legacy108FaresDescriptionsItemProvider;
 	}
 
 	/**
@@ -3388,12 +3480,16 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (legacyStationToServiceConstraintMappingItemProvider != null) legacyStationToServiceConstraintMappingItemProvider.dispose();
 		if (legacyStationMappingsItemProvider != null) legacyStationMappingsItemProvider.dispose();
 		if (legacyStationMapItemProvider != null) legacyStationMapItemProvider.dispose();
+		if (legacyFareDetailMapsItemProvider != null) legacyFareDetailMapsItemProvider.dispose();
+		if (legacyFareDetailMapItemProvider != null) legacyFareDetailMapItemProvider.dispose();
 		if (legacyStationItemProvider != null) legacyStationItemProvider.dispose();
 		if (legacyBoderPointMappingsItemProvider != null) legacyBoderPointMappingsItemProvider.dispose();
 		if (legacyBorderPointMappingItemProvider != null) legacyBorderPointMappingItemProvider.dispose();
 		if (legacyFareStationSetMappingsItemProvider != null) legacyFareStationSetMappingsItemProvider.dispose();
 		if (legacyFareStationSetMapItemProvider != null) legacyFareStationSetMapItemProvider.dispose();
 		if (legacy108ItemProvider != null) legacy108ItemProvider.dispose();
+		if (legacy108FareDescriptionItemProvider != null) legacy108FareDescriptionItemProvider.dispose();
+		if (legacy108FaresDescriptionsItemProvider != null) legacy108FaresDescriptionsItemProvider.dispose();
 		if (legacy108StationsItemProvider != null) legacy108StationsItemProvider.dispose();
 		if (legacy108StationItemProvider != null) legacy108StationItemProvider.dispose();
 		if (legacyRouteFaresItemProvider != null) legacyRouteFaresItemProvider.dispose();
