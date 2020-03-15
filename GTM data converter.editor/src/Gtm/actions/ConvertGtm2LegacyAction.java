@@ -20,6 +20,7 @@ import Gtm.Country;
 import Gtm.GTMTool;
 import Gtm.actions.converter.ConverterToLegacy;
 import Gtm.console.ConsoleUtil;
+import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 
@@ -30,7 +31,7 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 		protected IEditingDomainProvider editingDomainProvider = null;
 		
 		public ConvertGtm2LegacyAction(IEditingDomainProvider editingDomainProvider) {
-			super("Convert GTM to Legacy 108", editingDomainProvider);
+			super(NationalLanguageSupport.ConvertGtm2LegacyAction_0, editingDomainProvider);
 			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/convertToLegacy.png")); //$NON-NLS-1$
 			this.setToolTipText(this.getText());
 			this.editingDomainProvider = editingDomainProvider;
@@ -48,7 +49,7 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 			
 	        FileDialog fd = new FileDialog( Display.getDefault().getActiveShell(), SWT.READ_ONLY);
 	        fd.setText(text);
-	        String[] filterExt = { "*.txt" };
+	        String[] filterExt = { "*.txt" }; //$NON-NLS-1$
 	        fd.setFilterExtensions(filterExt);
 	        String path = fd.open();
 	        
@@ -61,7 +62,7 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 				br = new BufferedReader(new FileReader(file));
 			} catch (FileNotFoundException e) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("file read error");
+				dialog.setText(NationalLanguageSupport.ConvertGtm2LegacyAction_2);
 				dialog.setMessage(e.getMessage());
 				dialog.open(); 
 				e.printStackTrace();
@@ -81,17 +82,17 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 			
 			if (tool == null) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("no data found");
+				dialog.setText(NationalLanguageSupport.ConvertGtm2LegacyAction_3);
 				dialog.open(); 
 				return;
 			}
 			
 			Country country = tool.getConversionFromLegacy().getParams().getCountry();
 			if (country == null) {
-				String message = "the country is missing in the conversion parameter";
+				String message = NationalLanguageSupport.ConvertGtm2LegacyAction_4;
 				GtmUtils.writeConsoleError(message);
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("the country is missing in the conversion parameter");
+				dialog.setText(NationalLanguageSupport.ConvertGtm2LegacyAction_5);
 				dialog.open(); 
 				return;
 			}
@@ -108,16 +109,16 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 
 				public void run(IProgressMonitor monitor) {
 					
-					monitor.beginTask("Convert GTM fares to legacy 108.1 data", converter.getMonitorTasks() + 1); 
+					monitor.beginTask(NationalLanguageSupport.ConvertGtm2LegacyAction_6, converter.getMonitorTasks() + 1); 
 
-					monitor.subTask("Initialize main structure");
+					monitor.subTask(NationalLanguageSupport.ConvertGtm2LegacyAction_7);
 					prepareStructure(tool,domain);
 					monitor.worked(1);
 					
 					int created = converter.convert(monitor);
-					final String message = "series converted: " + Integer.toString(created);
+					final String message = NationalLanguageSupport.ConvertGtm2LegacyAction_8 + Integer.toString(created);
 					editor.getSite().getShell().getDisplay().asyncExec(() -> {
-						ConsoleUtil.printError("Errors", message);
+						ConsoleUtil.printError(NationalLanguageSupport.ConvertGtm2LegacyAction_9, message);
 					});
 
 					monitor.done();

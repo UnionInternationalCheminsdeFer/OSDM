@@ -28,6 +28,7 @@ import Gtm.GTMTool;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.Station;
+import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 
@@ -35,14 +36,14 @@ import Gtm.presentation.GtmEditorPlugin;
 public class ImportStationsAction extends BasicGtmAction {
 	
 	
-		public static String regexQmPlus = "(?<!" + Pattern.quote("?") + ")" + Pattern.quote("+");
-		public static String regexQmDouble = "(?<!" + Pattern.quote("?") + ")" + Pattern.quote(":");
+		public static String regexQmPlus = "(?<!" + Pattern.quote("?") + ")" + Pattern.quote("+"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		public static String regexQmDouble = "(?<!" + Pattern.quote("?") + ")" + Pattern.quote(":"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 	
 		
 		protected IEditingDomainProvider editingDomainProvider = null;
 
 		public ImportStationsAction(IEditingDomainProvider editingDomainProvider) {
-			super("Import stations (TSDUPD)", editingDomainProvider);
+			super(NationalLanguageSupport.ImportStationsAction_8, editingDomainProvider);
 			this.setToolTipText(this.getText());
 			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importStations.png")); //$NON-NLS-1$
 			this.editingDomainProvider = editingDomainProvider;
@@ -66,12 +67,12 @@ public class ImportStationsAction extends BasicGtmAction {
 			
 			if (tool == null) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("no data found");
+				dialog.setText(NationalLanguageSupport.ImportStationsAction_9);
 				dialog.open(); 
 				return;
 			}
 			
-			BufferedReader reader = getReader("Station file (MERITS TSDUPD)");
+			BufferedReader reader = getReader(NationalLanguageSupport.ImportStationsAction_10);
 
 			IRunnableWithProgress operation =	new IRunnableWithProgress() {
 				// This is the method that gets invoked when the operation runs.
@@ -80,14 +81,14 @@ public class ImportStationsAction extends BasicGtmAction {
 					
 					try {
 						
-						monitor.beginTask("Import stations", 90000); 
+						monitor.beginTask(NationalLanguageSupport.ImportStationsAction_11, 90000); 
 			
-						monitor.subTask("Initialize main structure");
+						monitor.subTask(NationalLanguageSupport.ImportStationsAction_12);
 						prepareStructure(tool, domain);
 						monitor.worked(1000);
 										
 						
-						monitor.subTask("Read stations");
+						monitor.subTask(NationalLanguageSupport.ImportStationsAction_13);
 						ArrayList<Station> importedStations = new ArrayList<Station>();
 						ArrayList<Station> newStations = new ArrayList<Station>();
 						ArrayList<Station> updatedStations = new ArrayList<Station>();
@@ -104,14 +105,14 @@ public class ImportStationsAction extends BasicGtmAction {
 								if (GtmUtils.importStation(tool.getConversionFromLegacy().getParams().getStationImportFilter(), newStation.getCountry().getCode())) {
 									importedStations.add(newStation);
 									if (stationNb % 100 == 0) {
-										monitor.subTask("Read station - " + String.valueOf(stationNb));
+										monitor.subTask(NationalLanguageSupport.ImportStationsAction_14 + String.valueOf(stationNb));
 										monitor.worked(1000);
 									}
 								}
 							}
 						} 
 						
-						monitor.subTask("Select new stations");
+						monitor.subTask(NationalLanguageSupport.ImportStationsAction_15);
 						HashMap<Integer,Station> oldStations = new HashMap<Integer,Station>();
 						for (Station station: tool.getCodeLists().getStations().getStations()) {
 							try {
@@ -139,19 +140,19 @@ public class ImportStationsAction extends BasicGtmAction {
 						}
 						monitor.worked(1000);
 						
-						monitor.subTask("Add new stations to data");
+						monitor.subTask(NationalLanguageSupport.ImportStationsAction_16);
 						final int addedStationsF = newStations.size();
 						Command addCommand = AddCommand.create(domain, tool.getCodeLists().getStations(), GtmPackage.Literals.STATIONS__STATIONS, newStations);
 						if (addCommand != null & addCommand.canExecute()) {
 							domain.getCommandStack().execute(addCommand);
 							editor.getSite().getShell().getDisplay().asyncExec(() -> {
-								GtmUtils.writeConsoleInfo("MERITS stations added: (" + Integer.toString(addedStationsF)+")" );
+								GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportStationsAction_17 + Integer.toString(addedStationsF)+")" ); //$NON-NLS-2$
 							});
 
 						}
 						monitor.worked(1000);
 						
-						monitor.subTask("Update stations");						
+						monitor.subTask(NationalLanguageSupport.ImportStationsAction_19);						
 						final int updatedStationsF = updatedStations.size();
 						CompoundCommand command = new CompoundCommand();
 						for (Station newStation : updatedStations) {
@@ -171,19 +172,19 @@ public class ImportStationsAction extends BasicGtmAction {
 						if (command != null & !command.isEmpty() & command.canExecute()) {
 							domain.getCommandStack().execute(command);
 							editor.getSite().getShell().getDisplay().asyncExec(() -> {
-								GtmUtils.writeConsoleInfo("MERITS stations updated: (" + Integer.toString(updatedStationsF) + ")" );
+								GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportStationsAction_20 + Integer.toString(updatedStationsF) + ")" ); //$NON-NLS-2$
 							});
 						}
 						monitor.worked(1000);
 						
 					} catch (IOException e) {
 						MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-						dialog.setText("station file read error");
+						dialog.setText(NationalLanguageSupport.ImportStationsAction_22);
 						dialog.setMessage(e.getMessage());
 						dialog.open(); 
 					} catch (Exception e) {
 						MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-						dialog.setText("station import error");
+						dialog.setText(NationalLanguageSupport.ImportStationsAction_23);
 						dialog.setMessage(e.getMessage());
 						dialog.open(); 
 					} finally {
@@ -207,7 +208,7 @@ public class ImportStationsAction extends BasicGtmAction {
 
 
 		private Station decodeLine(String st, GTMTool tool) {
-			if (st.startsWith("ALS+")) {
+			if (st.startsWith("ALS+")) { //$NON-NLS-1$
 				return decodeStationSegment(st, tool);
 			}
 			return null;
@@ -221,11 +222,11 @@ public class ImportStationsAction extends BasicGtmAction {
 			 // ALS+29+008008618:MENDEN(SAUERLAND)S+512542N+074828E'
 			 //"?" release indicator
 			
-			 String[] section = edifact.split("\\+");
+			 String[] section = edifact.split("\\+"); //$NON-NLS-1$
 			 
 			 String functionCodeQualifier = section[1];
 			 		 			
-			 String[] stationElementSplit = section[2].split(":");
+			 String[] stationElementSplit = section[2].split(":"); //$NON-NLS-1$
 			 
 			 String stationCode = stationElementSplit[0];
 			 int countryCodeUIC = Integer.parseInt(stationCode.substring(0, 4));
@@ -236,7 +237,7 @@ public class ImportStationsAction extends BasicGtmAction {
 			 
 			 //strange MERITS data
 			 if (countryCodeUIC == 0) {
-				 GtmUtils.writeConsoleError("Merits station without country code: " + stationName);
+				 GtmUtils.writeConsoleError(NationalLanguageSupport.ImportStationsAction_27 + stationName);
 				 return null;
 			 }
 			
@@ -277,7 +278,7 @@ public class ImportStationsAction extends BasicGtmAction {
 				 station.setLongitude(longitude);
 				 return station;
 			 } else {
-				 GtmUtils.writeConsoleError("Merits station with unknown country: " + stationCode + " " + stationName);
+				 GtmUtils.writeConsoleError(NationalLanguageSupport.ImportStationsAction_28 + stationCode + " " + stationName); //$NON-NLS-2$
 			 }
 			 return null;
 		}
@@ -292,7 +293,7 @@ public class ImportStationsAction extends BasicGtmAction {
 			 int seconds = Integer.parseInt(string.substring(4, 6));
 			 String hem = string.substring(6, 7);
 
-			 if (hem == "N" || hem == "E") {
+			 if (hem == "N" || hem == "E") { //$NON-NLS-1$ //$NON-NLS-2$
 				 geo = (degrees*60*60 + minutes*60 + seconds);
 				 geo = geo / (3600);
 			 } else {
@@ -312,7 +313,7 @@ public class ImportStationsAction extends BasicGtmAction {
 			
 	        FileDialog fd = new FileDialog( Display.getDefault().getActiveShell(), SWT.READ_ONLY);
 	        fd.setText(text);
-	        String[] filterExt = { "*.*" };
+	        String[] filterExt = { "*.*" }; //$NON-NLS-1$
 	        fd.setFilterExtensions(filterExt);
 	        String path = fd.open();
 	        
@@ -325,7 +326,7 @@ public class ImportStationsAction extends BasicGtmAction {
 				br = new BufferedReader(new FileReader(file));
 			} catch (FileNotFoundException e) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("file read error");
+				dialog.setText(NationalLanguageSupport.ImportStationsAction_33);
 				dialog.setMessage(e.getMessage());
 				dialog.open(); 
 				e.printStackTrace();

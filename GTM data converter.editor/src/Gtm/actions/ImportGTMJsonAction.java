@@ -18,6 +18,7 @@ import Gtm.GeneralTariffModel;
 import Gtm.GtmPackage;
 import Gtm.Station;
 import Gtm.jsonImportExport.GTMJsonImporter;
+import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 import export.ImportFareDelivery;
@@ -31,7 +32,7 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 		protected IEditingDomainProvider editingDomainProvider = null;
 		
 		public ImportGTMJsonAction(IEditingDomainProvider editingDomainProvider) {
-			super("Import GTM data", editingDomainProvider);
+			super(NationalLanguageSupport.ImportGTMJsonAction_0, editingDomainProvider);
 			this.setToolTipText(this.getText());
 			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importGtm.png")); //$NON-NLS-1$
 			this.editingDomainProvider = editingDomainProvider;
@@ -48,8 +49,8 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 		protected File getFile(){
 			
 	        FileDialog fd = new FileDialog( Display.getDefault().getActiveShell(), SWT.READ_ONLY);
-	        fd.setText("select import json file");
-	        String[] filterExt = { "*.json" };
+	        fd.setText(NationalLanguageSupport.ImportGTMJsonAction_1);
+	        String[] filterExt = { "*.json" }; //$NON-NLS-1$
 	        fd.setFilterExtensions(filterExt);
 	        String path = fd.open();
 	        
@@ -70,7 +71,7 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 			
 			if (tool == null) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("no data found");
+				dialog.setText(NationalLanguageSupport.ImportGTMJsonAction_3);
 				dialog.open(); 
 				return;
 			}
@@ -88,23 +89,23 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 					
 					try {
 					
-						monitor.beginTask("Import GTM data", 5); 
+						monitor.beginTask(NationalLanguageSupport.ImportGTMJsonAction_4, 5); 
 						
-						monitor.subTask("Initialize main structure");
+						monitor.subTask(NationalLanguageSupport.ImportGTMJsonAction_5);
 						prepareStructure(tool,domain);
 						monitor.worked(1);
 					
-						monitor.subTask("Import file");
+						monitor.subTask(NationalLanguageSupport.ImportGTMJsonAction_6);
 						FareDelivery fareDelivery = ImportFareDelivery.importFareDelivery(file);
 						monitor.worked(1);
 					
 						if (fareDelivery != null) {
 
-							monitor.subTask("Convert to model");
+							monitor.subTask(NationalLanguageSupport.ImportGTMJsonAction_7);
 							GeneralTariffModel model = importer.convertFromJson(fareDelivery);
 							monitor.worked(1);
 
-							monitor.subTask("Add data to model");
+							monitor.subTask(NationalLanguageSupport.ImportGTMJsonAction_8);
 							SetCommand command = new SetCommand(domain, tool, GtmPackage.Literals.GTM_TOOL__GENERAL_TARIFF_MODEL, model);
 							if (command.canExecute()) {
 								domain.getCommandStack().execute(command);
@@ -112,7 +113,7 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 							monitor.worked(1);
 						} 
 						
-						monitor.subTask("Update station names");
+						monitor.subTask(NationalLanguageSupport.ImportGTMJsonAction_9);
 						
 						CompoundCommand command = new CompoundCommand();
 							

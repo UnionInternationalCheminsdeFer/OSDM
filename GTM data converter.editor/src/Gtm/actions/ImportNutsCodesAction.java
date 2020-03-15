@@ -24,6 +24,7 @@ import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.NUTSCodes;
 import Gtm.NutsCode;
+import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 
@@ -31,7 +32,7 @@ public class ImportNutsCodesAction extends ImportCsvDataAction {
 
 
 	public ImportNutsCodesAction(IEditingDomainProvider editingDomainProvider) {
-		super("import NUTS codes", editingDomainProvider);
+		super(NationalLanguageSupport.ImportNutsCodesAction_0, editingDomainProvider);
 		this.setToolTipText(this.getText());
 		setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importNuts.png")); //$NON-NLS-1$
 	}
@@ -47,22 +48,22 @@ public class ImportNutsCodesAction extends ImportCsvDataAction {
 		
 		if (tool == null) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("no data found");
+			dialog.setText(NationalLanguageSupport.ImportNutsCodesAction_1);
 			dialog.open(); 
 			return;
 		}
 		
 		Country country = tool.getConversionFromLegacy().getParams().getCountry();
 		if (country == null) {
-			String message = "the country is missing in the conversion parameter";
+			String message = NationalLanguageSupport.ImportNutsCodesAction_2;
 			GtmUtils.writeConsoleError(message);
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("the country is missing in the conversion parameter");
+			dialog.setText(NationalLanguageSupport.ImportNutsCodesAction_3);
 			dialog.open(); 
 			return;
 		}
 		
-		BufferedReader br = super.getReader("import carrier codes (.csv)");
+		BufferedReader br = super.getReader(NationalLanguageSupport.ImportNutsCodesAction_4);
 
 		IRunnableWithProgress operation =	new IRunnableWithProgress() {
 			// This is the method that gets invoked when the operation runs.
@@ -71,13 +72,13 @@ public class ImportNutsCodesAction extends ImportCsvDataAction {
 				
 				try {
 					
-					monitor.beginTask("Import NUTs codes", 10000); 
+					monitor.beginTask(NationalLanguageSupport.ImportNutsCodesAction_5, 10000); 
 		
-					monitor.subTask("Initialize main structure");
+					monitor.subTask(NationalLanguageSupport.ImportNutsCodesAction_6);
 					prepareStructure(tool, domain);
 					monitor.worked(10);
 
-					monitor.subTask("read codes");
+					monitor.subTask(NationalLanguageSupport.ImportNutsCodesAction_7);
 					NUTSCodes newNuts = GtmFactory.eINSTANCE.createNUTSCodes();
 
 			        String st; 
@@ -92,7 +93,7 @@ public class ImportNutsCodesAction extends ImportCsvDataAction {
 						}
 					}
 			        
-					monitor.subTask("Add codes");
+					monitor.subTask(NationalLanguageSupport.ImportNutsCodesAction_8);
 			        int added = 0;
 			        int updated = 0;
 			        
@@ -120,8 +121,8 @@ public class ImportNutsCodesAction extends ImportCsvDataAction {
 			        
 			        if (command != null && !command.isEmpty()) {
 			        	domain.getCommandStack().execute(command);
-						GtmUtils.writeConsoleInfo("nuts codes added: (" + Integer.toString(added)+")" );
-						GtmUtils.writeConsoleInfo("nuts codes updated: (" + Integer.toString(updated) + ")" );
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportNutsCodesAction_9 + Integer.toString(added)+")" ); //$NON-NLS-2$
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportNutsCodesAction_11 + Integer.toString(updated) + ")" ); //$NON-NLS-2$
 			        }	
 					monitor.worked(10);
 					monitor.done();
@@ -140,7 +141,7 @@ public class ImportNutsCodesAction extends ImportCsvDataAction {
 			new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
 		} catch (Exception exception) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("carrier file read error");
+			dialog.setText(NationalLanguageSupport.ImportNutsCodesAction_13);
 			dialog.setMessage(exception.getMessage());
 			dialog.open(); 
 			GtmEditorPlugin.INSTANCE.log(exception);
@@ -153,7 +154,7 @@ public class ImportNutsCodesAction extends ImportCsvDataAction {
 
 
 	private NutsCode decodeLine(String st) {
-		String[] strings = st.split(";");
+		String[] strings = st.split(";"); //$NON-NLS-1$
 		if (strings.length < 2) return null;
 		
 		NutsCode nuts = GtmFactory.eINSTANCE.createNutsCode();

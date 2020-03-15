@@ -6,6 +6,7 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import Gtm.FareStructure;
 import Gtm.GTMTool;
+import Gtm.nls.NationalLanguageSupport;
 
 
 
@@ -15,7 +16,7 @@ public class GenerateIdsAction extends BasicGtmAction {
 		protected IEditingDomainProvider editingDomainProvider = null;
 		
 		public GenerateIdsAction(IEditingDomainProvider editingDomainProvider) {
-			super("Generate ids", editingDomainProvider);
+			super(NationalLanguageSupport.GenerateIdsAction_0, editingDomainProvider);
 			this.editingDomainProvider = editingDomainProvider;
 		}
 		

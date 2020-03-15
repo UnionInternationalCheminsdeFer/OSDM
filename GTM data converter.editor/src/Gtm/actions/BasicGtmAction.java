@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.actions.BaseSelectionListenerAction;
 
 import Gtm.GTMTool;
+import Gtm.nls.NationalLanguageSupport;
 
 public abstract class BasicGtmAction extends BaseSelectionListenerAction {
 	
@@ -35,7 +36,7 @@ public abstract class BasicGtmAction extends BaseSelectionListenerAction {
 			
 			if (tool == null) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("no data found");
+				dialog.setText(NationalLanguageSupport.BasicGtmAction_0);
 				dialog.open(); 
 				return;
 			}

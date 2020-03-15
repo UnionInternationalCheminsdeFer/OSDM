@@ -22,6 +22,7 @@ import Gtm.GtmPackage;
 import Gtm.Legacy108;
 import Gtm.LegacyRouteFare;
 import Gtm.LegacyRouteFares;
+import Gtm.nls.NationalLanguageSupport;
 
 
 
@@ -29,7 +30,7 @@ public class ImportLegacyRouteFareAction extends ImportLegacyAction {
 
 	
 	public ImportLegacyRouteFareAction(IEditingDomainProvider editingDomainProvider) {
-		super("Import legacy route fares", editingDomainProvider);
+		super(NationalLanguageSupport.ImportLegacyRouteFareAction_0, editingDomainProvider);
 	}
 	
 	public ImportLegacyRouteFareAction(String text, IEditingDomainProvider editingDomainProvider) {
@@ -39,7 +40,7 @@ public class ImportLegacyRouteFareAction extends ImportLegacyAction {
 	
 	protected void runAction(Legacy108 legacy108) {
 		
-		BufferedReader br = super.getReader("import route fares");
+		BufferedReader br = super.getReader(NationalLanguageSupport.ImportLegacyRouteFareAction_1);
 		       
         String st; 
         
@@ -48,7 +49,7 @@ public class ImportLegacyRouteFareAction extends ImportLegacyAction {
 		ConversionFromLegacy converter = (ConversionFromLegacy) legacy108.eContainer();
 		String timeZone = converter.getLegacy108().getTimeZone().getName();
 		if (timeZone == null || timeZone.length() < 3) {
-			timeZone = "GMT";
+			timeZone = "GMT"; //$NON-NLS-1$
 		}
 		
         try {
@@ -62,7 +63,7 @@ public class ImportLegacyRouteFareAction extends ImportLegacyAction {
 			}
 		} catch (IOException e) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("TCVI file read error");
+			dialog.setText(NationalLanguageSupport.ImportLegacyRouteFareAction_3);
 			dialog.setMessage(e.getMessage());
 			dialog.open(); 
 			e.printStackTrace();
@@ -73,7 +74,7 @@ public class ImportLegacyRouteFareAction extends ImportLegacyAction {
 		Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_ROUTE_FARES, resultList );
 		if (cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
-			GtmUtils.writeConsoleInfo("route prices imported: " + Integer.toString(resultList.getRouteFare().size()));
+			GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportLegacyRouteFareAction_4 + Integer.toString(resultList.getRouteFare().size()));
 		}
 		
 	}
@@ -110,7 +111,7 @@ public class ImportLegacyRouteFareAction extends ImportLegacyAction {
 		fare.setReturnFare1st(Integer.parseInt(returnFare1st));
 		fare.setReturnFare2nd(Integer.parseInt(returnFare2nd));		
 		
-		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		DateFormat df = new SimpleDateFormat("yyyyMMdd"); //$NON-NLS-1$
 		df.setTimeZone(TimeZone.getTimeZone(timeZone)); 
 		Date dt = null;
 		try {

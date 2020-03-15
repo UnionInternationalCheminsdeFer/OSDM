@@ -25,13 +25,14 @@ import Gtm.LegacySeries;
 import Gtm.LegacySeriesList;
 import Gtm.LegacySeriesType;
 import Gtm.LegacyViastation;
+import Gtm.nls.NationalLanguageSupport;
 
 
 
 public class ImportLegacySeriesAction extends ImportLegacyAction {
 	
 	public ImportLegacySeriesAction(IEditingDomainProvider editingDomainProvider) {
-		super("Import Legacy series TCVS", editingDomainProvider);
+		super(NationalLanguageSupport.ImportLegacySeriesAction_0, editingDomainProvider);
 	}
 
 	public ImportLegacySeriesAction(String text, IEditingDomainProvider editingDomainProvider) {
@@ -44,7 +45,7 @@ public class ImportLegacySeriesAction extends ImportLegacyAction {
 	 */
 	protected void runAction(Legacy108 legacy108) {
 		
-		BufferedReader br = super.getReader("import series TCVS");
+		BufferedReader br = super.getReader(NationalLanguageSupport.ImportLegacySeriesAction_1);
 		
       
         String st; 
@@ -53,7 +54,7 @@ public class ImportLegacySeriesAction extends ImportLegacyAction {
 		ConversionFromLegacy converter = (ConversionFromLegacy) legacy108.eContainer();
 		String timeZone = converter.getLegacy108().getTimeZone().getName();
 		if (timeZone == null || timeZone.length() < 3) {
-			timeZone = "GMT";
+			timeZone = "GMT"; //$NON-NLS-1$
 		}
         
         try {
@@ -66,7 +67,7 @@ public class ImportLegacySeriesAction extends ImportLegacyAction {
 			}
 		} catch (IOException e) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("TCVS file read error");
+			dialog.setText(NationalLanguageSupport.ImportLegacySeriesAction_3);
 			dialog.setMessage(e.getMessage());
 			dialog.open(); 
 			e.printStackTrace();
@@ -78,7 +79,7 @@ public class ImportLegacySeriesAction extends ImportLegacyAction {
 		Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_SERIES_LIST, seriesList );
 		if (cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
-			GtmUtils.writeConsoleInfo("series imported: " + Integer.toString(seriesList.getSeries().size()));
+			GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportLegacySeriesAction_4 + Integer.toString(seriesList.getSeries().size()));
 		}
 
 	}
@@ -93,7 +94,7 @@ public class ImportLegacySeriesAction extends ImportLegacyAction {
 		String number  					= st.substring(4, 9);
 		String flag  					= st.substring(9, 10);
 		
-		if (flag.equals("2")) return null;
+		if (flag.equals("2")) return null; //$NON-NLS-1$
 		
 		String type 					= st.substring(10,11);
 		//String flag2 					= st.substring(11,12);		
@@ -140,12 +141,12 @@ public class ImportLegacySeriesAction extends ImportLegacyAction {
 		
 		series.setNumber(Integer.parseInt(number));
 		
-		if (type.equals("1")) series.setType(LegacySeriesType.TRANSIT);
-		if (type.equals("2")) series.setType(LegacySeriesType.BORDER_DESTINATION);
-		if (type.equals("3")) series.setType(LegacySeriesType.STATION_STATION);
+		if (type.equals("1")) series.setType(LegacySeriesType.TRANSIT); //$NON-NLS-1$
+		if (type.equals("2")) series.setType(LegacySeriesType.BORDER_DESTINATION); //$NON-NLS-1$
+		if (type.equals("3")) series.setType(LegacySeriesType.STATION_STATION); //$NON-NLS-1$
 
-		if (calculation.equals("1")) series.setPricetype(LegacyCalculationType.DISTANCE_BASED);
-		if (calculation.equals("2")) series.setPricetype(LegacyCalculationType.ROUTE_BASED);		
+		if (calculation.equals("1")) series.setPricetype(LegacyCalculationType.DISTANCE_BASED); //$NON-NLS-1$
+		if (calculation.equals("2")) series.setPricetype(LegacyCalculationType.ROUTE_BASED);		 //$NON-NLS-1$
 		
 		series.setFromStation(Integer.parseInt(departure));
 		series.setToStation(Integer.parseInt(destination));
@@ -154,7 +155,7 @@ public class ImportLegacySeriesAction extends ImportLegacyAction {
 		series.setDistance2(Integer.parseInt(distanceKl2));
 		
 		
-		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		DateFormat df = new SimpleDateFormat("yyyyMMdd"); //$NON-NLS-1$
 		df.setTimeZone(TimeZone.getTimeZone(timeZone)); 
 		Date dt = null;
 		try {
