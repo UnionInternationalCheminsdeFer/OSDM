@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.Legacy108#getLegacyDistanceFares <em>Legacy Distance Fares</em>}</li>
  *   <li>{@link Gtm.Legacy108#getLegacyRouteFares <em>Legacy Route Fares</em>}</li>
  *   <li>{@link Gtm.Legacy108#getLegacyStations <em>Legacy Stations</em>}</li>
+ *   <li>{@link Gtm.Legacy108#getLegacyFareDescriptions <em>Legacy Fare Descriptions</em>}</li>
  *   <li>{@link Gtm.Legacy108#getTimeZone <em>Time Zone</em>}</li>
  *   <li>{@link Gtm.Legacy108#getCarrier <em>Carrier</em>}</li>
  *   <li>{@link Gtm.Legacy108#getStartDate <em>Start Date</em>}</li>
@@ -165,6 +166,28 @@ public interface Legacy108 extends EObject {
 	 * @generated
 	 */
 	void setLegacyStations(Legacy108Stations value);
+
+	/**
+	 * Returns the value of the '<em><b>Legacy Fare Descriptions</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Legacy Fare Descriptions</em>' containment reference.
+	 * @see #setLegacyFareDescriptions(Legacy108FaresDescriptions)
+	 * @see Gtm.GtmPackage#getLegacy108_LegacyFareDescriptions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Legacy108FaresDescriptions getLegacyFareDescriptions();
+
+	/**
+	 * Sets the value of the '{@link Gtm.Legacy108#getLegacyFareDescriptions <em>Legacy Fare Descriptions</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Legacy Fare Descriptions</em>' containment reference.
+	 * @see #getLegacyFareDescriptions()
+	 * @generated
+	 */
+	void setLegacyFareDescriptions(Legacy108FaresDescriptions value);
 
 	/**
 	 * Returns the value of the '<em><b>Time Zone</b></em>' attribute.

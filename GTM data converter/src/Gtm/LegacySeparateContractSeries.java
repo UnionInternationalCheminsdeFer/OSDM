@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.LegacySeparateContractSeries#getSeriesNumber <em>Series Number</em>}</li>
  *   <li>{@link Gtm.LegacySeparateContractSeries#getValidFrom <em>Valid From</em>}</li>
  *   <li>{@link Gtm.LegacySeparateContractSeries#getValidUntil <em>Valid Until</em>}</li>
+ *   <li>{@link Gtm.LegacySeparateContractSeries#getSeries <em>Series</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getLegacySeparateContractSeries()
@@ -89,5 +90,27 @@ public interface LegacySeparateContractSeries extends EObject {
 	 * @generated
 	 */
 	void setValidUntil(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Series</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Series</em>' reference.
+	 * @see #setSeries(LegacySeries)
+	 * @see Gtm.GtmPackage#getLegacySeparateContractSeries_Series()
+	 * @model
+	 * @generated
+	 */
+	LegacySeries getSeries();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacySeparateContractSeries#getSeries <em>Series</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Series</em>' reference.
+	 * @see #getSeries()
+	 * @generated
+	 */
+	void setSeries(LegacySeries value);
 
 } // LegacySeparateContractSeries

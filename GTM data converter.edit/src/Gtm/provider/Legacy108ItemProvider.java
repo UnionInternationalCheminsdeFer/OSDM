@@ -200,6 +200,7 @@ public class Legacy108ItemProvider
 			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_DISTANCE_FARES);
 			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_ROUTE_FARES);
 			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_STATIONS);
+			childrenFeatures.add(GtmPackage.Literals.LEGACY108__LEGACY_FARE_DESCRIPTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -271,6 +272,7 @@ public class Legacy108ItemProvider
 			case GtmPackage.LEGACY108__LEGACY_DISTANCE_FARES:
 			case GtmPackage.LEGACY108__LEGACY_ROUTE_FARES:
 			case GtmPackage.LEGACY108__LEGACY_STATIONS:
+			case GtmPackage.LEGACY108__LEGACY_FARE_DESCRIPTIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -312,6 +314,11 @@ public class Legacy108ItemProvider
 			(createChildParameter
 				(GtmPackage.Literals.LEGACY108__LEGACY_STATIONS,
 				 GtmFactory.eINSTANCE.createLegacy108Stations()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.LEGACY108__LEGACY_FARE_DESCRIPTIONS,
+				 GtmFactory.eINSTANCE.createLegacy108FaresDescriptions()));
 	}
 
 	/**

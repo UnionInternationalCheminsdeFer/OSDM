@@ -69,7 +69,7 @@ public class ExportLegacyAction extends BasicGtmAction {
 			Path path =  getPath("Select export directory");
 			if (path == null) return;
 			
-			LegacyExporter exporter = new LegacyExporter(tool, path);
+			LegacyExporter exporter = new LegacyExporter(tool, path, editor);
 
 			
 			IRunnableWithProgress operation =	new IRunnableWithProgress() {

@@ -1057,6 +1057,24 @@ public interface GtmFactory extends EFactory {
 	LegacyStationMap createLegacyStationMap();
 
 	/**
+	 * Returns a new object of class '<em>Legacy Fare Detail Maps</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Fare Detail Maps</em>'.
+	 * @generated
+	 */
+	LegacyFareDetailMaps createLegacyFareDetailMaps();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Fare Detail Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Fare Detail Map</em>'.
+	 * @generated
+	 */
+	LegacyFareDetailMap createLegacyFareDetailMap();
+
+	/**
 	 * Returns a new object of class '<em>Legacy Station</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1109,6 +1127,24 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	Legacy108 createLegacy108();
+
+	/**
+	 * Returns a new object of class '<em>Legacy108 Fare Description</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy108 Fare Description</em>'.
+	 * @generated
+	 */
+	Legacy108FareDescription createLegacy108FareDescription();
+
+	/**
+	 * Returns a new object of class '<em>Legacy108 Fares Descriptions</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy108 Fares Descriptions</em>'.
+	 * @generated
+	 */
+	Legacy108FaresDescriptions createLegacy108FaresDescriptions();
 
 	/**
 	 * Returns a new object of class '<em>Legacy108 Stations</em>'.

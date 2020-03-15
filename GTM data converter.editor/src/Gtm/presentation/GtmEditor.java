@@ -717,9 +717,6 @@ public class GtmEditor
 	 * @generated
 	 */
 	public void setSelectionToViewerGen(Collection<?> collection) {
-		
-		
-		
 		final Collection<?> theSelection = collection;
 		// Make sure it's okay.
 		//

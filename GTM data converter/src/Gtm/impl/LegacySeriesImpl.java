@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link Gtm.impl.LegacySeriesImpl#getSupplyingCarrierCode <em>Supplying Carrier Code</em>}</li>
  *   <li>{@link Gtm.impl.LegacySeriesImpl#getNumber <em>Number</em>}</li>
+ *   <li>{@link Gtm.impl.LegacySeriesImpl#getFareTableNumber <em>Fare Table Number</em>}</li>
  *   <li>{@link Gtm.impl.LegacySeriesImpl#getType <em>Type</em>}</li>
  *   <li>{@link Gtm.impl.LegacySeriesImpl#getFromStation <em>From Station</em>}</li>
  *   <li>{@link Gtm.impl.LegacySeriesImpl#getFromStationName <em>From Station Name</em>}</li>
@@ -93,6 +94,26 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 	 * @ordered
 	 */
 	protected int number = NUMBER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFareTableNumber() <em>Fare Table Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFareTableNumber()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int FARE_TABLE_NUMBER_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getFareTableNumber() <em>Fare Table Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFareTableNumber()
+	 * @generated
+	 * @ordered
+	 */
+	protected int fareTableNumber = FARE_TABLE_NUMBER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -615,6 +636,27 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getFareTableNumber() {
+		return fareTableNumber;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFareTableNumber(int newFareTableNumber) {
+		int oldFareTableNumber = fareTableNumber;
+		fareTableNumber = newFareTableNumber;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY_SERIES__FARE_TABLE_NUMBER, oldFareTableNumber, fareTableNumber));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getFromStation() {
 		return fromStation;
 	}
@@ -804,6 +846,8 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 				return getSupplyingCarrierCode();
 			case GtmPackage.LEGACY_SERIES__NUMBER:
 				return getNumber();
+			case GtmPackage.LEGACY_SERIES__FARE_TABLE_NUMBER:
+				return getFareTableNumber();
 			case GtmPackage.LEGACY_SERIES__TYPE:
 				return getType();
 			case GtmPackage.LEGACY_SERIES__FROM_STATION:
@@ -850,6 +894,9 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 				return;
 			case GtmPackage.LEGACY_SERIES__NUMBER:
 				setNumber((Integer)newValue);
+				return;
+			case GtmPackage.LEGACY_SERIES__FARE_TABLE_NUMBER:
+				setFareTableNumber((Integer)newValue);
 				return;
 			case GtmPackage.LEGACY_SERIES__TYPE:
 				setType((LegacySeriesType)newValue);
@@ -912,6 +959,9 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 			case GtmPackage.LEGACY_SERIES__NUMBER:
 				setNumber(NUMBER_EDEFAULT);
 				return;
+			case GtmPackage.LEGACY_SERIES__FARE_TABLE_NUMBER:
+				setFareTableNumber(FARE_TABLE_NUMBER_EDEFAULT);
+				return;
 			case GtmPackage.LEGACY_SERIES__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
@@ -970,6 +1020,8 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 				return SUPPLYING_CARRIER_CODE_EDEFAULT == null ? supplyingCarrierCode != null : !SUPPLYING_CARRIER_CODE_EDEFAULT.equals(supplyingCarrierCode);
 			case GtmPackage.LEGACY_SERIES__NUMBER:
 				return number != NUMBER_EDEFAULT;
+			case GtmPackage.LEGACY_SERIES__FARE_TABLE_NUMBER:
+				return fareTableNumber != FARE_TABLE_NUMBER_EDEFAULT;
 			case GtmPackage.LEGACY_SERIES__TYPE:
 				return type != TYPE_EDEFAULT;
 			case GtmPackage.LEGACY_SERIES__FROM_STATION:
@@ -1016,6 +1068,8 @@ public class LegacySeriesImpl extends MinimalEObjectImpl.Container implements Le
 		result.append(supplyingCarrierCode);
 		result.append(", number: ");
 		result.append(number);
+		result.append(", fareTableNumber: ");
+		result.append(fareTableNumber);
 		result.append(", type: ");
 		result.append(type);
 		result.append(", fromStation: ");

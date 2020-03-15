@@ -7,6 +7,7 @@ import Gtm.Country;
 import Gtm.EndOfSale;
 import Gtm.GtmPackage;
 import Gtm.LegacyBoderPointMappings;
+import Gtm.LegacyFareDetailMaps;
 import Gtm.LegacyFareStationSetMappings;
 import Gtm.LegacyFareTemplates;
 import Gtm.LegacyStationMappings;
@@ -37,8 +38,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyFareTemplates <em>Legacy Fare Templates</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyFareStationMappings <em>Legacy Fare Station Mappings</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyStationToServiceBrandMappings <em>Legacy Station To Service Brand Mappings</em>}</li>
+ *   <li>{@link Gtm.impl.ConversionParamsImpl#getLegacyStationToFareDetailMappings <em>Legacy Station To Fare Detail Mappings</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getEndOfSale <em>End Of Sale</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getStartOfSale <em>Start Of Sale</em>}</li>
+ *   <li>{@link Gtm.impl.ConversionParamsImpl#getStationImportFilter <em>Station Import Filter</em>}</li>
+ *   <li>{@link Gtm.impl.ConversionParamsImpl#isConvertFareDescriptions <em>Convert Fare Descriptions</em>}</li>
+ *   <li>{@link Gtm.impl.ConversionParamsImpl#isConvertServiceConstraints <em>Convert Service Constraints</em>}</li>
  * </ul>
  *
  * @generated
@@ -145,6 +150,16 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 	protected LegacyStationToServiceConstraintMappings legacyStationToServiceBrandMappings;
 
 	/**
+	 * The cached value of the '{@link #getLegacyStationToFareDetailMappings() <em>Legacy Station To Fare Detail Mappings</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyStationToFareDetailMappings()
+	 * @generated
+	 * @ordered
+	 */
+	protected LegacyFareDetailMaps legacyStationToFareDetailMappings;
+
+	/**
 	 * The cached value of the '{@link #getEndOfSale() <em>End Of Sale</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -163,6 +178,66 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected EndOfSale startOfSale;
+
+	/**
+	 * The default value of the '{@link #getStationImportFilter() <em>Station Import Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStationImportFilter()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String STATION_IMPORT_FILTER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getStationImportFilter() <em>Station Import Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStationImportFilter()
+	 * @generated
+	 * @ordered
+	 */
+	protected String stationImportFilter = STATION_IMPORT_FILTER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isConvertFareDescriptions() <em>Convert Fare Descriptions</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isConvertFareDescriptions()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CONVERT_FARE_DESCRIPTIONS_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isConvertFareDescriptions() <em>Convert Fare Descriptions</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isConvertFareDescriptions()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean convertFareDescriptions = CONVERT_FARE_DESCRIPTIONS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isConvertServiceConstraints() <em>Convert Service Constraints</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isConvertServiceConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CONVERT_SERVICE_CONSTRAINTS_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isConvertServiceConstraints() <em>Convert Service Constraints</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isConvertServiceConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean convertServiceConstraints = CONVERT_SERVICE_CONSTRAINTS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -483,6 +558,49 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LegacyFareDetailMaps getLegacyStationToFareDetailMappings() {
+		return legacyStationToFareDetailMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLegacyStationToFareDetailMappings(LegacyFareDetailMaps newLegacyStationToFareDetailMappings, NotificationChain msgs) {
+		LegacyFareDetailMaps oldLegacyStationToFareDetailMappings = legacyStationToFareDetailMappings;
+		legacyStationToFareDetailMappings = newLegacyStationToFareDetailMappings;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS, oldLegacyStationToFareDetailMappings, newLegacyStationToFareDetailMappings);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyStationToFareDetailMappings(LegacyFareDetailMaps newLegacyStationToFareDetailMappings) {
+		if (newLegacyStationToFareDetailMappings != legacyStationToFareDetailMappings) {
+			NotificationChain msgs = null;
+			if (legacyStationToFareDetailMappings != null)
+				msgs = ((InternalEObject)legacyStationToFareDetailMappings).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS, null, msgs);
+			if (newLegacyStationToFareDetailMappings != null)
+				msgs = ((InternalEObject)newLegacyStationToFareDetailMappings).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS, null, msgs);
+			msgs = basicSetLegacyStationToFareDetailMappings(newLegacyStationToFareDetailMappings, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS, newLegacyStationToFareDetailMappings, newLegacyStationToFareDetailMappings));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EndOfSale getEndOfSale() {
 		return endOfSale;
 	}
@@ -569,6 +687,69 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getStationImportFilter() {
+		return stationImportFilter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStationImportFilter(String newStationImportFilter) {
+		String oldStationImportFilter = stationImportFilter;
+		stationImportFilter = newStationImportFilter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__STATION_IMPORT_FILTER, oldStationImportFilter, stationImportFilter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isConvertFareDescriptions() {
+		return convertFareDescriptions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConvertFareDescriptions(boolean newConvertFareDescriptions) {
+		boolean oldConvertFareDescriptions = convertFareDescriptions;
+		convertFareDescriptions = newConvertFareDescriptions;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__CONVERT_FARE_DESCRIPTIONS, oldConvertFareDescriptions, convertFareDescriptions));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isConvertServiceConstraints() {
+		return convertServiceConstraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConvertServiceConstraints(boolean newConvertServiceConstraints) {
+		boolean oldConvertServiceConstraints = convertServiceConstraints;
+		convertServiceConstraints = newConvertServiceConstraints;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__CONVERT_SERVICE_CONSTRAINTS, oldConvertServiceConstraints, convertServiceConstraints));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -582,6 +763,8 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 				return basicSetLegacyFareStationMappings(null, msgs);
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS:
 				return basicSetLegacyStationToServiceBrandMappings(null, msgs);
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS:
+				return basicSetLegacyStationToFareDetailMappings(null, msgs);
 			case GtmPackage.CONVERSION_PARAMS__END_OF_SALE:
 				return basicSetEndOfSale(null, msgs);
 			case GtmPackage.CONVERSION_PARAMS__START_OF_SALE:
@@ -615,10 +798,18 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 				return getLegacyFareStationMappings();
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS:
 				return getLegacyStationToServiceBrandMappings();
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS:
+				return getLegacyStationToFareDetailMappings();
 			case GtmPackage.CONVERSION_PARAMS__END_OF_SALE:
 				return getEndOfSale();
 			case GtmPackage.CONVERSION_PARAMS__START_OF_SALE:
 				return getStartOfSale();
+			case GtmPackage.CONVERSION_PARAMS__STATION_IMPORT_FILTER:
+				return getStationImportFilter();
+			case GtmPackage.CONVERSION_PARAMS__CONVERT_FARE_DESCRIPTIONS:
+				return isConvertFareDescriptions();
+			case GtmPackage.CONVERSION_PARAMS__CONVERT_SERVICE_CONSTRAINTS:
+				return isConvertServiceConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -655,11 +846,23 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS:
 				setLegacyStationToServiceBrandMappings((LegacyStationToServiceConstraintMappings)newValue);
 				return;
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS:
+				setLegacyStationToFareDetailMappings((LegacyFareDetailMaps)newValue);
+				return;
 			case GtmPackage.CONVERSION_PARAMS__END_OF_SALE:
 				setEndOfSale((EndOfSale)newValue);
 				return;
 			case GtmPackage.CONVERSION_PARAMS__START_OF_SALE:
 				setStartOfSale((EndOfSale)newValue);
+				return;
+			case GtmPackage.CONVERSION_PARAMS__STATION_IMPORT_FILTER:
+				setStationImportFilter((String)newValue);
+				return;
+			case GtmPackage.CONVERSION_PARAMS__CONVERT_FARE_DESCRIPTIONS:
+				setConvertFareDescriptions((Boolean)newValue);
+				return;
+			case GtmPackage.CONVERSION_PARAMS__CONVERT_SERVICE_CONSTRAINTS:
+				setConvertServiceConstraints((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -697,11 +900,23 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS:
 				setLegacyStationToServiceBrandMappings((LegacyStationToServiceConstraintMappings)null);
 				return;
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS:
+				setLegacyStationToFareDetailMappings((LegacyFareDetailMaps)null);
+				return;
 			case GtmPackage.CONVERSION_PARAMS__END_OF_SALE:
 				setEndOfSale((EndOfSale)null);
 				return;
 			case GtmPackage.CONVERSION_PARAMS__START_OF_SALE:
 				setStartOfSale((EndOfSale)null);
+				return;
+			case GtmPackage.CONVERSION_PARAMS__STATION_IMPORT_FILTER:
+				setStationImportFilter(STATION_IMPORT_FILTER_EDEFAULT);
+				return;
+			case GtmPackage.CONVERSION_PARAMS__CONVERT_FARE_DESCRIPTIONS:
+				setConvertFareDescriptions(CONVERT_FARE_DESCRIPTIONS_EDEFAULT);
+				return;
+			case GtmPackage.CONVERSION_PARAMS__CONVERT_SERVICE_CONSTRAINTS:
+				setConvertServiceConstraints(CONVERT_SERVICE_CONSTRAINTS_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -731,10 +946,18 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 				return legacyFareStationMappings != null;
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS:
 				return legacyStationToServiceBrandMappings != null;
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS:
+				return legacyStationToFareDetailMappings != null;
 			case GtmPackage.CONVERSION_PARAMS__END_OF_SALE:
 				return endOfSale != null;
 			case GtmPackage.CONVERSION_PARAMS__START_OF_SALE:
 				return startOfSale != null;
+			case GtmPackage.CONVERSION_PARAMS__STATION_IMPORT_FILTER:
+				return STATION_IMPORT_FILTER_EDEFAULT == null ? stationImportFilter != null : !STATION_IMPORT_FILTER_EDEFAULT.equals(stationImportFilter);
+			case GtmPackage.CONVERSION_PARAMS__CONVERT_FARE_DESCRIPTIONS:
+				return convertFareDescriptions != CONVERT_FARE_DESCRIPTIONS_EDEFAULT;
+			case GtmPackage.CONVERSION_PARAMS__CONVERT_SERVICE_CONSTRAINTS:
+				return convertServiceConstraints != CONVERT_SERVICE_CONSTRAINTS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -753,6 +976,12 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 		result.append(taxId);
 		result.append(", VATpercentage: ");
 		result.append(vaTpercentage);
+		result.append(", stationImportFilter: ");
+		result.append(stationImportFilter);
+		result.append(", convertFareDescriptions: ");
+		result.append(convertFareDescriptions);
+		result.append(", convertServiceConstraints: ");
+		result.append(convertServiceConstraints);
 		result.append(')');
 		return result.toString();
 	}

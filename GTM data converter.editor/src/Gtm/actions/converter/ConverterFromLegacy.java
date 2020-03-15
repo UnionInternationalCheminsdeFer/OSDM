@@ -40,6 +40,7 @@ import Gtm.LegacyAccountingIdentifier;
 import Gtm.LegacyBorderPointMapping;
 import Gtm.LegacyCalculationType;
 import Gtm.LegacyDistanceFare;
+import Gtm.LegacyFareDetailMap;
 import Gtm.LegacyFareStationSetMap;
 import Gtm.LegacyFareStationSetMappings;
 import Gtm.LegacyRouteFare;
@@ -55,6 +56,7 @@ import Gtm.SalesRestriction;
 import Gtm.ServiceConstraint;
 import Gtm.StartOfSale;
 import Gtm.Station;
+import Gtm.StationFareDetailType;
 import Gtm.StationNames;
 import Gtm.StationSet;
 import Gtm.TaxScope;
@@ -306,11 +308,16 @@ public class ConverterFromLegacy {
 		
 		try {
 			
-			Price price = convertSeriesToPrice(tool, series, fareTemplate, tool.getConversionFromLegacy().getParams().getCountry(), dateRange);
-			if (price == null) return;
-			Price oldPrice = findPrice(price, priceList);
-			if (oldPrice != null) {
-				price=oldPrice;
+			Price price = null;
+			if (fareTemplate.getPrice() == null) {
+				price = convertSeriesToPrice(tool, series, fareTemplate, tool.getConversionFromLegacy().getParams().getCountry(), dateRange);
+				if (price == null) return;
+				Price oldPrice = findPrice(price, priceList);
+				if (oldPrice != null) {
+					price=oldPrice;
+				}
+			} else {
+				price = fareTemplate.getPrice();
 			}
 					
 			FareElement fareElement = convertSeriesToFare(tool, series, fareTemplate, 1);
@@ -319,30 +326,19 @@ public class ConverterFromLegacy {
 			fareElement.setRegionalConstraint(regionalConstraint);
 			fareElement.setSalesAvailability(findSalesAvailability(tool,dateRange));
 			fareElement.getLegacyAccountingIdentifier().setTariffId(number);
+			mapConstraintsAndDescriptions(fareElement, series);
+			if (price != null && fareElement != null) {
+				fares.add(fareElement);			
+			}
 			
 
-			FareElement fareElementR =  null;
-			
-			fareElementR = convertSeriesToFare(tool, series, fareTemplate, 2);
+			FareElement fareElementR = convertSeriesToFare(tool, series, fareTemplate, 2);
 			fareElement.getLegacyAccountingIdentifier().setTariffId(legacyFareCounter++);
 			fareElementR.getLegacyAccountingIdentifier().setTariffId(number);
 			fareElementR.setPrice(price);
 			fareElementR.setRegionalConstraint(regionalConstraintR);
-				
-			//get service constraints
-			ServiceConstraint serviceConstraint = null;
-			for (LegacyViastation via : series.getViastations()) {
-				serviceConstraint = tool.getConversionFromLegacy().getParams().getLegacyStationToServiceBrandMappings().findServiceConstraint(via.getCode());
-			}
-			if (serviceConstraint != null) {
-				fareElement.setServiceConstraint(serviceConstraint);
-				if (fareElementR != null) {
-					fareElementR.setServiceConstraint(serviceConstraint);
-				}
-			}
-			
-			if (price != null && fareElement != null) {
-				fares.add(fareElement);			
+			mapConstraintsAndDescriptions(fareElementR, series);
+			if (price != null && fareElementR != null) {	
 				fares.add(fareElementR);	
 			}
 			
@@ -352,8 +348,38 @@ public class ConverterFromLegacy {
 			writeConsoleError(message);
 		}
 		return;
-	
 	}	
+	
+	private void mapConstraintsAndDescriptions(FareElement fareElement, LegacySeries series) {
+		
+		if (fareElement == null || series == null) return;
+		
+		//get service constraints
+		for (LegacyViastation via : series.getViastations()) {
+			ServiceConstraint serviceConstraint = tool.getConversionFromLegacy().getParams().getLegacyStationToServiceBrandMappings().findServiceConstraint(via.getCode());
+			if (serviceConstraint != null) {
+				fareElement.setServiceConstraint(serviceConstraint);
+			}
+		}
+		
+		//getFareDescriptions on departure and / or arrival (use only one)
+		for (LegacyFareDetailMap map : tool.getConversionFromLegacy().getParams().getLegacyStationToFareDetailMappings().getLegacyFareDetailMaps()) {
+			
+			if (map.getLegacyCode() == series.getFromStation() &&
+				( map.getFareDetailMappingType() == StationFareDetailType.ON_DEPARTURE || 
+				  map.getFareDetailMappingType() == StationFareDetailType.ON_ARRIVAL_ON_DEPARTURE)){
+					
+				fareElement.setFareDetailDescription(map.getFareDetailDescription());
+			}
+			if (map.getLegacyCode() == series.getToStation() &&
+					( map.getFareDetailMappingType() == StationFareDetailType.ON_ARRIVAL || 
+					  map.getFareDetailMappingType() == StationFareDetailType.ON_ARRIVAL_ON_DEPARTURE)){
+						
+				fareElement.setFareDetailDescription(map.getFareDetailDescription());
+			}
+		}
+
+	}
 	
 	
 
@@ -896,6 +922,7 @@ public class ConverterFromLegacy {
 
 	public Price convertSeriesToPrice(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, Country country, DateRange dateRange) throws ConverterException{
 		
+	
 		Price price = GtmFactory.eINSTANCE.createPrice();
 		price.setDataSource(DataSource.CONVERTED);
 			

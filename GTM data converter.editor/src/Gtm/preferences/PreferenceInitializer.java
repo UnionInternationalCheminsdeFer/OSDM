@@ -13,6 +13,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer
 		IPreferenceStore store = GtmEditorPlugin.getPreferenceStore();
 
 		store.setDefault(PreferenceConstants.P_IMPORT_CONVERABLE_ONLY, false);
+		store.setDefault(PreferenceConstants.P_IMPORT_CONTRY_FILTER, " ");
 
 	}
 

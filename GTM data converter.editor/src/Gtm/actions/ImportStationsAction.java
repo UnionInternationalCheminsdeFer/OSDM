@@ -71,19 +71,7 @@ public class ImportStationsAction extends BasicGtmAction {
 				return;
 			}
 			
-			Country country = tool.getConversionFromLegacy().getParams().getCountry();
-			if (country == null) {
-				String message = "the country is missing in the conversion parameter";
-				GtmUtils.writeConsoleError(message);
-				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("the country is missing in the conversion parameter");
-				dialog.open(); 
-				return;
-			}
-			
 			BufferedReader reader = getReader("Station file (MERITS TSDUPD)");
-			
-
 
 			IRunnableWithProgress operation =	new IRunnableWithProgress() {
 				// This is the method that gets invoked when the operation runs.
@@ -112,10 +100,13 @@ public class ImportStationsAction extends BasicGtmAction {
 							
 							if (newStation != null) {
 								stationNb++;
-								importedStations.add(newStation);
-								if (stationNb % 100 == 0) {
-									monitor.subTask("Read station - " + String.valueOf(stationNb));
-									monitor.worked(1000);
+								
+								if (GtmUtils.importStation(tool.getConversionFromLegacy().getParams().getStationImportFilter(), newStation.getCountry().getCode())) {
+									importedStations.add(newStation);
+									if (stationNb % 100 == 0) {
+										monitor.subTask("Read station - " + String.valueOf(stationNb));
+										monitor.worked(1000);
+									}
 								}
 							}
 						} 
@@ -166,9 +157,16 @@ public class ImportStationsAction extends BasicGtmAction {
 						for (Station newStation : updatedStations) {
 							Integer code = Integer.valueOf(newStation.getCountry().getCode() * 100000 + Integer.parseInt(newStation.getCode()));
 							Station station = oldStations.get(code);
-							command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__NAME, newStation.getTimetableName()));
-							command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__LATITUDE, newStation.getLatitude()));
-							command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__LONGITUDE, newStation.getLongitude()));										
+							
+							if (!station.getTimetableName().equals(newStation.getTimetableName())) {
+								command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__NAME, newStation.getTimetableName()));
+							}
+							if (station.getLatitude() != newStation.getLatitude()) {
+								command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__LATITUDE, newStation.getLatitude()));
+							}
+							if (station.getLongitude() != newStation.getLongitude()) {
+								command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__LONGITUDE, newStation.getLongitude()));										
+							}
 						}
 						if (command != null & !command.isEmpty() & command.canExecute()) {
 							domain.getCommandStack().execute(command);

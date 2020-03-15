@@ -67,6 +67,9 @@ public class ConversionParamsItemProvider
 			addTaxIdPropertyDescriptor(object);
 			addVATpercentagePropertyDescriptor(object);
 			addCountryPropertyDescriptor(object);
+			addStationImportFilterPropertyDescriptor(object);
+			addConvertFareDescriptionsPropertyDescriptor(object);
+			addConvertServiceConstraintsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -138,6 +141,72 @@ public class ConversionParamsItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Station Import Filter feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStationImportFilterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConversionParams_stationImportFilter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConversionParams_stationImportFilter_feature", "_UI_ConversionParams_type"),
+				 GtmPackage.Literals.CONVERSION_PARAMS__STATION_IMPORT_FILTER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Convert Fare Descriptions feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConvertFareDescriptionsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConversionParams_convertFareDescriptions_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConversionParams_convertFareDescriptions_feature", "_UI_ConversionParams_type"),
+				 GtmPackage.Literals.CONVERSION_PARAMS__CONVERT_FARE_DESCRIPTIONS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Convert Service Constraints feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConvertServiceConstraintsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConversionParams_convertServiceConstraints_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConversionParams_convertServiceConstraints_feature", "_UI_ConversionParams_type"),
+				 GtmPackage.Literals.CONVERSION_PARAMS__CONVERT_SERVICE_CONSTRAINTS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -154,6 +223,7 @@ public class ConversionParamsItemProvider
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_FARE_TEMPLATES);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS);
+			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__END_OF_SALE);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__START_OF_SALE);
 		}
@@ -213,6 +283,9 @@ public class ConversionParamsItemProvider
 		switch (notification.getFeatureID(ConversionParams.class)) {
 			case GtmPackage.CONVERSION_PARAMS__TAX_ID:
 			case GtmPackage.CONVERSION_PARAMS__VA_TPERCENTAGE:
+			case GtmPackage.CONVERSION_PARAMS__STATION_IMPORT_FILTER:
+			case GtmPackage.CONVERSION_PARAMS__CONVERT_FARE_DESCRIPTIONS:
+			case GtmPackage.CONVERSION_PARAMS__CONVERT_SERVICE_CONSTRAINTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_BORDER_POINT_MAPPINGS:
@@ -220,6 +293,7 @@ public class ConversionParamsItemProvider
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_FARE_TEMPLATES:
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_FARE_STATION_MAPPINGS:
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS:
+			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS:
 			case GtmPackage.CONVERSION_PARAMS__END_OF_SALE:
 			case GtmPackage.CONVERSION_PARAMS__START_OF_SALE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -263,6 +337,11 @@ public class ConversionParamsItemProvider
 			(createChildParameter
 				(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS,
 				 GtmFactory.eINSTANCE.createLegacyStationToServiceConstraintMappings()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS,
+				 GtmFactory.eINSTANCE.createLegacyFareDetailMaps()));
 
 		newChildDescriptors.add
 			(createChildParameter

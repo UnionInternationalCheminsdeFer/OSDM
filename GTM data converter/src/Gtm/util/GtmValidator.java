@@ -320,6 +320,10 @@ public class GtmValidator extends EObjectValidator {
 				return validateLegacyStationMappings((LegacyStationMappings)value, diagnostics, context);
 			case GtmPackage.LEGACY_STATION_MAP:
 				return validateLegacyStationMap((LegacyStationMap)value, diagnostics, context);
+			case GtmPackage.LEGACY_FARE_DETAIL_MAPS:
+				return validateLegacyFareDetailMaps((LegacyFareDetailMaps)value, diagnostics, context);
+			case GtmPackage.LEGACY_FARE_DETAIL_MAP:
+				return validateLegacyFareDetailMap((LegacyFareDetailMap)value, diagnostics, context);
 			case GtmPackage.LEGACY_STATION:
 				return validateLegacyStation((LegacyStation)value, diagnostics, context);
 			case GtmPackage.LEGACY_BODER_POINT_MAPPINGS:
@@ -332,6 +336,10 @@ public class GtmValidator extends EObjectValidator {
 				return validateLegacyFareStationSetMap((LegacyFareStationSetMap)value, diagnostics, context);
 			case GtmPackage.LEGACY108:
 				return validateLegacy108((Legacy108)value, diagnostics, context);
+			case GtmPackage.LEGACY108_FARE_DESCRIPTION:
+				return validateLegacy108FareDescription((Legacy108FareDescription)value, diagnostics, context);
+			case GtmPackage.LEGACY108_FARES_DESCRIPTIONS:
+				return validateLegacy108FaresDescriptions((Legacy108FaresDescriptions)value, diagnostics, context);
 			case GtmPackage.LEGACY108_STATIONS:
 				return validateLegacy108Stations((Legacy108Stations)value, diagnostics, context);
 			case GtmPackage.LEGACY108_STATION:
@@ -356,6 +364,8 @@ public class GtmValidator extends EObjectValidator {
 				return validateLegacyViastation((LegacyViastation)value, diagnostics, context);
 			case GtmPackage.LEGACY_FARE_TEMPLATES:
 				return validateLegacyFareTemplates((LegacyFareTemplates)value, diagnostics, context);
+			case GtmPackage.STATION_FARE_DETAIL_TYPE:
+				return validateStationFareDetailType((StationFareDetailType)value, diagnostics, context);
 			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
 				return validateAfterSalesTransactionType((AfterSalesTransactionType)value, diagnostics, context);
 			case GtmPackage.BARCODE_TYPES:
@@ -1055,6 +1065,7 @@ public class GtmValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateFareTemplate_FULFILMENT_CONSTRAINT_MUST(fareTemplate, diagnostics, context);
 		if (result || diagnostics != null) result &= validateFareTemplate_LEGACY_CONVERSION_MUST(fareTemplate, diagnostics, context);
 		if (result || diagnostics != null) result &= validateFareTemplate_SERVICE_CLASS_MUST(fareTemplate, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFareTemplate_PRICE_OR_FACTOR(fareTemplate, diagnostics, context);
 		return result;
 	}
 
@@ -1079,6 +1090,52 @@ public class GtmValidator extends EObjectValidator {
 			}
 			return false;
 		}
+		
+		if (fareTemplate.getPriceFactor() < 0) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createSimpleDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "Price factor in fare template must not be negative",
+						 new Object[] { "PRICE_FACTOR_MUST", getObjectLabel(fareTemplate, context) },
+						 new Object[] { fareTemplate },
+						 context));
+			}
+			return false;
+		}
+
+		if (fareTemplate.getPriceFactor() >= 5) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createSimpleDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "Price factor too large",
+						 new Object[] { "PRICE_FACTOR_MUST", getObjectLabel(fareTemplate, context) },
+						 new Object[] { fareTemplate },
+						 context));
+			}
+			return false;
+		} else if (fareTemplate.getPriceFactor() >= 1) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createSimpleDiagnostic
+						(Diagnostic.WARNING,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "Price factor might be too large",
+						 new Object[] { "PRICE_FACTOR_MUST", getObjectLabel(fareTemplate, context) },
+						 new Object[] { fareTemplate },
+						 context));
+			}
+			return false;
+		} 
+		
+		
+		
 		return true;
 	}
 
@@ -1244,6 +1301,31 @@ public class GtmValidator extends EObjectValidator {
 						 0,
 						 "Service class not defined in fare template",
 						 new Object[] { "SERVICE_CLASS_MUST", getObjectLabel(fareTemplate, context) },
+						 new Object[] { fareTemplate },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the PRICE_OR_FACTOR constraint of '<em>Fare Template</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateFareTemplate_PRICE_OR_FACTOR(FareTemplate fareTemplate, DiagnosticChain diagnostics, Map<Object, Object> context) {
+
+		if (fareTemplate.getPrice() != null && fareTemplate.getPriceFactor() > 0) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createSimpleDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "Eigther a price or a price factor can ge set, not both",
+						 new Object[] { "PRICE_OR_FACTOR", getObjectLabel(fareTemplate, context) },
 						 new Object[] { fareTemplate },
 						 context));
 			}
@@ -2091,6 +2173,24 @@ public class GtmValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateLegacy108FareDescription(Legacy108FareDescription legacy108FareDescription, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(legacy108FareDescription, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLegacy108FaresDescriptions(Legacy108FaresDescriptions legacy108FaresDescriptions, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(legacy108FaresDescriptions, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateLegacy108Stations(Legacy108Stations legacy108Stations, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(legacy108Stations, diagnostics, context);
 	}
@@ -2191,6 +2291,15 @@ public class GtmValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateStationFareDetailType(StationFareDetailType stationFareDetailType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateLegacyStationMappings(LegacyStationMappings legacyStationMappings, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(legacyStationMappings, diagnostics, context);
 	}
@@ -2263,6 +2372,24 @@ public class GtmValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLegacyFareDetailMaps(LegacyFareDetailMaps legacyFareDetailMaps, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(legacyFareDetailMaps, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLegacyFareDetailMap(LegacyFareDetailMap legacyFareDetailMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(legacyFareDetailMap, diagnostics, context);
 	}
 
 	/**

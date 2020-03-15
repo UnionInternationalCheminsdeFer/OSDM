@@ -21,8 +21,12 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.ConversionParams#getLegacyFareTemplates <em>Legacy Fare Templates</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getLegacyFareStationMappings <em>Legacy Fare Station Mappings</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getLegacyStationToServiceBrandMappings <em>Legacy Station To Service Brand Mappings</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getLegacyStationToFareDetailMappings <em>Legacy Station To Fare Detail Mappings</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getEndOfSale <em>End Of Sale</em>}</li>
  *   <li>{@link Gtm.ConversionParams#getStartOfSale <em>Start Of Sale</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getStationImportFilter <em>Station Import Filter</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#isConvertFareDescriptions <em>Convert Fare Descriptions</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#isConvertServiceConstraints <em>Convert Service Constraints</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getConversionParams()
@@ -207,6 +211,28 @@ public interface ConversionParams extends EObject {
 	void setLegacyStationToServiceBrandMappings(LegacyStationToServiceConstraintMappings value);
 
 	/**
+	 * Returns the value of the '<em><b>Legacy Station To Fare Detail Mappings</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Legacy Station To Fare Detail Mappings</em>' containment reference.
+	 * @see #setLegacyStationToFareDetailMappings(LegacyFareDetailMaps)
+	 * @see Gtm.GtmPackage#getConversionParams_LegacyStationToFareDetailMappings()
+	 * @model containment="true"
+	 * @generated
+	 */
+	LegacyFareDetailMaps getLegacyStationToFareDetailMappings();
+
+	/**
+	 * Sets the value of the '{@link Gtm.ConversionParams#getLegacyStationToFareDetailMappings <em>Legacy Station To Fare Detail Mappings</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Legacy Station To Fare Detail Mappings</em>' containment reference.
+	 * @see #getLegacyStationToFareDetailMappings()
+	 * @generated
+	 */
+	void setLegacyStationToFareDetailMappings(LegacyFareDetailMaps value);
+
+	/**
 	 * Returns the value of the '<em><b>End Of Sale</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -249,5 +275,71 @@ public interface ConversionParams extends EObject {
 	 * @generated
 	 */
 	void setStartOfSale(EndOfSale value);
+
+	/**
+	 * Returns the value of the '<em><b>Station Import Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Station Import Filter</em>' attribute.
+	 * @see #setStationImportFilter(String)
+	 * @see Gtm.GtmPackage#getConversionParams_StationImportFilter()
+	 * @model
+	 * @generated
+	 */
+	String getStationImportFilter();
+
+	/**
+	 * Sets the value of the '{@link Gtm.ConversionParams#getStationImportFilter <em>Station Import Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Station Import Filter</em>' attribute.
+	 * @see #getStationImportFilter()
+	 * @generated
+	 */
+	void setStationImportFilter(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Convert Fare Descriptions</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Convert Fare Descriptions</em>' attribute.
+	 * @see #setConvertFareDescriptions(boolean)
+	 * @see Gtm.GtmPackage#getConversionParams_ConvertFareDescriptions()
+	 * @model
+	 * @generated
+	 */
+	boolean isConvertFareDescriptions();
+
+	/**
+	 * Sets the value of the '{@link Gtm.ConversionParams#isConvertFareDescriptions <em>Convert Fare Descriptions</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Convert Fare Descriptions</em>' attribute.
+	 * @see #isConvertFareDescriptions()
+	 * @generated
+	 */
+	void setConvertFareDescriptions(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Convert Service Constraints</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Convert Service Constraints</em>' attribute.
+	 * @see #setConvertServiceConstraints(boolean)
+	 * @see Gtm.GtmPackage#getConversionParams_ConvertServiceConstraints()
+	 * @model
+	 * @generated
+	 */
+	boolean isConvertServiceConstraints();
+
+	/**
+	 * Sets the value of the '{@link Gtm.ConversionParams#isConvertServiceConstraints <em>Convert Service Constraints</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Convert Service Constraints</em>' attribute.
+	 * @see #isConvertServiceConstraints()
+	 * @generated
+	 */
+	void setConvertServiceConstraints(boolean value);
 
 } // ConversionParams
