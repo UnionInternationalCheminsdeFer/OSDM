@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.MessageBox;
 
 import Gtm.GTMTool;
 import Gtm.actions.converter.LegacyExporter;
+import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 
@@ -25,7 +26,7 @@ public class ExportLegacyAction extends BasicGtmAction {
 		protected IEditingDomainProvider editingDomainProvider = null;
 	
 		public ExportLegacyAction(IEditingDomainProvider editingDomainProvider) {
-			super("Export Legacy 108 data", editingDomainProvider);
+			super(NationalLanguageSupport.ExportLegacyAction_0, editingDomainProvider);
 			this.setToolTipText(this.getText());
 			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/exportLegacy.png")); //$NON-NLS-1$
 			this.editingDomainProvider = editingDomainProvider;
@@ -61,12 +62,12 @@ public class ExportLegacyAction extends BasicGtmAction {
 			
 			if (tool == null) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("no data found");
+				dialog.setText(NationalLanguageSupport.ExportLegacyAction_1);
 				dialog.open(); 
 				return;
 			}
 			
-			Path path =  getPath("Select export directory");
+			Path path =  getPath(NationalLanguageSupport.ExportLegacyAction_2);
 			if (path == null) return;
 			
 			LegacyExporter exporter = new LegacyExporter(tool, path, editor);
@@ -77,7 +78,7 @@ public class ExportLegacyAction extends BasicGtmAction {
 
 				public void run(IProgressMonitor monitor) {
 					
-					monitor.beginTask("Export 108.1 data", exporter.getMonitorTasks()); 
+					monitor.beginTask(NationalLanguageSupport.ExportLegacyAction_3, exporter.getMonitorTasks()); 
 					
 					exporter.export(monitor);
 

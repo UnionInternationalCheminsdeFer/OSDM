@@ -22,13 +22,14 @@ import Gtm.GtmPackage;
 import Gtm.Legacy108;
 import Gtm.LegacySeparateContractSeries;
 import Gtm.LegacySeparateContractSeriesList;
+import Gtm.nls.NationalLanguageSupport;
 
 
 
 public class ImportLegacyIndividualSeriesAction extends ImportLegacyAction {
 	
 	public ImportLegacyIndividualSeriesAction(IEditingDomainProvider editingDomainProvider) {
-		super("Import Legacy TCVL - separate contracts", editingDomainProvider);
+		super(NationalLanguageSupport.ImportLegacyIndividualSeriesAction_0, editingDomainProvider);
 	}
 
 	public ImportLegacyIndividualSeriesAction(String text, IEditingDomainProvider editingDomainProvider) {
@@ -41,7 +42,7 @@ public class ImportLegacyIndividualSeriesAction extends ImportLegacyAction {
 	 */
 	protected void runAction(Legacy108 legacy108) {
 		
-		BufferedReader br = super.getReader("import TCVL - separate contracts");
+		BufferedReader br = super.getReader(NationalLanguageSupport.ImportLegacyIndividualSeriesAction_1);
 		
       
         String st; 
@@ -50,7 +51,7 @@ public class ImportLegacyIndividualSeriesAction extends ImportLegacyAction {
 		ConversionFromLegacy converter = (ConversionFromLegacy) legacy108.eContainer();
 		String timeZone = converter.getLegacy108().getTimeZone().getName();
 		if (timeZone == null || timeZone.length() < 3) {
-			timeZone = "GMT";
+			timeZone = "GMT"; //$NON-NLS-1$
 		}
         
         try {
@@ -63,7 +64,7 @@ public class ImportLegacyIndividualSeriesAction extends ImportLegacyAction {
 			}
 		} catch (IOException e) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("TCVL file read error");
+			dialog.setText(NationalLanguageSupport.ImportLegacyIndividualSeriesAction_3);
 			dialog.setMessage(e.getMessage());
 			dialog.open(); 
 			e.printStackTrace();
@@ -75,7 +76,7 @@ public class ImportLegacyIndividualSeriesAction extends ImportLegacyAction {
 		Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_SERIES_LIST, seriesList );
 		if (cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
-			GtmUtils.writeConsoleInfo("separate contract series imported: " + Integer.toString(seriesList.getSeparateContractSeries().size()));
+			GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportLegacyIndividualSeriesAction_4 + Integer.toString(seriesList.getSeparateContractSeries().size()));
 		}
 
 	}
@@ -101,7 +102,7 @@ public class ImportLegacyIndividualSeriesAction extends ImportLegacyAction {
 		String number  		= st.substring(4, 9);
 		String flag  		= st.substring(9, 10);
 		
-		if (flag.equals("2")) return null;
+		if (flag.equals("2")) return null; //$NON-NLS-1$
 		
 		String validFromString = st.substring(211,219);		
 		String validUntilString = st.substring(24,32);	
@@ -113,7 +114,7 @@ public class ImportLegacyIndividualSeriesAction extends ImportLegacyAction {
 		
 
 		
-		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		DateFormat df = new SimpleDateFormat("yyyyMMdd"); //$NON-NLS-1$
 		df.setTimeZone(TimeZone.getTimeZone(timeZone)); 
 		Date dt = null;
 		try {

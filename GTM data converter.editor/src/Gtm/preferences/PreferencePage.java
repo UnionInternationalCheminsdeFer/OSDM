@@ -8,6 +8,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
 
+import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.GtmEditorPlugin;
 
 public class PreferencePage
@@ -20,7 +21,7 @@ public class PreferencePage
 	{
 		super(GRID);
 		setPreferenceStore(GtmEditorPlugin.getPreferenceStore());
-		this.setTitle("GTM Conversion Preferences");
+		this.setTitle(NationalLanguageSupport.PreferencePage_0);
 	}
 
 	/**
@@ -35,14 +36,14 @@ public class PreferencePage
         addField(
 					new BooleanFieldEditor(
 						PreferenceConstants.P_IMPORT_CONVERABLE_ONLY,
-						"Import convertable fares only",
+						NationalLanguageSupport.PreferencePage_1,
 						getFieldEditorParent()));
 
 	
     	addField(
 					new StringFieldEditor(
 							PreferenceConstants.P_IMPORT_CONTRY_FILTER,
-							"Limit import of stations in these countries only (UIC codes e.g.: 80,88)",
+							NationalLanguageSupport.PreferencePage_2,
 							getFieldEditorParent()));
 	};
 
@@ -53,8 +54,8 @@ public class PreferencePage
 	public void init(IWorkbench workbench)	{
 
 		// second parameter is typically the plug-in id
-	    setPreferenceStore(new ScopedPreferenceStore(InstanceScope.INSTANCE, "GTM_data_converter.editor"));
-	    setDescription("Gtm Preference page");
+	    setPreferenceStore(new ScopedPreferenceStore(InstanceScope.INSTANCE, "GTM_data_converter.editor")); //$NON-NLS-1$
+	    setDescription(NationalLanguageSupport.PreferencePage_4);
 
 	}
 }

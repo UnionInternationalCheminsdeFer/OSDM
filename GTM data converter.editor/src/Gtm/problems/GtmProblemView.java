@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.part.ViewPart;
 
 import Gtm.actions.GtmUtils;
+import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.GtmEditor;
 
 public class GtmProblemView extends ViewPart {
@@ -38,14 +39,14 @@ public class GtmProblemView extends ViewPart {
 
 	public GtmProblemView(){
 		super();
-		this.setPartName("Problems");
+		this.setPartName(NationalLanguageSupport.GtmProblemView_0);
 		me = this;
 		
-		ProblemCategory errors = new ProblemCategory(Diagnostic.ERROR, "Error");
+		ProblemCategory errors = new ProblemCategory(Diagnostic.ERROR, NationalLanguageSupport.GtmProblemView_1);
 		 
-		ProblemCategory warnings = new ProblemCategory(Diagnostic.WARNING, "Warning");
+		ProblemCategory warnings = new ProblemCategory(Diagnostic.WARNING, NationalLanguageSupport.GtmProblemView_2);
 		 
-		ProblemCategory infos = new ProblemCategory(Diagnostic.INFO, "Info");
+		ProblemCategory infos = new ProblemCategory(Diagnostic.INFO, NationalLanguageSupport.GtmProblemView_3);
 		
 		content = new ArrayList<ProblemCategory>();
 		content.add(0,errors);
@@ -65,11 +66,11 @@ public class GtmProblemView extends ViewPart {
 		final TreeColumn column1 = new TreeColumn(contentTree, SWT.LEFT);
 		contentTree.setLinesVisible(true);
 		column1.setAlignment(SWT.LEFT);
-		column1.setText("Description");
+		column1.setText(NationalLanguageSupport.GtmProblemView_4);
 		column1.setWidth(500);
 		TreeColumn column2 = new TreeColumn(contentTree, SWT.RIGHT);
 		column2.setAlignment(SWT.LEFT);
-		column2.setText("Object");
+		column2.setText(NationalLanguageSupport.GtmProblemView_5);
 		column2.setWidth(300);
 		
 		contentTreeViewer.setContentProvider(new ProblemViewTreeTableContentProvider());
@@ -166,9 +167,9 @@ public class GtmProblemView extends ViewPart {
 
 		public String getColumnText(Object o, int column) {
 			if(o instanceof ProblemCategory && column == 0) {
-				if (((ProblemCategory)o).getSeverity() == Diagnostic.ERROR) return "Errors";
-				if (((ProblemCategory)o).getSeverity() == Diagnostic.WARNING) return "Warnings";
-				if (((ProblemCategory)o).getSeverity() == Diagnostic.INFO) return "Infos";			
+				if (((ProblemCategory)o).getSeverity() == Diagnostic.ERROR) return NationalLanguageSupport.GtmProblemView_6;
+				if (((ProblemCategory)o).getSeverity() == Diagnostic.WARNING) return NationalLanguageSupport.GtmProblemView_7;
+				if (((ProblemCategory)o).getSeverity() == Diagnostic.INFO) return NationalLanguageSupport.GtmProblemView_8;			
 			} else if (o instanceof Diagnostic){
 				Diagnostic diagnostic = ((Diagnostic) o);
 				if(column == 0){

@@ -63,6 +63,7 @@ import Gtm.ServiceLevel;
 import Gtm.Text;
 import Gtm.TravelValidityConstraint;
 import Gtm.console.ConsoleUtil;
+import Gtm.nls.NationalLanguageSupport;
 import Gtm.preferences.PreferenceConstants;
 import Gtm.preferences.PreferencesAccess;
 import Gtm.presentation.DirtyCommand;
@@ -404,15 +405,15 @@ public class GtmUtils {
 
 		//add generic reduction cards
 			
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_EURAIL.getName(),"Eurail Pass", findCarrier(tool,"9902"));
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_INTERRAIL.getName(),"Interrail Pass", findCarrier(tool,"9902"));		
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_FIP_DUTY.getName(),"FIP duty", null);			
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_FIP_LEISURE_FREE.getName(),"FIP leasure", null);	
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_FIP_LEISURE_REDU.getName(),"FIP leasure reduction", null);
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_RAILPLUS.getName(),"RailPlus", null);	
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_RIT_1.getName(),"Rail Inclusive Tours 1", null);	
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_RIT_2.getName(),"Rail Inclusive Tours 2", null);	
-		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_RIT_3.getName(),"Rail Inclusive Tours 3", null);	
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_EURAIL.getName(),"Eurail Pass", findCarrier(tool,"9902")); //$NON-NLS-1$ //$NON-NLS-2$
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_INTERRAIL.getName(),"Interrail Pass", findCarrier(tool,"9902"));		 //$NON-NLS-1$ //$NON-NLS-2$
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_FIP_DUTY.getName(),"FIP duty", null);			 //$NON-NLS-1$
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_FIP_LEISURE_FREE.getName(),"FIP leasure", null);	 //$NON-NLS-1$
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_FIP_LEISURE_REDU.getName(),"FIP leasure reduction", null); //$NON-NLS-1$
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_RAILPLUS.getName(),"RailPlus", null);	 //$NON-NLS-1$
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_RIT_1.getName(),"Rail Inclusive Tours 1", null);	 //$NON-NLS-1$
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_RIT_2.getName(),"Rail Inclusive Tours 2", null);	 //$NON-NLS-1$
+		createReductionCard(tool.getGeneralTariffModel().getFareStructure(),GenericReductionCards.UIC_RIT_3.getName(),"Rail Inclusive Tours 3", null);	 //$NON-NLS-1$
 	
 		
 	}
@@ -493,79 +494,79 @@ public class GtmUtils {
 	
 	public static void populateUICcountries(Countries countries){ 
 		
-		countries.getCountries().add(createCountry(10,"Finland","FI"));
-		countries.getCountries().add(createCountry(20,"Russian Federation","RU"));
-		countries.getCountries().add(createCountry(21,"Belarus","BY"));
-		countries.getCountries().add(createCountry(22,"Ukraine","UA"));
-		countries.getCountries().add(createCountry(23,"Moldova, Republic of","MD"));
-		countries.getCountries().add(createCountry(24,"Lithuania","LT"));
-		countries.getCountries().add(createCountry(25,"Latvia","LV"));
-		countries.getCountries().add(createCountry(26,"Estonia","EE"));
-		countries.getCountries().add(createCountry(27,"Kazakhstan"," KZ"));
-		countries.getCountries().add(createCountry(28,"Georgia","GE"));
-		countries.getCountries().add(createCountry(29,"Uzbekistan","UZ"));
-		countries.getCountries().add(createCountry(30,"Korea, Democratic People's Republic of","KP"));
-		countries.getCountries().add(createCountry(31,"Mongolia","MN"));
-		countries.getCountries().add(createCountry(32,"Viet nam","VN"));
-		countries.getCountries().add(createCountry(33,"China","CN"));
-		countries.getCountries().add(createCountry(40,"Cuba","CU"));
-		countries.getCountries().add(createCountry(41,"Albania","AL"));
-		countries.getCountries().add(createCountry(42,"Japan","JP"));
-		countries.getCountries().add(createCountry(44,"Bosnia and Herzegovina, Serb Republic of ","BA"));
-		countries.getCountries().add(createCountry(50,"Bosnia and Herzegovina, Muslim-Croat Federation of","BA"));
-		countries.getCountries().add(createCountry(51,"Poland","PL"));
-		countries.getCountries().add(createCountry(52,"Bulgaria"," BG"));
-		countries.getCountries().add(createCountry(53,"Romania","RO"));
-		countries.getCountries().add(createCountry(54,"Czech Republic","CZ"));
-		countries.getCountries().add(createCountry(55,"Hungary","HU"));
-		countries.getCountries().add(createCountry(56,"Slovakia","SK"));
-		countries.getCountries().add(createCountry(57,"Azerbaijan","AZ"));
-		countries.getCountries().add(createCountry(58,"Armenia","AM"));
-		countries.getCountries().add(createCountry(59,"Kyrgyzstan","KG"));
-		countries.getCountries().add(createCountry(60,"Ireland","IE"));
-		countries.getCountries().add(createCountry(61,"Korea, Republic of","KR"));
-		countries.getCountries().add(createCountry(62,"Montenegro","ME"));
-		countries.getCountries().add(createCountry(65,"Macedonia, The former Yugoslav Republic of","MD"));
-		countries.getCountries().add(createCountry(66,"Tajikistan","TJ"));
-		countries.getCountries().add(createCountry(67,"Turkmenistan","TM"));
-		countries.getCountries().add(createCountry(70,"United Kingdom of Great Britain and Northern Ireland","GB"));
-		countries.getCountries().add(createCountry(71,"Spain","ES"));
-		countries.getCountries().add(createCountry(72,"Serbia","RS"));	
-		countries.getCountries().add(createCountry(73,"Greece","GR"));
-		countries.getCountries().add(createCountry(74,"Sweden","SE"));
-		countries.getCountries().add(createCountry(75,"Turkey","TR"));	
-		countries.getCountries().add(createCountry(76,"Norway","NO"));
-		countries.getCountries().add(createCountry(78,"Croatia","HR"));	
-		countries.getCountries().add(createCountry(79,"Slovenia","SI"));
-		countries.getCountries().add(createCountry(80,"Germany","DE"));
-		countries.getCountries().add(createCountry(81,"Austria","AT"));	
-		countries.getCountries().add(createCountry(82,"Luxemburg","LU"));
-		countries.getCountries().add(createCountry(83,"Italy","IT"));
-		countries.getCountries().add(createCountry(84,"Netherlands","NL"));	
-		countries.getCountries().add(createCountry(85,"Switzerland","CH"));
-		countries.getCountries().add(createCountry(86,"Denmark","DK"));	
-		countries.getCountries().add(createCountry(87,"France","FR"));
-		countries.getCountries().add(createCountry(88,"Belgium","BE"));
-		countries.getCountries().add(createCountry(90,"Egypt","EG"));
-		countries.getCountries().add(createCountry(91,"Tunesia","TN"));
-		countries.getCountries().add(createCountry(92,"Algeria","DZ"));
-		countries.getCountries().add(createCountry(93,"Morocco","MA"));
-		countries.getCountries().add(createCountry(94,"Portugal","PT"));
-		countries.getCountries().add(createCountry(95,"Israel","IL"));			
-		countries.getCountries().add(createCountry(96,"Iran, Islamic Republic of","IR"));	
-		countries.getCountries().add(createCountry(97,"Syrian Arab Republic","SY"));	
-		countries.getCountries().add(createCountry(98,"Lebanon","LB"));	
-		countries.getCountries().add(createCountry(99,"Iraq","IQ"));	
+		countries.getCountries().add(createCountry(10,"Finland","FI")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(20,"Russian Federation","RU")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(21,"Belarus","BY")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(22,"Ukraine","UA")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(23,"Moldova, Republic of","MD")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(24,"Lithuania","LT")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(25,"Latvia","LV")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(26,"Estonia","EE")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(27,"Kazakhstan"," KZ")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(28,"Georgia","GE")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(29,"Uzbekistan","UZ")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(30,"Korea, Democratic People's Republic of","KP")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(31,"Mongolia","MN")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(32,"Viet nam","VN")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(33,"China","CN")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(40,"Cuba","CU")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(41,"Albania","AL")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(42,"Japan","JP")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(44,"Bosnia and Herzegovina, Serb Republic of ","BA")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(50,"Bosnia and Herzegovina, Muslim-Croat Federation of","BA")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(51,"Poland","PL")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(52,"Bulgaria"," BG")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(53,"Romania","RO")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(54,"Czech Republic","CZ")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(55,"Hungary","HU")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(56,"Slovakia","SK")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(57,"Azerbaijan","AZ")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(58,"Armenia","AM")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(59,"Kyrgyzstan","KG")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(60,"Ireland","IE")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(61,"Korea, Republic of","KR")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(62,"Montenegro","ME")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(65,"Macedonia, The former Yugoslav Republic of","MD")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(66,"Tajikistan","TJ")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(67,"Turkmenistan","TM")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(70,"United Kingdom of Great Britain and Northern Ireland","GB")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(71,"Spain","ES")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(72,"Serbia","RS"));	 //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(73,"Greece","GR")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(74,"Sweden","SE")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(75,"Turkey","TR"));	 //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(76,"Norway","NO")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(78,"Croatia","HR"));	 //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(79,"Slovenia","SI")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(80,"Germany","DE")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(81,"Austria","AT"));	 //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(82,"Luxemburg","LU")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(83,"Italy","IT")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(84,"Netherlands","NL"));	 //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(85,"Switzerland","CH")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(86,"Denmark","DK"));	 //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(87,"France","FR")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(88,"Belgium","BE")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(90,"Egypt","EG")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(91,"Tunesia","TN")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(92,"Algeria","DZ")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(93,"Morocco","MA")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(94,"Portugal","PT")); //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(95,"Israel","IL"));			 //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(96,"Iran, Islamic Republic of","IR"));	 //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(97,"Syrian Arab Republic","SY"));	 //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(98,"Lebanon","LB"));	 //$NON-NLS-1$ //$NON-NLS-2$
+		countries.getCountries().add(createCountry(99,"Iraq","IQ"));	 //$NON-NLS-1$ //$NON-NLS-2$
 		
 	}
 	
 	public static void populateUICLaguages(Languages languages){
 		
-		languages.getLanguages().add(createLanguage("de", "German"));
-		languages.getLanguages().add(createLanguage("ru", "Russian"));
-		languages.getLanguages().add(createLanguage("fr", "French"));
-		languages.getLanguages().add(createLanguage("it", "Italian"));
-		languages.getLanguages().add(createLanguage("en", "English"));		
+		languages.getLanguages().add(createLanguage("de", "German")); //$NON-NLS-1$ //$NON-NLS-2$
+		languages.getLanguages().add(createLanguage("ru", "Russian")); //$NON-NLS-1$ //$NON-NLS-2$
+		languages.getLanguages().add(createLanguage(NationalLanguageSupport.GtmUtils_142, "French")); //$NON-NLS-2$
+		languages.getLanguages().add(createLanguage("it", "Italian")); //$NON-NLS-1$ //$NON-NLS-2$
+		languages.getLanguages().add(createLanguage("en", "English"));		 //$NON-NLS-1$ //$NON-NLS-2$
 		
 	}
 	
@@ -588,8 +589,8 @@ public class GtmUtils {
 	public static void populateCurrencies(Currencies currencies) {
 		
 		Currency currency = GtmFactory.eINSTANCE.createCurrency();
-		currency.setIsoCode("EUR");
-		currency.setName("Euro");		
+		currency.setIsoCode("EUR"); //$NON-NLS-1$
+		currency.setName(NationalLanguageSupport.GtmUtils_149);		
 		currencies.getCurrencies().add(currency);
 	}
 	
@@ -600,15 +601,15 @@ public class GtmUtils {
 
 
 	public static void writeConsoleError(String message) {
-		ConsoleUtil.printError("Errors", message);
+		ConsoleUtil.printError(NationalLanguageSupport.GtmUtils_150, message);
 	}
 
 	public static void writeConsoleWarning(String message) {
-		ConsoleUtil.printWarning("Errors", message);
+		ConsoleUtil.printWarning(NationalLanguageSupport.GtmUtils_151, message);
 	}
 	
 	public static void writeConsoleInfo(String message) {
-		ConsoleUtil.printInfo("Errors", message);
+		ConsoleUtil.printInfo(NationalLanguageSupport.GtmUtils_152, message);
 	}	
 
 	public static CompoundCommand setIds(GTMTool tool, EditingDomain domain) {
@@ -620,11 +621,11 @@ public class GtmUtils {
 		FareStructure fareStructure = tool.getGeneralTariffModel().getFareStructure();
 		
 		String baseName = tool.getGeneralTariffModel().getDelivery().getProvider().getCode();
-		baseName = baseName +"_"+ tool.getGeneralTariffModel().getDelivery().getId()+"_";
+		baseName = baseName +"_"+ tool.getGeneralTariffModel().getDelivery().getId()+"_"; //$NON-NLS-1$ //$NON-NLS-2$
 		
 		String listName = baseName;
 				
-		listName = baseName + "A_";
+		listName = baseName + "A_"; //$NON-NLS-1$
 		int i = 0;
 		for (AfterSalesRule object : fareStructure.getAfterSalesRules().getAfterSalesRules()) {
 			i++;
@@ -634,7 +635,7 @@ public class GtmUtils {
 			}
 		}
 		
-		listName = baseName + "B_";
+		listName = baseName + "B_"; //$NON-NLS-1$
 		i = 0;
 		for (Calendar object : fareStructure.getCalendars().getCalendars()) {
 			i++;
@@ -644,7 +645,7 @@ public class GtmUtils {
 			}
 		}
 
-		listName = baseName + "C_";
+		listName = baseName + "C_"; //$NON-NLS-1$
 		i = 0;
 		for (CarrierConstraint object : fareStructure.getCarrierConstraints().getCarrierConstraints()) {
 			i++;
@@ -653,7 +654,7 @@ public class GtmUtils {
 			}
 		}
 		
-		listName = baseName + "D_";
+		listName = baseName + "D_"; //$NON-NLS-1$
 		i = 0;		
 		for (CombinationConstraint object : fareStructure.getCombinationConstraints().getCombinationConstraints()) {
 			i++;
@@ -662,7 +663,7 @@ public class GtmUtils {
 			}
 		}
 		
-		listName = baseName + "E_";
+		listName = baseName + "E_"; //$NON-NLS-1$
 		i = 0;
 		for (ConnectionPoint object : fareStructure.getConnectionPoints().getConnectionPoints()) {
 			i++;
@@ -685,7 +686,7 @@ public class GtmUtils {
 			}
 		}
 		
-		listName = baseName + "G_";
+		listName = baseName + "G_"; //$NON-NLS-1$
 		i = 0;
 		for (PassengerConstraint object : fareStructure.getPassengerConstraints().getPassengerConstraints()) {
 			if (object.getId() == null || object.getId().isEmpty()) {
@@ -693,7 +694,7 @@ public class GtmUtils {
 			}
 		}		
 		
-		listName = baseName + "H_";
+		listName = baseName + "H_"; //$NON-NLS-1$
 		i = 0;
 		for (PersonalDataConstraint object : fareStructure.getPersonalDataConstraints().getPersonalDataConstraints()) {
 			i++;
@@ -702,7 +703,7 @@ public class GtmUtils {
 			}
 		}		
 		
-		listName = baseName + "I_";
+		listName = baseName + "I_"; //$NON-NLS-1$
 		i = 0;
 		for (Price object : fareStructure.getPrices().getPrices()) {
 			i++;
@@ -711,7 +712,7 @@ public class GtmUtils {
 			}
 		}		
 		
-		listName = baseName + "J_";
+		listName = baseName + "J_"; //$NON-NLS-1$
 		i = 0;
 		for (ReductionCard object : fareStructure.getReductionCards().getReductionCards()) {
 			i++;
@@ -720,7 +721,7 @@ public class GtmUtils {
 			}
 		}		
 		
-		listName = baseName + "K_";
+		listName = baseName + "K_"; //$NON-NLS-1$
 		i = 0;
 		for (ReductionConstraint object : fareStructure.getReductionConstraints().getReductionConstraints()) {
 			i++;
@@ -736,7 +737,7 @@ public class GtmUtils {
 			}
 		}	
 		
-		listName = baseName + "L_";
+		listName = baseName + "L_"; //$NON-NLS-1$
 		i = 0;
 		for (ReservationParameter object : fareStructure.getReservationParameters().getReservationParameters()) {
 			if (object.getId() == null || object.getId().isEmpty()) {
@@ -744,7 +745,7 @@ public class GtmUtils {
 			}
 		}			
 		
-		listName = baseName + "M_";
+		listName = baseName + "M_"; //$NON-NLS-1$
 		i = 0;
 		for (SalesAvailabilityConstraint object : fareStructure.getSalesAvailabilityConstraints().getSalesAvailabilityConstraints()) {
 			i++;
@@ -754,7 +755,7 @@ public class GtmUtils {
 		}	
 		
 		
-		listName = baseName + "N_";
+		listName = baseName + "N_"; //$NON-NLS-1$
 		i = 0;
 		for (ServiceConstraint object : fareStructure.getServiceConstraints().getServiceConstraints()) {
 			i++;
@@ -763,7 +764,7 @@ public class GtmUtils {
 			}
 		}	
 		
-		listName = baseName + "O_";
+		listName = baseName + "O_"; //$NON-NLS-1$
 		i = 0;
 		for (ServiceLevel object : fareStructure.getServiceLevelDefinitions().getServiceLevelDefinition()) {
 			i++;
@@ -772,7 +773,7 @@ public class GtmUtils {
 			}
 		}	
 		
-		listName = baseName + "P_";
+		listName = baseName + "P_"; //$NON-NLS-1$
 		i = 0;
 		for (Text object : fareStructure.getTexts().getTexts()) {
 			i++;
@@ -781,7 +782,7 @@ public class GtmUtils {
 			}
 		}	
 		
-		listName = baseName + "Q_";
+		listName = baseName + "Q_"; //$NON-NLS-1$
 		i = 0;
 		for (TravelValidityConstraint object : fareStructure.getTravelValidityConstraints().getTravelValidityConstraints()) {
 			i++;
@@ -790,7 +791,7 @@ public class GtmUtils {
 			}
 		}		
 		
-		listName = baseName + "R_";
+		listName = baseName + "R_"; //$NON-NLS-1$
 		i = 0;
 		for (FareStationSetDefinition object : fareStructure.getFareStationSetDefinitions().getFareStationSetDefinitions()) {
 			i++;
@@ -805,7 +806,7 @@ public class GtmUtils {
 
 	
 	private static void setId(EditingDomain domain, EObject object, EStructuralFeature feature, CompoundCommand command, String listName, int index) {
-		SetCommand cmd = new SetCommand(domain, object,feature, listName+"_"+Integer.toString(index));
+		SetCommand cmd = new SetCommand(domain, object,feature, listName+"_"+Integer.toString(index)); //$NON-NLS-1$
 		if (cmd.canExecute()) {
 			command.append(cmd);
 		}
@@ -854,7 +855,7 @@ public class GtmUtils {
 	 * @return the description
 	 */
 	public static String getTypedDescription(EObject object) {
-		String typeName = "";
+		String typeName = ""; //$NON-NLS-1$
 		EObject eObject = ((EObject) object);
 
 		typeName = getTypeDescription(eObject);
@@ -864,7 +865,7 @@ public class GtmUtils {
 			if (adapterText.startsWith(typeName)) {
 				return adapterText;
 			} else {
-				return typeName + " " + adapterText;
+				return typeName + " " + adapterText; //$NON-NLS-1$
 			}
 		}
 		return typeName;
@@ -872,7 +873,7 @@ public class GtmUtils {
 
 	private static String getItemLabelProviderText(EObject object) {
 		if(object == null){
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		String adapterText = null;
 		EList<Adapter> eAdapters = object.eAdapters();
@@ -888,7 +889,7 @@ public class GtmUtils {
 	}
 
 	private static String getTypeDescription(EObject object) {
-			String typeName = "";
+			String typeName = ""; //$NON-NLS-1$
 			if (object instanceof EObject) {
 				EObject eObject = ((EObject) object);
 				String typeKey = eObject.eClass().getName();
@@ -903,13 +904,13 @@ public class GtmUtils {
 				}
 
 				if (provider != null) {
-					String resource = "_UI_" + typeKey + "_type";
-					if (resource.equals("_UI_EReference_type")  ) {
-						typeName = "";
-					} else if ( resource.equals("_UI_EObject_type")) {
-						typeName = "";
-					} else if ( resource.equals("_UI_EAttribute_type")) {
-						typeName = "";					
+					String resource = "_UI_" + typeKey + "_type"; //$NON-NLS-1$ //$NON-NLS-2$
+					if (resource.equals("_UI_EReference_type")  ) { //$NON-NLS-1$
+						typeName = ""; //$NON-NLS-1$
+					} else if ( resource.equals("_UI_EObject_type")) { //$NON-NLS-1$
+						typeName = NationalLanguageSupport.GtmUtils_182;
+					} else if ( resource.equals("_UI_EAttribute_type")) { //$NON-NLS-1$
+						typeName = "";					 //$NON-NLS-1$
 					} else {
 						try {
 							typeName = provider.getString(resource, true);
@@ -925,30 +926,30 @@ public class GtmUtils {
 
 	public static String toPrintableAscII(String text) {
         // strips off all non-ASCII characters
-        text = text.replaceAll("[^\\x00-\\x7F]", "");
+        text = text.replaceAll("[^\\x00-\\x7F]", ""); //$NON-NLS-1$ //$NON-NLS-2$
  
         // erases all the ASCII control characters
-        text = text.replaceAll("[\\p{Cntrl}&&[^\r\n\t]]", "");
+        text = text.replaceAll("[\\p{Cntrl}&&[^\r\n\t]]", ""); //$NON-NLS-1$ //$NON-NLS-2$
          
         // removes non-printable characters from Unicode
-        return text.replaceAll("\\p{C}", "");
+        return text.replaceAll("\\p{C}", ""); //$NON-NLS-1$ //$NON-NLS-2$
 
 	}
 	
 	public static String limitStringLength(String s, int maxChar) {
-		if (s == null) return " ";
+		if (s == null) return " "; //$NON-NLS-1$
 		return s.substring(0, Math.min(maxChar, s.length()));
 	}
 
 	public static String limitStringLengthWithConsoleEntry(String s, int maxChar, GtmEditor editor, String text) {
-		if (s == null) return " ";
+		if (s == null) return " "; //$NON-NLS-1$
 		if (s.length() <= maxChar) return s;
 		
 		
 		String truncated = s.substring(0, Math.min(maxChar, s.length()));
 
 		editor.getSite().getShell().getDisplay().asyncExec(() -> {
-			GtmUtils.writeConsoleInfo("text" + " truncated:" + s + " -> " + truncated);
+			GtmUtils.writeConsoleInfo("text" + " truncated:" + s + " -> " + truncated); //$NON-NLS-1$ //$NON-NLS-3$
 		});
 		
 		return truncated;

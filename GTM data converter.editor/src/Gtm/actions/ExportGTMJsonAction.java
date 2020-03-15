@@ -19,6 +19,7 @@ import org.osgi.service.prefs.BackingStoreException;
 
 import Gtm.GTMTool;
 import Gtm.jsonImportExport.GtmJsonExporter;
+import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 import export.ExportFareDelivery;
@@ -32,7 +33,7 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 		protected IEditingDomainProvider editingDomainProvider = null;
 		
 		public ExportGTMJsonAction(IEditingDomainProvider editingDomainProvider) {
-			super("Export GTM data", editingDomainProvider);
+			super(NationalLanguageSupport.ExportGTMJsonAction_0, editingDomainProvider);
 			this.editingDomainProvider = editingDomainProvider;
 			this.setToolTipText(this.getText());
 			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/exportGtm.png")); //$NON-NLS-1$
@@ -56,13 +57,13 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 			
 			if (tool == null) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("no data found");
+				dialog.setText(NationalLanguageSupport.ExportGTMJsonAction_1);
 				dialog.open(); 
 				return;
 			}
 			
 			String name = tool.getGeneralTariffModel().getDelivery().getProvider().getCode().trim() 
-					+ "_" + tool.getGeneralTariffModel().getDelivery().getId().trim()+".gtm.json";
+					+ "_" + tool.getGeneralTariffModel().getDelivery().getId().trim()+".gtm.json"; //$NON-NLS-1$ //$NON-NLS-2$
             File file = getFile(name);
 			if (file == null) {
 				return;
@@ -80,21 +81,21 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 					
 					try {
 						
-						monitor.beginTask("Exporting fare data to json", 31); 
+						monitor.beginTask(NationalLanguageSupport.ExportGTMJsonAction_4, 31); 
 
-						monitor.subTask("Initialize main structure");
+						monitor.subTask(NationalLanguageSupport.ExportGTMJsonAction_5);
 						prepareStructure(tool,domain);
 						monitor.worked(1);
 					
-						monitor.subTask("create IDs");
+						monitor.subTask(NationalLanguageSupport.ExportGTMJsonAction_6);
 						insertIds(tool,domain,editor);
 						monitor.worked(1);
 							
-						monitor.subTask("convert to json");						
+						monitor.subTask(NationalLanguageSupport.ExportGTMJsonAction_7);						
 						FareDelivery fares= jsonModelExporter.convertToJson(tool.getGeneralTariffModel(), monitor);
 						monitor.worked(1);
 			 	
-						monitor.subTask("write json file");
+						monitor.subTask(NationalLanguageSupport.ExportGTMJsonAction_8);
 						fileExporter.exportFareDelivery(fares, file);
 						monitor.worked(1);
 						
@@ -114,11 +115,11 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 			
 			} catch (Exception e) {
 				MessageBox dialog =  new MessageBox(editor.getSite().getShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("json formating error");
+				dialog.setText(NationalLanguageSupport.ExportGTMJsonAction_9);
 				if (e.getMessage()!= null) {
 					dialog.setMessage(e.getMessage());
 				} else {
-					dialog.setMessage("unknown error");
+					dialog.setMessage(NationalLanguageSupport.ExportGTMJsonAction_10);
 				}
 				dialog.open(); 
 				GtmEditorPlugin.INSTANCE.log(e);
@@ -137,7 +138,7 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 			
 			if (command == null) {
 				MessageBox dialog =  new MessageBox(editor.getSite().getShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("no export data found");
+				dialog.setText(NationalLanguageSupport.ExportGTMJsonAction_11);
 				dialog.open(); 
 				return;
 			}
@@ -146,7 +147,7 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 	        	
 				if (!command.canExecute()) {
 					MessageBox dialog =  new MessageBox(editor.getSite().getShell(), SWT.ICON_ERROR | SWT.OK);
-					dialog.setText("ids can not be created");
+					dialog.setText(NationalLanguageSupport.ExportGTMJsonAction_12);
 					dialog.open(); 
 					return;
 				}
@@ -161,7 +162,7 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 		    Shell shell = Display.getDefault().getActiveShell();
 		    shell.open();
 		    FileDialog dialog = new FileDialog(shell, SWT.SAVE);
-		    dialog.setFilterExtensions(new String[] { "*.json"}); 
+		    dialog.setFilterExtensions(new String[] { "*.json"});  //$NON-NLS-1$
 		    
 		    String lastPath = getLastPath();
 			dialog.setFilterPath(lastPath); 
@@ -182,7 +183,7 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 			// saves plugin preferences at the workspace level
 			 IEclipsePreferences prefs =  InstanceScope.INSTANCE.getNode(GtmEditorPlugin.PLUGIN_ID); // does all the above behind the scenes
 
-			  prefs.put("LAST_PATH", path);
+			  prefs.put("LAST_PATH", path); //$NON-NLS-1$
 			  try {
 			    // prefs are automatically flushed during a plugin's "super.stop()".
 			    prefs.flush();
@@ -196,7 +197,7 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 
 		  IEclipsePreferences prefs = InstanceScope.INSTANCE.getNode(GtmEditorPlugin.PLUGIN_ID);
 		  // you might want to call prefs.sync() if you're worried about others changing your settings
-		  return prefs.get("LAST_PATH","c:\\");
+		  return prefs.get("LAST_PATH","c:\\"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		

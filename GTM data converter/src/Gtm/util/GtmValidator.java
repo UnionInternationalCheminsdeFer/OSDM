@@ -42,7 +42,7 @@ public class GtmValidator extends EObjectValidator {
 	 * @see org.eclipse.emf.common.util.Diagnostic#getCode()
 	 * @generated
 	 */
-	public static final String DIAGNOSTIC_SOURCE = "Gtm";
+	public static final String DIAGNOSTIC_SOURCE = "Gtm"; //$NON-NLS-1$
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -496,8 +496,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Carrier code list is missing or empty",
-						 new Object[] { "Carrier code list is missing or empty", getObjectLabel(codeLists, context) },
+						 NationalLanguageSupport.GtmValidator_1,
+						 new Object[] { NationalLanguageSupport.GtmValidator_2, getObjectLabel(codeLists, context) },
 						 new Object[] { codeLists },
 						 context));
 			}
@@ -520,8 +520,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Service brand code list is missing or empty",
-						 new Object[] { "SERVICE_BRANDS_MUST", getObjectLabel(codeLists, context) },
+						 NationalLanguageSupport.GtmValidator_3,
+						 new Object[] { "SERVICE_BRANDS_MUST", getObjectLabel(codeLists, context) }, //$NON-NLS-1$
 						 new Object[] { codeLists },
 						 context));
 			}
@@ -545,8 +545,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Stations code list is missing or empty",
-						 new Object[] { "STATIONS_MUST", getObjectLabel(codeLists, context) },
+						 NationalLanguageSupport.GtmValidator_5,
+						 new Object[] { "STATIONS_MUST", getObjectLabel(codeLists, context) }, //$NON-NLS-1$
 						 new Object[] { codeLists },
 						 context));
 			}
@@ -569,8 +569,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Countries code list is missing or empty",
-						 new Object[] { "COUNTRIES_MUST", getObjectLabel(codeLists, context) },
+						 NationalLanguageSupport.GtmValidator_7,
+						 new Object[] { NationalLanguageSupport.GtmValidator_8, getObjectLabel(codeLists, context) },
 						 new Object[] { codeLists },
 						 context));
 			}
@@ -594,8 +594,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Currencies code list is missing or empty",
-						 new Object[] { "CURRENCIES_MUST", getObjectLabel(codeLists, context) },
+						 NationalLanguageSupport.GtmValidator_9,
+						 new Object[] { "CURRENCIES_MUST", getObjectLabel(codeLists, context) }, //$NON-NLS-1$
 						 new Object[] { codeLists },
 						 context));
 			}
@@ -619,8 +619,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Languages code list is missing or empty",
-						 new Object[] { "LANGUAGES_MUST", getObjectLabel(codeLists, context) },
+						 NationalLanguageSupport.GtmValidator_11,
+						 new Object[] { "LANGUAGES_MUST", getObjectLabel(codeLists, context) }, //$NON-NLS-1$
 						 new Object[] { codeLists },
 						 context));
 			}
@@ -671,8 +671,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Service brand code list is empty",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(serviceBrands, context) },
+						 NationalLanguageSupport.GtmValidator_13,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(serviceBrands, context) }, //$NON-NLS-1$
 						 new Object[] { serviceBrands },
 						 context));
 			}
@@ -714,8 +714,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Languages code list is empty",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(languages, context) },
+						 NationalLanguageSupport.GtmValidator_15,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(languages, context) }, //$NON-NLS-1$
 						 new Object[] { languages },
 						 context));
 			}
@@ -757,8 +757,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Currencies code list is empty",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(currencies, context) },
+						 NationalLanguageSupport.GtmValidator_17,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(currencies, context) }, //$NON-NLS-1$
 						 new Object[] { currencies },
 						 context));
 			}
@@ -800,8 +800,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Countries code list is empty",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(countries, context) },
+						 NationalLanguageSupport.GtmValidator_19,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(countries, context) }, //$NON-NLS-1$
 						 new Object[] { countries },
 						 context));
 			}
@@ -843,8 +843,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Stations code list is empty",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(stations, context) },
+						 NationalLanguageSupport.GtmValidator_21,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(stations, context) }, //$NON-NLS-1$
 						 new Object[] { stations },
 						 context));
 			}
@@ -886,8 +886,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Carrier code list is empty",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(carriers, context) },
+						 NationalLanguageSupport.GtmValidator_23,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(carriers, context) }, //$NON-NLS-1$
 						 new Object[] { carriers },
 						 context));
 			}
@@ -931,8 +931,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Delivery information is missing",
-						 new Object[] { "DELIVERY_MUST", getObjectLabel(generalTariffModel, context) },
+						 NationalLanguageSupport.GtmValidator_25,
+						 new Object[] { "DELIVERY_MUST", getObjectLabel(generalTariffModel, context) }, //$NON-NLS-1$
 						 new Object[] { generalTariffModel },
 						 context));
 			}
@@ -955,8 +955,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Fare data missing",
-						 new Object[] { "FARE_MUST", getObjectLabel(generalTariffModel, context) },
+						 NationalLanguageSupport.GtmValidator_27,
+						 new Object[] { "FARE_MUST", getObjectLabel(generalTariffModel, context) }, //$NON-NLS-1$
 						 new Object[] { generalTariffModel },
 						 context));
 			}
@@ -1008,8 +1008,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Country is missing",
-						 new Object[] { "COUNTRY_MUST", getObjectLabel(conversionParams, context) },
+						 NationalLanguageSupport.GtmValidator_29,
+						 new Object[] { NationalLanguageSupport.GtmValidator_30, getObjectLabel(conversionParams, context) },
 						 new Object[] { conversionParams },
 						 context));
 			}
@@ -1032,8 +1032,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "No fare templates defined",
-						 new Object[] { "AT_LEAST_ONE_LEGACY_FARE_TEMPLATE", getObjectLabel(conversionParams, context) },
+						 NationalLanguageSupport.GtmValidator_31,
+						 new Object[] { "AT_LEAST_ONE_LEGACY_FARE_TEMPLATE", getObjectLabel(conversionParams, context) }, //$NON-NLS-1$
 						 new Object[] { conversionParams },
 						 context));
 			}
@@ -1083,8 +1083,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Price factor in fare template is zero",
-						 new Object[] { "PRICE_FACTOR_MUST", getObjectLabel(fareTemplate, context) },
+						 NationalLanguageSupport.GtmValidator_33,
+						 new Object[] { "PRICE_FACTOR_MUST", getObjectLabel(fareTemplate, context) }, //$NON-NLS-1$
 						 new Object[] { fareTemplate },
 						 context));
 			}
@@ -1098,8 +1098,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Price factor in fare template must not be negative",
-						 new Object[] { "PRICE_FACTOR_MUST", getObjectLabel(fareTemplate, context) },
+						 NationalLanguageSupport.GtmValidator_35,
+						 new Object[] { "PRICE_FACTOR_MUST", getObjectLabel(fareTemplate, context) }, //$NON-NLS-1$
 						 new Object[] { fareTemplate },
 						 context));
 			}
@@ -1113,8 +1113,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Price factor too large",
-						 new Object[] { "PRICE_FACTOR_MUST", getObjectLabel(fareTemplate, context) },
+						 NationalLanguageSupport.GtmValidator_4,
+						 new Object[] { "PRICE_FACTOR_MUST", getObjectLabel(fareTemplate, context) }, //$NON-NLS-1$
 						 new Object[] { fareTemplate },
 						 context));
 			}
@@ -1126,8 +1126,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Price factor might be too large",
-						 new Object[] { "PRICE_FACTOR_MUST", getObjectLabel(fareTemplate, context) },
+						 NationalLanguageSupport.GtmValidator_0,
+						 new Object[] { "PRICE_FACTOR_MUST", getObjectLabel(fareTemplate, context) }, //$NON-NLS-1$
 						 new Object[] { fareTemplate },
 						 context));
 			}
@@ -1154,8 +1154,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Fare type is missing in fare template",
-						 new Object[] { "TYPE_MUST", getObjectLabel(fareTemplate, context) },
+						 NationalLanguageSupport.GtmValidator_41,
+						 new Object[] { "TYPE_MUST", getObjectLabel(fareTemplate, context) }, //$NON-NLS-1$
 						 new Object[] { fareTemplate },
 						 context));
 			}
@@ -1178,8 +1178,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Travel validity is missing in fare template",
-						 new Object[] { "TRAVEL_VALIDITY_MUST", getObjectLabel(fareTemplate, context) },
+						 NationalLanguageSupport.GtmValidator_43,
+						 new Object[] { "TRAVEL_VALIDITY_MUST", getObjectLabel(fareTemplate, context) }, //$NON-NLS-1$
 						 new Object[] { fareTemplate },
 						 context));
 			}
@@ -1202,8 +1202,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Combination constraint is missing in fare template",
-						 new Object[] { "COMBINATION_CONSTRAINT_MUST", getObjectLabel(fareTemplate, context) },
+						 NationalLanguageSupport.GtmValidator_45,
+						 new Object[] { "COMBINATION_CONSTRAINT_MUST", getObjectLabel(fareTemplate, context) }, //$NON-NLS-1$
 						 new Object[] { fareTemplate },
 						 context));
 			}
@@ -1226,8 +1226,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Passenger constraint is missing in fare template",
-						 new Object[] { "PASSENGER_CONSTRAINT_MUST", getObjectLabel(fareTemplate, context) },
+						 NationalLanguageSupport.GtmValidator_47,
+						 new Object[] { NationalLanguageSupport.GtmValidator_48, getObjectLabel(fareTemplate, context) },
 						 new Object[] { fareTemplate },
 						 context));
 			}
@@ -1250,8 +1250,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Fulfillment constraint is missing in fare template",
-						 new Object[] { "FULFILMENT_CONSTRAINT_MUST", getObjectLabel(fareTemplate, context) },
+						 NationalLanguageSupport.GtmValidator_49,
+						 new Object[] { "FULFILMENT_CONSTRAINT_MUST", getObjectLabel(fareTemplate, context) }, //$NON-NLS-1$
 						 new Object[] { fareTemplate },
 						 context));
 			}
@@ -1274,8 +1274,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Legacy conversion rule not set in fare template",
-						 new Object[] { "LEGACY_CONVERSION_MUST", getObjectLabel(fareTemplate, context) },
+						 NationalLanguageSupport.GtmValidator_51,
+						 new Object[] { "LEGACY_CONVERSION_MUST", getObjectLabel(fareTemplate, context) }, //$NON-NLS-1$
 						 new Object[] { fareTemplate },
 						 context));
 			}
@@ -1299,8 +1299,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Service class not defined in fare template",
-						 new Object[] { "SERVICE_CLASS_MUST", getObjectLabel(fareTemplate, context) },
+						 NationalLanguageSupport.GtmValidator_53,
+						 new Object[] { NationalLanguageSupport.GtmValidator_54, getObjectLabel(fareTemplate, context) },
 						 new Object[] { fareTemplate },
 						 context));
 			}
@@ -1324,8 +1324,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Eigther a price or a price factor can ge set, not both",
-						 new Object[] { "PRICE_OR_FACTOR", getObjectLabel(fareTemplate, context) },
+						 NationalLanguageSupport.GtmValidator_55,
+						 new Object[] { "PRICE_OR_FACTOR", getObjectLabel(fareTemplate, context) }, //$NON-NLS-1$
 						 new Object[] { fareTemplate },
 						 context));
 			}
@@ -1494,8 +1494,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "No sales availability constraints defined",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(salesAvailabilityConstraints, context) },
+						 NationalLanguageSupport.GtmValidator_57,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(salesAvailabilityConstraints, context) }, //$NON-NLS-1$
 						 new Object[] { salesAvailabilityConstraints },
 						 context));
 			}
@@ -1609,8 +1609,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "No service classes defined",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(serviceClassDefinitions, context) },
+						 NationalLanguageSupport.GtmValidator_59,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(serviceClassDefinitions, context) }, //$NON-NLS-1$
 						 new Object[] { serviceClassDefinitions },
 						 context));
 			}
@@ -1653,8 +1653,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "No calendars defined",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(calendars, context) },
+						 NationalLanguageSupport.GtmValidator_61,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(calendars, context) }, //$NON-NLS-1$
 						 new Object[] { calendars },
 						 context));
 			}
@@ -1717,8 +1717,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Privider is missing",
-						 new Object[] { "CARRIER_MUST", getObjectLabel(delivery, context) },
+						 NationalLanguageSupport.GtmValidator_63,
+						 new Object[] { "CARRIER_MUST", getObjectLabel(delivery, context) }, //$NON-NLS-1$
 						 new Object[] { delivery },
 						 context));
 			}
@@ -1742,23 +1742,23 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Delivery ID is not defined",
-						 new Object[] { "DELIVERY_ID_CHARACTERS", getObjectLabel(delivery, context) },
+						 NationalLanguageSupport.GtmValidator_65,
+						 new Object[] { NationalLanguageSupport.GtmValidator_66, getObjectLabel(delivery, context) },
 						 new Object[] { delivery },
 						 context));
 			}
 			return false;
 		}
 		
-		if (delivery.getId().contains(" ")) {
+		if (delivery.getId().contains(" ")) { //$NON-NLS-1$
 			if (diagnostics != null) {
 				diagnostics.add
 					(createSimpleDiagnostic
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Delivery ID must not contain blancs",
-						 new Object[] { "DELIVERY_ID_CHARACTERS", getObjectLabel(delivery, context) },
+						 NationalLanguageSupport.GtmValidator_68,
+						 new Object[] { "DELIVERY_ID_CHARACTERS", getObjectLabel(delivery, context) }, //$NON-NLS-1$
 						 new Object[] { delivery },
 						 context));
 			}
@@ -1784,8 +1784,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Schema version missing in delivery",
-						 new Object[] { "VERSION_MUST", getObjectLabel(delivery, context) },
+						 NationalLanguageSupport.GtmValidator_70,
+						 new Object[] { "VERSION_MUST", getObjectLabel(delivery, context) }, //$NON-NLS-1$
 						 new Object[] { delivery },
 						 context));
 			}
@@ -1809,8 +1809,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Accepted schema version is missing in delivery",
-						 new Object[] { "ACCEPTED_VERSIONS_MUST", getObjectLabel(delivery, context) },
+						 NationalLanguageSupport.GtmValidator_72,
+						 new Object[] { "ACCEPTED_VERSIONS_MUST", getObjectLabel(delivery, context) }, //$NON-NLS-1$
 						 new Object[] { delivery },
 						 context));
 			}
@@ -1853,8 +1853,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Start and end date of the calendar missing or in wrong order",
-						 new Object[] { "START_END_DATE_ORDER", getObjectLabel(calendar, context) },
+						 NationalLanguageSupport.GtmValidator_74,
+						 new Object[] { "START_END_DATE_ORDER", getObjectLabel(calendar, context) }, //$NON-NLS-1$
 						 new Object[] { calendar },
 						 context));
 			}
@@ -1887,8 +1887,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Dates listed in the calendar are outside the from - until date range",
-						 new Object[] { "DATES_WITHIN_RANGE", getObjectLabel(calendar, context) },
+						 NationalLanguageSupport.GtmValidator_76,
+						 new Object[] { "DATES_WITHIN_RANGE", getObjectLabel(calendar, context) }, //$NON-NLS-1$
 						 new Object[] { calendar },
 						 context));
 			}
@@ -1950,8 +1950,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Service brand missing in legacy service brand mapping",
-						 new Object[] { "SERVICE_CONSTRAINT_MUST", getObjectLabel(legacyStationToServiceConstraintMapping, context) },
+						 NationalLanguageSupport.GtmValidator_78,
+						 new Object[] { "SERVICE_CONSTRAINT_MUST", getObjectLabel(legacyStationToServiceConstraintMapping, context) }, //$NON-NLS-1$
 						 new Object[] { legacyStationToServiceConstraintMapping },
 						 context));
 			}
@@ -1975,8 +1975,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Station code missing in legacy station to service Brand mapping",
-						 new Object[] { "CODE_NOT_NULL", getObjectLabel(legacyStationToServiceConstraintMapping, context) },
+						 NationalLanguageSupport.GtmValidator_80,
+						 new Object[] { "CODE_NOT_NULL", getObjectLabel(legacyStationToServiceConstraintMapping, context) }, //$NON-NLS-1$
 						 new Object[] { legacyStationToServiceConstraintMapping },
 						 context));
 			}
@@ -2029,8 +2029,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Station code missing in legacy station for fare reference station set missing",
-						 new Object[] { "CODE_NOT_NULL", getObjectLabel(legacyFareStationSetMap, context) },
+						 NationalLanguageSupport.GtmValidator_82,
+						 new Object[] { "CODE_NOT_NULL", getObjectLabel(legacyFareStationSetMap, context) }, //$NON-NLS-1$
 						 new Object[] { legacyFareStationSetMap },
 						 context));
 			}
@@ -2054,8 +2054,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Fare reference station set missing in legacy station to fare reference station set mapping ",
-						 new Object[] { "STATION_SET_MUST", getObjectLabel(legacyFareStationSetMap, context) },
+						 NationalLanguageSupport.GtmValidator_84,
+						 new Object[] { "STATION_SET_MUST", getObjectLabel(legacyFareStationSetMap, context) }, //$NON-NLS-1$
 						 new Object[] { legacyFareStationSetMap },
 						 context));
 			}
@@ -2109,8 +2109,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Character set not defined in legacy data",
-						 new Object[] { "CHARACTER_SET_MUST", getObjectLabel(legacy108, context) },
+						 NationalLanguageSupport.GtmValidator_86,
+						 new Object[] { "CHARACTER_SET_MUST", getObjectLabel(legacy108, context) }, //$NON-NLS-1$
 						 new Object[] { legacy108 },
 						 context));
 			}
@@ -2133,8 +2133,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Time zone not set in legacy data",
-						 new Object[] { "TIME_ZONE_MUST", getObjectLabel(legacy108, context) },
+						 NationalLanguageSupport.GtmValidator_88,
+						 new Object[] { "TIME_ZONE_MUST", getObjectLabel(legacy108, context) }, //$NON-NLS-1$
 						 new Object[] { legacy108 },
 						 context));
 			}
@@ -2158,8 +2158,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Carrier missing in legacy data",
-						 new Object[] { "CARRIER_MUST", getObjectLabel(legacy108, context) },
+						 NationalLanguageSupport.GtmValidator_90,
+						 new Object[] { "CARRIER_MUST", getObjectLabel(legacy108, context) }, //$NON-NLS-1$
 						 new Object[] { legacy108 },
 						 context));
 			}
@@ -2339,8 +2339,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Station code missing in legacy station to station mapping",
-						 new Object[] { "CODE_NOU_NULL", getObjectLabel(legacyStationMap, context) },
+						 NationalLanguageSupport.GtmValidator_92,
+						 new Object[] { "CODE_NOU_NULL", getObjectLabel(legacyStationMap, context) }, //$NON-NLS-1$
 						 new Object[] { legacyStationMap },
 						 context));
 			}
@@ -2364,8 +2364,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Station missing in legacy ststion to station mapping",
-						 new Object[] { "STATION_MUST", getObjectLabel(legacyStationMap, context) },
+						 NationalLanguageSupport.GtmValidator_94,
+						 new Object[] { "STATION_MUST", getObjectLabel(legacyStationMap, context) }, //$NON-NLS-1$
 						 new Object[] { legacyStationMap },
 						 context));
 			}
@@ -2436,8 +2436,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Border point code missing in legacy order point mapping",
-						 new Object[] { "CODE_NOT_NULL", getObjectLabel(legacyBorderPointMapping, context) },
+						 NationalLanguageSupport.GtmValidator_96,
+						 new Object[] { "CODE_NOT_NULL", getObjectLabel(legacyBorderPointMapping, context) }, //$NON-NLS-1$
 						 new Object[] { legacyBorderPointMapping },
 						 context));
 			}
@@ -2460,8 +2460,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Connection point missing in legacy border point mapping",
-						 new Object[] { "CONNECTION_POINT_MUST", getObjectLabel(legacyBorderPointMapping, context) },
+						 NationalLanguageSupport.GtmValidator_98,
+						 new Object[] { "CONNECTION_POINT_MUST", getObjectLabel(legacyBorderPointMapping, context) }, //$NON-NLS-1$
 						 new Object[] { legacyBorderPointMapping },
 						 context));
 			}
@@ -2513,7 +2513,7 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 NationalLanguageSupport.Validation_CarrierConstraint_diagnostic,
+						 "", //$NON-NLS-1$
 						 new Object[] { getObjectLabel(carrierConstraint, context) },
 						 new Object[] { carrierConstraint },
 						 context));
@@ -2569,8 +2569,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Connection point name contains invalid characters",
-						 new Object[] { "NAME_FORMAT", getObjectLabel(connectionPoint, context) },
+						 NationalLanguageSupport.GtmValidator_100,
+						 new Object[] { "NAME_FORMAT", getObjectLabel(connectionPoint, context) }, //$NON-NLS-1$
 						 new Object[] { connectionPoint },
 						 context));
 			}
@@ -2594,8 +2594,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Border point code missing in connection point",
-						 new Object[] { "LEGACY_BORDER_POINT_MISSING", getObjectLabel(connectionPoint, context) },
+						 NationalLanguageSupport.GtmValidator_102,
+						 new Object[] { "LEGACY_BORDER_POINT_MISSING", getObjectLabel(connectionPoint, context) }, //$NON-NLS-1$
 						 new Object[] { connectionPoint },
 						 context));
 			}
@@ -2619,8 +2619,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Station set missing in connection point",
-						 new Object[] { "STATION_SET_AT_LEAST_ONE", getObjectLabel(connectionPoint, context) },
+						 NationalLanguageSupport.GtmValidator_104,
+						 new Object[] { "STATION_SET_AT_LEAST_ONE", getObjectLabel(connectionPoint, context) }, //$NON-NLS-1$
 						 new Object[] { connectionPoint },
 						 context));
 			}
@@ -2644,8 +2644,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Connection pount name does contain invalid characters in UTF8 name",
-						 new Object[] { "NAME_UTF8_FORMAT", getObjectLabel(connectionPoint, context) },
+						 NationalLanguageSupport.GtmValidator_106,
+						 new Object[] { "NAME_UTF8_FORMAT", getObjectLabel(connectionPoint, context) }, //$NON-NLS-1$
 						 new Object[] { connectionPoint },
 						 context));
 			}
@@ -2688,8 +2688,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "The station set does not include a station",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(stationSet, context) },
+						 NationalLanguageSupport.GtmValidator_108,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(stationSet, context) }, //$NON-NLS-1$
 						 new Object[] { stationSet },
 						 context));
 			}
@@ -2749,8 +2749,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "VAT larger than the price",
-						 new Object[] { "VAT_PLAUSIBILITY_CHECK", getObjectLabel(currencyPrice, context) },
+						 NationalLanguageSupport.GtmValidator_6,
+						 new Object[] { "VAT_PLAUSIBILITY_CHECK", getObjectLabel(currencyPrice, context) }, //$NON-NLS-1$
 						 new Object[] { currencyPrice },
 						 context));
 			}
@@ -2774,8 +2774,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Ciurrency is missing n price",
-						 new Object[] { "CURRENCY_MUST", getObjectLabel(currencyPrice, context) },
+						 NationalLanguageSupport.GtmValidator_112,
+						 new Object[] { NationalLanguageSupport.GtmValidator_113, getObjectLabel(currencyPrice, context) },
 						 new Object[] { currencyPrice },
 						 context));
 			}
@@ -2792,7 +2792,7 @@ public class GtmValidator extends EObjectValidator {
 	 */
 	public boolean validateCurrencyPrice_AMOUNT_MUST(CurrencyPrice currencyPrice, DiagnosticChain diagnostics, Map<Object, Object> context) {
 
-		if (currencyPrice.getCurrency().getIsoCode() == "EUR" && 
+		if (currencyPrice.getCurrency().getIsoCode() == "EUR" &&  //$NON-NLS-1$
 				currencyPrice.getAmount() > 10000	) {
 			if (diagnostics != null) {
 				diagnostics.add
@@ -2800,8 +2800,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Price too large",
-						 new Object[] { "AMOUNT_MUST", getObjectLabel(currencyPrice, context) },
+						 NationalLanguageSupport.GtmValidator_115,
+						 new Object[] { "AMOUNT_MUST", getObjectLabel(currencyPrice, context) }, //$NON-NLS-1$
 						 new Object[] { currencyPrice },
 						 context));
 			}
@@ -2814,8 +2814,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Price must not be negative",
-						 new Object[] { "AMOUNT_MUST", getObjectLabel(currencyPrice, context) },
+						 NationalLanguageSupport.GtmValidator_117,
+						 new Object[] { "AMOUNT_MUST", getObjectLabel(currencyPrice, context) }, //$NON-NLS-1$
 						 new Object[] { currencyPrice },
 						 context));
 			}
@@ -2867,8 +2867,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Price is missing",
-						 new Object[] { "AT_LEAST_ONE_PRICE", getObjectLabel(price, context) },
+						 NationalLanguageSupport.GtmValidator_119,
+						 new Object[] { "AT_LEAST_ONE_PRICE", getObjectLabel(price, context) }, //$NON-NLS-1$
 						 new Object[] { price },
 						 context));
 			}
@@ -2912,8 +2912,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Reduction card issuer is missing",
-						 new Object[] { "ISUER_MUST_FOR_NON_GENERIC", getObjectLabel(reductionCard, context) },
+						 NationalLanguageSupport.GtmValidator_121,
+						 new Object[] { "ISUER_MUST_FOR_NON_GENERIC", getObjectLabel(reductionCard, context) }, //$NON-NLS-1$
 						 new Object[] { reductionCard },
 						 context));
 			}
@@ -2958,8 +2958,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Regional validity ios missing",
-						 new Object[] { "AT_LEAST_ONE_REGIONAL_VALIDITY", getObjectLabel(regionalConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_123,
+						 new Object[] { "AT_LEAST_ONE_REGIONAL_VALIDITY", getObjectLabel(regionalConstraint, context) }, //$NON-NLS-1$
 						 new Object[] { regionalConstraint },
 						 context));
 			}
@@ -2983,8 +2983,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Distance is very short",
-						 new Object[] { "WARNING_DISTANCE_TOO_SHORT", getObjectLabel(regionalConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_125,
+						 new Object[] { "WARNING_DISTANCE_TOO_SHORT", getObjectLabel(regionalConstraint, context) }, //$NON-NLS-1$
 						 new Object[] { regionalConstraint },
 						 context));
 			}
@@ -3008,8 +3008,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Distance is very long",
-						 new Object[] { "WARNING_DISTANCE_TOO_LONG", getObjectLabel(regionalConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_127,
+						 new Object[] { "WARNING_DISTANCE_TOO_LONG", getObjectLabel(regionalConstraint, context) }, //$NON-NLS-1$
 						 new Object[] { regionalConstraint },
 						 context));
 			}
@@ -3080,8 +3080,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Reservation prefeences missing in preferences group",
-						 new Object[] { "AT_LEAST_ONE_PREFERENCE", getObjectLabel(reservationPreferenceGroup, context) },
+						 NationalLanguageSupport.GtmValidator_129,
+						 new Object[] { "AT_LEAST_ONE_PREFERENCE", getObjectLabel(reservationPreferenceGroup, context) }, //$NON-NLS-1$
 						 new Object[] { reservationPreferenceGroup },
 						 context));
 			}
@@ -3104,8 +3104,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Invalid format of group name",
-						 new Object[] { "GROUP_FORMAT", getObjectLabel(reservationPreferenceGroup, context) },
+						 NationalLanguageSupport.GtmValidator_131,
+						 new Object[] { "GROUP_FORMAT", getObjectLabel(reservationPreferenceGroup, context) }, //$NON-NLS-1$
 						 new Object[] { reservationPreferenceGroup },
 						 context));
 			}
@@ -3149,8 +3149,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Text is missing in service class definition",
-						 new Object[] { "TEXT_MUST", getObjectLabel(serviceClass, context) },
+						 NationalLanguageSupport.GtmValidator_133,
+						 new Object[] { "TEXT_MUST", getObjectLabel(serviceClass, context) }, //$NON-NLS-1$
 						 new Object[] { serviceClass },
 						 context));
 			}
@@ -3174,8 +3174,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Classic class is missing in service class",
-						 new Object[] { "CLASSIC_CLASS_MUST", getObjectLabel(serviceClass, context) },
+						 NationalLanguageSupport.GtmValidator_135,
+						 new Object[] { NationalLanguageSupport.GtmValidator_136, getObjectLabel(serviceClass, context) },
 						 new Object[] { serviceClass },
 						 context));
 			}
@@ -3219,8 +3219,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Text is missing in service level",
-						 new Object[] { "TEXT_MUST", getObjectLabel(serviceLevel, context) },
+						 NationalLanguageSupport.GtmValidator_137,
+						 new Object[] { "TEXT_MUST", getObjectLabel(serviceLevel, context) }, //$NON-NLS-1$
 						 new Object[] { serviceLevel },
 						 context));
 			}
@@ -3243,8 +3243,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Service level id is invalid",
-						 new Object[] { "ID_FORMAT", getObjectLabel(serviceLevel, context) },
+						 NationalLanguageSupport.GtmValidator_139,
+						 new Object[] { "ID_FORMAT", getObjectLabel(serviceLevel, context) }, //$NON-NLS-1$
 						 new Object[] { serviceLevel },
 						 context));
 			}
@@ -3286,7 +3286,7 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 NationalLanguageSupport.Validation_ServiceConstraint_diagnostic, 
+						 "",  //$NON-NLS-1$
 						 new Object[] { getObjectLabel(serviceConstraint, context) },
 						 new Object[] { serviceConstraint },
 						 context));
@@ -3341,8 +3341,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Station name invalid",
-						 new Object[] { "NAME_FORMAT", getObjectLabel(station, context) },
+						 NationalLanguageSupport.GtmValidator_141,
+						 new Object[] { "NAME_FORMAT", getObjectLabel(station, context) }, //$NON-NLS-1$
 						 new Object[] { station },
 						 context));
 			}
@@ -3369,8 +3369,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Station name UTF8 with case characters invalid",
-						 new Object[] { "NAME_CASE_UTF8_FORMAT", getObjectLabel(station, context) },
+						 NationalLanguageSupport.GtmValidator_143,
+						 new Object[] { "NAME_CASE_UTF8_FORMAT", getObjectLabel(station, context) }, //$NON-NLS-1$
 						 new Object[] { station },
 						 context));
 			}
@@ -3397,8 +3397,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Station name ASCII with case characters invalid",
-						 new Object[] { "NAME_CASE_ASCII_FORMAT", getObjectLabel(station, context) },
+						 NationalLanguageSupport.GtmValidator_145,
+						 new Object[] { "NAME_CASE_ASCII_FORMAT", getObjectLabel(station, context) }, //$NON-NLS-1$
 						 new Object[] { station },
 						 context));
 			}
@@ -3425,8 +3425,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Short statiuon name ASCII invalid",
-						 new Object[] { "SHORT_NAME_CASE_ASCII_FORMAT", getObjectLabel(station, context) },
+						 NationalLanguageSupport.GtmValidator_147,
+						 new Object[] { "SHORT_NAME_CASE_ASCII_FORMAT", getObjectLabel(station, context) }, //$NON-NLS-1$
 						 new Object[] { station },
 						 context));
 			}
@@ -3453,8 +3453,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Short statiuon name UTF8 invalid",
-						 new Object[] { "SHORT_NAME_CASE_UTF8_FORMAT", getObjectLabel(station, context) },
+						 NationalLanguageSupport.GtmValidator_149,
+						 new Object[] { "SHORT_NAME_CASE_UTF8_FORMAT", getObjectLabel(station, context) }, //$NON-NLS-1$
 						 new Object[] { station },
 						 context));
 			}
@@ -3478,8 +3478,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Station name MERITS invalid",
-						 new Object[] { "TT_NAME_FORMAT", getObjectLabel(station, context) },
+						 NationalLanguageSupport.GtmValidator_151,
+						 new Object[] { "TT_NAME_FORMAT", getObjectLabel(station, context) }, //$NON-NLS-1$
 						 new Object[] { station },
 						 context));
 			}
@@ -3503,8 +3503,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Latitude out of range",
-						 new Object[] { "LATITUDE_VALUE_RANGE", getObjectLabel(station, context) },
+						 NationalLanguageSupport.GtmValidator_153,
+						 new Object[] { "LATITUDE_VALUE_RANGE", getObjectLabel(station, context) }, //$NON-NLS-1$
 						 new Object[] { station },
 						 context));
 			}
@@ -3528,8 +3528,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Longitude out of range",
-						 new Object[] { "LONGITUDE_VALUE_RANGE", getObjectLabel(station, context) },
+						 NationalLanguageSupport.GtmValidator_155,
+						 new Object[] { "LONGITUDE_VALUE_RANGE", getObjectLabel(station, context) }, //$NON-NLS-1$
 						 new Object[] { station },
 						 context));
 			}
@@ -3553,8 +3553,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Country missing in station",
-						 new Object[] { "COUNTRY_MUST", getObjectLabel(station, context) },
+						 NationalLanguageSupport.GtmValidator_157,
+						 new Object[] { "COUNTRY_MUST", getObjectLabel(station, context) }, //$NON-NLS-1$
 						 new Object[] { station },
 						 context));
 			}
@@ -3598,8 +3598,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Travel days missing in travel validity",
-						 new Object[] { "TRAVEL_DAYS_NOT_NULL", getObjectLabel(travelValidityConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_159,
+						 new Object[] { "TRAVEL_DAYS_NOT_NULL", getObjectLabel(travelValidityConstraint, context) }, //$NON-NLS-1$
 						 new Object[] { travelValidityConstraint },
 						 context));
 			}
@@ -3623,8 +3623,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Travel days too long",
-						 new Object[] { "WARNING_TRAVEL_DAYS_TOO_LONG", getObjectLabel(travelValidityConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_161,
+						 new Object[] { "WARNING_TRAVEL_DAYS_TOO_LONG", getObjectLabel(travelValidityConstraint, context) }, //$NON-NLS-1$
 						 new Object[] { travelValidityConstraint },
 						 context));
 			}
@@ -3670,8 +3670,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Text contains invalid characters",
-						 new Object[] { "FORMAT_TEXT", getObjectLabel(text, context) },
+						 NationalLanguageSupport.GtmValidator_163,
+						 new Object[] { "FORMAT_TEXT", getObjectLabel(text, context) }, //$NON-NLS-1$
 						 new Object[] { text },
 						 context));
 			}
@@ -3694,8 +3694,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Short text contains invalid characters",
-						 new Object[] { "FORMAT_TEXT_SHORT", getObjectLabel(text, context) },
+						 NationalLanguageSupport.GtmValidator_165,
+						 new Object[] { "FORMAT_TEXT_SHORT", getObjectLabel(text, context) }, //$NON-NLS-1$
 						 new Object[] { text },
 						 context));
 			}
@@ -3718,8 +3718,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Text UTF8 missing or wrong",
-						 new Object[] { "FORMAT_TEXT_UTF8", getObjectLabel(text, context) },
+						 NationalLanguageSupport.GtmValidator_167,
+						 new Object[] { "FORMAT_TEXT_UTF8", getObjectLabel(text, context) }, //$NON-NLS-1$
 						 new Object[] { text },
 						 context));
 			}
@@ -3742,8 +3742,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Short text UTF8 missing or wrong",
-						 new Object[] { "FORMAT_TEXT_SHORT_UTF8", getObjectLabel(text, context) },
+						 NationalLanguageSupport.GtmValidator_169,
+						 new Object[] { "FORMAT_TEXT_SHORT_UTF8", getObjectLabel(text, context) }, //$NON-NLS-1$
 						 new Object[] { text },
 						 context));
 			}
@@ -3790,8 +3790,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Language is missing",
-						 new Object[] { "LANGUAGE_MUST", getObjectLabel(translation, context) },
+						 NationalLanguageSupport.GtmValidator_171,
+						 new Object[] { "LANGUAGE_MUST", getObjectLabel(translation, context) }, //$NON-NLS-1$
 						 new Object[] { translation },
 						 context));
 			}
@@ -3814,8 +3814,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Text is missing or contains invalid characters",
-						 new Object[] { "FORMAT_TEXT", getObjectLabel(translation, context) },
+						 NationalLanguageSupport.GtmValidator_173,
+						 new Object[] { "FORMAT_TEXT", getObjectLabel(translation, context) }, //$NON-NLS-1$
 						 new Object[] { translation },
 						 context));
 			}
@@ -3838,8 +3838,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Text is missing or contains invalid characters",
-						 new Object[] { "FORMAT_TEXT_SHORT", getObjectLabel(translation, context) },
+						 NationalLanguageSupport.GtmValidator_175,
+						 new Object[] { "FORMAT_TEXT_SHORT", getObjectLabel(translation, context) }, //$NON-NLS-1$
 						 new Object[] { translation },
 						 context));
 			}
@@ -3862,8 +3862,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Text UTF8 is missing",
-						 new Object[] { "FORMAT_TEXT_UTF8", getObjectLabel(translation, context) },
+						 NationalLanguageSupport.GtmValidator_177,
+						 new Object[] { "FORMAT_TEXT_UTF8", getObjectLabel(translation, context) }, //$NON-NLS-1$
 						 new Object[] { translation },
 						 context));
 			}
@@ -3886,8 +3886,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Short text UTF8 is missing",
-						 new Object[] { "FORMAT_TEXT_SHORT_UTF8", getObjectLabel(translation, context) },
+						 NationalLanguageSupport.GtmValidator_179,
+						 new Object[] { "FORMAT_TEXT_SHORT_UTF8", getObjectLabel(translation, context) }, //$NON-NLS-1$
 						 new Object[] { translation },
 						 context));
 			}
@@ -3932,8 +3932,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "VAT amount must not be negative",
-						 new Object[] { "VALID_AMOUNT", getObjectLabel(vatDetail, context) },
+						 NationalLanguageSupport.GtmValidator_181,
+						 new Object[] { "VALID_AMOUNT", getObjectLabel(vatDetail, context) }, //$NON-NLS-1$
 						 new Object[] { vatDetail },
 						 context));
 			}
@@ -3957,8 +3957,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Country is missing",
-						 new Object[] { "COUNTRY_MUST", getObjectLabel(vatDetail, context) },
+						 NationalLanguageSupport.GtmValidator_183,
+						 new Object[] { "COUNTRY_MUST", getObjectLabel(vatDetail, context) }, //$NON-NLS-1$
 						 new Object[] { vatDetail },
 						 context));
 			}
@@ -3982,8 +3982,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "VAT percentage is wrong",
-						 new Object[] { "PERCENTAGE_VALUES", getObjectLabel(vatDetail, context) },
+						 NationalLanguageSupport.GtmValidator_185,
+						 new Object[] { "PERCENTAGE_VALUES", getObjectLabel(vatDetail, context) }, //$NON-NLS-1$
 						 new Object[] { vatDetail },
 						 context));
 			}
@@ -4036,8 +4036,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Type of fare is missing",
-						 new Object[] { "TYPE_MUST", getObjectLabel(fareElement, context) },
+						 NationalLanguageSupport.GtmValidator_187,
+						 new Object[] { "TYPE_MUST", getObjectLabel(fareElement, context) }, //$NON-NLS-1$
 						 new Object[] { fareElement },
 						 context));
 			}
@@ -4061,8 +4061,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Price is missing in fare",
-						 new Object[] { "PRICE_MUST", getObjectLabel(fareElement, context) },
+						 NationalLanguageSupport.GtmValidator_189,
+						 new Object[] { "PRICE_MUST", getObjectLabel(fareElement, context) }, //$NON-NLS-1$
 						 new Object[] { fareElement },
 						 context));
 			}
@@ -4086,8 +4086,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Text of fare is missing",
-						 new Object[] { "TEXT_MUST", getObjectLabel(fareElement, context) },
+						 NationalLanguageSupport.GtmValidator_191,
+						 new Object[] { "TEXT_MUST", getObjectLabel(fareElement, context) }, //$NON-NLS-1$
 						 new Object[] { fareElement },
 						 context));
 			}
@@ -4111,8 +4111,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Service class of fare is missing",
-						 new Object[] { "SERVICE_CLASS_MUST", getObjectLabel(fareElement, context) },
+						 NationalLanguageSupport.GtmValidator_193,
+						 new Object[] { "SERVICE_CLASS_MUST", getObjectLabel(fareElement, context) }, //$NON-NLS-1$
 						 new Object[] { fareElement },
 						 context));
 			}
@@ -4136,8 +4136,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Sales availability is missing in fare",
-						 new Object[] { "SALES_AVAILABILITY_MUST", getObjectLabel(fareElement, context) },
+						 NationalLanguageSupport.GtmValidator_195,
+						 new Object[] { "SALES_AVAILABILITY_MUST", getObjectLabel(fareElement, context) }, //$NON-NLS-1$
 						 new Object[] { fareElement },
 						 context));
 			}
@@ -4160,8 +4160,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Travel validity is missing in fare",
-						 new Object[] { "TRAVEL_VALIDITY_MUST", getObjectLabel(fareElement, context) },
+						 NationalLanguageSupport.GtmValidator_197,
+						 new Object[] { "TRAVEL_VALIDITY_MUST", getObjectLabel(fareElement, context) }, //$NON-NLS-1$
 						 new Object[] { fareElement },
 						 context));
 			}
@@ -4185,8 +4185,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "combination constraint is missimng in fare",
-						 new Object[] { "COMBINATION_CONSTRAINT_MUST", getObjectLabel(fareElement, context) },
+						 NationalLanguageSupport.GtmValidator_199,
+						 new Object[] { "COMBINATION_CONSTRAINT_MUST", getObjectLabel(fareElement, context) }, //$NON-NLS-1$
 						 new Object[] { fareElement },
 						 context));
 			}
@@ -4210,8 +4210,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Fulfillment cnstraint is missing in fare",
-						 new Object[] { "FULFILLMENT_CONSTRAINT_MUST", getObjectLabel(fareElement, context) },
+						 NationalLanguageSupport.GtmValidator_201,
+						 new Object[] { "FULFILLMENT_CONSTRAINT_MUST", getObjectLabel(fareElement, context) }, //$NON-NLS-1$
 						 new Object[] { fareElement },
 						 context));
 			}
@@ -4235,8 +4235,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Passenger constraint is missing in fare",
-						 new Object[] { "PASSENGER_CONSTRAINT_MUST", getObjectLabel(fareElement, context) },
+						 NationalLanguageSupport.GtmValidator_203,
+						 new Object[] { "PASSENGER_CONSTRAINT_MUST", getObjectLabel(fareElement, context) }, //$NON-NLS-1$
 						 new Object[] { fareElement },
 						 context));
 			}
@@ -4260,8 +4260,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Legacy accounting identifier is missing in fare",
-						 new Object[] { "LEGACY_ACCOUNTING_MISSING", getObjectLabel(fareElement, context) },
+						 NationalLanguageSupport.GtmValidator_205,
+						 new Object[] { "LEGACY_ACCOUNTING_MISSING", getObjectLabel(fareElement, context) }, //$NON-NLS-1$
 						 new Object[] { fareElement },
 						 context));
 			}
@@ -4285,8 +4285,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Legacy conversion rule missing in fare",
-						 new Object[] { "CEÒNVERSION_MISSING", getObjectLabel(fareElement, context) },
+						 NationalLanguageSupport.GtmValidator_207,
+						 new Object[] { "CEÒNVERSION_MISSING", getObjectLabel(fareElement, context) }, //$NON-NLS-1$
 						 new Object[] { fareElement },
 						 context));
 			}
@@ -4343,8 +4343,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Fare reference station definition contains no stations",
-						 new Object[] { "AT_LEAST_ONE_STATION", getObjectLabel(fareStationSetDefinition, context) },
+						 NationalLanguageSupport.GtmValidator_209,
+						 new Object[] { "AT_LEAST_ONE_STATION", getObjectLabel(fareStationSetDefinition, context) }, //$NON-NLS-1$
 						 new Object[] { fareStationSetDefinition },
 						 context));
 			}
@@ -4368,8 +4368,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Legacy station code of fare reference station set is missing",
-						 new Object[] { "LEGACY_CODE_MISSING", getObjectLabel(fareStationSetDefinition, context) },
+						 NationalLanguageSupport.GtmValidator_211,
+						 new Object[] { "LEGACY_CODE_MISSING", getObjectLabel(fareStationSetDefinition, context) }, //$NON-NLS-1$
 						 new Object[] { fareStationSetDefinition },
 						 context));
 			}
@@ -4393,7 +4393,7 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Carrier in fare reference station set is missing",
+						 NationalLanguageSupport.GtmValidator_213,
 						 new Object[] { "CARRIER_MUST", getObjectLabel(fareStationSetDefinition, context) },
 						 new Object[] { fareStationSetDefinition },
 						 context));
@@ -4417,8 +4417,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Code of fare reference station set is missing",
-						 new Object[] { "CODE_MUST", getObjectLabel(fareStationSetDefinition, context) },
+						 NationalLanguageSupport.GtmValidator_215,
+						 new Object[] { "CODE_MUST", getObjectLabel(fareStationSetDefinition, context) }, //$NON-NLS-1$
 						 new Object[] { fareStationSetDefinition },
 						 context));
 			}
@@ -4441,8 +4441,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Name ACII of fare reference station set is missing or wrong",
-						 new Object[] { "NAME_FORMAT", getObjectLabel(fareStationSetDefinition, context) },
+						 NationalLanguageSupport.GtmValidator_217,
+						 new Object[] { "NAME_FORMAT", getObjectLabel(fareStationSetDefinition, context) }, //$NON-NLS-1$
 						 new Object[] { fareStationSetDefinition },
 						 context));
 			}
@@ -4465,8 +4465,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Name UTF8 of fare reference station set is missing or wrong",
-						 new Object[] { "NAME_UTF8_FORMAT", getObjectLabel(fareStationSetDefinition, context) },
+						 NationalLanguageSupport.GtmValidator_219,
+						 new Object[] { "NAME_UTF8_FORMAT", getObjectLabel(fareStationSetDefinition, context) }, //$NON-NLS-1$
 						 new Object[] { fareStationSetDefinition },
 						 context));
 			}
@@ -4510,8 +4510,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Series id missing or wrong in legacy accounting identifier",
-						 new Object[] { "SERIES_ID_MUST", getObjectLabel(legacyAccountingIdentifier, context) },
+						 NationalLanguageSupport.GtmValidator_221,
+						 new Object[] { "SERIES_ID_MUST", getObjectLabel(legacyAccountingIdentifier, context) }, //$NON-NLS-1$
 						 new Object[] { legacyAccountingIdentifier },
 						 context));
 			}
@@ -4536,8 +4536,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Tariff id missing or wrong in legacy accounting identifier",
-						 new Object[] { "SERIES_ID_MUST", getObjectLabel(legacyAccountingIdentifier, context) },
+						 NationalLanguageSupport.GtmValidator_223,
+						 new Object[] { "SERIES_ID_MUST", getObjectLabel(legacyAccountingIdentifier, context) }, //$NON-NLS-1$
 						 new Object[] { legacyAccountingIdentifier },
 						 context));
 			}
@@ -4589,8 +4589,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Sales availabiloity constraint has no restriction",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(salesAvailabilityConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_225,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(salesAvailabilityConstraint, context) }, //$NON-NLS-1$
 						 new Object[] { salesAvailabilityConstraint },
 						 context));
 			}
@@ -4633,8 +4633,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Start of End date is missing",
-						 new Object[] { "START_END_DATE_ORDER", getObjectLabel(salesRestriction, context) },
+						 NationalLanguageSupport.GtmValidator_227,
+						 new Object[] { "START_END_DATE_ORDER", getObjectLabel(salesRestriction, context) }, //$NON-NLS-1$
 						 new Object[] { salesRestriction },
 						 context));
 			}
@@ -4650,8 +4650,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Start of sale after end of sale",
-						 new Object[] { "START_END_DATE_ORDER", getObjectLabel(salesRestriction, context) },
+						 NationalLanguageSupport.GtmValidator_229,
+						 new Object[] { "START_END_DATE_ORDER", getObjectLabel(salesRestriction, context) }, //$NON-NLS-1$
 						 new Object[] { salesRestriction },
 						 context));
 			}
@@ -4736,8 +4736,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Combination constraint does not include combination models",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(combinationConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_231,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(combinationConstraint, context) }, //$NON-NLS-1$
 						 new Object[] { combinationConstraint },
 						 context));
 			}
@@ -4782,8 +4782,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Time unit is missing",
-						 new Object[] { "WARNING_TOO_SHORT", getObjectLabel(validityRange, context) },
+						 NationalLanguageSupport.GtmValidator_233,
+						 new Object[] { "WARNING_TOO_SHORT", getObjectLabel(validityRange, context) }, //$NON-NLS-1$
 						 new Object[] { validityRange },
 						 context));
 			}
@@ -4799,8 +4799,8 @@ public class GtmValidator extends EObjectValidator {
 					(Diagnostic.ERROR,
 					 DIAGNOSTIC_SOURCE,
 					 0,
-					 "validity range too short",
-					 new Object[] { "WARNING_TOO_SHORT", getObjectLabel(validityRange, context) },
+					 NationalLanguageSupport.GtmValidator_235,
+					 new Object[] { "WARNING_TOO_SHORT", getObjectLabel(validityRange, context) }, //$NON-NLS-1$
 					 new Object[] { validityRange },
 					 context));
 		}
@@ -4825,8 +4825,8 @@ public class GtmValidator extends EObjectValidator {
 							(Diagnostic.ERROR,
 							 DIAGNOSTIC_SOURCE,
 							 0,
-							 "Time unit is missing",
-							 new Object[] { "WARNING_TOO_SHORT", getObjectLabel(validityRange, context) },
+							 NationalLanguageSupport.GtmValidator_237,
+							 new Object[] { "WARNING_TOO_SHORT", getObjectLabel(validityRange, context) }, //$NON-NLS-1$
 							 new Object[] { validityRange },
 							 context));
 				}
@@ -4844,8 +4844,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "validity range too long",
-						 new Object[] { "WARNING_TOO_SHORT", getObjectLabel(validityRange, context) },
+						 NationalLanguageSupport.GtmValidator_239,
+						 new Object[] { "WARNING_TOO_SHORT", getObjectLabel(validityRange, context) }, //$NON-NLS-1$
 						 new Object[] { validityRange },
 						 context));
 			}
@@ -4889,8 +4889,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Time range is empty",
-						 new Object[] { "FROM_TO_ORDER", getObjectLabel(timeRange, context) },
+						 NationalLanguageSupport.GtmValidator_241,
+						 new Object[] { "FROM_TO_ORDER", getObjectLabel(timeRange, context) }, //$NON-NLS-1$
 						 new Object[] { timeRange },
 						 context));
 			}
@@ -4952,8 +4952,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Earliest and latest return values missing or wrong",
-						 new Object[] { "EARLIEST_LAST_RETURN_ORDER", getObjectLabel(returnValidityConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_243,
+						 new Object[] { "EARLIEST_LAST_RETURN_ORDER", getObjectLabel(returnValidityConstraint, context) }, //$NON-NLS-1$
 						 new Object[] { returnValidityConstraint },
 						 context));
 			}
@@ -4997,8 +4997,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Combination model is missing",
-						 new Object[] { "MODEL_MUST", getObjectLabel(fareCombinationModel, context) },
+						 NationalLanguageSupport.GtmValidator_245,
+						 new Object[] { "MODEL_MUST", getObjectLabel(fareCombinationModel, context) }, //$NON-NLS-1$
 						 new Object[] { fareCombinationModel },
 						 context));
 			}
@@ -5022,8 +5022,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Reference cluster is missing",
-						 new Object[] { "REFERENCE_CLUSTER_MUST", getObjectLabel(fareCombinationModel, context) },
+						 NationalLanguageSupport.GtmValidator_247,
+						 new Object[] { "REFERENCE_CLUSTER_MUST", getObjectLabel(fareCombinationModel, context) }, //$NON-NLS-1$
 						 new Object[] { fareCombinationModel },
 						 context));
 			}
@@ -5066,8 +5066,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Required bar code liust is empty",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(requiredBarcodes, context) },
+						 NationalLanguageSupport.GtmValidator_249,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(requiredBarcodes, context) }, //$NON-NLS-1$
 						 new Object[] { requiredBarcodes },
 						 context));
 			}
@@ -5110,8 +5110,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "List of accepted bar codes is empty",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(acceptedBarcodes, context) },
+						 NationalLanguageSupport.GtmValidator_251,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(acceptedBarcodes, context) }, //$NON-NLS-1$
 						 new Object[] { acceptedBarcodes },
 						 context));
 			}
@@ -5154,8 +5154,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Regional validity is empty",
-						 new Object[] { "AT_LEAST_ONE_OF_VIA_ZONE_LINE_POLYGON", getObjectLabel(regionalValidity, context) },
+						 NationalLanguageSupport.GtmValidator_253,
+						 new Object[] { "AT_LEAST_ONE_OF_VIA_ZONE_LINE_POLYGON", getObjectLabel(regionalValidity, context) }, //$NON-NLS-1$
 						 new Object[] { regionalValidity },
 						 context));
 			}
@@ -5198,8 +5198,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Via ststion is empty",
-						 new Object[] { "AT_LEAST_ONE_OBJECT_SET", getObjectLabel(viaStation, context) },
+						 NationalLanguageSupport.GtmValidator_255,
+						 new Object[] { "AT_LEAST_ONE_OBJECT_SET", getObjectLabel(viaStation, context) }, //$NON-NLS-1$
 						 new Object[] { viaStation },
 						 context));
 			}
@@ -5223,8 +5223,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Alternative routes must include at leas two alternatives",
-						 new Object[] { "IF_ALTERNATIVE_ROUTES_AT_LEAST_TWO", getObjectLabel(viaStation, context) },
+						 NationalLanguageSupport.GtmValidator_257,
+						 new Object[] { "IF_ALTERNATIVE_ROUTES_AT_LEAST_TWO", getObjectLabel(viaStation, context) }, //$NON-NLS-1$
 						 new Object[] { viaStation },
 						 context));
 			}
@@ -5267,8 +5267,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Alternative route is empty",
-						 new Object[] { "AT_LEAST_ONE_VIA", getObjectLabel(alternativeRoute, context) },
+						 NationalLanguageSupport.GtmValidator_259,
+						 new Object[] { "AT_LEAST_ONE_VIA", getObjectLabel(alternativeRoute, context) }, //$NON-NLS-1$
 						 new Object[] { alternativeRoute },
 						 context));
 			}
@@ -5311,8 +5311,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Route is empty",
-						 new Object[] { "AT_LEAST_ONE_VIA", getObjectLabel(route, context) },
+						 NationalLanguageSupport.GtmValidator_261,
+						 new Object[] { "AT_LEAST_ONE_VIA", getObjectLabel(route, context) }, //$NON-NLS-1$
 						 new Object[] { route },
 						 context));
 			}
@@ -5356,8 +5356,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Carrier is missing in zone",
-						 new Object[] { "CARRIER_MUST", getObjectLabel(zone, context) },
+						 NationalLanguageSupport.GtmValidator_263,
+						 new Object[] { "CARRIER_MUST", getObjectLabel(zone, context) }, //$NON-NLS-1$
 						 new Object[] { zone },
 						 context));
 			}
@@ -5381,8 +5381,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Zonre is empty, must include NUTS code, city or zone id",
-						 new Object[] { "ONE_OF_ZONE_ID_NUTS_CITY", getObjectLabel(zone, context) },
+						 NationalLanguageSupport.GtmValidator_265,
+						 new Object[] { "ONE_OF_ZONE_ID_NUTS_CITY", getObjectLabel(zone, context) }, //$NON-NLS-1$
 						 new Object[] { zone },
 						 context));
 			}
@@ -5434,8 +5434,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Carrier is missing in line",
-						 new Object[] { "CARRIER_MUST", getObjectLabel(line, context) },
+						 NationalLanguageSupport.GtmValidator_267,
+						 new Object[] { "CARRIER_MUST", getObjectLabel(line, context) }, //$NON-NLS-1$
 						 new Object[] { line },
 						 context));
 			}
@@ -5478,8 +5478,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Polygon has not enough edges",
-						 new Object[] { "AT_LEAST_THREE_EDGES", getObjectLabel(polygone, context) },
+						 NationalLanguageSupport.GtmValidator_269,
+						 new Object[] { "AT_LEAST_THREE_EDGES", getObjectLabel(polygone, context) }, //$NON-NLS-1$
 						 new Object[] { polygone },
 						 context));
 			}
@@ -5531,8 +5531,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Wrong geo-coordinates in edge",
-						 new Object[] { "COORDINATE_LIMITS", getObjectLabel(edge, context) },
+						 NationalLanguageSupport.GtmValidator_271,
+						 new Object[] { "COORDINATE_LIMITS", getObjectLabel(edge, context) }, //$NON-NLS-1$
 						 new Object[] { edge },
 						 context));
 			}
@@ -5586,8 +5586,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Provider is missing in zone definition",
-						 new Object[] { "CARRIER_MUST_BE_SET", getObjectLabel(zoneDefinition, context) },
+						 NationalLanguageSupport.GtmValidator_273,
+						 new Object[] { "CARRIER_MUST_BE_SET", getObjectLabel(zoneDefinition, context) }, //$NON-NLS-1$
 						 new Object[] { zoneDefinition },
 						 context));
 			}
@@ -5611,8 +5611,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Zone definition is empty",
-						 new Object[] { "AT_LEAST_ONE_OF_SET_NUTS_POLYGON", getObjectLabel(zoneDefinition, context) },
+						 NationalLanguageSupport.GtmValidator_275,
+						 new Object[] { "AT_LEAST_ONE_OF_SET_NUTS_POLYGON", getObjectLabel(zoneDefinition, context) }, //$NON-NLS-1$
 						 new Object[] { zoneDefinition },
 						 context));
 			}
@@ -5636,8 +5636,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Station set of zone definition contains too few stations",
-						 new Object[] { "IF_STATION_SET_AT_LEAST_TWO_STATIONS", getObjectLabel(zoneDefinition, context) },
+						 NationalLanguageSupport.GtmValidator_277,
+						 new Object[] { "IF_STATION_SET_AT_LEAST_TWO_STATIONS", getObjectLabel(zoneDefinition, context) }, //$NON-NLS-1$
 						 new Object[] { zoneDefinition },
 						 context));
 			}
@@ -5680,8 +5680,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Traveller type is missing",
-						 new Object[] { "TRAVELLER_TYPE_MUST", getObjectLabel(passengerConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_279,
+						 new Object[] { "TRAVELLER_TYPE_MUST", getObjectLabel(passengerConstraint, context) }, //$NON-NLS-1$
 						 new Object[] { passengerConstraint },
 						 context));
 			}
@@ -5725,8 +5725,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Number of free pasengers is too small",
-						 new Object[] { "NUMBER_AT_LEAST_ONE", getObjectLabel(includedFreePassengerLimit, context) },
+						 NationalLanguageSupport.GtmValidator_281,
+						 new Object[] { NationalLanguageSupport.GtmValidator_282, getObjectLabel(includedFreePassengerLimit, context) },
 						 new Object[] { includedFreePassengerLimit },
 						 context));
 			}
@@ -5750,8 +5750,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Passenger type is missing",
-						 new Object[] { "TRAVELLER_TYPE_MUST", getObjectLabel(includedFreePassengerLimit, context) },
+						 NationalLanguageSupport.GtmValidator_283,
+						 new Object[] { "TRAVELLER_TYPE_MUST", getObjectLabel(includedFreePassengerLimit, context) }, //$NON-NLS-1$
 						 new Object[] { includedFreePassengerLimit },
 						 context));
 			}
@@ -5795,8 +5795,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Maximum number must at least be one in passenger comination constraint",
-						 new Object[] { "NUMBER_AT_LEAST_ONE", getObjectLabel(passengerCombinationConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_285,
+						 new Object[] { "NUMBER_AT_LEAST_ONE", getObjectLabel(passengerCombinationConstraint, context) }, //$NON-NLS-1$
 						 new Object[] { passengerCombinationConstraint },
 						 context));
 			}
@@ -5820,8 +5820,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Traveller type is missing",
-						 new Object[] { "TRAVELLER_TYPE_MUST", getObjectLabel(passengerCombinationConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_287,
+						 new Object[] { "TRAVELLER_TYPE_MUST", getObjectLabel(passengerCombinationConstraint, context) }, //$NON-NLS-1$
 						 new Object[] { passengerCombinationConstraint },
 						 context));
 			}
@@ -5865,8 +5865,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Time unit is missing",
-						 new Object[] { "WARNING_TOO_LONG", getObjectLabel(relativeTime, context) },
+						 NationalLanguageSupport.GtmValidator_289,
+						 new Object[] { "WARNING_TOO_LONG", getObjectLabel(relativeTime, context) }, //$NON-NLS-1$
 						 new Object[] { relativeTime },
 						 context));
 			}
@@ -5880,8 +5880,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Time value is too small",
-						 new Object[] { "WARNING_TOO_LONG", getObjectLabel(relativeTime, context) },
+						 NationalLanguageSupport.GtmValidator_291,
+						 new Object[] { "WARNING_TOO_LONG", getObjectLabel(relativeTime, context) }, //$NON-NLS-1$
 						 new Object[] { relativeTime },
 						 context));
 			}
@@ -5898,8 +5898,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Time is too long",
-						 new Object[] { "WARNING_TOO_LONG", getObjectLabel(relativeTime, context) },
+						 NationalLanguageSupport.GtmValidator_293,
+						 new Object[] { "WARNING_TOO_LONG", getObjectLabel(relativeTime, context) }, //$NON-NLS-1$
 						 new Object[] { relativeTime },
 						 context));
 			}
@@ -5925,8 +5925,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Time value is too small",
-						 new Object[] { "WARNING_TOO_LONG", getObjectLabel(relativeTime, context) },
+						 NationalLanguageSupport.GtmValidator_295,
+						 new Object[] { "WARNING_TOO_LONG", getObjectLabel(relativeTime, context) }, //$NON-NLS-1$
 						 new Object[] { relativeTime },
 						 context));
 			}
@@ -5970,8 +5970,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "After sales condition without fee",
-						 new Object[] { "FEE_MUST", getObjectLabel(afterSalesCondition, context) },
+						 NationalLanguageSupport.GtmValidator_297,
+						 new Object[] { "FEE_MUST", getObjectLabel(afterSalesCondition, context) }, //$NON-NLS-1$
 						 new Object[] { afterSalesCondition },
 						 context));
 			}
@@ -6034,8 +6034,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "After sales rule is empty",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(afterSalesRule, context) },
+						 NationalLanguageSupport.GtmValidator_299,
+						 new Object[] { "AT_LEAST_ONE", getObjectLabel(afterSalesRule, context) }, //$NON-NLS-1$
 						 new Object[] { afterSalesRule },
 						 context));
 			}
@@ -6078,8 +6078,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Personal data requirements are present but empty",
-						 new Object[] { "AT_LEAST_ONE_REQUIRED_ITEM", getObjectLabel(personalDataConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_301,
+						 new Object[] { "AT_LEAST_ONE_REQUIRED_ITEM", getObjectLabel(personalDataConstraint, context) }, //$NON-NLS-1$
 						 new Object[] { personalDataConstraint },
 						 context));
 			}
@@ -6123,8 +6123,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "No data item given in required personal data",
-						 new Object[] { "AT_LEAST_ONE_ITEM", getObjectLabel(requiredPersonalData, context) },
+						 NationalLanguageSupport.GtmValidator_303,
+						 new Object[] { "AT_LEAST_ONE_ITEM", getObjectLabel(requiredPersonalData, context) }, //$NON-NLS-1$
 						 new Object[] { requiredPersonalData },
 						 context));
 			}
@@ -6148,8 +6148,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Transfer is missin g in required personal data",
-						 new Object[] { "ADD_LEAST_ONE_TRANSFER", getObjectLabel(requiredPersonalData, context) },
+						 NationalLanguageSupport.GtmValidator_305,
+						 new Object[] { "ADD_LEAST_ONE_TRANSFER", getObjectLabel(requiredPersonalData, context) }, //$NON-NLS-1$
 						 new Object[] { requiredPersonalData },
 						 context));
 			}
@@ -6191,8 +6191,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "From country missing in border crossing",
-						 new Object[] { "FROM_TO_COUNTRY_MUST", getObjectLabel(crossBorderCondition, context) },
+						 NationalLanguageSupport.GtmValidator_307,
+						 new Object[] { "FROM_TO_COUNTRY_MUST", getObjectLabel(crossBorderCondition, context) }, //$NON-NLS-1$
 						 new Object[] { crossBorderCondition },
 						 context));
 			}
@@ -6206,8 +6206,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "To country missing in border crossing",
-						 new Object[] { "FROM_TO_COUNTRY_MUST", getObjectLabel(crossBorderCondition, context) },
+						 NationalLanguageSupport.GtmValidator_309,
+						 new Object[] { "FROM_TO_COUNTRY_MUST", getObjectLabel(crossBorderCondition, context) }, //$NON-NLS-1$
 						 new Object[] { crossBorderCondition },
 						 context));
 			}
@@ -6252,8 +6252,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Time limit for changes on personal data too short",
-						 new Object[] { "TIME_LIMIT_TOO_SHORT", getObjectLabel(allowedPersonalDataChanges, context) },
+						 NationalLanguageSupport.GtmValidator_311,
+						 new Object[] { "TIME_LIMIT_TOO_SHORT", getObjectLabel(allowedPersonalDataChanges, context) }, //$NON-NLS-1$
 						 new Object[] { allowedPersonalDataChanges },
 						 context));
 			}
@@ -6277,8 +6277,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.WARNING,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Time limit for personal data changes too long",
-						 new Object[] { "TIME_LIMIT_TOO_LONG", getObjectLabel(allowedPersonalDataChanges, context) },
+						 NationalLanguageSupport.GtmValidator_313,
+						 new Object[] { "TIME_LIMIT_TOO_LONG", getObjectLabel(allowedPersonalDataChanges, context) }, //$NON-NLS-1$
 						 new Object[] { allowedPersonalDataChanges },
 						 context));
 			}
@@ -6321,8 +6321,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Reduction constraint does not contain reduction cards",
-						 new Object[] { "AT_LEAST_ONE", getObjectLabel(reductionConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_315,
+						 new Object[] { NationalLanguageSupport.GtmValidator_316, getObjectLabel(reductionConstraint, context) },
 						 new Object[] { reductionConstraint },
 						 context));
 			}
@@ -6366,8 +6366,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Name of reduction card is missing",
-						 new Object[] { "NAME_FORMAT", getObjectLabel(requiredReductionCard, context) },
+						 NationalLanguageSupport.GtmValidator_317,
+						 new Object[] { "NAME_FORMAT", getObjectLabel(requiredReductionCard, context) }, //$NON-NLS-1$
 						 new Object[] { requiredReductionCard },
 						 context));
 			}
@@ -6381,8 +6381,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Name of reduction card contains invalid characters",
-						 new Object[] { "NAME_FORMAT", getObjectLabel(requiredReductionCard, context) },
+						 NationalLanguageSupport.GtmValidator_319,
+						 new Object[] { "NAME_FORMAT", getObjectLabel(requiredReductionCard, context) }, //$NON-NLS-1$
 						 new Object[] { requiredReductionCard },
 						 context));
 			}
@@ -6406,8 +6406,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Reduction card is missing",
-						 new Object[] { "CARD_MUST", getObjectLabel(requiredReductionCard, context) },
+						 NationalLanguageSupport.GtmValidator_321,
+						 new Object[] { "CARD_MUST", getObjectLabel(requiredReductionCard, context) }, //$NON-NLS-1$
 						 new Object[] { requiredReductionCard },
 						 context));
 			}
@@ -6450,8 +6450,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "No accepted fulfillment types",
-						 new Object[] { "AT_LEAST_ONE_ACCEPTED_TYPE", getObjectLabel(fulfillmentConstraint, context) },
+						 NationalLanguageSupport.GtmValidator_323,
+						 new Object[] { "AT_LEAST_ONE_ACCEPTED_TYPE", getObjectLabel(fulfillmentConstraint, context) }, //$NON-NLS-1$
 						 new Object[] { fulfillmentConstraint },
 						 context));
 			}
@@ -6495,8 +6495,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Carrier is missing",
-						 new Object[] { "CARRIER_MUST", getObjectLabel(trainResourceLocation, context) },
+						 NationalLanguageSupport.GtmValidator_325,
+						 new Object[] { "CARRIER_MUST", getObjectLabel(trainResourceLocation, context) }, //$NON-NLS-1$
 						 new Object[] { trainResourceLocation },
 						 context));
 			}
@@ -6520,8 +6520,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Online resources are missing",
-						 new Object[] { "AT_LEAST_ONE_ONLINE_RESOURCE", getObjectLabel(trainResourceLocation, context) },
+						 NationalLanguageSupport.GtmValidator_327,
+						 new Object[] { "AT_LEAST_ONE_ONLINE_RESOURCE", getObjectLabel(trainResourceLocation, context) }, //$NON-NLS-1$
 						 new Object[] { trainResourceLocation },
 						 context));
 			}
@@ -6592,8 +6592,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Online resources are missing",
-						 new Object[] { "AT_LEAST_ONE_ONLINE_RESOURCE", getObjectLabel(stationResourceLocation, context) },
+						 NationalLanguageSupport.GtmValidator_329,
+						 new Object[] { "AT_LEAST_ONE_ONLINE_RESOURCE", getObjectLabel(stationResourceLocation, context) }, //$NON-NLS-1$
 						 new Object[] { stationResourceLocation },
 						 context));
 			}
@@ -6618,8 +6618,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Stations and connection points are missing",
-						 new Object[] { "AT_LEAST_ONE_STATION_OR_CONNECTION_POINT", getObjectLabel(stationResourceLocation, context) },
+						 NationalLanguageSupport.GtmValidator_331,
+						 new Object[] { "AT_LEAST_ONE_STATION_OR_CONNECTION_POINT", getObjectLabel(stationResourceLocation, context) }, //$NON-NLS-1$
 						 new Object[] { stationResourceLocation },
 						 context));
 			}
@@ -6664,8 +6664,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Offer request type is missing",
-						 new Object[] { "REQUEST_TYPE_MUST", getObjectLabel(onlineResource, context) },
+						 NationalLanguageSupport.GtmValidator_333,
+						 new Object[] { "REQUEST_TYPE_MUST", getObjectLabel(onlineResource, context) }, //$NON-NLS-1$
 						 new Object[] { onlineResource },
 						 context));
 			}
@@ -6689,8 +6689,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
-						 "Interface type is missing",
-						 new Object[] { "INTERFACE_TYPE_MUST", getObjectLabel(onlineResource, context) },
+						 NationalLanguageSupport.GtmValidator_335,
+						 new Object[] { "INTERFACE_TYPE_MUST", getObjectLabel(onlineResource, context) }, //$NON-NLS-1$
 						 new Object[] { onlineResource },
 						 context));
 			}
@@ -6714,8 +6714,8 @@ public class GtmValidator extends EObjectValidator {
 						(Diagnostic.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0, 
-						 "System is missing",
-						 new Object[] { "SYSTEM_MUST", getObjectLabel(onlineResource, context) },
+						 NationalLanguageSupport.GtmValidator_337,
+						 new Object[] { "SYSTEM_MUST", getObjectLabel(onlineResource, context) }, //$NON-NLS-1$
 						 new Object[] { onlineResource },
 						 context));
 			}

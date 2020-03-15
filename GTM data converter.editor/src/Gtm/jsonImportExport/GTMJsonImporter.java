@@ -11,6 +11,7 @@ import java.util.List;
 
 import Gtm.*;
 import Gtm.actions.GtmUtils;
+import Gtm.nls.NationalLanguageSupport;
 import gtm.AfterSalesConditionDef;
 import gtm.AfterSalesRuleDef;
 import gtm.AllowedChange;
@@ -84,9 +85,9 @@ public class GTMJsonImporter {
 	 *	z   = time zone  text        (e.g. Pacific Standard Time...)
 	 *	Z   = time zone, time offset (e.g. -0800)
 	 */
-	final DateFormat fmtZ = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-	final DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-	final DateFormat pmdf = new SimpleDateFormat("yyyy-MM-dd hh:mm a z");
+	final DateFormat fmtZ = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'"); //$NON-NLS-1$
+	final DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ"); //$NON-NLS-1$
+	final DateFormat pmdf = new SimpleDateFormat("yyyy-MM-dd hh:mm a z"); //$NON-NLS-1$
 	GTMTool tool = null;
 	
 	FareStructure fareStructure = null;
@@ -1420,7 +1421,7 @@ public class GTMJsonImporter {
 	private Date convertDate(String dateString) {
 		if (dateString == null || dateString.length() < 1) return null;
 	    try {
-	    	if (dateString.endsWith("Z")) {
+	    	if (dateString.endsWith("Z")) { //$NON-NLS-1$
 				return fmtZ.parse(dateString);
 	    	} else {
 	    		return fmt.parse(dateString);
@@ -1430,7 +1431,7 @@ public class GTMJsonImporter {
 			try {
 				return pmdf.parse(dateString);
 			} catch (ParseException ee) {
-				String message = "error in date format: " + dateString;
+				String message = NationalLanguageSupport.GTMJsonImporter_4 + dateString;
 				GtmUtils.writeConsoleError(message);
 			}
 		}

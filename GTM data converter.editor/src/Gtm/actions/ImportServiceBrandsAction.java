@@ -23,6 +23,7 @@ import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.ServiceBrand;
 import Gtm.ServiceBrands;
+import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 
@@ -30,7 +31,7 @@ public class ImportServiceBrandsAction extends ImportCsvDataAction {
 
 
 	public ImportServiceBrandsAction(IEditingDomainProvider editingDomainProvider) {
-		super("import service brands", editingDomainProvider);
+		super(NationalLanguageSupport.ImportServiceBrandsAction_0, editingDomainProvider);
 		this.setToolTipText(this.getText());
 		setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importBrands.png")); //$NON-NLS-1$
 	}
@@ -46,22 +47,22 @@ public class ImportServiceBrandsAction extends ImportCsvDataAction {
 		
 		if (tool == null) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("no data found");
+			dialog.setText(NationalLanguageSupport.ImportServiceBrandsAction_1);
 			dialog.open(); 
 			return;
 		}
 		
 		Country country = tool.getConversionFromLegacy().getParams().getCountry();
 		if (country == null) {
-			String message = "the country is missing in the conversion parameter";
+			String message = NationalLanguageSupport.ImportServiceBrandsAction_2;
 			GtmUtils.writeConsoleError(message);
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("the country is missing in the conversion parameter");
+			dialog.setText(NationalLanguageSupport.ImportServiceBrandsAction_3);
 			dialog.open(); 
 			return;
 		}
 		
-		BufferedReader br = super.getReader("import carrier codes (.csv)");
+		BufferedReader br = super.getReader(NationalLanguageSupport.ImportServiceBrandsAction_4);
 
 		IRunnableWithProgress operation =	new IRunnableWithProgress() {
 			// This is the method that gets invoked when the operation runs.
@@ -70,13 +71,13 @@ public class ImportServiceBrandsAction extends ImportCsvDataAction {
 				
 				try {
 					
-					monitor.beginTask("Import carriers", 250); 
+					monitor.beginTask(NationalLanguageSupport.ImportServiceBrandsAction_5, 250); 
 		
-					monitor.subTask("Initialize main structure");
+					monitor.subTask(NationalLanguageSupport.ImportServiceBrandsAction_6);
 					prepareStructure(tool, domain);
 					monitor.worked(10);
 
-					monitor.subTask("read service brands");
+					monitor.subTask(NationalLanguageSupport.ImportServiceBrandsAction_7);
 			    	
 			    	ServiceBrands newBrands = GtmFactory.eINSTANCE.createServiceBrands();
 
@@ -102,7 +103,7 @@ public class ImportServiceBrandsAction extends ImportCsvDataAction {
 			        int updated = 0;
 
 			        
-					monitor.subTask("Add service brands");
+					monitor.subTask(NationalLanguageSupport.ImportServiceBrandsAction_8);
 					for (ServiceBrand newBrand : newBrands.getServiceBrands()) {
 				       	
 			        	ServiceBrand brand = tool.getCodeLists().getServiceBrands().findServiceBRand(newBrand.getCode());
@@ -125,8 +126,8 @@ public class ImportServiceBrandsAction extends ImportCsvDataAction {
 			        
 			        if (command != null && !command.isEmpty()) {
 			        	domain.getCommandStack().execute(command);
-						GtmUtils.writeConsoleInfo("service brands added: (" + Integer.toString(added)+")" );
-						GtmUtils.writeConsoleInfo("service brands updated: (" + Integer.toString(updated) + ")" );
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportServiceBrandsAction_9 + Integer.toString(added)+")" ); //$NON-NLS-2$
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportServiceBrandsAction_11 + Integer.toString(updated) + ")" ); //$NON-NLS-2$
 			        }	
 					monitor.worked(10);
 					monitor.done();
@@ -145,7 +146,7 @@ public class ImportServiceBrandsAction extends ImportCsvDataAction {
 			new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
 		} catch (Exception exception) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("carrier file read error");
+			dialog.setText(NationalLanguageSupport.ImportServiceBrandsAction_13);
 			dialog.setMessage(exception.getMessage());
 			dialog.open(); 
 			GtmEditorPlugin.INSTANCE.log(exception);
@@ -158,7 +159,7 @@ public class ImportServiceBrandsAction extends ImportCsvDataAction {
 
 
 	private ServiceBrand decodeLine(String st) {
-		String[] strings = st.split(";");
+		String[] strings = st.split(";"); //$NON-NLS-1$
 		
 		if (strings.length < 3) return null;
 		

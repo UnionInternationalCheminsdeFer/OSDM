@@ -10,15 +10,17 @@ import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.IValidationListener;
 import org.eclipse.emf.validation.service.ValidationEvent;
 
+import Gtm.nls.NationalLanguageSupport;
+
 public class ProblemsReporter implements IValidationListener {
     public void validationOccurred(ValidationEvent event) {
         if (event.matches(IStatus.WARNING | IStatus.ERROR)) {
             // fabricate a multi-status for the MarkerUtil to consume
             List<?> results = event.getValidationResults(); 
             IConstraintStatus multi = (IConstraintStatus) new MultiStatus(
-                  "org.eclipse.example.MyPlugin", 1,
+                  "org.eclipse.example.MyPlugin", 1, //$NON-NLS-1$
                   (IStatus[]) results.toArray(new IStatus[results.size()]),
-                  "Problems were found by validation", null);
+                  NationalLanguageSupport.ProblemsReporter_1, null);
 
             try {
                 // create problem markers on the appropriate resources

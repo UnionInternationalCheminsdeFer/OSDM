@@ -40,11 +40,12 @@ import Gtm.LegacySeriesList;
 import Gtm.LegacySeriesType;
 import Gtm.LegacyViastation;
 import Gtm.actions.GtmUtils;
+import Gtm.nls.NationalLanguageSupport;
 
 public class LegacyImporter {
 	
 	private GTMTool tool = null;
-	private DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+	private DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd"); //$NON-NLS-1$
 	private String charset = null;
 	private Path TCVfilePath = null;
 	private Legacy108 legacy108 = null;
@@ -59,24 +60,24 @@ public class LegacyImporter {
 		
 		try  {
 			String charsetlit = tool.getConversionFromLegacy().getLegacy108().getCharacterSet().getLiteral();
-			int i = charsetlit.indexOf("_");	
+			int i = charsetlit.indexOf("_");	 //$NON-NLS-1$
 			charset = charsetlit.substring(i+1);
 			if (!Charset.isSupported(charset)) {
-				String message = "local character set not supported - local station names will not be imported";
+				String message = NationalLanguageSupport.LegacyImporter_2;
 				GtmUtils.writeConsoleError(message);
 				charset = null; 
 				return;
 			};
 
 		} catch (Exception e) {
-			String message = "no local character set provided - local station names will not be imported";
+			String message = NationalLanguageSupport.LegacyImporter_3;
 			GtmUtils.writeConsoleError(message);
 			return;
 		}
 		
 		this.timeZone = legacy108.getTimeZone().getName();
 		if (timeZone == null || timeZone.length() < 3) {
-			timeZone = "GMT";
+			timeZone = "GMT"; //$NON-NLS-1$
 		}
 		dateFormat.setTimeZone(TimeZone.getTimeZone(timeZone)); 
 	}
@@ -92,9 +93,9 @@ public class LegacyImporter {
 	
 		
 		Path directory = TCVfilePath.getParent();
-		Path TCVGfilePath = Paths.get(directory.toString(), "TCVG" + provider + ".txt");
+		Path TCVGfilePath = Paths.get(directory.toString(), "TCVG" + provider + ".txt"); //$NON-NLS-1$ //$NON-NLS-2$
 		File TCVGfile =  TCVGfilePath.toFile();
-		Path TCVSfilePath = Paths.get(directory.toString(), "TCVS" + provider + ".txt");
+		Path TCVSfilePath = Paths.get(directory.toString(), "TCVS" + provider + ".txt"); //$NON-NLS-1$ //$NON-NLS-2$
 		File TCVSfile =  TCVSfilePath.toFile();
 
 
@@ -132,7 +133,7 @@ public class LegacyImporter {
 				}
 			} catch (IOException e) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("TCVG file read error");
+				dialog.setText(NationalLanguageSupport.LegacyImporter_9);
 				dialog.setMessage(e.getMessage());
 				dialog.open(); 
 				e.printStackTrace();
@@ -144,7 +145,7 @@ public class LegacyImporter {
 			Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_STATIONS, stations );
 			if (cmd.canExecute()) {
 				domain.getCommandStack().execute(cmd);
-				GtmUtils.writeConsoleInfo("stations imported: " + Integer.toString(stations.getLegacyStations().size()));
+				GtmUtils.writeConsoleInfo(NationalLanguageSupport.LegacyImporter_10 + Integer.toString(stations.getLegacyStations().size()));
 			}
 		
 	}
@@ -160,7 +161,7 @@ public class LegacyImporter {
 		ConversionFromLegacy converter = (ConversionFromLegacy) legacy108.eContainer();
 		String timeZone = converter.getLegacy108().getTimeZone().getName();
 		if (timeZone == null || timeZone.length() < 3) {
-			timeZone = "GMT";
+			timeZone = "GMT"; //$NON-NLS-1$
 		}
         
         try {
@@ -173,7 +174,7 @@ public class LegacyImporter {
 			}
 		} catch (IOException e) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("TCVS file read error");
+			dialog.setText(NationalLanguageSupport.LegacyImporter_12);
 			dialog.setMessage(e.getMessage());
 			dialog.open(); 
 			e.printStackTrace();
@@ -185,7 +186,7 @@ public class LegacyImporter {
 		Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_SERIES_LIST, seriesList );
 		if (cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
-			GtmUtils.writeConsoleInfo("series imported: " + Integer.toString(seriesList.getSeries().size()));
+			GtmUtils.writeConsoleInfo(NationalLanguageSupport.LegacyImporter_13 + Integer.toString(seriesList.getSeries().size()));
 		}
 
 		
@@ -228,7 +229,7 @@ public class LegacyImporter {
 				}
 			} catch (IOException e) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("fare file read error");
+				dialog.setText(NationalLanguageSupport.LegacyImporter_14);
 				dialog.setMessage(e.getMessage());
 				dialog.open(); 
 				e.printStackTrace();
@@ -249,7 +250,7 @@ public class LegacyImporter {
 
 			if (!command.isEmpty() && command.canExecute()) {
 				domain.getCommandStack().execute(command);
-				GtmUtils.writeConsoleInfo("route prices imported: " + Integer.toString(resultListRouteFares.getRouteFare().size()));
+				GtmUtils.writeConsoleInfo(NationalLanguageSupport.LegacyImporter_15 + Integer.toString(resultListRouteFares.getRouteFare().size()));
 			}
 			
 	}
@@ -314,7 +315,7 @@ public class LegacyImporter {
 			String distance  		= st.substring(8,13);
 			String flag 			= st.substring(13,14);	 
 					
-			if (flag.equals("2")) return null;
+			if (flag.equals("2")) return null; //$NON-NLS-1$
 
 			String fare2nd 	 		= st.substring(14,21);	
 			String fare1st 	 		= st.substring(22,29);	
@@ -375,12 +376,12 @@ public class LegacyImporter {
 				
 			  String name = decodeTCVLine(st, charset);
 			  if (name != null) {
-				 filenames.add(name+".txt");
+				 filenames.add(name+".txt"); //$NON-NLS-1$
 			  }
 			}
 		} catch (IOException e) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("TCV file read error");
+			dialog.setText(NationalLanguageSupport.LegacyImporter_18);
 			dialog.setMessage(e.getMessage());
 			dialog.open(); 
 			e.printStackTrace();
@@ -397,7 +398,7 @@ public class LegacyImporter {
 			br = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("file read error");
+			dialog.setText(NationalLanguageSupport.LegacyImporter_19);
 			dialog.setMessage(e.getMessage());
 			dialog.open(); 
 			e.printStackTrace();
@@ -411,7 +412,7 @@ public class LegacyImporter {
 	private String decodeTCVLine(String st , String charset) {
 		//get fare file names
 		String name	= st.substring(34,42);
-		if (name.startsWith("TCV")) {
+		if (name.startsWith("TCV")) { //$NON-NLS-1$
 			return null;
 		} else {
 			return name;
@@ -425,7 +426,7 @@ public class LegacyImporter {
 		
 		String flag  		= st.substring(9, 10);
 		
-		if (flag.equals("2")) return null;
+		if (flag.equals("2")) return null; //$NON-NLS-1$
 
 
 		String nameUTF8 = new String(st.substring(15,50).getBytes(charset));
@@ -481,7 +482,7 @@ public class LegacyImporter {
 		String number  					= st.substring(4, 9);
 		String flag  					= st.substring(9, 10);
 		
-		if (flag.equals("2")) return null;
+		if (flag.equals("2")) return null; //$NON-NLS-1$
 		
 		String type 					= st.substring(10,11);
 		//String flag2 					= st.substring(11,12);		
@@ -528,12 +529,12 @@ public class LegacyImporter {
 		
 		series.setNumber(Integer.parseInt(number));
 		
-		if (type.equals("1")) series.setType(LegacySeriesType.TRANSIT);
-		if (type.equals("2")) series.setType(LegacySeriesType.BORDER_DESTINATION);
-		if (type.equals("3")) series.setType(LegacySeriesType.STATION_STATION);
+		if (type.equals("1")) series.setType(LegacySeriesType.TRANSIT); //$NON-NLS-1$
+		if (type.equals("2")) series.setType(LegacySeriesType.BORDER_DESTINATION); //$NON-NLS-1$
+		if (type.equals("3")) series.setType(LegacySeriesType.STATION_STATION); //$NON-NLS-1$
 
-		if (calculation.equals("1")) series.setPricetype(LegacyCalculationType.DISTANCE_BASED);
-		if (calculation.equals("2")) series.setPricetype(LegacyCalculationType.ROUTE_BASED);		
+		if (calculation.equals("1")) series.setPricetype(LegacyCalculationType.DISTANCE_BASED); //$NON-NLS-1$
+		if (calculation.equals("2")) series.setPricetype(LegacyCalculationType.ROUTE_BASED);		 //$NON-NLS-1$
 		
 		series.setFromStation(Integer.parseInt(departure));
 		series.setToStation(Integer.parseInt(destination));

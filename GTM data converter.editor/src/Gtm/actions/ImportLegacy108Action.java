@@ -7,6 +7,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import Gtm.GTMTool;
 import Gtm.actions.converter.LegacyImporter;
+import Gtm.nls.NationalLanguageSupport;
 
 
 
@@ -14,7 +15,7 @@ import Gtm.actions.converter.LegacyImporter;
 public class ImportLegacy108Action extends BasicGtmAction {
 	
 	public ImportLegacy108Action(IEditingDomainProvider editingDomainProvider) {
-		super("Import Legacy data", editingDomainProvider);
+		super(NationalLanguageSupport.ImportLegacy108Action_0, editingDomainProvider);
 		this.setToolTipText(this.getText());
 		setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importLegacy.png")); //$NON-NLS-1$
 	}
@@ -29,8 +30,8 @@ public class ImportLegacy108Action extends BasicGtmAction {
 	@Override
 	protected void runAction(GTMTool tool) {
         FileDialog fd = new FileDialog( Display.getDefault().getActiveShell(), SWT.READ_ONLY);
-        fd.setText("select TCV file");
-        String[] filterExt = { "*.txt" };
+        fd.setText(NationalLanguageSupport.ImportLegacy108Action_1);
+        String[] filterExt = { "*.txt" }; //$NON-NLS-1$
         fd.setFilterExtensions(filterExt);
         String path = fd.open();
         

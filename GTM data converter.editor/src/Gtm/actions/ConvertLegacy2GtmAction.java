@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import Gtm.Country;
 import Gtm.GTMTool;
 import Gtm.actions.converter.ConverterFromLegacy;
+import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 
@@ -23,7 +24,7 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 		protected IEditingDomainProvider editingDomainProvider = null;
 		
 		public ConvertLegacy2GtmAction(IEditingDomainProvider editingDomainProvider) {
-			super("Convert Legacy 108 to GTM", editingDomainProvider);
+			super(NationalLanguageSupport.ConvertLegacy2GtmAction_0, editingDomainProvider);
 			this.setToolTipText(this.getText());
 			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/convertFromLegacy.png")); //$NON-NLS-1$
 			this.editingDomainProvider = editingDomainProvider;
@@ -45,17 +46,17 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 			
 			if (tool == null) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("no data found");
+				dialog.setText(NationalLanguageSupport.ConvertLegacy2GtmAction_1);
 				dialog.open(); 
 				return;
 			}
 			
 			Country country = tool.getConversionFromLegacy().getParams().getCountry();
 			if (country == null) {
-				String message = "the country is missing in the conversion parameter";
+				String message = NationalLanguageSupport.ConvertLegacy2GtmAction_2;
 				GtmUtils.writeConsoleError(message);
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("the country is missing in the conversion parameter");
+				dialog.setText(NationalLanguageSupport.ConvertLegacy2GtmAction_3);
 				dialog.open(); 
 				return;
 			}
@@ -72,42 +73,42 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 
 				public void run(IProgressMonitor monitor) {
 					
-					monitor.beginTask("Convert Legacy 108 fare data to GTM", 107); 
+					monitor.beginTask(NationalLanguageSupport.ConvertLegacy2GtmAction_4, 107); 
 
 					try {
 			
-						monitor.subTask("Initialize main structure");
+						monitor.subTask(NationalLanguageSupport.ConvertLegacy2GtmAction_5);
 						prepareStructure(tool, domain);
 						monitor.worked(1);
 						
-						monitor.subTask("deleting old conversion data");						
+						monitor.subTask(NationalLanguageSupport.ConvertLegacy2GtmAction_6);						
 						int deleted = converter.deleteOldConversionResults();
-						GtmUtils.writeConsoleInfo("old series conversions deleted: " + Integer.toString(deleted));
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_7 + Integer.toString(deleted));
 						monitor.worked(1);
 				
-						monitor.subTask("convert fare reference stations");
+						monitor.subTask(NationalLanguageSupport.ConvertLegacy2GtmAction_8);
 						int added = converter.convertFareStationSets();
-						GtmUtils.writeConsoleInfo("fare reference station sets converted: " + Integer.toString(added));	
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_9 + Integer.toString(added));	
 						monitor.worked(1);
 			
-						monitor.subTask("convert border points");						
+						monitor.subTask(NationalLanguageSupport.ConvertLegacy2GtmAction_10);						
 						added = converter.convertBorderPoints();
-						GtmUtils.writeConsoleInfo("border points converted: " + Integer.toString(added));	
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_11 + Integer.toString(added));	
 						monitor.worked(1);
 				
-						monitor.subTask("convert station names");
+						monitor.subTask(NationalLanguageSupport.ConvertLegacy2GtmAction_12);
 						added = converter.convertStationNames();
-						GtmUtils.writeConsoleInfo("station names converted: " + Integer.toString(added));		
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_13 + Integer.toString(added));		
 						monitor.worked(1);
 			
-						monitor.subTask("convert sales availabilities");
+						monitor.subTask(NationalLanguageSupport.ConvertLegacy2GtmAction_14);
 						added = converter.convertSalesAvailabilities();
-						GtmUtils.writeConsoleInfo("sales avialabiliy ranges converted: " + Integer.toString(added));					
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_15 + Integer.toString(added));					
 						monitor.worked(1);
 			
-						monitor.subTask("convert fares");
+						monitor.subTask(NationalLanguageSupport.ConvertLegacy2GtmAction_16);
 						added = converter.convertToGtm(monitor);
-						GtmUtils.writeConsoleInfo("fares converted: " + Integer.toString(added));
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_17 + Integer.toString(added));
 						monitor.worked(1);
 						
 					} catch (Exception e) {

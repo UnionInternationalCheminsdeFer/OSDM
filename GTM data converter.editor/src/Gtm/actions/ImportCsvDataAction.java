@@ -12,6 +12,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
 
+import Gtm.nls.NationalLanguageSupport;
+
 
 
 public abstract class ImportCsvDataAction extends BasicGtmAction {
@@ -42,7 +44,7 @@ public abstract class ImportCsvDataAction extends BasicGtmAction {
 			
 	        FileDialog fd = new FileDialog( Display.getDefault().getActiveShell(), SWT.READ_ONLY);
 	        fd.setText(text);
-	        String[] filterExt = { "*.csv" };
+	        String[] filterExt = { "*.csv" }; //$NON-NLS-1$
 	        fd.setFilterExtensions(filterExt);
 	        String path = fd.open();
 	        
@@ -55,7 +57,7 @@ public abstract class ImportCsvDataAction extends BasicGtmAction {
 				br = new BufferedReader(new FileReader(file));
 			} catch (FileNotFoundException e) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText("file read error");
+				dialog.setText(NationalLanguageSupport.ImportCsvDataAction_1);
 				dialog.setMessage(e.getMessage());
 				dialog.open(); 
 				e.printStackTrace();

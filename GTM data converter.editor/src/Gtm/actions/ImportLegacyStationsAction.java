@@ -17,6 +17,7 @@ import Gtm.GtmPackage;
 import Gtm.Legacy108;
 import Gtm.Legacy108Station;
 import Gtm.Legacy108Stations;
+import Gtm.nls.NationalLanguageSupport;
 
 
 
@@ -24,7 +25,7 @@ import Gtm.Legacy108Stations;
 public class ImportLegacyStationsAction extends ImportLegacyAction {
 	
 	public ImportLegacyStationsAction(IEditingDomainProvider editingDomainProvider) {
-		super("Import Legacy Stations TCVG", editingDomainProvider);
+		super(NationalLanguageSupport.ImportLegacyStationsAction_0, editingDomainProvider);
 	}
 
 	public ImportLegacyStationsAction(String text, IEditingDomainProvider editingDomainProvider) {
@@ -37,7 +38,7 @@ public class ImportLegacyStationsAction extends ImportLegacyAction {
 	 */
 	protected void runAction(Legacy108 legacy108) {
 		
-		BufferedReader br = super.getReader("import stations TCVG");
+		BufferedReader br = super.getReader(NationalLanguageSupport.ImportLegacyStationsAction_1);
 		
 		if (br == null) return;
       
@@ -49,17 +50,17 @@ public class ImportLegacyStationsAction extends ImportLegacyAction {
         String charset = null;
 		try  {
 			String charsetlit = legacy108.getCharacterSet().getLiteral();
-			int i = charsetlit.indexOf("_");	
+			int i = charsetlit.indexOf("_");	 //$NON-NLS-1$
 			charset = charsetlit.substring(i+1);
 			if (!Charset.isSupported(charset)) {
-				String message = "local character set not supported - local station names will not be imported";
+				String message = NationalLanguageSupport.ImportLegacyStationsAction_3;
 				GtmUtils.writeConsoleError(message);
 				charset = null; 
 				return;
 			};
 
 		} catch (Exception e) {
-			String message = "no local character set provided - local station names will not be imported";
+			String message = NationalLanguageSupport.ImportLegacyStationsAction_4;
 			GtmUtils.writeConsoleError(message);
 			return;
 		}
@@ -74,7 +75,7 @@ public class ImportLegacyStationsAction extends ImportLegacyAction {
 			}
 		} catch (IOException e) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("TCVG file read error");
+			dialog.setText(NationalLanguageSupport.ImportLegacyStationsAction_5);
 			dialog.setMessage(e.getMessage());
 			dialog.open(); 
 			e.printStackTrace();
@@ -86,7 +87,7 @@ public class ImportLegacyStationsAction extends ImportLegacyAction {
 		Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_STATIONS, stations );
 		if (cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
-			GtmUtils.writeConsoleInfo("stations imported: " + Integer.toString(stations.getLegacyStations().size()));
+			GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportLegacyStationsAction_6 + Integer.toString(stations.getLegacyStations().size()));
 		}
 
 	}
@@ -99,7 +100,7 @@ public class ImportLegacyStationsAction extends ImportLegacyAction {
 		
 		String flag  		= st.substring(9, 10);
 		
-		if (flag.equals("2")) return null;
+		if (flag.equals("2")) return null; //$NON-NLS-1$
 
 
 		String nameUTF8 = new String(st.substring(15,50).getBytes(charset));

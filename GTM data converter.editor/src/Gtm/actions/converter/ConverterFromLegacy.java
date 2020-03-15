@@ -63,6 +63,7 @@ import Gtm.TaxScope;
 import Gtm.VATDetail;
 import Gtm.ViaStation;
 import Gtm.console.ConsoleUtil;
+import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.DirtyCommand;
 import Gtm.presentation.GtmEditor;
 
@@ -194,7 +195,7 @@ public class ConverterFromLegacy {
 		
 		Country country = tool.getConversionFromLegacy().getParams().getCountry();
 		if (country == null) {
-			String message = "the country is missing in the conversion parameter";
+			String message = NationalLanguageSupport.ConverterFromLegacy_0;
 			writeConsoleError(message);
 			return 0;
 		}
@@ -212,13 +213,13 @@ public class ConverterFromLegacy {
 		int added = 0;
 		
 		
-		monitor.subTask("create carrier constraints");
+		monitor.subTask(NationalLanguageSupport.ConverterFromLegacy_1);
 		for (LegacySeries series: tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries()) {
 			
 			if (carrierConstraints.get(series.getCarrierCode()) == null)  {
 				Carrier carrier = tool.getCodeLists().getCarriers().findCarrier(series.getCarrierCode());
 				CarrierConstraint constraint = GtmFactory.eINSTANCE.createCarrierConstraint();
-				constraint.setDataDescription("only " + carrier.getName());
+				constraint.setDataDescription(NationalLanguageSupport.ConverterFromLegacy_2 + carrier.getName());
 				constraint.getIncludedCarriers().add(carrier);
 				carrierConstraints.put(carrier.getCode(),constraint);
 			}
@@ -275,7 +276,7 @@ public class ConverterFromLegacy {
 			
 						
 			if (nbSeries % 1000 == 0 ) {			
-				monitor.subTask("convert series: "+ String.valueOf(nbSeries));
+				monitor.subTask(NationalLanguageSupport.ConverterFromLegacy_3+ String.valueOf(nbSeries));
 				monitor.worked(worked);
 			} 
 			
@@ -344,7 +345,7 @@ public class ConverterFromLegacy {
 			
 			
 		} catch (ConverterException e) {
-			String message = "error in series: " + Integer.toString(series.getNumber()) + " conversion of this series failed";
+			String message = NationalLanguageSupport.ConverterFromLegacy_4 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_5;
 			writeConsoleError(message);
 		}
 		return;
@@ -461,7 +462,7 @@ public class ConverterFromLegacy {
 		
 		Country country = tool.getConversionFromLegacy().getParams().getCountry();
 		if (country == null) {
-			String message = "the country is missing in the conversion parameter";
+			String message = NationalLanguageSupport.ConverterFromLegacy_6;
 			writeConsoleError(message);
 			throw new ConverterException(message);
 		}
@@ -479,7 +480,7 @@ public class ConverterFromLegacy {
 			departureFareStation = findFareStation(code);
 		} 
 		if (departureStation == null && departureFareStation == null) {
-			String message = "error in series: " + Integer.toString(series.getNumber()) + " station not found: " + Integer.toString(code);
+			String message = NationalLanguageSupport.ConverterFromLegacy_7 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_8 + Integer.toString(code);
 			writeConsoleError(message);
 			throw new ConverterException(message);
 		}
@@ -496,7 +497,7 @@ public class ConverterFromLegacy {
 			arrivalFareStation = findFareStation(code);
 		} 
 		if (arrivalStation == null && arrivalFareStation == null) {
-			String message = "error in series: " + Integer.toString(series.getNumber()) + " station not found: " + Integer.toString(code);
+			String message = NationalLanguageSupport.ConverterFromLegacy_9 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_10 + Integer.toString(code);
 			writeConsoleError(message);
 			throw new ConverterException(message);
 		}		
@@ -506,7 +507,7 @@ public class ConverterFromLegacy {
 		int borderpointcode = getBorderPointCode(tool, series.getFromStation());
 			ConnectionPoint exit = findConnectionPoint(tool,borderpointcode,departureStation);
 			if (exit == null) {
-				String message = "error in series: " + Integer.toString(series.getNumber()) + "connection point missing";
+				String message = NationalLanguageSupport.ConverterFromLegacy_11 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_12;
 				writeConsoleError(message);
 				throw new ConverterException(message);
 			}
@@ -556,7 +557,7 @@ public class ConverterFromLegacy {
 					try {
 						addToRoute(lastRoute, legacyViaStation, country);
 					} catch (ConverterException e) {
-						String message = "error in series: " + Integer.toString(series.getNumber()) + ") : " + e.getMessage();
+						String message = NationalLanguageSupport.ConverterFromLegacy_13 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_14 + e.getMessage();
 						writeConsoleError(message);
 						throw new ConverterException(message);
 					}
@@ -571,7 +572,7 @@ public class ConverterFromLegacy {
 					try {
 						addToRoute(lastRoute, legacyViaStation, country);
 					} catch (ConverterException e) {
-						String message = "error in series: " + Integer.toString(series.getNumber()) + ") : " + e.getMessage();
+						String message = NationalLanguageSupport.ConverterFromLegacy_15 + Integer.toString(series.getNumber()) + ") : " + e.getMessage(); //$NON-NLS-2$
 						writeConsoleError(message);
 						throw new ConverterException(message);
 					}					
@@ -584,7 +585,7 @@ public class ConverterFromLegacy {
 						lastRoute = alternativeRoute.getStations();						
 						addToRoute(lastRoute, legacyViaStation, country);
 					} catch (ConverterException e) {
-						String message = "error in series: " + Integer.toString(series.getNumber()) + ") :" + e.getMessage();
+						String message = NationalLanguageSupport.ConverterFromLegacy_17 + Integer.toString(series.getNumber()) + ") :" + e.getMessage(); //$NON-NLS-2$
 						writeConsoleError(message);
 						throw e;
 					}		
@@ -593,7 +594,7 @@ public class ConverterFromLegacy {
 				try {
 					addToRoute(lastRoute, legacyViaStation, country);
 				} catch (ConverterException e) {
-					String message = "error in series: " + Integer.toString(series.getNumber()) + ") : " + e.getMessage();
+					String message = NationalLanguageSupport.ConverterFromLegacy_19 + Integer.toString(series.getNumber()) + ") : " + e.getMessage(); //$NON-NLS-2$
 					writeConsoleError(message);
 					throw new ConverterException(message);
 				}		
@@ -614,7 +615,7 @@ public class ConverterFromLegacy {
 			int borderpointcode = getBorderPointCode(tool, series.getToStation());
 			ConnectionPoint entry = findConnectionPoint(tool,borderpointcode,arrivalStation);
 			if (entry == null) {
-				String message = "error in series: " + Integer.toString(series.getNumber()) + "connection point missing for transit series";
+				String message = NationalLanguageSupport.ConverterFromLegacy_21 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_22;
 				writeConsoleError(message);
 				throw new ConverterException(message);
 			}
@@ -701,7 +702,7 @@ public class ConverterFromLegacy {
 			departureFareStation = findFareStation(code);
 		} 
 		if (departureStation == null && departureFareStation == null) {
-			String message = "error in series: " + Integer.toString(series.getNumber()) + " station not found: " + Integer.toString(code);
+			String message = NationalLanguageSupport.ConverterFromLegacy_23 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_24 + Integer.toString(code);
 			writeConsoleError(message);
 			throw new ConverterException(message);
 		}
@@ -718,7 +719,7 @@ public class ConverterFromLegacy {
 			arrivalFareStation = findFareStation(code);
 		} 
 		if (arrivalStation == null && arrivalFareStation == null) {
-			String message = "error in series: " + Integer.toString(series.getNumber()) + " station not found: " + Integer.toString(code);
+			String message = NationalLanguageSupport.ConverterFromLegacy_25 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_26 + Integer.toString(code);
 			writeConsoleError(message);
 			throw new ConverterException(message);
 		}	
@@ -738,7 +739,7 @@ public class ConverterFromLegacy {
 			int borderpointcode = getBorderPointCode(tool, series.getFromStation());
 			ConnectionPoint entry = findConnectionPoint(tool,borderpointcode,departureStation);
 			if (entry == null) {
-				String message = "error in series: " + Integer.toString(series.getNumber()) + "connection point missing for transit series";
+				String message = NationalLanguageSupport.ConverterFromLegacy_27 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_28;
 				writeConsoleError(message);
 				throw new ConverterException(message);
 			}
@@ -770,7 +771,7 @@ public class ConverterFromLegacy {
 					try {
 						addToRoute(lastRoute, legacyViaStation, country);
 					} catch (ConverterException e) {
-						String message = "error in series: " + Integer.toString(series.getNumber()) + ") : " + e.getMessage();
+						String message = NationalLanguageSupport.ConverterFromLegacy_29 + Integer.toString(series.getNumber()) + ") : " + e.getMessage(); //$NON-NLS-2$
 						writeConsoleError(message);
 						throw new ConverterException(message);
 					}
@@ -785,7 +786,7 @@ public class ConverterFromLegacy {
 					try {
 						addToRoute(lastRoute, legacyViaStation, country);
 					} catch (ConverterException e) {
-						String message = "error in series: " + Integer.toString(series.getNumber()) + ") : " + e.getMessage();
+						String message = "error in series: " + Integer.toString(series.getNumber()) + ") : " + e.getMessage(); //$NON-NLS-2$
 						writeConsoleError(message);
 						throw new ConverterException(message);
 					}					
@@ -798,7 +799,7 @@ public class ConverterFromLegacy {
 						lastRoute = alternativeRoute.getStations();
 						addToRoute(lastRoute, legacyViaStation, country);
 					} catch (ConverterException e) {
-						String message = "error in series: " + Integer.toString(series.getNumber()) + ") :" + e.getMessage();
+						String message = NationalLanguageSupport.ConverterFromLegacy_33 + Integer.toString(series.getNumber()) + ") :" + e.getMessage(); //$NON-NLS-2$
 						writeConsoleError(message);
 						throw e;
 					}		
@@ -808,7 +809,7 @@ public class ConverterFromLegacy {
 				try {
 					addToRoute(lastRoute, legacyViaStation, country);
 				} catch (ConverterException e) {
-					String message = "error in series: " + Integer.toString(series.getNumber()) + " station ignored!) : " + e.getMessage();
+					String message = NationalLanguageSupport.ConverterFromLegacy_35 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_36 + e.getMessage();
 					writeConsoleError(message);
 				}		
 			}
@@ -821,7 +822,7 @@ public class ConverterFromLegacy {
 			int borderpointcode = getBorderPointCode(tool, series.getToStation());
 			ConnectionPoint exit = findConnectionPoint(tool,borderpointcode,arrivalStation);
 			if (exit == null) {
-				String message = "error in series: " + Integer.toString(series.getNumber()) + "connection point missing";
+				String message = NationalLanguageSupport.ConverterFromLegacy_37 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_38;
 				writeConsoleError(message);
 				throw new ConverterException(message);
 			}
@@ -882,7 +883,7 @@ public class ConverterFromLegacy {
 		if (station != null || fareStation != null) {
 			lastRoute.add(via);
 		} else {
-			String message = "station not found: " + Integer.toString(code);
+			String message = NationalLanguageSupport.ConverterFromLegacy_39 + Integer.toString(code);
 			writeConsoleError(message);
 			throw new ConverterException(message);
 		}
@@ -913,7 +914,7 @@ public class ConverterFromLegacy {
 		station = localStations.get(Integer.valueOf(localCode));
 
 		if (station == null) {
-			String message = "station not found station unknown: " + Integer.toString(localCode) ;
+			String message = NationalLanguageSupport.ConverterFromLegacy_40 + Integer.toString(localCode) ;
 			writeConsoleError(message);
 		}
 		return station;
@@ -944,7 +945,7 @@ public class ConverterFromLegacy {
 		
 			CurrencyPrice curPrice = GtmFactory.eINSTANCE.createCurrencyPrice();
 			curPrice.setAmount(amount);
-			curPrice.setCurrency(tool.getCodeLists().getCurrencies().findCurrency("EUR"));
+			curPrice.setCurrency(tool.getCodeLists().getCurrencies().findCurrency("EUR")); //$NON-NLS-1$
 		
 			VATDetail vatDetail = GtmFactory.eINSTANCE.createVATDetail();
 			vatDetail.setPercentage(tool.getConversionFromLegacy().getParams().getVATpercentage());
@@ -959,7 +960,7 @@ public class ConverterFromLegacy {
 			return price;
 		
 		} catch (Exception e) {
-			String message = "Price calculation failed for series: (" + Integer.toString(series.getNumber()) + ")";
+			String message = NationalLanguageSupport.ConverterFromLegacy_42 + Integer.toString(series.getNumber()) + ")"; //$NON-NLS-2$
 			writeConsoleError(message);
 			return null;
 		}
@@ -1050,7 +1051,7 @@ public class ConverterFromLegacy {
 		} else {
 			fare.setCombinationConstraint(fareTemplate.getCombinationConstraint());
 		}
-		fare.setDataDescription("converted from series: " + Integer.toString(series.getNumber()) +" and template: " + fareTemplate.getDataDescription());;
+		fare.setDataDescription(NationalLanguageSupport.ConverterFromLegacy_44 + Integer.toString(series.getNumber()) +NationalLanguageSupport.ConverterFromLegacy_45 + fareTemplate.getDataDescription());;
 		fare.setFareDetailDescription(fareTemplate.getFareDetailDescription());
 		fare.setFulfillmentConstraint(fareTemplate.getFulfillmentConstraint());
 		
@@ -1104,7 +1105,7 @@ public class ConverterFromLegacy {
 			try {
 				points = convertSeriesToConnectionPoints(tool, series);
 			} catch (ConverterException e) {
-				String message = "error in series: " + Integer.toString(series.getNumber()) + " cannot create connection point";
+				String message = NationalLanguageSupport.ConverterFromLegacy_46 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_47;
 				writeConsoleError(message);
 			}
 			if (points != null && !points.isEmpty()) {
@@ -1180,7 +1181,7 @@ public class ConverterFromLegacy {
 			
 		Country country = tool.getConversionFromLegacy().getParams().getCountry();
 		if (country == null) {
-			String message = "the country is missing in the conversion parameter";
+			String message = NationalLanguageSupport.ConverterFromLegacy_48;
 			writeConsoleError(message);
 			throw new ConverterException(message);
 		}
@@ -1261,7 +1262,7 @@ public class ConverterFromLegacy {
 			ConnectionPoint newPoint = GtmFactory.eINSTANCE.createConnectionPoint();
 			newPoint.setDataSource(DataSource.CONVERTED);
 			newPoint.setLegacyBorderPointCode(borderpoint);
-			newPoint.setName("incomplete -- stations need to be assigned!");
+			newPoint.setName(NationalLanguageSupport.ConverterFromLegacy_49);
 			
 			return newPoint;
 		}
@@ -1394,7 +1395,7 @@ public class ConverterFromLegacy {
 						def.getStations().add(station);
 					} else {
 						// something strange happend
-						String message = "error in stations: " + Integer.toString(legacyStation.getStationCode()) + "unknown station, no mapping available";
+						String message = NationalLanguageSupport.ConverterFromLegacy_50 + Integer.toString(legacyStation.getStationCode()) + NationalLanguageSupport.ConverterFromLegacy_51;
 						writeConsoleError(message);
 					}
 				}
@@ -1463,7 +1464,7 @@ public class ConverterFromLegacy {
 			domain.getCommandStack().flush();
 			domain.getCommandStack().execute(new DirtyCommand());
 		} else {
-			String message = "could not change data: " + command.getDescription();
+			String message = NationalLanguageSupport.ConverterFromLegacy_52 + command.getDescription();
 			writeConsoleError(message);
 		}
 		
@@ -1474,7 +1475,7 @@ public class ConverterFromLegacy {
 	private void writeConsoleError(String message) {
 		if (editor == null || message == null || message.length() == 0) return;
 		editor.getSite().getShell().getDisplay().asyncExec(() -> {
-			ConsoleUtil.printError("Errors", message);
+			ConsoleUtil.printError(NationalLanguageSupport.ConverterFromLegacy_53, message);
 		});
 	}
 	

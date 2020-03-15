@@ -24,6 +24,7 @@ import Gtm.LegacyDistanceFare;
 import Gtm.LegacyDistanceFares;
 import Gtm.LegacyRouteFare;
 import Gtm.LegacyRouteFares;
+import Gtm.nls.NationalLanguageSupport;
 
 
 
@@ -31,7 +32,7 @@ public class ImportLegacyAllFareAction extends ImportLegacyAction {
 
 	
 	public ImportLegacyAllFareAction(IEditingDomainProvider editingDomainProvider) {
-		super("Import legacy fares", editingDomainProvider);
+		super(NationalLanguageSupport.ImportLegacyAllFareAction_0, editingDomainProvider);
 	}
 	
 	public ImportLegacyAllFareAction(String text, IEditingDomainProvider editingDomainProvider) {
@@ -41,7 +42,7 @@ public class ImportLegacyAllFareAction extends ImportLegacyAction {
 	
 	protected void runAction(Legacy108 legacy108) {
 		
-		BufferedReader br = super.getReader("import fares");
+		BufferedReader br = super.getReader(NationalLanguageSupport.ImportLegacyAllFareAction_1);
 		       
         String st; 
         
@@ -52,7 +53,7 @@ public class ImportLegacyAllFareAction extends ImportLegacyAction {
 		ConversionFromLegacy converter = (ConversionFromLegacy) legacy108.eContainer();
 		String timeZone = converter.getLegacy108().getTimeZone().getName();
 		if (timeZone == null || timeZone.length() < 3) {
-			timeZone = "GMT";
+			timeZone = "GMT"; //$NON-NLS-1$
 		}
 		
         try {
@@ -78,7 +79,7 @@ public class ImportLegacyAllFareAction extends ImportLegacyAction {
 			}
 		} catch (IOException e) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("fare file read error");
+			dialog.setText(NationalLanguageSupport.ImportLegacyAllFareAction_3);
 			dialog.setMessage(e.getMessage());
 			dialog.open(); 
 			e.printStackTrace();
@@ -99,7 +100,7 @@ public class ImportLegacyAllFareAction extends ImportLegacyAction {
 
 		if (!command.isEmpty() && command.canExecute()) {
 			domain.getCommandStack().execute(command);
-			GtmUtils.writeConsoleInfo("route prices imported: " + Integer.toString(resultListRouteFares.getRouteFare().size()));
+			GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportLegacyAllFareAction_4 + Integer.toString(resultListRouteFares.getRouteFare().size()));
 		}
 		
 	}
@@ -133,7 +134,7 @@ public class ImportLegacyAllFareAction extends ImportLegacyAction {
 		fare.setReturnFare1st(Integer.parseInt(returnFare1st));
 		fare.setReturnFare2nd(Integer.parseInt(returnFare2nd));		
 		
-		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		DateFormat df = new SimpleDateFormat("yyyyMMdd"); //$NON-NLS-1$
 		df.setTimeZone(TimeZone.getTimeZone(timeZone)); 
 		Date dt = null;
 		try {
@@ -166,7 +167,7 @@ public class ImportLegacyAllFareAction extends ImportLegacyAction {
 		String distance  		= st.substring(8,13);
 		String flag 			= st.substring(13,14);	 
 				
-		if (flag.equals("2")) return null;
+		if (flag.equals("2")) return null; //$NON-NLS-1$
 
 		String fare2nd 	 		= st.substring(14,21);	
 		String fare1st 	 		= st.substring(22,29);	
@@ -190,7 +191,7 @@ public class ImportLegacyAllFareAction extends ImportLegacyAction {
 		fare.setReturnFare1st(Integer.parseInt(returnFare1st));
 		fare.setReturnFare2nd(Integer.parseInt(returnFare2nd));		
 		
-		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		DateFormat df = new SimpleDateFormat("yyyyMMdd"); //$NON-NLS-1$
 		df.setTimeZone(TimeZone.getTimeZone(timeZone)); 
 		Date dt = null;
 		try {
