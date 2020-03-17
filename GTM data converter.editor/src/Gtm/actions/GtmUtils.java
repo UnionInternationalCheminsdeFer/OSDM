@@ -2,6 +2,7 @@ package Gtm.actions;
 
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.MissingResourceException;
 
 import org.eclipse.core.runtime.Platform;
@@ -60,6 +61,7 @@ import Gtm.SalesAvailabilityConstraint;
 import Gtm.ServiceBrands;
 import Gtm.ServiceConstraint;
 import Gtm.ServiceLevel;
+import Gtm.Station;
 import Gtm.Text;
 import Gtm.TravelValidityConstraint;
 import Gtm.console.ConsoleUtil;
@@ -958,18 +960,39 @@ public class GtmUtils {
 	public static boolean importStation(String filter, int country) {
 		if (country < 1 || country > 99) return false;
 		
-		if (filter != null && filter.length() > 0) {
+		if (filter != null && filter.trim().length() > 0) {
 			if (!filter.contains(String.valueOf(country))) return false;
 		}
 		
 		String filterP = PreferencesAccess.getStringFromPreferenceStore(PreferenceConstants.P_IMPORT_CONTRY_FILTER);
 		
-		if (filterP != null && filterP.length() > 0) {
-			if (!filter.contains(String.valueOf(country))) return false;
+		if (filterP != null && filterP.trim().length() > 0 ) {
+			if (!filterP.contains(String.valueOf(country))) return false;
 		}		
 		
 		return true;
 		
 	}
 	
+	public static HashMap<Integer,Station> getStationMap(GTMTool tool)	{
+		
+	    if (tool == null || tool.getConversionFromLegacy() == null || tool.getConversionFromLegacy().getParams() == null )	{
+	    	return null;
+	    }
+	
+		int myCountryCode = tool.getConversionFromLegacy().getParams().getCountry().getCode();
+		
+		HashMap<Integer,Station> stations = new HashMap<Integer,Station>();
+	
+		for (Station station : tool.getCodeLists().getStations().getStations()) {
+			if (station.getCountry().getCode() == myCountryCode) {
+				try {
+					stations.put(Integer.parseInt(station.getCode()), station);
+				} catch (Exception e){
+					//do nothing 
+				}
+			}
+		}
+		return stations;
+	}
 }

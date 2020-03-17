@@ -28,9 +28,13 @@ import Gtm.GTMTool;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.Station;
+import Gtm.StationRelation;
+import Gtm.StationRelationType;
+import Gtm.console.ConsoleUtil;
 import Gtm.nls.NationalLanguageSupport;
+import Gtm.preferences.PreferenceConstants;
+import Gtm.preferences.PreferencesAccess;
 import Gtm.presentation.GtmEditor;
-import Gtm.presentation.GtmEditorPlugin;
 
 
 public class ImportStationsAction extends BasicGtmAction {
@@ -55,6 +59,8 @@ public class ImportStationsAction extends BasicGtmAction {
 			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importStations.png")); //$NON-NLS-1$
 			this.editingDomainProvider = editingDomainProvider;
 		}
+		
+		
 
 		protected void run (IStructuredSelection structuredSelection) {
 			
@@ -71,6 +77,8 @@ public class ImportStationsAction extends BasicGtmAction {
 				dialog.open(); 
 				return;
 			}
+			
+			
 			
 			BufferedReader reader = getReader(NationalLanguageSupport.ImportStationsAction_10);
 
@@ -92,18 +100,22 @@ public class ImportStationsAction extends BasicGtmAction {
 						ArrayList<Station> importedStations = new ArrayList<Station>();
 						ArrayList<Station> newStations = new ArrayList<Station>();
 						ArrayList<Station> updatedStations = new ArrayList<Station>();
+						ArrayList<Station> borderStations = new ArrayList<Station>();
 						
 						String st = null;
 						int stationNb = 0;
 						while ((st = reader.readLine()) != null) {
 								
-							Station newStation =  decodeLine(st,tool);
+							Station newStation =  decodeLine(st,tool,editor);
 							
 							if (newStation != null) {
 								stationNb++;
 								
 								if (GtmUtils.importStation(tool.getConversionFromLegacy().getParams().getStationImportFilter(), newStation.getCountry().getCode())) {
 									importedStations.add(newStation);
+									if (newStation.isBorderStation()) {
+										borderStations.add(newStation);
+									}
 									if (stationNb % 100 == 0) {
 										monitor.subTask(NationalLanguageSupport.ImportStationsAction_14 + String.valueOf(stationNb));
 										monitor.worked(1000);
@@ -113,15 +125,7 @@ public class ImportStationsAction extends BasicGtmAction {
 						} 
 						
 						monitor.subTask(NationalLanguageSupport.ImportStationsAction_15);
-						HashMap<Integer,Station> oldStations = new HashMap<Integer,Station>();
-						for (Station station: tool.getCodeLists().getStations().getStations()) {
-							try {
-								Integer code = Integer.valueOf(station.getCountry().getCode() * 100000 + Integer.parseInt(station.getCode()));
-								oldStations.put(code, station);
-							} catch (Exception e) {
-								//not important, might be proprietary code
-							}
-						}
+						HashMap<Integer,Station> oldStations = GtmUtils.getStationMap(tool);
 						
 						for (Station newStation : importedStations) {
 							Station station = null;
@@ -139,6 +143,43 @@ public class ImportStationsAction extends BasicGtmAction {
 							}
 						}
 						monitor.worked(1000);
+						/*
+						 * trying to link border stations via geo-coordinates
+						 * 
+						 * result depends on the data quality which was poor in the test data
+						 * 
+						 */
+						
+						Float accuracy = ((float)PreferencesAccess.getIntFromPreferenceStore(PreferenceConstants.P_LINK_STATIONS_BY_GEO_ACCURACY)) / (60 * 60);
+						
+						if (PreferencesAccess.getBoolFromPreferenceStore(PreferenceConstants.P_LINK_STATIONS_BY_GEO)) {
+							monitor.subTask(NationalLanguageSupport.ImportStationsAction_CONNECT_BORDER_STATIONS);
+							for (Station station1 : borderStations) {
+								
+								for (Station station2 : borderStations) {
+									
+									if (station1 != station2 && 
+										station1.getLatitude() > 0 &&
+										station2.getLatitude() > 0 &&
+										station1.getLongitude() > 0 &&
+										station2.getLongitude() > 0 &&
+										station1.getLatitude() - station2.getLatitude() < accuracy &&
+										station1.getLongitude() - station2.getLongitude() < accuracy) {
+										
+										StationRelation rel1 = GtmFactory.eINSTANCE.createStationRelation();
+										rel1.setRelationType(StationRelationType.SAME_STATION);
+										rel1.setStation(station2);
+										StationRelation rel2 = GtmFactory.eINSTANCE.createStationRelation();
+										rel2.setRelationType(StationRelationType.SAME_STATION);
+										rel2.setStation(station1);
+										
+										station1.getRelations().add(rel1);
+										station2.getRelations().add(rel2);
+									}
+								}									
+							}
+						}
+						monitor.worked(10);						
 						
 						monitor.subTask(NationalLanguageSupport.ImportStationsAction_16);
 						final int addedStationsF = newStations.size();
@@ -178,15 +219,15 @@ public class ImportStationsAction extends BasicGtmAction {
 						monitor.worked(1000);
 						
 					} catch (IOException e) {
-						MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-						dialog.setText(NationalLanguageSupport.ImportStationsAction_22);
-						dialog.setMessage(e.getMessage());
-						dialog.open(); 
+						String message = NationalLanguageSupport.ImportStationsAction_22 + " - " + e.getMessage();
+						editor.getSite().getShell().getDisplay().asyncExec(() -> {
+							ConsoleUtil.printError(NationalLanguageSupport.ConverterToLegacy_42, message);
+						});
 					} catch (Exception e) {
-						MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-						dialog.setText(NationalLanguageSupport.ImportStationsAction_23);
-						dialog.setMessage(e.getMessage());
-						dialog.open(); 
+						String message = NationalLanguageSupport.ImportStationsAction_23  + " - " + e.getMessage();
+						editor.getSite().getShell().getDisplay().asyncExec(() -> {
+							ConsoleUtil.printError(NationalLanguageSupport.ConverterToLegacy_42, message);
+						});
 					} finally {
 						monitor.done();
 					}
@@ -196,9 +237,11 @@ public class ImportStationsAction extends BasicGtmAction {
 				// This runs the operation, and shows progress.
 				editor.disconnectViews();
 				new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
-			} catch (Exception exception) {
-				// Something went wrong that shouldn't.
-				GtmEditorPlugin.INSTANCE.log(exception);
+			} catch (Exception e) {
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText(NationalLanguageSupport.ImportStationsAction_23);
+				dialog.setMessage(e.getMessage());
+				dialog.open();
 			} finally {
 				editor.reconnectViews();
 			}
@@ -207,9 +250,9 @@ public class ImportStationsAction extends BasicGtmAction {
 		}
 
 
-		private Station decodeLine(String st, GTMTool tool) {
+		private Station decodeLine(String st, GTMTool tool,GtmEditor editor) {
 			if (st.startsWith("ALS+")) { //$NON-NLS-1$
-				return decodeStationSegment(st, tool);
+				return decodeStationSegment(st, tool,editor);
 			}
 			return null;
 		}
@@ -217,7 +260,7 @@ public class ImportStationsAction extends BasicGtmAction {
 
 
 		
-		private Station decodeStationSegment(String edifact, GTMTool tool) {
+		private Station decodeStationSegment(String edifact, GTMTool tool, GtmEditor editor) {
 			 
 			 // ALS+29+008008618:MENDEN(SAUERLAND)S+512542N+074828E'
 			 //"?" release indicator
@@ -237,7 +280,11 @@ public class ImportStationsAction extends BasicGtmAction {
 			 
 			 //strange MERITS data
 			 if (countryCodeUIC == 0) {
-				 GtmUtils.writeConsoleError(NationalLanguageSupport.ImportStationsAction_27 + stationName);
+				 String message = NationalLanguageSupport.ImportStationsAction_27 + stationName;
+				 editor.getSite().getShell().getDisplay().asyncExec(() -> {
+						GtmUtils.writeConsoleError(message); 
+				 });
+				 
 				 return null;
 			 }
 			
@@ -278,7 +325,10 @@ public class ImportStationsAction extends BasicGtmAction {
 				 station.setLongitude(longitude);
 				 return station;
 			 } else {
-				 GtmUtils.writeConsoleError(NationalLanguageSupport.ImportStationsAction_28 + stationCode + " " + stationName); //$NON-NLS-2$
+				 String message = NationalLanguageSupport.ImportStationsAction_28 + stationCode + " " + stationName; //$NON-NLS-2$
+				 editor.getSite().getShell().getDisplay().asyncExec(() -> {
+						GtmUtils.writeConsoleError(message); 
+				 });
 			 }
 			 return null;
 		}

@@ -7,6 +7,8 @@ public class NationalLanguageSupport extends NLS{
 
     private static final String BUNDLE_NAME = "plugin"; //$NON-NLS-1$
 
+
+
 	public static String BasicGtmAction_0;
 	public static String ConverterFromLegacy_0;
 
@@ -374,10 +376,26 @@ public class NationalLanguageSupport extends NLS{
 	public static String PreferencePage_1;
 
 	public static String PreferencePage_2;
+	
+	public static String PreferencePage_3;
 
 	public static String PreferencePage_4;
 
 	public static String ProblemsReporter_1;
+
+	public static String ImportStationsAction_CONNECT_BORDER_STATIONS;
+
+	public static String PreferencePage_accuracy;
+
+	public static String ImportLegacyAction_Monitor;
+
+
+
+	public static String ImportLegayTask_TCVfile;
+	public static String ImportLegayTask_TCVGfile;
+	public static String ImportLegayTask_TCVSfile;
+	public static String ImportLegayTask_TCVfareFile;
+	public static String ImportLegayTask_BorderPoints;
 
     static {
         // initialize resource bundle

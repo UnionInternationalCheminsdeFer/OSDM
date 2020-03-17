@@ -1,13 +1,21 @@
 package Gtm.actions;
 
 import java.io.File;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.MessageBox;
+
 import Gtm.GTMTool;
 import Gtm.actions.converter.LegacyImporter;
 import Gtm.nls.NationalLanguageSupport;
+import Gtm.presentation.GtmEditor;
+
 
 
 
@@ -38,10 +46,49 @@ public class ImportLegacy108Action extends BasicGtmAction {
         if (path == null || path.length() < 7 ) return;
         
         File file = new File(path);
+        
+		EditingDomain domain = GtmUtils.getActiveDomain();
 		
-		LegacyImporter importer = new LegacyImporter(GtmUtils.getGtmTool(), file.toPath());
+		GtmEditor editor = GtmUtils.getActiveEditor(); 
 		
-		importer.importAll();
+		LegacyImporter importer = new LegacyImporter(GtmUtils.getGtmTool(), file.toPath(), domain, editor);
+		
+
+		IRunnableWithProgress operation =	new IRunnableWithProgress() {
+			// This is the method that gets invoked when the operation runs.
+
+			public void run(IProgressMonitor monitor) {
+				
+				try {
+					
+					monitor.beginTask(NationalLanguageSupport.ImportLegacyAction_Monitor, 30); 
+		
+					importer.importAll(monitor);
+					
+				} catch (Exception e) {
+					throw e;
+				} finally {
+					monitor.done();
+				}
+			}
+		};
+		try {
+			// This runs the operation, and shows progress.
+			editor.disconnectViews();
+			new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
+		} catch (Exception e) {
+			MessageBox dialog =  new MessageBox(editor.getSite().getShell(), SWT.ICON_ERROR | SWT.OK);
+			dialog.setText(NationalLanguageSupport.ImportStationsAction_23);
+			if (e.getMessage()!= null) {
+				dialog.setMessage(e.getMessage());
+			} else {
+				dialog.setMessage("unkown");
+			}
+			dialog.open(); 
+		} finally {
+			editor.reconnectViews();
+		}
+
 	}
 
 }

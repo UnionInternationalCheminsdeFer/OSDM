@@ -10,6 +10,10 @@
   <foreignModel>gtm.xsd</foreignModel>
   <genPackages prefix="Gtm" resource="XML" disposableProviderFactory="true" extensibleProviderFactory="true"
       childCreationExtenders="true" ecorePackage="Gtm.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//StationRelationType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//StationRelationType/SAME_STATION"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//StationRelationType/PATH_CONNECTED_STATION"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//StationFareDetailType">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//StationFareDetailType/NO_DESCRIPTION"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//StationFareDetailType/ON_ARRIVAL"/>
@@ -416,6 +420,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Station/shortNameCaseASCII"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Station/shortNameCaseUTF8"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Station/legacyBorderPointCode"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Station/relations"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//StationRelation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//StationRelation/relationType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//StationRelation/station"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Carrier">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Carrier/code"/>

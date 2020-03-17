@@ -411,6 +411,29 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.StationRelation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StationRelationItemProvider stationRelationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.StationRelation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStationRelationAdapter() {
+		if (stationRelationItemProvider == null) {
+			stationRelationItemProvider = new StationRelationItemProvider(this);
+		}
+
+		return stationRelationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.Carrier} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3379,6 +3402,7 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (currencyItemProvider != null) currencyItemProvider.dispose();
 		if (stationsItemProvider != null) stationsItemProvider.dispose();
 		if (stationItemProvider != null) stationItemProvider.dispose();
+		if (stationRelationItemProvider != null) stationRelationItemProvider.dispose();
 		if (carrierItemProvider != null) carrierItemProvider.dispose();
 		if (carriersItemProvider != null) carriersItemProvider.dispose();
 		if (stationSetItemProvider != null) stationSetItemProvider.dispose();

@@ -13,15 +13,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.TimeZone;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.MessageBox;
+
 
 import Gtm.ConversionFromLegacy;
 import Gtm.GTMTool;
@@ -39,8 +41,14 @@ import Gtm.LegacySeries;
 import Gtm.LegacySeriesList;
 import Gtm.LegacySeriesType;
 import Gtm.LegacyViastation;
+import Gtm.Station;
+import Gtm.StationRelation;
+import Gtm.StationRelationType;
 import Gtm.actions.GtmUtils;
 import Gtm.nls.NationalLanguageSupport;
+import Gtm.preferences.PreferenceConstants;
+import Gtm.preferences.PreferencesAccess;
+import Gtm.presentation.GtmEditor;
 
 public class LegacyImporter {
 	
@@ -50,9 +58,13 @@ public class LegacyImporter {
 	private Path TCVfilePath = null;
 	private Legacy108 legacy108 = null;
 	private String timeZone = null;
+	EditingDomain domain = null;
+	GtmEditor editor = null;
 	
-	public LegacyImporter(GTMTool tool, Path filePathTCV) {
+	public LegacyImporter(GTMTool tool, Path filePathTCV, EditingDomain domain, GtmEditor editor) {
 		this.tool = tool;
+		this.domain = domain;
+		this.editor = editor;
 		
 		this.legacy108 = tool.getConversionFromLegacy().getLegacy108();
 				
@@ -64,14 +76,18 @@ public class LegacyImporter {
 			charset = charsetlit.substring(i+1);
 			if (!Charset.isSupported(charset)) {
 				String message = NationalLanguageSupport.LegacyImporter_2;
-				GtmUtils.writeConsoleError(message);
+				editor.getSite().getShell().getDisplay().asyncExec(() -> {
+					GtmUtils.writeConsoleInfo(message);
+				});
 				charset = null; 
 				return;
 			};
 
 		} catch (Exception e) {
 			String message = NationalLanguageSupport.LegacyImporter_3;
-			GtmUtils.writeConsoleError(message);
+			editor.getSite().getShell().getDisplay().asyncExec(() -> {
+				GtmUtils.writeConsoleError(message);
+			});
 			return;
 		}
 		
@@ -82,34 +98,52 @@ public class LegacyImporter {
 		dateFormat.setTimeZone(TimeZone.getTimeZone(timeZone)); 
 	}
 	
-	public void importAll() {
+	public void importAll(IProgressMonitor monitor) {
 		
+		// monitor has 30 subtasks
+		
+		
+		monitor.subTask(NationalLanguageSupport.ImportLegayTask_TCVfile);
 		File TCVfile = TCVfilePath.toFile();
-		
 		Path namePath = TCVfilePath.getFileName();
 		String name = namePath.toString();
 		String provider = name.substring(3,7);
+		monitor.worked(1);
 		
-	
-		
+		monitor.subTask(NationalLanguageSupport.ImportLegayTask_TCVGfile);		
 		Path directory = TCVfilePath.getParent();
 		Path TCVGfilePath = Paths.get(directory.toString(), "TCVG" + provider + ".txt"); //$NON-NLS-1$ //$NON-NLS-2$
 		File TCVGfile =  TCVGfilePath.toFile();
-		Path TCVSfilePath = Paths.get(directory.toString(), "TCVS" + provider + ".txt"); //$NON-NLS-1$ //$NON-NLS-2$
-		File TCVSfile =  TCVSfilePath.toFile();
-
-
 		importTCVG(TCVGfile);
 		
+		monitor.worked(1);
+		
+		monitor.subTask(NationalLanguageSupport.ImportLegayTask_TCVSfile);
+		Path TCVSfilePath = Paths.get(directory.toString(), "TCVS" + provider + ".txt"); //$NON-NLS-1$ //$NON-NLS-2$
+		File TCVSfile =  TCVSfilePath.toFile();
 		importTCVS(TCVSfile);
+		monitor.worked(1);
 		
 		ArrayList<String> fareFiles = readTCVFilelist(TCVfile);
 		
+		int workSteps = 1;
+		if (fareFiles.size() > 0) {
+			workSteps = 26 / fareFiles.size();
+		}
+		
 		for (String fileName : fareFiles) {
+			monitor.subTask(NationalLanguageSupport.ImportLegayTask_TCVfareFile + " " + fileName);
 			Path filePath = Paths.get(directory.toString(), fileName);
 			File fareFile =  filePath.toFile();
 			importFare(fareFile);
+			monitor.worked(workSteps);
 		}
+		
+		if (PreferencesAccess.getBoolFromPreferenceStore(PreferenceConstants.P_LINK_STATIONS_BY_GEO)) {
+			monitor.subTask(NationalLanguageSupport.ImportLegayTask_BorderPoints);
+			updateMERITSStations();	
+		}
+		monitor.worked(1);
 	
 	}
 
@@ -132,20 +166,22 @@ public class LegacyImporter {
 				  }
 				}
 			} catch (IOException e) {
-				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText(NationalLanguageSupport.LegacyImporter_9);
-				dialog.setMessage(e.getMessage());
-				dialog.open(); 
-				e.printStackTrace();
+				String message = NationalLanguageSupport.LegacyImporter_9 + " - " + e.getMessage();
+				editor.getSite().getShell().getDisplay().asyncExec(() -> {
+					GtmUtils.writeConsoleError(message);
+				});
 				return;
 			} 
 	        
-			EditingDomain domain = GtmUtils.getActiveDomain();
 	           	
 			Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_STATIONS, stations );
 			if (cmd.canExecute()) {
 				domain.getCommandStack().execute(cmd);
-				GtmUtils.writeConsoleInfo(NationalLanguageSupport.LegacyImporter_10 + Integer.toString(stations.getLegacyStations().size()));
+				String message = NationalLanguageSupport.LegacyImporter_10 + Integer.toString(stations.getLegacyStations().size());
+				editor.getSite().getShell().getDisplay().asyncExec(() -> {
+					GtmUtils.writeConsoleInfo(message);
+				});
+			
 			}
 		
 	}
@@ -173,20 +209,20 @@ public class LegacyImporter {
 			  }
 			}
 		} catch (IOException e) {
-			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText(NationalLanguageSupport.LegacyImporter_12);
-			dialog.setMessage(e.getMessage());
-			dialog.open(); 
-			e.printStackTrace();
+			String message = NationalLanguageSupport.LegacyImporter_12 + " - " + e.getMessage();
+			editor.getSite().getShell().getDisplay().asyncExec(() -> {
+				GtmUtils.writeConsoleInfo(message);
+			});	
 			return;
 		} 
-        
-		EditingDomain domain = GtmUtils.getActiveDomain();
            	
 		Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_SERIES_LIST, seriesList );
 		if (cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
-			GtmUtils.writeConsoleInfo(NationalLanguageSupport.LegacyImporter_13 + Integer.toString(seriesList.getSeries().size()));
+			String message = NationalLanguageSupport.LegacyImporter_13 + Integer.toString(seriesList.getSeries().size());
+			editor.getSite().getShell().getDisplay().asyncExec(() -> {
+				GtmUtils.writeConsoleInfo(message);
+			});
 		}
 
 		
@@ -228,15 +264,13 @@ public class LegacyImporter {
 				  }
 				}
 			} catch (IOException e) {
-				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText(NationalLanguageSupport.LegacyImporter_14);
-				dialog.setMessage(e.getMessage());
-				dialog.open(); 
-				e.printStackTrace();
+				
+				String message = NationalLanguageSupport.LegacyImporter_14 + " - " + e.getMessage();
+				editor.getSite().getShell().getDisplay().asyncExec(() -> {
+					GtmUtils.writeConsoleInfo(message);
+				});
 				return;
 			} 
-	        
-			EditingDomain domain = GtmUtils.getActiveDomain();
 	        
 	        CompoundCommand command = new CompoundCommand();
 	        
@@ -250,7 +284,10 @@ public class LegacyImporter {
 
 			if (!command.isEmpty() && command.canExecute()) {
 				domain.getCommandStack().execute(command);
-				GtmUtils.writeConsoleInfo(NationalLanguageSupport.LegacyImporter_15 + Integer.toString(resultListRouteFares.getRouteFare().size()));
+				String message = NationalLanguageSupport.LegacyImporter_15 + Integer.toString(resultListRouteFares.getRouteFare().size());
+				editor.getSite().getShell().getDisplay().asyncExec(() -> {
+					GtmUtils.writeConsoleInfo(message);
+				});
 			}
 			
 	}
@@ -380,11 +417,10 @@ public class LegacyImporter {
 			  }
 			}
 		} catch (IOException e) {
-			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText(NationalLanguageSupport.LegacyImporter_18);
-			dialog.setMessage(e.getMessage());
-			dialog.open(); 
-			e.printStackTrace();
+			String message = NationalLanguageSupport.LegacyImporter_18 + " - " + e.getMessage();
+			editor.getSite().getShell().getDisplay().asyncExec(() -> {
+				GtmUtils.writeConsoleError(message);
+			});
 			return null;
 		} 
 
@@ -397,11 +433,10 @@ public class LegacyImporter {
 		try {
 			br = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
-			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText(NationalLanguageSupport.LegacyImporter_19);
-			dialog.setMessage(e.getMessage());
-			dialog.open(); 
-			e.printStackTrace();
+			String message = NationalLanguageSupport.LegacyImporter_19+ " - " + e.getMessage();
+			editor.getSite().getShell().getDisplay().asyncExec(() -> {
+				GtmUtils.writeConsoleError(message);
+			});
 			return null;
 		} 
     
@@ -599,6 +634,94 @@ public class LegacyImporter {
 		station.setCode(via);
 		station.setPosition(Integer.parseInt(pos1));
 		series.getViastations().add(station);
+		
+	}
+	
+	private void updateMERITSStations() {
+		//correcting merits data using 108 data
+		
+		CompoundCommand com = new CompoundCommand();
+		
+		HashMap<Integer,Station> stations = GtmUtils.getStationMap(tool);
+		
+		int countryBase = tool.getConversionFromLegacy().getParams().getCountry().getCode() * 100000;
+		
+				
+		for (Legacy108Station ls : tool.getConversionFromLegacy().getLegacy108().getLegacyStations().getLegacyStations() ) {
+			
+			if (ls.getBorderPointCode() > 0) {
+				Station station = stations.get(Integer.valueOf(ls.getStationCode() + countryBase));
+				
+				if (station.isBorderStation() == false){
+					
+					Command command = SetCommand.create(domain, station, GtmPackage.Literals.STATION__BORDER_STATION, true);
+					if (command != null && command.canExecute()) {
+						com.append(command);	
+					}
+					Command comm2 = SetCommand.create(domain, station, GtmPackage.Literals.STATION__LEGACY_BORDER_POINT_CODE, ls.getBorderPointCode());
+					if (comm2 != null && comm2.canExecute()) {
+						com.append(comm2);	
+					}					
+					
+				}
+				
+			}
+			
+		}
+		
+		if (com != null && !com.isEmpty()) {
+			domain.getCommandStack().execute(com);
+		}
+		
+		HashSet<Station> borderStations = new HashSet<Station>();
+		for (Station station : tool.getCodeLists().getStations().getStations()) {
+			if (station.getLegacyBorderPointCode() > 0 || station.isBorderStation()) {
+				borderStations.add(station);
+			}
+		}
+		
+		CompoundCommand com2 = new CompoundCommand();
+		
+		Float accuracy = ((float)PreferencesAccess.getIntFromPreferenceStore(PreferenceConstants.P_LINK_STATIONS_BY_GEO_ACCURACY)) / (60 * 60);
+		
+		for (Station station1 : borderStations) {
+			
+			for (Station station2 : borderStations) {
+				
+				if (station1 != station2 && 
+					station1.getLatitude() > 0 &&
+					station2.getLatitude() > 0 &&
+					station1.getLongitude() > 0 &&
+					station2.getLongitude() > 0 &&
+					station1.getLatitude() - station2.getLatitude() < accuracy &&
+					station1.getLongitude() - station2.getLongitude() < accuracy) {
+					
+					StationRelation rel1 = GtmFactory.eINSTANCE.createStationRelation();
+					rel1.setRelationType(StationRelationType.SAME_STATION);
+					rel1.setStation(station2);
+					Command comm3 = AddCommand.create(domain, station1, GtmPackage.Literals.STATION__RELATIONS, rel1);
+					if (comm3 != null && comm3.canExecute()) {
+						com2.append(comm3);	
+					}	
+					
+
+					StationRelation rel2 = GtmFactory.eINSTANCE.createStationRelation();
+					rel2.setRelationType(StationRelationType.SAME_STATION);
+					rel2.setStation(station1);
+					Command comm4 = AddCommand.create(domain, station2, GtmPackage.Literals.STATION__RELATIONS, rel2);
+					if (comm4 != null && comm4.canExecute()) {
+						com2.append(comm3);	
+					}						
+
+				}
+			}									
+		}
+		
+		if (com2 != null && !com2.isEmpty()) {
+			domain.getCommandStack().execute(com2);
+		}
+		
+		
 		
 	}
 		

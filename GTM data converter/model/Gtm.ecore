@@ -125,6 +125,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortNameCaseUTF8" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="legacyBorderPointCode"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
+        eType="#//StationRelation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StationRelation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="relationType" eType="#//StationRelationType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="station" eType="#//Station"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StationRelationType">
+    <eLiterals name="SAME_STATION" value="1"/>
+    <eLiterals name="PATH_CONNECTED_STATION" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Carrier">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>

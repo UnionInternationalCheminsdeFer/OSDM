@@ -2,6 +2,187 @@
  */
 package Gtm.impl;
 
+import Gtm.AcceptedBarcodes;
+import Gtm.AfterSalesCondition;
+import Gtm.AfterSalesRule;
+import Gtm.AfterSalesRules;
+import Gtm.AfterSalesTransactionType;
+import Gtm.AllowedPersonalDataChanges;
+import Gtm.AlternativeRoute;
+import Gtm.ApplicationTime;
+import Gtm.BarcodeTypes;
+import Gtm.Calendar;
+import Gtm.Calendars;
+import Gtm.Carrier;
+import Gtm.CarrierConstraint;
+import Gtm.CarrierConstraints;
+import Gtm.CarrierResourceLocation;
+import Gtm.CarrierResourceLocations;
+import Gtm.Carriers;
+import Gtm.CharacterSet;
+import Gtm.ClassId;
+import Gtm.ClassicClassType;
+import Gtm.Clusters;
+import Gtm.CodeLists;
+import Gtm.CombinationConstraint;
+import Gtm.CombinationConstraints;
+import Gtm.CombinationModel;
+import Gtm.ConnectionPoint;
+import Gtm.ConnectionPoints;
+import Gtm.ControlDataExchangeTypes;
+import Gtm.ConversionFromLegacy;
+import Gtm.ConversionParams;
+import Gtm.Countries;
+import Gtm.Country;
+import Gtm.CrossBorderCondition;
+import Gtm.Currencies;
+import Gtm.Currency;
+import Gtm.CurrencyPrice;
+import Gtm.DataSource;
+import Gtm.Delivery;
+import Gtm.Edge;
+import Gtm.EndOfSale;
+import Gtm.ExcludedTimeRange;
+import Gtm.FareCombinationModel;
+import Gtm.FareElement;
+import Gtm.FareElements;
+import Gtm.FareResourceLocations;
+import Gtm.FareStationSetDefinition;
+import Gtm.FareStationSetDefinitions;
+import Gtm.FareStructure;
+import Gtm.FareTemplate;
+import Gtm.FareType;
+import Gtm.FulfillmentConstraint;
+import Gtm.FulfillmentConstraints;
+import Gtm.FulfillmentType;
+import Gtm.GTMTool;
+import Gtm.GeneralTariffModel;
+import Gtm.GenericReductionCards;
+import Gtm.GeoSystem;
+import Gtm.GeoUnit;
+import Gtm.GraphicalReservationType;
+import Gtm.GtmFactory;
+import Gtm.GtmPackage;
+import Gtm.HemisphereEW;
+import Gtm.HemisphereNS;
+import Gtm.IncludedFreePassengerLimit;
+import Gtm.InterfaceType;
+import Gtm.Language;
+import Gtm.Languages;
+import Gtm.Legacy108;
+import Gtm.Legacy108FareDescription;
+import Gtm.Legacy108FaresDescriptions;
+import Gtm.Legacy108Station;
+import Gtm.Legacy108Stations;
+import Gtm.LegacyAccountingIdentifier;
+import Gtm.LegacyBoderPointMappings;
+import Gtm.LegacyBorderPointMapping;
+import Gtm.LegacyCalculationType;
+import Gtm.LegacyConversionType;
+import Gtm.LegacyDistanceFare;
+import Gtm.LegacyDistanceFares;
+import Gtm.LegacyFareDetailMap;
+import Gtm.LegacyFareDetailMaps;
+import Gtm.LegacyFareStationSetMap;
+import Gtm.LegacyFareStationSetMappings;
+import Gtm.LegacyFareTemplates;
+import Gtm.LegacyPassengerType;
+import Gtm.LegacyRouteFare;
+import Gtm.LegacyRouteFares;
+import Gtm.LegacySeparateContractSeries;
+import Gtm.LegacySeparateContractSeriesList;
+import Gtm.LegacySeries;
+import Gtm.LegacySeriesList;
+import Gtm.LegacySeriesType;
+import Gtm.LegacyStation;
+import Gtm.LegacyStationMap;
+import Gtm.LegacyStationMappings;
+import Gtm.LegacyStationToServiceConstraintMapping;
+import Gtm.LegacyStationToServiceConstraintMappings;
+import Gtm.LegacyViastation;
+import Gtm.Line;
+import Gtm.NUTSCodes;
+import Gtm.NutsCode;
+import Gtm.OfferRequestType;
+import Gtm.OnlineResource;
+import Gtm.OnlineServiceType;
+import Gtm.PassengerCombinationConstraint;
+import Gtm.PassengerConstraint;
+import Gtm.PassengerConstraints;
+import Gtm.PersonalDataChangeReason;
+import Gtm.PersonalDataConstraint;
+import Gtm.PersonalDataConstraints;
+import Gtm.PersonalDataItemsType;
+import Gtm.PersonalDataTransferType;
+import Gtm.Polygone;
+import Gtm.Price;
+import Gtm.Prices;
+import Gtm.ReductionCard;
+import Gtm.ReductionCards;
+import Gtm.ReductionConstraint;
+import Gtm.ReductionConstraints;
+import Gtm.RegionalConstraint;
+import Gtm.RegionalConstraints;
+import Gtm.RegionalValidity;
+import Gtm.RelativeTime;
+import Gtm.RequiredBarcodes;
+import Gtm.RequiredPersonalData;
+import Gtm.RequiredReductionCard;
+import Gtm.ReservationBerthType;
+import Gtm.ReservationOptions;
+import Gtm.ReservationParameter;
+import Gtm.ReservationParameters;
+import Gtm.ReservationParams9181;
+import Gtm.ReservationPreferenceGroup;
+import Gtm.ReservationService;
+import Gtm.ReservationServiceLevel;
+import Gtm.ReservationTravelClass;
+import Gtm.ReturnValidityConstraint;
+import Gtm.Route;
+import Gtm.SalesAvailabilityConstraint;
+import Gtm.SalesAvailabilityConstraints;
+import Gtm.SalesRestriction;
+import Gtm.SchemaVersion;
+import Gtm.ServiceBrand;
+import Gtm.ServiceBrands;
+import Gtm.ServiceClass;
+import Gtm.ServiceClassDefinitions;
+import Gtm.ServiceConstraint;
+import Gtm.ServiceConstraints;
+import Gtm.ServiceLevel;
+import Gtm.ServiceLevelDefinitions;
+import Gtm.StartOfSale;
+import Gtm.Station;
+import Gtm.StationFareDetailType;
+import Gtm.StationNames;
+import Gtm.StationRelation;
+import Gtm.StationRelationType;
+import Gtm.StationResourceLocation;
+import Gtm.StationResourceLocations;
+import Gtm.StationSet;
+import Gtm.Stations;
+import Gtm.SupportedOnlineServices;
+import Gtm.TaxScope;
+import Gtm.Text;
+import Gtm.Texts;
+import Gtm.TimeRange;
+import Gtm.TimeRangeScope;
+import Gtm.TimeReferenceType;
+import Gtm.TimeUnit;
+import Gtm.TimeZone;
+import Gtm.TrainResourceLocation;
+import Gtm.TrainResourceLocations;
+import Gtm.Translation;
+import Gtm.TravelValidityConstraint;
+import Gtm.TravelValidityConstraints;
+import Gtm.TravelerType;
+import Gtm.VATDetail;
+import Gtm.ValidityRange;
+import Gtm.ViaStation;
+import Gtm.WeekDay;
+import Gtm.Zone;
+import Gtm.ZoneDefinition;
+import Gtm.ZoneDefinitions;
 import Gtm.*;
 import Gtm.util.GtmValidator;
 
@@ -121,6 +302,13 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	private EClass stationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stationRelationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -982,6 +1170,13 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	private EClass legacyFareTemplatesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum stationRelationTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1874,6 +2069,42 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 */
 	public EAttribute getStation_LegacyBorderPointCode() {
 		return (EAttribute)stationEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStation_Relations() {
+		return (EReference)stationEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStationRelation() {
+		return stationRelationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStationRelation_RelationType() {
+		return (EAttribute)stationRelationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStationRelation_Station() {
+		return (EReference)stationRelationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -7155,6 +7386,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getStationRelationType() {
+		return stationRelationTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getStationFareDetailType() {
 		return stationFareDetailTypeEEnum;
 	}
@@ -7611,6 +7851,11 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEAttribute(stationEClass, STATION__SHORT_NAME_CASE_ASCII);
 		createEAttribute(stationEClass, STATION__SHORT_NAME_CASE_UTF8);
 		createEAttribute(stationEClass, STATION__LEGACY_BORDER_POINT_CODE);
+		createEReference(stationEClass, STATION__RELATIONS);
+
+		stationRelationEClass = createEClass(STATION_RELATION);
+		createEAttribute(stationRelationEClass, STATION_RELATION__RELATION_TYPE);
+		createEReference(stationRelationEClass, STATION_RELATION__STATION);
 
 		carrierEClass = createEClass(CARRIER);
 		createEAttribute(carrierEClass, CARRIER__CODE);
@@ -8322,6 +8567,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEReference(legacyFareTemplatesEClass, LEGACY_FARE_TEMPLATES__FARE_TEMPLATES);
 
 		// Create enums
+		stationRelationTypeEEnum = createEEnum(STATION_RELATION_TYPE);
 		stationFareDetailTypeEEnum = createEEnum(STATION_FARE_DETAIL_TYPE);
 		afterSalesTransactionTypeEEnum = createEEnum(AFTER_SALES_TRANSACTION_TYPE);
 		barcodeTypesEEnum = createEEnum(BARCODE_TYPES);
@@ -8486,6 +8732,11 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEAttribute(getStation_ShortNameCaseASCII(), ecorePackage.getEString(), "shortNameCaseASCII", null, 0, 1, Station.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStation_ShortNameCaseUTF8(), ecorePackage.getEString(), "shortNameCaseUTF8", null, 0, 1, Station.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getStation_LegacyBorderPointCode(), ecorePackage.getEInt(), "legacyBorderPointCode", null, 0, 1, Station.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStation_Relations(), this.getStationRelation(), null, "relations", null, 0, -1, Station.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stationRelationEClass, StationRelation.class, "StationRelation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStationRelation_RelationType(), this.getStationRelationType(), "relationType", null, 0, 1, StationRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStationRelation_Station(), this.getStation(), null, "station", null, 0, 1, StationRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(carrierEClass, Carrier.class, "Carrier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCarrier_Code(), theXMLTypePackage.getString(), "code", null, 1, 1, Carrier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -9215,6 +9466,10 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEReference(getLegacyFareTemplates_FareTemplates(), this.getFareTemplate(), null, "fareTemplates", null, 0, -1, LegacyFareTemplates.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
+		initEEnum(stationRelationTypeEEnum, StationRelationType.class, "StationRelationType");
+		addEEnumLiteral(stationRelationTypeEEnum, StationRelationType.SAME_STATION);
+		addEEnumLiteral(stationRelationTypeEEnum, StationRelationType.PATH_CONNECTED_STATION);
+
 		initEEnum(stationFareDetailTypeEEnum, StationFareDetailType.class, "StationFareDetailType");
 		addEEnumLiteral(stationFareDetailTypeEEnum, StationFareDetailType.NO_DESCRIPTION);
 		addEEnumLiteral(stationFareDetailTypeEEnum, StationFareDetailType.ON_ARRIVAL);

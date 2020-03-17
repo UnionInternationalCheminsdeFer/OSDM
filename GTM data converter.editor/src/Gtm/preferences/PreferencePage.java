@@ -3,6 +3,7 @@ package Gtm.preferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import org.eclipse.jface.preference.IntegerFieldEditor;
 import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
@@ -39,11 +40,22 @@ public class PreferencePage
 						NationalLanguageSupport.PreferencePage_1,
 						getFieldEditorParent()));
 
+        addField(
+					new BooleanFieldEditor(
+						PreferenceConstants.P_LINK_STATIONS_BY_GEO,
+						NationalLanguageSupport.PreferencePage_3,
+						getFieldEditorParent()));
 	
     	addField(
 					new StringFieldEditor(
 							PreferenceConstants.P_IMPORT_CONTRY_FILTER,
 							NationalLanguageSupport.PreferencePage_2,
+							getFieldEditorParent()));
+    	
+    	addField(
+					new IntegerFieldEditor(
+							PreferenceConstants.P_LINK_STATIONS_BY_GEO_ACCURACY,
+							NationalLanguageSupport.PreferencePage_accuracy,
 							getFieldEditorParent()));
 	};
 

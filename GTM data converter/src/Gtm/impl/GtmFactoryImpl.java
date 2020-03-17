@@ -71,6 +71,7 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.CURRENCY: return createCurrency();
 			case GtmPackage.STATIONS: return createStations();
 			case GtmPackage.STATION: return createStation();
+			case GtmPackage.STATION_RELATION: return createStationRelation();
 			case GtmPackage.CARRIER: return createCarrier();
 			case GtmPackage.CARRIERS: return createCarriers();
 			case GtmPackage.STATION_SET: return createStationSet();
@@ -207,6 +208,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case GtmPackage.STATION_RELATION_TYPE:
+				return createStationRelationTypeFromString(eDataType, initialValue);
 			case GtmPackage.STATION_FARE_DETAIL_TYPE:
 				return createStationFareDetailTypeFromString(eDataType, initialValue);
 			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
@@ -300,6 +303,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case GtmPackage.STATION_RELATION_TYPE:
+				return convertStationRelationTypeToString(eDataType, instanceValue);
 			case GtmPackage.STATION_FARE_DETAIL_TYPE:
 				return convertStationFareDetailTypeToString(eDataType, instanceValue);
 			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
@@ -523,6 +528,16 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public Station createStation() {
 		StationImpl station = new StationImpl();
 		return station;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StationRelation createStationRelation() {
+		StationRelationImpl stationRelation = new StationRelationImpl();
+		return stationRelation;
 	}
 
 	/**
@@ -1753,6 +1768,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public LegacyFareTemplates createLegacyFareTemplates() {
 		LegacyFareTemplatesImpl legacyFareTemplates = new LegacyFareTemplatesImpl();
 		return legacyFareTemplates;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StationRelationType createStationRelationTypeFromString(EDataType eDataType, String initialValue) {
+		StationRelationType result = StationRelationType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertStationRelationTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
