@@ -40,18 +40,18 @@ public class PreferencePage
 						NationalLanguageSupport.PreferencePage_1,
 						getFieldEditorParent()));
 
-        addField(
-					new BooleanFieldEditor(
-						PreferenceConstants.P_LINK_STATIONS_BY_GEO,
-						NationalLanguageSupport.PreferencePage_3,
-						getFieldEditorParent()));
-	
     	addField(
 					new StringFieldEditor(
 							PreferenceConstants.P_IMPORT_CONTRY_FILTER,
 							NationalLanguageSupport.PreferencePage_2,
 							getFieldEditorParent()));
-    	
+        
+        addField(
+					new BooleanFieldEditor(
+						PreferenceConstants.P_LINK_STATIONS_BY_GEO,
+						NationalLanguageSupport.PreferencePage_3,
+						getFieldEditorParent()));
+	   	
     	addField(
 					new IntegerFieldEditor(
 							PreferenceConstants.P_LINK_STATIONS_BY_GEO_ACCURACY,

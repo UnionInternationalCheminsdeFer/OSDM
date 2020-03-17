@@ -2,17 +2,20 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="Content" >
-	<topic label="Introduction" href="html/gettingstarted/gettingstarted.html">
+	<topic href="html/gettingstarted/gettingstarted.html" label="Introduction" ></topic>
+	<topic href="html/gettingstarted/recommendedWorkflow.html" label="Recommended Workflow"> </topic>
 
-    </topic>
-
-    <topic label="Reference" href="html/reference/reference.html">
-		<topic label="Application"  href="html/reference/application.html" /> 
-		<topic label="Menus"  href="html/reference/menus.html" /> 
-		<topic label="Validation"  href="html/reference/validation.html" /> 
-		<topic label="Data Description"  href="html/reference/DataDescription.html" /> 	
+    <topic  href="html/reference/reference.html" label="Reference">
+		<topic href="html/reference/application.html" label="Application">	</topic> 
+		<topic href="html/reference/validation.html" label="Validation"> </topic> 
+  		<topic href="html/reference/userPreferences.html" label="User Preferences"> </topic>
+  		<topic href="html/reference/conversionl2g.html" label="Conversion 108 to 90918"/>  
+ 		<topic href="html/reference/conversiong2l.html" label="Conversion 90918 to 108"/>  
+ 		<topic href="html/reference/datadescription.html" label="Data Description"/>
 	</topic>
 
 
 	<topic label="Troubleshooting"  href="html/troubleshooting/troubleshooting.html"/>
+
+
 </toc>
