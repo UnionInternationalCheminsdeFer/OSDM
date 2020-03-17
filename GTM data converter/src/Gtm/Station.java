@@ -2,6 +2,7 @@
  */
 package Gtm;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.Station#getShortNameCaseASCII <em>Short Name Case ASCII</em>}</li>
  *   <li>{@link Gtm.Station#getShortNameCaseUTF8 <em>Short Name Case UTF8</em>}</li>
  *   <li>{@link Gtm.Station#getLegacyBorderPointCode <em>Legacy Border Point Code</em>}</li>
+ *   <li>{@link Gtm.Station#getRelations <em>Relations</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getStation()
@@ -295,5 +297,17 @@ public interface Station extends EObject {
 	 * @generated
 	 */
 	void setLegacyBorderPointCode(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
+	 * The list contents are of type {@link Gtm.StationRelation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Relations</em>' containment reference list.
+	 * @see Gtm.GtmPackage#getStation_Relations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<StationRelation> getRelations();
 
 } // Station

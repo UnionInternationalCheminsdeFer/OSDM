@@ -148,6 +148,15 @@ public interface GtmFactory extends EFactory {
 	Station createStation();
 
 	/**
+	 * Returns a new object of class '<em>Station Relation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Station Relation</em>'.
+	 * @generated
+	 */
+	StationRelation createStationRelation();
+
+	/**
 	 * Returns a new object of class '<em>Carrier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

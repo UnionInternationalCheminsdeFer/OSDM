@@ -118,6 +118,8 @@ public class GtmValidator extends EObjectValidator {
 				return validateStations((Stations)value, diagnostics, context);
 			case GtmPackage.STATION:
 				return validateStation((Station)value, diagnostics, context);
+			case GtmPackage.STATION_RELATION:
+				return validateStationRelation((StationRelation)value, diagnostics, context);
 			case GtmPackage.CARRIER:
 				return validateCarrier((Carrier)value, diagnostics, context);
 			case GtmPackage.CARRIERS:
@@ -364,6 +366,8 @@ public class GtmValidator extends EObjectValidator {
 				return validateLegacyViastation((LegacyViastation)value, diagnostics, context);
 			case GtmPackage.LEGACY_FARE_TEMPLATES:
 				return validateLegacyFareTemplates((LegacyFareTemplates)value, diagnostics, context);
+			case GtmPackage.STATION_RELATION_TYPE:
+				return validateStationRelationType((StationRelationType)value, diagnostics, context);
 			case GtmPackage.STATION_FARE_DETAIL_TYPE:
 				return validateStationFareDetailType((StationFareDetailType)value, diagnostics, context);
 			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
@@ -2291,6 +2295,15 @@ public class GtmValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateStationRelationType(StationRelationType stationRelationType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateStationFareDetailType(StationFareDetailType stationFareDetailType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -3561,6 +3574,15 @@ public class GtmValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStationRelation(StationRelation stationRelation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(stationRelation, diagnostics, context);
 	}
 
 	/**

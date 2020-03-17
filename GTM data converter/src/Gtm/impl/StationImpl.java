@@ -6,13 +6,19 @@ import Gtm.Country;
 import Gtm.GtmPackage;
 import Gtm.Station;
 
+import Gtm.StationRelation;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,6 +40,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.StationImpl#getShortNameCaseASCII <em>Short Name Case ASCII</em>}</li>
  *   <li>{@link Gtm.impl.StationImpl#getShortNameCaseUTF8 <em>Short Name Case UTF8</em>}</li>
  *   <li>{@link Gtm.impl.StationImpl#getLegacyBorderPointCode <em>Legacy Border Point Code</em>}</li>
+ *   <li>{@link Gtm.impl.StationImpl#getRelations <em>Relations</em>}</li>
  * </ul>
  *
  * @generated
@@ -268,6 +275,16 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 	 * @ordered
 	 */
 	protected int legacyBorderPointCode = LEGACY_BORDER_POINT_CODE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<StationRelation> relations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -562,6 +579,32 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<StationRelation> getRelations() {
+		if (relations == null) {
+			relations = new EObjectContainmentEList<StationRelation>(StationRelation.class, this, GtmPackage.STATION__RELATIONS);
+		}
+		return relations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case GtmPackage.STATION__RELATIONS:
+				return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -590,6 +633,8 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 				return getShortNameCaseUTF8();
 			case GtmPackage.STATION__LEGACY_BORDER_POINT_CODE:
 				return getLegacyBorderPointCode();
+			case GtmPackage.STATION__RELATIONS:
+				return getRelations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -599,6 +644,7 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -637,6 +683,10 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 				return;
 			case GtmPackage.STATION__LEGACY_BORDER_POINT_CODE:
 				setLegacyBorderPointCode((Integer)newValue);
+				return;
+			case GtmPackage.STATION__RELATIONS:
+				getRelations().clear();
+				getRelations().addAll((Collection<? extends StationRelation>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -686,6 +736,9 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 			case GtmPackage.STATION__LEGACY_BORDER_POINT_CODE:
 				setLegacyBorderPointCode(LEGACY_BORDER_POINT_CODE_EDEFAULT);
 				return;
+			case GtmPackage.STATION__RELATIONS:
+				getRelations().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -722,6 +775,8 @@ public class StationImpl extends MinimalEObjectImpl.Container implements Station
 				return SHORT_NAME_CASE_UTF8_EDEFAULT == null ? shortNameCaseUTF8 != null : !SHORT_NAME_CASE_UTF8_EDEFAULT.equals(shortNameCaseUTF8);
 			case GtmPackage.STATION__LEGACY_BORDER_POINT_CODE:
 				return legacyBorderPointCode != LEGACY_BORDER_POINT_CODE_EDEFAULT;
+			case GtmPackage.STATION__RELATIONS:
+				return relations != null && !relations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

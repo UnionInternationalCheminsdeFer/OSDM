@@ -15,7 +15,6 @@ import Gtm.GTMTool;
 import Gtm.actions.converter.ConverterFromLegacy;
 import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.GtmEditor;
-import Gtm.presentation.GtmEditorPlugin;
 
 
 public class ConvertLegacy2GtmAction extends BasicGtmAction {
@@ -113,7 +112,7 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 						
 					} catch (Exception e) {
 						//
-						e.printStackTrace();
+						throw e;
 					} finally {
 						editor.reconnectViews();
 					}
@@ -126,9 +125,15 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 
 				new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
 
-			} catch (Exception exception) {
-					// Something went wrong that shouldn't.
-					GtmEditorPlugin.INSTANCE.log(exception);
+			} catch (Exception e) {
+				MessageBox dialog =  new MessageBox(editor.getSite().getShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText(NationalLanguageSupport.ExportGTMJsonAction_9);
+				if (e.getMessage()!= null) {
+					dialog.setMessage(e.getMessage());
+				} else {
+					dialog.setMessage(NationalLanguageSupport.ExportGTMJsonAction_10);
+				}
+				dialog.open(); 
 			} finally {
 					editor.reconnectViews();
 			}

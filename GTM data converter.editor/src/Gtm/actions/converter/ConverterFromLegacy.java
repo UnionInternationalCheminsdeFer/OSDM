@@ -58,6 +58,8 @@ import Gtm.StartOfSale;
 import Gtm.Station;
 import Gtm.StationFareDetailType;
 import Gtm.StationNames;
+import Gtm.StationRelation;
+import Gtm.StationRelationType;
 import Gtm.StationSet;
 import Gtm.TaxScope;
 import Gtm.VATDetail;
@@ -1253,6 +1255,18 @@ public class ConverterFromLegacy {
 			newPoint.setDataSource(DataSource.CONVERTED);
 			StationSet stationSet = GtmFactory.eINSTANCE.createStationSet();
 			stationSet.getStations().add(station);
+			//add related stations to list all stations which have multiple station codes
+			if (station.getRelations()!= null && !station.getRelations().isEmpty()) {
+				for (StationRelation rel : station.getRelations()) {
+					
+					if (rel.getRelationType() == StationRelationType.SAME_STATION) {
+						stationSet.getStations().add(rel.getStation());
+					}
+					
+				}
+			}
+			
+			
 			newPoint.getConnectedStationSets().add(stationSet);
 			newPoint.setLegacyBorderPointCode(borderpoint);
 			
