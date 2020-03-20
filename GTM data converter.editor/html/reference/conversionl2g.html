@@ -41,6 +41,53 @@ The referenced data items must be defined in the General Tariff Model fare struc
 </ul></p>
 
 
+<h2>Conversion</h2>
+
+<p><ul><p><img src="../images/convertFromLegacy.png" alt="convert"/>Convert the data.<br/></ul></p>
+
+<p><ul>Conversion has the following steps:<br/><br/>
+
+	<ul>
+	<li>deleting old conversion results</li>
+	<li>create fare station sets from the fare reference code in the 108 station data</li>
+	<li>create connection points and border point mappings</li>
+	<li>update the station reference data with case sensitive station names and border point codes</li>
+	<li>create sales validity constraints - all from/end dates in series and fares are connected, the set of intersections is created. Each intersection results in a sales availability constraint.</li>
+	<li>creating carrier constraints for all carriers contained in the series</li>
+	<li>conversion of series into fares</li>
+	</ul>
+
+</ul></p>
+
+<h2>Converting a series</h2>
+
+<p><ul>
+A series is converted into a regional validity and a corresponding regional validity for the return. For each regional validity and sales availability and fare template a fare is created using the 108 fare data.
+<br/><br/>
+
+Converting of a series has the following steps:<br/><br/>
+
+	<ul>
+	<li>converting the series into a regional validity and a second regional validity for the reversed direction.
+		<br/><br/>
+		<ul>
+			<li>identifying the connection points in case of transit series or series from a border point</li>
+			<li>replacing stations by real stations, service constraints or fare descriptions using the mappings provided in the conversion parameter</li>
+			<li>adding the service constraints and fare descriptions to the fare data</li> 
+			<li>converting the departure station, the via station list and the arrival station into a regional validity.</li>		
+		</ul>
+		<br/><br/>
+	</li>
+	<li>creating the fare based on the fare template.</li>
+	<li>calculating the price for each fare template and sales availability constraint.</li>
+	<li>adding legacy accounting information to the fare</li>
+	<li>adding the price to the fare data set if it is not yet there</li>		
+	<li>adding the fare to the fare data set</li>
+	</ul>
+</ul></p>
+
+
+
 
 </body>
 </html>

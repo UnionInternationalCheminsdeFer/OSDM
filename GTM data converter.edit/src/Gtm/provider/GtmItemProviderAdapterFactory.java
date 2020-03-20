@@ -3428,12 +3428,12 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (acceptedBarcodesItemProvider != null) acceptedBarcodesItemProvider.dispose();
 		if (supportedOnlineServicesItemProvider != null) supportedOnlineServicesItemProvider.dispose();
 		if (stationNamesItemProvider != null) stationNamesItemProvider.dispose();
+		if (fareElementsItemProvider != null) fareElementsItemProvider.dispose();
 		if (fareElementItemProvider != null) fareElementItemProvider.dispose();
 		if (fareStationSetDefinitionsItemProvider != null) fareStationSetDefinitionsItemProvider.dispose();
 		if (fareStationSetDefinitionItemProvider != null) fareStationSetDefinitionItemProvider.dispose();
 		if (legacyAccountingIdentifierItemProvider != null) legacyAccountingIdentifierItemProvider.dispose();
 		if (reductionConstraintsItemProvider != null) reductionConstraintsItemProvider.dispose();
-		if (fareElementsItemProvider != null) fareElementsItemProvider.dispose();
 		if (personalDataConstraintsItemProvider != null) personalDataConstraintsItemProvider.dispose();
 		if (personalDataConstraintItemProvider != null) personalDataConstraintItemProvider.dispose();
 		if (requiredPersonalDataItemProvider != null) requiredPersonalDataItemProvider.dispose();

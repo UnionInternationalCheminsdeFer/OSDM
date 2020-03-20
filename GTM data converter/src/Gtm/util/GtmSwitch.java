@@ -307,6 +307,12 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GtmPackage.FARE_ELEMENTS: {
+				FareElements fareElements = (FareElements)theEObject;
+				T result = caseFareElements(fareElements);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GtmPackage.FARE_ELEMENT: {
 				FareElement fareElement = (FareElement)theEObject;
 				T result = caseFareElement(fareElement);
@@ -334,12 +340,6 @@ public class GtmSwitch<T> extends Switch<T> {
 			case GtmPackage.REDUCTION_CONSTRAINTS: {
 				ReductionConstraints reductionConstraints = (ReductionConstraints)theEObject;
 				T result = caseReductionConstraints(reductionConstraints);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.FARE_ELEMENTS: {
-				FareElements fareElements = (FareElements)theEObject;
-				T result = caseFareElements(fareElements);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

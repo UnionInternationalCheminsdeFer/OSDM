@@ -228,6 +228,10 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createStationNamesAdapter();
 			}
 			@Override
+			public Adapter caseFareElements(FareElements object) {
+				return createFareElementsAdapter();
+			}
+			@Override
 			public Adapter caseFareElement(FareElement object) {
 				return createFareElementAdapter();
 			}
@@ -246,10 +250,6 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseReductionConstraints(ReductionConstraints object) {
 				return createReductionConstraintsAdapter();
-			}
-			@Override
-			public Adapter caseFareElements(FareElements object) {
-				return createFareElementsAdapter();
 			}
 			@Override
 			public Adapter casePersonalDataConstraints(PersonalDataConstraints object) {

@@ -951,7 +951,7 @@ public class GtmUtils {
 		String truncated = s.substring(0, Math.min(maxChar, s.length()));
 
 		editor.getSite().getShell().getDisplay().asyncExec(() -> {
-			GtmUtils.writeConsoleInfo("text" + " truncated:" + s + " -> " + truncated); //$NON-NLS-1$ //$NON-NLS-3$
+			GtmUtils.writeConsoleError("text" + " truncated:" + s + " -> " + truncated); //$NON-NLS-1$ //$NON-NLS-3$
 		});
 		
 		return truncated;
@@ -987,7 +987,7 @@ public class GtmUtils {
 		for (Station station : tool.getCodeLists().getStations().getStations()) {
 			if (station.getCountry().getCode() == myCountryCode) {
 				try {
-					stations.put(Integer.parseInt(station.getCode()), station);
+					stations.put(Integer.valueOf(Integer.parseInt(station.getCode()) + station.getCountry().getCode() * 100000 ), station);
 				} catch (Exception e){
 					//do nothing 
 				}

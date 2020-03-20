@@ -170,6 +170,8 @@ public class GtmValidator extends EObjectValidator {
 				return validateSupportedOnlineServices((SupportedOnlineServices)value, diagnostics, context);
 			case GtmPackage.STATION_NAMES:
 				return validateStationNames((StationNames)value, diagnostics, context);
+			case GtmPackage.FARE_ELEMENTS:
+				return validateFareElements((FareElements)value, diagnostics, context);
 			case GtmPackage.FARE_ELEMENT:
 				return validateFareElement((FareElement)value, diagnostics, context);
 			case GtmPackage.FARE_STATION_SET_DEFINITIONS:
@@ -180,8 +182,6 @@ public class GtmValidator extends EObjectValidator {
 				return validateLegacyAccountingIdentifier((LegacyAccountingIdentifier)value, diagnostics, context);
 			case GtmPackage.REDUCTION_CONSTRAINTS:
 				return validateReductionConstraints((ReductionConstraints)value, diagnostics, context);
-			case GtmPackage.FARE_ELEMENTS:
-				return validateFareElements((FareElements)value, diagnostics, context);
 			case GtmPackage.PERSONAL_DATA_CONSTRAINTS:
 				return validatePersonalDataConstraints((PersonalDataConstraints)value, diagnostics, context);
 			case GtmPackage.PERSONAL_DATA_CONSTRAINT:

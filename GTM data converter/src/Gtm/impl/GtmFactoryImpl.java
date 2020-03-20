@@ -97,12 +97,12 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.ACCEPTED_BARCODES: return createAcceptedBarcodes();
 			case GtmPackage.SUPPORTED_ONLINE_SERVICES: return createSupportedOnlineServices();
 			case GtmPackage.STATION_NAMES: return createStationNames();
+			case GtmPackage.FARE_ELEMENTS: return createFareElements();
 			case GtmPackage.FARE_ELEMENT: return createFareElement();
 			case GtmPackage.FARE_STATION_SET_DEFINITIONS: return createFareStationSetDefinitions();
 			case GtmPackage.FARE_STATION_SET_DEFINITION: return createFareStationSetDefinition();
 			case GtmPackage.LEGACY_ACCOUNTING_IDENTIFIER: return createLegacyAccountingIdentifier();
 			case GtmPackage.REDUCTION_CONSTRAINTS: return createReductionConstraints();
-			case GtmPackage.FARE_ELEMENTS: return createFareElements();
 			case GtmPackage.PERSONAL_DATA_CONSTRAINTS: return createPersonalDataConstraints();
 			case GtmPackage.PERSONAL_DATA_CONSTRAINT: return createPersonalDataConstraint();
 			case GtmPackage.REQUIRED_PERSONAL_DATA: return createRequiredPersonalData();
@@ -795,6 +795,16 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public FareElements createFareElements() {
+		FareElementsImpl fareElements = new FareElementsImpl();
+		return fareElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public FareElement createFareElement() {
 		FareElementImpl fareElement = new FareElementImpl();
 		return fareElement;
@@ -838,16 +848,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public ReductionConstraints createReductionConstraints() {
 		ReductionConstraintsImpl reductionConstraints = new ReductionConstraintsImpl();
 		return reductionConstraints;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FareElements createFareElements() {
-		FareElementsImpl fareElements = new FareElementsImpl();
-		return fareElements;
 	}
 
 	/**

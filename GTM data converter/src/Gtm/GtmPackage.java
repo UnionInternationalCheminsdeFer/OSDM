@@ -2467,6 +2467,43 @@ public interface GtmPackage extends EPackage {
 	int STATION_NAMES_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link Gtm.impl.FareElementsImpl <em>Fare Elements</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.FareElementsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getFareElements()
+	 * @generated
+	 */
+	int FARE_ELEMENTS = 40;
+
+	/**
+	 * The feature id for the '<em><b>Fare Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENTS__FARE_ELEMENTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Fare Elements</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENTS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Fare Elements</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENTS_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link Gtm.impl.FareElementImpl <em>Fare Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2474,7 +2511,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getFareElement()
 	 * @generated
 	 */
-	int FARE_ELEMENT = 40;
+	int FARE_ELEMENT = 41;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -2684,13 +2721,22 @@ public interface GtmPackage extends EPackage {
 	int FARE_ELEMENT__LEGACY_CONVERSION = 22;
 
 	/**
+	 * The feature id for the '<em><b>Individual Contracts</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_ELEMENT__INDIVIDUAL_CONTRACTS = 23;
+
+	/**
 	 * The number of structural features of the '<em>Fare Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_ELEMENT_FEATURE_COUNT = 23;
+	int FARE_ELEMENT_FEATURE_COUNT = 24;
 
 	/**
 	 * The number of operations of the '<em>Fare Element</em>' class.
@@ -2709,7 +2755,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getFareStationSetDefinitions()
 	 * @generated
 	 */
-	int FARE_STATION_SET_DEFINITIONS = 41;
+	int FARE_STATION_SET_DEFINITIONS = 42;
 
 	/**
 	 * The feature id for the '<em><b>Fare Station Set Definitions</b></em>' containment reference list.
@@ -2755,7 +2801,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getFareStationSetDefinition()
 	 * @generated
 	 */
-	int FARE_STATION_SET_DEFINITION = 42;
+	int FARE_STATION_SET_DEFINITION = 43;
 
 	/**
 	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
@@ -2855,7 +2901,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyAccountingIdentifier()
 	 * @generated
 	 */
-	int LEGACY_ACCOUNTING_IDENTIFIER = 43;
+	int LEGACY_ACCOUNTING_IDENTIFIER = 44;
 
 	/**
 	 * The feature id for the '<em><b>Series Id</b></em>' attribute.
@@ -2910,7 +2956,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getReductionConstraints()
 	 * @generated
 	 */
-	int REDUCTION_CONSTRAINTS = 44;
+	int REDUCTION_CONSTRAINTS = 45;
 
 	/**
 	 * The feature id for the '<em><b>Reduction Constraints</b></em>' containment reference list.
@@ -2938,43 +2984,6 @@ public interface GtmPackage extends EPackage {
 	 * @ordered
 	 */
 	int REDUCTION_CONSTRAINTS_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.FareElementsImpl <em>Fare Elements</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.FareElementsImpl
-	 * @see Gtm.impl.GtmPackageImpl#getFareElements()
-	 * @generated
-	 */
-	int FARE_ELEMENTS = 45;
-
-	/**
-	 * The feature id for the '<em><b>Fare Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_ELEMENTS__FARE_ELEMENTS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Fare Elements</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_ELEMENTS_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Fare Elements</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_ELEMENTS_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link Gtm.impl.PersonalDataConstraintsImpl <em>Personal Data Constraints</em>}' class.
@@ -7029,13 +7038,22 @@ public interface GtmPackage extends EPackage {
 	int FARE_TEMPLATE__LEGACY_CONVERSION = 23;
 
 	/**
+	 * The feature id for the '<em><b>Individual Contracts</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_TEMPLATE__INDIVIDUAL_CONTRACTS = 24;
+
+	/**
 	 * The number of structural features of the '<em>Fare Template</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE_FEATURE_COUNT = 24;
+	int FARE_TEMPLATE_FEATURE_COUNT = 25;
 
 	/**
 	 * The number of operations of the '<em>Fare Template</em>' class.
@@ -9038,7 +9056,6 @@ public interface GtmPackage extends EPackage {
 	 */
 	int CLASS_ID = 177;
 
-
 	/**
 	 * The meta object id for the '{@link Gtm.GenericReductionCards <em>Generic Reduction Cards</em>}' enum.
 	 * <!-- begin-user-doc -->
@@ -9048,6 +9065,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	int GENERIC_REDUCTION_CARDS = 178;
+
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.GTMTool <em>GTM Tool</em>}'.
@@ -10917,6 +10935,27 @@ public interface GtmPackage extends EPackage {
 	EReference getStationNames_StationName();
 
 	/**
+	 * Returns the meta object for class '{@link Gtm.FareElements <em>Fare Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fare Elements</em>'.
+	 * @see Gtm.FareElements
+	 * @generated
+	 */
+	EClass getFareElements();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.FareElements#getFareElements <em>Fare Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Fare Elements</em>'.
+	 * @see Gtm.FareElements#getFareElements()
+	 * @see #getFareElements()
+	 * @generated
+	 */
+	EReference getFareElements_FareElements();
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.FareElement <em>Fare Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11180,6 +11219,17 @@ public interface GtmPackage extends EPackage {
 	EAttribute getFareElement_LegacyConversion();
 
 	/**
+	 * Returns the meta object for the attribute '{@link Gtm.FareElement#isIndividualContracts <em>Individual Contracts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Individual Contracts</em>'.
+	 * @see Gtm.FareElement#isIndividualContracts()
+	 * @see #getFareElement()
+	 * @generated
+	 */
+	EAttribute getFareElement_IndividualContracts();
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.FareStationSetDefinitions <em>Fare Station Set Definitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11371,27 +11421,6 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getReductionConstraints_ReductionConstraints();
-
-	/**
-	 * Returns the meta object for class '{@link Gtm.FareElements <em>Fare Elements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Fare Elements</em>'.
-	 * @see Gtm.FareElements
-	 * @generated
-	 */
-	EClass getFareElements();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link Gtm.FareElements#getFareElements <em>Fare Elements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Fare Elements</em>'.
-	 * @see Gtm.FareElements#getFareElements()
-	 * @see #getFareElements()
-	 * @generated
-	 */
-	EReference getFareElements_FareElements();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.PersonalDataConstraints <em>Personal Data Constraints</em>}'.
@@ -14737,6 +14766,17 @@ public interface GtmPackage extends EPackage {
 	EAttribute getFareTemplate_LegacyConversion();
 
 	/**
+	 * Returns the meta object for the attribute '{@link Gtm.FareTemplate#isIndividualContracts <em>Individual Contracts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Individual Contracts</em>'.
+	 * @see Gtm.FareTemplate#isIndividualContracts()
+	 * @see #getFareTemplate()
+	 * @generated
+	 */
+	EAttribute getFareTemplate_IndividualContracts();
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.LegacyStationToServiceConstraintMappings <em>Legacy Station To Service Constraint Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17953,6 +17993,24 @@ public interface GtmPackage extends EPackage {
 		EReference STATION_NAMES__STATION_NAME = eINSTANCE.getStationNames_StationName();
 
 		/**
+		 * The meta object literal for the '{@link Gtm.impl.FareElementsImpl <em>Fare Elements</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.FareElementsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getFareElements()
+		 * @generated
+		 */
+		EClass FARE_ELEMENTS = eINSTANCE.getFareElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Fare Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FARE_ELEMENTS__FARE_ELEMENTS = eINSTANCE.getFareElements_FareElements();
+
+		/**
 		 * The meta object literal for the '{@link Gtm.impl.FareElementImpl <em>Fare Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -18147,6 +18205,14 @@ public interface GtmPackage extends EPackage {
 		EAttribute FARE_ELEMENT__LEGACY_CONVERSION = eINSTANCE.getFareElement_LegacyConversion();
 
 		/**
+		 * The meta object literal for the '<em><b>Individual Contracts</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FARE_ELEMENT__INDIVIDUAL_CONTRACTS = eINSTANCE.getFareElement_IndividualContracts();
+
+		/**
 		 * The meta object literal for the '{@link Gtm.impl.FareStationSetDefinitionsImpl <em>Fare Station Set Definitions</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -18297,24 +18363,6 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REDUCTION_CONSTRAINTS__REDUCTION_CONSTRAINTS = eINSTANCE.getReductionConstraints_ReductionConstraints();
-
-		/**
-		 * The meta object literal for the '{@link Gtm.impl.FareElementsImpl <em>Fare Elements</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Gtm.impl.FareElementsImpl
-		 * @see Gtm.impl.GtmPackageImpl#getFareElements()
-		 * @generated
-		 */
-		EClass FARE_ELEMENTS = eINSTANCE.getFareElements();
-
-		/**
-		 * The meta object literal for the '<em><b>Fare Elements</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FARE_ELEMENTS__FARE_ELEMENTS = eINSTANCE.getFareElements_FareElements();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.PersonalDataConstraintsImpl <em>Personal Data Constraints</em>}' class.
@@ -20927,6 +20975,14 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FARE_TEMPLATE__LEGACY_CONVERSION = eINSTANCE.getFareTemplate_LegacyConversion();
+
+		/**
+		 * The meta object literal for the '<em><b>Individual Contracts</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FARE_TEMPLATE__INDIVIDUAL_CONTRACTS = eINSTANCE.getFareTemplate_IndividualContracts();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.LegacyStationToServiceConstraintMappingsImpl <em>Legacy Station To Service Constraint Mappings</em>}' class.

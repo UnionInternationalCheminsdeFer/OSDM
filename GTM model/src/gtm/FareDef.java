@@ -116,6 +116,15 @@ public class FareDef {
     @JsonPropertyDescription("options for legacy conversion to 108.1: NO ( no conversion) YES (conversion allowed), ONLY (fare is provided only for conversion and should not be used otherwise ")
     private String legacyConversion = "NO";
 
+    
+    /**
+     * indicates that the after sales of this fare can be treated independently per person.
+     * 
+     */
+    @JsonProperty("individualContracts")
+    @JsonPropertyDescription("indicates that the after sales of this fare can be treated independently per person.")
+    private Boolean individualContracts = false;
+    
     /**
      * unique id of the fare item to be included in accountings
      * 
@@ -390,6 +399,24 @@ public class FareDef {
     @JsonProperty("legacyConversion")
     public void setLegacyConversion(String legacyConversion) {
         this.legacyConversion = legacyConversion;
+    }
+    
+    /**
+     * indicates that the after sales of this fare can be treated independently per person.
+     * 
+     */
+    @JsonProperty("individualContracts")
+    public Boolean getIndividualContracts() {
+        return individualContracts;
+    }
+    
+    /**
+     * indicates that the after sales of this fare can be treated independently per person.
+     * 
+     */
+    @JsonProperty("individualContracts")
+    public void setIndividualContracts(Boolean individualContracts) {
+        this.individualContracts = individualContracts;
     }
 
     @Override

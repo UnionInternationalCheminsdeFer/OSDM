@@ -175,6 +175,15 @@ public interface GtmFactory extends EFactory {
 	Carriers createCarriers();
 
 	/**
+	 * Returns a new object of class '<em>Station Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Station Set</em>'.
+	 * @generated
+	 */
+	StationSet createStationSet();
+
+	/**
 	 * Returns a new object of class '<em>General Tariff Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -256,15 +265,6 @@ public interface GtmFactory extends EFactory {
 	ConnectionPoint createConnectionPoint();
 
 	/**
-	 * Returns a new object of class '<em>Station Set</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Station Set</em>'.
-	 * @generated
-	 */
-	StationSet createStationSet();
-
-	/**
 	 * Returns a new object of class '<em>Fare Resource Locations</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -337,6 +337,33 @@ public interface GtmFactory extends EFactory {
 	FulfillmentConstraints createFulfillmentConstraints();
 
 	/**
+	 * Returns a new object of class '<em>Fulfillment Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fulfillment Constraint</em>'.
+	 * @generated
+	 */
+	FulfillmentConstraint createFulfillmentConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Required Barcodes</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Required Barcodes</em>'.
+	 * @generated
+	 */
+	RequiredBarcodes createRequiredBarcodes();
+
+	/**
+	 * Returns a new object of class '<em>Accepted Barcodes</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Accepted Barcodes</em>'.
+	 * @generated
+	 */
+	AcceptedBarcodes createAcceptedBarcodes();
+
+	/**
 	 * Returns a new object of class '<em>Supported Online Services</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -353,6 +380,15 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	StationNames createStationNames();
+
+	/**
+	 * Returns a new object of class '<em>Fare Elements</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fare Elements</em>'.
+	 * @generated
+	 */
+	FareElements createFareElements();
 
 	/**
 	 * Returns a new object of class '<em>Fare Element</em>'.
@@ -398,15 +434,6 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	ReductionConstraints createReductionConstraints();
-
-	/**
-	 * Returns a new object of class '<em>Fare Elements</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fare Elements</em>'.
-	 * @generated
-	 */
-	FareElements createFareElements();
 
 	/**
 	 * Returns a new object of class '<em>Personal Data Constraints</em>'.
@@ -463,15 +490,6 @@ public interface GtmFactory extends EFactory {
 	PassengerConstraint createPassengerConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Included Free Passenger Limit</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Included Free Passenger Limit</em>'.
-	 * @generated
-	 */
-	IncludedFreePassengerLimit createIncludedFreePassengerLimit();
-
-	/**
 	 * Returns a new object of class '<em>Passenger Combination Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -479,6 +497,15 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	PassengerCombinationConstraint createPassengerCombinationConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Included Free Passenger Limit</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Included Free Passenger Limit</em>'.
+	 * @generated
+	 */
+	IncludedFreePassengerLimit createIncludedFreePassengerLimit();
 
 	/**
 	 * Returns a new object of class '<em>Combination Constraints</em>'.
@@ -958,33 +985,6 @@ public interface GtmFactory extends EFactory {
 	FareCombinationModel createFareCombinationModel();
 
 	/**
-	 * Returns a new object of class '<em>Fulfillment Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fulfillment Constraint</em>'.
-	 * @generated
-	 */
-	FulfillmentConstraint createFulfillmentConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Required Barcodes</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Required Barcodes</em>'.
-	 * @generated
-	 */
-	RequiredBarcodes createRequiredBarcodes();
-
-	/**
-	 * Returns a new object of class '<em>Accepted Barcodes</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Accepted Barcodes</em>'.
-	 * @generated
-	 */
-	AcceptedBarcodes createAcceptedBarcodes();
-
-	/**
 	 * Returns a new object of class '<em>Reduction Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1192,6 +1192,15 @@ public interface GtmFactory extends EFactory {
 	LegacyRouteFare createLegacyRouteFare();
 
 	/**
+	 * Returns a new object of class '<em>Legacy Series List</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Series List</em>'.
+	 * @generated
+	 */
+	LegacySeriesList createLegacySeriesList();
+
+	/**
 	 * Returns a new object of class '<em>Legacy Series</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1217,15 +1226,6 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	LegacySeparateContractSeries createLegacySeparateContractSeries();
-
-	/**
-	 * Returns a new object of class '<em>Legacy Series List</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Legacy Series List</em>'.
-	 * @generated
-	 */
-	LegacySeriesList createLegacySeriesList();
 
 	/**
 	 * Returns a new object of class '<em>Legacy Distance Fares</em>'.
