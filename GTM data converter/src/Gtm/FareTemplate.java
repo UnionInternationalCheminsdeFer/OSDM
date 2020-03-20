@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.FareTemplate#getPassengerConstraint <em>Passenger Constraint</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getAfterSalesRule <em>After Sales Rule</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getLegacyConversion <em>Legacy Conversion</em>}</li>
+ *   <li>{@link Gtm.FareTemplate#isIndividualContracts <em>Individual Contracts</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getFareTemplate()
@@ -604,5 +605,29 @@ public interface FareTemplate extends EObject {
 	 * @generated
 	 */
 	void setLegacyConversion(LegacyConversionType value);
+
+	/**
+	 * Returns the value of the '<em><b>Individual Contracts</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Individual Contracts</em>' attribute.
+	 * @see #setIndividualContracts(boolean)
+	 * @see Gtm.GtmPackage#getFareTemplate_IndividualContracts()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isIndividualContracts();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareTemplate#isIndividualContracts <em>Individual Contracts</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Individual Contracts</em>' attribute.
+	 * @see #isIndividualContracts()
+	 * @generated
+	 */
+	void setIndividualContracts(boolean value);
+
 
 } // FareTemplate

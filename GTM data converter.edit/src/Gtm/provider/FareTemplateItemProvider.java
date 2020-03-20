@@ -87,6 +87,7 @@ public class FareTemplateItemProvider
 			addPassengerConstraintPropertyDescriptor(object);
 			addAfterSalesRulePropertyDescriptor(object);
 			addLegacyConversionPropertyDescriptor(object);
+			addIndividualContractsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -597,6 +598,29 @@ public class FareTemplateItemProvider
 				 null));
 	}
 
+
+	/**
+	 * This adds a property descriptor for the Individual Contracts feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIndividualContractsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FareTemplate_individualContracts_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_individualContracts_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__INDIVIDUAL_CONTRACTS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
@@ -670,6 +694,7 @@ public class FareTemplateItemProvider
 			case GtmPackage.FARE_TEMPLATE__TYPE:
 			case GtmPackage.FARE_TEMPLATE__DATA_DESCRIPTION:
 			case GtmPackage.FARE_TEMPLATE__LEGACY_CONVERSION:
+			case GtmPackage.FARE_TEMPLATE__INDIVIDUAL_CONTRACTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER:

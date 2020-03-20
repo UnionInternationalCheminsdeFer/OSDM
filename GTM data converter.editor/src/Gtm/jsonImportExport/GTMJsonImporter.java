@@ -1133,6 +1133,7 @@ public class GTMJsonImporter {
 		f.setText(findText(jf.getNameRef()));
 		f.setTravelValidity(findTravelValidity(jf.getTravelValidityConstraintRef()));
 		f.setLegacyConversion(LegacyConversionType.getByName(jf.getLegacyConversion()));
+		f.setIndividualContracts(jf.getIndividualContracts());
 		return f;
 	}
 

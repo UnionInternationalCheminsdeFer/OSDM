@@ -170,6 +170,7 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataTransferType/SID"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataTransferType/SIS_CONTROL"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataTransferType/BOOKING"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataTransferType/PRE_BOOKING"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//PersonalDataChangeReason">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//PersonalDataChangeReason/IN_GENERAL"/>
@@ -565,6 +566,9 @@
     <genClasses ecoreClass="Gtm.ecore#//StationNames">
       <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//StationNames/stationName"/>
     </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//FareElements">
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElements/fareElements"/>
+    </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//FareElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareElement/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareElement/type"/>
@@ -589,6 +593,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareElement/dataSource"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/legacyAccountingIdentifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareElement/legacyConversion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareElement/individualContracts"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//FareStationSetDefinitions">
       <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStationSetDefinitions/fareStationSetDefinitions"/>
@@ -614,9 +619,6 @@
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//ReductionConstraints">
       <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReductionConstraints/reductionConstraints"/>
-    </genClasses>
-    <genClasses ecoreClass="Gtm.ecore#//FareElements">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElements/fareElements"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//PersonalDataConstraints">
       <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PersonalDataConstraints/personalDataConstraints"/>
@@ -995,6 +997,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/passengerConstraint"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/afterSalesRule"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/legacyConversion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/individualContracts"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//LegacyStationToServiceConstraintMappings">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyStationToServiceConstraintMappings/legacyStationToServiceBrandMappings"/>

@@ -183,7 +183,7 @@ import Gtm.WeekDay;
 import Gtm.Zone;
 import Gtm.ZoneDefinition;
 import Gtm.ZoneDefinitions;
-import Gtm.*;
+
 import Gtm.util.GtmValidator;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -490,6 +490,13 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass fareElementsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass fareElementEClass = null;
 
 	/**
@@ -519,13 +526,6 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	private EClass reductionConstraintsEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass fareElementsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -3102,6 +3102,24 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getFareElements() {
+		return fareElementsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFareElements_FareElements() {
+		return (EReference)fareElementsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFareElement() {
 		return fareElementEClass;
 	}
@@ -3318,6 +3336,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFareElement_IndividualContracts() {
+		return (EAttribute)fareElementEClass.getEStructuralFeatures().get(23);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFareStationSetDefinitions() {
 		return fareStationSetDefinitionsEClass;
 	}
@@ -3473,24 +3500,6 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 */
 	public EReference getReductionConstraints_ReductionConstraints() {
 		return (EReference)reductionConstraintsEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getFareElements() {
-		return fareElementsEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFareElements_FareElements() {
-		return (EReference)fareElementsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -6288,6 +6297,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFareTemplate_IndividualContracts() {
+		return (EAttribute)fareTemplateEClass.getEStructuralFeatures().get(24);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLegacyStationToServiceConstraintMappings() {
 		return legacyStationToServiceConstraintMappingsEClass;
 	}
@@ -7992,6 +8010,9 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		stationNamesEClass = createEClass(STATION_NAMES);
 		createEReference(stationNamesEClass, STATION_NAMES__STATION_NAME);
 
+		fareElementsEClass = createEClass(FARE_ELEMENTS);
+		createEReference(fareElementsEClass, FARE_ELEMENTS__FARE_ELEMENTS);
+
 		fareElementEClass = createEClass(FARE_ELEMENT);
 		createEAttribute(fareElementEClass, FARE_ELEMENT__ID);
 		createEAttribute(fareElementEClass, FARE_ELEMENT__TYPE);
@@ -8016,6 +8037,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEAttribute(fareElementEClass, FARE_ELEMENT__DATA_SOURCE);
 		createEReference(fareElementEClass, FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER);
 		createEAttribute(fareElementEClass, FARE_ELEMENT__LEGACY_CONVERSION);
+		createEAttribute(fareElementEClass, FARE_ELEMENT__INDIVIDUAL_CONTRACTS);
 
 		fareStationSetDefinitionsEClass = createEClass(FARE_STATION_SET_DEFINITIONS);
 		createEReference(fareStationSetDefinitionsEClass, FARE_STATION_SET_DEFINITIONS__FARE_STATION_SET_DEFINITIONS);
@@ -8038,9 +8060,6 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 
 		reductionConstraintsEClass = createEClass(REDUCTION_CONSTRAINTS);
 		createEReference(reductionConstraintsEClass, REDUCTION_CONSTRAINTS__REDUCTION_CONSTRAINTS);
-
-		fareElementsEClass = createEClass(FARE_ELEMENTS);
-		createEReference(fareElementsEClass, FARE_ELEMENTS__FARE_ELEMENTS);
 
 		personalDataConstraintsEClass = createEClass(PERSONAL_DATA_CONSTRAINTS);
 		createEReference(personalDataConstraintsEClass, PERSONAL_DATA_CONSTRAINTS__PERSONAL_DATA_CONSTRAINTS);
@@ -8417,6 +8436,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEReference(fareTemplateEClass, FARE_TEMPLATE__PASSENGER_CONSTRAINT);
 		createEReference(fareTemplateEClass, FARE_TEMPLATE__AFTER_SALES_RULE);
 		createEAttribute(fareTemplateEClass, FARE_TEMPLATE__LEGACY_CONVERSION);
+		createEAttribute(fareTemplateEClass, FARE_TEMPLATE__INDIVIDUAL_CONTRACTS);
 
 		legacyStationToServiceConstraintMappingsEClass = createEClass(LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS);
 		createEReference(legacyStationToServiceConstraintMappingsEClass, LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS__LEGACY_STATION_TO_SERVICE_BRAND_MAPPINGS);
@@ -8877,6 +8897,9 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEClass(stationNamesEClass, StationNames.class, "StationNames", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStationNames_StationName(), this.getStation(), null, "stationName", null, 0, -1, StationNames.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(fareElementsEClass, FareElements.class, "FareElements", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFareElements_FareElements(), this.getFareElement(), null, "fareElements", null, 0, -1, FareElements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(fareElementEClass, FareElement.class, "FareElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFareElement_Id(), ecorePackage.getEString(), "id", null, 0, 1, FareElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFareElement_Type(), this.getFareType(), "type", null, 0, 1, FareElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -8901,6 +8924,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEAttribute(getFareElement_DataSource(), this.getDataSource(), "dataSource", null, 0, 1, FareElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFareElement_LegacyAccountingIdentifier(), this.getLegacyAccountingIdentifier(), null, "legacyAccountingIdentifier", null, 0, 1, FareElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFareElement_LegacyConversion(), this.getLegacyConversionType(), "legacyConversion", null, 0, 1, FareElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFareElement_IndividualContracts(), ecorePackage.getEBoolean(), "individualContracts", "false", 0, 1, FareElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fareStationSetDefinitionsEClass, FareStationSetDefinitions.class, "FareStationSetDefinitions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFareStationSetDefinitions_FareStationSetDefinitions(), this.getFareStationSetDefinition(), null, "fareStationSetDefinitions", null, 0, -1, FareStationSetDefinitions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -8926,9 +8950,6 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 
 		initEClass(reductionConstraintsEClass, ReductionConstraints.class, "ReductionConstraints", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReductionConstraints_ReductionConstraints(), this.getReductionConstraint(), null, "reductionConstraints", null, 0, -1, ReductionConstraints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(fareElementsEClass, FareElements.class, "FareElements", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFareElements_FareElements(), this.getFareElement(), null, "fareElements", null, 0, -1, FareElements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(personalDataConstraintsEClass, PersonalDataConstraints.class, "PersonalDataConstraints", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPersonalDataConstraints_PersonalDataConstraints(), this.getPersonalDataConstraint(), null, "personalDataConstraints", null, 0, -1, PersonalDataConstraints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -9306,6 +9327,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEReference(getFareTemplate_PassengerConstraint(), this.getPassengerConstraint(), null, "passengerConstraint", null, 0, 1, FareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFareTemplate_AfterSalesRule(), this.getAfterSalesRule(), null, "afterSalesRule", null, 0, 1, FareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFareTemplate_LegacyConversion(), this.getLegacyConversionType(), "legacyConversion", null, 0, 1, FareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFareTemplate_IndividualContracts(), ecorePackage.getEBoolean(), "individualContracts", "false", 0, 1, FareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(legacyStationToServiceConstraintMappingsEClass, LegacyStationToServiceConstraintMappings.class, "LegacyStationToServiceConstraintMappings", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLegacyStationToServiceConstraintMappings_LegacyStationToServiceBrandMappings(), this.getLegacyStationToServiceConstraintMapping(), null, "legacyStationToServiceBrandMappings", null, 0, -1, LegacyStationToServiceConstraintMappings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -9626,6 +9648,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		addEEnumLiteral(personalDataTransferTypeEEnum, PersonalDataTransferType.SID);
 		addEEnumLiteral(personalDataTransferTypeEEnum, PersonalDataTransferType.SIS_CONTROL);
 		addEEnumLiteral(personalDataTransferTypeEEnum, PersonalDataTransferType.BOOKING);
+		addEEnumLiteral(personalDataTransferTypeEEnum, PersonalDataTransferType.PRE_BOOKING);
 
 		initEEnum(personalDataChangeReasonEEnum, PersonalDataChangeReason.class, "PersonalDataChangeReason");
 		addEEnumLiteral(personalDataChangeReasonEEnum, PersonalDataChangeReason.IN_GENERAL);

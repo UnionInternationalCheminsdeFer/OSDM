@@ -652,7 +652,7 @@ public class LegacyImporter {
 			if (ls.getBorderPointCode() > 0) {
 				Station station = stations.get(Integer.valueOf(ls.getStationCode() + countryBase));
 				
-				if (station.isBorderStation() == false){
+				if (station != null && station.isBorderStation() == false){
 					
 					Command command = SetCommand.create(domain, station, GtmPackage.Literals.STATION__BORDER_STATION, true);
 					if (command != null && command.canExecute()) {

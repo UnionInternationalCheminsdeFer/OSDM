@@ -373,6 +373,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="stationName" upperBound="-1"
         eType="#//Station"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FareElements">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fareElements" upperBound="-1"
+        eType="#//FareElement" containment="true" resolveProxies="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FareElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="TYPE_MUST PRICE_MUST TEXT_MUST SERVICE_CLASS_MUST SALES_AVAILABILITY_MUST TRAVEL_VALIDITY_MUST COMBINATION_CONSTRAINT_MUST FULFILLMENT_CONSTRAINT_MUST PASSENGER_CONSTRAINT_MUST LEGACY_ACCOUNTING_MISSING CONVERSION_MISSING"/>
@@ -405,6 +409,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacyAccountingIdentifier"
         eType="#//LegacyAccountingIdentifier" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="legacyConversion" eType="#//LegacyConversionType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="individualContracts" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FareStationSetDefinitions">
     <eOperations name="findFareSet" eType="#//FareStationSetDefinition">
@@ -439,10 +445,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="ReductionConstraints">
     <eStructuralFeatures xsi:type="ecore:EReference" name="reductionConstraints" upperBound="-1"
         eType="#//ReductionConstraint" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FareElements">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fareElements" upperBound="-1"
-        eType="#//FareElement" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PersonalDataConstraints">
     <eStructuralFeatures xsi:type="ecore:EReference" name="personalDataConstraints"
@@ -1043,6 +1045,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="passengerConstraint" eType="#//PassengerConstraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="afterSalesRule" eType="#//AfterSalesRule"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="legacyConversion" eType="#//LegacyConversionType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="individualContracts" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyStationToServiceConstraintMappings">
     <eOperations name="findServiceConstraint" eType="#//ServiceConstraint">
@@ -1411,6 +1415,7 @@
     <eLiterals name="SID" value="1"/>
     <eLiterals name="SIS_CONTROL" value="2"/>
     <eLiterals name="BOOKING" value="3"/>
+    <eLiterals name="PRE_BOOKING" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PersonalDataChangeReason">
     <eLiterals name="IN_GENERAL" value="1"/>

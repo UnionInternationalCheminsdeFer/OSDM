@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.FareElement#getDataSource <em>Data Source</em>}</li>
  *   <li>{@link Gtm.FareElement#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
  *   <li>{@link Gtm.FareElement#getLegacyConversion <em>Legacy Conversion</em>}</li>
+ *   <li>{@link Gtm.FareElement#isIndividualContracts <em>Individual Contracts</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getFareElement()
@@ -557,5 +558,28 @@ public interface FareElement extends EObject {
 	 * @generated
 	 */
 	void setLegacyConversion(LegacyConversionType value);
+
+	/**
+	 * Returns the value of the '<em><b>Individual Contracts</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Individual Contracts</em>' attribute.
+	 * @see #setIndividualContracts(boolean)
+	 * @see Gtm.GtmPackage#getFareElement_IndividualContracts()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isIndividualContracts();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareElement#isIndividualContracts <em>Individual Contracts</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Individual Contracts</em>' attribute.
+	 * @see #isIndividualContracts()
+	 * @generated
+	 */
+	void setIndividualContracts(boolean value);
 
 } // FareElement

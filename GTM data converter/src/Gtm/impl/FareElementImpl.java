@@ -65,6 +65,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.FareElementImpl#getDataSource <em>Data Source</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getLegacyConversion <em>Legacy Conversion</em>}</li>
+ *   <li>{@link Gtm.impl.FareElementImpl#isIndividualContracts <em>Individual Contracts</em>}</li>
  * </ul>
  *
  * @generated
@@ -349,6 +350,26 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 	 * @ordered
 	 */
 	protected LegacyConversionType legacyConversion = LEGACY_CONVERSION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIndividualContracts() <em>Individual Contracts</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIndividualContracts()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean INDIVIDUAL_CONTRACTS_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIndividualContracts() <em>Individual Contracts</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIndividualContracts()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean individualContracts = INDIVIDUAL_CONTRACTS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1168,6 +1189,27 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIndividualContracts() {
+		return individualContracts;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIndividualContracts(boolean newIndividualContracts) {
+		boolean oldIndividualContracts = individualContracts;
+		individualContracts = newIndividualContracts;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_ELEMENT__INDIVIDUAL_CONTRACTS, oldIndividualContracts, individualContracts));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -1248,6 +1290,8 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return getLegacyAccountingIdentifier();
 			case GtmPackage.FARE_ELEMENT__LEGACY_CONVERSION:
 				return getLegacyConversion();
+			case GtmPackage.FARE_ELEMENT__INDIVIDUAL_CONTRACTS:
+				return isIndividualContracts();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1328,6 +1372,9 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return;
 			case GtmPackage.FARE_ELEMENT__LEGACY_CONVERSION:
 				setLegacyConversion((LegacyConversionType)newValue);
+				return;
+			case GtmPackage.FARE_ELEMENT__INDIVIDUAL_CONTRACTS:
+				setIndividualContracts((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1410,6 +1457,9 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 			case GtmPackage.FARE_ELEMENT__LEGACY_CONVERSION:
 				setLegacyConversion(LEGACY_CONVERSION_EDEFAULT);
 				return;
+			case GtmPackage.FARE_ELEMENT__INDIVIDUAL_CONTRACTS:
+				setIndividualContracts(INDIVIDUAL_CONTRACTS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1468,6 +1518,8 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return legacyAccountingIdentifier != null;
 			case GtmPackage.FARE_ELEMENT__LEGACY_CONVERSION:
 				return legacyConversion != LEGACY_CONVERSION_EDEFAULT;
+			case GtmPackage.FARE_ELEMENT__INDIVIDUAL_CONTRACTS:
+				return individualContracts != INDIVIDUAL_CONTRACTS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1492,6 +1544,8 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 		result.append(dataSource);
 		result.append(", legacyConversion: ");
 		result.append(legacyConversion);
+		result.append(", individualContracts: ");
+		result.append(individualContracts);
 		result.append(')');
 		return result.toString();
 	}

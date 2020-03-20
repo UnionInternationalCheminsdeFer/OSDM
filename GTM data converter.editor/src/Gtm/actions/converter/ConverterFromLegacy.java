@@ -1033,15 +1033,15 @@ public class ConverterFromLegacy {
 	public FareElement convertSeriesToFare(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, int direction) throws ConverterException{
 		
 		FareElement fare = GtmFactory.eINSTANCE.createFareElement();
+		template2Fare(fare, fareTemplate);
+		
 		LegacyAccountingIdentifier accountingIdentifier = GtmFactory.eINSTANCE.createLegacyAccountingIdentifier();
 		accountingIdentifier.setAddSeriesId(0);
 		accountingIdentifier.setTariffId(0);
 		accountingIdentifier.setSeriesId(series.getNumber());
 		fare.setLegacyAccountingIdentifier(accountingIdentifier);
 		fare.setDataSource(DataSource.CONVERTED);
-		fare.setAfterSalesRule(fareTemplate.getAfterSalesRule());
-		
-		
+
 		
 		fare.setCarrierConstraint(carrierConstraints.get(series.getCarrierCode()));
 		if (fare.getCarrierConstraint() == null) {
@@ -1054,14 +1054,23 @@ public class ConverterFromLegacy {
 			fare.setCombinationConstraint(fareTemplate.getCombinationConstraint());
 		}
 		fare.setDataDescription(NationalLanguageSupport.ConverterFromLegacy_44 + Integer.toString(series.getNumber()) +NationalLanguageSupport.ConverterFromLegacy_45 + fareTemplate.getDataDescription());;
-		fare.setFareDetailDescription(fareTemplate.getFareDetailDescription());
-		fare.setFulfillmentConstraint(fareTemplate.getFulfillmentConstraint());
-		
+
 		LegacyAccountingIdentifier legacyAccountingIdentifier = GtmFactory.eINSTANCE.createLegacyAccountingIdentifier();
 		legacyAccountingIdentifier.setSeriesId(series.getNumber());
 		legacyAccountingIdentifier.setAddSeriesId(direction);
 		fare.setLegacyAccountingIdentifier(legacyAccountingIdentifier);
+
+		return fare;
 		
+	}
+
+	
+	private void template2Fare(FareElement fare,FareTemplate fareTemplate) {
+		
+		fare.setFareDetailDescription(fareTemplate.getFareDetailDescription());
+		fare.setFulfillmentConstraint(fareTemplate.getFulfillmentConstraint());
+		fare.setAfterSalesRule(fareTemplate.getAfterSalesRule());
+		fare.setIndividualContracts(fareTemplate.isIndividualContracts());		
 		fare.setPassengerConstraint(fareTemplate.getPassengerConstraint());
 		fare.setReductionConstraint(fareTemplate.getReductionConstraint());
 		fare.setPersonalDataConstraint(fareTemplate.getPersonalDataConstraint());
@@ -1075,10 +1084,7 @@ public class ConverterFromLegacy {
 		fare.setType(fareTemplate.getType());
 		fare.setLegacyConversion(fareTemplate.getLegacyConversion());
 		
-		return fare;
-		
 	}
-
 
 	private boolean isSeparateContract(LegacySeries series) {
 		if (tool.getConversionFromLegacy().getLegacy108().getLegacySeparateContractSeries() == null || tool.getConversionFromLegacy().getLegacy108().getLegacySeparateContractSeries().getSeparateContractSeries().isEmpty()) {

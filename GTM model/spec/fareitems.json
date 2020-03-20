@@ -188,6 +188,11 @@
 					"description": "options for legacy conversion to 108.1: NO ( no conversion) YES (conversion allowed), ONLY (fare is provided only for conversion and should not be used otherwise ",
 					"type": "string",
 					"default": "NO"
+				},
+				"individualContracts": {
+					"description": "indicates that the after sales of this fare can be treated independently per person.",
+					"type": "boolean",
+					"default": false
 				}
 			},
 			"required": [

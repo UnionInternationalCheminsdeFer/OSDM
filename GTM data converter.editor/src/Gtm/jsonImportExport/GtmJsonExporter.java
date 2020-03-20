@@ -1682,6 +1682,9 @@ public class GtmJsonExporter {
 			fareJ.setLegacyConversion("NO"); //$NON-NLS-1$
 		}
 		
+		
+		fare.setIndividualContracts(fareJ.getIndividualContracts());
+		
 		return fareJ;
 	}
 

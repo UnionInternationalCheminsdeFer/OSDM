@@ -46,7 +46,15 @@ public enum PersonalDataTransferType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BOOKING(3, "BOOKING", "BOOKING");
+	BOOKING(3, "BOOKING", "BOOKING"), /**
+	 * The '<em><b>PRE BOOKING</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PRE_BOOKING_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	PRE_BOOKING(4, "PRE_BOOKING", "PRE_BOOKING");
 
 	/**
 	 * The '<em><b>SID</b></em>' literal value.
@@ -82,6 +90,17 @@ public enum PersonalDataTransferType implements Enumerator {
 	public static final int BOOKING_VALUE = 3;
 
 	/**
+	 * The '<em><b>PRE BOOKING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PRE_BOOKING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PRE_BOOKING_VALUE = 4;
+
+	/**
 	 * An array of all the '<em><b>Personal Data Transfer Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,6 +111,7 @@ public enum PersonalDataTransferType implements Enumerator {
 			SID,
 			SIS_CONTROL,
 			BOOKING,
+			PRE_BOOKING,
 		};
 
 	/**
@@ -151,6 +171,7 @@ public enum PersonalDataTransferType implements Enumerator {
 			case SID_VALUE: return SID;
 			case SIS_CONTROL_VALUE: return SIS_CONTROL;
 			case BOOKING_VALUE: return BOOKING;
+			case PRE_BOOKING_VALUE: return PRE_BOOKING;
 		}
 		return null;
 	}
