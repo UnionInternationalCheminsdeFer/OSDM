@@ -67,7 +67,12 @@ public class ExportLegacyAction extends BasicGtmAction {
 				return;
 			}
 			
-
+			if (tool.getConversionFromLegacy().getLegacy108().getCarrier() == null) {
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText("Carrier is missing");
+				dialog.open(); 
+				return;
+			}
 			
 			Path path =  getPath(NationalLanguageSupport.ExportLegacyAction_2);
 			if (path == null) return;

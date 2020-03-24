@@ -60,6 +60,16 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 				return;
 			}
 			
+			if (tool.getConversionFromLegacy().getParams().getLegacyFareTemplates() == null || 
+				tool.getConversionFromLegacy().getParams().getLegacyFareTemplates().getFareTemplates().isEmpty()	) {
+				String message = "No fare templates defined!";
+				GtmUtils.writeConsoleError(message);
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText(NationalLanguageSupport.ConvertLegacy2GtmAction_3);
+				dialog.open(); 
+				return;
+			}
+			
 			EditingDomain domain = GtmUtils.getActiveDomain();
 			if (domain == null) return;
 			

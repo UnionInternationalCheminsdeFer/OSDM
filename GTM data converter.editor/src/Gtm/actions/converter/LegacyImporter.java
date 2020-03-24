@@ -88,6 +88,7 @@ public class LegacyImporter {
 			editor.getSite().getShell().getDisplay().asyncExec(() -> {
 				GtmUtils.writeConsoleError(message);
 			});
+			e.printStackTrace();
 			return;
 		}
 		
@@ -169,6 +170,7 @@ public class LegacyImporter {
 				editor.getSite().getShell().getDisplay().asyncExec(() -> {
 					GtmUtils.writeConsoleError(message);
 				});
+				e.printStackTrace();
 				return;
 			} 
 	        
@@ -212,6 +214,7 @@ public class LegacyImporter {
 			editor.getSite().getShell().getDisplay().asyncExec(() -> {
 				GtmUtils.writeConsoleInfo(message);
 			});	
+			e.printStackTrace();
 			return;
 		} 
            	
@@ -268,6 +271,7 @@ public class LegacyImporter {
 				editor.getSite().getShell().getDisplay().asyncExec(() -> {
 					GtmUtils.writeConsoleInfo(message);
 				});
+				e.printStackTrace();
 				return;
 			} 
 	        
@@ -392,9 +396,10 @@ public class LegacyImporter {
 			
 			return fare;
 			
-			} catch (Exception e) {
-				return null;
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 
@@ -420,6 +425,7 @@ public class LegacyImporter {
 			editor.getSite().getShell().getDisplay().asyncExec(() -> {
 				GtmUtils.writeConsoleError(message);
 			});
+			e.printStackTrace();
 			return null;
 		} 
 
@@ -436,6 +442,7 @@ public class LegacyImporter {
 			editor.getSite().getShell().getDisplay().asyncExec(() -> {
 				GtmUtils.writeConsoleError(message);
 			});
+			e.printStackTrace();
 			return null;
 		} 
     
@@ -503,6 +510,7 @@ public class LegacyImporter {
 		return station;
 		
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 
@@ -628,6 +636,7 @@ public class LegacyImporter {
 		return series;
 		
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 
@@ -664,7 +673,7 @@ public class LegacyImporter {
 					if (station != null && station.isBorderStation() == false){
 						
 						Command com = SetCommand.create(domain, station, GtmPackage.Literals.STATION__BORDER_STATION, true);
-						if (com != null && command.canExecute()) {
+						if (com != null && com.canExecute()) {
 							command.append(com);	
 						}
 						Command comm2 = SetCommand.create(domain, station, GtmPackage.Literals.STATION__LEGACY_BORDER_POINT_CODE, lStation.getBorderPointCode());
