@@ -57,6 +57,14 @@ public class PreferencePage
 							PreferenceConstants.P_LINK_STATIONS_BY_GEO_ACCURACY,
 							NationalLanguageSupport.PreferencePage_accuracy,
 							getFieldEditorParent()));
+    	
+        addField(
+					new BooleanFieldEditor(
+						PreferenceConstants.P_REMOVE_OPTIONAL_VIAS,
+						"Ignore optional via stations",
+						getFieldEditorParent()));
+    	
+    	
 	};
 
 

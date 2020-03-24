@@ -63,6 +63,7 @@ public class LegacyViastationItemProvider
 
 			addPositionPropertyDescriptor(object);
 			addCodePropertyDescriptor(object);
+			addOptionalPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,6 +113,28 @@ public class LegacyViastationItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Optional feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOptionalPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacyViastation_optional_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyViastation_optional_feature", "_UI_LegacyViastation_type"),
+				 GtmPackage.Literals.LEGACY_VIASTATION__OPTIONAL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns LegacyViastation.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -149,6 +172,7 @@ public class LegacyViastationItemProvider
 		switch (notification.getFeatureID(LegacyViastation.class)) {
 			case GtmPackage.LEGACY_VIASTATION__POSITION:
 			case GtmPackage.LEGACY_VIASTATION__CODE:
+			case GtmPackage.LEGACY_VIASTATION__OPTIONAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

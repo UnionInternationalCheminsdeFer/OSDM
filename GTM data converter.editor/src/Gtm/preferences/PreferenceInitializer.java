@@ -15,7 +15,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer
 		store.setDefault(PreferenceConstants.P_IMPORT_CONVERABLE_ONLY, false);
 		store.setDefault(PreferenceConstants.P_IMPORT_CONTRY_FILTER, " ");
 		store.setDefault(PreferenceConstants.P_LINK_STATIONS_BY_GEO, true);
-		store.setDefault(PreferenceConstants.P_LINK_STATIONS_BY_GEO_ACCURACY, 5);		
+		store.setDefault(PreferenceConstants.P_LINK_STATIONS_BY_GEO_ACCURACY, 5);
+		store.setDefault(PreferenceConstants.P_REMOVE_OPTIONAL_VIAS, false);
 	}
 
 

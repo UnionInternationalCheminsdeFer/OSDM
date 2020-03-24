@@ -1174,6 +1174,7 @@
     <genClasses ecoreClass="Gtm.ecore#//LegacyViastation" labelFeature="#//Gtm/LegacyViastation/code">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyViastation/position"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyViastation/code"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyViastation/optional"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//LegacyFareTemplates">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyFareTemplates/fareTemplates"/>
