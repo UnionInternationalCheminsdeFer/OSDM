@@ -136,7 +136,7 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 						monitor.worked(1);
 					
 					} catch (Exception e) {
-						//
+						e.printStackTrace();
 					} finally {
 						monitor.done();
 					}
@@ -150,6 +150,7 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 				new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
 
 			} catch (Exception exception) {
+
 				// Something went wrong that shouldn't.
 				GtmEditorPlugin.INSTANCE.log(exception);
 			} finally {

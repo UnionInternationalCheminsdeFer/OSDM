@@ -979,18 +979,14 @@ public class GtmUtils {
 	    if (tool == null || tool.getConversionFromLegacy() == null || tool.getConversionFromLegacy().getParams() == null )	{
 	    	return null;
 	    }
-	
-		int myCountryCode = tool.getConversionFromLegacy().getParams().getCountry().getCode();
 		
 		HashMap<Integer,Station> stations = new HashMap<Integer,Station>();
 	
 		for (Station station : tool.getCodeLists().getStations().getStations()) {
-			if (station.getCountry().getCode() == myCountryCode) {
-				try {
-					stations.put(Integer.valueOf(Integer.parseInt(station.getCode()) + station.getCountry().getCode() * 100000 ), station);
-				} catch (Exception e){
-					//do nothing 
-				}
+			try {
+				stations.put(Integer.valueOf(Integer.parseInt(station.getCode()) + station.getCountry().getCode() * 100000 ), station);
+			} catch (Exception e){
+				//do nothing 
 			}
 		}
 		return stations;

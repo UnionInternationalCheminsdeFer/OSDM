@@ -103,9 +103,8 @@ public class GTMJsonImporter {
 		currencies = new HashMap<String,Currency>();	
 		serviceBrands = new HashMap<Integer,ServiceBrand>();
 		nutsCodes = new HashMap<String,NutsCode>();	
-		for (Station station : tool.getCodeLists().getStations().getStations()) {
-			stations.put(Integer.valueOf(station.getCountry().getCode())*100000 + Integer.parseInt(station.getCode()) , station);
-		}
+		
+		stations = GtmUtils.getStationMap(tool);
 		for (Carrier carrier : tool.getCodeLists().getCarriers().getCarriers()) {
 			carriers.put(carrier.getCode() , carrier);
 		}
@@ -201,14 +200,14 @@ public class GTMJsonImporter {
 	private StationNames convertStationNames(List<StationNamesDef> jl) {
 		
 		StationNames n = GtmFactory.eINSTANCE.createStationNames();
-		
 		if (jl == null || jl.isEmpty()) return n;
 		
 		for (StationNamesDef jn : jl) {
 			
 			Station s = getStation(jn.getCountry(), jn.getLocalCode());
-			
-			n.getStationName().add(s);
+			if (s != null) {
+				n.getStationName().add(s);
+			}
 			
 		}
 		return n;
