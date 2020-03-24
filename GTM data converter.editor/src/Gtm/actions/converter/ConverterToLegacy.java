@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import Gtm.AlternativeRoute;
+import Gtm.Carrier;
 import Gtm.ClassId;
 import Gtm.Clusters;
 import Gtm.CombinationModel;
@@ -81,6 +82,11 @@ public class 	ConverterToLegacy {
 	
 	public int convert(IProgressMonitor monitor) {
 		
+		Carrier carrier = tool.getGeneralTariffModel().getDelivery().getProvider();
+		Command com = SetCommand.create(domain, tool.getConversionFromLegacy().getLegacy108(), GtmPackage.Literals.LEGACY108__CARRIER, carrier);
+		if (com != null && com.canExecute()) {
+			domain.getCommandStack().execute(com);
+		}
 		
 		monitor.subTask(NationalLanguageSupport.ConverterToLegacy_0);	
 		convertStations();
@@ -163,7 +169,7 @@ public class 	ConverterToLegacy {
 		
 	
 		monitor.subTask(NationalLanguageSupport.ConverterToLegacy_10);	
-		Command com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList(), GtmPackage.Literals.LEGACY_SERIES_LIST__SERIES, series);
+		com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList(), GtmPackage.Literals.LEGACY_SERIES_LIST__SERIES, series);
 		if (com != null && com.canExecute()) {
 			domain.getCommandStack().execute(com);
 		}
@@ -388,7 +394,7 @@ public class 	ConverterToLegacy {
 		return endDate;
 	}
 
-	private Object getStartDate(GTMTool tool) {
+	private Date getStartDate(GTMTool tool) {
 		if (tool == null || tool.getGeneralTariffModel() == null || tool.getGeneralTariffModel().getFareStructure()==null|| tool.getGeneralTariffModel().getFareStructure().getSalesAvailabilityConstraints() == null) {
 			return null;
 		}

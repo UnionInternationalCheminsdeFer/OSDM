@@ -130,6 +130,7 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 								
 								if (command.canExecute()) {
 									domain.getCommandStack().execute(command);
+									command = new CompoundCommand();
 								}	
 							}
 						}
@@ -149,10 +150,10 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 		
 				new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
 
-			} catch (Exception exception) {
-
+			} catch (Exception e) {
+				e.printStackTrace();
 				// Something went wrong that shouldn't.
-				GtmEditorPlugin.INSTANCE.log(exception);
+				GtmEditorPlugin.INSTANCE.log(e);
 			} finally {
 				editor.reconnectViews();
 			}			
