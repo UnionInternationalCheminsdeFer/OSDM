@@ -261,75 +261,86 @@ public class ImportStationsAction extends BasicGtmAction {
 
 		
 		private Station decodeStationSegment(String edifact, GTMTool tool, GtmEditor editor) {
-			 
-			 // ALS+29+008008618:MENDEN(SAUERLAND)S+512542N+074828E'
-			 //"?" release indicator
 			
-			 String[] section = edifact.split("\\+"); //$NON-NLS-1$
+			try {
 			 
-			 String functionCodeQualifier = section[1];
-			 		 			
-			 String[] stationElementSplit = section[2].split(":"); //$NON-NLS-1$
-			 
-			 String stationCode = stationElementSplit[0];
-			 int countryCodeUIC = Integer.parseInt(stationCode.substring(0, 4));
-			 
-			 String  localCode = stationCode.substring(4, 9);
-			 	 
-			 String stationName = stationElementSplit[1];
-			 
-			 //strange MERITS data
-			 if (countryCodeUIC == 0) {
-				 String message = NationalLanguageSupport.ImportStationsAction_27 + stationName;
-				 editor.getSite().getShell().getDisplay().asyncExec(() -> {
-						GtmUtils.writeConsoleError(message); 
-				 });
+				 // ALS+29+008008618:MENDEN(SAUERLAND)S+512542N+074828E'
+				 //"?" release indicator
+				
+				 String[] section = edifact.split("\\+"); //$NON-NLS-1$
 				 
-				 return null;
-			 }
-			
-			 float longitude = 0;
-			 float latitude = 0;
-			 
-			 try {
-
-				 if (section.length > 4) {
-			 
-					 // Format = ddmmssx   dd = degrees   mm = minutes   ss = seconds   x = N (North) or S (South) 
-					 longitude = decodeMeritsGeoString(section[3]);
-			 
-					 //Format = ddmmssx   dd = degrees   mm = minutes   ss = seconds   x = E (East) or W (West) 
-					 latitude = decodeMeritsGeoString(section[4]);
+				 String functionCodeQualifier = section[1];
+				 		 			
+				 String[] stationElementSplit = section[2].split(":"); //$NON-NLS-1$
 				 
+				 String stationCode = stationElementSplit[0];
+				 int countryCodeUIC = Integer.parseInt(stationCode.substring(0, 4));
+				 
+				 String  localCode = stationCode.substring(4, 9);
+				 	 
+				 String stationName = stationElementSplit[1].trim();
+				 
+				 //strange MERITS data
+				 if (countryCodeUIC == 0) {
+					 String message = NationalLanguageSupport.ImportStationsAction_27 + stationName;
+					 editor.getSite().getShell().getDisplay().asyncExec(() -> {
+							GtmUtils.writeConsoleError(message); 
+					 });
+					 
+					 return null;
 				 }
-			 } catch(Exception e ) {
+				
+				 float longitude = 0;
+				 float latitude = 0;
+				 
+				 try {
+	
+					 if (section.length > 4) {
+				 
+						 // Format = ddmmssx   dd = degrees   mm = minutes   ss = seconds   x = N (North) or S (South) 
+						 longitude = decodeMeritsGeoString(section[3]);
+				 
+						 //Format = ddmmssx   dd = degrees   mm = minutes   ss = seconds   x = E (East) or W (West) 
+						 latitude = decodeMeritsGeoString(section[4]);
+					 
+					 }
+				 } catch(Exception e ) {
 					 //do nothing, geocoordinates not usable
-			 }
-			 
-			 Country  country = tool.getCodeLists().getCountries().findCountry(countryCodeUIC);
-			 
-			 if (country != null) {
-				 Station station = GtmFactory.eINSTANCE.createStation();
-				 
-				 if (Integer.parseInt(functionCodeQualifier) == 17) {
-					 station.setBorderStation(true);
-				 } else {
-					 station.setBorderStation(false);
 				 }
 				 
-				 station.setCountry(country);
-				 station.setTimetableName(stationName);
-				 station.setName(stationName);				 
-				 station.setCode(localCode);
-				 station.setLatitude(latitude);
-				 station.setLongitude(longitude);
-				 return station;
-			 } else {
-				 String message = NationalLanguageSupport.ImportStationsAction_28 + stationCode + " " + stationName; //$NON-NLS-2$
+				 Country  country = tool.getCodeLists().getCountries().findCountry(countryCodeUIC);
+				 
+				 if (country != null) {
+					 Station station = GtmFactory.eINSTANCE.createStation();
+					 
+					 if (Integer.parseInt(functionCodeQualifier) == 17) {
+						 station.setBorderStation(true);
+					 } else {
+						 station.setBorderStation(false);
+					 }
+					 
+					 station.setCountry(country);
+					 station.setTimetableName(stationName);
+					 station.setName(stationName);				 
+					 station.setCode(localCode);
+					 station.setLatitude(latitude);
+					 station.setLongitude(longitude);
+					 return station;
+				 } else {
+					 String message = NationalLanguageSupport.ImportStationsAction_28 + stationCode + " " + stationName; //$NON-NLS-2$
+					 editor.getSite().getShell().getDisplay().asyncExec(() -> {
+							GtmUtils.writeConsoleError(message); 
+					 });
+				 }
+			 
+			 
+			} catch (Exception e) {
+				 e.printStackTrace();
+				 String message = "could not decode edifact segment: " +  edifact;
 				 editor.getSite().getShell().getDisplay().asyncExec(() -> {
 						GtmUtils.writeConsoleError(message); 
 				 });
-			 }
+			}
 			 return null;
 		}
 

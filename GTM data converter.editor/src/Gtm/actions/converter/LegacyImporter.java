@@ -463,11 +463,11 @@ public class LegacyImporter {
 		if (flag.equals("2")) return null; //$NON-NLS-1$
 
 
-		String nameUTF8 = new String(st.substring(15,50).getBytes(charset));
+		String nameUTF8 = new String(st.substring(15,50).getBytes(charset)).trim();
 	
-		String nameASCII 	= st.substring(51,68);	
+		String nameASCII 	= st.substring(51,68).trim();	
 
-		String shortNameASCII 	= st.substring(51,68);	
+		String shortNameASCII 	= st.substring(51,68).trim();	
 		
 		int code	= 0;
 		try  {

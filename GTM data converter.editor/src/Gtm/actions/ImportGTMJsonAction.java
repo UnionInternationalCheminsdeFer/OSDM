@@ -80,7 +80,7 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 			File file = getFile();
 			if (file == null) return;
 			
-			GTMJsonImporter importer = new GTMJsonImporter(tool);
+			GTMJsonImporter importer = new GTMJsonImporter(tool, domain);
 			
 			IRunnableWithProgress operation =	new IRunnableWithProgress() {
 				// This is the method that gets invoked when the operation runs.
