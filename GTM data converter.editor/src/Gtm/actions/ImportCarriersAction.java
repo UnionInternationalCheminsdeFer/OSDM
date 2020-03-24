@@ -19,7 +19,6 @@ import org.eclipse.swt.widgets.MessageBox;
 
 import Gtm.Carrier;
 import Gtm.Carriers;
-import Gtm.Country;
 import Gtm.GTMTool;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
@@ -49,16 +48,6 @@ public class ImportCarriersAction extends ImportCsvDataAction {
 		if (tool == null) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 			dialog.setText(NationalLanguageSupport.ImportCarriersAction_1);
-			dialog.open(); 
-			return;
-		}
-		
-		Country country = tool.getConversionFromLegacy().getParams().getCountry();
-		if (country == null) {
-			String message = NationalLanguageSupport.ImportCarriersAction_2;
-			GtmUtils.writeConsoleError(message);
-			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText(NationalLanguageSupport.ImportCarriersAction_3);
 			dialog.open(); 
 			return;
 		}

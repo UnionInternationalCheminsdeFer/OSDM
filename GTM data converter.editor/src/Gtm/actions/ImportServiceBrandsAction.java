@@ -17,7 +17,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
 
-import Gtm.Country;
 import Gtm.GTMTool;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
@@ -48,16 +47,6 @@ public class ImportServiceBrandsAction extends ImportCsvDataAction {
 		if (tool == null) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 			dialog.setText(NationalLanguageSupport.ImportServiceBrandsAction_1);
-			dialog.open(); 
-			return;
-		}
-		
-		Country country = tool.getConversionFromLegacy().getParams().getCountry();
-		if (country == null) {
-			String message = NationalLanguageSupport.ImportServiceBrandsAction_2;
-			GtmUtils.writeConsoleError(message);
-			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText(NationalLanguageSupport.ImportServiceBrandsAction_3);
 			dialog.open(); 
 			return;
 		}
