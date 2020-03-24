@@ -7412,6 +7412,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getLegacyViastation_Optional() {
+		return (EAttribute)legacyViastationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLegacyFareTemplates() {
 		return legacyFareTemplatesEClass;
 	}
@@ -8619,6 +8628,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		legacyViastationEClass = createEClass(LEGACY_VIASTATION);
 		createEAttribute(legacyViastationEClass, LEGACY_VIASTATION__POSITION);
 		createEAttribute(legacyViastationEClass, LEGACY_VIASTATION__CODE);
+		createEAttribute(legacyViastationEClass, LEGACY_VIASTATION__OPTIONAL);
 
 		legacyFareTemplatesEClass = createEClass(LEGACY_FARE_TEMPLATES);
 		createEReference(legacyFareTemplatesEClass, LEGACY_FARE_TEMPLATES__FARE_TEMPLATES);
@@ -9523,6 +9533,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEClass(legacyViastationEClass, LegacyViastation.class, "LegacyViastation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLegacyViastation_Position(), theXMLTypePackage.getInt(), "position", null, 1, 1, LegacyViastation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLegacyViastation_Code(), theXMLTypePackage.getInt(), "code", null, 1, 1, LegacyViastation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacyViastation_Optional(), ecorePackage.getEBoolean(), "optional", "false", 0, 1, LegacyViastation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(legacyFareTemplatesEClass, LegacyFareTemplates.class, "LegacyFareTemplates", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLegacyFareTemplates_FareTemplates(), this.getFareTemplate(), null, "fareTemplates", null, 0, -1, LegacyFareTemplates.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

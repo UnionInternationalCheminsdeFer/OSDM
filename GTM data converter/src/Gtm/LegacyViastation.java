@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Gtm.LegacyViastation#getPosition <em>Position</em>}</li>
  *   <li>{@link Gtm.LegacyViastation#getCode <em>Code</em>}</li>
+ *   <li>{@link Gtm.LegacyViastation#isOptional <em>Optional</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getLegacyViastation()
@@ -119,5 +120,28 @@ public interface LegacyViastation extends EObject {
 	 * @generated
 	 */
 	boolean isSetCode();
+
+	/**
+	 * Returns the value of the '<em><b>Optional</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Optional</em>' attribute.
+	 * @see #setOptional(boolean)
+	 * @see Gtm.GtmPackage#getLegacyViastation_Optional()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isOptional();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacyViastation#isOptional <em>Optional</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Optional</em>' attribute.
+	 * @see #isOptional()
+	 * @generated
+	 */
+	void setOptional(boolean value);
 
 } // LegacyViastation

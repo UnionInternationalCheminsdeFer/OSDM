@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link Gtm.impl.LegacyViastationImpl#getPosition <em>Position</em>}</li>
  *   <li>{@link Gtm.impl.LegacyViastationImpl#getCode <em>Code</em>}</li>
+ *   <li>{@link Gtm.impl.LegacyViastationImpl#isOptional <em>Optional</em>}</li>
  * </ul>
  *
  * @generated
@@ -84,6 +85,26 @@ public class LegacyViastationImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected boolean codeESet;
+
+	/**
+	 * The default value of the '{@link #isOptional() <em>Optional</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOptional()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean OPTIONAL_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isOptional() <em>Optional</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOptional()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean optional = OPTIONAL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -201,6 +222,27 @@ public class LegacyViastationImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isOptional() {
+		return optional;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOptional(boolean newOptional) {
+		boolean oldOptional = optional;
+		optional = newOptional;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY_VIASTATION__OPTIONAL, oldOptional, optional));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -208,6 +250,8 @@ public class LegacyViastationImpl extends MinimalEObjectImpl.Container implement
 				return getPosition();
 			case GtmPackage.LEGACY_VIASTATION__CODE:
 				return getCode();
+			case GtmPackage.LEGACY_VIASTATION__OPTIONAL:
+				return isOptional();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -225,6 +269,9 @@ public class LegacyViastationImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case GtmPackage.LEGACY_VIASTATION__CODE:
 				setCode((Integer)newValue);
+				return;
+			case GtmPackage.LEGACY_VIASTATION__OPTIONAL:
+				setOptional((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -244,6 +291,9 @@ public class LegacyViastationImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.LEGACY_VIASTATION__CODE:
 				unsetCode();
 				return;
+			case GtmPackage.LEGACY_VIASTATION__OPTIONAL:
+				setOptional(OPTIONAL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -260,6 +310,8 @@ public class LegacyViastationImpl extends MinimalEObjectImpl.Container implement
 				return isSetPosition();
 			case GtmPackage.LEGACY_VIASTATION__CODE:
 				return isSetCode();
+			case GtmPackage.LEGACY_VIASTATION__OPTIONAL:
+				return optional != OPTIONAL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -278,6 +330,8 @@ public class LegacyViastationImpl extends MinimalEObjectImpl.Container implement
 		if (positionESet) result.append(position); else result.append("<unset>");
 		result.append(", code: ");
 		if (codeESet) result.append(code); else result.append("<unset>");
+		result.append(", optional: ");
+		result.append(optional);
 		result.append(')');
 		return result.toString();
 	}

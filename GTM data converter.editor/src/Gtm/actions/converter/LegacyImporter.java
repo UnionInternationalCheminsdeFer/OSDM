@@ -537,18 +537,23 @@ public class LegacyImporter {
 			
 		String via1						= st.substring(175,180);			
 		String pos1						= st.substring(180,181);			
+		String abr1 					= st.substring(181,182);	
 
 		String via2						= st.substring(182,187);			
 		String pos2						= st.substring(187,188);	
+		String abr2 					= st.substring(188,189);
 		
 		String via3						= st.substring(189,194);			
 		String pos3						= st.substring(194,195);	
+		String abr3 					= st.substring(195,196);		
 		
 		String via4						= st.substring(196,201);			
 		String pos4						= st.substring(201,202);	
+		String abr4 					= st.substring(202,203);		
 		
 		String via5						= st.substring(203,208);			
 		String pos5						= st.substring(208,209);	
+		String abr5 					= st.substring(210,211);
 		
 		String validFromString 			= st.substring(211,219);		
 		String validUntilString 		= st.substring(221,229);				
@@ -598,23 +603,25 @@ public class LegacyImporter {
 		int viaStation4 = Integer.parseInt(via4); 
 		int viaStation5 = Integer.parseInt(via5); 
 		
-		if (viaStation1 > 0) {
+		boolean includeOptionalVias = !PreferencesAccess.getBoolFromPreferenceStore(PreferenceConstants.P_REMOVE_OPTIONAL_VIAS);
+		
+		if (viaStation1 > 0 && (includeOptionalVias || !abr1.equals("1") ) ) {
 			addViaStation(series, viaStation1, pos1);
 		}
 			
-		if (viaStation2 > 0) {
+		if (viaStation2 > 0 && (includeOptionalVias || !abr2.equals("1") ) ) {
 			addViaStation(series, viaStation2, pos2);
 		}
 		
-		if (viaStation3 > 0) {
+		if (viaStation3 > 0 && (includeOptionalVias || !abr3.equals("1") ) ) {
 			addViaStation(series, viaStation3, pos3);
 		}
 		
-		if (viaStation4 > 0) {
+		if (viaStation4 > 0 && (includeOptionalVias || !abr4.equals("1") ) ) {
 			addViaStation(series, viaStation4, pos4);
 		}
 		
-		if (viaStation5 > 0) {
+		if (viaStation5 > 0 && (includeOptionalVias || !abr5.equals("1") ) ) {
 			addViaStation(series, viaStation5, pos5);
 		}
 		

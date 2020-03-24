@@ -1247,10 +1247,18 @@ public class GTMJsonImporter {
 
 
 	private FareElements convertFareElementList(List<FareDef> jl) {
+		
+		
+		boolean importConvertablesOnly = !PreferencesAccess.getBoolFromPreferenceStore(PreferenceConstants.P_IMPORT_CONVERABLE_ONLY);
+		
 		if (jl == null || jl.isEmpty()) return null;
 		FareElements o = GtmFactory.eINSTANCE.createFareElements();
 		for (FareDef jf : jl) {
-			o.getFareElements().add(convert(jf));
+			
+			FareElement fare = convert(jf);
+			if (!importConvertablesOnly || fare.getLegacyConversion()  == LegacyConversionType.YES || fare.getLegacyConversion()  == LegacyConversionType.ONLY) {
+				o.getFareElements().add(fare);
+			}
 		}
 		return o;
 	}
