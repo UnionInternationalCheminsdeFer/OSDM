@@ -475,19 +475,19 @@ public class 	ConverterToLegacy {
 	private String getShortNameCaseASCII(Station station) {
 		
 		if (station.getShortNameCaseASCII() != null && station.getShortNameCaseASCII().length() > 0) {
-			return station.getShortNameCaseASCII();
+			return station.getShortNameCaseASCII().trim();
 		}
 		if (station.getShortNameCaseUTF8() != null && station.getShortNameCaseUTF8().length() > 0) {
-			return GtmUtils.toPrintableAscII(station.getShortNameCaseUTF8());
+			return GtmUtils.toPrintableAscII(station.getShortNameCaseUTF8()).trim();
 		}	
 		if (station.getNameCaseASCII() != null && station.getNameCaseASCII().length() > 0) {
-			return station.getNameCaseASCII();
+			return station.getNameCaseASCII().trim();
 		}
 		if (station.getName() != null && station.getName().length() > 0) {
-			return GtmUtils.toPrintableAscII(station.getName());
+			return GtmUtils.toPrintableAscII(station.getName()).trim();
 		}			
 		if (station.getNameCaseUTF8() != null && station.getNameCaseUTF8().length() > 0) {
-			return GtmUtils.toPrintableAscII(station.getNameCaseUTF8());
+			return GtmUtils.toPrintableAscII(station.getNameCaseUTF8()).trim();
 		}		
 
 		return null;
@@ -631,7 +631,7 @@ public class 	ConverterToLegacy {
 		}
 		
 		series.setFromStation(getFirstStationCode( mainVia));
-		series.setFromStationName(getFirstStationCodeName( mainVia));
+		series.setFromStationName(getFirstStationCodeName(mainVia));
 	
 		
 		series.setDistance1((int) fare.getRegionalConstraint().getDistance());
@@ -728,20 +728,21 @@ public class 	ConverterToLegacy {
 	}
 	
 	private String getName(Station station) {
+		
 		if (station.getShortNameCaseASCII() != null && station.getShortNameCaseASCII().length() > 0) {
-			return station.getShortNameCaseASCII();
+			return station.getShortNameCaseASCII().trim();
 		}
 		if (station.getNameCaseASCII() != null && station.getNameCaseASCII().length() > 0) {
-			return station.getNameCaseASCII();
+			return station.getNameCaseASCII().trim();
 		}
 		if (station.getName() != null && station.getName().length() > 0) {
-			return GtmUtils.toPrintableAscII(station.getName());
+			return GtmUtils.toPrintableAscII(station.getName()).trim();
 		}			
 		if (station.getShortNameCaseUTF8() != null && station.getShortNameCaseUTF8().length() > 0) {
-			return GtmUtils.toPrintableAscII(station.getShortNameCaseUTF8());
+			return GtmUtils.toPrintableAscII(station.getShortNameCaseUTF8()).trim();
 		}			
 		if (station.getNameCaseUTF8() != null && station.getNameCaseUTF8().length() > 0) {
-			return GtmUtils.toPrintableAscII(station.getNameCaseUTF8());
+			return GtmUtils.toPrintableAscII(station.getNameCaseUTF8()).trim();
 		}		
 
 		return null;
@@ -777,7 +778,7 @@ public class 	ConverterToLegacy {
 			ViaStation via2 = route.getStations().get(index);
 			
 			if (via2 != null) {
-				if (label.length() == 0 || label.substring(label.length()-1,label.length()).equals("*")) { //$NON-NLS-1$
+				if (label.length() > 0 && !label.toString().substring(label.length() - 1).equals("*")) { //$NON-NLS-1$
 					label.append("*").append(getRouteDescription(via2)); //$NON-NLS-1$
 				} else {
 					label.append(getRouteDescription(via2));
@@ -791,7 +792,9 @@ public class 	ConverterToLegacy {
 
 	private String getRouteDescription(ViaStation via) {
 		
-		if (via.getStation()!= null) return via.getStation().getName();
+		if (via.getStation()!= null) {
+			return getShortNameCaseASCII(via.getStation());
+		}
 		
 		StringBuilder label = new StringBuilder();
 		
@@ -801,9 +804,9 @@ public class 	ConverterToLegacy {
 				
 				if (station != null) {
 					if (label.length() == 0 || label.substring(label.length()-1,label.length()).equals("*")) { //$NON-NLS-1$
-						label.append(station.getStation().getName());
+						label.append(getRouteDescription(station));
 					} else {
-						label.append("*").append(station.getStation().getName()); //$NON-NLS-1$
+						label.append("*").append(getRouteDescription(station)); //$NON-NLS-1$
 					}
 				}
 			}

@@ -100,6 +100,7 @@ public class LegacyExporter {
 			dialog.setText(message);
 			dialog.open(); 
 			GtmUtils.writeConsoleError(message);
+			e.printStackTrace();
 			return;
 
 		}
@@ -333,6 +334,7 @@ public class LegacyExporter {
 		} catch (IOException e) {
 			String message = "could not write TCV file in: " + exportPath.toString();
 			GtmUtils.writeConsoleError(message);
+			e.printStackTrace();
 		}
 
 

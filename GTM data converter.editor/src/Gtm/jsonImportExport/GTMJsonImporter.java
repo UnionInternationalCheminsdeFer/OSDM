@@ -7,11 +7,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
 import Gtm.*;
 import Gtm.actions.GtmUtils;
 import Gtm.nls.NationalLanguageSupport;
+import Gtm.preferences.PreferenceConstants;
+import Gtm.preferences.PreferencesAccess;
 import gtm.AfterSalesConditionDef;
 import gtm.AfterSalesRuleDef;
 import gtm.AllowedChange;
@@ -73,6 +82,8 @@ public class GTMJsonImporter {
 	private HashMap<Integer,ServiceBrand> serviceBrands = null;
 	private HashMap<String,NutsCode> nutsCodes = null;
 	
+	private EditingDomain domain = null;
+	
 	/*
 	 *   y   = year   (yy or yyyy)
 	 *	M   = month  (MM)
@@ -93,7 +104,7 @@ public class GTMJsonImporter {
 	FareStructure fareStructure = null;
 
 	
-	public GTMJsonImporter(GTMTool tool) {
+	public GTMJsonImporter(GTMTool tool, EditingDomain domain) {
 		this.tool = tool;
 		stations = new HashMap<Integer,Station>();
 		carriers = new HashMap<String,Carrier>();
@@ -103,6 +114,7 @@ public class GTMJsonImporter {
 		currencies = new HashMap<String,Currency>();	
 		serviceBrands = new HashMap<Integer,ServiceBrand>();
 		nutsCodes = new HashMap<String,NutsCode>();	
+		this.domain = domain;
 		
 		stations = GtmUtils.getStationMap(tool);
 		for (Carrier carrier : tool.getCodeLists().getCarriers().getCarriers()) {
@@ -148,6 +160,8 @@ public class GTMJsonImporter {
 		fareStructure.setTexts(convertTextList(jo.getTexts()));
 		
 		fareStructure.setStationNames(convertStationNames(jo.getStationNames()));
+		
+		updateMERITSStations(jo.getStationNames());
 		
 		fareStructure.setAfterSalesRules(convertAfterSalesRulesList(jo.getAfterSalesConditions()));
 		
@@ -212,6 +226,126 @@ public class GTMJsonImporter {
 		}
 		return n;
 	}
+	
+	
+	private void updateMERITSStations(List<StationNamesDef> list) {
+		//correcting merits data using 108 data
+		
+		CompoundCommand command = new CompoundCommand();
+						
+		for (StationNamesDef lStation : list ) {
+			
+			Station station = stations.get(Integer.valueOf(lStation.getLocalCode() + lStation.getCountry()*100000));
+			
+			if (station != null) {
+			
+				if (lStation.getLegacyBorderPointCode() > 0) {
+				
+					if (station != null && station.isBorderStation() == false){
+						
+						Command com = SetCommand.create(domain, station, GtmPackage.Literals.STATION__BORDER_STATION, true);
+						if (com != null && com.canExecute()) {
+							command.append(com);	
+						}
+						Command comm2 = SetCommand.create(domain, station, GtmPackage.Literals.STATION__LEGACY_BORDER_POINT_CODE, lStation.getLegacyBorderPointCode());
+						if (comm2 != null && comm2.canExecute()) {
+							command.append(comm2);	
+						}					
+					
+					}
+				
+				}
+			
+				if (lStation.getName() != null && 
+					station.getNameCaseASCII() == null || !station.getNameCaseASCII().equals(lStation.getName())) {
+					Command com = SetCommand.create(domain, station, GtmPackage.Literals.STATION__SHORT_NAME_CASE_ASCII, lStation.getName());
+					if (com.canExecute()) {
+						command.append(com);
+					}
+				}
+				if (lStation.getName() != null && 
+					station.getNameCaseASCII() == null || !station.getNameCaseASCII().equals(lStation.getName())) {
+					Command com = SetCommand.create(domain, station, GtmPackage.Literals.STATION__NAME_CASE_ASCII, lStation.getName());
+					if (com.canExecute()) {
+						command.append(com);					
+					}
+				}
+
+				if (lStation.getNameUtf8() != null && 
+					station.getNameCaseUTF8() == null || !station.getNameCaseUTF8().equals(lStation.getNameUtf8())) {
+					Command com = SetCommand.create(domain, station, GtmPackage.Literals.STATION__NAME_CASE_UTF8, lStation.getNameUtf8());
+					if (com.canExecute()) {
+						command.append(com);					
+					}
+				}
+
+				if (lStation.getLegacyBorderPointCode() != lStation.getLegacyBorderPointCode()) {
+					Command com = SetCommand.create(domain, station, GtmPackage.Literals.STATION__LEGACY_BORDER_POINT_CODE, lStation.getLegacyBorderPointCode());
+					if (com.canExecute()) {
+						command.append(com);					
+					}
+				}
+		
+			}
+		}
+		
+		if (command != null && !command.isEmpty()) {
+			domain.getCommandStack().execute(command);
+			command = new CompoundCommand();
+		}
+		
+		HashSet<Station> borderStations = new HashSet<Station>();
+		for (Station station : tool.getCodeLists().getStations().getStations()) {
+			if (station.getLegacyBorderPointCode() > 0 || station.isBorderStation()) {
+				borderStations.add(station);
+			}
+		}
+		
+		CompoundCommand com2 = new CompoundCommand();
+		
+		Float accuracy = ((float)PreferencesAccess.getIntFromPreferenceStore(PreferenceConstants.P_LINK_STATIONS_BY_GEO_ACCURACY)) / (60 * 60);
+		
+		for (Station station1 : borderStations) {
+			
+			for (Station station2 : borderStations) {
+				
+				if (station1 != station2 && 
+					station1.getLatitude() > 0 &&
+					station2.getLatitude() > 0 &&
+					station1.getLongitude() > 0 &&
+					station2.getLongitude() > 0 &&
+					station1.getLatitude() - station2.getLatitude() < accuracy &&
+					station1.getLongitude() - station2.getLongitude() < accuracy) {
+					
+					StationRelation rel1 = GtmFactory.eINSTANCE.createStationRelation();
+					rel1.setRelationType(StationRelationType.SAME_STATION);
+					rel1.setStation(station2);
+					Command comm3 = AddCommand.create(domain, station1, GtmPackage.Literals.STATION__RELATIONS, rel1);
+					if (comm3 != null && comm3.canExecute()) {
+						com2.append(comm3);	
+					}	
+					
+
+					StationRelation rel2 = GtmFactory.eINSTANCE.createStationRelation();
+					rel2.setRelationType(StationRelationType.SAME_STATION);
+					rel2.setStation(station1);
+					Command comm4 = AddCommand.create(domain, station2, GtmPackage.Literals.STATION__RELATIONS, rel2);
+					if (comm4 != null && comm4.canExecute()) {
+						com2.append(comm3);	
+					}						
+
+				}
+			}									
+		}
+		
+		if (com2 != null && !com2.isEmpty()) {
+			domain.getCommandStack().execute(com2);
+		}
+		
+		
+		
+	}
+
 
 
 	private ZoneDefinitions convertZoneDefinitions(List<ZoneDefinitionDef> jl) {
@@ -1598,5 +1732,6 @@ public class GTMJsonImporter {
 		return nutsCodes.get(code);
 	}
 
+	
 
 }

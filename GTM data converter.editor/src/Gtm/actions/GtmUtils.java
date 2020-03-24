@@ -951,7 +951,7 @@ public class GtmUtils {
 		String truncated = s.substring(0, Math.min(maxChar, s.length()));
 
 		editor.getSite().getShell().getDisplay().asyncExec(() -> {
-			GtmUtils.writeConsoleError("text" + " truncated:" + s + " -> " + truncated); //$NON-NLS-1$ //$NON-NLS-3$
+			GtmUtils.writeConsoleError("text" + " truncated:" + s + " -- " + truncated); //$NON-NLS-1$ //$NON-NLS-3$
 		});
 		
 		return truncated;
