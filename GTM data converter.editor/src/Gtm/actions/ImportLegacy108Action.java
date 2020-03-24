@@ -58,18 +58,13 @@ public class ImportLegacy108Action extends BasicGtmAction {
 			// This is the method that gets invoked when the operation runs.
 
 			public void run(IProgressMonitor monitor) {
-				
-				try {
-					
-					monitor.beginTask(NationalLanguageSupport.ImportLegacyAction_Monitor, 30); 
+
+				monitor.beginTask(NationalLanguageSupport.ImportLegacyAction_Monitor, 30); 
 		
-					importer.importAll(monitor);
+				importer.importAll(monitor);
 					
-				} catch (Exception e) {
-					throw e;
-				} finally {
-					monitor.done();
-				}
+				monitor.done();
+				
 			}
 		};
 		try {
@@ -77,6 +72,7 @@ public class ImportLegacy108Action extends BasicGtmAction {
 			editor.disconnectViews();
 			new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
 		} catch (Exception e) {
+			e.printStackTrace();
 			MessageBox dialog =  new MessageBox(editor.getSite().getShell(), SWT.ICON_ERROR | SWT.OK);
 			dialog.setText(NationalLanguageSupport.ImportStationsAction_23);
 			if (e.getMessage()!= null) {

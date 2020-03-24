@@ -287,21 +287,27 @@ public class ConverterFromLegacy {
 		}
 		
 		command = new CompoundCommand();
-		Command com1 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints(), GtmPackage.Literals.REGIONAL_CONSTRAINTS__REGIONAL_CONSTRAINTS, regions);
-		command.append(com1);
-		executeAndFlush(command, domain);
+		if (regions != null && !regions.isEmpty()) {
+			Command com1 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints(), GtmPackage.Literals.REGIONAL_CONSTRAINTS__REGIONAL_CONSTRAINTS, regions);
+			command.append(com1);
+			executeAndFlush(command, domain);
+		}
 		monitor.worked(1);
 
 		command = new CompoundCommand();
-		Command com2 = AddCommand.create(domain,tool.getGeneralTariffModel().getFareStructure().getPrices(), GtmPackage.Literals.PRICES__PRICES, priceList);
-		command.append(com2);
-		executeAndFlush(command, domain);
+		if (priceList != null && !priceList.isEmpty()) {
+			Command com2 = AddCommand.create(domain,tool.getGeneralTariffModel().getFareStructure().getPrices(), GtmPackage.Literals.PRICES__PRICES, priceList);
+			command.append(com2);
+			executeAndFlush(command, domain);
+		}
 		monitor.worked(1);
 		
 		command = new CompoundCommand();
-		Command com3 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getFareElements(),GtmPackage.Literals.FARE_ELEMENTS__FARE_ELEMENTS , fares);		
-		command.append(com3);	
-		executeAndFlush(command, domain);
+		if (fares!= null && !fares.isEmpty()) {
+			Command com3 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getFareElements(),GtmPackage.Literals.FARE_ELEMENTS__FARE_ELEMENTS , fares);		
+			command.append(com3);	
+			executeAndFlush(command, domain);
+		}
 		monitor.worked(1);
 		
 		return added;
