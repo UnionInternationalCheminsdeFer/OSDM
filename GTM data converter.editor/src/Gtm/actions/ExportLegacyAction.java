@@ -67,6 +67,8 @@ public class ExportLegacyAction extends BasicGtmAction {
 				return;
 			}
 			
+
+			
 			Path path =  getPath(NationalLanguageSupport.ExportLegacyAction_2);
 			if (path == null) return;
 			

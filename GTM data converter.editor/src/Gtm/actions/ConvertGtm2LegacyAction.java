@@ -132,6 +132,7 @@ public class ConvertGtm2LegacyAction extends BasicGtmAction {
 
 			} catch (Exception exception) {
 				// Something went wrong that shouldn't.
+				exception.printStackTrace();
 				GtmEditorPlugin.INSTANCE.log(exception);				
 			} finally {
 				editor.reconnectViews();
