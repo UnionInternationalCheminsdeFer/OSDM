@@ -11,7 +11,7 @@
 					"items": {
 						"type": "object",
 						"properties": {
-							"segement": {
+							"segment": {
 								"type": "object",
 								"properties": {
 									"seqId": {
@@ -278,7 +278,7 @@
 					"type": "string"
 				},
 				"company": {
-					"$ref": "file:///D:/Users/BKU/ClemensGantert/OneDrive%20-%20Deutsche%20Bahn/Anlagen/UIC/2020/nTM/Json%20SCHEMA%20Def/definitions.json#/definitions/CompanyDef"
+					"$ref": "definitions.json#/definitions/CountryDef"
 				},
 				"distributionChannel": {
 					"$ref": "anxilliarydefinitions.json#/definitions/DistributionChannelDef"

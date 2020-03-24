@@ -190,7 +190,7 @@
 					"default": "NO"
 				},
 				"individualContracts": {
-					"description": "indicates that the after sales of this fare can be treated independently per person.",
+					"description": "indicates that the fare can be treated independently per person although booked for more than one person.",
 					"type": "boolean",
 					"default": false
 				}

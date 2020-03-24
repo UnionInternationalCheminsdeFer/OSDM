@@ -7,14 +7,20 @@ import Gtm.ReservationOptions;
 import Gtm.ReservationParameter;
 
 import Gtm.ReservationParams9181;
+import Gtm.ServiceBrand;
+import Gtm.ServiceMode;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,34 +30,36 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Gtm.impl.ReservationParameterImpl#isOptionalReservation <em>Optional Reservation</em>}</li>
+ *   <li>{@link Gtm.impl.ReservationParameterImpl#isMandatoryReservation <em>Mandatory Reservation</em>}</li>
  *   <li>{@link Gtm.impl.ReservationParameterImpl#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.impl.ReservationParameterImpl#getParams9181 <em>Params9181</em>}</li>
  *   <li>{@link Gtm.impl.ReservationParameterImpl#getOptions <em>Options</em>}</li>
+ *   <li>{@link Gtm.impl.ReservationParameterImpl#getMandatoryReservationForBrands <em>Mandatory Reservation For Brands</em>}</li>
+ *   <li>{@link Gtm.impl.ReservationParameterImpl#getMandatoryReservationsForMode <em>Mandatory Reservations For Mode</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ReservationParameterImpl extends MinimalEObjectImpl.Container implements ReservationParameter {
 	/**
-	 * The default value of the '{@link #isOptionalReservation() <em>Optional Reservation</em>}' attribute.
+	 * The default value of the '{@link #isMandatoryReservation() <em>Mandatory Reservation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isOptionalReservation()
+	 * @see #isMandatoryReservation()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean OPTIONAL_RESERVATION_EDEFAULT = false;
+	protected static final boolean MANDATORY_RESERVATION_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isOptionalReservation() <em>Optional Reservation</em>}' attribute.
+	 * The cached value of the '{@link #isMandatoryReservation() <em>Mandatory Reservation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isOptionalReservation()
+	 * @see #isMandatoryReservation()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean optionalReservation = OPTIONAL_RESERVATION_EDEFAULT;
+	protected boolean mandatoryReservation = MANDATORY_RESERVATION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -94,6 +102,26 @@ public class ReservationParameterImpl extends MinimalEObjectImpl.Container imple
 	protected ReservationOptions options;
 
 	/**
+	 * The cached value of the '{@link #getMandatoryReservationForBrands() <em>Mandatory Reservation For Brands</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMandatoryReservationForBrands()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ServiceBrand> mandatoryReservationForBrands;
+
+	/**
+	 * The cached value of the '{@link #getMandatoryReservationsForMode() <em>Mandatory Reservations For Mode</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMandatoryReservationsForMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ServiceMode> mandatoryReservationsForMode;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -117,8 +145,8 @@ public class ReservationParameterImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isOptionalReservation() {
-		return optionalReservation;
+	public boolean isMandatoryReservation() {
+		return mandatoryReservation;
 	}
 
 	/**
@@ -126,11 +154,11 @@ public class ReservationParameterImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOptionalReservation(boolean newOptionalReservation) {
-		boolean oldOptionalReservation = optionalReservation;
-		optionalReservation = newOptionalReservation;
+	public void setMandatoryReservation(boolean newMandatoryReservation) {
+		boolean oldMandatoryReservation = mandatoryReservation;
+		mandatoryReservation = newMandatoryReservation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.RESERVATION_PARAMETER__OPTIONAL_RESERVATION, oldOptionalReservation, optionalReservation));
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATION, oldMandatoryReservation, mandatoryReservation));
 	}
 
 	/**
@@ -245,6 +273,30 @@ public class ReservationParameterImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ServiceBrand> getMandatoryReservationForBrands() {
+		if (mandatoryReservationForBrands == null) {
+			mandatoryReservationForBrands = new EObjectResolvingEList<ServiceBrand>(ServiceBrand.class, this, GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATION_FOR_BRANDS);
+		}
+		return mandatoryReservationForBrands;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ServiceMode> getMandatoryReservationsForMode() {
+		if (mandatoryReservationsForMode == null) {
+			mandatoryReservationsForMode = new EDataTypeUniqueEList<ServiceMode>(ServiceMode.class, this, GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATIONS_FOR_MODE);
+		}
+		return mandatoryReservationsForMode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -264,14 +316,18 @@ public class ReservationParameterImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GtmPackage.RESERVATION_PARAMETER__OPTIONAL_RESERVATION:
-				return isOptionalReservation();
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATION:
+				return isMandatoryReservation();
 			case GtmPackage.RESERVATION_PARAMETER__ID:
 				return getId();
 			case GtmPackage.RESERVATION_PARAMETER__PARAMS9181:
 				return getParams9181();
 			case GtmPackage.RESERVATION_PARAMETER__OPTIONS:
 				return getOptions();
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATION_FOR_BRANDS:
+				return getMandatoryReservationForBrands();
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATIONS_FOR_MODE:
+				return getMandatoryReservationsForMode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -281,11 +337,12 @@ public class ReservationParameterImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GtmPackage.RESERVATION_PARAMETER__OPTIONAL_RESERVATION:
-				setOptionalReservation((Boolean)newValue);
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATION:
+				setMandatoryReservation((Boolean)newValue);
 				return;
 			case GtmPackage.RESERVATION_PARAMETER__ID:
 				setId((String)newValue);
@@ -295,6 +352,14 @@ public class ReservationParameterImpl extends MinimalEObjectImpl.Container imple
 				return;
 			case GtmPackage.RESERVATION_PARAMETER__OPTIONS:
 				setOptions((ReservationOptions)newValue);
+				return;
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATION_FOR_BRANDS:
+				getMandatoryReservationForBrands().clear();
+				getMandatoryReservationForBrands().addAll((Collection<? extends ServiceBrand>)newValue);
+				return;
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATIONS_FOR_MODE:
+				getMandatoryReservationsForMode().clear();
+				getMandatoryReservationsForMode().addAll((Collection<? extends ServiceMode>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -308,8 +373,8 @@ public class ReservationParameterImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GtmPackage.RESERVATION_PARAMETER__OPTIONAL_RESERVATION:
-				setOptionalReservation(OPTIONAL_RESERVATION_EDEFAULT);
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATION:
+				setMandatoryReservation(MANDATORY_RESERVATION_EDEFAULT);
 				return;
 			case GtmPackage.RESERVATION_PARAMETER__ID:
 				setId(ID_EDEFAULT);
@@ -319,6 +384,12 @@ public class ReservationParameterImpl extends MinimalEObjectImpl.Container imple
 				return;
 			case GtmPackage.RESERVATION_PARAMETER__OPTIONS:
 				setOptions((ReservationOptions)null);
+				return;
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATION_FOR_BRANDS:
+				getMandatoryReservationForBrands().clear();
+				return;
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATIONS_FOR_MODE:
+				getMandatoryReservationsForMode().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -332,14 +403,18 @@ public class ReservationParameterImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GtmPackage.RESERVATION_PARAMETER__OPTIONAL_RESERVATION:
-				return optionalReservation != OPTIONAL_RESERVATION_EDEFAULT;
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATION:
+				return mandatoryReservation != MANDATORY_RESERVATION_EDEFAULT;
 			case GtmPackage.RESERVATION_PARAMETER__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case GtmPackage.RESERVATION_PARAMETER__PARAMS9181:
 				return params9181 != null;
 			case GtmPackage.RESERVATION_PARAMETER__OPTIONS:
 				return options != null;
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATION_FOR_BRANDS:
+				return mandatoryReservationForBrands != null && !mandatoryReservationForBrands.isEmpty();
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATIONS_FOR_MODE:
+				return mandatoryReservationsForMode != null && !mandatoryReservationsForMode.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -354,10 +429,12 @@ public class ReservationParameterImpl extends MinimalEObjectImpl.Container imple
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (optionalReservation: ");
-		result.append(optionalReservation);
+		result.append(" (mandatoryReservation: ");
+		result.append(mandatoryReservation);
 		result.append(", id: ");
 		result.append(id);
+		result.append(", mandatoryReservationsForMode: ");
+		result.append(mandatoryReservationsForMode);
 		result.append(')');
 		return result.toString();
 	}

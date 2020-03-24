@@ -2,6 +2,7 @@
  */
 package Gtm;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -13,10 +14,12 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link Gtm.ReservationParameter#isOptionalReservation <em>Optional Reservation</em>}</li>
+ *   <li>{@link Gtm.ReservationParameter#isMandatoryReservation <em>Mandatory Reservation</em>}</li>
  *   <li>{@link Gtm.ReservationParameter#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.ReservationParameter#getParams9181 <em>Params9181</em>}</li>
  *   <li>{@link Gtm.ReservationParameter#getOptions <em>Options</em>}</li>
+ *   <li>{@link Gtm.ReservationParameter#getMandatoryReservationForBrands <em>Mandatory Reservation For Brands</em>}</li>
+ *   <li>{@link Gtm.ReservationParameter#getMandatoryReservationsForMode <em>Mandatory Reservations For Mode</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getReservationParameter()
@@ -25,26 +28,26 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ReservationParameter extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Optional Reservation</b></em>' attribute.
+	 * Returns the value of the '<em><b>Mandatory Reservation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Optional Reservation</em>' attribute.
-	 * @see #setOptionalReservation(boolean)
-	 * @see Gtm.GtmPackage#getReservationParameter_OptionalReservation()
+	 * @return the value of the '<em>Mandatory Reservation</em>' attribute.
+	 * @see #setMandatoryReservation(boolean)
+	 * @see Gtm.GtmPackage#getReservationParameter_MandatoryReservation()
 	 * @model
 	 * @generated
 	 */
-	boolean isOptionalReservation();
+	boolean isMandatoryReservation();
 
 	/**
-	 * Sets the value of the '{@link Gtm.ReservationParameter#isOptionalReservation <em>Optional Reservation</em>}' attribute.
+	 * Sets the value of the '{@link Gtm.ReservationParameter#isMandatoryReservation <em>Mandatory Reservation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Optional Reservation</em>' attribute.
-	 * @see #isOptionalReservation()
+	 * @param value the new value of the '<em>Mandatory Reservation</em>' attribute.
+	 * @see #isMandatoryReservation()
 	 * @generated
 	 */
-	void setOptionalReservation(boolean value);
+	void setMandatoryReservation(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
@@ -111,5 +114,31 @@ public interface ReservationParameter extends EObject {
 	 * @generated
 	 */
 	void setOptions(ReservationOptions value);
+
+	/**
+	 * Returns the value of the '<em><b>Mandatory Reservation For Brands</b></em>' reference list.
+	 * The list contents are of type {@link Gtm.ServiceBrand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mandatory Reservation For Brands</em>' reference list.
+	 * @see Gtm.GtmPackage#getReservationParameter_MandatoryReservationForBrands()
+	 * @model
+	 * @generated
+	 */
+	EList<ServiceBrand> getMandatoryReservationForBrands();
+
+	/**
+	 * Returns the value of the '<em><b>Mandatory Reservations For Mode</b></em>' attribute list.
+	 * The list contents are of type {@link Gtm.ServiceMode}.
+	 * The literals are from the enumeration {@link Gtm.ServiceMode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mandatory Reservations For Mode</em>' attribute list.
+	 * @see Gtm.ServiceMode
+	 * @see Gtm.GtmPackage#getReservationParameter_MandatoryReservationsForMode()
+	 * @model
+	 * @generated
+	 */
+	EList<ServiceMode> getMandatoryReservationsForMode();
 
 } // ReservationParameter

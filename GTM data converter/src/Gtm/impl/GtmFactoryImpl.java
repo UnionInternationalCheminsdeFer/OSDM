@@ -290,6 +290,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return createClassIdFromString(eDataType, initialValue);
 			case GtmPackage.GENERIC_REDUCTION_CARDS:
 				return createGenericReductionCardsFromString(eDataType, initialValue);
+			case GtmPackage.SERVICE_MODE:
+				return createServiceModeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -385,6 +387,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return convertClassIdToString(eDataType, instanceValue);
 			case GtmPackage.GENERIC_REDUCTION_CARDS:
 				return convertGenericReductionCardsToString(eDataType, instanceValue);
+			case GtmPackage.SERVICE_MODE:
+				return convertServiceModeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -2587,6 +2591,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * @generated
 	 */
 	public String convertGenericReductionCardsToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServiceMode createServiceModeFromString(EDataType eDataType, String initialValue) {
+		ServiceMode result = ServiceMode.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertServiceModeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

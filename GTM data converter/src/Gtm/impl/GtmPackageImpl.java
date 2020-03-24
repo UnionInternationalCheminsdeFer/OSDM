@@ -151,6 +151,7 @@ import Gtm.ServiceConstraint;
 import Gtm.ServiceConstraints;
 import Gtm.ServiceLevel;
 import Gtm.ServiceLevelDefinitions;
+import Gtm.ServiceMode;
 import Gtm.StartOfSale;
 import Gtm.Station;
 import Gtm.StationFareDetailType;
@@ -1457,6 +1458,13 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	private EEnum genericReductionCardsEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum serviceModeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -4875,7 +4883,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getReservationParameter_OptionalReservation() {
+	public EAttribute getReservationParameter_MandatoryReservation() {
 		return (EAttribute)reservationParameterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -4904,6 +4912,24 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 */
 	public EReference getReservationParameter_Options() {
 		return (EReference)reservationParameterEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReservationParameter_MandatoryReservationForBrands() {
+		return (EReference)reservationParameterEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getReservationParameter_MandatoryReservationsForMode() {
+		return (EAttribute)reservationParameterEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -7773,6 +7799,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getServiceMode() {
+		return serviceModeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GtmFactory getGtmFactory() {
 		return (GtmFactory)getEFactoryInstance();
 	}
@@ -8251,10 +8286,12 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEReference(reservationParametersEClass, RESERVATION_PARAMETERS__RESERVATION_PARAMETERS);
 
 		reservationParameterEClass = createEClass(RESERVATION_PARAMETER);
-		createEAttribute(reservationParameterEClass, RESERVATION_PARAMETER__OPTIONAL_RESERVATION);
+		createEAttribute(reservationParameterEClass, RESERVATION_PARAMETER__MANDATORY_RESERVATION);
 		createEAttribute(reservationParameterEClass, RESERVATION_PARAMETER__ID);
 		createEReference(reservationParameterEClass, RESERVATION_PARAMETER__PARAMS9181);
 		createEReference(reservationParameterEClass, RESERVATION_PARAMETER__OPTIONS);
+		createEReference(reservationParameterEClass, RESERVATION_PARAMETER__MANDATORY_RESERVATION_FOR_BRANDS);
+		createEAttribute(reservationParameterEClass, RESERVATION_PARAMETER__MANDATORY_RESERVATIONS_FOR_MODE);
 
 		reservationParams9181EClass = createEClass(RESERVATION_PARAMS9181);
 		createEAttribute(reservationParams9181EClass, RESERVATION_PARAMS9181__TRAVEL_CLASS);
@@ -8628,6 +8665,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		dataSourceEEnum = createEEnum(DATA_SOURCE);
 		classIdEEnum = createEEnum(CLASS_ID);
 		genericReductionCardsEEnum = createEEnum(GENERIC_REDUCTION_CARDS);
+		serviceModeEEnum = createEEnum(SERVICE_MODE);
 	}
 
 	/**
@@ -9141,10 +9179,12 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEReference(getReservationParameters_ReservationParameters(), this.getReservationParameter(), null, "reservationParameters", null, 0, -1, ReservationParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(reservationParameterEClass, ReservationParameter.class, "ReservationParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getReservationParameter_OptionalReservation(), ecorePackage.getEBoolean(), "optionalReservation", null, 0, 1, ReservationParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReservationParameter_MandatoryReservation(), ecorePackage.getEBoolean(), "mandatoryReservation", null, 0, 1, ReservationParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getReservationParameter_Id(), ecorePackage.getEString(), "id", null, 0, 1, ReservationParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getReservationParameter_Params9181(), this.getReservationParams9181(), null, "params9181", null, 0, 1, ReservationParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getReservationParameter_Options(), this.getReservationOptions(), null, "options", null, 0, 1, ReservationParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getReservationParameter_MandatoryReservationForBrands(), this.getServiceBrand(), null, "mandatoryReservationForBrands", null, 0, -1, ReservationParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReservationParameter_MandatoryReservationsForMode(), this.getServiceMode(), "mandatoryReservationsForMode", null, 0, -1, ReservationParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(reservationParams9181EClass, ReservationParams9181.class, "ReservationParams9181", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getReservationParams9181_TravelClass(), this.getReservationTravelClass(), "travelClass", null, 0, 1, ReservationParams9181.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -9813,6 +9853,25 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		addEEnumLiteral(genericReductionCardsEEnum, GenericReductionCards.UIC_RIT_1);
 		addEEnumLiteral(genericReductionCardsEEnum, GenericReductionCards.UIC_RIT_2);
 		addEEnumLiteral(genericReductionCardsEEnum, GenericReductionCards.UIC_RIT_3);
+
+		initEEnum(serviceModeEEnum, ServiceMode.class, "ServiceMode");
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.HIGH_SPEED_TRAIN);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.HISTORIC_TRAIN);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.INTERCITY);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.REGIONAL);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.INTERREGIONAL);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.TRAIN);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.URBAN);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.TRAM);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.UNDERGROUND);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.NIGHT_TRAIN);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.SHARED_TAXI);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.MOTOR_RAIL);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.MOUNTAIN_TRAIN);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.PLANE);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.COACH_GROUP);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.SHIP);
+		addEEnumLiteral(serviceModeEEnum, ServiceMode.BUS);
 
 		// Create resource
 		createResource(eNS_URI);

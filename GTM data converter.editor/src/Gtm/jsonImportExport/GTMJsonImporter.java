@@ -482,11 +482,24 @@ public class GTMJsonImporter {
 		ReservationParameter o = GtmFactory.eINSTANCE.createReservationParameter();
 		
 		o.setId(jr.getId());
-		o.setOptionalReservation(!jr.getReservationRequired());
+		o.setMandatoryReservation(jr.getReservationRequired());
 		o.setOptions(convert(jr.getReservationOptions()));
 		o.setParams9181(convert(jr.getReservationParams9181()));
+		
+		o.getMandatoryReservationForBrands().addAll(convertServiceBrandList(jr.getReservationRequiredForBrand()));
+		o.getMandatoryReservationsForMode().addAll(convertToServiceModeList(jr.getReservationRequiredForMode()));
 
 		return o;
+	}
+
+
+	private ArrayList<ServiceMode> convertToServiceModeList(List<String> jl) {
+		ArrayList<ServiceMode> l = new ArrayList<ServiceMode>();
+		if (jl == null || jl.isEmpty()) return l;
+		for (String s : jl) {
+			l.add(ServiceMode.getByName(s));
+		}
+		return l;
 	}
 
 

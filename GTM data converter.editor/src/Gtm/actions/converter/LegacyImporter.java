@@ -115,7 +115,6 @@ public class LegacyImporter {
 		Path TCVGfilePath = Paths.get(directory.toString(), "TCVG" + provider + ".txt"); //$NON-NLS-1$ //$NON-NLS-2$
 		File TCVGfile =  TCVGfilePath.toFile();
 		importTCVG(TCVGfile);
-		
 		monitor.worked(1);
 		
 		monitor.subTask(NationalLanguageSupport.ImportLegayTask_TCVSfile);
@@ -640,37 +639,71 @@ public class LegacyImporter {
 	private void updateMERITSStations() {
 		//correcting merits data using 108 data
 		
-		CompoundCommand com = new CompoundCommand();
+		CompoundCommand command = new CompoundCommand();
 		
 		HashMap<Integer,Station> stations = GtmUtils.getStationMap(tool);
 		
 		int countryBase = tool.getConversionFromLegacy().getParams().getCountry().getCode() * 100000;
 		
 				
-		for (Legacy108Station ls : tool.getConversionFromLegacy().getLegacy108().getLegacyStations().getLegacyStations() ) {
+		for (Legacy108Station lStation : tool.getConversionFromLegacy().getLegacy108().getLegacyStations().getLegacyStations() ) {
 			
-			if (ls.getBorderPointCode() > 0) {
-				Station station = stations.get(Integer.valueOf(ls.getStationCode() + countryBase));
+			Station station = stations.get(Integer.valueOf(lStation.getStationCode() + countryBase));
+			
+			if (station != null) {
+			
+				if (lStation.getBorderPointCode() > 0) {
 				
-				if (station != null && station.isBorderStation() == false){
+					if (station != null && station.isBorderStation() == false){
+						
+						Command com = SetCommand.create(domain, station, GtmPackage.Literals.STATION__BORDER_STATION, true);
+						if (com != null && command.canExecute()) {
+							command.append(com);	
+						}
+						Command comm2 = SetCommand.create(domain, station, GtmPackage.Literals.STATION__LEGACY_BORDER_POINT_CODE, lStation.getBorderPointCode());
+						if (comm2 != null && comm2.canExecute()) {
+							command.append(comm2);	
+						}					
 					
-					Command command = SetCommand.create(domain, station, GtmPackage.Literals.STATION__BORDER_STATION, true);
-					if (command != null && command.canExecute()) {
-						com.append(command);	
 					}
-					Command comm2 = SetCommand.create(domain, station, GtmPackage.Literals.STATION__LEGACY_BORDER_POINT_CODE, ls.getBorderPointCode());
-					if (comm2 != null && comm2.canExecute()) {
-						com.append(comm2);	
-					}					
-					
-				}
 				
-			}
+				}
 			
+				if (lStation.getShortName() != null && 
+					station.getNameCaseASCII() == null || !station.getNameCaseASCII().equals(lStation.getShortName())) {
+					Command com = SetCommand.create(domain, station, GtmPackage.Literals.STATION__SHORT_NAME_CASE_ASCII, lStation.getShortName());
+					if (com.canExecute()) {
+						command.append(com);
+					}
+				}
+				if (lStation.getName() != null && 
+					station.getNameCaseASCII() == null || !station.getNameCaseASCII().equals(lStation.getName())) {
+					Command com = SetCommand.create(domain, station, GtmPackage.Literals.STATION__NAME_CASE_ASCII, lStation.getName());
+					if (com.canExecute()) {
+						command.append(com);					
+					}
+				}
+
+				if (lStation.getNameUTF8() != null && 
+					station.getNameCaseUTF8() == null || !station.getNameCaseUTF8().equals(lStation.getNameUTF8())) {
+					Command com = SetCommand.create(domain, station, GtmPackage.Literals.STATION__NAME_CASE_UTF8, lStation.getNameUTF8());
+					if (com.canExecute()) {
+						command.append(com);					
+					}
+				}
+
+				if (lStation.getBorderPointCode() != lStation.getBorderPointCode()) {
+					Command com = SetCommand.create(domain, station, GtmPackage.Literals.STATION__LEGACY_BORDER_POINT_CODE, lStation.getBorderPointCode());
+					if (com.canExecute()) {
+						command.append(com);					
+					}
+				}
+		
+			}
 		}
 		
-		if (com != null && !com.isEmpty()) {
-			domain.getCommandStack().execute(com);
+		if (command != null && !command.isEmpty()) {
+			domain.getCommandStack().execute(command);
 		}
 		
 		HashSet<Station> borderStations = new HashSet<Station>();

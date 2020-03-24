@@ -753,12 +753,16 @@
         upperBound="-1" eType="#//ReservationParameter" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReservationParameter">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optionalReservation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mandatoryReservation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params9181" eType="#//ReservationParams9181"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="options" eType="#//ReservationOptions"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mandatoryReservationForBrands"
+        upperBound="-1" eType="#//ServiceBrand"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mandatoryReservationsForMode"
+        upperBound="-1" eType="#//ServiceMode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReservationParams9181">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="travelClass" eType="#//ReservationTravelClass"/>
@@ -1580,5 +1584,24 @@
     <eLiterals name="UIC_RIT_1" value="7"/>
     <eLiterals name="UIC_RIT_2" value="8"/>
     <eLiterals name="UIC_RIT_3" value="9"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ServiceMode">
+    <eLiterals name="HIGH_SPEED_TRAIN" value="8"/>
+    <eLiterals name="HISTORIC_TRAIN" value="16"/>
+    <eLiterals name="INTERCITY" value="9"/>
+    <eLiterals name="REGIONAL" value="11"/>
+    <eLiterals name="INTERREGIONAL" value="10"/>
+    <eLiterals name="TRAIN" value="37"/>
+    <eLiterals name="URBAN" value="12"/>
+    <eLiterals name="TRAM" value="35"/>
+    <eLiterals name="UNDERGROUND" value="36"/>
+    <eLiterals name="NIGHT_TRAIN" value="13"/>
+    <eLiterals name="SHARED_TAXI" value="34"/>
+    <eLiterals name="MOTOR_RAIL" value="14"/>
+    <eLiterals name="MOUNTAIN_TRAIN"/>
+    <eLiterals name="PLANE" value="3"/>
+    <eLiterals name="COACH_GROUP" value="31"/>
+    <eLiterals name="SHIP" value="32"/>
+    <eLiterals name="BUS" value="33"/>
   </eClassifiers>
 </ecore:EPackage>
