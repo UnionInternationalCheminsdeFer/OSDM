@@ -5131,13 +5131,13 @@ public interface GtmPackage extends EPackage {
 	int RESERVATION_PARAMETER = 84;
 
 	/**
-	 * The feature id for the '<em><b>Optional Reservation</b></em>' attribute.
+	 * The feature id for the '<em><b>Mandatory Reservation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION_PARAMETER__OPTIONAL_RESERVATION = 0;
+	int RESERVATION_PARAMETER__MANDATORY_RESERVATION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -5167,13 +5167,31 @@ public interface GtmPackage extends EPackage {
 	int RESERVATION_PARAMETER__OPTIONS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Mandatory Reservation For Brands</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_PARAMETER__MANDATORY_RESERVATION_FOR_BRANDS = 4;
+
+	/**
+	 * The feature id for the '<em><b>Mandatory Reservations For Mode</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESERVATION_PARAMETER__MANDATORY_RESERVATIONS_FOR_MODE = 5;
+
+	/**
 	 * The number of structural features of the '<em>Reservation Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION_PARAMETER_FEATURE_COUNT = 4;
+	int RESERVATION_PARAMETER_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Reservation Parameter</em>' class.
@@ -9065,6 +9083,17 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	int GENERIC_REDUCTION_CARDS = 178;
+
+
+	/**
+	 * The meta object id for the '{@link Gtm.ServiceMode <em>Service Mode</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.ServiceMode
+	 * @see Gtm.impl.GtmPackageImpl#getServiceMode()
+	 * @generated
+	 */
+	int SERVICE_MODE = 179;
 
 
 	/**
@@ -13056,15 +13085,15 @@ public interface GtmPackage extends EPackage {
 	EClass getReservationParameter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gtm.ReservationParameter#isOptionalReservation <em>Optional Reservation</em>}'.
+	 * Returns the meta object for the attribute '{@link Gtm.ReservationParameter#isMandatoryReservation <em>Mandatory Reservation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Optional Reservation</em>'.
-	 * @see Gtm.ReservationParameter#isOptionalReservation()
+	 * @return the meta object for the attribute '<em>Mandatory Reservation</em>'.
+	 * @see Gtm.ReservationParameter#isMandatoryReservation()
 	 * @see #getReservationParameter()
 	 * @generated
 	 */
-	EAttribute getReservationParameter_OptionalReservation();
+	EAttribute getReservationParameter_MandatoryReservation();
 
 	/**
 	 * Returns the meta object for the attribute '{@link Gtm.ReservationParameter#getId <em>Id</em>}'.
@@ -13098,6 +13127,28 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getReservationParameter_Options();
+
+	/**
+	 * Returns the meta object for the reference list '{@link Gtm.ReservationParameter#getMandatoryReservationForBrands <em>Mandatory Reservation For Brands</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Mandatory Reservation For Brands</em>'.
+	 * @see Gtm.ReservationParameter#getMandatoryReservationForBrands()
+	 * @see #getReservationParameter()
+	 * @generated
+	 */
+	EReference getReservationParameter_MandatoryReservationForBrands();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link Gtm.ReservationParameter#getMandatoryReservationsForMode <em>Mandatory Reservations For Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Mandatory Reservations For Mode</em>'.
+	 * @see Gtm.ReservationParameter#getMandatoryReservationsForMode()
+	 * @see #getReservationParameter()
+	 * @generated
+	 */
+	EAttribute getReservationParameter_MandatoryReservationsForMode();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.ReservationParams9181 <em>Reservation Params9181</em>}'.
@@ -16498,6 +16549,16 @@ public interface GtmPackage extends EPackage {
 	EEnum getGenericReductionCards();
 
 	/**
+	 * Returns the meta object for enum '{@link Gtm.ServiceMode <em>Service Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Service Mode</em>'.
+	 * @see Gtm.ServiceMode
+	 * @generated
+	 */
+	EEnum getServiceMode();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19659,12 +19720,12 @@ public interface GtmPackage extends EPackage {
 		EClass RESERVATION_PARAMETER = eINSTANCE.getReservationParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Optional Reservation</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Mandatory Reservation</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute RESERVATION_PARAMETER__OPTIONAL_RESERVATION = eINSTANCE.getReservationParameter_OptionalReservation();
+		EAttribute RESERVATION_PARAMETER__MANDATORY_RESERVATION = eINSTANCE.getReservationParameter_MandatoryReservation();
 
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
@@ -19689,6 +19750,22 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RESERVATION_PARAMETER__OPTIONS = eINSTANCE.getReservationParameter_Options();
+
+		/**
+		 * The meta object literal for the '<em><b>Mandatory Reservation For Brands</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RESERVATION_PARAMETER__MANDATORY_RESERVATION_FOR_BRANDS = eINSTANCE.getReservationParameter_MandatoryReservationForBrands();
+
+		/**
+		 * The meta object literal for the '<em><b>Mandatory Reservations For Mode</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESERVATION_PARAMETER__MANDATORY_RESERVATIONS_FOR_MODE = eINSTANCE.getReservationParameter_MandatoryReservationsForMode();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.ReservationParams9181Impl <em>Reservation Params9181</em>}' class.
@@ -22421,6 +22498,16 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum GENERIC_REDUCTION_CARDS = eINSTANCE.getGenericReductionCards();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.ServiceMode <em>Service Mode</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.ServiceMode
+		 * @see Gtm.impl.GtmPackageImpl#getServiceMode()
+		 * @generated
+		 */
+		EEnum SERVICE_MODE = eINSTANCE.getServiceMode();
 
 	}
 

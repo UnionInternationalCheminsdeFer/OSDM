@@ -63,26 +63,28 @@ public class ReservationParameterItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOptionalReservationPropertyDescriptor(object);
+			addMandatoryReservationPropertyDescriptor(object);
 			addIdPropertyDescriptor(object);
+			addMandatoryReservationForBrandsPropertyDescriptor(object);
+			addMandatoryReservationsForModePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Optional Reservation feature.
+	 * This adds a property descriptor for the Mandatory Reservation feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOptionalReservationPropertyDescriptor(Object object) {
+	protected void addMandatoryReservationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ReservationParameter_optionalReservation_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ReservationParameter_optionalReservation_feature", "_UI_ReservationParameter_type"),
-				 GtmPackage.Literals.RESERVATION_PARAMETER__OPTIONAL_RESERVATION,
+				 getString("_UI_ReservationParameter_mandatoryReservation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReservationParameter_mandatoryReservation_feature", "_UI_ReservationParameter_type"),
+				 GtmPackage.Literals.RESERVATION_PARAMETER__MANDATORY_RESERVATION,
 				 true,
 				 false,
 				 false,
@@ -105,6 +107,50 @@ public class ReservationParameterItemProvider
 				 getString("_UI_ReservationParameter_id_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ReservationParameter_id_feature", "_UI_ReservationParameter_type"),
 				 GtmPackage.Literals.RESERVATION_PARAMETER__ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Mandatory Reservation For Brands feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMandatoryReservationForBrandsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReservationParameter_mandatoryReservationForBrands_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReservationParameter_mandatoryReservationForBrands_feature", "_UI_ReservationParameter_type"),
+				 GtmPackage.Literals.RESERVATION_PARAMETER__MANDATORY_RESERVATION_FOR_BRANDS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Mandatory Reservations For Mode feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMandatoryReservationsForModePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReservationParameter_mandatoryReservationsForMode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReservationParameter_mandatoryReservationsForMode_feature", "_UI_ReservationParameter_type"),
+				 GtmPackage.Literals.RESERVATION_PARAMETER__MANDATORY_RESERVATIONS_FOR_MODE,
 				 true,
 				 false,
 				 false,
@@ -182,8 +228,9 @@ public class ReservationParameterItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ReservationParameter.class)) {
-			case GtmPackage.RESERVATION_PARAMETER__OPTIONAL_RESERVATION:
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATION:
 			case GtmPackage.RESERVATION_PARAMETER__ID:
+			case GtmPackage.RESERVATION_PARAMETER__MANDATORY_RESERVATIONS_FOR_MODE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.RESERVATION_PARAMETER__PARAMS9181:

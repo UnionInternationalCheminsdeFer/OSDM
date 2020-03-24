@@ -28,7 +28,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "fareDetailDescriptionRef",
     "salesAvailabilityConstraintRef",
     "travelValidityConstraintRef",
-    "legacyConversion"
+    "legacyConversion",
+    "individualContracts"
 })
 public class FareDef {
 
@@ -115,16 +116,14 @@ public class FareDef {
     @JsonProperty("legacyConversion")
     @JsonPropertyDescription("options for legacy conversion to 108.1: NO ( no conversion) YES (conversion allowed), ONLY (fare is provided only for conversion and should not be used otherwise ")
     private String legacyConversion = "NO";
-
-    
     /**
-     * indicates that the after sales of this fare can be treated independently per person.
+     * indicates that the fare can be treated independently per person although booked for more than one person.
      * 
      */
     @JsonProperty("individualContracts")
-    @JsonPropertyDescription("indicates that the after sales of this fare can be treated independently per person.")
+    @JsonPropertyDescription("indicates that the fare can be treated independently per person although booked for more than one person.")
     private Boolean individualContracts = false;
-    
+
     /**
      * unique id of the fare item to be included in accountings
      * 
@@ -400,18 +399,18 @@ public class FareDef {
     public void setLegacyConversion(String legacyConversion) {
         this.legacyConversion = legacyConversion;
     }
-    
+
     /**
-     * indicates that the after sales of this fare can be treated independently per person.
+     * indicates that the fare can be treated independently per person although booked for more than one person.
      * 
      */
     @JsonProperty("individualContracts")
     public Boolean getIndividualContracts() {
         return individualContracts;
     }
-    
+
     /**
-     * indicates that the after sales of this fare can be treated independently per person.
+     * indicates that the fare can be treated independently per person although booked for more than one person.
      * 
      */
     @JsonProperty("individualContracts")
@@ -507,6 +506,10 @@ public class FareDef {
         sb.append('=');
         sb.append(((this.legacyConversion == null)?"<null>":this.legacyConversion));
         sb.append(',');
+        sb.append("individualContracts");
+        sb.append('=');
+        sb.append(((this.individualContracts == null)?"<null>":this.individualContracts));
+        sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {
@@ -530,6 +533,7 @@ public class FareDef {
         result = ((result* 31)+((this.serviceClassRef == null)? 0 :this.serviceClassRef.hashCode()));
         result = ((result* 31)+((this.passengerConstraintRef == null)? 0 :this.passengerConstraintRef.hashCode()));
         result = ((result* 31)+((this.priceRef == null)? 0 :this.priceRef.hashCode()));
+        result = ((result* 31)+((this.individualContracts == null)? 0 :this.individualContracts.hashCode()));
         result = ((result* 31)+((this.combinationConstraintRef == null)? 0 :this.combinationConstraintRef.hashCode()));
         result = ((result* 31)+((this.fullfillmentConstraintRef == null)? 0 :this.fullfillmentConstraintRef.hashCode()));
         result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
@@ -551,7 +555,7 @@ public class FareDef {
             return false;
         }
         FareDef rhs = ((FareDef) other);
-        return ((((((((((((((((((((((this.fareDetailDescriptionRef == rhs.fareDetailDescriptionRef)||((this.fareDetailDescriptionRef!= null)&&this.fareDetailDescriptionRef.equals(rhs.fareDetailDescriptionRef)))&&((this.travelValidityConstraintRef == rhs.travelValidityConstraintRef)||((this.travelValidityConstraintRef!= null)&&this.travelValidityConstraintRef.equals(rhs.travelValidityConstraintRef))))&&((this.afterSalesRulesRef == rhs.afterSalesRulesRef)||((this.afterSalesRulesRef!= null)&&this.afterSalesRulesRef.equals(rhs.afterSalesRulesRef))))&&((this.serviceConstraintRef == rhs.serviceConstraintRef)||((this.serviceConstraintRef!= null)&&this.serviceConstraintRef.equals(rhs.serviceConstraintRef))))&&((this.serviceLevelRef == rhs.serviceLevelRef)||((this.serviceLevelRef!= null)&&this.serviceLevelRef.equals(rhs.serviceLevelRef))))&&((this.nameRef == rhs.nameRef)||((this.nameRef!= null)&&this.nameRef.equals(rhs.nameRef))))&&((this.carrierConstraintRef == rhs.carrierConstraintRef)||((this.carrierConstraintRef!= null)&&this.carrierConstraintRef.equals(rhs.carrierConstraintRef))))&&((this.personalDataConstraintRef == rhs.personalDataConstraintRef)||((this.personalDataConstraintRef!= null)&&this.personalDataConstraintRef.equals(rhs.personalDataConstraintRef))))&&((this.reductionConstraintRef == rhs.reductionConstraintRef)||((this.reductionConstraintRef!= null)&&this.reductionConstraintRef.equals(rhs.reductionConstraintRef))))&&((this.serviceClassRef == rhs.serviceClassRef)||((this.serviceClassRef!= null)&&this.serviceClassRef.equals(rhs.serviceClassRef))))&&((this.passengerConstraintRef == rhs.passengerConstraintRef)||((this.passengerConstraintRef!= null)&&this.passengerConstraintRef.equals(rhs.passengerConstraintRef))))&&((this.priceRef == rhs.priceRef)||((this.priceRef!= null)&&this.priceRef.equals(rhs.priceRef))))&&((this.combinationConstraintRef == rhs.combinationConstraintRef)||((this.combinationConstraintRef!= null)&&this.combinationConstraintRef.equals(rhs.combinationConstraintRef))))&&((this.fullfillmentConstraintRef == rhs.fullfillmentConstraintRef)||((this.fullfillmentConstraintRef!= null)&&this.fullfillmentConstraintRef.equals(rhs.fullfillmentConstraintRef))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.regionalConstraintRef == rhs.regionalConstraintRef)||((this.regionalConstraintRef!= null)&&this.regionalConstraintRef.equals(rhs.regionalConstraintRef))))&&((this.fareType == rhs.fareType)||((this.fareType!= null)&&this.fareType.equals(rhs.fareType))))&&((this.legacyAccountingIdentifier == rhs.legacyAccountingIdentifier)||((this.legacyAccountingIdentifier!= null)&&this.legacyAccountingIdentifier.equals(rhs.legacyAccountingIdentifier))))&&((this.reservationParameterRef == rhs.reservationParameterRef)||((this.reservationParameterRef!= null)&&this.reservationParameterRef.equals(rhs.reservationParameterRef))))&&((this.salesAvailabilityConstraintRef == rhs.salesAvailabilityConstraintRef)||((this.salesAvailabilityConstraintRef!= null)&&this.salesAvailabilityConstraintRef.equals(rhs.salesAvailabilityConstraintRef))))&&((this.legacyConversion == rhs.legacyConversion)||((this.legacyConversion!= null)&&this.legacyConversion.equals(rhs.legacyConversion))));
+        return (((((((((((((((((((((((this.fareDetailDescriptionRef == rhs.fareDetailDescriptionRef)||((this.fareDetailDescriptionRef!= null)&&this.fareDetailDescriptionRef.equals(rhs.fareDetailDescriptionRef)))&&((this.travelValidityConstraintRef == rhs.travelValidityConstraintRef)||((this.travelValidityConstraintRef!= null)&&this.travelValidityConstraintRef.equals(rhs.travelValidityConstraintRef))))&&((this.afterSalesRulesRef == rhs.afterSalesRulesRef)||((this.afterSalesRulesRef!= null)&&this.afterSalesRulesRef.equals(rhs.afterSalesRulesRef))))&&((this.serviceConstraintRef == rhs.serviceConstraintRef)||((this.serviceConstraintRef!= null)&&this.serviceConstraintRef.equals(rhs.serviceConstraintRef))))&&((this.serviceLevelRef == rhs.serviceLevelRef)||((this.serviceLevelRef!= null)&&this.serviceLevelRef.equals(rhs.serviceLevelRef))))&&((this.nameRef == rhs.nameRef)||((this.nameRef!= null)&&this.nameRef.equals(rhs.nameRef))))&&((this.carrierConstraintRef == rhs.carrierConstraintRef)||((this.carrierConstraintRef!= null)&&this.carrierConstraintRef.equals(rhs.carrierConstraintRef))))&&((this.personalDataConstraintRef == rhs.personalDataConstraintRef)||((this.personalDataConstraintRef!= null)&&this.personalDataConstraintRef.equals(rhs.personalDataConstraintRef))))&&((this.reductionConstraintRef == rhs.reductionConstraintRef)||((this.reductionConstraintRef!= null)&&this.reductionConstraintRef.equals(rhs.reductionConstraintRef))))&&((this.serviceClassRef == rhs.serviceClassRef)||((this.serviceClassRef!= null)&&this.serviceClassRef.equals(rhs.serviceClassRef))))&&((this.passengerConstraintRef == rhs.passengerConstraintRef)||((this.passengerConstraintRef!= null)&&this.passengerConstraintRef.equals(rhs.passengerConstraintRef))))&&((this.priceRef == rhs.priceRef)||((this.priceRef!= null)&&this.priceRef.equals(rhs.priceRef))))&&((this.individualContracts == rhs.individualContracts)||((this.individualContracts!= null)&&this.individualContracts.equals(rhs.individualContracts))))&&((this.combinationConstraintRef == rhs.combinationConstraintRef)||((this.combinationConstraintRef!= null)&&this.combinationConstraintRef.equals(rhs.combinationConstraintRef))))&&((this.fullfillmentConstraintRef == rhs.fullfillmentConstraintRef)||((this.fullfillmentConstraintRef!= null)&&this.fullfillmentConstraintRef.equals(rhs.fullfillmentConstraintRef))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.regionalConstraintRef == rhs.regionalConstraintRef)||((this.regionalConstraintRef!= null)&&this.regionalConstraintRef.equals(rhs.regionalConstraintRef))))&&((this.fareType == rhs.fareType)||((this.fareType!= null)&&this.fareType.equals(rhs.fareType))))&&((this.legacyAccountingIdentifier == rhs.legacyAccountingIdentifier)||((this.legacyAccountingIdentifier!= null)&&this.legacyAccountingIdentifier.equals(rhs.legacyAccountingIdentifier))))&&((this.reservationParameterRef == rhs.reservationParameterRef)||((this.reservationParameterRef!= null)&&this.reservationParameterRef.equals(rhs.reservationParameterRef))))&&((this.salesAvailabilityConstraintRef == rhs.salesAvailabilityConstraintRef)||((this.salesAvailabilityConstraintRef!= null)&&this.salesAvailabilityConstraintRef.equals(rhs.salesAvailabilityConstraintRef))))&&((this.legacyConversion == rhs.legacyConversion)||((this.legacyConversion!= null)&&this.legacyConversion.equals(rhs.legacyConversion))));
     }
 
 }

@@ -684,6 +684,20 @@
 						}
 					},
 					"additionalProperties": false
+				},
+				"reservationRequiredForBrand": {
+					"description": "service brand mode for which a reservation is mandatory",
+					"type": "array",
+					"items": {
+						"type": "integer"
+					}
+				},
+				"reservationRequiredForMode": {
+					"description": "service service mode for which a reservation is mandatory",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
 				}
 			},
 			"required": [

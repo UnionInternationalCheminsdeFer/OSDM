@@ -336,6 +336,25 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RIT_2"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RIT_3"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ServiceMode">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/HIGH_SPEED_TRAIN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/HISTORIC_TRAIN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/INTERCITY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/REGIONAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/INTERREGIONAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/TRAIN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/URBAN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/TRAM"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/UNDERGROUND"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/NIGHT_TRAIN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/SHARED_TAXI"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/MOTOR_RAIL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/MOUNTAIN_TRAIN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/PLANE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/COACH_GROUP"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/SHIP"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/BUS"/>
+    </genEnums>
     <genClasses ecoreClass="Gtm.ecore#//GTMTool">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//GTMTool/conversionFromLegacy"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//GTMTool/codeLists"/>
@@ -813,10 +832,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReservationParameters/reservationParameters"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//ReservationParameter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParameter/optionalReservation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParameter/mandatoryReservation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParameter/id"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReservationParameter/params9181"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReservationParameter/options"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReservationParameter/mandatoryReservationForBrands"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParameter/mandatoryReservationsForMode"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//ReservationParams9181">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ReservationParams9181/travelClass"/>

@@ -448,6 +448,8 @@ public class GtmValidator extends EObjectValidator {
 				return validateClassId((ClassId)value, diagnostics, context);
 			case GtmPackage.GENERIC_REDUCTION_CARDS:
 				return validateGenericReductionCards((GenericReductionCards)value, diagnostics, context);
+			case GtmPackage.SERVICE_MODE:
+				return validateServiceMode((ServiceMode)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -7067,6 +7069,15 @@ public class GtmValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateGenericReductionCards(GenericReductionCards genericReductionCards, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateServiceMode(ServiceMode serviceMode, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

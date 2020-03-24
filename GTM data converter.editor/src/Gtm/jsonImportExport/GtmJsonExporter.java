@@ -82,6 +82,7 @@ import Gtm.ServiceConstraint;
 import Gtm.ServiceConstraints;
 import Gtm.ServiceLevel;
 import Gtm.ServiceLevelDefinitions;
+import Gtm.ServiceMode;
 import Gtm.Station;
 import Gtm.StationNames;
 import Gtm.StationResourceLocation;
@@ -662,7 +663,6 @@ public class GtmJsonExporter {
 	}
 
 
-
 	private static List<Integer> convertServiceBrandsToJson(EList<ServiceBrand> sbl) {
 		if (sbl == null || sbl.isEmpty()) return null;
 			
@@ -736,15 +736,29 @@ public class GtmJsonExporter {
 		ReservationParameterDef rJ = new ReservationParameterDef();
 		
 		rJ.setId(r.getId());
-		rJ.setReservationRequired(!r.isOptionalReservation());
+		rJ.setReservationRequired(r.isMandatoryReservation());
 		rJ.setReservationParams9181(convertToJson(r.getParams9181()));
 		rJ.setReservationOptions(convertToJson(r.getOptions()));
+		
+		rJ.setReservationRequiredForBrand(convertServiceBrandsToJson(r.getMandatoryReservationForBrands()));
+		rJ.setReservationRequiredForMode(convertTransportModesToJson(r.getMandatoryReservationsForMode()));
 
 		return rJ;
 	}
 
 
 
+
+	private static List<String> convertTransportModesToJson(EList<ServiceMode> sl) {
+		if (sl == null || sl.isEmpty()) return null;
+		
+		ArrayList<String> listJ = new ArrayList<String>();
+		for (ServiceMode sb : sl) {
+				listJ.add(sb.getName());				
+		}
+			
+		return listJ;
+	}
 
 	private static ReservationOptions convertToJson(Gtm.ReservationOptions o) {
 		if (o == null) return null;

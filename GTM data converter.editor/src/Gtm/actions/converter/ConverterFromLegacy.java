@@ -99,6 +99,7 @@ public class ConverterFromLegacy {
 				try {
 					localStations.put(Integer.parseInt(station.getCode()), station);
 				} catch (Exception e){
+					e.printStackTrace();
 					//do nothing 
 				}
 			}
@@ -285,11 +286,12 @@ public class ConverterFromLegacy {
 			
 		}
 		
+		command = new CompoundCommand();
 		Command com1 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getRegionalConstraints(), GtmPackage.Literals.REGIONAL_CONSTRAINTS__REGIONAL_CONSTRAINTS, regions);
 		command.append(com1);
 		executeAndFlush(command, domain);
 		monitor.worked(1);
-		
+
 		command = new CompoundCommand();
 		Command com2 = AddCommand.create(domain,tool.getGeneralTariffModel().getFareStructure().getPrices(), GtmPackage.Literals.PRICES__PRICES, priceList);
 		command.append(com2);
@@ -366,19 +368,21 @@ public class ConverterFromLegacy {
 		}
 		
 		//getFareDescriptions on departure and / or arrival (use only one)
-		for (LegacyFareDetailMap map : tool.getConversionFromLegacy().getParams().getLegacyStationToFareDetailMappings().getLegacyFareDetailMaps()) {
-			
-			if (map.getLegacyCode() == series.getFromStation() &&
-				( map.getFareDetailMappingType() == StationFareDetailType.ON_DEPARTURE || 
-				  map.getFareDetailMappingType() == StationFareDetailType.ON_ARRIVAL_ON_DEPARTURE)){
-					
-				fareElement.setFareDetailDescription(map.getFareDetailDescription());
-			}
-			if (map.getLegacyCode() == series.getToStation() &&
-					( map.getFareDetailMappingType() == StationFareDetailType.ON_ARRIVAL || 
+		if (tool.getConversionFromLegacy().getParams().getLegacyStationToFareDetailMappings() != null) {
+			for (LegacyFareDetailMap map : tool.getConversionFromLegacy().getParams().getLegacyStationToFareDetailMappings().getLegacyFareDetailMaps()) {
+				
+				if (map.getLegacyCode() == series.getFromStation() &&
+					( map.getFareDetailMappingType() == StationFareDetailType.ON_DEPARTURE || 
 					  map.getFareDetailMappingType() == StationFareDetailType.ON_ARRIVAL_ON_DEPARTURE)){
 						
-				fareElement.setFareDetailDescription(map.getFareDetailDescription());
+					fareElement.setFareDetailDescription(map.getFareDetailDescription());
+				}
+				if (map.getLegacyCode() == series.getToStation() &&
+						( map.getFareDetailMappingType() == StationFareDetailType.ON_ARRIVAL || 
+						  map.getFareDetailMappingType() == StationFareDetailType.ON_ARRIVAL_ON_DEPARTURE)){
+							
+					fareElement.setFareDetailDescription(map.getFareDetailDescription());
+				}
 			}
 		}
 
@@ -408,9 +412,17 @@ public class ConverterFromLegacy {
 			
 			if ( sa.getDataSource() == DataSource.CONVERTED) {
 				
-				if (sa.getRestrictions().get(0).getSalesDates().getFromDate().equals(dateRange.startDate) 
-					&& sa.getRestrictions().get(0).getSalesDates().getUntilDate().equals(dateRange.endDate) ) {
-					return sa;
+				if (sa.getRestrictions() != null &&
+					sa.getRestrictions().get(0) != null &&
+					sa.getRestrictions().get(0).getSalesDates() != null &&
+					sa.getRestrictions().get(0).getSalesDates().getFromDate() != null &&
+					sa.getRestrictions().get(0).getSalesDates().getUntilDate() != null) {
+					
+					if (sa.getRestrictions().get(0).getSalesDates().getFromDate().equals(dateRange.startDate) 
+							&& sa.getRestrictions().get(0).getSalesDates().getUntilDate().equals(dateRange.endDate) ) {
+							return sa;
+						}
+					return null;
 				}
 			}
 		}
@@ -962,6 +974,7 @@ public class ConverterFromLegacy {
 			return price;
 		
 		} catch (Exception e) {
+			e.printStackTrace();
 			String message = NationalLanguageSupport.ConverterFromLegacy_42 + Integer.toString(series.getNumber()) + ")"; //$NON-NLS-2$
 			writeConsoleError(message);
 			return null;
@@ -1323,10 +1336,14 @@ public class ConverterFromLegacy {
 			
 			if (tool.getConversionFromLegacy().getParams().getStartOfSale()!= null) {
 				rest.setStartOfSale((StartOfSale) EcoreUtil.copy(tool.getConversionFromLegacy().getParams().getStartOfSale()));
-			}
+			} 
+			
+			
 			if (tool.getConversionFromLegacy().getParams().getEndOfSale()!= null) {
 				rest.setEndOfSale((EndOfSale) EcoreUtil.copy(tool.getConversionFromLegacy().getParams().getEndOfSale()));
-			}			
+			} 
+			
+			rest.setSalesDates(cal);
 
 			constraint.getRestrictions().add(rest);
 						
@@ -1474,7 +1491,7 @@ public class ConverterFromLegacy {
 		
 		executeAndFlush(command,domain);
 		
-		return 0;
+		return stationNames.getStationName().size();
 	}
 	
 	public void executeAndFlush(CompoundCommand command, EditingDomain domain) {
