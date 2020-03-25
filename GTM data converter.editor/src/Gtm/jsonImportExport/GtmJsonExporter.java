@@ -754,7 +754,7 @@ public class GtmJsonExporter {
 		
 		ArrayList<String> listJ = new ArrayList<String>();
 		for (ServiceMode sb : sl) {
-				listJ.add(sb.getName());				
+				listJ.add(Integer.toString(sb.getValue()));				
 		}
 			
 		return listJ;
