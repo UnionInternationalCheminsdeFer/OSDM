@@ -630,7 +630,12 @@ public class GTMJsonImporter {
 		ArrayList<ServiceMode> l = new ArrayList<ServiceMode>();
 		if (jl == null || jl.isEmpty()) return l;
 		for (String s : jl) {
-			l.add(ServiceMode.getByName(s));
+			try {
+				int value = Integer.parseInt(s);
+				l.add(ServiceMode.get(value));
+			} catch (Exception e) {
+				//
+			}
 		}
 		return l;
 	}
