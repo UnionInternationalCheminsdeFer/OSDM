@@ -4251,13 +4251,22 @@ public interface GtmPackage extends EPackage {
 	int SERVICE_CONSTRAINT__EXCLUDED_SERVICE_BRANDS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_CONSTRAINT__DATA_DESCRIPTION = 3;
+
+	/**
 	 * The number of structural features of the '<em>Service Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_CONSTRAINT_FEATURE_COUNT = 3;
+	int SERVICE_CONSTRAINT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Service Constraint</em>' class.
@@ -12406,6 +12415,17 @@ public interface GtmPackage extends EPackage {
 	EReference getServiceConstraint_ExcludedServiceBrands();
 
 	/**
+	 * Returns the meta object for the attribute '{@link Gtm.ServiceConstraint#getDataDescription <em>Data Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Description</em>'.
+	 * @see Gtm.ServiceConstraint#getDataDescription()
+	 * @see #getServiceConstraint()
+	 * @generated
+	 */
+	EAttribute getServiceConstraint_DataDescription();
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.RegionalConstraints <em>Regional Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19194,6 +19214,14 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SERVICE_CONSTRAINT__EXCLUDED_SERVICE_BRANDS = eINSTANCE.getServiceConstraint_ExcludedServiceBrands();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_CONSTRAINT__DATA_DESCRIPTION = eINSTANCE.getServiceConstraint_DataDescription();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.RegionalConstraintsImpl <em>Regional Constraints</em>}' class.

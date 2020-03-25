@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.ServiceConstraint#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.ServiceConstraint#getIncludedServiceBrands <em>Included Service Brands</em>}</li>
  *   <li>{@link Gtm.ServiceConstraint#getExcludedServiceBrands <em>Excluded Service Brands</em>}</li>
+ *   <li>{@link Gtm.ServiceConstraint#getDataDescription <em>Data Description</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getServiceConstraint()
@@ -70,5 +71,27 @@ public interface ServiceConstraint extends EObject {
 	 * @generated
 	 */
 	EList<ServiceBrand> getExcludedServiceBrands();
+
+	/**
+	 * Returns the value of the '<em><b>Data Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Description</em>' attribute.
+	 * @see #setDataDescription(String)
+	 * @see Gtm.GtmPackage#getServiceConstraint_DataDescription()
+	 * @model
+	 * @generated
+	 */
+	String getDataDescription();
+
+	/**
+	 * Sets the value of the '{@link Gtm.ServiceConstraint#getDataDescription <em>Data Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Description</em>' attribute.
+	 * @see #getDataDescription()
+	 * @generated
+	 */
+	void setDataDescription(String value);
 
 } // ServiceConstraint

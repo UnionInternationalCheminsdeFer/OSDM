@@ -991,4 +991,39 @@ public class GtmUtils {
 		}
 		return stations;
 	}
+	
+	public static void writeConsoleError(String message, GtmEditor editor) {
+		try {
+			if (editor == null || message == null || message.length() == 0) return;
+			editor.getSite().getShell().getDisplay().asyncExec(() -> {
+				ConsoleUtil.printError(NationalLanguageSupport.ConverterFromLegacy_53, message);
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void writeConsoleInfo(String message, GtmEditor editor) {
+		try {
+			if (editor == null || message == null || message.length() == 0) return;
+			editor.getSite().getShell().getDisplay().asyncExec(() -> {
+				ConsoleUtil.printInfo(NationalLanguageSupport.ConverterFromLegacy_53, message);
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void writeConsoleWarning(String message, GtmEditor editor) {
+		try {
+			if (editor == null || message == null || message.length() == 0) return;
+			editor.getSite().getShell().getDisplay().asyncExec(() -> {
+				ConsoleUtil.printWarning(NationalLanguageSupport.ConverterFromLegacy_53, message);
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

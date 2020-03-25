@@ -67,6 +67,8 @@ public class RegionalValidityItemProvider
 			addSeqNbPropertyDescriptor(object);
 			addViaStationPropertyDescriptor(object);
 			addZonePropertyDescriptor(object);
+			addLinePropertyDescriptor(object);
+			addPolygonePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -138,6 +140,50 @@ public class RegionalValidityItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Line feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLinePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RegionalValidity_line_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RegionalValidity_line_feature", "_UI_RegionalValidity_type"),
+				 GtmPackage.Literals.REGIONAL_VALIDITY__LINE,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Polygone feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPolygonePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RegionalValidity_polygone_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RegionalValidity_polygone_feature", "_UI_RegionalValidity_type"),
+				 GtmPackage.Literals.REGIONAL_VALIDITY__POLYGONE,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -149,6 +195,8 @@ public class RegionalValidityItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(GtmPackage.Literals.REGIONAL_VALIDITY__VIA_STATION);
+			childrenFeatures.add(GtmPackage.Literals.REGIONAL_VALIDITY__ZONE);
 			childrenFeatures.add(GtmPackage.Literals.REGIONAL_VALIDITY__LINE);
 			childrenFeatures.add(GtmPackage.Literals.REGIONAL_VALIDITY__POLYGONE);
 		}
@@ -207,6 +255,8 @@ public class RegionalValidityItemProvider
 			case GtmPackage.REGIONAL_VALIDITY__SEQ_NB:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case GtmPackage.REGIONAL_VALIDITY__VIA_STATION:
+			case GtmPackage.REGIONAL_VALIDITY__ZONE:
 			case GtmPackage.REGIONAL_VALIDITY__LINE:
 			case GtmPackage.REGIONAL_VALIDITY__POLYGONE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -225,6 +275,16 @@ public class RegionalValidityItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.REGIONAL_VALIDITY__VIA_STATION,
+				 GtmFactory.eINSTANCE.createViaStation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.REGIONAL_VALIDITY__ZONE,
+				 GtmFactory.eINSTANCE.createZone()));
 
 		newChildDescriptors.add
 			(createChildParameter

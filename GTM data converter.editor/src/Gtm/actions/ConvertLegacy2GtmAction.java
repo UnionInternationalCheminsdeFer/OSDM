@@ -90,32 +90,32 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 						
 					monitor.subTask(NationalLanguageSupport.ConvertLegacy2GtmAction_6);						
 					int deleted = converter.deleteOldConversionResults();
-					GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_7 + Integer.toString(deleted));
+					GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_7 + Integer.toString(deleted),editor);
 					monitor.worked(1);
 				
 					monitor.subTask(NationalLanguageSupport.ConvertLegacy2GtmAction_8);
 					int added = converter.convertFareStationSets();
-					GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_9 + Integer.toString(added));	
+					GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_9 + Integer.toString(added),editor);
 					monitor.worked(1);
 			
 					monitor.subTask(NationalLanguageSupport.ConvertLegacy2GtmAction_10);						
 					added = converter.convertBorderPoints();
-					GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_11 + Integer.toString(added));	
+					GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_11 + Integer.toString(added),editor);	
 					monitor.worked(1);
 				
 					monitor.subTask(NationalLanguageSupport.ConvertLegacy2GtmAction_12);
 					added = converter.convertStationNames();
-					GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_13 + Integer.toString(added));		
+					GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_13 + Integer.toString(added),editor);	
 					monitor.worked(1);
 			
 					monitor.subTask(NationalLanguageSupport.ConvertLegacy2GtmAction_14);
 					added = converter.convertSalesAvailabilities();
-					GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_15 + Integer.toString(added));					
+					GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_15 + Integer.toString(added),editor);				
 					monitor.worked(1);
 			
 					monitor.subTask(NationalLanguageSupport.ConvertLegacy2GtmAction_16);
 					added = converter.convertToGtm(monitor);
-					GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_17 + Integer.toString(added));
+					GtmUtils.writeConsoleInfo(NationalLanguageSupport.ConvertLegacy2GtmAction_17 + Integer.toString(added),editor);
 					monitor.worked(1);
 
 					monitor.done();
@@ -143,6 +143,8 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 
 				
 		}
+
+
 
 	
 
