@@ -748,10 +748,11 @@
     <genClasses ecoreClass="Gtm.ecore#//ServiceConstraints">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ServiceConstraints/serviceConstraints"/>
     </genClasses>
-    <genClasses ecoreClass="Gtm.ecore#//ServiceConstraint">
+    <genClasses ecoreClass="Gtm.ecore#//ServiceConstraint" labelFeature="#//Gtm/ServiceConstraint/dataDescription">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ServiceConstraint/id"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ServiceConstraint/includedServiceBrands"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ServiceConstraint/excludedServiceBrands"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ServiceConstraint/dataDescription"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//RegionalConstraints">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalConstraints/regionalConstraints"/>
@@ -761,16 +762,16 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RegionalConstraint/distance"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalConstraint/entryConnectionPoint"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalConstraint/exitConnectionPoint"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalConstraint/regionalValidity"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalConstraint/regionalValidity"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RegionalConstraint/dataSource"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RegionalConstraint/dataDescription"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//RegionalValidity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RegionalValidity/seqNb"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/viaStation"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/zone"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/line"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/polygone"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/viaStation"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/zone"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/line"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/polygone"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//ServiceLevelDefinitions">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ServiceLevelDefinitions/serviceLevelDefinition"/>

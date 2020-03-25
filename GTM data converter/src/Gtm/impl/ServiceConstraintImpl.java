@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link Gtm.impl.ServiceConstraintImpl#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.impl.ServiceConstraintImpl#getIncludedServiceBrands <em>Included Service Brands</em>}</li>
  *   <li>{@link Gtm.impl.ServiceConstraintImpl#getExcludedServiceBrands <em>Excluded Service Brands</em>}</li>
+ *   <li>{@link Gtm.impl.ServiceConstraintImpl#getDataDescription <em>Data Description</em>}</li>
  * </ul>
  *
  * @generated
@@ -74,6 +75,26 @@ public class ServiceConstraintImpl extends MinimalEObjectImpl.Container implemen
 	 * @ordered
 	 */
 	protected EList<ServiceBrand> excludedServiceBrands;
+
+	/**
+	 * The default value of the '{@link #getDataDescription() <em>Data Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DATA_DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDataDescription() <em>Data Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String dataDescription = DATA_DESCRIPTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -144,6 +165,27 @@ public class ServiceConstraintImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDataDescription() {
+		return dataDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataDescription(String newDataDescription) {
+		String oldDataDescription = dataDescription;
+		dataDescription = newDataDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.SERVICE_CONSTRAINT__DATA_DESCRIPTION, oldDataDescription, dataDescription));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -153,6 +195,8 @@ public class ServiceConstraintImpl extends MinimalEObjectImpl.Container implemen
 				return getIncludedServiceBrands();
 			case GtmPackage.SERVICE_CONSTRAINT__EXCLUDED_SERVICE_BRANDS:
 				return getExcludedServiceBrands();
+			case GtmPackage.SERVICE_CONSTRAINT__DATA_DESCRIPTION:
+				return getDataDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -177,6 +221,9 @@ public class ServiceConstraintImpl extends MinimalEObjectImpl.Container implemen
 				getExcludedServiceBrands().clear();
 				getExcludedServiceBrands().addAll((Collection<? extends ServiceBrand>)newValue);
 				return;
+			case GtmPackage.SERVICE_CONSTRAINT__DATA_DESCRIPTION:
+				setDataDescription((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -198,6 +245,9 @@ public class ServiceConstraintImpl extends MinimalEObjectImpl.Container implemen
 			case GtmPackage.SERVICE_CONSTRAINT__EXCLUDED_SERVICE_BRANDS:
 				getExcludedServiceBrands().clear();
 				return;
+			case GtmPackage.SERVICE_CONSTRAINT__DATA_DESCRIPTION:
+				setDataDescription(DATA_DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -216,6 +266,8 @@ public class ServiceConstraintImpl extends MinimalEObjectImpl.Container implemen
 				return includedServiceBrands != null && !includedServiceBrands.isEmpty();
 			case GtmPackage.SERVICE_CONSTRAINT__EXCLUDED_SERVICE_BRANDS:
 				return excludedServiceBrands != null && !excludedServiceBrands.isEmpty();
+			case GtmPackage.SERVICE_CONSTRAINT__DATA_DESCRIPTION:
+				return DATA_DESCRIPTION_EDEFAULT == null ? dataDescription != null : !DATA_DESCRIPTION_EDEFAULT.equals(dataDescription);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -232,6 +284,8 @@ public class ServiceConstraintImpl extends MinimalEObjectImpl.Container implemen
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (id: ");
 		result.append(id);
+		result.append(", dataDescription: ");
+		result.append(dataDescription);
 		result.append(')');
 		return result.toString();
 	}

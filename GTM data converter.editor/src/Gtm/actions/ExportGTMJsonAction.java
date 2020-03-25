@@ -62,6 +62,36 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 				return;
 			}
 			
+			if (tool.getGeneralTariffModel() == null || 
+				tool.getGeneralTariffModel().getDelivery() == null ) {
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText("Delivery Data are missing");
+				dialog.open(); 
+				return;
+			}
+			
+			if (tool.getGeneralTariffModel() == null || 
+				tool.getGeneralTariffModel().getDelivery() == null || 
+				tool.getGeneralTariffModel().getDelivery().getProvider() == null || 
+				tool.getGeneralTariffModel().getDelivery().getProvider().getCode() == null 	) {
+				
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText("Fare Provider is missing in the Delivery Data");
+				dialog.open(); 
+				return;
+			}
+			
+			if (tool.getGeneralTariffModel() == null || 
+				tool.getGeneralTariffModel().getDelivery() == null || 
+				tool.getGeneralTariffModel().getDelivery().getId()== null || 
+				tool.getGeneralTariffModel().getDelivery().getId().length() < 1	) {	
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText("Delivery ID is missing in the Delivery Data");
+				dialog.open(); 
+				return;
+			}
+
+			
 			String name = tool.getGeneralTariffModel().getDelivery().getProvider().getCode().trim() 
 					+ "_" + tool.getGeneralTariffModel().getDelivery().getId().trim()+".gtm.json"; //$NON-NLS-1$ //$NON-NLS-2$
             File file = getFile(name);

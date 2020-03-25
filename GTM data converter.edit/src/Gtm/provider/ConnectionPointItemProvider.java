@@ -6,6 +6,8 @@ package Gtm.provider;
 import Gtm.ConnectionPoint;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
+import Gtm.Station;
+import Gtm.StationSet;
 
 import java.util.Collection;
 import java.util.List;
@@ -273,11 +275,45 @@ public class ConnectionPointItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ConnectionPoint)object).getName();
+		
+		ConnectionPoint point = (ConnectionPoint)object;
+		
+		String label = "";
+		
+		if (point.getName() != null && point.getName().length() > 0) {
+			label = point.getName();
+		};
+		
+		if (point.getLegacyBorderPointCode() > 0) {
+			label = label + " - bp=" +Integer.toString(point.getLegacyBorderPointCode()) + " ";
+		}
+		
+		if (point.getConnectedStationSets() != null && !point.getConnectedStationSets().isEmpty()) {
+			
+			for (StationSet set : point.getConnectedStationSets()) {
+				
+				if (set.getStations() != null && !set.getStations().isEmpty()) {
+					
+					label = label + "(";
+					
+					for (Station s : set.getStations()) {
+						
+						label = label + s.getName() + " ";
+						
+					}
+					
+					label = label.trim() + ")";
+				}
+				
+				
+			}
+			
+		}
+		
 		return label == null || label.length() == 0 ?
 			getString("_UI_ConnectionPoint_type") :
 			getString("_UI_ConnectionPoint_type") + " " + label;

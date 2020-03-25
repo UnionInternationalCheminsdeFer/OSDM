@@ -729,45 +729,51 @@ public class LegacyImporter {
 			}
 		}
 		
-		CompoundCommand com2 = new CompoundCommand();
+
 		
-		Float accuracy = ((float)PreferencesAccess.getIntFromPreferenceStore(PreferenceConstants.P_LINK_STATIONS_BY_GEO_ACCURACY)) / (60 * 60);
 		
-		for (Station station1 : borderStations) {
+		if (PreferencesAccess.getBoolFromPreferenceStore(PreferenceConstants.P_LINK_STATIONS_BY_GEO)) {
+
+			CompoundCommand com2 = new CompoundCommand();
 			
-			for (Station station2 : borderStations) {
+			Float accuracy = ((float)PreferencesAccess.getIntFromPreferenceStore(PreferenceConstants.P_LINK_STATIONS_BY_GEO_ACCURACY)) / (60 * 60);
+			
+			for (Station station1 : borderStations) {
 				
-				if (station1 != station2 && 
-					station1.getLatitude() > 0 &&
-					station2.getLatitude() > 0 &&
-					station1.getLongitude() > 0 &&
-					station2.getLongitude() > 0 &&
-					station1.getLatitude() - station2.getLatitude() < accuracy &&
-					station1.getLongitude() - station2.getLongitude() < accuracy) {
+				for (Station station2 : borderStations) {
 					
-					StationRelation rel1 = GtmFactory.eINSTANCE.createStationRelation();
-					rel1.setRelationType(StationRelationType.SAME_STATION);
-					rel1.setStation(station2);
-					Command comm3 = AddCommand.create(domain, station1, GtmPackage.Literals.STATION__RELATIONS, rel1);
-					if (comm3 != null && comm3.canExecute()) {
-						com2.append(comm3);	
-					}	
-					
-
-					StationRelation rel2 = GtmFactory.eINSTANCE.createStationRelation();
-					rel2.setRelationType(StationRelationType.SAME_STATION);
-					rel2.setStation(station1);
-					Command comm4 = AddCommand.create(domain, station2, GtmPackage.Literals.STATION__RELATIONS, rel2);
-					if (comm4 != null && comm4.canExecute()) {
-						com2.append(comm3);	
-					}						
-
-				}
-			}									
-		}
-		
-		if (com2 != null && !com2.isEmpty()) {
-			domain.getCommandStack().execute(com2);
+					if (station1 != station2 && 
+						station1.getLatitude() > 0 &&
+						station2.getLatitude() > 0 &&
+						station1.getLongitude() > 0 &&
+						station2.getLongitude() > 0 &&
+						Math.abs(station1.getLatitude() - station2.getLatitude()) < accuracy &&
+						Math.abs(station1.getLongitude() - station2.getLongitude()) < accuracy) {
+						
+						StationRelation rel1 = GtmFactory.eINSTANCE.createStationRelation();
+						rel1.setRelationType(StationRelationType.SAME_STATION);
+						rel1.setStation(station2);
+						Command comm3 = AddCommand.create(domain, station1, GtmPackage.Literals.STATION__RELATIONS, rel1);
+						if (comm3 != null && comm3.canExecute()) {
+							com2.append(comm3);	
+						}	
+						
+	
+						StationRelation rel2 = GtmFactory.eINSTANCE.createStationRelation();
+						rel2.setRelationType(StationRelationType.SAME_STATION);
+						rel2.setStation(station1);
+						Command comm4 = AddCommand.create(domain, station2, GtmPackage.Literals.STATION__RELATIONS, rel2);
+						if (comm4 != null && comm4.canExecute()) {
+							com2.append(comm3);	
+						}						
+	
+					}
+				}									
+			}
+			
+			if (com2 != null && !com2.isEmpty()) {
+				domain.getCommandStack().execute(com2);
+			}
 		}
 		
 		

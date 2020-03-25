@@ -13,6 +13,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -143,12 +144,17 @@ public class ImportStationsAction extends BasicGtmAction {
 							}
 						}
 						monitor.worked(1000);
+						
+						
 						/*
 						 * trying to link border stations via geo-coordinates
 						 * 
 						 * result depends on the data quality which was poor in the test data
 						 * 
 						 */
+						
+						
+						
 						
 						Float accuracy = ((float)PreferencesAccess.getIntFromPreferenceStore(PreferenceConstants.P_LINK_STATIONS_BY_GEO_ACCURACY)) / (60 * 60);
 						
@@ -163,8 +169,8 @@ public class ImportStationsAction extends BasicGtmAction {
 										station2.getLatitude() > 0 &&
 										station1.getLongitude() > 0 &&
 										station2.getLongitude() > 0 &&
-										station1.getLatitude() - station2.getLatitude() < accuracy &&
-										station1.getLongitude() - station2.getLongitude() < accuracy) {
+										Math.abs(station1.getLatitude() - station2.getLatitude()) < accuracy &&
+										Math.abs(station1.getLongitude() - station2.getLongitude()) < accuracy) {
 										
 										StationRelation rel1 = GtmFactory.eINSTANCE.createStationRelation();
 										rel1.setRelationType(StationRelationType.SAME_STATION);
@@ -201,14 +207,21 @@ public class ImportStationsAction extends BasicGtmAction {
 							Station station = oldStations.get(code);
 							
 							if (!station.getTimetableName().equals(newStation.getTimetableName())) {
-								command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__NAME, newStation.getTimetableName()));
+								command.append(SetCommand.create(domain, station,GtmPackage.Literals.STATION__NAME, newStation.getTimetableName()));
 							}
 							if (station.getLatitude() != newStation.getLatitude()) {
-								command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__LATITUDE, newStation.getLatitude()));
+								command.append(SetCommand.create(domain, station,GtmPackage.Literals.STATION__LATITUDE, newStation.getLatitude()));
 							}
 							if (station.getLongitude() != newStation.getLongitude()) {
-								command.append(new SetCommand(domain, station,GtmPackage.Literals.STATION__LONGITUDE, newStation.getLongitude()));										
+								command.append(SetCommand.create(domain, station,GtmPackage.Literals.STATION__LONGITUDE, newStation.getLongitude()));										
 							}
+							if (station.getRelations() != null && !station.getRelations().isEmpty()) {
+								command.append(RemoveCommand.create(domain,station, GtmPackage.Literals.STATION__RELATIONS,station.getRelations()));										
+							}							
+							if (newStation.getRelations() != null && !newStation.getRelations().isEmpty()) {
+								command.append(AddCommand.create(domain,station,GtmPackage.Literals.STATION__RELATIONS, newStation.getRelations()));										
+							}								
+							
 						}
 						if (command != null & !command.isEmpty() & command.canExecute()) {
 							domain.getCommandStack().execute(command);

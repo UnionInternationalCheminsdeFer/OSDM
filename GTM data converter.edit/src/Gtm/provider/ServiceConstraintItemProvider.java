@@ -64,6 +64,7 @@ public class ServiceConstraintItemProvider
 			addIdPropertyDescriptor(object);
 			addIncludedServiceBrandsPropertyDescriptor(object);
 			addExcludedServiceBrandsPropertyDescriptor(object);
+			addDataDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -135,6 +136,28 @@ public class ServiceConstraintItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Data Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ServiceConstraint_dataDescription_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ServiceConstraint_dataDescription_feature", "_UI_ServiceConstraint_type"),
+				 GtmPackage.Literals.SERVICE_CONSTRAINT__DATA_DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns ServiceConstraint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -153,7 +176,7 @@ public class ServiceConstraintItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ServiceConstraint)object).getId();
+		String label = ((ServiceConstraint)object).getDataDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ServiceConstraint_type") :
 			getString("_UI_ServiceConstraint_type") + " " + label;
@@ -173,6 +196,7 @@ public class ServiceConstraintItemProvider
 
 		switch (notification.getFeatureID(ServiceConstraint.class)) {
 			case GtmPackage.SERVICE_CONSTRAINT__ID:
+			case GtmPackage.SERVICE_CONSTRAINT__DATA_DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

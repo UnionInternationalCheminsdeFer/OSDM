@@ -628,6 +628,7 @@
         upperBound="-1" eType="#//ServiceBrand"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="excludedServiceBrands"
         upperBound="-1" eType="#//ServiceBrand"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RegionalConstraints">
     <eStructuralFeatures xsi:type="ecore:EReference" name="regionalConstraints" upperBound="-1"
