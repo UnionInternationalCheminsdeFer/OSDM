@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
 
+import Gtm.Country;
 import Gtm.GTMTool;
 import Gtm.actions.converter.LegacyImporter;
 import Gtm.nls.NationalLanguageSupport;
@@ -37,6 +38,25 @@ public class ImportLegacy108Action extends BasicGtmAction {
 	
 	@Override
 	protected void runAction(GTMTool tool) {
+		
+		if (tool == null) {
+			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+			dialog.setText(NationalLanguageSupport.ConvertLegacy2GtmAction_1);
+			dialog.open(); 
+			return;
+		}
+		
+		
+		Country country = tool.getConversionFromLegacy().getParams().getCountry();
+		if (country == null) {
+			String message = NationalLanguageSupport.ConvertLegacy2GtmAction_2;
+			GtmUtils.writeConsoleError(message);
+			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+			dialog.setText(NationalLanguageSupport.ConvertLegacy2GtmAction_3);
+			dialog.open(); 
+			return;
+		}
+		
         FileDialog fd = new FileDialog( Display.getDefault().getActiveShell(), SWT.READ_ONLY);
         fd.setText(NationalLanguageSupport.ImportLegacy108Action_1);
         String[] filterExt = { "*.txt" }; //$NON-NLS-1$

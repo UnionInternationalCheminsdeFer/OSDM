@@ -58,6 +58,7 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 			if (tool == null) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 				dialog.setText(NationalLanguageSupport.ExportGTMJsonAction_1);
+				dialog.setMessage(dialog.getText());
 				dialog.open(); 
 				return;
 			}
@@ -66,6 +67,7 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 				tool.getGeneralTariffModel().getDelivery() == null ) {
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 				dialog.setText("Delivery Data are missing");
+				dialog.setMessage(dialog.getText());
 				dialog.open(); 
 				return;
 			}
@@ -77,6 +79,7 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 				
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 				dialog.setText("Fare Provider is missing in the Delivery Data");
+				dialog.setMessage(dialog.getText());
 				dialog.open(); 
 				return;
 			}
@@ -87,6 +90,7 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 				tool.getGeneralTariffModel().getDelivery().getId().length() < 1	) {	
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 				dialog.setText("Delivery ID is missing in the Delivery Data");
+				dialog.setMessage(dialog.getText());
 				dialog.open(); 
 				return;
 			}
