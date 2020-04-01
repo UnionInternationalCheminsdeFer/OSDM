@@ -1,0 +1,47 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: UIC 90918-10
+  license:
+    name: MIT
+servers:
+  - url: http://uic.org/v1
+paths:
+  /{version}/tripOffersCollection:
+    post:
+      summary: get offers based on trips
+      operationId: getTripOffersCollection
+      tags:
+        - tripOffersCollection
+      parameters:
+        - name: version
+          in: query
+          description: request schema version
+          required: false
+          schema:
+            type: string
+      requestBody:
+        description: offer request body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "offerRequest.json#/definitions/OfferRequestDef"   
+      responses:
+        200:
+          description: returns offers
+          headers:
+            x-next:
+              description: whatever header you need
+              schema:
+                type: string
+          content:
+            application/json:    
+              schema:
+                $ref: "offerReply.json#/definitions/OfferReplyDef"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "....."

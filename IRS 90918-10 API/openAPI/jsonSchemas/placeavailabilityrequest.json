@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v1/offerRequest.json",
+	"title": "offer request",
+	"description": "Request offers",
+	"definitions": {
+		"placeAvailabilityRequest": {
+			"type": "object",
+			"properties": {
+				"train": {
+					"type": "string"
+				},
+				"offerContext": {
+					"description": "mandatory in case it was provided with the offer",
+					"type": "string"
+				},
+				"placePreferences": {
+					"description": "list of selected preferences. ",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"train"
+			],
+			"additionalProperties": false
+		}
+	}
+}

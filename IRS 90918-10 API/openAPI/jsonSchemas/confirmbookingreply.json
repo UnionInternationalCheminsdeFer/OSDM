@@ -1,0 +1,146 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "BookingReply",
+	"description": "BookingReply",
+	"definitions": {
+		"BookingReply": {
+			"type": "object",
+			"properties": {
+				"bookingId": {
+					"type": "string"
+				},
+				"legacyAccountingId": {
+					"description": "14 digit numeric id for current 301 accouning files",
+					"type": "number"
+				},
+				"ErrorDescription": {
+					"type": "object",
+					"properties": {
+						"Type": {
+							"description": "FUNCTIONAL,TECHNICAL,CONTENT",
+							"type": "string"
+						},
+						"Code": {
+							"type": "string"
+						},
+						"Description": {
+							"description": "error description used to analyze errors",
+							"type": "string"
+						}
+					},
+					"required": [
+						"Type",
+						"Code"
+					],
+					"additionalProperties": false
+				},
+				"individualTicketing": {
+					"description": "booking ids per passenger in case of individual ticketing",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"reference": {
+								"description": "reference of the traveller",
+								"type": "string"
+							},
+							"bookingId": {
+								"type": "string"
+							},
+							"Reservation": {
+								"type": "object",
+								"properties": {
+									"train": {
+										"type": "string"
+									},
+									"placePack": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"reservationId": {
+													"type": "string"
+												},
+												"reference": {
+													"description": "reference of the traveller / reservation holder",
+													"type": "string"
+												},
+												"coach": {
+													"type": "string"
+												},
+												"places": {
+													"description": "descriptive string of the palces (e.g. \"11-35\")",
+													"type": "string"
+												},
+												"placeIds": {
+													"type": "array",
+													"items": [
+														{
+															"type": "string"
+														}
+													],
+													"additionalItems": false
+												},
+												"placeProperties": {
+													"description": "place properties to be indicated to the customer",
+													"type": "array",
+													"items": {
+														"type": "object",
+														"properties": {
+															"placeProperty": {
+																"description": "see code list",
+																"type": "string"
+															},
+															"number": {
+																"description": "number of places with this property",
+																"type": "number"
+															},
+															"priority": {
+																"description": "priority for display",
+																"type": "number"
+															}
+														},
+														"required": [
+															"placeProperty"
+														],
+														"additionalProperties": false
+													}
+												}
+											},
+											"additionalProperties": false
+										}
+									},
+									"trainDescription": {
+										"type": "object",
+										"properties": {
+											"serviceBrand": {
+												"$ref": "definitions.json#/definitions/ServiceBrandInformationDef"
+											},
+											"trainInformation": {
+												"$ref": "faredefinitions.json#/definitions/TextDef"
+											}
+										},
+										"additionalProperties": false
+									}
+								},
+								"additionalProperties": false
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"reservations": {
+					"description": "details on reservations in case reservations were included ",
+					"type": "array",
+					"items": {
+						"$ref": "reservationdefinitions.json#/definitions/ReservedPlacesDef"
+					}
+				}
+			},
+			"required": [
+				"bookingId"
+			],
+			"additionalProperties": false
+		}
+	}
+}

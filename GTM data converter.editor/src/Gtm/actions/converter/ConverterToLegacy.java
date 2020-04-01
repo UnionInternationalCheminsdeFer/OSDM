@@ -700,7 +700,7 @@ public class 	ConverterToLegacy {
 		if (regionalConstraint.getEntryConnectionPoint() != null && regionalConstraint.getExitConnectionPoint() != null) {
 			return LegacySeriesType.TRANSIT;
 		}
-		if (regionalConstraint.getEntryConnectionPoint() == null && regionalConstraint.getExitConnectionPoint() == null) {
+		if (regionalConstraint.getEntryConnectionPoint() != null && regionalConstraint.getExitConnectionPoint() == null) {
 			return LegacySeriesType.BORDER_DESTINATION;
 		}
 		return LegacySeriesType.STATION_STATION;
@@ -927,6 +927,7 @@ public class 	ConverterToLegacy {
 		//has foreign stations
 		if (hasForeignStations(stations)) return false;
 		
+		//reversed border - destination series
 		if (fare.getRegionalConstraint().getEntryConnectionPoint() == null && fare.getRegionalConstraint().getEntryConnectionPoint() != null) return false;
 			
 		if ((fare.getRegionalConstraint().getEntryConnectionPoint() == null && fare.getRegionalConstraint().getEntryConnectionPoint() == null) ||

@@ -1,0 +1,59 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "offer reply",
+	"description": "provides offers for combining fares",
+	"definitions": {
+		"prebookingReply": {
+			"description": "TODO: changed price per part?",
+			"type": "object",
+			"properties": {
+				"prebookingId": {
+					"type": "string"
+				},
+				"expiryTime": {
+					"description": "Expiry time in UTC until which the prebooking is guaranteed. The expiryTime might be already passed in case the carrier does not guarantee the prebooking",
+					"type": "string"
+				},
+				"reservations": {
+					"description": "optional description of places to be expected in the booking confirmation. it is sufficient to deliver these data inthe confoirmation only.",
+					"type": "array",
+					"items": {
+						"$ref": "reservationdefinitions.json#/definitions/ReservedPlacesDef"
+					}
+				},
+				"priceChange": {
+					"type": "boolean",
+					"default": false
+				},
+				"prebookingContext": {
+					"type": "string"
+				},
+				"newPrice": {
+					"$ref": "faredefinitions.json#/definitions/PriceDef"
+				},
+				"errorDescription": {
+					"type": "object",
+					"properties": {
+						"Type": {
+							"description": "FUNCTIONAL,TECHNICAL,CONTENT",
+							"type": "string"
+						},
+						"Code": {
+							"type": "string"
+						},
+						"Description": {
+							"description": "error description used to analyze errors",
+							"type": "string"
+						}
+					},
+					"required": [
+						"Type",
+						"Code"
+					],
+					"additionalProperties": false
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+}

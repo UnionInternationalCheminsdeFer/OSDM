@@ -1,0 +1,187 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org//schemas/passenger/eticket/v1/reservationdefinitions.json",
+	"additionalProperties": false,
+	"definitions": {
+		"ReservedPlacesDef": {
+			"type": "object",
+			"properties": {
+				"train": {
+					"type": "string"
+				},
+				"placePack": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"reservationId": {
+								"type": "string"
+							},
+							"reference": {
+								"description": "reference of the traveller / reservation holder",
+								"type": "string"
+							},
+							"coach": {
+								"type": "string"
+							},
+							"places": {
+								"description": "descriptive string of the palces (e.g. \"11-35\")",
+								"type": "string"
+							},
+							"placeIds": {
+								"type": "array",
+								"items": [
+									{
+										"type": "string"
+									}
+								],
+								"additionalItems": false
+							},
+							"placeProperties": {
+								"description": "place properties to be indicated to the customer",
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"placeProperty": {
+											"description": "see code list",
+											"type": "string"
+										},
+										"number": {
+											"description": "number of places with this property",
+											"type": "number"
+										},
+										"priority": {
+											"description": "priority for display",
+											"type": "number"
+										}
+									},
+									"required": [
+										"placeProperty"
+									],
+									"additionalProperties": false
+								}
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"trainDescription": {
+					"type": "object",
+					"properties": {
+						"serviceBrand": {
+							"$ref": "definitions.json#/definitions/ServiceBrandInformationDef"
+						},
+						"trainInformation": {
+							"$ref": "faredefinitions.json#/definitions/TextDef"
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"additionalProperties": false
+		},
+		"PlaceAvailabilityDef": {
+			"type": "object",
+			"properties": {
+				"coaches": {
+					"type": "array",
+					"items": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"compartments": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"places": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"number": {
+															"type": "string"
+														},
+														"status": {
+															"type": "string"
+														},
+														"selectable": {
+															"description": "to indicate individual places as non-selectable in case complete compartments must be selected",
+															"type": "boolean",
+															"default": true
+														}
+													},
+													"required": [
+														"number"
+													],
+													"additionalProperties": false
+												}
+											},
+											"status": {
+												"type": "string"
+											},
+											"selectable": {
+												"description": "to indicate compartments selectable as a whole only",
+												"type": "boolean",
+												"default": false
+											}
+										},
+										"additionalProperties": false
+									}
+								},
+								"number": {
+									"description": "coach number",
+									"type": "string"
+								},
+								"layoutId": {
+									"type": "string"
+								},
+								"status": {
+									"type": "string"
+								},
+								"layoutIdUpperDeck": {
+									"type": "string"
+								},
+								"layoutIdLowerDeck": {
+									"type": "string"
+								},
+								"direction": {
+									"type": "string"
+								},
+								"coachOwner": {
+									"$ref": "definitions.json#/definitions/CompanyDef"
+								},
+								"specialCoach": {
+									"description": "indication of special coech (Train head, dining coach,..) see code list",
+									"type": "string"
+								}
+							},
+							"required": [
+								"number",
+								"layoutId"
+							],
+							"additionalProperties": false
+						}
+					}
+				},
+				"trainId": {
+					"description": "train number",
+					"type": "string"
+				},
+				"departureStation": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"departureDateTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"arrivalStation": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+}
