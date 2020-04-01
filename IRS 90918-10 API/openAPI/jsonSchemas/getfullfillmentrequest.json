@@ -1,0 +1,24 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v1/GetFullfillmentRequest.json",
+	"title": "GetFullfillmentRequest",
+	"description": "GetFullfillmentRequest",
+	"definitions": {
+		"GetFullfillmentRequest": {
+			"type": "object",
+			"properties": {
+				"bookingId": {
+					"type": "string"
+				},
+				"fulfillmentMedium": {
+					"description": "see code list",
+					"type": "string"
+				}
+			},
+			"required": [
+				"bookingId"
+			],
+			"additionalProperties": false
+		}
+	}
+}

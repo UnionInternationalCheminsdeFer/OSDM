@@ -1,0 +1,40 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v1/ConfirmBookingRequest.json",
+	"title": "ConfirmBookingRequest",
+	"description": "ConfirmBookingRequest",
+	"definitions": {
+		"ConfirmBookingRequest": {
+			"type": "object",
+			"properties": {
+				"prebookingId": {
+					"type": "string"
+				},
+				"salesChannel": {
+					"$ref": "anxilliarydefinitions.json#/definitions/RequesterDef"
+				},
+				"prebookingContext": {
+					"description": "mandatory in case it was provided with the prebooking",
+					"type": "string"
+				},
+				"individualTicketing": {
+					"description": "individual booking ids for individual ticketing are required. (only in case the fare allows individual ticketing)",
+					"type": "boolean",
+					"default": false
+				},
+				"exchangeReference": {
+					"description": "References to old bookings that will be cancelled within this exchange",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"prebookingId",
+				"salesChannel"
+			],
+			"additionalProperties": false
+		}
+	}
+}

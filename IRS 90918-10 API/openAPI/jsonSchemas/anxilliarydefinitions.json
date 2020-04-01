@@ -1,0 +1,366 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "anxilliary definitions",
+	"description": "definitions of anxilliary data objects ues in online services ",
+	"definitions": {
+		"TripDef": {
+			"type": "object",
+			"properties": {
+				"segments": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"segment": {
+								"type": "object",
+								"properties": {
+									"seqId": {
+										"description": "ordering of the trains",
+										"type": "number"
+									},
+									"transfer": {
+										"description": "Transfer to the next vehicle not included in the request",
+										"type": "object",
+										"properties": {
+											"duration": {
+												"description": "duration forseen as transfer to the next section",
+												"type": "number"
+											},
+											"transferType": {
+												"description": "WALK,...",
+												"type": "string"
+											}
+										},
+										"required": [
+											"duration",
+											"transferType"
+										],
+										"additionalProperties": false
+									},
+									"vehicle": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"minProperties": 1,
+											"properties": {
+												"number": {
+													"description": "id of the vehicle, In case of two train s running in paarallel there might be two train numbers.",
+													"type": "array",
+													"items": {
+														"type": "string"
+													}
+												},
+												"line": {
+													"description": "line number in case the vehical does not have a number",
+													"type": "string"
+												},
+												"serviceBrand": {
+													"$ref": "definitions.json#/definitions/ServiceBrandCodeDef"
+												},
+												"transportMode": {
+													"description": "transport mode (code list of MERITS). Optional for offer requests, included for alignment with FSM",
+													"type": "string"
+												}
+											},
+											"additionalProperties": false
+										}
+									},
+									"stops": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"station": {
+													"$ref": "definitions.json#/definitions/StationDef"
+												},
+												"departureDateTime": {
+													"description": "date and time in the time zone of the station",
+													"type": "string"
+												},
+												"arrivalDateTime": {
+													"description": "date and time in the time zone of the station",
+													"type": "string"
+												}
+											},
+											"required": [
+												"station"
+											],
+											"additionalProperties": false
+										}
+									}
+								},
+								"required": [
+									"seqId",
+									"vehicle"
+								],
+								"additionalProperties": false
+							}
+						},
+						"additionalProperties": false
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"TravelSectionDef": {
+			"type": "object",
+			"properties": {
+				"start": {
+					"type": "object",
+					"properties": {
+						"station": {
+							"$ref": "definitions.json#/definitions/StationDef"
+						},
+						"connectionPoint": {
+							"$ref": "faredefinitions.json#/definitions/ConnectionPointDef"
+						}
+					},
+					"additionalProperties": false
+				},
+				"end": {
+					"type": "object",
+					"properties": {
+						"station": {
+							"$ref": "definitions.json#/definitions/StationDef"
+						},
+						"connectionPoint": {
+							"$ref": "faredefinitions.json#/definitions/ConnectionPointDef"
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"start",
+				"end"
+			],
+			"additionalProperties": false
+		},
+		"DistributionChannelDef": {
+			"type": "object",
+			"properties": {
+				"channelType": {
+					"description": "MACHINE,OFFICE,THIRDPARTY,WEB_MOBILE,CALL_CENTER",
+					"type": "string"
+				},
+				"countryOfSale": {
+					"$ref": "definitions.json#/definitions/CountryDef"
+				},
+				"sellerId": {
+					"description": "identification of the selling office or channel",
+					"type": "string"
+				}
+			},
+			"required": [
+				"channelType"
+			],
+			"additionalProperties": false
+		},
+		"FareOfferDef": {
+			"type": "object",
+			"properties": {
+				"fareOfferId": {
+					"description": "used to book the offer",
+					"type": "string"
+				},
+				"fares": {
+					"type": "array",
+					"minItems": 1,
+					"items": [
+						{
+							"title": "Fare",
+							"type": "object",
+							"properties": {
+								"fareElement": {
+									"$ref": "fareitems.json#/definitions/FareOnlineDef"
+								},
+								"passengers": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"passenerId": {
+												"type": "string"
+											}
+										},
+										"additionalProperties": false
+									}
+								}
+							},
+							"required": [
+								"fareElement"
+							],
+							"additionalProperties": false
+						}
+					],
+					"additionalItems": false
+				},
+				"Name": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"validityTimePrice": {
+					"description": "number of minutes the price of this offer will be kept stable, no price guarantie in case of 0 or missing",
+					"type": "number"
+				},
+				"OfferContext": {
+					"description": "offer context to be resend in a booking offer. This could be used by a carrier to secure the main offer content ",
+					"type": "string"
+				},
+				"processType": {
+					"description": "DIRECT_SALE the offer is a fixed fare that can be integrated in a ticket directly without booking and confirmation.",
+					"type": "string"
+				},
+				"anxilliaryOffer": {
+					"description": "this is an offer part that is optiopnal (e.g. using graphical reservation)",
+					"type": "boolean",
+					"default": false
+				},
+				"reservationOptions": {
+					"description": "option to provide the complete matrix of combinations of plece properties available",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"PlacePropertyGroup": {
+								"type": "array",
+								"items": {
+									"description": "PlaceProperty",
+									"type": "string"
+								}
+							}
+						},
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": [
+				"fareOfferId"
+			],
+			"additionalProperties": false
+		},
+		"OfferDef": {
+			"type": "object",
+			"properties": {
+				"offerParts": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/OfferPartDef"
+					}
+				},
+				"fareBundles": {
+					"description": "bundles of fares that provide a set of fares for all travellers on a travel section",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"travelSection": {
+								"$ref": "#/definitions/TravelSectionDef"
+							},
+							"fares": {
+								"description": "on a request of an allocator the reply should prefereable contain fares. offerPrest only incase no fare is possible parts.",
+								"type": "array",
+								"items": {
+									"$ref": "fareitems.json#/definitions/FareOnlineDef"
+								}
+							}
+						},
+						"additionalProperties": false
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"RequesterDef": {
+			"type": "object",
+			"properties": {
+				"role": {
+					"description": "DISTRIBUTOR,ALLOCATOR",
+					"type": "string"
+				},
+				"company": {
+					"$ref": "definitions.json#/definitions/CountryDef"
+				},
+				"distributionChannel": {
+					"$ref": "anxilliarydefinitions.json#/definitions/DistributionChannelDef"
+				}
+			},
+			"required": [
+				"role",
+				"company",
+				"distributionChannel"
+			],
+			"additionalProperties": false
+		},
+		"OfferPartDef": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"description": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"type": {
+					"$ref": "definitions.json#/definitions/FareTypeDef"
+				},
+				"mainServiceClass": {
+					"$ref": "faredefinitions.json#/definitions/ServiceClassDef"
+				},
+				"price": {
+					"$ref": "faredefinitions.json#/definitions/PriceDef"
+				},
+				"serviceDescription": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"regionalConstraintDescription": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"regionalConstraintPolygone": {
+					"$ref": "ticketdefinitions.json#/definitions/PolygoneDef"
+				},
+				"travelValidity": {
+					"$ref": "faredefinitions.json#/definitions/TravelValidityConstraintDef"
+				},
+				"fulfillmentMediaTypes": {
+					"description": "TODO: define content, this is not the fulfillment type of the fare as the allocator handles the securits. here we need the real formats the distributor is allowed to use",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"requiredReductions": {
+					"type": "array",
+					"items": {
+						"$ref": "faredefinitions.json#/definitions/ReductionCardDef"
+					}
+				},
+				"personalDataConstraint": {
+					"$ref": "faredefinitions.json#/definitions/PersonalDataConstraintDef"
+				},
+				"serviceConstraintDescription": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"carrierConstraintDescription": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"passengerConstraintDescription": {
+					"$ref": "faredefinitions.json#/definitions/TextDef"
+				},
+				"afterSalesCondition": {
+					"$ref": "faredefinitions.json#/definitions/AfterSalesConditionDef"
+				},
+				"from": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"to": {
+					"$ref": "definitions.json#/definitions/StationDef"
+				},
+				"ticketHolders": {
+					"description": "number of ticket holders where passenger data are needed for seperate tickets",
+					"type": "integer"
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+}
