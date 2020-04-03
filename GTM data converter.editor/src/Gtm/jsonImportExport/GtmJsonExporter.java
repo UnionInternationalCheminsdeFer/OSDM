@@ -1752,7 +1752,7 @@ public class GtmJsonExporter {
 		for (Station s :  set) {
 			listJ.add(convertToJson(s));
 		}
-		return null;
+		return listJ;
 	}
 
 
