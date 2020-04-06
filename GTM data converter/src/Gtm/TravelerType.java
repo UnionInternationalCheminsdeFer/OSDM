@@ -59,16 +59,22 @@ public enum TravelerType implements Enumerator {
 	SENIOR(4, "SENIOR", "SENIOR"),
 
 	/**
-	 * The '<em><b>ACCOMP PRM</b></em>' literal object.
+	 * The '<em><b>FAMILY CHILD</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ACCOMP_PRM_VALUE
+	 * @see #FAMILY_CHILD_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ACCOMP_PRM(5, "ACCOMP_PRM", "ACCOMP_PRM"),
-
-	/**
+	FAMILY_CHILD(5, "FAMILY_CHILD", "FAMILY_CHILD"), /**
+	 * The '<em><b>YOUNG CHILD</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #YOUNG_CHILD_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	YOUNG_CHILD(6, "YOUNG_CHILD", "YOUNG_CHILD"), /**
 	 * The '<em><b>DOG</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -99,6 +105,22 @@ public enum TravelerType implements Enumerator {
 	ACCOMP_DOG(22, "ACCOMP_DOG", "ACCOMP_DOG"),
 
 	/**
+	 * The '<em><b>PRM CHILD</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PRM_CHILD_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	PRM_CHILD(23, "PRM_CHILD", "PRM_CHILD"), /**
+	 * The '<em><b>ACCOMP PRM</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ACCOMP_PRM_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ACCOMP_PRM(24, "ACCOMP_PRM", "ACCOMP_PRM"), /**
 	 * The '<em><b>CAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -146,17 +168,7 @@ public enum TravelerType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GRAPHICAL_RES(40, "GRAPHICAL_RES", "GRAPHICAL_RES"),
-
-	/**
-	 * The '<em><b>OPT RESERVATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OPT_RESERVATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OPT_RESERVATION(41, "OPT_RESERVATION", "OPT_RESERVATION");
+	GRAPHICAL_RES(40, "GRAPHICAL_RES", "GRAPHICAL_RES");
 
 	/**
 	 * The '<em><b>ADULT</b></em>' literal value.
@@ -203,15 +215,26 @@ public enum TravelerType implements Enumerator {
 	public static final int SENIOR_VALUE = 4;
 
 	/**
-	 * The '<em><b>ACCOMP PRM</b></em>' literal value.
+	 * The '<em><b>FAMILY CHILD</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ACCOMP_PRM
+	 * @see #FAMILY_CHILD
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ACCOMP_PRM_VALUE = 5;
+	public static final int FAMILY_CHILD_VALUE = 5;
+
+	/**
+	 * The '<em><b>YOUNG CHILD</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #YOUNG_CHILD
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int YOUNG_CHILD_VALUE = 6;
 
 	/**
 	 * The '<em><b>DOG</b></em>' literal value.
@@ -245,6 +268,28 @@ public enum TravelerType implements Enumerator {
 	 * @ordered
 	 */
 	public static final int ACCOMP_DOG_VALUE = 22;
+
+	/**
+	 * The '<em><b>PRM CHILD</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PRM_CHILD
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PRM_CHILD_VALUE = 23;
+
+	/**
+	 * The '<em><b>ACCOMP PRM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ACCOMP_PRM
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ACCOMP_PRM_VALUE = 24;
 
 	/**
 	 * The '<em><b>CAR</b></em>' literal value.
@@ -302,17 +347,6 @@ public enum TravelerType implements Enumerator {
 	public static final int GRAPHICAL_RES_VALUE = 40;
 
 	/**
-	 * The '<em><b>OPT RESERVATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OPT_RESERVATION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int OPT_RESERVATION_VALUE = 41;
-
-	/**
 	 * An array of all the '<em><b>Traveler Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -324,16 +358,18 @@ public enum TravelerType implements Enumerator {
 			CHILD,
 			YOUTH,
 			SENIOR,
-			ACCOMP_PRM,
+			FAMILY_CHILD,
+			YOUNG_CHILD,
 			DOG,
 			LUGGAGE,
 			ACCOMP_DOG,
+			PRM_CHILD,
+			ACCOMP_PRM,
 			CAR,
 			BICYCLE,
 			MOTOCYCLE,
 			TRAILER,
 			GRAPHICAL_RES,
-			OPT_RESERVATION,
 		};
 
 	/**
@@ -394,16 +430,18 @@ public enum TravelerType implements Enumerator {
 			case CHILD_VALUE: return CHILD;
 			case YOUTH_VALUE: return YOUTH;
 			case SENIOR_VALUE: return SENIOR;
-			case ACCOMP_PRM_VALUE: return ACCOMP_PRM;
+			case FAMILY_CHILD_VALUE: return FAMILY_CHILD;
+			case YOUNG_CHILD_VALUE: return YOUNG_CHILD;
 			case DOG_VALUE: return DOG;
 			case LUGGAGE_VALUE: return LUGGAGE;
 			case ACCOMP_DOG_VALUE: return ACCOMP_DOG;
+			case PRM_CHILD_VALUE: return PRM_CHILD;
+			case ACCOMP_PRM_VALUE: return ACCOMP_PRM;
 			case CAR_VALUE: return CAR;
 			case BICYCLE_VALUE: return BICYCLE;
 			case MOTOCYCLE_VALUE: return MOTOCYCLE;
 			case TRAILER_VALUE: return TRAILER;
 			case GRAPHICAL_RES_VALUE: return GRAPHICAL_RES;
-			case OPT_RESERVATION_VALUE: return OPT_RESERVATION;
 		}
 		return null;
 	}

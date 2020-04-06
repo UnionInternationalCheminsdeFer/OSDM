@@ -65,10 +65,6 @@ public class RegionalValidityItemProvider
 			super.getPropertyDescriptors(object);
 
 			addSeqNbPropertyDescriptor(object);
-			addViaStationPropertyDescriptor(object);
-			addZonePropertyDescriptor(object);
-			addLinePropertyDescriptor(object);
-			addPolygonePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -91,94 +87,6 @@ public class RegionalValidityItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Via Station feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addViaStationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RegionalValidity_viaStation_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RegionalValidity_viaStation_feature", "_UI_RegionalValidity_type"),
-				 GtmPackage.Literals.REGIONAL_VALIDITY__VIA_STATION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Zone feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addZonePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RegionalValidity_zone_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RegionalValidity_zone_feature", "_UI_RegionalValidity_type"),
-				 GtmPackage.Literals.REGIONAL_VALIDITY__ZONE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Line feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addLinePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RegionalValidity_line_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RegionalValidity_line_feature", "_UI_RegionalValidity_type"),
-				 GtmPackage.Literals.REGIONAL_VALIDITY__LINE,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Polygone feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPolygonePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RegionalValidity_polygone_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RegionalValidity_polygone_feature", "_UI_RegionalValidity_type"),
-				 GtmPackage.Literals.REGIONAL_VALIDITY__POLYGONE,
-				 true,
-				 false,
-				 false,
-				 null,
 				 null,
 				 null));
 	}

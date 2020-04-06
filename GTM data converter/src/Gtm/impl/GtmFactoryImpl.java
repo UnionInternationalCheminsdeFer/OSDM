@@ -169,7 +169,13 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.CONVERSION_FROM_LEGACY: return createConversionFromLegacy();
 			case GtmPackage.CONVERSION_PARAMS: return createConversionParams();
 			case GtmPackage.FARE_TEMPLATE: return createFareTemplate();
+			case GtmPackage.AFTER_SALES_TEMPLATE: return createAfterSalesTemplate();
 			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS: return createLegacyStationToServiceConstraintMappings();
+			case GtmPackage.LEGACY_BORDER_POINT: return createLegacyBorderPoint();
+			case GtmPackage.ON_BORDER_STATIONS: return createOnBorderStations();
+			case GtmPackage.LEGACY_FAKE_BORDER_STATIONS: return createLegacyFakeBorderStations();
+			case GtmPackage.LEGACY_BORDER_SIDE: return createLegacyBorderSide();
+			case GtmPackage.LEGACY_BORDER_POINTS: return createLegacyBorderPoints();
 			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING: return createLegacyStationToServiceConstraintMapping();
 			case GtmPackage.LEGACY_STATION_MAPPINGS: return createLegacyStationMappings();
 			case GtmPackage.LEGACY_STATION_MAP: return createLegacyStationMap();
@@ -1519,9 +1525,69 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public AfterSalesTemplate createAfterSalesTemplate() {
+		AfterSalesTemplateImpl afterSalesTemplate = new AfterSalesTemplateImpl();
+		return afterSalesTemplate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public LegacyStationToServiceConstraintMappings createLegacyStationToServiceConstraintMappings() {
 		LegacyStationToServiceConstraintMappingsImpl legacyStationToServiceConstraintMappings = new LegacyStationToServiceConstraintMappingsImpl();
 		return legacyStationToServiceConstraintMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyBorderPoint createLegacyBorderPoint() {
+		LegacyBorderPointImpl legacyBorderPoint = new LegacyBorderPointImpl();
+		return legacyBorderPoint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OnBorderStations createOnBorderStations() {
+		OnBorderStationsImpl onBorderStations = new OnBorderStationsImpl();
+		return onBorderStations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyFakeBorderStations createLegacyFakeBorderStations() {
+		LegacyFakeBorderStationsImpl legacyFakeBorderStations = new LegacyFakeBorderStationsImpl();
+		return legacyFakeBorderStations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyBorderSide createLegacyBorderSide() {
+		LegacyBorderSideImpl legacyBorderSide = new LegacyBorderSideImpl();
+		return legacyBorderSide;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyBorderPoints createLegacyBorderPoints() {
+		LegacyBorderPointsImpl legacyBorderPoints = new LegacyBorderPointsImpl();
+		return legacyBorderPoints;
 	}
 
 	/**

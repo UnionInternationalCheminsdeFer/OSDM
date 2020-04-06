@@ -85,7 +85,6 @@ public class FareTemplateItemProvider
 			addReductionConstraintPropertyDescriptor(object);
 			addFulfillmentConstraintPropertyDescriptor(object);
 			addPassengerConstraintPropertyDescriptor(object);
-			addAfterSalesRulePropertyDescriptor(object);
 			addLegacyConversionPropertyDescriptor(object);
 			addIndividualContractsPropertyDescriptor(object);
 		}
@@ -555,28 +554,6 @@ public class FareTemplateItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the After Sales Rule feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAfterSalesRulePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FareTemplate_afterSalesRule_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_afterSalesRule_feature", "_UI_FareTemplate_type"),
-				 GtmPackage.Literals.FARE_TEMPLATE__AFTER_SALES_RULE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Legacy Conversion feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -633,6 +610,7 @@ public class FareTemplateItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(GtmPackage.Literals.FARE_TEMPLATE__AFTER_SALES_TEMPLATE);
 			childrenFeatures.add(GtmPackage.Literals.FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER);
 		}
 		return childrenFeatures;
@@ -697,6 +675,7 @@ public class FareTemplateItemProvider
 			case GtmPackage.FARE_TEMPLATE__INDIVIDUAL_CONTRACTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case GtmPackage.FARE_TEMPLATE__AFTER_SALES_TEMPLATE:
 			case GtmPackage.FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -714,6 +693,11 @@ public class FareTemplateItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.FARE_TEMPLATE__AFTER_SALES_TEMPLATE,
+				 GtmFactory.eINSTANCE.createAfterSalesTemplate()));
 
 		newChildDescriptors.add
 			(createChildParameter

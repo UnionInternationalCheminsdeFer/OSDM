@@ -1030,6 +1030,15 @@ public interface GtmFactory extends EFactory {
 	FareTemplate createFareTemplate();
 
 	/**
+	 * Returns a new object of class '<em>After Sales Template</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>After Sales Template</em>'.
+	 * @generated
+	 */
+	AfterSalesTemplate createAfterSalesTemplate();
+
+	/**
 	 * Returns a new object of class '<em>Legacy Station To Service Constraint Mappings</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1037,6 +1046,51 @@ public interface GtmFactory extends EFactory {
 	 * @generated
 	 */
 	LegacyStationToServiceConstraintMappings createLegacyStationToServiceConstraintMappings();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Border Point</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Border Point</em>'.
+	 * @generated
+	 */
+	LegacyBorderPoint createLegacyBorderPoint();
+
+	/**
+	 * Returns a new object of class '<em>On Border Stations</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>On Border Stations</em>'.
+	 * @generated
+	 */
+	OnBorderStations createOnBorderStations();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Fake Border Stations</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Fake Border Stations</em>'.
+	 * @generated
+	 */
+	LegacyFakeBorderStations createLegacyFakeBorderStations();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Border Side</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Border Side</em>'.
+	 * @generated
+	 */
+	LegacyBorderSide createLegacyBorderSide();
+
+	/**
+	 * Returns a new object of class '<em>Legacy Border Points</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Legacy Border Points</em>'.
+	 * @generated
+	 */
+	LegacyBorderPoints createLegacyBorderPoints();
 
 	/**
 	 * Returns a new object of class '<em>Legacy Station To Service Constraint Mapping</em>'.

@@ -2,6 +2,7 @@
  */
 package Gtm;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.FareTemplate#getPrice <em>Price</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getType <em>Type</em>}</li>
+ *   <li>{@link Gtm.FareTemplate#getAfterSalesTemplate <em>After Sales Template</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getDataDescription <em>Data Description</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getText <em>Text</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getRegionalConstraint <em>Regional Constraint</em>}</li>
@@ -35,7 +37,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.FareTemplate#getReductionConstraint <em>Reduction Constraint</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getFulfillmentConstraint <em>Fulfillment Constraint</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getPassengerConstraint <em>Passenger Constraint</em>}</li>
- *   <li>{@link Gtm.FareTemplate#getAfterSalesRule <em>After Sales Rule</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getLegacyConversion <em>Legacy Conversion</em>}</li>
  *   <li>{@link Gtm.FareTemplate#isIndividualContracts <em>Individual Contracts</em>}</li>
  * </ul>
@@ -162,6 +163,18 @@ public interface FareTemplate extends EObject {
 	 * @generated
 	 */
 	void setType(FareType value);
+
+	/**
+	 * Returns the value of the '<em><b>After Sales Template</b></em>' containment reference list.
+	 * The list contents are of type {@link Gtm.AfterSalesTemplate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>After Sales Template</em>' containment reference list.
+	 * @see Gtm.GtmPackage#getFareTemplate_AfterSalesTemplate()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<AfterSalesTemplate> getAfterSalesTemplate();
 
 	/**
 	 * Returns the value of the '<em><b>Data Description</b></em>' attribute.
@@ -558,28 +571,6 @@ public interface FareTemplate extends EObject {
 	 * @generated
 	 */
 	void setPassengerConstraint(PassengerConstraint value);
-
-	/**
-	 * Returns the value of the '<em><b>After Sales Rule</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>After Sales Rule</em>' reference.
-	 * @see #setAfterSalesRule(AfterSalesRule)
-	 * @see Gtm.GtmPackage#getFareTemplate_AfterSalesRule()
-	 * @model
-	 * @generated
-	 */
-	AfterSalesRule getAfterSalesRule();
-
-	/**
-	 * Sets the value of the '{@link Gtm.FareTemplate#getAfterSalesRule <em>After Sales Rule</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>After Sales Rule</em>' reference.
-	 * @see #getAfterSalesRule()
-	 * @generated
-	 */
-	void setAfterSalesRule(AfterSalesRule value);
 
 	/**
 	 * Returns the value of the '<em><b>Legacy Conversion</b></em>' attribute.

@@ -37,6 +37,8 @@ import Gtm.LegacyDistanceFare;
 import Gtm.LegacyDistanceFares;
 import Gtm.LegacyRouteFare;
 import Gtm.LegacyRouteFares;
+import Gtm.LegacySeparateContractSeries;
+import Gtm.LegacySeparateContractSeriesList;
 import Gtm.LegacySeries;
 import Gtm.LegacySeriesList;
 import Gtm.LegacySeriesType;
@@ -144,7 +146,99 @@ public class LegacyImporter {
 			updateMERITSStations();	
 		}
 		monitor.worked(1);
+		
+		
+		monitor.subTask(NationalLanguageSupport.ImportLegayTask_TCVLfile);
+		Path TCVLfilePath = Paths.get(directory.toString(), "TCVL" + provider + ".txt"); //$NON-NLS-1$ //$NON-NLS-2$
+		File TCVLfile =  TCVLfilePath.toFile();
+		if (TCVLfile.exists()) {
+			importTCVL(TCVLfile);
+		}
+		monitor.worked(1);
 	
+	}
+
+	private void importTCVL(File file) {
+		BufferedReader br = getReader (file);
+		if (br == null) return;
+		
+	       String st; 
+	        
+	       LegacySeparateContractSeriesList list = GtmFactory.eINSTANCE.createLegacySeparateContractSeriesList();
+	        
+
+	        try {
+				while ((st = br.readLine()) != null) {
+					
+					LegacySeparateContractSeries series = decodeTCVLLine(st, charset);
+					if (series != null) {
+					  list.getSeparateContractSeries().add(series);
+					}
+				}
+			} catch (IOException e) {
+				String message = "TCVL file import failed" + " - " + e.getMessage();
+				editor.getSite().getShell().getDisplay().asyncExec(() -> {
+					GtmUtils.writeConsoleError(message);
+				});
+				e.printStackTrace();
+				return;
+			} 
+	        
+	           	
+			Command cmd =  SetCommand.create(domain, legacy108, GtmPackage.Literals.LEGACY108__LEGACY_STATIONS, list );
+			if (cmd.canExecute()) {
+				domain.getCommandStack().execute(cmd);
+				String message = "TCVL series imported: " + Integer.toString(list.getSeparateContractSeries().size());
+				editor.getSite().getShell().getDisplay().asyncExec(() -> {
+					GtmUtils.writeConsoleInfo(message);
+				});
+			
+			}
+	}
+
+	private LegacySeparateContractSeries decodeTCVLLine(String st, String charset) {
+		
+		// 1 Code of the supplier RU numeric 4 M TAP TSI Technical Document B.8 1-4 e.g. 0081 for ÖBB 
+		// 2 Series numeric 5 M  5-9 Serves to assign fares to a specific series 
+		// 3 Flag for series numeric 5 M  10-14 0, 1 or 2 (cf. Subsection 2.2) 
+		// 4 First day of validity of fare numeric 8 M  15-22 Expressed as: "YYYYMMDD" 	
+		// 5 version number numeric 2 M  23-24 Serial numbering for versions on the fare date; "01" for the first issue; "02" for the second 
+		// 6 Last day of validity of fare numeric 8 M  25-32 Expressed as: "YYYYMMDD
+
+		String number  					= st.substring(4, 9);
+		String flag  					= st.substring(9, 10);
+				
+		String validFromString 			= st.substring(211,219);		
+		String validUntilString 		= st.substring(221,229);				
+		
+		if (flag.equals("2")) return null; //$NON-NLS-1$
+		
+		LegacySeparateContractSeries series = GtmFactory.eINSTANCE.createLegacySeparateContractSeries();
+			
+		series.setSeriesNumber(Integer.parseInt(number));
+		
+		for (LegacySeries s : tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries()) {
+			if (s.getNumber() == series.getSeriesNumber()) {
+				series.setSeries(s);
+			}
+		}
+		
+		Date dt = null;
+		try {
+		    dt = dateFormat.parse(validFromString);
+		    series.setValidFrom(dt);
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		} 
+		Date dt2 = null;
+		try {
+		    dt2 = dateFormat.parse(validUntilString);
+		    series.setValidUntil(dt2);
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		} 
+		
+		return series;
 	}
 
 	private void importTCVG(File file) {

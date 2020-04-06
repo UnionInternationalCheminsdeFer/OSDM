@@ -9,6 +9,9 @@ public class NationalLanguageSupport extends NLS{
 
 
 
+
+
+
 	public static String BasicGtmAction_0;
 	public static String ConverterFromLegacy_0;
 
@@ -396,6 +399,7 @@ public class NationalLanguageSupport extends NLS{
 	public static String ImportLegayTask_TCVSfile;
 	public static String ImportLegayTask_TCVfareFile;
 	public static String ImportLegayTask_BorderPoints;
+	public static String ImportLegayTask_TCVLfile;
 
     static {
         // initialize resource bundle

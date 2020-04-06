@@ -2,7 +2,7 @@
  */
 package Gtm.impl;
 
-import Gtm.AfterSalesRule;
+import Gtm.AfterSalesTemplate;
 import Gtm.CarrierConstraint;
 import Gtm.CombinationConstraint;
 import Gtm.FareTemplate;
@@ -24,14 +24,18 @@ import Gtm.ServiceLevel;
 import Gtm.Text;
 import Gtm.TravelValidityConstraint;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,6 +49,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.FareTemplateImpl#getPrice <em>Price</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getType <em>Type</em>}</li>
+ *   <li>{@link Gtm.impl.FareTemplateImpl#getAfterSalesTemplate <em>After Sales Template</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getDataDescription <em>Data Description</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getText <em>Text</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getRegionalConstraint <em>Regional Constraint</em>}</li>
@@ -63,7 +68,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.FareTemplateImpl#getReductionConstraint <em>Reduction Constraint</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getFulfillmentConstraint <em>Fulfillment Constraint</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getPassengerConstraint <em>Passenger Constraint</em>}</li>
- *   <li>{@link Gtm.impl.FareTemplateImpl#getAfterSalesRule <em>After Sales Rule</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getLegacyConversion <em>Legacy Conversion</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#isIndividualContracts <em>Individual Contracts</em>}</li>
  * </ul>
@@ -149,6 +153,16 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 	 * @ordered
 	 */
 	protected FareType type = TYPE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getAfterSalesTemplate() <em>After Sales Template</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAfterSalesTemplate()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AfterSalesTemplate> afterSalesTemplate;
 
 	/**
 	 * The default value of the '{@link #getDataDescription() <em>Data Description</em>}' attribute.
@@ -341,16 +355,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 	protected PassengerConstraint passengerConstraint;
 
 	/**
-	 * The cached value of the '{@link #getAfterSalesRule() <em>After Sales Rule</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAfterSalesRule()
-	 * @generated
-	 * @ordered
-	 */
-	protected AfterSalesRule afterSalesRule;
-
-	/**
 	 * The default value of the '{@link #getLegacyConversion() <em>Legacy Conversion</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -533,6 +537,18 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_TEMPLATE__TYPE, oldType, type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<AfterSalesTemplate> getAfterSalesTemplate() {
+		if (afterSalesTemplate == null) {
+			afterSalesTemplate = new EObjectContainmentEList<AfterSalesTemplate>(AfterSalesTemplate.class, this, GtmPackage.FARE_TEMPLATE__AFTER_SALES_TEMPLATE);
+		}
+		return afterSalesTemplate;
 	}
 
 	/**
@@ -1212,44 +1228,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AfterSalesRule getAfterSalesRule() {
-		if (afterSalesRule != null && afterSalesRule.eIsProxy()) {
-			InternalEObject oldAfterSalesRule = (InternalEObject)afterSalesRule;
-			afterSalesRule = (AfterSalesRule)eResolveProxy(oldAfterSalesRule);
-			if (afterSalesRule != oldAfterSalesRule) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.FARE_TEMPLATE__AFTER_SALES_RULE, oldAfterSalesRule, afterSalesRule));
-			}
-		}
-		return afterSalesRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AfterSalesRule basicGetAfterSalesRule() {
-		return afterSalesRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAfterSalesRule(AfterSalesRule newAfterSalesRule) {
-		AfterSalesRule oldAfterSalesRule = afterSalesRule;
-		afterSalesRule = newAfterSalesRule;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_TEMPLATE__AFTER_SALES_RULE, oldAfterSalesRule, afterSalesRule));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public LegacyConversionType getLegacyConversion() {
 		return legacyConversion;
 	}
@@ -1295,6 +1273,8 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case GtmPackage.FARE_TEMPLATE__AFTER_SALES_TEMPLATE:
+				return ((InternalEList<?>)getAfterSalesTemplate()).basicRemove(otherEnd, msgs);
 			case GtmPackage.FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER:
 				return basicSetLegacyAccountingIdentifier(null, msgs);
 		}
@@ -1318,6 +1298,8 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 				return getId();
 			case GtmPackage.FARE_TEMPLATE__TYPE:
 				return getType();
+			case GtmPackage.FARE_TEMPLATE__AFTER_SALES_TEMPLATE:
+				return getAfterSalesTemplate();
 			case GtmPackage.FARE_TEMPLATE__DATA_DESCRIPTION:
 				return getDataDescription();
 			case GtmPackage.FARE_TEMPLATE__TEXT:
@@ -1370,9 +1352,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 			case GtmPackage.FARE_TEMPLATE__PASSENGER_CONSTRAINT:
 				if (resolve) return getPassengerConstraint();
 				return basicGetPassengerConstraint();
-			case GtmPackage.FARE_TEMPLATE__AFTER_SALES_RULE:
-				if (resolve) return getAfterSalesRule();
-				return basicGetAfterSalesRule();
 			case GtmPackage.FARE_TEMPLATE__LEGACY_CONVERSION:
 				return getLegacyConversion();
 			case GtmPackage.FARE_TEMPLATE__INDIVIDUAL_CONTRACTS:
@@ -1386,6 +1365,7 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -1400,6 +1380,10 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 				return;
 			case GtmPackage.FARE_TEMPLATE__TYPE:
 				setType((FareType)newValue);
+				return;
+			case GtmPackage.FARE_TEMPLATE__AFTER_SALES_TEMPLATE:
+				getAfterSalesTemplate().clear();
+				getAfterSalesTemplate().addAll((Collection<? extends AfterSalesTemplate>)newValue);
 				return;
 			case GtmPackage.FARE_TEMPLATE__DATA_DESCRIPTION:
 				setDataDescription((String)newValue);
@@ -1455,9 +1439,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 			case GtmPackage.FARE_TEMPLATE__PASSENGER_CONSTRAINT:
 				setPassengerConstraint((PassengerConstraint)newValue);
 				return;
-			case GtmPackage.FARE_TEMPLATE__AFTER_SALES_RULE:
-				setAfterSalesRule((AfterSalesRule)newValue);
-				return;
 			case GtmPackage.FARE_TEMPLATE__LEGACY_CONVERSION:
 				setLegacyConversion((LegacyConversionType)newValue);
 				return;
@@ -1487,6 +1468,9 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 				return;
 			case GtmPackage.FARE_TEMPLATE__TYPE:
 				setType(TYPE_EDEFAULT);
+				return;
+			case GtmPackage.FARE_TEMPLATE__AFTER_SALES_TEMPLATE:
+				getAfterSalesTemplate().clear();
 				return;
 			case GtmPackage.FARE_TEMPLATE__DATA_DESCRIPTION:
 				setDataDescription(DATA_DESCRIPTION_EDEFAULT);
@@ -1542,9 +1526,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 			case GtmPackage.FARE_TEMPLATE__PASSENGER_CONSTRAINT:
 				setPassengerConstraint((PassengerConstraint)null);
 				return;
-			case GtmPackage.FARE_TEMPLATE__AFTER_SALES_RULE:
-				setAfterSalesRule((AfterSalesRule)null);
-				return;
 			case GtmPackage.FARE_TEMPLATE__LEGACY_CONVERSION:
 				setLegacyConversion(LEGACY_CONVERSION_EDEFAULT);
 				return;
@@ -1571,6 +1552,8 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case GtmPackage.FARE_TEMPLATE__TYPE:
 				return type != TYPE_EDEFAULT;
+			case GtmPackage.FARE_TEMPLATE__AFTER_SALES_TEMPLATE:
+				return afterSalesTemplate != null && !afterSalesTemplate.isEmpty();
 			case GtmPackage.FARE_TEMPLATE__DATA_DESCRIPTION:
 				return DATA_DESCRIPTION_EDEFAULT == null ? dataDescription != null : !DATA_DESCRIPTION_EDEFAULT.equals(dataDescription);
 			case GtmPackage.FARE_TEMPLATE__TEXT:
@@ -1607,8 +1590,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 				return fulfillmentConstraint != null;
 			case GtmPackage.FARE_TEMPLATE__PASSENGER_CONSTRAINT:
 				return passengerConstraint != null;
-			case GtmPackage.FARE_TEMPLATE__AFTER_SALES_RULE:
-				return afterSalesRule != null;
 			case GtmPackage.FARE_TEMPLATE__LEGACY_CONVERSION:
 				return legacyConversion != LEGACY_CONVERSION_EDEFAULT;
 			case GtmPackage.FARE_TEMPLATE__INDIVIDUAL_CONTRACTS:

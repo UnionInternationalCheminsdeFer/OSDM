@@ -293,16 +293,18 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/CHILD"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/YOUTH"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/SENIOR"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/ACCOMP_PRM"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/FAMILY_CHILD"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/YOUNG_CHILD"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/DOG"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/LUGGAGE"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/ACCOMP_DOG"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/PRM_CHILD"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/ACCOMP_PRM"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/CAR"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/BICYCLE"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/MOTOCYCLE"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/TRAILER"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/GRAPHICAL_RES"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TravelerType/OPT_RESERVATION"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//WeekDay">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/MONDAY"/>
@@ -370,14 +372,14 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CodeLists/nutsCodes"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//NUTSCodes">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//NUTSCodes/nutsCodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//NUTSCodes/nutsCodes"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//NutsCode">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//NutsCode/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//NutsCode/code"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//ServiceBrands">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ServiceBrands/serviceBrands"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ServiceBrands/serviceBrands"/>
       <genOperations ecoreOperation="Gtm.ecore#//ServiceBrands/findServiceBRand">
         <genParameters ecoreParameter="Gtm.ecore#//ServiceBrands/findServiceBRand/code"/>
       </genOperations>
@@ -400,14 +402,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Country/ISOcode"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Languages">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Languages/languages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Languages/languages"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Language">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Language/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Language/code"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Currencies">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Currencies/currencies"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Currencies/currencies"/>
       <genOperations ecoreOperation="Gtm.ecore#//Currencies/findCurrency">
         <genParameters ecoreParameter="Gtm.ecore#//Currencies/findCurrency/ISOcode"/>
       </genOperations>
@@ -417,7 +419,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Currency/isoCode"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Stations">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Stations/stations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Stations/stations"/>
       <genOperations ecoreOperation="Gtm.ecore#//Stations/findStation">
         <genParameters ecoreParameter="Gtm.ecore#//Stations/findStation/countryCodeUIC"/>
         <genParameters ecoreParameter="Gtm.ecore#//Stations/findStation/localCode"/>
@@ -452,7 +454,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Carrier/shortName"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Carriers">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Carriers/carriers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Carriers/carriers"/>
       <genOperations documentation="find a carrier by its code" ecoreOperation="Gtm.ecore#//Carriers/findCarrier">
         <genParameters ecoreParameter="Gtm.ecore#//Carriers/findCarrier/code"/>
       </genOperations>
@@ -474,18 +476,19 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Delivery/acceptedSchemaVersion"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//AfterSalesRules">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//AfterSalesRules/afterSalesRules"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//AfterSalesRules/afterSalesRules"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//AfterSalesRule">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesRule/id"/>
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//AfterSalesRule/conditions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesRule/dataSource"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//AfterSalesRule/conditions"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//AfterSalesCondition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesCondition/transactionType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesCondition/individualContracts"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesCondition/carrierFee"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//AfterSalesCondition/fee"/>
-      <genFeatures children="true" createChild="true" propertyDescription="application time"
+      <genFeatures property="None" children="true" createChild="true" propertyDescription="application time"
           ecoreFeature="ecore:EReference Gtm.ecore#//AfterSalesCondition/applicationTime"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//ApplicationTime"/>
@@ -527,7 +530,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConnectionPoint/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConnectionPoint/LegacyBorderPointCode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConnectionPoint/description"/>
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ConnectionPoint/connectedStationSets"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ConnectionPoint/connectedStationSets"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConnectionPoint/dataSource"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConnectionPoint/nameUtf8"/>
     </genClasses>
@@ -537,21 +540,21 @@
       <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareResourceLocations/carrierResourceLocations"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//TrainResourceLocations">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//TrainResourceLocations/trainResourceLocations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//TrainResourceLocations/trainResourceLocations"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//StationResourceLocations">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//StationResourceLocations/stationResourceLocations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//StationResourceLocations/stationResourceLocations"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//CarrierResourceLocations">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CarrierResourceLocations/carrierResourceLocations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CarrierResourceLocations/carrierResourceLocations"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//TrainResourceLocation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//TrainResourceLocation/carrier"/>
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//TrainResourceLocation/onlineResources"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//TrainResourceLocation/onlineResources"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TrainResourceLocation/trainId"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//StationResourceLocation">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//StationResourceLocation/onlineResources"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//StationResourceLocation/onlineResources"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//StationResourceLocation/stations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//StationResourceLocation/connectionPoints"/>
     </genClasses>
@@ -562,7 +565,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//OnlineResource/system"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//FulfillmentConstraints">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FulfillmentConstraints/fulfillmentConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FulfillmentConstraints/fulfillmentConstraints"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//FulfillmentConstraint" labelFeature="#//Gtm/FulfillmentConstraint/dataDescription">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FulfillmentConstraint/id"/>
@@ -583,10 +586,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//SupportedOnlineServices/supportedOnlineServices"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//StationNames">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//StationNames/stationName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//StationNames/stationName"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//FareElements">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElements/fareElements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElements/fareElements"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//FareElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareElement/id"/>
@@ -615,7 +618,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareElement/individualContracts"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//FareStationSetDefinitions">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStationSetDefinitions/fareStationSetDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareStationSetDefinitions/fareStationSetDefinitions"/>
       <genOperations ecoreOperation="Gtm.ecore#//FareStationSetDefinitions/findFareSet">
         <genParameters ecoreParameter="Gtm.ecore#//FareStationSetDefinitions/findFareSet/carrier"/>
         <genParameters ecoreParameter="Gtm.ecore#//FareStationSetDefinitions/findFareSet/legacyCode"/>
@@ -637,29 +640,29 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyAccountingIdentifier/addSeriesId"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//ReductionConstraints">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReductionConstraints/reductionConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ReductionConstraints/reductionConstraints"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//PersonalDataConstraints">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PersonalDataConstraints/personalDataConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PersonalDataConstraints/personalDataConstraints"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//PersonalDataConstraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PersonalDataConstraint/id"/>
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PersonalDataConstraint/requiredPersonalData"/>
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PersonalDataConstraint/allowedChanges"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PersonalDataConstraint/requiredPersonalData"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PersonalDataConstraint/allowedChanges"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//RequiredPersonalData">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RequiredPersonalData/ticketHolderOnly"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RequiredPersonalData/dataItem"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RequiredPersonalData/transfer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RequiredPersonalData/fulfillmentType"/>
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RequiredPersonalData/crossBorder"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RequiredPersonalData/crossBorder"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//AllowedPersonalDataChanges">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AllowedPersonalDataChanges/timeLimit"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AllowedPersonalDataChanges/acceptedReason"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//PassengerConstraints">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PassengerConstraints/passengerConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//PassengerConstraints/passengerConstraints"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//PassengerConstraint" labelFeature="#//Gtm/PassengerConstraint/dataDescription">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//PassengerConstraint/id"/>
@@ -688,15 +691,15 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//IncludedFreePassengerLimit/passengerType"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//CombinationConstraints">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CombinationConstraints/combinationConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CombinationConstraints/combinationConstraints"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//CombinationConstraint" labelFeature="#//Gtm/CombinationConstraint/dataDescription">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//CombinationConstraint/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//CombinationConstraint/dataDescription"/>
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CombinationConstraint/combinationModels"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//CombinationConstraint/combinationModels"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//TravelValidityConstraints">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//TravelValidityConstraints/travelValidityConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//TravelValidityConstraints/travelValidityConstraints"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//TravelValidityConstraint" labelFeature="#//Gtm/TravelValidityConstraint/dataDescription">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TravelValidityConstraint/id"/>
@@ -705,7 +708,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//TravelValidityConstraint/travelDays"/>
       <genFeatures children="true" createChild="true" propertyDescription="" ecoreFeature="ecore:EReference Gtm.ecore#//TravelValidityConstraint/range"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//TravelValidityConstraint/returnConstraint"/>
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//TravelValidityConstraint/excludedTimeRange"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//TravelValidityConstraint/excludedTimeRange"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//SalesAvailabilityConstraints">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//SalesAvailabilityConstraints/salesAvailabilityConstraints"/>
@@ -717,7 +720,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//SalesAvailabilityConstraint/dataSource"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//SalesRestriction">
-      <genFeatures notify="false" createChild="false" propertyDescription="sales dates"
+      <genFeatures property="None" notify="false" createChild="false" propertyDescription="sales dates"
           propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//SalesRestriction/salesDates"/>
       <genFeatures property="None" children="true" createChild="true" propertyDescription="start of sale"
           ecoreFeature="ecore:EReference Gtm.ecore#//SalesRestriction/startOfSale"/>
@@ -762,16 +765,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RegionalConstraint/distance"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalConstraint/entryConnectionPoint"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalConstraint/exitConnectionPoint"/>
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalConstraint/regionalValidity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalConstraint/regionalValidity"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RegionalConstraint/dataSource"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RegionalConstraint/dataDescription"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//RegionalValidity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//RegionalValidity/seqNb"/>
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/viaStation"/>
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/zone"/>
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/line"/>
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/polygone"/>
+      <genFeatures property="None" children="true" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/viaStation"/>
+      <genFeatures property="None" children="true" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/zone"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/line"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//RegionalValidity/polygone"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//ServiceLevelDefinitions">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ServiceLevelDefinitions/serviceLevelDefinition"/>
@@ -894,17 +899,17 @@
     <genClasses ecoreClass="Gtm.ecore#//ViaStation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/station"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/carrier"/>
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/route"/>
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/alternativeRoutes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/route"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/alternativeRoutes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ViaStation/dataDescription"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ViaStation/fareStationSet"/>
       <genOperations ecoreOperation="Gtm.ecore#//ViaStation/getDescription"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//AlternativeRoute">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//AlternativeRoute/stations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//AlternativeRoute/stations"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Route">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Route/stations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Route/stations"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Zone">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Zone/binaryZoneId"/>
@@ -999,6 +1004,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/price"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/afterSalesTemplate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/dataDescription"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/text"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/regionalConstraint"/>
@@ -1017,15 +1023,39 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/reductionConstraint"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/fulfillmentConstraint"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/passengerConstraint"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/afterSalesRule"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/legacyConversion"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/individualContracts"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//AfterSalesTemplate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesTemplate/transactionType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesTemplate/carrierFee"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//AfterSalesTemplate/applicationTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesTemplate/feeFactor"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//LegacyStationToServiceConstraintMappings">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyStationToServiceConstraintMappings/legacyStationToServiceBrandMappings"/>
       <genOperations ecoreOperation="Gtm.ecore#//LegacyStationToServiceConstraintMappings/findServiceConstraint">
         <genParameters ecoreParameter="Gtm.ecore#//LegacyStationToServiceConstraintMappings/findServiceConstraint/stationCode"/>
       </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//LegacyBorderPoint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyBorderPoint/borderPointCode"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderPoint/fakeBorderStations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderPoint/onBorderStations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderPoint/borderSides"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//OnBorderStations">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//OnBorderStations/stations"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//LegacyFakeBorderStations">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyFakeBorderStations/stations"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//LegacyBorderSide">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderSide/carrier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderSide/stations"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//LegacyBorderPoints">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderPoints/legacyBorderPoints"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//LegacyStationToServiceConstraintMapping" labelFeature="#//Gtm/LegacyStationToServiceConstraintMapping/description">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyStationToServiceConstraintMapping/code"/>
@@ -1085,6 +1115,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EReference Gtm.ecore#//Legacy108/carrier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Legacy108/startDate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Legacy108/endDate"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//Legacy108/legacyBorderPoints"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Legacy108FareDescription">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Legacy108FareDescription/tableId"/>

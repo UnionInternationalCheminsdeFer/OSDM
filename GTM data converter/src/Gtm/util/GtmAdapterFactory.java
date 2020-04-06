@@ -516,8 +516,32 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createFareTemplateAdapter();
 			}
 			@Override
+			public Adapter caseAfterSalesTemplate(AfterSalesTemplate object) {
+				return createAfterSalesTemplateAdapter();
+			}
+			@Override
 			public Adapter caseLegacyStationToServiceConstraintMappings(LegacyStationToServiceConstraintMappings object) {
 				return createLegacyStationToServiceConstraintMappingsAdapter();
+			}
+			@Override
+			public Adapter caseLegacyBorderPoint(LegacyBorderPoint object) {
+				return createLegacyBorderPointAdapter();
+			}
+			@Override
+			public Adapter caseOnBorderStations(OnBorderStations object) {
+				return createOnBorderStationsAdapter();
+			}
+			@Override
+			public Adapter caseLegacyFakeBorderStations(LegacyFakeBorderStations object) {
+				return createLegacyFakeBorderStationsAdapter();
+			}
+			@Override
+			public Adapter caseLegacyBorderSide(LegacyBorderSide object) {
+				return createLegacyBorderSideAdapter();
+			}
+			@Override
+			public Adapter caseLegacyBorderPoints(LegacyBorderPoints object) {
+				return createLegacyBorderPointsAdapter();
 			}
 			@Override
 			public Adapter caseLegacyStationToServiceConstraintMapping(LegacyStationToServiceConstraintMapping object) {
@@ -2208,6 +2232,20 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.AfterSalesTemplate <em>After Sales Template</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.AfterSalesTemplate
+	 * @generated
+	 */
+	public Adapter createAfterSalesTemplateAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link Gtm.LegacyStationToServiceConstraintMappings <em>Legacy Station To Service Constraint Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -2218,6 +2256,76 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLegacyStationToServiceConstraintMappingsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyBorderPoint <em>Legacy Border Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyBorderPoint
+	 * @generated
+	 */
+	public Adapter createLegacyBorderPointAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.OnBorderStations <em>On Border Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.OnBorderStations
+	 * @generated
+	 */
+	public Adapter createOnBorderStationsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyFakeBorderStations <em>Legacy Fake Border Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyFakeBorderStations
+	 * @generated
+	 */
+	public Adapter createLegacyFakeBorderStationsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyBorderSide <em>Legacy Border Side</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyBorderSide
+	 * @generated
+	 */
+	public Adapter createLegacyBorderSideAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.LegacyBorderPoints <em>Legacy Border Points</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.LegacyBorderPoints
+	 * @generated
+	 */
+	public Adapter createLegacyBorderPointsAdapter() {
 		return null;
 	}
 

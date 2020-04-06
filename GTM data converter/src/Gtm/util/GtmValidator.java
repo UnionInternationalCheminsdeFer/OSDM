@@ -314,8 +314,20 @@ public class GtmValidator extends EObjectValidator {
 				return validateConversionParams((ConversionParams)value, diagnostics, context);
 			case GtmPackage.FARE_TEMPLATE:
 				return validateFareTemplate((FareTemplate)value, diagnostics, context);
+			case GtmPackage.AFTER_SALES_TEMPLATE:
+				return validateAfterSalesTemplate((AfterSalesTemplate)value, diagnostics, context);
 			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS:
 				return validateLegacyStationToServiceConstraintMappings((LegacyStationToServiceConstraintMappings)value, diagnostics, context);
+			case GtmPackage.LEGACY_BORDER_POINT:
+				return validateLegacyBorderPoint((LegacyBorderPoint)value, diagnostics, context);
+			case GtmPackage.ON_BORDER_STATIONS:
+				return validateOnBorderStations((OnBorderStations)value, diagnostics, context);
+			case GtmPackage.LEGACY_FAKE_BORDER_STATIONS:
+				return validateLegacyFakeBorderStations((LegacyFakeBorderStations)value, diagnostics, context);
+			case GtmPackage.LEGACY_BORDER_SIDE:
+				return validateLegacyBorderSide((LegacyBorderSide)value, diagnostics, context);
+			case GtmPackage.LEGACY_BORDER_POINTS:
+				return validateLegacyBorderPoints((LegacyBorderPoints)value, diagnostics, context);
 			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING:
 				return validateLegacyStationToServiceConstraintMapping((LegacyStationToServiceConstraintMapping)value, diagnostics, context);
 			case GtmPackage.LEGACY_STATION_MAPPINGS:
@@ -1345,6 +1357,15 @@ public class GtmValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateAfterSalesTemplate(AfterSalesTemplate afterSalesTemplate, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(afterSalesTemplate, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateFareStructure(FareStructure fareStructure, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(fareStructure, diagnostics, context);
 	}
@@ -1919,6 +1940,51 @@ public class GtmValidator extends EObjectValidator {
 	 */
 	public boolean validateLegacyStationToServiceConstraintMappings(LegacyStationToServiceConstraintMappings legacyStationToServiceConstraintMappings, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(legacyStationToServiceConstraintMappings, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLegacyBorderPoint(LegacyBorderPoint legacyBorderPoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(legacyBorderPoint, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOnBorderStations(OnBorderStations onBorderStations, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(onBorderStations, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLegacyFakeBorderStations(LegacyFakeBorderStations legacyFakeBorderStations, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(legacyFakeBorderStations, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLegacyBorderSide(LegacyBorderSide legacyBorderSide, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(legacyBorderSide, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLegacyBorderPoints(LegacyBorderPoints legacyBorderPoints, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(legacyBorderPoints, diagnostics, context);
 	}
 
 	/**

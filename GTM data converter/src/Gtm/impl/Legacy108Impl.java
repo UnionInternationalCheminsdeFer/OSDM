@@ -8,6 +8,7 @@ import Gtm.GtmPackage;
 import Gtm.Legacy108;
 import Gtm.Legacy108FaresDescriptions;
 import Gtm.Legacy108Stations;
+import Gtm.LegacyBorderPoints;
 import Gtm.LegacyDistanceFares;
 import Gtm.LegacyRouteFares;
 import Gtm.LegacySeparateContractSeriesList;
@@ -41,6 +42,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.Legacy108Impl#getCarrier <em>Carrier</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getStartDate <em>Start Date</em>}</li>
  *   <li>{@link Gtm.impl.Legacy108Impl#getEndDate <em>End Date</em>}</li>
+ *   <li>{@link Gtm.impl.Legacy108Impl#getLegacyBorderPoints <em>Legacy Border Points</em>}</li>
  * </ul>
  *
  * @generated
@@ -197,6 +199,16 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 	protected Date endDate = END_DATE_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getLegacyBorderPoints() <em>Legacy Border Points</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyBorderPoints()
+	 * @generated
+	 * @ordered
+	 */
+	protected LegacyBorderPoints legacyBorderPoints;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -314,6 +326,49 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 		endDate = newEndDate;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__END_DATE, oldEndDate, endDate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LegacyBorderPoints getLegacyBorderPoints() {
+		return legacyBorderPoints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLegacyBorderPoints(LegacyBorderPoints newLegacyBorderPoints, NotificationChain msgs) {
+		LegacyBorderPoints oldLegacyBorderPoints = legacyBorderPoints;
+		legacyBorderPoints = newLegacyBorderPoints;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_BORDER_POINTS, oldLegacyBorderPoints, newLegacyBorderPoints);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyBorderPoints(LegacyBorderPoints newLegacyBorderPoints) {
+		if (newLegacyBorderPoints != legacyBorderPoints) {
+			NotificationChain msgs = null;
+			if (legacyBorderPoints != null)
+				msgs = ((InternalEObject)legacyBorderPoints).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_BORDER_POINTS, null, msgs);
+			if (newLegacyBorderPoints != null)
+				msgs = ((InternalEObject)newLegacyBorderPoints).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.LEGACY108__LEGACY_BORDER_POINTS, null, msgs);
+			msgs = basicSetLegacyBorderPoints(newLegacyBorderPoints, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY108__LEGACY_BORDER_POINTS, newLegacyBorderPoints, newLegacyBorderPoints));
 	}
 
 	/**
@@ -615,6 +670,8 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 				return basicSetLegacyStations(null, msgs);
 			case GtmPackage.LEGACY108__LEGACY_FARE_DESCRIPTIONS:
 				return basicSetLegacyFareDescriptions(null, msgs);
+			case GtmPackage.LEGACY108__LEGACY_BORDER_POINTS:
+				return basicSetLegacyBorderPoints(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -650,6 +707,8 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 				return getStartDate();
 			case GtmPackage.LEGACY108__END_DATE:
 				return getEndDate();
+			case GtmPackage.LEGACY108__LEGACY_BORDER_POINTS:
+				return getLegacyBorderPoints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -696,6 +755,9 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 			case GtmPackage.LEGACY108__END_DATE:
 				setEndDate((Date)newValue);
 				return;
+			case GtmPackage.LEGACY108__LEGACY_BORDER_POINTS:
+				setLegacyBorderPoints((LegacyBorderPoints)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -741,6 +803,9 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 			case GtmPackage.LEGACY108__END_DATE:
 				setEndDate(END_DATE_EDEFAULT);
 				return;
+			case GtmPackage.LEGACY108__LEGACY_BORDER_POINTS:
+				setLegacyBorderPoints((LegacyBorderPoints)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -775,6 +840,8 @@ public class Legacy108Impl extends MinimalEObjectImpl.Container implements Legac
 				return START_DATE_EDEFAULT == null ? startDate != null : !START_DATE_EDEFAULT.equals(startDate);
 			case GtmPackage.LEGACY108__END_DATE:
 				return END_DATE_EDEFAULT == null ? endDate != null : !END_DATE_EDEFAULT.equals(endDate);
+			case GtmPackage.LEGACY108__LEGACY_BORDER_POINTS:
+				return legacyBorderPoints != null;
 		}
 		return super.eIsSet(featureID);
 	}

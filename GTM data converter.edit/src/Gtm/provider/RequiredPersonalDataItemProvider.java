@@ -68,7 +68,6 @@ public class RequiredPersonalDataItemProvider
 			addDataItemPropertyDescriptor(object);
 			addTransferPropertyDescriptor(object);
 			addFulfillmentTypePropertyDescriptor(object);
-			addCrossBorderPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -157,28 +156,6 @@ public class RequiredPersonalDataItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Cross Border feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCrossBorderPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RequiredPersonalData_crossBorder_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RequiredPersonalData_crossBorder_feature", "_UI_RequiredPersonalData_type"),
-				 GtmPackage.Literals.REQUIRED_PERSONAL_DATA__CROSS_BORDER,
-				 true,
-				 false,
-				 false,
-				 null,
 				 null,
 				 null));
 	}

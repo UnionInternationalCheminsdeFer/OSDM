@@ -50,6 +50,7 @@ import Gtm.actions.ConvertLegacy2GtmAction;
 import Gtm.actions.ExportGTMJsonAction;
 import Gtm.actions.ExportLegacyAction;
 import Gtm.actions.GtmValidateAction;
+import Gtm.actions.ImportBorderPointsAction;
 import Gtm.actions.ImportCarriersAction;
 import Gtm.actions.ImportGTMJsonAction;
 import Gtm.actions.ImportLegacy108Action;
@@ -209,7 +210,8 @@ public class GtmActionBarContributor
 	protected ImportStationsAction importStationsAction = null;
 	protected ImportCarriersAction importCarriersAction = null;
 	protected ImportServiceBrandsAction importServiceBrandsAction = null;
-	protected ImportNutsCodesAction importNutsCodesAction = null;		
+	protected ImportNutsCodesAction importNutsCodesAction = null;	
+	protected ImportBorderPointsAction importBorderPointsAction = null;	
 	protected ImportLegacy108Action importLegacy108Action = null;				
 	protected ImportGTMJsonAction importGTMJsonAction = null;	
 	protected ExportGTMJsonAction exportGTMJsonAction = null;	
@@ -253,7 +255,9 @@ public class GtmActionBarContributor
 			importServiceBrandsAction = new ImportServiceBrandsAction(this);
 			gtmActions.add(importServiceBrandsAction);
 			importNutsCodesAction = new ImportNutsCodesAction(this);
-			gtmActions.add(importNutsCodesAction);		
+			gtmActions.add(importNutsCodesAction);	
+			importBorderPointsAction = new ImportBorderPointsAction(this);
+			gtmActions.add(importBorderPointsAction);	
 			importLegacy108Action = new ImportLegacy108Action(this);
 			gtmActions.add(importLegacy108Action);	
 			convertLegacy2GtmAction = new ConvertLegacy2GtmAction(this);
@@ -288,11 +292,13 @@ public class GtmActionBarContributor
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
 		contributeToToolBarGen(toolBarManager);
-				
+
+		toolBarManager.insertAfter("gtm-additions",importBorderPointsAction);
 		toolBarManager.insertAfter("gtm-additions",importNutsCodesAction);
 		toolBarManager.insertAfter("gtm-additions",importServiceBrandsAction);
 		toolBarManager.insertAfter("gtm-additions",importCarriersAction);
 		toolBarManager.insertAfter("gtm-additions",importStationsAction);
+
 		
 		toolBarManager.add(new Separator("gtm-convert-l-2-g"));
 

@@ -603,15 +603,15 @@ public class GtmUtils {
 
 
 	public static void writeConsoleError(String message) {
-		ConsoleUtil.printError(NationalLanguageSupport.GtmUtils_150, message);
+		ConsoleUtil.printError("Errors", message);
 	}
 
 	public static void writeConsoleWarning(String message) {
-		ConsoleUtil.printWarning(NationalLanguageSupport.GtmUtils_151, message);
+		ConsoleUtil.printWarning("Errors", message);
 	}
 	
 	public static void writeConsoleInfo(String message) {
-		ConsoleUtil.printInfo(NationalLanguageSupport.GtmUtils_152, message);
+		ConsoleUtil.printInfo("Errors", message);
 	}	
 
 	public static CompoundCommand setIds(GTMTool tool, EditingDomain domain) {

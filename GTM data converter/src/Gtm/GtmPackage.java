@@ -930,6 +930,16 @@ public interface GtmPackage extends EPackage {
 	int CARRIER = 15;
 
 	/**
+	 * The meta object id for the '{@link Gtm.impl.CarriersImpl <em>Carriers</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.CarriersImpl
+	 * @see Gtm.impl.GtmPackageImpl#getCarriers()
+	 * @generated
+	 */
+	int CARRIERS = 16;
+
+	/**
 	 * The feature id for the '<em><b>Code</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -973,16 +983,6 @@ public interface GtmPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARRIER_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Gtm.impl.CarriersImpl <em>Carriers</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Gtm.impl.CarriersImpl
-	 * @see Gtm.impl.GtmPackageImpl#getCarriers()
-	 * @generated
-	 */
-	int CARRIERS = 16;
 
 	/**
 	 * The feature id for the '<em><b>Carriers</b></em>' containment reference list.
@@ -1251,13 +1251,22 @@ public interface GtmPackage extends EPackage {
 	int AFTER_SALES_RULE__ID = 0;
 
 	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AFTER_SALES_RULE__DATA_SOURCE = 1;
+
+	/**
 	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AFTER_SALES_RULE__CONDITIONS = 1;
+	int AFTER_SALES_RULE__CONDITIONS = 2;
 
 	/**
 	 * The number of structural features of the '<em>After Sales Rule</em>' class.
@@ -1266,7 +1275,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AFTER_SALES_RULE_FEATURE_COUNT = 2;
+	int AFTER_SALES_RULE_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>After Sales Rule</em>' class.
@@ -6885,13 +6894,22 @@ public interface GtmPackage extends EPackage {
 	int FARE_TEMPLATE__TYPE = 3;
 
 	/**
+	 * The feature id for the '<em><b>After Sales Template</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FARE_TEMPLATE__AFTER_SALES_TEMPLATE = 4;
+
+	/**
 	 * The feature id for the '<em><b>Data Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__DATA_DESCRIPTION = 4;
+	int FARE_TEMPLATE__DATA_DESCRIPTION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' reference.
@@ -6900,7 +6918,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__TEXT = 5;
+	int FARE_TEMPLATE__TEXT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Regional Constraint</b></em>' reference.
@@ -6909,7 +6927,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__REGIONAL_CONSTRAINT = 6;
+	int FARE_TEMPLATE__REGIONAL_CONSTRAINT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Service Constraint</b></em>' reference.
@@ -6918,7 +6936,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__SERVICE_CONSTRAINT = 7;
+	int FARE_TEMPLATE__SERVICE_CONSTRAINT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Carrier Constraint</b></em>' reference.
@@ -6927,7 +6945,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__CARRIER_CONSTRAINT = 8;
+	int FARE_TEMPLATE__CARRIER_CONSTRAINT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Service Class</b></em>' reference.
@@ -6936,7 +6954,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__SERVICE_CLASS = 9;
+	int FARE_TEMPLATE__SERVICE_CLASS = 10;
 
 	/**
 	 * The feature id for the '<em><b>Service Level</b></em>' reference.
@@ -6945,7 +6963,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__SERVICE_LEVEL = 10;
+	int FARE_TEMPLATE__SERVICE_LEVEL = 11;
 
 	/**
 	 * The feature id for the '<em><b>Sales Availability</b></em>' reference.
@@ -6954,7 +6972,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__SALES_AVAILABILITY = 11;
+	int FARE_TEMPLATE__SALES_AVAILABILITY = 12;
 
 	/**
 	 * The feature id for the '<em><b>Travel Validity</b></em>' reference.
@@ -6963,7 +6981,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__TRAVEL_VALIDITY = 12;
+	int FARE_TEMPLATE__TRAVEL_VALIDITY = 13;
 
 	/**
 	 * The feature id for the '<em><b>Combination Constraint</b></em>' reference.
@@ -6972,7 +6990,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__COMBINATION_CONSTRAINT = 13;
+	int FARE_TEMPLATE__COMBINATION_CONSTRAINT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Separate Contract Combination Constraint</b></em>' reference.
@@ -6981,7 +6999,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT = 14;
+	int FARE_TEMPLATE__SEPARATE_CONTRACT_COMBINATION_CONSTRAINT = 15;
 
 	/**
 	 * The feature id for the '<em><b>Fare Detail Description</b></em>' reference.
@@ -6990,7 +7008,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION = 15;
+	int FARE_TEMPLATE__FARE_DETAIL_DESCRIPTION = 16;
 
 	/**
 	 * The feature id for the '<em><b>Legacy Accounting Identifier</b></em>' containment reference.
@@ -6999,7 +7017,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER = 16;
+	int FARE_TEMPLATE__LEGACY_ACCOUNTING_IDENTIFIER = 17;
 
 	/**
 	 * The feature id for the '<em><b>Personal Data Constraint</b></em>' reference.
@@ -7008,7 +7026,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT = 17;
+	int FARE_TEMPLATE__PERSONAL_DATA_CONSTRAINT = 18;
 
 	/**
 	 * The feature id for the '<em><b>Reservation Parameter</b></em>' reference.
@@ -7017,7 +7035,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__RESERVATION_PARAMETER = 18;
+	int FARE_TEMPLATE__RESERVATION_PARAMETER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Reduction Constraint</b></em>' reference.
@@ -7026,7 +7044,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__REDUCTION_CONSTRAINT = 19;
+	int FARE_TEMPLATE__REDUCTION_CONSTRAINT = 20;
 
 	/**
 	 * The feature id for the '<em><b>Fulfillment Constraint</b></em>' reference.
@@ -7035,7 +7053,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__FULFILLMENT_CONSTRAINT = 20;
+	int FARE_TEMPLATE__FULFILLMENT_CONSTRAINT = 21;
 
 	/**
 	 * The feature id for the '<em><b>Passenger Constraint</b></em>' reference.
@@ -7044,16 +7062,7 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FARE_TEMPLATE__PASSENGER_CONSTRAINT = 21;
-
-	/**
-	 * The feature id for the '<em><b>After Sales Rule</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FARE_TEMPLATE__AFTER_SALES_RULE = 22;
+	int FARE_TEMPLATE__PASSENGER_CONSTRAINT = 22;
 
 	/**
 	 * The feature id for the '<em><b>Legacy Conversion</b></em>' attribute.
@@ -7092,6 +7101,70 @@ public interface GtmPackage extends EPackage {
 	int FARE_TEMPLATE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link Gtm.impl.AfterSalesTemplateImpl <em>After Sales Template</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.AfterSalesTemplateImpl
+	 * @see Gtm.impl.GtmPackageImpl#getAfterSalesTemplate()
+	 * @generated
+	 */
+	int AFTER_SALES_TEMPLATE = 112;
+
+	/**
+	 * The feature id for the '<em><b>Transaction Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AFTER_SALES_TEMPLATE__TRANSACTION_TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Carrier Fee</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AFTER_SALES_TEMPLATE__CARRIER_FEE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Application Time</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AFTER_SALES_TEMPLATE__APPLICATION_TIME = 2;
+
+	/**
+	 * The feature id for the '<em><b>Fee Factor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AFTER_SALES_TEMPLATE__FEE_FACTOR = 3;
+
+	/**
+	 * The number of structural features of the '<em>After Sales Template</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AFTER_SALES_TEMPLATE_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>After Sales Template</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AFTER_SALES_TEMPLATE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link Gtm.impl.LegacyStationToServiceConstraintMappingsImpl <em>Legacy Station To Service Constraint Mappings</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7099,7 +7172,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyStationToServiceConstraintMappings()
 	 * @generated
 	 */
-	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS = 112;
+	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS = 113;
 
 	/**
 	 * The feature id for the '<em><b>Legacy Station To Service Brand Mappings</b></em>' containment reference list.
@@ -7138,6 +7211,227 @@ public interface GtmPackage extends EPackage {
 	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS_OPERATION_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyBorderPointImpl <em>Legacy Border Point</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyBorderPointImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyBorderPoint()
+	 * @generated
+	 */
+	int LEGACY_BORDER_POINT = 114;
+
+	/**
+	 * The feature id for the '<em><b>Border Point Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINT__BORDER_POINT_CODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Fake Border Stations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINT__FAKE_BORDER_STATIONS = 1;
+
+	/**
+	 * The feature id for the '<em><b>On Border Stations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINT__ON_BORDER_STATIONS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Border Sides</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINT__BORDER_SIDES = 3;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Border Point</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINT_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Legacy Border Point</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.OnBorderStationsImpl <em>On Border Stations</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.OnBorderStationsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getOnBorderStations()
+	 * @generated
+	 */
+	int ON_BORDER_STATIONS = 115;
+
+	/**
+	 * The feature id for the '<em><b>Stations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_BORDER_STATIONS__STATIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>On Border Stations</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_BORDER_STATIONS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>On Border Stations</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_BORDER_STATIONS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyFakeBorderStationsImpl <em>Legacy Fake Border Stations</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyFakeBorderStationsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyFakeBorderStations()
+	 * @generated
+	 */
+	int LEGACY_FAKE_BORDER_STATIONS = 116;
+
+	/**
+	 * The feature id for the '<em><b>Stations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_FAKE_BORDER_STATIONS__STATIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Fake Border Stations</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_FAKE_BORDER_STATIONS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Legacy Fake Border Stations</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_FAKE_BORDER_STATIONS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyBorderSideImpl <em>Legacy Border Side</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyBorderSideImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyBorderSide()
+	 * @generated
+	 */
+	int LEGACY_BORDER_SIDE = 117;
+
+	/**
+	 * The feature id for the '<em><b>Carrier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_SIDE__CARRIER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Stations</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_SIDE__STATIONS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Border Side</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_SIDE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Legacy Border Side</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_SIDE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gtm.impl.LegacyBorderPointsImpl <em>Legacy Border Points</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gtm.impl.LegacyBorderPointsImpl
+	 * @see Gtm.impl.GtmPackageImpl#getLegacyBorderPoints()
+	 * @generated
+	 */
+	int LEGACY_BORDER_POINTS = 118;
+
+	/**
+	 * The feature id for the '<em><b>Legacy Border Points</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINTS__LEGACY_BORDER_POINTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Legacy Border Points</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINTS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Legacy Border Points</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_POINTS_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link Gtm.impl.LegacyStationToServiceConstraintMappingImpl <em>Legacy Station To Service Constraint Mapping</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7145,7 +7439,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyStationToServiceConstraintMapping()
 	 * @generated
 	 */
-	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING = 113;
+	int LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPING = 119;
 
 	/**
 	 * The feature id for the '<em><b>Code</b></em>' attribute.
@@ -7200,7 +7494,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyStationMappings()
 	 * @generated
 	 */
-	int LEGACY_STATION_MAPPINGS = 114;
+	int LEGACY_STATION_MAPPINGS = 120;
 
 	/**
 	 * The feature id for the '<em><b>Station Mappings</b></em>' containment reference list.
@@ -7246,7 +7540,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyStationMap()
 	 * @generated
 	 */
-	int LEGACY_STATION_MAP = 115;
+	int LEGACY_STATION_MAP = 121;
 
 	/**
 	 * The feature id for the '<em><b>Legacy Code</b></em>' attribute.
@@ -7292,7 +7586,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyFareDetailMaps()
 	 * @generated
 	 */
-	int LEGACY_FARE_DETAIL_MAPS = 116;
+	int LEGACY_FARE_DETAIL_MAPS = 122;
 
 	/**
 	 * The feature id for the '<em><b>Legacy Fare Detail Maps</b></em>' containment reference list.
@@ -7329,7 +7623,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyFareDetailMap()
 	 * @generated
 	 */
-	int LEGACY_FARE_DETAIL_MAP = 117;
+	int LEGACY_FARE_DETAIL_MAP = 123;
 
 	/**
 	 * The feature id for the '<em><b>Legacy Code</b></em>' attribute.
@@ -7384,7 +7678,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyStation()
 	 * @generated
 	 */
-	int LEGACY_STATION = 118;
+	int LEGACY_STATION = 124;
 
 	/**
 	 * The feature id for the '<em><b>Code</b></em>' attribute.
@@ -7430,7 +7724,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyBoderPointMappings()
 	 * @generated
 	 */
-	int LEGACY_BODER_POINT_MAPPINGS = 119;
+	int LEGACY_BODER_POINT_MAPPINGS = 125;
 
 	/**
 	 * The feature id for the '<em><b>Border Points</b></em>' containment reference list.
@@ -7476,7 +7770,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyBorderPointMapping()
 	 * @generated
 	 */
-	int LEGACY_BORDER_POINT_MAPPING = 120;
+	int LEGACY_BORDER_POINT_MAPPING = 126;
 
 	/**
 	 * The feature id for the '<em><b>Code</b></em>' attribute.
@@ -7540,7 +7834,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyFareStationSetMappings()
 	 * @generated
 	 */
-	int LEGACY_FARE_STATION_SET_MAPPINGS = 121;
+	int LEGACY_FARE_STATION_SET_MAPPINGS = 127;
 
 	/**
 	 * The feature id for the '<em><b>Legacy Fare Station Set Map</b></em>' containment reference list.
@@ -7577,7 +7871,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyFareStationSetMap()
 	 * @generated
 	 */
-	int LEGACY_FARE_STATION_SET_MAP = 122;
+	int LEGACY_FARE_STATION_SET_MAP = 128;
 
 	/**
 	 * The feature id for the '<em><b>Legacy Code</b></em>' attribute.
@@ -7623,7 +7917,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacy108()
 	 * @generated
 	 */
-	int LEGACY108 = 123;
+	int LEGACY108 = 129;
 
 	/**
 	 * The feature id for the '<em><b>Character Set</b></em>' attribute.
@@ -7725,13 +8019,22 @@ public interface GtmPackage extends EPackage {
 	int LEGACY108__END_DATE = 10;
 
 	/**
+	 * The feature id for the '<em><b>Legacy Border Points</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY108__LEGACY_BORDER_POINTS = 11;
+
+	/**
 	 * The number of structural features of the '<em>Legacy108</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY108_FEATURE_COUNT = 11;
+	int LEGACY108_FEATURE_COUNT = 12;
 
 	/**
 	 * The number of operations of the '<em>Legacy108</em>' class.
@@ -7750,7 +8053,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacy108FareDescription()
 	 * @generated
 	 */
-	int LEGACY108_FARE_DESCRIPTION = 124;
+	int LEGACY108_FARE_DESCRIPTION = 130;
 
 	/**
 	 * The feature id for the '<em><b>Table Id</b></em>' attribute.
@@ -7832,7 +8135,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacy108FaresDescriptions()
 	 * @generated
 	 */
-	int LEGACY108_FARES_DESCRIPTIONS = 125;
+	int LEGACY108_FARES_DESCRIPTIONS = 131;
 
 	/**
 	 * The feature id for the '<em><b>Legacy Fares</b></em>' containment reference list.
@@ -7869,7 +8172,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacy108Stations()
 	 * @generated
 	 */
-	int LEGACY108_STATIONS = 126;
+	int LEGACY108_STATIONS = 132;
 
 	/**
 	 * The feature id for the '<em><b>Legacy Stations</b></em>' containment reference list.
@@ -7924,7 +8227,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacy108Station()
 	 * @generated
 	 */
-	int LEGACY108_STATION = 127;
+	int LEGACY108_STATION = 133;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -8006,7 +8309,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyRouteFares()
 	 * @generated
 	 */
-	int LEGACY_ROUTE_FARES = 128;
+	int LEGACY_ROUTE_FARES = 134;
 
 	/**
 	 * The feature id for the '<em><b>Route Fare</b></em>' containment reference list.
@@ -8043,7 +8346,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyRouteFare()
 	 * @generated
 	 */
-	int LEGACY_ROUTE_FARE = 129;
+	int LEGACY_ROUTE_FARE = 135;
 
 	/**
 	 * The feature id for the '<em><b>Fare Table Number</b></em>' attribute.
@@ -8152,7 +8455,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacySeriesList()
 	 * @generated
 	 */
-	int LEGACY_SERIES_LIST = 130;
+	int LEGACY_SERIES_LIST = 136;
 
 	/**
 	 * The feature id for the '<em><b>Series</b></em>' containment reference list.
@@ -8189,7 +8492,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacySeries()
 	 * @generated
 	 */
-	int LEGACY_SERIES = 131;
+	int LEGACY_SERIES = 137;
 
 	/**
 	 * The feature id for the '<em><b>Supplying Carrier Code</b></em>' attribute.
@@ -8370,7 +8673,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacySeparateContractSeriesList()
 	 * @generated
 	 */
-	int LEGACY_SEPARATE_CONTRACT_SERIES_LIST = 132;
+	int LEGACY_SEPARATE_CONTRACT_SERIES_LIST = 138;
 
 	/**
 	 * The feature id for the '<em><b>Separate Contract Series</b></em>' containment reference list.
@@ -8407,7 +8710,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacySeparateContractSeries()
 	 * @generated
 	 */
-	int LEGACY_SEPARATE_CONTRACT_SERIES = 133;
+	int LEGACY_SEPARATE_CONTRACT_SERIES = 139;
 
 	/**
 	 * The feature id for the '<em><b>Series Number</b></em>' attribute.
@@ -8471,7 +8774,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyDistanceFares()
 	 * @generated
 	 */
-	int LEGACY_DISTANCE_FARES = 134;
+	int LEGACY_DISTANCE_FARES = 140;
 
 	/**
 	 * The feature id for the '<em><b>Distance Fare</b></em>' containment reference list.
@@ -8508,7 +8811,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyDistanceFare()
 	 * @generated
 	 */
-	int LEGACY_DISTANCE_FARE = 135;
+	int LEGACY_DISTANCE_FARE = 141;
 
 	/**
 	 * The feature id for the '<em><b>Distance</b></em>' attribute.
@@ -8608,7 +8911,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyViastation()
 	 * @generated
 	 */
-	int LEGACY_VIASTATION = 136;
+	int LEGACY_VIASTATION = 142;
 
 	/**
 	 * The feature id for the '<em><b>Position</b></em>' attribute.
@@ -8663,7 +8966,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyFareTemplates()
 	 * @generated
 	 */
-	int LEGACY_FARE_TEMPLATES = 137;
+	int LEGACY_FARE_TEMPLATES = 143;
 
 	/**
 	 * The feature id for the '<em><b>Fare Templates</b></em>' containment reference list.
@@ -8700,7 +9003,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getStationRelationType()
 	 * @generated
 	 */
-	int STATION_RELATION_TYPE = 138;
+	int STATION_RELATION_TYPE = 144;
 
 	/**
 	 * The meta object id for the '{@link Gtm.StationFareDetailType <em>Station Fare Detail Type</em>}' enum.
@@ -8710,7 +9013,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getStationFareDetailType()
 	 * @generated
 	 */
-	int STATION_FARE_DETAIL_TYPE = 139;
+	int STATION_FARE_DETAIL_TYPE = 145;
 
 	/**
 	 * The meta object id for the '{@link Gtm.AfterSalesTransactionType <em>After Sales Transaction Type</em>}' enum.
@@ -8720,7 +9023,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getAfterSalesTransactionType()
 	 * @generated
 	 */
-	int AFTER_SALES_TRANSACTION_TYPE = 140;
+	int AFTER_SALES_TRANSACTION_TYPE = 146;
 
 	/**
 	 * The meta object id for the '{@link Gtm.BarcodeTypes <em>Barcode Types</em>}' enum.
@@ -8730,7 +9033,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getBarcodeTypes()
 	 * @generated
 	 */
-	int BARCODE_TYPES = 141;
+	int BARCODE_TYPES = 147;
 
 	/**
 	 * The meta object id for the '{@link Gtm.ClassicClassType <em>Classic Class Type</em>}' enum.
@@ -8740,7 +9043,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getClassicClassType()
 	 * @generated
 	 */
-	int CLASSIC_CLASS_TYPE = 142;
+	int CLASSIC_CLASS_TYPE = 148;
 
 	/**
 	 * The meta object id for the '{@link Gtm.CharacterSet <em>Character Set</em>}' enum.
@@ -8750,7 +9053,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getCharacterSet()
 	 * @generated
 	 */
-	int CHARACTER_SET = 143;
+	int CHARACTER_SET = 149;
 
 	/**
 	 * The meta object id for the '{@link Gtm.Clusters <em>Clusters</em>}' enum.
@@ -8760,7 +9063,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getClusters()
 	 * @generated
 	 */
-	int CLUSTERS = 144;
+	int CLUSTERS = 150;
 
 	/**
 	 * The meta object id for the '{@link Gtm.CombinationModel <em>Combination Model</em>}' enum.
@@ -8770,7 +9073,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getCombinationModel()
 	 * @generated
 	 */
-	int COMBINATION_MODEL = 145;
+	int COMBINATION_MODEL = 151;
 
 	/**
 	 * The meta object id for the '{@link Gtm.ControlDataExchangeTypes <em>Control Data Exchange Types</em>}' enum.
@@ -8780,7 +9083,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getControlDataExchangeTypes()
 	 * @generated
 	 */
-	int CONTROL_DATA_EXCHANGE_TYPES = 146;
+	int CONTROL_DATA_EXCHANGE_TYPES = 152;
 
 	/**
 	 * The meta object id for the '{@link Gtm.FareType <em>Fare Type</em>}' enum.
@@ -8790,7 +9093,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getFareType()
 	 * @generated
 	 */
-	int FARE_TYPE = 147;
+	int FARE_TYPE = 153;
 
 	/**
 	 * The meta object id for the '{@link Gtm.FulfillmentType <em>Fulfillment Type</em>}' enum.
@@ -8800,7 +9103,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getFulfillmentType()
 	 * @generated
 	 */
-	int FULFILLMENT_TYPE = 148;
+	int FULFILLMENT_TYPE = 154;
 
 	/**
 	 * The meta object id for the '{@link Gtm.GeoSystem <em>Geo System</em>}' enum.
@@ -8810,7 +9113,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getGeoSystem()
 	 * @generated
 	 */
-	int GEO_SYSTEM = 149;
+	int GEO_SYSTEM = 155;
 
 	/**
 	 * The meta object id for the '{@link Gtm.GeoUnit <em>Geo Unit</em>}' enum.
@@ -8820,7 +9123,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getGeoUnit()
 	 * @generated
 	 */
-	int GEO_UNIT = 150;
+	int GEO_UNIT = 156;
 
 	/**
 	 * The meta object id for the '{@link Gtm.GraphicalReservationType <em>Graphical Reservation Type</em>}' enum.
@@ -8830,7 +9133,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getGraphicalReservationType()
 	 * @generated
 	 */
-	int GRAPHICAL_RESERVATION_TYPE = 151;
+	int GRAPHICAL_RESERVATION_TYPE = 157;
 
 	/**
 	 * The meta object id for the '{@link Gtm.HemisphereEW <em>Hemisphere EW</em>}' enum.
@@ -8840,7 +9143,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getHemisphereEW()
 	 * @generated
 	 */
-	int HEMISPHERE_EW = 152;
+	int HEMISPHERE_EW = 158;
 
 	/**
 	 * The meta object id for the '{@link Gtm.HemisphereNS <em>Hemisphere NS</em>}' enum.
@@ -8850,7 +9153,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getHemisphereNS()
 	 * @generated
 	 */
-	int HEMISPHERE_NS = 153;
+	int HEMISPHERE_NS = 159;
 
 	/**
 	 * The meta object id for the '{@link Gtm.InterfaceType <em>Interface Type</em>}' enum.
@@ -8860,7 +9163,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getInterfaceType()
 	 * @generated
 	 */
-	int INTERFACE_TYPE = 154;
+	int INTERFACE_TYPE = 160;
 
 	/**
 	 * The meta object id for the '{@link Gtm.LegacyCalculationType <em>Legacy Calculation Type</em>}' enum.
@@ -8870,7 +9173,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyCalculationType()
 	 * @generated
 	 */
-	int LEGACY_CALCULATION_TYPE = 155;
+	int LEGACY_CALCULATION_TYPE = 161;
 
 	/**
 	 * The meta object id for the '{@link Gtm.LegacyPassengerType <em>Legacy Passenger Type</em>}' enum.
@@ -8880,7 +9183,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyPassengerType()
 	 * @generated
 	 */
-	int LEGACY_PASSENGER_TYPE = 156;
+	int LEGACY_PASSENGER_TYPE = 162;
 
 	/**
 	 * The meta object id for the '{@link Gtm.LegacySeriesType <em>Legacy Series Type</em>}' enum.
@@ -8890,7 +9193,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacySeriesType()
 	 * @generated
 	 */
-	int LEGACY_SERIES_TYPE = 157;
+	int LEGACY_SERIES_TYPE = 163;
 
 	/**
 	 * The meta object id for the '{@link Gtm.LegacyConversionType <em>Legacy Conversion Type</em>}' enum.
@@ -8900,7 +9203,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getLegacyConversionType()
 	 * @generated
 	 */
-	int LEGACY_CONVERSION_TYPE = 158;
+	int LEGACY_CONVERSION_TYPE = 164;
 
 	/**
 	 * The meta object id for the '{@link Gtm.OfferRequestType <em>Offer Request Type</em>}' enum.
@@ -8910,7 +9213,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getOfferRequestType()
 	 * @generated
 	 */
-	int OFFER_REQUEST_TYPE = 159;
+	int OFFER_REQUEST_TYPE = 165;
 
 	/**
 	 * The meta object id for the '{@link Gtm.OnlineServiceType <em>Online Service Type</em>}' enum.
@@ -8920,7 +9223,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getOnlineServiceType()
 	 * @generated
 	 */
-	int ONLINE_SERVICE_TYPE = 160;
+	int ONLINE_SERVICE_TYPE = 166;
 
 	/**
 	 * The meta object id for the '{@link Gtm.PersonalDataItemsType <em>Personal Data Items Type</em>}' enum.
@@ -8930,7 +9233,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getPersonalDataItemsType()
 	 * @generated
 	 */
-	int PERSONAL_DATA_ITEMS_TYPE = 161;
+	int PERSONAL_DATA_ITEMS_TYPE = 167;
 
 	/**
 	 * The meta object id for the '{@link Gtm.PersonalDataTransferType <em>Personal Data Transfer Type</em>}' enum.
@@ -8940,7 +9243,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getPersonalDataTransferType()
 	 * @generated
 	 */
-	int PERSONAL_DATA_TRANSFER_TYPE = 162;
+	int PERSONAL_DATA_TRANSFER_TYPE = 168;
 
 	/**
 	 * The meta object id for the '{@link Gtm.PersonalDataChangeReason <em>Personal Data Change Reason</em>}' enum.
@@ -8950,7 +9253,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getPersonalDataChangeReason()
 	 * @generated
 	 */
-	int PERSONAL_DATA_CHANGE_REASON = 163;
+	int PERSONAL_DATA_CHANGE_REASON = 169;
 
 	/**
 	 * The meta object id for the '{@link Gtm.ReservationTravelClass <em>Reservation Travel Class</em>}' enum.
@@ -8960,7 +9263,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getReservationTravelClass()
 	 * @generated
 	 */
-	int RESERVATION_TRAVEL_CLASS = 164;
+	int RESERVATION_TRAVEL_CLASS = 170;
 
 	/**
 	 * The meta object id for the '{@link Gtm.ReservationServiceLevel <em>Reservation Service Level</em>}' enum.
@@ -8970,7 +9273,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getReservationServiceLevel()
 	 * @generated
 	 */
-	int RESERVATION_SERVICE_LEVEL = 165;
+	int RESERVATION_SERVICE_LEVEL = 171;
 
 	/**
 	 * The meta object id for the '{@link Gtm.ReservationService <em>Reservation Service</em>}' enum.
@@ -8980,7 +9283,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getReservationService()
 	 * @generated
 	 */
-	int RESERVATION_SERVICE = 166;
+	int RESERVATION_SERVICE = 172;
 
 	/**
 	 * The meta object id for the '{@link Gtm.ReservationBerthType <em>Reservation Berth Type</em>}' enum.
@@ -8990,7 +9293,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getReservationBerthType()
 	 * @generated
 	 */
-	int RESERVATION_BERTH_TYPE = 167;
+	int RESERVATION_BERTH_TYPE = 173;
 
 	/**
 	 * The meta object id for the '{@link Gtm.SchemaVersion <em>Schema Version</em>}' enum.
@@ -9000,7 +9303,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getSchemaVersion()
 	 * @generated
 	 */
-	int SCHEMA_VERSION = 168;
+	int SCHEMA_VERSION = 174;
 
 	/**
 	 * The meta object id for the '{@link Gtm.TimeZone <em>Time Zone</em>}' enum.
@@ -9010,7 +9313,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getTimeZone()
 	 * @generated
 	 */
-	int TIME_ZONE = 169;
+	int TIME_ZONE = 175;
 
 	/**
 	 * The meta object id for the '{@link Gtm.TaxScope <em>Tax Scope</em>}' enum.
@@ -9020,7 +9323,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getTaxScope()
 	 * @generated
 	 */
-	int TAX_SCOPE = 170;
+	int TAX_SCOPE = 176;
 
 	/**
 	 * The meta object id for the '{@link Gtm.TimeReferenceType <em>Time Reference Type</em>}' enum.
@@ -9030,7 +9333,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getTimeReferenceType()
 	 * @generated
 	 */
-	int TIME_REFERENCE_TYPE = 171;
+	int TIME_REFERENCE_TYPE = 177;
 
 	/**
 	 * The meta object id for the '{@link Gtm.TimeRangeScope <em>Time Range Scope</em>}' enum.
@@ -9040,7 +9343,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getTimeRangeScope()
 	 * @generated
 	 */
-	int TIME_RANGE_SCOPE = 172;
+	int TIME_RANGE_SCOPE = 178;
 
 	/**
 	 * The meta object id for the '{@link Gtm.TimeUnit <em>Time Unit</em>}' enum.
@@ -9050,7 +9353,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getTimeUnit()
 	 * @generated
 	 */
-	int TIME_UNIT = 173;
+	int TIME_UNIT = 179;
 
 	/**
 	 * The meta object id for the '{@link Gtm.TravelerType <em>Traveler Type</em>}' enum.
@@ -9060,7 +9363,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getTravelerType()
 	 * @generated
 	 */
-	int TRAVELER_TYPE = 174;
+	int TRAVELER_TYPE = 180;
 
 	/**
 	 * The meta object id for the '{@link Gtm.WeekDay <em>Week Day</em>}' enum.
@@ -9070,7 +9373,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getWeekDay()
 	 * @generated
 	 */
-	int WEEK_DAY = 175;
+	int WEEK_DAY = 181;
 
 	/**
 	 * The meta object id for the '{@link Gtm.DataSource <em>Data Source</em>}' enum.
@@ -9080,7 +9383,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getDataSource()
 	 * @generated
 	 */
-	int DATA_SOURCE = 176;
+	int DATA_SOURCE = 182;
 
 	/**
 	 * The meta object id for the '{@link Gtm.ClassId <em>Class Id</em>}' enum.
@@ -9090,7 +9393,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getClassId()
 	 * @generated
 	 */
-	int CLASS_ID = 177;
+	int CLASS_ID = 183;
 
 	/**
 	 * The meta object id for the '{@link Gtm.GenericReductionCards <em>Generic Reduction Cards</em>}' enum.
@@ -9100,7 +9403,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getGenericReductionCards()
 	 * @generated
 	 */
-	int GENERIC_REDUCTION_CARDS = 178;
+	int GENERIC_REDUCTION_CARDS = 184;
 
 
 	/**
@@ -9111,7 +9414,7 @@ public interface GtmPackage extends EPackage {
 	 * @see Gtm.impl.GtmPackageImpl#getServiceMode()
 	 * @generated
 	 */
-	int SERVICE_MODE = 179;
+	int SERVICE_MODE = 185;
 
 
 	/**
@@ -10053,6 +10356,17 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAfterSalesRule_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.AfterSalesRule#getDataSource <em>Data Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Source</em>'.
+	 * @see Gtm.AfterSalesRule#getDataSource()
+	 * @see #getAfterSalesRule()
+	 * @generated
+	 */
+	EAttribute getAfterSalesRule_DataSource();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link Gtm.AfterSalesRule#getConditions <em>Conditions</em>}'.
@@ -14626,6 +14940,17 @@ public interface GtmPackage extends EPackage {
 	EAttribute getFareTemplate_Type();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.FareTemplate#getAfterSalesTemplate <em>After Sales Template</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>After Sales Template</em>'.
+	 * @see Gtm.FareTemplate#getAfterSalesTemplate()
+	 * @see #getFareTemplate()
+	 * @generated
+	 */
+	EReference getFareTemplate_AfterSalesTemplate();
+
+	/**
 	 * Returns the meta object for the attribute '{@link Gtm.FareTemplate#getDataDescription <em>Data Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14824,17 +15149,6 @@ public interface GtmPackage extends EPackage {
 	EReference getFareTemplate_PassengerConstraint();
 
 	/**
-	 * Returns the meta object for the reference '{@link Gtm.FareTemplate#getAfterSalesRule <em>After Sales Rule</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>After Sales Rule</em>'.
-	 * @see Gtm.FareTemplate#getAfterSalesRule()
-	 * @see #getFareTemplate()
-	 * @generated
-	 */
-	EReference getFareTemplate_AfterSalesRule();
-
-	/**
 	 * Returns the meta object for the attribute '{@link Gtm.FareTemplate#getLegacyConversion <em>Legacy Conversion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14855,6 +15169,60 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFareTemplate_IndividualContracts();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.AfterSalesTemplate <em>After Sales Template</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>After Sales Template</em>'.
+	 * @see Gtm.AfterSalesTemplate
+	 * @generated
+	 */
+	EClass getAfterSalesTemplate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.AfterSalesTemplate#getTransactionType <em>Transaction Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Transaction Type</em>'.
+	 * @see Gtm.AfterSalesTemplate#getTransactionType()
+	 * @see #getAfterSalesTemplate()
+	 * @generated
+	 */
+	EAttribute getAfterSalesTemplate_TransactionType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.AfterSalesTemplate#isCarrierFee <em>Carrier Fee</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Carrier Fee</em>'.
+	 * @see Gtm.AfterSalesTemplate#isCarrierFee()
+	 * @see #getAfterSalesTemplate()
+	 * @generated
+	 */
+	EAttribute getAfterSalesTemplate_CarrierFee();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.AfterSalesTemplate#getApplicationTime <em>Application Time</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Application Time</em>'.
+	 * @see Gtm.AfterSalesTemplate#getApplicationTime()
+	 * @see #getAfterSalesTemplate()
+	 * @generated
+	 */
+	EReference getAfterSalesTemplate_ApplicationTime();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.AfterSalesTemplate#getFeeFactor <em>Fee Factor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Fee Factor</em>'.
+	 * @see Gtm.AfterSalesTemplate#getFeeFactor()
+	 * @see #getAfterSalesTemplate()
+	 * @generated
+	 */
+	EAttribute getAfterSalesTemplate_FeeFactor();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.LegacyStationToServiceConstraintMappings <em>Legacy Station To Service Constraint Mappings</em>}'.
@@ -14886,6 +15254,155 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getLegacyStationToServiceConstraintMappings__FindServiceConstraint__int();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyBorderPoint <em>Legacy Border Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Border Point</em>'.
+	 * @see Gtm.LegacyBorderPoint
+	 * @generated
+	 */
+	EClass getLegacyBorderPoint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyBorderPoint#getBorderPointCode <em>Border Point Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Border Point Code</em>'.
+	 * @see Gtm.LegacyBorderPoint#getBorderPointCode()
+	 * @see #getLegacyBorderPoint()
+	 * @generated
+	 */
+	EAttribute getLegacyBorderPoint_BorderPointCode();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.LegacyBorderPoint#getFakeBorderStations <em>Fake Border Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Fake Border Stations</em>'.
+	 * @see Gtm.LegacyBorderPoint#getFakeBorderStations()
+	 * @see #getLegacyBorderPoint()
+	 * @generated
+	 */
+	EReference getLegacyBorderPoint_FakeBorderStations();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.LegacyBorderPoint#getOnBorderStations <em>On Border Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>On Border Stations</em>'.
+	 * @see Gtm.LegacyBorderPoint#getOnBorderStations()
+	 * @see #getLegacyBorderPoint()
+	 * @generated
+	 */
+	EReference getLegacyBorderPoint_OnBorderStations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.LegacyBorderPoint#getBorderSides <em>Border Sides</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Border Sides</em>'.
+	 * @see Gtm.LegacyBorderPoint#getBorderSides()
+	 * @see #getLegacyBorderPoint()
+	 * @generated
+	 */
+	EReference getLegacyBorderPoint_BorderSides();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.OnBorderStations <em>On Border Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>On Border Stations</em>'.
+	 * @see Gtm.OnBorderStations
+	 * @generated
+	 */
+	EClass getOnBorderStations();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.OnBorderStations#getStations <em>Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Stations</em>'.
+	 * @see Gtm.OnBorderStations#getStations()
+	 * @see #getOnBorderStations()
+	 * @generated
+	 */
+	EReference getOnBorderStations_Stations();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyFakeBorderStations <em>Legacy Fake Border Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Fake Border Stations</em>'.
+	 * @see Gtm.LegacyFakeBorderStations
+	 * @generated
+	 */
+	EClass getLegacyFakeBorderStations();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.LegacyFakeBorderStations#getStations <em>Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Stations</em>'.
+	 * @see Gtm.LegacyFakeBorderStations#getStations()
+	 * @see #getLegacyFakeBorderStations()
+	 * @generated
+	 */
+	EReference getLegacyFakeBorderStations_Stations();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyBorderSide <em>Legacy Border Side</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Border Side</em>'.
+	 * @see Gtm.LegacyBorderSide
+	 * @generated
+	 */
+	EClass getLegacyBorderSide();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gtm.LegacyBorderSide#getCarrier <em>Carrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Carrier</em>'.
+	 * @see Gtm.LegacyBorderSide#getCarrier()
+	 * @see #getLegacyBorderSide()
+	 * @generated
+	 */
+	EReference getLegacyBorderSide_Carrier();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.LegacyBorderSide#getStations <em>Stations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Stations</em>'.
+	 * @see Gtm.LegacyBorderSide#getStations()
+	 * @see #getLegacyBorderSide()
+	 * @generated
+	 */
+	EReference getLegacyBorderSide_Stations();
+
+	/**
+	 * Returns the meta object for class '{@link Gtm.LegacyBorderPoints <em>Legacy Border Points</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Legacy Border Points</em>'.
+	 * @see Gtm.LegacyBorderPoints
+	 * @generated
+	 */
+	EClass getLegacyBorderPoints();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gtm.LegacyBorderPoints#getLegacyBorderPoints <em>Legacy Border Points</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Legacy Border Points</em>'.
+	 * @see Gtm.LegacyBorderPoints#getLegacyBorderPoints()
+	 * @see #getLegacyBorderPoints()
+	 * @generated
+	 */
+	EReference getLegacyBorderPoints_LegacyBorderPoints();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.LegacyStationToServiceConstraintMapping <em>Legacy Station To Service Constraint Mapping</em>}'.
@@ -15357,6 +15874,17 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLegacy108_EndDate();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gtm.Legacy108#getLegacyBorderPoints <em>Legacy Border Points</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Legacy Border Points</em>'.
+	 * @see Gtm.Legacy108#getLegacyBorderPoints()
+	 * @see #getLegacy108()
+	 * @generated
+	 */
+	EReference getLegacy108_LegacyBorderPoints();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.Legacy108FareDescription <em>Legacy108 Fare Description</em>}'.
@@ -17368,6 +17896,14 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute AFTER_SALES_RULE__ID = eINSTANCE.getAfterSalesRule_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Source</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AFTER_SALES_RULE__DATA_SOURCE = eINSTANCE.getAfterSalesRule_DataSource();
 
 		/**
 		 * The meta object literal for the '<em><b>Conditions</b></em>' containment reference list feature.
@@ -20942,6 +21478,14 @@ public interface GtmPackage extends EPackage {
 		EAttribute FARE_TEMPLATE__TYPE = eINSTANCE.getFareTemplate_Type();
 
 		/**
+		 * The meta object literal for the '<em><b>After Sales Template</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FARE_TEMPLATE__AFTER_SALES_TEMPLATE = eINSTANCE.getFareTemplate_AfterSalesTemplate();
+
+		/**
 		 * The meta object literal for the '<em><b>Data Description</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -21086,14 +21630,6 @@ public interface GtmPackage extends EPackage {
 		EReference FARE_TEMPLATE__PASSENGER_CONSTRAINT = eINSTANCE.getFareTemplate_PassengerConstraint();
 
 		/**
-		 * The meta object literal for the '<em><b>After Sales Rule</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FARE_TEMPLATE__AFTER_SALES_RULE = eINSTANCE.getFareTemplate_AfterSalesRule();
-
-		/**
 		 * The meta object literal for the '<em><b>Legacy Conversion</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -21108,6 +21644,48 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FARE_TEMPLATE__INDIVIDUAL_CONTRACTS = eINSTANCE.getFareTemplate_IndividualContracts();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.AfterSalesTemplateImpl <em>After Sales Template</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.AfterSalesTemplateImpl
+		 * @see Gtm.impl.GtmPackageImpl#getAfterSalesTemplate()
+		 * @generated
+		 */
+		EClass AFTER_SALES_TEMPLATE = eINSTANCE.getAfterSalesTemplate();
+
+		/**
+		 * The meta object literal for the '<em><b>Transaction Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AFTER_SALES_TEMPLATE__TRANSACTION_TYPE = eINSTANCE.getAfterSalesTemplate_TransactionType();
+
+		/**
+		 * The meta object literal for the '<em><b>Carrier Fee</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AFTER_SALES_TEMPLATE__CARRIER_FEE = eINSTANCE.getAfterSalesTemplate_CarrierFee();
+
+		/**
+		 * The meta object literal for the '<em><b>Application Time</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference AFTER_SALES_TEMPLATE__APPLICATION_TIME = eINSTANCE.getAfterSalesTemplate_ApplicationTime();
+
+		/**
+		 * The meta object literal for the '<em><b>Fee Factor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AFTER_SALES_TEMPLATE__FEE_FACTOR = eINSTANCE.getAfterSalesTemplate_FeeFactor();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.LegacyStationToServiceConstraintMappingsImpl <em>Legacy Station To Service Constraint Mappings</em>}' class.
@@ -21134,6 +21712,128 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS___FIND_SERVICE_CONSTRAINT__INT = eINSTANCE.getLegacyStationToServiceConstraintMappings__FindServiceConstraint__int();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyBorderPointImpl <em>Legacy Border Point</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyBorderPointImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyBorderPoint()
+		 * @generated
+		 */
+		EClass LEGACY_BORDER_POINT = eINSTANCE.getLegacyBorderPoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Border Point Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_BORDER_POINT__BORDER_POINT_CODE = eINSTANCE.getLegacyBorderPoint_BorderPointCode();
+
+		/**
+		 * The meta object literal for the '<em><b>Fake Border Stations</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_BORDER_POINT__FAKE_BORDER_STATIONS = eINSTANCE.getLegacyBorderPoint_FakeBorderStations();
+
+		/**
+		 * The meta object literal for the '<em><b>On Border Stations</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_BORDER_POINT__ON_BORDER_STATIONS = eINSTANCE.getLegacyBorderPoint_OnBorderStations();
+
+		/**
+		 * The meta object literal for the '<em><b>Border Sides</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_BORDER_POINT__BORDER_SIDES = eINSTANCE.getLegacyBorderPoint_BorderSides();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.OnBorderStationsImpl <em>On Border Stations</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.OnBorderStationsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getOnBorderStations()
+		 * @generated
+		 */
+		EClass ON_BORDER_STATIONS = eINSTANCE.getOnBorderStations();
+
+		/**
+		 * The meta object literal for the '<em><b>Stations</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ON_BORDER_STATIONS__STATIONS = eINSTANCE.getOnBorderStations_Stations();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyFakeBorderStationsImpl <em>Legacy Fake Border Stations</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyFakeBorderStationsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyFakeBorderStations()
+		 * @generated
+		 */
+		EClass LEGACY_FAKE_BORDER_STATIONS = eINSTANCE.getLegacyFakeBorderStations();
+
+		/**
+		 * The meta object literal for the '<em><b>Stations</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_FAKE_BORDER_STATIONS__STATIONS = eINSTANCE.getLegacyFakeBorderStations_Stations();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyBorderSideImpl <em>Legacy Border Side</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyBorderSideImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyBorderSide()
+		 * @generated
+		 */
+		EClass LEGACY_BORDER_SIDE = eINSTANCE.getLegacyBorderSide();
+
+		/**
+		 * The meta object literal for the '<em><b>Carrier</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_BORDER_SIDE__CARRIER = eINSTANCE.getLegacyBorderSide_Carrier();
+
+		/**
+		 * The meta object literal for the '<em><b>Stations</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_BORDER_SIDE__STATIONS = eINSTANCE.getLegacyBorderSide_Stations();
+
+		/**
+		 * The meta object literal for the '{@link Gtm.impl.LegacyBorderPointsImpl <em>Legacy Border Points</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gtm.impl.LegacyBorderPointsImpl
+		 * @see Gtm.impl.GtmPackageImpl#getLegacyBorderPoints()
+		 * @generated
+		 */
+		EClass LEGACY_BORDER_POINTS = eINSTANCE.getLegacyBorderPoints();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Border Points</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY_BORDER_POINTS__LEGACY_BORDER_POINTS = eINSTANCE.getLegacyBorderPoints_LegacyBorderPoints();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.LegacyStationToServiceConstraintMappingImpl <em>Legacy Station To Service Constraint Mapping</em>}' class.
@@ -21508,6 +22208,14 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LEGACY108__END_DATE = eINSTANCE.getLegacy108_EndDate();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Border Points</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LEGACY108__LEGACY_BORDER_POINTS = eINSTANCE.getLegacy108_LegacyBorderPoints();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.Legacy108FareDescriptionImpl <em>Legacy108 Fare Description</em>}' class.

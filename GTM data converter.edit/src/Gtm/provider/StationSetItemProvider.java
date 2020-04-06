@@ -4,6 +4,7 @@ package Gtm.provider;
 
 
 import Gtm.GtmPackage;
+import Gtm.StationSet;
 
 import java.util.Collection;
 import java.util.List;
@@ -100,11 +101,16 @@ public class StationSetItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_StationSet_type");
+		String label = getString("_UI_StationSet_type");
+		
+		if (((StationSet)object).getStations().isEmpty()) {
+			label = label + " - empty";
+		} 
+		return label;
 	}
 
 
