@@ -891,10 +891,8 @@ public class ConverterFromLegacy {
 	private void setConnectionPoints(LegacySeries series, Station departureStation, Station arrivalStation, RegionalConstraint constraint , boolean reversed) throws ConverterException {
 
 		/*
-		 * 
 		 * BORDER_DESTINATION: 
 		 * 				original series BORDER-STATION = from station in series
-		 * 
 		 */
 		
 		//handle series from border station
