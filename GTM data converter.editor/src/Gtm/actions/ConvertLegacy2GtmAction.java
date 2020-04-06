@@ -17,11 +17,21 @@ import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.GtmEditor;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ConvertLegacy2GtmAction.
+ */
 public class ConvertLegacy2GtmAction extends BasicGtmAction {
 	
 		
+		/** The editing domain provider. */
 		protected IEditingDomainProvider editingDomainProvider = null;
 		
+		/**
+		 * Instantiates a new convert legacy 2 gtm action.
+		 *
+		 * @param editingDomainProvider the editing domain provider
+		 */
 		public ConvertLegacy2GtmAction(IEditingDomainProvider editingDomainProvider) {
 			super(NationalLanguageSupport.ConvertLegacy2GtmAction_0, editingDomainProvider);
 			this.setToolTipText(this.getText());
@@ -30,6 +40,12 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 		}
 			
 		
+		/**
+		 * Instantiates a new convert legacy 2 gtm action.
+		 *
+		 * @param text the text
+		 * @param editingDomainProvider the editing domain provider
+		 */
 		public ConvertLegacy2GtmAction(String text, IEditingDomainProvider editingDomainProvider) {
 			super(text, editingDomainProvider);
 			setImageDescriptor(GtmUtils.getImageDescriptor("/icons/convertFromLegacy.png")); //$NON-NLS-1$
@@ -39,6 +55,11 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 
 		
 		
+		/**
+		 * Run.
+		 *
+		 * @param structuredSelection the structured selection
+		 */
 		protected void run (IStructuredSelection structuredSelection) {
 			
 			GTMTool tool = GtmUtils.getGtmTool();

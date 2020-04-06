@@ -2665,6 +2665,29 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.AfterSalesTemplate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AfterSalesTemplateItemProvider afterSalesTemplateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.AfterSalesTemplate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAfterSalesTemplateAdapter() {
+		if (afterSalesTemplateItemProvider == null) {
+			afterSalesTemplateItemProvider = new AfterSalesTemplateItemProvider(this);
+		}
+
+		return afterSalesTemplateItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.LegacyStationToServiceConstraintMappings} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2685,6 +2708,121 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		}
 
 		return legacyStationToServiceConstraintMappingsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyBorderPoint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyBorderPointItemProvider legacyBorderPointItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyBorderPoint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyBorderPointAdapter() {
+		if (legacyBorderPointItemProvider == null) {
+			legacyBorderPointItemProvider = new LegacyBorderPointItemProvider(this);
+		}
+
+		return legacyBorderPointItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.OnBorderStations} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OnBorderStationsItemProvider onBorderStationsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.OnBorderStations}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOnBorderStationsAdapter() {
+		if (onBorderStationsItemProvider == null) {
+			onBorderStationsItemProvider = new OnBorderStationsItemProvider(this);
+		}
+
+		return onBorderStationsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyFakeBorderStations} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyFakeBorderStationsItemProvider legacyFakeBorderStationsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyFakeBorderStations}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyFakeBorderStationsAdapter() {
+		if (legacyFakeBorderStationsItemProvider == null) {
+			legacyFakeBorderStationsItemProvider = new LegacyFakeBorderStationsItemProvider(this);
+		}
+
+		return legacyFakeBorderStationsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyBorderSide} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyBorderSideItemProvider legacyBorderSideItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyBorderSide}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyBorderSideAdapter() {
+		if (legacyBorderSideItemProvider == null) {
+			legacyBorderSideItemProvider = new LegacyBorderSideItemProvider(this);
+		}
+
+		return legacyBorderSideItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.LegacyBorderPoints} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LegacyBorderPointsItemProvider legacyBorderPointsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.LegacyBorderPoints}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLegacyBorderPointsAdapter() {
+		if (legacyBorderPointsItemProvider == null) {
+			legacyBorderPointsItemProvider = new LegacyBorderPointsItemProvider(this);
+		}
+
+		return legacyBorderPointsItemProvider;
 	}
 
 	/**
@@ -3500,7 +3638,13 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (conversionFromLegacyItemProvider != null) conversionFromLegacyItemProvider.dispose();
 		if (conversionParamsItemProvider != null) conversionParamsItemProvider.dispose();
 		if (fareTemplateItemProvider != null) fareTemplateItemProvider.dispose();
+		if (afterSalesTemplateItemProvider != null) afterSalesTemplateItemProvider.dispose();
 		if (legacyStationToServiceConstraintMappingsItemProvider != null) legacyStationToServiceConstraintMappingsItemProvider.dispose();
+		if (legacyBorderPointItemProvider != null) legacyBorderPointItemProvider.dispose();
+		if (onBorderStationsItemProvider != null) onBorderStationsItemProvider.dispose();
+		if (legacyFakeBorderStationsItemProvider != null) legacyFakeBorderStationsItemProvider.dispose();
+		if (legacyBorderSideItemProvider != null) legacyBorderSideItemProvider.dispose();
+		if (legacyBorderPointsItemProvider != null) legacyBorderPointsItemProvider.dispose();
 		if (legacyStationToServiceConstraintMappingItemProvider != null) legacyStationToServiceConstraintMappingItemProvider.dispose();
 		if (legacyStationMappingsItemProvider != null) legacyStationMappingsItemProvider.dispose();
 		if (legacyStationMapItemProvider != null) legacyStationMapItemProvider.dispose();

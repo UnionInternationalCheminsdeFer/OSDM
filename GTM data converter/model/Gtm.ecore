@@ -191,6 +191,7 @@
       <details key="constraints" value="AT_LEAST_ONE"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//DataSource"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
         eType="#//AfterSalesCondition" containment="true"/>
   </eClassifiers>
@@ -1024,6 +1025,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="price" eType="#//Price"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//FareType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="afterSalesTemplate" upperBound="-1"
+        eType="#//AfterSalesTemplate" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="text" eType="#//Text"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="regionalConstraint" eType="#//RegionalConstraint"/>
@@ -1048,10 +1051,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="fulfillmentConstraint"
         eType="#//FulfillmentConstraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="passengerConstraint" eType="#//PassengerConstraint"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="afterSalesRule" eType="#//AfterSalesRule"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="legacyConversion" eType="#//LegacyConversionType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="individualContracts" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AfterSalesTemplate">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transactionType" eType="#//AfterSalesTransactionType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="carrierFee" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="applicationTime" eType="#//ApplicationTime"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="feeFactor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyStationToServiceConstraintMappings">
     <eOperations name="findServiceConstraint" eType="#//ServiceConstraint">
@@ -1059,6 +1069,32 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacyStationToServiceBrandMappings"
         upperBound="-1" eType="#//LegacyStationToServiceConstraintMapping" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacyBorderPoint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderPointCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fakeBorderStations" eType="#//LegacyFakeBorderStations"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onBorderStations" eType="#//OnBorderStations"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="borderSides" upperBound="-1"
+        eType="#//LegacyBorderSide" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OnBorderStations">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stations" eType="#//StationSet"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacyFakeBorderStations">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stations" eType="#//StationSet"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacyBorderSide">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" eType="#//Carrier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stations" eType="#//StationSet"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacyBorderPoints">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="legacyBorderPoints" upperBound="-1"
+        eType="#//LegacyBorderPoint" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyStationToServiceConstraintMapping">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -1147,6 +1183,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="carrier" eType="#//Carrier"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="legacyBorderPoints" eType="#//LegacyBorderPoints"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Legacy108FareDescription">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tableId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -1545,16 +1583,18 @@
     <eLiterals name="CHILD" value="3"/>
     <eLiterals name="YOUTH" value="2"/>
     <eLiterals name="SENIOR" value="4"/>
-    <eLiterals name="ACCOMP_PRM" value="5"/>
+    <eLiterals name="FAMILY_CHILD" value="5"/>
+    <eLiterals name="YOUNG_CHILD" value="6"/>
     <eLiterals name="DOG" value="20"/>
     <eLiterals name="LUGGAGE" value="21"/>
     <eLiterals name="ACCOMP_DOG" value="22"/>
+    <eLiterals name="PRM_CHILD" value="23"/>
+    <eLiterals name="ACCOMP_PRM" value="24"/>
     <eLiterals name="CAR" value="30"/>
     <eLiterals name="BICYCLE" value="31"/>
     <eLiterals name="MOTOCYCLE" value="32"/>
     <eLiterals name="TRAILER" value="33"/>
     <eLiterals name="GRAPHICAL_RES" value="40"/>
-    <eLiterals name="OPT_RESERVATION" value="41"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="WeekDay">
     <eLiterals name="MONDAY" value="1"/>

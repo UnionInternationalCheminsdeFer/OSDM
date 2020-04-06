@@ -388,11 +388,20 @@ public class StationItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Station)object).getName();
+		
+		Station station = (Station) object;
+		String label = station.getName();
+		
+		int localCode = Integer.parseInt(station.getCode());
+		
+		
+		if (station.getCode() != null && station.getCountry() != null) {
+			label = label + " (" + Integer.toString(station.getCountry().getCode() * 100000 + localCode) + ")";
+		}
 		return label == null || label.length() == 0 ?
 			getString("_UI_Station_type") :
 			getString("_UI_Station_type") + " " + label;

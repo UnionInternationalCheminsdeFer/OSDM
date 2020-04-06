@@ -18,6 +18,9 @@ import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
+import Gtm.AfterSalesCondition;
+import Gtm.AfterSalesRule;
+import Gtm.AfterSalesTemplate;
 import Gtm.AlternativeRoute;
 import Gtm.Calendar;
 import Gtm.Carrier;
@@ -48,6 +51,7 @@ import Gtm.LegacyRouteFare;
 import Gtm.LegacySeparateContractSeries;
 import Gtm.LegacySeries;
 import Gtm.LegacySeriesType;
+import Gtm.LegacyStationToServiceConstraintMapping;
 import Gtm.LegacyViastation;
 import Gtm.Price;
 import Gtm.RegionalConstraint;
@@ -72,7 +76,6 @@ import Gtm.preferences.PreferencesAccess;
 import Gtm.presentation.DirtyCommand;
 import Gtm.presentation.GtmEditor;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ConverterFromLegacy.
  */
@@ -223,13 +226,20 @@ public class ConverterFromLegacy {
 		}
 		executeAndFlush(command,domain);
 
+		command = new CompoundCommand();		
+		for (AfterSalesRule sa : tool.getGeneralTariffModel().getFareStructure().getAfterSalesRules().getAfterSalesRules()) {
+			if (sa.getDataSource() == DataSource.CONVERTED) {
+				command.append(DeleteCommand.create(domain, sa) );
+			}
+		}
+		executeAndFlush(command,domain);
 
 		return deleted;
 	}
 
 
 	/**
-	 * Convert to gtm.
+	 * Convert to gtm model.
 	 *
 	 * @param monitor the monitor
 	 * @return the int
@@ -244,6 +254,7 @@ public class ConverterFromLegacy {
 		}
 		
 		ArrayList<Price> priceList = new ArrayList<Price>();
+		ArrayList<AfterSalesRule> afterSalesRules = new ArrayList<AfterSalesRule>();
 		ArrayList<RegionalConstraint> regions = new ArrayList<RegionalConstraint>();
 		ArrayList<FareElement> fares = new ArrayList<FareElement>();
 		
@@ -321,7 +332,7 @@ public class ConverterFromLegacy {
 					
 					try {
 						for (DateRange dateRange : validityRanges) {
-							convertSeriesToFares(series, fareTemplate,added, dateRange, regionalConstraint,regionalConstraintR ,priceList, legacyFareCounter, fares);
+							convertSeriesToFares(series, fareTemplate,added, dateRange, regionalConstraint,regionalConstraintR ,priceList, legacyFareCounter, fares, afterSalesRules);
 						}
 						added++;
 					} catch (ConverterException e) {
@@ -357,6 +368,16 @@ public class ConverterFromLegacy {
 		}
 		monitor.worked(1);
 		
+		
+		command = new CompoundCommand();
+		if (afterSalesRules != null && !afterSalesRules.isEmpty()) {
+			Command com2 = AddCommand.create(domain,tool.getGeneralTariffModel().getFareStructure().getAfterSalesRules(), GtmPackage.Literals.AFTER_SALES_RULES__AFTER_SALES_RULES, afterSalesRules);
+			command.append(com2);
+			executeAndFlush(command, domain);
+		}
+		monitor.worked(1);
+
+		
 		command = new CompoundCommand();
 		if (fares!= null && !fares.isEmpty()) {
 			Command com3 = AddCommand.create(domain, tool.getGeneralTariffModel().getFareStructure().getFareElements(),GtmPackage.Literals.FARE_ELEMENTS__FARE_ELEMENTS , fares);		
@@ -375,31 +396,28 @@ public class ConverterFromLegacy {
 	 *
 	 * @param series the series
 	 * @param fareTemplate the fare template
-	 * @param number the number
-	 * @param dateRange the date range
+	 * @param number the number of converted series
+	 * @param dateRange the date range of the series sales validity
 	 * @param regionalConstraint the regional constraint
-	 * @param regionalConstraintR the regional constraint R
-	 * @param priceList the price list
-	 * @param legacyFareCounter the legacy fare counter
-	 * @param fares the fares
-	 * @throws ConverterException the converter exception
+	 * @param regionalConstraintR the regional constraint of the return direction
+	 * @param priceList the price list of all prices
+	 * @param legacyFareCounter the legacy fare counter to add legacy accounting information
+	 * @param fares the fares converted
+	 * @param afterSalesRules the after sales rules list collecting all after sales rules
+	 * @throws ConverterException the converter exception in case something does wrong
 	 */
-	public void convertSeriesToFares(LegacySeries series, FareTemplate fareTemplate, int number,DateRange dateRange, RegionalConstraint regionalConstraint, RegionalConstraint regionalConstraintR, ArrayList<Price> priceList, int legacyFareCounter, ArrayList<FareElement> fares) throws ConverterException{
+	public void convertSeriesToFares(LegacySeries series, FareTemplate fareTemplate, int number,DateRange dateRange, RegionalConstraint regionalConstraint, RegionalConstraint regionalConstraintR, ArrayList<Price> priceList, int legacyFareCounter, ArrayList<FareElement> fares, ArrayList<AfterSalesRule> afterSalesRules) throws ConverterException{
 		
 		try {
 			
 			Price price = null;
 			if (fareTemplate.getPrice() == null) {
-				price = convertSeriesToPrice(tool, series, fareTemplate, tool.getConversionFromLegacy().getParams().getCountry(), dateRange);
+				price = convertSeriesToPrice(tool, series, fareTemplate, dateRange);
 				if (price == null) return;
-				Price oldPrice = findPrice(price, priceList);
-				if (oldPrice != null) {
-					price=oldPrice;
-				}
+				price = findPrice(price, priceList);
 			} else {
 				price = fareTemplate.getPrice();
 			}
-			
 			
 			if (regionalConstraint != null) {
 				FareElement fareElement = convertSeriesToFare(tool, series, fareTemplate, 1);
@@ -407,9 +425,9 @@ public class ConverterFromLegacy {
 				fareElement.setPrice(price);
 				fareElement.setRegionalConstraint(regionalConstraint);
 				fareElement.setSalesAvailability(findSalesAvailability(tool,dateRange));
-				fareElement.getLegacyAccountingIdentifier().setTariffId(number);
 				mapConstraintsAndDescriptions(fareElement, series);
 				if (price != null && fareElement != null) {
+					fareElement.setAfterSalesRule(convertAfterSalesRules(price, fareTemplate, afterSalesRules, priceList));
 					fares.add(fareElement);			
 				}
 			}
@@ -417,11 +435,11 @@ public class ConverterFromLegacy {
 			if (regionalConstraintR != null) {
 				FareElement fareElementR = convertSeriesToFare(tool, series, fareTemplate, 2);
 				fareElementR.getLegacyAccountingIdentifier().setTariffId(legacyFareCounter++);
-				fareElementR.getLegacyAccountingIdentifier().setTariffId(number);
 				fareElementR.setPrice(price);
 				fareElementR.setRegionalConstraint(regionalConstraintR);
 				mapConstraintsAndDescriptions(fareElementR, series);
 				if (price != null && fareElementR != null) {	
+					fareElementR.setAfterSalesRule(convertAfterSalesRules(price, fareTemplate, afterSalesRules, priceList));
 					fares.add(fareElementR);	
 				}
 			}
@@ -434,6 +452,123 @@ public class ConverterFromLegacy {
 		return;
 	}	
 	
+
+
+	/**
+	 * Convert after sales rules.
+	 *
+	 * @param price the price
+	 * @param template the template
+	 * @param afterSalesRules the after sales rules
+	 * @param priceList the price list
+	 * @return the after sales rule
+	 */
+	private AfterSalesRule convertAfterSalesRules(Price price, FareTemplate template,ArrayList<AfterSalesRule> afterSalesRules, ArrayList<Price> priceList) {
+		
+		if (price == null || 
+			price.getCurrencies() == null ||
+			price.getCurrencies().isEmpty() || 
+			price.getCurrencies().get(0).getAmount() == 0 ||
+			template == null || 
+			template.getAfterSalesTemplate() == null || 
+			template.getAfterSalesTemplate().isEmpty()) {
+			return null;
+		}
+		
+		AfterSalesRule rule = GtmFactory.eINSTANCE.createAfterSalesRule();
+		rule.setDataSource(DataSource.CONVERTED);
+		
+		for (AfterSalesTemplate feeTemplate : template.getAfterSalesTemplate()) {
+			
+			AfterSalesCondition condition = GtmFactory.eINSTANCE.createAfterSalesCondition();
+		
+			float feeAmount = price.getCurrencies().get(0).getAmount();
+			feeAmount = feeAmount * feeTemplate.getFeeFactor();
+			// 2 digits for EUR
+			double scale = Math.pow(10, 2);
+			feeAmount = (float) (Math.round(feeAmount * scale) / scale);
+			
+			Price fee = createPrice(feeAmount);
+			if (fee == null) return null;
+			
+			fee = findPrice(fee, priceList);
+
+			condition.setFee(fee);
+			condition.setTransactionType(feeTemplate.getTransactionType());
+			if (feeTemplate.getApplicationTime() != null) {
+				condition.setApplicationTime(EcoreUtil.copy(feeTemplate.getApplicationTime()));
+			}
+			
+			rule.getConditions().add(condition);
+			
+		}
+		
+		rule = findRule(rule, afterSalesRules);
+
+		return rule;
+	}
+
+
+	
+	
+	/**
+	 * Find the existing after sales rule or add the given one to the list.
+	 *
+	 * @param rule the rule
+	 * @param afterSalesRules the after sales rules list
+	 * @return the after sales rule from the list
+	 */
+	private AfterSalesRule findRule(AfterSalesRule rule, ArrayList<AfterSalesRule> afterSalesRules) {
+		
+		if (rule == null || rule.getConditions() == null || rule.getConditions().isEmpty()) return rule;
+		
+		
+		
+		for (AfterSalesRule old : afterSalesRules) {
+			
+			boolean isEqual = true;
+			
+			if (old.getConditions().size() == rule.getConditions().size()) {
+				
+				for (AfterSalesCondition oldCond : old.getConditions()) {
+					
+					boolean conditionMatched = false;
+					
+					for (AfterSalesCondition cond : rule.getConditions()) {	
+						if (oldCond.getFee() == cond.getFee() && 
+							oldCond.getTransactionType().equals(cond.getTransactionType())) {
+							
+							if (oldCond.getApplicationTime().getUnit().equals(cond.getApplicationTime().getUnit()) &&
+								oldCond.getApplicationTime().getValue() == cond.getApplicationTime().getValue() && 
+								oldCond.getApplicationTime().getReference().equals(cond.getApplicationTime().getReference())
+								) {
+								conditionMatched = true;
+							}
+						}
+					}					
+					
+					if (!conditionMatched) {
+						isEqual = false;
+					}
+				}
+		
+			} else {
+				isEqual = false;
+			}
+			
+			if (isEqual) {
+				return old;
+			}
+
+		}
+		
+		afterSalesRules.add(rule);
+		return rule;
+	}
+
+
+
+
 	/**
 	 * Map constraints and descriptions.
 	 *
@@ -484,7 +619,7 @@ public class ConverterFromLegacy {
 	 */
 	private static Price findPrice(Price newPrice, ArrayList<Price> priceList) {
 		
-		for (Price price :priceList) {
+		for (Price price : priceList) {
 			
 			if (price.getCurrencies().get(0).getAmount() == newPrice.getCurrencies().get(0).getAmount()) {
 				return price;
@@ -494,7 +629,7 @@ public class ConverterFromLegacy {
 		
 		priceList.add(newPrice);
 
-		return null;
+		return newPrice;
 	}
 
 
@@ -727,6 +862,12 @@ public class ConverterFromLegacy {
 		return constraint;
 	}
 	
+	/**
+	 * Creates the regional constraint.
+	 *
+	 * @param series the series
+	 * @return the regional constraint
+	 */
 	private RegionalConstraint createRegionalConstraint(LegacySeries series) {
 		RegionalConstraint constraint = GtmFactory.eINSTANCE.createRegionalConstraint();
 		constraint.setDataSource(DataSource.CONVERTED);
@@ -743,7 +884,9 @@ public class ConverterFromLegacy {
 	 * @param series the series
 	 * @param departureStation the departure station
 	 * @param arrivalStation the arrival station
-	 * @throws ConverterException 
+	 * @param constraint the constraint
+	 * @param reversed the reversed
+	 * @throws ConverterException the converter exception
 	 */
 	private void setConnectionPoints(LegacySeries series, Station departureStation, Station arrivalStation, RegionalConstraint constraint , boolean reversed) throws ConverterException {
 
@@ -1101,11 +1244,32 @@ public class ConverterFromLegacy {
 		if (station != null || fareStation != null) {
 			lastRoute.add(via);
 		} else {
-			String message = NationalLanguageSupport.ConverterFromLegacy_39 + Integer.toString(code);
-			writeConsoleError(message);
-			throw new ConverterException(message);
+			
+			if (isMappedStation(code)) {
+				return;
+			} else {	
+				String message = NationalLanguageSupport.ConverterFromLegacy_39 + Integer.toString(code);
+				writeConsoleError(message);
+				throw new ConverterException(message);
+			}
 		}
 	}
+
+	/**
+	 * Checks if is mapped station.
+	 *
+	 * @param code the code
+	 * @return true, if is mapped station
+	 */
+	private boolean isMappedStation(int code) {	
+		for (LegacyStationToServiceConstraintMapping map : tool.getConversionFromLegacy().getParams().getLegacyStationToServiceBrandMappings().getLegacyStationToServiceBrandMappings()) {
+			if (map.getCode() == code) return true;
+		}
+		return false;
+	}
+
+
+
 
 	/**
 	 * Gets the station.
@@ -1114,7 +1278,7 @@ public class ConverterFromLegacy {
 	 * @param country the country
 	 * @param localCode the local code
 	 * @return the station
-	 * @throws ConverterException the converter exception
+	 * @throws ConverterException the converter exception in case the station is not found and not mapped to something else
 	 */
 	public Station getStation(GTMTool tool, Country country, int localCode) throws ConverterException {
 		
@@ -1141,8 +1305,13 @@ public class ConverterFromLegacy {
 		station = localStations.get(Integer.valueOf(localCode));
 
 		if (station == null) {
-			String message = NationalLanguageSupport.ConverterFromLegacy_40 + Integer.toString(localCode) ;
-			writeConsoleError(message);
+			
+			if (isMappedStation(localCode)) {
+				return null;
+			} else {
+				String message = NationalLanguageSupport.ConverterFromLegacy_40 + Integer.toString(localCode) ;
+				writeConsoleError(message);
+			}
 		}
 		return station;
 	}
@@ -1154,16 +1323,14 @@ public class ConverterFromLegacy {
 	 * @param tool the tool
 	 * @param series the series
 	 * @param fareTemplate the fare template
-	 * @param country the country
 	 * @param dateRange the date range
 	 * @return the price
 	 * @throws ConverterException the converter exception
 	 */
-	public Price convertSeriesToPrice(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, Country country, DateRange dateRange) throws ConverterException{
+	public Price convertSeriesToPrice(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, DateRange dateRange) throws ConverterException{
 		
 	
-		Price price = GtmFactory.eINSTANCE.createPrice();
-		price.setDataSource(DataSource.CONVERTED);
+		Price price = null;
 			
 		try {
 			Float amount = null;
@@ -1180,21 +1347,8 @@ public class ConverterFromLegacy {
 			double scale = Math.pow(10, 2);
 		    amount = (float) (Math.round(amount * scale) / scale);
 			
-		
-			CurrencyPrice curPrice = GtmFactory.eINSTANCE.createCurrencyPrice();
-			curPrice.setAmount(amount);
-			curPrice.setCurrency(tool.getCodeLists().getCurrencies().findCurrency("EUR")); //$NON-NLS-1$
-		
-			VATDetail vatDetail = GtmFactory.eINSTANCE.createVATDetail();
-			vatDetail.setPercentage(tool.getConversionFromLegacy().getParams().getVATpercentage());
-			vatDetail.setCountry(country);
-			vatDetail.setTaxId(tool.getConversionFromLegacy().getParams().getTaxId());
-			vatDetail.setScope(TaxScope.ANY);
-			vatDetail.setAmount(amount * tool.getConversionFromLegacy().getParams().getVATpercentage()/100);
-			curPrice.getVATdetails().add(vatDetail);
-		
-			price.getCurrencies().add(curPrice);
-
+		    price = createPrice(amount);
+		    
 			return price;
 		
 		} catch (Exception e) {
@@ -1203,6 +1357,34 @@ public class ConverterFromLegacy {
 			writeConsoleError(message);
 			return null;
 		}
+	}
+	
+	/**
+	 * Creates the price.
+	 *
+	 * @param amount the amount
+	 * @return the price
+	 */
+	private Price createPrice( float amount) {
+		
+		Price price = GtmFactory.eINSTANCE.createPrice();
+		price.setDataSource(DataSource.CONVERTED);
+			
+
+		CurrencyPrice curPrice = GtmFactory.eINSTANCE.createCurrencyPrice();
+		curPrice.setAmount(amount);
+		curPrice.setCurrency(tool.getCodeLists().getCurrencies().findCurrency("EUR")); //$NON-NLS-1$
+	
+		VATDetail vatDetail = GtmFactory.eINSTANCE.createVATDetail();
+		vatDetail.setPercentage(tool.getConversionFromLegacy().getParams().getVATpercentage());
+		vatDetail.setCountry(myCountry);
+		vatDetail.setTaxId(tool.getConversionFromLegacy().getParams().getTaxId());
+		vatDetail.setScope(TaxScope.ANY);
+		vatDetail.setAmount(amount * tool.getConversionFromLegacy().getParams().getVATpercentage()/100);
+		curPrice.getVATdetails().add(vatDetail);
+	
+		price.getCurrencies().add(curPrice);
+		return price;
 		
 	}
 	
@@ -1293,7 +1475,13 @@ public class ConverterFromLegacy {
 		
 		LegacyAccountingIdentifier accountingIdentifier = GtmFactory.eINSTANCE.createLegacyAccountingIdentifier();
 		accountingIdentifier.setAddSeriesId(0);
-		accountingIdentifier.setTariffId(0);
+		if (fareTemplate.getLegacyAccountingIdentifier() != null) {
+			accountingIdentifier.setTariffId(fareTemplate.getLegacyAccountingIdentifier().getTariffId());
+		} else {
+			accountingIdentifier.setTariffId(0);
+		}
+		
+		
 		accountingIdentifier.setSeriesId(series.getNumber());
 		fare.setLegacyAccountingIdentifier(accountingIdentifier);
 		fare.setDataSource(DataSource.CONVERTED);
@@ -1331,7 +1519,6 @@ public class ConverterFromLegacy {
 		
 		fare.setFareDetailDescription(fareTemplate.getFareDetailDescription());
 		fare.setFulfillmentConstraint(fareTemplate.getFulfillmentConstraint());
-		fare.setAfterSalesRule(fareTemplate.getAfterSalesRule());
 		fare.setIndividualContracts(fareTemplate.isIndividualContracts());		
 		fare.setPassengerConstraint(fareTemplate.getPassengerConstraint());
 		fare.setReductionConstraint(fareTemplate.getReductionConstraint());
@@ -1345,8 +1532,10 @@ public class ConverterFromLegacy {
 		fare.setTravelValidity(fareTemplate.getTravelValidity());
 		fare.setType(fareTemplate.getType());
 		fare.setLegacyConversion(fareTemplate.getLegacyConversion());
-		
 	}
+	
+
+
 
 	/**
 	 * Checks if is separate contract.
@@ -1500,9 +1689,6 @@ public class ConverterFromLegacy {
 
 		return pointList;
 	}
-
-
-
 
 
 	/**

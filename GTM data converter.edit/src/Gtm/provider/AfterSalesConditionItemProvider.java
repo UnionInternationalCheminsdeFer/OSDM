@@ -69,7 +69,6 @@ public class AfterSalesConditionItemProvider
 			addIndividualContractsPropertyDescriptor(object);
 			addCarrierFeePropertyDescriptor(object);
 			addFeePropertyDescriptor(object);
-			addApplicationTimePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -157,28 +156,6 @@ public class AfterSalesConditionItemProvider
 				 true,
 				 false,
 				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Application Time feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addApplicationTimePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AfterSalesCondition_applicationTime_feature"),
-				 getString("_UI_AfterSalesCondition_applicationTime_description"),
-				 GtmPackage.Literals.AFTER_SALES_CONDITION__APPLICATION_TIME,
-				 true,
-				 false,
-				 false,
 				 null,
 				 null,
 				 null));

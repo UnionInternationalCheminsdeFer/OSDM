@@ -4,6 +4,7 @@ package Gtm.impl;
 
 import Gtm.AfterSalesCondition;
 import Gtm.AfterSalesRule;
+import Gtm.DataSource;
 import Gtm.GtmPackage;
 
 import java.util.Collection;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link Gtm.impl.AfterSalesRuleImpl#getId <em>Id</em>}</li>
+ *   <li>{@link Gtm.impl.AfterSalesRuleImpl#getDataSource <em>Data Source</em>}</li>
  *   <li>{@link Gtm.impl.AfterSalesRuleImpl#getConditions <em>Conditions</em>}</li>
  * </ul>
  *
@@ -56,6 +58,26 @@ public class AfterSalesRuleImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected String id = ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final DataSource DATA_SOURCE_EDEFAULT = DataSource.MANUAL;
+
+	/**
+	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected DataSource dataSource = DATA_SOURCE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getConditions() <em>Conditions</em>}' containment reference list.
@@ -112,6 +134,27 @@ public class AfterSalesRuleImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataSource(DataSource newDataSource) {
+		DataSource oldDataSource = dataSource;
+		dataSource = newDataSource == null ? DATA_SOURCE_EDEFAULT : newDataSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.AFTER_SALES_RULE__DATA_SOURCE, oldDataSource, dataSource));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<AfterSalesCondition> getConditions() {
 		if (conditions == null) {
 			conditions = new EObjectContainmentEList<AfterSalesCondition>(AfterSalesCondition.class, this, GtmPackage.AFTER_SALES_RULE__CONDITIONS);
@@ -143,6 +186,8 @@ public class AfterSalesRuleImpl extends MinimalEObjectImpl.Container implements 
 		switch (featureID) {
 			case GtmPackage.AFTER_SALES_RULE__ID:
 				return getId();
+			case GtmPackage.AFTER_SALES_RULE__DATA_SOURCE:
+				return getDataSource();
 			case GtmPackage.AFTER_SALES_RULE__CONDITIONS:
 				return getConditions();
 		}
@@ -160,6 +205,9 @@ public class AfterSalesRuleImpl extends MinimalEObjectImpl.Container implements 
 		switch (featureID) {
 			case GtmPackage.AFTER_SALES_RULE__ID:
 				setId((String)newValue);
+				return;
+			case GtmPackage.AFTER_SALES_RULE__DATA_SOURCE:
+				setDataSource((DataSource)newValue);
 				return;
 			case GtmPackage.AFTER_SALES_RULE__CONDITIONS:
 				getConditions().clear();
@@ -180,6 +228,9 @@ public class AfterSalesRuleImpl extends MinimalEObjectImpl.Container implements 
 			case GtmPackage.AFTER_SALES_RULE__ID:
 				setId(ID_EDEFAULT);
 				return;
+			case GtmPackage.AFTER_SALES_RULE__DATA_SOURCE:
+				setDataSource(DATA_SOURCE_EDEFAULT);
+				return;
 			case GtmPackage.AFTER_SALES_RULE__CONDITIONS:
 				getConditions().clear();
 				return;
@@ -197,6 +248,8 @@ public class AfterSalesRuleImpl extends MinimalEObjectImpl.Container implements 
 		switch (featureID) {
 			case GtmPackage.AFTER_SALES_RULE__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+			case GtmPackage.AFTER_SALES_RULE__DATA_SOURCE:
+				return dataSource != DATA_SOURCE_EDEFAULT;
 			case GtmPackage.AFTER_SALES_RULE__CONDITIONS:
 				return conditions != null && !conditions.isEmpty();
 		}
@@ -215,6 +268,8 @@ public class AfterSalesRuleImpl extends MinimalEObjectImpl.Container implements 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (id: ");
 		result.append(id);
+		result.append(", dataSource: ");
+		result.append(dataSource);
 		result.append(')');
 		return result.toString();
 	}

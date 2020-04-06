@@ -742,9 +742,45 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GtmPackage.AFTER_SALES_TEMPLATE: {
+				AfterSalesTemplate afterSalesTemplate = (AfterSalesTemplate)theEObject;
+				T result = caseAfterSalesTemplate(afterSalesTemplate);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS: {
 				LegacyStationToServiceConstraintMappings legacyStationToServiceConstraintMappings = (LegacyStationToServiceConstraintMappings)theEObject;
 				T result = caseLegacyStationToServiceConstraintMappings(legacyStationToServiceConstraintMappings);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_BORDER_POINT: {
+				LegacyBorderPoint legacyBorderPoint = (LegacyBorderPoint)theEObject;
+				T result = caseLegacyBorderPoint(legacyBorderPoint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.ON_BORDER_STATIONS: {
+				OnBorderStations onBorderStations = (OnBorderStations)theEObject;
+				T result = caseOnBorderStations(onBorderStations);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_FAKE_BORDER_STATIONS: {
+				LegacyFakeBorderStations legacyFakeBorderStations = (LegacyFakeBorderStations)theEObject;
+				T result = caseLegacyFakeBorderStations(legacyFakeBorderStations);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_BORDER_SIDE: {
+				LegacyBorderSide legacyBorderSide = (LegacyBorderSide)theEObject;
+				T result = caseLegacyBorderSide(legacyBorderSide);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.LEGACY_BORDER_POINTS: {
+				LegacyBorderPoints legacyBorderPoints = (LegacyBorderPoints)theEObject;
+				T result = caseLegacyBorderPoints(legacyBorderPoints);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2583,6 +2619,21 @@ public class GtmSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>After Sales Template</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>After Sales Template</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAfterSalesTemplate(AfterSalesTemplate object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Legacy Station To Service Constraint Mappings</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2594,6 +2645,81 @@ public class GtmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLegacyStationToServiceConstraintMappings(LegacyStationToServiceConstraintMappings object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Border Point</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Border Point</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyBorderPoint(LegacyBorderPoint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>On Border Stations</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>On Border Stations</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOnBorderStations(OnBorderStations object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Fake Border Stations</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Fake Border Stations</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyFakeBorderStations(LegacyFakeBorderStations object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Border Side</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Border Side</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyBorderSide(LegacyBorderSide object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Legacy Border Points</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Legacy Border Points</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLegacyBorderPoints(LegacyBorderPoints object) {
 		return null;
 	}
 

@@ -64,7 +64,7 @@ public class AfterSalesRuleItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIdPropertyDescriptor(object);
-			addConditionsPropertyDescriptor(object);
+			addDataSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -92,23 +92,23 @@ public class AfterSalesRuleItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Conditions feature.
+	 * This adds a property descriptor for the Data Source feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConditionsPropertyDescriptor(Object object) {
+	protected void addDataSourcePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AfterSalesRule_conditions_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AfterSalesRule_conditions_feature", "_UI_AfterSalesRule_type"),
-				 GtmPackage.Literals.AFTER_SALES_RULE__CONDITIONS,
+				 getString("_UI_AfterSalesRule_dataSource_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AfterSalesRule_dataSource_feature", "_UI_AfterSalesRule_type"),
+				 GtmPackage.Literals.AFTER_SALES_RULE__DATA_SOURCE,
 				 true,
 				 false,
 				 false,
-				 null,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -182,6 +182,7 @@ public class AfterSalesRuleItemProvider
 
 		switch (notification.getFeatureID(AfterSalesRule.class)) {
 			case GtmPackage.AFTER_SALES_RULE__ID:
+			case GtmPackage.AFTER_SALES_RULE__DATA_SOURCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.AFTER_SALES_RULE__CONDITIONS:
