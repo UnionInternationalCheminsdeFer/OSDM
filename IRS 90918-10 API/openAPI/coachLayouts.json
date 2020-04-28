@@ -1,0 +1,59 @@
+{
+  	"openapi": "3.0.0",
+  	"info": {
+    	"version": "1.0.0",
+		"title": "UIC 90918-10",
+  		"description": "download coach layouts",
+    	"name": "UIC",
+    	"url": "http://www.uic.org",
+  		"license": {
+    		"name": "Apache 2.0",
+    		"url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+  		}
+ 	},
+ 	"host": "90910-10.uic.org",
+ 	"basePath": "http://uic.org/90910-10",
+ 	"schemes": [
+    	"https"
+  	],
+  	"produces": [
+    	"application/json"
+  	], 	
+	"paths": {
+		"/{version}/layouts": {
+  			"get": {
+    			"description": "get coach layouts",
+        		"operationId": "getCoachLayouts",
+        		"parameters": [
+         			{
+            			"name": "version",
+            			"in": "path",
+            			"description": "schema version",
+            			"required": true,
+            			"schema": {
+              				"type": "string"  
+            			}
+          			}
+        		],    			
+     			"responses": {
+        			"200": {          
+          				"description": "coach layouts",
+         				 "content": {
+            				"application/json": {
+              					"schema": {
+               						"$ref": "jsonSchemas/layoutsreply.json#/definitions/LayoutsDef"   
+           						}
+    				        }
+          				}
+        			},
+         			"default": {
+           				 "description": "unexpected error",
+          				 "schema": {
+             			 	"$ref": "jsonSchemas/genericerror.json#/definitions/ErrorDef"
+             			 }
+            		}
+     			}
+   			}
+  		}
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v1/genericerror.json",
+	"title": "generic error",
+	"description": "generic error definition providing information for error analysis",
+	"definitions": {
+		"ErrorDef": {
+			"type": "object",
+			"properties": {
+				"system": {
+					"description": "system identifier - RICS company code + local system id",
+					"type": "string"
+				},			
+				"code": {
+					"description": "code of the error",
+					"type": "string"
+				},
+				"description": {
+					"description": "description of the error in english to analyse the error",
+					"type": "string"
+				}				
+			}
+		}
+	}
+}
