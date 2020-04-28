@@ -3,7 +3,7 @@
   	"info": {
     	"version": "1.0.0",
 		"title": "UIC 90918-10",
-  		"description": "search offers for a trip",
+  		"description": "confirm booking",
     	"name": "UIC",
     	"url": "http://www.uic.org",
   		"license": {
@@ -23,10 +23,10 @@
     	"application/json"
   	], 	
 	"paths": {
-		"/{version}/tripOffersCollection": {
-  			"post": {
-    			"description": "get offers based on a trip",
-        		"operationId": "searchTripOffers",
+		"/{version}/bookings/{bookingId}/confirm": {
+  			"patch": {
+    			"description": "confirm booking",
+        		"operationId": "confirmBooking",
         		"parameters": [
          			{
             			"name": "version",
@@ -36,24 +36,24 @@
             			"schema": {
               				"type": "string"  
             			}
-          			},      		
+          			}, 		
          			{
-            			"name": "tripOffersCollection",
+            			"name": "confirmBookingRequest",
             			"in": "body",
-            			"description": "request parameter for trip offer search",
+            			"description": "prebook an offer",
             			"required": true,
             			"schema": {
-              				"$ref": "jsonSchemas/offerrequest.json#/definitions/TripOfferRequestDef"  
+              				"$ref": "jsonSchemas/confirmbookrequest.json#/definitions/ConfirmBookingRequestDef"  
             			}
           			}
         		],    			
      			"responses": {
         			"200": {          
-          				"description": "offer collection, corrected trip",
+          				"description": "confirm booking",
          				 "content": {
             				"application/json": {
               					"schema": {
-               						"$ref": "jsonSchemas/offerreply.json#/definitions/TripOffersCollectionDef"   
+               						"$ref": "jsonSchemas/confirmbookreply.json#/definitions/BookingReplyDef"  
            						}
     				        }
           				}

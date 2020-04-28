@@ -40,7 +40,7 @@
          			{
             			"name": "offerSearchRequest",
             			"in": "body",
-            			"description": "Pet to add to the store",
+            			"description": "request parameter for offer search",
             			"required": true,
             			"schema": {
               				"$ref": "jsonSchemas/offersearchrequest.json#/definitions/OfferSearchRequestDef"  
