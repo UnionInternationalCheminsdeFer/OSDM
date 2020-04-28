@@ -36,17 +36,19 @@
             			"schema": {
               				"type": "string"  
             			}
-          			},      		
-         			{
-            			"name": "checkPlacePrefsRequest",
-            			"in": "body",
-            			"description": "place preferences to be checked",
-            			"required": true,
-            			"schema": {
-              				"$ref": "jsonSchemas/selectplaceprefsrequest.json#/definitions/CheckPlacePrefsRequestDef"  
-            			}
           			}
-        		],    			
+        		], 
+        		"requestBody": {
+				 	"description": "place preferences to be checked",
+            		"required": true,
+            		"content": {
+            			"application/json": {
+            				"schema": {
+              					"$ref": "jsonSchemas/selectplaceprefsrequest.json#/definitions/CheckPlacePrefsRequestDef"  
+            				}
+            			}
+            		}
+				},
      			"responses": {
         			"200": {          
           				"description": "offer collection",

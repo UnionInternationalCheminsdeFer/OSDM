@@ -3,7 +3,7 @@
 	"title": "GetStoredPersonalDataReply",
 	"description": "Get Stored Personal Data Reply",
 	"definitions": {
-		"GetStoredPersonalDataReply": {
+		"PersonalDataReplyDef": {
 			"type": "object",
 			"properties": {
 				"ErrorDescription": {
@@ -32,6 +32,9 @@
 					"items": {
 						"type": "object",
 						"properties": {
+							"passengerRef": {
+								"type": "string"
+							},						
 							"personalData": {
 								"$ref": "personaldatadefinitions.json#/definitions/PassengerDetailsDef"
 							},

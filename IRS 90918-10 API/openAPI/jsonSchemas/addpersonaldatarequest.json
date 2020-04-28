@@ -4,12 +4,12 @@
 	"title": "AddPersonalDataRequest",
 	"description": "AddPersonalDataRequest",
 	"definitions": {
-		"AddPersonalDataRequest": {
+		"ChangePersonalDataRequestDef": {
 			"type": "object",
 			"properties": {
 				"bookingId": {
 					"type": "string"
-				},
+				},		
 				"personalData": {
 					"type": "array",
 					"items": {

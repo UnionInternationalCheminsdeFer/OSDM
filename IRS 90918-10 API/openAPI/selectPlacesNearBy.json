@@ -36,17 +36,19 @@
             			"schema": {
               				"type": "string"  
             			}
-          			},      		
-         			{
-            			"name": "checkNearbyPlacesRequest",
-            			"in": "body",
-            			"description": "place preferences to be checked",
-            			"required": true,
-            			"schema": {
-              				"$ref": "jsonSchemas/selectplacesnearbyrequest.json#/definitions/CheckNearbyPlacesRequestDef"  
-            			}
           			}
-        		],    			
+        		],    
+     			"requestBody": {
+				 	"description": "reference places",
+            		"required": true,
+            		"content": {
+            			"application/json": {
+            				"schema": {
+              					"$ref": "jsonSchemas/selectplacesnearbyrequest.json#/definitions/CheckNearbyPlacesRequestDef"  
+            				}
+            			}
+            		}
+				},
      			"responses": {
         			"200": {          
           				"description": "information on option to reserve near by",
