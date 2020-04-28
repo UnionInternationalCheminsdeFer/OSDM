@@ -3,7 +3,7 @@
   	"info": {
     	"version": "1.0.0",
 		"title": "UIC 90918-10",
-  		"description": "get available places for graphical reservation",
+  		"description": "patch personal passenger data",
     	"name": "UIC",
     	"url": "http://www.uic.org",
   		"license": {
@@ -11,8 +11,8 @@
     		"url": "https://www.apache.org/licenses/LICENSE-2.0.html"
   		}
  	},
- 	"host": "90910-10.uic.org",
- 	"basePath": "http://uic.org/90910-10",
+ 	"host": "90918-10.uic.org",
+ 	"basePath": "http://uic.org/90918-10",
  	"schemes": [
     	"https"
   	],
@@ -23,10 +23,10 @@
     	"application/json"
   	], 	
 	"paths": {
-		"/{version}/availablePlaces": {
-  			"post": {
-    			"description": "get available places for graphical reservation",
-        		"operationId": "getAvailablePlaces",
+		"/{version}/bookings/passengers": {
+  			"patch": {
+    			"description": "patch personal passenger data based on the booking reference",
+        		"operationId": "patchPersonalData",
         		"parameters": [
          			{
             			"name": "version",
@@ -38,24 +38,24 @@
             			}
           			}
         		],    	
-				"requestBody": {
-				 	"description": "request params for available places",
+        		"requestBody": {
+				 	"description": "change passenger data for a booking",
             		"required": true,
             		"content": {
             			"application/json": {
             				"schema": {
-              					"$ref": "jsonSchemas/placeavailabilityrequest.json#/definitions/PlaceAvailabilityRequestDef"  
+              					"$ref": "jsonSchemas/ticketdefinitions.json#/definitions/ChangePersonalDataRequestDef"
             				}
             			}
             		}
-				},
+				},		
      			"responses": {
         			"200": {          
-          				"description": "availablePlaces",
+          				"description": "confirmation on changed passenger data for a booking",
          				 "content": {
             				"application/json": {
               					"schema": {
-               						"$ref": "jsonSchemas/placeavailabilityreply.json#/definitions/PlaceAvailabilityReplyDef"   
+               						"$ref": "jsonSchemas/prebookreply.json#/definitions/ChangePersonalDataReplyDef"   
            						}
     				        }
           				}

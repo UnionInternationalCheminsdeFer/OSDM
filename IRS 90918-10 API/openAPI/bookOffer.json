@@ -45,17 +45,19 @@
             			"schema": {
               				"type": "string"  
             			}
-          			},    		
-         			{
-            			"name": "prebookingRequest",
-            			"in": "body",
-            			"description": "prebook an offer",
-            			"required": true,
-            			"schema": {
-              				"$ref": "jsonSchemas/prebookrequest.json#/definitions/PrebookingRequestDef"  
-            			}
           			}
-        		],    			
+        		],    		
+        		"requestBody": {
+				 	"description": "prebook an offer",
+            		"required": true,
+            		"content": {
+            			"application/json": {
+            				"schema": {
+              					"$ref": "jsonSchemas/prebookrequest.json#/definitions/PrebookingRequestDef"  
+            				}
+            			}
+            		}
+				},	
      			"responses": {
         			"200": {          
           				"description": "prebooking",

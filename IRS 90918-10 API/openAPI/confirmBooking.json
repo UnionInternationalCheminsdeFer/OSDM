@@ -36,17 +36,19 @@
             			"schema": {
               				"type": "string"  
             			}
-          			}, 		
-         			{
-            			"name": "confirmBookingRequest",
-            			"in": "body",
-            			"description": "prebook an offer",
-            			"required": true,
-            			"schema": {
-              				"$ref": "jsonSchemas/confirmbookrequest.json#/definitions/ConfirmBookingRequestDef"  
-            			}
           			}
-        		],    			
+        		],    		
+        		"requestBody": {
+				 	"description": "conform booking",
+            		"required": true,
+            		"content": {
+            			"application/json": {
+            				"schema": {
+              					"$ref": "jsonSchemas/confirmbookrequest.json#/definitions/ConfirmBookingRequestDef" 
+            				}
+            			}
+            		}
+				},	
      			"responses": {
         			"200": {          
           				"description": "confirm booking",
