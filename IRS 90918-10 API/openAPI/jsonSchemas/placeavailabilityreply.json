@@ -3,7 +3,7 @@
 	"title": "offer reply",
 	"description": "provides offers for combining fares",
 	"definitions": {
-		"placeAvailabilityReply": {
+		"PlaceAvailabilityReplyDef": {
 			"type": "object",
 			"properties": {
 				"train": {
