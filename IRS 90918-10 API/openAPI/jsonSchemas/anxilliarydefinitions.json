@@ -1,5 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org//schemas/passenger/eticket/v1/anxilliarydefinitions.json",
 	"title": "anxilliary definitions",
 	"description": "definitions of anxilliary data objects ues in online services ",
 	"definitions": {

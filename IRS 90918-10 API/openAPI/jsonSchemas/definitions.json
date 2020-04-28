@@ -37,7 +37,7 @@
 			"type": "object",
 			"properties": {
 				"codeList": {
-					"$ref": "definitions.json#/definitions/StationCodeListDef"
+					"$ref": "#/definitions/StationCodeListDef"
 				},
 				"country": {
 					"type": "string"
@@ -98,11 +98,11 @@
 					"type": "object"
 				},
 				"payload": {
-					"$ref": "definitions.json#/definitions/base64Binary",
+					"$ref": "#/definitions/base64Binary",
 					"description": "data, JSON structure base 64 encoded"
 				},
 				"signature": {
-					"$ref": "definitions.json#/definitions/base64Binary",
+					"$ref": "#/definitions/base64Binary",
 					"description": "signature"
 				}
 			},
@@ -116,7 +116,7 @@
 			"type": "object",
 			"properties": {
 				"securityProvider": {
-					"$ref": "definitions.json#/definitions/CompanyDef",
+					"$ref": "#/definitions/CompanyDef",
 					"description": "Provider of the signature"
 				},
 				"keyId": {
@@ -166,7 +166,7 @@
 					"default": "north"
 				},
 				"unit": {
-					"$ref": "definitions.json#/definitions/GeoCoordinateUnitDef"
+					"$ref": "#/definitions/GeoCoordinateUnitDef"
 				},
 				"latitude": {
 					"type": "number"
@@ -212,15 +212,15 @@
 			"type": "object",
 			"properties": {
 				"abbreviation": {
-					"$ref": "definitions.json#/definitions/ServiceBrandAbbreviationDef",
+					"$ref": "#/definitions/ServiceBrandAbbreviationDef",
 					"description": "The abbreviation has to be included if there is an abbreviation defined for the service brand. "
 				},
 				"code": {
-					"$ref": "definitions.json#/definitions/ServiceBrandCodeDef",
+					"$ref": "#/definitions/ServiceBrandCodeDef",
 					"description": "service btrand code according to the UIC service brand code list "
 				},
 				"description": {
-					"$ref": "definitions.json#/definitions/ServiceBrandDescriptionDef",
+					"$ref": "#/definitions/ServiceBrandDescriptionDef",
 					"description": "The description text has to be included if the service brand has defined a description text for printing."
 				}
 			},
@@ -233,10 +233,10 @@
 			"type": "object",
 			"properties": {
 				"content": {
-					"$ref": "definitions.json#/definitions/base64Binary"
+					"$ref": "#/definitions/base64Binary"
 				},
 				"provider": {
-					"$ref": "definitions.json#/definitions/CompanyDef",
+					"$ref": "#/definitions/CompanyDef",
 					"description": "RICS code in case of railways"
 				},
 				"specification": {
