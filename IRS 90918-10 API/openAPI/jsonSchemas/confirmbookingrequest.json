@@ -4,7 +4,7 @@
 	"title": "ConfirmBookingRequest",
 	"description": "ConfirmBookingRequest",
 	"definitions": {
-		"ConfirmBookingRequest": {
+		"ConfirmBookingRequestDef": {
 			"type": "object",
 			"properties": {
 				"prebookingId": {

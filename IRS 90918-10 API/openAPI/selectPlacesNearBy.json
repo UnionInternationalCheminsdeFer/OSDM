@@ -3,7 +3,7 @@
   	"info": {
     	"version": "1.0.0",
 		"title": "UIC 90918-10",
-  		"description": "search offers for a trip",
+  		"description": "select places nearby",
     	"name": "UIC",
     	"url": "http://www.uic.org",
   		"license": {
@@ -11,7 +11,7 @@
     		"url": "https://www.apache.org/licenses/LICENSE-2.0.html"
   		}
  	},
- 	"host": "90910-10.uic.org",
+ 	"host": "90918-10.uic.org",
  	"basePath": "http://uic.org/90910-10",
  	"schemes": [
     	"https"
@@ -23,10 +23,10 @@
     	"application/json"
   	], 	
 	"paths": {
-		"/{version}/tripOffersCollection": {
+		"/{version}/Places/SelectNearBy": {
   			"post": {
-    			"description": "get offers based on a trip",
-        		"operationId": "searchTripOffers",
+    			"description": "reference places and booking",
+        		"operationId": "selectPlacesNearby",
         		"parameters": [
          			{
             			"name": "version",
@@ -38,22 +38,22 @@
             			}
           			},      		
          			{
-            			"name": "tripOffersCollection",
+            			"name": "checkNearbyPlacesRequest",
             			"in": "body",
-            			"description": "request parameter for trip offer search",
+            			"description": "place preferences to be checked",
             			"required": true,
             			"schema": {
-              				"$ref": "jsonSchemas/offerrequest.json#/definitions/TripOfferRequestDef"  
+              				"$ref": "jsonSchemas/selectplacesnearbyrequest.json#/definitions/CheckNearbyPlacesRequestDef"  
             			}
           			}
         		],    			
      			"responses": {
         			"200": {          
-          				"description": "offer collection, corrected trip",
+          				"description": "information on option to reserve near by",
          				 "content": {
             				"application/json": {
               					"schema": {
-               						"$ref": "jsonSchemas/offerreply.json#/definitions/TripOffersCollectionDef"   
+               						"$ref": "jsonSchemas/selectplacesnearbyreply.json#/definitions/CheckNearbyPlacesReplyDef"
            						}
     				        }
           				}

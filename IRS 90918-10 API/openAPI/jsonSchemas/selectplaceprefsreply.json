@@ -1,9 +1,10 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v1/selectplaceprefsrequest.json",
 	"title": "offer reply",
-	"description": "provides offers for combining fares",
+	"description": "checks place selection on customer preferences",
 	"definitions": {
-		"checkPlacePrefsReply": {
+		"CheckPlacePrefsReplyDef": {
 			"type": "object",
 			"properties": {
 				"ErrorDescription": {

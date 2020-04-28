@@ -1,9 +1,10 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
-	"title": "offer reply",
-	"description": "provides offers for combining fares",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v1/selectplacesnearbyreply.json",
+	"title": "select places nearby reply",
+	"description": "select places nearby",
 	"definitions": {
-		"checkNearbyPlacesReply": {
+		"CheckNearbyPlacesReplyDef": {
 			"type": "object",
 			"properties": {
 				"ErrorDescription": {
@@ -31,7 +32,7 @@
 					"type": "string"
 				},
 				"availablePreferences": {
-					"description": "list of available preferences. The list is a subset of the requested preferences.",
+					"description": "list of place preferences. ",
 					"type": "array",
 					"items": {
 						"type": "string"

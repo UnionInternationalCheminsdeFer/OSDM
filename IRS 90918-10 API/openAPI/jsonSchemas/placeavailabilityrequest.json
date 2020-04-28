@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
-	"$id": "http://uic.org/schemas/passenger/farestructure/v1/offerRequest.json",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v1/placeabvailabilityrequest.json",
 	"title": "place availability request for graphical reservation",
 	"description": "Request available places for graphical reservation",
 	"definitions": {
