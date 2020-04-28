@@ -1,0 +1,67 @@
+{
+  	"openapi": "3.0.0",
+  	"info": {
+    	"version": "1.0.0",
+		"title": "UIC 90918-10",
+  		"description": "compensate booking or prebooking",
+    	"name": "UIC",
+    	"url": "http://www.uic.org",
+  		"license": {
+    		"name": "Apache 2.0",
+    		"url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+  		}
+ 	},
+ 	"host": "90910-10.uic.org",
+ 	"basePath": "http://uic.org/90910-10",
+ 	"schemes": [
+    	"https"
+  	],
+  	"consumes": [
+    	"application/json"
+  	],
+  	"produces": [
+    	"application/json"
+  	], 	
+	"paths": {
+		"/{version}/bookings/request/{requestId}": {
+  			"delete": {
+    			"description": "compensate booking",
+        		"operationId": "compensateBooking",
+        		"parameters": [
+         			{
+            			"name": "version",
+            			"in": "path",
+            			"description": "schema version",
+            			"required": true,
+            			"schema": {
+              				"type": "string"  
+            			}
+          			},  
+         			{
+            			"name": "requestId",
+            			"in": "path",
+            			"description": "id of the request that created the booking",
+            			"required": true,
+            			"schema": {
+              				"type": "string"  
+            			}
+          			}
+        		],    			
+     			"responses": {
+        			"200": {          
+          				"description": "compensation ok"
+        			},
+        			"404": {          
+          				"description": "request unknown, booking does not exist"
+        			},        			
+         			"default": {
+           				 "description": "unexpected error",
+          				 "schema": {
+             			 	"$ref": "jsonSchemas/genericerror.json#/definitions/ErrorDef"
+             			 }
+            		}
+     			}
+   			}
+  		}
+	}
+}

@@ -41,7 +41,9 @@ import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.Legacy108Station;
 import Gtm.LegacyAccountingIdentifier;
+import Gtm.LegacyBorderPoint;
 import Gtm.LegacyBorderPointMapping;
+import Gtm.LegacyBorderSide;
 import Gtm.LegacyCalculationType;
 import Gtm.LegacyDistanceFare;
 import Gtm.LegacyFareDetailMap;
@@ -63,16 +65,16 @@ import Gtm.StartOfSale;
 import Gtm.Station;
 import Gtm.StationFareDetailType;
 import Gtm.StationNames;
-import Gtm.StationRelation;
-import Gtm.StationRelationType;
+//import Gtm.StationRelation;
+//import Gtm.StationRelationType;
 import Gtm.StationSet;
 import Gtm.TaxScope;
 import Gtm.VATDetail;
 import Gtm.ViaStation;
 import Gtm.console.ConsoleUtil;
 import Gtm.nls.NationalLanguageSupport;
-import Gtm.preferences.PreferenceConstants;
-import Gtm.preferences.PreferencesAccess;
+//import Gtm.preferences.PreferenceConstants;
+//import Gtm.preferences.PreferencesAccess;
 import Gtm.presentation.DirtyCommand;
 import Gtm.presentation.GtmEditor;
 
@@ -258,15 +260,11 @@ public class ConverterFromLegacy {
 		ArrayList<RegionalConstraint> regions = new ArrayList<RegionalConstraint>();
 		ArrayList<FareElement> fares = new ArrayList<FareElement>();
 		
-
-		
-		
 		int nbSeries = 0;
 		int worked = 100000 / tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries().size();
 		if (worked < 1 ) worked = 1;
 		int added = 0;
-		
-		
+
 		monitor.subTask(NationalLanguageSupport.ConverterFromLegacy_1);
 		for (LegacySeries series: tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries()) {
 			
@@ -332,7 +330,7 @@ public class ConverterFromLegacy {
 					
 					try {
 						for (DateRange dateRange : validityRanges) {
-							convertSeriesToFares(series, fareTemplate,added, dateRange, regionalConstraint,regionalConstraintR ,priceList, legacyFareCounter, fares, afterSalesRules);
+							convertSeriesToFares(series, fareTemplate,dateRange, regionalConstraint,regionalConstraintR ,priceList, legacyFareCounter, fares, afterSalesRules);
 						}
 						added++;
 					} catch (ConverterException e) {
@@ -346,9 +344,6 @@ public class ConverterFromLegacy {
 				monitor.subTask(NationalLanguageSupport.ConverterFromLegacy_3+ String.valueOf(nbSeries));
 				monitor.worked(worked);
 			} 
-			
-			
-			
 			
 		}
 		
@@ -390,6 +385,8 @@ public class ConverterFromLegacy {
 	}
 
 
+	private static int DIRECTION_ORIGINAL = 1;
+	private static int DIRECTION_REVERSED = 2;
 	
 	/**
 	 * Convert series to fares.
@@ -406,44 +403,19 @@ public class ConverterFromLegacy {
 	 * @param afterSalesRules the after sales rules list collecting all after sales rules
 	 * @throws ConverterException the converter exception in case something does wrong
 	 */
-	public void convertSeriesToFares(LegacySeries series, FareTemplate fareTemplate, int number,DateRange dateRange, RegionalConstraint regionalConstraint, RegionalConstraint regionalConstraintR, ArrayList<Price> priceList, int legacyFareCounter, ArrayList<FareElement> fares, ArrayList<AfterSalesRule> afterSalesRules) throws ConverterException{
+	public void convertSeriesToFares(LegacySeries series, FareTemplate fareTemplate, DateRange dateRange, RegionalConstraint regionalConstraint, RegionalConstraint regionalConstraintR, ArrayList<Price> priceList, int legacyFareCounter, ArrayList<FareElement> fares, ArrayList<AfterSalesRule> afterSalesRules) throws ConverterException{
 		
 		try {
 			
-			Price price = null;
-			if (fareTemplate.getPrice() == null) {
-				price = convertSeriesToPrice(tool, series, fareTemplate, dateRange);
-				if (price == null) return;
-				price = findPrice(price, priceList);
-			} else {
-				price = fareTemplate.getPrice();
-			}
-			
+			Price price = convertSeriesToPrice(tool, series, fareTemplate, dateRange, priceList);
+		
 			if (regionalConstraint != null) {
-				FareElement fareElement = convertSeriesToFare(tool, series, fareTemplate, 1);
-				fareElement.getLegacyAccountingIdentifier().setTariffId(legacyFareCounter++);
-				fareElement.setPrice(price);
-				fareElement.setRegionalConstraint(regionalConstraint);
-				fareElement.setSalesAvailability(findSalesAvailability(tool,dateRange));
-				mapConstraintsAndDescriptions(fareElement, series);
-				if (price != null && fareElement != null) {
-					fareElement.setAfterSalesRule(convertAfterSalesRules(price, fareTemplate, afterSalesRules, priceList));
-					fares.add(fareElement);			
-				}
+				convertSeriesToFare(tool, series, fareTemplate, DIRECTION_ORIGINAL,legacyFareCounter,price,regionalConstraint,dateRange,afterSalesRules, priceList, fares);
 			}
 			
 			if (regionalConstraintR != null) {
-				FareElement fareElementR = convertSeriesToFare(tool, series, fareTemplate, 2);
-				fareElementR.getLegacyAccountingIdentifier().setTariffId(legacyFareCounter++);
-				fareElementR.setPrice(price);
-				fareElementR.setRegionalConstraint(regionalConstraintR);
-				mapConstraintsAndDescriptions(fareElementR, series);
-				if (price != null && fareElementR != null) {	
-					fareElementR.setAfterSalesRule(convertAfterSalesRules(price, fareTemplate, afterSalesRules, priceList));
-					fares.add(fareElementR);	
-				}
+				convertSeriesToFare(tool, series, fareTemplate, DIRECTION_REVERSED, legacyFareCounter, price, regionalConstraintR, dateRange, afterSalesRules, priceList, fares);
 			}
-			
 			
 		} catch (ConverterException e) {
 			String message = NationalLanguageSupport.ConverterFromLegacy_4 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_5;
@@ -882,8 +854,8 @@ public class ConverterFromLegacy {
 	 * Sets the connection points.
 	 *
 	 * @param series the series
-	 * @param departureStation the departure station
-	 * @param arrivalStation the arrival station
+	 * @param departureStation the departure station  
+	 * @param arrivalStation the arrival station  
 	 * @param constraint the constraint
 	 * @param reversed the reversed
 	 * @throws ConverterException the converter exception
@@ -1002,35 +974,6 @@ public class ConverterFromLegacy {
 		return 0;
 	}
 
-
-	/**
-	 * Find connection pointvia border point code.
-	 *
-	 * @param tool the tool
-	 * @param borderpointcode the borderpointcode
-	 * @return the connection point
-	 */
-	public static ConnectionPoint findConnectionPointviaBorderPointCode (GTMTool tool, int borderpointcode) {
-		LegacyBorderPointMapping map = tool.getConversionFromLegacy().getParams().getLegacyBorderPointMappings().getMappingByBorderPointCode(borderpointcode);
-		if (map != null && map.getConnectionPoint() != null) {
-			return map.getConnectionPoint();
-		}
-		
-		
-		if (tool.getGeneralTariffModel().getFareStructure() == null) return null;
-		if (tool.getGeneralTariffModel().getFareStructure() == null) return null;
-		if (tool.getGeneralTariffModel().getFareStructure().getConnectionPoints() == null) return null;
-		if (tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().getConnectionPoints().isEmpty()) return null;
-		for (ConnectionPoint point : tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().getConnectionPoints()) {
-			if (point.getLegacyBorderPointCode() == borderpointcode) {
-				return point;
-			}
-		}
-
-		return null;
-		
-		
-	}
 
 
 	/**
@@ -1207,17 +1150,216 @@ public class ConverterFromLegacy {
 	 * Find connection point.
 	 *
 	 * @param tool the tool
-	 * @param borderpointcode the borderpointcode
+	 * @param borderpoint the border point code
 	 * @param station the station
 	 * @return the connection point
 	 */
-	private static ConnectionPoint findConnectionPoint(GTMTool tool, int borderpointcode, Station station) {
-		ConnectionPoint point = findConnectionPointviaBorderPointCode(tool,borderpointcode);
-		if (point != null) return point;
+	private static ConnectionPoint findConnectionPoint(GTMTool tool, int borderpoint, Station station) {
 		
-		point = tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().findSimpleConnectionPoint(station);
-		return point;
+		if (tool.getGeneralTariffModel().getFareStructure().getConnectionPoints() == null ||
+			tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().getConnectionPoints() == null ||
+			tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().getConnectionPoints().isEmpty()) {
+			return null;
+		}
+		
+		if (borderpoint > 0) {
+			for (ConnectionPoint p : tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().getConnectionPoints()) {
+				if (p.getLegacyBorderPointCode() == borderpoint) {
+					return p;
+				}
+			}
+		}
+		
+		if (borderpoint == 0) {
+			//find connection point which contains the station
+			if (station != null) {
+				for (ConnectionPoint p : tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().getConnectionPoints()) {
+					if (p.getLegacyBorderPointCode() == 0) {
+						if (p.getConnectedStationSets() != null && 
+							!p.getConnectedStationSets().isEmpty() && 
+							p.getConnectedStationSets().size() == 1 &&
+							p.getConnectedStationSets().get(0) != null &&
+							p.getConnectedStationSets().get(0).getStations() != null) {
+						
+							if (p.getConnectedStationSets().get(0).getStations().contains(station)) {
+								return p;
+							}
+						}
+					}	
+				}
+			}
+		}
+		return null;
 	}
+	
+	/**
+	 * Find connection point.
+	 * 
+	 * fond or create a connection point for the given station 108.1 code and country
+	 *
+	 * @param tool the tool
+	 * @param stationCode the station code
+	 * @param country the country
+	 * @param points 
+	 * @return 
+	 * @return the connection point
+	 */
+	private void findOrCreateConnectionPoint(GTMTool tool, int stationCode, Country country, List<ConnectionPoint> points) {
+
+		
+		//get the real station for the station code
+		Station station = null;
+		try {
+			station = getStation(tool, country, stationCode);
+		} catch (ConverterException e) {
+			// continue
+		}
+		
+		//get the legacy station for the station code --> get the legacy border point code
+		int borderpoint = 0;
+		Legacy108Station legacyStation = legacyStations.get(Integer.valueOf(stationCode));
+		if (legacyStation != null) {
+			borderpoint = legacyStation.getBorderPointCode();
+		}
+
+		if (borderpoint > 0) {
+			//find already existing connection points
+			if (tool.getGeneralTariffModel().getFareStructure() == null &&
+			    tool.getGeneralTariffModel().getFareStructure() == null &&
+			    tool.getGeneralTariffModel().getFareStructure().getConnectionPoints() == null &&
+			    tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().getConnectionPoints().isEmpty()) {
+				for (ConnectionPoint p : tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().getConnectionPoints()) {
+					if (p.getLegacyBorderPointCode() == borderpoint) {
+						return;
+					}
+				}
+			}
+			
+			//already existing and mapped?
+			if (tool.getConversionFromLegacy().getParams().getLegacyBorderPointMappings() != null &&
+				tool.getConversionFromLegacy().getParams().getLegacyBorderPointMappings().getBorderPoints() != null &&
+				!tool.getConversionFromLegacy().getParams().getLegacyBorderPointMappings().getBorderPoints().isEmpty()) {
+				for (LegacyBorderPointMapping map : tool.getConversionFromLegacy().getParams().getLegacyBorderPointMappings().getBorderPoints()){
+					if (map.getCode() == borderpoint) {
+						return;
+					}
+				}		
+			}
+		
+			//already created?
+			for (ConnectionPoint p : points) {
+				if (p.getLegacyBorderPointCode() == borderpoint) {
+					return;
+				}
+			}
+			
+			//we need a new connection point linked to a border point code!
+			//lets try the border point data
+
+			
+			for (LegacyBorderPoint bp : tool.getConversionFromLegacy().getLegacy108().getLegacyBorderPoints().getLegacyBorderPoints()) {
+				if (bp.getBorderPointCode() == borderpoint) {
+					ConnectionPoint point = GtmFactory.eINSTANCE.createConnectionPoint();
+					point.setDataSource(DataSource.CONVERTED);
+					point.setLegacyBorderPointCode(borderpoint);
+					
+					if (bp.getOnBorderStations() != null && bp.getOnBorderStations().getStations() != null && !bp.getOnBorderStations().getStations().getStations().isEmpty()) {
+						//stations on the border
+						point.getConnectedStationSets().add(EcoreUtil.copy(bp.getOnBorderStations().getStations()));
+						return;
+					}
+					if (bp.getBorderSides() != null && !bp.getBorderSides().isEmpty()) {
+						for (LegacyBorderSide bs: bp.getBorderSides()) {
+							point.getConnectedStationSets().add(EcoreUtil.copy(bs.getStations()));
+						}
+						if (point.getConnectedStationSets() != null) return;
+					}
+				}
+			}
+			//no data available --> create a border point from the station
+			ConnectionPoint point = GtmFactory.eINSTANCE.createConnectionPoint();
+			point.setLegacyBorderPointCode(borderpoint);
+			point.setDataSource(DataSource.CONVERTED);
+
+			if (station != null) {
+				point.setDescription("created from series data only- might be incomplete");
+				StationSet set = GtmFactory.eINSTANCE.createStationSet();
+				set.getStations().add(station);
+				points.add(point);
+				return;
+			} else {
+				point.setDescription("created from series data only- station is missing!");
+				StationSet set = GtmFactory.eINSTANCE.createStationSet();
+				set.getStations().add(station);
+				points.add(point);
+				return;
+			}
+		}
+		
+		//maybe its already there 
+		if (station != null) {
+			for (ConnectionPoint p : points) {
+				if (p.getLegacyBorderPointCode() == 0) {
+					if (p.getConnectedStationSets() != null && 
+						!p.getConnectedStationSets().isEmpty() && 
+						p.getConnectedStationSets().size() == 1 &&
+						p.getConnectedStationSets().get(0) != null &&
+						p.getConnectedStationSets().get(0).getStations() != null) {
+					
+						if (p.getConnectedStationSets().get(0).getStations().contains(station)) {
+							return;
+						}
+					}
+				}	
+			}
+		}
+		
+		//no border point code available
+		if (station != null) {
+			//create connectionPoint with a station
+			ConnectionPoint newPoint = GtmFactory.eINSTANCE.createConnectionPoint();
+			newPoint.setDataSource(DataSource.CONVERTED);
+			StationSet stationSet = GtmFactory.eINSTANCE.createStationSet();
+			stationSet.getStations().add(station);		
+			newPoint.getConnectedStationSets().add(stationSet);
+			points.add(newPoint);
+			return;
+		} else {
+			String message = "Connection Point missing for series station code " + Integer.toString(stationCode);
+			writeConsoleError(message);
+			return;
+		}
+
+	}
+	
+	/**
+	 * Find connection pointvia border point code.
+	 *
+	 * @param tool the tool
+	 * @param borderpointcode the borderpointcode
+	 * @return the connection point
+	 */
+	public static ConnectionPoint findConnectionPointviaBorderPointCode (GTMTool tool, int borderpointcode) {
+		LegacyBorderPointMapping map = tool.getConversionFromLegacy().getParams().getLegacyBorderPointMappings().getMappingByBorderPointCode(borderpointcode);
+		if (map != null && map.getConnectionPoint() != null) {
+			return map.getConnectionPoint();
+		}
+		
+		
+		if (tool.getGeneralTariffModel().getFareStructure() == null) return null;
+		if (tool.getGeneralTariffModel().getFareStructure() == null) return null;
+		if (tool.getGeneralTariffModel().getFareStructure().getConnectionPoints() == null) return null;
+		if (tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().getConnectionPoints().isEmpty()) return null;
+		for (ConnectionPoint point : tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().getConnectionPoints()) {
+			if (point.getLegacyBorderPointCode() == borderpointcode) {
+				return point;
+			}
+		}
+
+		return null;
+		
+	}
+
 
 
 	/**
@@ -1325,8 +1467,13 @@ public class ConverterFromLegacy {
 	 * @return the price
 	 * @throws ConverterException the converter exception
 	 */
-	public Price convertSeriesToPrice(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, DateRange dateRange) throws ConverterException{
+	public Price convertSeriesToPrice(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, DateRange dateRange, ArrayList<Price> priceList) throws ConverterException{
 		
+	    
+		if (fareTemplate.getPrice() != null) {
+			return fareTemplate.getPrice();
+		}
+
 	
 		Price price = null;
 			
@@ -1347,6 +1494,10 @@ public class ConverterFromLegacy {
 			
 		    price = createPrice(amount);
 		    
+			if (price != null) {
+				price = findPrice(price, priceList);
+			}
+			
 			return price;
 		
 		} catch (Exception e) {
@@ -1463,10 +1614,16 @@ public class ConverterFromLegacy {
 	 * @param series the series
 	 * @param fareTemplate the fare template
 	 * @param direction the direction
+	 * @param priceList 
+	 * @param afterSalesRules 
+	 * @param dateRange 
+	 * @param regionalConstraint 
+	 * @param price 
+	 * @param legacyFareCounter 
 	 * @return the fare element
 	 * @throws ConverterException the converter exception
 	 */
-	public FareElement convertSeriesToFare(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, int direction) throws ConverterException{
+	public void convertSeriesToFare(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, int direction, int legacyFareCounter, Price price, RegionalConstraint regionalConstraint, DateRange dateRange, ArrayList<AfterSalesRule> afterSalesRules, ArrayList<Price> priceList, ArrayList<FareElement> fares) throws ConverterException{
 		
 		FareElement fare = GtmFactory.eINSTANCE.createFareElement();
 		template2Fare(fare, fareTemplate);
@@ -1502,7 +1659,15 @@ public class ConverterFromLegacy {
 		legacyAccountingIdentifier.setAddSeriesId(direction);
 		fare.setLegacyAccountingIdentifier(legacyAccountingIdentifier);
 
-		return fare;
+		fare.getLegacyAccountingIdentifier().setTariffId(legacyFareCounter++);
+		fare.setPrice(price);
+		fare.setRegionalConstraint(regionalConstraint);
+		fare.setSalesAvailability(findSalesAvailability(tool,dateRange));
+		mapConstraintsAndDescriptions(fare, series);
+		if (price != null && fare != null) {
+			fare.setAfterSalesRule(convertAfterSalesRules(price, fareTemplate, afterSalesRules, priceList));
+			fares.add(fare);			
+		}
 		
 	}
 
@@ -1651,10 +1816,12 @@ public class ConverterFromLegacy {
 
 	/**
 	 * Convert series to connection points.
+	 * 
+	 * Creates a list of all connection points needed for the list of series
 	 *
 	 * @param tool the tool
 	 * @param series the series
-	 * @return the list
+	 * @return the list of connection point
 	 * @throws ConverterException the converter exception
 	 */
 	public List<ConnectionPoint> convertSeriesToConnectionPoints(GTMTool tool, LegacySeries series) throws ConverterException{
@@ -1667,21 +1834,16 @@ public class ConverterFromLegacy {
 			writeConsoleError(message);
 			throw new ConverterException(message);
 		}
+
 		
 		//find connection points
 		if (series.getType() == LegacySeriesType.TRANSIT) {
-			ConnectionPoint point = findConnectionPoint(tool, series.getToStation(), country);
-			if (point != null) {
-				pointList.add(point);
-			}
+			findOrCreateConnectionPoint(tool, series.getToStation(), country, pointList);
 		}
 		
-		
+
 		if (series.getType() == LegacySeriesType.TRANSIT || series.getType() == LegacySeriesType.BORDER_DESTINATION) {
-			ConnectionPoint point = findConnectionPoint(tool, series.getFromStation(), country);
-			if (point != null) {
-				pointList.add(point);
-			}
+			findOrCreateConnectionPoint(tool, series.getFromStation(), country, pointList);
 		}
 		
 
@@ -1689,82 +1851,7 @@ public class ConverterFromLegacy {
 	}
 
 
-	/**
-	 * Find connection point.
-	 *
-	 * @param tool the tool
-	 * @param stationCode the station code
-	 * @param country the country
-	 * @return the connection point
-	 */
-	private ConnectionPoint findConnectionPoint(GTMTool tool, int stationCode, Country country) {
 
-		
-		Station station = null;
-		try {
-			station = getStation(tool, country, stationCode);
-		} catch (ConverterException e) {
-			// continue
-		}
-		
-		int borderpoint = 0;
-		Legacy108Station legacyStation = legacyStations.get(Integer.valueOf(stationCode));
-		if (legacyStation != null) {
-			borderpoint = legacyStation.getBorderPointCode();
-		}
-		
-		ConnectionPoint point = null;
-		
-		if (borderpoint > 0) {
-			point = findConnectionPointviaBorderPointCode(tool,borderpoint);
-			if (point != null){
-				//connection point already exists
-				return null;
-			}
-		}
-		
-		if (station != null) {
-			point = tool.getGeneralTariffModel().getFareStructure().getConnectionPoints().findSimpleConnectionPoint(station);
-			if (point != null){
-				//connection point already exists
-				return null;
-			}
-		}
-			
-		if (point == null && station != null) {
-			//create connectionPoint with a station
-			
-			ConnectionPoint newPoint = GtmFactory.eINSTANCE.createConnectionPoint();
-			newPoint.setDataSource(DataSource.CONVERTED);
-			StationSet stationSet = GtmFactory.eINSTANCE.createStationSet();
-			stationSet.getStations().add(station);
-			//add related stations to list all stations which have multiple station codes
-			if (station.getRelations()!= null && !station.getRelations().isEmpty()) {
-				for (StationRelation rel : station.getRelations()) {
-					
-					if (rel.getRelationType() == StationRelationType.SAME_STATION &&
-						checkDistance(station, rel.getStation()) ) {
-						stationSet.getStations().add(rel.getStation());
-					}
-					
-				}
-			}
-			
-			newPoint.getConnectedStationSets().add(stationSet);
-			newPoint.setLegacyBorderPointCode(borderpoint);
-			
-			return newPoint;
-		} else {
-			
-			ConnectionPoint newPoint = GtmFactory.eINSTANCE.createConnectionPoint();
-			newPoint.setDataSource(DataSource.CONVERTED);
-			newPoint.setLegacyBorderPointCode(borderpoint);
-			newPoint.setName(NationalLanguageSupport.ConverterFromLegacy_49);
-			
-			return newPoint;
-		}
-
-	}
 
 	
 	/**
@@ -1773,7 +1860,7 @@ public class ConverterFromLegacy {
 	 * @param station1 the station 1
 	 * @param station2 the station 2
 	 * @return true, if successful
-	 */
+
 	private boolean checkDistance(Station station1, Station station2) {
 		
 		
@@ -1792,7 +1879,7 @@ public class ConverterFromLegacy {
 		}
 		return false;
 	}
-	
+	 */
 
 	/**
 	 * Convert sales availabilities.
