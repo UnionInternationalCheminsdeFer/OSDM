@@ -4,7 +4,7 @@
 	"title": "offer request",
 	"description": "Request offers",
 	"definitions": {
-		"offerRequest": {
+		"TripOfferRequestDef": {
 			"type": "object",
 			"properties": {
 				"trip": {
@@ -18,7 +18,7 @@
 							"type": "string"
 						},
 						"company": {
-							"$ref": "file:///D:/Users/BKU/ClemensGantert/OneDrive%20-%20Deutsche%20Bahn/Anlagen/UIC/2020/nTM/Json%20SCHEMA%20Def/definitions.json#/definitions/CompanyDef"
+							"$ref": "definitions.json#/definitions/CompanyDef"
 						},
 						"distributionChannel": {
 							"$ref": "anxilliarydefinitions.json#/definitions/DistributionChannelDef",
@@ -116,7 +116,7 @@
 										"type": "number"
 									},
 									"attachedItems": {
-										"description": "TODO code list according IRS90918-1",
+										"description": "code list according IRS90918-1",
 										"type": "array",
 										"items": {
 											"type": "string"

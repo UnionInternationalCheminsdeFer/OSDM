@@ -3,7 +3,7 @@
 	"title": "offer reply",
 	"description": "provides offers for combining fares",
 	"definitions": {
-		"OfferReply": {
+		"TripOffersCollectionDef": {
 			"type": "object",
 			"properties": {
 				"travelDescription": {
