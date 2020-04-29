@@ -3,7 +3,7 @@
   	"info": {
     	"version": "1.0.0",
 		"title": "UIC 90918-10",
-  		"description": "retrieve a booking",
+  		"description": "confirm cancellation",
     	"name": "UIC",
     	"url": "http://www.uic.org",
   		"license": {
@@ -23,10 +23,10 @@
     	"application/json"
   	], 	
 	"paths": {
-		"/{version}/booking/_search": {
-  			"post": {
-    			"description": "get a booking based on booking reference",
-        		"operationId": "searchBooking",
+		"/{version}/bookings/cancel/confirm": {
+  			"patch": {
+    			"description": "confirm cancellation",
+        		"operationId": "confirmCancellation",
         		"parameters": [
          			{
             			"name": "version",
@@ -39,26 +39,19 @@
           			}
         		],    		
         		"requestBody": {
-				 	"description": "booking reference",
+				 	"description": "confirm cancellation",
             		"required": true,
             		"content": {
             			"application/json": {
             				"schema": {
-              					"$ref": "jsonSchemas/ticketdefinitions.json#/definitions/BookingReferenceDef"  
+              					"$ref": "jsonSchemas/confirmcancellationrequest.json#/definitions/ConfirmCancellationRequestDef" 
             				}
             			}
             		}
-				},		
+				},	
      			"responses": {
         			"200": {          
-          				"description": "booking",
-         				 "content": {
-            				"application/json": {
-              					"schema": {
-               						"$ref": "jsonSchemas/booking.json#/definitions/BookingDef"   
-           						}
-    				        }
-          				}
+          				"description": "cancellation confirmed"
         			},
          			"default": {
            				 "description": "unexpected error",

@@ -2,12 +2,12 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"$id": "http://uic.org/schemas/passenger/farestructure/v1/ConfirmCancellationRequest.json",
 	"title": "ConfirmCancellationRequest",
-	"description": "ConfirmCancellationRequest",
+	"description": "ConfirmCancellationRequestDef",
 	"definitions": {
 		"ConfirmCancellationRequest": {
 			"type": "object",
 			"properties": {
-				"prebookingId": {
+				"bookingId": {
 					"type": "string"
 				},
 				"salesChannel": {

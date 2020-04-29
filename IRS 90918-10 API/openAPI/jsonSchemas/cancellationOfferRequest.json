@@ -4,21 +4,21 @@
 	"title": "CancellationOfferRequest",
 	"description": "CancellationOfferRequest",
 	"definitions": {
-		"CancellationOfferRequest": {
+		"CancellationOfferRequestDef": {
 			"type": "object",
 			"properties": {
-				"bookingId": {
-					"type": "string"
-				},
 				"salesChannel": {
 					"$ref": "anxilliarydefinitions.json#/definitions/RequesterDef"
+				},			
+				"bookingReference": {
+					"$ref": "ticketdefinitions.json#/definitions/BookingReferenceDef"
 				},
 				"reasonForCancellation": {
 					"type": "string"
 				}
 			},
 			"required": [
-				"bookingId",
+				"bookingReference",
 				"salesChannel"
 			],
 			"additionalProperties": false

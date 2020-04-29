@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"title": "CancellationOfferReply",
-	"description": "CancellationOfferReply",
+	"description": "CancellationOfferReplyDef",
 	"definitions": {
 		"CancellationOfferReply": {
 			"type": "object",
@@ -9,32 +9,14 @@
 				"offerId": {
 					"type": "string"
 				},
-				"ErrorDescription": {
-					"type": "object",
-					"properties": {
-						"Type": {
-							"description": "FUNCTIONAL,TECHNICAL,CONTENT",
-							"type": "string"
-						},
-						"Code": {
-							"type": "string"
-						},
-						"Description": {
-							"description": "error description used to analyze errors",
-							"type": "string"
-						}
-					},
-					"required": [
-						"Type",
-						"Code"
-					],
-					"additionalProperties": false
+				"explanation": {
+					"$ref": "definitions.json#/definitions/TextDef"
 				},
 				"offerContext": {
 					"type": "string"
 				},
 				"reasonAccepted": {
-					"description": "the reason was accepted and a full refund is granted. The allocator needs to provide evidence on the reason on request.",
+					"description": "the reason was accepted. The allocator needs to provide evidence on the reason on request.",
 					"type": "boolean",
 					"default": true
 				},
@@ -43,7 +25,7 @@
 					"type": "number"
 				},
 				"noFee": {
-					"description": "for the given reason the normal fee provided in the offer does not apply. No fee will be charged. (e.g. strike, ...)",
+					"description": "for the given reason the normal fee provided in the original offer does not apply. No fee will be charged. (e.g. strike, ...)",
 					"type": "boolean",
 					"default": false
 				}

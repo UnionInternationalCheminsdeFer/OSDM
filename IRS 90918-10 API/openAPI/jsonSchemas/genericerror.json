@@ -7,19 +7,23 @@
 		"ErrorDef": {
 			"type": "object",
 			"properties": {
-				"system": {
-					"description": "system identifier - RICS company code + local system id",
+				"scope": {
+					"description": "FUNCTIONAL,TECHNICAL,CONTENT",
 					"type": "string"
-				},			
+				},
 				"code": {
-					"description": "code of the error",
 					"type": "string"
 				},
 				"description": {
 					"description": "description of the error in english to analyse the error",
 					"type": "string"
-				}				
-			}
+				}
+			},
+			"required": [
+				"type",
+				"code"
+			],
+			"additionalProperties": false
 		}
 	}
 }
