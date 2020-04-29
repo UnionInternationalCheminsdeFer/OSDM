@@ -1,7 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"title": "CancellationReply",
-	"description": "CancellationReply",
+	"description": "CancellationReplyDef",
 	"definitions": {
 		"CancellationReply": {
 			"type": "object",

@@ -3,7 +3,7 @@
   	"info": {
     	"version": "1.0.0",
 		"title": "UIC 90918-10",
-  		"description": "retrieve a booking",
+  		"description": "cancellation offer validation",
     	"name": "UIC",
     	"url": "http://www.uic.org",
   		"license": {
@@ -23,10 +23,10 @@
     	"application/json"
   	], 	
 	"paths": {
-		"/{version}/booking/_search": {
-  			"post": {
-    			"description": "get a booking based on booking reference",
-        		"operationId": "searchBooking",
+		"/{version}/bookings/validateCancellation/": {
+  			"push": {
+    			"description": "validateCancellation",
+        		"operationId": "prebook",
         		"parameters": [
          			{
             			"name": "version",
@@ -39,23 +39,23 @@
           			}
         		],    		
         		"requestBody": {
-				 	"description": "booking reference",
+				 	"description": "validate the cancellation reason",
             		"required": true,
             		"content": {
             			"application/json": {
             				"schema": {
-              					"$ref": "jsonSchemas/ticketdefinitions.json#/definitions/BookingReferenceDef"  
+              					"$ref": "jsonSchemas/cancellationofferrequest.json#/definitions/CancellationOfferRequestDef"  
             				}
             			}
             		}
-				},		
+				},	
      			"responses": {
         			"200": {          
-          				"description": "booking",
+          				"description": "cancellationOffer",
          				 "content": {
             				"application/json": {
               					"schema": {
-               						"$ref": "jsonSchemas/booking.json#/definitions/BookingDef"   
+               						"$ref": "jsonSchemas/cancellationofferreply.json#/definitions/CancellationOfferReplyDef"   
            						}
     				        }
           				}
