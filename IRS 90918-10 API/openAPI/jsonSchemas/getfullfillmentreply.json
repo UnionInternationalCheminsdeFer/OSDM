@@ -1,14 +1,11 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"title": "GetFulfilmentReply",
-	"description": "GetFulfilmentReply",
+	"description": "GetFullfilmentReplyDef",
 	"definitions": {
 		"GetFulfilmentReply": {
 			"type": "object",
 			"properties": {
-				"bookingId": {
-					"type": "string"
-				},
 				"tickets": {
 					"type": "array",
 					"items": {
@@ -26,7 +23,7 @@
 												"type": "string"
 											}
 										},
-										"reference": {
+										"travelerReference": {
 											"description": "reference to a traveler",
 											"type": "string"
 										},
@@ -92,32 +89,8 @@
 						},
 						"additionalProperties": false
 					}
-				},
-				"ErrorDescription": {
-					"type": "object",
-					"properties": {
-						"Type": {
-							"description": "FUNCTIONAL,TECHNICAL,CONTENT",
-							"type": "string"
-						},
-						"Code": {
-							"type": "string"
-						},
-						"Description": {
-							"description": "error description used to analyze errors",
-							"type": "string"
-						}
-					},
-					"required": [
-						"Type",
-						"Code"
-					],
-					"additionalProperties": false
 				}
 			},
-			"required": [
-				"bookingId"
-			],
 			"additionalProperties": false
 		}
 	}

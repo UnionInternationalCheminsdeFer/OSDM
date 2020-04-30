@@ -1,14 +1,14 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"$id": "http://uic.org/schemas/passenger/farestructure/v1/GetFullfillmentRequest.json",
-	"title": "GetFullfillmentRequest",
-	"description": "GetFullfillmentRequest",
+	"title": "GetFullfilmentRequestDef",
+	"description": "GetFullfilmentRequest",
 	"definitions": {
 		"GetFullfillmentRequest": {
 			"type": "object",
 			"properties": {
-				"bookingId": {
-					"type": "string"
+				"bookingReference": {
+					"$ref": "jsonSchemas/ticketdefinitions.json#/definitions/BookingReferenceDef"  
 				},
 				"fulfillmentMedium": {
 					"description": "see code list",
@@ -16,7 +16,7 @@
 				}
 			},
 			"required": [
-				"bookingId"
+				"bookingReference"
 			],
 			"additionalProperties": false
 		}

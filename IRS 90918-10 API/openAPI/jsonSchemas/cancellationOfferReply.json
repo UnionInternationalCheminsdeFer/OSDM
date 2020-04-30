@@ -6,9 +6,6 @@
 		"CancellationOfferReply": {
 			"type": "object",
 			"properties": {
-				"offerId": {
-					"type": "string"
-				},
 				"explanation": {
 					"$ref": "definitions.json#/definitions/TextDef"
 				},
