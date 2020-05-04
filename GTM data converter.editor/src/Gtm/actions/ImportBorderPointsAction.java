@@ -151,7 +151,9 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 		/*
 		 * column 0: border point code
 		 * column 1: carrier 1
+		 * column 2: legacy station code carrier 1
 		 * column 3: carrier 2
+		 * column 4: legacy station code carrier 2
 		 * column 5: fake merits stations
 		 * column 6: stations on border or on carrier 1 side
 		 * column 7: stations on border or on carrier 2 side
@@ -171,6 +173,15 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 				
 				while (strings[1].length() < 4) {
 					strings[1] = "0" + strings[1];
+				}
+				
+				int legacyStationCode1 = 0;
+				int legacyStationCode2 = 0;			
+				try {
+					legacyStationCode1 = Integer.parseInt(strings[2]);
+					legacyStationCode2 = Integer.parseInt(strings[4]);					
+				} catch (Exception e) {
+					writeConsoleError("border point import: legacyStationCode missing in border point: " + strings[0],editor);
 				}
 
 				while (strings[3].length() < 4) {
@@ -197,11 +208,15 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 				bps1.setCarrier(carrier1);
 				StationSet set = GtmFactory.eINSTANCE.createStationSet();
 				bps1.setStations(set);
+				bps1.setLegacyStationCode(legacyStationCode1);
+				
+				
 				
 				LegacyBorderSide bps2 = GtmFactory.eINSTANCE.createLegacyBorderSide();
 				bps2.setCarrier(carrier2);		
 				StationSet set2 = GtmFactory.eINSTANCE.createStationSet();
 				bps2.setStations(set2);
+				bps2.setLegacyStationCode(legacyStationCode2);
 				
 				LegacyFakeBorderStations fakeStations = GtmFactory.eINSTANCE.createLegacyFakeBorderStations();
 				StationSet set3 = GtmFactory.eINSTANCE.createStationSet();

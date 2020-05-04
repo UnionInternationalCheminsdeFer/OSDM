@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link Gtm.impl.LegacyBorderSideImpl#getCarrier <em>Carrier</em>}</li>
  *   <li>{@link Gtm.impl.LegacyBorderSideImpl#getStations <em>Stations</em>}</li>
+ *   <li>{@link Gtm.impl.LegacyBorderSideImpl#getLegacyStationCode <em>Legacy Station Code</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,6 +51,26 @@ public class LegacyBorderSideImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected StationSet stations;
+
+	/**
+	 * The default value of the '{@link #getLegacyStationCode() <em>Legacy Station Code</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyStationCode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int LEGACY_STATION_CODE_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getLegacyStationCode() <em>Legacy Station Code</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLegacyStationCode()
+	 * @generated
+	 * @ordered
+	 */
+	protected int legacyStationCode = LEGACY_STATION_CODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,6 +177,27 @@ public class LegacyBorderSideImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getLegacyStationCode() {
+		return legacyStationCode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLegacyStationCode(int newLegacyStationCode) {
+		int oldLegacyStationCode = legacyStationCode;
+		legacyStationCode = newLegacyStationCode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY_BORDER_SIDE__LEGACY_STATION_CODE, oldLegacyStationCode, legacyStationCode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -178,6 +220,8 @@ public class LegacyBorderSideImpl extends MinimalEObjectImpl.Container implement
 				return basicGetCarrier();
 			case GtmPackage.LEGACY_BORDER_SIDE__STATIONS:
 				return getStations();
+			case GtmPackage.LEGACY_BORDER_SIDE__LEGACY_STATION_CODE:
+				return getLegacyStationCode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -195,6 +239,9 @@ public class LegacyBorderSideImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case GtmPackage.LEGACY_BORDER_SIDE__STATIONS:
 				setStations((StationSet)newValue);
+				return;
+			case GtmPackage.LEGACY_BORDER_SIDE__LEGACY_STATION_CODE:
+				setLegacyStationCode((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -214,6 +261,9 @@ public class LegacyBorderSideImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.LEGACY_BORDER_SIDE__STATIONS:
 				setStations((StationSet)null);
 				return;
+			case GtmPackage.LEGACY_BORDER_SIDE__LEGACY_STATION_CODE:
+				setLegacyStationCode(LEGACY_STATION_CODE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -230,8 +280,26 @@ public class LegacyBorderSideImpl extends MinimalEObjectImpl.Container implement
 				return carrier != null;
 			case GtmPackage.LEGACY_BORDER_SIDE__STATIONS:
 				return stations != null;
+			case GtmPackage.LEGACY_BORDER_SIDE__LEGACY_STATION_CODE:
+				return legacyStationCode != LEGACY_STATION_CODE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (legacyStationCode: ");
+		result.append(legacyStationCode);
+		result.append(')');
+		return result.toString();
 	}
 
 } //LegacyBorderSideImpl
