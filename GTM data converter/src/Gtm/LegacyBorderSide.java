@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Gtm.LegacyBorderSide#getCarrier <em>Carrier</em>}</li>
  *   <li>{@link Gtm.LegacyBorderSide#getStations <em>Stations</em>}</li>
+ *   <li>{@link Gtm.LegacyBorderSide#getLegacyStationCode <em>Legacy Station Code</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getLegacyBorderSide()
@@ -65,5 +66,27 @@ public interface LegacyBorderSide extends EObject {
 	 * @generated
 	 */
 	void setStations(StationSet value);
+
+	/**
+	 * Returns the value of the '<em><b>Legacy Station Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Legacy Station Code</em>' attribute.
+	 * @see #setLegacyStationCode(int)
+	 * @see Gtm.GtmPackage#getLegacyBorderSide_LegacyStationCode()
+	 * @model
+	 * @generated
+	 */
+	int getLegacyStationCode();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacyBorderSide#getLegacyStationCode <em>Legacy Station Code</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Legacy Station Code</em>' attribute.
+	 * @see #getLegacyStationCode()
+	 * @generated
+	 */
+	void setLegacyStationCode(int value);
 
 } // LegacyBorderSide

@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -64,6 +65,7 @@ public class LegacyBorderSideItemProvider
 			super.getPropertyDescriptors(object);
 
 			addCarrierPropertyDescriptor(object);
+			addLegacyStationCodePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,6 +88,28 @@ public class LegacyBorderSideItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Legacy Station Code feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLegacyStationCodePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacyBorderSide_legacyStationCode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyBorderSide_legacyStationCode_feature", "_UI_LegacyBorderSide_type"),
+				 GtmPackage.Literals.LEGACY_BORDER_SIDE__LEGACY_STATION_CODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -161,6 +185,9 @@ public class LegacyBorderSideItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LegacyBorderSide.class)) {
+			case GtmPackage.LEGACY_BORDER_SIDE__LEGACY_STATION_CODE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case GtmPackage.LEGACY_BORDER_SIDE__STATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

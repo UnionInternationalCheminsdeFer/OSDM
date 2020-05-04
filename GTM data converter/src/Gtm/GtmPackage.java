@@ -7257,49 +7257,13 @@ public interface GtmPackage extends EPackage {
 	int LEGACY_BORDER_POINT__BORDER_SIDES = 3;
 
 	/**
-	 * The feature id for the '<em><b>Carrier1</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEGACY_BORDER_POINT__CARRIER1 = 4;
-
-	/**
-	 * The feature id for the '<em><b>Legacy Station Code1</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEGACY_BORDER_POINT__LEGACY_STATION_CODE1 = 5;
-
-	/**
-	 * The feature id for the '<em><b>Carrier2</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEGACY_BORDER_POINT__CARRIER2 = 6;
-
-	/**
-	 * The feature id for the '<em><b>Legacy Station Code2</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEGACY_BORDER_POINT__LEGACY_STATION_CODE2 = 7;
-
-	/**
 	 * The number of structural features of the '<em>Legacy Border Point</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_BORDER_POINT_FEATURE_COUNT = 8;
+	int LEGACY_BORDER_POINT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Legacy Border Point</em>' class.
@@ -7413,13 +7377,22 @@ public interface GtmPackage extends EPackage {
 	int LEGACY_BORDER_SIDE__STATIONS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Legacy Station Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_BORDER_SIDE__LEGACY_STATION_CODE = 2;
+
+	/**
 	 * The number of structural features of the '<em>Legacy Border Side</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_BORDER_SIDE_FEATURE_COUNT = 2;
+	int LEGACY_BORDER_SIDE_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Legacy Border Side</em>' class.
@@ -15346,50 +15319,6 @@ public interface GtmPackage extends EPackage {
 	EReference getLegacyBorderPoint_BorderSides();
 
 	/**
-	 * Returns the meta object for the reference '{@link Gtm.LegacyBorderPoint#getCarrier1 <em>Carrier1</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Carrier1</em>'.
-	 * @see Gtm.LegacyBorderPoint#getCarrier1()
-	 * @see #getLegacyBorderPoint()
-	 * @generated
-	 */
-	EReference getLegacyBorderPoint_Carrier1();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.LegacyBorderPoint#getLegacyStationCode1 <em>Legacy Station Code1</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Legacy Station Code1</em>'.
-	 * @see Gtm.LegacyBorderPoint#getLegacyStationCode1()
-	 * @see #getLegacyBorderPoint()
-	 * @generated
-	 */
-	EAttribute getLegacyBorderPoint_LegacyStationCode1();
-
-	/**
-	 * Returns the meta object for the reference '{@link Gtm.LegacyBorderPoint#getCarrier2 <em>Carrier2</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Carrier2</em>'.
-	 * @see Gtm.LegacyBorderPoint#getCarrier2()
-	 * @see #getLegacyBorderPoint()
-	 * @generated
-	 */
-	EReference getLegacyBorderPoint_Carrier2();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gtm.LegacyBorderPoint#getLegacyStationCode2 <em>Legacy Station Code2</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Legacy Station Code2</em>'.
-	 * @see Gtm.LegacyBorderPoint#getLegacyStationCode2()
-	 * @see #getLegacyBorderPoint()
-	 * @generated
-	 */
-	EAttribute getLegacyBorderPoint_LegacyStationCode2();
-
-	/**
 	 * Returns the meta object for class '{@link Gtm.OnBorderStations <em>On Border Stations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15462,6 +15391,17 @@ public interface GtmPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getLegacyBorderSide_Stations();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyBorderSide#getLegacyStationCode <em>Legacy Station Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Legacy Station Code</em>'.
+	 * @see Gtm.LegacyBorderSide#getLegacyStationCode()
+	 * @see #getLegacyBorderSide()
+	 * @generated
+	 */
+	EAttribute getLegacyBorderSide_LegacyStationCode();
 
 	/**
 	 * Returns the meta object for class '{@link Gtm.LegacyBorderPoints <em>Legacy Border Points</em>}'.
@@ -21836,38 +21776,6 @@ public interface GtmPackage extends EPackage {
 		EReference LEGACY_BORDER_POINT__BORDER_SIDES = eINSTANCE.getLegacyBorderPoint_BorderSides();
 
 		/**
-		 * The meta object literal for the '<em><b>Carrier1</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LEGACY_BORDER_POINT__CARRIER1 = eINSTANCE.getLegacyBorderPoint_Carrier1();
-
-		/**
-		 * The meta object literal for the '<em><b>Legacy Station Code1</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LEGACY_BORDER_POINT__LEGACY_STATION_CODE1 = eINSTANCE.getLegacyBorderPoint_LegacyStationCode1();
-
-		/**
-		 * The meta object literal for the '<em><b>Carrier2</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LEGACY_BORDER_POINT__CARRIER2 = eINSTANCE.getLegacyBorderPoint_Carrier2();
-
-		/**
-		 * The meta object literal for the '<em><b>Legacy Station Code2</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LEGACY_BORDER_POINT__LEGACY_STATION_CODE2 = eINSTANCE.getLegacyBorderPoint_LegacyStationCode2();
-
-		/**
 		 * The meta object literal for the '{@link Gtm.impl.OnBorderStationsImpl <em>On Border Stations</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -21928,6 +21836,14 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LEGACY_BORDER_SIDE__STATIONS = eINSTANCE.getLegacyBorderSide_Stations();
+
+		/**
+		 * The meta object literal for the '<em><b>Legacy Station Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_BORDER_SIDE__LEGACY_STATION_CODE = eINSTANCE.getLegacyBorderSide_LegacyStationCode();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.LegacyBorderPointsImpl <em>Legacy Border Points</em>}' class.
