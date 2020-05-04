@@ -1072,6 +1072,7 @@
     <genClasses ecoreClass="Gtm.ecore#//LegacyStationMap">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyStationMap/legacyCode"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyStationMap/station"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyStationMap/dataSource"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//LegacyFareDetailMaps">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyFareDetailMaps/legacyFareDetailMaps"/>

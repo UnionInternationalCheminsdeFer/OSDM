@@ -53,6 +53,7 @@ import Gtm.LegacyRouteFare;
 import Gtm.LegacySeparateContractSeries;
 import Gtm.LegacySeries;
 import Gtm.LegacySeriesType;
+import Gtm.LegacyStationMap;
 import Gtm.LegacyStationToServiceConstraintMapping;
 import Gtm.LegacyViastation;
 import Gtm.Price;
@@ -82,8 +83,6 @@ import Gtm.presentation.GtmEditor;
  * The Class ConverterFromLegacy.
  */
 public class ConverterFromLegacy {
-	
-	
 	
 	/** The local stations. */
 	private HashMap<Integer,Station> localStations = null;
@@ -235,6 +234,19 @@ public class ConverterFromLegacy {
 			}
 		}
 		executeAndFlush(command,domain);
+		
+		
+		if ( tool.getConversionFromLegacy().getParams() != null && 
+			 tool.getConversionFromLegacy().getParams().getLegacyStationMappings() != null) {
+			command = new CompoundCommand();		
+			for (LegacyStationMap m : tool.getConversionFromLegacy().getParams().getLegacyStationMappings().getStationMappings()) {
+				if (m.getDataSource() == DataSource.CONVERTED) {
+					command.append(DeleteCommand.create(domain,m) );
+				}
+			}
+			executeAndFlush(command,domain);
+		}
+		
 
 		return deleted;
 	}
@@ -1730,6 +1742,8 @@ public class ConverterFromLegacy {
 		
 		List<ConnectionPoint> uniquePointList = new ArrayList<ConnectionPoint>();
 		
+		HashMap<Integer,LegacyStationMap> stationMapList = new HashMap<Integer,LegacyStationMap>();
+		
 		List<LegacyBorderPointMapping> maps = new ArrayList<LegacyBorderPointMapping>();
 		
 		for (LegacySeries series : tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries()) {
@@ -1775,11 +1789,64 @@ public class ConverterFromLegacy {
 			domain.getCommandStack().execute(command2);
 		}
 		
+		//TODO add mapping from local code --> Merits code
+		// if only one MEIRTS code is provided
+		// if there is not a mapping jet
+		
+		if (tool.getConversionFromLegacy() == null || 
+			tool.getConversionFromLegacy().getLegacy108() == null ||
+			tool.getConversionFromLegacy().getLegacy108().getLegacyBorderPoints() == null ||
+			tool.getConversionFromLegacy().getLegacy108().getLegacyBorderPoints().getLegacyBorderPoints() == null ||
+			tool.getConversionFromLegacy().getLegacy108().getLegacyBorderPoints().getLegacyBorderPoints().isEmpty()) {
+			return pointList.size();
+		}
+		
+		
+		
+		for (LegacyBorderPoint point : tool.getConversionFromLegacy().getLegacy108().getLegacyBorderPoints().getLegacyBorderPoints()) {
+			
+			for (LegacyBorderSide side : point.getBorderSides()) {
+				if (side.getCarrier() == tool.getConversionFromLegacy().getLegacy108().getCarrier() && 
+					side.getStations().getStations().size() == 1) {
+					
+					Integer localCode = side.getLegacyStationCode();
+					Station station = side.getStations().getStations().get(0);
+						
+					if (!stationMapExists(localCode)) {
+						LegacyStationMap map = GtmFactory.eINSTANCE.createLegacyStationMap();
+						map.setLegacyCode(localCode);
+						map.setStation(station);
+						map.setDataSource(DataSource.CONVERTED);
+						stationMapList.put(localCode, map);
+					}
+				}
+			}
+		}
+		
+		if (!stationMapList.isEmpty()) {
+			Command command3 = AddCommand.create(domain, tool.getConversionFromLegacy().getParams().getLegacyStationMappings(), GtmPackage.Literals.LEGACY_STATION_MAPPINGS__STATION_MAPPINGS,stationMapList.values());
+			if  (command3 != null && command3.canExecute()) {
+				domain.getCommandStack().execute(command3);
+			}
+		}
+		
+		
 		return pointList.size();
 
 
 	}
 	
+	//don't add mapping in case it already exists
+	private boolean stationMapExists(Integer localCode) {
+		for (LegacyStationMap map : tool.getConversionFromLegacy().getParams().getLegacyStationMappings().getStationMappings() ) {		
+			if (map.getLegacyCode() == localCode) return true;
+		}
+		return false;
+	}
+
+
+
+
 	/**
 	 * Checks if is contained in connection point list.
 	 *

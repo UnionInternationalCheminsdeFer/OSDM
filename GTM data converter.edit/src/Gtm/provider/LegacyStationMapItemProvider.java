@@ -63,6 +63,7 @@ public class LegacyStationMapItemProvider
 
 			addLegacyCodePropertyDescriptor(object);
 			addStationPropertyDescriptor(object);
+			addDataSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,6 +113,28 @@ public class LegacyStationMapItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Data Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacyStationMap_dataSource_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyStationMap_dataSource_feature", "_UI_LegacyStationMap_type"),
+				 GtmPackage.Literals.LEGACY_STATION_MAP__DATA_SOURCE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns LegacyStationMap.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -148,6 +171,7 @@ public class LegacyStationMapItemProvider
 
 		switch (notification.getFeatureID(LegacyStationMap.class)) {
 			case GtmPackage.LEGACY_STATION_MAP__LEGACY_CODE:
+			case GtmPackage.LEGACY_STATION_MAP__DATA_SOURCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
