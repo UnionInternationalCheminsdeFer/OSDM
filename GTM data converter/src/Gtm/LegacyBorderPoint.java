@@ -19,6 +19,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.LegacyBorderPoint#getFakeBorderStations <em>Fake Border Stations</em>}</li>
  *   <li>{@link Gtm.LegacyBorderPoint#getOnBorderStations <em>On Border Stations</em>}</li>
  *   <li>{@link Gtm.LegacyBorderPoint#getBorderSides <em>Border Sides</em>}</li>
+ *   <li>{@link Gtm.LegacyBorderPoint#getCarrier1 <em>Carrier1</em>}</li>
+ *   <li>{@link Gtm.LegacyBorderPoint#getLegacyStationCode1 <em>Legacy Station Code1</em>}</li>
+ *   <li>{@link Gtm.LegacyBorderPoint#getCarrier2 <em>Carrier2</em>}</li>
+ *   <li>{@link Gtm.LegacyBorderPoint#getLegacyStationCode2 <em>Legacy Station Code2</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getLegacyBorderPoint()
@@ -103,5 +107,93 @@ public interface LegacyBorderPoint extends EObject {
 	 * @generated
 	 */
 	EList<LegacyBorderSide> getBorderSides();
+
+	/**
+	 * Returns the value of the '<em><b>Carrier1</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Carrier1</em>' reference.
+	 * @see #setCarrier1(Carrier)
+	 * @see Gtm.GtmPackage#getLegacyBorderPoint_Carrier1()
+	 * @model
+	 * @generated
+	 */
+	Carrier getCarrier1();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacyBorderPoint#getCarrier1 <em>Carrier1</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Carrier1</em>' reference.
+	 * @see #getCarrier1()
+	 * @generated
+	 */
+	void setCarrier1(Carrier value);
+
+	/**
+	 * Returns the value of the '<em><b>Legacy Station Code1</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Legacy Station Code1</em>' attribute.
+	 * @see #setLegacyStationCode1(int)
+	 * @see Gtm.GtmPackage#getLegacyBorderPoint_LegacyStationCode1()
+	 * @model
+	 * @generated
+	 */
+	int getLegacyStationCode1();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacyBorderPoint#getLegacyStationCode1 <em>Legacy Station Code1</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Legacy Station Code1</em>' attribute.
+	 * @see #getLegacyStationCode1()
+	 * @generated
+	 */
+	void setLegacyStationCode1(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Carrier2</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Carrier2</em>' reference.
+	 * @see #setCarrier2(Carrier)
+	 * @see Gtm.GtmPackage#getLegacyBorderPoint_Carrier2()
+	 * @model
+	 * @generated
+	 */
+	Carrier getCarrier2();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacyBorderPoint#getCarrier2 <em>Carrier2</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Carrier2</em>' reference.
+	 * @see #getCarrier2()
+	 * @generated
+	 */
+	void setCarrier2(Carrier value);
+
+	/**
+	 * Returns the value of the '<em><b>Legacy Station Code2</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Legacy Station Code2</em>' attribute.
+	 * @see #setLegacyStationCode2(int)
+	 * @see Gtm.GtmPackage#getLegacyBorderPoint_LegacyStationCode2()
+	 * @model
+	 * @generated
+	 */
+	int getLegacyStationCode2();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacyBorderPoint#getLegacyStationCode2 <em>Legacy Station Code2</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Legacy Station Code2</em>' attribute.
+	 * @see #getLegacyStationCode2()
+	 * @generated
+	 */
+	void setLegacyStationCode2(int value);
 
 } // LegacyBorderPoint

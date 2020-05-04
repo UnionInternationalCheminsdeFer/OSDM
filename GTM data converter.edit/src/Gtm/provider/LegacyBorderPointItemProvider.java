@@ -65,6 +65,10 @@ public class LegacyBorderPointItemProvider
 			super.getPropertyDescriptors(object);
 
 			addBorderPointCodePropertyDescriptor(object);
+			addCarrier1PropertyDescriptor(object);
+			addLegacyStationCode1PropertyDescriptor(object);
+			addCarrier2PropertyDescriptor(object);
+			addLegacyStationCode2PropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -83,6 +87,94 @@ public class LegacyBorderPointItemProvider
 				 getString("_UI_LegacyBorderPoint_borderPointCode_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyBorderPoint_borderPointCode_feature", "_UI_LegacyBorderPoint_type"),
 				 GtmPackage.Literals.LEGACY_BORDER_POINT__BORDER_POINT_CODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Carrier1 feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCarrier1PropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacyBorderPoint_carrier1_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyBorderPoint_carrier1_feature", "_UI_LegacyBorderPoint_type"),
+				 GtmPackage.Literals.LEGACY_BORDER_POINT__CARRIER1,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Legacy Station Code1 feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLegacyStationCode1PropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacyBorderPoint_legacyStationCode1_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyBorderPoint_legacyStationCode1_feature", "_UI_LegacyBorderPoint_type"),
+				 GtmPackage.Literals.LEGACY_BORDER_POINT__LEGACY_STATION_CODE1,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Carrier2 feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCarrier2PropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacyBorderPoint_carrier2_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyBorderPoint_carrier2_feature", "_UI_LegacyBorderPoint_type"),
+				 GtmPackage.Literals.LEGACY_BORDER_POINT__CARRIER2,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Legacy Station Code2 feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLegacyStationCode2PropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LegacyBorderPoint_legacyStationCode2_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LegacyBorderPoint_legacyStationCode2_feature", "_UI_LegacyBorderPoint_type"),
+				 GtmPackage.Literals.LEGACY_BORDER_POINT__LEGACY_STATION_CODE2,
 				 true,
 				 false,
 				 false,
@@ -160,6 +252,8 @@ public class LegacyBorderPointItemProvider
 
 		switch (notification.getFeatureID(LegacyBorderPoint.class)) {
 			case GtmPackage.LEGACY_BORDER_POINT__BORDER_POINT_CODE:
+			case GtmPackage.LEGACY_BORDER_POINT__LEGACY_STATION_CODE1:
+			case GtmPackage.LEGACY_BORDER_POINT__LEGACY_STATION_CODE2:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GtmPackage.LEGACY_BORDER_POINT__FAKE_BORDER_STATIONS:

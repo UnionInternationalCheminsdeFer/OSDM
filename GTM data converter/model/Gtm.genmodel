@@ -1043,6 +1043,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderPoint/fakeBorderStations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderPoint/onBorderStations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderPoint/borderSides"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderPoint/carrier1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyBorderPoint/legacyStationCode1"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderPoint/carrier2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyBorderPoint/legacyStationCode2"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//OnBorderStations">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//OnBorderStations/stations"/>
