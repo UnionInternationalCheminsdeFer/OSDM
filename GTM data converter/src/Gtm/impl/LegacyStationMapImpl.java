@@ -2,6 +2,7 @@
  */
 package Gtm.impl;
 
+import Gtm.DataSource;
 import Gtm.GtmPackage;
 import Gtm.LegacyStationMap;
 import Gtm.Station;
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link Gtm.impl.LegacyStationMapImpl#getLegacyCode <em>Legacy Code</em>}</li>
  *   <li>{@link Gtm.impl.LegacyStationMapImpl#getStation <em>Station</em>}</li>
+ *   <li>{@link Gtm.impl.LegacyStationMapImpl#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,6 +60,26 @@ public class LegacyStationMapImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected Station station;
+
+	/**
+	 * The default value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final DataSource DATA_SOURCE_EDEFAULT = DataSource.MANUAL;
+
+	/**
+	 * The cached value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected DataSource dataSource = DATA_SOURCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,6 +164,27 @@ public class LegacyStationMapImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataSource(DataSource newDataSource) {
+		DataSource oldDataSource = dataSource;
+		dataSource = newDataSource == null ? DATA_SOURCE_EDEFAULT : newDataSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.LEGACY_STATION_MAP__DATA_SOURCE, oldDataSource, dataSource));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -150,6 +193,8 @@ public class LegacyStationMapImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.LEGACY_STATION_MAP__STATION:
 				if (resolve) return getStation();
 				return basicGetStation();
+			case GtmPackage.LEGACY_STATION_MAP__DATA_SOURCE:
+				return getDataSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,6 +212,9 @@ public class LegacyStationMapImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case GtmPackage.LEGACY_STATION_MAP__STATION:
 				setStation((Station)newValue);
+				return;
+			case GtmPackage.LEGACY_STATION_MAP__DATA_SOURCE:
+				setDataSource((DataSource)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -186,6 +234,9 @@ public class LegacyStationMapImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.LEGACY_STATION_MAP__STATION:
 				setStation((Station)null);
 				return;
+			case GtmPackage.LEGACY_STATION_MAP__DATA_SOURCE:
+				setDataSource(DATA_SOURCE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -202,6 +253,8 @@ public class LegacyStationMapImpl extends MinimalEObjectImpl.Container implement
 				return legacyCode != LEGACY_CODE_EDEFAULT;
 			case GtmPackage.LEGACY_STATION_MAP__STATION:
 				return station != null;
+			case GtmPackage.LEGACY_STATION_MAP__DATA_SOURCE:
+				return dataSource != DATA_SOURCE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -218,6 +271,8 @@ public class LegacyStationMapImpl extends MinimalEObjectImpl.Container implement
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (legacyCode: ");
 		result.append(legacyCode);
+		result.append(", dataSource: ");
+		result.append(dataSource);
 		result.append(')');
 		return result.toString();
 	}

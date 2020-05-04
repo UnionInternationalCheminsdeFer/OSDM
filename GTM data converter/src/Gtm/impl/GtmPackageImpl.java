@@ -6695,6 +6695,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getLegacyStationMap_DataSource() {
+		return (EAttribute)legacyStationMapEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLegacyFareDetailMaps() {
 		return legacyFareDetailMapsEClass;
 	}
@@ -8783,6 +8792,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		legacyStationMapEClass = createEClass(LEGACY_STATION_MAP);
 		createEAttribute(legacyStationMapEClass, LEGACY_STATION_MAP__LEGACY_CODE);
 		createEReference(legacyStationMapEClass, LEGACY_STATION_MAP__STATION);
+		createEAttribute(legacyStationMapEClass, LEGACY_STATION_MAP__DATA_SOURCE);
 
 		legacyFareDetailMapsEClass = createEClass(LEGACY_FARE_DETAIL_MAPS);
 		createEReference(legacyFareDetailMapsEClass, LEGACY_FARE_DETAIL_MAPS__LEGACY_FARE_DETAIL_MAPS);
@@ -9711,6 +9721,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEClass(legacyStationMapEClass, LegacyStationMap.class, "LegacyStationMap", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLegacyStationMap_LegacyCode(), ecorePackage.getEInt(), "legacyCode", null, 0, 1, LegacyStationMap.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLegacyStationMap_Station(), this.getStation(), null, "station", null, 0, 1, LegacyStationMap.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacyStationMap_DataSource(), this.getDataSource(), "dataSource", null, 0, 1, LegacyStationMap.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(legacyFareDetailMapsEClass, LegacyFareDetailMaps.class, "LegacyFareDetailMaps", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLegacyFareDetailMaps_LegacyFareDetailMaps(), this.getLegacyFareDetailMap(), null, "legacyFareDetailMaps", null, 0, -1, LegacyFareDetailMaps.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

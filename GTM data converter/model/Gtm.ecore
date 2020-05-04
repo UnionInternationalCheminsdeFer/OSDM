@@ -1118,6 +1118,7 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="legacyCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="station" eType="#//Station"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//DataSource"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyFareDetailMaps">
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacyFareDetailMaps" upperBound="-1"

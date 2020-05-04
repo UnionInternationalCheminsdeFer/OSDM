@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Gtm.LegacyStationMap#getLegacyCode <em>Legacy Code</em>}</li>
  *   <li>{@link Gtm.LegacyStationMap#getStation <em>Station</em>}</li>
+ *   <li>{@link Gtm.LegacyStationMap#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getLegacyStationMap()
@@ -65,5 +66,30 @@ public interface LegacyStationMap extends EObject {
 	 * @generated
 	 */
 	void setStation(Station value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Source</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gtm.DataSource}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Source</em>' attribute.
+	 * @see Gtm.DataSource
+	 * @see #setDataSource(DataSource)
+	 * @see Gtm.GtmPackage#getLegacyStationMap_DataSource()
+	 * @model
+	 * @generated
+	 */
+	DataSource getDataSource();
+
+	/**
+	 * Sets the value of the '{@link Gtm.LegacyStationMap#getDataSource <em>Data Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Source</em>' attribute.
+	 * @see Gtm.DataSource
+	 * @see #getDataSource()
+	 * @generated
+	 */
+	void setDataSource(DataSource value);
 
 } // LegacyStationMap

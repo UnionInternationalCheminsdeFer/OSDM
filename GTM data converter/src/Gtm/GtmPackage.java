@@ -7570,13 +7570,22 @@ public interface GtmPackage extends EPackage {
 	int LEGACY_STATION_MAP__STATION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEGACY_STATION_MAP__DATA_SOURCE = 2;
+
+	/**
 	 * The number of structural features of the '<em>Legacy Station Map</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEGACY_STATION_MAP_FEATURE_COUNT = 2;
+	int LEGACY_STATION_MAP_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Legacy Station Map</em>' class.
@@ -15531,6 +15540,17 @@ public interface GtmPackage extends EPackage {
 	EReference getLegacyStationMap_Station();
 
 	/**
+	 * Returns the meta object for the attribute '{@link Gtm.LegacyStationMap#getDataSource <em>Data Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Source</em>'.
+	 * @see Gtm.LegacyStationMap#getDataSource()
+	 * @see #getLegacyStationMap()
+	 * @generated
+	 */
+	EAttribute getLegacyStationMap_DataSource();
+
+	/**
 	 * Returns the meta object for class '{@link Gtm.LegacyFareDetailMaps <em>Legacy Fare Detail Maps</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21948,6 +21968,14 @@ public interface GtmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LEGACY_STATION_MAP__STATION = eINSTANCE.getLegacyStationMap_Station();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Source</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEGACY_STATION_MAP__DATA_SOURCE = eINSTANCE.getLegacyStationMap_DataSource();
 
 		/**
 		 * The meta object literal for the '{@link Gtm.impl.LegacyFareDetailMapsImpl <em>Legacy Fare Detail Maps</em>}' class.
