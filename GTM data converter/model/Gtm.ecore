@@ -1078,6 +1078,10 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="borderSides" upperBound="-1"
         eType="#//LegacyBorderSide" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carrier1" eType="#//Carrier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="legacyStationCode1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="carrier2" eType="#//Carrier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="legacyStationCode2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OnBorderStations">
     <eStructuralFeatures xsi:type="ecore:EReference" name="stations" eType="#//StationSet"

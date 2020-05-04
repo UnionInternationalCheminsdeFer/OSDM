@@ -6515,6 +6515,42 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getLegacyBorderPoint_Carrier1() {
+		return (EReference)legacyBorderPointEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacyBorderPoint_LegacyStationCode1() {
+		return (EAttribute)legacyBorderPointEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLegacyBorderPoint_Carrier2() {
+		return (EReference)legacyBorderPointEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLegacyBorderPoint_LegacyStationCode2() {
+		return (EAttribute)legacyBorderPointEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOnBorderStations() {
 		return onBorderStationsEClass;
 	}
@@ -8747,6 +8783,10 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEReference(legacyBorderPointEClass, LEGACY_BORDER_POINT__FAKE_BORDER_STATIONS);
 		createEReference(legacyBorderPointEClass, LEGACY_BORDER_POINT__ON_BORDER_STATIONS);
 		createEReference(legacyBorderPointEClass, LEGACY_BORDER_POINT__BORDER_SIDES);
+		createEReference(legacyBorderPointEClass, LEGACY_BORDER_POINT__CARRIER1);
+		createEAttribute(legacyBorderPointEClass, LEGACY_BORDER_POINT__LEGACY_STATION_CODE1);
+		createEReference(legacyBorderPointEClass, LEGACY_BORDER_POINT__CARRIER2);
+		createEAttribute(legacyBorderPointEClass, LEGACY_BORDER_POINT__LEGACY_STATION_CODE2);
 
 		onBorderStationsEClass = createEClass(ON_BORDER_STATIONS);
 		createEReference(onBorderStationsEClass, ON_BORDER_STATIONS__STATIONS);
@@ -9672,6 +9712,10 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEReference(getLegacyBorderPoint_FakeBorderStations(), this.getLegacyFakeBorderStations(), null, "fakeBorderStations", null, 0, 1, LegacyBorderPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLegacyBorderPoint_OnBorderStations(), this.getOnBorderStations(), null, "onBorderStations", null, 0, 1, LegacyBorderPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLegacyBorderPoint_BorderSides(), this.getLegacyBorderSide(), null, "borderSides", null, 0, -1, LegacyBorderPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLegacyBorderPoint_Carrier1(), this.getCarrier(), null, "carrier1", null, 0, 1, LegacyBorderPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacyBorderPoint_LegacyStationCode1(), ecorePackage.getEInt(), "legacyStationCode1", null, 0, 1, LegacyBorderPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLegacyBorderPoint_Carrier2(), this.getCarrier(), null, "carrier2", null, 0, 1, LegacyBorderPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLegacyBorderPoint_LegacyStationCode2(), ecorePackage.getEInt(), "legacyStationCode2", null, 0, 1, LegacyBorderPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(onBorderStationsEClass, OnBorderStations.class, "OnBorderStations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOnBorderStations_Stations(), this.getStationSet(), null, "stations", null, 0, 1, OnBorderStations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
