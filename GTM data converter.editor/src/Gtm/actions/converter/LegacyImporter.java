@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
-
+import Gtm.Carrier;
 import Gtm.ConversionFromLegacy;
 import Gtm.GTMTool;
 import Gtm.GtmFactory;
@@ -111,6 +111,12 @@ public class LegacyImporter {
 		Path namePath = TCVfilePath.getFileName();
 		String name = namePath.toString();
 		String provider = name.substring(3,7);
+		Carrier carrier = findCarrier(tool, provider);
+		//set the carrier providing the data
+		Command com = SetCommand.create(domain, tool.getConversionFromLegacy().getLegacy108(), GtmPackage.Literals.LEGACY108__CARRIER, carrier);
+		if (com.canExecute()) {
+			domain.getCommandStack().execute(com);
+		}
 		monitor.worked(1);
 		
 		monitor.subTask(NationalLanguageSupport.ImportLegayTask_TCVGfile);		
@@ -156,6 +162,16 @@ public class LegacyImporter {
 		}
 		monitor.worked(1);
 	
+	}
+	
+	
+	private Carrier findCarrier(GTMTool tool, String code) {
+		for (Carrier c : tool.getCodeLists().getCarriers().getCarriers()) {
+			if (c.getCode().equals(code)) {
+				return c;
+			}
+		}
+		return null;	
 	}
 
 	private void importTCVL(File file) {

@@ -1806,20 +1806,33 @@ public class ConverterFromLegacy {
 		for (LegacyBorderPoint point : tool.getConversionFromLegacy().getLegacy108().getLegacyBorderPoints().getLegacyBorderPoints()) {
 			
 			for (LegacyBorderSide side : point.getBorderSides()) {
-				if (side.getCarrier() == tool.getConversionFromLegacy().getLegacy108().getCarrier() && 
-					side.getStations().getStations().size() == 1) {
-					
+
+				if (side.getCarrier() == tool.getConversionFromLegacy().getLegacy108().getCarrier()) {
 					Integer localCode = side.getLegacyStationCode();
-					Station station = side.getStations().getStations().get(0);
-						
-					if (!stationMapExists(localCode)) {
-						LegacyStationMap map = GtmFactory.eINSTANCE.createLegacyStationMap();
-						map.setLegacyCode(localCode);
-						map.setStation(station);
-						map.setDataSource(DataSource.CONVERTED);
-						stationMapList.put(localCode, map);
+					if (side.getStations().getStations().size() == 1) {
+						//create a station map in case only one station is in the connection point
+						Station station = side.getStations().getStations().get(0);
+						if (!stationMapExists(localCode)) {
+							LegacyStationMap map = GtmFactory.eINSTANCE.createLegacyStationMap();
+							map.setLegacyCode(localCode);
+							map.setStation(station);
+							map.setDataSource(DataSource.CONVERTED);
+							stationMapList.put(localCode, map);
+						}
+					} else if (point.getBorderSides().size() == 1) {
+						//create a station map in case multiple stations in one connection point --> all stations are the same 
+						//select the station with the appropriate country
+						for (Station station : side.getStations().getStations()) {
+							if (station.getCountry().equals(tool.getConversionFromLegacy().getParams().getCountry())) {
+								LegacyStationMap map = GtmFactory.eINSTANCE.createLegacyStationMap();
+								map.setLegacyCode(localCode);
+								map.setStation(station);
+								map.setDataSource(DataSource.CONVERTED);
+								stationMapList.put(localCode, map);
+							}
+						}
 					}
-				}
+				} 
 			}
 		}
 		
