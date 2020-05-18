@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "id",
     "textRef",
     "text",
-    "classicClass"
+    "comfortClass"
 })
 public class ServiceClassDef {
 
@@ -41,9 +41,9 @@ public class ServiceClassDef {
      * FIRST,SECOND
      * 
      */
-    @JsonProperty("classicClass")
+    @JsonProperty("comfortClass")
     @JsonPropertyDescription("FIRST,SECOND")
-    private String classicClass;
+    private String comfortClass;
 
     /**
      * A,B,C,D
@@ -105,18 +105,18 @@ public class ServiceClassDef {
      * FIRST,SECOND
      * 
      */
-    @JsonProperty("classicClass")
+    @JsonProperty("comfortClass")
     public String getClassicClass() {
-        return classicClass;
+        return comfortClass;
     }
 
     /**
      * FIRST,SECOND
      * 
      */
-    @JsonProperty("classicClass")
-    public void setClassicClass(String classicClass) {
-        this.classicClass = classicClass;
+    @JsonProperty("comfortClass")
+    public void setClassicClass(String comfortClass) {
+        this.comfortClass = comfortClass;
     }
 
     @Override
@@ -135,9 +135,9 @@ public class ServiceClassDef {
         sb.append('=');
         sb.append(((this.text == null)?"<null>":this.text));
         sb.append(',');
-        sb.append("classicClass");
+        sb.append("comfortClass");
         sb.append('=');
-        sb.append(((this.classicClass == null)?"<null>":this.classicClass));
+        sb.append(((this.comfortClass == null)?"<null>":this.comfortClass));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -153,7 +153,7 @@ public class ServiceClassDef {
         result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
         result = ((result* 31)+((this.textRef == null)? 0 :this.textRef.hashCode()));
         result = ((result* 31)+((this.text == null)? 0 :this.text.hashCode()));
-        result = ((result* 31)+((this.classicClass == null)? 0 :this.classicClass.hashCode()));
+        result = ((result* 31)+((this.comfortClass == null)? 0 :this.comfortClass.hashCode()));
         return result;
     }
 
@@ -166,7 +166,7 @@ public class ServiceClassDef {
             return false;
         }
         ServiceClassDef rhs = ((ServiceClassDef) other);
-        return (((((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id)))&&((this.textRef == rhs.textRef)||((this.textRef!= null)&&this.textRef.equals(rhs.textRef))))&&((this.text == rhs.text)||((this.text!= null)&&this.text.equals(rhs.text))))&&((this.classicClass == rhs.classicClass)||((this.classicClass!= null)&&this.classicClass.equals(rhs.classicClass))));
+        return (((((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id)))&&((this.textRef == rhs.textRef)||((this.textRef!= null)&&this.textRef.equals(rhs.textRef))))&&((this.text == rhs.text)||((this.text!= null)&&this.text.equals(rhs.text))))&&((this.comfortClass == rhs.comfortClass)||((this.comfortClass!= null)&&this.comfortClass.equals(rhs.comfortClass))));
     }
 
 }
