@@ -1,0 +1,73 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "GetStoredPersonalDataReply",
+	"description": "Get Stored Personal Data Reply",
+	"definitions": {
+		"GetStoredPersonalDataReply": {
+			"type": "object",
+			"properties": {
+				"ErrorDescription": {
+					"type": "object",
+					"properties": {
+						"Type": {
+							"description": "FUNCTIONAL,TECHNICAL,CONTENT",
+							"type": "string"
+						},
+						"Code": {
+							"type": "string"
+						},
+						"Description": {
+							"description": "error description used to analyze errors",
+							"type": "string"
+						}
+					},
+					"required": [
+						"Type",
+						"Code"
+					],
+					"additionalProperties": false
+				},
+				"personalData": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"personalData": {
+								"$ref": "personaldatadefinitions.json#/definitions/PassengerDetailsDef"
+							},
+							"documentData": {
+								"$ref": "personaldatadefinitions.json#/definitions/PassengerPassportDef"
+							},
+							"cardData": {
+								"$ref": "personaldatadefinitions.json#/definitions/CardIdentificationDef"
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"bookingStatus": {
+					"description": "OPEN, USED,CANCELLED",
+					"type": "string"
+				},
+				"history": {
+					"description": "basic transaction data to indicate wh<y the data are still stored",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"transaction": {
+								"type": "string"
+							},
+							"time": {
+								"description": "timestamp in UTC",
+								"type": "string"
+							}
+						},
+						"additionalProperties": false
+					}
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+}

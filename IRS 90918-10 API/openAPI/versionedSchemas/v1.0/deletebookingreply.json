@@ -1,0 +1,40 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "DeleteBookingReply",
+	"description": "DeleteBookingReply",
+	"definitions": {
+		"DeleteBookingReply": {
+			"type": "object",
+			"properties": {
+				"bookingId": {
+					"type": "string"
+				},
+				"ErrorDescription": {
+					"type": "object",
+					"properties": {
+						"Type": {
+							"description": "FUNCTIONAL,TECHNICAL,CONTENT",
+							"type": "string"
+						},
+						"Code": {
+							"type": "string"
+						},
+						"Description": {
+							"description": "error description used to analyze errors",
+							"type": "string"
+						}
+					},
+					"required": [
+						"Type",
+						"Code"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"bookingId"
+			],
+			"additionalProperties": false
+		}
+	}
+}

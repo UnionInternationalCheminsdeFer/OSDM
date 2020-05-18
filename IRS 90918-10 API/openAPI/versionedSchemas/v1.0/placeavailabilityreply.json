@@ -1,0 +1,72 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "offer reply",
+	"description": "provides offers for combining fares",
+	"definitions": {
+		"placeAvailabilityReply": {
+			"type": "object",
+			"properties": {
+				"train": {
+					"type": "string"
+				},
+				"reservationContext": {
+					"type": "string"
+				},
+				"availablePreferences": {
+					"description": "list of available preferences for the preselected places. The list is a subset of the requested preferences.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"availability": {
+					"$ref": "reservationdefinitions.json#/definitions/PlaceAvailabilityDef"
+				},
+				"preselection": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"coach": {
+								"type": "string"
+							},
+							"place": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"coach",
+							"place"
+						],
+						"additionalProperties": false
+					}
+				},
+				"ErrorDescription": {
+					"type": "object",
+					"properties": {
+						"Type": {
+							"description": "FUNCTIONAL,TECHNICAL,CONTENT",
+							"type": "string"
+						},
+						"Code": {
+							"type": "string"
+						},
+						"Description": {
+							"description": "error description used to analyze errors",
+							"type": "string"
+						}
+					},
+					"required": [
+						"Type",
+						"Code"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"train"
+			],
+			"additionalProperties": false
+		}
+	}
+}
