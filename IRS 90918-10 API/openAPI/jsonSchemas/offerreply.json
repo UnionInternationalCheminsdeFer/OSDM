@@ -6,14 +6,8 @@
 		"TripOffersCollectionDef": {
 			"type": "object",
 			"properties": {
-				"travelDescription": {
+				"trip": {
 					"$ref": "anxilliarydefinitions.json#/definitions/TripDef"
-				},
-				"travelSection": {
-					"$ref": "anxilliarydefinitions.json#/definitions/TravelSectionDef"
-				},
-				"Offers": {
-					"$ref": "anxilliarydefinitions.json#/definitions/OfferDef"
 				},
 				"travelDescriptionChange": {
 					"description": "TRAIN_NUMBER_CHANGE,TIME_CHANGE, CONNECTION_TIME_CHANGE",
@@ -42,12 +36,57 @@
 						"Code"
 					],
 					"additionalProperties": false
+				},
+				"tripOffers": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TripOfferDef"
+					}
 				}
 			},
 			"required": [
-				"travelDescription",
-				"travelSection"
+				"trip"
 			],
+			"additionalProperties": false
+		},
+		"TripOfferDef": {
+			"type": "object",
+			"properties": {
+				"reservations": {
+					"type": "array",
+					"items": {
+						"$ref": "distributorstructures.json#/definitions/ReservationDef"
+					}
+				},
+				"ancilliaries": {
+					"type": "array",
+					"items": {
+						"$ref": "distributorstructures.json#/definitions/AncilliaryDef"
+					}
+				},
+				"integratedReservations": {
+					"type": "array",
+					"items": {
+						"$ref": "distributorstructures.json#/definitions/IntegratedReservationAdmissionDef"
+					}
+				},
+				"admissions": {
+					"type": "array",
+					"items": {
+						"$ref": "distributorstructures.json#/definitions/AdmissionDef"
+					}
+				},
+				"travelSection": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/anxilliarydefinitions.json#/definitions/TravelSectionDef"
+				},
+				"fares": {
+					"description": "on a request of an allocator the reply should prefereable contain fares. offerPrest only incase no fare is possible parts.",
+					"type": "array",
+					"items": {
+						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/fareitems.json#/definitions/FareOnlineDef"
+					}
+				}
+			},
 			"additionalProperties": false
 		}
 	}
