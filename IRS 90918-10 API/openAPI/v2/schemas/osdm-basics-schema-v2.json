@@ -3,6 +3,33 @@
 	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-basics-schema-v2.json",
 	"description": "object definitions used in message exchange with distributors only",
 	"definitions": {
+		"StationCodeListDef": {
+			"description": "code list used for the station codes: UIC = UIC codes as used by merits (UIC country code + local code) = Default// UIC-R = UIC codes for reservation (UIC country code + local code reservation) // ERA = future ERA station code",
+			"type": "string",
+			"default": "UIC"
+		},
+		"StationDef": {
+			"type": "object",
+			"properties": {
+				"codeList": {
+					"$ref": "#/definitions/StationCodeListDef"
+				},
+				"country": {
+					"type": "string"
+				},
+				"localCode": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"country",
+				"localCode"
+			],
+			"additionalProperties": false
+		},
 		"CurrencyDef": {
 			"description": "ISO4217 currency codes",
 			"type": "string"

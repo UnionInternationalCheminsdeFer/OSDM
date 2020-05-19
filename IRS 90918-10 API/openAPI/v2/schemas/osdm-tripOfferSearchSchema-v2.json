@@ -7,7 +7,7 @@
 			"type": "object",
 			"properties": {
 				"trip": {
-					"$ref": "anxilliarydefinitions.json#/definitions/TripDef"
+					"$ref": "osdm-commons-v2.json#/definitions/TripDef"
 				},
 				"requester": {
 					"type": "object",
@@ -31,7 +31,7 @@
 					"additionalProperties": false
 				},
 				"requestedSection": {
-					"$ref": "anxilliarydefinitions.json#/definitions/TravelSectionDef"
+					"$ref": "osdm-commons-v2.json#/definitions/TravelSectionDef"
 				},
 				"passengers": {
 					"type": "array",
@@ -216,7 +216,7 @@
 			"type": "object",
 			"properties": {
 				"trip": {
-					"$ref": "anxilliarydefinitions.json#/definitions/TripDef"
+					"$ref": "osdm-commons-v2.json#/definitions/TripDef"
 				},
 				"travelDescriptionChange": {
 					"description": "TRAIN_NUMBER_CHANGE,TIME_CHANGE, CONNECTION_TIME_CHANGE",
@@ -224,27 +224,6 @@
 					"items": {
 						"type": "string"
 					}
-				},
-				"ErrorDescription": {
-					"type": "object",
-					"properties": {
-						"Type": {
-							"description": "FUNCTIONAL,TECHNICAL,CONTENT",
-							"type": "string"
-						},
-						"Code": {
-							"type": "string"
-						},
-						"Description": {
-							"description": "error description used to analyze errors",
-							"type": "string"
-						}
-					},
-					"required": [
-						"Type",
-						"Code"
-					],
-					"additionalProperties": false
 				},
 				"tripOffers": {
 					"type": "array",

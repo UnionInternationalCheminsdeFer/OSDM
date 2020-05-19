@@ -150,6 +150,184 @@
 			],
 			"additionalProperties": false
 		},
+		"TripDef": {
+			"type": "object",
+			"properties": {
+				"segments": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"segment": {
+								"type": "object",
+								"properties": {
+									"seqId": {
+										"description": "ordering of the trains",
+										"type": "number"
+									},
+									"transfer": {
+										"description": "Transfer to the next vehicle not included in the request",
+										"type": "object",
+										"properties": {
+											"duration": {
+												"description": "duration forseen as transfer to the next section",
+												"type": "number"
+											},
+											"transferType": {
+												"description": "WALK,...",
+												"type": "string"
+											}
+										},
+										"required": [
+											"duration",
+											"transferType"
+										],
+										"additionalProperties": false
+									},
+									"vehicle": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"minProperties": 1,
+											"properties": {
+												"number": {
+													"description": "id of the vehicle, In case of two train s running in paarallel there might be two train numbers.",
+													"type": "array",
+													"items": {
+														"type": "string"
+													}
+												},
+												"line": {
+													"description": "line number in case the vehical does not have a number",
+													"type": "string"
+												},
+												"serviceBrand": {
+													"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/ServiceBrandCodeDef"
+												},
+												"transportMode": {
+													"description": "transport mode (code list of MERITS). Optional for offer requests, included for alignment with FSM",
+													"type": "string"
+												}
+											},
+											"additionalProperties": false
+										}
+									},
+									"stops": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"station": {
+													"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/StationDef"
+												},
+												"departureDateTime": {
+													"description": "date and time in the time zone of the station",
+													"type": "string"
+												},
+												"arrivalDateTime": {
+													"description": "date and time in the time zone of the station",
+													"type": "string"
+												}
+											},
+											"required": [
+												"station"
+											],
+											"additionalProperties": false
+										}
+									}
+								},
+								"required": [
+									"seqId",
+									"vehicle"
+								],
+								"additionalProperties": false
+							}
+						},
+						"additionalProperties": false
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"TravelSectionDef": {
+			"type": "object",
+			"properties": {
+				"start": {
+					"type": "object",
+					"properties": {
+						"station": {
+							"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
+						},
+						"connectionPoint": {
+							"$ref": "osdm-carrier-schema-v2.json#/definitions/ConnectionPointDef"
+						}
+					},
+					"additionalProperties": false
+				},
+				"end": {
+					"type": "object",
+					"properties": {
+						"station": {
+							"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
+						},
+						"connectionPoint": {
+							"$ref": "osdm-carrier-schema-v2.json#/definitions/ConnectionPointDef"
+						}
+					},
+					"additionalProperties": false
+				},
+				"segmentId": {
+					"description": "reference to a trip segment in case the section corresponds to a segment in the trip and the trip is part of the offer",
+					"type": "string"
+				}
+			},
+			"required": [
+				"start",
+				"end"
+			],
+			"additionalProperties": false
+		},
+		"DistributionChannelDef": {
+			"type": "object",
+			"properties": {
+				"channelType": {
+					"description": "MACHINE,OFFICE,THIRDPARTY,WEB_MOBILE,CALL_CENTER",
+					"type": "string"
+				},
+				"countryOfSale": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/CountryDef"
+				},
+				"sellerId": {
+					"description": "identification of the selling office or channel",
+					"type": "string"
+				}
+			},
+			"required": [
+				"channelType"
+			],
+			"additionalProperties": false
+		},
+		"RequesterDef": {
+			"type": "object",
+			"properties": {
+				"role": {
+					"description": "DISTRIBUTOR,ALLOCATOR",
+					"type": "string"
+				},
+				"company": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/CountryDef"
+				},
+				"distributionChannel": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/anxilliarydefinitions.json#/definitions/DistributionChannelDef"
+				}
+			},
+			"required": [
+				"role",
+				"company",
+				"distributionChannel"
+			],
+			"additionalProperties": false
+		},
 		"CurrencyPriceDef": {
 			"type": "object",
 			"minProperties": 1,
