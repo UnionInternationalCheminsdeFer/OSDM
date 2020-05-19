@@ -1,0 +1,199 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-commons-schema-v2.json",
+	"description": "object definitions used in message exchange with distributors only",
+	"definitions": {
+		"TranslationDef": {
+			"type": "object",
+			"properties": {
+				"language": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/LanguageDef"
+				},
+				"textUTF8": {
+					"type": "string"
+				},
+				"text": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				},
+				"shortTextUtf8": {
+					"type": "string"
+				},
+				"shortText": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				}
+			},
+			"required": [
+				"language",
+				"textUTF8",
+				"text"
+			],
+			"additionalProperties": false
+		},
+		"TextDef": {
+			"description": "directly included text in case of online services",
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"textUTF8": {
+					"type": "string"
+				},
+				"translations": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TranslationDef"
+					}
+				},
+				"text": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				},
+				"shortTextUtf8": {
+					"type": "string"
+				},
+				"shortText": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"textUTF8",
+				"text"
+			],
+			"additionalProperties": false
+		},
+		"ServiceClassDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "A,B,C,D",
+					"type": "string"
+				},
+				"textRef": {
+					"description": "id of the text describing the class",
+					"type": "string"
+				},
+				"text": {
+					"$ref": "#/definitions/TextDef"
+				},
+				"classicClass": {
+					"description": "FIRST,SECOND",
+					"type": "string"
+				}
+			},
+			"required": [
+				"id"
+			],
+			"additionalProperties": false
+		},
+		"ReductionCardDef": {
+			"type": "object",
+			"properties": {
+				"issuer": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef"
+				},
+				"Id": {
+					"description": "id of the card type within the issuer",
+					"type": "string"
+				},
+				"name": {
+					"$ref": "#/definitions/TextDef"
+				},
+				"nameRef": {
+					"description": "referenced text in bulk data",
+					"type": "string"
+				},
+				"serviceClasses": {
+					"description": "list of service classes in case this class is available for different classes",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ServiceClassDef"
+					}
+				},
+				"type": {
+					"description": "LOYALTY_CARD,REDUCTION_CARD,PASS",
+					"type": "string"
+				},
+				"cardIdRequired": {
+					"description": "the card id must be delivered in online sales ",
+					"type": "boolean",
+					"default": false
+				}
+			},
+			"required": [
+				"issuer",
+				"Id",
+				"name"
+			],
+			"additionalProperties": false
+		},
+		"PriceDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "required for bulk data transfer",
+					"type": "string"
+				},
+				"price": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/CurrencyPriceDef"
+					}
+				}
+			},
+			"required": [
+				"price"
+			],
+			"additionalProperties": false
+		},
+		"CurrencyPriceDef": {
+			"type": "object",
+			"minProperties": 1,
+			"properties": {
+				"currency": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CurrencyDef"
+				},
+				"amount": {
+					"type": "number"
+				},
+				"vatDetail": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Country": {
+								"$ref": "osdm-basics-schema-v2.json#/definitions/CountryDef"
+							},
+							"Amount": {
+								"type": "number"
+							},
+							"Percentage": {
+								"type": "number"
+							},
+							"taxId": {
+								"type": "string"
+							},
+							"scope": {
+								"description": "scope where the VAT applies: INTERNALTIONAL, NATIONAL, SHORT_DISTANCE, LONG_DISTANCE",
+								"type": "string"
+							}
+						},
+						"required": [
+							"Country"
+						],
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": [
+				"currency",
+				"amount"
+			],
+			"additionalProperties": false
+		}
+	}
+}

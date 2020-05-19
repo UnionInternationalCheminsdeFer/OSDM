@@ -3,7 +3,7 @@
 	"title": "offer reply",
 	"description": "provides offers for combining fares",
 	"definitions": {
-			"TripOfferRequestDef": {
+		"TripOfferRequestDef": {
 			"type": "object",
 			"properties": {
 				"trip": {
@@ -264,40 +264,39 @@
 				"reservations": {
 					"type": "array",
 					"items": {
-						"$ref": "distributorstructures.json#/definitions/ReservationDef"
+						"$ref": "osdm-distributor-schema-v2.json#/definitions/ReservationDef"
 					}
 				},
 				"ancilliaries": {
 					"type": "array",
 					"items": {
-						"$ref": "distributorstructures.json#/definitions/AncilliaryDef"
+						"$ref": "osdm-distributor-schema-v2.json#/definitions/AncilliaryDef"
 					}
 				},
 				"integratedReservations": {
 					"type": "array",
 					"items": {
-						"$ref": "distributorstructures.json#/definitions/IntegratedReservationAdmissionDef"
+						"$ref": "osdm-distributor-schema-v2.json#/definitions/IntegratedReservationAdmissionDef"
 					}
 				},
 				"admissions": {
 					"type": "array",
 					"items": {
-						"$ref": "distributorstructures.json#/definitions/AdmissionDef"
+						"$ref": "osdm-distributor-schema-v2.json#/definitions/AdmissionDef"
 					}
 				},
 				"travelSection": {
 					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/anxilliarydefinitions.json#/definitions/TravelSectionDef"
 				},
 				"fares": {
-					"description": "on a request of an allocator the reply should prefereable contain fares. offerPrest only incase no fare is possible parts.",
+					"description": "on a request of an allocator the reply should prefereable contain fares",
 					"type": "array",
 					"items": {
-						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/fareitems.json#/definitions/FareOnlineDef"
+						"$ref": "osdm-carrier-schema-v2.json#/definitions/FareOnlineDef"
 					}
 				}
 			},
 			"additionalProperties": false
 		}
 	}
-
 }

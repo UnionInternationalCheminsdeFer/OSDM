@@ -1,0 +1,230 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-carrier-schema-v2.json",
+	"description": "object definitions used in message exchange with distributors only",
+	"definitions": {
+		"FareOnlineDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "unique id of the fare item to be included in accountings",
+					"type": "string"
+				},
+				"type": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/FareTypeDef"
+				},
+				"name": {
+					"$ref": "osdm-commons-v2.json#/definitions/TextDef"
+				},
+				"fareDetailDescription": {
+					"$ref": "osdm-commons-v2.json#/definitions/TextDef"
+				},
+				"price": {
+					"$ref": "osdm-commons-v2.json#/definitions/PriceDef"
+				},
+				"regionalConstraint": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/RegionalConstraintDef"
+				},
+				"serviceConstraint": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/ServiceConstraintDef"
+				},
+				"carrierConstraint": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/CarrierConstraintDef"
+				},
+				"serviceClass": {
+					"$ref": "osdm-commons-v2.json#/definitions/ServiceClassDef"
+				},
+				"serviceLevel": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/ServiceLevelDef"
+				},
+				"reservationParameter": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/ReservationParameterDef"
+				},
+				"personalDataConstraint": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/PersonalDataConstraintDef"
+				},
+				"passengerConstraint": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/PassengerConstraintDef"
+				},
+				"afterSalesCondition": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/AfterSalesConditionDef"
+				},
+				"combinationConstraint": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/FareCombinationConstraintDef"
+				},
+				"fullfillmentConstraint": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/FullfillmentConstraintDef"
+				},
+				"reductionConstraint": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/ReductionConstraintDef"
+				},
+				"legacyAccountingIdentifier": {
+					"description": "identifier of the fare in the current 301 accounting file data",
+					"type": "object",
+					"properties": {
+						"serialId": {
+							"description": "sequential number of regional validities",
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 99999
+						},
+						"addId": {
+							"description": "sequential number of regional validities (leading positions in case the series is too short",
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 99
+						},
+						"tariffId": {
+							"description": "sequential number of the fares for one regional validity",
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 9999
+						}
+					},
+					"additionalProperties": false
+				},
+				"travelValidityConstraint": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/TravelValidityConstraintDef"
+				}
+			},
+			"required": [
+				"type"
+			],
+			"additionalProperties": false
+		},
+		"FareDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "unique id of the fare item to be included in accountings",
+					"type": "string"
+				},
+				"fareType": {
+					"description": "IRT,NRT,RES,ANX",
+					"type": "string"
+				},
+				"nameRef": {
+					"description": "reference to the offer name",
+					"type": "string"
+				},
+				"priceRef": {
+					"description": "reference to the price ",
+					"type": "string"
+				},
+				"regionalConstraintRef": {
+					"description": "reference to the regional validity",
+					"type": "string"
+				},
+				"serviceConstraintRef": {
+					"type": "string"
+				},
+				"carrierConstraintRef": {
+					"type": "string"
+				},
+				"serviceClassRef": {
+					"type": "string"
+				},
+				"serviceLevelRef": {
+					"type": "string"
+				},
+				"passengerConstraintRef": {
+					"type": "string"
+				},
+				"afterSalesRulesRef": {
+					"type": "string"
+				},
+				"combinationConstraintRef": {
+					"type": "string"
+				},
+				"fullfillmentConstraintRef": {
+					"type": "string"
+				},
+				"reductionConstraintRef": {
+					"type": "string"
+				},
+				"reservationParameterRef": {
+					"type": "string"
+				},
+				"personalDataConstraintRef": {
+					"type": "string"
+				},
+				"legacyAccountingIdentifier": {
+					"description": "identifier of the fare in the current 301 accounting file data",
+					"type": "object",
+					"properties": {
+						"serialId": {
+							"description": "sequential number of regional validities",
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 99999
+						},
+						"addId": {
+							"description": "sequential number of regional validities (leading positions in case the series is too short",
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 99
+						},
+						"tariffId": {
+							"description": "sequential number of the fares for one regional validity",
+							"type": "integer",
+							"minimum": 0,
+							"maximum": 9999
+						}
+					},
+					"additionalProperties": false
+				},
+				"fareDetailDescriptionRef": {
+					"description": "reference to a text with the details of the fare ",
+					"type": "string"
+				},
+				"salesAvailabilityConstraintRef": {
+					"type": "string"
+				},
+				"travelValidityConstraintRef": {
+					"type": "string"
+				},
+				"legacyConversion": {
+					"description": "options for legacy conversion to 108.1: NO ( no conversion) YES (conversion allowed), ONLY (fare is provided only for conversion and should not be used otherwise ",
+					"type": "string",
+					"default": "NO"
+				},
+				"individualContracts": {
+					"description": "indicates that the fare can be treated independently per person although booked for more than one person.",
+					"type": "boolean",
+					"default": false
+				}
+			},
+			"required": [
+				"fareType"
+			],
+			"additionalProperties": false
+		},
+		"FareResourceLocationDef": {
+			"description": "locate the online services ",
+			"type": "object",
+			"properties": {
+				"CarrierLocations": {
+					"description": "locating the online resource via the carrier provided in the time table",
+					"type": "array",
+					"items": {
+						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/CarrierResourceLocationDef"
+					}
+				},
+				"TrainLocations": {
+					"description": "locating the online resource via the train from the time table",
+					"type": "array",
+					"items": {
+						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/TrainResourceLocationDef"
+					}
+				},
+				"StationLocations": {
+					"type": "array",
+					"items": {
+						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/StationResourceLocationDef"
+					}
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+}
