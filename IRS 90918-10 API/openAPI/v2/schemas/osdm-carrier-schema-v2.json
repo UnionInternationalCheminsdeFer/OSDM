@@ -3,6 +3,34 @@
 	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-carrier-schema-v2.json",
 	"description": "object definitions used in message exchange with distributors only",
 	"definitions": {
+		"ConnectionPointDef": {
+			"description": "connection point connecting two fare regimes ",
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"legacyBorderPointCode": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"stationSets": {
+					"type": "array",
+					"items": {
+						"type": "array",
+						"items": {
+							"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
+						}
+					}
+				}
+			},
+			"required": [
+				"id"
+			],
+			"additionalProperties": false
+		},
 		"FareOnlineDef": {
 			"type": "object",
 			"properties": {
