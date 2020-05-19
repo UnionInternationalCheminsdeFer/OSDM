@@ -501,6 +501,7 @@
 			"type": "object",
 			"properties": {
 				"id": {
+					"description": "required for bulk data transfer",
 					"type": "string"
 				},
 				"price": {
@@ -511,7 +512,6 @@
 				}
 			},
 			"required": [
-				"id",
 				"price"
 			],
 			"additionalProperties": false

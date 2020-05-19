@@ -267,6 +267,13 @@
 						},
 						"additionalProperties": false
 					}
+				},
+				"Ancilliary": {
+					"$ref": "#/definitions/DistributionChannelDef"
+				},
+				"NewProperty": {},
+				"TripOffers": {
+					"type": "array"
 				}
 			},
 			"additionalProperties": false

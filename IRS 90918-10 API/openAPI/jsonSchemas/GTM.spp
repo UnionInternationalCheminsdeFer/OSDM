@@ -17,6 +17,7 @@
 		<File FilePath="definitions.json" HomeFolder="Yes"/>
 		<File FilePath="deletebookingreply.json" HomeFolder="Yes"/>
 		<File FilePath="deletebookingrequest.json" HomeFolder="Yes"/>
+		<File FilePath="distributorstructures.json" HomeFolder="Yes"/>
 		<File FilePath="faredefinitions.json" HomeFolder="Yes"/>
 		<File FilePath="fareDelivery.json" HomeFolder="Yes"/>
 		<File FilePath="fareitems.json" HomeFolder="Yes"/>
