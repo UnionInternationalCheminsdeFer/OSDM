@@ -1,0 +1,303 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "offer reply",
+	"description": "provides offers for combining fares",
+	"definitions": {
+			"TripOfferRequestDef": {
+			"type": "object",
+			"properties": {
+				"trip": {
+					"$ref": "anxilliarydefinitions.json#/definitions/TripDef"
+				},
+				"requester": {
+					"type": "object",
+					"properties": {
+						"role": {
+							"description": "DISTRIBUTOR,ALOCATOR",
+							"type": "string"
+						},
+						"company": {
+							"$ref": "definitions.json#/definitions/CompanyDef"
+						},
+						"distributionChannel": {
+							"$ref": "anxilliarydefinitions.json#/definitions/DistributionChannelDef",
+							"description": "requested travel section"
+						}
+					},
+					"required": [
+						"role",
+						"distributionChannel"
+					],
+					"additionalProperties": false
+				},
+				"requestedSection": {
+					"$ref": "anxilliarydefinitions.json#/definitions/TravelSectionDef"
+				},
+				"passengers": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"minProperties": 1,
+						"properties": {
+							"travelerId": {
+								"description": "used to link fares to the individual traveler in the reply",
+								"type": "string"
+							},
+							"dateOfBirth": {
+								"description": "YYYY-MM-DD (2017-07-21)",
+								"type": "string"
+							},
+							"reductions": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"reductionIssuer": {
+											"$ref": "definitions.json#/definitions/CompanyDef"
+										},
+										"reductionType": {
+											"type": "string"
+										},
+										"serviceClassId": {
+											"description": "in case te card depends on a class",
+											"type": "string"
+										}
+									},
+									"required": [
+										"reductionType"
+									],
+									"additionalProperties": false
+								}
+							},
+							"gender": {
+								"description": "MALE,FEMALE,X (only in case of night trains)",
+								"type": "string"
+							},
+							"type": {
+								"description": "for traveler types other than age dependent types (accompagning for PRM)",
+								"type": "string"
+							},
+							"familyChild": {
+								"description": "child accomagnied by a family member",
+								"type": "boolean",
+								"default": false
+							}
+						},
+						"required": [
+							"travelerId",
+							"dateOfBirth"
+						],
+						"additionalProperties": false
+					}
+				},
+				"transportables": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"type": {
+								"description": "traveller type",
+								"type": "string"
+							},
+							"car": {
+								"type": "object",
+								"properties": {
+									"weight": {
+										"type": "number"
+									},
+									"length": {
+										"type": "number"
+									},
+									"width": {
+										"type": "number"
+									},
+									"height": {
+										"type": "number"
+									},
+									"attachedItems": {
+										"description": "code list according IRS90918-1",
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									}
+								},
+								"additionalProperties": false
+							},
+							"motoCycle": {
+								"type": "object",
+								"properties": {
+									"includingSideCar": {
+										"type": "boolean",
+										"default": false
+									}
+								},
+								"additionalProperties": false
+							},
+							"trailer": {
+								"type": "object",
+								"properties": {
+									"weight": {
+										"type": "number"
+									},
+									"length": {
+										"type": "number"
+									},
+									"width": {
+										"type": "number"
+									},
+									"height": {
+										"type": "number"
+									}
+								},
+								"additionalProperties": false
+							}
+						},
+						"required": [
+							"type"
+						],
+						"additionalProperties": false
+					}
+				},
+				"promoRequest": {
+					"description": "the request is for a promotional offer only. A bilaterally agreed promotion id can be provided",
+					"type": "object",
+					"properties": {
+						"promoId": {
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"availableFullfillment": {
+					"description": "list of available fullfillment SIP,SiD,..",
+					"type": "array",
+					"items": {
+						"$ref": "definitions.json#/definitions/FulfillmentTypeDef"
+					}
+				},
+				"partialOfferAccepted": {
+					"description": "the requestor would accept offers that do not cover the entire section",
+					"type": "boolean",
+					"default": false
+				},
+				"afterSale": {
+					"type": "object",
+					"properties": {
+						"exchangeReferences": {
+							"description": "list of booking references in case the new offer is requested for an exchange",
+							"type": "array",
+							"items": {
+								"title": "bookingId",
+								"type": "string"
+							}
+						},
+						"reason": {
+							"description": "indication of the type of exchange offer required.",
+							"type": "string"
+						}
+					},
+					"additionalProperties": false
+				},
+				"includeReservationOptions": {
+					"description": "provide the list of reservation options if possible, the requestor ia able to handle it",
+					"type": "boolean",
+					"default": false
+				}
+			},
+			"required": [
+				"trip",
+				"requestedSection",
+				"passengers"
+			],
+			"additionalProperties": false
+		},
+		"TripOffersCollectionDef": {
+			"type": "object",
+			"properties": {
+				"trip": {
+					"$ref": "anxilliarydefinitions.json#/definitions/TripDef"
+				},
+				"travelDescriptionChange": {
+					"description": "TRAIN_NUMBER_CHANGE,TIME_CHANGE, CONNECTION_TIME_CHANGE",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"ErrorDescription": {
+					"type": "object",
+					"properties": {
+						"Type": {
+							"description": "FUNCTIONAL,TECHNICAL,CONTENT",
+							"type": "string"
+						},
+						"Code": {
+							"type": "string"
+						},
+						"Description": {
+							"description": "error description used to analyze errors",
+							"type": "string"
+						}
+					},
+					"required": [
+						"Type",
+						"Code"
+					],
+					"additionalProperties": false
+				},
+				"tripOffers": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TripOfferDef"
+					}
+				}
+			},
+			"required": [
+				"trip"
+			],
+			"additionalProperties": false
+		},
+		"TripOfferDef": {
+			"type": "object",
+			"properties": {
+				"reservations": {
+					"type": "array",
+					"items": {
+						"$ref": "distributorstructures.json#/definitions/ReservationDef"
+					}
+				},
+				"ancilliaries": {
+					"type": "array",
+					"items": {
+						"$ref": "distributorstructures.json#/definitions/AncilliaryDef"
+					}
+				},
+				"integratedReservations": {
+					"type": "array",
+					"items": {
+						"$ref": "distributorstructures.json#/definitions/IntegratedReservationAdmissionDef"
+					}
+				},
+				"admissions": {
+					"type": "array",
+					"items": {
+						"$ref": "distributorstructures.json#/definitions/AdmissionDef"
+					}
+				},
+				"travelSection": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/anxilliarydefinitions.json#/definitions/TravelSectionDef"
+				},
+				"fares": {
+					"description": "on a request of an allocator the reply should prefereable contain fares. offerPrest only incase no fare is possible parts.",
+					"type": "array",
+					"items": {
+						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/fareitems.json#/definitions/FareOnlineDef"
+					}
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+
+}
