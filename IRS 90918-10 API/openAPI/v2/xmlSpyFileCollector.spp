@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project>
+	<Folder FolderName="XML Files" ExtStr="xml;cml;math;rdf;smil;svg;wml"/>
+	<Folder FolderName="XSL Files" ExtStr="xsl;xslt"/>
+	<Folder FolderName="XQuery Files" ExtStr="xq;xql;xquery;xqu"/>
+	<Folder FolderName="HTML Files" ExtStr="html;htm;xhtml;asp"/>
+	<Folder FolderName="DTD/Schemas" ExtStr="dtd;dcd;xdr;biz;xsd">
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\addpersonaldatareply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\addpersonaldatarequest.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\anxilliarydefinitions.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\cancellationOfferReply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\cancellationOfferRequest.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\confirmbookingreply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\confirmbookingrequest.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\confirmcancellationreply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\confirmcancellationrequest.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\definitions.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\deletebookingreply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\deletebookingrequest.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\distributorstructures.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\faredefinitions.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\fareDelivery.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\fareitems.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\farestructure.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\genericerror.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\getfullfillmentreply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\getfullfillmentrequest.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\getstoredpersonaldatareply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\getstoredpersonaldatarequest.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\layoutsreply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\offerreply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\offerrequest.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\offersearchreply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\offersearchrequest.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-basics-schema-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-carrier-offline-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-carrier-schema-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-commons-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-distributor-schema-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-tripOfferSearchSchema-v2.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\personaldatadefinitions.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\placeavailabilityreply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\placeavailabilityrequest.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\prebookingreply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\prebookingrequest.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\reservationdefinitions.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\selectplaceprefsreply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\selectplaceprefsrequest.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\selectplacesnearbyreply.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\selectplacesnearbyrequest.json" HomeFolder="Yes"/>
+		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\ticketdefinitions.json" HomeFolder="Yes"/>
+	</Folder>
+	<Folder FolderName="Entities" ExtStr="ent"/>
+</Project>
