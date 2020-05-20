@@ -1,5 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/osdm/v2/osdm-tripOffer-schema-v2.json",
 	"title": "offer reply",
 	"description": "provides offers for combining fares",
 	"definitions": {
@@ -195,7 +196,7 @@
 					}
 				},
 				"travelSection": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/anxilliarydefinitions.json#/definitions/TravelSectionDef"
+					"$ref": "osdm-commons-v2.json#/definitions/TravelSectionDef"
 				},
 				"fares": {
 					"description": "on a request of an allocator the reply should prefereable contain fares",

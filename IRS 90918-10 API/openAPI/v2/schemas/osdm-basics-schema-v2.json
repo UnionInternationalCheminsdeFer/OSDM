@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
-	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-basics-schema-v2.json",
+	"$id": "http://uic.org/schemas/passenger/osdm/v2/osdm-basics-schema-v2.json",
 	"description": "object definitions used in message exchange with distributors only",
 	"definitions": {
 		"CompanyDef": {

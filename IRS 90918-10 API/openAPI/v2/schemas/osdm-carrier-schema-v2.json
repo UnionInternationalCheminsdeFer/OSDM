@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
-	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-carrier-schema-v2.json",
+	"$id": "http://uic.org/schemas/passenger/osdm/v2/osdm-carrier-schema-v2.json",
 	"description": "object definitions used in message exchange with distributors only",
 	"definitions": {
 		"CalendarDef": {
@@ -165,7 +165,7 @@
 					"$ref": "osdm-commons-v2.json#/definitions/ServiceClassDef"
 				},
 				"serviceLevel": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/ServiceLevelDef"
+					"$ref": "osdm-commons-v2.json#/definitions/ServiceLevelDef"
 				},
 				"reservationParameter": {
 					"$ref": "#/definitions/ReservationParameterDef"
@@ -274,18 +274,18 @@
 		"LineDef": {
 			"type": "object",
 			"properties": {
-				"binaryZoneId": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/base64Binary",
+				"binaryLineId": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/Base64dataDef",
 					"description": "to support local traffic standards (e.g. VDV,...)"
 				},
 				"carrier": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/CompanyDef"
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef"
 				},
 				"city": {
 					"type": "integer"
 				},
 				"entryStation": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/StationDef",
+					"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef",
 					"description": "Station  to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station."
 				},
 				"lineId": {
@@ -295,7 +295,7 @@
 					}
 				},
 				"terminalStation": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/StationDef",
+					"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef",
 					"description": "Terminal station in case trhe  product requires a detination within the zone (e.g. local ticket to go to the main railstation)"
 				},
 				"nutsCode": {
@@ -428,7 +428,7 @@
 						"$ref": "#/definitions/LineDef"
 					},
 					"polygone": {
-						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/ticketdefinitions.json#/definitions/PolygoneDef"
+						"$ref": "osdm-commons-v2.json#/definitions/PolygoneDef"
 					}
 				},
 				"additionalProperties": false
@@ -533,7 +533,7 @@
 					"description": "possible preferences to be requested in reservation without changing the fare",
 					"type": "array",
 					"items": {
-						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/ReservationOptionGroupDef"
+						"$ref": "#/definitions/ReservationOptionGroupDef"
 					}
 				},
 				"graficalReservation": {
@@ -659,16 +659,16 @@
 				"alternativeRoute": {
 					"type": "array",
 					"items": {
-						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/ticketdefinitions.json#/definitions/ViaStationsDef"
+						"$ref": "#/definitions/ViaStationsDef"
 					}
 				},
 				"carrier": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/CompanyDef"
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef"
 				},
 				"route": {
 					"type": "array",
 					"items": {
-						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/ticketdefinitions.json#/definitions/ViaStationsDef"
+						"$ref": "#/definitions/ViaStationsDef"
 					}
 				},
 				"serviceBrand": {
@@ -676,14 +676,14 @@
 					"type": "string"
 				},
 				"Station": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/StationDef"
+					"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
 				},
 				"fareReferenceStationSet": {
 					"description": "reference to a list of stations included in the fare",
 					"type": "object",
 					"properties": {
 						"carrier": {
-							"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/CompanyDef"
+							"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef"
 						},
 						"code": {
 							"type": "string"

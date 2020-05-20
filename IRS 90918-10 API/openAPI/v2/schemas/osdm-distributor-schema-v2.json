@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
-	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-distributor-schema-v2.json",
+	"$id": "http://uic.org/schemas/passenger/osdm/v2/osdm-distributor-schema-v2.json",
 	"description": "object definitions used in message exchange with distributors only",
 	"definitions": {
 		"AdmissionDef": {
@@ -131,7 +131,7 @@
 			"type": "object",
 			"properties": {
 				"personalDataConstraint": {
-					"$ref": "faredefinitions.json#/definitions/PersonalDataConstraintDef"
+					"$ref": "osdm-commons-v2.json#/definitions/PersonalDataConstraintDef"
 				},
 				"segments": {
 					"type": "array"
