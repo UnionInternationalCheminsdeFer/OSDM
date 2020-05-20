@@ -63,7 +63,7 @@
          			"default": {
            				 "description": "unexpected error",
           				 "schema": {
-             			 	"$ref": "jsonSchemas/genericerror.json#/definitions/ErrorDef"
+             			 	"$ref": "jsonSchemas/osdm-commons-v2.json#/definitions/ErrorDef"
              			 }
             		}
      			}
