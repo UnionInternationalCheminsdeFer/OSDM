@@ -165,6 +165,26 @@
 			],
 			"additionalProperties": false
 		},
+		"ErrorDef": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "string"
+				},
+				"scope": {
+					"description": "FUNCTIONAL,TECHNICAL,CONTENT",
+					"type": "string"
+				},
+				"description": {
+					"description": "description of the error in english to analyse the error",
+					"type": "string"
+				}
+			},
+			"required": [
+				"code"
+			],
+			"additionalProperties": false
+		},
 		"PersonalDataConstraintDef": {
 			"type": "object",
 			"properties": {
