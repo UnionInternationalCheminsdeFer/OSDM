@@ -3,90 +3,415 @@
 	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-commons-schema-v2.json",
 	"description": "object definitions used in message exchange with distributors only",
 	"definitions": {
-		"TranslationDef": {
-			"type": "object",
-			"properties": {
-				"language": {
-					"$ref": "osdm-basics-schema-v2.json#/definitions/LanguageDef"
-				},
-				"textUTF8": {
-					"type": "string"
-				},
-				"text": {
-					"description": "text without special characters according to ICAO specification",
-					"type": "string"
-				},
-				"shortTextUtf8": {
-					"type": "string"
-				},
-				"shortText": {
-					"description": "text without special characters according to ICAO specification",
-					"type": "string"
-				}
-			},
-			"required": [
-				"language",
-				"textUTF8",
-				"text"
-			],
-			"additionalProperties": false
-		},
-		"TextDef": {
-			"description": "directly included text in case of online services",
+		"AfterSalesConditionDef": {
 			"type": "object",
 			"properties": {
 				"id": {
 					"type": "string"
 				},
-				"textUTF8": {
-					"type": "string"
-				},
-				"translations": {
+				"afterSalesRules": {
 					"type": "array",
+					"minItems": 1,
 					"items": {
-						"$ref": "#/definitions/TranslationDef"
+						"$ref": "#/definitions/AfterSalesRuleDef"
 					}
-				},
-				"text": {
-					"description": "text without special characters according to ICAO specification",
-					"type": "string"
-				},
-				"shortTextUtf8": {
-					"type": "string"
-				},
-				"shortText": {
-					"description": "text without special characters according to ICAO specification",
-					"type": "string"
 				}
 			},
 			"required": [
 				"id",
-				"textUTF8",
-				"text"
+				"afterSalesRules"
 			],
 			"additionalProperties": false
 		},
-		"ServiceClassDef": {
+		"AfterSalesRuleDef": {
+			"type": "object",
+			"properties": {
+				"transactionType": {
+					"description": "code list Reason for after sale",
+					"type": "string"
+				},
+				"feeRef": {
+					"description": "reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction is allowed. Online services will include fee directly in the fee tag",
+					"type": "string"
+				},
+				"fee": {
+					"$ref": "#/definitions/PriceDef"
+				},
+				"applicationTime": {
+					"$ref": "#/definitions/RelativeTimeDef"
+				},
+				"applicationTimeStamp": {
+					"description": "absolute application time (UTC) in case of online serices",
+					"type": "string",
+					"format": "date-time"
+				},
+				"carrierFee": {
+					"description": "indicates that the fee belongs to the carrier",
+					"type": "boolean",
+					"default": true
+				},
+				"individualContracts": {
+					"description": "indicates that the after sales of this fare can be treated independently per person.",
+					"type": "boolean",
+					"default": false
+				}
+			},
+			"required": [
+				"transactionType"
+			],
+			"additionalProperties": false
+		},
+		"CarrierConstraintDef": {
 			"type": "object",
 			"properties": {
 				"id": {
-					"description": "A,B,C,D",
 					"type": "string"
 				},
-				"textRef": {
-					"description": "id of the text describing the class",
+				"includedCarrier": {
+					"type": "array",
+					"items": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef"
+					}
+				},
+				"excludedCarrier": {
+					"type": "array",
+					"items": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"CurrencyPriceDef": {
+			"type": "object",
+			"minProperties": 1,
+			"properties": {
+				"currency": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CurrencyDef"
+				},
+				"amount": {
+					"type": "number"
+				},
+				"vatDetail": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Country": {
+								"$ref": "osdm-basics-schema-v2.json#/definitions/CountryDef"
+							},
+							"Amount": {
+								"type": "number"
+							},
+							"Percentage": {
+								"type": "number"
+							},
+							"taxId": {
+								"type": "string"
+							},
+							"scope": {
+								"description": "scope where the VAT applies: INTERNALTIONAL, NATIONAL, SHORT_DISTANCE, LONG_DISTANCE",
+								"type": "string"
+							}
+						},
+						"required": [
+							"Country"
+						],
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": [
+				"currency",
+				"amount"
+			],
+			"additionalProperties": false
+		},
+		"CrossBorderConditionDef": {
+			"type": "object",
+			"properties": {
+				"fromCountry": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CountryDef"
+				},
+				"toCountry": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CountryDef"
+				},
+				"affectedServiceBrands": {
+					"type": "array",
+					"items": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceBrandCodeDef"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"DistributionChannelDef": {
+			"type": "object",
+			"properties": {
+				"channelType": {
+					"description": "MACHINE,OFFICE,THIRDPARTY,WEB_MOBILE,CALL_CENTER",
 					"type": "string"
 				},
-				"text": {
-					"$ref": "#/definitions/TextDef"
+				"countryOfSale": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CountryDef"
 				},
-				"classicClass": {
-					"description": "FIRST,SECOND",
+				"sellerId": {
+					"description": "identification of the selling office or channel",
 					"type": "string"
 				}
 			},
 			"required": [
-				"id"
+				"channelType"
+			],
+			"additionalProperties": false
+		},
+		"PersonalDataConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"requiredData": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"properties": {
+							"dataItem": {
+								"description": "see code list IRS 90918-10",
+								"type": "string"
+							},
+							"transfer": {
+								"description": "BOOKING,SIS_CONTROL,SID_CONTROL",
+								"type": "array",
+								"minItems": 1,
+								"items": {
+									"type": "string"
+								}
+							},
+							"ticketHolderOnly": {
+								"type": "boolean",
+								"default": false
+							},
+							"crossBorder": {
+								"description": "the dara are required only in case one of the cross border conditions apply",
+								"type": "array",
+								"items": {
+									"$ref": "#/definitions/CrossBorderConditionDef"
+								}
+							},
+							"fulfillmentType": {
+								"description": "type of fulfillment in case the presonal data are required for that type only",
+								"type": "array",
+								"items": {
+									"$ref": "osdm-basics-schema-v2.json#/definitions/FulfillmentTypeDef"
+								}
+							}
+						},
+						"required": [
+							"dataItem",
+							"transfer"
+						],
+						"additionalProperties": false
+					}
+				},
+				"allowedChanges": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"acceptedReason": {
+								"description": "IN_GENERAL,MARRIAGE,DOCUMENT_CHANGE,AGENT_ERROR",
+								"type": "string"
+							},
+							"timeLimit": {
+								"description": "the change is limited to n hours after booking confirmation",
+								"type": "number"
+							}
+						},
+						"required": [
+							"acceptedReason"
+						],
+						"additionalProperties": false
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"ReservationOptionGroupDef": {
+			"type": "object",
+			"properties": {
+				"preferenceGroup": {
+					"type": "string"
+				},
+				"preference": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"PassengerDef": {
+			"type": "object",
+			"properties": {
+				"travelerId": {
+					"description": "used to link fares to the individual traveler in the reply",
+					"type": "string"
+				},
+				"dateOfBirth": {
+					"description": "YYYY-MM-DD (2017-07-21)",
+					"type": "string"
+				},
+				"reductionCards": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ReductionCardReferenceDef"
+					}
+				},
+				"gender": {
+					"description": "MALE,FEMALE,X (only in case of night trains)",
+					"type": "string"
+				},
+				"type": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/TravelerTypeDef"
+				}
+			},
+			"required": [
+				"travelerId",
+				"dateOfBirth"
+			],
+			"additionalProperties": false
+		},
+		"PolygoneDef": {
+			"type": "object",
+			"properties": {
+				"edge": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/GeoCoordinateDef"
+					}
+				}
+			},
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"PriceDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "required for bulk data transfer",
+					"type": "string"
+				},
+				"price": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/CurrencyPriceDef"
+					}
+				}
+			},
+			"required": [
+				"price"
+			],
+			"additionalProperties": false
+		},
+		"RequesterDef": {
+			"type": "object",
+			"properties": {
+				"role": {
+					"description": "DISTRIBUTOR,ALLOCATOR",
+					"type": "string"
+				},
+				"company": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CountryDef"
+				},
+				"distributionChannel": {
+					"$ref": "#/definitions/DistributionChannelDef"
+				}
+			},
+			"required": [
+				"role",
+				"company",
+				"distributionChannel"
+			],
+			"additionalProperties": false
+		},
+		"RelativeTimeDef": {
+			"type": "object",
+			"properties": {
+				"timeUnit": {
+					"description": "MINUTES,DAYS,HOURS",
+					"type": "string"
+				},
+				"timeValue": {
+					"type": "integer"
+				},
+				"timeReference": {
+					"description": "BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY",
+					"type": "string"
+				}
+			},
+			"required": [
+				"timeUnit",
+				"timeValue",
+				"timeReference"
+			],
+			"additionalProperties": false
+		},
+		"ReductionConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "in bulk data only",
+					"type": "string"
+				},
+				"requiredCards": {
+					"description": "one of the listed cards is required to be valid at the time of travel. ",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ReductionCardReferenceDef"
+					}
+				}
+			},
+			"required": [
+				"requiredCards"
+			],
+			"additionalProperties": false
+		},
+		"ReductionCardReferenceDef": {
+			"type": "object",
+			"properties": {
+				"cardId": {
+					"description": "code of the card type according to code list",
+					"type": "string"
+				},
+				"cardName": {
+					"description": "card name for printing on tickets",
+					"type": "string"
+				},
+				"cardClassId": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceClassIdDef"
+				},
+				"issuer": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef"
+				}
+			},
+			"required": [
+				"cardId"
 			],
 			"additionalProperties": false
 		},
@@ -131,22 +456,289 @@
 			],
 			"additionalProperties": false
 		},
-		"PriceDef": {
+		"ServiceClassDef": {
 			"type": "object",
 			"properties": {
 				"id": {
-					"description": "required for bulk data transfer",
+					"description": "A,B,C,D",
 					"type": "string"
 				},
-				"price": {
+				"textRef": {
+					"description": "id of the text describing the class",
+					"type": "string"
+				},
+				"text": {
+					"$ref": "#/definitions/TextDef"
+				},
+				"classicClass": {
+					"description": "FIRST,SECOND",
+					"type": "string"
+				}
+			},
+			"required": [
+				"id"
+			],
+			"additionalProperties": false
+		},
+		"ServiceConstraintDef": {
+			"description": "one of the lists of exclueded or included service brands only",
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"includedServiceBrands": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/CurrencyPriceDef"
+						"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceBrandCodeDef"
+					}
+				},
+				"excludedServiceBrands": {
+					"type": "array",
+					"items": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceBrandCodeDef"
 					}
 				}
 			},
 			"required": [
-				"price"
+				"id"
+			],
+			"additionalProperties": false
+		},
+		"ServiceLevelDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceLevelIdDef"
+				},
+				"combiningServiceClasses": {
+					"description": "list of service class ids that can be combined with these service levels",
+					"type": "array",
+					"items": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceClassIdDef"
+					}
+				},
+				"textRef": {
+					"description": "id of the text describing the service level",
+					"type": "string"
+				},
+				"text": {
+					"$ref": "#/definitions/TextDef"
+				},
+				"includesClassName": {
+					"description": "indicates that the class name is included",
+					"type": "boolean",
+					"default": true
+				},
+				"reservationParameterId": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"id"
+			],
+			"additionalProperties": false
+		},
+		"TextDef": {
+			"description": "directly included text in case of online services",
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"textUTF8": {
+					"type": "string"
+				},
+				"translations": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TranslationDef"
+					}
+				},
+				"text": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				},
+				"shortTextUtf8": {
+					"type": "string"
+				},
+				"shortText": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"textUTF8",
+				"text"
+			],
+			"additionalProperties": false
+		},
+		"TrainLinkDef": {
+			"type": "object",
+			"properties": {
+				"fromStation": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
+				},
+				"toStation": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
+				},
+				"train": {
+					"type": "string"
+				},
+				"travelDate": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/DateTimeDef",
+					"description": "date and time of the departure where the train link starts"
+				}
+			},
+			"required": [
+				"fromStation",
+				"toStation",
+				"train",
+				"travelDate"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"TranslationDef": {
+			"type": "object",
+			"properties": {
+				"language": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/LanguageDef"
+				},
+				"textUTF8": {
+					"type": "string"
+				},
+				"text": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				},
+				"shortTextUtf8": {
+					"type": "string"
+				},
+				"shortText": {
+					"description": "text without special characters according to ICAO specification",
+					"type": "string"
+				}
+			},
+			"required": [
+				"language",
+				"textUTF8",
+				"text"
+			],
+			"additionalProperties": false
+		},
+		"TransportableDef": {
+			"type": "object",
+			"properties": {
+				"type": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/TravelerTypeDef"
+				},
+				"car": {
+					"type": "object",
+					"properties": {
+						"weight": {
+							"type": "number"
+						},
+						"length": {
+							"type": "number"
+						},
+						"width": {
+							"type": "number"
+						},
+						"height": {
+							"type": "number"
+						},
+						"attachedItems": {
+							"description": "code list according IRS90918-1",
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					},
+					"additionalProperties": false
+				},
+				"motoCycle": {
+					"type": "object",
+					"properties": {
+						"includingSideCar": {
+							"type": "boolean",
+							"default": false
+						}
+					},
+					"additionalProperties": false
+				},
+				"trailer": {
+					"type": "object",
+					"properties": {
+						"weight": {
+							"type": "number"
+						},
+						"length": {
+							"type": "number"
+						},
+						"width": {
+							"type": "number"
+						},
+						"height": {
+							"type": "number"
+						}
+					},
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"type"
+			],
+			"additionalProperties": false
+		},
+		"TravelSectionDef": {
+			"type": "object",
+			"properties": {
+				"start": {
+					"type": "object",
+					"properties": {
+						"station": {
+							"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
+						},
+						"connectionPoint": {
+							"$ref": "osdm-carrier-schema-v2.json#/definitions/ConnectionPointDef"
+						}
+					},
+					"additionalProperties": false
+				},
+				"end": {
+					"type": "object",
+					"properties": {
+						"station": {
+							"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
+						},
+						"connectionPoint": {
+							"$ref": "osdm-carrier-schema-v2.json#/definitions/ConnectionPointDef"
+						}
+					},
+					"additionalProperties": false
+				},
+				"segmentId": {
+					"description": "reference to a trip segment in case the section corresponds to a segment in the trip and the trip is part of the offer",
+					"type": "string"
+				}
+			},
+			"required": [
+				"start",
+				"end"
 			],
 			"additionalProperties": false
 		},
@@ -202,7 +794,7 @@
 													"type": "string"
 												},
 												"serviceBrand": {
-													"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/ServiceBrandCodeDef"
+													"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceBrandCodeDef"
 												},
 												"transportMode": {
 													"description": "transport mode (code list of MERITS). Optional for offer requests, included for alignment with FSM",
@@ -218,7 +810,7 @@
 											"type": "object",
 											"properties": {
 												"station": {
-													"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/StationDef"
+													"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
 												},
 												"departureDateTime": {
 													"description": "date and time in the time zone of the station",
@@ -247,130 +839,6 @@
 					}
 				}
 			},
-			"additionalProperties": false
-		},
-		"TravelSectionDef": {
-			"type": "object",
-			"properties": {
-				"start": {
-					"type": "object",
-					"properties": {
-						"station": {
-							"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
-						},
-						"connectionPoint": {
-							"$ref": "osdm-carrier-schema-v2.json#/definitions/ConnectionPointDef"
-						}
-					},
-					"additionalProperties": false
-				},
-				"end": {
-					"type": "object",
-					"properties": {
-						"station": {
-							"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
-						},
-						"connectionPoint": {
-							"$ref": "osdm-carrier-schema-v2.json#/definitions/ConnectionPointDef"
-						}
-					},
-					"additionalProperties": false
-				},
-				"segmentId": {
-					"description": "reference to a trip segment in case the section corresponds to a segment in the trip and the trip is part of the offer",
-					"type": "string"
-				}
-			},
-			"required": [
-				"start",
-				"end"
-			],
-			"additionalProperties": false
-		},
-		"DistributionChannelDef": {
-			"type": "object",
-			"properties": {
-				"channelType": {
-					"description": "MACHINE,OFFICE,THIRDPARTY,WEB_MOBILE,CALL_CENTER",
-					"type": "string"
-				},
-				"countryOfSale": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/CountryDef"
-				},
-				"sellerId": {
-					"description": "identification of the selling office or channel",
-					"type": "string"
-				}
-			},
-			"required": [
-				"channelType"
-			],
-			"additionalProperties": false
-		},
-		"RequesterDef": {
-			"type": "object",
-			"properties": {
-				"role": {
-					"description": "DISTRIBUTOR,ALLOCATOR",
-					"type": "string"
-				},
-				"company": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/CountryDef"
-				},
-				"distributionChannel": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/anxilliarydefinitions.json#/definitions/DistributionChannelDef"
-				}
-			},
-			"required": [
-				"role",
-				"company",
-				"distributionChannel"
-			],
-			"additionalProperties": false
-		},
-		"CurrencyPriceDef": {
-			"type": "object",
-			"minProperties": 1,
-			"properties": {
-				"currency": {
-					"$ref": "osdm-basics-schema-v2.json#/definitions/CurrencyDef"
-				},
-				"amount": {
-					"type": "number"
-				},
-				"vatDetail": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"Country": {
-								"$ref": "osdm-basics-schema-v2.json#/definitions/CountryDef"
-							},
-							"Amount": {
-								"type": "number"
-							},
-							"Percentage": {
-								"type": "number"
-							},
-							"taxId": {
-								"type": "string"
-							},
-							"scope": {
-								"description": "scope where the VAT applies: INTERNALTIONAL, NATIONAL, SHORT_DISTANCE, LONG_DISTANCE",
-								"type": "string"
-							}
-						},
-						"required": [
-							"Country"
-						],
-						"additionalProperties": false
-					}
-				}
-			},
-			"required": [
-				"currency",
-				"amount"
-			],
 			"additionalProperties": false
 		}
 	}

@@ -3,36 +3,36 @@
 	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-basics-schema-v2.json",
 	"description": "object definitions used in message exchange with distributors only",
 	"definitions": {
-		"StationCodeListDef": {
-			"description": "code list used for the station codes: UIC = UIC codes as used by merits (UIC country code + local code) = Default// UIC-R = UIC codes for reservation (UIC country code + local code reservation) // ERA = future ERA station code",
-			"type": "string",
-			"default": "UIC"
+		"CompanyDef": {
+			"description": "RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x",
+			"type": "string"
 		},
-		"StationDef": {
-			"type": "object",
-			"properties": {
-				"codeList": {
-					"$ref": "#/definitions/StationCodeListDef"
-				},
-				"country": {
-					"type": "string"
-				},
-				"localCode": {
-					"type": "string"
-				},
-				"name": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"country",
-				"localCode"
-			],
-			"additionalProperties": false
+		"CountryDef": {
+			"description": "ISO 3166 2A codes, optional in case of web sales",
+			"type": "string"
 		},
 		"CurrencyDef": {
 			"description": "ISO4217 currency codes",
 			"type": "string"
+		},
+		"FareTypeDef": {
+			"description": "basic UIC fare types (used in 90918-10, 90918-4, 90918-9)",
+			"type": "string",
+			"enum": [
+				"NRT, IRT, NON_RESERVATION",
+				"INTEGRATED_RESERVATION",
+				"RESERVATION",
+				"ANXILLIARY"
+			]
+		},
+		"FulfillmentTypeDef": {
+			"description": "SIP - secure paper tickets; SID - security in data (signed bar code); SIS - security in system",
+			"type": "string",
+			"enum": [
+				"SIP",
+				"SID",
+				"SIS"
+			]
 		},
 		"GeoCoordinateDef": {
 			"type": "object",
@@ -93,6 +93,37 @@
 				"milliDegree"
 			]
 		},
+		"LanguageDef": {
+			"description": "ISO language codes",
+			"type": "string"
+		},
+		"StationCodeListDef": {
+			"description": "code list used for the station codes: UIC = UIC codes as used by merits (UIC country code + local code) = Default// UIC-R = UIC codes for reservation (UIC country code + local code reservation) // ERA = future ERA station code",
+			"type": "string",
+			"default": "UIC"
+		},
+		"StationDef": {
+			"type": "object",
+			"properties": {
+				"codeList": {
+					"$ref": "#/definitions/StationCodeListDef"
+				},
+				"country": {
+					"type": "string"
+				},
+				"localCode": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"country",
+				"localCode"
+			],
+			"additionalProperties": false
+		},
 		"ServiceBrandAbbreviationDef": {
 			"description": "Abbreviation of the service brand to be printed on tickets",
 			"type": "string",
@@ -129,27 +160,31 @@
 			],
 			"additionalProperties": false
 		},
-		"FareTypeDef": {
-			"description": "basic UIC fare types (used in 90918-10, 90918-4, 90918-9)",
-			"type": "string",
-			"enum": [
-				"NRT, IRT, NON_RESERVATION",
-				"INTEGRATED_RESERVATION",
-				"RESERVATION",
-				"ANXILLIARY"
-			]
-		},
-		"LanguageDef": {
-			"description": "ISO language codes",
+		"ServiceClassIdDef": {
+			"description": "Service class id. Values according to code list IRS 90918-10  (A,B,C,D)",
 			"type": "string"
 		},
-		"CompanyDef": {
-			"description": "RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x",
+		"ServiceLevelIdDef": {
+			"description": "code of the servi9ce level, codelist in IRS 90918-1",
 			"type": "string"
 		},
-		"CountryDef": {
-			"description": "ISO 3166 2A codes, optional in case of web sales",
+		"TravelerTypeDef": {
+			"description": "Values from the traveler type code list IRS 90918-10",
 			"type": "string"
+		},
+		"AfterSaleReasonDef": {
+			"description": "reason and type for an after sale, Code list in IRS 90918-10",
+			"type": "string"
+		},
+		"Base64dataDef": {
+			"description": "base64 encoded string",
+			"type": "string"
+		},
+		"DateDef": {
+			"description": "UTC date including time zone information"
+		},
+		"DateTimeDef": {
+			"description": " including time zone information"
 		}
 	}
 }
