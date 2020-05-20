@@ -10,25 +10,7 @@
 					"$ref": "osdm-commons-v2.json#/definitions/TripDef"
 				},
 				"requester": {
-					"type": "object",
-					"properties": {
-						"role": {
-							"description": "DISTRIBUTOR,ALOCATOR",
-							"type": "string"
-						},
-						"company": {
-							"$ref": "definitions.json#/definitions/CompanyDef"
-						},
-						"distributionChannel": {
-							"$ref": "anxilliarydefinitions.json#/definitions/DistributionChannelDef",
-							"description": "requested travel section"
-						}
-					},
-					"required": [
-						"role",
-						"distributionChannel"
-					],
-					"additionalProperties": false
+					"$ref": "osdm-commons-v2.json#/definitions/RequesterDef"
 				},
 				"requestedSection": {
 					"$ref": "osdm-commons-v2.json#/definitions/TravelSectionDef"
@@ -36,58 +18,7 @@
 				"passengers": {
 					"type": "array",
 					"items": {
-						"type": "object",
-						"minProperties": 1,
-						"properties": {
-							"travelerId": {
-								"description": "used to link fares to the individual traveler in the reply",
-								"type": "string"
-							},
-							"dateOfBirth": {
-								"description": "YYYY-MM-DD (2017-07-21)",
-								"type": "string"
-							},
-							"reductions": {
-								"type": "array",
-								"items": {
-									"type": "object",
-									"properties": {
-										"reductionIssuer": {
-											"$ref": "definitions.json#/definitions/CompanyDef"
-										},
-										"reductionType": {
-											"type": "string"
-										},
-										"serviceClassId": {
-											"description": "in case te card depends on a class",
-											"type": "string"
-										}
-									},
-									"required": [
-										"reductionType"
-									],
-									"additionalProperties": false
-								}
-							},
-							"gender": {
-								"description": "MALE,FEMALE,X (only in case of night trains)",
-								"type": "string"
-							},
-							"type": {
-								"description": "for traveler types other than age dependent types (accompagning for PRM)",
-								"type": "string"
-							},
-							"familyChild": {
-								"description": "child accomagnied by a family member",
-								"type": "boolean",
-								"default": false
-							}
-						},
-						"required": [
-							"travelerId",
-							"dateOfBirth"
-						],
-						"additionalProperties": false
+						"$ref": "osdm-commons-v2.json#/definitions/PassengerDef"
 					}
 				},
 				"transportables": {
@@ -173,7 +104,7 @@
 					"description": "list of available fullfillment SIP,SiD,..",
 					"type": "array",
 					"items": {
-						"$ref": "definitions.json#/definitions/FulfillmentTypeDef"
+						"$ref": "osdm-basics-schema-v2.json#/definitions/FulfillmentTypeDef"
 					}
 				},
 				"partialOfferAccepted": {
@@ -193,8 +124,7 @@
 							}
 						},
 						"reason": {
-							"description": "indication of the type of exchange offer required.",
-							"type": "string"
+							"$ref": "osdm-basics-schema-v2.json#/definitions/AfterSaleReasonDef"
 						}
 					},
 					"additionalProperties": false

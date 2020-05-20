@@ -3,6 +3,38 @@
 	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-carrier-schema-v2.json",
 	"description": "object definitions used in message exchange with distributors only",
 	"definitions": {
+		"CalendarDef": {
+			"description": "valid on all days in case no calendar is provided",
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"fromDate": {
+					"type": "string"
+				},
+				"untilDate": {
+					"type": "string"
+				},
+				"dates": {
+					"description": "dates included in the calendar. In case no dates are provided the entire range is assumed to be valid",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"UTCoffset": {
+					"description": "offsett to UTC in minutes (number of minutes to be added to get UTC dates)",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"fromDate",
+				"untilDate",
+				"UTCoffset"
+			],
+			"additionalProperties": false
+		},
 		"ConnectionPointDef": {
 			"description": "connection point connecting two fare regimes ",
 			"type": "object",
@@ -31,6 +63,76 @@
 			],
 			"additionalProperties": false
 		},
+		"FareCombinationModelDef": {
+			"type": "object",
+			"properties": {
+				"model": {
+					"description": "SEPARATE_TICKET.SEPARATE_CONTRACT,CLUSTERING,COMBINING",
+					"type": "string"
+				},
+				"combinableCarrier": {
+					"description": "list of all carriers where the model can be applied, in case the list is empty all combinations are allowed.",
+					"type": "array",
+					"items": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef"
+					}
+				},
+				"onlyWhenCombined": {
+					"description": "this combination model applies only in case the fare is combined with another carrier",
+					"type": "boolean",
+					"default": false
+				},
+				"referenceCluster": {
+					"description": "in case of CLUSTERING model: the cluster to which the fare belongs",
+					"type": "string"
+				},
+				"allowedClusters": {
+					"description": "in case of CLUSTERIMNG model: the other clusters taht allow a combination",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"allowedAllocators": {
+					"description": "list of allowed allocators. in case the list is empty all allocators with a sales contract are permitted.",
+					"type": "array",
+					"items": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef"
+					}
+				},
+				"allowedCommonContracts": {
+					"description": "list of carriers where a common contract with separate tickets are allowed. ",
+					"type": "array",
+					"items": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef"
+					}
+				}
+			},
+			"required": [
+				"model"
+			],
+			"additionalProperties": false
+		},
+		"FareCombinationConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"combinationModels": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/FareCombinationModelDef"
+					}
+				}
+			},
+			"required": [
+				"id",
+				"combinationModels"
+			],
+			"additionalProperties": false
+		},
 		"FareOnlineDef": {
 			"type": "object",
 			"properties": {
@@ -51,13 +153,13 @@
 					"$ref": "osdm-commons-v2.json#/definitions/PriceDef"
 				},
 				"regionalConstraint": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/RegionalConstraintDef"
+					"$ref": "#/definitions/RegionalConstraintDef"
 				},
 				"serviceConstraint": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/ServiceConstraintDef"
+					"$ref": "osdm-commons-v2.json#/definitions/ServiceConstraintDef"
 				},
 				"carrierConstraint": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/CarrierConstraintDef"
+					"$ref": "osdm-commons-v2.json#/definitions/CarrierConstraintDef"
 				},
 				"serviceClass": {
 					"$ref": "osdm-commons-v2.json#/definitions/ServiceClassDef"
@@ -66,25 +168,25 @@
 					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/ServiceLevelDef"
 				},
 				"reservationParameter": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/ReservationParameterDef"
+					"$ref": "#/definitions/ReservationParameterDef"
 				},
 				"personalDataConstraint": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/PersonalDataConstraintDef"
+					"$ref": "osdm-commons-v2.json#/definitions/PersonalDataConstraintDef"
 				},
 				"passengerConstraint": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/PassengerConstraintDef"
+					"$ref": "#/definitions/PassengerConstraintDef"
 				},
 				"afterSalesCondition": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/AfterSalesConditionDef"
+					"$ref": "osdm-commons-v2.json#/definitions/AfterSalesConditionDef"
 				},
 				"combinationConstraint": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/FareCombinationConstraintDef"
+					"$ref": "#/definitions/FareCombinationConstraintDef"
 				},
 				"fullfillmentConstraint": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/FullfillmentConstraintDef"
+					"$ref": "#/definitions/FullfillmentConstraintDef"
 				},
 				"reductionConstraint": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/ReductionConstraintDef"
+					"$ref": "osdm-commons-v2.json#/definitions/ReductionConstraintDef"
 				},
 				"legacyAccountingIdentifier": {
 					"description": "identifier of the fare in the current 301 accounting file data",
@@ -112,146 +214,595 @@
 					"additionalProperties": false
 				},
 				"travelValidityConstraint": {
-					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/TravelValidityConstraintDef"
+					"$ref": "#/definitions/TravelValidityConstraintDef"
 				}
 			},
 			"required": [
+				"id",
 				"type"
 			],
 			"additionalProperties": false
 		},
-		"FareDef": {
+		"FullfillmentConstraintDef": {
 			"type": "object",
 			"properties": {
 				"id": {
-					"description": "unique id of the fare item to be included in accountings",
 					"type": "string"
 				},
-				"fareType": {
-					"description": "IRT,NRT,RES,ANX",
-					"type": "string"
+				"acceptedFullfillmentTypes": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/FulfillmentTypeDef"
+					}
 				},
-				"nameRef": {
-					"description": "reference to the offer name",
-					"type": "string"
+				"acceptedBarCodes": {
+					"description": "for SiD fulllfillment one of the listed bar codes is required",
+					"type": "array",
+					"items": {
+						"description": "according IRS 90918-9: FCB, TLB, SSB",
+						"type": "string"
+					}
 				},
-				"priceRef": {
-					"description": "reference to the price ",
-					"type": "string"
+				"requiredBarCodes": {
+					"description": "one of the listed bar codes must be provided",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
 				},
-				"regionalConstraintRef": {
-					"description": "reference to the regional validity",
-					"type": "string"
+				"requiredSiS": {
+					"description": "for SiS fullfillment one of the listed interfaces is required",
+					"type": "array",
+					"items": {
+						"description": "registry90918-4;peertopeer90918-4",
+						"type": "string"
+					}
 				},
-				"serviceConstraintRef": {
-					"type": "string"
-				},
-				"carrierConstraintRef": {
-					"type": "string"
-				},
-				"serviceClassRef": {
-					"type": "string"
-				},
-				"serviceLevelRef": {
-					"type": "string"
-				},
-				"passengerConstraintRef": {
-					"type": "string"
-				},
-				"afterSalesRulesRef": {
-					"type": "string"
-				},
-				"combinationConstraintRef": {
-					"type": "string"
-				},
-				"fullfillmentConstraintRef": {
-					"type": "string"
-				},
-				"reductionConstraintRef": {
-					"type": "string"
-				},
-				"reservationParameterRef": {
-					"type": "string"
-				},
-				"personalDataConstraintRef": {
-					"type": "string"
-				},
-				"legacyAccountingIdentifier": {
-					"description": "identifier of the fare in the current 301 accounting file data",
-					"type": "object",
-					"properties": {
-						"serialId": {
-							"description": "sequential number of regional validities",
-							"type": "integer",
-							"minimum": 0,
-							"maximum": 99999
-						},
-						"addId": {
-							"description": "sequential number of regional validities (leading positions in case the series is too short",
-							"type": "integer",
-							"minimum": 0,
-							"maximum": 99
-						},
-						"tariffId": {
-							"description": "sequential number of the fares for one regional validity",
-							"type": "integer",
-							"minimum": 0,
-							"maximum": 9999
-						}
-					},
-					"additionalProperties": false
-				},
-				"fareDetailDescriptionRef": {
-					"description": "reference to a text with the details of the fare ",
-					"type": "string"
-				},
-				"salesAvailabilityConstraintRef": {
-					"type": "string"
-				},
-				"travelValidityConstraintRef": {
-					"type": "string"
-				},
-				"legacyConversion": {
-					"description": "options for legacy conversion to 108.1: NO ( no conversion) YES (conversion allowed), ONLY (fare is provided only for conversion and should not be used otherwise ",
-					"type": "string",
-					"default": "NO"
-				},
-				"individualContracts": {
-					"description": "indicates that the fare can be treated independently per person although booked for more than one person.",
-					"type": "boolean",
-					"default": false
+				"individualTicketingPermitted": {
+					"description": "a seprate fullfillment per traveler is permitted",
+					"type": "boolean"
 				}
 			},
 			"required": [
-				"fareType"
+				"id",
+				"acceptedFullfillmentTypes",
+				"individualTicketingPermitted"
 			],
 			"additionalProperties": false
 		},
-		"FareResourceLocationDef": {
-			"description": "locate the online services ",
+		"LineDef": {
 			"type": "object",
 			"properties": {
-				"CarrierLocations": {
-					"description": "locating the online resource via the carrier provided in the time table",
+				"binaryZoneId": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/base64Binary",
+					"description": "to support local traffic standards (e.g. VDV,...)"
+				},
+				"carrier": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/CompanyDef"
+				},
+				"city": {
+					"type": "integer"
+				},
+				"entryStation": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/StationDef",
+					"description": "Station  to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station."
+				},
+				"lineId": {
 					"type": "array",
 					"items": {
-						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/CarrierResourceLocationDef"
+						"type": "string"
 					}
 				},
-				"TrainLocations": {
-					"description": "locating the online resource via the train from the time table",
+				"terminalStation": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/StationDef",
+					"description": "Terminal station in case trhe  product requires a detination within the zone (e.g. local ticket to go to the main railstation)"
+				},
+				"nutsCode": {
+					"description": "Nomenclature des units territoriales statistiques  \n COMMISSION REGULATION (EU) No 31/2011",
+					"type": "string"
+				}
+			},
+			"required": [
+				"carrier"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"PassengerConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"passengerType": {
+					"description": "see code list travelerType",
+					"type": "string"
+				},
+				"nameRef": {
+					"type": "string"
+				},
+				"upperAgeLimit": {
+					"type": "integer"
+				},
+				"lowerAgeLimit": {
+					"type": "integer"
+				},
+				"ageLimitToTravelAlone": {
+					"type": "integer"
+				},
+				"ageLimitForReservation": {
+					"type": "integer"
+				},
+				"isAncilliaryItem": {
+					"description": "to indicate dogs, bicycles,.. ",
+					"type": "boolean",
+					"default": false
+				},
+				"combinationConstraint": {
 					"type": "array",
 					"items": {
-						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/TrainResourceLocationDef"
+						"type": "object",
+						"properties": {
+							"maxNumber": {
+								"description": "number of passengers allowed per accompanying passenger",
+								"type": "integer"
+							},
+							"passengerTypeRef": {
+								"$ref": "osdm-basics-schema-v2.json#/definitions/TravelerTypeDef"
+							}
+						},
+						"required": [
+							"maxNumber",
+							"passengerTypeRef"
+						],
+						"additionalProperties": false
 					}
 				},
-				"StationLocations": {
+				"includedFreePassenger": {
 					"type": "array",
 					"items": {
-						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/StationResourceLocationDef"
+						"type": "object",
+						"properties": {
+							"number": {
+								"description": "number of passengers that can be included with one passenger for free. The number is given in fractions. The calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog for free)",
+								"type": "integer"
+							},
+							"passengerTypeRef": {
+								"$ref": "osdm-basics-schema-v2.json#/definitions/TravelerTypeDef"
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"passengerWeight": {
+					"type": "number"
+				},
+				"maxWeightedPasseners": {
+					"description": "the total weighted number of passengers on the offer is restricted to be equal or smaller than this  maximum ",
+					"type": "number"
+				},
+				"minWeightedPassengers": {
+					"description": "the total weighted number of passengers on the offer is restricted to equal or larger than this minimum",
+					"type": "number"
+				}
+			},
+			"required": [
+				"id",
+				"passengerType",
+				"nameRef"
+			],
+			"additionalProperties": false
+		},
+		"RegionalValidityDef": {
+			"type": "array",
+			"items": {
+				"description": "one of the elements Zone,ViaStation,TrainLink, Line, Polygone",
+				"type": "object",
+				"properties": {
+					"seqNb": {
+						"description": "order number of the list item",
+						"type": "integer"
+					},
+					"zone": {
+						"$ref": "#/definitions/ZoneDef"
+					},
+					"viaStations": {
+						"$ref": "#/definitions/ViaStationsDef"
+					},
+					"trainLink": {
+						"$ref": "osdm-commons-v2.json#/definitions/TrainLinkDef"
+					},
+					"line": {
+						"$ref": "#/definitions/LineDef"
+					},
+					"polygone": {
+						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/ticketdefinitions.json#/definitions/PolygoneDef"
+					}
+				},
+				"additionalProperties": false
+			}
+		},
+		"RegionalConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"entryConnectionPointId": {
+					"description": "connection point connecting two fare regimes",
+					"type": "string"
+				},
+				"exitConnectionPointId": {
+					"description": "connection point connecting two fare regimes",
+					"type": "string"
+				},
+				"RegionalValidity": {
+					"$ref": "#/definitions/RegionalValidityDef"
+				},
+				"distance": {
+					"description": "distance in km for statistics ",
+					"type": "number"
+				}
+			},
+			"additionalProperties": false
+		},
+		"ReservationParameterDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"reservationRequired": {
+					"type": "boolean",
+					"default": false
+				},
+				"reservationParams918-1": {
+					"type": "object",
+					"properties": {
+						"travelClass": {
+							"description": "90918-1 class code in reservation ",
+							"type": "string"
+						},
+						"serviceLevelCode": {
+							"description": "service level code defined in UIC 90918-1",
+							"type": "string"
+						},
+						"serviceCode": {
+							"description": "service code to be used in reservation",
+							"type": "string"
+						},
+						"berthType": {
+							"type": "string"
+						},
+						"coachTypeCode": {
+							"type": "string"
+						},
+						"compartmentTypeCode": {
+							"type": "string"
+						},
+						"tariff": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"travelClass",
+						"serviceLevelCode",
+						"serviceCode"
+					],
+					"additionalProperties": false
+				},
+				"reservationOptions": {
+					"$ref": "#/definitions/ReservationOptionsDef"
+				},
+				"reservationRequiredForBrand": {
+					"description": "service brand mode for which a reservation is mandatory",
+					"type": "array",
+					"items": {
+						"type": "integer"
+					}
+				},
+				"reservationRequiredForMode": {
+					"description": "service service mode for which a reservation is mandatory",
+					"type": "array",
+					"items": {
+						"type": "string"
 					}
 				}
 			},
+			"required": [
+				"id"
+			],
+			"additionalProperties": false
+		},
+		"ReservationOptionsDef": {
+			"type": "object",
+			"properties": {
+				"preferences": {
+					"description": "possible preferences to be requested in reservation without changing the fare",
+					"type": "array",
+					"items": {
+						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/faredefinitions.json#/definitions/ReservationOptionGroupDef"
+					}
+				},
+				"graficalReservation": {
+					"description": "grafical reservation is supported, interface type \"NO\",\"UIC_918\",..",
+					"type": "string"
+				},
+				"serviceBrands": {
+					"description": "service brands where the options apply",
+					"type": "array",
+					"items": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceBrandCodeDef"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"TravelValidityConstraintDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "mandatory in bulk data exchange",
+					"type": "string"
+				},
+				"validTravelDates": {
+					"$ref": "#/definitions/CalendarDef"
+				},
+				"validityRange": {
+					"type": "object",
+					"properties": {
+						"timeUnit": {
+							"description": "DAYS, HOURS, MINUTES",
+							"type": "string"
+						},
+						"value": {
+							"type": "number"
+						},
+						"hoursAfterMidnight": {
+							"description": "validity extended after midnight",
+							"type": "number"
+						}
+					},
+					"required": [
+						"timeUnit",
+						"value"
+					],
+					"additionalProperties": false
+				},
+				"excludedTimeRange": {
+					"description": "time ranges excluded from the validity (e.g. off peak tickets)",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"from": {
+								"description": "minutes of the day in the time zone of travel",
+								"type": "integer"
+							},
+							"until": {
+								"description": "minutes of the day in the time zone of travel",
+								"type": "integer"
+							},
+							"scope": {
+								"description": "START_OF_TRAVEL,COMPLETE_RANGE",
+								"type": "string"
+							}
+						},
+						"required": [
+							"from",
+							"until",
+							"scope"
+						],
+						"additionalProperties": false
+					}
+				},
+				"numberOfTravelDays": {
+					"description": "number of allowed travel days (e.g. 3 travel days within 2 weeks)",
+					"type": "integer"
+				},
+				"returnConstraint": {
+					"description": "a return trip with the same carrier must be sold in combination",
+					"type": "object",
+					"properties": {
+						"latestReturn": {
+							"description": "number of days after departure or start of validity of the last return ",
+							"type": "integer"
+						},
+						"earliestReturn": {
+							"description": "number of days after departure or start of validity of the earliest return",
+							"type": "integer"
+						},
+						"excludedWeekdays": {
+							"description": "weekdays (ISO day of the week, 1 = Monday) between travel and return where travel is not allowed",
+							"type": "array",
+							"items": {
+								"type": "integer"
+							}
+						}
+					},
+					"required": [
+						"latestReturn",
+						"earliestReturn"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"validityRange"
+			],
+			"additionalProperties": false
+		},
+		"ViaStationsDef": {
+			"type": "object",
+			"properties": {
+				"isBorder": {
+					"type": "boolean"
+				},
+				"routeId": {
+					"type": "integer"
+				},
+				"seriesId": {
+					"type": "integer"
+				},
+				"alternativeRoute": {
+					"type": "array",
+					"items": {
+						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/ticketdefinitions.json#/definitions/ViaStationsDef"
+					}
+				},
+				"carrier": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/CompanyDef"
+				},
+				"route": {
+					"type": "array",
+					"items": {
+						"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/ticketdefinitions.json#/definitions/ViaStationsDef"
+					}
+				},
+				"serviceBrand": {
+					"description": "restriction  to a specific service brand",
+					"type": "string"
+				},
+				"Station": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/StationDef"
+				},
+				"fareReferenceStationSet": {
+					"description": "reference to a list of stations included in the fare",
+					"type": "object",
+					"properties": {
+						"carrier": {
+							"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/definitions.json#/definitions/CompanyDef"
+						},
+						"code": {
+							"type": "string"
+						},
+						"name": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"carrier",
+						"code"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"Station"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"ZoneDef": {
+			"type": "object",
+			"properties": {
+				"binaryZoneId": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/Base64dataDef",
+					"description": "to support local traffic standards (e.g. VDV,...)"
+				},
+				"carrier": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef",
+					"description": "carrier responsible for the transport."
+				},
+				"city": {
+					"type": "integer"
+				},
+				"entryStation": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef",
+					"description": "Station  to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station."
+				},
+				"terminalStation": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef",
+					"description": "Terminal station in case the  product requires a destination within the zone (e.g. local ticket to go to the main railstation)"
+				},
+				"zoneId": {
+					"description": "to be used in bar codes",
+					"type": "array",
+					"items": {
+						"type": "integer"
+					}
+				},
+				"nutsCode": {
+					"description": "Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011",
+					"type": "string"
+				}
+			},
+			"required": [
+				"carrier"
+			],
+			"patternProperties": {
+				"^P_": {
+					"anyOf": [
+						{
+							"type": "object"
+						},
+						{
+							"type": "string"
+						}
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"ZoneDefinitionDef": {
+			"description": "definition of a zone used to define regional validity. The area of the zone can be defined via a geo-poligone, a complte list of all contained stations or area codes from the NUTS code list. The carrier is eigther the carrier or transport authority responsible for the definition.",
+			"type": "object",
+			"properties": {
+				"carrier": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef"
+				},
+				"zoneId": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"nameUTF8": {
+					"type": "string"
+				},
+				"ploygone": {
+					"$ref": "osdm-commons-v2.json#/definitions/PolygoneDef"
+				},
+				"stationList": {
+					"type": "array",
+					"items": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
+					}
+				},
+				"nutsCodes": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"carrier",
+				"zoneId"
+			],
 			"additionalProperties": false
 		}
 	}
