@@ -11,19 +11,37 @@
 
 
 <h2>Reference data / Code lists</h2>
-
-			<li>carriers - UIC company codes</li>
-			<li>service brands - UIC service brands</li>
-			<li>stations - MERITS stations</li>
-			<li>NUTS codes - regional codes</li>
-			<li>legacy border point codes</li>
-
-
+<p>
+		<ul>
+			<li><a href="../reference/data_companycodes.html" >carriers</a> - UIC company codes</li>
+			<li><a href="../reference/data_servicebrandcodes.html" >service brands</a> - UIC service brands</li>
+			<li><a href="../reference/data_stationcodes.html" >stations</a> - MERITS stations</li>
+			<li><a href="../reference/data_nutscodes.html" >NUTS</a> codes - regional codes (not used for pure conversion)</li>
+			<li>legacy <a href="../reference/data_borderpoints.html">border point</a> codes</li>
+		</ul>
+</p>
 
 <h2>Conversion data</h2> 
 
 
+
+
+
+
 <h2>Fare data 90918-10</h2> 
+
+<p>
+		<ul>The dare data in the fare data section correspond exactly to the data
+		 specified within the IRS 90918-10 for the bulk data delivery, Data Ids to link the different data parts within the json export 
+		 will be created automatically before the export of the data.<br/><br/>
+		 
+		The data structure contains the complete set of defined data and is not restricted to data used in the conversion. 
+		Additional data might be added manually. Data that are also generated include a data source tag indicating whether it was 
+		created by conversion or by import or manually. All data marked as created by conversion will be replaced with the next conversion. 
+
+		</ul>
+</p>
+
 
 </body>
 </html>
