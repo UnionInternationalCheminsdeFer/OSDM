@@ -3,6 +3,39 @@
 	"$id": "http://uic.org/schemas/passenger/osdm/v2/osdm-basics-schema-v2.json",
 	"description": "object definitions used in message exchange with distributors only",
 	"definitions": {
+			"CalendarDef": {
+			"description": "valid on all days in case no calendar is provided",
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"fromDate": {
+					"type": "string"
+				},
+				"untilDate": {
+					"type": "string"
+				},
+				"dates": {
+					"description": "dates included in the calendar. In case no dates are provided the entire range is assumed to be valid",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"UTCoffset": {
+					"description": "offsett to UTC in minutes (number of minutes to be added to get UTC dates)",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"id",
+				"fromDate",
+				"untilDate",
+				"UTCoffset"
+			],
+			"additionalProperties": false
+		},
 		"CompanyDef": {
 			"description": "RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x",
 			"type": "string"

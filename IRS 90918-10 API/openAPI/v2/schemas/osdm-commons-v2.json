@@ -860,6 +860,24 @@
 				}
 			},
 			"additionalProperties": false
+		},
+		"AfterSaleReferenceDef": {
+				"type": "object",
+				"properties": {
+					"exchangeReferences": {
+						"description": "list of booking references in case the new offer is requested for an exchange",
+						"type": "array",
+						"items": {
+							"title": "bookingReference",
+							"type": "string"
+						}
+					},
+					"reason": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/AfterSaleReasonDef"
+					}
+				},
+				"additionalProperties": false
+			}
 		}
-	}
+	
 }

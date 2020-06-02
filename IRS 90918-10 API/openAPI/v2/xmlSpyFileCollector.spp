@@ -37,6 +37,7 @@
 		<File FilePath="schemas\osdm-carrier-schema-v2.json" HomeFolder="Yes"/>
 		<File FilePath="schemas\osdm-commons-v2.json" HomeFolder="Yes"/>
 		<File FilePath="schemas\osdm-distributor-schema-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-offerSearchSchema-v2.json" HomeFolder="Yes"/>
 		<File FilePath="schemas\osdm-tripOfferSearchSchema-v2.json" HomeFolder="Yes"/>
 		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\personaldatadefinitions.json" HomeFolder="Yes"/>
 		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\placeavailabilityreply.json" HomeFolder="Yes"/>
