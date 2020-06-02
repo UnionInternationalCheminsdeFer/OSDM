@@ -1,0 +1,48 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-checkPlacePreferences-schema-v2.json",
+	"title": "offer reply",
+	"description": "provides offers for combining fares",
+	"definitions": {
+	
+		"CheckPlacePrefsRequestDef": {
+			"type": "object",
+			"properties": {
+				"offerContext": {
+					"description": "mandatory in case it was provided with the offer",
+					"type": "string"
+				},
+				"vehicleIdentification": { 
+					"$ref": "osdm-commons-v2.json#/definitions/VehicleIdentificationDef"
+				},
+				"placePreferences": {
+					"description": "list of selected preferences. ",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"CheckPlacePrefsReplyDef": {
+			"type": "object",
+			"properties": {
+				"vehicleIdentification": { 
+					"$ref": "osdm-commons-v2.json#/definitions/VehicleIdentificationDef"
+				},
+				"reservationContext": {
+					"type": "string"
+				},
+				"availablePreferences": {
+					"description": "list of available preferences. The list is a subset of the requested preferences.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+}

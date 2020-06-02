@@ -44,7 +44,7 @@
             		"content": {
             			"application/json": {
             				"schema": {
-              					"$ref": "jsonSchemas/osdm-tripOfferSearchSchema-v2.json#/definitions/TripOfferRequestDef"   
+              					"$ref": "../schemas/osdm-tripOfferSearchSchema-v2.json#/definitions/TripOfferRequestDef"   
             				}
             			}
             		}
@@ -55,7 +55,7 @@
          				 "content": {
             				"application/json": {
               					"schema": {
-               						"$ref": "jsonSchemas/osdm-tripOfferSearchSchema-v2.json#/definitions/TripOffersCollectionDef"   
+               						"$ref": "../schemas/osdm-tripOfferSearchSchema-v2.json#/definitions/TripOffersCollectionDef"   
            						}
     				        }
           				}
@@ -63,7 +63,7 @@
          			"default": {
            				 "description": "unexpected error",
           				 "schema": {
-             			 	"$ref": "jsonSchemas/osdm-commons-v2.json#/definitions/ErrorDef"
+             			 	"$ref": "../schemas/osdm-commons-v2.json#/definitions/ErrorDef"
              			 }
             		}
      			}
