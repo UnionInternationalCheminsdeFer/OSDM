@@ -67,27 +67,6 @@
 			"properties": {
 				"Offers": {
 					"$ref": "#/definitions/OfferDef"
-				},
-				"ErrorDescription": {
-					"type": "object",
-					"properties": {
-						"Type": {
-							"description": "FUNCTIONAL,TECHNICAL,CONTENT",
-							"type": "string"
-						},
-						"Code": {
-							"type": "string"
-						},
-						"Description": {
-							"description": "error description used to analyze errors",
-							"type": "string"
-						}
-					},
-					"required": [
-						"Type",
-						"Code"
-					],
-					"additionalProperties": false
 				}
 			},
 			"additionalProperties": false

@@ -44,7 +44,7 @@
             		"content": {
             			"application/json": {
             				"schema": {
-              					"$ref": "jsonSchemas/osdm-offerSearchSchema-v2.json#/definitions/OfferRequestDef"   
+              					"$ref": "../schemas/osdm-offerSearchSchema-v2.json#/definitions/OfferRequestDef"   
             				}
             			}
             		}
@@ -55,7 +55,7 @@
          				 "content": {
             				"application/json": {
               					"schema": {
-               						"$ref": "jsonSchemas/osdm-offerSearchSchema-v2.json#/definitions/OffersCollectionDef"   
+               						"$ref": "../schemas/osdm-offerSearchSchema-v2.json#/definitions/OffersCollectionDef"   
            						}
     				        }
           				}
@@ -63,7 +63,7 @@
          			"default": {
            				 "description": "unexpected error",
           				 "schema": {
-             			 	"$ref": "jsonSchemas/osdm-commons-v2.json#/definitions/ErrorDef"
+             			 	"$ref": "../schemas/osdm-commons-v2.json#/definitions/ErrorDef"
              			 }
             		}
      			}

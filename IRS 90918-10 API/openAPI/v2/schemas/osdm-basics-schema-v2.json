@@ -3,7 +3,7 @@
 	"$id": "http://uic.org/schemas/passenger/osdm/v2/osdm-basics-schema-v2.json",
 	"description": "object definitions used in message exchange with distributors only",
 	"definitions": {
-			"CalendarDef": {
+		"CalendarDef": {
 			"description": "valid on all days in case no calendar is provided",
 			"type": "object",
 			"properties": {

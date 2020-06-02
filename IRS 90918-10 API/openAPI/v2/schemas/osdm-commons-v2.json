@@ -61,6 +61,53 @@
 			],
 			"additionalProperties": false
 		},
+		"AfterSaleReferenceDef": {
+				"type": "object",
+				"properties": {
+					"exchangeReferences": {
+						"description": "list of booking references in case the new offer is requested for an exchange",
+						"type": "array",
+						"items": {
+							"title": "bookingReference",
+							"type": "string"
+						}
+					},
+					"reason": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/AfterSaleReasonDef"
+					}
+				},
+				"additionalProperties": false
+		},
+		"CardIdentificationDef": {
+			"type": "object",
+			"properties": {
+				"cardId": {
+					"type": "string"
+				},
+				"cardIssuer": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef",
+					"description": "RICS code in case of Railways, otherwise starting with "
+				},
+				"cardType": {
+					"description": "Code table to be defined in tariff description data",
+					"type": "string"
+				},
+				"leadingCardId": {
+					"type": "string"
+				},
+				"trailingCardId": {
+					"type": "string"
+				},
+				"cardNumber": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"cardIssuer",
+				"cardType"
+			],
+			"additionalProperties": false
+		},
 		"CarrierConstraintDef": {
 			"type": "object",
 			"properties": {
@@ -305,6 +352,157 @@
 			],
 			"additionalProperties": false
 		},
+		"PassengerDataDef": {
+				"type": "object",
+				"properties": {
+					"reference": {
+						"description": "reference used in the offer",
+						"type": "string"
+					},
+					"passengerDetails": {
+						"$ref": "#/definitions/PassengerDetailsDef"
+					},
+					"documentData": {
+						"$ref": "#/definitions/PassengerPassportDef"
+					},
+					"cardIdentification": {
+						"$ref": "#/definitions/CardIdentificationDef"
+					},
+					"isTicketHolder": {
+						"description": "indicates the holder of the ticket in case mutiple passengers share one ticket",
+						"type": "boolean"
+					}
+				},
+				"additionalProperties": false
+		},
+		"PassengerDetailsDef": {
+			"type": "object",
+			"properties": {
+				"travelerId": {
+					"description": "used to link fares to the individual traveler in the reply",
+					"type": "string"
+				},			
+				"dateOfBirth": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/DateDef"
+				},
+				"eMail": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"format": "email"
+					}
+				},
+				"firstName": {
+					"type": "string"
+				},
+				"firstNameICAO": {
+					"description": "ICAO transliteration",
+					"type": "string"
+				},
+				"language": {
+					"type": "array",
+					"items": {
+						"$ref": "osdm-basics-schema-v2.json#/definitions/LanguageDef",
+						"description": "Languages spoken by the traveler (ISO Language code)"
+					}
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"lastNameICAO": {
+					"description": "ICAO transliteration",
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"phone": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"socialMediaAccount": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"account": {
+								"type": "string"
+							},
+							"accountType": {
+								"description": "values: facebook,whatsapp,skype,wechat,...",
+								"type": "string"
+							}
+						},
+						"required": [
+							"account",
+							"accountType"
+						],
+						"additionalProperties": false
+					}
+				},
+				"trainStaffInfo": {
+					"description": "Information Text provided by the issuing system in a controled way (e.g. VIP customer)",
+					"type": "string"
+				}
+			},
+			"additionalProperties": false
+		},
+		"PassengerPassportDef": {
+			"description": "Travel document data to be exchanged for border control in case of legal requirements",
+			"type": "object",
+			"properties": {
+				"cityOfBirth": {
+					"type": "string"
+				},
+				"cityOfIssue": {
+					"description": "place where the document is issued",
+					"type": "string"
+				},
+				"cityOfResidence": {
+					"type": "string"
+				},
+				"countryOfBirth": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CountryDef"
+				},
+				"countryOfIssue": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CountryDef"
+				},
+				"countryOfResidence": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CountryDef"
+				},
+				"dateOfIssue": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/DateDef"
+				},
+				"documentId": {
+					"type": "string"
+				},
+				"documentType": {
+					"description": "values: passport,id-card,diplomatic passport,refugee travel document",
+					"type": "string"
+				},
+				"gender": {
+					"description": "values: male, female",
+					"type": "string"
+				},
+				"limitOfValidity": {
+					"$ref":  "osdm-basics-schema-v2.json#/definitions/DateDef"
+				},
+				"name": {
+					"description": "ICAO transliteration identical as written in the document",
+					"type": "string"
+				},
+				"nationality": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/CountryDef"
+				}
+			},
+			"required": [
+				"documentType",
+				"name"
+			],
+			"additionalProperties": false
+		},
 		"PolygoneDef": {
 			"type": "object",
 			"properties": {
@@ -314,18 +512,6 @@
 					"items": {
 						"$ref": "osdm-basics-schema-v2.json#/definitions/GeoCoordinateDef"
 					}
-				}
-			},
-			"patternProperties": {
-				"^P_": {
-					"anyOf": [
-						{
-							"type": "object"
-						},
-						{
-							"type": "string"
-						}
-					]
 				}
 			},
 			"additionalProperties": false
@@ -860,24 +1046,114 @@
 				}
 			},
 			"additionalProperties": false
+	},
+	"VehicleIdentificationDef": {
+		"type": "object",
+			"properties": {
+			"vehicleId": {
+				"description": "train number",
+				"type": "string"
+			},
+			"departureStation": {
+				"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
+			},
+			"departureDateTime": {
+				"description": "date and time in the time zone of the station",
+				"$ref": "osdm-basics-schema-v2.json#/definitions/DateTimeDef"
+			},
+			"arrivalStation": {
+				"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
+			},
+			"arrivalDateTime": {
+				"description": "date and time in the time zone of the station",
+				"$ref": "osdm-basics-schema-v2.json#/definitions/DateTimeDef"
+			},
+			"required": [
+				"departureStation",
+				"arrivalStation",
+				"departureDateTime"
+			],
+			"additionalProperties": false
+		}
+	},
+	"ReservedPlacesDef": {
+			"type": "object",
+			"properties": {
+				"train": {
+					"type": "string"
+				},
+				"placePack": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"reservationId": {
+								"type": "string"
+							},
+							"reference": {
+								"description": "reference of the traveller / reservation holder",
+								"type": "string"
+							},
+							"coach": {
+								"type": "string"
+							},
+							"places": {
+								"description": "descriptive string of the palces (e.g. \"11-35\")",
+								"type": "string"
+							},
+							"placeIds": {
+								"type": "array",
+								"items": [
+									{
+										"type": "string"
+									}
+								],
+								"additionalItems": false
+							},
+							"placeProperties": {
+								"description": "place properties to be indicated to the customer",
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"placeProperty": {
+											"description": "see code list",
+											"type": "string"
+										},
+										"number": {
+											"description": "number of places with this property",
+											"type": "number"
+										},
+										"priority": {
+											"description": "priority for display",
+											"type": "number"
+										}
+									},
+									"required": [
+										"placeProperty"
+									],
+									"additionalProperties": false
+								}
+							}
+						},
+						"additionalProperties": false
+					}
+				}
+			},
+			"additionalProperties": false
 		},
-		"AfterSaleReferenceDef": {
-				"type": "object",
-				"properties": {
-					"exchangeReferences": {
-						"description": "list of booking references in case the new offer is requested for an exchange",
-						"type": "array",
-						"items": {
-							"title": "bookingReference",
-							"type": "string"
+		"VehicleDescriptionDef": {
+			"type": "object",
+					"properties": {
+						"serviceBrand": {
+							"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceBrandInformationDef"
+						},
+						"trainInformation": {
+							"$ref": "#/definitions/TextDef"
 						}
 					},
-					"reason": {
-						"$ref": "osdm-basics-schema-v2.json#/definitions/AfterSaleReasonDef"
-					}
-				},
-				"additionalProperties": false
-			}
-		}
+					"additionalProperties": false
+				}
+	}
 	
 }
