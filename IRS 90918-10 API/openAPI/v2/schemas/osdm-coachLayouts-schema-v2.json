@@ -1,0 +1,140 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "coach layouts",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-coachLayouts-schema-v2.json",
+	"description": "coach layouts for graphical reservation",
+	"definitions": {
+		"layoutsReply": {
+			"type": "object",
+			"properties": {
+				"layouts": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/CoachLayoutDef"
+					}
+				}
+			},
+			"additionalProperties": false
+		}
+	},
+	"CoachLayoutDef": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"places": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"x": {
+								"type": "number"
+							},
+							"y": {
+								"type": "number"
+							},
+							"id": {
+								"type": "string"
+							},
+							"number": {
+								"type": "string"
+							},
+							"direction": {
+								"type": "string"
+							},
+							"remarkId": {
+								"type": "string"
+							},
+							"zOrder": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"x",
+							"y",
+							"id",
+							"number"
+						],
+						"additionalProperties": false
+					}
+				},
+				"signs": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"x": {
+								"type": "number"
+							},
+							"y": {
+								"type": "number"
+							},
+							"id": {
+								"type": "string"
+							},
+							"zOrder": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"x",
+							"y",
+							"id"
+						],
+						"additionalProperties": false
+					}
+				},
+				"internals": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"x": {
+								"type": "number"
+							},
+							"y": {
+								"type": "number"
+							},
+							"id": {
+								"type": "string"
+							},
+							"zOrder": {
+								"type": "string"
+							},
+							"mounting": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"x",
+							"y",
+							"id",
+							"zOrder"
+						],
+						"additionalProperties": false
+					}
+				},
+				"gridsize": {
+					"type": "object",
+					"properties": {
+						"x": {
+							"type": "number"
+						},
+						"y": {
+							"type": "number"
+						}
+					},
+					"additionalProperties": false
+				},
+				"containerType": {
+					"type": "string",
+					"default": "RECTANGLE"
+				}
+			},
+			"required": [
+				"id"
+			],
+			"additionalProperties": false
+		}
+}
