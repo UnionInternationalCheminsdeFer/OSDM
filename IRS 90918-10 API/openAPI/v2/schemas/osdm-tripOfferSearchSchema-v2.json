@@ -25,72 +25,9 @@
 				"transportables": {
 					"type": "array",
 					"items": {
-						"type": "object",
-						"properties": {
-							"type": {
-								"description": "traveller type",
-								"type": "string"
-							},
-							"car": {
-								"type": "object",
-								"properties": {
-									"weight": {
-										"type": "number"
-									},
-									"length": {
-										"type": "number"
-									},
-									"width": {
-										"type": "number"
-									},
-									"height": {
-										"type": "number"
-									},
-									"attachedItems": {
-										"description": "code list according IRS90918-1",
-										"type": "array",
-										"items": {
-											"type": "string"
-										}
-									}
-								},
-								"additionalProperties": false
-							},
-							"motoCycle": {
-								"type": "object",
-								"properties": {
-									"includingSideCar": {
-										"type": "boolean",
-										"default": false
-									}
-								},
-								"additionalProperties": false
-							},
-							"trailer": {
-								"type": "object",
-								"properties": {
-									"weight": {
-										"type": "number"
-									},
-									"length": {
-										"type": "number"
-									},
-									"width": {
-										"type": "number"
-									},
-									"height": {
-										"type": "number"
-									}
-								},
-								"additionalProperties": false
-							}
-						},
-						"required": [
-							"type"
-						],
-						"additionalProperties": false
+						"$ref": "osdm-commons-v2.json#/definitions/TransportableDef"
 					}
-				},
+				},				
 				"promoRequest": {
 					"description": "the request is for a promotional offer only. A bilaterally agreed promotion id can be provided",
 					"type": "object",
@@ -114,21 +51,7 @@
 					"default": false
 				},
 				"afterSale": {
-					"type": "object",
-					"properties": {
-						"exchangeReferences": {
-							"description": "list of booking references in case the new offer is requested for an exchange",
-							"type": "array",
-							"items": {
-								"title": "bookingId",
-								"type": "string"
-							}
-						},
-						"reason": {
-							"$ref": "osdm-basics-schema-v2.json#/definitions/AfterSaleReasonDef"
-						}
-					},
-					"additionalProperties": false
+					"$ref": "osdm-commons-v2.json#/definitions/AfterSaleReferenceDef"
 				},
 				"includeReservationOptions": {
 					"description": "provide the list of reservation options if possible, the requestor ia able to handle it",
