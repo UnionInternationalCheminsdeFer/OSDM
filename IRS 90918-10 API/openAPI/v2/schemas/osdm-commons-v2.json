@@ -3,6 +3,7 @@
 	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-commons-schema-v2.json",
 	"description": "object definitions used in message exchange with distributors only",
 	"definitions": {
+		
 		"AfterSalesConditionDef": {
 			"type": "object",
 			"properties": {
@@ -662,6 +663,72 @@
 			],
 			"additionalProperties": false
 		},
+		"ReservedPlacesDef": {
+			"type": "object",
+			"properties": {
+				"train": {
+					"type": "string"
+				},
+				"placePack": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"reservationId": {
+								"type": "string"
+							},
+							"reference": {
+								"description": "reference of the traveller / reservation holder",
+								"type": "string"
+							},
+							"coach": {
+								"type": "string"
+							},
+							"places": {
+								"description": "descriptive string of the palces (e.g. \"11-35\")",
+								"type": "string"
+							},
+							"placeIds": {
+								"type": "array",
+								"items": [
+									{
+										"type": "string"
+									}
+								],
+								"additionalItems": false
+							},
+							"placeProperties": {
+								"description": "place properties to be indicated to the customer",
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"placeProperty": {
+											"description": "see code list",
+											"type": "string"
+										},
+										"number": {
+											"description": "number of places with this property",
+											"type": "number"
+										},
+										"priority": {
+											"description": "priority for display",
+											"type": "number"
+										}
+									},
+									"required": [
+										"placeProperty"
+									],
+									"additionalProperties": false
+								}
+							}
+						},
+						"additionalProperties": false
+					}
+				}
+			},
+			"additionalProperties": false
+		},
 		"ServiceClassDef": {
 			"type": "object",
 			"properties": {
@@ -1046,27 +1113,28 @@
 				}
 			},
 			"additionalProperties": false
-	},
-	"VehicleIdentificationDef": {
-		"type": "object",
+		},
+		"VehicleIdentificationDef": {
+			"type": "object",
 			"properties": {
-			"vehicleId": {
-				"description": "train number",
-				"type": "string"
-			},
-			"departureStation": {
-				"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
-			},
-			"departureDateTime": {
-				"description": "date and time in the time zone of the station",
-				"$ref": "osdm-basics-schema-v2.json#/definitions/DateTimeDef"
-			},
-			"arrivalStation": {
-				"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
-			},
-			"arrivalDateTime": {
-				"description": "date and time in the time zone of the station",
-				"$ref": "osdm-basics-schema-v2.json#/definitions/DateTimeDef"
+				"vehicleId": {
+					"description": "train number",
+					"type": "string"
+				},
+				"departureStation": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
+				},
+				"departureDateTime": {
+					"description": "date and time in the time zone of the station",
+					"$ref": "osdm-basics-schema-v2.json#/definitions/DateTimeDef"
+				},
+				"arrivalStation": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/StationDef"
+				},
+				"arrivalDateTime": {
+					"description": "date and time in the time zone of the station",
+					"$ref": "osdm-basics-schema-v2.json#/definitions/DateTimeDef"
+				}
 			},
 			"required": [
 				"departureStation",
@@ -1074,86 +1142,18 @@
 				"departureDateTime"
 			],
 			"additionalProperties": false
-		}
-	},
-	"ReservedPlacesDef": {
-			"type": "object",
+		},
+		"VehicleDescriptionDef": {
+		"type": "object",
 			"properties": {
-				"train": {
-					"type": "string"
+				"serviceBrand": {
+					"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceBrandInformationDef"
 				},
-				"placePack": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"reservationId": {
-								"type": "string"
-							},
-							"reference": {
-								"description": "reference of the traveller / reservation holder",
-								"type": "string"
-							},
-							"coach": {
-								"type": "string"
-							},
-							"places": {
-								"description": "descriptive string of the palces (e.g. \"11-35\")",
-								"type": "string"
-							},
-							"placeIds": {
-								"type": "array",
-								"items": [
-									{
-										"type": "string"
-									}
-								],
-								"additionalItems": false
-							},
-							"placeProperties": {
-								"description": "place properties to be indicated to the customer",
-								"type": "array",
-								"items": {
-									"type": "object",
-									"properties": {
-										"placeProperty": {
-											"description": "see code list",
-											"type": "string"
-										},
-										"number": {
-											"description": "number of places with this property",
-											"type": "number"
-										},
-										"priority": {
-											"description": "priority for display",
-											"type": "number"
-										}
-									},
-									"required": [
-										"placeProperty"
-									],
-									"additionalProperties": false
-								}
-							}
-						},
-						"additionalProperties": false
-					}
+				"trainInformation": {
+					"$ref": "#/definitions/TextDef"
 				}
 			},
 			"additionalProperties": false
-		},
-		"VehicleDescriptionDef": {
-			"type": "object",
-					"properties": {
-						"serviceBrand": {
-							"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceBrandInformationDef"
-						},
-						"trainInformation": {
-							"$ref": "#/definitions/TextDef"
-						}
-					},
-					"additionalProperties": false
-				}
+		}
 	}
-	
 }

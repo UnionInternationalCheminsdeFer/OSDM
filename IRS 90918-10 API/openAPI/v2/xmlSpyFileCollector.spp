@@ -52,4 +52,5 @@
 		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\ticketdefinitions.json" HomeFolder="Yes"/>
 	</Folder>
 	<Folder FolderName="Entities" ExtStr="ent"/>
+	<File FilePath="schemas\osdm-prebookSchema-v2.json" HomeFolder="Yes"/>
 </Project>
