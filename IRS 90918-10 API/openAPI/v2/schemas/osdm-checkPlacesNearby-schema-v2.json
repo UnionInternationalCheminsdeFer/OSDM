@@ -1,10 +1,10 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
-    "$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-checkPlacePreferences-schema-v2.json",
-	"title": "offer reply",
-	"description": "provides offers for combining fares",
+    "$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-checkPlacesNearBy-schema-v2.json",
+	"title": "select places nearby",
+	"description": "select places nearby",
 	"definitions": {
-		"CheckPlacePrefsRequestDef": {
+		"CheckNearbyPlacesRequestDef": {
 			"type": "object",
 			"properties": {
 				"vehicleIdentification": { 
@@ -20,14 +20,19 @@
 					"items": {
 						"type": "string"
 					}
+				},
+				"bookingId": {
+					"description": "referenec of the booking near which the new places should be selected",
+					"type": "string"
 				}
 			},
 			"required": [
-				"vehicleIdentification"
-			],			
+				"vehicleIdentification",
+				"bookingId"
+			],
 			"additionalProperties": false
 		},
-		"CheckPlacePrefsReplyDef": {
+		"CheckNearbyPlacesReplyDef": {
 			"type": "object",
 			"properties": {
 				"vehicleIdentification": { 
@@ -37,14 +42,18 @@
 					"type": "string"
 				},
 				"availablePreferences": {
-					"description": "list of available preferences. The list is a subset of the requested preferences.",
+					"description": "list of place preferences. ",
 					"type": "array",
 					"items": {
 						"type": "string"
 					}
+				},
+				"location": {
+					"description": "NEXT,CLOSE,SAME_COACH",
+					"type": "string"
 				}
 			},
 			"additionalProperties": false
-		}
+		}	
 	}
 }
