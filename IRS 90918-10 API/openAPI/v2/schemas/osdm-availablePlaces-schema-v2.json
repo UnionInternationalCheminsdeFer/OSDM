@@ -1,0 +1,184 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-availablePlaces-schema-v2.json",
+	"title": "place availability request for graphical reservation",
+	"description": "Request available places for graphical reservation",
+	"definitions": {
+		"PlaceAvailabilityRequestDef": {
+			"type": "object",
+			"properties": {
+				"offerContext": {
+					"description": "mandatory in case it was provided with the offer",
+					"type": "string"
+				},
+				"vehicleIdentification": { 
+					"$ref": "osdm-commons-v2.json#/definitions/VehicleIdentificationDef"
+				},
+				"placePreferences": {
+					"description": "list of selected preferences. ",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"train"
+			],
+			"additionalProperties": false
+		},
+		"PlaceAvailabilityReplyDef": {
+			"type": "object",
+			"properties": {
+				"vehicleIdentification": { 
+					"$ref": "osdm-commons-v2.json#/definitions/VehicleIdentificationDef"
+				},
+				"reservationContext": {
+					"type": "string"
+				},
+				"availablePreferences": {
+					"description": "list of available preferences for the preselected places. The list is a subset of the requested preferences.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"availability": {
+					"$ref": "#/definitions/PlaceAvailabilityDef"
+				},
+				"preselection": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"coach": {
+								"type": "string"
+							},
+							"place": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"coach",
+							"place"
+						],
+						"additionalProperties": false
+					}
+				},
+				"ErrorDescription": {
+					"type": "object",
+					"properties": {
+						"Type": {
+							"description": "FUNCTIONAL,TECHNICAL,CONTENT",
+							"type": "string"
+						},
+						"Code": {
+							"type": "string"
+						},
+						"Description": {
+							"description": "error description used to analyze errors",
+							"type": "string"
+						}
+					},
+					"required": [
+						"Type",
+						"Code"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"train"
+			],
+			"additionalProperties": false
+		},
+		"PlaceAvailabilityDef": {
+			"type": "object",
+			"properties": {
+				"coaches": {
+					"type": "array",
+					"items": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"compartments": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"places": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"number": {
+															"type": "string"
+														},
+														"status": {
+															"type": "string"
+														},
+														"selectable": {
+															"description": "to indicate individual places as non-selectable in case complete compartments must be selected",
+															"type": "boolean",
+															"default": true
+														}
+													},
+													"required": [
+														"number"
+													],
+													"additionalProperties": false
+												}
+											},
+											"status": {
+												"type": "string"
+											},
+											"selectable": {
+												"description": "to indicate compartments selectable as a whole only",
+												"type": "boolean",
+												"default": false
+											}
+										},
+										"additionalProperties": false
+									}
+								},
+								"number": {
+									"description": "coach number",
+									"type": "string"
+								},
+								"status": {
+									"type": "string"
+								},
+								"layoutId": {
+									"type": "string"
+								},
+								"layoutIdUpperDeck": {
+									"type": "string"
+								},
+								"layoutIdLowerDeck": {
+									"type": "string"
+								},
+								"direction": {
+									"type": "string"
+								},
+								"coachOwner": {
+									"$ref": "osdm-basic-schema-v2.json#/definitions/CompanyDef"
+								},
+								"specialCoach": {
+									"description": "indication of special coach (Train head, dining coach,..) see code list",
+									"type": "string"
+								}
+							},
+							"required": [
+								"number",
+								"layoutId"
+							],
+							"additionalProperties": false
+						}
+					}
+				}
+			},
+			"additionalProperties": false
+		}		
+	}
+}
