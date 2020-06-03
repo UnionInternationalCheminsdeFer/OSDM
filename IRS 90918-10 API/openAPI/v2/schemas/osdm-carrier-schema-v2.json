@@ -804,6 +804,77 @@
 				"zoneId"
 			],
 			"additionalProperties": false
+		},
+		"FulfillmentItemDef": {
+			"type": "object",
+			"properties": {
+				"fulfilmentMedia": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"travelerReference": {
+					"description": "reference to a traveler",
+					"type": "string"
+				},
+				"controlId": {
+					"type": "string"
+				},
+				"ticketLink": {
+					"description": "download link to a ticket",
+					"type": "string"
+				},
+				"ticketLinkType": {
+					"description": "pdf,pkpass",
+					"type": "string",
+					"default": "pdf"
+				},
+				"securityFeatures": {
+					"description": "visual elements, bar codes",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"type": {
+								"description": "see code list",
+								"type": "string"
+							},
+							"data": {
+								"description": "base 64 encoded data",
+								"type": "string"
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"securityFeatureLinks": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"type": {
+								"type": "string"
+							},
+							"URI": {
+								"type": "string"
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"mandatory": {
+					"description": "the use of the provioded features is mandatory",
+					"type": "boolean",
+					"default": false
+				},
+				"securePaperOnly": {
+					"description": "the security feature must be used on secure paper",
+					"type": "boolean",
+					"default": false
+				}	
+			},
+			"additionalProperties": false
 		}
 	}
 }

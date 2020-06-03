@@ -3,7 +3,6 @@
 	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-commons-schema-v2.json",
 	"description": "object definitions used in message exchange with distributors only",
 	"definitions": {
-		
 		"AfterSalesConditionDef": {
 			"type": "object",
 			"properties": {
@@ -666,9 +665,12 @@
 		"ReservedPlacesDef": {
 			"type": "object",
 			"properties": {
-				"train": {
-					"type": "string"
+				"vehicleIdentification": { 
+					"$ref": "osdm-commons-v2.json#/definitions/VehicleIdentificationDef"
 				},
+				"vehicleDescription": { 
+					"$ref": "osdm-commons-v2.json#/definitions/VehicleDescriptionDef"
+				},	
 				"placePack": {
 					"type": "array",
 					"items": {
@@ -1144,7 +1146,7 @@
 			"additionalProperties": false
 		},
 		"VehicleDescriptionDef": {
-		"type": "object",
+			"type": "object",
 			"properties": {
 				"serviceBrand": {
 					"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceBrandInformationDef"
@@ -1154,6 +1156,24 @@
 				}
 			},
 			"additionalProperties": false
+		},
+		"TicketLinkDef": {
+			"type": "object",
+			"properties": {	
+				"travelerReference": {
+					"description": "reference to a traveler",
+					"type": "string"
+				},
+				"ticketLink": {
+					"description": "download link to a ticket",
+					"type": "string"
+				},
+				"ticketLinkType": {
+					"description": "pdf,pkpass",
+					"type": "string",
+					"default": "pdf"
+				}
+			}
 		}
 	}
 }
