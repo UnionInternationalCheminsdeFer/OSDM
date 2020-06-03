@@ -1,0 +1,75 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-confirmBooking-v2.json",
+	"title": "Confirm Booking",
+	"description": "ConfirmBookingRequest",
+	"definitions": {
+		"ConfirmBookingRequestDef": {
+			"type": "object",
+			"properties": {
+				"requester": {
+					"$ref": "osdm-commons-v2.json#/definitions/RequesterDef"
+				},
+				"individualTicketing": {
+					"description": "individual booking ids for individual ticketing are required. (only in case the fare allows individual ticketing)",
+					"type": "boolean",
+					"default": false
+				},
+				"exchangeReference": {
+					"description": "References to old bookings that will be cancelled within this exchange",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"ConfirmBookingReplyDef": {
+			"type": "object",
+			"properties": {
+				"bookingReference": {
+					"type": "string"
+				},
+				"legacyAccountingId": {
+					"description": "14 digit numeric id for current 301 accouning files",
+					"type": "number"
+				},
+				"reservations": {
+					"description": "optional description of places to be expected in the booking confirmation. it is sufficient to deliver these data inthe confoirmation only.",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"legacyAccountingId": {
+								"description": "14 digit numeric id for current 301 accouning files",
+								"type": "number"
+							},						
+							"vehicle": {
+								"$ref": "osdm-commons-v2.json#/definitions/VehicleIdentificationDef"
+							},
+							"vehicleDescription": {
+								"$ref": "osdm-commons-v2.json#/definitions/VehicleDescriptionDef"	
+							},
+							"travelerReference": {
+								"description": "reference of the traveller",
+								"type": "string"
+							},
+							"bookingReference": {
+								"description": "reference of the individual booking (individual ticketing)",
+								"type": "string"
+							},							
+							"places": {		
+								"$ref": "osdm-commons-v2.json#/definitions/ReservedPlacesDef"
+							}
+						}
+					}
+				},				
+				"required": [
+					"bookingReference"
+				],
+				"additionalProperties": false
+			}
+		}
+	}
+}

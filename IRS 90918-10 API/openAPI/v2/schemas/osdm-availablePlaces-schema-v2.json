@@ -33,6 +33,9 @@
 				"vehicleIdentification": { 
 					"$ref": "osdm-commons-v2.json#/definitions/VehicleIdentificationDef"
 				},
+				"vehicleDescription": { 
+					"$ref": "osdm-commons-v2.json#/definitions/VehicleDescriptionDef"
+				},								
 				"reservationContext": {
 					"type": "string"
 				},
