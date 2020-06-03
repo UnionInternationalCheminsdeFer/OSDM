@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-	<title>recommended Workflow</title>
+	<title>Conversion details 90918-10 to 108.1</title>
 </head>
 
 <body>
@@ -45,19 +45,15 @@ Conversion has the following steps:
 	<li>Convert each selected fare to one series and one route fare
 	<br/><br/>
 			<ul>
-			<li>convert the regional constraint into a series
-			<br/><br/>
+			<li>convert the regional constraint into a series<br/>
 				<ul>
 					<li>regional validity must one and only one route description, no zone, no polygon - otherwise there is no conversion </li>
-					<li>regional validity must have not more than 5 via stations between departure and arrival - otherwise there is no conversion </li>
-					<li></li>										
+					<li>regional validity must have not more than 5 via stations between departure and arrival - otherwise there is no conversion </li>									
 				</ul>
 			</li>
 			<li>convert the price into a route fare - merge the prices from service class B and D into one route fare</li>
-			<li>depending on the conversion parameters the fare description for the fare tables are added.</li>
-			<li></li>						
-			<li>create TCVL entry for series of fares with combination model SEPARATE_TICKET</li>
-								
+			<li>depending on the conversion parameters the fare description for the fare tables are added.</li>					
+			<li>create TCVL entry for series of fares with combination model SEPARATE_TICKET</li>		
 		</ul>
 	</li>
 	<li>adjust series number in case no legacy accounting codes were available</li>	
