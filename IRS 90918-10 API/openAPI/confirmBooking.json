@@ -44,7 +44,7 @@
             		"content": {
             			"application/json": {
             				"schema": {
-              					"$ref": "jsonSchemas/confirmbookrequest.json#/definitions/ConfirmBookingRequestDef" 
+              					"$ref": "../schemas/osdm-confirmBooking-schema-v2.json#/definitions/ConfirmBookingRequestDef" 
             				}
             			}
             		}
@@ -55,7 +55,7 @@
          				 "content": {
             				"application/json": {
               					"schema": {
-               						"$ref": "jsonSchemas/confirmbookreply.json#/definitions/BookingReplyDef"  
+               						"$ref": "../schemas/osdm-confirmBooking-schema-v2.json#/definitions/BookingReplyDef"  
            						}
     				        }
           				}
@@ -63,7 +63,7 @@
          			"default": {
            				 "description": "unexpected error",
           				 "schema": {
-             			 	"$ref": "jsonSchemas/genericerror.json#/definitions/ErrorDef"
+             			 	"$ref": "../schemas/osdm-common-schema-v2.json#/definitions/ErrorDef"
              			 }
             		}
      			}

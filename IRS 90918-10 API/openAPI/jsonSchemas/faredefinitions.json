@@ -766,7 +766,7 @@
 					"$ref": "definitions.json#/definitions/CompanyDef"
 				},
 				"Id": {
-					"description": "id of the card within the issuer",
+					"description": "id of the card type within the issuer",
 					"type": "string"
 				},
 				"name": {
