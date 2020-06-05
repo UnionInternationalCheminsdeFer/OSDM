@@ -11,16 +11,19 @@
 					"type": "string"
 				},
 				"fromDate": {
-					"type": "string"
+					"type": "string",
+					"format": "date-time"
 				},
 				"untilDate": {
-					"type": "string"
+					"type": "string",
+					"format": "date-time"
 				},
 				"dates": {
 					"description": "dates included in the calendar. In case no dates are provided the entire range is assumed to be valid",
 					"type": "array",
 					"items": {
-						"type": "string"
+						"type": "string",
+						"format": "date-time"
 					}
 				},
 				"UTCoffset": {
@@ -80,36 +83,19 @@
 					"default": "wgs84"
 				},
 				"accuracy": {
-					"type": "string"
-				},
-				"hemisphereEW": {
-					"type": "string",
-					"enum": [
-						"east",
-						"west"
-					],
-					"default": "east"
-				},
-				"hemisphereNS": {
-					"type": "string",
-					"enum": [
-						"north",
-						"south"
-					],
-					"default": "north"
-				},
-				"unit": {
-					"$ref": "#/definitions/GeoCoordinateUnitDef"
+					"description": "to be proviced in degree",
+					"type": "number"
 				},
 				"latitude": {
+					"description": "to be provided in degree",
 					"type": "number"
 				},
 				"longitude": {
+					"description": "to be provided in degree",
 					"type": "number"
 				}
 			},
 			"required": [
-				"unit",
 				"latitude",
 				"longitude"
 			],
@@ -214,10 +200,15 @@
 			"type": "string"
 		},
 		"DateDef": {
-			"description": "UTC date including time zone information"
+			"description": "date including time zone information",
+			"type": "string",
+			"format": "date"
 		},
 		"DateTimeDef": {
-			"description": " including time zone information"
-		}
+			"description": " including time zone information",
+			"type": "string",
+			"format": "date-time"
+		},
+		"NewDefinition": {}
 	}
 }
