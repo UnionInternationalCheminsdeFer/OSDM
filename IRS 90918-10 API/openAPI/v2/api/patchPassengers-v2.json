@@ -1,0 +1,69 @@
+{
+  	"openapi": "3.0.0",
+  	"info": {
+    	"version": "1.0.0",
+		"title": "UIC 90918-10",
+  		"description": "patch personal passenger data",
+  		"contact": {
+    		"name": "UIC",
+    		"url": "http://www.uic.org",
+    		"email": "uic@uic.org"
+    	},
+  		"license": {
+    		"name": "Apache 2.0",
+    		"url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+  		}
+ 	},
+ 	"host": "90918-10.uic.org",
+ 	"basePath": "http://uic.org/90918-10",
+ 	"schemes": [
+    	"https"
+  	],
+  	"consumes": [
+    	"application/json"
+  	],
+  	"produces": [
+    	"application/json"
+  	], 	
+	"paths": {
+		"/{version}/bookings/boooking/passengers": {
+  			"patch": {
+    			"description": "patch personal passenger data based on the booking reference",
+        		"operationId": "patchPersonalData",
+        		"parameters": [
+         			{
+            			"name": "version",
+            			"in": "path",
+            			"description": "schema version",
+            			"required": true,
+            			"schema": {
+              				"type": "string"  
+            			}
+          			}
+        		],    	
+        		"requestBody": {
+				 	"description": "change passenger data for a booking",
+            		"required": true,
+            		"content": {
+            			"application/json": {
+            				"schema": {
+              					"$ref": "../schemas/osdm-patchPassengers-schema-v2.json#/definitions/ChangePersonalDataRequestDef"
+            				}
+            			}
+            		}
+				},		
+     			"responses": {
+        			"200": {          
+          				"description": "confirmation on changed passenger data for a booking"
+        			},
+         			"default": {
+           				 "description": "unexpected error",
+          				 "schema": {
+             			 	"$ref": "../schemas/osdm-commons-schema-v2.json#/definitions/ErrorDef"
+             			 }
+            		}
+     			}
+   			}
+  		}
+	}
+}
