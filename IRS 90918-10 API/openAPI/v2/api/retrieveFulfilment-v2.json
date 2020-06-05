@@ -4,24 +4,16 @@
     	"version": "1.0.0",
 		"title": "UIC 90918-10",
   		"description": "retrieve fulfillment data",
-    	"name": "UIC",
-    	"url": "http://www.uic.org",
+  		"contact": {
+    		"name": "UIC",
+    		"url": "https://www.uic.org",
+    		"email": "uic@uic.org"
+    	},    	
   		"license": {
     		"name": "Apache 2.0",
     		"url": "https://www.apache.org/licenses/LICENSE-2.0.html"
   		}
- 	},
- 	"host": "90910-10.uic.org",
- 	"basePath": "http://uic.org/90910-10",
- 	"schemes": [
-    	"https"
-  	],
-  	"consumes": [
-    	"application/json"
-  	],
-  	"produces": [
-    	"application/json"
-  	], 	
+ 	},	
 	"paths": {
 		"/{version}/bookings/retrieveFulfillment": {
   			"post": {
@@ -61,9 +53,13 @@
           				}
         			},
          			"default": {
-           				 "description": "unexpected error",
-          				 "schema": {
-             			 	"$ref": "../schemas/osdm-commons-schema-v2.json#/definitions/ErrorDef"
+           			   "description": "unexpected error",
+         			   "content": {
+            				"application/json": {
+          						"schema": {
+             			 			"$ref": "../schemas/osdm-commons-schema-v2.json#/definitions/ErrorDef"
+             			 		}
+             			 	}
              			 }
             		}
      			}

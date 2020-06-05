@@ -53,9 +53,13 @@
           				}
         			},
          			"default": {
-           				 "description": "unexpected error",
-          				 "schema": {
-             			 	"$ref": "../schemas/osdm-common-schema-v2.json#/definitions/ErrorDef"
+           			   "description": "unexpected error",
+         			   "content": {
+            				"application/json": {
+          						"schema": {
+             			 			"$ref": "../schemas/osdm-commons-schema-v2.json#/definitions/ErrorDef"
+             			 		}
+             			 	}
              			 }
             		}
      			}

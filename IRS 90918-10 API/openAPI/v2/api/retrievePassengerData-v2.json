@@ -3,7 +3,7 @@
   	"info": {
     	"version": "1.0.0",
 		"title": "UIC 90918-10",
-  		"description": "patch personal passenger data",
+  		"description": "get personal data",
   		"contact": {
     		"name": "UIC",
     		"url": "https://www.uic.org",
@@ -15,10 +15,10 @@
   		}
  	},
 	"paths": {
-		"/{version}/bookings/boooking/passengers": {
-  			"patch": {
-    			"description": "patch personal passenger data based on the booking reference",
-        		"operationId": "patchPersonalData",
+		"/{version}/bookings/personalData": {
+  			"post": {
+    			"description": "retrieve passenger personal data based on the booking reference",
+        		"operationId": "retrievePersonalData",
         		"parameters": [
          			{
             			"name": "version",
@@ -29,21 +29,28 @@
               				"type": "string"  
             			}
           			}
-        		],    	
+        		],    		
         		"requestBody": {
-				 	"description": "change passenger data for a booking",
+				 	"description": "booking reference",
             		"required": true,
             		"content": {
             			"application/json": {
             				"schema": {
-              					"$ref": "../schemas/osdm-patchPassengers-schema-v2.json#/definitions/ChangePersonalDataRequestDef"
+              					"$ref": "../schemas/osdm-retrievePersonalData-schema-v2.json#/definitions/RetrievePersonalDataRequestDef"  
             				}
             			}
             		}
-				},		
+				},
      			"responses": {
         			"200": {          
-          				"description": "confirmation on changed passenger data for a booking"
+          				"description": "prebooking",
+         				 "content": {
+            				"application/json": {
+              					"schema": {
+               						"$ref": "../schemas/osdm-retrievePersonalData-schema-v2.json#/definitions/RetrievePersonalDataReplyDef"   
+           						}
+    				        }
+          				}
         			},
          			"default": {
            			   "description": "unexpected error",

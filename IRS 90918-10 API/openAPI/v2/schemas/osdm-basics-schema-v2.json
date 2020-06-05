@@ -208,7 +208,6 @@
 			"description": " including time zone information",
 			"type": "string",
 			"format": "date-time"
-		},
-		"NewDefinition": {}
+		}
 	}
 }
