@@ -1,0 +1,45 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-patchPassengers-schema-v2.json",
+	"title": "AddPersonalDataRequest",
+	"description": "ChangePersonalDataRequest",
+	"definitions": {
+		"ChangePersonalDataRequestDef": {
+			"type": "object",
+			"properties": {
+				"bookingReference": {
+					"type": "string"
+				},		
+				"personalData": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"travelerReference": {
+								"description": "reference used in the booking",
+								"type": "string"
+							},
+							"passengerDetails": {
+								"$ref": "osdm-commons-schema-v2.json#/definitions/PassengerDetailsDef"
+							},
+							"documentData": {
+								"$ref": "osdm-commons-schema-v2.json#/definitions/PassengerPassportDef"
+							},
+							"cardIdentification": {
+								"$ref": "osdm-commons-schema-v2.json#/definitions/CardIdentificationDef"
+							}
+						},
+						"required": [
+							"reference"
+						],
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": [
+				"bookingId"
+			],
+			"additionalProperties": false
+		}
+	}
+}
