@@ -12,7 +12,7 @@
 					"type": "string"
 				},
 				"vehicleIdentification": { 
-					"$ref": "osdm-commons-v2.json#/definitions/VehicleIdentificationDef"
+					"$ref": "osdm-commons-schema-v2.json#/definitions/VehicleIdentificationDef"
 				},
 				"placePreferences": {
 					"description": "list of selected preferences. ",
