@@ -3,253 +3,6 @@
 	"$id": "http://uic.org//schemas/passenger/eticket/v1/definitions.json",
 	"additionalProperties": false,
 	"definitions": {
-		"base64Binary": {
-			"description": "base 64 encoded data",
-			"type": "string"
-		},
-		"date": {
-			"description": "UTC date in format YYYY-MM-DDThh:mm:ssTZD. TDZ should be given as offset: (eg. 1997-07-16T19:20:30.45+01:00)",
-			"type": "string"
-		},
-		"time": {
-			"description": "time in minutes of the day",
-			"type": "integer",
-			"minimum": 0,
-			"maximum": 1440
-		},
-		"CurrencyDef": {
-			"description": "ISO4217 currency codes",
-			"type": "string"
-		},
-		"CountryDef": {
-			"description": "ISO 3166 2A codes, optional in case of web sales",
-			"type": "string"
-		},
-		"LanguageDef": {
-			"description": "ISO language codes",
-			"type": "string"
-		},
-		"CompanyDef": {
-			"description": "RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x",
-			"type": "string"
-		},
-		"StationDef": {
-			"type": "object",
-			"properties": {
-				"codeList": {
-					"$ref": "#/definitions/StationCodeListDef"
-				},
-				"country": {
-					"type": "string"
-				},
-				"localCode": {
-					"type": "string"
-				},
-				"name": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"country",
-				"localCode"
-			],
-			"additionalProperties": false
-		},
-		"StationDetailsDef": {
-			"type": "object",
-			"properties": {
-				"country": {
-					"type": "string"
-				},
-				"localCode": {
-					"type": "string"
-				},
-				"name": {
-					"description": "station name in ASCII characters (a-z,A-Z,0-9,/,:,(,) )",
-					"type": "string"
-				},
-				"nameUtf8": {
-					"description": "station name in local characters",
-					"type": "string"
-				},
-				"longitude": {
-					"type": "number"
-				},
-				"latitude": {
-					"type": "number"
-				}
-			},
-			"additionalProperties": false
-		},
-		"StationCodeListDef": {
-			"description": "code list used for the station codes: UIC = UIC codes as used by merits (UIC country code + local code) = Default// UIC-R = UIC codes for reservation (UIC country code + local code reservation) // ERA = future ERA station code",
-			"type": "string",
-			"default": "UIC"
-		},
-		"ServiceLevelDef": {
-			"description": "describes the type of service provided on a train (e.g. seat, bicycle, premium seat, single with shoer,..) codelist in UIC 918.1",
-			"type": "string"
-		},
-		"SignedDataDef": {
-			"type": "object",
-			"properties": {
-				"header": {
-					"description": "valid JOSE header",
-					"type": "object"
-				},
-				"payload": {
-					"$ref": "#/definitions/base64Binary",
-					"description": "data, JSON structure base 64 encoded"
-				},
-				"signature": {
-					"$ref": "#/definitions/base64Binary",
-					"description": "signature"
-				}
-			},
-			"required": [
-				"header",
-				"payload"
-			],
-			"additionalProperties": false
-		},
-		"SignatureParamsDef": {
-			"type": "object",
-			"properties": {
-				"securityProvider": {
-					"$ref": "#/definitions/CompanyDef",
-					"description": "Provider of the signature"
-				},
-				"keyId": {
-					"description": "id of the key used to sign the data",
-					"type": "string"
-				},
-				"alg": {
-					"description": "algorithm used to sign the data",
-					"type": "string"
-				}
-			},
-			"required": [
-				"securityProvider",
-				"keyId"
-			],
-			"additionalProperties": false
-		},
-		"GeoCoordinateDef": {
-			"type": "object",
-			"properties": {
-				"system": {
-					"description": "geo coordinate system indication: wgs84 = WGS 84 standard system, grs80 = (outdated) GRS 80 coordinate system",
-					"type": "string",
-					"enum": [
-						"wgs84",
-						"grs80"
-					],
-					"default": "wgs84"
-				},
-				"accuracy": {
-					"type": "string"
-				},
-				"hemisphereEW": {
-					"type": "string",
-					"enum": [
-						"east",
-						"west"
-					],
-					"default": "east"
-				},
-				"hemisphereNS": {
-					"type": "string",
-					"enum": [
-						"north",
-						"south"
-					],
-					"default": "north"
-				},
-				"unit": {
-					"$ref": "#/definitions/GeoCoordinateUnitDef"
-				},
-				"latitude": {
-					"type": "number"
-				},
-				"longitude": {
-					"type": "number"
-				}
-			},
-			"required": [
-				"unit",
-				"latitude",
-				"longitude"
-			],
-			"additionalProperties": false
-		},
-		"GeoCoordinateUnitDef": {
-			"description": "units of degree for geo-coordinates ",
-			"type": "string",
-			"enum": [
-				"microDegree",
-				"tenthmilliDegree",
-				"centiDegree",
-				"deciDegree",
-				"milliDegree"
-			]
-		},
-		"ServiceBrandAbbreviationDef": {
-			"description": "Abbreviation of the service brand to be printed on tickets",
-			"type": "string",
-			"minLength": 1,
-			"maxLength": 3
-		},
-		"ServiceBrandCodeDef": {
-			"description": "Service brand code, code list published on UIC web site",
-			"type": "integer"
-		},
-		"ServiceBrandDescriptionDef": {
-			"description": "Service brand text to be printed on the ticket",
-			"type": "string"
-		},
-		"ServiceBrandInformationDef": {
-			"description": "Informations on the service brand",
-			"type": "object",
-			"properties": {
-				"abbreviation": {
-					"$ref": "#/definitions/ServiceBrandAbbreviationDef",
-					"description": "The abbreviation has to be included if there is an abbreviation defined for the service brand. "
-				},
-				"code": {
-					"$ref": "#/definitions/ServiceBrandCodeDef",
-					"description": "service btrand code according to the UIC service brand code list "
-				},
-				"description": {
-					"$ref": "#/definitions/ServiceBrandDescriptionDef",
-					"description": "The description text has to be included if the service brand has defined a description text for printing."
-				}
-			},
-			"required": [
-				"code"
-			],
-			"additionalProperties": false
-		},
-		"TokenDef": {
-			"type": "object",
-			"properties": {
-				"content": {
-					"$ref": "#/definitions/base64Binary"
-				},
-				"provider": {
-					"$ref": "#/definitions/CompanyDef",
-					"description": "RICS code in case of railways"
-				},
-				"specification": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"content",
-				"provider",
-				"specification"
-			],
-			"additionalProperties": false
-		},
 		"AmountDef": {
 			"type": "object",
 			"properties": {
@@ -265,6 +18,20 @@
 				"currency"
 			],
 			"additionalProperties": false
+		},
+		"base64Binary": {
+			"description": "base 64 encoded data",
+			"type": "string"
+		},
+		"date": {
+			"description": "UTC date in format YYYY-MM-DDThh:mm:ssTZD. TDZ should be given as offset: (eg. 1997-07-16T19:20:30.45+01:00)",
+			"type": "string"
+		},
+		"time": {
+			"description": "time in minutes of the day",
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 1440
 		},
 		"CoachLayoutDef": {
 			"type": "object",
@@ -403,6 +170,239 @@
 				"SID",
 				"SIS"
 			]
+		},
+		"GeoCoordinateDef": {
+			"type": "object",
+			"properties": {
+				"system": {
+					"description": "geo coordinate system indication: wgs84 = WGS 84 standard system, grs80 = (outdated) GRS 80 coordinate system",
+					"type": "string",
+					"enum": [
+						"wgs84",
+						"grs80"
+					],
+					"default": "wgs84"
+				},
+				"accuracy": {
+					"type": "string"
+				},
+				"hemisphereEW": {
+					"type": "string",
+					"enum": [
+						"east",
+						"west"
+					],
+					"default": "east"
+				},
+				"hemisphereNS": {
+					"type": "string",
+					"enum": [
+						"north",
+						"south"
+					],
+					"default": "north"
+				},
+				"unit": {
+					"$ref": "#/definitions/GeoCoordinateUnitDef"
+				},
+				"latitude": {
+					"type": "number"
+				},
+				"longitude": {
+					"type": "number"
+				}
+			},
+			"required": [
+				"unit",
+				"latitude",
+				"longitude"
+			],
+			"additionalProperties": false
+		},
+		"GeoCoordinateUnitDef": {
+			"description": "units of degree for geo-coordinates ",
+			"type": "string",
+			"enum": [
+				"microDegree",
+				"tenthmilliDegree",
+				"centiDegree",
+				"deciDegree",
+				"milliDegree"
+			]
+		},
+		"CurrencyDef": {
+			"description": "ISO4217 currency codes",
+			"type": "string"
+		},
+		"CountryDef": {
+			"description": "ISO 3166 2A codes, optional in case of web sales",
+			"type": "string"
+		},
+		"CompanyDef": {
+			"description": "RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x",
+			"type": "string"
+		},
+		"LanguageDef": {
+			"description": "ISO language codes",
+			"type": "string"
+		},
+		"StationDef": {
+			"type": "object",
+			"properties": {
+				"codeList": {
+					"$ref": "#/definitions/StationCodeListDef"
+				},
+				"country": {
+					"type": "string"
+				},
+				"localCode": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"country",
+				"localCode"
+			],
+			"additionalProperties": false
+		},
+		"StationDetailsDef": {
+			"type": "object",
+			"properties": {
+				"country": {
+					"type": "string"
+				},
+				"localCode": {
+					"type": "string"
+				},
+				"name": {
+					"description": "station name in ASCII characters (a-z,A-Z,0-9,/,:,(,) )",
+					"type": "string"
+				},
+				"nameUtf8": {
+					"description": "station name in local characters",
+					"type": "string"
+				},
+				"longitude": {
+					"type": "number"
+				},
+				"latitude": {
+					"type": "number"
+				}
+			},
+			"additionalProperties": false
+		},
+		"StationCodeListDef": {
+			"description": "code list used for the station codes: UIC = UIC codes as used by merits (UIC country code + local code) = Default// UIC-R = UIC codes for reservation (UIC country code + local code reservation) // ERA = future ERA station code",
+			"type": "string",
+			"default": "UIC"
+		},
+		"ServiceLevelDef": {
+			"description": "describes the type of service provided on a train (e.g. seat, bicycle, premium seat, single with shoer,..) codelist in UIC 918.1",
+			"type": "string"
+		},
+		"SignedDataDef": {
+			"type": "object",
+			"properties": {
+				"header": {
+					"description": "valid JOSE header",
+					"type": "object"
+				},
+				"payload": {
+					"$ref": "#/definitions/base64Binary",
+					"description": "data, JSON structure base 64 encoded"
+				},
+				"signature": {
+					"$ref": "#/definitions/base64Binary",
+					"description": "signature"
+				}
+			},
+			"required": [
+				"header",
+				"payload"
+			],
+			"additionalProperties": false
+		},
+		"SignatureParamsDef": {
+			"type": "object",
+			"properties": {
+				"securityProvider": {
+					"$ref": "#/definitions/CompanyDef",
+					"description": "Provider of the signature"
+				},
+				"keyId": {
+					"description": "id of the key used to sign the data",
+					"type": "string"
+				},
+				"alg": {
+					"description": "algorithm used to sign the data",
+					"type": "string"
+				}
+			},
+			"required": [
+				"securityProvider",
+				"keyId"
+			],
+			"additionalProperties": false
+		},
+		"ServiceBrandAbbreviationDef": {
+			"description": "Abbreviation of the service brand to be printed on tickets",
+			"type": "string",
+			"minLength": 1,
+			"maxLength": 3
+		},
+		"ServiceBrandCodeDef": {
+			"description": "Service brand code, code list published on UIC web site",
+			"type": "integer"
+		},
+		"ServiceBrandDescriptionDef": {
+			"description": "Service brand text to be printed on the ticket",
+			"type": "string"
+		},
+		"ServiceBrandInformationDef": {
+			"description": "Informations on the service brand",
+			"type": "object",
+			"properties": {
+				"abbreviation": {
+					"$ref": "#/definitions/ServiceBrandAbbreviationDef",
+					"description": "The abbreviation has to be included if there is an abbreviation defined for the service brand. "
+				},
+				"code": {
+					"$ref": "#/definitions/ServiceBrandCodeDef",
+					"description": "service btrand code according to the UIC service brand code list "
+				},
+				"description": {
+					"$ref": "#/definitions/ServiceBrandDescriptionDef",
+					"description": "The description text has to be included if the service brand has defined a description text for printing."
+				}
+			},
+			"required": [
+				"code"
+			],
+			"additionalProperties": false
+		},
+		"TokenDef": {
+			"type": "object",
+			"properties": {
+				"content": {
+					"$ref": "#/definitions/base64Binary"
+				},
+				"provider": {
+					"$ref": "#/definitions/CompanyDef",
+					"description": "RICS code in case of railways"
+				},
+				"specification": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"content",
+				"provider",
+				"specification"
+			],
+			"additionalProperties": false
 		}
 	}
 }

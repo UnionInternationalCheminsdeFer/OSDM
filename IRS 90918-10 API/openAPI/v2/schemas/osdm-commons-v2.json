@@ -355,7 +355,7 @@
 		"PassengerDataDef": {
 				"type": "object",
 				"properties": {
-					"reference": {
+					"travelerReference": {
 						"description": "reference used in the offer",
 						"type": "string"
 					},

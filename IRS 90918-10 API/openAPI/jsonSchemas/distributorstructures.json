@@ -133,8 +133,8 @@
 				"personalDataConstraint": {
 					"$ref": "faredefinitions.json#/definitions/PersonalDataConstraintDef"
 				},
-				"segments": {
-					"type": "array"
+				"travelSection": {
+					"$ref": "file:///D:/git/UIC-New-Tariff-Model/IRS%2090918-10%20API/openAPI/jsonSchemas/anxilliarydefinitions.json#/definitions/TravelSectionDef"
 				}
 			},
 			"additionalProperties": false

@@ -129,6 +129,10 @@
 						}
 					},
 					"additionalProperties": false
+				},
+				"segmentId": {
+					"description": "reference to a trip segment in case the section corresponds to a segment in the trip and the trip is part of the offer",
+					"type": "string"
 				}
 			},
 			"required": [
