@@ -3,6 +3,227 @@
 	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-carrier-offline-v2.json",
 	"description": "object definitions used in message exchange with distributors only",
 	"definitions": {
+		"FareStructureDeliveryDef": {
+			"type": "object",
+			"properties": {
+				"delivery": {
+					"type": "object",
+					"properties": {
+						"fareProvider": {
+							"$ref": "osdm-basics-schema-v2.json#/definitions/CompanyDef"
+						},
+						"deliveryId": {
+							"description": "unique id of this data delivery",
+							"type": "string"
+						},
+						"previousDeliveryId": {
+							"type": "string"
+						},
+						"replacementDeliveryId": {
+							"description": "in case this delivery replaces an previous delivery",
+							"type": "string"
+						},
+						"optionalDelivery": {
+							"description": "this delivery is not mandatory to be downloaded. ",
+							"type": "boolean",
+							"default": false
+						},
+						"version": {
+							"description": "version of the data schema",
+							"type": "string"
+						},
+						"acceptedVersion": {
+							"description": "minimal version required to use these data",
+							"type": "string"
+						}
+					},
+					"required": [
+						"fareProvider",
+						"deliveryId",
+						"version",
+						"acceptedVersion"
+					],
+					"additionalProperties": false
+				},
+				"fareStructure": {
+					"type": "object",
+					"properties": {
+						"calendars": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-basics-schema-v2.json#/definitions/CalendarDef"
+							}
+						},
+						"serviceClassDefinitions": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceClassDef"
+							}
+						},
+						"serviceLevelDefinitions": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-basics-schema-v2.json#/definitions/ServiceLevelDef"
+							}
+						},
+						"texts": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-commons-schema-v2.json#/definitions/TextDef"
+							}
+						},
+						"fareResourceLocation": {
+							"$ref": "#/definitions/FareResourceLocationDef"
+						},
+						"prices": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-commons-schema-v2.json#/definitions/PriceDef"
+							}
+						},
+						"regionalConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-carrier-schema-v2.json#/definitions/RegionalConstraintDef"
+							}
+						},
+						"serviceConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-commons-schema-v2.json#/definitions/ServiceConstraintDef"
+							}
+						},
+						"carrierConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-commons-schema-v2.json#/definitions/CarrierConstraintDef"
+							}
+						},
+						"passengerConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-commons-schema-v2.json#/definitions/PassengerConstraintDef"
+							}
+						},
+						"fares": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-carrier-schema-v2.json#/definitions/FareDef"
+							}
+						},
+						"afterSalesConditions": {
+							"description": "list of allowed after sales transactions and conditions",
+							"type": "array",
+							"items": {
+								"$ref": "osdm-commons-schema-v2.json#/definitions/AfterSalesConditionDef"
+							}
+						},
+						"supportedOnlineServices": {
+							"type": "array",
+							"items": {
+								"description": "list of supported services (code list supported services)",
+								"type": "string"
+							}
+						},
+						"combinationConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-carrier-schema-v2.json#/definitions/FareCombinationConstraintDef"
+							}
+						},
+						"salesAvailabilityConstraint": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-carrier-schema-v2.json#/definitions/SalesAvailabilityConstraintDef"
+							}
+						},
+						"travelValidityConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-carrier-schema-v2.json#/definitions/TravelValidityConstraintDef"
+							}
+						},
+						"fullfillmentConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-carrier-schema-v2.json#/definitions/FullfillmentConstraintDef"
+							}
+						},
+						"reductionConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-commons-schema-v2.json#/definitions/ReductionConstraintDef"
+							}
+						},
+						"reductionCards": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-commons-schema-v2.json#/definitions/ReductionCardDef"
+							}
+						},
+						"personalDataConstraints": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-commons-schema-v2.json#/definitions/PersonalDataConstraintDef"
+							}
+						},
+						"reservationParameters": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-carrier-schema-v2.json#/definitions/ReservationParameterDef"
+							}
+						},
+						"connectionPoints": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-carrier-schema-v2.json#/definitions/ConnectionPointDef"
+							}
+						},
+						"StationNames": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-carrier-schema-v2.json#/definitions/StationNamesDef"
+							}
+						},
+						"fareReferenceStationSetDefinitions": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-carrier-schema-v2.json#/definitions/FareReferenceStationSetDef"
+							}
+						},
+						"stations": {
+							"description": "temporary option to include station details as long as MERITS can not provide them. Station codes must be those of merits",
+							"type": "array",
+							"items": {
+								"$ref": "osdm-basics-schema-v2.json#/definitions/StationDetailsDef"
+							}
+						},
+						"zoneDefinitions": {
+							"type": "array",
+							"items": {
+								"$ref": "osdm-carrier-schema-v2.json#/definitions/ZoneDefinitionDef"
+							}
+						}
+					},
+					"required": [
+						"calendars",
+						"serviceClassDefinitions",
+						"regionalConstraints",
+						"fares",
+						"afterSalesConditions",
+						"combinationConstraints",
+						"salesAvailabilityConstraint"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": [
+				"delivery",
+				"fareStructure"
+			],
+			"additionalProperties": false,
+			"definitions": {}
+		},	
 		"CarrierResourceLocationDef": {
 			"type": "object",
 			"properties": {

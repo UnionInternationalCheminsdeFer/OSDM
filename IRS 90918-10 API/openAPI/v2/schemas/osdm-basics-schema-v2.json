@@ -208,6 +208,32 @@
 			"description": " including time zone information",
 			"type": "string",
 			"format": "date-time"
-		}
+		},
+		"StationDetailsDef": {
+			"type": "object",
+			"properties": {
+				"codeList": {
+					"$ref": "#/definitions/StationCodeListDef"
+				},
+				"localCode": {
+					"type": "string"
+				},
+				"name": {
+					"description": "station name in ASCII characters (a-z,A-Z,0-9,/,:,(,) )",
+					"type": "string"
+				},
+				"nameUtf8": {
+					"description": "station name in local characters",
+					"type": "string"
+				},
+				"longitude": {
+					"type": "number"
+				},
+				"latitude": {
+					"type": "number"
+				}
+			},
+			"additionalProperties": false
+		}			
 	}
 }
