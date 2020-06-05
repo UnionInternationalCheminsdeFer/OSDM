@@ -4,11 +4,8 @@
     	"version": "1.0.0",
 		"title": "UIC 90918-10",
   		"description": "prebook an offer",
-  		"contact": {
-    		"name": "UIC",
-    		"url": "http://www.uic.org",
-    		"email": "uic@uic.org"
-    	},
+    	"name": "UIC",
+    	"url": "http://www.uic.org",
   		"license": {
     		"name": "Apache 2.0",
     		"url": "https://www.apache.org/licenses/LICENSE-2.0.html"

@@ -14,17 +14,6 @@
     		"url": "https://www.apache.org/licenses/LICENSE-2.0.html"
   		}
  	},
- 	"host": "90910-10.uic.org",
- 	"basePath": "http://uic.org/90910-10",
- 	"schemes": [
-    	"https"
-  	],
-  	"consumes": [
-    	"application/json"
-  	],
-  	"produces": [
-    	"application/json"
-  	], 	
 	"paths": {
 		"/{version}/availablePlaces": {
   			"post": {
