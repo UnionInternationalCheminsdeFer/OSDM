@@ -6,7 +6,7 @@
   		"description": "patch personal passenger data",
   		"contact": {
     		"name": "UIC",
-    		"url": "http://www.uic.org",
+    		"url": "https://www.uic.org",
     		"email": "uic@uic.org"
     	},
   		"license": {
@@ -14,17 +14,6 @@
     		"url": "https://www.apache.org/licenses/LICENSE-2.0.html"
   		}
  	},
- 	"host": "90918-10.uic.org",
- 	"basePath": "http://uic.org/90918-10",
- 	"schemes": [
-    	"https"
-  	],
-  	"consumes": [
-    	"application/json"
-  	],
-  	"produces": [
-    	"application/json"
-  	], 	
 	"paths": {
 		"/{version}/bookings/boooking/passengers": {
   			"patch": {
