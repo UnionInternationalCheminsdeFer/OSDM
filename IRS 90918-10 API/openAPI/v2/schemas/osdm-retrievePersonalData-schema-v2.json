@@ -1,15 +1,28 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
-	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-patchPassengers-schema-v2.json",
+	"$id": "http://uic.org/schemas/passenger/farestructure/v2/osdm-retrievePersonalData-schema-v2.json",
 	"title": "AddPersonalDataRequest",
 	"description": "ChangePersonalDataRequest",
 	"definitions": {
-		"ChangePersonalDataRequestDef": {
+		"RetrievePersonalDataRequestDef": {
 			"type": "object",
 			"properties": {
 				"bookingReference": {
 					"type": "string"
 				},		
+				"additionalProperties": false
+			},
+			"required": [
+				"bookingreference"
+			],
+			"additionalProperties": false
+		},
+		"RetrievePersonalDataReplyDef": {
+			"type": "object",
+			"properties": {
+				"bookingReference": {
+					"type": "string"
+				},	
 				"personalData": {
 					"type": "array",
 					"items": {
@@ -17,14 +30,8 @@
 						"$ref": "osdm-commons-schema-v2.json#/definitions/PersonalDataDef"
 					}
 				},
-				"required": [
-							"bookingReference"
-				],
 				"additionalProperties": false
 			},
-			"required": [
-				"bookingId"
-			],
 			"additionalProperties": false
 		}
 	}

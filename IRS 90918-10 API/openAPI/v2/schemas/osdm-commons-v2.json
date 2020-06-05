@@ -1174,6 +1174,24 @@
 					"default": "pdf"
 				}
 			}
+		},
+		"PersonalDataDef": {
+			"type": "object",
+			"properties": {
+				"travelerReference": {
+					"description": "reference used in the booking",
+					"type": "string"
+				},
+				"passengerDetails": {
+					"$ref": "osdm-commons-schema-v2.json#/definitions/PassengerDetailsDef"
+				},
+				"documentData": {
+					"$ref": "osdm-commons-schema-v2.json#/definitions/PassengerPassportDef"
+				},
+				"cardIdentification": {
+					"$ref": "osdm-commons-schema-v2.json#/definitions/CardIdentificationDef"
+				}
+			}
 		}
 	}
 }
