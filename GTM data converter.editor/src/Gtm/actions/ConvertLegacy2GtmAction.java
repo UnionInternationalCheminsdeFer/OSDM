@@ -91,6 +91,7 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 				return;
 			}
 			
+			
 			EditingDomain domain = GtmUtils.getActiveDomain();
 			if (domain == null) return;
 			
