@@ -266,7 +266,7 @@ public class ConnectionPointItemProvider
 		};
 		
 		if (point.getLegacyBorderPointCode() > 0) {
-			label = label + " - bp=" +Integer.toString(point.getLegacyBorderPointCode()) + " ";
+			label = label + " - bp=" + Integer.toString(point.getLegacyBorderPointCode()) + " ";
 		}
 		
 		if (point.getConnectedStationSets() != null && !point.getConnectedStationSets().isEmpty()) {
@@ -289,6 +289,8 @@ public class ConnectionPointItemProvider
 				
 			}
 			
+		} else {
+			label = label + point.getDescription();
 		}
 		
 		return label == null || label.length() == 0 ?
