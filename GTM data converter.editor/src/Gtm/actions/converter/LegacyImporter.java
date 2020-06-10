@@ -642,7 +642,7 @@ public class LegacyImporter {
 		String departureStationName 	= st.substring(19,36);	
 		
 		String destination				= st.substring(37,42);		
-		String arrivalStationName 		= st.substring(44,61);	
+		String destinationStationName 	= st.substring(44,61);	
 
 		String carrier   	        	= st.substring(74,78);
 		String routeDescription 		= st.substring(79,137);	
@@ -682,7 +682,7 @@ public class LegacyImporter {
 		series.setSupplyingCarrierCode(supplier);
 		series.setRouteDescription(routeDescription);
 		series.setFromStationName(departureStationName);
-		series.setToStationName(arrivalStationName);
+		series.setToStationName(destinationStationName);
 		
 		series.setNumber(Integer.parseInt(number));
 		

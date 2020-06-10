@@ -93,6 +93,13 @@ public class LegacyExporter {
 			
 			}
 			
+			if (tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions() == null || tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions().getLegacyFares().isEmpty()  ) {
+				monitor.subTask(NationalLanguageSupport.LegacyExporter_6);
+				exportFareFile(0);
+				monitor.worked(1);
+			}
+			
+			
 		} catch (IOException e) {
 			
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
@@ -243,7 +250,7 @@ public class LegacyExporter {
 		
 		for (LegacyRouteFare fare : tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares().getRouteFare()) {
 			if (fareTableNumber == 9999 || fare.getSeries().getFareTableNumber() == fareTableNumber) {
-			
+				
 				if (!firstLine) {
 					writer.newLine();
 				}
@@ -314,6 +321,21 @@ public class LegacyExporter {
 				writer.newLine();
 			
 			}
+			
+			
+			if (tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions() == null || tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions().getLegacyFares().isEmpty()  ) {
+				String fileName = String.format("%04d", 9999 )+provider;   //$NON-NLS-1$
+				
+				String line0 = getHeaderLine(fileName, provider, providerName,
+					tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares().getRouteFare().size(),
+					tool.getConversionFromLegacy().getLegacy108().getStartDate(),
+					tool.getConversionFromLegacy().getLegacy108().getEndDate());
+				
+				writer.write(line0);
+				writer.newLine();
+			}
+			
+			
 
 			String line1 = getHeaderLine("TCVS" + provider, provider, providerName, //$NON-NLS-1$
 				tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries().size(),
@@ -400,10 +422,15 @@ public class LegacyExporter {
 		
 		StringBuilder sb = new StringBuilder();
 		
+		int table = fare.getFareTableNumber();
+		if (table == 0 || table > 9999){
+			table = 9999;
+		}
+		
 		//  1 code of the supplying RU numeric 4 M TAP TSI Technical Document B.8 1-4 e.g. 0081 for ÖBB 
 		sb.append(String.format("%4s", provider));   //$NON-NLS-1$
 		//	2 Fare table number numeric 4 M  5-8 The fare table number can be used to locate key information about this fare table in the 'Fare table description' file 
-		sb.append("0000"); //$NON-NLS-1$
+		sb.append(String.format("%04d",table)); //$NON-NLS-1$
 		//	3 Series numeric 5 M  9-13 Serves to assign fares to a specific series. 
 		sb.append(String.format("%05d",fare.getSeries().getNumber())); //$NON-NLS-1$
 		//	4 code for departure station numeric 5 M TAP TSI Technical Document B.9 14-18  
@@ -571,7 +598,7 @@ public class LegacyExporter {
 		//	13 Flag 3 for destination station designation numeric 1 M  62 0 or 3 (see point 2.2) 
 		sb.append("0");				 //$NON-NLS-1$
 		//	14 Route number numeric 1 M  63 4th sorting criterion 
-		sb.append("0000");		 //$NON-NLS-1$
+		sb.append("0");		 //$NON-NLS-1$
 		//	15 Product code numeric 2 O  64-65 cf. Notes to Appendix B, point B.2. 
 		sb.append("00");				 //$NON-NLS-1$
 		//	16 Product offer code numeric 2 O  66-67 cf. Notes to Appendix B, point B.2. 
@@ -618,8 +645,10 @@ public class LegacyExporter {
 		}
 		//	35 Flag 11 for standard fare table number numeric 1 M  157 0 or 3 (see point 2.2) 
 		sb.append("0");	 //$NON-NLS-1$
-		//	36 Ferry link code numeric 2 O  158-159  37 Flag 12 for ferry link code numeric 1 M  160 0 or 3 (see point 2.2) 
-		sb.append("00");			 //$NON-NLS-1$
+		//	36 Ferry link code numeric 2 O  158-159  
+		sb.append("00");			 //$NON-NLS-1$	
+		//  37 Flag 12 for ferry link code numeric 1 M  160 0 or 3 (see point 2.2) 
+		sb.append("0");			 //$NON-NLS-1$
 		//	38 Info code numeric 4 O  161-164 Completed if the info file contains specific references to the series 
 		sb.append("0000");	 //$NON-NLS-1$
 		//	39 Flag 13 for info code numeric 1 M  165 0 or 3 (see point 2.2) 
@@ -633,41 +662,51 @@ public class LegacyExporter {
 			//	42  code for 1st station in route description numeric 5 O TAP TSI Technical Document B.9 176-1 80
 			sb.append(String.format("%05d", series.getViastations().get(0).getCode()));  			 //$NON-NLS-1$
 			//	43 Position of 1st station numeric 1 O  181 1 = centre 2 = left 3 = right 
-			sb.append(String.format("%05d", series.getViastations().get(0).getPosition()));  	 //$NON-NLS-1$
+			sb.append(String.format("%01d", series.getViastations().get(0).getPosition()));  	 //$NON-NLS-1$
 			//	44 Abridging code for 1st station numeric 1 O  182  
 			sb.append("0"); //$NON-NLS-1$
+		} else {
+			sb.append("0000000"); //$NON-NLS-1$
 		}
 		if (series.getViastations() != null && series.getViastations().size() > 1) {
-			//	42  code for 1st station in route description numeric 5 O TAP TSI Technical Document B.9 176-1 80
+			//	45  code for 1st station in route description numeric 5 O TAP TSI Technical Document B.9 176-1 80
 			sb.append(String.format("%05d", series.getViastations().get(1).getCode()));  			 //$NON-NLS-1$
-			//	43 Position of 1st station numeric 1 O  181 1 = centre 2 = left 3 = right 
-			sb.append(String.format("%05d", series.getViastations().get(1).getPosition()));  	 //$NON-NLS-1$
-			//	44 Abridging code for 1st station numeric 1 O  182  
+			//	46 Position of 1st station numeric 1 O  181 1 = centre 2 = left 3 = right 
+			sb.append(String.format("%01d", series.getViastations().get(1).getPosition()));  	 //$NON-NLS-1$
+			//	47 Abridging code for 1st station numeric 1 O  182  
 			sb.append("0"); //$NON-NLS-1$
+		} else {
+			sb.append("0000000"); //$NON-NLS-1$
 		}
 		if (series.getViastations() != null && series.getViastations().size() > 2) {
-			//	42  code for 1st station in route description numeric 5 O TAP TSI Technical Document B.9 176-1 80
+			//	48  code for 1st station in route description numeric 5 O TAP TSI Technical Document B.9 176-1 80
 			sb.append(String.format("%05d", series.getViastations().get(2).getCode()));  			 //$NON-NLS-1$
-			//	43 Position of 1st station numeric 1 O  181 1 = centre 2 = left 3 = right 
-			sb.append(String.format(NationalLanguageSupport.LegacyExporter_185, series.getViastations().get(2).getPosition()));  	
-			//	44 Abridging code for 1st station numeric 1 O  182  
+			//	49 Position of 1st station numeric 1 O  181 1 = centre 2 = left 3 = right 
+			sb.append(String.format("%01d", series.getViastations().get(2).getPosition())); 
+			//	50 Abridging code for 1st station numeric 1 O  182    
 			sb.append("0"); //$NON-NLS-1$
+		} else {
+			sb.append("0000000"); //$NON-NLS-1$
 		}		
 		if (series.getViastations() != null && series.getViastations().size() > 3) {
-			//	42  code for 1st station in route description numeric 5 O TAP TSI Technical Document B.9 176-1 80
+			//	51  code for 1st station in route description numeric 5 O TAP TSI Technical Document B.9 176-1 80
 			sb.append(String.format("%05d", series.getViastations().get(3).getCode()));  			 //$NON-NLS-1$
-			//	43 Position of 1st station numeric 1 O  181 1 = centre 2 = left 3 = right 
-			sb.append(String.format("%05d", series.getViastations().get(3).getPosition()));  	 //$NON-NLS-1$
-			//	44 Abridging code for 1st station numeric 1 O  182  
+			//	52 Position of 1st station numeric 1 O  181 1 = centre 2 = left 3 = right 
+			sb.append(String.format("%01d", series.getViastations().get(3).getPosition()));  	 //$NON-NLS-1$
+			//	53 Abridging code for 1st station numeric 1 O  182  
 			sb.append("0"); //$NON-NLS-1$
+		} else {
+			sb.append("0000000"); //$NON-NLS-1$
 		}		
 		if (series.getViastations() != null && series.getViastations().size() > 4) {
-			//	42  code for 1st station in route description numeric 5 O TAP TSI Technical Document B.9 176-1 80
+			//	54  code for 1st station in route description numeric 5 O TAP TSI Technical Document B.9 176-1 80
 			sb.append(String.format("%05d", series.getViastations().get(4).getCode()));  			 //$NON-NLS-1$
-			//	43 Position of 1st station numeric 1 O  181 1 = centre 2 = left 3 = right 
-			sb.append(String.format("%05d", series.getViastations().get(4).getPosition()));  	 //$NON-NLS-1$
-			//	44 Abridging code for 1st station numeric 1 O  182  
+			//	55 Position of 1st station numeric 1 O  181 1 = centre 2 = left 3 = right 
+			sb.append(String.format("%01d", series.getViastations().get(4).getPosition()));  	 //$NON-NLS-1$
+			//	56 Abridging code for 1st station numeric 1 O  182  
 			sb.append("0"); //$NON-NLS-1$
+		} else {
+			sb.append("0000000"); //$NON-NLS-1$
 		}		
 		
 	
@@ -679,10 +718,6 @@ public class LegacyExporter {
 		sb.append("01"); //$NON-NLS-1$
 		//	60 Last day of validity of fare numeric 8 M  222-229 Expressed as: 'YYYYMMDD' 
 		sb.append(dateFormat.format(series.getValidUntil()));
-		
-
-		
-		sb.append(dateFormat.format(untilDate));
 		
 		return sb.toString();
 	}

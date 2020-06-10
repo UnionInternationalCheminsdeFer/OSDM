@@ -287,12 +287,20 @@ public class LegacyRouteFareItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		LegacyRouteFare legacyRouteFare = (LegacyRouteFare)object;
-		return getString("_UI_LegacyRouteFare_type") + " " + legacyRouteFare.getFareTableNumber();
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(getString("_UI_LegacyRouteFare_type")).append(": ");
+		
+		sb.append("- table: ").append(legacyRouteFare.getFareTableNumber());
+		sb.append("- series: ").append(legacyRouteFare.getSeriesNumber());
+		
+		return sb.toString();
+				
 	}
 
 
