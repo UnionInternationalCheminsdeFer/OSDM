@@ -123,7 +123,11 @@ public class 	ConverterToLegacy {
 				writeConsoleError(message);
 			}
 		}
+		
+		routeFares = mergeClasses(routeFares);
+		
 		monitor.worked(1);
+
 		
 		monitor.subTask(NationalLanguageSupport.ConverterToLegacy_6);	
 		//check numbering. if numbers are missing renumber
@@ -218,6 +222,30 @@ public class 	ConverterToLegacy {
 		return series.size();
 	}
 	
+
+	private HashSet<LegacyRouteFare> mergeClasses(HashSet<LegacyRouteFare> routeFares) {
+		// route fares might include two fares for the same series with price for first and second class
+		// there are here merged into one fare
+		
+		HashMap<Integer, LegacyRouteFare> uniqueFares = new HashMap<Integer,LegacyRouteFare>();
+		
+		for (LegacyRouteFare fare: routeFares) {
+			
+			LegacyRouteFare fare2 = uniqueFares.get(Integer.valueOf(fare.getSeriesNumber()));
+			
+			if (fare2 == null) {
+				uniqueFares.put(Integer.valueOf(fare.getSeriesNumber()), fare);
+			} else {
+				if (fare2.getFare1st() == 0) fare2.setFare1st(fare.getFare1st());
+				if (fare2.getFare2nd() == 0) fare2.setFare2nd(fare.getFare2nd());
+			}
+
+		}
+		
+		HashSet<LegacyRouteFare> fares = new HashSet<LegacyRouteFare>();
+		fares.addAll(uniqueFares.values());
+		return fares;
+	}
 
 	private int addFareDescription(FareElement fare) {
 		
@@ -1090,7 +1118,11 @@ public class 	ConverterToLegacy {
 
 	private boolean hasForeignStations(List<Station> stations) {
 		for (Station station: stations) {
-			if (station.getCountry() != tool.getConversionFromLegacy().getParams().getCountry()) return true;
+			if (station.getCountry() != tool.getConversionFromLegacy().getParams().getCountry()) {
+				String message = "Fare ignored: station (" + station.getCode() + ") not in country " + Integer.toString(tool.getConversionFromLegacy().getParams().getCountry().getCode());
+				writeConsoleInfo(message);
+				return true;
+			}
 		}
 		return false;
 	}
@@ -1155,6 +1187,10 @@ public class 	ConverterToLegacy {
 		});
 	}
 	
-	
+	private void writeConsoleInfo(String message) {
+		editor.getSite().getShell().getDisplay().asyncExec(() -> {
+			ConsoleUtil.printInfo(NationalLanguageSupport.ConverterToLegacy_43, message);
+		});
+	}
 
 }

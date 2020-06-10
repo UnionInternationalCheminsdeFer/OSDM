@@ -9,9 +9,6 @@ public class NationalLanguageSupport extends NLS{
 
 
 
-
-
-
 	public static String BasicGtmAction_0;
 	public static String ConverterFromLegacy_0;
 
@@ -334,6 +331,7 @@ public class NationalLanguageSupport extends NLS{
 	public static String ConverterToLegacy_4;
 	public static String ConverterToLegacy_41;
 	public static String ConverterToLegacy_42;
+	public static String ConverterToLegacy_43;
 	public static String ConverterToLegacy_6;
 	public static String ConverterToLegacy_7;
 	public static String ConverterToLegacy_8;
