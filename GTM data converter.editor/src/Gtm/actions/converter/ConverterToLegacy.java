@@ -1,6 +1,8 @@
 package Gtm.actions.converter;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -36,9 +38,11 @@ import Gtm.LegacyBorderSide;
 import Gtm.LegacyCalculationType;
 import Gtm.LegacyConversionType;
 import Gtm.LegacyRouteFare;
+import Gtm.LegacyRouteFares;
 import Gtm.LegacySeparateContractSeries;
 import Gtm.LegacySeries;
 import Gtm.LegacySeriesType;
+import Gtm.LegacyStation;
 import Gtm.LegacyViastation;
 import Gtm.Price;
 import Gtm.RegionalConstraint;
@@ -67,7 +71,7 @@ public class 	ConverterToLegacy {
 	private GtmEditor editor = null;
 	private HashMap<String,LegacyRouteFare> legacyFares = new HashMap<String,LegacyRouteFare>(); 
 	private HashSet<LegacyRouteFare> routeFares = new HashSet<LegacyRouteFare>();
-	private HashSet<LegacySeries> series = new HashSet<LegacySeries>();	
+	private HashMap<Integer,LegacySeries> series = new HashMap<Integer,LegacySeries>();	
 	private HashSet<Legacy108Station> legacyStations = new HashSet<Legacy108Station>();	
 
 	private HashSet<LegacySeparateContractSeries> legacySeparateContractSeries = new HashSet<LegacySeparateContractSeries>();	
@@ -115,14 +119,23 @@ public class 	ConverterToLegacy {
 				LegacyRouteFare  legacyFare = convertFare(fare, convertableFares.indexOf(fare) + 1);
 				if (series.size() < 99999 && legacyFare != null) {
 					routeFares.add(legacyFare);
-					series.add(legacyFare.getSeries());
+					LegacySeries oldSeries = series.get(Integer.valueOf(legacyFare.getSeries().getNumber()));
+					if (oldSeries != null) {
+						legacyFare.setSeries(oldSeries);
+					} else {
+						series.put(Integer.valueOf(legacyFare.getSeries().getNumber()),legacyFare.getSeries());
+					}
 				}
 				
 			} catch (ConverterException e) {
 				String message = NationalLanguageSupport.ConverterToLegacy_4 + fare.getId() + " " + e.getMessage(); //$NON-NLS-2$
 				writeConsoleError(message);
+			} catch (Exception e) {
+				String message = NationalLanguageSupport.ConverterToLegacy_4 + fare.getId() + " " + e.getMessage(); //$NON-NLS-2$
+				writeConsoleError(message);				
 			}
 		}
+
 		
 		routeFares = mergeClasses(routeFares);
 		
@@ -132,12 +145,12 @@ public class 	ConverterToLegacy {
 		monitor.subTask(NationalLanguageSupport.ConverterToLegacy_6);	
 		//check numbering. if numbers are missing renumber
 		boolean numberingOk = true;
-		for (LegacySeries serie : series) {
+		for (LegacySeries serie : series.values()) {
 			if (serie.getNumber() == 0) numberingOk = false;
 		}
 		if (!numberingOk) {
 			int i = 0;
-			for (LegacySeries serie : series) {
+			for (LegacySeries serie : series.values()) {
 				serie.setNumber(i++);
 			}
 			String message = NationalLanguageSupport.ConverterToLegacy_7;
@@ -149,15 +162,7 @@ public class 	ConverterToLegacy {
 		monitor.worked(1);
 		
 		monitor.subTask(NationalLanguageSupport.ConverterToLegacy_8);	
-		//check for missing fares in specific classes, set distance to 0
-		for (LegacyRouteFare lf : routeFares) {
-			if (!lf.isSetFare1st()) {
-				lf.getSeries().setDistance1(0);
-			}
-			if (!lf.isSetFare2nd()) {
-				lf.getSeries().setDistance2(0);
-			}			
-		}
+
 		monitor.worked(1);
 		
 		
@@ -176,21 +181,34 @@ public class 	ConverterToLegacy {
 		
 	
 		monitor.subTask(NationalLanguageSupport.ConverterToLegacy_10);	
-		com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList(), GtmPackage.Literals.LEGACY_SERIES_LIST__SERIES, series);
+		
+		
+		List<LegacySeries> seriesCol = new ArrayList<LegacySeries>();
+		seriesCol.addAll(series.values());
+		Collections.sort(seriesCol,new SeriesComparator());
+		com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList(), GtmPackage.Literals.LEGACY_SERIES_LIST__SERIES, seriesCol);
 		if (com != null && com.canExecute()) {
 			domain.getCommandStack().execute(com);
 		}
 		monitor.worked(1);
 		
+		
+		List<LegacyRouteFare> faresCol = new ArrayList<LegacyRouteFare>();
+		faresCol.addAll(routeFares);
+		Collections.sort(faresCol,new FaresComparator());
 		monitor.subTask(NationalLanguageSupport.ConverterToLegacy_11);	
-		com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares(), GtmPackage.Literals.LEGACY_ROUTE_FARES__ROUTE_FARE, routeFares);
+		com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares(), GtmPackage.Literals.LEGACY_ROUTE_FARES__ROUTE_FARE, faresCol);
 		if (com != null && com.canExecute()) {
 			domain.getCommandStack().execute(com);
 		}
 		monitor.worked(1);
 		
+		
+		List<Legacy108Station> stationsCol = new ArrayList<Legacy108Station>();
+		stationsCol.addAll(legacyStations);
+		Collections.sort(stationsCol,new StationComparator());
 		monitor.subTask(NationalLanguageSupport.ConverterToLegacy_12);	
-		com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacyStations(), GtmPackage.Literals.LEGACY108_STATIONS__LEGACY_STATIONS, legacyStations);
+		com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacyStations(), GtmPackage.Literals.LEGACY108_STATIONS__LEGACY_STATIONS, stationsCol);
 		if (com != null && com.canExecute()) {
 			domain.getCommandStack().execute(com);
 		}
@@ -227,24 +245,42 @@ public class 	ConverterToLegacy {
 		// route fares might include two fares for the same series with price for first and second class
 		// there are here merged into one fare
 		
-		HashMap<Integer, LegacyRouteFare> uniqueFares = new HashMap<Integer,LegacyRouteFare>();
+		HashMap<String, LegacyRouteFare> uniqueFares = new HashMap<String,LegacyRouteFare>();
 		
 		for (LegacyRouteFare fare: routeFares) {
 			
-			LegacyRouteFare fare2 = uniqueFares.get(Integer.valueOf(fare.getSeriesNumber()));
+			LegacyRouteFare fare2 = uniqueFares.get(getFareId(fare)); 
 			
 			if (fare2 == null) {
-				uniqueFares.put(Integer.valueOf(fare.getSeriesNumber()), fare);
+				uniqueFares.put(getFareId(fare), fare);			
 			} else {
-				if (fare2.getFare1st() == 0) fare2.setFare1st(fare.getFare1st());
-				if (fare2.getFare2nd() == 0) fare2.setFare2nd(fare.getFare2nd());
+				if (fare.isSetFare1st()) {
+					fare2.setFare1st(fare.getFare1st());
+				}
+				if (fare.isSetFare2nd()) fare2.setFare2nd(fare.getFare2nd());
 			}
-
+	
 		}
 		
 		HashSet<LegacyRouteFare> fares = new HashSet<LegacyRouteFare>();
 		fares.addAll(uniqueFares.values());
+		
+		//distance must be zero in case the price was not set
+		for (LegacyRouteFare fare: fares) {
+			
+			if (!fare.isSetFare1st()) {
+				 fare.getSeries().setDistance1(0);
+			}
+			if (!fare.isSetFare2nd()) {
+				 fare.getSeries().setDistance2(0);
+			}			
+		}
+		
 		return fares;
+	}
+
+	private String getFareId(LegacyRouteFare fare) {	
+		return String.format("%d+%d",fare.getSeriesNumber(), fare.getFareTableNumber());
 	}
 
 	private int addFareDescription(FareElement fare) {
@@ -261,7 +297,7 @@ public class 	ConverterToLegacy {
 		 * 
 		 */
 		for (Entry<Integer,Legacy108FareDescription> e : legacyFareDescriptions.entrySet()) {
-			if (e.getValue().getDescriptionLocal().equals(descr)) return e.getKey();
+			if (e.getValue().getDescriptionLocal().equals(descr.getDescriptionLocal())) return e.getKey();
 		}
 	
 		Integer fareTableId = legacyFareDescriptions.size() + 1;

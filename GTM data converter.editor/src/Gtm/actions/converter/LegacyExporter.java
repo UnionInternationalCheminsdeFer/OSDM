@@ -307,23 +307,23 @@ public class LegacyExporter {
 		BufferedWriter writer = getWriter(exportPath, "TCV" + provider); //$NON-NLS-1$
 		
 		try {
+			
+			if (tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions() != null) {
 		
-			for (Legacy108FareDescription fare : tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions().getLegacyFares()) {
+				for (Legacy108FareDescription fare : tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions().getLegacyFares()) {
 			
-				String fileName = String.format("%04d", fare.getTableId())+provider;   //$NON-NLS-1$
+					String fileName = String.format("%04d", fare.getTableId())+provider;   //$NON-NLS-1$
 				
-				String line0 = getHeaderLine(fileName, provider, providerName,
-					tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares().getRouteFare().size(),
-					tool.getConversionFromLegacy().getLegacy108().getStartDate(),
-					tool.getConversionFromLegacy().getLegacy108().getEndDate());
+					String line0 = getHeaderLine(fileName, provider, providerName,
+							tool.getConversionFromLegacy().getLegacy108().getLegacyRouteFares().getRouteFare().size(),
+							tool.getConversionFromLegacy().getLegacy108().getStartDate(),
+							tool.getConversionFromLegacy().getLegacy108().getEndDate());
 				
-				writer.write(line0);
-				writer.newLine();
-			
-			}
-			
-			
-			if (tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions() == null || tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions().getLegacyFares().isEmpty()  ) {
+					writer.write(line0);
+					writer.newLine();
+				}
+			} else {
+	
 				String fileName = String.format("%04d", 9999 )+provider;   //$NON-NLS-1$
 				
 				String line0 = getHeaderLine(fileName, provider, providerName,
