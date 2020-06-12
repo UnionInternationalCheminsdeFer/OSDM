@@ -32,12 +32,22 @@
 		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\offerrequest.json" HomeFolder="Yes"/>
 		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\offersearchreply.json" HomeFolder="Yes"/>
 		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\offersearchrequest.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-availablePlaces-schema-v2.json" HomeFolder="Yes"/>
 		<File FilePath="schemas\osdm-basics-schema-v2.json" HomeFolder="Yes"/>
 		<File FilePath="schemas\osdm-carrier-offline-v2.json" HomeFolder="Yes"/>
 		<File FilePath="schemas\osdm-carrier-schema-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-checkPlacePreferences-schema-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-checkPlacesNearby-schema-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-coachLayouts-schema-v2.json" HomeFolder="Yes"/>
 		<File FilePath="schemas\osdm-commons-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-confirmBooking-schema-v2.json" HomeFolder="Yes"/>
 		<File FilePath="schemas\osdm-distributor-schema-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-fulfillment-schema-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-offerSearch-schema-v2.json" HomeFolder="Yes"/>
 		<File FilePath="schemas\osdm-offerSearchSchema-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-patchPassengers-schema-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-prebook-schema-v2.json" HomeFolder="Yes"/>
+		<File FilePath="schemas\osdm-retrievePersonalData-schema-v2.json" HomeFolder="Yes"/>
 		<File FilePath="schemas\osdm-tripOfferSearchSchema-v2.json" HomeFolder="Yes"/>
 		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\personaldatadefinitions.json" HomeFolder="Yes"/>
 		<File FilePath="D:\git\UIC-New-Tariff-Model\IRS 90918-10 API\openAPI\jsonSchemas\placeavailabilityreply.json" HomeFolder="Yes"/>

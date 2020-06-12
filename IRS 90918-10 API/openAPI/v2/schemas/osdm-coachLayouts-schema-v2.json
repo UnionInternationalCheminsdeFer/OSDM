@@ -15,9 +15,8 @@
 				}
 			},
 			"additionalProperties": false
-		}
-	},
-	"CoachLayoutDef": {
+		},
+		"CoachLayoutDef": {
 			"type": "object",
 			"properties": {
 				"id": {
@@ -137,4 +136,5 @@
 			],
 			"additionalProperties": false
 		}
+	}
 }
