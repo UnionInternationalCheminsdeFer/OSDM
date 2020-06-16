@@ -40,7 +40,7 @@
 					 	 	"type": "string"	
 						},
 						"subject": {
-					 		"description": "fare-data-delivery_<version>",
+					 		"description": "fare-data-delivery_<data-version>",
 					 	 	"type": "string"	
 						},
 						"absolute-expiry-time": {
