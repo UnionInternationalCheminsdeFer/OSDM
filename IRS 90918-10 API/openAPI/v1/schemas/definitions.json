@@ -147,23 +147,7 @@
 					"default": "wgs84"
 				},
 				"accuracy": {
-					"type": "string"
-				},
-				"hemisphereEW": {
-					"type": "string",
-					"enum": [
-						"east",
-						"west"
-					],
-					"default": "east"
-				},
-				"hemisphereNS": {
-					"type": "string",
-					"enum": [
-						"north",
-						"south"
-					],
-					"default": "north"
+					"type": "number"
 				},
 				"unit": {
 					"$ref": "definitions.json#/definitions/GeoCoordinateUnitDef"
@@ -176,7 +160,6 @@
 				}
 			},
 			"required": [
-				"unit",
 				"latitude",
 				"longitude"
 			],
@@ -190,8 +173,10 @@
 				"tenthmilliDegree",
 				"centiDegree",
 				"deciDegree",
-				"milliDegree"
-			]
+				"milliDegree",
+				"degree"
+			],
+			"default": "degree"
 		},
 		"ServiceBrandAbbreviationDef": {
 			"description": "Abbreviation of the service brand to be printed on tickets",

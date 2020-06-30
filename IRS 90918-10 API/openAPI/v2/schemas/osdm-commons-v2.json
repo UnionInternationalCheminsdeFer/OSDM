@@ -745,7 +745,7 @@
 				"text": {
 					"$ref": "#/definitions/TextDef"
 				},
-				"classicClass": {
+				"comfortClass": {
 					"description": "FIRST,SECOND",
 					"type": "string"
 				}
