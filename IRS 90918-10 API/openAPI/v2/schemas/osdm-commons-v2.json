@@ -324,8 +324,8 @@
 		"PassengerDef": {
 			"type": "object",
 			"properties": {
-				"travelerId": {
-					"description": "used to link fares to the individual traveler in the reply",
+				"reference": {
+					"description": "reference of the taveller used to link fares to the individual traveler in the reply",
 					"type": "string"
 				},
 				"dateOfBirth": {
@@ -347,7 +347,7 @@
 				}
 			},
 			"required": [
-				"travelerId",
+				"travelerRef",
 				"dateOfBirth"
 			],
 			"additionalProperties": false
