@@ -1032,13 +1032,11 @@ components:
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: optionally used instead of tripSearchCriteria element, if the offers are to be constructed for a previously built trip
-          #decision: potentially we may want to also optionally provide an endpoint, so the trip can potentially be hosted on a different domain
         tripRef:
           type: string
           format: url
           example: 'http://some.provider/trip/2345'
         trip:
-          #decision: note that because the tripdef element has been a little modified, the structure that can be submitted here for allocator use is also a bit different. Those differences can be handled with non-mandatory elements and comments, but maybe it is still worth creating a different data structure
           $ref: '#/components/schemas/tripDef'
         requestedSection:
           $ref: '#/components/schemas/travelSectionDef'
@@ -1177,7 +1175,6 @@ components:
     passengerDef:
       type: object
       properties:
-        #decision: we agreed in FSM to only name "ID " fields referring to a resource ID, and reference ids would be called reference => travelerId renamed to passengerReference.
         #decision: while these passengerDefs should be data structures, I think in responses they should be resources.
         passengerReference:
           description: used to refer to passengers from other elements, or from caller system.
@@ -1212,7 +1209,6 @@ components:
         cardName:
           description: card name for printing on tickets
           type: string
-        #alignement: in FSM we opted for not having a service class on the card, and make 2 different cards where needed => removed cardclassI
         issuer:
           type: string
           description: RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
@@ -1225,7 +1221,7 @@ components:
         - cardId
         - cardValueType
       additionalProperties: false
-    #decision: I have taken over the passengerDetailsDef but removed id, as we have it at resource level, birthdate as we have it in passengerDef (which is reused to retrieve offers and some fields as they seemed overkill/unlikely to be known (language, socialMediaAccount, trainStaffInfo)
+    #alignement: I have taken over the passengerDetailsDef but removed id, as we have it at resource level, birthdate as we have it in passengerDef (which is reused to retrieve offers and some fields as they seemed overkill/unlikely to be known (language, socialMediaAccount, trainStaffInfo)
     #decision: maybe it makes sense to merge passengerDef and passengerDetailsDef so if a system has all the details on a passenger from the start, it can put them in right at the start ? Not done so far
     passengerDetailsDef:
       type: object
@@ -1292,7 +1288,8 @@ components:
         - start
         - end
       additionalProperties: false
-    #decision I think passenger should become resources because of the operations & contents. I am howver not
+    #decision I think passenger should become resources because of the operations & contents.
+    #decision What should be the properties of passengerRef ?
     passengerRef:
       type: object
       properties:
@@ -1367,7 +1364,7 @@ components:
                 items:
                   type: string
     #Decision: I propose to make products a resource as it is highly cacheable. The only caveat here compared to original structure is that it means that the link to segments needs to be taken out of the structure
-    #decision: what els should be
+    #decision: what else should be in the productRef
     productRef:
       type: object
       properties:
