@@ -7,7 +7,14 @@ servers:
 info:
   version: 1.0.0
   title: UIC 90918-10 - FSM
-  description: get available places for graphical reservation
+  description: >
+    ## Overview
+   
+    Specifications for the OSDM API standard.
+   
+    ## References
+   
+   
   contact:
     name: UIC
     url: 'https://www.uic.org'
@@ -15,26 +22,26 @@ info:
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+   
 tags:
-  - name: Distributor
-    description: relevant for distribution usage
-  - name:  Allocator
-    description: relevant for allocator usage
   - name: Journey
     description: functionalities related to timetable-only information
   - name: Offers
     description: funcitonalities related to the exposure and selection of bookable offers
+  - name: Passengers
+    description: allows manipulating passengers informations at every stage of the flow
+  - name: Products
+    description: allows retrieving Products information on one or more products
 paths:
   /locations:
     get:
       tags:
-        - Distributor
         - Journey
       summary: allows looking up matching station for a given match value based on MatchType
       operationId: getLocations
       description: allows to build a lookup functionality to get station codes based on whatever is known of the station
       parameters:
-        - name: Accept-Language 
+        - name: Accept-Language
           in: header
           description:
              Describes the set of natural languages that are preferred as a response to the request (see RFC2616-sec14.4). The response header will set "Content-Language" concerning the content (supported languages and fallback-language , depends on underlyling system).
@@ -55,7 +62,7 @@ paths:
           schema:
             type: string
             default: NAME
-            enum: 
+            enum:
             - NAME     # station name
             - ANY_CODE # use if caller does not know default code of underlyling system
             - CODELIST
@@ -70,14 +77,13 @@ paths:
           required: false
         - name: countryCode
           in: query
-          description: Search locations for a specific country (ISO 3166, 2-digits).
+          description: Search locations for a specific country (ISO 3166, 2-digits). Meant for autocomplete functionalty. A separate endpoint or channel would be provided for mass downloads
           required: false
           schema:
             type: string
             example: CH
         - name: limit
           in: query
-          #decision: should we really limit to 50 => meant for autocomplete or allow larger "downloads", more meant for distributing reference data
           description:
             The number of locations to be returned ([1..50]).
           required: false
@@ -92,17 +98,16 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/LocationRef'
+                  $ref: '#/components/schemas/locationRef'
         '400':
           description: bad input parameter
   /location/{id}:
     get:
       tags:
-        - Distributor
         - Journey
       summary: retrieves a location element
       operationId: getLocation
-      description: allows to retrieve a complete description 
+      description: allows to retrieve a complete description
       parameters:
         - in: path
           name: id
@@ -111,22 +116,27 @@ paths:
              format: uuid
              example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: 
+          description:
             ID of the trip to get.
        
       responses:
         '200':
           description: the set of stations matching the provided input
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                default:  "public, max-age=43200"  
+                description: indicates if and how long the resource can be cached
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Location'
+                $ref: '#/components/schemas/location'
         '400':
           description: bad input parameter
-  /trip{id}:
+  /trip/{id}:
     get:
       tags:
-        - Distributor
         - Journey
       summary: retrieves a trip element
       parameters:
@@ -137,8 +147,21 @@ paths:
              format: uuid
              example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: 
+          description:
             ID of the trip to get.
+        - in: query
+          name: stopBehaviour
+          description:
+            Influences what stops are to be returned in response
+            (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
+            REAL_BOARDING_ALIGHTING returns all stops except virtual stops).
+          schema:
+            type: string
+            default: ORIGIN_DESTINATION_ONLY
+            enum:
+            - ORIGIN_DESTINATION_ONLY # returns only origin and destination stops (Hafas::passingPoints=false)
+            - REAL_BOARDING_ALIGHTING # returns   only stops where a customer may step in/out of the transport-product (Hafas: passingPoints=true;showPassingPoints=false)
+            #- ALL_BOARDING_ALIGHTING  future use: virtual stops
       operationId: getTrip
       description: retrieves a trip element representing a train travel made of one or more segments
       responses:
@@ -148,17 +171,16 @@ paths:
             application/json:
               schema:
               #decision: should we mark a schema as resource by naming convention (ex: Res prefix) ?
-                $ref: '#/components/schemas/TripDef'
+                $ref: '#/components/schemas/tripDef'
         '400':
           description: bad input parameter
-  /tripsCollection{id}:
+  /tripsCollection/{id}:
     get:
       tags:
-          - Distributor
           - Journey
-      summary: 
-        The tripsCollection service returns different trips for 
-        a specified origin and destination (and via). 
+      summary:
+        The tripsCollection service returns different trips for
+        a specified origin and destination (and via).
         The unique codes of the origin and destination can be resolved using the locations service.
       operationId: getTripsCollection
       parameters:
@@ -169,7 +191,7 @@ paths:
              format: uuid
              example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: 
+          description:
             ID of the trip to get.      
         - name: Accept-Language
           in: header
@@ -180,12 +202,12 @@ paths:
           schema:
             type: string
           required: false
-        - name: Scroll-Context
+        - name: scrollContext
           in: header
           description:
              Based on a previous search-response, earlier or later connections for the same   trip can be retrieved
              by scrolling back and forth (by a pointer-context). You must use the same request parameters as in the original
-               trips-request and the given values in the response for either "ScrollBack-Context" or "ScrollForward-Context" for optional scrolling.
+               trips-request and the given values in the response for either "scrollBackContext" or "scrollForwardContext" for optional scrolling.
           schema:
             type: string
           required: false
@@ -195,7 +217,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TripsCollection'
+                $ref: '#/components/schemas/tripsCollection'
           headers:
             Content-Language:
               schema:
@@ -220,9 +242,8 @@ paths:
   /tripsCollection:
     post:
       tags:
-        - Distributor
         - Journey
-      summary: 
+      summary:
         The tripsCollection service returns different trips for a specified origin
         and destination (and via). The unique codes of the origin and
         destination can be resolved using the locations service.
@@ -241,14 +262,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TripRequest'
+              $ref: '#/components/schemas/tripSearchCriteria'
       responses: # see "Error-Handling.md" for HttpStatus 4xx, 5xx
         '200':
           description: Trip(s) found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TripsCollection'
+                $ref: '#/components/schemas/tripsCollection'
           headers:
             Content-Language:
               schema:
@@ -270,15 +291,13 @@ paths:
           description: Internal server error
         '501':
           description: Not implemented
-  /TripOffersCollection{id}:
+  /tripOffersCollection/{id}:
     get:
       tags:
-          - Distributor
-          - Allocator
           - Offers
-      summary: 
-        The tripOffersCollection service returns different offes and trips for 
-        a specified origin and destination (and via). 
+      summary:
+        The tripOffersCollection service returns different offes and trips for
+        a specified origin and destination (and via).
         The unique codes of the origin and destination can be resolved using the locations service.
       operationId: getTripOffersCollection
       parameters:
@@ -289,7 +308,7 @@ paths:
              format: uuid
              example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: 
+          description:
             ID of the trip to get.      
         - name: Accept-Language
           in: header
@@ -300,7 +319,7 @@ paths:
           schema:
             type: string
           required: false
-        - name: Scroll-Context
+        - name: scrollContext
           in: header
           description:
              Based on a previous search-response, earlier or later connections for the same   trip can be retrieved
@@ -315,7 +334,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TripOffersCollection'
+                $ref: '#/components/schemas/tripOffersCollection'
           headers:
             Content-Language:
               schema:
@@ -336,14 +355,12 @@ paths:
         '500':
           description: Internal server error
         '501':
-          description: Not implemented   
-  /TripOffersCollection:
+          description: Not implemented  
+  /tripOffersCollection:
     post:
       tags:
-        - Distributor
-        - Allocator
         - Offers
-      summary: 
+      summary:
         The tripsCollection service returns different trips for a specified origin
         and destination (and via). The unique codes of the origin and
         destination can be resolved using the locations service.
@@ -362,14 +379,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TripOfferRequest'
+              $ref: '#/components/schemas/tripOfferRequest'
       responses: # see "Error-Handling.md" for HttpStatus 4xx, 5xx
         '200':
           description: Trip(s) found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TripOffersCollection'
+                $ref: '#/components/schemas/tripOffersCollection'
           headers:
             Content-Language:
               schema:
@@ -391,15 +408,13 @@ paths:
           description: Internal server error
         '501':
           description: Not implemented
-  /TripOffer/{id}:
+  /tripOffer/{id}:
     get:
       tags:
-        - Distributor
-        - Allocator
         - Offers
-      summary: 
-        The tripOffer service returns different offes and trips for 
-        a specified origin and destination (and via). 
+      summary:
+        The tripOffer service returns different offes and trips for
+        a specified origin and destination (and via).
         The unique codes of the origin and destination can be resolved using the locations service.
       operationId: getTripOffer
       parameters:
@@ -410,7 +425,7 @@ paths:
              format: uuid
              example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: 
+          description:
             ID of the trip to get.
       responses: # see "Error-Handling.md" for HttpStatus 4xx, 5xx
         '200':
@@ -418,7 +433,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TripOffer'
+                $ref: '#/components/schemas/tripOffer'
           headers:
             Content-Language:
               schema:
@@ -439,16 +454,14 @@ paths:
         '500':
           description: Internal server error
         '501':
-          description: Not implemented               
-  /Offer/{id}:
+          description: Not implemented              
+  /offer/{id}:
     get:
       tags:
-        - Distributor
-        - Allocator
         - Offers
-      summary: 
-        The tripOffer service returns different offes and trips for 
-        a specified origin and destination (and via). 
+      summary:
+        The tripOffer service returns different offes and trips for
+        a specified origin and destination (and via).
         The unique codes of the origin and destination can be resolved using the locations service.
       operationId: getOffer
       parameters:
@@ -459,7 +472,7 @@ paths:
              format: uuid
              example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: 
+          description:
             ID of the trip to get.
       responses: # see "Error-Handling.md" for HttpStatus 4xx, 5xx
         '200':
@@ -467,7 +480,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Offer'
+                $ref: '#/components/schemas/offer'
           headers:
             Content-Language:
               schema:
@@ -488,11 +501,145 @@ paths:
         '500':
           description: Internal server error
         '501':
-          description: Not implemented               
- 
+          description: Not implemented              
+  /passenger/{id}:
+    get:
+      tags:
+        - Passengers
+      summary:
+        The get passenger service returns the information on the passenger with the id provided
+      operationId: getPassenger
+      parameters:
+        - in: path
+          name: id
+          schema:
+             type: string
+             format: uuid
+             example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description:
+            ID of the passenger to get.
+      responses: # see "Error-Handling.md" for HttpStatus 4xx, 5xx
+        '200':
+          description: Passenger found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/passenger'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: The language of translatable strings in the response (see RFC2616-sec14.12).
+        '204': # see ResponseBody_204.json
+          description: No passenger(s) found
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '415':
+          description: Unsupported Media type # must be "application/json"
+        '500':
+          description: Internal server error
+        '501':
+          description: Not implemented                      
+    patch:
+      tags:
+        - Passengers
+      summary:
+        The patch passenger service allows updating a passenger Information
+      operationId: patchPassenger
+      parameters:
+        - in: path
+          name: id
+          schema:
+             type: string
+             format: uuid
+             example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description:
+            ID of the passenger to get.
+      responses: # see "Error-Handling.md" for HttpStatus 4xx, 5xx
+      #decision: should puts and patches just return an ok or should they return the updated resource
+        '200':
+          description: Passenger found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/passenger'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: The language of translatable strings in the response (see RFC2616-sec14.12).
+        '204': # see ResponseBody_204.json
+          description: No passenger(s) found
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '415':
+          description: Unsupported Media type # must be "application/json"
+        '500':
+          description: Internal server error
+        '501':
+          description: Not implemented
+  /product/{id}:
+    get:
+      tags:
+        - Products
+      summary:
+        The get product service returns the information on the product with the id provided
+      operationId: getProduct
+      parameters:
+        - in: path
+          name: id
+          schema:
+             type: string
+             format: uuid
+             example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description:
+            ID of the product to get.
+      responses: # see "Error-Handling.md" for HttpStatus 4xx, 5xx
+        '200':
+          description: Product found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/product'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: The language of translatable strings in the response (see RFC2616-sec14.12).
+        '204': # see ResponseBody_204.json
+          description: No passenger(s) found
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '415':
+          description: Unsupported Media type # must be "application/json"
+        '500':
+          description: Internal server error
+        '501':
+          description: Not implemented                      
 components:
   schemas:
-    Link:
+    link:
       type: object
       required:
         - contentTypes
@@ -523,7 +670,7 @@ components:
           format: int32
           example: 1
           description: Version of the current relation.
-      description: 
+      description:
         The underlying system may provide additional links pointing
         on further information (such as HTML download links, websites or extended APIs).
         Mechanism to add flexible extensions specific to an underlying system.  
@@ -536,9 +683,9 @@ components:
         index:
           type: integer
         origin:
-          $ref: '#/components/schemas/LocationRef'
+          $ref: '#/components/schemas/locationRef'
         destination:
-          $ref: '#/components/schemas/LocationRef'
+          $ref: '#/components/schemas/locationRef'
         seqId:
           description: ordering of the trains
           type: number
@@ -568,7 +715,7 @@ components:
               description: line number in case the vehical does not have a number
               type: string
             serviceBrand:
-              $ref: '#/components/schemas/ServiceBrandCodeDef'
+              $ref: '#/components/schemas/serviceBrandCodeDef'
             transportMode:
               description: 'transport mode (code list of MERITS). Optional for offer requests, included for alignment with FSM'
               type: string
@@ -579,7 +726,7 @@ components:
               type: object
               properties:
                 station:
-                  $ref: '#/components/schemas/LocationRef'
+                  $ref: '#/components/schemas/locationRef'
                 departureDateTime:
                   description: date and time in the time zone of the station
                   type: string
@@ -601,7 +748,7 @@ components:
                   type: string
                   example: '13B'
                   description: The info about the arrival-track of the stop. Format depends on operator.
-              description: 
+              description:
                 Represents a location resp. station.
                 Either a departure, arrival or intermediate stop along a segment of a trip.
               required:
@@ -611,11 +758,11 @@ components:
         - seqId
         - vehicle
       additionalProperties: false
-    StationDef:
+    stationDef:
       type: object
       properties:
         codeList:
-          $ref: '#/components/schemas/StationCodeListDef'
+          $ref: '#/components/schemas/stationCodeListDef'
         country:
           type: string
         localCode:
@@ -626,18 +773,17 @@ components:
         - country
         - localCode
       additionalProperties: false  
-    #decision: I propose to make location a resource...and to have a locationRef for stops, origin, destinations etc. Rationale: the location is cacheable so no need to include it all in each message. I think this approach actually makes sense to avoid nesting resources.
-    LocationRef:
+    locationRef:
       type: object
       properties:
-        href: 
+        href:
           type: string
           format: url
           example: 'http://some.provider/location/2345'
         title:
           type: string
           example: 'Bruxelles-Midi'
-    Location:
+    location:
       type: object
       properties:
         id:
@@ -647,33 +793,33 @@ components:
         type:
           type: string
           enum: [ADDRESS, STATION, STATION_COMPLEX, STATION_ZONE, POI ]
-        Station: 
-          $ref: '#/components/schemas/StationDef'
+        station:
+          $ref: '#/components/schemas/stationDef'
         POI:
           $ref: '#/components/schemas/POI'
-        Address:
-          $ref: '#/components/schemas/Address'
+        address:
+          $ref: '#/components/schemas/address'
         coords:
-          $ref: '#/components/schemas/GeoCoordinateDef'
+          $ref: '#/components/schemas/geoCoordinateDef'
         links:
           type: array
-          description: 
+          description:
             Context information required by the services.
           items:
-            $ref: '#/components/schemas/Link'
+            $ref: '#/components/schemas/link'
       required:
         - country
         - LocationCode
       additionalProperties: false
-    StationCodeListDef:
+    stationCodeListDef:
       description: 'code list used for the station codes: UIC = UIC codes as used by merits (UIC country code + local code) = Default// UIC-R = UIC codes for reservation (UIC country code + local code reservation) // ERA = future ERA station code'
       type: string
       default: UIC
-    Address:
+    address:
       type: object
       description: 'used to encode an address'
       properties:
-        street: 
+        street:
           type: string
         houseNr:
           type: string
@@ -681,23 +827,35 @@ components:
           type: string
         postalCode:
           type: string
-        country: 
+        country:
           type: string
     POICodeList:
       description: 'code list used for the POI codes:'
       type: string
       default: UIC
-    TripRef:
+    tripRef:
       type: object
       properties:
-        href: 
+        href:
           type: string
           format: url
           example: 'http://some.provider/trip/2345'
         title:
           type: string
-          example: 'Bruxelles-Midi - Paris-Nord 20200701 10:05'      
-    TripDef:
+          example: 'Bruxelles-Midi - Paris-Nord 20200701 10:05'
+        origin:
+          $ref: '#/components/schemas/locationRef'
+        destination:
+          $ref: '#/components/schemas/locationRef'
+        serviceBrands:
+          type: array
+          items:
+            $ref: '#/components/schemas/serviceBrandCodeDef'
+        departureTime:
+          $ref: '#/components/schemas/dateTime'
+        arrivalTime:
+          $ref: '#/components/schemas/dateTime'
+    tripDef:
       type: object
       properties:
         id:
@@ -707,27 +865,28 @@ components:
         segments:
           type: array
           items:
-            #decision: proposition is to have a separate segment definition
+            #alignment: proposition is to have a separate segment definition
             $ref:  '#/components/schemas/segment'
-        #decision: proposition is to add trip origin & destination
+        #alignment: proposition is to add trip origin & destination
         origin:
-          $ref: '#/components/schemas/LocationRef'
+          $ref: '#/components/schemas/locationRef'
         destination:
-          $ref: '#/components/schemas/LocationRef'
+          $ref: '#/components/schemas/locationRef'
         duration:
           type: string
-          description: 
+          description:
             Total duration over all segment's (format see https://www.w3.org/TR/xmlschema11-2/#duration)
           example: P2DT3H4M
         links:
           type: array
-          description: 
+          description:
             Context information required by the services.
           items:
-            $ref: '#/components/schemas/Link'
+            $ref: '#/components/schemas/link'
       additionalProperties: false
-    ServiceBrandCodeDef:
-      description: 'Service brand code, code list published on UIC web site'
+    serviceBrandCodeDef:
+      description:
+            Service brand codes allowed in response, code list can be found on  [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list](https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
       type: integer
     POI:
       type: object
@@ -744,7 +903,7 @@ components:
         - country
         - localCode
       additionalProperties: false  
-    TripsCollection:
+    tripsCollection:
       type: object
       properties:
         id:
@@ -754,22 +913,22 @@ components:
         tripsCollection:
           type: array
           items:
-            $ref: '#/components/schemas/TripRef'
-        ScrollBack-Context: # supports Hafas::scrolling
+            $ref: '#/components/schemas/tripRef'
+        scrollBackContext: # supports Hafas::scrolling
           type: string
-          description: 
+          description:
             Scroll reference for the current response to scroll backward.
             (Value depends on underlying system.)
-        ScrollForward-Context: # supports Hafas::scrolling
+        scrollForwardContext: # supports Hafas::scrolling
           type: string
-          description: 
+          description:
             Scroll reference for the current response to scroll   forward.
             (Value depends on underlying system.)
         links:
           type: array
           items:
-            $ref: '#/components/schemas/Link'
-    GeoCoordinateDef:
+            $ref: '#/components/schemas/link'
+    geoCoordinateDef:
       type: object
       properties:
         system:
@@ -792,35 +951,22 @@ components:
         - latitude
         - longitude
       additionalProperties: false
-    TripRequest:
+    dateTime:
+      description:
+            Local date/time of the underlying system (ISO notation see RFC3339-sec5.6).
+            Timezone is related to station time, therefore it must not be specified in request.
+            The underlying system will find hits about the given instance in time and will respond dateTime with appropriate TIMEZONE as well.
+      type: string
+      format: date-time
+    tripSearchCriteria:
       type: object
       properties:
       #decision: how do we specify location as parameters. At the moment it is implicitly limited to station codes, but maybe we should broaden the scope here
-        matchType:
-          description:
-            Defines the search token type in matchValue (TEXT for names; ANY_CODE fallbacks to the code supported by the underlyling system (like UIC, EVA or RESARAIL); UIC/EVA/RESARAIL forces stations defined by the appropriate code-system explicitely (national aspect); COORDS given as "lat,lon").
-          type: string
-          default: NAME
-          enum: 
-          - NAME     # station name
-          - ANY_CODE # use if caller does not know default code of   underlyling system
-          - CODELIST
-          - COORDS
-          # Future use: ADDRESS_OR_POI
-        matchCodeList:
-          description:
-            in case matchType is codelist, the codelist to search into
-          type: string
-        originValue:
-            description: 
-              The origin or departing location.
-              Unique code value has to be set according to valueType.
-            type: string
-        destinationValue:
-          description:
-            The destination or arrival location.
-            Unique code value has to be set according to valueType.
-          type: string
+      #proposal is to use locations here . OPen point: should we can we (from rest principles standpoint) have it without ID/href (and provide only code and codelist for ex) ? I would tend to say no, and make id mandatory. In addition it means the origin and destination and vias can be of any type
+        origin:
+          $ref: '#/components/schemas/location'
+        destination:
+          $ref: '#/components/schemas/location'
         viaValues:
           description:
             Ordered list of via locations within the trip.
@@ -828,39 +974,19 @@ components:
             Max number of via's depends on the underlying system.
           type: array
           items:
-            type: string
-        dateTime:
-          description: 
-            Local date/time of the underlying system (ISO notation see RFC3339-sec5.6).
-            Timezone is related to station time, therefore it must not be specified in request.
-            The underlying system will find hits about the given instance in time and will respond dateTime with appropriate TIMEZONE as well.
-          type: string
-          format: date-time
-          default: Now (at origin)
+            $ref: '#/components/schemas/location'
+        traveldateTime:
+           $ref: '#/components/schemas/dateTime'
         isArrival:
-          description: 
-            Defines whether or not the given date/time is the latest arrival 
+          description:
+            Defines whether or not the given travel date/time is the latest arrival
             (true arriving at given time; false departing at given time).
           type: boolean
           default: false
-        stopBehaviour:
-          description: 
-            Influences what stops are to be returned in response
-            (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
-            REAL_BOARDING_ALIGHTING returns all stops except virtual stops).
-          type: string
-          default: ORIGIN_DESTINATION_ONLY
-          enum: 
-          - ORIGIN_DESTINATION_ONLY # returns only origin and destination stops (Hafas::passingPoints=false)
-          - REAL_BOARDING_ALIGHTING # returns only stops where a customer may step in/out of the transport-product (Hafas: passingPoints=true;showPassingPoints=false)
-          #- ALL_BOARDING_ALIGHTING  future use: virtual stops
-          #decision: proposal to replace serviceBrands with transport mode: are the two covering the same notion
         transportMode:
           description: transport mode (code list of MERITS). Optional for offer requests, included for alignment with FSM
           type: string
         serviceBrands:
-          description: 
-            Service brand codes allowed in response, code list published on UIC web site 
           type: array
           items:
             type: string
@@ -880,126 +1006,149 @@ components:
       required:
       - originValue
       - destinationValue
-    OfferRequest:
+    offerSearchCriteria:
     #decision: I could not get my hands on a firm list of parameters we wanted to support (at least for MVP) in the offer search for the offer part (for trips I think we  are fine)
       type: object
       properties:
-        Flexibilities:
+        flexibilities:
           description:
             Defines the flexibility levels desired in the fares returned
           type: array
           items:
             $ref: '#/components/schemas/flexibility'
-        Classes:
+        classes:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceClassDef'
-    TripOfferRequest:
+            $ref: '#/components/schemas/serviceClassDef'
+          description:
+            Defines the comfort classes desired for the fares returned (1st vs second, possibly refined A,B,C,D selection)
+        currency:
+          $ref: '#/components/schemas/currencyDef'
+    tripOfferRequest:
       type: object
       properties:
-        TripId:
+        tripId:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          description: optionally used instead of tripRequest element, if the offers are to be constructed for a previously built trip
-          #decision: potentially we ma want to also optionally provide an endpoint, so the trip can potentially be hosted on a different domain
-        TripDomain:
+          description: optionally used instead of tripSearchCriteria element, if the offers are to be constructed for a previously built trip
+          #decision: potentially we may want to also optionally provide an endpoint, so the trip can potentially be hosted on a different domain
+        tripRef:
           type: string
-        Trip: 
-          #decision: not that because the tripdef element has been a little modified, the structure that can be submitted here for allocator use is also a bit different. Those differences can be handled with non-mandatory elements and comments, but maybe it is still worth creating a different data structure
-          $ref: '#/components/schemas/TripDef'
-        Passengers:
+          format: url
+          example: 'http://some.provider/trip/2345'
+        trip:
+          #decision: note that because the tripdef element has been a little modified, the structure that can be submitted here for allocator use is also a bit different. Those differences can be handled with non-mandatory elements and comments, but maybe it is still worth creating a different data structure
+          $ref: '#/components/schemas/tripDef'
+        requestedSection:
+          $ref: '#/components/schemas/travelSectionDef'
+        passengers:
           type: array
           items:
-            $ref: '#/components/schemas/PassengerDef'
-          format: uri
-          example: http://some.journeyplanner.com/trip
-        TripRequest:
-          $ref: '#/components/schemas/TripRequest'
-        OfferRequest:
-          $ref: '#/components/schemas/OfferRequest'
-    TripOffer:
+            $ref: '#/components/schemas/passengerDef'
+        tripSearchCriteria:
+          $ref: '#/components/schemas/tripSearchCriteria'
+        OfferSearchCriteria:
+          $ref: '#/components/schemas/offerSearchCriteria'
+    tripOffer:
       type: object
       properties:
         id:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
-        Trip:
-          $ref: '#/components/schemas/TripRef'
-        Offers:
+        trip:
+          $ref: '#/components/schemas/tripRef'
+        offers:
           type: array
           items:
-            $ref: '#/components/schemas/OfferRef'
+            $ref: '#/components/schemas/offerRef'
+        passengers:
+          type: array
+          items:
+            $ref: '#/components/schemas/passengerRef'
         links:
           type: array
           items:
-            $ref: '#/components/schemas/Link'
-    TripOfferRef:
+            $ref: '#/components/schemas/link'
+    tripOfferRef:
       type: object
+      #decision: what should we add in this ref ? I would propose the tripRef and OfferRefs ?
       properties:
-        href: 
+        href:
           type: string
           format: url
-          example: 'http://some.provider/TripOffer/2345'
+          example: 'http://some.provider/tripOffer/2345'
         title:
           type: string
           example: 'Bruxelles-Midi 10:05 20200701'
-    Offer:
+    offer:
       type: object
       properties:
-        price:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+        minimalPrice:
+          $ref: '#/components/schemas/currencyPriceDef'
+        overallServiceClass:
+           $ref: '#/components/schemas/serviceClassDef'
+        # alignment: not sure if we want to have the extended "serviceLevelDef or just the ID. I assumed the latter so far"
+        overallServiceLevel:
+          $ref: '#/components/schemas/serviceLevelIdDef'
+        overallFlexibility:
+          $ref: '#/components/schemas/flexibility'
         trip:
-          $ref: '#/components/schemas/TripRef'
+          $ref: '#/components/schemas/tripRef'
+        #decision: not sure validfrom/to are actually location, can it be confirmed ?
+        validFrom:
+          $ref: '#/components/schemas/locationRef'
+        validTo:
+          $ref: '#/components/schemas/locationRef'
         links:
           type: array
           items:
-            $ref: '#/components/schemas/Link'
-    OfferRef:
+            $ref: '#/components/schemas/link'
+    offerRef:
       type: object
       properties:
-        href: 
+        href:
           type: string
           format: url
-          example: 'http://some.provider/Offer/2345'
+          example: 'http://some.provider/offer/2345'
         title:
           type: string
           example: 'Bruxelles-Midi- Paris-Nord 10:05 20200701 NF 50 EUR'
-    TripOffersCollection:
+    tripOffersCollection:
       type: object
       properties:
         id:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
-        tripOffersCollection:
+        tripOffers:
           type: array
           items:
-            $ref: '#/components/schemas/TripOfferRef'
-        ScrollBack-Context: # supports Hafas::scrolling
+            $ref: '#/components/schemas/tripOfferRef'
+        scrollBackContext: # supports Hafas::scrolling
           type: string
-          description: 
+          description:
             Scroll reference for the current response to scroll backward.
             (Value depends on underlying system.)
-        ScrollForward-Context: # supports Hafas::scrolling
+        scrollForwardContext: # supports Hafas::scrolling
           type: string
-          description: 
+          description:
             Scroll reference for the current response to scroll   forward.
             (Value depends on underlying system.)
         links:
           type: array
           items:
-            $ref: '#/components/schemas/Link'
-    CurrencyDef:
+            $ref: '#/components/schemas/link'
+    currencyDef:
       description: ISO4217 currency codes
       type: string            
-    CurrencyPriceDef:
+    currencyPriceDef:
       type: object
       minProperties: 1
       properties:
         currency:
-          $ref: '#/components/schemas/CurrencyDef'
+          $ref: '#/components/schemas/currencyDef'
         amount:
           type: number
         vatDetail:
@@ -1007,11 +1156,11 @@ components:
           items:
             type: object
             properties:
-              Country:
+              country:
                 type: string
-              Amount:
+              amount:
                 type: number
-              Percentage:
+              percentage:
                 type: number
               taxId:
                 type: string
@@ -1025,13 +1174,13 @@ components:
         - currency
         - amount
       additionalProperties: false            
-    PassengerDef:
+    passengerDef:
       type: object
       properties:
-        #decision: we agreed in FSM to only name "ID " fields referring to a resource ID, and reference ids would be called reference => travelerId renamed to passengerReference. 
+        #decision: we agreed in FSM to only name "ID " fields referring to a resource ID, and reference ids would be called reference => travelerId renamed to passengerReference.
         #decision: while these passengerDefs should be data structures, I think in responses they should be resources.
         passengerReference:
-          description: used to refer to passengers from other elements, or from caller system. Can also be used to link fares to the individual traveler in the reply (allocator)
+          description: used to refer to passengers from other elements, or from caller system.
           type: string
         dateOfBirth:
           description: YYYY-MM-DD (2017-07-21)
@@ -1039,7 +1188,7 @@ components:
         reductionCards:
           type: array
           items:
-            $ref: '#/components/schemas/ReductionCardReferenceDef'
+            $ref: '#/components/schemas/reductionCardReferenceDef'
         gender:
           description: 'MALE,FEMALE,X (only in case of night trains)'
           type: string
@@ -1051,27 +1200,63 @@ components:
         - travelerId
         - dateOfBirth
       additionalProperties: false
-    ReductionCardReferenceDef:
+    reductionCardReferenceDef:
       type: object
       properties:
-        cardId:
+        cardValue:
           description: code of the card type according to code list
+          type: string
+        cardValueType:
+          description: codelist for the cardValue provided
           type: string
         cardName:
           description: card name for printing on tickets
           type: string
-        #decision: in FSM we opted for not having a service class on the card, and make 2 different cards where needed => removed cardclassI
+        #alignement: in FSM we opted for not having a service class on the card, and make 2 different cards where needed => removed cardclassI
         issuer:
           type: string
           description: RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+        serviceClasses:
+          description: list of service classes in case this class is available for different classes
+          type: array
+          items:
+            $ref: '#/components/schemas/serviceClassDef'
       required:
         - cardId
+        - cardValueType
       additionalProperties: false
-    ServiceClassDef:
+    #decision: I have taken over the passengerDetailsDef but removed id, as we have it at resource level, birthdate as we have it in passengerDef (which is reused to retrieve offers and some fields as they seemed overkill/unlikely to be known (language, socialMediaAccount, trainStaffInfo)
+    #decision: maybe it makes sense to merge passengerDef and passengerDetailsDef so if a system has all the details on a passenger from the start, it can put them in right at the start ? Not done so far
+    passengerDetailsDef:
+      type: object
+      properties:
+        eMail:
+          type: array
+          items:
+            type: string
+            format: email
+        firstName:
+          type: string
+        firstNameICAO:
+          description: ICAO transliteration
+          type: string
+        lastName:
+          type: string
+        lastNameICAO:
+          description: ICAO transliteration
+          type: string
+        title:
+          type: string
+        phone:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
+    serviceClassDef:
       type: object
       properties:
         id:
-          description: The detailed comfort class 
+          description: The detailed comfort class
           type: string
           #decions : propose to make class id an enum
           enum:
@@ -1079,7 +1264,7 @@ components:
           - B
           - C
           - D
-        #decision: removed textRef and replaced text property with carrierName
+        #alignment: removed textRef and replaced text property with carrierName
         carrierName:
           type: string
           description: the name the carrier itself uses to designate this specific comfort class
@@ -1093,11 +1278,156 @@ components:
       required:
         - id
       additionalProperties: false
+    travelSectionDef:
+      type: object
+      properties:
+        start:
+          $ref: '#/components/schemas/location'
+        end:
+          $ref: '#/components/schemas/location'
+        segmentId:
+          description: reference to a trip segment in case the section corresponds to a segment in the trip and the trip is part of the offer
+          type: string
+      required:
+        - start
+        - end
+      additionalProperties: false
+    #decision I think passenger should become resources because of the operations & contents. I am howver not
+    passengerRef:
+      type: object
+      properties:
+        href:
+          type: string
+          format: url
+          example: 'http://some.provider/passenger/2345'
+        title:
+          type: string
+          example: 'André Dupont'
+    passenger:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        passengerDef:
+          $ref: '#/components/schemas/passengerDef'
+        passengerDetailsDef:
+          $ref: '#/components/schemas/passengerDetailsDef'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+    serviceLevelIdDef:
+      description: 'code of the service level, codelist in IRS 90918-1'
+      type: string
     flexibility:
       type: string
-      enum: 
+      enum:
         - FULLFLEX
         - MIDFLEX
         - NONFLEX
-          
+    offerPart:
+      type: object
+      properties:
+        price:
+          $ref: '#/components/schemas/currencyPriceDef'
+        pricingMode:
+          type: string
+          enum:
+            - COLLECTIVE
+            - INDIVIDUAL
+          #decision: I assume validity here refers to  a period
+        validAsOf:
+          $ref: '#/components/schemas/dateTime'
+        validUntil:
+          $ref: '#/components/schemas/dateTime'
+        reductionsApplied:
+          type: array
+          items:
+            $ref: '#/components/schemas/reductionCardReferenceDef'
+        passengerRefs:
+          type: array
+          items:
+            $ref: '#/components/schemas/passengerRef'
+        #decision: not sure validfrom/to are actually location, can it be confirmed ?
+        validFrom:
+          $ref: '#/components/schemas/locationRef'
+        validTo:
+          $ref: '#/components/schemas/locationRef'
+        productRefs:
+          type: array
+          items:
+            type: object
+            properties:
+              productRef:
+                $ref: '#/components/schemas/productRef'
+              segmentRefs:
+                type: array
+                items:
+                  type: string
+    #Decision: I propose to make products a resource as it is highly cacheable. The only caveat here compared to original structure is that it means that the link to segments needs to be taken out of the structure
+    #decision: what els should be
+    productRef:
+      type: object
+      properties:
+        href:
+          type: string
+          format: url
+          example: 'http://some.provider/product/2345'
+        title:
+          type: string
+          example: 'TGV Lyria Loisir 2'
+    product:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        code:
+          type: string
+          description: the product code expressed in the provider system (could be a mapping from an even lower-level provide
+          example: r '0100345' or 'ITHABUSA1' or 'PT00AD' 
+        description:
+          type: string
+          description: the textual description of the product
+          example: loisir non-flex adult fare
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/productCondition'
+          description: structured description of the sales or aftersales conditions
+        refundable: 
+          type: string
+          enum:
+            - YES
+            - NO
+            - WITH_CONDITIONS
+        exchangeable:
+          type: string
+          enum:
+            - YES
+            - NO
+            - WITH_CONDITIONS
+        serviceClass:
+          $ref: '#/components/schemas/serviceClassDef'
+        #decision: what kind of values should we put for fulfillment types ? 
+        fulfillmentType:
+          type: string
+        #alignment : probably something exists in the ntm model ? 
+        serviceConstraintText:
+          type: string
+        #alignment : probably something exists in the ntm model ? 
+        carrierConstraintText:
+          type: string
+    productCondition:
+      type: object
+      properties:
+        type:
+          type: string
+        description:
+          type: string
+            
         
+          
