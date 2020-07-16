@@ -1448,15 +1448,16 @@ components:
       properties:
         system:
           description: >-
-            geo coordinate system indication: wgs84 = WGS 84 standard system,
-            grs80 = (outdated) GRS 80 coordinate system
+            geo coordinate system indication: 
+             - WGS84 = WGS 84 standard system,
+             - GRS80 = (outdated) GRS 80 coordinate system
           type: string
           enum:
-            - wgs84
-            - grs80
-          default: wgs84
+            - WGS84
+            - GRS80
+          default: WGS84
         accuracy:
-          description: to be proviced in degree
+          description: to be proviced in degree. TODO clarify semantics
           type: number
           format: float
         latitude:
