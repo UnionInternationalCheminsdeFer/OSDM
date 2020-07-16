@@ -1261,7 +1261,7 @@ components:
         - seqId
         - vehicle
       additionalProperties: false
-    StationDef:
+    Station:
       type: object
       properties:
         codeList:
@@ -1294,21 +1294,11 @@ components:
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
         type:
-          type: string
-          enum:
-            - ADDRESS
-            - STATION
-            - STATION_COMPLEX
-            - STATION_ZONE
-            - POI
-        station:
-          $ref: '#/components/schemas/StationDef'
-        POI:
-          $ref: '#/components/schemas/POI'
-        address:
-          $ref: '#/components/schemas/Address'
-        coords:
-          $ref: '#/components/schemas/GeoCoordinateDef'
+          oneOf:
+            - $ref: '#/components/schemas/Station'
+            - $ref: '#/components/schemas/POI'
+            - $ref: '#/components/schemas/Address'
+            - $ref: '#/components/schemas/GeoCoordinate'
         links:
           type: array
           description: Context information required by the services.
@@ -1332,14 +1322,23 @@ components:
       properties:
         street:
           type: string
+          example: Segantinistrasse
         houseNr:
+          description: house number
           type: string
+          example: 7
         city:
+          description: city
           type: string
+          example: Bern
         postalCode:
+          description: postal code
           type: string
+          example: 3006
         country:
+          description: country
           type: string
+          example: Schweiz
     POICodeList:
       description: Code list used for the POI codes.
       type: string
@@ -1353,7 +1352,7 @@ components:
           example: 'http://some.provider/trip/2345'
         title:
           type: string
-          example: 'Bruxelles-Midi - Paris-Nord 20200701 10:05'
+          example: Bruxelles-Midi - Paris-Nord 20200701 10:05
         origin:
           $ref: '#/components/schemas/LocationRef'
         destination:
@@ -1404,11 +1403,17 @@ components:
         codeList:
           $ref: '#/components/schemas/POICodeList'
         country:
+          description: country
           type: string
+          example: Schweiz 
         localCode:
+          description: TODO clarify semantics
           type: string
+          example: TODO clarify
         name:
+          description: name of the point of interest
           type: string
+          example: Bern Bärengraben (Denkmal)
       required:
         - country
         - localCode
@@ -1438,7 +1443,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    GeoCoordinateDef:
+    GeoCoordinate:
       type: object
       properties:
         system:
