@@ -10,9 +10,9 @@ info:
     Specifications for the OSDM API standard.
     ## References
   contact:
-    name: Andreas Schlapbach
+    name: Nicolas Selleslagh
     url: https://confluence.sbb.ch/display/FSM20
-    email: andreas.schlapbach@sbb.ch
+    email: Nicolas.Sellleslagh@benerail.com
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
@@ -147,7 +147,7 @@ paths:
                 $ref: '#/components/schemas/location'
         '400':
           description: bad input parameter
-  '/trips/{id}':
+  /trips/{id}:
     get:
       tags:
         - Journey
@@ -173,6 +173,16 @@ paths:
             enum:
               - ORIGIN_DESTINATION_ONLY
               - REAL_BOARDING_ALIGHTING
+        - in: query
+          name: includeBehaviour
+          description: >-
+            Influences whether referenced resources are returned in full or as references only
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - LOCATIONS
       operationId: getTripsId
       description: >-
         retrieves a trip element representing a train travel made of one or more
@@ -186,7 +196,7 @@ paths:
                 $ref: '#/components/schemas/tripDef'
         '400':
           description: bad input parameter
-  '/trips-collection/{id}':
+  /trips-collection/{id}:
     get:
       tags:
         - Journey
@@ -215,7 +225,7 @@ paths:
             type: string
           required: false
         - name: scrollContext
-          in: header
+          in: query
           description: >-
             Based on a previous search-response, earlier or later connections
             for the same   trip can be retrieved by scrolling back and forth (by
@@ -226,6 +236,17 @@ paths:
           schema:
             type: string
           required: false
+        - in: query
+          name: includeBehaviour
+          description: >-
+            Influences whether referenced resources are returned in full or as references only
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - TRIPS
+                - TRIPS.LOCATIONS
       responses:
         '200':
           description: Trip(s) found
@@ -307,7 +328,7 @@ paths:
           description: Internal server error
         '501':
           description: Not implemented
-  '/trip-offers-collection/{id}':
+  /trip-offers-collection/{id}:
     get:
       tags:
         - Offers
@@ -336,7 +357,7 @@ paths:
             type: string
           required: false
         - name: scrollContext
-          in: header
+          in: query
           description: >-
             Based on a previous search-response, earlier or later connections
             for the same   trip can be retrieved by scrolling back and forth (by
@@ -347,6 +368,21 @@ paths:
           schema:
             type: string
           required: false
+        - in: query
+          name: includeBehaviour
+          description: >-
+            Influences whether referenced resources are returned in full or as references only
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - TRIPOFFERS
+                - TRIPOFFERS.TRIPS
+                - TRIPOFFERS.TRIPS.LOCATIONS
+                - TRIPOFFERS.OFFERS
+                - TRIPOFFERS.OFFERS.OFFERPARTS
+                - TRIPOFFERS.PASSENGERS
       responses:
         '200':
           description: Trip(s) found
@@ -428,7 +464,7 @@ paths:
           description: Internal server error
         '501':
           description: Not implemented
-  '/trip-offers/{id}':
+  /trip-offers/{id}:
     get:
       tags:
         - Offers
