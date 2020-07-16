@@ -9,6 +9,10 @@ info:
     ## Overview
     Specifications for the OSDM API standard.
     ## References
+  contact:
+    name: Andreas Schlapbach
+    url: https://confluence.sbb.ch/display/FSM20
+    email: andreas.schlapbach@sbb.ch
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
@@ -17,10 +21,16 @@ tags:
     description: functionalities related to timetable-only information
   - name: Offers
     description: functionalities related to the exposure and selection of bookable offers
+  - name: Offer Parts
+    description: parts which an offer consists of, e.g., admissions, reservations, integrated reservations or ancillaries  
+  - name: Bookings
+    description: functionalities related to get, create and delete bookings
   - name: Passengers
     description: allows manipulating passengers informations at every stage of the flow
   - name: Products
     description: allows retrieving Products information on one or more products
+  - name: Tickets
+    description: allows to retrieve Tickets
 paths:
   /locations:
     get:
@@ -40,7 +50,9 @@ paths:
             Describes the set of natural languages that are preferred as a
             response to the request (see RFC2616-sec14.4). The response header
             will set "Content-Language" concerning the content (supported
-            languages and fallback-language , depends on underlyling system).
+            languages and fallback-language, depends on underlyling system).
+
+            Supporting locations in English (en) is a most.
           schema:
             type: string
           required: false
@@ -88,6 +100,7 @@ paths:
           required: false
           schema:
             type: number
+            format: int32
             default: 10
       responses:
         '200':
@@ -173,12 +186,12 @@ paths:
                 $ref: '#/components/schemas/tripDef'
         '400':
           description: bad input parameter
-  '/tripsCollection/{id}':
+  '/trips-collection/{id}':
     get:
       tags:
         - Journey
       summary: >-
-        The tripsCollection service returns different trips for a specified
+        The trips-collection service returns a collection of different trips for a specified
         origin and destination (and via). The unique codes of the origin and
         destination can be resolved using the locations service.
       operationId: getTripsCollection
@@ -237,13 +250,11 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
           description: Not implemented
-  /tripsCollection:
+  /trips-collection:
     post:
       tags:
         - Journey
@@ -292,13 +303,11 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
           description: Not implemented
-  '/tripOffersCollection/{id}':
+  '/trip-offers-collection/{id}':
     get:
       tags:
         - Offers
@@ -362,13 +371,11 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
           description: Not implemented
-  /tripOffersCollection:
+  /trip-offers-collection:
     post:
       tags:
         - Offers
@@ -417,18 +424,16 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
           description: Not implemented
-  '/tripOffers/{id}':
+  '/trip-offers/{id}':
     get:
       tags:
         - Offers
       summary: >-
-        The tripOffer service returns different offes and trips for a specified
+        The trip-offers service returns different offers and trips for a specified
         origin and destination (and via). The unique codes of the origin and
         destination can be resolved using the locations service.
       operationId: getTripOffer
@@ -465,8 +470,6 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
@@ -513,8 +516,6 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
@@ -560,8 +561,6 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
@@ -609,8 +608,6 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
@@ -620,7 +617,7 @@ paths:
       tags:
         - Products
       summary: >-
-        The get product service returns the information on the product with the
+        The get product service returns the information on products with the
         id provided
       operationId: getProduct
       parameters:
@@ -656,20 +653,18 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
           description: Not implemented
-  '/nonReservations/{id}':
+  '/admissions/{id}':
     get:
       tags:
-        - offerParts
+        - Offer Parts
       summary: >-
-        The get nonReservation service returns the information on the
-        nonReservation with the id provided
-      operationId: getNonReservation
+        The get admission service returns the information on the
+        admission with the id provided
+      operationId: getadmission
       parameters:
         - in: path
           name: id
@@ -678,14 +673,14 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the nonReservation to get.
+          description: ID of the admission to get.
       responses:
         '200':
-          description: nonReservation found
+          description: admission found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/nonReservation'
+                $ref: '#/components/schemas/admission'
           headers:
             Content-Language:
               schema:
@@ -703,8 +698,6 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
@@ -712,7 +705,7 @@ paths:
   '/reservations/{id}':
     get:
       tags:
-        - offerParts
+        - Offer Parts
       summary: >-
         The get reservation service returns the information on the reservation
         with the id provided
@@ -750,19 +743,17 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
           description: Not implemented
-  '/integratedReservations/{id}':
+  '/integrated-reservations/{id}':
     get:
       tags:
-        - offerParts
+        - Offer Parts
       summary: >-
-        The get integratedReservation service returns the information on the
-        integratedReservation with the id provided
+        The get integrated-reservation service returns the information on the
+        IntegratedReservation with the id provided
       operationId: getIntegratedReservation
       parameters:
         - in: path
@@ -772,10 +763,10 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the integratedReservation to get.
+          description: ID of the IntegratedReservation to get.
       responses:
         '200':
-          description: integratedReservation found
+          description: IntegratedReservation found
           content:
             application/json:
               schema:
@@ -797,8 +788,6 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
@@ -806,7 +795,7 @@ paths:
   '/ancillaries/{id}':
     get:
       tags:
-        - offerParts
+        - Offer Parts
       summary: >-
         The get ancillary service returns the information on the ancillary with
         the id provided
@@ -844,8 +833,6 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
@@ -853,7 +840,7 @@ paths:
   /bookings:
     post:
       tags:
-        - Booking
+        - Bookings
       summary: >-
         The post booking command allows to create a booking based on a
         previously requested offer
@@ -898,8 +885,6 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
@@ -907,7 +892,7 @@ paths:
   '/bookings/{id}':
     get:
       tags:
-        - Booking
+        - Bookings
       summary: >-
         The get booking service returns the information on the booking with the
         id provided
@@ -945,15 +930,13 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
           description: Not implemented
     delete:
       tags:
-        - Booking
+        - Bookings
       summary: >-
         The delete booking service removes the booking  with the id provided. It
         is only possible before the booking is confirmed.
@@ -980,8 +963,6 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
@@ -992,7 +973,7 @@ paths:
         - Tickets
       summary: >-
         The get ticket service returns the information on the ticket with the id
-        provided
+        provided.
       operationId: getTicket
       parameters:
         - in: path
@@ -1027,8 +1008,6 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
-        '415':
-          description: Unsupported Media type
         '500':
           description: Internal server error
         '501':
@@ -1082,13 +1061,15 @@ components:
         seqId:
           description: ordering of the trains
           type: number
+          format: int32
         transfer:
           description: Transfer to the next vehicle not included in the request
           type: object
           properties:
             duration:
-              description: duration forseen as transfer to the next section
+              description: Duration forseen to transfer to the next section
               type: number
+              format: int32
             transferType:
               description: 'WALK,...'
               type: string
@@ -1099,21 +1080,22 @@ components:
         vehicle:
           type: object
           properties:
-            number:
+            numbers:
               description: >-
-                id of the vehicle, In case of two train s running in parallel
+                Id of the vehicle, In case of two train s running in parallel
                 there might be two train numbers.
               type: array
               items:
                 type: string
             line:
-              description: line number in case the vehical does not have a number
+              description: >-
+                Line number in case the vehical does not have a number
               type: string
             serviceBrand:
               $ref: '#/components/schemas/serviceBrandCodeDef'
             transportMode:
               description: >-
-                transport mode (code list of MERITS). Optional for offer
+                Transport mode (code list of MERITS). Optional for offer
                 requests, included for alignment with FSM
               type: string
               additionalProperties: false
@@ -1127,11 +1109,14 @@ components:
               departureDateTime:
                 description: date and time in the time zone of the station
                 type: string
+                format: date
               arrivalDateTime:
                 description: date and time in the time zone of the station
                 type: string
+                format: date
               index:
                 type: number
+                format: int32
                 example: 5
                 description: >-
                   Unique value [0..*] within the segment, guaranteeing an
@@ -1217,7 +1202,7 @@ components:
       additionalProperties: false
     stationCodeListDef:
       description: >-
-        code list used for the station codes: UIC = UIC codes as used by merits
+        Code list used for the station codes: UIC = UIC codes as used by merits
         (UIC country code + local code) = Default// UIC-R = UIC codes for
         reservation (UIC country code + local code reservation) // ERA = future
         ERA station code
@@ -1238,7 +1223,7 @@ components:
         country:
           type: string
     POICodeList:
-      description: 'code list used for the POI codes:'
+      description: Code list used for the POI codes.
       type: string
       default: UIC
     tripRef:
@@ -1350,12 +1335,19 @@ components:
         accuracy:
           description: to be proviced in degree
           type: number
+          format: float
         latitude:
-          description: to be provided in degree
+          description: >-
+            Geographic coordinate that specifies the north-south position of a point on the earth’s surface
           type: number
+          format: float
+          example: 46.948825
         longitude:
-          description: to be provided in degree
+          description: >-
+            Geographic coordinate that specifies the east-west position of a point on the earth’s surface.            
           type: number
+          format: float
+          example: 7.439122
       required:
         - latitude
         - longitude
@@ -1404,14 +1396,16 @@ components:
             type: string
         maxChanges:
           description: >-
-            Max amount of transport-product changes (0 for     direct
+            Max amount of transport-product changes (0 for direct
             connection, default/max=11)
           type: number
+          format: int32
         extendedChangeTime:
           description: >-
             OOS MVP Indicates additional transfer time required where a transfer
             is present in the resulting trip. Expressed in minutes
           type: number
+          format: int32
         PRMAssistance:
           description: >-
             OOS MVP Indicates a need for an itinerary where end-to-end PMR
@@ -1579,8 +1573,10 @@ components:
         currency:
           $ref: '#/components/schemas/currencyDef'
         amount:
+          description: amount in cents
           type: number
-        vatDetail:
+          format: int32
+        vatDetails:
           type: array
           items:
             type: object
@@ -1588,18 +1584,21 @@ components:
               country:
                 type: string
               amount:
+                description: amount in cents
                 type: number
+                format: int32
               percentage:
                 type: number
+                format: int32
               taxId:
                 type: string
               scope:
                 description: >-
-                  scope where the VAT applies: INTERNALTIONAL, NATIONAL,
+                  scope where the VAT applies: INTERNATIONAL, NATIONAL,
                   SHORT_DISTANCE, LONG_DISTANCE
                 type: string
             required:
-              - Country
+              - country
             additionalProperties: false
       required:
         - currency
@@ -1614,15 +1613,22 @@ components:
             system.
           type: string
         dateOfBirth:
-          description: YYYY-MM-DD (2017-07-21)
+          description: date of birth of the passenger
           type: string
+          format: date
         reductionCards:
+          description: reduction cards owned by the passenger 
           type: array
           items:
             $ref: '#/components/schemas/reductionCardReferenceDef'
         gender:
-          description: 'MALE,FEMALE,X (only in case of night trains)'
+          description: >- 
+            gender of the passenger, which is important the in case of night trains
           type: string
+          enum:
+           - MALE
+           - FEMALE
+           - X
         type:
           type: string
           description: Values from the traveler type code list IRS 90918-10
@@ -1637,7 +1643,7 @@ components:
           description: code of the card type according to code list
           type: string
         cardValueType:
-          description: codelist for the cardValue provided
+          description: code list for the cardValue provided
           type: string
         cardName:
           description: card name for printing on tickets
@@ -1662,7 +1668,7 @@ components:
     passengerDetailsDef:
       type: object
       properties:
-        eMail:
+        eMails:
           type: array
           items:
             type: string
@@ -1679,7 +1685,7 @@ components:
           type: string
         title:
           type: string
-        phone:
+        phones:
           type: array
           items:
             type: string
@@ -1819,8 +1825,8 @@ components:
           type: string
           description: >-
             the product code expressed in the provider system (could be a
-            mapping from an even lower-level provide
-          example: r '0100345' or 'ITHABUSA1' or 'PT00AD'
+            mapping from an even lower-level provider).
+          example: PT00AD
         description:
           type: string
           description: the textual description of the product
@@ -1833,14 +1839,14 @@ components:
         refundable:
           type: string
           enum:
-            - 'YES'
-            - 'NO'
+            - YES
+            - NO
             - WITH_CONDITIONS
         exchangeable:
           type: string
           enum:
-            - 'YES'
-            - 'NO'
+            - YES
+            - NO
             - WITH_CONDITIONS
         serviceClass:
           $ref: '#/components/schemas/serviceClassDef'
@@ -1874,7 +1880,7 @@ components:
               $ref: '#/components/schemas/dateTime'
             validUntil:
               $ref: '#/components/schemas/dateTime'
-    nonReservation:
+    admission:
       type: object
       properties:
         id:
@@ -1891,6 +1897,7 @@ components:
           type: boolean
         numericAvailability:
           type: number
+          format: int32
         reservations:
           type: array
           items:
@@ -1916,13 +1923,13 @@ components:
                   - INCLUDED
               ancillary:
                 $ref: '#/components/schemas/ancillaryRef'
-    nonReservationRef:
+    admissionRef:
       type: object
       properties:
         href:
           type: string
           format: url
-          example: 'http://some.provider/nonReservation/2345'
+          example: 'http://some.provider/admission/2345'
         title:
           type: string
           example: NRT Bruxelles-Amsterdam IC 2ndClass 20200712
@@ -1940,7 +1947,9 @@ components:
         offerPart:
           $ref: '#/components/schemas/offerPart'
         numericAvailability:
+          description: denotes the number of seats available for booking
           type: number
+          format: int32
         reservationDetails:
           type: array
           items:
@@ -1971,7 +1980,9 @@ components:
         offerPart:
           $ref: '#/components/schemas/offerPart'
         numericAvailability:
+          description: denotes the number of seats available for booking
           type: number
+          format: int32
         ancillaries:
           type: array
           items:
@@ -2016,7 +2027,7 @@ components:
             - BACKWARD
             - UNKNOWN
       description: >-
-        once booked, this element will containt the details of the space
+        once booked, this element will contain the details of the space
         reserved
     segmentIndex:
       type: integer
@@ -2095,8 +2106,8 @@ components:
           example: ICE wifi onboard 20200711 or  ICE Bruxelles-Frankfurt child 20200712
       description: >-
         References all the offerparts elements in an uniform format. an
-        offerPartRef can therefore refer to reservation, integrated reservaion
-        nonreservation or ancillary (in its href)
+        offerPartRef can therefore refer to reservation, integrated reservation
+        admission or ancillary (in its href)
     fareDef:
       type: object
       properties:
@@ -2231,6 +2242,7 @@ components:
             - PAID
             - FULFILLED
             - CANCELLED
+            - REFUNDED
             - ERROR
         requestedInformation:
           $ref: '#/components/schemas/requestedInformation'
