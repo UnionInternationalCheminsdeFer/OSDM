@@ -116,6 +116,10 @@ paths:
                       $ref: '#/components/schemas/LocationRef'
         '400':
           description: bad input parameter
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
   '/locations/{id}':
     get:
       tags:
@@ -134,7 +138,7 @@ paths:
           description: ID of the trip to get.
       responses:
         '200':
-          description: the set of stations matching the provided input
+          description: the set of locations matching the provided input
           headers:
             Cache-Control:
               schema:
@@ -147,6 +151,10 @@ paths:
                 $ref: '#/components/schemas/Location'
         '400':
           description: bad input parameter
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
   '/trips/{id}':
     get:
       tags:
@@ -186,6 +194,10 @@ paths:
                 $ref: '#/components/schemas/TripDef'
         '400':
           description: bad input parameter
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
   '/trips-collection/{id}':
     get:
       tags:
@@ -240,10 +252,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No trip(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -252,6 +266,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
   /trips-collection:
@@ -293,10 +311,13 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No trip(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+
         '401':
           description: Unauthorized
         '403':
@@ -305,6 +326,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
   '/trip-offers-collection/{id}':
@@ -361,10 +386,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No trip(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'          
         '401':
           description: Unauthorized
         '403':
@@ -373,6 +400,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
   /trip-offers-collection:
@@ -414,10 +445,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No trip(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -425,7 +458,11 @@ paths:
         '404':
           description: Not Found
         '500':
-          description: Internal server error
+          description: Internal server error        
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
   '/trip-offers/{id}':
@@ -460,10 +497,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No trip(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -472,6 +511,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'         
         '501':
           description: Not implemented
   '/offers/{id}':
@@ -506,10 +549,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No trip(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -518,6 +563,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
   '/passengers/{id}':
@@ -551,10 +600,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No passenger(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -563,6 +614,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
     patch:
@@ -598,10 +653,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No passenger(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -610,6 +667,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
   '/products/{id}':
@@ -643,10 +704,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No passenger(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -655,6 +718,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
   '/admissions/{id}':
@@ -688,10 +755,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No passenger(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -700,6 +769,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
   '/reservations/{id}':
@@ -733,10 +806,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No passenger(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -745,6 +820,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
   '/integrated-reservations/{id}':
@@ -778,10 +857,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No passenger(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -790,6 +871,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
   '/ancillaries/{id}':
@@ -823,10 +908,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No passenger(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -835,6 +922,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
   /bookings:
@@ -875,10 +966,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No trip(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -887,6 +980,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
   '/bookings/{id}':
@@ -920,10 +1017,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No passenger(s) found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -932,13 +1031,17 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
     delete:
       tags:
         - Bookings
       summary: >-
-        The delete booking service removes the booking  with the id provided. It
+        The delete booking service removes the booking with the id provided. It
         is only possible before the booking is confirmed.
       operationId: deleteBooking
       parameters:
@@ -952,11 +1055,13 @@ paths:
           description: ID of the booking to delete.
       responses:
         '200':
-          description: booking cancelled
-        '204':
-          description: No passenger(s) found
+          description: booking successfully cancelled
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -965,6 +1070,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
   '/tickets/{id}':
@@ -998,10 +1107,12 @@ paths:
                 description: >-
                   The language of translatable strings in the response (see
                   RFC2616-sec14.12).
-        '204':
-          description: No ticket found
         '400':
           description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -1010,6 +1121,10 @@ paths:
           description: Not Found
         '500':
           description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
 
