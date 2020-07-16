@@ -2351,7 +2351,7 @@ components:
           type: string
           format: uri
           description: >-
-            An absolute URI that identifies the problem type.  When dereferenced,
+            An absolute URI that identifies the problem type. When dereferenced,
             it SHOULD provide human-readable documentation for the problem type
             (e.g., using HTML).
           default: 'about:blank'
@@ -2359,7 +2359,7 @@ components:
         title:
           type: string
           description: >-
-            A short, summary of the problem type. Written in english and readable
+            A short, summary of the problem type. Written in English and readable
             for engineers (usually not suited for non technical stakeholders and
             not localized); example: Service Unavailable
         status:
