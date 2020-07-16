@@ -113,7 +113,7 @@ paths:
                   locations:
                     type: array
                     items:
-                      $ref: '#/components/schemas/locationRef'
+                      $ref: '#/components/schemas/LocationRef'
         '400':
           description: bad input parameter
   '/locations/{id}':
@@ -144,7 +144,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/location'
+                $ref: '#/components/schemas/Location'
         '400':
           description: bad input parameter
   '/trips/{id}':
@@ -183,7 +183,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tripDef'
+                $ref: '#/components/schemas/TripDef'
         '400':
           description: bad input parameter
   '/trips-collection/{id}':
@@ -232,7 +232,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tripsCollection'
+                $ref: '#/components/schemas/TripsCollection'
           headers:
             Content-Language:
               schema:
@@ -278,14 +278,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/tripSearchCriteria'
+              $ref: '#/components/schemas/TripSearchCriteria'
       responses:
         '200':
           description: Trip(s) found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tripsCollection'
+                $ref: '#/components/schemas/TripsCollection'
           headers:
             Content-Language:
               schema:
@@ -353,7 +353,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tripOffersCollection'
+                $ref: '#/components/schemas/TripOffersCollection'
           headers:
             Content-Language:
               schema:
@@ -399,14 +399,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/tripOfferRequest'
+              $ref: '#/components/schemas/TripOfferRequest'
       responses:
         '200':
           description: Trip(s) found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tripOffersCollection'
+                $ref: '#/components/schemas/TripOffersCollection'
           headers:
             Content-Language:
               schema:
@@ -452,7 +452,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tripOffer'
+                $ref: '#/components/schemas/TripOffer'
           headers:
             Content-Language:
               schema:
@@ -498,7 +498,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/offer'
+                $ref: '#/components/schemas/Offer'
           headers:
             Content-Language:
               schema:
@@ -543,7 +543,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/passenger'
+                $ref: '#/components/schemas/Passenger'
           headers:
             Content-Language:
               schema:
@@ -583,14 +583,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/passenger'
+              $ref: '#/components/schemas/Passenger'
       responses:
         '200':
           description: Passenger found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/passenger'
+                $ref: '#/components/schemas/Passenger'
           headers:
             Content-Language:
               schema:
@@ -635,7 +635,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/product'
+                $ref: '#/components/schemas/Product'
           headers:
             Content-Language:
               schema:
@@ -680,7 +680,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/admission'
+                $ref: '#/components/schemas/Admission'
           headers:
             Content-Language:
               schema:
@@ -725,7 +725,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/reservation'
+                $ref: '#/components/schemas/Reservation'
           headers:
             Content-Language:
               schema:
@@ -770,7 +770,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/integratedReservation'
+                $ref: '#/components/schemas/IntegratedReservation'
           headers:
             Content-Language:
               schema:
@@ -815,7 +815,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ancillary'
+                $ref: '#/components/schemas/Ancillary'
           headers:
             Content-Language:
               schema:
@@ -860,14 +860,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/bookingRequest'
+              $ref: '#/components/schemas/BookingRequest'
       responses:
         '200':
           description: Booking created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/booking'
+                $ref: '#/components/schemas/Booking'
           headers:
             Content-Language:
               schema:
@@ -912,7 +912,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/booking'
+                $ref: '#/components/schemas/Booking'
           headers:
             Content-Language:
               schema:
@@ -990,7 +990,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ticket'
+                $ref: '#/components/schemas/Ticket'
           headers:
             Content-Language:
               schema:
@@ -1012,9 +1012,12 @@ paths:
           description: Internal server error
         '501':
           description: Not implemented
+
+## Components
+
 components:
   schemas:
-    link:
+    Link:
       type: object
       required:
         - contentTypes
@@ -1049,15 +1052,15 @@ components:
         The underlying system may provide additional links pointing on further
         information (such as HTML download links, websites or extended APIs).
         Mechanism to add flexible extensions specific to an underlying system.
-    segment:
+    Segment:
       type: object
       properties:
         index:
           type: integer
         origin:
-          $ref: '#/components/schemas/locationRef'
+          $ref: '#/components/schemas/LocationRef'
         destination:
-          $ref: '#/components/schemas/locationRef'
+          $ref: '#/components/schemas/LocationRef'
         seqId:
           description: ordering of the trains
           type: number
@@ -1092,7 +1095,7 @@ components:
                 Line number in case the vehical does not have a number
               type: string
             serviceBrand:
-              $ref: '#/components/schemas/serviceBrandCodeDef'
+              $ref: '#/components/schemas/ServiceBrandCodeDef'
             transportMode:
               description: >-
                 Transport mode (code list of MERITS). Optional for offer
@@ -1105,7 +1108,7 @@ components:
             type: object
             properties:
               station:
-                $ref: '#/components/schemas/locationRef'
+                $ref: '#/components/schemas/LocationRef'
               departureDateTime:
                 description: date and time in the time zone of the station
                 type: string
@@ -1143,11 +1146,11 @@ components:
         - seqId
         - vehicle
       additionalProperties: false
-    stationDef:
+    StationDef:
       type: object
       properties:
         codeList:
-          $ref: '#/components/schemas/stationCodeListDef'
+          $ref: '#/components/schemas/StationCodeListDef'
         country:
           type: string
         localCode:
@@ -1158,7 +1161,7 @@ components:
         - country
         - localCode
       additionalProperties: false
-    locationRef:
+    LocationRef:
       type: object
       properties:
         href:
@@ -1168,7 +1171,7 @@ components:
         title:
           type: string
           example: Bruxelles-Midi
-    location:
+    Location:
       type: object
       properties:
         id:
@@ -1184,23 +1187,23 @@ components:
             - STATION_ZONE
             - POI
         station:
-          $ref: '#/components/schemas/stationDef'
+          $ref: '#/components/schemas/StationDef'
         POI:
           $ref: '#/components/schemas/POI'
         address:
-          $ref: '#/components/schemas/address'
+          $ref: '#/components/schemas/Address'
         coords:
-          $ref: '#/components/schemas/geoCoordinateDef'
+          $ref: '#/components/schemas/GeoCoordinateDef'
         links:
           type: array
           description: Context information required by the services.
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/Link'
       required:
         - country
         - LocationCode
       additionalProperties: false
-    stationCodeListDef:
+    StationCodeListDef:
       description: >-
         Code list used for the station codes: UIC = UIC codes as used by merits
         (UIC country code + local code) = Default// UIC-R = UIC codes for
@@ -1208,7 +1211,7 @@ components:
         ERA station code
       type: string
       default: UIC
-    address:
+    Address:
       type: object
       description: used to encode an address
       properties:
@@ -1226,7 +1229,7 @@ components:
       description: Code list used for the POI codes.
       type: string
       default: UIC
-    tripRef:
+    TripRef:
       type: object
       properties:
         href:
@@ -1237,18 +1240,18 @@ components:
           type: string
           example: 'Bruxelles-Midi - Paris-Nord 20200701 10:05'
         origin:
-          $ref: '#/components/schemas/locationRef'
+          $ref: '#/components/schemas/LocationRef'
         destination:
-          $ref: '#/components/schemas/locationRef'
+          $ref: '#/components/schemas/LocationRef'
         serviceBrands:
           type: array
           items:
-            $ref: '#/components/schemas/serviceBrandCodeDef'
+            $ref: '#/components/schemas/ServiceBrandCodeDef'
         departureTime:
-          $ref: '#/components/schemas/dateTime'
+          $ref: '#/components/schemas/DateTime'
         arrivalTime:
-          $ref: '#/components/schemas/dateTime'
-    tripDef:
+          $ref: '#/components/schemas/DateTime'
+    TripDef:
       type: object
       properties:
         id:
@@ -1258,11 +1261,11 @@ components:
         segments:
           type: array
           items:
-            $ref: '#/components/schemas/segment'
+            $ref: '#/components/schemas/Segment'
         origin:
-          $ref: '#/components/schemas/locationRef'
+          $ref: '#/components/schemas/LocationRef'
         destination:
-          $ref: '#/components/schemas/locationRef'
+          $ref: '#/components/schemas/LocationRef'
         duration:
           type: string
           description: >-
@@ -1273,9 +1276,9 @@ components:
           type: array
           description: Context information required by the services.
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/Link'
       additionalProperties: false
-    serviceBrandCodeDef:
+    ServiceBrandCodeDef:
       description: >-
         Service brand codes allowed in response, code list can be found on 
         [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list](https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
@@ -1295,7 +1298,7 @@ components:
         - country
         - localCode
       additionalProperties: false
-    tripsCollection:
+    TripsCollection:
       type: object
       properties:
         id:
@@ -1305,7 +1308,7 @@ components:
         tripsCollection:
           type: array
           items:
-            $ref: '#/components/schemas/tripRef'
+            $ref: '#/components/schemas/TripRef'
         scrollBackContext:
           type: string
           description: >-
@@ -1319,8 +1322,8 @@ components:
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
-    geoCoordinateDef:
+            $ref: '#/components/schemas/Link'
+    GeoCoordinateDef:
       type: object
       properties:
         system:
@@ -1352,7 +1355,7 @@ components:
         - latitude
         - longitude
       additionalProperties: false
-    dateTime:
+    DateTime:
       description: >-
         Local date/time of the underlying system (ISO notation see
         RFC3339-sec5.6). Timezone is related to station time, therefore it must
@@ -1361,13 +1364,13 @@ components:
         TIMEZONE as well.
       type: string
       format: date-time
-    tripSearchCriteria:
+    TripSearchCriteria:
       type: object
       properties:
         origin:
-          $ref: '#/components/schemas/location'
+          $ref: '#/components/schemas/Location'
         destination:
-          $ref: '#/components/schemas/location'
+          $ref: '#/components/schemas/Location'
         viaValues:
           description: >-
             Ordered list of via locations within the trip. Unique code value has
@@ -1375,9 +1378,9 @@ components:
             underlying system.
           type: array
           items:
-            $ref: '#/components/schemas/location'
+            $ref: '#/components/schemas/Location'
         traveldateTime:
-          $ref: '#/components/schemas/dateTime'
+          $ref: '#/components/schemas/DateTime'
         isArrival:
           description: >-
             Defines whether or not the given travel date/time is the latest
@@ -1415,24 +1418,24 @@ components:
       required:
         - originValue
         - destinationValue
-    offerSearchCriteria:
+    OfferSearchCriteria:
       type: object
       properties:
         flexibilities:
           description: Defines the flexibility levels desired in the fares returned
           type: array
           items:
-            $ref: '#/components/schemas/flexibility'
+            $ref: '#/components/schemas/Flexibility'
         classes:
           type: array
           items:
-            $ref: '#/components/schemas/serviceClassDef'
+            $ref: '#/components/schemas/ServiceClassDef'
           description: >-
             Defines the comfort classes desired for the fares returned (1st vs
             second, possibly refined A,B,C,D selection)
         currency:
-          $ref: '#/components/schemas/currencyDef'
-    tripOfferRequest:
+          $ref: '#/components/schemas/CurrencyDef'
+    TripOfferRequest:
       type: object
       properties:
         tripId:
@@ -1447,18 +1450,18 @@ components:
           format: url
           example: 'http://some.provider/trip/2345'
         trip:
-          $ref: '#/components/schemas/tripDef'
+          $ref: '#/components/schemas/TripDef'
         requestedSection:
-          $ref: '#/components/schemas/travelSectionDef'
+          $ref: '#/components/schemas/TravelSectionDef'
         passengers:
           type: array
           items:
-            $ref: '#/components/schemas/passengerDef'
+            $ref: '#/components/schemas/PassengerDef'
         tripSearchCriteria:
-          $ref: '#/components/schemas/tripSearchCriteria'
+          $ref: '#/components/schemas/TripSearchCriteria'
         OfferSearchCriteria:
-          $ref: '#/components/schemas/offerSearchCriteria'
-    tripOffer:
+          $ref: '#/components/schemas/OfferSearchCriteria'
+    TripOffer:
       type: object
       properties:
         id:
@@ -1466,20 +1469,20 @@ components:
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
         trip:
-          $ref: '#/components/schemas/tripRef'
+          $ref: '#/components/schemas/TripRef'
         offers:
           type: array
           items:
-            $ref: '#/components/schemas/offerRef'
+            $ref: '#/components/schemas/OfferRef'
         passengers:
           type: array
           items:
-            $ref: '#/components/schemas/passengerRef'
+            $ref: '#/components/schemas/PassengerRef'
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
-    tripOfferRef:
+            $ref: '#/components/schemas/Link'
+    TripOfferRef:
       type: object
       properties:
         href:
@@ -1489,46 +1492,46 @@ components:
         title:
           type: string
           example: 'Bruxelles-Midi 10:05 20200701'
-    requestedInformation:
+    RequestedInformation:
       type: string
       description: >-
         regular-expression indicating the data that must be set in the data
         model in order to proceed to next step of the process
-    offerSummary:
+    OfferSummary:
       type: object
       properties:
         minimalPrice:
-          $ref: '#/components/schemas/currencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPriceDef'
         overallServiceClass:
-          $ref: '#/components/schemas/serviceClassDef'
+          $ref: '#/components/schemas/ServiceClassDef'
         overallServiceLevel:
-          $ref: '#/components/schemas/serviceLevelIdDef'
+          $ref: '#/components/schemas/ServiceLevelIdDef'
         overallFlexibility:
-          $ref: '#/components/schemas/flexibility'
-    offer:
+          $ref: '#/components/schemas/Flexibility'
+    Offer:
       type: object
       properties:
         offerSummary:
-          $ref: '#/components/schemas/offerSummary'
+          $ref: '#/components/schemas/OfferSummary'
         requestedInformation:
-          $ref: '#/components/schemas/requestedInformation'
+          $ref: '#/components/schemas/RequestedInformation'
         trip:
-          $ref: '#/components/schemas/tripRef'
+          $ref: '#/components/schemas/TripRef'
         validFrom:
-          $ref: '#/components/schemas/dateTime'
+          $ref: '#/components/schemas/DateTime'
         validTo:
-          $ref: '#/components/schemas/dateTime'
+          $ref: '#/components/schemas/DateTime'
         offerParts:
-          $ref: '#/components/schemas/offerPartRef'
+          $ref: '#/components/schemas/OfferPartRef'
         fares:
           type: array
           items:
-            $ref: '#/components/schemas/fareDef'
+            $ref: '#/components/schemas/FareDef'
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
-    offerRef:
+            $ref: '#/components/schemas/Link'
+    OfferRef:
       type: object
       properties:
         href:
@@ -1538,7 +1541,7 @@ components:
         title:
           type: string
           example: 'Bruxelles-Midi- Paris-Nord 10:05 20200701 NF 50 EUR'
-    tripOffersCollection:
+    TripOffersCollection:
       type: object
       properties:
         id:
@@ -1548,7 +1551,7 @@ components:
         tripOffers:
           type: array
           items:
-            $ref: '#/components/schemas/tripOfferRef'
+            $ref: '#/components/schemas/TripOfferRef'
         scrollBackContext:
           type: string
           description: >-
@@ -1562,16 +1565,16 @@ components:
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
-    currencyDef:
+            $ref: '#/components/schemas/Link'
+    CurrencyDef:
       description: ISO4217 currency codes
       type: string
-    currencyPriceDef:
+    CurrencyPriceDef:
       type: object
       minProperties: 1
       properties:
         currency:
-          $ref: '#/components/schemas/currencyDef'
+          $ref: '#/components/schemas/CurrencyDef'
         amount:
           description: amount in cents
           type: number
@@ -1604,7 +1607,7 @@ components:
         - currency
         - amount
       additionalProperties: false
-    passengerDef:
+    PassengerDef:
       type: object
       properties:
         passengerReference:
@@ -1620,10 +1623,10 @@ components:
           description: reduction cards owned by the passenger 
           type: array
           items:
-            $ref: '#/components/schemas/reductionCardReferenceDef'
+            $ref: '#/components/schemas/ReductionCardReferenceDef'
         gender:
           description: >- 
-            gender of the passenger, which is important the in case of night trains
+            gender of the passenger, which is important in the case of night trains
           type: string
           enum:
            - MALE
@@ -1636,7 +1639,7 @@ components:
         - travelerId
         - dateOfBirth
       additionalProperties: false
-    reductionCardReferenceDef:
+    ReductionCardReferenceDef:
       type: object
       properties:
         cardValue:
@@ -1653,19 +1656,19 @@ components:
           description: >-
             RICS company code or the upcoming compatible ERA company code. In
             case proprietary codes are used on a bilateral base the codes must
-            have at least 5 positions and start with x
+            have at least 5 positions and start with x.
         serviceClasses:
           description: >-
             list of service classes in case this class is available for
             different classes
           type: array
           items:
-            $ref: '#/components/schemas/serviceClassDef'
+            $ref: '#/components/schemas/ServiceClassDef'
       required:
         - cardId
         - cardValueType
       additionalProperties: false
-    passengerDetailsDef:
+    PassengerDetailsDef:
       type: object
       properties:
         eMails:
@@ -1690,7 +1693,7 @@ components:
           items:
             type: string
       additionalProperties: false
-    serviceClassDef:
+    ServiceClassDef:
       type: object
       properties:
         id:
@@ -1717,13 +1720,13 @@ components:
       required:
         - id
       additionalProperties: false
-    travelSectionDef:
+    TravelSectionDef:
       type: object
       properties:
         start:
-          $ref: '#/components/schemas/location'
+          $ref: '#/components/schemas/Location'
         end:
-          $ref: '#/components/schemas/location'
+          $ref: '#/components/schemas/Location'
         segmentId:
           description: >-
             reference to a trip segment in case the section corresponds to a
@@ -1733,7 +1736,7 @@ components:
         - start
         - end
       additionalProperties: false
-    passengerRef:
+    PassengerRef:
       type: object
       properties:
         href:
@@ -1743,7 +1746,7 @@ components:
         title:
           type: string
           example: André Dupont
-    passenger:
+    Passenger:
       type: object
       properties:
         id:
@@ -1751,60 +1754,60 @@ components:
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
         passengerDef:
-          $ref: '#/components/schemas/passengerDef'
+          $ref: '#/components/schemas/PassengerDef'
         passengerDetailsDef:
-          $ref: '#/components/schemas/passengerDetailsDef'
+          $ref: '#/components/schemas/PassengerDetailsDef'
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
-    serviceLevelIdDef:
+            $ref: '#/components/schemas/Link'
+    ServiceLevelIdDef:
       description: 'code of the service level, codelist in IRS 90918-1'
       type: string
-    flexibility:
+    Flexibility:
       type: string
       enum:
         - FULLFLEX
         - MIDFLEX
         - NONFLEX
-    offerPart:
+    OfferPart:
       type: object
       properties:
         price:
-          $ref: '#/components/schemas/currencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPriceDef'
         pricingMode:
           type: string
           enum:
             - COLLECTIVE
             - INDIVIDUAL
         validAsOf:
-          $ref: '#/components/schemas/dateTime'
+          $ref: '#/components/schemas/DateTime'
         validUntil:
-          $ref: '#/components/schemas/dateTime'
+          $ref: '#/components/schemas/DateTime'
         reductionsApplied:
           type: array
           items:
-            $ref: '#/components/schemas/reductionCardReferenceDef'
+            $ref: '#/components/schemas/ReductionCardReferenceDef'
         passengerRefs:
           type: array
           items:
-            $ref: '#/components/schemas/passengerRef'
+            $ref: '#/components/schemas/PassengerRef'
         validFrom:
-          $ref: '#/components/schemas/dateTime'
+          $ref: '#/components/schemas/DateTime'
         validTo:
-          $ref: '#/components/schemas/dateTime'
+          $ref: '#/components/schemas/DateTime'
         productRefs:
           type: array
           items:
             type: object
             properties:
               productRef:
-                $ref: '#/components/schemas/productRef'
+                $ref: '#/components/schemas/ProductRef'
               segmentRefs:
                 type: array
                 items:
                   type: string
-    productRef:
+    ProductRef:
       type: object
       properties:
         href:
@@ -1814,7 +1817,7 @@ components:
         title:
           type: string
           example: TGV Lyria Loisir 2
-    product:
+    Product:
       type: object
       properties:
         id:
@@ -1824,18 +1827,19 @@ components:
         code:
           type: string
           description: >-
-            the product code expressed in the provider system (could be a
+            The product code expressed in the provider system (could be a
             mapping from an even lower-level provider).
           example: PT00AD
         description:
           type: string
           description: the textual description of the product
-          example: loisir non-flex adult fare
+          example: Loisir Non-flex Adult Fare
         conditions:
           type: array
           items:
-            $ref: '#/components/schemas/productCondition'
-          description: structured description of the sales or aftersales conditions
+            $ref: '#/components/schemas/ProductCondition'
+          description: >-
+            Structured description of the sales or aftersales conditions.
         refundable:
           type: string
           enum:
@@ -1849,14 +1853,14 @@ components:
             - NO
             - WITH_CONDITIONS
         serviceClass:
-          $ref: '#/components/schemas/serviceClassDef'
+          $ref: '#/components/schemas/ServiceClassDef'
         fulfillmentType:
           type: string
         serviceConstraintText:
           type: string
         carrierConstraintText:
           type: string
-    productCondition:
+    ProductCondition:
       type: object
       properties:
         type:
@@ -1868,19 +1872,19 @@ components:
         description:
           type: string
         validFrom:
-          $ref: '#/components/schemas/dateTime'
+          $ref: '#/components/schemas/DateTime'
         validUntil:
-          $ref: '#/components/schemas/dateTime'
+          $ref: '#/components/schemas/DateTime'
         aftersalesFee:
           type: object
           properties:
             price:
-              $ref: '#/components/schemas/currencyPriceDef'
+              $ref: '#/components/schemas/CurrencyPriceDef'
             validFrom:
-              $ref: '#/components/schemas/dateTime'
+              $ref: '#/components/schemas/DateTime'
             validUntil:
-              $ref: '#/components/schemas/dateTime'
-    admission:
+              $ref: '#/components/schemas/DateTime'
+    Admission:
       type: object
       properties:
         id:
@@ -1890,9 +1894,9 @@ components:
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/Link'
         offerPart:
-          $ref: '#/components/schemas/offerPart'
+          $ref: '#/components/schemas/OfferPart'
         reservationRequired:
           type: boolean
         numericAvailability:
@@ -1910,7 +1914,7 @@ components:
                   - MANDATORY
                   - INCLUDED
               reservation:
-                $ref: '#/components/schemas/reservationRef'
+                $ref: '#/components/schemas/ReservationRef'
         ancillaries:
           type: array
           items:
@@ -1922,8 +1926,8 @@ components:
                   - OPTIONAL
                   - INCLUDED
               ancillary:
-                $ref: '#/components/schemas/ancillaryRef'
-    admissionRef:
+                $ref: '#/components/schemas/AncillaryRef'
+    AdmissionRef:
       type: object
       properties:
         href:
@@ -1933,7 +1937,7 @@ components:
         title:
           type: string
           example: NRT Bruxelles-Amsterdam IC 2ndClass 20200712
-    reservation:
+    Reservation:
       type: object
       properties:
         id:
@@ -1943,9 +1947,9 @@ components:
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/Link'
         offerPart:
-          $ref: '#/components/schemas/offerPart'
+          $ref: '#/components/schemas/OfferPart'
         numericAvailability:
           description: denotes the number of seats available for booking
           type: number
@@ -1953,10 +1957,10 @@ components:
         reservationDetails:
           type: array
           items:
-            $ref: '#/components/schemas/reservationDetails'
-        reservationAssigned:
-          $ref: '#/components/schemas/reservationAssigned'
-    reservationRef:
+            $ref: '#/components/schemas/ReservationDetails'
+        ReservationAssigned:
+          $ref: '#/components/schemas/ReservationAssigned'
+    ReservationRef:
       type: object
       properties:
         href:
@@ -1965,8 +1969,8 @@ components:
           example: 'http://some.provider/reservation/2345'
         title:
           type: string
-          example: Seating ICE Bruxelles-Frankfurt child 20200712
-    integratedReservation:
+          example: Seating ICE Bruxelles-Frankfurt Child 2020-07-12
+    IntegratedReservation:
       type: object
       properties:
         id:
@@ -1976,9 +1980,9 @@ components:
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/Link'
         offerPart:
-          $ref: '#/components/schemas/offerPart'
+          $ref: '#/components/schemas/OfferPart'
         numericAvailability:
           description: denotes the number of seats available for booking
           type: number
@@ -1994,12 +1998,12 @@ components:
                   - OPTIONAL
                   - INCLUDED
               ancillary:
-                $ref: '#/components/schemas/ancillaryRef'
+                $ref: '#/components/schemas/AncillaryRef'
         reservationDetails:
-          $ref: '#/components/schemas/reservationDetails'
-        reservationAssigned:
-          $ref: '#/components/schemas/reservationAssigned'
-    integratedReservationRef:
+          $ref: '#/components/schemas/ReservationDetails'
+        ReservationAssigned:
+          $ref: '#/components/schemas/ReservationAssigned'
+    IntegratedReservationRef:
       type: object
       properties:
         href:
@@ -2008,14 +2012,14 @@ components:
           example: 'http://some.provider/integratedReservation/2345'
         title:
           type: string
-          example: ICE Bruxelles-Frankfurt child 20200712
-    reservationAssigned:
+          example: ICE Bruxelles-Frankfurt child 2020-07-12
+    ReservationAssigned:
       type: object
       properties:
         passenger:
-          $ref: '#/components/schemas/passengerRef'
+          $ref: '#/components/schemas/PassengerRef'
         segmentIndex:
-          $ref: '#/components/schemas/segmentIndex'
+          $ref: '#/components/schemas/SegmentIndex'
         placeNumber:
           type: string
         coachNumber:
@@ -2027,25 +2031,25 @@ components:
             - BACKWARD
             - UNKNOWN
       description: >-
-        once booked, this element will contain the details of the space
-        reserved
-    segmentIndex:
+        Once booked, this element will contain the details of the space
+        reserved.
+    SegmentIndex:
       type: integer
       description: >-
-        refers to the segment the compartment information relates to by its
-        index
-    reservationDetails:
+        Refers to the segment the compartment information relates to by its
+        index.
+    ReservationDetails:
       type: object
       properties:
         compartment:
           type: object
           properties:
             segmentIndex:
-              $ref: '#/components/schemas/segmentIndex'
+              $ref: '#/components/schemas/SegmentIndex'
             serviceClass:
-              $ref: '#/components/schemas/serviceClassDef'
+              $ref: '#/components/schemas/ServiceClassDef'
             serviceLevel:
-              $ref: '#/components/schemas/serviceLevelIdDef'
+              $ref: '#/components/schemas/ServiceLevelIdDef'
             compartmentOptions:
               type: array
               items:
@@ -2067,7 +2071,7 @@ components:
                         description: >-
                           the code for the option represented in the given
                           codelist
-    ancillary:
+    Ancillary:
       type: object
       properties:
         id:
@@ -2077,12 +2081,12 @@ components:
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/Link'
         offerPart:
-          $ref: '#/components/schemas/offerPart'
+          $ref: '#/components/schemas/OfferPart'
         category:
           type: string
-    ancillaryRef:
+    AncillaryRef:
       type: object
       properties:
         href:
@@ -2091,8 +2095,8 @@ components:
           example: 'http://some.provider/ancillary/2345'
         title:
           type: string
-          example: ICE wifi onboard 20200711
-    offerPartRef:
+          example: ICE Wifi Onboard 2020-07-11
+    OfferPartRef:
       type: object
       properties:
         href:
@@ -2103,12 +2107,12 @@ components:
             http://some.provider/integratedReservation/2345'
         title:
           type: string
-          example: ICE wifi onboard 20200711 or  ICE Bruxelles-Frankfurt child 20200712
+          example: ICE wifi onboard 2020-07-11 or ICE Bruxelles-Frankfurt child 2020-07-12
       description: >-
         References all the offerparts elements in an uniform format. an
         offerPartRef can therefore refer to reservation, integrated reservation
         admission or ancillary (in its href)
-    fareDef:
+    FareDef:
       type: object
       properties:
         fareIdentifier:
@@ -2193,7 +2197,7 @@ components:
       required:
         - fareType
       additionalProperties: false
-    bookingRequest:
+    BookingRequest:
       type: object
       properties:
         selectedOfferId:
@@ -2207,7 +2211,8 @@ components:
             type: string
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
-            description: 'if relevant, ids of the selected optional reservations'
+            description: >-
+              If relevant, ids of the selected optional reservations.
         selectedAncillaries:
           type: array
           items:
@@ -2217,17 +2222,19 @@ components:
                 type: string
                 format: uuid
                 example: d290f1ee-6c54-4b01-90e6-d701748f0851
-                description: 'if relevant, ids of the selected optional ancillaries'
+                description: >-
+                  If relevant, ids of the selected optional ancillaries.
               passengerIds:
                 type: array
                 items:
                   type: string
                   format: uuid
                   example: d290f1ee-6c54-4b01-90e6-d701748f0851
-                description: the passengers the selected optional ancillaries are for
+                description: >-
+                  Id of the passengers the selected optional ancillaries are for.
       required:
         - selectedOfferId
-    booking:
+    Booking:
       type: object
       properties:
         id:
@@ -2245,28 +2252,28 @@ components:
             - REFUNDED
             - ERROR
         requestedInformation:
-          $ref: '#/components/schemas/requestedInformation'
+          $ref: '#/components/schemas/RequestedInformation'
         ticketTimeLimit:
-          $ref: '#/components/schemas/dateTime'
+          $ref: '#/components/schemas/DateTime'
         fulfillmentOptions:
           type: array
           items:
-            $ref: '#/components/schemas/fulfillmentOption'
+            $ref: '#/components/schemas/FulfillmentOption'
         bookedOffer:
-          $ref: '#/components/schemas/offerRef'
+          $ref: '#/components/schemas/OfferRef'
         passengers:
           type: array
           items:
-            $ref: '#/components/schemas/passengerRef'
+            $ref: '#/components/schemas/PassengerRef'
         tickets:
           type: array
           items:
-            $ref: '#/components/schemas/ticketRef'
+            $ref: '#/components/schemas/TicketRef'
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
-    bookingRef:
+            $ref: '#/components/schemas/Link'
+    BookingRef:
       type: object
       properties:
         href:
@@ -2276,13 +2283,13 @@ components:
         title:
           type: string
           example: booking 2345
-    fulfillmentOption:
+    FulfillmentOption:
       type: string
       enum:
         - ETICKET
         - PAPER
         - TICKETLESS
-    ticket:
+    Ticket:
       type: object
       properties:
         id:
@@ -2298,32 +2305,32 @@ components:
         offerParts:
           type: array
           items:
-            $ref: '#/components/schemas/offerPartRef'
+            $ref: '#/components/schemas/OfferPartRef'
         refundConditions:
           type: array
           items:
-            $ref: '#/components/schemas/refundCondition'
+            $ref: '#/components/schemas/RefundCondition'
         links:
           type: array
           items:
-            $ref: '#/components/schemas/link'
-    ticketRef:
+            $ref: '#/components/schemas/Link'
+    TicketRef:
       type: object
       properties:
         href:
           type: string
           format: url
-          example: 'http://some.provider/ticket/2345'
+          example: 'http://some.provider/Ticket/2345'
         title:
           type: string
-          example: ticket Paris-Barcelona Andre Dupont 20200723
-    refundCondition:
+          example: Ticket Paris-Barcelona Andre Dupont 2020-07-23
+    RefundCondition:
       type: object
       properties:
         totalFees:
-          $ref: '#/components/schemas/currencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPriceDef'
         refundableAmount:
-          $ref: '#/components/schemas/currencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPriceDef'
         fees:
           type: array
           items:
@@ -2336,4 +2343,43 @@ components:
                   - CARRIER
                   - PHYSICAL_HANDLING
               amount:
-                $ref: '#/components/schemas/currencyPriceDef'
+                $ref: '#/components/schemas/CurrencyPriceDef'
+    Problem:
+      type: object
+      properties:
+        type:
+          type: string
+          format: uri
+          description: >-
+            An absolute URI that identifies the problem type.  When dereferenced,
+            it SHOULD provide human-readable documentation for the problem type
+            (e.g., using HTML).
+          default: 'about:blank'
+          example: 'https://zalando.github.io/problem/constraint-violation'
+        title:
+          type: string
+          description: >-
+            A short, summary of the problem type. Written in english and readable
+            for engineers (usually not suited for non technical stakeholders and
+            not localized); example: Service Unavailable
+        status:
+          type: integer
+          format: int32
+          description: >-
+            The HTTP status code generated by the origin server for this occurrence
+            of the problem.
+          minimum: 100
+          maximum: 600
+          exclusiveMaximum: true
+          example: 503
+        detail:
+          type: string
+          description: >-
+            A human readable explanation specific to this occurrence of the
+            problem.
+          example: Connection to database timed out
+        instance:
+          type: string
+          format: uri
+          description: >-
+            An absolute URI that identifies the specific occurrence of the problem.
