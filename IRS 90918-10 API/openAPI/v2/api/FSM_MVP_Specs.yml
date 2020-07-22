@@ -1,13 +1,18 @@
-openapi: 3.0.0
+openapi: 3.0.3
 servers:
   - description: fsm dummy server
     url: 'https://virtserver.swaggerhub.com/Real-IT/FSM_MVP/1.0.0'
 info:
-  title: UIC 90918-10 - FSM
+  title: UIC 90918-10 - OSDM
   version: 0.0.1
   description: |
     ## Overview
-    Specifications for the OSDM API standard.
+    Specifications for the OSDM API standard. The OSDM specification supports two
+    modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
+    both mode, except that in allocator mode the API also returns fare information.
+    
+    The OSDM specification combines the nTM as well as the FSM initiative in one aligned
+    API interface.
     ## References
   contact:
     name: Nicolas Selleslagh
@@ -18,19 +23,27 @@ info:
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
   - name: Journey
-    description: functionalities related to timetable-only information
+    description: >-
+      resources to access timetable-only information
   - name: Offers
-    description: functionalities related to the exposure and selection of bookable offers
+    description: >-
+      resources to get bookable offers
   - name: Offer Parts
-    description: parts which an offer consists of, e.g., admissions, reservations, integrated reservations or ancillaries  
+    description: >-
+      resources to manipulate parts of offer consisting of, e.g., admissions, reservations, integrated 
+      reservations or ancillaries  
   - name: Bookings
-    description: functionalities related to get, create and delete bookings
+    description: >-
+      resources to manipulate bookings
   - name: Passengers
-    description: allows manipulating passengers informations at every stage of the flow
+    description: >-
+      resources to manipulate passengers informations at every stage of the flow
   - name: Products
-    description: allows retrieving Products information on one or more products
-  - name: Tickets
-    description: allows to retrieve Tickets
+    description: >-
+      resources to retrieve products information on one or more products
+  - name: Tickets  
+    description: >-
+      resources to retrieve tickets
 paths:
   /locations:
     get:
