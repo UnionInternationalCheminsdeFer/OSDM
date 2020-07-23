@@ -102,6 +102,16 @@ paths:
             type: number
             format: int32
             default: 10
+        - in: query
+          name: includeBehaviour
+          description: >-
+            Influences whether referenced resources are returned in full or as references only
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - LOCATIONS
       responses:
         '200':
           description: the set of stations matching the provided input
@@ -113,7 +123,10 @@ paths:
                   locations:
                     type: array
                     items:
-                      $ref: '#/components/schemas/LocationRef'
+                      oneOf:
+                        - $ref: '#/components/schemas/LocationRef'
+                        - $ref: '#/components/schemas/Location'
+                    description: depending on the includeBehaviour either references or full location definitions will be returned
         '400':
           description: bad input parameter
           content:
@@ -126,7 +139,7 @@ paths:
         - Journey
       summary: retrieves a location element
       operationId: getLocationsId
-      description: allows to retrieve a complete description
+      description: allows to retrieve a complete location resource. A location resource is persistent and has a long time to live to allow long-term caching. Any update of the location information will lead to the creation of a new resource
       parameters:
         - in: path
           name: id
@@ -135,16 +148,16 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the trip to get.
+          description: ID of the location resource to be retrieved.
       responses:
         '200':
-          description: the set of locations matching the provided input
+          description: the retrieved location resource
           headers:
             Cache-Control:
               schema:
                 type: string
                 default: 'public, max-age=43200'
-                description: indicates if and how long the resource can be cached
+                description: A location resource is persistent and has a long time to live to allow long-term caching. Any update of the location information will lead to the creation of a new resource
           content:
             application/json:
               schema:
@@ -194,7 +207,7 @@ paths:
       operationId: getTripsId
       description: >-
         retrieves a trip element representing a train travel made of one or more
-        segments
+        segments. Depending on the includeBehaviour either references or full location definitions will be returned
       responses:
         '200':
           description: the requested trip
@@ -248,6 +261,18 @@ paths:
           schema:
             type: string
           required: false
+        - in: query
+          name: stopBehaviour
+          description: >-
+            Influences what stops are to be returned in response
+            (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
+            REAL_BOARDING_ALIGHTING returns all stops except virtual stops).
+          schema:
+            type: string
+            default: ORIGIN_DESTINATION_ONLY
+            enum:
+              - ORIGIN_DESTINATION_ONLY
+              - REAL_BOARDING_ALIGHTING
         - in: query
           name: includeBehaviour
           description: >-
@@ -394,6 +419,18 @@ paths:
             type: string
           required: false
         - in: query
+          name: stopBehaviour
+          description: >-
+            Influences what stops are to be returned in response
+            (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
+            REAL_BOARDING_ALIGHTING returns all stops except virtual stops).
+          schema:
+            type: string
+            default: ORIGIN_DESTINATION_ONLY
+            enum:
+              - ORIGIN_DESTINATION_ONLY
+              - REAL_BOARDING_ALIGHTING                    
+        - in: query
           name: includeBehaviour
           description: >-
             Influences whether referenced resources are returned in full or as references only
@@ -519,6 +556,20 @@ paths:
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the trip to get.
+        - in: query
+          name: includeBehaviour
+          description: >-
+            Influences whether referenced resources are returned in full or as references only
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - TRIPS
+                - TRIPS.LOCATIONS
+                - OFFERS
+                - OFFERS.OFFERPARTS
+                - PASSENGERS
       responses:
         '200':
           description: TripOffer found
@@ -558,9 +609,7 @@ paths:
       tags:
         - Offers
       summary: >-
-        The tripOffer service returns different offes and trips for a specified
-        origin and destination (and via). The unique codes of the origin and
-        destination can be resolved using the locations service.
+        The get offers service returns the requested offer or bookedOffer with the requested included subresources
       operationId: getOffer
       parameters:
         - in: path
@@ -571,6 +620,18 @@ paths:
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the trip to get.
+        - in: query
+          name: includeBehaviour
+          description: >-
+            Influences whether referenced resources are returned in full or as references only
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - OFFERPARTS
+                - TRIP
+                - TRIP.LOCATIONS
       responses:
         '200':
           description: TripOffer found
@@ -734,6 +795,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/Product'
           headers:
+            Cache-Control:
+              schema:
+                type: string
+                default: 'public, max-age=43200'
+                description: A product resource has a long time to live to allow long-term caching. Any update of the product information will lead to the creation of a new resource
             Content-Language:
               schema:
                 type: string
@@ -760,7 +826,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-  '/admissions/{id}':
+  '/offers/{offerId}/admissions/{id}':
     get:
       tags:
         - Offer Parts
@@ -769,6 +835,14 @@ paths:
         admission with the id provided
       operationId: getadmission
       parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer the offerPart is part of.
         - in: path
           name: id
           schema:
@@ -811,7 +885,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-  '/reservations/{id}':
+  '/offers/{offerId}/reservations/{id}':
     get:
       tags:
         - Offer Parts
@@ -820,6 +894,14 @@ paths:
         with the id provided
       operationId: getReservation
       parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer the offerPart is part of.
         - in: path
           name: id
           schema:
@@ -862,7 +944,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-  '/integrated-reservations/{id}':
+  '/offers/{offerId}/integrated-reservations/{id}':
     get:
       tags:
         - Offer Parts
@@ -871,6 +953,14 @@ paths:
         IntegratedReservation with the id provided
       operationId: getIntegratedReservation
       parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer the offerPart is part of.      
         - in: path
           name: id
           schema:
@@ -913,7 +1003,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-  '/ancillaries/{id}':
+  '/offers/{offerId}/ancillaries/{id}':
     get:
       tags:
         - Offer Parts
@@ -922,6 +1012,14 @@ paths:
         the id provided
       operationId: getAncillary
       parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer the offerPart is part of.
         - in: path
           name: id
           schema:
@@ -1039,6 +1137,21 @@ paths:
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the product to get.
+        - in: query
+          name: includeBehaviour
+          description: >-
+            Influences whether referenced resources are returned in full or as references only
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - BOOKEDOFFERS.TRIP
+                - BOOKEDOFFERS.TRIP.LOCATIONS
+                - BOOKEDOFFERS
+                - BOOKEDOFFERS.OFFERPARTS
+                - PASSENGERS
+                - TICKETS
       responses:
         '200':
           description: booking found
@@ -1112,6 +1225,41 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+  '/tickets':
+    post:
+      tags:
+        - Tickets
+      summary: >-
+        The post tickets command triggers fulfillment of the booking based on the information currently contained in the proviced booking
+      operationId: postTicket
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '202': 
+          description: Fulfillment successfully initiated
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
   '/tickets/{id}':
     get:
       tags:
@@ -1136,6 +1284,173 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Ticket'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see
+                  RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+          
+  '/bookings/{bookingId}/RefundPropositions':
+    post:
+      tags:
+        - RefundPropositions
+      summary: >-
+        The post RefundPropositions initiates a refund process by creating   a refundProposition resourcen containing the needed information on the potential operation. The proposition can then be accepted via a patch, deleted or left to die at the end of its lifetime
+      operationId: postRefundProposition
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer the offerPart is part of.      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundPropositionRequest'
+      responses:
+        '200': 
+          description: Refund proposition created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefundProposition'
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+        
+  '/bookings/{bookingId}/RefundPropositions/{id}':
+    get:
+      tags:
+        - RefundPropositions
+      summary: >-
+        The get RefundProposition service returns the Refund proposition with the id
+        provided.
+      operationId: getRefundProposition
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer the offerPart is part of.      
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the product to get.
+      responses:
+        '200':
+          description: RefundProposition found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefundProposition'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see
+                  RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+    delete:
+      tags:
+        - RefundPropositions
+      summary: >-
+        The delete RefundProposition service cancels the Refund proposition with the id
+        provided. The resource is disposed and will not be mentioned in the booking anymore
+      operationId: deleteRefundProposition
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer the offerPart is part of.      
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the product to get.
+      responses:
+        '200':
+          description: RefundProposition found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefundProposition'
           headers:
             Content-Language:
               schema:
@@ -1204,16 +1519,23 @@ components:
         information (such as HTML download links, websites or extended APIs).
         Mechanism to add flexible extensions specific to an underlying system.
     Segment:
+      description: A segment represents a subsection of a trip that is realised with the same transport. In railways it is typically one train (between the moment traveller steps onboard until stepping out of that train), but could be using a different mean of transportation 
       type: object
       properties:
         index:
           type: integer
         origin:
-          $ref: '#/components/schemas/LocationRef'
+          oneOf:
+            - $ref: '#/components/schemas/LocationRef'
+            - $ref: '#/components/schemas/Location'
+          description: departure point of the segment
         destination:
-          $ref: '#/components/schemas/LocationRef'
+          oneOf:
+            - $ref: '#/components/schemas/LocationRef'
+            - $ref: '#/components/schemas/Location'
+          description: arrival point of the segment
         seqId:
-          description: ordering of the trains
+          description: sequence number of the segment in the ordering of all segments of the trip
           type: number
           format: int32
         transfer:
@@ -1254,6 +1576,7 @@ components:
               type: string
               additionalProperties: false
         stops:
+          description: the list of stops encountered between origin and destination. origin is the first stop mentioned and destination the last one. This list is only returned when the stopBehaviour is set to REAL_BOARDING_ALIGHTING
           type: array
           items:
             type: object
@@ -1298,16 +1621,26 @@ components:
         - vehicle
       additionalProperties: false
     Station:
+      description: Used to represent a station location. This is a location that can be used as origin and destination for a train journey
       type: object
       properties:
-        codeList:
-          $ref: '#/components/schemas/StationCodeListDef'
+        codes:
+          type: array
+          items:
+            type: object
+            properties:
+              codeList:
+                $ref: '#/components/schemas/StationCodeListDef'
+              stationCode:
+                type: string
+                description: the code representing the station in the specified codelist
+          description: the codes that can be used to represent the given station on the system. There can be several codes, in which case it is relevant to have a list of couples
         country:
           type: string
-        localCode:
-          type: string
+          description: the country the station is located in
         name:
           type: string
+          description : name of the station in the requested language
       required:
         - country
         - localCode
@@ -1354,7 +1687,7 @@ components:
       default: UIC
     Address:
       type: object
-      description: used to encode an address
+      description: used to encode an address using the standard street address attributes
       properties:
         street:
           type: string
@@ -1389,18 +1722,18 @@ components:
         title:
           type: string
           example: Bruxelles-Midi - Paris-Nord 20200701 10:05
-        origin:
-          $ref: '#/components/schemas/LocationRef'
-        destination:
-          $ref: '#/components/schemas/LocationRef'
-        serviceBrands:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceBrandCodeDef'
-        departureTime:
-          $ref: '#/components/schemas/DateTime'
-        arrivalTime:
-          $ref: '#/components/schemas/DateTime'
+      #  origin:
+      #  $ref: '#/components/schemas/LocationRef'
+      #  destination:
+      #    $ref: '#/components/schemas/LocationRef'
+      #  serviceBrands:
+      #    type: array
+      #    items:
+      #      $ref: '#/components/schemas/ServiceBrandCodeDef'
+      #  departureTime:
+      #    $ref: '#/components/schemas/DateTime'
+      #  arrivalTime:
+      #    $ref: '#/components/schemas/DateTime'
     TripDef:
       type: object
       properties:
@@ -1413,9 +1746,13 @@ components:
           items:
             $ref: '#/components/schemas/Segment'
         origin:
-          $ref: '#/components/schemas/LocationRef'
+          oneOf:
+            - $ref: '#/components/schemas/LocationRef'
+            - $ref: '#/components/schemas/Location'
         destination:
-          $ref: '#/components/schemas/LocationRef'
+          oneOf:
+            - $ref: '#/components/schemas/LocationRef'
+            - $ref: '#/components/schemas/Location'
         duration:
           type: string
           description: >-
@@ -1434,18 +1771,24 @@ components:
         [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list](https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
       type: integer
     POI:
+      description: POI (for point of Interest) represent a location that is not a train station but still relevant to the description of the trip. It could be a public transport stop, an exhibition, an event hall, a shopping mall etc.
       type: object
       properties:
-        codeList:
-          $ref: '#/components/schemas/POICodeList'
+        codes:
+          type: array
+          items:
+            type: object
+            properties:
+              codeList:
+                $ref: '#/components/schemas/POICodeList'
+              stationCode:
+                type: string
+                description: the code representing the POI in the specified codelist
+          description: the codes that can be used to represent the given POI on the system. There can be several codes, in which case it is relevant to have a list of couples
         country:
           description: country
           type: string
           example: Schweiz 
-        localCode:
-          description: TODO clarify semantics
-          type: string
-          example: TODO clarify
         name:
           description: name of the point of interest
           type: string
@@ -1480,6 +1823,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
     GeoCoordinate:
+      description: used to provide any geocoded location, regardless of environment, using long and lat coordinates
       type: object
       properties:
         system:
@@ -1524,6 +1868,25 @@ components:
     TripSearchCriteria:
       type: object
       properties:
+        includeBehaviour:
+          description: >-
+            Influences whether referenced resources are returned in full or as references only
+          type: array
+          items:
+            type: string
+            enum:
+              - TRIPS
+              - TRIPS.LOCATIONS
+        stopBehaviour:
+          description: >-
+            Influences what stops are to be returned in response
+            (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
+            REAL_BOARDING_ALIGHTING returns all stops except virtual stops).
+          type: string
+          default: ORIGIN_DESTINATION_ONLY
+          enum:
+            - ORIGIN_DESTINATION_ONLY
+            - REAL_BOARDING_ALIGHTING
         origin:
           $ref: '#/components/schemas/Location'
         destination:
@@ -1592,6 +1955,14 @@ components:
             second, possibly refined A,B,C,D selection)
         currency:
           $ref: '#/components/schemas/CurrencyDef'
+        includeBehaviour:
+          description: >-
+            Influences whether referenced resources are returned in full or as references only
+          type: array
+          items:
+            type: string
+            enum:
+              - OFFERPARTS
     TripOfferRequest:
       type: object
       properties:
@@ -1618,6 +1989,18 @@ components:
           $ref: '#/components/schemas/TripSearchCriteria'
         OfferSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
+        includeBehaviour:
+          description: >-
+            Influences whether referenced resources are returned in full or as references only
+          type: array
+          items:
+            type: string
+            enum:
+              - TRIPOFFERS
+              - TRIPOFFERS.TRIP
+              - TRIPOFFERS.OFFERS
+              - TRIPOFFERS.PASSENGERS
+      description: defines the parameters needed to request a trip, standalone or in the context of an offer request. Note at least one of the tripId, tripRef or trip elements must be populated.
     TripOffer:
       type: object
       properties:
@@ -1626,15 +2009,21 @@ components:
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
         trip:
-          $ref: '#/components/schemas/TripRef'
+          oneOf:
+            - $ref: '#/components/schemas/TripRef'
+            - $ref: '#/components/schemas/TripDef'
         offers:
           type: array
           items:
-            $ref: '#/components/schemas/OfferRef'
+            oneOf:
+              - $ref: '#/components/schemas/OfferRef'
+              - $ref: '#/components/schemas/Offer'
         passengers:
           type: array
           items:
-            $ref: '#/components/schemas/PassengerRef'
+            oneOf:
+              - $ref: '#/components/schemas/PassengerRef'
+              - $ref: '#/components/schemas/Passenger'
         links:
           type: array
           items:
@@ -1673,13 +2062,22 @@ components:
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         trip:
-          $ref: '#/components/schemas/TripRef'
+          oneOf:
+            - $ref: '#/components/schemas/TripRef'
+            - $ref: '#/components/schemas/TripDef'
         validFrom:
           $ref: '#/components/schemas/DateTime'
         validTo:
           $ref: '#/components/schemas/DateTime'
         offerParts:
-          $ref: '#/components/schemas/OfferPartRef'
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/OfferPartRef'
+              - $ref: '#/components/schemas/Admission'
+              - $ref: '#/components/schemas/Reservation'
+              - $ref: '#/components/schemas/IntegratedReservation'
+              - $ref: '#/components/schemas/Ancillary'
         fares:
           type: array
           items:
@@ -1708,7 +2106,9 @@ components:
         tripOffers:
           type: array
           items:
-            $ref: '#/components/schemas/TripOfferRef'
+            oneOf:
+            - $ref: '#/components/schemas/TripOfferRef'
+            - $ref: '#/components/schemas/TripOffer'
         scrollBackContext:
           type: string
           description: >-
@@ -2071,7 +2471,7 @@ components:
                   - MANDATORY
                   - INCLUDED
               reservation:
-                $ref: '#/components/schemas/ReservationRef'
+                $ref: '#/components/schemas/OfferPartRef'
         ancillaries:
           type: array
           items:
@@ -2083,17 +2483,8 @@ components:
                   - OPTIONAL
                   - INCLUDED
               ancillary:
-                $ref: '#/components/schemas/AncillaryRef'
-    AdmissionRef:
-      type: object
-      properties:
-        href:
-          type: string
-          format: url
-          example: 'http://some.provider/admission/2345'
-        title:
-          type: string
-          example: NRT Bruxelles-Amsterdam IC 2ndClass 20200712
+                $ref: '#/components/schemas/OfferPartRef'
+   
     Reservation:
       type: object
       properties:
@@ -2117,16 +2508,6 @@ components:
             $ref: '#/components/schemas/ReservationDetails'
         ReservationAssigned:
           $ref: '#/components/schemas/ReservationAssigned'
-    ReservationRef:
-      type: object
-      properties:
-        href:
-          type: string
-          format: url
-          example: 'http://some.provider/reservation/2345'
-        title:
-          type: string
-          example: Seating ICE Bruxelles-Frankfurt Child 2020-07-12
     IntegratedReservation:
       type: object
       properties:
@@ -2155,21 +2536,12 @@ components:
                   - OPTIONAL
                   - INCLUDED
               ancillary:
-                $ref: '#/components/schemas/AncillaryRef'
+                $ref: '#/components/schemas/OfferPartRef'
         reservationDetails:
           $ref: '#/components/schemas/ReservationDetails'
         ReservationAssigned:
           $ref: '#/components/schemas/ReservationAssigned'
-    IntegratedReservationRef:
-      type: object
-      properties:
-        href:
-          type: string
-          format: url
-          example: 'http://some.provider/integratedReservation/2345'
-        title:
-          type: string
-          example: ICE Bruxelles-Frankfurt child 2020-07-12
+   
     ReservationAssigned:
       type: object
       properties:
@@ -2243,16 +2615,6 @@ components:
           $ref: '#/components/schemas/OfferPart'
         category:
           type: string
-    AncillaryRef:
-      type: object
-      properties:
-        href:
-          type: string
-          format: url
-          example: 'http://some.provider/ancillary/2345'
-        title:
-          type: string
-          example: ICE Wifi Onboard 2020-07-11
     OfferPartRef:
       type: object
       properties:
@@ -2389,6 +2751,20 @@ components:
                   example: d290f1ee-6c54-4b01-90e6-d701748f0851
                 description: >-
                   Id of the passengers the selected optional ancillaries are for.
+        includeBehaviour:
+          description: >-
+            Influences whether referenced resources are returned in full or as references only
+          type: array
+          items:
+            type: string
+            enum:
+              - BOOKEDOFFERS
+              - BOOKEDOFFERS.TRIPS
+              - BOOKEDOFFERS.TRIPS.LOCATIONS
+              - BOOKEDOFFERS.OFFERPARTS
+              - PASSENGERS
+              - TICKETS
+              - REFUND_PROPOSITIONS
       required:
         - selectedOfferId
     Booking:
@@ -2398,6 +2774,9 @@ components:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        reference:
+          type: string
+          description: The unique booking reference in the provider system. Usually refers to an order number or PNR
         status:
           type: string
           enum:
@@ -2416,16 +2795,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentOption'
-        bookedOffer:
-          $ref: '#/components/schemas/OfferRef'
+        bookedOffers:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/OfferRef'
+            - $ref: '#/components/schemas/Offer'
         passengers:
           type: array
           items:
-            $ref: '#/components/schemas/PassengerRef'
+            oneOf:
+              - $ref: '#/components/schemas/PassengerRef'
+              - $ref: '#/components/schemas/Passenger'
         tickets:
           type: array
           items:
-            $ref: '#/components/schemas/TicketRef'
+            oneOf:
+              - $ref: '#/components/schemas/TicketRef'
+              - $ref: '#/components/schemas/Ticket'
+        refundPropositions:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/RefundProposition'
+              - $ref: '#/components/schemas/RefundPropositionRef'
+          description: in case a refund is initiated, the refund proposition will be created with the details of the to-be-confirmed refund operation. the proposition can then be accepted, which conforms the refund
         links:
           type: array
           items:
@@ -2463,10 +2857,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OfferPartRef'
-        refundConditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/RefundCondition'
         links:
           type: array
           items:
@@ -2481,9 +2871,27 @@ components:
         title:
           type: string
           example: Ticket Paris-Barcelona Andre Dupont 2020-07-23
-    RefundCondition:
+    RefundProposition:
       type: object
       properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          description: id of the refund proposition
+        validUntil:
+          $ref: '#/components/schemas/DateTime'
+        appliedOverruleCode:
+          type: string
+          enum:
+            - STRIKE
+            - MISSED_CONNECTION
+            - INCIDENT
+          description: if applicable, which overruleCode should be applied to the request
+        tickets:
+          type: array
+          items: 
+            $ref: '#/components/schemas/TicketRef'
         totalFees:
           $ref: '#/components/schemas/CurrencyPriceDef'
         refundableAmount:
@@ -2501,6 +2909,43 @@ components:
                   - PHYSICAL_HANDLING
               amount:
                 $ref: '#/components/schemas/CurrencyPriceDef'
+    RefundPropositionRef:
+      type: object
+      properties:
+        href:
+          type: string
+          format: url
+          example: 'http://some.provider/bookings/2345/RefundPropositions/123'
+        title:
+          type: string
+          example: Refund Paris-Barcelona Andre Dupont 2020-07-23
+    TicketRequest:
+      type: object
+      properties:
+        bookingId:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          description: id of the booking to fulfill (no partial fulfillment)
+      required:
+        - bookingId
+    RefundPropositionRequest:
+      type: object
+      properties:
+        tickets:
+          type: array
+          items:
+            $ref:  '#/components/schemas/TicketRef'
+          description: the list of tickets that should be covered by the proposition
+        overruleCode: 
+          type: string
+          enum:
+            - STRIKE
+            - MISSED_CONNECTION
+            - INCIDENT
+          description: if applicable, which overruleCode should be applied to the request
+      required:
+        - tickets
     Problem:
       type: object
       properties:
@@ -2540,3 +2985,6 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
+ 
+        
+       
