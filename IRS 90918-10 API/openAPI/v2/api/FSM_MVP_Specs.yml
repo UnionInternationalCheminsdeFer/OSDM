@@ -64,7 +64,7 @@ paths:
             Describes the set of natural languages that are preferred as a
             response to the request (see RFC2616-sec14.4). The response header
             will set "Content-Language" concerning the content (supported
-            languages and fallback-language, depends on underlyling system).
+            languages and fallback-language, depends on underlying system).
 
             Supporting locations in English (en) is a most.
           schema:
@@ -79,9 +79,9 @@ paths:
           in: query
           description: >-
             Defines the search token type in matchValue (TEXT for names;
-            ANY_CODE fallbacks to the code supported by the underlyling system
+            ANY_CODE fallbacks to the code supported by the underlying system
             (like UIC, EVA or RESARAIL); UIC/EVA/RESARAIL forces stations
-            defined by the appropriate code-system explicitely (national
+            defined by the appropriate code-system explicitly (national
             aspect); COORDS given as "lat,lon").
           required: true
           schema:
@@ -102,7 +102,7 @@ paths:
           in: query
           description: >-
             Search locations for a specific country (ISO 3166, 2-digits). Meant
-            for autocomplete functionalty. A separate endpoint or channel would
+            for autocomplete functionality. A separate endpoint or channel would
             be provided for mass downloads
           required: false
           schema:
@@ -259,7 +259,7 @@ paths:
             Describes the set of natural languages that are preferred as a
             response to the request (see RFC2616-sec14.4). The response header
             will set "Content-Language" concerning the content (supported
-            languages and fallback-language, depends on underlyling system).
+            languages and fallback-language, depends on underlying system).
           schema:
             type: string
           required: false
@@ -348,7 +348,7 @@ paths:
             Describes the set of natural languages that are preferred as a
             response to the request (see RFC2616-sec14.4). The response header
             will set "Content-Language" concerning the content (supported
-            languages and fallback-language, depends on underlyling system).
+            languages and fallback-language, depends on underlying system).
           schema:
             type: string
           required: false
@@ -3831,10 +3831,10 @@ components:
       description: 'basic UIC fare types (used in 90918-10, 90918-4, 90918-9)'
       type: string
       enum:
-        - 'NRT, IRT, NON_RESERVATION'
-        - INTEGRATED_RESERVATION
+        - ADMISSION
         - RESERVATION
-        - ANXILLIARY
+        - INTEGRATED_RESERVATION
+        - ANCILLARY
     RegionalConstraintDef:
       type: object
       properties:
