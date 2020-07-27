@@ -6,14 +6,12 @@ info:
   title: UIC 90918-10 - OSDM
   version: 0.0.1
   description: |
-    ## Overview
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
     both mode, except that in allocator mode the API also returns fare information.
     
-    The OSDM specification combines the nTM as well as the FSM initiative in one aligned
+    The OSDM specification combines the nTM as well as the FSM initiative into one aligned
     API interface.
-    ## References
   contact:
     name: Nicolas Selleslagh
     url: https://confluence.sbb.ch/display/FSM20
