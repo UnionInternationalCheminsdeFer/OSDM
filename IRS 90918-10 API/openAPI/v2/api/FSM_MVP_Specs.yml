@@ -3134,8 +3134,8 @@ components:
           $ref: '#/components/schemas/AfterSalesConditionDef'
         combinationConstraint:
           $ref: '#/components/schemas/FareCombinationConstraintDef'
-        fullfillmentConstraint:
-          $ref: '#/components/schemas/FullfillmentConstraintDef'
+        fulfillmentConstraint:
+          $ref: '#/components/schemas/FulfillmentConstraintDef'
         reductionConstraint:
           $ref: '#/components/schemas/ReductionConstraintDef'
         legacyAccountingIdentifier:
