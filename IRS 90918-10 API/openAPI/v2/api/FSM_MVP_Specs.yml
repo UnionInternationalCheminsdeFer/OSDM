@@ -3749,8 +3749,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReservationOptionGroupDef'
-        graficalReservation:
-          description: 'grafical reservation is supported, interface type "NO","UIC_918",..'
+        graphicalReservation:
+          description: graphical reservation is supported, interface type "NO","UIC_918",..
           type: string
         serviceBrands:
           description: service brands where the options apply
@@ -3846,7 +3846,7 @@ components:
         exitConnectionPointId:
           description: connection point connecting two fare regimes
           type: string
-        RegionalValidity:
+        regionalValidity:
           $ref: '#/components/schemas/RegionalValidityDef'
         distance:
           description: 'distance in km for statistics '
