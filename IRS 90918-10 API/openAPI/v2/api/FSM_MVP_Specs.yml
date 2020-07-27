@@ -3536,7 +3536,7 @@ components:
         serviceBrand:
           description: restriction  to a specific service brand
           type: string
-        Station:
+        station:
           $ref: '#/components/schemas/Station'
         fareReferenceStationSet:
           description: reference to a list of stations included in the fare
@@ -3553,7 +3553,7 @@ components:
             - code
           additionalProperties: false
       required:
-        - Station
+        - station
       additionalProperties: false
     ZoneDef:
       type: object
