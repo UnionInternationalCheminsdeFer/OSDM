@@ -3043,7 +3043,7 @@ components:
             $ref:  '#/components/schemas/TicketRef'
           description: the list of tickets that should be covered by the proposition
         overruleCode: 
-          $ref: '#/components/schemas/AfterSaleReasonDef
+          $ref: '#/components/schemas/AfterSaleReasonDef'
       required:
         - tickets
     RefundPropositionConfirm:
@@ -3288,7 +3288,7 @@ components:
             additionalProperties: false
         passengerWeight:
           type: number
-        maxWeightedPasseners:
+        maxWeightedPassengers:
           description: 'the total weighted number of passengers on the offer is restricted to be equal or smaller than this  maximum '
           type: number
         minWeightedPassengers:
@@ -3335,7 +3335,7 @@ components:
           description: 'in case of CLUSTERING model: the cluster to which the fare belongs'
           type: string
         allowedClusters:
-          description: 'in case of CLUSTERIMNG model: the other clusters taht allow a combination'
+          description: 'in case of CLUSTERING model: the other clusters that allow a combination'
           type: array
           items:
             type: string
@@ -3402,7 +3402,7 @@ components:
         timeValue:
           type: integer
         timeReference:
-          description: 'BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY'
+          description: 'BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFORE_START_VALIDITY,AFTER_END_VALIDITY'
           type: string
       required:
         - timeUnit
@@ -3423,7 +3423,7 @@ components:
         applicationTime:
           $ref: '#/components/schemas/RelativeTimeDef'
         applicationTimeStamp:
-          description: absolute application time (UTC) in case of online serices
+          description: absolute application time (UTC) in case of online services
           type: string
           format: date-time
         carrierFee:
@@ -3478,7 +3478,7 @@ components:
             type: string
         terminalStation:
           $ref: '#/components/schemas/Station'
-          description: Terminal station in case trhe  product requires a detination within the zone (e.g. local ticket to go to the main railstation)
+          description: Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main railstation)
         nutsCode:
           description: |-
             Nomenclature des units territoriales statistiques  
@@ -3584,18 +3584,18 @@ components:
       required:
         - carrier
       additionalProperties: false
-    FullfillmentConstraintDef:
+    FulfillmentConstraintDef:
       type: object
       properties:
         id:
           type: string
-        acceptedFullfillmentTypes:
+        acceptedFulfillmentTypes:
           type: array
           minItems: 1
           items:
             $ref: '#/components/schemas/FulfillmentTypeDef'
         acceptedBarCodes:
-          description: for SiD fulllfillment one of the listed bar codes is required
+          description: for SiD fulfillment one of the listed bar codes is required
           type: array
           items:
             description: 'according IRS 90918-9: FCB, TLB, SSB'
@@ -3606,17 +3606,17 @@ components:
           items:
             type: string
         requiredSiS:
-          description: for SiS fullfillment one of the listed interfaces is required
+          description: for SiS fulfillment one of the listed interfaces is required
           type: array
           items:
             description: registry90918-4;peertopeer90918-4
             type: string
         individualTicketingPermitted:
-          description: a seprate fullfillment per traveler is permitted
+          description: a separate fulfillment per traveler is permitted
           type: boolean
       required:
         - id
-        - acceptedFullfillmentTypes
+        - acceptedFulfillmentTypes
         - individualTicketingPermitted
       additionalProperties: false
     PersonalDataConstraintDef:
@@ -3643,12 +3643,12 @@ components:
                 type: boolean
                 default: false
               crossBorder:
-                description: the dara are required only in case one of the cross border conditions apply
+                description: the data are required only in case one of the cross border conditions apply
                 type: array
                 items:
                   $ref: '#/components/schemas/CrossBorderConditionDef'
               fulfillmentType:
-                description: type of fulfillment in case the presonal data are required for that type only
+                description: type of fulfillment in case the personal data are required for that type only
                 type: array
                 items:
                   $ref: '#/components/schemas/FulfillmentTypeDef'
@@ -3811,7 +3811,7 @@ components:
         - id
       additionalProperties: false
     ServiceConstraintDef:
-      description: one of the lists of exclueded or included service brands only
+      description: one of the lists of excluded or included service brands only
       type: object
       properties:
         id:
