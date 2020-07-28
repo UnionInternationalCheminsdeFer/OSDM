@@ -42,7 +42,7 @@ tags:
   - name: Tickets  
     description: >-
       resources to retrieve tickets
-  - name: RefundPropositions
+  - name: RefundOffers
     description: >-
       resources to get a refund proposition
 paths:
@@ -1138,6 +1138,88 @@ paths:
         '501':
           description: Not implemented
   /bookings:
+    get:
+      tags:
+        - Bookings
+      summary: >-
+        The get bookings service allows searching bookgins and returning a list based on a set of criterias 
+      operationId: getBookings
+      parameters:
+        - name: passengerName
+          in: query
+          schema:
+            type: string
+          required: true
+          description: name of one passenger in the booking
+        - name: bookingReference
+          in: query
+          schema:
+            type: string
+          required: false
+          description: human-readable booking reference for the booking
+        - name: travelDateBegin
+          in: query
+          schema:
+            $ref: '#/components/schemas/DateTime'
+          required: false
+          description: begin date for the travel date range to search
+        - name: travelDateEnd
+          in: query
+          schema:
+            $ref: '#/components/schemas/DateTime'
+          required: false
+          description: end date for the travel date range to search
+        - name: OriginId 
+          in: query
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: false
+          description: departure locationId one of the travels in the booking to search on
+        - name: DestinationId
+          in: query
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: false
+          description: destination locationId one of the travels in the booking to search on
+          
+      responses:
+        '200':
+          description: ancillary found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ancillary'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see
+                  RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
     post:
       tags:
         - Bookings
@@ -1300,6 +1382,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+   
   '/tickets':
     post:
       tags:
@@ -1387,13 +1470,13 @@ paths:
         '501':
           description: Not implemented
           
-  '/bookings/{bookingId}/RefundPropositions':
+  '/bookings/{bookingId}/RefundOffers':
     post:
       tags:
-        - RefundPropositions
+        - RefundOffers
       summary: >-
-        The post RefundPropositions initiates a refund process by creating   a refundProposition resourcen containing the needed information on the potential operation. The proposition can then be accepted via a patch, deleted or left to die at the end of its lifetime
-      operationId: postRefundProposition
+        The post RefundOffers initiates a refund process by creating   a RefundOffer resourcen containing the needed information on the potential operation. The proposition can then be accepted via a patch, deleted or left to die at the end of its lifetime
+      operationId: postRefundOfferProposition
       parameters:
         - in: path
           name: bookingId
@@ -1407,14 +1490,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RefundPropositionRequest'
+              $ref: '#/components/schemas/RefundOfferRequest'
       responses:
         '200': 
-          description: Refund proposition created
+          description: Refund offer created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RefundProposition'
+                $ref: '#/components/schemas/RefundOffersCollection'
         '400':
           description: Bad request
           content:
@@ -1436,14 +1519,14 @@ paths:
         '501':
           description: Not implemented
         
-  '/bookings/{bookingId}/RefundPropositions/{id}':
+  '/bookings/{bookingId}/RefundOffers/{id}':
     get:
       tags:
-        - RefundPropositions
+        - RefundOffers
       summary: >-
-        The get RefundProposition service returns the Refund proposition with the id
+        The get RefundOffer service returns the Refund proposition with the id
         provided.
-      operationId: getRefundProposition
+      operationId: getRefundOffer
       parameters:
         - in: path
           name: bookingId
@@ -1463,11 +1546,11 @@ paths:
           description: ID of the product to get.
       responses:
         '200':
-          description: RefundProposition found
+          description: RefundOffer found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RefundProposition'
+                $ref: '#/components/schemas/RefundOffer'
           headers:
             Content-Language:
               schema:
@@ -1497,11 +1580,11 @@ paths:
           description: Not implemented
     delete:
       tags:
-        - RefundPropositions
+        - RefundOffers
       summary: >-
-        The delete RefundProposition service cancels the Refund proposition with the id
+        The delete RefundOffer service cancels the Refund proposition with the id
         provided. The resource is disposed and will not be mentioned in the booking anymore
-      operationId: deleteRefundProposition
+      operationId: deleteRefundOffer
       parameters:
         - in: path
           name: bookingId
@@ -1521,11 +1604,11 @@ paths:
           description: ID of the product to get.
       responses:
         '200':
-          description: RefundProposition found
+          description: RefundOffer found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RefundProposition'
+                $ref: '#/components/schemas/RefundOffer'
           headers:
             Content-Language:
               schema:
@@ -1555,10 +1638,10 @@ paths:
           description: Not implemented
     patch:
       tags:
-        - RefundPropositions
+        - RefundOffers
       summary: >-
-        The patch RefundProposition service allows to accept and confirm a refund operation. 
-      operationId: patchRefundProposition
+        The patch RefundOffer service allows to accept and confirm a refund operation. 
+      operationId: patchRefundOffer
       parameters:
         - in: path
           name: bookingId
@@ -1580,14 +1663,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RefundPropositionConfirm'
+              $ref: '#/components/schemas/RefundOfferConfirm'
       responses:
         '200':
-          description: RefundProposition confirmed
+          description: RefundOffer confirmed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RefundProposition'
+                $ref: '#/components/schemas/RefundOffer'
           headers:
             Content-Language:
               schema:
@@ -1792,6 +1875,8 @@ components:
         title:
           type: string
           example: Bruxelles-Midi
+        station:
+          $ref: '#/components/schemas/Station'
     Location:
       type: object
       properties:
@@ -2362,6 +2447,65 @@ components:
         - cardId
         - cardValueType
       additionalProperties: false
+    CardIdentificationDef:
+      type: object
+      properties:
+        cardId:
+          type: string
+        cardIssuer:
+          $ref: '#/components/schemas/CompanyDef'
+          description: 'RICS code in case of Railways, otherwise starting with '
+        cardType:
+          description: Code table to be defined in tariff description data
+          type: string
+        leadingCardId:
+          type: string
+        trailingCardId:
+          type: string
+        cardNumber:
+          type: string
+      required:
+        - cardIssuer
+        - cardType
+      additionalProperties: false
+    PassengerPassportDef:
+      description: Travel document data to be exchanged for border control in case of legal requirements
+      type: object
+      properties:
+        cityOfBirth:
+          type: string
+        cityOfIssue:
+          description: place where the document is issued
+          type: string
+        cityOfResidence:
+          type: string
+        countryOfBirth:
+          $ref: '#/components/schemas/CountryDef'
+        countryOfIssue:
+          $ref: '#/components/schemas/CountryDef'
+        countryOfResidence:
+          $ref: '#/components/schemas/CountryDef'
+        dateOfIssue:
+          $ref: '#/components/schemas/DateTime'
+        documentId:
+          type: string
+        documentType:
+          description: 'values: passport,id-card,diplomatic passport,refugee travel document'
+          type: string
+        gender:
+          description: 'values: male, female'
+          type: string
+        limitOfValidity:
+          $ref: '#/components/schemas/DateTime'
+        name:
+          description: ICAO transliteration identical as written in the document
+          type: string
+        nationality:
+          $ref: '#/components/schemas/CountryDef'
+      required:
+        - documentType
+        - name
+      additionalProperties: false
     PassengerDetailsDef:
       type: object
       properties:
@@ -2469,10 +2613,14 @@ components:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
-        passengerDef:
+        passenger:
           $ref: '#/components/schemas/PassengerDef'
-        passengerDetailsDef:
+        passengerDetails:
           $ref: '#/components/schemas/PassengerDetailsDef'
+        passengerPassport:
+          $ref: '#/components/schemas/PassengerPassportDef'
+        cardIdentification:
+          $ref: '#/components/schemas/CardIdentificationDef'
         links:
           type: array
           items:
@@ -2816,6 +2964,11 @@ components:
     BookingRequest:
       type: object
       properties:
+        bookingId:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          description: id of the selected offer
         selectedOfferId:
           type: string
           format: uuid
@@ -2910,12 +3063,12 @@ components:
             oneOf:
               - $ref: '#/components/schemas/TicketRef'
               - $ref: '#/components/schemas/Ticket'
-        refundPropositions:
+        refundOffers:
           type: array
           items:
             oneOf:
-              - $ref: '#/components/schemas/RefundProposition'
-              - $ref: '#/components/schemas/RefundPropositionRef'
+              - $ref: '#/components/schemas/RefundOffer'
+              - $ref: '#/components/schemas/RefundOfferRef'
           description: in case a refund is initiated, the refund proposition will be created with the details of the to-be-confirmed refund operation. the proposition can then be accepted, which conforms the refund
         links:
           type: array
@@ -2974,7 +3127,11 @@ components:
     AfterSaleReasonDef:
       description: 'reason and type for an after sale, Code list in IRS 90918-10'
       type: string
-    RefundProposition:
+    RefundOffersCollection: 
+      type: array
+      items:
+        $ref: '#/components/schemas/RefundOffer'
+    RefundOffer:
       type: object
       properties:
         id:
@@ -3014,13 +3171,13 @@ components:
                   - PHYSICAL_HANDLING
               amount:
                 $ref: '#/components/schemas/CurrencyPriceDef'
-    RefundPropositionRef:
+    RefundOfferRef:
       type: object
       properties:
         href:
           type: string
           format: url
-          example: 'http://some.provider/bookings/2345/RefundPropositions/123'
+          example: 'http://some.provider/bookings/2345/RefundOffers/123'
         title:
           type: string
           example: Refund Paris-Barcelona Andre Dupont 2020-07-23
@@ -3034,7 +3191,7 @@ components:
           description: id of the booking to fulfill (no partial fulfillment)
       required:
         - bookingId
-    RefundPropositionRequest:
+    RefundOfferRequest:
       type: object
       properties:
         tickets:
@@ -3046,7 +3203,7 @@ components:
           $ref: '#/components/schemas/AfterSaleReasonDef'
       required:
         - tickets
-    RefundPropositionConfirm:
+    RefundOfferConfirm:
       type: object
       properties:
         id:
