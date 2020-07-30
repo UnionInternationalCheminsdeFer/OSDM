@@ -35,7 +35,7 @@ tags:
       resources to manipulate bookings
   - name: Passengers
     description: >-
-      resources to manipulate passengers informations at every stage of the flow
+      resources to manipulate a passenger's information at every stage of the flow
   - name: Products
     description: >-
       resources to retrieve products information on one or more products
@@ -44,27 +44,21 @@ tags:
       resources to retrieve tickets
   - name: RefundOffers
     description: >-
-      resources to get a refund proposition
+      resources to get and accept a refund offer
 paths:
   /locations:
     get:
       tags:
         - Journey
       summary: >-
-        allows looking up matching station for a given match value based on
-        MatchType
+        The GET locations service returns matching locations for a given match value based on MatchType.
       operationId: getLocations
-      description: >-
-        allows to build a lookup functionality to get station codes based on
-        whatever is known of the station
       parameters:
         - name: Accept-Language
           in: header
           description: >-
             Describes the set of natural languages that are preferred as a
-            response to the request (see RFC2616-sec14.4). The response header
-            will set "Content-Language" concerning the content (supported
-            languages and fallback-language, depends on underlying system).
+            response to the request (see RFC2616-sec14.4). 
 
             Supporting locations in English (en) is a most.
           schema:
@@ -94,7 +88,9 @@ paths:
               - COORDS
         - name: matchCodeList
           in: query
-          description: 'in case matchvalue is codelist, the codelist to search into'
+          description: >-
+            In case match-value is code-list, the code-list to search into
+            TODO clarify
           schema:
             type: string
           required: false
@@ -117,7 +113,7 @@ paths:
             format: int32
             default: 10
         - in: query
-          name: includeBehaviour
+          name: includeBehavior
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -140,7 +136,8 @@ paths:
                       oneOf:
                         - $ref: '#/components/schemas/LocationRef'
                         - $ref: '#/components/schemas/Location'
-                    description: depending on the includeBehaviour either references or full location definitions will be returned
+                    description: >-
+                      Depending on the includeBehavior either references or full location definitions are returned.
         '400':
           description: bad input parameter
           content:
@@ -151,9 +148,9 @@ paths:
     get:
       tags:
         - Journey
-      summary: retrieves a location element
+      summary: >-
+        The GET locations service retrieves a location element.
       operationId: getLocationsId
-      description: allows to retrieve a complete location resource. A location resource is persistent and has a long time to live to allow long-term caching. Any update of the location information will lead to the creation of a new resource
       parameters:
         - in: path
           name: id
@@ -171,7 +168,9 @@ paths:
               schema:
                 type: string
                 default: 'public, max-age=43200'
-                description: A location resource is persistent and has a long time to live to allow long-term caching. Any update of the location information will lead to the creation of a new resource
+                description: >-
+                  A location resource is persistent and has a long time to live to allow long-term caching. Any update of
+                  the location information will lead to the creation of a new resource
           content:
             application/json:
               schema:
@@ -186,7 +185,10 @@ paths:
     get:
       tags:
         - Journey
-      summary: retrieves a trip element
+      summary:
+        The GET trips service retrieves a trip element representing a train travel made of one or more
+        segments. Depending on the includeBehavior either references or full location definitions will be returned
+      operationId: getTripsId
       parameters:
         - in: path
           name: id
@@ -197,7 +199,7 @@ paths:
           required: true
           description: ID of the trip to get.
         - in: query
-          name: stopBehaviour
+          name: stopBehavior
           description: >-
             Influences what stops are to be returned in response
             (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
@@ -209,7 +211,7 @@ paths:
               - ORIGIN_DESTINATION_ONLY
               - REAL_BOARDING_ALIGHTING
         - in: query
-          name: includeBehaviour
+          name: includeBehavior
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -218,10 +220,6 @@ paths:
               type: string
               enum:
                 - LOCATIONS
-      operationId: getTripsId
-      description: >-
-        retrieves a trip element representing a train travel made of one or more
-        segments. Depending on the includeBehaviour either references or full location definitions will be returned
       responses:
         '200':
           description: the requested trip
@@ -240,10 +238,10 @@ paths:
       tags:
         - Journey
       summary: >-
-        The trips-collection service returns a collection of different trips for a specified
+        The GET trips-collection service returns a collection of different trips for a specified
         origin and destination (and via). The unique codes of the origin and
         destination can be resolved using the locations service.
-      operationId: getTripsCollection
+      operationId: getTripsCollectionId
       parameters:
         - in: path
           name: id
@@ -257,9 +255,7 @@ paths:
           in: header
           description: >-
             Describes the set of natural languages that are preferred as a
-            response to the request (see RFC2616-sec14.4). The response header
-            will set "Content-Language" concerning the content (supported
-            languages and fallback-language, depends on underlying system).
+            response to the request (see RFC2616-sec14.4).
           schema:
             type: string
           required: false
@@ -267,7 +263,7 @@ paths:
           in: query
           description: >-
             Based on a previous search-response, earlier or later connections
-            for the same   trip can be retrieved by scrolling back and forth (by
+            for the same trip can be retrieved by scrolling back and forth (by
             a pointer-context). You must use the same request parameters as in
             the original trips-request and the given values in the response for
             either "scrollBackContext" or "scrollForwardContext" for optional
@@ -276,7 +272,7 @@ paths:
             type: string
           required: false
         - in: query
-          name: stopBehaviour
+          name: stopBehavior
           description: >-
             Influences what stops are to be returned in response
             (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
@@ -288,7 +284,7 @@ paths:
               - ORIGIN_DESTINATION_ONLY
               - REAL_BOARDING_ALIGHTING
         - in: query
-          name: includeBehaviour
+          name: includeBehavior
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -310,8 +306,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -337,18 +332,16 @@ paths:
       tags:
         - Journey
       summary: >-
-        The tripsCollection service returns different trips for a specified
+        The GET tripsCollection service returns different trips for a specified
         origin and destination (and via). The unique codes of the origin and
         destination can be resolved using the locations service.
-      operationId: postTrips
+      operationId: postTripsCollection
       parameters:
         - name: Accept-Language
           in: header
           description: >-
             Describes the set of natural languages that are preferred as a
-            response to the request (see RFC2616-sec14.4). The response header
-            will set "Content-Language" concerning the content (supported
-            languages and fallback-language, depends on underlying system).
+            response to the request (see RFC2616-sec14.4).
           schema:
             type: string
           required: false
@@ -369,8 +362,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -397,10 +389,10 @@ paths:
       tags:
         - Offers
       summary: >-
-        The tripOffersCollection service returns different offes and trips for a
+        The GET tripOffersCollection service returns different offers and trips for a
         specified origin and destination (and via). The unique codes of the
         origin and destination can be resolved using the locations service.
-      operationId: getTripOffersCollection
+      operationId: getTripOffersCollectionId
       parameters:
         - in: path
           name: id
@@ -414,9 +406,7 @@ paths:
           in: header
           description: >-
             Describes the set of natural languages that are preferred as a
-            response to the request (see RFC2616-sec14.4). The response header
-            will set "Content-Language" concerning the content (supported
-            languages and fallback-language, depends on underlyling system).
+            response to the request (see RFC2616-sec14.4).
           schema:
             type: string
           required: false
@@ -433,7 +423,7 @@ paths:
             type: string
           required: false
         - in: query
-          name: stopBehaviour
+          name: stopBehavior
           description: >-
             Influences what stops are to be returned in response
             (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
@@ -445,7 +435,7 @@ paths:
               - ORIGIN_DESTINATION_ONLY
               - REAL_BOARDING_ALIGHTING                    
         - in: query
-          name: includeBehaviour
+          name: includeBehavior
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -471,8 +461,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -498,18 +487,16 @@ paths:
       tags:
         - Offers
       summary: >-
-        The tripsCollection service returns different trips for a specified
+        The POST tripsCollection service returns different trips for a specified
         origin and destination (and via). The unique codes of the origin and
         destination can be resolved using the locations service.
-      operationId: getOffersUsingGET
+      operationId: postTripOffersCollection
       parameters:
         - name: Accept-Language
           in: header
           description: >-
             Describes the set of natural languages that are preferred as a
-            response to the request (see RFC2616-sec14.4). The response header
-            will set "Content-Language" concerning the content (supported
-            languages and fallback-language, depends on underlyling system).
+            response to the request (see RFC2616-sec14.4).
           schema:
             type: string
           required: false
@@ -530,8 +517,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -557,10 +543,10 @@ paths:
       tags:
         - Offers
       summary: >-
-        The trip-offers service returns different offers and trips for a specified
+        The POST trip-offers service returns different offers and trips for a specified
         origin and destination (and via). The unique codes of the origin and
         destination can be resolved using the locations service.
-      operationId: getTripOffer
+      operationId: getTripOffersId
       parameters:
         - in: path
           name: id
@@ -571,7 +557,7 @@ paths:
           required: true
           description: ID of the trip to get.
         - in: query
-          name: includeBehaviour
+          name: includeBehavior
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -596,8 +582,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -623,8 +608,8 @@ paths:
       tags:
         - Offers
       summary: >-
-        The get offers service returns the requested offer or bookedOffer with the requested included subresources
-      operationId: getOffer
+        The GET offers service returns the requested offer or bookedOffer with the requested included sub resources.
+      operationId: getOffersId
       parameters:
         - in: path
           name: id
@@ -635,7 +620,7 @@ paths:
           required: true
           description: ID of the trip to get.
         - in: query
-          name: includeBehaviour
+          name: includeBehavior
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -658,8 +643,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -685,9 +669,8 @@ paths:
       tags:
         - Passengers
       summary: >-
-        The get passenger service returns the information on the passenger with
-        the id provided
-      operationId: getPassenger
+        The GET passenger service returns the information on the passenger with the id provided.
+      operationId: getPassengersId
       parameters:
         - in: path
           name: id
@@ -709,8 +692,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -734,7 +716,8 @@ paths:
     patch:
       tags:
         - Passengers
-      summary: The patch passenger service allows updating a passenger Information
+      summary: 
+        The PATCH passenger service allows updating a passenger's information.
       operationId: patchPassenger
       parameters:
         - in: path
@@ -762,8 +745,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -789,9 +771,8 @@ paths:
       tags:
         - Products
       summary: >-
-        The get product service returns the information on products with the
-        id provided
-      operationId: getProduct
+        The GET product service returns the information on products with the id provided.
+      operationId: getProductsId
       parameters:
         - in: path
           name: id
@@ -813,13 +794,14 @@ paths:
               schema:
                 type: string
                 default: 'public, max-age=43200'
-                description: A product resource has a long time to live to allow long-term caching. Any update of the product information will lead to the creation of a new resource
+                description: >-
+                  A product resource has a long time to live to allow long-term caching. Any update of the product 
+                  information will lead to the creation of a new resource.
             Content-Language:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -845,9 +827,8 @@ paths:
       tags:
         - Offer Parts
       summary: >-
-        The get admission service returns the information on the
-        admission with the id provided
-      operationId: getadmission
+        The GET admission service returns the information on the admission with the id provided.
+      operationId: getAdmissionId
       parameters:
         - in: path
           name: offerId
@@ -877,8 +858,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -904,9 +884,8 @@ paths:
       tags:
         - Offer Parts
       summary: >-
-        The get reservation service returns the information on the reservation
-        with the id provided
-      operationId: getReservation
+        The GET reservation service returns the information on the reservation with the id provided.
+      operationId: getReservationsId
       parameters:
         - in: path
           name: offerId
@@ -936,8 +915,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -961,8 +939,11 @@ paths:
     patch:
       tags:
         - Offer Parts
-      summary: 'The patch reservation service allows updating reservation elements, allowing to update the desired reservation selection for one or more passengers. Note that only the following elements of the reservationSeletion can actually be patched: selectedCompartmentOptions, seatingPreferenceType, placeNumber, coachNumber and direction'
-      operationId: patchReservation
+      summary: >-
+        The PATCH reservation service allows updating reservation elements, allowing to update the desired reservation
+        selection for one or more passengers. Note that only the following elements of the reservationSelection can 
+        actually be patched: selectedCompartmentOptions, seatingPreferenceType, placeNumber, coachNumber and direction.
+      operationId: patchReservationsId
       parameters:
         - in: path
           name: offerId
@@ -979,7 +960,7 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the reservation to patch to patch
+          description: ID of the reservation to patch
       requestBody:
         content:
           application/json:
@@ -997,8 +978,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -1024,9 +1004,9 @@ paths:
       tags:
         - Offer Parts
       summary: >-
-        The get integrated-reservation service returns the information on the
-        IntegratedReservation with the id provided
-      operationId: getIntegratedReservation
+        The GET integrated-reservation service returns the information on the
+        IntegratedReservation with the id provided.
+      operationId: getIntegratedReservationsId
       parameters:
         - in: path
           name: offerId
@@ -1056,8 +1036,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -1083,9 +1062,8 @@ paths:
       tags:
         - Offer Parts
       summary: >-
-        The get ancillary service returns the information on the ancillary with
-        the id provided
-      operationId: getAncillary
+        The GET ancillaries service returns the information on the ancillary with the id provided.
+      operationId: getAncillariesId
       parameters:
         - in: path
           name: offerId
@@ -1115,8 +1093,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -1142,7 +1119,7 @@ paths:
       tags:
         - Bookings
       summary: >-
-        The get bookings service allows searching bookgins and returning a list based on a set of criterias 
+        The GET bookings service allows to search for and find bookings based on a set of criteria.
       operationId: getBookings
       parameters:
         - name: passengerName
@@ -1198,8 +1175,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -1224,17 +1200,14 @@ paths:
       tags:
         - Bookings
       summary: >-
-        The post booking command allows to create a booking based on a
-        previously requested offer
-      operationId: postBooking
+        The POST bookings service allows to create a booking based on a previously requested offer.
+      operationId: postBookings
       parameters:
         - name: Accept-Language
           in: header
           description: >-
             Describes the set of natural languages that are preferred as a
-            response to the request (see RFC2616-sec14.4). The response header
-            will set "Content-Language" concerning the content (supported
-            languages and fallback-language, depends on underlyling system).
+            response to the request (see RFC2616-sec14.4). 
           schema:
             type: string
           required: false
@@ -1255,8 +1228,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -1282,9 +1254,8 @@ paths:
       tags:
         - Bookings
       summary: >-
-        The get booking service returns the information on the booking with the
-        id provided
-      operationId: getBooking
+        The GET booking service returns the information on the booking with the id provided.
+      operationId: getBookingsId
       parameters:
         - in: path
           name: id
@@ -1295,7 +1266,7 @@ paths:
           required: true
           description: ID of the product to get.
         - in: query
-          name: includeBehaviour
+          name: includeBehavior
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -1321,8 +1292,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -1347,9 +1317,9 @@ paths:
       tags:
         - Bookings
       summary: >-
-        The delete booking service removes the booking with the id provided. It
+        The DELETE booking service deletes the booking with the id provided. It
         is only possible before the booking is confirmed.
-      operationId: deleteBooking
+      operationId: deleteBookingsId
       parameters:
         - in: path
           name: id
@@ -1388,8 +1358,9 @@ paths:
       tags:
         - Tickets
       summary: >-
-        The post tickets command triggers fulfillment of the booking based on the information currently contained in the proviced booking
-      operationId: postTicket
+        The POST tickets service triggers the fulfillment of the booking based on the information currently contained
+        in the provided booking,
+      operationId: postTickets
       requestBody:
         content:
           application/json:
@@ -1423,9 +1394,8 @@ paths:
       tags:
         - Tickets
       summary: >-
-        The get ticket service returns the information on the ticket with the id
-        provided.
-      operationId: getTicket
+        The GET ticket service returns the information on the ticket with the id provided.
+      operationId: getTicketsId
       parameters:
         - in: path
           name: id
@@ -1447,8 +1417,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -1470,13 +1439,15 @@ paths:
         '501':
           description: Not implemented
           
-  '/bookings/{bookingId}/RefundOffers':
+  '/bookings/{bookingId}/refundOffers':
     post:
       tags:
         - RefundOffers
       summary: >-
-        The post RefundOffers initiates a refund process by creating   a RefundOffer resourcen containing the needed information on the potential operation. The proposition can then be accepted via a patch, deleted or left to die at the end of its lifetime
-      operationId: postRefundOfferProposition
+        The POST refundOffers initiates a refund process by creating a RefundOffer resource
+        containing the needed information on the potential operation. The proposition can then be 
+        accepted via a PATCH, deleted or left to die at the end of its lifetime.
+      operationId: postRefundOffersBookingId
       parameters:
         - in: path
           name: bookingId
@@ -1519,14 +1490,13 @@ paths:
         '501':
           description: Not implemented
         
-  '/bookings/{bookingId}/RefundOffers/{id}':
+  '/bookings/{bookingId}/refundOffers/{id}':
     get:
       tags:
         - RefundOffers
       summary: >-
-        The get RefundOffer service returns the Refund proposition with the id
-        provided.
-      operationId: getRefundOffer
+        The GET refundOffer service returns the Refund proposition with the id provided.
+      operationId: getRefundOffersId
       parameters:
         - in: path
           name: bookingId
@@ -1556,8 +1526,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -1582,9 +1551,9 @@ paths:
       tags:
         - RefundOffers
       summary: >-
-        The delete RefundOffer service cancels the Refund proposition with the id
+        The DELETE refundOffers action cancels the Refund proposition with the id
         provided. The resource is disposed and will not be mentioned in the booking anymore
-      operationId: deleteRefundOffer
+      operationId: deleteRefundOffersId
       parameters:
         - in: path
           name: bookingId
@@ -1614,8 +1583,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -1640,8 +1608,8 @@ paths:
       tags:
         - RefundOffers
       summary: >-
-        The patch RefundOffer service allows to accept and confirm a refund operation. 
-      operationId: patchRefundOffer
+        The PATCH refundOffers action allows to accept and confirm a refund operation. 
+      operationId: patchRefundOffersId
       parameters:
         - in: path
           name: bookingId
@@ -1676,8 +1644,7 @@ paths:
               schema:
                 type: string
                 description: >-
-                  The language of translatable strings in the response (see
-                  RFC2616-sec14.12).
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         '400':
           description: Bad request
           content:
@@ -1739,7 +1706,10 @@ components:
         information (such as HTML download links, websites or extended APIs).
         Mechanism to add flexible extensions specific to an underlying system.
     Segment:
-      description: A segment represents a subsection of a trip that is realised with the same transport. In railways it is typically one train (between the moment traveller steps onboard until stepping out of that train), but could be using a different mean of transportation 
+      description: >-
+        A segment represents a subsection of a trip that is realized with the same transport. In railways it is typically one
+        train (between the moment traveller steps onboard until stepping out of that train), but could be using a different means
+        of transportation. 
       type: object
       properties:
         index:
@@ -1785,7 +1755,7 @@ components:
                 type: string
             line:
               description: >-
-                Line number in case the vehical does not have a number
+                Line number in case the vehicle does not have a number
               type: string
             serviceBrand:
               $ref: '#/components/schemas/ServiceBrandCodeDef'
@@ -1796,7 +1766,9 @@ components:
               type: string
               additionalProperties: false
         stops:
-          description: the list of stops encountered between origin and destination. origin is the first stop mentioned and destination the last one. This list is only returned when the stopBehaviour is set to REAL_BOARDING_ALIGHTING
+          description: >-
+            The list of stops encountered between origin and destination. origin is the first stop mentioned and destination the last 
+            one. This list is only returned when the stopBehavior is set to REAL_BOARDING_ALIGHTING
           type: array
           items:
             type: object
@@ -1841,7 +1813,8 @@ components:
         - vehicle
       additionalProperties: false
     Station:
-      description: Used to represent a station location. This is a location that can be used as origin and destination for a train journey
+      description: >-
+        Used to represent a station location. This is a location that can be used as origin and destination for a train journey
       type: object
       properties:
         codes:
@@ -1853,8 +1826,10 @@ components:
                 $ref: '#/components/schemas/StationCodeListDef'
               stationCode:
                 type: string
-                description: the code representing the station in the specified codelist
-          description: the codes that can be used to represent the given station on the system. There can be several codes, in which case it is relevant to have a list of couples
+                description: the code representing the station in the specified code-list
+          description: >-
+            The codes that can be used to represent the given station on the system. There can be several codes, in which case 
+            it is relevant to have a list of couples.
         country:
           type: string
           description: the country the station is located in
@@ -1993,7 +1968,8 @@ components:
         [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list](https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
       type: integer
     POI:
-      description: POI (for point of Interest) represent a location that is not a train station but still relevant to the description of the trip. It could be a public transport stop, an exhibition, an event hall, a shopping mall etc.
+      description: >-
+        POI (for point of Interest) represent a location that is not a train station but still relevant to the description of the trip. It could be a public transport stop, an exhibition, an event hall, a shopping mall etc.
       type: object
       properties:
         codes:
@@ -2005,8 +1981,10 @@ components:
                 $ref: '#/components/schemas/POICodeList'
               stationCode:
                 type: string
-                description: the code representing the POI in the specified codelist
-          description: the codes that can be used to represent the given POI on the system. There can be several codes, in which case it is relevant to have a list of couples
+                description: the code representing the POI in the specified code list
+          description: >-
+            The codes that can be used to represent the given POI on the system. There can be several codes, in which case it is 
+            relevant to have a list of couples.
         country:
           description: country
           type: string
@@ -2033,19 +2011,20 @@ components:
         scrollBackContext:
           type: string
           description: >-
-            Scroll reference for the current response to scroll backward. (Value
-            depends on underlying system.)
+            Scroll reference for the current response to scroll backward. 
+            (Value depends on underlying system.)
         scrollForwardContext:
           type: string
           description: >-
-            Scroll reference for the current response to scroll   forward.
+            Scroll reference for the current response to scroll forward.
             (Value depends on underlying system.)
         links:
           type: array
           items:
             $ref: '#/components/schemas/Link'
     GeoCoordinate:
-      description: used to provide any geocoded location, regardless of environment, using long and lat coordinates
+      description: >-
+        Used to provide any geo-encoded location, regardless of environment, using longitude and latitude coordinates.
       type: object
       properties:
         system:
@@ -2059,7 +2038,7 @@ components:
             - GRS80
           default: WGS84
         accuracy:
-          description: to be proviced in degree. TODO clarify semantics
+          description: to be provided in degree. TODO clarify semantics
           type: number
           format: float
         latitude:
@@ -2090,7 +2069,7 @@ components:
     TripSearchCriteria:
       type: object
       properties:
-        includeBehaviour:
+        includeBehavior:
           description: >-
             Influences whether referenced resources are returned in full or as references only
           type: array
@@ -2099,7 +2078,7 @@ components:
             enum:
               - TRIPS
               - TRIPS.LOCATIONS
-        stopBehaviour:
+        stopBehavior:
           description: >-
             Influences what stops are to be returned in response
             (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
@@ -2116,12 +2095,12 @@ components:
         viaValues:
           description: >-
             Ordered list of via locations within the trip. Unique code value has
-            to be set according to valueType. Max number of via's depends on the
+            to be set according to valueType. Max number of via stations depends on the
             underlying system.
           type: array
           items:
             $ref: '#/components/schemas/Location'
-        traveldateTime:
+        travelDateTime:
           $ref: '#/components/schemas/DateTime'
         isArrival:
           description: >-
@@ -2177,7 +2156,7 @@ components:
             second, possibly refined A,B,C,D selection)
         currency:
           $ref: '#/components/schemas/CurrencyDef'
-        includeBehaviour:
+        includeBehavior:
           description: >-
             Influences whether referenced resources are returned in full or as references only
           type: array
@@ -2211,7 +2190,7 @@ components:
           $ref: '#/components/schemas/TripSearchCriteria'
         OfferSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
-        includeBehaviour:
+        includeBehavior:
           description: >-
             Influences whether referenced resources are returned in full or as references only
           type: array
@@ -2222,7 +2201,9 @@ components:
               - TRIPOFFERS.TRIP
               - TRIPOFFERS.OFFERS
               - TRIPOFFERS.PASSENGERS
-      description: defines the parameters needed to request a trip, standalone or in the context of an offer request. Note at least one of the tripId, tripRef or trip elements must be populated.
+      description: >-
+        Defines the parameters needed to request a trip, standalone or in the context of an offer request. Note at least one
+        of the tripId, tripRef or trip elements must be set.
     TripOffer:
       type: object
       properties:
@@ -2339,7 +2320,7 @@ components:
         scrollForwardContext:
           type: string
           description: >-
-            Scroll reference for the current response to scroll   forward.
+            Scroll reference for the current response to scroll forward.
             (Value depends on underlying system.)
         links:
           type: array
@@ -2543,14 +2524,16 @@ components:
               account:
                 type: string
               accountType:
-                description: 'values: facebook,whatsapp,skype,wechat,...'
+                description: >-
+                  Example types: facebook, whatsapp, skype, wechat,...
                 type: string
             required:
               - account
               - accountType
             additionalProperties: false
         trainStaffInfo:
-          description: Information Text provided by the issuing system in a controled way (e.g. VIP customer)
+          description: >-
+            Information text provided by the issuing system in a controlled way (e.g. VIP customer).
           type: string
       additionalProperties: false
     ServiceClassDef:
@@ -2626,7 +2609,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
     ServiceLevelIdDef:
-      description: 'code of the service level, codelist in IRS 90918-1'
+      description: 'code of the service level, code-list in IRS 90918-1'
       type: string
     Flexibility:
       type: string
@@ -2703,7 +2686,7 @@ components:
           items:
             $ref: '#/components/schemas/ProductCondition'
           description: >-
-            Structured description of the sales or aftersales conditions.
+            Structured description of the sales or after-sales conditions.
         refundable:
           type: string
           enum:
@@ -2739,7 +2722,7 @@ components:
           $ref: '#/components/schemas/DateTime'
         validUntil:
           $ref: '#/components/schemas/DateTime'
-        aftersalesFee:
+        afterSalesFee:
           type: object
           properties:
             price:
@@ -2882,14 +2865,14 @@ components:
         placeDescription:
           type: string
           example: seats 11-45 
-          description: in case the reservation applies to several passengers, a place description can be returned instead of exact seat number
+          description: >-
+            In case the reservation applies to several passengers, a place description can be returned instead of exact seat number.
         selectedCompartmentOptions: 
           type: array
           items:
             $ref: '#/components/schemas/CompartmentOption'
       description: >-
-        Once booked, this element will contain the details of the space
-        reserved.
+        Once booked, this element contains the details of the space reserved.
     SegmentIndex:
       type: integer
       description: >-
@@ -2906,14 +2889,13 @@ components:
         compartmentPreference:
           type: object
           properties:
-            codelist:
+            codeList:
               type: string
-              description: the codelist to use for reference
+              description: the code list to use for reference
             code:
               type: string
               description: >-
-                the code for the option represented in the given
-                codelist
+                the code for the option represented in the given code-list
     ReservationDetails:
       type: object
       properties:
@@ -2958,7 +2940,7 @@ components:
           type: string
           example: ICE wifi onboard 2020-07-11 or ICE Bruxelles-Frankfurt child 2020-07-12
       description: >-
-        References all the offerparts elements in an uniform format. an
+        References all the offer part elements in an uniform format. an
         offerPartRef can therefore refer to reservation, integrated reservation
         admission or ancillary (in its href)
     BookingRequest:
@@ -3069,7 +3051,9 @@ components:
             oneOf:
               - $ref: '#/components/schemas/RefundOffer'
               - $ref: '#/components/schemas/RefundOfferRef'
-          description: in case a refund is initiated, the refund proposition will be created with the details of the to-be-confirmed refund operation. the proposition can then be accepted, which conforms the refund
+          description: >-
+            In case a refund is initiated, the refund proposition is created with the details of the to-be-confirmed 
+            refund operation. the proposition can then be accepted, which conforms the refund
         links:
           type: array
           items:
@@ -3177,7 +3161,7 @@ components:
         href:
           type: string
           format: url
-          example: 'http://some.provider/bookings/2345/RefundOffers/123'
+          example: 'http://some.provider/bookings/2345/refundOffers/123'
         title:
           type: string
           example: Refund Paris-Barcelona Andre Dupont 2020-07-23
@@ -3259,7 +3243,7 @@ components:
       type: object
       properties:
         id:
-          description: unique id of the fare item to be included in accountings
+          description: unique id of the fare item to be included in accounting
           type: string
         type:
           $ref: '#/components/schemas/FareTypeDef'
@@ -3376,13 +3360,13 @@ components:
           type: object
           properties:
             latestReturn:
-              description: 'number of days after departure or start of validity of the last return '
+              description: number of days after departure or start of validity of the last return
               type: integer
             earliestReturn:
               description: number of days after departure or start of validity of the earliest return
               type: integer
             excludedWeekdays:
-              description: 'weekdays (ISO day of the week, 1 = Monday) between travel and return where travel is not allowed'
+              description: weekdays (ISO day of the week, 1 = Monday) between travel and return where travel is not allowed
               type: array
               items:
                 type: integer
@@ -3438,7 +3422,10 @@ components:
             type: object
             properties:
               number:
-                description: number of passengers that can be included with one passenger for free. The number is given in fractions. The calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog for free)
+                description: >-
+                  Number of passengers that can be included with one passenger for free. The number is given in fractions. The 
+                  calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog 
+                  for free).
                 type: integer
               passengerTypeRef:
                 $ref: '#/components/schemas/TravelerTypeDef'
@@ -3446,7 +3433,7 @@ components:
         passengerWeight:
           type: number
         maxWeightedPassengers:
-          description: 'the total weighted number of passengers on the offer is restricted to be equal or smaller than this  maximum '
+          description: the total weighted number of passengers on the offer is restricted to be equal or smaller than this maximum
           type: number
         minWeightedPassengers:
           description: the total weighted number of passengers on the offer is restricted to equal or larger than this minimum
@@ -3471,7 +3458,9 @@ components:
         - requiredCards
       additionalProperties: false
     CompanyDef:
-      description: RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+      description: >-
+        RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the 
+        codes must have at least 5 positions and start with x
       type: string
     FareCombinationModelDef:
       type: object
@@ -3554,12 +3543,12 @@ components:
       type: object
       properties:
         timeUnit:
-          description: 'MINUTES,DAYS,HOURS'
+          description: MINUTES, DAYS, HOURS
           type: string
         timeValue:
           type: integer
         timeReference:
-          description: 'BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFORE_START_VALIDITY,AFTER_END_VALIDITY'
+          description: BEFORE_DEPARTURE, AFTER_DEPARTURE, AFTER_SALE, BEFORE_START_VALIDITY, AFTER_END_VALIDITY
           type: string
       required:
         - timeUnit
@@ -3573,7 +3562,9 @@ components:
           description: code list Reason for after sale
           type: string
         feeRef:
-          description: reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction is allowed. Online services will include fee directly in the fee tag
+          description: >-
+            Reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction 
+            is allowed. Online services include fee directly in the fee tag.
           type: string
         fee:
           $ref: '#/components/schemas/PriceDef'
@@ -3598,7 +3589,7 @@ components:
     RegionalValidityDef:
       type: array
       items:
-        description: 'one of the elements Zone,ViaStation,TrainLink, Line, Polygone'
+        description: 'one of the elements Zone,ViaStation,TrainLink, Line, Polygon'
         type: object
         properties:
           seqNb:
@@ -3612,8 +3603,8 @@ components:
             $ref: '#/components/schemas/TrainLinkDef'
           line:
             $ref: '#/components/schemas/LineDef'
-          polygone:
-            $ref: '#/components/schemas/PolygoneDef'
+          polygon:
+            $ref: '#/components/schemas/PolygonDef'
         additionalProperties: false
     LineDef:
       type: object
@@ -3628,14 +3619,18 @@ components:
           type: integer
         entryStation:
           $ref: '#/components/schemas/Station'
-          description: Station  to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station.
+          description: >-
+            Station  to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone
+            ticket to start from the main rail station.
         lineId:
           type: array
           items:
             type: string
         terminalStation:
           $ref: '#/components/schemas/Station'
-          description: Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main railstation)
+          description: >-
+            Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main 
+            rail station).
         nutsCode:
           description: |-
             Nomenclature des units territoriales statistiques  
@@ -3662,7 +3657,7 @@ components:
         - train
         - travelDate
       additionalProperties: false
-    PolygoneDef:
+    PolygonDef:
       type: object
       properties:
         edge:
@@ -3726,10 +3721,14 @@ components:
           type: integer
         entryStation:
           $ref: '#/components/schemas/Station'
-          description: Station  to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station.
+          description: >-
+            Station to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone
+            ticket to start from the main rail station).
         terminalStation:
           $ref: '#/components/schemas/Station'
-          description: Terminal station in case the  product requires a destination within the zone (e.g. local ticket to go to the main railstation)
+          description: >-
+            Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main
+            rail station).
         zoneId:
           description: to be used in bar codes
           type: array
