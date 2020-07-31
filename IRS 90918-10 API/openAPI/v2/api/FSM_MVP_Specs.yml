@@ -1333,7 +1333,7 @@ paths:
           description: ID of the booking to delete.
       responses:
         '200':
-          description: booking successfully cancelled
+          description: Booking successfully cancelled
         '400':
           description: Bad request
           content:
@@ -1575,17 +1575,7 @@ paths:
           description: ID of the product to get.
       responses:
         '200':
-          description: RefundOffer found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RefundOffer'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
+          description: Refund offer successfully cancelled
         '400':
           description: Bad request
           content:
