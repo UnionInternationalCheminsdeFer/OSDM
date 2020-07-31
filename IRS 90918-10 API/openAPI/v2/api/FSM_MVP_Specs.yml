@@ -1137,13 +1137,15 @@ paths:
         - name: travelDateBegin
           in: query
           schema:
-            $ref: '#/components/schemas/DateTime'
+            type: string
+            format: date-time
           required: false
           description: begin date for the travel date range to search
         - name: travelDateEnd
           in: query
           schema:
-            $ref: '#/components/schemas/DateTime'
+            type: string
+            format: date-time
           required: false
           description: end date for the travel date range to search
         - name: OriginId 
@@ -1965,11 +1967,13 @@ components:
     ServiceBrandCodeDef:
       description: >-
         Service brand codes allowed in response, code list can be found on 
-        [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list](https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
+        [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list]
+        (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
       type: integer
     POI:
       description: >-
-        POI (for point of Interest) represent a location that is not a train station but still relevant to the description of the trip. It could be a public transport stop, an exhibition, an event hall, a shopping mall etc.
+        POI (for point of Interest) represent a location that is not a train station but still relevant to the 
+        description of the trip. It could be a public transport stop, an exhibition, an event hall, a shopping mall etc.
       type: object
       properties:
         codes:
@@ -1983,8 +1987,8 @@ components:
                 type: string
                 description: the code representing the POI in the specified code list
           description: >-
-            The codes that can be used to represent the given POI on the system. There can be several codes, in which case it is 
-            relevant to have a list of couples.
+            The codes that can be used to represent the given POI on the system. There can be several codes, 
+            in which case it is relevant to have a list of couples.
         country:
           description: country
           type: string
@@ -2057,15 +2061,6 @@ components:
         - latitude
         - longitude
       additionalProperties: false
-    DateTime:
-      description: >-
-        Local date/time of the underlying system (ISO notation see
-        RFC3339-sec5.6). Timezone is related to station time, therefore it must
-        not be specified in request. The underlying system will find hits about
-        the given instance in time and will respond dateTime with appropriate
-        TIMEZONE as well.
-      type: string
-      format: date-time
     TripSearchCriteria:
       type: object
       properties:
@@ -2101,7 +2096,8 @@ components:
           items:
             $ref: '#/components/schemas/Location'
         travelDateTime:
-          $ref: '#/components/schemas/DateTime'
+          type: string
+          format: date-time
         isArrival:
           description: >-
             Defines whether or not the given travel date/time is the latest
@@ -2269,9 +2265,11 @@ components:
             - $ref: '#/components/schemas/TripRef'
             - $ref: '#/components/schemas/TripDef'
         validFrom:
-          $ref: '#/components/schemas/DateTime'
+          type: string
+          format: date-time
         validTo:
-          $ref: '#/components/schemas/DateTime'
+          type: string
+          format: date-time
         offerParts:
           type: array
           items:
@@ -2385,13 +2383,7 @@ components:
           items:
             $ref: '#/components/schemas/ReductionCardReferenceDef'
         gender:
-          description: >- 
-            gender of the passenger, which is important in the case of night trains
-          type: string
-          enum:
-           - MALE
-           - FEMALE
-           - X
+          $ref: '#/components/schemas/Gender'
         type:
           type: string
           description: Values from the traveler type code list IRS 90918-10
@@ -2399,6 +2391,14 @@ components:
         - travelerId
         - dateOfBirth
       additionalProperties: false
+    Gender:
+      description: >- 
+        The gender of the passenger, which is important in the case of night trains.
+      type: string
+      enum:
+        - MALE
+        - FEMALE
+        - X
     ReductionCardReferenceDef:
       type: object
       properties:
@@ -2467,17 +2467,18 @@ components:
         countryOfResidence:
           $ref: '#/components/schemas/CountryDef'
         dateOfIssue:
-          $ref: '#/components/schemas/DateTime'
+          type: string
+          format: date-time
         documentId:
           type: string
         documentType:
           description: 'values: passport,id-card,diplomatic passport,refugee travel document'
           type: string
         gender:
-          description: 'values: male, female'
-          type: string
+          $ref: '#/components/schemas/Gender'
         limitOfValidity:
-          $ref: '#/components/schemas/DateTime'
+          type: string
+          format: date-time
         name:
           description: ICAO transliteration identical as written in the document
           type: string
@@ -2554,7 +2555,7 @@ components:
             class
         classicClass:
           description: >-
-            generic class classification,mostly used to harmonize choice and
+            Generic class classification, mostly used to harmonize choice and
             representation across multiple carriers
           type: string
           enum:
@@ -2572,7 +2573,7 @@ components:
           $ref: '#/components/schemas/Location'
         segmentId:
           description: >-
-            reference to a trip segment in case the section corresponds to a
+            Reference to a trip segment in case the section corresponds to a
             segment in the trip and the trip is part of the offer
           type: string
       required:
@@ -2609,7 +2610,8 @@ components:
           items:
             $ref: '#/components/schemas/Link'
     ServiceLevelIdDef:
-      description: 'code of the service level, code-list in IRS 90918-1'
+      description: >-
+        Code of the service level, code-list in IRS 90918-1.
       type: string
     Flexibility:
       type: string
@@ -2628,9 +2630,11 @@ components:
             - COLLECTIVE
             - INDIVIDUAL
         validAsOf:
-          $ref: '#/components/schemas/DateTime'
+          type: string          
+          format: date-time
         validUntil:
-          $ref: '#/components/schemas/DateTime'
+          type: string
+          format: date-time
         reductionsApplied:
           type: array
           items:
@@ -2640,9 +2644,11 @@ components:
           items:
             $ref: '#/components/schemas/PassengerRef'
         validFrom:
-          $ref: '#/components/schemas/DateTime'
+          type: string
+          format: date-time
         validTo:
-          $ref: '#/components/schemas/DateTime'
+          type: string
+          format: date-time
         productRefs:
           type: array
           items:
@@ -2719,18 +2725,22 @@ components:
         description:
           type: string
         validFrom:
-          $ref: '#/components/schemas/DateTime'
+          type: string
+          format: date-time
         validUntil:
-          $ref: '#/components/schemas/DateTime'
+          type: string
+          format: date-time
         afterSalesFee:
           type: object
           properties:
             price:
               $ref: '#/components/schemas/CurrencyPriceDef'
             validFrom:
-              $ref: '#/components/schemas/DateTime'
+              type: string
+              format: date-time
             validUntil:
-              $ref: '#/components/schemas/DateTime'
+              type: string
+              format: date-time
     Admission:
       type: object
       properties:
@@ -2774,7 +2784,6 @@ components:
                   - INCLUDED
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
-   
     Reservation:
       type: object
       properties:
@@ -2831,7 +2840,6 @@ components:
           $ref: '#/components/schemas/ReservationDetails'
         ReservationSelection:
           $ref: '#/components/schemas/ReservationSelection'
-   
     ReservationSelection:
       type: object
       properties:
@@ -2840,7 +2848,8 @@ components:
           enum:
             - DESIRED
             - ASSIGNED
-          description: indicates whether the selection is a wish or the assigned seating of the provider system
+          description: >-
+            Indicates whether the selection is a wish or the assigned seating of the provider system.
         passengers:
           type: array
           items:
@@ -2894,8 +2903,7 @@ components:
               description: the code list to use for reference
             code:
               type: string
-              description: >-
-                the code for the option represented in the given code-list
+              description: the code for the option represented in the given code-list
     ReservationDetails:
       type: object
       properties:
@@ -2983,7 +2991,7 @@ components:
                   example: d290f1ee-6c54-4b01-90e6-d701748f0851
                 description: >-
                   Id of the passengers the selected optional ancillaries are for.
-        includeBehaviour:
+        includeBehavior:
           description: >-
             Influences whether referenced resources are returned in full or as references only
           type: array
@@ -3008,7 +3016,8 @@ components:
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
         reference:
           type: string
-          description: The unique booking reference in the provider system. Usually refers to an order number or PNR
+          description: >-
+            The unique booking reference in the provider system. Usually refers to an order number or PNR.
         status:
           type: string
           enum:
@@ -3022,7 +3031,8 @@ components:
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         ticketTimeLimit:
-          $ref: '#/components/schemas/DateTime'
+          type: string
+          format: date-time
         fulfillmentOptions:
           type: array
           items:
@@ -3052,8 +3062,8 @@ components:
               - $ref: '#/components/schemas/RefundOffer'
               - $ref: '#/components/schemas/RefundOfferRef'
           description: >-
-            In case a refund is initiated, the refund proposition is created with the details of the to-be-confirmed 
-            refund operation. the proposition can then be accepted, which conforms the refund
+            Refund offer is created with the details of the to-be-confirmed refund operation. 
+            The proposition can then be accepted, which conforms the refund.
         links:
           type: array
           items:
@@ -3109,7 +3119,8 @@ components:
           type: string
           example: Ticket Paris-Barcelona Andre Dupont 2020-07-23
     AfterSaleReasonDef:
-      description: 'reason and type for an after sale, Code list in IRS 90918-10'
+      description: >-
+        Reason for and type of an after sale, Code list in IRS 90918-10.
       type: string
     RefundOffersCollection: 
       type: array
@@ -3124,7 +3135,8 @@ components:
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the refund proposition
         validUntil:
-          $ref: '#/components/schemas/DateTime'
+          type: string
+          format: date-time
         status:
           type: string
           enum:
@@ -3308,7 +3320,8 @@ components:
     CalendarDef:
       type: array
       items:
-        $ref: '#/components/schemas/DateTime'
+        type: string
+        format: date-time
     TravelValidityConstraintDef:
       type: object
       properties:
@@ -3398,7 +3411,7 @@ components:
           type: integer
         ageLimitForReservation:
           type: integer
-        isAncilliaryItem:
+        isAncillaryItem:
           description: 'to indicate dogs, bicycles,.. '
           type: boolean
           default: false
@@ -3450,7 +3463,8 @@ components:
           description: in bulk data only
           type: string
         requiredCards:
-          description: 'one of the listed cards is required to be valid at the time of travel. '
+          description: >-
+            One of the listed cards is required to be valid at the time of travel.
           type: array
           items:
             $ref: '#/components/schemas/ReductionCardReferenceDef'
@@ -3466,32 +3480,36 @@ components:
       type: object
       properties:
         model:
-          description: 'SEPARATE_TICKET.SEPARATE_CONTRACT,CLUSTERING,COMBINING'
+          description: >-
+            Possible models are SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING.
           type: string
         combinableCarrier:
-          description: 'list of all carriers where the model can be applied, in case the list is empty all combinations are allowed.'
+          description: >-
+            List of all carriers where the model can be applied, in case the list is empty all combinations are allowed.
           type: array
           items:
             $ref: '#/components/schemas/CompanyDef'
         onlyWhenCombined:
-          description: this combination model applies only in case the fare is combined with another carrier
+          description: This combination model applies only in case the fare is combined with another carrier
           type: boolean
           default: false
         referenceCluster:
-          description: 'in case of CLUSTERING model: the cluster to which the fare belongs'
+          description: In case of CLUSTERING model: the cluster to which the fare belongs'
           type: string
         allowedClusters:
-          description: 'in case of CLUSTERING model: the other clusters that allow a combination'
+          description: In case of CLUSTERING model: the other clusters that allow a combination'
           type: array
           items:
             type: string
         allowedAllocators:
-          description: list of allowed allocators. in case the list is empty all allocators with a sales contract are permitted.
+          description: >-
+            List of allowed allocators. in case the list is empty all allocators with a sales contract are permitted.
           type: array
           items:
             $ref: '#/components/schemas/CompanyDef'
         allowedCommonContracts:
-          description: 'list of carriers where a common contract with separate tickets are allowed. '
+          description: 
+            List of carriers where a common contract with separate tickets are allowed.
           type: array
           items:
             $ref: '#/components/schemas/CompanyDef'
@@ -3543,13 +3561,25 @@ components:
       type: object
       properties:
         timeUnit:
-          description: MINUTES, DAYS, HOURS
+          description: >-
+            Time unit in days, hours or  minutes.
           type: string
+          enum:
+            - DAYS
+            - HOURS
+            - MINUTES
         timeValue:
           type: integer
         timeReference:
-          description: BEFORE_DEPARTURE, AFTER_DEPARTURE, AFTER_SALE, BEFORE_START_VALIDITY, AFTER_END_VALIDITY
+          description: >-
+            Time reference.
           type: string
+          enum:
+            - BEFORE_DEPARTURE
+            - AFTER_DEPARTURE
+            - AFTER_SALE
+            - BEFORE_START_VALIDITY
+            - AFTER_END_VALIDITY
       required:
         - timeUnit
         - timeValue
@@ -3563,8 +3593,8 @@ components:
           type: string
         feeRef:
           description: >-
-            Reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction 
-            is allowed. Online services include fee directly in the fee tag.
+            Reference to a price data item defining the fee; optional in case there is no fee but the 
+            after sales transaction is allowed. Online services include fee directly in the fee tag.
           type: string
         fee:
           $ref: '#/components/schemas/PriceDef'
@@ -3589,7 +3619,8 @@ components:
     RegionalValidityDef:
       type: array
       items:
-        description: 'one of the elements Zone,ViaStation,TrainLink, Line, Polygon'
+        description: >- 
+          One of the elements Zone, ViaStation, TrainLink, Line, or Polygon.
         type: object
         properties:
           seqNb:
@@ -3620,8 +3651,8 @@ components:
         entryStation:
           $ref: '#/components/schemas/Station'
           description: >-
-            Station  to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone
-            ticket to start from the main rail station.
+            Station  to enter the zone in case the product requires to enter the zone via a
+            specific station (e.g. local zone ticket to start from the main rail station).
         lineId:
           type: array
           items:
@@ -3629,8 +3660,8 @@ components:
         terminalStation:
           $ref: '#/components/schemas/Station'
           description: >-
-            Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main 
-            rail station).
+            Terminal station in case the product requires a destination within the zone 
+            (e.g. local ticket to go to the main rail station).
         nutsCode:
           description: |-
             Nomenclature des units territoriales statistiques  
@@ -3649,7 +3680,8 @@ components:
         train:
           type: string
         travelDate:
-          $ref: '#/components/schemas/DateTime'
+          type: string
+          format: date-time
           description: date and time of the departure where the train link starts
       required:
         - fromStation
@@ -3940,7 +3972,8 @@ components:
             type: string
       additionalProperties: false
     ServiceClassIdDef:
-      description: 'Service class id. Values according to code list IRS 90918-10  (A,B,C,D)'
+      description: >-
+        Service class id. Values according to code list IRS 90918-10 (A, B, C, D).
       type: string
     ServiceLevelDef:
       type: object
@@ -3984,7 +4017,8 @@ components:
         - id
       additionalProperties: false
     FareTypeDef:
-      description: 'basic UIC fare types (used in 90918-10, 90918-4, 90918-9)'
+      description: >-
+        Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
       type: string
       enum:
         - ADMISSION
@@ -4005,7 +4039,7 @@ components:
         regionalValidity:
           $ref: '#/components/schemas/RegionalValidityDef'
         distance:
-          description: 'distance in km for statistics '
+          description: distance in km for statistics 
           type: number
       additionalProperties: false
     TranslationDef:
