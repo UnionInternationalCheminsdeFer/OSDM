@@ -4,7 +4,7 @@ servers:
     url: 'https://virtserver.swaggerhub.com/Real-IT/FSM_MVP/1.0.0'
 info:
   title: UIC 90918-10 - OSDM
-  version: 0.0.1
+  version: 0.7.0
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -3116,7 +3116,7 @@ components:
         href:
           type: string
           format: url
-          example: 'http://some.provider/Ticket/2345'
+          example: 'http://some.provider/ticket/2345'
         title:
           type: string
           example: Ticket Paris-Barcelona Andre Dupont 2020-07-23
@@ -3348,8 +3348,11 @@ components:
           type: object
           properties:
             timeUnit:
-              description: 'DAYS, HOURS, MINUTES'
               type: string
+              enum:
+                - DAYS
+                - HOURS
+                - MINUTES
             value:
               type: number
             hoursAfterMidnight:
@@ -3426,7 +3429,6 @@ components:
         ageLimitForReservation:
           type: integer
         isAncillaryItem:
-          description: 'to indicate dogs, bicycles,.. '
           type: boolean
           default: false
         combinationConstraint:
@@ -3460,10 +3462,12 @@ components:
         passengerWeight:
           type: number
         maxWeightedPassengers:
-          description: the total weighted number of passengers on the offer is restricted to be equal or smaller than this maximum
+          description: >-
+            The total weighted number of passengers on the offer is restricted to be equal or smaller than this maximum
           type: number
         minWeightedPassengers:
-          description: the total weighted number of passengers on the offer is restricted to equal or larger than this minimum
+          description: >-
+            The total weighted number of passengers on the offer is restricted to equal or larger than this minimum
           type: number
       required:
         - id
@@ -3495,16 +3499,19 @@ components:
       properties:
         model:
           description: >-
-            Possible models are SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING.
+            Possible models are SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING. 
+            The models need to be supported by the allocator.
           type: string
         combinableCarrier:
           description: >-
-            List of all carriers where the model can be applied, in case the list is empty all combinations are allowed.
+            List of all carriers where the model can be applied, in case the list is empty
+            all combinations are allowed.
           type: array
           items:
             $ref: '#/components/schemas/CompanyDef'
         onlyWhenCombined:
-          description: This combination model applies only in case the fare is combined with another carrier
+          description: >-
+            This combination model applies only in case the fare is combined with another carrier
           type: boolean
           default: false
         referenceCluster:
@@ -3519,7 +3526,7 @@ components:
             type: string
         allowedAllocators:
           description: >-
-            List of allowed allocators. in case the list is empty all allocators with a sales contract are permitted.
+            List of allowed allocators. If the list is empty all allocators with a sales contract are permitted.
           type: array
           items:
             $ref: '#/components/schemas/CompanyDef'
@@ -3578,7 +3585,7 @@ components:
       properties:
         timeUnit:
           description: >-
-            Time unit in days, hours or  minutes.
+            Time unit in days, hours or minutes.
           type: string
           enum:
             - DAYS
@@ -3659,7 +3666,8 @@ components:
         binaryLineId:
           type: integer
           format: Base64
-          description: 'to support local traffic standards (e.g. VDV,...)'
+          description: 
+            Id to support local traffic standards (e.g. VDV,...).
         carrier:
           $ref: '#/components/schemas/CompanyDef'
         city:
@@ -3734,7 +3742,7 @@ components:
           items:
             $ref: '#/components/schemas/ViaStationsDef'
         serviceBrand:
-          description: restriction  to a specific service brand
+          description: restriction to a specific service brand
           type: string
         station:
           $ref: '#/components/schemas/Station'
@@ -3761,7 +3769,8 @@ components:
         binaryZoneId:
           type: integer
           format: Base64
-          description: 'to support local traffic standards (e.g. VDV,...)'
+          description: 
+            Id to support local traffic standards (e.g. VDV,...)
         carrier:
           $ref: '#/components/schemas/CompanyDef'
           description: carrier responsible for the transport.
@@ -3802,8 +3811,13 @@ components:
           description: for SiD fulfillment one of the listed bar codes is required
           type: array
           items:
-            description: 'according IRS 90918-9: FCB, TLB, SSB'
+            description: >-
+              Item according to IRS 90918-9: FCB, TLB, SSB
             type: string
+            enum:
+              - FCB
+              - TLB
+              - SSB
         requiredBarCodes:
           description: one of the listed bar codes must be provided
           type: array
@@ -3813,7 +3827,7 @@ components:
           description: for SiS fulfillment one of the listed interfaces is required
           type: array
           items:
-            description: registry90918-4;peertopeer90918-4
+            description: registry90918-4;peertopeer90918-4 TODO
             type: string
         individualTicketingPermitted:
           description: a separate fulfillment per traveler is permitted
@@ -3838,11 +3852,16 @@ components:
                 description: see code list IRS 90918-10
                 type: string
               transfer:
-                description: 'BOOKING,SIS_CONTROL,SID_CONTROL'
+                description: >-
+                 Transfer mode: BOOKING, SIS_CONTROL, SID_CONTROL.
                 type: array
                 minItems: 1
                 items:
                   type: string
+                  enum:
+                    - BOOKING
+                    - SIS_CONTROL
+                    - SID_CONTROL
               ticketHolderOnly:
                 type: boolean
                 default: false
@@ -3866,8 +3885,12 @@ components:
             type: object
             properties:
               acceptedReason:
-                description: 'IN_GENERAL,MARRIAGE,DOCUMENT_CHANGE,AGENT_ERROR'
                 type: string
+                enum:
+                  - IN_GENERAL
+                  - MARRIAGE
+                  - DOCUMENT_CHANGE
+                  - AGENT_ERROR
               timeLimit:
                 description: the change is limited to n hours after booking confirmation
                 type: number
@@ -3888,10 +3911,12 @@ components:
             $ref: '#/components/schemas/ServiceBrandCodeDef'
       additionalProperties: false
     CountryDef:
-      description: 'ISO 3166 2A codes, optional in case of web sales'
+      description: >-
+        ISO 3166 2A codes, optional in case of web sales
       type: string
     FulfillmentTypeDef:
-      description: SIP - secure paper tickets; SID - security in data (signed bar code); SIS - security in system
+      description: >-
+        SIP: secure paper tickets; SID: security in data (signed bar code); SIS: security in system
       type: string
       enum:
         - SIP
@@ -3909,7 +3934,7 @@ components:
           type: object
           properties:
             travelClass:
-              description: '90918-1 class code in reservation '
+              description: 90918-1 class code in reservation
               type: string
             serviceLevelCode:
               description: service level code defined in UIC 90918-1
