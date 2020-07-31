@@ -51,7 +51,7 @@ paths:
       tags:
         - Journey
       summary: >-
-        The GET locations action returns matching locations for a given match value based on MatchType.
+        The GET locations service returns matching locations for a given match value based on MatchType.
       operationId: getLocations
       parameters:
         - name: Accept-Language
@@ -149,7 +149,7 @@ paths:
       tags:
         - Journey
       summary: >-
-        The GET locations action retrieves a location element.
+        The GET locations service retrieves a location element.
       operationId: getLocationsId
       parameters:
         - in: path
@@ -186,7 +186,7 @@ paths:
       tags:
         - Journey
       summary:
-        The GET trips action retrieves a trip element representing a train travel made of one or more
+        The GET trips service retrieves a trip element representing a train travel made of one or more
         segments. Depending on the includeBehavior either references or full location definitions will be returned
       operationId: getTripsId
       parameters:
@@ -238,7 +238,7 @@ paths:
       tags:
         - Journey
       summary: >-
-        The GET trips-collection action returns a collection of different trips for a specified
+        The GET trips-collection service returns a collection of different trips for a specified
         origin and destination (and via). The unique codes of the origin and
         destination can be resolved using the locations service.
       operationId: getTripsCollectionId
@@ -332,7 +332,7 @@ paths:
       tags:
         - Journey
       summary: >-
-        The GET tripsCollection action returns different trips for a specified
+        The GET tripsCollection service returns different trips for a specified
         origin and destination (and via). The unique codes of the origin and
         destination can be resolved using the locations service.
       operationId: postTripsCollection
@@ -389,7 +389,7 @@ paths:
       tags:
         - Offers
       summary: >-
-        The GET tripOffersCollection action returns different offers and trips for a
+        The GET tripOffersCollection service returns different offers and trips for a
         specified origin and destination (and via). The unique codes of the
         origin and destination can be resolved using the locations service.
       operationId: getTripOffersCollectionId
@@ -487,7 +487,7 @@ paths:
       tags:
         - Offers
       summary: >-
-        The POST tripsCollection action returns different trips for a specified
+        The POST tripsCollection service returns different trips for a specified
         origin and destination (and via). The unique codes of the origin and
         destination can be resolved using the locations service.
       operationId: postTripOffersCollection
@@ -543,7 +543,7 @@ paths:
       tags:
         - Offers
       summary: >-
-        The POST trip-offers action returns different offers and trips for a specified
+        The POST trip-offers service returns different offers and trips for a specified
         origin and destination (and via). The unique codes of the origin and
         destination can be resolved using the locations service.
       operationId: getTripOffersId
@@ -608,7 +608,7 @@ paths:
       tags:
         - Offers
       summary: >-
-        The GET offers action returns the requested offer or bookedOffer with the requested included sub resources.
+        The GET offers service returns the requested offer or bookedOffer with the requested included sub resources.
       operationId: getOffersId
       parameters:
         - in: path
@@ -669,7 +669,7 @@ paths:
       tags:
         - Passengers
       summary: >-
-        The GET passenger action returns the information on the passenger with the id provided.
+        The GET passenger service returns the information on the passenger with the id provided.
       operationId: getPassengersId
       parameters:
         - in: path
@@ -717,7 +717,7 @@ paths:
       tags:
         - Passengers
       summary: 
-        The PATCH passenger action allows updating a passenger's information.
+        The PATCH passenger service allows updating a passenger's information.
       operationId: patchPassenger
       parameters:
         - in: path
@@ -771,7 +771,7 @@ paths:
       tags:
         - Products
       summary: >-
-        The GET product action returns the information on products with the id provided.
+        The GET product service returns the information on products with the id provided.
       operationId: getProductsId
       parameters:
         - in: path
@@ -827,7 +827,7 @@ paths:
       tags:
         - Offer Parts
       summary: >-
-        The GET admission action returns the information on the admission with the id provided.
+        The GET admission service returns the information on the admission with the id provided.
       operationId: getAdmissionId
       parameters:
         - in: path
@@ -884,7 +884,7 @@ paths:
       tags:
         - Offer Parts
       summary: >-
-        The GET reservation action returns the information on the reservation with the id provided.
+        The GET reservation service returns the information on the reservation with the id provided.
       operationId: getReservationsId
       parameters:
         - in: path
@@ -940,7 +940,7 @@ paths:
       tags:
         - Offer Parts
       summary: >-
-        The PATCH reservation action allows updating reservation elements, allowing to update the desired reservation
+        The PATCH reservation service allows updating reservation elements, allowing to update the desired reservation
         selection for one or more passengers. Note that only the following elements of the reservationSelection can 
         actually be patched: selectedCompartmentOptions, seatingPreferenceType, placeNumber, coachNumber and direction.
       operationId: patchReservationsId
@@ -1004,7 +1004,7 @@ paths:
       tags:
         - Offer Parts
       summary: >-
-        The GET integrated-reservation action returns the information on the
+        The GET integrated-reservation service returns the information on the
         IntegratedReservation with the id provided.
       operationId: getIntegratedReservationsId
       parameters:
@@ -1062,7 +1062,7 @@ paths:
       tags:
         - Offer Parts
       summary: >-
-        The GET ancillaries action returns the information on the ancillary with the id provided.
+        The GET ancillaries service returns the information on the ancillary with the id provided.
       operationId: getAncillariesId
       parameters:
         - in: path
@@ -1119,7 +1119,7 @@ paths:
       tags:
         - Bookings
       summary: >-
-        The GET bookings action allows to search for and find bookings based on a set of criteria.
+        The GET bookings service allows to search for and find bookings based on a set of criteria.
       operationId: getBookings
       parameters:
         - name: passengerName
@@ -1202,7 +1202,7 @@ paths:
       tags:
         - Bookings
       summary: >-
-        The POST bookings action allows to create a booking based on a previously requested offer.
+        The POST bookings service allows to create a booking based on a previously requested offer.
       operationId: postBookings
       parameters:
         - name: Accept-Language
@@ -1256,7 +1256,7 @@ paths:
       tags:
         - Bookings
       summary: >-
-        The GET booking action returns the information on the booking with the id provided.
+        The GET booking service returns the information on the booking with the id provided.
       operationId: getBookingsId
       parameters:
         - in: path
@@ -1319,7 +1319,7 @@ paths:
       tags:
         - Bookings
       summary: >-
-        The DELETE booking action deletes the booking with the id provided. It
+        The DELETE booking service deletes the booking with the id provided. It
         is only possible before the booking is confirmed.
       operationId: deleteBookingsId
       parameters:
@@ -1360,7 +1360,7 @@ paths:
       tags:
         - Tickets
       summary: >-
-        The POST tickets action triggers the fulfillment of the booking based on the information currently contained
+        The POST tickets service triggers the fulfillment of the booking based on the information currently contained
         in the provided booking,
       operationId: postTickets
       requestBody:
@@ -1396,7 +1396,7 @@ paths:
       tags:
         - Tickets
       summary: >-
-        The GET ticket action returns the information on the ticket with the id provided.
+        The GET ticket service returns the information on the ticket with the id provided.
       operationId: getTicketsId
       parameters:
         - in: path
@@ -1446,8 +1446,8 @@ paths:
       tags:
         - RefundOffers
       summary: >-
-        The POST refundOffers action initiates a refund by creating a RefundOffer resource
-        containing the needed information on the potential operation. The offer can then be 
+        The POST refundOffers initiates a refund process by creating a RefundOffer resource
+        containing the needed information on the potential operation. The proposition can then be 
         accepted via a PATCH, deleted or left to die at the end of its lifetime.
       operationId: postRefundOffersBookingId
       parameters:
@@ -1497,7 +1497,7 @@ paths:
       tags:
         - RefundOffers
       summary: >-
-        The GET refundOffer action returns the Refund proposition with the id provided.
+        The GET refundOffer service returns the Refund proposition with the id provided.
       operationId: getRefundOffersId
       parameters:
         - in: path
@@ -2383,13 +2383,7 @@ components:
           items:
             $ref: '#/components/schemas/ReductionCardReferenceDef'
         gender:
-          description: >- 
-            gender of the passenger, which is important in the case of night trains
-          type: string
-          enum:
-           - MALE
-           - FEMALE
-           - X
+          $ref: '#/components/schemas/Gender'
         type:
           type: string
           description: Values from the traveler type code list IRS 90918-10
@@ -2397,6 +2391,14 @@ components:
         - travelerId
         - dateOfBirth
       additionalProperties: false
+    Gender:
+      description: >- 
+        The gender of the passenger, which is important in the case of night trains.
+      type: string
+      enum:
+        - MALE
+        - FEMALE
+        - X
     ReductionCardReferenceDef:
       type: object
       properties:
@@ -2473,8 +2475,7 @@ components:
           description: 'values: passport,id-card,diplomatic passport,refugee travel document'
           type: string
         gender:
-          description: 'values: male, female'
-          type: string
+          $ref: '#/components/schemas/Gender'
         limitOfValidity:
           type: string
           format: date-time
@@ -3489,17 +3490,14 @@ components:
           items:
             $ref: '#/components/schemas/CompanyDef'
         onlyWhenCombined:
-          description: >-
-            This combination model applies only in case the fare is combined with another carrier.
+          description: This combination model applies only in case the fare is combined with another carrier
           type: boolean
           default: false
         referenceCluster:
-          description: >-
-            In case of CLUSTERING model: the cluster to which the fare belongs.
+          description: In case of CLUSTERING model: the cluster to which the fare belongs'
           type: string
         allowedClusters:
-          description: >-
-            In case of CLUSTERING model: the other clusters that allow a combination.
+          description: In case of CLUSTERING model: the other clusters that allow a combination'
           type: array
           items:
             type: string
@@ -3720,7 +3718,7 @@ components:
           items:
             $ref: '#/components/schemas/ViaStationsDef'
         serviceBrand:
-          description: restriction to a specific service brand
+          description: restriction  to a specific service brand
           type: string
         station:
           $ref: '#/components/schemas/Station'
@@ -3919,12 +3917,12 @@ components:
         reservationOptions:
           $ref: '#/components/schemas/ReservationOptionsDef'
         reservationRequiredForBrand:
-          description: service brand for which a reservation is mandatory
+          description: service brand mode for which a reservation is mandatory
           type: array
           items:
             type: integer
         reservationRequiredForMode:
-          description: service mode for which a reservation is mandatory
+          description: service service mode for which a reservation is mandatory
           type: array
           items:
             type: string
