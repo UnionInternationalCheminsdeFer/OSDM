@@ -2128,8 +2128,8 @@ components:
           format: int32
         PRMAssistance:
           description: >-
-            OOS MVP Indicates a need for an itinerary where end-to-end PMR
-            assistance and accessibility is possible
+            OOS MVP indicates a need for an itinerary where end-to-end PMR
+            assistance and accessibility is possible.
           type: boolean
           default: false
       required:
@@ -2148,10 +2148,22 @@ components:
           items:
             $ref: '#/components/schemas/ServiceClassDef'
           description: >-
-            Defines the comfort classes desired for the fares returned (1st vs
-            second, possibly refined A,B,C,D selection)
+            Defines the comfort classes desired for the fares returned (first vs
+            second, possibly refined by A, B, C, D selection).
+        reservationOffersOnly:
+          type: boolean
+          default: false
+        languages:
+          type: array
+          items:
+            type: string
+          description:
+            The language returned might be different from the languages requested. The
+            list is a prioritized list.
         currency:
           $ref: '#/components/schemas/CurrencyDef'
+          description:
+            The currency returned might be different from the one requested.
         includeBehavior:
           description: >-
             Influences whether referenced resources are returned in full or as references only
@@ -2383,7 +2395,7 @@ components:
           items:
             $ref: '#/components/schemas/ReductionCardReferenceDef'
         gender:
-          $ref: '#/components/schemas/Gender'
+          $ref: '#/components/schemas/GenderDef'
         type:
           type: string
           description: Values from the traveler type code list IRS 90918-10
@@ -2391,7 +2403,7 @@ components:
         - travelerId
         - dateOfBirth
       additionalProperties: false
-    Gender:
+    GenderDef:
       description: >- 
         The gender of the passenger, which is important in the case of night trains.
       type: string
@@ -2475,7 +2487,7 @@ components:
           description: 'values: passport,id-card,diplomatic passport,refugee travel document'
           type: string
         gender:
-          $ref: '#/components/schemas/Gender'
+          $ref: '#/components/schemas/GenderDef'
         limitOfValidity:
           type: string
           format: date-time
@@ -3143,6 +3155,17 @@ components:
             - PROPOSED
             - CONFIRMED
           default: PROPOSED
+        reimbursementStatus:
+          description: >-
+            If set to IMMEDIATE the distributor is allowed to return the 
+            reimbursement amount immediately.
+          type: string
+          enum:
+            - IMMEDIATE
+            - DELAYED
+        reimbursementDateTime:
+          type: string
+          format: date-time
         appliedOverruleCode:
           $ref: '#/components/schemas/AfterSaleReasonDef'
           description: if applicable, which overruleCode should be applied to the request
@@ -3150,23 +3173,17 @@ components:
           type: array
           items: 
             $ref: '#/components/schemas/TicketRef'
-        totalRefundFees:
+        refundFee:
           $ref: '#/components/schemas/CurrencyPriceDef'
         refundableAmount:
           $ref: '#/components/schemas/CurrencyPriceDef'
-        fees:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                  - DISTRIBUTION
-                  - CARRIER
-                  - PHYSICAL_HANDLING
-              amount:
-                $ref: '#/components/schemas/CurrencyPriceDef'
+      required:
+       - id
+       - validUntil
+       - status
+       - reimbursementStatus
+       - refundFee
+       - refundableAmount
     RefundOfferRef:
       type: object
       properties:
@@ -3250,7 +3267,14 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
-     #Fare-specific elements begin
+      description: >-
+        Problem Details for HTTP APIs (RFC 7807) defines a "problem detail" as a way
+        to carry machine-readable details of errors in a HTTP response to avoid
+        the need to define new error response formats for HTTP APIs.
+
+        See: https://tools.ietf.org/html/rfc7807
+    
+    #Fare-specific elements begin
     FareOnlineDef:
       type: object
       properties:
@@ -3494,10 +3518,12 @@ components:
           type: boolean
           default: false
         referenceCluster:
-          description: In case of CLUSTERING model: the cluster to which the fare belongs'
+          description: >-
+            In case of CLUSTERING model: the cluster to which the fare belongs
           type: string
         allowedClusters:
-          description: In case of CLUSTERING model: the other clusters that allow a combination'
+          description: >-
+            In case of CLUSTERING model: the other clusters that allow a combination
           type: array
           items:
             type: string
