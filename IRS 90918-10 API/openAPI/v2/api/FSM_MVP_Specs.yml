@@ -59,7 +59,6 @@ paths:
           description: >-
             Describes the set of natural languages that are preferred as a
             response to the request (see RFC2616-sec14.4). 
-
             Supporting locations in English (en) is a most.
           schema:
             type: string
@@ -686,7 +685,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Passenger'
+                $ref: '#/components/schemas/PassengerDef'
           headers:
             Content-Language:
               schema:
@@ -732,14 +731,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Passenger'
+              $ref: '#/components/schemas/PassengerDef'
       responses:
         '200':
           description: Passenger found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Passenger'
+                $ref: '#/components/schemas/PassengerDef'
           headers:
             Content-Language:
               schema:
@@ -1213,14 +1212,20 @@ paths:
           schema:
             type: string
           required: false
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BookingRequest'
+        - in: query
+          name: status
+          description: >-
+            Influences the status change, curently only confoirm 
+          schema:
+            type: string
+            default: CONFIRM
+            enum:
+              - CONFIRM
       responses:
         '200':
-          description: Booking created
+          description: >- 
+            Booking confirmed
+            TODO link to a booking confirmation text or receipt
           content:
             application/json:
               schema:
@@ -1354,6 +1359,52 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+    patch:
+      tags:
+        - Bookings
+      summary: >-
+        The POST bookings service triggers the confirmation of the booking
+      operationId: confrimBooking
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the booking to be confirmed      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '202': 
+          description: Booking confirmed
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented 
+   
+        
+   
    
   '/tickets':
     post:
@@ -1804,7 +1855,7 @@ components:
         - seqId
         - vehicle
       additionalProperties: false
-    Station:
+    StationDetailsDef:
       description: >-
         Used to represent a station location. This is a location that can be used as origin and destination for a train journey
       type: object
@@ -1827,10 +1878,31 @@ components:
           description: the country the station is located in
         name:
           type: string
+          description : name of the station in latin writing
+        nameLocal:
+          type: string
+          description : name of the station in local writing 
+        geoCoordinate:
+          $ref: '#/components/schemas/GeoCoordinateDef'
+    StationDef:
+      description: >-
+        Used to represent a station location. This is a location that can be used as origin and destination for a train journey
+      type: object
+      properties:
+        codeList:
+             $ref: '#/components/schemas/StationCodeListDef'
+        code:
+          type: string
+          description: the code representing the station in the specified code-list           
+        country:
+          type: string
+          description: the country the station is located in
+        name:
+          type: string
           description : name of the station in the requested language
       required:
         - country
-        - localCode
+        - code
       additionalProperties: false
     LocationRef:
       type: object
@@ -1843,7 +1915,7 @@ components:
           type: string
           example: Bruxelles-Midi
         station:
-          $ref: '#/components/schemas/Station'
+          $ref: '#/components/schemas/StationDef'
     Location:
       type: object
       properties:
@@ -1853,10 +1925,10 @@ components:
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
         type:
           oneOf:
-            - $ref: '#/components/schemas/Station'
+            - $ref: '#/components/schemas/StationDetailsDef'
             - $ref: '#/components/schemas/POI'
             - $ref: '#/components/schemas/Address'
-            - $ref: '#/components/schemas/GeoCoordinate'
+            - $ref: '#/components/schemas/GeoCoordinateDef'
         links:
           type: array
           description: Context information required by the services.
@@ -2016,7 +2088,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    GeoCoordinate:
+    GeoCoordinateDef:
       description: >-
         Used to provide any geo-encoded location, regardless of environment, using longitude and latitude coordinates.
       type: object
@@ -2224,7 +2296,7 @@ components:
           items:
             oneOf:
               - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/Passenger'
+              - $ref: '#/components/schemas/PassengerDef'
         links:
           type: array
           items:
@@ -2246,6 +2318,8 @@ components:
         model in order to proceed to next step of the process
     OfferSummary:
       type: object
+      description: >-
+        the offer summary indicates the major service class, level or flexibility. This does not imply that this service class or level applies to the whole offer 
       properties:
         minimalPrice:
           $ref: '#/components/schemas/CurrencyPriceDef'
@@ -2273,6 +2347,7 @@ components:
           type: string
           format: date-time
         offerParts:
+          # the oneOf here is strange as the whiole structure simply implements combinable lists of the subschemas 
           type: array
           items:
             oneOf:
@@ -2281,6 +2356,27 @@ components:
               - $ref: '#/components/schemas/Reservation'
               - $ref: '#/components/schemas/IntegratedReservation'
               - $ref: '#/components/schemas/Ancillary'
+        # easier to implement (and providing exactly the same content is:     
+        offerPartsRefs:
+          type: array        
+          items:
+            $ref: '#/components/schemas/OfferPartRef'
+        admissions:
+          type: array        
+          items: 
+            $ref: '#/components/schemas/Admission'
+        reservations:
+          type: array        
+          items:              
+            $ref: '#/components/schemas/Reservation'
+        integratedReservations:
+          type: array        
+          items:  
+            $ref: '#/components/schemas/IntegratedReservation'
+        anciliaries:
+          type: array        
+          items:  
+            $ref: '#/components/schemas/Ancillary'
         fares:
           type: array
           items:
@@ -2367,32 +2463,7 @@ components:
         - currency
         - amount
       additionalProperties: false
-    PassengerDef:
-      type: object
-      properties:
-        passengerReference:
-          description: >-
-            used to refer to passengers from other elements, or from caller
-            system.
-          type: string
-        dateOfBirth:
-          description: date of birth of the passenger
-          type: string
-          format: date
-        reductionCards:
-          description: reduction cards owned by the passenger 
-          type: array
-          items:
-            $ref: '#/components/schemas/ReductionCardReferenceDef'
-        gender:
-          $ref: '#/components/schemas/GenderDef'
-        type:
-          type: string
-          description: Values from the traveler type code list IRS 90918-10
-      required:
-        - travelerId
-        - dateOfBirth
-      additionalProperties: false
+
     GenderDef:
       description: >- 
         The gender of the passenger, which is important in the case of night trains.
@@ -2431,13 +2502,14 @@ components:
         - cardValueType
       additionalProperties: false
     CardIdentificationDef:
+      description: >-
+        card issuer - RICS code in case of Railways, otherwise starting with
       type: object
       properties:
         cardId:
           type: string
         cardIssuer:
           $ref: '#/components/schemas/CompanyDef'
-          description: 'RICS code in case of Railways, otherwise starting with '
         cardType:
           description: Code table to be defined in tariff description data
           type: string
@@ -2451,8 +2523,58 @@ components:
         - cardIssuer
         - cardType
       additionalProperties: false
+    PassengerDef:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        passenger:
+          $ref: '#/components/schemas/PassengerAbstractDef'
+        passengerDetails:
+          $ref: '#/components/schemas/PassengerDetailsDef'
+        passengerPassport:
+          $ref: '#/components/schemas/PassengerPassportDef'
+        cardIdentification:
+          $ref: '#/components/schemas/CardIdentificationDef'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      required:
+        - passenger           
+    PassengerAbstractDef:
+      type: object
+      properties:
+        passengerReference:
+          description: >-
+            stable reference to passengers from other elements, or from caller
+            system.
+          type: string
+        dateOfBirth:
+          description: date of birth of the passenger
+          type: string
+          format: date
+        reductionCards:
+          description: reduction cards owned by the passenger 
+          type: array
+          items:
+            $ref: '#/components/schemas/ReductionCardReferenceDef'
+        gender:
+          $ref: '#/components/schemas/GenderDef'
+        type:
+          type: string
+          description: Values from the traveler type code list IRS 90918-10
+      required:
+        - travelerId
+        - dateOfBirth
+      additionalProperties: false        
     PassengerPassportDef:
-      description: Travel document data to be exchanged for border control in case of legal requirements
+      description: >- 
+        Travel document data to be exchanged for border control in case of legal requirements
+        PassengerDetails providing personal information 
+        only information required in the offer. It is not allowed to send personal information not required in the offer reply. It is not allowed to send tehse personal data already in the offer request.
       type: object
       properties:
         cityOfBirth:
@@ -2492,6 +2614,9 @@ components:
       additionalProperties: false
     PassengerDetailsDef:
       type: object
+      description: >- 
+        PassengerDetails providing personal information 
+        only information required in the offer. It is not allowed to send personal information not required in the offer reply. It is not allowed to send tehse personal data already in the offer request.
       properties:
         eMails:
           type: array
@@ -2592,25 +2717,6 @@ components:
         title:
           type: string
           example: André Dupont
-    Passenger:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
-        passenger:
-          $ref: '#/components/schemas/PassengerDef'
-        passengerDetails:
-          $ref: '#/components/schemas/PassengerDetailsDef'
-        passengerPassport:
-          $ref: '#/components/schemas/PassengerPassportDef'
-        cardIdentification:
-          $ref: '#/components/schemas/CardIdentificationDef'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     ServiceLevelIdDef:
       description: >-
         Code of the service level, code-list in IRS 90918-1.
@@ -3050,7 +3156,7 @@ components:
           items:
             oneOf:
               - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/Passenger'
+              - $ref: '#/components/schemas/PassengerDef'
         tickets:
           type: array
           items:
@@ -3261,7 +3367,6 @@ components:
         Problem Details for HTTP APIs (RFC 7807) defines a "problem detail" as a way
         to carry machine-readable details of errors in a HTTP response to avoid
         the need to define new error response formats for HTTP APIs.
-
         See: https://tools.ietf.org/html/rfc7807
     
     #Fare-specific elements begin
@@ -3278,9 +3383,7 @@ components:
         fareDetailDescription:
           $ref: '#/components/schemas/TextDef'
         price:
-          type: array
-          items:
-            $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/PriceDef'
         regionalConstraint:
           $ref: '#/components/schemas/RegionalConstraintDef'
         serviceConstraint:
@@ -3306,7 +3409,20 @@ components:
         reductionConstraint:
           $ref: '#/components/schemas/ReductionConstraintDef'
         legacyAccountingIdentifier:
-          description: identifier of the fare in the current 301 accounting file data
+          $ref: '#/components/schemas/LegacyAccountingIdentifierDef'
+        travelValidityConstraint:
+          $ref: '#/components/schemas/TravelValidityConstraintDef'
+      required:
+        - id
+        - type
+        - regionalConstraint
+        - combinationConstraint
+        - travelValidityConstraint
+        - afterSalesCondition
+      additionalProperties: false
+      
+    LegacyAccountingIdentifierDef:
+          description: identifier of the fare in the current 301 accounting file
           type: object
           properties:
             serialId:
@@ -3324,13 +3440,8 @@ components:
               type: integer
               minimum: 0
               maximum: 9999
-          additionalProperties: false
-        travelValidityConstraint:
-          $ref: '#/components/schemas/TravelValidityConstraintDef'
-      required:
-        - id
-        - type
-      additionalProperties: false
+          additionalProperties: false  
+      
     CalendarDef:
       type: array
       items:
@@ -3643,7 +3754,7 @@ components:
       type: array
       items:
         description: >- 
-          One of the elements Zone, ViaStation, TrainLink, Line, or Polygon.
+          One of the elements Zone, ViaStation, TrainLink, Line, or Polygon defining the regional validity
         type: object
         properties:
           seqNb:
@@ -3662,6 +3773,11 @@ components:
         additionalProperties: false
     LineDef:
       type: object
+      description: >-
+            terminalStation - in case the product requires a destination within the zone 
+                   (e.g. local ticket to go to the main rail station).
+                  Station  to enter the zone in case the product requires to enter the zone via a
+            entryStation - specific station (e.g. local zone ticket to start from the main rail station).
       properties:
         binaryLineId:
           type: integer
@@ -3673,19 +3789,13 @@ components:
         city:
           type: integer
         entryStation:
-          $ref: '#/components/schemas/Station'
-          description: >-
-            Station  to enter the zone in case the product requires to enter the zone via a
-            specific station (e.g. local zone ticket to start from the main rail station).
+          $ref: '#/components/schemas/StationDef'
         lineId:
           type: array
           items:
             type: string
         terminalStation:
-          $ref: '#/components/schemas/Station'
-          description: >-
-            Terminal station in case the product requires a destination within the zone 
-            (e.g. local ticket to go to the main rail station).
+          $ref: '#/components/schemas/StationDef'
         nutsCode:
           description: |-
             Nomenclature des units territoriales statistiques  
@@ -3698,9 +3808,9 @@ components:
       type: object
       properties:
         fromStation:
-          $ref: '#/components/schemas/Station'
+          $ref: '#/components/schemas/StationDef'
         toStation:
-          $ref: '#/components/schemas/Station'
+          $ref: '#/components/schemas/StationDef'
         train:
           type: string
         travelDate:
@@ -3720,7 +3830,7 @@ components:
           type: array
           minItems: 1
           items:
-            $ref: '#/components/schemas/GeoCoordinate'
+            $ref: '#/components/schemas/GeoCoordinateDef'
       additionalProperties: false
     ViaStationsDef:
       type: object
@@ -3745,7 +3855,7 @@ components:
           description: restriction to a specific service brand
           type: string
         station:
-          $ref: '#/components/schemas/Station'
+          $ref: '#/components/schemas/StationDef'
         fareReferenceStationSet:
           description: reference to a list of stations included in the fare
           type: object
@@ -3765,6 +3875,12 @@ components:
       additionalProperties: false
     ZoneDef:
       type: object
+      description: >-
+        carrier - carrier responsible for the transport.
+        entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone
+            ticket to start from the main rail station).
+        terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main
+            rail station).
       properties:
         binaryZoneId:
           type: integer
@@ -3773,19 +3889,12 @@ components:
             Id to support local traffic standards (e.g. VDV,...)
         carrier:
           $ref: '#/components/schemas/CompanyDef'
-          description: carrier responsible for the transport.
         city:
           type: integer
         entryStation:
-          $ref: '#/components/schemas/Station'
-          description: >-
-            Station to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone
-            ticket to start from the main rail station).
+          $ref: '#/components/schemas/StationDef'
         terminalStation:
-          $ref: '#/components/schemas/Station'
-          description: >-
-            Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main
-            rail station).
+          $ref: '#/components/schemas/StationDef'
         zoneId:
           description: to be used in bar codes
           type: array
@@ -4129,4 +4238,3 @@ components:
         - text
       additionalProperties: false
     #Fare-specific elements end
-   
