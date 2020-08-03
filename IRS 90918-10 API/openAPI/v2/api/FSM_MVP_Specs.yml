@@ -15,7 +15,7 @@ info:
   contact:
     name: Nicolas Selleslagh
     url: https://confluence.sbb.ch/display/FSM20
-    email: Nicolas.Sellleslagh@benerail.com
+    email: Nicolas.Selleslagh@benerail.com
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
@@ -442,6 +442,7 @@ paths:
             items:
               type: string
               enum:
+                - ALL
                 - TRIPOFFERS
                 - TRIPOFFERS.TRIPS
                 - TRIPOFFERS.TRIPS.LOCATIONS
@@ -564,6 +565,7 @@ paths:
             items:
               type: string
               enum:
+                - ALL              
                 - TRIPS
                 - TRIPS.LOCATIONS
                 - OFFERS
@@ -627,6 +629,7 @@ paths:
             items:
               type: string
               enum:
+                - ALL
                 - OFFERPARTS
                 - TRIP
                 - TRIP.LOCATIONS
@@ -1281,6 +1284,7 @@ paths:
             items:
               type: string
               enum:
+                - ALL
                 - BOOKEDOFFERS.TRIP
                 - BOOKEDOFFERS.TRIP.LOCATIONS
                 - BOOKEDOFFERS
@@ -2199,6 +2203,8 @@ components:
         - destinationValue
     OfferSearchCriteria:
       type: object
+      description:
+            currency - The currency returned might be different from the one requested.
       properties:
         flexibilities:
           description: Defines the flexibility levels desired in the fares returned
@@ -2211,7 +2217,7 @@ components:
             $ref: '#/components/schemas/ServiceClassDef'
           description: >-
             Defines the comfort classes desired for the fares returned (first vs
-            second, possibly refined by A, B, C, D selection).
+            second, possibly refined by A, B, C, D selection). The classes returned might be different from the requees classes.
         reservationOffersOnly:
           type: boolean
           default: false
@@ -2219,13 +2225,10 @@ components:
           type: array
           items:
             type: string
-          description:
-            The language returned might be different from the languages requested. The
-            list is a prioritized list.
+          description: >-
+            The language returned might be different from the languages request. The list is a prioritized list.
         currency:
           $ref: '#/components/schemas/CurrencyDef'
-          description:
-            The currency returned might be different from the one requested.
         includeBehavior:
           description: >-
             Influences whether referenced resources are returned in full or as references only
@@ -2258,7 +2261,7 @@ components:
             $ref: '#/components/schemas/PassengerDef'
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
-        OfferSearchCriteria:
+        offerSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
         includeBehavior:
           description: >-
@@ -2267,6 +2270,7 @@ components:
           items:
             type: string
             enum:
+              - ALL
               - TRIPOFFERS
               - TRIPOFFERS.TRIP
               - TRIPOFFERS.OFFERS
@@ -3106,6 +3110,7 @@ components:
           items:
             type: string
             enum:
+              - ALL
               - BOOKEDOFFERS
               - BOOKEDOFFERS.TRIPS
               - BOOKEDOFFERS.TRIPS.LOCATIONS
