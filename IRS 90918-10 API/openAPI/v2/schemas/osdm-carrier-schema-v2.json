@@ -59,7 +59,8 @@
 				}
 			},
 			"required": [
-				"id"
+				"id",
+				"stationSets"
 			],
 			"additionalProperties": false
 		},
@@ -434,29 +435,36 @@
 				"additionalProperties": false
 			}
 		},
-		"RegionalConstraintDef": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"type": "string"
-				},
-				"entryConnectionPointId": {
-					"description": "connection point connecting two fare regimes",
-					"type": "string"
-				},
-				"exitConnectionPointId": {
-					"description": "connection point connecting two fare regimes",
-					"type": "string"
-				},
-				"RegionalValidity": {
-					"$ref": "#/definitions/RegionalValidityDef"
-				},
-				"distance": {
-					"description": "distance in km for statistics ",
-					"type": "number"
-				}
-			},
-			"additionalProperties": false
+	    "RegionalConstraintDef": {
+		    "type": "object",
+		    "description": "regional Constraint of the fare\n offline bulk data use the id of connection points whereas in an online environment the connection point is included",
+		    "properties": {
+		      "id": {
+		        "type": "string"
+		      },
+		      "entryConnectionPointId": {
+		        "description": "connection point connecting two fare regimes",
+		        "type": "string"
+		      },
+		      "entryConnectionPoint": {
+		        "$ref": "#/definitions/ConnectionPointDef"
+		      },
+		      "exitConnectionPointId": {
+		        "description": "connection point connecting two fare regimes.",
+		        "type": "string"
+		      },
+		      "exitConnectionPoint": {
+		        "$ref": "#/definitions/ConnectionPointDef"
+		      },
+		      "regionalValidity": {
+		        "$ref": "#/definitions/RegionalValidityDef"
+		      },
+		      "distance": {
+		        "description": "distance in km for statistics ",
+		        "type": "number"
+		      }
+		    },
+		    "additionalProperties": false
 		},
 		"ReservationParameterDef": {
 			"type": "object",
