@@ -324,8 +324,8 @@
 		"PassengerDef": {
 			"type": "object",
 			"properties": {
-				"travelerId": {
-					"description": "used to link fares to the individual traveler in the reply",
+				"reference": {
+					"description": "reference of the taveller used to link fares to the individual traveler in the reply",
 					"type": "string"
 				},
 				"dateOfBirth": {
@@ -347,7 +347,7 @@
 				}
 			},
 			"required": [
-				"travelerId",
+				"travelerRef",
 				"dateOfBirth"
 			],
 			"additionalProperties": false
@@ -732,29 +732,39 @@
 			"additionalProperties": false
 		},
 		"ServiceClassDef": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "A,B,C,D",
-					"type": "string"
-				},
-				"textRef": {
-					"description": "id of the text describing the class",
-					"type": "string"
-				},
-				"text": {
-					"$ref": "#/definitions/TextDef"
-				},
-				"comfortClass": {
-					"description": "FIRST,SECOND",
-					"type": "string"
-				}
-			},
-			"required": [
-				"id"
-			],
-			"additionalProperties": false
-		},
+    		"type": "object",
+    		"properties": {
+      		"id": {
+        		"description": "A -premium ,B firts ,C - second premium, D - second",
+        		"type": "string",
+        		"enum": [
+          			"A",
+          			"B",
+          			"C",
+          			"D"
+        		]
+      		},
+      		"textRef": {
+        		"description": "id of the text describing the class",
+        		"type": "string"
+      		},
+      		"text": {
+        		"$ref": "#/definitions/TextDef"
+      		},
+      		"comfortClass": {
+        		"description": "FIRST,SECOND",
+        		"type": "string",
+        		"enum": [
+          			"FIRST",
+          			"SECOND"
+       			 ]
+     		 }
+    		},
+    		"required": [
+      			"id"
+   			 ],
+    		"additionalProperties": false
+  		},
 		"ServiceConstraintDef": {
 			"description": "one of the lists of exclueded or included service brands only",
 			"type": "object",
@@ -936,7 +946,7 @@
 							"type": "number"
 						},
 						"attachedItems": {
-							"description": "code list according IRS90918-1",
+							"description": "indication of items attached to the car ROOF_RACK,BICYCLE_STAND",
 							"type": "array",
 							"items": {
 								"type": "string"
