@@ -55,10 +55,10 @@
 			"description": "basic UIC fare types (used in 90918-10, 90918-4, 90918-9)",
 			"type": "string",
 			"enum": [
-				"NRT, IRT, NON_RESERVATION",
-				"INTEGRATED_RESERVATION",
-				"RESERVATION",
-				"ANXILLIARY"
+        		"ADMISSION",
+        		"RESERVATION",
+        		"INTEGRATED_RESERVATION",
+        		"ANCILLARY"
 			]
 		},
 		"FulfillmentTypeDef": {
@@ -77,10 +77,10 @@
 					"description": "geo coordinate system indication: wgs84 = WGS 84 standard system, grs80 = (outdated) GRS 80 coordinate system",
 					"type": "string",
 					"enum": [
-						"wgs84",
-						"grs80"
+						"WGS84",
+						"GRS80"
 					],
-					"default": "wgs84"
+					"default": "WGS84"
 				},
 				"accuracy": {
 					"description": "to be proviced in degree",
@@ -210,28 +210,70 @@
 			"format": "date-time"
 		},
 		"StationDetailsDef": {
+			"description": "Details of a station. Station names are not translated but provided in some cases in multiple character sets in case stations are named in local characters and additionally in latin. In some countries stations have multiple names depending on the countries local languages.",
 			"type": "object",
 			"properties": {
 				"codeList": {
 					"$ref": "#/definitions/StationCodeListDef"
 				},
 				"localCode": {
+				    "description": "code unique with in the country only",
 					"type": "string"
+				},
+				"code": {
+					"type": "string"
+				},
+        		"country": {
+          			"type": "string",
+          			"description": "the country the station is located in"	
+          		},		
+				"codes": {
+				    "type": "array",
+				    "items": {
+				      "type": "object",
+				      "properties": {
+				        "codeList": {
+				          "$ref": "#/definitions/StationCodeListDef"
+				        },
+				        "stationCode": {
+				          "type": "string",
+				          "description": "the code representing the station in the specified code-list"
+				        }
+				      }
+				    },
+				    "description": "The codes that can be used to represent the given station on the system. There can be several codes, in which case  it is relevant to have a list of couples."
 				},
 				"name": {
-					"description": "station name in ASCII characters (a-z,A-Z,0-9,/,:,(,) )",
+					"description": "station name in local character set",
 					"type": "string"
 				},
-				"nameUtf8": {
-					"description": "station name in local characters",
+				"nameLatin": {
+					"description": "station name in Latin character representation",
 					"type": "string"
+				},		
+				"nameAscIi": {
+					"description": "station name in ASCII characters (a-z,A-Z,0-9,/,:,(,) ) for legacy systems",
+					"type": "string"
+				},		
+				"geoCoordinate":{
+          			"$ref": "#/definitions/GeoCoordinateDef"
 				},
-				"longitude": {
-					"type": "number"
-				},
-				"latitude": {
-					"type": "number"
-				}
+				"names": {
+					"description": "names depending on a local language of the country",
+				    "type": "array",
+				    "items": {
+				     	  "type": "object",
+				      	  "properties": {
+				        	"language": {
+				        	  "type": "string"
+				      	     },
+				       	    "name": {
+				          	  "type": "string"
+				             }
+				          },
+				          "additionalProperties": false  
+				     } 
+				 }
 			},
 			"additionalProperties": false
 		}			
