@@ -1225,15 +1225,7 @@ paths:
           schema:
             type: string
           required: false
-        - in: query
-          name: status
-          description: >-
-            Influences the status change, curently only confoirm 
-          schema:
-            type: string
-            default: CONFIRM
-            enum:
-              - CONFIRM
+
       responses:
         '200':
           description: >- 
@@ -1378,7 +1370,7 @@ paths:
         - Bookings
       summary: >-
         The POST bookings service triggers the confirmation of the booking
-      operationId: confrimBooking
+      operationId: confirmBooking
       parameters:
         - in: path
           name: id
@@ -1388,11 +1380,15 @@ paths:
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking to be confirmed      
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TicketRequest'
+        - in: query
+          name: status
+          description: >-
+            Influences the status change, curently only confirm 
+          schema:
+            type: string
+            default: CONFIRM
+            enum:
+              - CONFIRM
       responses:
         '202': 
           description: Booking confirmed
@@ -2025,19 +2021,7 @@ components:
           example: 'http://some.provider/trip/2345'
         title:
           type: string
-          example: Bruxelles-Midi - Paris-Nord 20200701 10:05
-      #  origin:
-      #  $ref: '#/components/schemas/LocationRef'
-      #  destination:
-      #    $ref: '#/components/schemas/LocationRef'
-      #  serviceBrands:
-      #    type: array
-      #    items:
-      #      $ref: '#/components/schemas/ServiceBrandCodeDef'
-      #  departureTime:
-      #    $ref: '#/components/schemas/DateTime'
-      #  arrivalTime:
-      #    $ref: '#/components/schemas/DateTime'
+          example: Bruxelles-Midi - Paris-Nord 2020/07/01 10:05
     TripDef:
       type: object
       properties:
@@ -2154,13 +2138,13 @@ components:
           format: float
         latitude:
           description: >-
-            Geographic coordinate that specifies the north-south position of a point on the earth’s surface
+            Geographic coordinate that specifies the north-south position of a point on the earths surface
           type: number
           format: float
           example: 46.948825
         longitude:
           description: >-
-            Geographic coordinate that specifies the east-west position of a point on the earth’s surface.            
+            Geographic coordinate that specifies the east-west position of a point on the earths surface.            
           type: number
           format: float
           example: 7.439122
