@@ -2085,7 +2085,7 @@ components:
         name:
           description: name of the point of interest
           type: string
-          example: Bern Bärengraben (Denkmal)
+          example: Bern Bï¿½rengraben (Denkmal)
       required:
         - country
         - localCode
@@ -2236,13 +2236,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Flexibility'
-        classes:
+        serviceClasses:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceClassDef'
+            $ref: '#/components/schemas/ServiceClassIdDef'
           description: >-
-            Defines the comfort classes desired for the fares returned (first vs
-            second, possibly refined by A, B, C, D selection). The classes returned might be different from the requested classes.
+            The classes returned might be different from the requested classes.
         reservationOffersOnly:
           type: boolean
           default: false
@@ -2374,19 +2373,8 @@ components:
           format: date-time
         validTo:
           type: string
-          format: date-time
-        offerParts:
-          # the oneOf here is strange as the whiole structure simply implements combinable lists of the subschemas 
-          type: array
-          items:
-            oneOf:
-              - $ref: '#/components/schemas/OfferPartRef'
-              - $ref: '#/components/schemas/Admission'
-              - $ref: '#/components/schemas/Reservation'
-              - $ref: '#/components/schemas/IntegratedReservation'
-              - $ref: '#/components/schemas/Ancillary'
-        # easier to implement (and providing exactly the same content is:     
-        offerPartsRefs:
+          format: date-time 
+        offerPartRefs:
           type: array        
           items:
             $ref: '#/components/schemas/OfferPartRef'
@@ -2402,7 +2390,7 @@ components:
           type: array        
           items:  
             $ref: '#/components/schemas/IntegratedReservation'
-        anciliaries:
+        ancillaries:
           type: array        
           items:  
             $ref: '#/components/schemas/Ancillary'
@@ -2423,7 +2411,7 @@ components:
           example: 'http://some.provider/offer/2345'
         title:
           type: string
-          example: 'Bruxelles-Midi- Paris-Nord 10:05 20200701 NF 50 EUR'
+          example: 'Bruxelles-Midi - Paris-Nord 10:05 20200701 NF 50 EUR'
     TripOffersCollection:
       type: object
       properties:
@@ -2697,13 +2685,7 @@ components:
       type: object
       properties:
         id:
-          description: The detailed comfort class
-          type: string
-          enum:
-            - A
-            - B
-            - C
-            - D
+          ref: '#/components/schemas/ServiceClassIdDef'
         carrierName:
           type: string
           description: >-
@@ -2749,7 +2731,7 @@ components:
           example: 'http://some.provider/passenger/2345'
         title:
           type: string
-          example: André Dupont
+          example: Andrï¿½ Dupont
     ServiceLevelIdDef:
       description: >-
         Code of the service level, code-list in IRS 90918-1.
@@ -3911,10 +3893,10 @@ components:
       type: object
       description: >-
         carrier - carrier responsible for the transport.
-        entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone
-            ticket to start from the main rail station).
-        terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main
-            rail station).
+        entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station
+        (e.g. local zone ticket to start from the main rail station).
+        terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket
+        to go to the main rail station).
       properties:
         binaryZoneId:
           type: integer
@@ -3929,7 +3911,7 @@ components:
           $ref: '#/components/schemas/StationDef'
         terminalStation:
           $ref: '#/components/schemas/StationDef'
-        zoneId:
+        zoneIds:
           description: to be used in bar codes
           type: array
           items:
@@ -3962,16 +3944,24 @@ components:
               - TLB
               - SSB
         requiredBarCodes:
-          description: one of the listed bar codes must be provided
+          description: >-
+            One of the listed bar codes must be provided.
           type: array
           items:
             type: string
         requiredSiS:
-          description: for SiS fulfillment one of the listed interfaces is required
+          description: >-
+            To guarantee security in system (SiS) of the fulfillment one of the listed interfaces is required.
           type: array
           items:
-            description: registry90918-4;peertopeer90918-4 TODO
+            description: >-
+              Interface type to ticket control data. REGISTRY means submitting
+              the data to the central UIC registry. PEER_TO_PEER means data exchange
+              is handled between the two parties directly.
             type: string
+            enum:
+              - REGISTRY
+              - PEER_TO_PEER
         individualTicketingPermitted:
           description: a separate fulfillment per traveler is permitted
           type: boolean
@@ -4052,10 +4042,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ServiceBrandCodeDef'
+      required:
+        - fromCountry
+        - toCountry
       additionalProperties: false
     CountryDef:
       description: >-
-        ISO 3166 2A codes, optional in case of web sales
+        ISO 3166 2A codes
       type: string
     FulfillmentTypeDef:
       description: >-
@@ -4099,7 +4092,7 @@ components:
             - serviceCode
           additionalProperties: false
         reservationOptions:
-          $ref: '#/components/schemas/ReservationOptionsDef'
+          $ref: '#/components/schemas/ReservationOnlineOptionDef'
         reservationRequiredForBrand:
           description: service brand mode for which a reservation is mandatory
           type: array
@@ -4113,7 +4106,7 @@ components:
       required:
         - id
       additionalProperties: false
-    ReservationOptionsDef:
+    ReservationOnlineOptionDef:
       type: object
       properties:
         preferences:
@@ -4124,25 +4117,25 @@ components:
         graphicalReservation:
           description: graphical reservation is supported, interface type "NO","UIC_918",..
           type: string
-        serviceBrands:
-          description: service brands where the options apply
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceBrandCodeDef'
       additionalProperties: false
     ReservationOptionGroupDef:
       type: object
       properties:
         preferenceGroup:
           type: string
-        preference:
+        preferences:
           type: array
           minItems: 1
           items:
             type: string
+      required:
+        - preferenceGroup
+        - preferences
       additionalProperties: false
     CarrierConstraintDef:
       type: object
+      description: >-
+        Either excluded or included carriers can be set.
       properties:
         id:
           type: string
@@ -4157,8 +4150,13 @@ components:
       additionalProperties: false
     ServiceClassIdDef:
       description: >-
-        Service class id. Values according to code list IRS 90918-10 (A, B, C, D).
+       Level of quality, finer grained than the comfort class.
       type: string
+      enum:
+        - BEST
+        - HIGH
+        - STANDARD
+        - BASIC
     ServiceLevelDef:
       type: object
       properties:
@@ -4182,9 +4180,11 @@ components:
           type: string
       required:
         - id
+        - text
       additionalProperties: false
     ServiceConstraintDef:
-      description: one of the lists of excluded or included service brands only
+      description: >-
+        Either excluded or included service brands can be set.
       type: object
       properties:
         id:
@@ -4212,7 +4212,7 @@ components:
     RegionalConstraintDef:
       type: object
       description: >-
-        regional constraint of the fare- offline bulk data use the id of connectionpoints whereas in an online environment the connection point is included
+        regional constraint of the fare- offline bulk data use the id of connection points whereas in an online environment the connection point is included
       properties:
         id:
           type: string
@@ -4231,6 +4231,8 @@ components:
         distance:
           description: 'distance in km for statistics '
           type: number
+      required:
+        - regionalValidity
       additionalProperties: false
     TranslationDef:
       type: object
