@@ -144,6 +144,7 @@ paths:
             "application/problem+json":
               schema:
                 $ref: '#/components/schemas/Problem'
+                
   '/locations/{id}':
     get:
       tags:
@@ -371,7 +372,6 @@ paths:
             "application/problem+json":
               schema:
                 $ref: '#/components/schemas/Problem'
-
         '401':
           description: Unauthorized
         '403':
@@ -608,10 +608,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'         
         '501':
-          description: Not implemented
-          
-     
-      
+          description: Not implemented     
           
           
   '/offers/{id}':
@@ -834,6 +831,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+          
   '/offers/{offerId}/admissions/{id}':
     get:
       tags:
@@ -891,6 +889,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+          
   '/offers/{offerId}/reservations/{id}':
     get:
       tags:
@@ -1069,6 +1068,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+          
   '/offers/{offerId}/ancillaries/{id}':
     get:
       tags:
@@ -1126,6 +1126,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+          
   /bookings:
     get:
       tags:
@@ -1261,6 +1262,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+          
   '/bookings/{id}':
     get:
       tags:
@@ -1719,6 +1721,7 @@ paths:
         '501':
           description: Not implemented
 
+
 ## Components
 
 components:
@@ -1756,12 +1759,13 @@ components:
           description: Version of the current relation.
       description: >-
         The underlying system may provide additional links pointing on further
-        information (such as HTML download links, websites or extended APIs).
+        information (such as HTML download links, web sites or extended APIs).
         Mechanism to add flexible extensions specific to an underlying system.
+        
     Segment:
       description: >-
         A segment represents a subsection of a trip that is realized with the same transport. In railways it is typically one
-        train (between the moment traveller steps onboard until stepping out of that train), but could be using a different means
+        train (between the moment traveller steps on-board until stepping out of that train), but could be using a different means
         of transportation. 
       type: object
       properties:
@@ -1833,11 +1837,11 @@ components:
               departureDateTime:
                 description: date and time in the time zone of the station
                 type: string
-                format: date
+                format: date-time
               arrivalDateTime:
                 description: date and time in the time zone of the station
                 type: string
-                format: date
+                format: date-time
               index:
                 type: number
                 format: int32
@@ -1858,7 +1862,7 @@ components:
                   The info about the arrival-track of the stop. Format depends
                   on operator.
             description: >-
-              Represents a location resp. station. Either a departure, arrival
+              Represents a location or station. Either a departure, arrival
               or intermediate stop along a segment of a trip.
             required:
               - station
@@ -1872,7 +1876,7 @@ components:
       description: >-
         Details of a station. Station names are not translated but provided in some
         cases in multiple character sets in case stations are named in local
-        characters and additionally in latin. In some countries stations have
+        characters and additionally in latin characters. In some countries stations have
         multiple names depending on the countries local languages.
       type: object
       properties:
@@ -1924,7 +1928,7 @@ components:
               name:
                 type: string
             additionalProperties: false
-      additionalProperties: false      
+      additionalProperties: false     
     StationDef:
       description: >-
         Used to represent a station location. This is a location that can be used as origin and destination for a train journey
@@ -2008,6 +2012,11 @@ components:
           example: 3006
         country:
           $ref: '#/components/schemas/CountryDef'
+      required:
+         - street,
+         - city,
+         - postalCode,
+         - country
     POICodeList:
       description: Code list used for the POI codes.
       type: string
@@ -2085,7 +2094,7 @@ components:
         name:
           description: name of the point of interest
           type: string
-          example: Bern B�rengraben (Denkmal)
+          example: Bern Bï¿½rengraben (Denkmal)
       required:
         - country
         - localCode
@@ -2455,31 +2464,40 @@ components:
         vatDetails:
           type: array
           items:
-            type: object
-            properties:
-              country:
-                type: string
-              amount:
-                description: amount in cents
-                type: number
-                format: int32
-              percentage:
-                type: number
-                format: int32
-              taxId:
-                type: string
-              scope:
-                description: >-
-                  scope where the VAT applies: INTERNATIONAL, NATIONAL,
-                  SHORT_DISTANCE, LONG_DISTANCE
-                type: string
-            required:
-              - country
-            additionalProperties: false
+            $ref: '#/components/schemas/VatDetailDef'
       required:
         - currency
         - amount
       additionalProperties: false
+      
+    VatDetailDef:
+      type: object
+      properties:
+        country:
+          type: string
+        amount:
+          description: amount
+          type: number
+          format: float
+        percentage:
+          type: number
+          format: float
+        taxId:
+          type: string
+        scope:
+           $ref: '#/components/schemas/VatScopeDef'
+      required:
+        - country
+      additionalProperties: false
+      
+    VatScopeDef:
+      description: scope where the VAT applies
+      type: string
+      enum:
+       - INTERNATIONAL, 
+       - NATIONAL,
+       - SHORT_DISTANCE,
+       - LONG_DISTANCE
 
     GenderDef:
       description: >- 
@@ -2489,6 +2507,7 @@ components:
         - MALE
         - FEMALE
         - X
+        
     ReductionCardReferenceDef:
       type: object
       properties:
@@ -2513,11 +2532,12 @@ components:
             different classes
           type: array
           items:
-            $ref: '#/components/schemas/ServiceClassDef'
+            $ref: '#/components/schemas/ServiceClassIdDef'
       required:
         - cardId
         - cardValueType
       additionalProperties: false
+      
     CardIdentificationDef:
       description: >-
         card issuer - RICS code in case of Railways, otherwise starting with
@@ -2540,10 +2560,15 @@ components:
         - cardIssuer
         - cardType
       additionalProperties: false
+      
+    PassengerReferenceDef:
+      description: reference to a passenger within the offer and booking
+      type: string
+      
     PassengerDef:
       type: object
       properties:
-        id:
+        id: 
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
@@ -2561,10 +2586,11 @@ components:
             $ref: '#/components/schemas/Link'
       required:
         - passenger           
+        
     PassengerAbstractDef:
       type: object
       properties:
-        passengerReference:
+        reference:
           description: >-
             stable reference to passengers from other elements, or from caller
             system.
@@ -2586,7 +2612,8 @@ components:
       required:
         - travelerId
         - dateOfBirth
-      additionalProperties: false        
+      additionalProperties: false  
+      
     PassengerPassportDef:
       description: >- 
         Travel document data to be exchanged for border control in case of legal requirements
@@ -2629,6 +2656,7 @@ components:
         - documentType
         - name
       additionalProperties: false
+      
     PassengerDetailsDef:
       type: object
       description: >- 
@@ -2670,7 +2698,7 @@ components:
                 type: string
               accountType:
                 description: >-
-                  Example types: facebook, whatsapp, skype, wechat,...
+                  Example types: FACEBOOK,WHATSAPP,SKYPE, WECHAT,...
                 type: string
             required:
               - account
@@ -2681,27 +2709,31 @@ components:
             Information text provided by the issuing system in a controlled way (e.g. VIP customer).
           type: string
       additionalProperties: false
+      
     ServiceClassDef:
       type: object
       properties:
         id:
-          ref: '#/components/schemas/ServiceClassIdDef'
+          $ref: '#/components/schemas/ServiceClassIdDef'
         carrierName:
           type: string
           description: >-
-            the name the carrier itself uses to designate this specific comfort
-            class
-        classicClass:
-          description: >-
-            Generic class classification, mostly used to harmonize choice and
-            representation across multiple carriers
-          type: string
-          enum:
-            - FIRST
-            - SECOND
+            the name the carrier itself uses to designate this specific service class
+        comfortClass:
+          $ref: '#/components/schemas/ComfortClassDef'
       required:
         - id
       additionalProperties: false
+     
+    ComfortClassDef:
+      description: >-
+            Generic class classification, mostly used to harmonize choice and
+            representation across multiple carriers
+      type: string
+      enum:
+        - FIRST
+        - SECOND 
+      
     TravelSectionDef:
       type: object
       properties:
@@ -2722,6 +2754,7 @@ components:
         - start
         - end
       additionalProperties: false
+      
     PassengerRef:
       type: object
       properties:
@@ -2731,28 +2764,35 @@ components:
           example: 'http://some.provider/passenger/2345'
         title:
           type: string
-          example: Andr� Dupont
+          example: Andrï¿½ Dupont
+          
     ServiceLevelIdDef:
       description: >-
         Code of the service level, code-list in IRS 90918-1.
       type: string
+      
     Flexibility:
       type: string
       enum:
         - FULLFLEX
         - MIDFLEX
         - NONFLEX
+
+    PricingModeDef:
+      type: string
+      enum:
+        - COLLECTIVE
+        - INDIVIDUAL        
+        
     OfferPart:
       type: object
       properties:
         price:
           $ref: '#/components/schemas/CurrencyPriceDef'
         pricingMode:
-          type: string
-          enum:
-            - COLLECTIVE
-            - INDIVIDUAL
+          $ref: '#/components/schemas/PricingModeDef'
         validAsOf:
+          description: TODO what is the difference between validAsOf and validFrom?
           type: string          
           format: date-time
         validUntil:
@@ -2765,7 +2805,11 @@ components:
         passengerRefs:
           type: array
           items:
-            $ref: '#/components/schemas/PassengerRef'
+            oneOf:
+              - $ref: '#/components/schemas/PassengerRef'
+              - $ref: '#/components/schemas/PassengerDef'
+        requiredPersonalData:
+          $ref: '#/components/schemas/PersonalDataConstraintDef'
         validFrom:
           type: string
           format: date-time
@@ -2778,8 +2822,11 @@ components:
             type: object
             properties:
               productRef:
-                $ref: '#/components/schemas/ProductRef'
-              segmentRefs:
+                oneOf:
+                  - $ref: '#/components/schemas/ProductRef'
+                  - $ref: '#/components/schemas/Product'
+              segmentIndices:
+                description: indices of the segments in the trip given by the provider of the offer
                 type: array
                 items:
                   type: string
@@ -2795,6 +2842,13 @@ components:
           example: TGV Lyria Loisir 2
     Product:
       type: object
+      required:
+        - id
+        - description
+        - conditions
+        - refundable
+        - exchangeable
+        - fulfillmentTypes
       properties:
         id:
           type: string
@@ -2817,34 +2871,36 @@ components:
           description: >-
             Structured description of the sales or after-sales conditions.
         refundable:
-          type: string
-          enum:
-            - YES
-            - NO
-            - WITH_CONDITIONS
+          $ref: '#/components/schemas/RefundTypeDef'
         exchangeable:
-          type: string
-          enum:
-            - YES
-            - NO
-            - WITH_CONDITIONS
+          $ref: '#/components/schemas/ExchangeTypeDef'
         serviceClass:
           $ref: '#/components/schemas/ServiceClassDef'
-        fulfillmentType:
-          type: string
+        fulfillmentMediaTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentMediaTypeDef'
         serviceConstraintText:
           type: string
         carrierConstraintText:
           type: string
+
+          
+    FulfillmentMediaTypeDef:
+       description: fulfillment types TODO complete list
+       type: string        
+       enum:
+         - PDF
+         - PKPASS
+         - TICKETLESS
+         - ALLOCATOR_APP
+         - SOCIAL_MEDIA_ACCOUNTS
+
     ProductCondition:
       type: object
       properties:
         type:
-          type: string
-          enum:
-            - SALES
-            - EXCHANGE
-            - REFUND
+          $ref: '#/components/schemas/ConditionTypeDef'
         description:
           type: string
         validFrom:
@@ -2854,16 +2910,51 @@ components:
           type: string
           format: date-time
         afterSalesFee:
-          type: object
-          properties:
-            price:
-              $ref: '#/components/schemas/CurrencyPriceDef'
-            validFrom:
-              type: string
-              format: date-time
-            validUntil:
-              type: string
-              format: date-time
+          $ref: '#/components/schemas/AfterSalesFeeDef'
+      required:
+        - type
+        - description
+        - afterSalesFee
+        - validFrom
+        - validUntil
+  
+    AfterSalesFeeDef:
+      type: object
+      properties:
+        price:
+          $ref: '#/components/schemas/CurrencyPriceDef'
+        validFrom:
+          type: string
+          format: date-time
+        validUntil:
+          type: string
+          format: date-time     
+      required:
+       - price
+       - validFrom
+       - validUntil           
+
+    RefundTypeDef:
+          type: string
+          enum:
+            - YES
+            - NO
+            - WITH_CONDITIONS
+            
+    ExchangeTypeDef:
+          type: string
+          enum:
+            - YES
+            - NO
+            - WITH_CONDITIONS
+
+    ConditionTypeDef:
+          type: string
+          enum:
+            - SALE
+            - EXCHANGE
+            - REFUND
+
     Admission:
       type: object
       properties:
@@ -2888,6 +2979,7 @@ components:
             type: object
             properties:
               relationType:
+                description: MANDATORY - the booking can not be made without reservation, INCLUDED - reservation is included in the offer but is not mandatory, OPTIONAL reservation is not included but can be integrated in the same ticket
                 type: string
                 enum:
                   - OPTIONAL
@@ -2907,8 +2999,10 @@ components:
                   - INCLUDED
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
+                
     Reservation:
       type: object
+      description: reservation includes the reservation options in the initial offer it needs to be updated with the selected places before the confirmation which creates the reservation details including the reserved places
       properties:
         id:
           type: string
@@ -2920,17 +3014,21 @@ components:
             $ref: '#/components/schemas/Link'
         offerPart:
           $ref: '#/components/schemas/OfferPart'
-        numericAvailability:
-          description: denotes the number of seats available for booking
-          type: number
-          format: int32
-        reservationDetails:
+        reservationOptions:
+          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
+        selectedPlaces:
+          description: list of options to select places when confirming the booking
           type: array
           items:
-            $ref: '#/components/schemas/ReservationDetails'
-        ReservationSelection:
-          $ref: '#/components/schemas/ReservationSelection'
+              $ref: '#/components/schemas/ReservationSelectionDef'
+        reservationDetails:
+          $ref: '#/components/schemas/ReservationDetailsDef'
+      required:
+        - id,
+        - offerPart                    
+
     IntegratedReservation:
+      description: reservation includes the reservation options in the initial offer it needs to be updated with the selected places before the confirmation which creates the reservation details including the reserved places   
       type: object
       properties:
         id:
@@ -2943,10 +3041,6 @@ components:
             $ref: '#/components/schemas/Link'
         offerPart:
           $ref: '#/components/schemas/OfferPart'
-        numericAvailability:
-          description: denotes the number of seats available for booking
-          type: number
-          format: int32
         ancillaries:
           type: array
           items:
@@ -2959,90 +3053,146 @@ components:
                   - INCLUDED
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
+        reservationOptions:
+          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
+        selectedPlaces:
+          description: list of options to select places when confirming the booking
+          type: array
+          items:
+              $ref: '#/components/schemas/ReservationSelectionDef'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetails'
-        ReservationSelection:
-          $ref: '#/components/schemas/ReservationSelection'
-    ReservationSelection:
+          $ref: '#/components/schemas/ReservationDetailsDef'
+      required:
+        - id,
+        - offerPart
+
+    ReservationSelectionDef:
       type: object
+      description: options to select places for reservation. 
       properties:
-        state:
-          type: string
-          enum:
-            - DESIRED
-            - ASSIGNED
-          description: >-
-            Indicates whether the selection is a wish or the assigned seating of the provider system.
         passengers:
           type: array
           items:
-            $ref: '#/components/schemas/PassengerRef'
-        segmentIndex:
-          $ref: '#/components/schemas/SegmentIndex'
-        seatingPreferenceType:
-          type: string
-          enum:
-            - EXACT
-            - NEARBY
-        placeNumber:
-          type: string
-        coachNumber:
-          type: string
+            oneOf:
+              - $ref: '#/components/schemas/PassengerRef'
+              - $ref: '#/components/schemas/PassengerReferenceDef'
+        vehicle:
+          description: vehicle / train number is necessary in  case of train parts with different train numbers
+          type: string           
+        referencePlace: 
+          description: selected place for a adjacent reservation (NEARBY)
+          type: object    
+          properties:
+            placeNumber:
+              type: string
+            coachNumber:
+              type: string
+        selectedPlaces:
+             $ref: '#/components/schemas/PlaceSelectionDef'
         direction:
           type: string
           enum:
             - FORWARD
             - BACKWARD
             - UNKNOWN
-        placeDescription:
-          type: string
-          example: seats 11-45 
-          description: >-
-            In case the reservation applies to several passengers, a place description can be returned instead of exact seat number.
-        selectedCompartmentOptions: 
+        selectedPlaceProperties: 
           type: array
           items:
-            $ref: '#/components/schemas/CompartmentOption'
-      description: >-
-        Once booked, this element contains the details of the space reserved.
-    SegmentIndex:
-      type: integer
-      description: >-
-        Refers to the segment the compartment information relates to by its
-        index.
-    CompartmentOption:
+            description: selection from the optional place properties provided in the offer
+            type: string
+
+    ReservationDetailsDef:
+      type: object
+      description: segmentIndex references a segmentIndex in the trip part within the offer reply
+      properties:
+         serviceClass:
+            $ref: '#/components/schemas/ServiceClassDef'
+         serviceLevel:
+            $ref: '#/components/schemas/ServiceLevelIdDef'  
+         reservedPlaces:
+          description: reserved places in a confirmed reservation. Multiple place packs are needed to combined person and bicycle reservations
+          type: array
+          items:
+              $ref: '#/components/schemas/PlacePackDef'
+      required:
+        - serviceLevel,
+        - reservedPlaces
+
+    PlaceSelectionDef:
+      description: place selection from a graphical display of coaches
       type: object
       properties:
-        commonForAllPassengers:
-          type: boolean
-          description: >-
-            indicates if the option is applicable to the whole
-            passengers party or individually
-        compartmentPreference:
-          type: object
-          properties:
-            codeList:
+        selectedCoach:
+          description: selected coach and places in case of graphical reservation
+          type: array
+          items:
+            minItems: 1
+            type: object
+            properties:
+              selectedPlaces:
+                description: selected places in case of graphical booking
+                type: array
+                items:
+                  minItems: 1              
+                  type: string
+      additionalProperties: false
+      required:
+        - selectedCoach
+        - selectedPlaces
+
+        
+    PlacePackDef:
+        type: object
+        description: selection of places with common propertioes
+        properties:
+          id:
+            type: string
+          passengerReferences:
+            description: reference of the traveller / reservation holder
+            type: string
+          vehicle:
+            description: vehicle number (e.g. train number)
+            type: string  
+          coach:
+            type: string
+          places:
+            description: descriptive string of the places (e.g. 11-35,51)
+            type: string
+          placeIds:
+            description: list of individual place numbers
+            type: array
+            items:
               type: string
-              description: the code list to use for reference
-            code:
-              type: string
-              description: the code for the option represented in the given code-list
-    ReservationDetails:
-      type: object
-      properties:
-        compartment:
-          type: object
-          properties:
-            segmentIndex:
-              $ref: '#/components/schemas/SegmentIndex'
-            serviceClass:
-              $ref: '#/components/schemas/ServiceClassDef'
-            serviceLevel:
-              $ref: '#/components/schemas/ServiceLevelIdDef'
-            compartmentOptions:
-              type: array
-              items:
-                $ref: '#/components/schemas/CompartmentOption'
+          placeProperties:
+            description: place properties to be indicated to the customer
+            type: array
+            items:
+              type: object
+              description: place properties of places in the place pack. Properties without a  number refer to all places
+              properties:
+                placeProperty:
+                  description: see code list
+                  type: string
+                number:
+                  description: number of places with this property
+                  type: number
+                priority:
+                  description: priority for displaying a list of properties
+                  type: number
+              required:
+                - placeProperty
+              additionalProperties: false
+        required:         
+          - id
+          - reference
+          - vehicle
+          - coach
+          - places
+          - placeProperties  
+        additionalProperties: false
+     
+        
+         
     Ancillary:
       type: object
       properties:
@@ -3058,6 +3208,7 @@ components:
           $ref: '#/components/schemas/OfferPart'
         category:
           type: string
+          
     OfferPartRef:
       type: object
       properties:
@@ -3074,6 +3225,7 @@ components:
         References all the offer part elements in an uniform format. an
         offerPartRef can therefore refer to reservation, integrated reservation
         admission or ancillary (in its href)
+        
     BookingRequest:
       type: object
       properties:
@@ -3131,6 +3283,7 @@ components:
               - REFUND_PROPOSITIONS
       required:
         - selectedOfferId
+        
     Booking:
       type: object
       properties:
@@ -3183,8 +3336,8 @@ components:
           type: array
           items:
             oneOf:
-              - $ref: '#/components/schemas/RefundOffer'
               - $ref: '#/components/schemas/RefundOfferRef'
+              - $ref: '#/components/schemas/RefundOffer'
           description: >-
             Refund offer is created with the details of the to-be-confirmed refund operation. 
             The proposition can then be accepted, which conforms the refund.
@@ -3246,12 +3399,13 @@ components:
       description: >-
         Reason for and type of an after sale, Code list in IRS 90918-10.
       type: string
-    RefundOffersCollection: 
+    RefundOffersCollection:
       type: array
       items:
         $ref: '#/components/schemas/RefundOffer'
     RefundOffer:
       type: object
+      description: TODO
       properties:
         id:
           type: string
@@ -3280,7 +3434,6 @@ components:
           format: date-time
         appliedOverruleCode:
           $ref: '#/components/schemas/AfterSaleReasonDef'
-          description: if applicable, which overruleCode should be applied to the request
         tickets:
           type: array
           items: 
@@ -3306,6 +3459,7 @@ components:
         title:
           type: string
           example: Refund Paris-Barcelona Andre Dupont 2020-07-23
+          
     TicketRequest:
       type: object
       properties:
@@ -3316,18 +3470,18 @@ components:
           description: id of the booking to fulfill (no partial fulfillment)
       required:
         - bookingId
+        
     RefundOfferRequest:
+      description: request for a refund. Tickets can be provided in case the booking contains multiple individual tickets
       type: object
       properties:
         tickets:
           type: array
           items:
-            $ref:  '#/components/schemas/TicketRef'
-          description: the list of tickets that should be covered by the proposition
+            $ref: '#/components/schemas/TicketRef'
         overruleCode: 
           $ref: '#/components/schemas/AfterSaleReasonDef'
-      required:
-        - tickets
+
     RefundOfferConfirm:
       type: object
       properties:
@@ -3340,6 +3494,7 @@ components:
           type: string
           enum:
             - CONFIRMED
+            
     Problem:
       type: object
       properties:
@@ -3410,12 +3565,6 @@ components:
           $ref: '#/components/schemas/ServiceClassDef'
         serviceLevel:
           $ref: '#/components/schemas/ServiceLevelDef'
-        reservationParameter:
-          $ref: '#/components/schemas/ReservationParameterDef'
-        personalDataConstraint:
-          $ref: '#/components/schemas/PersonalDataConstraintDef'
-        passengerConstraint:
-          $ref: '#/components/schemas/PassengerConstraintDef'
         afterSalesCondition:
           $ref: '#/components/schemas/AfterSalesConditionDef'
         combinationConstraint:
@@ -3428,6 +3577,18 @@ components:
           $ref: '#/components/schemas/LegacyAccountingIdentifierDef'
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidityConstraintDef'
+        reservationOptions:
+          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
+        reservationPlaceSelections:
+          description: list of options to select places when confirming the booking
+          type: array
+          items:
+            $ref: '#/components/schemas/ReservationSelectionDef'
+        reservationDetails:
+          $ref: '#/components/schemas/ReservationDetailsDef'          
+        reservationLegacyParameter:
+          $ref: '#/components/schemas/LegacyReservationParameterDef'
+                    
       required:
         - id
         - type
@@ -3463,6 +3624,14 @@ components:
       items:
         type: string
         format: date-time
+        
+    TimeUnitDef:
+       type: string
+       enum:
+         - DAYS
+         - HOURS
+         - MINUTES
+                    
     TravelValidityConstraintDef:
       type: object
       properties:
@@ -3475,11 +3644,7 @@ components:
           type: object
           properties:
             timeUnit:
-              type: string
-              enum:
-                - DAYS
-                - HOURS
-                - MINUTES
+               $ref: '#/components/schemas/TimeUnitDef'
             value:
               type: number
             hoursAfterMidnight:
@@ -4050,6 +4215,7 @@ components:
       description: >-
         ISO 3166 2A codes
       type: string
+      
     FulfillmentTypeDef:
       description: >-
         SIP: secure paper tickets; SID: security in data (signed bar code); SIS: security in system
@@ -4058,16 +4224,10 @@ components:
         - SIP
         - SID
         - SIS
-    ReservationParameterDef:
-      type: object
-      properties:
-        id:
-          type: string
-        reservationRequired:
-          type: boolean
-          default: false
-        reservationParams918-1:
+    
+    LegacyReservationParameterDef:
           type: object
+          description: reservation parameter to support the UIC 90918-1 interface for booking
           properties:
             travelClass:
               description: 90918-1 class code in reservation
@@ -4091,21 +4251,9 @@ components:
             - serviceLevelCode
             - serviceCode
           additionalProperties: false
-        reservationOptions:
-          $ref: '#/components/schemas/ReservationOnlineOptionDef'
-        reservationRequiredForBrand:
-          description: service brand mode for which a reservation is mandatory
-          type: array
-          items:
-            type: integer
-        reservationRequiredForMode:
-          description: service service mode for which a reservation is mandatory
-          type: array
-          items:
-            type: string
-      required:
-        - id
-      additionalProperties: false
+     
+ 
+ 
     ReservationOnlineOptionDef:
       type: object
       properties:
