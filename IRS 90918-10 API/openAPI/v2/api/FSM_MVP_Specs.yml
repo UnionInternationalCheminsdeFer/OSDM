@@ -416,7 +416,7 @@ paths:
           in: query
           description: >-
             Based on a previous search-response, earlier or later connections
-            for the same   trip can be retrieved by scrolling back and forth (by
+            for the same trip can be retrieved by scrolling back and forth (by
             a pointer-context). You must use the same request parameters as in
             the original trips-request and the given values in the response for
             either "ScrollBack-Context" or "ScrollForward-Context" for optional
@@ -439,7 +439,7 @@ paths:
         - in: query
           name: includeBehavior
           description: >-
-            Influences whether referenced resources are returned in full or as references only
+            Influences whether referenced resources are returned in full or as references only.
           schema:
             type: array
             items:
@@ -951,9 +951,11 @@ paths:
       tags:
         - Offer Parts
       summary: >-
-        The PATCH reservation service allows updating reservation elements, allowing to update the desired reservation
-        selection for one or more passengers. Note that only the following elements of the reservationSelection can 
-        actually be patched: selectedCompartmentOptions, seatingPreferenceType, placeNumber, coachNumber and direction.
+        The PATCH reservation service allows updating reservation elements, allowing to update the desired 
+        reservation selection for one or more passengers. 
+      description: >-
+        Note that only the following elements of the reservationSelection can actually be patched: 
+        selectedCompartmentOptions, seatingPreferenceType, placeNumber, coachNumber and direction.
       operationId: patchReservationsId
       parameters:
         - in: path
@@ -1126,7 +1128,70 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-          
+
+  '/offers/{offerId}/fares/{id}':
+    get:
+      tags:
+        - Offer Parts
+      summary: >-
+        The GET fares service returns the information on the ancillary with the id provided.
+      description: >-
+        For the fares only the start and the end location are considered.
+
+        Fares are only returned if the API is called as allocator with the correct grants.
+        Otherwise a forbidden message is returned. 
+      operationId: getFaresId
+      parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer the offerPart is part of.
+        - in: path
+          name: id
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the fares to get.
+      responses:
+        '200':
+          description: ancillary found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FareOnlineDef'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+
   /bookings:
     get:
       tags:
