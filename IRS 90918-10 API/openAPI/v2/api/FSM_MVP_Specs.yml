@@ -39,9 +39,9 @@ tags:
   - name: Products
     description: >-
       resources to retrieve products information on one or more products
-  - name: Tickets  
+  - name: Fulfillments  
     description: >-
-      resources to retrieve tickets
+      resources to retrieve fulfillments, e.g. tickets
   - name: RefundOffers
     description: >-
       resources to get and accept a refund offer
@@ -1436,7 +1436,7 @@ paths:
       tags:
         - Bookings
       summary: >-
-        The POST bookings service triggers the confirmation of the booking
+        The PATCH bookings service triggers the confirmation of the booking
       operationId: confirmBooking
       parameters:
         - in: path
@@ -1447,15 +1447,11 @@ paths:
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking to be confirmed      
-        - in: query
-          name: status
-          description: >-
-            Influences the status change, curently only confirm 
-          schema:
-            type: string
-            default: CONFIRM
-            enum:
-              - CONFIRM
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingPatchRequest'
       responses:
         '202': 
           description: Booking confirmed
@@ -1483,12 +1479,12 @@ paths:
         
    
    
-  '/tickets':
+  '/fulfillments':
     post:
       tags:
-        - Tickets
+        - Fulfillments
       summary: >-
-        The POST tickets service triggers the fulfillment of the booking based on the information currently contained
+        The POST fulfillments service triggers the fulfillment of the booking based on the information currently contained
         in the provided booking,
       operationId: postTickets
       requestBody:
@@ -1519,10 +1515,10 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-  '/tickets/{id}':
+  '/fulfillments/{id}':
     get:
       tags:
-        - Tickets
+        - Fulfillments
       summary: >-
         The GET ticket service returns the information on the ticket with the id provided.
       operationId: getTicketsId
@@ -1541,7 +1537,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ticket'
+                $ref: '#/components/schemas/Fulfillment'
           headers:
             Content-Language:
               schema:
@@ -2159,7 +2155,7 @@ components:
         name:
           description: name of the point of interest
           type: string
-          example: Bern Bï¿½rengraben (Denkmal)
+          example: Bern Baerengraben (Denkmal)
       required:
         - country
         - localCode
@@ -2353,6 +2349,10 @@ components:
           $ref: '#/components/schemas/TripDef'
         requestedSection:
           $ref: '#/components/schemas/TravelSectionDef'
+        requestedFulfillmentOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentOption'
         passengers:
           type: array
           items:
@@ -2421,7 +2421,9 @@ components:
     OfferSummary:
       type: object
       description: >-
-        the offer summary indicates the major service class, level or flexibility. This does not imply that this service class or level applies to the whole offer 
+        The offer summary indicates the major service class, level or flexibility.
+        This does not imply that this service class or level applies to all parts 
+        of the whole offer. 
       properties:
         minimalPrice:
           $ref: '#/components/schemas/CurrencyPriceDef'
@@ -2431,6 +2433,7 @@ components:
           $ref: '#/components/schemas/ServiceLevelIdDef'
         overallFlexibility:
           $ref: '#/components/schemas/Flexibility'
+
     Offer:
       type: object
       properties:
@@ -2448,6 +2451,10 @@ components:
         validTo:
           type: string
           format: date-time 
+        supportedMediaTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentMediaTypeDef'
         offerPartRefs:
           type: array        
           items:
@@ -2583,7 +2590,7 @@ components:
           description: code list for the cardValue provided
           type: string
         cardName:
-          description: card name for printing on tickets
+          description: card name for printing on fulfillments
           type: string
         issuer:
           type: string
@@ -2763,7 +2770,7 @@ components:
                 type: string
               accountType:
                 description: >-
-                  Example types: FACEBOOK,WHATSAPP,SKYPE, WECHAT,...
+                  Example types: FACEBOOK, WHATSAPP, SKYPE, WECHAT,...
                 type: string
             required:
               - account
@@ -2829,7 +2836,7 @@ components:
           example: 'http://some.provider/passenger/2345'
         title:
           type: string
-          example: Andrï¿½ Dupont
+          example: Andreas Dupont
           
     ServiceLevelIdDef:
       description: >-
@@ -2949,13 +2956,16 @@ components:
           type: string
         carrierConstraintText:
           type: string
-
           
     FulfillmentMediaTypeDef:
-       description: fulfillment types TODO complete list
+       description: >-
+         Fulfillment types. RCT2, RCCST and UIC-PDF are offical UIC standards.
        type: string        
        enum:
-         - PDF
+         - RCT2
+         - RCCST
+         - UIC_PDF
+         - PDF_A4
          - PKPASS
          - TICKETLESS
          - ALLOCATOR_APP
@@ -3255,9 +3265,7 @@ components:
           - places
           - placeProperties  
         additionalProperties: false
-     
-        
-         
+             
     Ancillary:
       type: object
       properties:
@@ -3364,7 +3372,7 @@ components:
           type: string
           enum:
             - PREBOOKED
-            - BOOKED
+            - CONFIRMED
             - PAID
             - FULFILLED
             - CANCELLED
@@ -3391,12 +3399,12 @@ components:
             oneOf:
               - $ref: '#/components/schemas/PassengerRef'
               - $ref: '#/components/schemas/PassengerDef'
-        tickets:
+        fulfillments:
           type: array
           items:
             oneOf:
-              - $ref: '#/components/schemas/TicketRef'
-              - $ref: '#/components/schemas/Ticket'
+              - $ref: '#/components/schemas/FulfillmentRef'
+              - $ref: '#/components/schemas/Fulfillment'
         refundOffers:
           type: array
           items:
@@ -3410,6 +3418,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    
     BookingRef:
       type: object
       properties:
@@ -3420,13 +3429,31 @@ components:
         title:
           type: string
           example: booking 2345
+
+    BookingPatchRequest:
+      type: object
+      description: >-
+        Allow to confirm the booking as well as to set the required fulfillment type, e.g. value paper
+        or e-ticket.
+      properties:
+        status:
+          type: string
+          enum:
+            - CONFIRMED
+        fulfillementOptions:
+          type: array
+          items: 
+            $ref: '#/components/schemas/FulfillmentOption'
+
     FulfillmentOption:
-      type: string
+      description: >-
+        CIT paper implies printing on value paper which is stock controlled.
+      type: string      
       enum:
         - ETICKET
-        - PAPER
-        - TICKETLESS
-    Ticket:
+        - CIT_PAPER
+
+    Fulfillment:
       type: object
       properties:
         id:
@@ -3435,7 +3462,8 @@ components:
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
         controlNumber:
           type: string
-          description: Ticket Control Number
+          description: >-
+            Ticket Control Number
         status:
           type: string
           enum:
@@ -3450,7 +3478,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    TicketRef:
+    
+    FulfillmentRef:
       type: object
       properties:
         href:
@@ -3499,10 +3528,10 @@ components:
           format: date-time
         appliedOverruleCode:
           $ref: '#/components/schemas/AfterSaleReasonDef'
-        tickets:
+        fulfillments:
           type: array
           items: 
-            $ref: '#/components/schemas/TicketRef'
+            $ref: '#/components/schemas/FulfillmentRef'
         refundFee:
           $ref: '#/components/schemas/CurrencyPriceDef'
         refundableAmount:
@@ -3537,13 +3566,13 @@ components:
         - bookingId
         
     RefundOfferRequest:
-      description: request for a refund. Tickets can be provided in case the booking contains multiple individual tickets
+      description: request for a refund. Fulfillments can be provided in case the booking contains multiple individual fulfillments
       type: object
       properties:
-        tickets:
+        fulfillments:
           type: array
           items:
-            $ref: '#/components/schemas/TicketRef'
+            $ref: '#/components/schemas/FulfillmentRef'
         overruleCode: 
           $ref: '#/components/schemas/AfterSaleReasonDef'
 
@@ -3720,7 +3749,7 @@ components:
             - value
           additionalProperties: false
         excludedTimeRange:
-          description: time ranges excluded from the validity (e.g. off peak tickets)
+          description: time ranges excluded from the validity (e.g. off peak fulfillments)
           type: array
           items:
             type: object
@@ -3888,8 +3917,8 @@ components:
           items:
             $ref: '#/components/schemas/CompanyDef'
         allowedCommonContracts:
-          description: 
-            List of carriers where a common contract with separate tickets are allowed.
+          description: >-
+            List of carriers where a common contract with separate fulfillments are allowed.
           type: array
           items:
             $ref: '#/components/schemas/CompanyDef'
@@ -4157,11 +4186,11 @@ components:
       properties:
         id:
           type: string
-        acceptedFulfillmentTypes:
+        acceptedControlSecurityTypes:
           type: array
           minItems: 1
           items:
-            $ref: '#/components/schemas/FulfillmentTypeDef'
+            $ref: '#/components/schemas/ControlSecurityTypeDef'
         acceptedBarCodes:
           description: for SiD fulfillment one of the listed bar codes is required
           type: array
@@ -4237,7 +4266,7 @@ components:
                 description: type of fulfillment in case the personal data are required for that type only
                 type: array
                 items:
-                  $ref: '#/components/schemas/FulfillmentTypeDef'
+                  $ref: '#/components/schemas/ControlSecurityTypeDef'
             required:
               - dataItem
               - transfer
@@ -4281,7 +4310,7 @@ components:
         ISO 3166 2A codes
       type: string
       
-    FulfillmentTypeDef:
+    ControlSecurityTypeDef:
       description: >-
         SIP: secure paper tickets; SID: security in data (signed bar code); SIS: security in system
       type: string
@@ -4316,9 +4345,6 @@ components:
             - serviceLevelCode
             - serviceCode
           additionalProperties: false
-     
- 
- 
     ReservationOnlineOptionDef:
       type: object
       properties:
