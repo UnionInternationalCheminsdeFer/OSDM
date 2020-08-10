@@ -145,7 +145,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
                 
-  '/locations/{id}':
+  '/locations/{locationId}':
     get:
       tags:
         - Journey
@@ -154,7 +154,7 @@ paths:
       operationId: getLocationsId
       parameters:
         - in: path
-          name: id
+          name: locationId
           schema:
             type: string
             format: uuid
@@ -182,7 +182,7 @@ paths:
             "application/problem+json":
               schema:
                 $ref: '#/components/schemas/Problem'
-  '/trips/{id}':
+  '/trips/{tripId}':
     get:
       tags:
         - Journey
@@ -192,7 +192,7 @@ paths:
       operationId: getTripsId
       parameters:
         - in: path
-          name: id
+          name: tripId
           schema:
             type: string
             format: uuid
@@ -235,7 +235,7 @@ paths:
             "application/problem+json":
               schema:
                 $ref: '#/components/schemas/Problem'
-  '/trips-collection/{id}':
+  '/trips-collection/{tripsCollectionId}':
     get:
       tags:
         - Journey
@@ -246,7 +246,7 @@ paths:
       operationId: getTripsCollectionId
       parameters:
         - in: path
-          name: id
+          name: tripsCollectionId
           schema:
             type: string
             format: uuid
@@ -386,7 +386,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-  /trip-offers-collection/{id}:
+  /trip-offers-collection/{tripOffersCollectionId}:
     get:
       tags:
         - Offers
@@ -397,7 +397,7 @@ paths:
       operationId: getTripOffersCollectionId
       parameters:
         - in: path
-          name: id
+          name: tripOffersCollectionId
           schema:
             type: string
             format: uuid
@@ -492,9 +492,8 @@ paths:
       tags:
         - Offers
       summary: >-
-        The POST tripsCollection service returns different trips for a specified
-        origin and destination (and via). The unique codes of the origin and
-        destination can be resolved using the locations service.
+        The POST tripsOffersCollection service returns different trips for a
+        specified origin and destination (and via) locations. 
       operationId: postTripOffersCollection
       parameters:
         - name: Accept-Language
@@ -512,7 +511,7 @@ paths:
               $ref: '#/components/schemas/TripOfferRequest'
       responses:
         '200':
-          description: Trip(s) found
+          description: Collection of trip offers found
           content:
             application/json:
               schema:
@@ -543,14 +542,13 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-  /trip-offers/{id}:
+  /trip-offers/{tripOfferId}:
     get:
       tags:
         - Offers
       summary: >-
         The POST trip-offers service returns different offers and trips for a specified
-        origin and destination (and via). The unique codes of the origin and
-        destination can be resolved using the locations service.
+        origin and destination (and via) locations.
       operationId: getTripOffersId
       parameters:
         - in: path
@@ -578,7 +576,7 @@ paths:
                 - PASSENGERS
       responses:
         '200':
-          description: TripOffer found
+          description: Trip offer found
           content:
             application/json:
               schema:
@@ -610,17 +608,16 @@ paths:
         '501':
           description: Not implemented     
           
-          
-  '/offers/{id}':
+  '/offers/{offerId}':
     get:
       tags:
         - Offers
       summary: >-
-        The GET offers service returns the requested offer or bookedOffer with the requested included sub resources.
+        The GET offers service returns the offer with the requested included sub resources in a given state.
       operationId: getOffersId
       parameters:
         - in: path
-          name: id
+          name: offerId
           schema:
             type: string
             format: uuid
@@ -642,7 +639,7 @@ paths:
                 - TRIP.LOCATIONS
       responses:
         '200':
-          description: TripOffer found
+          description: Offer found
           content:
             application/json:
               schema:
@@ -673,16 +670,17 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-  '/passengers/{id}':
+
+  '/passengers/{passengerId}':
     get:
       tags:
         - Passengers
       summary: >-
-        The GET passenger service returns the information on the passenger with the id provided.
+        The GET passenger service returns the passenger's information.
       operationId: getPassengersId
       parameters:
         - in: path
-          name: id
+          name: passengerId
           schema:
             type: string
             format: uuid
@@ -730,7 +728,7 @@ paths:
       operationId: patchPassenger
       parameters:
         - in: path
-          name: id
+          name: passengerId
           schema:
             type: string
             format: uuid
@@ -775,7 +773,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-  '/products/{id}':
+  '/products/{productId}':
     get:
       tags:
         - Products
@@ -784,7 +782,7 @@ paths:
       operationId: getProductsId
       parameters:
         - in: path
-          name: id
+          name: productId
           schema:
             type: string
             format: uuid
@@ -832,7 +830,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/offers/{offerId}/admissions/{id}':
+  '/offers/{offerId}/admissions/{admissionId}':
     get:
       tags:
         - Offer Parts
@@ -849,7 +847,7 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
-          name: id
+          name: admissionId
           schema:
             type: string
             format: uuid
@@ -973,7 +971,7 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
-          name: id
+          name: reservationId
           schema:
             type: string
             format: uuid
@@ -1013,7 +1011,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-  '/offers/{offerId}/integrated-reservations/{id}':
+  '/offers/{offerId}/integrated-reservations/{integratedReservationId}':
     get:
       tags:
         - Offer Parts
@@ -1031,16 +1029,16 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.      
         - in: path
-          name: id
+          name: integratedReservationId
           schema:
             type: string
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the IntegratedReservation to get.
+          description: ID of the integrated reservation to get.
       responses:
         '200':
-          description: IntegratedReservation found
+          description: Integrated reservation found
           content:
             application/json:
               schema:
@@ -1072,7 +1070,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/offers/{offerId}/ancillaries/{id}':
+  '/offers/{offerId}/ancillaries/{ancillaryId}':
     get:
       tags:
         - Offer Parts
@@ -1095,10 +1093,10 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the product to get.
+          description: ID of the ancillary to get.
       responses:
         '200':
-          description: ancillary found
+          description: Ancillary found
           content:
             application/json:
               schema:
@@ -1130,7 +1128,7 @@ paths:
         '501':
           description: Not implemented
 
-  '/offers/{offerId}/fares/{id}':
+  '/offers/{offerId}/fares/{fareId}':
     get:
       tags:
         - Offer Parts
@@ -1151,7 +1149,7 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
-          name: id
+          name: fareId
           schema:
             type: string
             format: uuid
@@ -1197,65 +1195,77 @@ paths:
       tags:
         - Bookings
       summary: >-
-        The GET bookings service allows to search for and find bookings based on a set of criteria.
+        The GET bookings service allows to search for and find bookings based on a set of criteria. It
+        returns a list of booking ids.
+      description: >-
+        There are three set of searching criteria that need to be supported. Firstly, by passenger 
+        attributes (first name, name, date-of-birth), secondly by booking reference (e.g. PNR, 
+        Auftragsnummer) or thirdly by fulfillment reference (e.g. ticket number).
       operationId: getBookings
       parameters:
+        - name: passengerFirstName
+          in: query
+          schema:
+            type: string
+          required: false
+          description: >-
+            First name of a passenger in the booking.
         - name: passengerName
           in: query
           schema:
             type: string
-          required: true
-          description: name of one passenger in the booking
+          required: false
+          description: >-
+            Last name of a passenger in the booking.
+        - name: passengerDateOfBirth
+          in: query
+          schema:
+            type: string
+            format: date
+          required: false
+          description: >-
+            Date of birth of a passenger in the booking.
         - name: bookingReference
           in: query
           schema:
             type: string
           required: false
-          description: human-readable booking reference for the booking
+          description: >-
+            Human-readable booking reference for the booking, e.g. PNR.
+        - name: fulfillmentReference
+          in: query
+          schema:
+            type: string
+          required: false
+          description: >-
+            Human-readable fulfillment reference for the booking, e.g. ticket number.
         - name: travelDateBegin
           in: query
           schema:
             type: string
             format: date-time
           required: false
-          description: begin date for the travel date range to search
+          description: >-
+            Begin date for the travel date range to search.
         - name: travelDateEnd
           in: query
           schema:
             type: string
             format: date-time
           required: false
-          description: end date for the travel date range to search
-        - name: OriginId 
-          in: query
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: false
-          description: departure locationId one of the travels in the booking to search on
-        - name: DestinationId
-          in: query
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: false
-          description: destination locationId one of the travels in the booking to search on
-          
+          description: >-
+            End date for the travel date range to search.
+
       responses:
         '200':
-          description: ancillary found
+          description: Booking ids found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ancillary'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
+                type: array
+                items:
+                  type: string
+                  format: uuid
         '400':
           description: Bad request
           content:
@@ -1328,7 +1338,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/bookings/{id}':
+  '/bookings/{bookingId}':
     get:
       tags:
         - Bookings
@@ -1337,7 +1347,7 @@ paths:
       operationId: getBookingsId
       parameters:
         - in: path
-          name: id
+          name: bookingId
           schema:
             type: string
             format: uuid
@@ -1402,7 +1412,7 @@ paths:
       operationId: deleteBookingsId
       parameters:
         - in: path
-          name: id
+          name: bookingId
           schema:
             type: string
             format: uuid
@@ -1440,13 +1450,13 @@ paths:
       operationId: confirmBooking
       parameters:
         - in: path
-          name: id
+          name: bookingId
           schema:
             type: string
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the booking to be confirmed      
+          description: ID of the booking to be patched.      
       requestBody:
         content:
           application/json:
@@ -1476,22 +1486,19 @@ paths:
         '501':
           description: Not implemented 
    
-        
-   
-   
   '/fulfillments':
     post:
       tags:
         - Fulfillments
       summary: >-
-        The POST fulfillments service triggers the fulfillment of the booking based on the information currently contained
-        in the provided booking,
-      operationId: postTickets
+        The POST fulfillments service triggers the fulfillment of the booking based on the information 
+        currently contained in the provided booking.
+      operationId: postFulfillments
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TicketRequest'
+              $ref: '#/components/schemas/Fulfillment'
       responses:
         '202': 
           description: Fulfillment successfully initiated
@@ -1515,13 +1522,14 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-  '/fulfillments/{id}':
+
+  '/fulfillments/{fulfillmentId}':
     get:
       tags:
         - Fulfillments
       summary: >-
         The GET ticket service returns the information on the ticket with the id provided.
-      operationId: getTicketsId
+      operationId: getFulfillmentsId
       parameters:
         - in: path
           name: id
@@ -1533,7 +1541,7 @@ paths:
           description: ID of the product to get.
       responses:
         '200':
-          description: ticket found
+          description: Fulfillment found
           content:
             application/json:
               schema:
@@ -1616,7 +1624,7 @@ paths:
         '501':
           description: Not implemented
         
-  '/bookings/{bookingId}/refundOffers/{id}':
+  '/bookings/{bookingId}/refundOffers/{refundId}':
     get:
       tags:
         - RefundOffers
@@ -1633,7 +1641,7 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.      
         - in: path
-          name: id
+          name: refundId
           schema:
             type: string
             format: uuid
@@ -1673,6 +1681,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+
     delete:
       tags:
         - RefundOffers
@@ -1690,7 +1699,7 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.      
         - in: path
-          name: id
+          name: refundOfferId
           schema:
             type: string
             format: uuid
@@ -1720,6 +1729,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+
     patch:
       tags:
         - RefundOffers
@@ -1736,13 +1746,13 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.      
         - in: path
-          name: id
+          name: refundOfferId
           schema:
             type: string
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the product to get.
+          description: ID of the refund offer.
       requestBody:
         content:
           application/json:
@@ -1781,7 +1791,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-
 
   '/layouts':
     get:
@@ -1822,9 +1831,7 @@ paths:
         '501':
           description: Not implemented
 
-
 ## Components
-
 components:
   schemas:
     Link:
@@ -1862,7 +1869,6 @@ components:
         The underlying system may provide additional links pointing on further
         information (such as HTML download links, web sites or extended APIs).
         Mechanism to add flexible extensions specific to an underlying system.
-        
     Segment:
       description: >-
         A segment represents a subsection of a trip that is realized with the same transport. In railways it is typically one
@@ -1972,7 +1978,6 @@ components:
         - seqId
         - vehicle
       additionalProperties: false
-      
     StationDetailsDef:
       description: >-
         Details of a station. Station names are not translated but provided in some
@@ -2029,7 +2034,7 @@ components:
               name:
                 type: string
             additionalProperties: false
-      additionalProperties: false     
+      additionalProperties: false
     StationDef:
       description: >-
         Used to represent a station location. This is a location that can be used as origin and destination for a train journey
@@ -4354,10 +4359,10 @@ components:
     LineDef:
       type: object
       description: >-
-            terminalStation - in case the product requires a destination within the zone 
-                   (e.g. local ticket to go to the main rail station).
-                  Station  to enter the zone in case the product requires to enter the zone via a
-            entryStation - specific station (e.g. local zone ticket to start from the main rail station).
+        terminalStation: in case the product requires a destination within the zone (e.g. local ticket
+         to go to the main rail station). Station to enter the zone in case the product requires 
+         to enter the zone via a ??? TODO
+        entryStation: specific station (e.g. local zone ticket to start from the main rail station).
       properties:
         binaryLineId:
           type: integer
@@ -4377,7 +4382,7 @@ components:
         terminalStation:
           $ref: '#/components/schemas/StationDef'
         nutsCode:
-          description: |-
+          description: >-
             Nomenclature des units territoriales statistiques  
              COMMISSION REGULATION (EU) No 31/2011
           type: string
@@ -4848,4 +4853,4 @@ components:
       additionalProperties: false      
       
     #Fare-specific elements end
-    #Fare-specific elements end
+ 
