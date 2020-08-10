@@ -552,7 +552,7 @@ paths:
       operationId: getTripOffersId
       parameters:
         - in: path
-          name: id
+          name: tripOfferId
           schema:
             type: string
             format: uuid
@@ -608,12 +608,13 @@ paths:
         '501':
           description: Not implemented     
           
+          
   '/offers/{offerId}':
     get:
       tags:
         - Offers
       summary: >-
-        The GET offers service returns the offer with the requested included sub resources in a given state.
+         The GET offers service returns the offer with the requested included sub resources in a given state.
       operationId: getOffersId
       parameters:
         - in: path
@@ -639,7 +640,7 @@ paths:
                 - TRIP.LOCATIONS
       responses:
         '200':
-          description: Offer found
+          description: TripOffer found
           content:
             application/json:
               schema:
@@ -670,13 +671,12 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-
   '/passengers/{passengerId}':
     get:
       tags:
         - Passengers
       summary: >-
-        The GET passenger service returns the passenger's information.
+       The GET passenger service returns the passenger's information.
       operationId: getPassengersId
       parameters:
         - in: path
@@ -830,7 +830,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/offers/{offerId}/admissions/{admissionId}':
+  '/offers/{offerId}/admissions/{admissionsId}':
     get:
       tags:
         - Offer Parts
@@ -847,7 +847,7 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
-          name: admissionId
+          name: admissionsId
           schema:
             type: string
             format: uuid
@@ -887,6 +887,72 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+          
+  '/offers/{offerId}/placeSelections/{placeSelectionId}':
+    patch:
+      tags:
+        - Offer Parts
+      summary: >-
+        The PATCH of the place selections service allows updating reservation elements, to update the desired selection of places and to retrieve selectable places for a graphical display
+      description: >-
+        The patch can be used to update the selection of place properties, the available places for grapfical displays, the selected optional place properties for a subsequent booking and the aselected places from a graphical display. The update response will show the available/accepted properties. An update with empty available places will update the available places list in the reply.
+      operationId: patchPlaceSelectionId
+      parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer to patch.
+        - in: path
+          name: placeSelectionId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the placeSelection object to be patched.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaceSelectionDef'
+      responses:
+        '200':
+          description: reservation successfully patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceSelectionDef'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented        
+          
           
   '/offers/{offerId}/reservations/{reservationId}':
     get:
@@ -945,71 +1011,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-    patch:
-      tags:
-        - Offer Parts
-      summary: >-
-        The PATCH reservation service allows updating reservation elements, allowing to update the desired 
-        reservation selection for one or more passengers. 
-      description: >-
-        Note that only the following elements of the reservationSelection can actually be patched: 
-        selectedCompartmentOptions, seatingPreferenceType, placeNumber, coachNumber and direction.
-      operationId: patchReservationsId
-      parameters:
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the offer the reservation is part of.
-        - in: path
-          name: reservationId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the reservation to patch
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Reservation'
-      responses:
-        '200':
-          description: reservation successfully patched
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Reservation'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented
   '/offers/{offerId}/integrated-reservations/{integratedReservationId}':
     get:
       tags:
@@ -1034,10 +1035,10 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the integrated reservation to get.
+          description: ID of the IntegratedReservation to get.
       responses:
         '200':
-          description: Integrated reservation found
+          description: IntegratedReservation found
           content:
             application/json:
               schema:
@@ -1069,7 +1070,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/offers/{offerId}/ancillaries/{ancillaryId}':
+  '/offers/{offerId}/ancillaries/{ancilliaryId}':
     get:
       tags:
         - Offer Parts
@@ -1086,13 +1087,13 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
-          name: id
+          name: ancilliaryId
           schema:
             type: string
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the ancillary to get.
+          description: ID of the ancilliary to get.
       responses:
         '200':
           description: Ancillary found
@@ -1135,7 +1136,6 @@ paths:
         The GET fares service returns the information on the ancillary with the id provided.
       description: >-
         For the fares only the start and the end location are considered.
-
         Fares are only returned if the API is called as allocator with the correct grants.
         Otherwise a forbidden message is returned. 
       operationId: getFaresId
@@ -1158,7 +1158,7 @@ paths:
           description: ID of the fares to get.
       responses:
         '200':
-          description: ancillary found
+          description: Fare found
           content:
             application/json:
               schema:
@@ -1209,7 +1209,7 @@ paths:
             type: string
           required: false
           description: >-
-            First name of a passenger in the booking.
+            First name of a passenger in the booking.      
         - name: passengerName
           in: query
           schema:
@@ -1222,13 +1222,14 @@ paths:
           schema:
             type: string
             format: date
-          required: false
+          required: false            
           description: >-
             Date of birth of a passenger in the booking.
         - name: bookingReference
           in: query
           schema:
             type: string
+            format: date
           required: false
           description: >-
             Human-readable booking reference for the booking, e.g. PNR.
@@ -1236,7 +1237,7 @@ paths:
           in: query
           schema:
             type: string
-          required: false
+          required: false  
           description: >-
             Human-readable fulfillment reference for the booking, e.g. ticket number.
         - name: travelDateBegin
@@ -1255,7 +1256,23 @@ paths:
           required: false
           description: >-
             End date for the travel date range to search.
-
+        - name: OriginId 
+          in: query
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: false
+          description: departure locationId one of the travels in the booking to search on
+        - name: DestinationId
+          in: query
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: false
+          description: destination locationId one of the travels in the booking to search on
+          
       responses:
         '200':
           description: Booking ids found
@@ -1434,6 +1451,13 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          description: >-
+             Conflict - the state of the server or resource does not allow the action (e.g. the booking was already confirmed)
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'          
         '500':
           description: Internal server error
           content:
@@ -1456,7 +1480,7 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the booking to be patched.      
+          description: ID of the booking to be patched      
       requestBody:
         content:
           application/json:
@@ -1486,22 +1510,42 @@ paths:
         '501':
           description: Not implemented 
    
-  '/fulfillments':
-    post:
+        
+   
+   
+  '/bookings/{bookingId}/fulfillments':
+    patch:
       tags:
         - Fulfillments
       summary: >-
         The POST fulfillments service triggers the fulfillment of the booking based on the information 
         currently contained in the provided booking.
       operationId: postFulfillments
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the booking to be patched        
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Fulfillment'
+              $ref: '#/components/schemas/FulfillmentRequestDef'
       responses:
+        '200':
+          description: >-
+            fulfillment successfull
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentsDef'
         '202': 
-          description: Fulfillment successfully initiated
+          description: >- 
+            Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
         '400':
           description: Bad request
           content:
@@ -1514,6 +1558,13 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          description: >-
+             Conflict - the state of the server or resource does not allow the action (e.g. the booking was not confirmed)
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'            
         '500':
           description: Internal server error
           content:
@@ -1522,17 +1573,17 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-
+          
   '/fulfillments/{fulfillmentId}':
     get:
       tags:
         - Fulfillments
       summary: >-
         The GET ticket service returns the information on the ticket with the id provided.
-      operationId: getFulfillmentsId
+      operationId: getFulfillmentId
       parameters:
         - in: path
-          name: id
+          name: fulfillmentId
           schema:
             type: string
             format: uuid
@@ -1541,7 +1592,7 @@ paths:
           description: ID of the product to get.
       responses:
         '200':
-          description: Fulfillment found
+          description: fulfillment found
           content:
             application/json:
               schema:
@@ -1590,7 +1641,7 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the offer the offerPart is part of.      
+          description: ID of the booking.      
       requestBody:
         content:
           application/json:
@@ -1615,6 +1666,13 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          description: >-
+             Conflict - the state of the server or resource does not allow the action (e.g. the booking was not confirmed)
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'            
         '500':
           description: Internal server error
           content:
@@ -1623,8 +1681,10 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+          
+   
         
-  '/bookings/{bookingId}/refundOffers/{refundId}':
+  '/bookings/{bookingId}/refundOffers/{refundOfferId}':
     get:
       tags:
         - RefundOffers
@@ -1639,15 +1699,15 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the offer the offerPart is part of.      
+          description: ID of the booking  
         - in: path
-          name: refundId
+          name: refundOfferId
           schema:
             type: string
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the product to get.
+          description: ID of the refund offer to get.
       responses:
         '200':
           description: RefundOffer found
@@ -1681,7 +1741,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-
     delete:
       tags:
         - RefundOffers
@@ -1697,7 +1756,7 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the offer the offerPart is part of.      
+          description: ID of the booking 
         - in: path
           name: refundOfferId
           schema:
@@ -1705,7 +1764,7 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the product to get.
+          description: ID of the refund offer to delete.
       responses:
         '200':
           description: Refund offer successfully cancelled
@@ -1729,7 +1788,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-
     patch:
       tags:
         - RefundOffers
@@ -1752,7 +1810,7 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the refund offer.
+          description: ID of the product to get.
       requestBody:
         content:
           application/json:
@@ -1792,7 +1850,213 @@ paths:
         '501':
           description: Not implemented
 
+          
+  '/bookings/{bookingId}/exchangeOffers':
+    post:
+      tags:
+        - ExchangeOffers
+      summary: >-
+        The POST exchangeOffers initiates an exchange process by creating a ExchangeOffer resource
+        containing the needed information on the potential operation. The proposition can then be 
+        accepted via a PATCH, deleted or left to die at the end of its lifetime. 
+      operationId: postExchangeOffersBookingId
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer the offerPart is part of.      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExchangeOfferRequestDef'
+      responses:
+        '200': 
+          description: Refund offer created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExchangeOffersCollectionDef'
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented   
+          
+  '/bookings/{bookingId}/exchangeOffers/{exchangeOfferId}':          
+    patch:
+      tags:
+        - ExchangeOffers
+      summary: >-
+        The PATCH exchangeOffers action allows to accept and confirm an exchange operation. 
+      operationId: patchExchangeOffersId
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the bioking to be exchanged    
+        - in: path
+          name: exchangeOfferId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the exchange offer.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExchangeOfferConfirmDef'
+      responses:
+        '200':
+          description: Refund and new booking
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExchangeDef'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+
+
+  '/coachLayouts':
+    get:
+      tags:
+        - CoachLayouts 
+      description: get coach layouts
+      operationId: getCoachLayouts
+      parameters:
+        - name: version
+          in: path
+          description: schema version
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: coach layouts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LayoutsReplyDef'
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+
+
+  '/offersCollection':
+    post:
+      description: >- 
+        get offers based on key words or regional information not linked to trips
+      operationId: searchOffers
+      parameters:
+        - name: version
+          in: path
+          description: schema version
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: request parameter for offer search
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferSearchDef'
+      responses:
+        '200':
+          description: offer collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NonTripOfferCollectionDef'
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+
 ## Components
+
 components:
   schemas:
     Link:
@@ -1830,6 +2094,7 @@ components:
         The underlying system may provide additional links pointing on further
         information (such as HTML download links, web sites or extended APIs).
         Mechanism to add flexible extensions specific to an underlying system.
+        
     Segment:
       description: >-
         A segment represents a subsection of a trip that is realized with the same transport. In railways it is typically one
@@ -1939,6 +2204,7 @@ components:
         - seqId
         - vehicle
       additionalProperties: false
+      
     StationDetailsDef:
       description: >-
         Details of a station. Station names are not translated but provided in some
@@ -2640,7 +2906,8 @@ components:
       additionalProperties: false
       
     PassengerReferenceDef:
-      description: reference to a passenger within the offer and booking
+      description: >- 
+       stable reference to a passenger within the offer and booking
       type: string
       
     PassengerDef:
@@ -2843,6 +3110,8 @@ components:
         title:
           type: string
           example: Andreas Dupont
+        reference:
+          $ref: '#/components/schemas/PassengerReferenceDef'
           
     ServiceLevelIdDef:
       description: >-
@@ -2908,6 +3177,7 @@ components:
                 type: array
                 items:
                   type: string
+                  
     ProductRef:
       type: object
       properties:
@@ -3051,9 +3321,6 @@ components:
           $ref: '#/components/schemas/OfferPart'
         reservationRequired:
           type: boolean
-        numericAvailability:
-          type: number
-          format: int32
         reservations:
           type: array
           items:
@@ -3081,9 +3348,172 @@ components:
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
                 
+    PlaceSelectionDef:
+      type: object
+      description: >-
+        place selection options and selected options in an offer
+        - optional place properties to choose from
+        - selected optional place properties (selectedOptions)
+        - selectable plces for a graphical place selection 
+        - selectedPlaces from a graphical place selection (selectedPlaces)
+        - reference place for adjacent reservation (referencePlace)
+      properties:
+        id:
+          description: id if the place selection unique within an offer
+          type: string
+        reservationOptions:
+          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
+        vehicle:
+          description: vehicle / train number is necessary in  case of train parts with different train numbers
+          type: string           
+        referencePlace: 
+          description: selected place for an adjacent reservation (NEARBY)
+          type: object    
+          properties:
+            placeNumber:
+              type: string
+            coachNumber:
+              type: string
+        selectedOptions:
+          type: array
+          items: 
+            $ref: '#/components/schemas/PlaceOptionsBundleDef'
+        selectablePlaces:
+          $ref: '#/components/schemas/PlaceAvailabilityDef'
+        selectedPlaces:
+          $ref: '#/components/schemas/SelectedPlacesDef'
+      required:
+        - id      
+                
+    PlaceOptionsBundleDef:
+      type: object
+      description: >-
+        selection of places for reservation linked to passengers
+      properties:
+        passengers:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/PassengerRef'
+              - $ref: '#/components/schemas/PassengerReferenceDef'
+        selectedPlaces:
+             $ref: '#/components/schemas/PlaceSelectionDef'
+        selectedPlaceProperties: 
+          type: array
+          items:
+            description: selection from the optional place properties provided in the offer
+            type: string
+      required:
+        - id              
+   
+    PlaceAvailabilityDef:
+      type: object
+      properties:
+        coaches:
+          description: >-
+            list of the coaches in a train run ordered according to the physical
+            ordering of the train
+          type: array
+          items:
+            type: object
+            properties:
+              compartments:
+                description: >-
+                  areas within a coach that holds places. Areas might be selectable
+                  as a whole. Usual areas would be classic compartments.
+                type: array
+                items:
+                  type: object
+                  properties:
+                    places:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          number:
+                            description: >-
+                              the place number as indicated at the place in the
+                              coach
+                            type: string
+                          status:
+                            description: 'status of the place
+                            type: string
+                            enum:
+                               - ALLOCATED
+                               - FREE
+                               - RESTRICTED                        
+                          selectable:
+                            description: >-
+                              to indicate individual places as non-selectable in
+                              case complete compartments must be selected
+                            type: boolean
+                            default: true
+                        required:
+                          - number
+                        additionalProperties: false
+                    status:
+                      type: string
+                    selectable:
+                      description: to indicate compartments selectable as a whole only
+                      type: boolean
+                      default: false
+                  additionalProperties: false
+              number:
+                description: coach number
+                type: string
+              status:
+                description: >-
+                  status of the coach if the status applies to all places of the
+                  coach
+                type: string
+                enum:
+                   - ALLOCATED
+                   - FREE
+                   - RESTRICTED
+              layoutId:
+                description: id to identify the coach layout
+                type: string
+              layoutIdUpperDeck:
+                description: id to identify a layout for the upper deck in a double deck coach
+                type: string
+              layoutIdLowerDeck:
+                description: id to identify a layout for the lower deck in a double deck coach
+                type: string
+              direction:
+                description: >-
+                  indication of the direction of travel standard direction is left
+                  to right with ascending coordinates in the layoutt values  U =
+                  unspecified
+                          in direction of the layout
+                          opposite to direction of the layout
+                          changing
+                          starting in direction but changing later
+                type: string
+                enum:
+                 - IN_DIRECTION
+                 - OPOSITE_DIRECTION
+                 - CHANGING
+                 - STARING_IN_DIRECTION
+              coachOwner:
+                $ref: '#/components/schemas/CompanyDef'
+              specialCoach:
+                description: |-
+                  indication of special coach 
+                type: string
+                enum: 
+                  - RESTAURANT_COACH
+                  - BICYCLE_COACH
+                  - LUGGAGE_COACH
+                  - TRAIN_HEAD                
+            required:
+              - number
+              - layoutId
+            additionalProperties: false                
+                
     Reservation:
       type: object
-      description: reservation includes the reservation options in the initial offer it needs to be updated with the selected places before the confirmation which creates the reservation details including the reserved places
+      description: >-
+        reservation includes the reference to the in the initial offer. The offer needs to be updated with the selected places before the confirmation which creates the reservation details including the reserved places
       properties:
         id:
           type: string
@@ -3095,18 +3525,14 @@ components:
             $ref: '#/components/schemas/Link'
         offerPart:
           $ref: '#/components/schemas/OfferPart'
-        reservationOptions:
-          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
-        selectedPlaces:
-          description: list of options to select places when confirming the booking
-          type: array
-          items:
-              $ref: '#/components/schemas/ReservationSelectionDef'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'
+          $ref: '#/components/schemas/ReservationDetailsDef'          
+        placeSelection:
+          $ref: '#/components/schemas/PlaceSelectionDef'
       required:
         - id,
-        - offerPart                    
+        - offerPart,
+        - reservationDetails
 
     IntegratedReservation:
       description: reservation includes the reservation options in the initial offer it needs to be updated with the selected places before the confirmation which creates the reservation details including the reserved places   
@@ -3134,72 +3560,17 @@ components:
                   - INCLUDED
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
-        reservationOptions:
-          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
-        selectedPlaces:
-          description: list of options to select places when confirming the booking
-          type: array
-          items:
-              $ref: '#/components/schemas/ReservationSelectionDef'
         reservationDetails:
           $ref: '#/components/schemas/ReservationDetailsDef'
+        placeSelection:
+          $ref: '#/components/schemas/PlaceSelectionDef'          
       required:
         - id,
         - offerPart
+        - reservationDetails
 
-    ReservationSelectionDef:
-      type: object
-      description: options to select places for reservation. 
-      properties:
-        passengers:
-          type: array
-          items:
-            oneOf:
-              - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/PassengerReferenceDef'
-        vehicle:
-          description: vehicle / train number is necessary in  case of train parts with different train numbers
-          type: string           
-        referencePlace: 
-          description: selected place for a adjacent reservation (NEARBY)
-          type: object    
-          properties:
-            placeNumber:
-              type: string
-            coachNumber:
-              type: string
-        selectedPlaces:
-             $ref: '#/components/schemas/PlaceSelectionDef'
-        direction:
-          type: string
-          enum:
-            - FORWARD
-            - BACKWARD
-            - UNKNOWN
-        selectedPlaceProperties: 
-          type: array
-          items:
-            description: selection from the optional place properties provided in the offer
-            type: string
 
-    ReservationDetailsDef:
-      type: object
-      description: segmentIndex references a segmentIndex in the trip part within the offer reply
-      properties:
-         serviceClass:
-            $ref: '#/components/schemas/ServiceClassDef'
-         serviceLevel:
-            $ref: '#/components/schemas/ServiceLevelIdDef'  
-         reservedPlaces:
-          description: reserved places in a confirmed reservation. Multiple place packs are needed to combined person and bicycle reservations
-          type: array
-          items:
-              $ref: '#/components/schemas/PlacePackDef'
-      required:
-        - serviceLevel,
-        - reservedPlaces
-
-    PlaceSelectionDef:
+    SelectedPlacesDef:
       description: place selection from a graphical display of coaches
       type: object
       properties:
@@ -3220,6 +3591,26 @@ components:
       required:
         - selectedCoach
         - selectedPlaces
+
+
+    ReservationDetailsDef:
+      type: object
+      description: segmentIndex references a segmentIndex in the trip part within the offer reply
+      properties:
+         serviceClass:
+            $ref: '#/components/schemas/ServiceClassDef'
+         serviceLevel:
+            $ref: '#/components/schemas/ServiceLevelIdDef'  
+         reservedPlaces:
+          description: reserved places in a confirmed reservation. Multiple place packs are needed to combined person and bicycle reservations
+          type: array
+          items:
+              $ref: '#/components/schemas/PlacePackDef'
+      required:
+        - serviceLevel,
+        - reservedPlaces
+
+
 
         
     PlacePackDef:
@@ -3383,6 +3774,7 @@ components:
             - FULFILLED
             - CANCELLED
             - REFUNDED
+            - EXCHANGED
             - ERROR
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
@@ -3419,7 +3811,20 @@ components:
               - $ref: '#/components/schemas/RefundOffer'
           description: >-
             Refund offer is created with the details of the to-be-confirmed refund operation. 
-            The proposition can then be accepted, which conforms the refund.
+            The proposition can then be confirmed, which turns it into a refund
+        refund:
+           $ref: '#/components/schemas/RefundDef'
+
+
+        exchangeOffers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExchangeOfferDef'
+          description: >-
+            Refund offer is created with the details of the to-be-confirmed refund operation. One proposition can then be confirmed, which turns it into an exchange and confirms the new booking.         
+        exchange:
+            $ref: '#/components/schemas/ExchangeDef'
+
         links:
           type: array
           items:
@@ -3459,6 +3864,24 @@ components:
         - ETICKET
         - CIT_PAPER
 
+    FulfillmentRequestDef:
+       description: >-
+        request parameter to initialte the fulfillemt
+       type: object
+       properties:
+        media: 
+          type: array
+          items:
+           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+          
+    FulfillmentsDef:
+      description: >-
+        list of fulfillments in a booking
+      type: array
+      items:
+        $ref: '#/components/schemas/Fulfillment'
+          
+       
     Fulfillment:
       type: object
       properties:
@@ -3470,20 +3893,127 @@ components:
           type: string
           description: >-
             Ticket Control Number
+
+        offerParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferPartRef'
+        documents:
+          description: >-
+            complete document created for fulfillment
+          type: array
+          items: 
+            $ref: '#/components/schemas/FulfillmentDocumentDef'
+        fulfillmentItems:
+          description: >-
+            fulfillment items to be integrated into tickets (allocator mode)
+          type: array
+          items:
+              $ref: '#/components/schemas/FulfillmentItemDef'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      
+    
+    FulfillmentDocumentDef:
+      description: >-
+        document created for fulfillment
+      type: object
+      properties:
+        medium: 
+          $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+        passengers:
+          description: >-
+            list of passengers on the bookimng in case the booking does not cobver all passengers
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/PassengerReferenceDef'
+              - $ref: '#/components/schemas/PassengerRef'
+        documentType:
+         type: string
+         enum:
+           - BOOKING_RECEIPT
+           - TICKET
+           - BOARDING_PASS
+           - INFORMATION
+           - VOUCHER
         status:
           type: string
           enum:
             - ACTIVE
             - CANCELLED
-            - TRAVELLED
-        offerParts:
+            - TRAVELLED   
+        documentLink:
+          type: string
+          format: uri    
+    
+    FulfillmentItemDef:
+      description: fulfillment items to be integrated in to tickets, e.g. viisual security elements, additional bar codes, control keys
+      type: object
+      properties:
+        fulfillmentMedia:
+          description: >-
+           list of fulfillment media where this item applies
           type: array
           items:
-            $ref: '#/components/schemas/OfferPartRef'
-        links:
+           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+        travelerReference:
+          description: reference to a traveler
+          type: string
+        controlId:
+          type: string
+        securityFeatures:
+          description: 'visual elements, bar codes'
           type: array
           items:
-            $ref: '#/components/schemas/Link'
+            type: object
+            properties:
+              type:
+                $ref: '#/components/schemas/SecurityFeatureTypeDef'
+              data:
+                description: base 64 encoded data
+                type: string
+            additionalProperties: false
+        securityFeatureLinks:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                $ref: '#/components/schemas/SecurityFeatureTypeDef'
+              uri:
+                description: link to download the security feature
+                type: string
+                format: uri
+                
+            additionalProperties: false
+        mandatory:
+          description: >-
+            the use of the provioded features is mandatory
+          type: boolean
+          default: false
+        securePaperOnly:
+          description: >-
+            the security feature must be used on secure paper
+          type: boolean
+          default: false
+      additionalProperties: false
+  
+    SecurityFeatureTypeDef:
+      description: >-
+        "RAW_BAR_CODE" binary data too be included in an bar code, "MATRIX_BAR_CODE" binary data of the black and white pixel matrix of a square bar code, "PNG_BAR_CODE" png image data of a bar code, "JPG_BAR_CODE" jpg data of a bar code, "PNG_VISUAL_ELEMENT" png image data of a visual element, "JPG_VISUAL_ELEMENT" jpg data of a visual element, "GIF_VISUAL_ELEMENT" gif data of a visual element
+      type: string
+      enum:
+        - RAW_BAR_CODE
+        - MATRIX_BAR_CODE
+        - PNG_BAR_CODE
+        - JPG_BAR_CODE
+        - PNG_VISUAL_ELEMENT
+        - JPG_VISUAL_ELEMENT
+        - GIF_VISUAL_ELEMENT
+  
     
     FulfillmentRef:
       type: object
@@ -3499,10 +4029,12 @@ components:
       description: >-
         Reason for and type of an after sale, Code list in IRS 90918-10.
       type: string
+      
     RefundOffersCollection:
       type: array
       items:
         $ref: '#/components/schemas/RefundOffer'
+        
     RefundOffer:
       type: object
       description: TODO
@@ -3549,6 +4081,7 @@ components:
        - reimbursementStatus
        - refundFee
        - refundableAmount
+       
     RefundOfferRef:
       type: object
       properties:
@@ -3582,6 +4115,127 @@ components:
         overruleCode: 
           $ref: '#/components/schemas/AfterSaleReasonDef'
 
+    ExchangeOfferRequestDef:
+      description: request for a refund. Fulfillments can be provided in case the booking contains multiple individual fulfillments
+      type: object
+      properties:
+        passengerRefs:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/PassengerRef'
+              - $ref: '#/components/schemas/PassengerDef'
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentRef'
+        overruleCode: 
+          $ref: '#/components/schemas/AfterSaleReasonDef'
+
+    ExchangeOffersCollectionDef:
+      type: array
+      items:
+        $ref: '#/components/schemas/ExchangeOfferDef'
+        
+    ExchangeOfferDef:
+      type: object
+      description: >-
+       offer to exchgange the referenced booking
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          description: id of the refund proposition
+        validUntil:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - PROPOSED
+            - CONFIRMED
+          default: PROPOSED
+        reimbursementStatus:
+          description: >-
+            If set to IMMEDIATE the distributor is allowed to return the 
+            reimbursement amount immediately.
+          type: string
+          enum:
+            - IMMEDIATE
+            - DELAYED
+        reimbursementDateTime:
+          type: string
+          format: date-time
+        appliedOverruleCode:
+          $ref: '#/components/schemas/AfterSaleReasonDef'
+        fulfillments:
+          type: array
+          items: 
+            $ref: '#/components/schemas/FulfillmentRef'
+        exchangeFee:
+          $ref: '#/components/schemas/CurrencyPriceDef'
+        refundableAmount:
+          $ref: '#/components/schemas/CurrencyPriceDef'
+        exchangeOffer:
+          description: >-
+           TODO add non trip offer
+          oneOf:
+           - $ref: '#/components/schemas/TripOffer'  
+           - $ref: '#/components/schemas/TripOfferRef'
+      required:
+       - id
+       - validUntil
+       - status
+       - reimbursementStatus
+       - exchangeFee
+       - exchangeOffer
+
+    ExchangeOfferConfirmDef:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          description: id of the exchange proposition
+        status:
+          type: string
+          enum:
+            - CONFIRMED
+            
+    ExchangeDef:
+      description: >- 
+       result of a successfull confirmation of an exchange. The new booking and the pld booking are returned.
+      type: object
+      properties:
+        reimbursementStatus:
+          description: >-
+            If set to IMMEDIATE the distributor is allowed to return the 
+            reimbursement amount immediately.
+          type: string
+          enum:
+            - IMMEDIATE
+            - DELAYED
+        reimbursementDateTime:
+          type: string
+          format: date-time
+        appliedOverruleCode:
+          $ref: '#/components/schemas/AfterSaleReasonDef'
+        exchangeFee:
+          $ref: '#/components/schemas/CurrencyPriceDef'
+        refundableAmount:
+          $ref: '#/components/schemas/CurrencyPriceDef'    
+        newBooking: 
+          oneOf:
+            - $ref: '#/components/schemas/Booking'
+            - $ref: '#/components/schemas/BookingRef'
+      required:
+        - reimbursementStatus
+        - exchangeFee
+        - refundableAmount
+        - newBooking
+
     RefundOfferConfirm:
       type: object
       properties:
@@ -3594,6 +4248,38 @@ components:
           type: string
           enum:
             - CONFIRMED
+            
+    RefundDef:
+      description: >- 
+       result of a successfull confirmation of a refund. 
+      type: object
+      properties:
+        reimbursementStatus:
+          description: >-
+            If set to IMMEDIATE the distributor is allowed to return the 
+            reimbursement amount immediately.
+          type: string
+          enum:
+            - IMMEDIATE
+            - DELAYED
+        reimbursementDateTime:
+          type: string
+          format: date-time
+        appliedOverruleCode:
+          $ref: '#/components/schemas/AfterSaleReasonDef'
+        refundFee:
+          $ref: '#/components/schemas/CurrencyPriceDef'
+        refundableAmount:
+          $ref: '#/components/schemas/CurrencyPriceDef'    
+        newBooking: 
+          oneOf:
+            - $ref: '#/components/schemas/Booking'
+            - $ref: '#/components/schemas/BookingRef'
+      required:
+        - reimbursementStatus
+        - refundFee
+        - refundableAmount
+            
             
     Problem:
       type: object
@@ -3677,15 +4363,10 @@ components:
           $ref: '#/components/schemas/LegacyAccountingIdentifierDef'
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidityConstraintDef'
-        reservationOptions:
-          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
-        reservationPlaceSelections:
-          description: list of options to select places when confirming the booking
-          type: array
-          items:
-            $ref: '#/components/schemas/ReservationSelectionDef'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'          
+          $ref: '#/components/schemas/ReservationDetailsDef'            
+        reservationOptions:
+          $ref: '#/components/schemas/PlaceSelectionDef' 
         reservationLegacyParameter:
           $ref: '#/components/schemas/LegacyReservationParameterDef'
                     
@@ -3802,6 +4483,151 @@ components:
     TravelerTypeDef:
       description: Values from the traveler type code list IRS 90918-10
       type: string
+      
+    LayoutsReplyDef:
+      type: object
+      properties:
+        layouts:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoachLayoutDef'
+      additionalProperties: false
+      
+    CoachLayoutDef:
+      description: >-
+        coach layout providing data to draw a coach layout. The items of a coach
+        are located via coordinates with (0,0) in the upper left corner. All
+        coordinates are given without sign. 
+      type: object
+      properties:
+        id:
+          type: string
+        places:
+          description: list of places included in the layout
+          type: array
+          items:
+            type: object
+            properties:
+              x:
+                description: horizontal coordinate of the center of the place
+                type: number
+              'y':
+                description: vertical coordinate of the center of the place
+                type: number
+              id:
+                description: >-
+                  id of the graphical item type. Code list according to UIC90918-1
+                  graphical item type e.g. seat = 1, berth = 2, couchette = 3
+                type: string
+              number:
+                description: place numer as displayed physically on the place
+                type: string
+              direction:
+                description: >-
+                  direction of a place, defined optional as it might be omitted in
+                  case of berths in future. Code list according to UIC90918-1
+                  Values R = to right, L = to left, U = up  (from right side of a
+                  coach pointing to the middle of the aile), D = down (from right
+                  side of the coach pointing to the middle of the aile)
+                type: string
+              remarkId:
+                description: >-
+                  remark concerning the place (e.g. to be used in a tool tip).
+                  Code list according to UIC90918-1 
+                   - value 1 place might have a table - value 2 table at the place might be missing - value 3 place might have a different direction - value 4 place might have a table and a different direction - value 5 table at the place might be missing and place might have a different direction - value 6 place might be in compartment - value 7  place might be in open space  
+                type: string
+              zOrder:
+                description: |-
+                  graphical layer where this item has to be placed. 
+                   Code list according to UIC90918-1  0 = lowest layer usually used for walls 
+                    1 = middle layer usually used by places
+                    2 = top layer usually used by icons
+                type: string
+            required:
+              - x
+              - 'y'
+              - id
+              - number
+            additionalProperties: false
+        signs:
+          type: array
+          items:
+            type: object
+            properties:
+              x:
+                description: horizontal coordinate of the center of the place
+                type: number
+              'y':
+                description: 'vertical coordinate of the center of the place              '
+                type: number
+              id:
+                description: >-
+                  id of the graphical item type. Code list according to UIC90918-1
+                  graphical item type e.g. silence area sign = 116
+                type: string
+              zOrder:
+                description: |-
+                  graphical layer where this item has to be placed. 
+                    0 = lowest layer usually used for walls 
+                    1 = middle layer usually used by places
+                    2 = top layer usually used by icons
+                type: string
+            required:
+              - x
+              - 'y'
+              - id
+            additionalProperties: false
+        internals:
+          type: array
+          items:
+            type: object
+            properties:
+              x:
+                description: horizontal coordinate of the center of the place
+                type: number
+              'y':
+                description: 'vertical coordinate of the center of the place              '
+                type: number
+              id:
+                description: >-
+                  id of the graphical item type. Code list according to UIC90918-1
+                  graphical item type e.g. wall with angle to right height covers
+                  three places = 25
+                type: string
+              zOrder:
+                description: |-
+                  graphical layer where this item has to be placed. 
+                    0 = lowest layer usually used for walls 
+                    1 = middle layer usually used by places
+                    2 = top layer usually used by icons
+                type: string
+              mounting:
+                description: >-
+                  indicates, that the item is located at the upper border (U), the
+                  lower border (L), goes from upper to lower border (E) or is
+                  placed free (F)
+                type: string
+            required:
+              - x
+              - 'y'
+              - id
+              - zOrder
+            additionalProperties: false
+        gridsize:
+          type: object
+          properties:
+            x:
+              type: number
+            'y':
+              type: number
+          additionalProperties: false
+        containerType:
+          type: string
+          default: RECTANGLE
+      required:
+        - id
+      additionalProperties: false      
+      
     PassengerConstraintDef:
       type: object
       properties:
@@ -3866,6 +4692,7 @@ components:
         - passengerType
         - nameRef
       additionalProperties: false
+      
     ReductionConstraintDef:
       type: object
       properties:
@@ -4055,15 +4882,12 @@ components:
     LineDef:
       type: object
       description: >-
-        terminalStation: in case the product requires a destination within the zone (e.g. local ticket
-         to go to the main rail station). Station to enter the zone in case the product requires 
-         to enter the zone via a ??? TODO
-        entryStation: specific station (e.g. local zone ticket to start from the main rail station).
+         terminalStation - in case the product requires a destination within the zone (e.g. local ticket to go to the main rail station). entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station).
       properties:
         binaryLineId:
           type: integer
           format: Base64
-          description: 
+          description: >-
             Id to support local traffic standards (e.g. VDV,...).
         carrier:
           $ref: '#/components/schemas/CompanyDef'
@@ -4097,7 +4921,8 @@ components:
         travelDate:
           type: string
           format: date-time
-          description: date and time of the departure where the train link starts
+          description: >-
+            date and time of the departure where the train link starts
       required:
         - fromStation
         - toStation
@@ -4351,6 +5176,7 @@ components:
             - serviceLevelCode
             - serviceCode
           additionalProperties: false
+          
     ReservationOnlineOptionDef:
       type: object
       properties:
@@ -4363,6 +5189,7 @@ components:
           description: graphical reservation is supported, interface type "NO","UIC_918",..
           type: string
       additionalProperties: false
+      
     ReservationOptionGroupDef:
       type: object
       properties:
@@ -4377,6 +5204,7 @@ components:
         - preferenceGroup
         - preferences
       additionalProperties: false
+      
     CarrierConstraintDef:
       type: object
       description: >-
@@ -4546,3 +5374,76 @@ components:
       additionalProperties: false      
       
     #Fare-specific elements end
+    
+    OfferSearchDef:
+      description: >-
+         search parameter for an offer search on offers not based on a trip (e.g. passes)
+      type: object
+      properties:
+
+            seachTags:
+              description: >-
+                list of tags to search for
+              type: array
+              items:
+                type: string
+            nutsCodes:
+              description: >-
+                 Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
+              type: array
+              items:
+                type: string
+            geoCoordinate:
+              $ref: '#/components/schemas/GeoCoordinateDef'
+            travelPeriod:
+              $ref: '#/components/schemas/CalendarDef'
+            passengers:
+              type: array
+              items:
+                 $ref:  '#/components/schemas/PassengerDef'  
+            requestedFulfillmentOptions: 
+              type: array
+              items:
+                $ref:  '#/components/schemas/FulfillmentOption' 
+            offerSearchCriteria:
+               $ref:  '#/components/schemas/OfferSearchCriteria'  
+              
+    NonTripOfferCollectionDef:
+      type: array
+      items:
+        $ref: '#/components/schemas/NonTripOfferDef'
+    
+    NonTripOfferDef:
+      type: object
+      properties:
+        offerSummary:
+          $ref: '#/components/schemas/OfferSummary'
+        requestedInformation:
+          $ref: '#/components/schemas/RequestedInformation'
+        validFrom:
+          type: string
+          format: date-time
+        validTo:
+          type: string
+          format: date-time 
+        supportedMediaTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+        admissions:
+          type: array        
+          items: 
+            $ref: '#/components/schemas/Admission'
+        ancillaries:
+          type: array        
+          items:  
+            $ref: '#/components/schemas/Ancillary'
+        fares:
+          type: array
+          items:
+            $ref: '#/components/schemas/FareOnlineDef'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    
