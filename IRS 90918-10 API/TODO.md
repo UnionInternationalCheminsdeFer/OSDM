@@ -8,7 +8,7 @@
 - check required properties              
 - add exchange                                              - done, merge pending
 - remove Ref
-- run YAML through code generator
+- run YAML through code generator                           - done, code is being generated
 
 ## for discussion:
   - subresources are accessed via the main resource, except for passengers --> use the same aproach also for passengers?
