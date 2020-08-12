@@ -2492,6 +2492,7 @@ components:
                 type: string
             additionalProperties: false
       additionalProperties: false
+
     StationDef:
       description: >-
         Used to represent a station location. This is a location that can be used as origin and destination for a train journey
@@ -2512,6 +2513,7 @@ components:
         - country
         - code
       additionalProperties: false
+
     LocationRef:
       type: object
       properties:
@@ -2524,6 +2526,7 @@ components:
           example: Bruxelles-Midi
         station:
           $ref: '#/components/schemas/StationDef'
+
     Location:
       type: object
       properties:
@@ -2546,6 +2549,7 @@ components:
         - country
         - LocationCode
       additionalProperties: false
+
     StationCodeListDef:
       description: >-
         Code list used for the station codes: UIC = UIC codes as used by merits
@@ -2554,6 +2558,7 @@ components:
         ERA station code
       type: string
       default: UIC
+
     Address:
       type: object
       description: used to encode an address using the standard street address attributes
@@ -2580,10 +2585,12 @@ components:
          - city,
          - postalCode,
          - country
+
     POICodeList:
       description: Code list used for the POI codes.
       type: string
       default: UIC
+
     TripRef:
       type: object
       properties:
@@ -2594,6 +2601,7 @@ components:
         title:
           type: string
           example: Bruxelles-Midi - Paris-Nord 2020/07/01 10:05
+
     TripDef:
       type: object
       properties:
@@ -2625,6 +2633,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
       additionalProperties: false
+
     ServiceBrandCodeDef:
       description: >-
         Service brand codes allowed in response, code list can be found on 
@@ -2632,6 +2641,7 @@ components:
         (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
       type: number
       format: int32
+
     POI:
       description: >-
         POI (for point of Interest) represent a location that is not a train station but still relevant to the 
@@ -2663,6 +2673,7 @@ components:
         - country
         - localCode
       additionalProperties: false
+
     TripsCollection:
       type: object
       properties:
@@ -2690,6 +2701,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
     GeoCoordinateDef:
       description: >-
         Used to provide any geo-encoded location, regardless of environment, using longitude and latitude coordinates.
@@ -2725,6 +2737,9 @@ components:
         - latitude
         - longitude
       additionalProperties: false
+
+# Offer
+
     TripSearchCriteria:
       type: object
       properties:
@@ -2799,6 +2814,7 @@ components:
       required:
         - originValue
         - destinationValue
+
     OfferSearchCriteria:
       type: object
       description:
@@ -2834,6 +2850,7 @@ components:
             type: string
             enum:
               - OFFERPARTS
+
     TripOfferRequest:
       type: object
       properties:
@@ -2877,8 +2894,9 @@ components:
               - TRIPOFFERS.OFFERS
               - TRIPOFFERS.PASSENGERS
       description: >-
-        Defines the parameters needed to request a trip, standalone or in the context of an offer request. Note at least one
-        of the tripId, tripRef or trip elements must be set.
+        Defines the parameters needed to request a trip, standalone or in the context of an offer
+        request. Note at least one of the tripId, tripRef or trip elements must be set.
+
     TripOffer:
       type: object
       properties:
@@ -2906,6 +2924,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
     TripOfferRef:
       type: object
       properties:
@@ -2916,11 +2935,13 @@ components:
         title:
           type: string
           example: 'Bruxelles-Midi 10:05 20200701'
+
     RequestedInformation:
       type: string
       description: >-
         regular-expression indicating the data that must be set in the data
         model in order to proceed to next step of the process
+
     OfferSummary:
       type: object
       description: >-
@@ -2986,6 +3007,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+
     OfferRef:
       type: object
       properties:
@@ -2996,6 +3018,7 @@ components:
         title:
           type: string
           example: 'Bruxelles-Midi - Paris-Nord 10:05 20200701 NF 50 EUR'
+
     TripOffersCollection:
       type: object
       properties:
@@ -3023,9 +3046,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    
     CurrencyDef:
       description: ISO4217 currency codes
       type: string
+
     CurrencyPriceDef:
       type: object
       minProperties: 1
@@ -3424,6 +3449,7 @@ components:
         title:
           type: string
           example: TGV Lyria Loisir 2
+
     Product:
       type: object
       required:
@@ -3805,7 +3831,6 @@ components:
         - offerPart
         - reservationDetails
 
-
     SelectedPlacesDef:
       description: place selection from a graphical display of coaches
       type: object
@@ -3828,7 +3853,6 @@ components:
         - selectedCoach
         - selectedPlaces
 
-
     ReservationDetailsDef:
       type: object
       description: segmentIndex references a segmentIndex in the trip part within the offer reply
@@ -3845,9 +3869,6 @@ components:
       required:
         - serviceLevel,
         - reservedPlaces
-
-
-
         
     PlacePackDef:
         type: object
@@ -4050,8 +4071,6 @@ components:
             The proposition can then be confirmed, which turns it into a refund
         refund:
            $ref: '#/components/schemas/RefundDef'
-
-
         exchangeOffers:
           type: array
           items:
@@ -4116,8 +4135,7 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Fulfillment'
-          
-       
+           
     Fulfillment:
       type: object
       properties:
@@ -4151,7 +4169,6 @@ components:
           items:
             $ref: '#/components/schemas/Link'
       
-    
     FulfillmentDocumentDef:
       description: >-
         document created for fulfillment
@@ -4250,7 +4267,6 @@ components:
         - JPG_VISUAL_ELEMENT
         - GIF_VISUAL_ELEMENT
   
-    
     FulfillmentRef:
       type: object
       properties:
@@ -4261,6 +4277,7 @@ components:
         title:
           type: string
           example: Ticket Paris-Barcelona Andre Dupont 2020-07-23
+   
     AfterSaleReasonDef:
       description: >-
         Reason for and type of an after sale, Code list in IRS 90918-10.
@@ -4515,54 +4532,9 @@ components:
         - reimbursementStatus
         - refundFee
         - refundableAmount
-            
-            
-    Problem:
-      type: object
-      properties:
-        type:
-          type: string
-          format: uri
-          description: >-
-            An absolute URI that identifies the problem type. When dereferenced,
-            it SHOULD provide human-readable documentation for the problem type
-            (e.g., using HTML).
-          default: 'about:blank'
-          example: 'https://zalando.github.io/problem/constraint-violation'
-        title:
-          type: string
-          description: >-
-            A short, summary of the problem type. Written in English and readable
-            for engineers (usually not suited for non technical stakeholders and
-            not localized); example: Service Unavailable
-        status:
-          type: number
-          format: int32
-          description: >-
-            The HTTP status code generated by the origin server for this occurrence
-            of the problem.
-          minimum: 100
-          maximum: 600
-          exclusiveMaximum: true
-          example: 503
-        detail:
-          type: string
-          description: >-
-            A human readable explanation specific to this occurrence of the
-            problem.
-          example: Connection to database timed out
-        instance:
-          type: string
-          format: uri
-          description: >-
-            An absolute URI that identifies the specific occurrence of the problem.
-      description: >-
-        Problem Details for HTTP APIs (RFC 7807) defines a "problem detail" as a way
-        to carry machine-readable details of errors in a HTTP response to avoid
-        the need to define new error response formats for HTTP APIs.
-        See: https://tools.ietf.org/html/rfc7807
-    
+   
     #Fare-specific elements begin
+
     FareOnlineDef:
       type: object
       properties:
@@ -4604,8 +4576,7 @@ components:
         reservationOptions:
           $ref: '#/components/schemas/PlaceSelectionDef' 
         reservationLegacyParameter:
-          $ref: '#/components/schemas/LegacyReservationParameterDef'
-                    
+          $ref: '#/components/schemas/LegacyReservationParameterDef'            
       required:
         - id
         - type
@@ -4725,6 +4696,7 @@ components:
       required:
         - validityRange
       additionalProperties: false
+
     TravelerTypeDef:
       description: >- 
         Values from the traveler type code list IRS 90918-10 - YOUNG_CHILD, CHILD, YOUTH, ADULT, SENIOR, FAMILY_CHILD, ACCOMP_PRM, PRM_CHILD, WHEELCHAIR, PERSON, PRM, DOG, LUGGAGE, BICYCLE, ACCOMP_DOG, CAR,MOTOCYCLE, TRAILER, PRAM
@@ -4983,11 +4955,13 @@ components:
       required:
         - requiredCards
       additionalProperties: false
+
     CompanyDef:
       description: >-
         RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the 
         codes must have at least 5 positions and start with x
       type: string
+    
     FareCombinationModelDef:
       type: object
       properties:
@@ -5033,6 +5007,7 @@ components:
       required:
         - model
       additionalProperties: false
+
     FareCombinationConstraintDef:
       type: object
       properties:
@@ -5047,6 +5022,7 @@ components:
         - id
         - combinationModels
       additionalProperties: false
+
     AfterSalesConditionDef:
       type: object
       properties:
@@ -5061,6 +5037,7 @@ components:
         - id
         - afterSalesRules
       additionalProperties: false
+
     PriceDef:
       type: object
       properties:
@@ -5074,6 +5051,7 @@ components:
       required:
         - price
       additionalProperties: false
+
     RelativeTimeDef:
       type: object
       properties:
@@ -5103,6 +5081,7 @@ components:
         - timeValue
         - timeReference
       additionalProperties: false
+
     AfterSalesRuleDef:
       type: object
       properties:
@@ -5156,6 +5135,7 @@ components:
           polygon:
             $ref: '#/components/schemas/PolygonDef'
         additionalProperties: false
+    
     LineDef:
       type: object
       description: >-
@@ -5189,6 +5169,7 @@ components:
       required:
         - carrier
       additionalProperties: false
+    
     TrainLinkDef:
       type: object
       properties:
@@ -5209,6 +5190,7 @@ components:
         - train
         - travelDate
       additionalProperties: false
+    
     PolygonDef:
       type: object
       properties:
@@ -5218,6 +5200,7 @@ components:
           items:
             $ref: '#/components/schemas/GeoCoordinateDef'
       additionalProperties: false
+    
     ViaStationsDef:
       type: object
       properties:
@@ -5262,6 +5245,7 @@ components:
       required:
         - station
       additionalProperties: false
+
     ZoneDef:
       type: object
       description: >-
@@ -5297,6 +5281,7 @@ components:
       required:
         - carrier
       additionalProperties: false
+
     FulfillmentConstraintDef:
       type: object
       properties:
@@ -5345,6 +5330,7 @@ components:
         - acceptedFulfillmentTypes
         - individualTicketingPermitted
       additionalProperties: false
+
     PersonalDataConstraintDef:
       type: object
       properties:
@@ -5407,6 +5393,7 @@ components:
               - acceptedReason
             additionalProperties: false
       additionalProperties: false
+
     CrossBorderConditionDef:
       type: object
       properties:
@@ -5422,6 +5409,7 @@ components:
         - fromCountry
         - toCountry
       additionalProperties: false
+
     CountryDef:
       description: >-
         ISO 3166 2A codes
@@ -5507,6 +5495,7 @@ components:
           items:
             type: string
       additionalProperties: false
+    
     ServiceClassIdDef:
       description: >-
        Level of quality, finer grained than the comfort class.
@@ -5516,6 +5505,7 @@ components:
         - HIGH
         - STANDARD
         - BASIC
+    
     ServiceLevelDef:
       type: object
       properties:
@@ -5541,6 +5531,7 @@ components:
         - id
         - text
       additionalProperties: false
+    
     ServiceConstraintDef:
       description: >-
         Either excluded or included service brands can be set.
@@ -5559,6 +5550,7 @@ components:
       required:
         - id
       additionalProperties: false
+    
     FareTypeDef:
       description: >-
         Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
@@ -5568,6 +5560,7 @@ components:
         - RESERVATION
         - INTEGRATED_RESERVATION
         - ANCILLARY
+    
     RegionalConstraintDef:
       type: object
       description: >-
@@ -5594,6 +5587,7 @@ components:
       required:
         - regionalValidity
       additionalProperties: false
+    
     TranslationDef:
       type: object
       properties:
@@ -5614,6 +5608,7 @@ components:
         - textUTF8
         - text
       additionalProperties: false
+    
     TextDef:
       description: directly included text in case of online services
       type: object
@@ -5639,6 +5634,7 @@ components:
         - textUTF8
         - text
       additionalProperties: false
+    
     ConnectionPointDef:
       description: connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
       type: object
@@ -5667,7 +5663,7 @@ components:
          search parameter for an offer search on offers not based on a trip (e.g. passes)
       type: object
       properties:
-        seachTags:
+        searchTags:
           description: >-
             list of tags to search for
           type: array
@@ -5675,7 +5671,7 @@ components:
             type: string
         nutsCodes:
           description: >-
-              Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
+            Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
           type: array
           items:
             type: string
@@ -5686,7 +5682,7 @@ components:
         passengers:
           type: array
           items:
-              $ref:  '#/components/schemas/PassengerDef'  
+            $ref:  '#/components/schemas/PassengerDef'  
         requestedFulfillmentOptions: 
           type: array
           items:
@@ -5773,7 +5769,6 @@ components:
                 free text description of the model (e.g. BMW X5)
               type: string
           additionalProperties: false
-          
         motoCycle:
           type: object
           properties:
@@ -5785,7 +5780,6 @@ components:
                 the trailer plate is a personal data item and must not be provided in an offer request. It must be patched into the offer after the customer accepted the offer for booking 
               type: string   
           additionalProperties: false
-
         trailer:
           type: object
           properties:
@@ -5813,3 +5807,51 @@ components:
       required:
         - type
       additionalProperties: false
+
+    # Problem
+
+    Problem:
+      type: object
+      properties:
+        type:
+          type: string
+          format: uri
+          description: >-
+            An absolute URI that identifies the problem type. When dereferenced,
+            it SHOULD provide human-readable documentation for the problem type
+            (e.g., using HTML).
+          default: 'about:blank'
+          example: 'https://zalando.github.io/problem/constraint-violation'
+        title:
+          type: string
+          description: >-
+            A short, summary of the problem type. Written in English and readable
+            for engineers (usually not suited for non technical stakeholders and
+            not localized); example: Service Unavailable
+        status:
+          type: number
+          format: int32
+          description: >-
+            The HTTP status code generated by the origin server for this occurrence
+            of the problem.
+          minimum: 100
+          maximum: 600
+          exclusiveMaximum: true
+          example: 503
+        detail:
+          type: string
+          description: >-
+            A human readable explanation specific to this occurrence of the
+            problem.
+          example: Connection to database timed out
+        instance:
+          type: string
+          format: uri
+          description: >-
+            An absolute URI that identifies the specific occurrence of the problem.
+      description: >-
+        Problem Details for HTTP APIs (RFC 7807) defines a "problem detail" as a way
+        to carry machine-readable details of errors in a HTTP response to avoid
+        the need to define new error response formats for HTTP APIs.
+        See: https://tools.ietf.org/html/rfc7807
+    
