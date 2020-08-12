@@ -727,7 +727,9 @@ paths:
       tags:
         - Passengers
       summary: >-
-        The PATCH passenger service allows updating passenger's information in an offer immediately before confirmation. The passengers updated are provided as a list. The PATCH allows to change attributes but not to add or remove passengers.
+        The PATCH passenger service allows updating passenger's information in an offer immediately before confirmation. 
+      description: >-
+        The passengers updated are provided as a list. The PATCH allows to change attributes but not to add or remove passengers.
       operationId: patchPassengerInOffer
       parameters:
         - in: path
@@ -1112,9 +1114,13 @@ paths:
       tags:
         - Offer Parts
       summary: >-
-        The PATCH of the place selections service allows updating reservation elements, to update the desired selection of places and to retrieve selectable places for a graphical display
+        The PATCH of the place selections service allows updating reservation elements, to update the desired 
+        selection of places and to retrieve selectable places for a graphical display.
       description: >-
-        The patch can be used to update the selection of place properties, the available places for grapfical displays, the selected optional place properties for a subsequent booking and the aselected places from a graphical display. The update response will show the available/accepted properties. An update with empty available places will update the available places list in the reply.
+        The patch can be used to update the selection of place properties, the available places for grapfical 
+        displays, the selected optional place properties for a subsequent booking and the aselected places from
+        a graphical display. The update response will show the available/accepted properties. An update with
+        empty available places will update the available places list in the reply.
       operationId: patchPlaceSelectionId
       parameters:
         - in: path
@@ -2854,7 +2860,7 @@ components:
     TripOfferRequest:
       type: object
       properties:
-        tripId:
+        id:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
@@ -2893,10 +2899,13 @@ components:
               - TRIPOFFERS.TRIP
               - TRIPOFFERS.OFFERS
               - TRIPOFFERS.PASSENGERS
+      required:
+       - tripId
+      
       description: >-
         Defines the parameters needed to request a trip, standalone or in the context of an offer
         request. Note at least one of the tripId, tripRef or trip elements must be set.
-
+      
     TripOffer:
       type: object
       properties:
@@ -2924,6 +2933,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      required:
+        - id
+        - trip
+        - offers
+        - passengers
 
     TripOfferRef:
       type: object
@@ -2957,6 +2971,11 @@ components:
           $ref: '#/components/schemas/ServiceLevelIdDef'
         overallFlexibility:
           $ref: '#/components/schemas/Flexibility'
+      required:
+        - minimalPrice
+        - overallServiceClass
+        - overallServiceLevel
+        - overallFlexibility
 
     Offer:
       type: object
@@ -3007,6 +3026,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      required:
+        - validFrom
+        - validTo
+        - offerPartRefs
 
     OfferRef:
       type: object
@@ -3046,6 +3069,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      required:
+        - id
+      additionalProperties: false
     
     CurrencyDef:
       description: ISO4217 currency codes
@@ -3218,6 +3244,8 @@ components:
           $ref: '#/components/schemas/GenderDef'
       required:
         - dateOfBirth
+        - reductionCards
+        - gender
       additionalProperties: false  
       
     PassengerPassportDef:
@@ -4076,14 +4104,17 @@ components:
           items:
             $ref: '#/components/schemas/ExchangeOfferDef'
           description: >-
-            Refund offer is created with the details of the to-be-confirmed refund operation. One proposition can then be confirmed, which turns it into an exchange and confirms the new booking.         
+            Refund offer is created with the details of the to-be-confirmed refund operation. One proposition 
+            can then be confirmed, which turns it into an exchange and confirms the new booking.         
         exchange:
             $ref: '#/components/schemas/ExchangeDef'
-
         links:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      required:
+        - id
+        - status
     
     BookingRef:
       type: object
