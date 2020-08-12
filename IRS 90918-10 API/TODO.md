@@ -11,8 +11,9 @@
 - run YAML through code generator                           - done, code is being generated
 
 ## for discussion:
-  - subresources are accessed via the main resource, except for passengers --> use the same aproach also for passengers?
-
+  - sub resources are accessed via the main resource, except for passengers 
+     --> use the same approach also for passengers?
+  - correctly reference entities
 
 ## Documentation
 - Todo Nicolas :-)
