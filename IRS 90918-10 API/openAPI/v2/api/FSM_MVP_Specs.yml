@@ -552,7 +552,7 @@ paths:
       operationId: getTripOffersId
       parameters:
         - in: path
-          name: id
+          name: tripOfferId
           schema:
             type: string
             format: uuid
@@ -608,12 +608,13 @@ paths:
         '501':
           description: Not implemented     
           
+          
   '/offers/{offerId}':
     get:
       tags:
         - Offers
       summary: >-
-        The GET offers service returns the offer with the requested included sub resources in a given state.
+         The GET offers service returns the offer with the requested included sub resources in a given state.
       operationId: getOffersId
       parameters:
         - in: path
@@ -639,7 +640,7 @@ paths:
                 - TRIP.LOCATIONS
       responses:
         '200':
-          description: Offer found
+          description: TripOffer found
           content:
             application/json:
               schema:
@@ -670,13 +671,12 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-
   '/passengers/{passengerId}':
     get:
       tags:
         - Passengers
       summary: >-
-        The GET passenger service returns the passenger's information.
+       The GET passenger service returns the passenger's information.
       operationId: getPassengersId
       parameters:
         - in: path
@@ -954,7 +954,7 @@ paths:
           description: Not implemented        
           
           
-  '/offers/{offerId}/reservations/{id}':
+  '/offers/{offerId}/reservations/{reservationId}':
     get:
       tags:
         - Offer Parts
@@ -1035,10 +1035,10 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the integrated reservation to get.
+          description: ID of the IntegratedReservation to get.
       responses:
         '200':
-          description: Integrated reservation found
+          description: IntegratedReservation found
           content:
             application/json:
               schema:
@@ -1087,7 +1087,7 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
-          name: id
+          name: ancillaryId
           schema:
             type: string
             format: uuid
@@ -1158,7 +1158,7 @@ paths:
           description: ID of the fares to get.
       responses:
         '200':
-          description: ancillary found
+          description: fare found
           content:
             application/json:
               schema:
@@ -1209,7 +1209,7 @@ paths:
             type: string
           required: false
           description: >-
-            First name of a passenger in the booking.
+            First name of a passenger in the booking.      
         - name: passengerName
           in: query
           schema:
@@ -1222,13 +1222,14 @@ paths:
           schema:
             type: string
             format: date
-          required: false
+          required: false  
           description: >-
             Date of birth of a passenger in the booking.
         - name: bookingReference
           in: query
           schema:
             type: string
+            format: date
           required: false
           description: >-
             Human-readable booking reference for the booking, e.g. PNR.
@@ -1255,7 +1256,23 @@ paths:
           required: false
           description: >-
             End date for the travel date range to search.
-
+        - name: OriginId 
+          in: query
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: false
+          description: departure locationId one of the travels in the booking to search on
+        - name: DestinationId
+          in: query
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: false
+          description: destination locationId one of the travels in the booking to search on
+          
       responses:
         '200':
           description: Booking ids found
@@ -1434,6 +1451,13 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          description: >-
+             Conflict - the state of the server or resource does not allow the action (e.g. the booking was already confirmed)
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
         '500':
           description: Internal server error
           content:
@@ -1456,7 +1480,7 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the booking to be patched.      
+          description: ID of the booking to be patched      
       requestBody:
         content:
           application/json:
@@ -1486,22 +1510,42 @@ paths:
         '501':
           description: Not implemented 
    
-  '/fulfillments':
-    post:
+        
+   
+   
+  '/bookings/{bookingId}/fulfillments':
+    patch:
       tags:
         - Fulfillments
       summary: >-
         The POST fulfillments service triggers the fulfillment of the booking based on the information 
         currently contained in the provided booking.
       operationId: postFulfillments
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the booking to be patched        
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Fulfillment'
+              $ref: '#/components/schemas/FulfillmentRequestDef'
       responses:
+        '200':
+          description: >-
+            fulfillment successfull
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentsDef'
         '202': 
-          description: Fulfillment successfully initiated
+          description: >- 
+            Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
         '400':
           description: Bad request
           content:
@@ -1514,6 +1558,13 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          description: >-
+             Conflict - the state of the server or resource does not allow the action (e.g. the booking was not confirmed)
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'            
         '500':
           description: Internal server error
           content:
@@ -1522,17 +1573,17 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-
+          
   '/fulfillments/{fulfillmentId}':
     get:
       tags:
         - Fulfillments
       summary: >-
         The GET ticket service returns the information on the ticket with the id provided.
-      operationId: getFulfillmentsId
+      operationId: getFulfillmentId
       parameters:
         - in: path
-          name: id
+          name: fulfillmentId
           schema:
             type: string
             format: uuid
@@ -1541,7 +1592,7 @@ paths:
           description: ID of the product to get.
       responses:
         '200':
-          description: Fulfillment found
+          description: fulfillment found
           content:
             application/json:
               schema:
@@ -1590,7 +1641,7 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the offer the offerPart is part of.      
+          description: ID of the booking.      
       requestBody:
         content:
           application/json:
@@ -1615,6 +1666,13 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          description: >-
+             Conflict - the state of the server or resource does not allow the action (e.g. the booking was not confirmed)
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'            
         '500':
           description: Internal server error
           content:
@@ -1623,8 +1681,10 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+          
+   
         
-  '/bookings/{bookingId}/refundOffers/{refundId}':
+  '/bookings/{bookingId}/refundOffers/{refundOfferId}':
     get:
       tags:
         - RefundOffers
@@ -1639,15 +1699,15 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the offer the offerPart is part of.      
+          description: ID of the booking  
         - in: path
-          name: refundId
+          name: refundOfferId
           schema:
             type: string
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the product to get.
+          description: ID of the refund offer to get.
       responses:
         '200':
           description: RefundOffer found
@@ -1681,7 +1741,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-
     delete:
       tags:
         - RefundOffers
@@ -1697,7 +1756,7 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the offer the offerPart is part of.      
+          description: ID of the booking 
         - in: path
           name: refundOfferId
           schema:
@@ -1705,7 +1764,7 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the product to get.
+          description: ID of the refund offer to delete.
       responses:
         '200':
           description: Refund offer successfully cancelled
@@ -1729,7 +1788,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-
     patch:
       tags:
         - RefundOffers
@@ -1752,7 +1810,7 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the refund offer.
+          description: ID of the product to get.
       requestBody:
         content:
           application/json:
@@ -1792,8 +1850,126 @@ paths:
         '501':
           description: Not implemented
 
-  '/layouts':
+          
+  '/bookings/{bookingId}/exchangeOffers':
+    post:
+      tags:
+        - ExchangeOffers
+      summary: >-
+        The POST exchangeOffers initiates an exchange process by creating a ExchangeOffer resource
+        containing the needed information on the potential operation. The proposition can then be 
+        accepted via a PATCH, deleted or left to die at the end of its lifetime. 
+      operationId: postExchangeOffersBookingId
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer the offerPart is part of.      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExchangeOfferRequestDef'
+      responses:
+        '200': 
+          description: Refund offer created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExchangeOffersCollectionDef'
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented   
+          
+  '/bookings/{bookingId}/exchangeOffers/{exchangeOfferId}':          
+    patch:
+      tags:
+        - ExchangeOffers
+      summary: >-
+        The PATCH exchangeOffers action allows to accept and confirm an exchange operation. 
+      operationId: patchExchangeOffersId
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the bioking to be exchanged    
+        - in: path
+          name: exchangeOfferId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the exchange offer.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExchangeOfferConfirmDef'
+      responses:
+        '200':
+          description: Refund and new booking
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExchangeDef'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+
+
+  '/coachLayouts':
     get:
+      tags:
+        - CoachLayouts 
       description: get coach layouts
       operationId: getCoachLayouts
       parameters:
@@ -1831,7 +2007,56 @@ paths:
         '501':
           description: Not implemented
 
+
+  '/offersCollection':
+    post:
+      description: >- 
+        get offers based on key words or regional information not linked to trips
+      operationId: searchOffers
+      parameters:
+        - name: version
+          in: path
+          description: schema version
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: request parameter for offer search
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferSearchDef'
+      responses:
+        '200':
+          description: offer collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NonTripOfferCollectionDef'
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+
 ## Components
+
 components:
   schemas:
     Link:
@@ -1869,6 +2094,7 @@ components:
         The underlying system may provide additional links pointing on further
         information (such as HTML download links, web sites or extended APIs).
         Mechanism to add flexible extensions specific to an underlying system.
+        
     Segment:
       description: >-
         A segment represents a subsection of a trip that is realized with the same transport. In railways it is typically one
@@ -1978,6 +2204,7 @@ components:
         - seqId
         - vehicle
       additionalProperties: false
+      
     StationDetailsDef:
       description: >-
         Details of a station. Station names are not translated but provided in some
@@ -2679,7 +2906,8 @@ components:
       additionalProperties: false
       
     PassengerReferenceDef:
-      description: reference to a passenger within the offer and booking
+      description: >- 
+       stable reference to a passenger within the offer and booking
       type: string
       
     PassengerDef:
@@ -2882,6 +3110,8 @@ components:
         title:
           type: string
           example: Andreas Dupont
+        reference:
+          $ref: '#/components/schemas/PassengerReferenceDef'
           
     ServiceLevelIdDef:
       description: >-
@@ -2947,6 +3177,7 @@ components:
                 type: array
                 items:
                   type: string
+                  
     ProductRef:
       type: object
       properties:
@@ -3090,9 +3321,6 @@ components:
           $ref: '#/components/schemas/OfferPart'
         reservationRequired:
           type: boolean
-        numericAvailability:
-          type: number
-          format: int32
         reservations:
           type: array
           items:
@@ -3546,6 +3774,7 @@ components:
             - FULFILLED
             - CANCELLED
             - REFUNDED
+            - EXCHANGED
             - ERROR
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
@@ -3582,7 +3811,20 @@ components:
               - $ref: '#/components/schemas/RefundOffer'
           description: >-
             Refund offer is created with the details of the to-be-confirmed refund operation. 
-            The proposition can then be accepted, which conforms the refund.
+            The proposition can then be confirmed, which turns it into a refund
+        refund:
+           $ref: '#/components/schemas/RefundDef'
+
+
+        exchangeOffers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExchangeOfferDef'
+          description: >-
+            Refund offer is created with the details of the to-be-confirmed refund operation. One proposition can then be confirmed, which turns it into an exchange and confirms the new booking.         
+        exchange:
+            $ref: '#/components/schemas/ExchangeDef'
+
         links:
           type: array
           items:
@@ -3622,6 +3864,24 @@ components:
         - ETICKET
         - CIT_PAPER
 
+    FulfillmentRequestDef:
+       description: >-
+        request parameter to initialte the fulfillemt
+       type: object
+       properties:
+        media: 
+          type: array
+          items:
+           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+          
+    FulfillmentsDef:
+      description: >-
+        list of fulfillments in a booking
+      type: array
+      items:
+        $ref: '#/components/schemas/Fulfillment'
+          
+       
     Fulfillment:
       type: object
       properties:
@@ -3633,20 +3893,127 @@ components:
           type: string
           description: >-
             Ticket Control Number
+
+        offerParts:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferPartRef'
+        documents:
+          description: >-
+            complete document created for fulfillment
+          type: array
+          items: 
+            $ref: '#/components/schemas/FulfillmentDocumentDef'
+        fulfillmentItems:
+          description: >-
+            fulfillment items to be integrated into tickets (allocator mode)
+          type: array
+          items:
+              $ref: '#/components/schemas/FulfillmentItemDef'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      
+    
+    FulfillmentDocumentDef:
+      description: >-
+        document created for fulfillment
+      type: object
+      properties:
+        medium: 
+          $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+        passengers:
+          description: >-
+            list of passengers on the bookimng in case the booking does not cobver all passengers
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/PassengerReferenceDef'
+              - $ref: '#/components/schemas/PassengerRef'
+        documentType:
+         type: string
+         enum:
+           - BOOKING_RECEIPT
+           - TICKET
+           - BOARDING_PASS
+           - INFORMATION
+           - VOUCHER
         status:
           type: string
           enum:
             - ACTIVE
             - CANCELLED
-            - TRAVELLED
-        offerParts:
+            - TRAVELLED   
+        documentLink:
+          type: string
+          format: uri    
+    
+    FulfillmentItemDef:
+      description: fulfillment items to be integrated in to tickets, e.g. viisual security elements, additional bar codes, control keys
+      type: object
+      properties:
+        fulfillmentMedia:
+          description: >-
+           list of fulfillment media where this item applies
           type: array
           items:
-            $ref: '#/components/schemas/OfferPartRef'
-        links:
+           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+        travelerReference:
+          description: reference to a traveler
+          type: string
+        controlId:
+          type: string
+        securityFeatures:
+          description: 'visual elements, bar codes'
           type: array
           items:
-            $ref: '#/components/schemas/Link'
+            type: object
+            properties:
+              type:
+                $ref: '#/components/schemas/SecurityFeatureTypeDef'
+              data:
+                description: base 64 encoded data
+                type: string
+            additionalProperties: false
+        securityFeatureLinks:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                $ref: '#/components/schemas/SecurityFeatureTypeDef'
+              uri:
+                description: link to download the security feature
+                type: string
+                format: uri
+                
+            additionalProperties: false
+        mandatory:
+          description: >-
+            the use of the provioded features is mandatory
+          type: boolean
+          default: false
+        securePaperOnly:
+          description: >-
+            the security feature must be used on secure paper
+          type: boolean
+          default: false
+      additionalProperties: false
+  
+    SecurityFeatureTypeDef:
+      description: >-
+        "RAW_BAR_CODE" binary data too be included in an bar code, "MATRIX_BAR_CODE" binary data of the black and white pixel matrix of a square bar code, "PNG_BAR_CODE" png image data of a bar code, "JPG_BAR_CODE" jpg data of a bar code, "PNG_VISUAL_ELEMENT" png image data of a visual element, "JPG_VISUAL_ELEMENT" jpg data of a visual element, "GIF_VISUAL_ELEMENT" gif data of a visual element
+      type: string
+      enum:
+        - RAW_BAR_CODE
+        - MATRIX_BAR_CODE
+        - PNG_BAR_CODE
+        - JPG_BAR_CODE
+        - PNG_VISUAL_ELEMENT
+        - JPG_VISUAL_ELEMENT
+        - GIF_VISUAL_ELEMENT
+  
     
     FulfillmentRef:
       type: object
@@ -3662,10 +4029,12 @@ components:
       description: >-
         Reason for and type of an after sale, Code list in IRS 90918-10.
       type: string
+      
     RefundOffersCollection:
       type: array
       items:
         $ref: '#/components/schemas/RefundOffer'
+        
     RefundOffer:
       type: object
       description: TODO
@@ -3712,6 +4081,7 @@ components:
        - reimbursementStatus
        - refundFee
        - refundableAmount
+       
     RefundOfferRef:
       type: object
       properties:
@@ -3745,6 +4115,127 @@ components:
         overruleCode: 
           $ref: '#/components/schemas/AfterSaleReasonDef'
 
+    ExchangeOfferRequestDef:
+      description: request for a refund. Fulfillments can be provided in case the booking contains multiple individual fulfillments
+      type: object
+      properties:
+        passengerRefs:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/PassengerRef'
+              - $ref: '#/components/schemas/PassengerDef'
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentRef'
+        overruleCode: 
+          $ref: '#/components/schemas/AfterSaleReasonDef'
+
+    ExchangeOffersCollectionDef:
+      type: array
+      items:
+        $ref: '#/components/schemas/ExchangeOfferDef'
+        
+    ExchangeOfferDef:
+      type: object
+      description: >-
+       offer to exchgange the referenced booking
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          description: id of the refund proposition
+        validUntil:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - PROPOSED
+            - CONFIRMED
+          default: PROPOSED
+        reimbursementStatus:
+          description: >-
+            If set to IMMEDIATE the distributor is allowed to return the 
+            reimbursement amount immediately.
+          type: string
+          enum:
+            - IMMEDIATE
+            - DELAYED
+        reimbursementDateTime:
+          type: string
+          format: date-time
+        appliedOverruleCode:
+          $ref: '#/components/schemas/AfterSaleReasonDef'
+        fulfillments:
+          type: array
+          items: 
+            $ref: '#/components/schemas/FulfillmentRef'
+        exchangeFee:
+          $ref: '#/components/schemas/CurrencyPriceDef'
+        refundableAmount:
+          $ref: '#/components/schemas/CurrencyPriceDef'
+        exchangeOffer:
+          description: >-
+           TODO add non trip offer
+          oneOf:
+           - $ref: '#/components/schemas/TripOffer'  
+           - $ref: '#/components/schemas/TripOfferRef'
+      required:
+       - id
+       - validUntil
+       - status
+       - reimbursementStatus
+       - exchangeFee
+       - exchangeOffer
+
+    ExchangeOfferConfirmDef:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          description: id of the exchange proposition
+        status:
+          type: string
+          enum:
+            - CONFIRMED
+            
+    ExchangeDef:
+      description: >- 
+       result of a successfull confirmation of an exchange. The new booking and the pld booking are returned.
+      type: object
+      properties:
+        reimbursementStatus:
+          description: >-
+            If set to IMMEDIATE the distributor is allowed to return the 
+            reimbursement amount immediately.
+          type: string
+          enum:
+            - IMMEDIATE
+            - DELAYED
+        reimbursementDateTime:
+          type: string
+          format: date-time
+        appliedOverruleCode:
+          $ref: '#/components/schemas/AfterSaleReasonDef'
+        exchangeFee:
+          $ref: '#/components/schemas/CurrencyPriceDef'
+        refundableAmount:
+          $ref: '#/components/schemas/CurrencyPriceDef'    
+        newBooking: 
+          oneOf:
+            - $ref: '#/components/schemas/Booking'
+            - $ref: '#/components/schemas/BookingRef'
+      required:
+        - reimbursementStatus
+        - exchangeFee
+        - refundableAmount
+        - newBooking
+
     RefundOfferConfirm:
       type: object
       properties:
@@ -3757,6 +4248,38 @@ components:
           type: string
           enum:
             - CONFIRMED
+            
+    RefundDef:
+      description: >- 
+       result of a successfull confirmation of a refund. 
+      type: object
+      properties:
+        reimbursementStatus:
+          description: >-
+            If set to IMMEDIATE the distributor is allowed to return the 
+            reimbursement amount immediately.
+          type: string
+          enum:
+            - IMMEDIATE
+            - DELAYED
+        reimbursementDateTime:
+          type: string
+          format: date-time
+        appliedOverruleCode:
+          $ref: '#/components/schemas/AfterSaleReasonDef'
+        refundFee:
+          $ref: '#/components/schemas/CurrencyPriceDef'
+        refundableAmount:
+          $ref: '#/components/schemas/CurrencyPriceDef'    
+        newBooking: 
+          oneOf:
+            - $ref: '#/components/schemas/Booking'
+            - $ref: '#/components/schemas/BookingRef'
+      required:
+        - reimbursementStatus
+        - refundFee
+        - refundableAmount
+            
             
     Problem:
       type: object
@@ -4359,15 +4882,12 @@ components:
     LineDef:
       type: object
       description: >-
-        terminalStation: in case the product requires a destination within the zone (e.g. local ticket
-         to go to the main rail station). Station to enter the zone in case the product requires 
-         to enter the zone via a ??? TODO
-        entryStation: specific station (e.g. local zone ticket to start from the main rail station).
+         terminalStation - in case the product requires a destination within the zone (e.g. local ticket to go to the main rail station). entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station).
       properties:
         binaryLineId:
           type: integer
           format: Base64
-          description: 
+          description: >-
             Id to support local traffic standards (e.g. VDV,...).
         carrier:
           $ref: '#/components/schemas/CompanyDef'
@@ -4401,7 +4921,8 @@ components:
         travelDate:
           type: string
           format: date-time
-          description: date and time of the departure where the train link starts
+          description: >-
+            date and time of the departure where the train link starts
       required:
         - fromStation
         - toStation
@@ -4853,4 +5374,75 @@ components:
       additionalProperties: false      
       
     #Fare-specific elements end
- 
+    
+    OfferSearchDef:
+      description: >-
+         search parameter for an offer search on offers not based on a trip (e.g. passes)
+      type: object
+      properties:
+
+            seachTags:
+              description: >-
+                list of tags to search for
+              type: array
+              items:
+                type: string
+            nutsCodes:
+              description: >-
+                 Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
+              type: array
+              items:
+                type: string
+            geoCoordinate:
+              $ref: '#/components/schemas/GeoCoordinateDef'
+            travelPeriod:
+              $ref: '#/components/schemas/CalendarDef'
+            passengers:
+              type: array
+              items:
+                 $ref:  '#/components/schemas/PassengerDef'  
+            requestedFulfillmentOptions: 
+              type: array
+              items:
+                $ref:  '#/components/schemas/FulfillmentOption' 
+            offerSearchCriteria:
+               $ref:  '#/components/schemas/OfferSearchCriteria'  
+              
+    NonTripOfferCollectionDef:
+      type: array
+      items:
+        $ref: '#/components/schemas/NonTripOfferDef'
+    
+    NonTripOfferDef:
+      type: object
+      properties:
+        offerSummary:
+          $ref: '#/components/schemas/OfferSummary'
+        requestedInformation:
+          $ref: '#/components/schemas/RequestedInformation'
+        validFrom:
+          type: string
+          format: date-time
+        validTo:
+          type: string
+          format: date-time 
+        supportedMediaTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+        admissions:
+          type: array        
+          items: 
+            $ref: '#/components/schemas/Admission'
+        ancillaries:
+          type: array        
+          items:  
+            $ref: '#/components/schemas/Ancillary'
+        fares:
+          type: array
+          items:
+            $ref: '#/components/schemas/FareOnlineDef'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
