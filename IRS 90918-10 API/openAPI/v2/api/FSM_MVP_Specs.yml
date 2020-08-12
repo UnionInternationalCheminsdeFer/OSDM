@@ -829,7 +829,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/offers/{offerId}/admissions/{admissionsId}':
+  '/offers/{offerId}/admissions/{admissionId}':
     get:
       tags:
         - Offer Parts
@@ -846,7 +846,7 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
-          name: admissionsId
+          name: admissionId
           schema:
             type: string
             format: uuid
@@ -1069,7 +1069,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/offers/{offerId}/ancillaries/{ancilliaryId}':
+  '/offers/{offerId}/ancillaries/{ancillaryId}':
     get:
       tags:
         - Offer Parts
@@ -1086,13 +1086,13 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
-          name: ancilliaryId
+          name: ancillaryId
           schema:
             type: string
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the ancilliary to get.
+          description: ID of the ancillary to get.
       responses:
         '200':
           description: Ancillary found
@@ -5535,6 +5535,4 @@ components:
           additionalProperties: false
       required:
         - type
-      additionalProperties: false            
-            
-    
+      additionalProperties: false
