@@ -428,14 +428,14 @@ paths:
           name: stopBehavior
           description: >-
             Influences what stops are to be returned in response
-            (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
-            REAL_BOARDING_ALIGHTING returns all stops except virtual stops).
+            (ORIGIN_DESTINATION_ONLY returns no intermediate stops within a segment;
+            ALL_STOPS returns additionally intermediate stops within segments).
           schema:
             type: string
             default: ORIGIN_DESTINATION_ONLY
             enum:
               - ORIGIN_DESTINATION_ONLY
-              - REAL_BOARDING_ALIGHTING                    
+              - ALL_STOPS                    
         - in: query
           name: includeBehavior
           description: >-
@@ -492,7 +492,7 @@ paths:
       tags:
         - Offers
       summary: >-
-        The POST tripsOffersCollection service returns different trips for a
+        The POST tripsOffersCollection service returns different trip offers for a
         specified origin and destination (and via) locations. 
       operationId: postTripOffersCollection
       parameters:
@@ -547,8 +547,7 @@ paths:
       tags:
         - Offers
       summary: >-
-        The POST trip-offers service returns different offers and trips for a specified
-        origin and destination (and via) locations.
+        The GET trip-offers service returns different offers for a specified trip offer id.
       operationId: getTripOffersId
       parameters:
         - in: path
@@ -1158,7 +1157,7 @@ paths:
           description: ID of the fares to get.
       responses:
         '200':
-          description: fare found
+          description: Fare found
           content:
             application/json:
               schema:
@@ -1222,7 +1221,7 @@ paths:
           schema:
             type: string
             format: date
-          required: false  
+          required: false            
           description: >-
             Date of birth of a passenger in the booking.
         - name: bookingReference
@@ -1237,7 +1236,7 @@ paths:
           in: query
           schema:
             type: string
-          required: false
+          required: false  
           description: >-
             Human-readable fulfillment reference for the booking, e.g. ticket number.
         - name: travelDateBegin
@@ -1307,7 +1306,7 @@ paths:
       tags:
         - Bookings
       summary: >-
-        The POST bookings service allows to create a booking based on a previously requested offer.
+        The POST bookings service allows to create a booking based on a previously requested offer. The offer id is provided in the query.
       operationId: postBookings
       parameters:
         - name: Accept-Language
@@ -1318,7 +1317,13 @@ paths:
           schema:
             type: string
           required: false
-
+        - name: offerId
+          in: query
+          description: >-
+            id of the offer to be booked
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: >- 
@@ -1457,7 +1462,7 @@ paths:
           content:
             "application/problem+json":
               schema:
-                $ref: '#/components/schemas/Problem'
+                $ref: '#/components/schemas/Problem'          
         '500':
           description: Internal server error
           content:
@@ -1971,6 +1976,8 @@ paths:
       tags:
         - CoachLayouts 
       description: get coach layouts
+      summary: >-
+        Retrieve the coach layout description needed for graphical reservation    
       operationId: getCoachLayouts
       parameters:
         - name: version
@@ -2010,8 +2017,12 @@ paths:
 
   '/offersCollection':
     post:
+      tags:
+        - Offers 
       description: >- 
         get offers based on key words or regional information not linked to trips
+      summary: >-
+        Get offers not linked to trips based on key words or regional information (e.g. for passes or seasonal tickets)          
       operationId: searchOffers
       parameters:
         - name: version
@@ -2912,12 +2923,21 @@ components:
       
     PassengerDef:
       type: object
+      description: >-
+        passenger of transportable (e.g. bicycle)
       properties:
         id: 
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
-        passenger:
+        type:
+          $ref:  '#/components/schemas/TravelerTypeDef'  
+        reference:
+          description: >-
+            stable reference to passengers from other elements, or from caller
+            system.
+          type: string
+        passengerAbstract:
           $ref: '#/components/schemas/PassengerAbstractDef'
         passengerDetails:
           $ref: '#/components/schemas/PassengerDetailsDef'
@@ -2925,21 +2945,21 @@ components:
           $ref: '#/components/schemas/PassengerPassportDef'
         cardIdentification:
           $ref: '#/components/schemas/CardIdentificationDef'
+        transportableDetails:
+          $ref: '#/components/schemas/TransportableDef'          
         links:
           type: array
           items:
             $ref: '#/components/schemas/Link'
       required:
-        - passenger           
+        - type
+        - reference
+        - id
+      additionalProperties: false    
         
     PassengerAbstractDef:
       type: object
       properties:
-        reference:
-          description: >-
-            stable reference to passengers from other elements, or from caller
-            system.
-          type: string
         dateOfBirth:
           description: date of birth of the passenger
           type: string
@@ -2951,11 +2971,7 @@ components:
             $ref: '#/components/schemas/ReductionCardReferenceDef'
         gender:
           $ref: '#/components/schemas/GenderDef'
-        type:
-          type: string
-          description: Values from the traveler type code list IRS 90918-10
       required:
-        - travelerId
         - dateOfBirth
       additionalProperties: false  
       
@@ -4481,7 +4497,8 @@ components:
         - validityRange
       additionalProperties: false
     TravelerTypeDef:
-      description: Values from the traveler type code list IRS 90918-10
+      description: >- 
+        Values from the traveler type code list IRS 90918-10 - YOUNG_CHILD, CHILD, YOUTH, ADULT, SENIOR, FAMILY_CHILD, ACCOMP_PRM, PRM_CHILD, WHEELCHAIR, PERSON, PRM, DOG, LUGGAGE, BICYCLE, ACCOMP_DOG, CAR,MOTOCYCLE, TRAILER, PRAM
       type: string
       
     LayoutsReplyDef:
@@ -5446,3 +5463,76 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+            
+    TransportableDef:
+      description: >- 
+        transportables which are handled similar to passengers like dogs, bicycles, car transport. These transportables might need a ticket or reservation.
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/TravelerTypeDef'
+        car:
+          type: object
+          properties:
+            weight:
+              type: number
+            length:
+              type: number
+            width:
+              type: number
+            height:
+              type: number
+            attachedItems:
+              description: >-
+                indication of items attached to the car
+              type: array
+              items:
+                type: string
+                enum:
+                 - ROOF_RACK
+                 - BICYCLE_STAND
+            plate:
+              description: >-
+                the trailer plate is a personal data item and must not be provided in an offer request. It must be patched into the offer after the customer accepted the offer for booking 
+              type: string        
+            model:
+              description: >-
+                free text description of the model (e.g. BMW X5)
+              type: string
+          additionalProperties: false
+          
+        motoCycle:
+          type: object
+          properties:
+            includingSideCar:
+              type: boolean
+              default: false
+            plate:
+              description: >-
+                the trailer plate is a personal data item and must not be provided in an offer request. It must be patched into the offer after the customer accepted the offer for booking 
+              type: string   
+          additionalProperties: false
+
+        trailer:
+          type: object
+          properties:
+            weight:
+              description: weight in kg
+              type: number
+            length:
+              description: length in cm
+              type: number
+            width:
+              description: width in cm
+              type: number
+            height:
+              description: length in cm
+              type: number
+            plate:
+              description: >-
+                the trailer plate is a personal data item and must not be provided in an offer request. It must be patched into the offer after the customer accepted the offer for booking 
+              type: string
+          additionalProperties: false
+      required:
+        - type
+      additionalProperties: false
