@@ -888,7 +888,73 @@ paths:
         '501':
           description: Not implemented
           
-  '/offers/{offerId}/reservations/{reservationId}':
+  '/offers/{offerId}/placeSelections/{placeSelectionId}':
+    patch:
+      tags:
+        - Offer Parts
+      summary: >-
+        The PATCH of the place selections service allows updating reservation elements, to update the desired selection of places and to retrieve selectable places for a graphical display
+      description: >-
+        The patch can be used to update the selection of place properties, the available places for grapfical displays, the selected optional place properties for a subsequent booking and the aselected places from a graphical display. The update response will show the available/accepted properties. An update with empty available places will update the available places list in the reply.
+      operationId: patchPlaceSelectionId
+      parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer to patch.
+        - in: path
+          name: placeSelectionId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the placeSelection object to be patched.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaceSelectionDef'
+      responses:
+        '200':
+          description: reservation successfully patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceSelectionDef'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented        
+          
+          
+  '/offers/{offerId}/reservations/{id}':
     get:
       tags:
         - Offer Parts
@@ -915,71 +981,6 @@ paths:
       responses:
         '200':
           description: reservation found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Reservation'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented
-    patch:
-      tags:
-        - Offer Parts
-      summary: >-
-        The PATCH reservation service allows updating reservation elements, allowing to update the desired 
-        reservation selection for one or more passengers. 
-      description: >-
-        Note that only the following elements of the reservationSelection can actually be patched: 
-        selectedCompartmentOptions, seatingPreferenceType, placeNumber, coachNumber and direction.
-      operationId: patchReservationsId
-      parameters:
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the offer the reservation is part of.
-        - in: path
-          name: reservationId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the reservation to patch
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Reservation'
-      responses:
-        '200':
-          description: reservation successfully patched
           content:
             application/json:
               schema:
@@ -1135,7 +1136,6 @@ paths:
         The GET fares service returns the information on the ancillary with the id provided.
       description: >-
         For the fares only the start and the end location are considered.
-
         Fares are only returned if the API is called as allocator with the correct grants.
         Otherwise a forbidden message is returned. 
       operationId: getFaresId
@@ -1771,6 +1771,45 @@ paths:
                 type: string
                 description: >-
                   The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+
+  '/layouts':
+    get:
+      description: get coach layouts
+      operationId: getCoachLayouts
+      parameters:
+        - name: version
+          in: path
+          description: schema version
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: coach layouts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LayoutsReplyDef'
         '400':
           description: Bad request
           content:
@@ -3081,9 +3120,172 @@ components:
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
                 
+    PlaceSelectionDef:
+      type: object
+      description: >-
+        place selection options and selected options in an offer
+        - optional place properties to choose from
+        - selected optional place properties (selectedOptions)
+        - selectable plces for a graphical place selection 
+        - selectedPlaces from a graphical place selection (selectedPlaces)
+        - reference place for adjacent reservation (referencePlace)
+      properties:
+        id:
+          description: id if the place selection unique within an offer
+          type: string
+        reservationOptions:
+          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
+        vehicle:
+          description: vehicle / train number is necessary in  case of train parts with different train numbers
+          type: string           
+        referencePlace: 
+          description: selected place for an adjacent reservation (NEARBY)
+          type: object    
+          properties:
+            placeNumber:
+              type: string
+            coachNumber:
+              type: string
+        selectedOptions:
+          type: array
+          items: 
+            $ref: '#/components/schemas/PlaceOptionsBundleDef'
+        selectablePlaces:
+          $ref: '#/components/schemas/PlaceAvailabilityDef'
+        selectedPlaces:
+          $ref: '#/components/schemas/SelectedPlacesDef'
+      required:
+        - id      
+                
+    PlaceOptionsBundleDef:
+      type: object
+      description: >-
+        selection of places for reservation linked to passengers
+      properties:
+        passengers:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/PassengerRef'
+              - $ref: '#/components/schemas/PassengerReferenceDef'
+        selectedPlaces:
+             $ref: '#/components/schemas/PlaceSelectionDef'
+        selectedPlaceProperties: 
+          type: array
+          items:
+            description: selection from the optional place properties provided in the offer
+            type: string
+      required:
+        - id              
+   
+    PlaceAvailabilityDef:
+      type: object
+      properties:
+        coaches:
+          description: >-
+            list of the coaches in a train run ordered according to the physical
+            ordering of the train
+          type: array
+          items:
+            type: object
+            properties:
+              compartments:
+                description: >-
+                  areas within a coach that holds places. Areas might be selectable
+                  as a whole. Usual areas would be classic compartments.
+                type: array
+                items:
+                  type: object
+                  properties:
+                    places:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          number:
+                            description: >-
+                              the place number as indicated at the place in the
+                              coach
+                            type: string
+                          status:
+                            description: 'status of the place
+                            type: string
+                            enum:
+                               - ALLOCATED
+                               - FREE
+                               - RESTRICTED                        
+                          selectable:
+                            description: >-
+                              to indicate individual places as non-selectable in
+                              case complete compartments must be selected
+                            type: boolean
+                            default: true
+                        required:
+                          - number
+                        additionalProperties: false
+                    status:
+                      type: string
+                    selectable:
+                      description: to indicate compartments selectable as a whole only
+                      type: boolean
+                      default: false
+                  additionalProperties: false
+              number:
+                description: coach number
+                type: string
+              status:
+                description: >-
+                  status of the coach if the status applies to all places of the
+                  coach
+                type: string
+                enum:
+                   - ALLOCATED
+                   - FREE
+                   - RESTRICTED
+              layoutId:
+                description: id to identify the coach layout
+                type: string
+              layoutIdUpperDeck:
+                description: id to identify a layout for the upper deck in a double deck coach
+                type: string
+              layoutIdLowerDeck:
+                description: id to identify a layout for the lower deck in a double deck coach
+                type: string
+              direction:
+                description: >-
+                  indication of the direction of travel standard direction is left
+                  to right with ascending coordinates in the layoutt values  U =
+                  unspecified
+                          in direction of the layout
+                          opposite to direction of the layout
+                          changing
+                          starting in direction but changing later
+                type: string
+                enum:
+                 - IN_DIRECTION
+                 - OPOSITE_DIRECTION
+                 - CHANGING
+                 - STARING_IN_DIRECTION
+              coachOwner:
+                $ref: '#/components/schemas/CompanyDef'
+              specialCoach:
+                description: |-
+                  indication of special coach 
+                type: string
+                enum: 
+                  - RESTAURANT_COACH
+                  - BICYCLE_COACH
+                  - LUGGAGE_COACH
+                  - TRAIN_HEAD                
+            required:
+              - number
+              - layoutId
+            additionalProperties: false                
+                
     Reservation:
       type: object
-      description: reservation includes the reservation options in the initial offer it needs to be updated with the selected places before the confirmation which creates the reservation details including the reserved places
+      description: >-
+        reservation includes the reference to the in the initial offer. The offer needs to be updated with the selected places before the confirmation which creates the reservation details including the reserved places
       properties:
         id:
           type: string
@@ -3095,18 +3297,14 @@ components:
             $ref: '#/components/schemas/Link'
         offerPart:
           $ref: '#/components/schemas/OfferPart'
-        reservationOptions:
-          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
-        selectedPlaces:
-          description: list of options to select places when confirming the booking
-          type: array
-          items:
-              $ref: '#/components/schemas/ReservationSelectionDef'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'
+          $ref: '#/components/schemas/ReservationDetailsDef'          
+        placeSelection:
+          $ref: '#/components/schemas/PlaceSelectionDef'
       required:
         - id,
-        - offerPart                    
+        - offerPart,
+        - reservationDetails
 
     IntegratedReservation:
       description: reservation includes the reservation options in the initial offer it needs to be updated with the selected places before the confirmation which creates the reservation details including the reserved places   
@@ -3134,72 +3332,17 @@ components:
                   - INCLUDED
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
-        reservationOptions:
-          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
-        selectedPlaces:
-          description: list of options to select places when confirming the booking
-          type: array
-          items:
-              $ref: '#/components/schemas/ReservationSelectionDef'
         reservationDetails:
           $ref: '#/components/schemas/ReservationDetailsDef'
+        placeSelection:
+          $ref: '#/components/schemas/PlaceSelectionDef'          
       required:
         - id,
         - offerPart
+        - reservationDetails
 
-    ReservationSelectionDef:
-      type: object
-      description: options to select places for reservation. 
-      properties:
-        passengers:
-          type: array
-          items:
-            oneOf:
-              - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/PassengerReferenceDef'
-        vehicle:
-          description: vehicle / train number is necessary in  case of train parts with different train numbers
-          type: string           
-        referencePlace: 
-          description: selected place for a adjacent reservation (NEARBY)
-          type: object    
-          properties:
-            placeNumber:
-              type: string
-            coachNumber:
-              type: string
-        selectedPlaces:
-             $ref: '#/components/schemas/PlaceSelectionDef'
-        direction:
-          type: string
-          enum:
-            - FORWARD
-            - BACKWARD
-            - UNKNOWN
-        selectedPlaceProperties: 
-          type: array
-          items:
-            description: selection from the optional place properties provided in the offer
-            type: string
 
-    ReservationDetailsDef:
-      type: object
-      description: segmentIndex references a segmentIndex in the trip part within the offer reply
-      properties:
-         serviceClass:
-            $ref: '#/components/schemas/ServiceClassDef'
-         serviceLevel:
-            $ref: '#/components/schemas/ServiceLevelIdDef'  
-         reservedPlaces:
-          description: reserved places in a confirmed reservation. Multiple place packs are needed to combined person and bicycle reservations
-          type: array
-          items:
-              $ref: '#/components/schemas/PlacePackDef'
-      required:
-        - serviceLevel,
-        - reservedPlaces
-
-    PlaceSelectionDef:
+    SelectedPlacesDef:
       description: place selection from a graphical display of coaches
       type: object
       properties:
@@ -3220,6 +3363,26 @@ components:
       required:
         - selectedCoach
         - selectedPlaces
+
+
+    ReservationDetailsDef:
+      type: object
+      description: segmentIndex references a segmentIndex in the trip part within the offer reply
+      properties:
+         serviceClass:
+            $ref: '#/components/schemas/ServiceClassDef'
+         serviceLevel:
+            $ref: '#/components/schemas/ServiceLevelIdDef'  
+         reservedPlaces:
+          description: reserved places in a confirmed reservation. Multiple place packs are needed to combined person and bicycle reservations
+          type: array
+          items:
+              $ref: '#/components/schemas/PlacePackDef'
+      required:
+        - serviceLevel,
+        - reservedPlaces
+
+
 
         
     PlacePackDef:
@@ -3677,15 +3840,10 @@ components:
           $ref: '#/components/schemas/LegacyAccountingIdentifierDef'
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidityConstraintDef'
-        reservationOptions:
-          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
-        reservationPlaceSelections:
-          description: list of options to select places when confirming the booking
-          type: array
-          items:
-            $ref: '#/components/schemas/ReservationSelectionDef'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'          
+          $ref: '#/components/schemas/ReservationDetailsDef'            
+        reservationOptions:
+          $ref: '#/components/schemas/PlaceSelectionDef' 
         reservationLegacyParameter:
           $ref: '#/components/schemas/LegacyReservationParameterDef'
                     
@@ -3802,6 +3960,151 @@ components:
     TravelerTypeDef:
       description: Values from the traveler type code list IRS 90918-10
       type: string
+      
+    LayoutsReplyDef:
+      type: object
+      properties:
+        layouts:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoachLayoutDef'
+      additionalProperties: false
+      
+    CoachLayoutDef:
+      description: >-
+        coach layout providing data to draw a coach layout. The items of a coach
+        are located via coordinates with (0,0) in the upper left corner. All
+        coordinates are given without sign. 
+      type: object
+      properties:
+        id:
+          type: string
+        places:
+          description: list of places included in the layout
+          type: array
+          items:
+            type: object
+            properties:
+              x:
+                description: horizontal coordinate of the center of the place
+                type: number
+              'y':
+                description: vertical coordinate of the center of the place
+                type: number
+              id:
+                description: >-
+                  id of the graphical item type. Code list according to UIC90918-1
+                  graphical item type e.g. seat = 1, berth = 2, couchette = 3
+                type: string
+              number:
+                description: place numer as displayed physically on the place
+                type: string
+              direction:
+                description: >-
+                  direction of a place, defined optional as it might be omitted in
+                  case of berths in future. Code list according to UIC90918-1
+                  Values R = to right, L = to left, U = up  (from right side of a
+                  coach pointing to the middle of the aile), D = down (from right
+                  side of the coach pointing to the middle of the aile)
+                type: string
+              remarkId:
+                description: >-
+                  remark concerning the place (e.g. to be used in a tool tip).
+                  Code list according to UIC90918-1 
+                   - value 1 place might have a table - value 2 table at the place might be missing - value 3 place might have a different direction - value 4 place might have a table and a different direction - value 5 table at the place might be missing and place might have a different direction - value 6 place might be in compartment - value 7  place might be in open space  
+                type: string
+              zOrder:
+                description: |-
+                  graphical layer where this item has to be placed. 
+                   Code list according to UIC90918-1  0 = lowest layer usually used for walls 
+                    1 = middle layer usually used by places
+                    2 = top layer usually used by icons
+                type: string
+            required:
+              - x
+              - 'y'
+              - id
+              - number
+            additionalProperties: false
+        signs:
+          type: array
+          items:
+            type: object
+            properties:
+              x:
+                description: horizontal coordinate of the center of the place
+                type: number
+              'y':
+                description: 'vertical coordinate of the center of the place              '
+                type: number
+              id:
+                description: >-
+                  id of the graphical item type. Code list according to UIC90918-1
+                  graphical item type e.g. silence area sign = 116
+                type: string
+              zOrder:
+                description: |-
+                  graphical layer where this item has to be placed. 
+                    0 = lowest layer usually used for walls 
+                    1 = middle layer usually used by places
+                    2 = top layer usually used by icons
+                type: string
+            required:
+              - x
+              - 'y'
+              - id
+            additionalProperties: false
+        internals:
+          type: array
+          items:
+            type: object
+            properties:
+              x:
+                description: horizontal coordinate of the center of the place
+                type: number
+              'y':
+                description: 'vertical coordinate of the center of the place              '
+                type: number
+              id:
+                description: >-
+                  id of the graphical item type. Code list according to UIC90918-1
+                  graphical item type e.g. wall with angle to right height covers
+                  three places = 25
+                type: string
+              zOrder:
+                description: |-
+                  graphical layer where this item has to be placed. 
+                    0 = lowest layer usually used for walls 
+                    1 = middle layer usually used by places
+                    2 = top layer usually used by icons
+                type: string
+              mounting:
+                description: >-
+                  indicates, that the item is located at the upper border (U), the
+                  lower border (L), goes from upper to lower border (E) or is
+                  placed free (F)
+                type: string
+            required:
+              - x
+              - 'y'
+              - id
+              - zOrder
+            additionalProperties: false
+        gridsize:
+          type: object
+          properties:
+            x:
+              type: number
+            'y':
+              type: number
+          additionalProperties: false
+        containerType:
+          type: string
+          default: RECTANGLE
+      required:
+        - id
+      additionalProperties: false      
+      
     PassengerConstraintDef:
       type: object
       properties:
@@ -3866,6 +4169,7 @@ components:
         - passengerType
         - nameRef
       additionalProperties: false
+      
     ReductionConstraintDef:
       type: object
       properties:
@@ -4351,6 +4655,7 @@ components:
             - serviceLevelCode
             - serviceCode
           additionalProperties: false
+          
     ReservationOnlineOptionDef:
       type: object
       properties:
@@ -4363,6 +4668,7 @@ components:
           description: graphical reservation is supported, interface type "NO","UIC_918",..
           type: string
       additionalProperties: false
+      
     ReservationOptionGroupDef:
       type: object
       properties:
@@ -4377,6 +4683,7 @@ components:
         - preferenceGroup
         - preferences
       additionalProperties: false
+      
     CarrierConstraintDef:
       type: object
       description: >-
@@ -4546,3 +4853,4 @@ components:
       additionalProperties: false      
       
     #Fare-specific elements end
+ 
