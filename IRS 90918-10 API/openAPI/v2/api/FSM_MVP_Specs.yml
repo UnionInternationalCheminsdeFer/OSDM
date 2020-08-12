@@ -830,7 +830,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/offers/{offerId}/admissions/{admissionsId}':
+  '/offers/{offerId}/admissions/{admissionId}':
     get:
       tags:
         - Offer Parts
@@ -847,7 +847,7 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
-          name: admissionsId
+          name: admissionId
           schema:
             type: string
             format: uuid
@@ -1070,7 +1070,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/offers/{offerId}/ancillaries/{ancilliaryId}':
+  '/offers/{offerId}/ancillaries/{ancillaryId}':
     get:
       tags:
         - Offer Parts
@@ -1087,13 +1087,13 @@ paths:
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
-          name: ancilliaryId
+          name: ancillaryId
           schema:
             type: string
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the ancilliary to get.
+          description: ID of the ancillary to get.
       responses:
         '200':
           description: Ancillary found
@@ -1158,7 +1158,7 @@ paths:
           description: ID of the fares to get.
       responses:
         '200':
-          description: Fare found
+          description: fare found
           content:
             application/json:
               schema:
@@ -1222,7 +1222,7 @@ paths:
           schema:
             type: string
             format: date
-          required: false            
+          required: false  
           description: >-
             Date of birth of a passenger in the booking.
         - name: bookingReference
@@ -1237,7 +1237,7 @@ paths:
           in: query
           schema:
             type: string
-          required: false  
+          required: false
           description: >-
             Human-readable fulfillment reference for the booking, e.g. ticket number.
         - name: travelDateBegin
@@ -1457,7 +1457,7 @@ paths:
           content:
             "application/problem+json":
               schema:
-                $ref: '#/components/schemas/Problem'          
+                $ref: '#/components/schemas/Problem'
         '500':
           description: Internal server error
           content:
@@ -5446,4 +5446,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    
