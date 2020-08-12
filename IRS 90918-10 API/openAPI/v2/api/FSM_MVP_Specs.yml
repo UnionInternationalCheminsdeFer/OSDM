@@ -670,6 +670,226 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+         
+  '/offers/{offerId}/passengers':
+    get:
+      tags:
+        - Passengers
+      summary: >-
+        The GET passenger service retrieves passenger's information in an offer. The same informatiojn can be retrieved via getOffer.
+      operationId: getPassengerInOffer
+      parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer holding the passengers
+      responses:
+        '200':
+          description: Passenger found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PassengerDef'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented         
+   
+    patch:
+      tags:
+        - Passengers
+      summary: >-
+        The PATCH passenger service allows updating passenger's information in an offer immediately before confirmation. The passengers updated are provided as a list. The PATCH allows to change attributes but not to add or remove passengers.
+      operationId: patchPassengerInOffer
+      parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer holding the passengers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PassengerDef'
+      responses:
+        '200':
+          description: Passenger found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PassengerDef'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented      
+          
+  '/booking/{bookingId}/passengers':
+    get:
+      tags:
+        - Passengers
+      summary: >-
+        The GET passenger service retrieves the passenger information within a booking. The same informatiojn can be retrieved via getBooking.
+      operationId: getPassengersInBooking
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the booking holding the passengers
+      responses:
+        '200':
+          description: Passenger found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PassengerDef'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented      
+    patch:
+      tags:
+        - Passengers
+      summary: >-
+        The PATCH passenger service allows updating passenger's information in a booking. The passengers updated are provided as a list. The PATCH allows to change attributes but not to add or remove passengers.
+      operationId: patchPassengersInBooking
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer holding the passengers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PassengerDef'
+      responses:
+        '200':
+          description: Passenger found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PassengerDef'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented           
+          
   '/passengers/{passengerId}':
     get:
       tags:
