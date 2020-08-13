@@ -4,7 +4,7 @@ servers:
     url: 'https://virtserver.swaggerhub.com/Real-IT/FSM_MVP/1.0.0'
 info:
   title: UIC 90918-10 - OSDM
-  version: 0.7.0
+  version: 0.9.0
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -1504,8 +1504,7 @@ paths:
       responses:
         '200':
           description: >- 
-            Booking confirmed
-            TODO link to a booking confirmation text or receipt
+            Booking prebooked
           content:
             application/json:
               schema:
@@ -1809,7 +1808,7 @@ paths:
         - RefundOffers
       summary: >-
         The POST refundOffers initiates a refund process by creating a RefundOffer resource
-        containing the needed information on the potential operation. The proposition can then be 
+        containing the needed information on the potential operation. One refund offer can then be 
         accepted via a PATCH, deleted or left to die at the end of its lifetime.
       operationId: postRefundOffersBookingId
       parameters:
@@ -1866,7 +1865,7 @@ paths:
       tags:
         - RefundOffers
       summary: >-
-        The GET refundOffer service returns the Refund proposition with the id provided.
+        The GET refundOffer service returns the refund offer with the id provided.
       operationId: getRefundOffersId
       parameters:
         - in: path
@@ -1898,54 +1897,6 @@ paths:
                 type: string
                 description: >-
                   The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented
-
-    delete:
-      tags:
-        - RefundOffers
-      summary: >-
-        The DELETE refundOffers action cancels the Refund proposition with the id
-        provided. The resource is disposed and will not be mentioned in the booking anymore
-      operationId: deleteRefundOffersId
-      parameters:
-        - in: path
-          name: bookingId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the booking 
-        - in: path
-          name: refundOfferId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the refund offer to delete.
-      responses:
-        '200':
-          description: Refund offer successfully cancelled
         '400':
           description: Bad request
           content:
@@ -2151,20 +2102,13 @@ paths:
       summary: >-
         Retrieve the coach layout description needed for graphical reservation    
       operationId: getCoachLayouts
-      parameters:
-        - in: query
-          name: version
-          description: schema version
-          required: true
-          schema:
-            type: string
       responses:
         '200':
           description: coach layouts
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LayoutsReplyDef'
+                $ref: '#/components/schemas/LayoutsDef'
         '400':
           description: Bad request
           content:
@@ -2186,7 +2130,7 @@ paths:
         '501':
           description: Not implemented
 
-  '/offersCollection':
+  '/offers':
     post:
       tags:
         - Offers 
@@ -2241,11 +2185,14 @@ paths:
 
 components:
   schemas:
-
     BookingSearchParameterDef:
       type: object
       description: >-
-        parameter to be used to search for a booking. Contains personal data. For a seach via personal data an exact match of all elements - first name, last name and date of birth - is mandatory. In case a ticket holder is indicated the parameter must match the ticket holder. TODO - legal check by CIT
+        parameter to be used to search for a booking. Contains personal data. 
+        For a search via personal data an exact match of all elements 
+        - first name, last name and date of birth - is mandatory. 
+        In case a ticket holder is indicated the parameter must match the ticket holder. 
+        TODO - legal check by CIT
       properties:
         passengerFirstName:
           type: string
@@ -3411,13 +3358,6 @@ components:
           $ref: '#/components/schemas/CurrencyPriceDef'
         pricingMode:
           $ref: '#/components/schemas/PricingModeDef'
-        validAsOf:
-          description: TODO what is the difference between validAsOf and validFrom?
-          type: string          
-          format: date-time
-        validUntil:
-          type: string
-          format: date-time
         reductionsApplied:
           type: array
           items:
@@ -3433,9 +3373,13 @@ components:
         validFrom:
           type: string
           format: date-time
+          description: >-
+            Validity of offer towards passenger 
         validTo:
           type: string
           format: date-time
+          description: >-
+            Validity of offer towards passenger 
         productRefs:
           type: array
           items:
@@ -4035,16 +3979,7 @@ components:
           description: >-
             The unique booking reference in the provider system. Usually refers to an order number or PNR.
         status:
-          type: string
-          enum:
-            - PREBOOKED
-            - CONFIRMED
-            - PAID
-            - FULFILLED
-            - CANCELLED
-            - REFUNDED
-            - EXCHANGED
-            - ERROR
+          $ref: '#/components/schemas/BookingStatus'
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         ticketTimeLimit:
@@ -4072,6 +4007,8 @@ components:
             oneOf:
               - $ref: '#/components/schemas/FulfillmentRef'
               - $ref: '#/components/schemas/Fulfillment'
+        refund:
+           $ref: '#/components/schemas/RefundDef'
         refundOffers:
           type: array
           items:
@@ -4080,18 +4017,17 @@ components:
               - $ref: '#/components/schemas/RefundOffer'
           description: >-
             Refund offer is created with the details of the to-be-confirmed refund operation. 
-            The proposition can then be confirmed, which turns it into a refund
-        refund:
-           $ref: '#/components/schemas/RefundDef'
+            One refund offer can then be confirmed, which turns it into a refund.
+        exchange:
+            $ref: '#/components/schemas/ExchangeDef'
         exchangeOffers:
           type: array
           items:
             $ref: '#/components/schemas/ExchangeOfferDef'
           description: >-
-            Refund offer is created with the details of the to-be-confirmed refund operation. One proposition 
-            can then be confirmed, which turns it into an exchange and confirms the new booking.         
-        exchange:
-            $ref: '#/components/schemas/ExchangeDef'
+            Exchange offer is created with the details of the to-be-confirmed refund operation. 
+            One exchange offer can then be confirmed, which turns it into an exchange and
+            confirms the new booking.         
         links:
           type: array
           items:
@@ -4099,7 +4035,19 @@ components:
       required:
         - id
         - status
+        - passengers
     
+    BookingStatus:
+      type: string
+      enum:
+        - PREBOOKED
+        - CONFIRMED
+        - FULFILLED
+        - CANCELLED
+        - REFUNDED
+        - EXCHANGED
+        - ERROR
+
     BookingRef:
       type: object
       properties:
@@ -4305,13 +4253,12 @@ components:
         
     RefundOffer:
       type: object
-      description: TODO
       properties:
         id:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          description: id of the refund proposition
+          description: id of the refund offer
         validUntil:
           type: string
           format: date-time
@@ -4414,7 +4361,7 @@ components:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          description: id of the refund proposition
+          description: id of the exchange offer
         validUntil:
           type: string
           format: date-time
@@ -4445,12 +4392,11 @@ components:
           $ref: '#/components/schemas/CurrencyPriceDef'
         refundableAmount:
           $ref: '#/components/schemas/CurrencyPriceDef'
-        exchangeOffer:
-          description: >-
-           TODO add non trip offer
+        offer:
           oneOf:
            - $ref: '#/components/schemas/TripOffer'  
            - $ref: '#/components/schemas/TripOfferRef'
+           - $ref: '#/components/schemas/NonTripOfferDef'
       required:
        - id
        - validUntil
@@ -4466,7 +4412,7 @@ components:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          description: id of the exchange proposition
+          description: id of the exchange offer
         status:
           type: string
           enum:
@@ -4474,7 +4420,8 @@ components:
             
     ExchangeDef:
       description: >- 
-       result of a successful confirmation of an exchange. The new booking and the pld booking are returned. TODO
+       Result of a successful confirmation of an exchange. 
+       The new booking and the original booking are returned.
       type: object
       properties:
         reimbursementStatus:
@@ -4511,7 +4458,7 @@ components:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          description: id of the refund proposition
+          description: id of the refund offer
         status:
           type: string
           enum:
@@ -4760,10 +4707,10 @@ components:
     TravelerTypeDef:
       description: >- 
         Values from the traveler type code list IRS 90918-10 - TODO
-        YOUNG_CHILD, CHILD, YOUTH, ADULT, SENIOR, FAMILY_CHILD, ACCOMP_PRM, PRM_CHILD, WHEELCHAIR, PERSON, PRM, DOG, LUGGAGE, BICYCLE, ACCOMP_DOG, CAR, MOTOCYCLE, TRAILER, PRAM
+        YOUNG_CHILD, CHILD, YOUTH, ADULT, SENIOR, FAMILY_CHILD, ACCOMP_PRM, PRM_CHILD, WHEELCHAIR, PERSON, PRM, DOG, LUGGAGE, BICYCLE, ACCOMP_DOG, CAR, MOTORCYCLE, TRAILER, PRAM
       type: string
       
-    LayoutsReplyDef:
+    LayoutsDef:
       type: object
       properties:
         layouts:
@@ -4807,26 +4754,29 @@ components:
                 type: string
               direction:
                 description: >-
-                  direction of a place, defined optional as it might be omitted in
-                  case of berths in future. Code list according to UIC90918-1
+                  Direction of a place, defined optional as it might be omitted in
+                  case of berths in future. 
+                  Code list according to UIC90918-1
                    - value R: to right
                    - value L: to left
-                   - value U: up  (from right side of a coach pointing to the middle of the aile)
-                   - value D: down (from right side of the coach pointing to the middle of the aile
+                   - value U: up (from right side of a coach pointing to the middle of the aile)
+                   - value D: down (from right side of the coach pointing to the middle of the aile)
                 type: string
               remarkId:
                 description: >-
-                  remark concerning the place (e.g. to be used in a tool tip).
+                  Remark concerning the place (e.g. to be used in a tool tip).
                   Code list according to UIC90918-1 
                    - value 1: place might have a table
                    - value 2: table at the place might be missing 
                    - value 3: place might have a different direction 
                    - value 4: place might have a table and a different direction 
-                   - value 5: table at the place might be missing and place might have a different direction - value 6 place might be in compartment - value 7  place might be in open space  
+                   - value 5: table at the place might be missing and place might have a different direction
+                   - value 6: place might be in compartment
+                   - value 7: place might be in open space  
                 type: string
               zOrder:
                 description: >-
-                  graphical layer where this item has to be placed. 
+                  Graphical layer where this item has to be placed. 
                   Code list according to UIC90918-1
                    - value 0: lowest layer usually used for walls 
                    - value 1: middle layer usually used by places
@@ -5208,7 +5158,7 @@ components:
         binaryLineId:
           type: string
           description: >-
-            Id to support local traffic standards (e.g. VDV,...). TODO
+            Id to support local traffic standards (e.g. VDV,...).
         carrier:
           $ref: '#/components/schemas/CompanyDef'
         city:
@@ -5789,6 +5739,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      description: >-
+        Non trip offers do not reference a trip, thus no reservations
+        or integrated reservations can be offered by definition.
             
     TransportableDef:
       description: >- 
@@ -5812,6 +5765,10 @@ components:
             height:
               type: number
               format: int32
+            model:
+              type: string
+              description: >-
+                free text description of the model (e.g. BMW X5)       
             attachedItems:
               description: >-
                 indication of items attached to the car
@@ -5823,14 +5780,17 @@ components:
                  - BICYCLE_STAND
             plate:
               description: >-
-                the trailer plate is a personal data item and must not be provided in an offer request. It must be patched into the offer after the customer accepted the offer for booking 
-              type: string        
-            model:
-              description: >-
-                free text description of the model (e.g. BMW X5)
+                The trailer plate is a personal data item and must not be provided in an offer request. 
+                It must be patched into the offer after the customer accepted the offer for booking.
               type: string
+          required:
+            - weight
+            - length
+            - width
+            - height
+            - model
           additionalProperties: false
-        motoCycle:
+        motorCycle:
           type: object
           properties:
             includingSideCar:
@@ -5838,8 +5798,11 @@ components:
               default: false
             plate:
               description: >-
-                the trailer plate is a personal data item and must not be provided in an offer request. It must be patched into the offer after the customer accepted the offer for booking 
+                The trailer plate is a personal data item and must not be provided in an offer request. 
+                It must be patched into the offer after the customer accepted the offer for booking 
               type: string   
+          required:
+            - includingSideCar
           additionalProperties: false
         trailer:
           type: object
@@ -5862,8 +5825,14 @@ components:
               format: int32
             plate:
               description: >-
-                the trailer plate is a personal data item and must not be provided in an offer request. It must be patched into the offer after the customer accepted the offer for booking 
+                The trailer plate is a personal data item and must not be provided in an offer request. 
+                It must be patched into the offer after the customer accepted the offer for booking 
               type: string
+          required:
+            - weight
+            - length
+            - width
+            - height
           additionalProperties: false
       required:
         - type
