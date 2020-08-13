@@ -1415,98 +1415,48 @@ paths:
         '501':
           description: Not implemented
 
-  /bookings:
-    get:
+  /bookings/search:       
+    post:
       tags:
         - Bookings
       summary: >-
-        The GET bookings service allows to search for and find bookings based on a set of criteria. It
+        The POST bookings search service allows to search for and find bookings based on a set of criteria. It
         returns a list of booking ids.
       description: >-
-        There are three set of searching criteria that need to be supported. Firstly, by passenger 
-        attributes (first name, name, date-of-birth), secondly by booking reference (e.g. PNR, 
-        Auftragsnummer) or thirdly by fulfillment reference (e.g. ticket number).
+        There are searching criteria that need to be supported. by passenger 
+        attributes (first name, name, date-of-birth), by booking reference (e.g. PNR, 
+        Auftragsnummer) or by fulfillment reference (e.g. ticket number).
       operationId: getBookings
       parameters:
-        - name: passengerFirstName
-          in: query
-          schema:
-            type: string
-          required: false
+        - in: query
+          name: includeBehavior
           description: >-
-            First name of a passenger in the booking.      
-        - name: passengerName
-          in: query
+            Influences whether referenced resources are returned in full or as references only
           schema:
-            type: string
-          required: false
-          description: >-
-            Last name of a passenger in the booking.
-        - name: passengerDateOfBirth
-          in: query
-          schema:
-            type: string
-            format: date
-          required: false            
-          description: >-
-            Date of birth of a passenger in the booking.
-        - name: bookingReference
-          in: query
-          schema:
-            type: string
-            format: date
-          required: false
-          description: >-
-            Human-readable booking reference for the booking, e.g. PNR.
-        - name: fulfillmentReference
-          in: query
-          schema:
-            type: string
-          required: false  
-          description: >-
-            Human-readable fulfillment reference for the booking, e.g. ticket number.
-        - name: travelDateBegin
-          in: query
-          schema:
-            type: string
-            format: date-time
-          required: false
-          description: >-
-            Begin date for the travel date range to search.
-        - name: travelDateEnd
-          in: query
-          schema:
-            type: string
-            format: date-time
-          required: false
-          description: >-
-            End date for the travel date range to search.
-        - name: OriginId 
-          in: query
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: false
-          description: departure locationId one of the travels in the booking to search on
-        - name: DestinationId
-          in: query
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: false
-          description: destination locationId one of the travels in the booking to search on         
+            type: array
+            items:
+              type: string
+              enum:
+                - ALL
+                - BOOKEDOFFERS.TRIP
+                - BOOKEDOFFERS.TRIP.LOCATIONS
+                - BOOKEDOFFERS
+                - BOOKEDOFFERS.OFFERPARTS
+                - PASSENGERS
+                - TICKETS      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingSearchParameterDef'          
       responses:
         '200':
           description: Booking ids found
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
-                  format: uuid
+                $ref: '#/components/schemas/BookingSearchReplyDef'  
+
         '400':
           description: Bad request
           content:
@@ -1527,12 +1477,13 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+          
+  '/bookings/create':       
     post:
       tags:
         - Bookings
       summary: >-
-        The POST bookings service allows to create a booking based on a previously requested offer. 
-        The offer id is provided in the query.
+        The POST bookings create service allows to create a booking based on a previously requested offer. The offer id is provided in the query.
       operationId: postBookings
       parameters:
         - name: Accept-Language
@@ -1553,7 +1504,8 @@ paths:
       responses:
         '200':
           description: >- 
-            Booking confirmed TODO link to a booking confirmation text or receipt
+            Booking confirmed
+            TODO link to a booking confirmation text or receipt
           content:
             application/json:
               schema:
@@ -1584,7 +1536,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-          
+
   '/bookings/{bookingId}':
     get:
       tags:
@@ -2289,6 +2241,59 @@ paths:
 
 components:
   schemas:
+
+    BookingSearchParameterDef:
+      type: object
+      description: >-
+        parameter to be used to search for a booking. Contains personal data. For a seach via personal data an exact match of all elements - first name, last name and date of birth - is mandatory. In case a ticket holder is indicated the parameter must match the ticket holder. TODO - legal check by CIT
+      properties:
+        passengerFirstName:
+          type: string
+          description: >-
+            First name of a passenger in the booking.      
+        passengerLastName:
+          type: string
+          description: >-
+            Last name of a passenger in the booking.
+        passengerDateOfBirth:
+          type: string
+          format: date
+          description: >-
+            Date of birth of a passenger in the booking.
+        bookingReference:
+          type: string
+          format: date
+          description: >-
+            Human-readable booking reference for the booking, e.g. PNR.
+        fulfillmentReference:
+          type: string
+          description: >-
+            Human-readable fulfillment reference for the booking, e.g. ticket number.
+        travelDateBegin:
+          type: string
+          format: date-time
+          description: >-
+            Begin date for the travel date range to search.
+        travelDateEnd:
+          type: string
+          format: date-time
+          description: >-
+            End date for the travel date range to search.
+        originId: 
+          $ref: '#/components/schemas/LocationRef'
+        destinationId:
+          $ref: '#/components/schemas/LocationRef'
+
+    BookingSearchReplyDef:
+      description: >-
+        Reply on a search for bookings
+      type: object
+      properties:
+        bookings:
+          type: array
+          items: 
+            $ref: '#/components/schemas/BookingRef'
+
     Link:
       type: object
       required:
@@ -2897,7 +2902,6 @@ components:
       description: >-
         Defines the parameters needed to request a trip, standalone or in the context of an offer request. Note at least one
         of the tripId, tripRef or trip elements must be set.
-
     TripOffer:
       type: object
       properties:
@@ -2942,7 +2946,6 @@ components:
       description: >-
         regular-expression indicating the data that must be set in the data
         model in order to proceed to next step of the process
-
     OfferSummary:
       type: object
       description: >-
@@ -5865,51 +5868,3 @@ components:
       required:
         - type
       additionalProperties: false
-
-    # Problem
-
-    Problem:
-      type: object
-      properties:
-        type:
-          type: string
-          format: uri
-          description: >-
-            An absolute URI that identifies the problem type. When dereferenced,
-            it SHOULD provide human-readable documentation for the problem type
-            (e.g., using HTML).
-          default: 'about:blank'
-          example: 'https://zalando.github.io/problem/constraint-violation'
-        title:
-          type: string
-          description: >-
-            A short, summary of the problem type. Written in English and readable
-            for engineers (usually not suited for non technical stakeholders and
-            not localized); example: Service Unavailable
-        status:
-          type: number
-          format: int32
-          description: >-
-            The HTTP status code generated by the origin server for this occurrence
-            of the problem.
-          minimum: 100
-          maximum: 600
-          exclusiveMaximum: true
-          example: 503
-        detail:
-          type: string
-          description: >-
-            A human readable explanation specific to this occurrence of the
-            problem.
-          example: Connection to database timed out
-        instance:
-          type: string
-          format: uri
-          description: >-
-            An absolute URI that identifies the specific occurrence of the problem.
-      description: >-
-        Problem Details for HTTP APIs (RFC 7807) defines a "problem detail" as a way
-        to carry machine-readable details of errors in a HTTP response to avoid
-        the need to define new error response formats for HTTP APIs.
-        See: https://tools.ietf.org/html/rfc7807
-    
