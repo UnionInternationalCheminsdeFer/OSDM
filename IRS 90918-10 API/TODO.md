@@ -9,6 +9,8 @@
 - add exchange                                              - done, merge pending
 - remove Ref
 - run YAML through code generator                           - done, code is being generated
+- add TTL (time to life)
+- Explicitly model inner classes for code generation
 
 ## for discussion:
   - sub resources are accessed via the main resource, except for passengers 
