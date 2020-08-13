@@ -454,7 +454,7 @@ paths:
                 - TRIPOFFERS.PASSENGERS
       responses:
         '200':
-          description: Trip Offer Collection(s) found
+          description: Trip(s) found
           content:
             application/json:
               schema:
@@ -485,8 +485,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-          
-          
+
   /trip-offers-collection:
     post:
       tags:
@@ -639,7 +638,7 @@ paths:
                 - TRIP.LOCATIONS
       responses:
         '200':
-          description: Offer found
+          description: TripOffer found
           content:
             application/json:
               schema:
@@ -727,9 +726,7 @@ paths:
       tags:
         - Passengers
       summary: >-
-        The PATCH passenger service allows updating passenger's information in an offer immediately before confirmation. 
-      description: >-
-        The passengers updated are provided as a list. The PATCH allows to change attributes but not to add or remove passengers.
+        The PATCH passenger service allows updating passenger's information in an offer immediately before confirmation. The passengers updated are provided as a list. The PATCH allows to change attributes but not to add or remove passengers.
       operationId: patchPassengerInOffer
       parameters:
         - in: path
@@ -749,7 +746,7 @@ paths:
                 $ref: '#/components/schemas/PassengerDef'
       responses:
         '200':
-          description: Passenger successfully patched
+          description: Passenger found
           content:
             application/json:
               schema:
@@ -783,7 +780,7 @@ paths:
         '501':
           description: Not implemented      
           
-  '/bookings/{bookingId}/passengers':
+  '/booking/{bookingId}/passengers':
     get:
       tags:
         - Passengers
@@ -858,7 +855,7 @@ paths:
                 $ref: '#/components/schemas/PassengerDef'
       responses:
         '200':
-          description: Passenger successfully patched
+          description: Passenger found
           content:
             application/json:
               schema:
@@ -963,7 +960,7 @@ paths:
               $ref: '#/components/schemas/PassengerDef'
       responses:
         '200':
-          description: Passenger successfully patched
+          description: Passenger found
           content:
             application/json:
               schema:
@@ -1077,7 +1074,7 @@ paths:
           description: ID of the admission to get.
       responses:
         '200':
-          description: Admission found
+          description: admission found
           content:
             application/json:
               schema:
@@ -1114,13 +1111,9 @@ paths:
       tags:
         - Offer Parts
       summary: >-
-        The PATCH of the place selections service allows updating reservation elements, to update the desired
-        selection of places and to retrieve selectable places for a graphical display
+        The PATCH of the place selections service allows updating reservation elements, to update the desired selection of places and to retrieve selectable places for a graphical display
       description: >-
-        The patch can be used to update the selection of place properties, the available places for graphical 
-        displays, the selected optional place properties for a subsequent booking and the selected places from
-        a graphical display. The update response will show the available/accepted properties. An update with
-        empty available places will update the available places list in the reply.
+        The patch can be used to update the selection of place properties, the available places for grapfical displays, the selected optional place properties for a subsequent booking and the aselected places from a graphical display. The update response will show the available/accepted properties. An update with empty available places will update the available places list in the reply.
       operationId: patchPlaceSelectionId
       parameters:
         - in: path
@@ -1146,7 +1139,7 @@ paths:
               $ref: '#/components/schemas/PlaceSelectionDef'
       responses:
         '200':
-          description: Place successfully selected
+          description: reservation successfully patched
           content:
             application/json:
               schema:
@@ -1205,7 +1198,7 @@ paths:
           description: ID of the reservation to get.
       responses:
         '200':
-          description: Reservation found
+          description: reservation found
           content:
             application/json:
               schema:
@@ -1263,7 +1256,7 @@ paths:
           description: ID of the IntegratedReservation to get.
       responses:
         '200':
-          description: Integrated reservation found
+          description: IntegratedReservation found
           content:
             application/json:
               schema:
@@ -1415,98 +1408,48 @@ paths:
         '501':
           description: Not implemented
 
-  /bookings:
-    get:
+  /bookings/search:
+    post:
       tags:
         - Bookings
       summary: >-
-        The GET bookings service allows to search for and find bookings based on a set of criteria. It
+        The POST bookings search service allows to search for and find bookings based on a set of criteria. It
         returns a list of booking ids.
       description: >-
-        There are three set of searching criteria that need to be supported. Firstly, by passenger 
-        attributes (first name, name, date-of-birth), secondly by booking reference (e.g. PNR, 
-        Auftragsnummer) or thirdly by fulfillment reference (e.g. ticket number).
+        There are searching criteria that need to be supported. by passenger 
+        attributes (first name, name, date-of-birth), by booking reference (e.g. PNR, 
+        Auftragsnummer) or by fulfillment reference (e.g. ticket number).
       operationId: getBookings
       parameters:
-        - name: passengerFirstName
-          in: query
-          schema:
-            type: string
-          required: false
+        - in: query
+          name: includeBehavior
           description: >-
-            First name of a passenger in the booking.      
-        - name: passengerName
-          in: query
+            Influences whether referenced resources are returned in full or as references only
           schema:
-            type: string
-          required: false
-          description: >-
-            Last name of a passenger in the booking.
-        - name: passengerDateOfBirth
-          in: query
-          schema:
-            type: string
-            format: date
-          required: false            
-          description: >-
-            Date of birth of a passenger in the booking.
-        - name: bookingReference
-          in: query
-          schema:
-            type: string
-            format: date
-          required: false
-          description: >-
-            Human-readable booking reference for the booking, e.g. PNR.
-        - name: fulfillmentReference
-          in: query
-          schema:
-            type: string
-          required: false  
-          description: >-
-            Human-readable fulfillment reference for the booking, e.g. ticket number.
-        - name: travelDateBegin
-          in: query
-          schema:
-            type: string
-            format: date-time
-          required: false
-          description: >-
-            Begin date for the travel date range to search.
-        - name: travelDateEnd
-          in: query
-          schema:
-            type: string
-            format: date-time
-          required: false
-          description: >-
-            End date for the travel date range to search.
-        - name: OriginId 
-          in: query
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: false
-          description: departure locationId one of the travels in the booking to search on
-        - name: DestinationId
-          in: query
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: false
-          description: destination locationId one of the travels in the booking to search on         
+            type: array
+            items:
+              type: string
+              enum:
+                - ALL
+                - BOOKEDOFFERS.TRIP
+                - BOOKEDOFFERS.TRIP.LOCATIONS
+                - BOOKEDOFFERS
+                - BOOKEDOFFERS.OFFERPARTS
+                - PASSENGERS
+                - TICKETS      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingSearchParameterDef'          
       responses:
         '200':
           description: Booking ids found
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
-                  format: uuid
+                $ref: '#/components/schemas/BookingSearchReplyDef'  
+
         '400':
           description: Bad request
           content:
@@ -1527,12 +1470,13 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+          
+  /bookings/create:       
     post:
       tags:
         - Bookings
       summary: >-
-        The POST bookings service allows to create a booking based on a previously requested offer. 
-        The offer id is provided in the query.
+        The POST bookings create service allows to create a booking based on a previously requested offer. The offer id is provided in the query.
       operationId: postBookings
       parameters:
         - name: Accept-Language
@@ -1553,7 +1497,8 @@ paths:
       responses:
         '200':
           description: >- 
-            Booking confirmed TODO link to a booking confirmation text or receipt
+            Booking confirmed
+            TODO link to a booking confirmation text or receipt
           content:
             application/json:
               schema:
@@ -1600,7 +1545,7 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the product to get.
+          description: ID of the booking to get.
         - in: query
           name: includeBehavior
           description: >-
@@ -1738,7 +1683,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
         '501':
-          description: Not implemented
+          description: Not implemented 
+   
+        
+   
    
   '/bookings/{bookingId}/fulfillments':
     patch:
@@ -1765,7 +1713,7 @@ paths:
       responses:
         '200':
           description: >-
-            Fulfillment successfully completed
+            fulfillment successfull
           content:
             application/json:
               schema:
@@ -1908,6 +1856,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+          
+   
         
   '/bookings/{bookingId}/refundOffers/{refundOfferId}':
     get:
@@ -1966,7 +1916,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-
     delete:
       tags:
         - RefundOffers
@@ -2014,7 +1963,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-
     patch:
       tags:
         - RefundOffers
@@ -2076,6 +2024,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+
           
   '/bookings/{bookingId}/exchangeOffers':
     post:
@@ -2143,7 +2092,7 @@ paths:
             format: uuid
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
-          description: ID of the booking to be exchanged.  
+          description: ID of the bioking to be exchanged    
         - in: path
           name: exchangeOfferId
           schema:
@@ -2159,7 +2108,7 @@ paths:
               $ref: '#/components/schemas/ExchangeOfferConfirmDef'
       responses:
         '200':
-          description: Exchange successfully completed
+          description: Refund and new booking
           content:
             application/json:
               schema:
@@ -2191,6 +2140,7 @@ paths:
         '501':
           description: Not implemented
 
+
   '/coachLayouts':
     get:
       tags:
@@ -2200,8 +2150,8 @@ paths:
         Retrieve the coach layout description needed for graphical reservation    
       operationId: getCoachLayouts
       parameters:
-        - in: query
-          name: version
+        - name: version
+          in: path
           description: schema version
           required: true
           schema:
@@ -2234,18 +2184,19 @@ paths:
         '501':
           description: Not implemented
 
+
   '/offersCollection':
     post:
       tags:
         - Offers 
       description: >- 
-        Get offers based on key words or regional information not linked to trips
+        get offers based on key words or regional information not linked to trips
       summary: >-
         Get offers not linked to trips based on key words or regional information (e.g. for passes or seasonal tickets)          
       operationId: searchOffers
       parameters:
-        - in: query
-          name: version
+        - name: version
+          in: path
           description: schema version
           required: true
           schema:
@@ -2289,6 +2240,59 @@ paths:
 
 components:
   schemas:
+  
+    BookingSearchParameterDef:
+      type: object
+      description: >-
+        parameter to be used to search for a booking. Contains personal data. For a seach via personal data an exact match of all elements - first name, last name and date of birth - is mandatory. In case a ticket holder is indicated the parameter must match the ticket holder. TODO - legal check by CIT
+      properties:
+        passengerFirstName:
+          type: string
+          description: >-
+            First name of a passenger in the booking.      
+        passengerLastName:
+          type: string
+          description: >-
+            Last name of a passenger in the booking.
+        passengerDateOfBirth:
+          type: string
+          format: date
+          description: >-
+            Date of birth of a passenger in the booking.
+        bookingReference:
+          type: string
+          format: date
+          description: >-
+            Human-readable booking reference for the booking, e.g. PNR.
+        fulfillmentReference:
+          type: string
+          description: >-
+            Human-readable fulfillment reference for the booking, e.g. ticket number.
+        travelDateBegin:
+          type: string
+          format: date-time
+          description: >-
+            Begin date for the travel date range to search.
+        travelDateEnd:
+          type: string
+          format: date-time
+          description: >-
+            End date for the travel date range to search.
+        originId: 
+          $ref: '#/components/schemas/LocationRef'
+        destinationId:
+          $ref: '#/components/schemas/LocationRef'
+
+    BookingSearchReplyDef:
+      description: >-
+        Reply on a search for bookings
+      type: object
+      properties:
+        bookings:
+          type: array
+          items: 
+            $ref: '#/components/schemas/BookingRef'
+
     Link:
       type: object
       required:
@@ -2316,7 +2320,7 @@ components:
           example: Get Map
           description: Relation of this link to the current entity.
         version:
-          type: number
+          type: integer
           format: int32
           example: 1
           description: Version of the current relation.
@@ -2333,8 +2337,7 @@ components:
       type: object
       properties:
         index:
-          type: number
-          format: int32
+          type: integer
         origin:
           oneOf:
             - $ref: '#/components/schemas/LocationRef'
@@ -2493,7 +2496,6 @@ components:
                 type: string
             additionalProperties: false
       additionalProperties: false
-
     StationDef:
       description: >-
         Used to represent a station location. This is a location that can be used as origin and destination for a train journey
@@ -2514,7 +2516,6 @@ components:
         - country
         - code
       additionalProperties: false
-
     LocationRef:
       type: object
       properties:
@@ -2527,7 +2528,6 @@ components:
           example: Bruxelles-Midi
         station:
           $ref: '#/components/schemas/StationDef'
-
     Location:
       type: object
       properties:
@@ -2550,7 +2550,6 @@ components:
         - country
         - LocationCode
       additionalProperties: false
-
     StationCodeListDef:
       description: >-
         Code list used for the station codes: UIC = UIC codes as used by merits
@@ -2559,7 +2558,6 @@ components:
         ERA station code
       type: string
       default: UIC
-
     Address:
       type: object
       description: used to encode an address using the standard street address attributes
@@ -2586,12 +2584,10 @@ components:
          - city,
          - postalCode,
          - country
-
     POICodeList:
       description: Code list used for the POI codes.
       type: string
       default: UIC
-
     TripRef:
       type: object
       properties:
@@ -2602,7 +2598,6 @@ components:
         title:
           type: string
           example: Bruxelles-Midi - Paris-Nord 2020/07/01 10:05
-
     TripDef:
       type: object
       properties:
@@ -2634,15 +2629,12 @@ components:
           items:
             $ref: '#/components/schemas/Link'
       additionalProperties: false
-
     ServiceBrandCodeDef:
       description: >-
         Service brand codes allowed in response, code list can be found on 
         [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list]
         (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
-      type: number
-      format: int32
-
+      type: integer
     POI:
       description: >-
         POI (for point of Interest) represent a location that is not a train station but still relevant to the 
@@ -2674,7 +2666,6 @@ components:
         - country
         - localCode
       additionalProperties: false
-
     TripsCollection:
       type: object
       properties:
@@ -2702,7 +2693,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-
     GeoCoordinateDef:
       description: >-
         Used to provide any geo-encoded location, regardless of environment, using longitude and latitude coordinates.
@@ -2738,7 +2728,6 @@ components:
         - latitude
         - longitude
       additionalProperties: false
-
     TripSearchCriteria:
       type: object
       properties:
@@ -2801,7 +2790,7 @@ components:
         extendedChangeTime:
           description: >-
             OOS MVP Indicates additional transfer time required where a transfer
-            is present in the resulting trip. Expressed in minutes.
+            is present in the resulting trip. Expressed in minutes
           type: number
           format: int32
         PRMAssistance:
@@ -2813,9 +2802,10 @@ components:
       required:
         - originValue
         - destinationValue
-
     OfferSearchCriteria:
       type: object
+      description:
+            currency - The currency returned might be different from the one requested.
       properties:
         flexibilities:
           description: Defines the flexibility levels desired in the fares returned
@@ -2839,8 +2829,6 @@ components:
             The language returned might be different from the languages request. The list is a prioritized list.
         currency:
           $ref: '#/components/schemas/CurrencyDef'
-          description:
-            The currency returned might be different from the one requested.
         includeBehavior:
           description: >-
             Influences whether referenced resources are returned in full or as references only
@@ -2849,11 +2837,10 @@ components:
             type: string
             enum:
               - OFFERPARTS
-
     TripOfferRequest:
       type: object
       properties:
-        id:
+        tripId:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
@@ -2892,12 +2879,9 @@ components:
               - TRIPOFFERS.TRIP
               - TRIPOFFERS.OFFERS
               - TRIPOFFERS.PASSENGERS
-      required:
-        - passengers
       description: >-
         Defines the parameters needed to request a trip, standalone or in the context of an offer request. Note at least one
         of the tripId, tripRef or trip elements must be set.
-
     TripOffer:
       type: object
       properties:
@@ -2925,7 +2909,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-
     TripOfferRef:
       type: object
       properties:
@@ -2936,13 +2919,11 @@ components:
         title:
           type: string
           example: 'Bruxelles-Midi 10:05 20200701'
-
     RequestedInformation:
       type: string
       description: >-
         regular-expression indicating the data that must be set in the data
         model in order to proceed to next step of the process
-
     OfferSummary:
       type: object
       description: >-
@@ -2958,11 +2939,6 @@ components:
           $ref: '#/components/schemas/ServiceLevelIdDef'
         overallFlexibility:
           $ref: '#/components/schemas/Flexibility'
-      required:
-        - minimalPrice
-        - overallServiceClass
-        - overallServiceLevel
-        - overallFlexibility
 
     Offer:
       type: object
@@ -3013,7 +2989,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-
     OfferRef:
       type: object
       properties:
@@ -3024,7 +2999,6 @@ components:
         title:
           type: string
           example: 'Bruxelles-Midi - Paris-Nord 10:05 20200701 NF 50 EUR'
-
     TripOffersCollection:
       type: object
       properties:
@@ -3052,11 +3026,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-
     CurrencyDef:
       description: ISO4217 currency codes
       type: string
-
     CurrencyPriceDef:
       type: object
       minProperties: 1
@@ -3100,9 +3072,9 @@ components:
       description: scope where the VAT applies
       type: string
       enum:
-       - INTERNATIONAL
-       - NATIONAL
-       - SHORT_DISTANCE
+       - INTERNATIONAL, 
+       - NATIONAL,
+       - SHORT_DISTANCE,
        - LONG_DISTANCE
 
     GenderDef:
@@ -3224,16 +3196,13 @@ components:
           $ref: '#/components/schemas/GenderDef'
       required:
         - dateOfBirth
-        - reductionCards
-        - gender
       additionalProperties: false  
       
     PassengerPassportDef:
       description: >- 
         Travel document data to be exchanged for border control in case of legal requirements
-        PassengerDetails providing personal information only information required in the offer. 
-        It is not allowed to send personal information not required in the offer reply. 
-        It is legally not allowed to send these personal data already in the offer request.
+        PassengerDetails providing personal information 
+        only information required in the offer. It is not allowed to send personal information not required in the offer reply. It is not allowed to send tehse personal data already in the offer request.
       type: object
       properties:
         cityOfBirth:
@@ -3458,7 +3427,6 @@ components:
         title:
           type: string
           example: TGV Lyria Loisir 2
-
     Product:
       type: object
       required:
@@ -3506,7 +3474,7 @@ components:
           
     FulfillmentMediaTypeDef:
        description: >-
-         Fulfillment types. RCT2, RCCST and UIC-PDF are official UIC standards.
+         Fulfillment types. RCT2, RCCST and UIC-PDF are offical UIC standards.
        type: string        
        enum:
          - RCT2
@@ -3625,7 +3593,7 @@ components:
         place selection options and selected options in an offer
         - optional place properties to choose from
         - selected optional place properties (selectedOptions)
-        - selectable places for a graphical place selection 
+        - selectable plces for a graphical place selection 
         - selectedPlaces from a graphical place selection (selectedPlaces)
         - reference place for adjacent reservation (referencePlace)
       properties:
@@ -3707,7 +3675,7 @@ components:
                               coach
                             type: string
                           status:
-                            description: status of the place
+                            description: 'status of the place
                             type: string
                             enum:
                                - ALLOCATED
@@ -3753,7 +3721,7 @@ components:
               direction:
                 description: >-
                   indication of the direction of travel standard direction is left
-                  to right with ascending coordinates in the layout values  U =
+                  to right with ascending coordinates in the layoutt values  U =
                   unspecified
                           in direction of the layout
                           opposite to direction of the layout
@@ -3762,13 +3730,13 @@ components:
                 type: string
                 enum:
                  - IN_DIRECTION
-                 - OPPOSITE_DIRECTION
+                 - OPOSITE_DIRECTION
                  - CHANGING
                  - STARING_IN_DIRECTION
               coachOwner:
                 $ref: '#/components/schemas/CompanyDef'
               specialCoach:
-                description: >-
+                description: |-
                   indication of special coach 
                 type: string
                 enum: 
@@ -3840,6 +3808,7 @@ components:
         - offerPart
         - reservationDetails
 
+
     SelectedPlacesDef:
       description: place selection from a graphical display of coaches
       type: object
@@ -3862,6 +3831,7 @@ components:
         - selectedCoach
         - selectedPlaces
 
+
     ReservationDetailsDef:
       type: object
       description: segmentIndex references a segmentIndex in the trip part within the offer reply
@@ -3878,10 +3848,13 @@ components:
       required:
         - serviceLevel,
         - reservedPlaces
-     
+
+
+
+        
     PlacePackDef:
         type: object
-        description: selection of places with common properties
+        description: selection of places with common propertioes
         properties:
           id:
             type: string
@@ -3969,7 +3942,7 @@ components:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          description: id of the selected booking
+          description: id of the selected offer
         selectedOfferId:
           type: string
           format: uuid
@@ -4080,22 +4053,21 @@ components:
             The proposition can then be confirmed, which turns it into a refund
         refund:
            $ref: '#/components/schemas/RefundDef'
+
+
         exchangeOffers:
           type: array
           items:
             $ref: '#/components/schemas/ExchangeOfferDef'
           description: >-
-            Refund offer is created with the details of the to-be-confirmed refund operation. One proposition 
-            can then be confirmed, which turns it into an exchange and confirms the new booking.         
+            Refund offer is created with the details of the to-be-confirmed refund operation. One proposition can then be confirmed, which turns it into an exchange and confirms the new booking.         
         exchange:
             $ref: '#/components/schemas/ExchangeDef'
+
         links:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-      required:
-        - id
-        - status
     
     BookingRef:
       type: object
@@ -4118,7 +4090,7 @@ components:
           type: string
           enum:
             - CONFIRMED
-        fulfillmentOptions:
+        fulfillementOptions:
           type: array
           items: 
             $ref: '#/components/schemas/FulfillmentOption'
@@ -4133,7 +4105,7 @@ components:
 
     FulfillmentRequestDef:
        description: >-
-        Request parameter to initiate the fulfillment.
+        request parameter to initialte the fulfillemt
        type: object
        properties:
         media: 
@@ -4147,7 +4119,8 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Fulfillment'
-
+          
+       
     Fulfillment:
       type: object
       properties:
@@ -4159,6 +4132,7 @@ components:
           type: string
           description: >-
             Ticket Control Number
+
         offerParts:
           type: array
           items:
@@ -4179,6 +4153,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      
     
     FulfillmentDocumentDef:
       description: >-
@@ -4189,7 +4164,7 @@ components:
           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
         passengers:
           description: >-
-            list of passengers on the booking in case the booking does not cover all passengers
+            list of passengers on the bookimng in case the booking does not cobver all passengers
           type: array
           items:
             oneOf:
@@ -4198,11 +4173,11 @@ components:
         documentType:
          type: string
          enum:
-            - BOOKING_RECEIPT
-            - TICKET
-            - BOARDING_PASS
-            - INFORMATION
-            - VOUCHER
+           - BOOKING_RECEIPT
+           - TICKET
+           - BOARDING_PASS
+           - INFORMATION
+           - VOUCHER
         status:
           type: string
           enum:
@@ -4214,8 +4189,7 @@ components:
           format: uri    
     
     FulfillmentItemDef:
-      description: >-
-       Fulfillment items to be integrated in to tickets, e.g. visual security elements, additional bar codes, control keys
+      description: fulfillment items to be integrated in to tickets, e.g. viisual security elements, additional bar codes, control keys
       type: object
       properties:
         fulfillmentMedia:
@@ -4256,12 +4230,12 @@ components:
             additionalProperties: false
         mandatory:
           description: >-
-            The use of the provided features is mandatory
+            the use of the provioded features is mandatory
           type: boolean
           default: false
         securePaperOnly:
           description: >-
-            The security feature must be used on secure paper
+            the security feature must be used on secure paper
           type: boolean
           default: false
       additionalProperties: false
@@ -4279,6 +4253,7 @@ components:
         - JPG_VISUAL_ELEMENT
         - GIF_VISUAL_ELEMENT
   
+    
     FulfillmentRef:
       type: object
       properties:
@@ -4289,7 +4264,6 @@ components:
         title:
           type: string
           example: Ticket Paris-Barcelona Andre Dupont 2020-07-23
-   
     AfterSaleReasonDef:
       description: >-
         Reason for and type of an after sale, Code list in IRS 90918-10.
@@ -4405,7 +4379,7 @@ components:
     ExchangeOfferDef:
       type: object
       description: >-
-       offer to exchange the referenced booking
+       offer to exchgange the referenced booking
       properties:
         id:
           type: string
@@ -4471,7 +4445,7 @@ components:
             
     ExchangeDef:
       description: >- 
-       result of a successful confirmation of an exchange. The new booking and the pld booking are returned. TODO
+       result of a successfull confirmation of an exchange. The new booking and the pld booking are returned.
       type: object
       properties:
         reimbursementStatus:
@@ -4516,7 +4490,7 @@ components:
             
     RefundDef:
       description: >- 
-       result of a successful confirmation of a refund. 
+       result of a successfull confirmation of a refund. 
       type: object
       properties:
         reimbursementStatus:
@@ -4544,7 +4518,8 @@ components:
         - reimbursementStatus
         - refundFee
         - refundableAmount
-
+            
+            
     Problem:
       type: object
       properties:
@@ -4564,7 +4539,7 @@ components:
             for engineers (usually not suited for non technical stakeholders and
             not localized); example: Service Unavailable
         status:
-          type: number
+          type: integer
           format: int32
           description: >-
             The HTTP status code generated by the origin server for this occurrence
@@ -4591,7 +4566,6 @@ components:
         See: https://tools.ietf.org/html/rfc7807
     
     #Fare-specific elements begin
-
     FareOnlineDef:
       type: object
       properties:
@@ -4633,7 +4607,8 @@ components:
         reservationOptions:
           $ref: '#/components/schemas/PlaceSelectionDef' 
         reservationLegacyParameter:
-          $ref: '#/components/schemas/LegacyReservationParameterDef'            
+          $ref: '#/components/schemas/LegacyReservationParameterDef'
+                    
       required:
         - id
         - type
@@ -4644,28 +4619,25 @@ components:
       additionalProperties: false
       
     LegacyAccountingIdentifierDef:
-      description: identifier of the fare in the current 301 accounting file
-      type: object
-      properties:
-        serialId:
-          description: sequential number of regional validities
-          type: number
-          format: int32
-          minimum: 0
-          maximum: 99999
-        addId:
-          description: sequential number of regional validities (leading positions in case the series is too short
-          type: number
-          format: int32
-          minimum: 0
-          maximum: 99
-        tariffId:
-          description: sequential number of the fares for one regional validity
-          type: number
-          format: int32
-          minimum: 0
-          maximum: 9999
-      additionalProperties: false  
+          description: identifier of the fare in the current 301 accounting file
+          type: object
+          properties:
+            serialId:
+              description: sequential number of regional validities
+              type: integer
+              minimum: 0
+              maximum: 99999
+            addId:
+              description: sequential number of regional validities (leading positions in case the series is too short
+              type: integer
+              minimum: 0
+              maximum: 99
+            tariffId:
+              description: sequential number of the fares for one regional validity
+              type: integer
+              minimum: 0
+              maximum: 9999
+          additionalProperties: false  
       
     CalendarDef:
       type: array
@@ -4710,12 +4682,10 @@ components:
             properties:
               from:
                 description: minutes of the day in the time zone of travel
-                type: number
-                format: int32
+                type: integer
               until:
                 description: minutes of the day in the time zone of travel
-                type: number
-                format: int32
+                type: integer
               scope:
                 description: 'START_OF_TRAVEL,COMPLETE_RANGE'
                 type: string
@@ -4726,26 +4696,22 @@ components:
             additionalProperties: false
         numberOfTravelDays:
           description: number of allowed travel days (e.g. 3 travel days within 2 weeks)
-          type: number
-          format: int32
+          type: integer
         returnConstraint:
           description: a return trip with the same carrier must be sold in combination
           type: object
           properties:
             latestReturn:
               description: number of days after departure or start of validity of the last return
-              type: number
-              format: int32
+              type: integer
             earliestReturn:
               description: number of days after departure or start of validity of the earliest return
-              type: number
-              format: int32
+              type: integer
             excludedWeekdays:
               description: weekdays (ISO day of the week, 1 = Monday) between travel and return where travel is not allowed
               type: array
               items:
-                type: number
-                format: int32
+                type: integer
           required:
             - latestReturn
             - earliestReturn
@@ -4753,11 +4719,9 @@ components:
       required:
         - validityRange
       additionalProperties: false
-
     TravelerTypeDef:
       description: >- 
-        Values from the traveler type code list IRS 90918-10 - TODO
-        YOUNG_CHILD, CHILD, YOUTH, ADULT, SENIOR, FAMILY_CHILD, ACCOMP_PRM, PRM_CHILD, WHEELCHAIR, PERSON, PRM, DOG, LUGGAGE, BICYCLE, ACCOMP_DOG, CAR, MOTOCYCLE, TRAILER, PRAM
+        Values from the traveler type code list IRS 90918-10 - YOUNG_CHILD, CHILD, YOUTH, ADULT, SENIOR, FAMILY_CHILD, ACCOMP_PRM, PRM_CHILD, WHEELCHAIR, PERSON, PRM, DOG, LUGGAGE, BICYCLE, ACCOMP_DOG, CAR,MOTOCYCLE, TRAILER, PRAM
       type: string
       
     LayoutsReplyDef:
@@ -4785,53 +4749,43 @@ components:
             type: object
             properties:
               x:
-                description: >-
-                  horizontal coordinate of the center of the place
+                description: horizontal coordinate of the center of the place
                 type: number
-                format: int32
-              y:
-                description: >-
-                  vertical coordinate of the center of the place
+              'y':
+                description: vertical coordinate of the center of the place
                 type: number
-                format: int32
               id:
                 description: >-
                   id of the graphical item type. Code list according to UIC90918-1
                   graphical item type e.g. seat = 1, berth = 2, couchette = 3
                 type: string
               number:
-                description: place number as displayed physically on the place
+                description: place numer as displayed physically on the place
                 type: string
               direction:
                 description: >-
                   direction of a place, defined optional as it might be omitted in
                   case of berths in future. Code list according to UIC90918-1
-                   - value R: to right
-                   - value L: to left
-                   - value U: up  (from right side of a coach pointing to the middle of the aile)
-                   - value D: down (from right side of the coach pointing to the middle of the aile
+                  Values R = to right, L = to left, U = up  (from right side of a
+                  coach pointing to the middle of the aile), D = down (from right
+                  side of the coach pointing to the middle of the aile)
                 type: string
               remarkId:
                 description: >-
                   remark concerning the place (e.g. to be used in a tool tip).
                   Code list according to UIC90918-1 
-                   - value 1: place might have a table
-                   - value 2: table at the place might be missing 
-                   - value 3: place might have a different direction 
-                   - value 4: place might have a table and a different direction 
-                   - value 5: table at the place might be missing and place might have a different direction - value 6 place might be in compartment - value 7  place might be in open space  
+                   - value 1 place might have a table - value 2 table at the place might be missing - value 3 place might have a different direction - value 4 place might have a table and a different direction - value 5 table at the place might be missing and place might have a different direction - value 6 place might be in compartment - value 7  place might be in open space  
                 type: string
               zOrder:
-                description: >-
+                description: |-
                   graphical layer where this item has to be placed. 
-                  Code list according to UIC90918-1
-                   - value 0: lowest layer usually used for walls 
-                   - value 1: middle layer usually used by places
-                   - value 2: top layer usually used by icons
+                   Code list according to UIC90918-1  0 = lowest layer usually used for walls 
+                    1 = middle layer usually used by places
+                    2 = top layer usually used by icons
                 type: string
             required:
               - x
-              - y
+              - 'y'
               - id
               - number
             additionalProperties: false
@@ -4841,22 +4795,18 @@ components:
             type: object
             properties:
               x:
-                description: >-
-                  horizontal coordinate of the center of the place
+                description: horizontal coordinate of the center of the place
                 type: number
-                format: int32
-              y:
-                description: >-
-                  vertical coordinate of the center of the place
+              'y':
+                description: 'vertical coordinate of the center of the place              '
                 type: number
-                format: int32
               id:
                 description: >-
                   id of the graphical item type. Code list according to UIC90918-1
                   graphical item type e.g. silence area sign = 116
                 type: string
               zOrder:
-                description: >-
+                description: |-
                   graphical layer where this item has to be placed. 
                     0 = lowest layer usually used for walls 
                     1 = middle layer usually used by places
@@ -4864,7 +4814,7 @@ components:
                 type: string
             required:
               - x
-              - y
+              - 'y'
               - id
             additionalProperties: false
         internals:
@@ -4873,15 +4823,11 @@ components:
             type: object
             properties:
               x:
-                description: >-
-                  horizontal coordinate of the center of the place
+                description: horizontal coordinate of the center of the place
                 type: number
-                format: int32
-              y:
-                description: >-
-                  vertical coordinate of the center of the place
+              'y':
+                description: 'vertical coordinate of the center of the place              '
                 type: number
-                format: int32
               id:
                 description: >-
                   id of the graphical item type. Code list according to UIC90918-1
@@ -4889,7 +4835,7 @@ components:
                   three places = 25
                 type: string
               zOrder:
-                description: >-
+                description: |-
                   graphical layer where this item has to be placed. 
                     0 = lowest layer usually used for walls 
                     1 = middle layer usually used by places
@@ -4903,7 +4849,7 @@ components:
                 type: string
             required:
               - x
-              - y
+              - 'y'
               - id
               - zOrder
             additionalProperties: false
@@ -4912,10 +4858,8 @@ components:
           properties:
             x:
               type: number
-              format: int32
-            y:
+            'y':
               type: number
-              format: int32
           additionalProperties: false
         containerType:
           type: string
@@ -4935,17 +4879,13 @@ components:
         nameRef:
           type: string
         upperAgeLimit:
-          type: number
-          format: int32
+          type: integer
         lowerAgeLimit:
-          type: number
-          format: int32
+          type: integer
         ageLimitToTravelAlone:
-          type: number
-          format: int32
+          type: integer
         ageLimitForReservation:
-          type: number
-          format: int32
+          type: integer
         isAncillaryItem:
           type: boolean
           default: false
@@ -4956,8 +4896,7 @@ components:
             properties:
               maxNumber:
                 description: number of passengers allowed per accompanying passenger
-                type: number
-                format: int32
+                type: integer
               passengerTypeRef:
                 $ref: '#/components/schemas/TravelerTypeDef'
             required:
@@ -4974,24 +4913,20 @@ components:
                   Number of passengers that can be included with one passenger for free. The number is given in fractions. The 
                   calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog 
                   for free).
-                type: number
-                format: int32
+                type: integer
               passengerTypeRef:
                 $ref: '#/components/schemas/TravelerTypeDef'
             additionalProperties: false
         passengerWeight:
           type: number
-          format: int32
         maxWeightedPassengers:
           description: >-
             The total weighted number of passengers on the offer is restricted to be equal or smaller than this maximum
           type: number
-          format: int32
         minWeightedPassengers:
           description: >-
             The total weighted number of passengers on the offer is restricted to equal or larger than this minimum
           type: number
-          format: int32
       required:
         - id
         - passengerType
@@ -5013,13 +4948,11 @@ components:
       required:
         - requiredCards
       additionalProperties: false
-
     CompanyDef:
       description: >-
         RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the 
         codes must have at least 5 positions and start with x
       type: string
-
     FareCombinationModelDef:
       type: object
       properties:
@@ -5065,7 +4998,6 @@ components:
       required:
         - model
       additionalProperties: false
-
     FareCombinationConstraintDef:
       type: object
       properties:
@@ -5080,7 +5012,6 @@ components:
         - id
         - combinationModels
       additionalProperties: false
-
     AfterSalesConditionDef:
       type: object
       properties:
@@ -5095,7 +5026,6 @@ components:
         - id
         - afterSalesRules
       additionalProperties: false
-
     PriceDef:
       type: object
       properties:
@@ -5109,7 +5039,6 @@ components:
       required:
         - price
       additionalProperties: false
-
     RelativeTimeDef:
       type: object
       properties:
@@ -5122,8 +5051,7 @@ components:
             - HOURS
             - MINUTES
         timeValue:
-          type: number
-          format: int32
+          type: integer
         timeReference:
           description: >-
             Time reference.
@@ -5139,7 +5067,6 @@ components:
         - timeValue
         - timeReference
       additionalProperties: false
-
     AfterSalesRuleDef:
       type: object
       properties:
@@ -5180,8 +5107,7 @@ components:
         properties:
           seqNb:
             description: order number of the list item
-            type: number
-            format: int32
+            type: integer
           zone:
             $ref: '#/components/schemas/ZoneDef'
           viaStations:
@@ -5193,24 +5119,20 @@ components:
           polygon:
             $ref: '#/components/schemas/PolygonDef'
         additionalProperties: false
-    
     LineDef:
       type: object
       description: >-
-         terminalStation - in case the product requires a destination within the zone (e.g. local ticket 
-         to go to the main rail station). 
-         entryStation - Station to enter the zone in case the product requires to enter the zone via a 
-         specific station (e.g. local zone ticket to start from the main rail station).
+         terminalStation - in case the product requires a destination within the zone (e.g. local ticket to go to the main rail station). entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station).
       properties:
         binaryLineId:
-          type: string
+          type: integer
+          format: Base64
           description: >-
-            Id to support local traffic standards (e.g. VDV,...). TODO
+            Id to support local traffic standards (e.g. VDV,...).
         carrier:
           $ref: '#/components/schemas/CompanyDef'
         city:
-          type: number
-          format: int32
+          type: integer
         entryStation:
           $ref: '#/components/schemas/StationDef'
         lineId:
@@ -5227,7 +5149,6 @@ components:
       required:
         - carrier
       additionalProperties: false
-    
     TrainLinkDef:
       type: object
       properties:
@@ -5248,7 +5169,6 @@ components:
         - train
         - travelDate
       additionalProperties: false
-    
     PolygonDef:
       type: object
       properties:
@@ -5258,19 +5178,15 @@ components:
           items:
             $ref: '#/components/schemas/GeoCoordinateDef'
       additionalProperties: false
-    
     ViaStationsDef:
       type: object
       properties:
         isBorder:
           type: boolean
-          default: false
         routeId:
-          type: number
-          format: int32
+          type: integer
         seriesId:
-          type: number
-          format: int32
+          type: integer
         alternativeRoute:
           type: array
           items:
@@ -5303,7 +5219,6 @@ components:
       required:
         - station
       additionalProperties: false
-
     ZoneDef:
       type: object
       description: >-
@@ -5321,8 +5236,7 @@ components:
         carrier:
           $ref: '#/components/schemas/CompanyDef'
         city:
-          type: number
-          format: int32
+          type: integer
         entryStation:
           $ref: '#/components/schemas/StationDef'
         terminalStation:
@@ -5331,15 +5245,13 @@ components:
           description: to be used in bar codes
           type: array
           items:
-            type: number
-            format: int32
+            type: integer
         nutsCode:
           description: Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
           type: string
       required:
         - carrier
       additionalProperties: false
-
     FulfillmentConstraintDef:
       type: object
       properties:
@@ -5388,7 +5300,6 @@ components:
         - acceptedFulfillmentTypes
         - individualTicketingPermitted
       additionalProperties: false
-
     PersonalDataConstraintDef:
       type: object
       properties:
@@ -5446,12 +5357,10 @@ components:
               timeLimit:
                 description: the change is limited to n hours after booking confirmation
                 type: number
-                format: int32
             required:
               - acceptedReason
             additionalProperties: false
       additionalProperties: false
-
     CrossBorderConditionDef:
       type: object
       properties:
@@ -5467,7 +5376,6 @@ components:
         - fromCountry
         - toCountry
       additionalProperties: false
-
     CountryDef:
       description: >-
         ISO 3166 2A codes
@@ -5553,7 +5461,6 @@ components:
           items:
             type: string
       additionalProperties: false
-    
     ServiceClassIdDef:
       description: >-
        Level of quality, finer grained than the comfort class.
@@ -5563,7 +5470,6 @@ components:
         - HIGH
         - STANDARD
         - BASIC
-    
     ServiceLevelDef:
       type: object
       properties:
@@ -5589,7 +5495,6 @@ components:
         - id
         - text
       additionalProperties: false
-    
     ServiceConstraintDef:
       description: >-
         Either excluded or included service brands can be set.
@@ -5608,7 +5513,6 @@ components:
       required:
         - id
       additionalProperties: false
-    
     FareTypeDef:
       description: >-
         Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
@@ -5618,7 +5522,6 @@ components:
         - RESERVATION
         - INTEGRATED_RESERVATION
         - ANCILLARY
-    
     RegionalConstraintDef:
       type: object
       description: >-
@@ -5641,11 +5544,9 @@ components:
         distance:
           description: 'distance in km for statistics '
           type: number
-          format: int32
       required:
         - regionalValidity
       additionalProperties: false
-    
     TranslationDef:
       type: object
       properties:
@@ -5666,7 +5567,6 @@ components:
         - textUTF8
         - text
       additionalProperties: false
-    
     TextDef:
       description: directly included text in case of online services
       type: object
@@ -5692,7 +5592,6 @@ components:
         - textUTF8
         - text
       additionalProperties: false
-    
     ConnectionPointDef:
       description: connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
       type: object
@@ -5721,32 +5620,33 @@ components:
          search parameter for an offer search on offers not based on a trip (e.g. passes)
       type: object
       properties:
-        searchTags:
-          description: >-
-            list of tags to search for
-          type: array
-          items:
-            type: string
-        nutsCodes:
-          description: >-
-            Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
-          type: array
-          items:
-            type: string
-        geoCoordinate:
-          $ref: '#/components/schemas/GeoCoordinateDef'
-        travelPeriod:
-          $ref: '#/components/schemas/CalendarDef'
-        passengers:
-          type: array
-          items:
-            $ref:  '#/components/schemas/PassengerDef'  
-        requestedFulfillmentOptions: 
-          type: array
-          items:
-            $ref:  '#/components/schemas/FulfillmentOption' 
-        offerSearchCriteria:
-            $ref:  '#/components/schemas/OfferSearchCriteria'  
+
+            seachTags:
+              description: >-
+                list of tags to search for
+              type: array
+              items:
+                type: string
+            nutsCodes:
+              description: >-
+                 Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
+              type: array
+              items:
+                type: string
+            geoCoordinate:
+              $ref: '#/components/schemas/GeoCoordinateDef'
+            travelPeriod:
+              $ref: '#/components/schemas/CalendarDef'
+            passengers:
+              type: array
+              items:
+                 $ref:  '#/components/schemas/PassengerDef'  
+            requestedFulfillmentOptions: 
+              type: array
+              items:
+                $ref:  '#/components/schemas/FulfillmentOption' 
+            offerSearchCriteria:
+               $ref:  '#/components/schemas/OfferSearchCriteria'  
               
     NonTripOfferCollectionDef:
       type: array
@@ -5799,16 +5699,12 @@ components:
           properties:
             weight:
               type: number
-              format: int32
             length:
               type: number
-              format: int32
             width:
               type: number
-              format: int32
             height:
               type: number
-              format: int32
             attachedItems:
               description: >-
                 indication of items attached to the car
@@ -5827,6 +5723,7 @@ components:
                 free text description of the model (e.g. BMW X5)
               type: string
           additionalProperties: false
+          
         motoCycle:
           type: object
           properties:
@@ -5838,25 +5735,22 @@ components:
                 the trailer plate is a personal data item and must not be provided in an offer request. It must be patched into the offer after the customer accepted the offer for booking 
               type: string   
           additionalProperties: false
+
         trailer:
           type: object
           properties:
             weight:
               description: weight in kg
               type: number
-              format: int32
             length:
               description: length in cm
               type: number
-              format: int32
             width:
               description: width in cm
               type: number
-              format: int32
             height:
               description: length in cm
               type: number
-              format: int32
             plate:
               description: >-
                 the trailer plate is a personal data item and must not be provided in an offer request. It must be patched into the offer after the customer accepted the offer for booking 
@@ -5865,51 +5759,3 @@ components:
       required:
         - type
       additionalProperties: false
-
-    # Problem
-
-    Problem:
-      type: object
-      properties:
-        type:
-          type: string
-          format: uri
-          description: >-
-            An absolute URI that identifies the problem type. When dereferenced,
-            it SHOULD provide human-readable documentation for the problem type
-            (e.g., using HTML).
-          default: 'about:blank'
-          example: 'https://zalando.github.io/problem/constraint-violation'
-        title:
-          type: string
-          description: >-
-            A short, summary of the problem type. Written in English and readable
-            for engineers (usually not suited for non technical stakeholders and
-            not localized); example: Service Unavailable
-        status:
-          type: number
-          format: int32
-          description: >-
-            The HTTP status code generated by the origin server for this occurrence
-            of the problem.
-          minimum: 100
-          maximum: 600
-          exclusiveMaximum: true
-          example: 503
-        detail:
-          type: string
-          description: >-
-            A human readable explanation specific to this occurrence of the
-            problem.
-          example: Connection to database timed out
-        instance:
-          type: string
-          format: uri
-          description: >-
-            An absolute URI that identifies the specific occurrence of the problem.
-      description: >-
-        Problem Details for HTTP APIs (RFC 7807) defines a "problem detail" as a way
-        to carry machine-readable details of errors in a HTTP response to avoid
-        the need to define new error response formats for HTTP APIs.
-        See: https://tools.ietf.org/html/rfc7807
-    
