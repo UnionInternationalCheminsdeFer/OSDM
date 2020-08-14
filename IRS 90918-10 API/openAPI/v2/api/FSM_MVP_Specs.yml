@@ -1109,7 +1109,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/offers/{offerId}/placeSelections/{placeSelectionId}':
+  '/offers/{offerId}/placeSelections':
     patch:
       tags:
         - Offer Parts
@@ -3131,6 +3131,8 @@ components:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          description: >-
+           id of the passenger resource in case service to patch a single passenger is provided. The id needs to be implemented transient with a short time to lifedue to GdPR
         type:
           $ref:  '#/components/schemas/TravelerTypeDef'  
         reference:
@@ -3155,7 +3157,6 @@ components:
       required:
         - type
         - reference
-        - id
       additionalProperties: false    
         
     PassengerAbstractDef:
@@ -3576,9 +3577,6 @@ components:
         - selectedPlaces from a graphical place selection (selectedPlaces)
         - reference place for adjacent reservation (referencePlace)
       properties:
-        id:
-          description: id if the place selection unique within an offer
-          type: string
         reservationOptions:
           $ref: '#/components/schemas/ReservationOnlineOptionDef' 
         vehicle:
