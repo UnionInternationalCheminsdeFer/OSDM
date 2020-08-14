@@ -5507,21 +5507,30 @@ components:
             type: string
       additionalProperties: false
     
-    ServiceClassIdDef:
+    ServiceRankIdDef:
       description: >-
-       Level of quality, finer grained than the comfort class.
+       Service quality, finer grained than the comfort class.
+       The smaller the number, the higher the service quality.
+       The 1* enum indicate that they are first class services,
+       the 2* enum indicate that they are second class services.
       type: string
       enum:
-        - BEST
-        - HIGH
-        - STANDARD
-        - BASIC
-    
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 20
+        - 21
+        - 22 
+        - 23
+        - 24
+
     ServiceLevelDef:
       type: object
       properties:
         id:
-          $ref: '#/components/schemas/ServiceLevelIdDef'
+          $ref: '#/components/schemas/ServiceRankIdDef'
         combiningServiceClasses:
           description: list of service class ids that can be combined with these service levels
           type: array
