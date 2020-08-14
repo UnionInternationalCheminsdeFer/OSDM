@@ -3176,7 +3176,6 @@ components:
       required:
         - dateOfBirth
         - reductionCards
-        - gender
       additionalProperties: false  
       
     PassengerPassportDef:
