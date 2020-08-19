@@ -671,235 +671,22 @@ paths:
         '501':
           description: Not implemented
          
-  '/offers/{offerId}/passengers':
-    get:
-      tags:
-        - Passengers
-      summary: >-
-        The GET passenger service retrieves passenger's information in an offer. The same informatiojn can be retrieved via getOffer.
-      operationId: getPassengerInOffer
-      parameters:
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the offer holding the passengers
-      responses:
-        '200':
-          description: Passenger found
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PassengerDef'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented         
-   
-    patch:
-      tags:
-        - Passengers
-      summary: >-
-        The PATCH passenger service allows updating passenger's information in an offer immediately before confirmation. 
-      description: >-
-        The passengers updated are provided as a list. The PATCH allows to change attributes but not to add or remove passengers.
-      operationId: patchPassengerInOffer
-      parameters:
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the offer holding the passengers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/PassengerDef'
-      responses:
-        '200':
-          description: Passenger successfully patched
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PassengerDef'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented      
-          
-  '/bookings/{bookingId}/passengers':
-    get:
-      tags:
-        - Passengers
-      summary: >-
-        The GET passenger service retrieves the passenger information within a booking. The same informatiojn can be retrieved via getBooking.
-      operationId: getPassengersInBooking
-      parameters:
-        - in: path
-          name: bookingId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the booking holding the passengers
-      responses:
-        '200':
-          description: Passenger found
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PassengerDef'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented      
-    patch:
-      tags:
-        - Passengers
-      summary: >-
-        The PATCH passenger service allows updating passenger's information in a booking. The passengers updated are provided as a list. The PATCH allows to change attributes but not to add or remove passengers.
-      operationId: patchPassengersInBooking
-      parameters:
-        - in: path
-          name: bookingId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the offer holding the passengers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/PassengerDef'
-      responses:
-        '200':
-          description: Passenger successfully patched
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PassengerDef'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented           
-          
-  '/passengers/{passengerId}':
+  '/offers/{offerId}/passengers/{passengerId}':
     get:
       tags:
         - Passengers
       summary: >-
        The GET passenger service returns the passenger's information.
-      operationId: getPassengersId
+      operationId: getOfferPassengersId
       parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer the passenger is in.
         - in: path
           name: passengerId
           schema:
@@ -946,8 +733,135 @@ paths:
         - Passengers
       summary: 
         The PATCH passenger service allows updating a passenger's information.
-      operationId: patchPassenger
+      operationId: patchOfferPassenger
       parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer the passenger is in.
+        - in: path
+          name: passengerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the passenger to get.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PassengerDef'
+      responses:
+        '200':
+          description: Passenger successfully patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PassengerDef'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+  
+  '/bookings/{bookingId}/passengers/{passengerId}':
+    get:
+      tags:
+        - Passengers
+      summary: >-
+       The GET passenger service returns the passenger's information.
+      operationId: getBookingPassengersId
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the booking the passenger is in.
+        - in: path
+          name: passengerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the passenger to get.
+      responses:
+        '200':
+          description: Passenger found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PassengerDef'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+    patch:
+      tags:
+        - Passengers
+      summary: 
+        The PATCH passenger service allows updating a passenger's information.
+      operationId: patchBookingPassenger
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the booking the passenger is in.
         - in: path
           name: passengerId
           schema:
@@ -1108,77 +1022,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-          
-  '/offers/{offerId}/placeSelections':
-    patch:
-      tags:
-        - Offer Parts
-      summary: >-
-        The PATCH of the place selections service allows updating reservation elements, to update the desired
-        selection of places and to retrieve selectable places for a graphical display
-      description: >-
-        The patch can be used to update the selection of place properties, the available places for graphical 
-        displays, the selected optional place properties for a subsequent booking and the selected places from
-        a graphical display. The update response will show the available/accepted properties. An update with
-        empty available places will update the available places list in the reply.
-      operationId: patchPlaceSelectionId
-      parameters:
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the offer to patch.
-        - in: path
-          name: placeSelectionId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the placeSelection object to be patched.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PlaceSelectionDef'
-      responses:
-        '200':
-          description: Place successfully selected
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PlaceSelectionDef'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented        
-          
-          
   '/offers/{offerId}/reservations/{reservationId}':
     get:
       tags:
@@ -1236,6 +1079,73 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+    patch:
+      tags:
+        - Offer Parts
+      summary: >-
+        The PATCH of the place selections service allows updating reservation elements, to update the desired
+        selection of places and to retrieve selectable places for a graphical display
+      description: >-
+        The patch can be used to update the selection of place properties, the available places for graphical 
+        displays, the selected optional place properties for a subsequent booking and the selected places from
+        a graphical display. The update response will show the available/accepted properties. An update with
+        empty available places will update the available places list in the reply.
+      operationId: patchReservationId
+      parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer to patch.
+        - in: path
+          name: reservationId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the reservation to patch.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+      responses:
+        '200':
+          description: Place successfully selected
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented        
   '/offers/{offerId}/integrated-reservations/{integratedReservationId}':
     get:
       tags:
@@ -1294,6 +1204,73 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+    patch:
+      tags:
+        - Offer Parts
+      summary: >-
+        The PATCH of the place selections service allows updating reservation elements, to update the desired
+        selection of places and to retrieve selectable places for a graphical display
+      description: >-
+        The patch can be used to update the selection of place properties, the available places for graphical 
+        displays, the selected optional place properties for a subsequent booking and the selected places from
+        a graphical display. The update response will show the available/accepted properties. An update with
+        empty available places will update the available places list in the reply.
+      operationId: patchIntegratedReservationId
+      parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer to patch.
+        - in: path
+          name: integratedReservationId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the integrated reservation to patch.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegratedReservation'
+      responses:
+        '200':
+          description: Place successfully selected
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented        
           
   '/offers/{offerId}/ancillaries/{ancillaryId}':
     get:
@@ -1414,6 +1391,74 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+    patch:
+      tags:
+        - Offer Parts
+      summary: >-
+        The PATCH of the place selections service allows updating reservation elements, to update the desired
+        selection of places and to retrieve selectable places for a graphical display
+      description: >-
+        The patch can be used to update the selection of place properties, the available places for graphical 
+        displays, the selected optional place properties for a subsequent booking and the selected places from
+        a graphical display. The update response will show the available/accepted properties. An update with
+        empty available places will update the available places list in the reply.
+      operationId: patchFareId
+      parameters:
+        - in: path
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer to patch.
+        - in: path
+          name: fareId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the fare to patch.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FareOnlineDef'
+      responses:
+        '200':
+          description: Place successfully selected
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented        
+ 
 
   /bookings/search:       
     post:
@@ -1438,12 +1483,13 @@ paths:
               type: string
               enum:
                 - ALL
-                - BOOKEDOFFERS.TRIP
-                - BOOKEDOFFERS.TRIP.LOCATIONS
-                - BOOKEDOFFERS
-                - BOOKEDOFFERS.OFFERPARTS
-                - PASSENGERS
-                - TICKETS      
+                - BOOKINGS
+                - BOOKINGS.BOOKEDOFFERS.TRIP
+                - BOOKINGS.BOOKEDOFFERS.TRIP.LOCATIONS
+                - BOOKINGS.BOOKEDOFFERS
+                - BOOKINGS.BOOKEDOFFERS.OFFERPARTS
+                - BOOKINGS.PASSENGERS
+                - BOOKINGS.TICKETS      
       requestBody:
         content:
           application/json:
@@ -1478,7 +1524,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/bookings/create':       
+  '/bookings':       
     post:
       tags:
         - Bookings
@@ -1494,13 +1540,11 @@ paths:
           schema:
             type: string
           required: false
-        - name: offerId
-          in: query
-          description: >-
-            id of the offer to be booked
-          schema:
-            type: string
-          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingRequest'      
       responses:
         '200':
           description: >- 
@@ -1692,7 +1736,7 @@ paths:
           description: Not implemented
    
   '/bookings/{bookingId}/fulfillments':
-    patch:
+    post:
       tags:
         - Fulfillments
       summary: >-
@@ -2239,7 +2283,9 @@ components:
         bookings:
           type: array
           items: 
-            $ref: '#/components/schemas/BookingRef'
+            oneOf:
+            - $ref: '#/components/schemas/BookingRef'
+            - $ref: '#/components/schemas/Booking'
 
     Link:
       type: object
@@ -3611,8 +3657,6 @@ components:
             oneOf:
               - $ref: '#/components/schemas/PassengerRef'
               - $ref: '#/components/schemas/PassengerReferenceDef'
-        selectedPlaces:
-             $ref: '#/components/schemas/PlaceSelectionDef'
         selectedPlaceProperties: 
           type: array
           items:
@@ -3783,7 +3827,6 @@ components:
         - id,
         - offerPart
         - reservationDetails
-
     SelectedPlacesDef:
       description: place selection from a graphical display of coaches
       type: object
@@ -3913,12 +3956,15 @@ components:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          description: id of the selected booking
-        selectedOfferId:
-          type: string
-          format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          description: id of the selected offer
+          description: id of the selected booking. Only required if it is desired to add the specified offers to an existing booking. Special conditions may apply 
+        selectedOfferIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+            description: id of the selected offer
+          description: the list of offer ids that need to be provisionally booked. It has to be a list in case of return trip (2 offers would be booked)
         selectedReservationsIds:
           type: array
           items:
@@ -3963,7 +4009,6 @@ components:
               - REFUND_PROPOSITIONS
       required:
         - selectedOfferId
-        
     Booking:
       type: object
       properties:
@@ -3977,6 +4022,16 @@ components:
             The unique booking reference in the provider system. Usually refers to an order number or PNR.
         status:
           $ref: '#/components/schemas/BookingStatus'
+        bookingMessages:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              text:
+                type: string
+          description: This element can be used to pass specific information on the booking, such as a price difference with the initially offered price at booking time 
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         ticketTimeLimit:
@@ -4074,11 +4129,17 @@ components:
     FulfillmentOption:
       description: >-
         CIT paper implies printing on value paper which is stock controlled.
-      type: string      
-      enum:
-        - ETICKET
-        - CIT_PAPER
-
+      type: object
+      properties:
+        fulfillmentType:
+          type: string      
+          enum:
+            - ETICKET
+            - CIT_PAPER
+        media: 
+          type: array
+          items:
+           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
     FulfillmentRequestDef:
        description: >-
         Request parameter to initiate the fulfillment.
@@ -4244,10 +4305,12 @@ components:
       type: string
       
     RefundOffersCollection:
-      type: array
-      items:
-        $ref: '#/components/schemas/RefundOffer'
-        
+      type: object
+      properties:
+        refundOffers:
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundOffer'
     RefundOffer:
       type: object
       properties:
