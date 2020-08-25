@@ -2102,6 +2102,15 @@ paths:
       summary: >-
         Retrieve the coach layout description needed for graphical reservation    
       operationId: getCoachLayouts
+      parameters:
+        - in: header
+          name: If-Modified-Since
+          description: >-
+            get the data only in case there are modifications on coach layouts since the provided date time. Parameter according RFC 7232
+          schema:
+            type: string
+            format: date-time
+          required: false
       responses:
         '200':
           description: coach layouts
@@ -2109,6 +2118,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LayoutsDef'
+        '304':
+          description: >- 
+            Precondition last-modified not met as described in RFC 7232, there are no new modifications
+          headers:
+            Last-Modified:
+              schema:
+                type: string
+                format: date-time
         '400':
           description: Bad request
           content:
