@@ -112,7 +112,7 @@ paths:
             format: int32
             default: 10
         - in: query
-          name: includeBehavior
+          name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -137,7 +137,7 @@ paths:
                         - $ref: '#/components/schemas/LocationRef'
                         - $ref: '#/components/schemas/Location'
                     description: >-
-                      Depending on the includeBehavior either references or full location definitions are returned.
+                      Depending on the embed either references or full location definitions are returned.
         '400':
           description: bad input parameter
           content:
@@ -188,7 +188,7 @@ paths:
         - Journey
       summary:
         The GET trips service retrieves a trip element representing a train travel made of one or more
-        segments. Depending on the includeBehavior either references or full location definitions will be returned
+        segments. Depending on the embed either references or full location definitions will be returned
       operationId: getTripsId
       parameters:
         - in: path
@@ -212,7 +212,7 @@ paths:
               - ORIGIN_DESTINATION_ONLY
               - REAL_BOARDING_ALIGHTING
         - in: query
-          name: includeBehavior
+          name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -286,7 +286,7 @@ paths:
               - ORIGIN_DESTINATION_ONLY
               - REAL_BOARDING_ALIGHTING
         - in: query
-          name: includeBehavior
+          name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -437,7 +437,7 @@ paths:
               - ORIGIN_DESTINATION_ONLY
               - ALL_STOPS                    
         - in: query
-          name: includeBehavior
+          name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
           schema:
@@ -559,7 +559,7 @@ paths:
           required: true
           description: ID of the trip to get.
         - in: query
-          name: includeBehavior
+          name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -625,7 +625,7 @@ paths:
           required: true
           description: ID of the trip to get.
         - in: query
-          name: includeBehavior
+          name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -1474,7 +1474,7 @@ paths:
       operationId: getBookings
       parameters:
         - in: query
-          name: includeBehavior
+          name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -1597,7 +1597,7 @@ paths:
           required: true
           description: ID of the product to get.
         - in: query
-          name: includeBehavior
+          name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only
           schema:
@@ -2333,6 +2333,7 @@ components:
         index:
           type: number
           format: int32
+          description: sequence number of the segment in the ordering of all segments of the trip
         origin:
           oneOf:
             - $ref: '#/components/schemas/LocationRef'
@@ -2343,10 +2344,6 @@ components:
             - $ref: '#/components/schemas/LocationRef'
             - $ref: '#/components/schemas/Location'
           description: arrival point of the segment
-        seqId:
-          description: sequence number of the segment in the ordering of all segments of the trip
-          type: number
-          format: int32
         transfer:
           description: Transfer to the next vehicle not included in the request
           type: object
@@ -2740,7 +2737,7 @@ components:
     TripSearchCriteria:
       type: object
       properties:
-        includeBehavior:
+        embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only
           type: array
@@ -2839,7 +2836,7 @@ components:
           $ref: '#/components/schemas/CurrencyDef'
           description:
             The currency returned might be different from the one requested.
-        includeBehavior:
+        embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only
           type: array
@@ -2878,7 +2875,7 @@ components:
           $ref: '#/components/schemas/TripSearchCriteria'
         offerSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
-        includeBehavior:
+        embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only
           type: array
@@ -3201,7 +3198,6 @@ components:
           items:
             $ref: '#/components/schemas/Link'
       required:
-        - type
         - reference
       additionalProperties: false    
         
@@ -3639,9 +3635,9 @@ components:
           type: array
           items: 
             $ref: '#/components/schemas/PlaceOptionsBundleDef'
-        selectablePlaces:
+        GIselectablePlaces:
           $ref: '#/components/schemas/PlaceAvailabilityDef'
-        selectedPlaces:
+        GIselectedPlaces:
           $ref: '#/components/schemas/SelectedPlacesDef'
       required:
         - id      
@@ -3992,7 +3988,7 @@ components:
                   example: d290f1ee-6c54-4b01-90e6-d701748f0851
                 description: >-
                   Id of the passengers the selected optional ancillaries are for.
-        includeBehavior:
+        embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only
           type: array
@@ -4640,7 +4636,7 @@ components:
           $ref: '#/components/schemas/TravelValidityConstraintDef'
         reservationDetails:
           $ref: '#/components/schemas/ReservationDetailsDef'            
-        reservationOptions:
+        placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef' 
         reservationLegacyParameter:
           $ref: '#/components/schemas/LegacyReservationParameterDef'            
