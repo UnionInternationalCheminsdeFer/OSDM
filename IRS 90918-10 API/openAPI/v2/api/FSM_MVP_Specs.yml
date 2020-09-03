@@ -2439,12 +2439,8 @@ components:
         multiple names depending on the countries local languages.
       type: object
       properties:
-        codeList:
-          $ref: '#/components/schemas/StationCodeListDef'
         localCode:
           description: code unique with in the country only
-          type: string
-        code:
           type: string
         country:
           type: string
@@ -3406,6 +3402,9 @@ components:
     OfferPart:
       type: object
       properties:
+        confirmed: 
+          type: boolean
+          description: indicates whether the offerpart is confirmed or not. The information is needed mainly for handling partial confirmation cases
         price:
           $ref: '#/components/schemas/CurrencyPriceDef'
         pricingMode:
@@ -3849,7 +3848,12 @@ components:
                 type: array
                 items:
                   minItems: 1              
-                  type: string
+                  type: object
+                  properties:
+                    passengerReference: 
+                      type: string
+                    place: 
+                      type: string
       additionalProperties: false
       required:
         - selectedCoach
@@ -3961,41 +3965,46 @@ components:
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the selected booking. Only required if it is desired to add the specified offers to an existing booking. Special conditions may apply 
-        selectedOfferIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-            description: id of the selected offer
-          description: the list of offer ids that need to be provisionally booked. It has to be a list in case of return trip (2 offers would be booked)
-        selectedReservationsIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-            description: >-
-              If relevant, ids of the selected optional reservations.
-        selectedAncillaries:
+        selectedOffers:
           type: array
           items:
             type: object
             properties:
-              ancillaryId:
+              selectedOfferId:
                 type: string
                 format: uuid
                 example: d290f1ee-6c54-4b01-90e6-d701748f0851
-                description: >-
-                  If relevant, ids of the selected optional ancillaries.
-              passengerIds:
+                description: id of the selected offer
+              selectedReservationsIds:
                 type: array
                 items:
                   type: string
                   format: uuid
                   example: d290f1ee-6c54-4b01-90e6-d701748f0851
-                description: >-
-                  Id of the passengers the selected optional ancillaries are for.
+                  description: >-
+                    If relevant, ids of the selected optional reservations.
+              selectedAncillaries:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    ancillaryId:
+                      type: string
+                      format: uuid
+                      example: d290f1ee-6c54-4b01-90e6-d701748f0851
+                      description: >-
+                        If relevant, ids of the selected optional ancillaries.
+                    passengerIds:
+                      type: array
+                      items:
+                        type: string
+                        format: uuid
+                        example: d290f1ee-6c54-4b01-90e6-d701748f0851
+                        description: >-
+                          Id of the passengers the selected optional ancillaries are for.
+            description: the list of offer ids that need to be provisionally booked, with possibly the reservations and ancillaries associated that should be booked as well. It has to be a list in case of return trip (2 offers would be booked)
+            required:
+              - selectedOfferId
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only
@@ -4011,8 +4020,7 @@ components:
               - PASSENGERS
               - TICKETS
               - REFUND_PROPOSITIONS
-      required:
-        - selectedOfferId
+
     Booking:
       type: object
       properties:
