@@ -96,7 +96,7 @@ paths:
         - name: countryCode
           in: query
           description: >-
-            Search locations for a specific country (ISO 3166, 2-digits). Meant
+            Search locations for a specific country (ISO 3166, 2-chars). Meant
             for autocomplete functionality. A separate endpoint or channel would
             be provided for mass downloads
           required: false
@@ -352,7 +352,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TripSearchCriteria'
+              $ref: '#/components/schemas/TripRequest'
       responses:
         '200':
           description: Trip(s) found
@@ -2459,29 +2459,24 @@ components:
             The codes that can be used to represent the given station on the system.
             There can be several codes, in which case  it is relevant to have a list
             of couples.
-        name:
-          description: station name in local character set
-          type: string
-        nameLatin:
-          description: station name in Latin character representation
-          type: string
-        nameAscIi:
-          description: >-
-            station name in ASCII characters (a-z,A-Z,0-9,/,:,(,) ) for legacy
-            systems
-          type: string
         geoCoordinate:
           $ref: '#/components/schemas/GeoCoordinateDef'
         names:
-          description: names depending on a local language of the country
+          description: names of the station depending on language and charset
           type: array
           items:
             type: object
             properties:
               language:
                 type: string
+                description: the language for the entry, following ISO code
+                default: 'eng'
               name:
                 type: string
+              charset:
+                type: string
+                default: 'UTF-8'
+                description: the charset in which then name should be read
             additionalProperties: false
       additionalProperties: false
 
@@ -2577,7 +2572,6 @@ components:
          - city,
          - postalCode,
          - country
-
     POICodeList:
       description: Code list used for the POI codes.
       type: string
@@ -2647,7 +2641,7 @@ components:
             properties:
               codeList:
                 $ref: '#/components/schemas/POICodeList'
-              stationCode:
+              POICode:
                 type: string
                 description: the code representing the POI in the specified code list
           description: >-
@@ -2662,7 +2656,6 @@ components:
           type: string
           example: Bern Baerengraben (Denkmal)
       required:
-        - country
         - localCode
       additionalProperties: false
 
@@ -2729,10 +2722,11 @@ components:
         - latitude
         - longitude
       additionalProperties: false
-
-    TripSearchCriteria:
+    TripRequest:
       type: object
       properties:
+        tripSearchCriteria: 
+          $ref: '#/components/schemas/TripSearchCriteria'
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only
@@ -2742,6 +2736,9 @@ components:
             enum:
               - TRIPS
               - TRIPS.LOCATIONS
+    TripSearchCriteria:
+      type: object
+      properties:
         stopBehavior:
           description: >-
             Influences what stops are to be returned in response
@@ -2832,14 +2829,7 @@ components:
           $ref: '#/components/schemas/CurrencyDef'
           description:
             The currency returned might be different from the one requested.
-        embed:
-          description: >-
-            Influences whether referenced resources are returned in full or as references only
-          type: array
-          items:
-            type: string
-            enum:
-              - OFFERPARTS
+        
 
     TripOfferRequest:
       type: object
@@ -2881,7 +2871,9 @@ components:
               - ALL
               - TRIPOFFERS
               - TRIPOFFERS.TRIP
+              - TRIPOFFERS.TRIP.LOCATIONS
               - TRIPOFFERS.OFFERS
+              - TRIPOFFERS.OFFERS.OFFERPARTS
               - TRIPOFFERS.PASSENGERS
       required:
         - passengers
@@ -3221,11 +3213,7 @@ components:
             $ref: '#/components/schemas/ReductionCardReferenceDef'
         gender:
           $ref: '#/components/schemas/GenderDef'
-      required:
-        - dateOfBirth
-        - reductionCards
       additionalProperties: false  
-      
     PassengerPassportDef:
       description: >- 
         Travel document data to be exchanged for border control in case of legal requirements
@@ -4782,13 +4770,11 @@ components:
       required:
         - validityRange
       additionalProperties: false
-
     TravelerTypeDef:
       description: >- 
-        Values from the traveler type code list IRS 90918-10 - TODO
-        YOUNG_CHILD, CHILD, YOUTH, ADULT, SENIOR, FAMILY_CHILD, ACCOMP_PRM, PRM_CHILD, WHEELCHAIR, PERSON, PRM, DOG, LUGGAGE, BICYCLE, ACCOMP_DOG, CAR, MOTORCYCLE, TRAILER, PRAM
+        Values from the traveler type code list IRS 90918-10 
       type: string
-      
+      default: 'PERSON'
     LayoutsDef:
       type: object
       properties:
@@ -4797,7 +4783,6 @@ components:
           items:
             $ref: '#/components/schemas/CoachLayoutDef'
       additionalProperties: false
-      
     CoachLayoutDef:
       description: >-
         coach layout providing data to draw a coach layout. The items of a coach
@@ -5778,7 +5763,15 @@ components:
           items:
             $ref:  '#/components/schemas/FulfillmentOption' 
         offerSearchCriteria:
-            $ref:  '#/components/schemas/OfferSearchCriteria'  
+            $ref:  '#/components/schemas/OfferSearchCriteria'
+        embed:
+          description: >-
+            Influences whether referenced resources are returned in full or as references only
+          type: array
+          items:
+            type: string
+            enum:
+              - OFFERPARTS
               
     NonTripOfferCollectionDef:
       type: array
