@@ -101,8 +101,7 @@ paths:
             be provided for mass downloads
           required: false
           schema:
-            type: string
-            example: CH
+            $ref: '#/components/schemas/CountryDef'
         - name: limit
           in: query
           description: 'The number of locations to be returned ([1..50]).'
@@ -2443,8 +2442,7 @@ components:
           description: code unique with in the country only
           type: string
         country:
-          type: string
-          description: the country the station is located in
+          $ref: '#/components/schemas/CountryDef'
         codes:
           type: array
           items:
@@ -2491,8 +2489,7 @@ components:
           type: string
           description: the code representing the station in the specified code-list           
         country:
-          type: string
-          description: the country the station is located in
+          $ref: '#/components/schemas/CountryDef'
         name:
           type: string
           description : name of the station in the requested language
@@ -2648,9 +2645,7 @@ components:
             The codes that can be used to represent the given POI on the system. There can be several codes, 
             in which case it is relevant to have a list of couples.
         country:
-          description: country
-          type: string
-          example: Schweiz 
+          $ref: '#/components/schemas/CountryDef'
         name:
           description: name of the point of interest
           type: string
@@ -3071,7 +3066,7 @@ components:
       type: object
       properties:
         country:
-          type: string
+          $ref: '#/components/schemas/CountryDef'
         amount:
           description: amount
           type: number
@@ -3522,10 +3517,6 @@ components:
       required:
         - type
         - description
-        - afterSalesFee
-        - validFrom
-        - validUntil
-  
     AfterSalesFeeDef:
       type: object
       properties:
@@ -3539,9 +3530,6 @@ components:
           format: date-time     
       required:
        - price
-       - validFrom
-       - validUntil           
-
     RefundTypeDef:
           type: string
           enum:
@@ -3781,6 +3769,13 @@ components:
           $ref: '#/components/schemas/ReservationDetailsDef'          
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'
+        optionality:
+                description: MANDATORY - the booking can not be made without reservation, INCLUDED - reservation is included in the offer but is not mandatory, OPTIONAL reservation is not included but can be integrated in the same ticket
+                type: string
+                enum:
+                  - OPTIONAL
+                  - MANDATORY
+                  - INCLUDED
       required:
         - id,
         - offerPart,
@@ -3824,13 +3819,15 @@ components:
       description: place selection from a graphical display of coaches
       type: object
       properties:
-        selectedCoach:
+        selectedCoaches:
           description: selected coach and places in case of graphical reservation
           type: array
           items:
             minItems: 1
             type: object
             properties:
+              coachNr: 
+                type: string
               selectedPlaces:
                 description: selected places in case of graphical booking
                 type: array
@@ -3925,6 +3922,13 @@ components:
             $ref: '#/components/schemas/Link'
         offerPart:
           $ref: '#/components/schemas/OfferPart'
+        optionality:
+                description: MANDATORY - the booking can not be made without reservation, INCLUDED - reservation is included in the offer but is not mandatory, OPTIONAL reservation is not included but can be integrated in the same ticket
+                type: string
+                enum:
+                  - OPTIONAL
+                  - MANDATORY
+                  - INCLUDED
         category:
           type: string
           
@@ -4650,7 +4654,9 @@ components:
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef' 
         reservationLegacyParameter:
-          $ref: '#/components/schemas/LegacyReservationParameterDef'            
+          $ref: '#/components/schemas/LegacyReservationParameterDef'
+        coveredSection:
+          $ref: '#/components/schemas/TravelSectionDef'
       required:
         - id
         - type
@@ -5544,11 +5550,13 @@ components:
       properties:
         preferenceGroup:
           type: string
+          example: 'SEAT_DIRECTION'
         preferences:
           type: array
           minItems: 1
           items:
             type: string
+            example: 'FORWARD_FACING'
       required:
         - preferenceGroup
         - preferences
