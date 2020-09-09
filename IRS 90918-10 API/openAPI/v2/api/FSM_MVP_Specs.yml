@@ -76,7 +76,6 @@ paths:
             (like UIC, EVA or RESARAIL); UIC/EVA/RESARAIL forces stations
             defined by the appropriate code-system explicitly (national
             aspect); COORDS given as "lat,lon").
-          required: true
           schema:
             type: string
             default: NAME
@@ -2343,14 +2342,18 @@ components:
             - $ref: '#/components/schemas/LocationRef'
             - $ref: '#/components/schemas/Location'
           description: arrival point of the segment
+        duration: 
+          description: duration of the segment in  ISO 8601 Durations
+          type: string
+          example: P2DT3H4M
         transfer:
           description: Transfer to the next vehicle not included in the request
           type: object
           properties:
             duration:
-              description: Duration forseen to transfer to the next section
-              type: number
-              format: int32
+              description: Duration forseen to transfer to the next section  ISO 8601 Durations
+              type: string
+              example: P2DT3H4M
             transferType:
               description: 'WALK,...'
               type: string
@@ -2768,9 +2771,10 @@ components:
           default: false
         transportMode:
           description: >-
-            transport mode (code list of MERITS). Optional for offer requests,
-            included for alignment with FSM
-          type: string
+            transport mode (code list of MERITS). Optional for offer requests, included for alignment with FSM. If not set, no restriction is applied
+          type: array
+          items:
+            type: string
         serviceBrands:
           type: array
           items:
@@ -2829,7 +2833,7 @@ components:
     TripOfferRequest:
       type: object
       properties:
-        id:
+        tripId:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
@@ -2873,8 +2877,8 @@ components:
       required:
         - passengers
       description: >-
-        Defines the parameters needed to request a trip, standalone or in the context of an offer request. Note at least one
-        of the tripId, tripRef or trip elements must be set.
+        Defines the parameters needed to request an offer, either based on either  an existing trip (that is then passed by Id, Ref or in full) plus a set of offer search criterias, or based on tripsearch and offer search criteria. At least one
+        of the tripId, tripRef,trip elements or tripSearchCriteria must be set.
     TripOffer:
       type: object
       properties:
@@ -3341,11 +3345,6 @@ components:
           oneOf:
             - $ref: '#/components/schemas/Location'
             - $ref: '#/components/schemas/ConnectionPointDef'
-        segmentId:
-          description: >-
-            Reference to a trip segment in case the section corresponds to a
-            segment in the trip and the trip is part of the offer
-          type: string
       required:
         - start
         - end
@@ -5914,6 +5913,4 @@ components:
             - width
             - height
           additionalProperties: false
-      required:
-        - type
       additionalProperties: false
