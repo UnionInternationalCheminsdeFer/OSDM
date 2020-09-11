@@ -1793,6 +1793,64 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+    patch:
+      tags:
+        - Fulfillments
+      summary: >-
+        The PATCH fulfillments service allows the effective fulfillment of one ore more confirmed fulfillment. 
+      operationId: patchFulfillment
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the booking to be patched        
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentsPatch'
+      responses:
+        '200':
+          description: >-
+            Fulfillment successfully completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentsDef'
+        '202': 
+          description: >- 
+            Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '409':
+          description: >-
+             Conflict - the state of the server or resource does not allow the action (e.g. the booking was not confirmed)
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'            
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
           
   '/fulfillments/{fulfillmentId}':
     get:
@@ -4159,10 +4217,28 @@ components:
     FulfillmentsDef:
       description: >-
         list of fulfillments in a booking
-      type: array
-      items:
-        $ref: '#/components/schemas/Fulfillment'
-
+      type: object
+      properties:
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+        
+    FulfillmentsPatch:
+      type: object
+      properties:
+        fulfillmentUpdates:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                example: d290f1ee-6c54-4b01-90e6-d701748f0851
+              status: 
+                type: string
+                enum: [CONFIRMED]
     Fulfillment:
       type: object
       properties:
@@ -4172,7 +4248,7 @@ components:
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
         status: 
           type: string
-          enum: [CREATED, CHECKEDIN, REFUNDED]
+          enum: [CONFIRMED, FULFILLED, CHECKEDIN, REFUNDED]
         
         controlNumber:
           type: string
