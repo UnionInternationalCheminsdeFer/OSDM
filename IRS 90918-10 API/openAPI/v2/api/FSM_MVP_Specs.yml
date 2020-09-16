@@ -83,7 +83,6 @@ paths:
             (like UIC, EVA or RESARAIL); UIC/EVA/RESARAIL forces stations
             defined by the appropriate code-system explicitly (national
             aspect); COORDS given as "lat,lon").
-          required: true
           schema:
             type: string
             default: NAME
@@ -103,13 +102,12 @@ paths:
         - name: countryCode
           in: query
           description: >-
-            Search locations for a specific country (ISO 3166, 2-digits). Meant
+            Search locations for a specific country (ISO 3166, 2-chars). Meant
             for autocomplete functionality. A separate endpoint or channel would
             be provided for mass downloads
           required: false
           schema:
-            type: string
-            example: CH
+            $ref: '#/components/schemas/CountryDef'
         - name: limit
           in: query
           description: 'The number of locations to be returned ([1..50]).'
@@ -359,7 +357,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TripSearchCriteria'
+              $ref: '#/components/schemas/TripRequest'
       responses:
         '200':
           description: Trip(s) found
@@ -1802,6 +1800,64 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+    patch:
+      tags:
+        - Fulfillments
+      summary: >-
+        The PATCH fulfillments service allows the effective fulfillment of one ore more confirmed fulfillment. 
+      operationId: patchFulfillment
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the booking to be patched        
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentsPatch'
+      responses:
+        '200':
+          description: >-
+            Fulfillment successfully completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentsDef'
+        '202': 
+          description: >- 
+            Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '409':
+          description: >-
+             Conflict - the state of the server or resource does not allow the action (e.g. the booking was not confirmed)
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'            
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
           
   '/fulfillments/{fulfillmentId}':
     get:
@@ -2351,14 +2407,18 @@ components:
             - $ref: '#/components/schemas/LocationRef'
             - $ref: '#/components/schemas/Location'
           description: arrival point of the segment
+        duration: 
+          description: duration of the segment in  ISO 8601 Durations
+          type: string
+          example: P2DT3H4M
         transfer:
           description: Transfer to the next vehicle not included in the request
           type: object
           properties:
             duration:
-              description: Duration forseen to transfer to the next section
-              type: number
-              format: int32
+              description: Duration forseen to transfer to the next section  ISO 8601 Durations
+              type: string
+              example: P2DT3H4M
             transferType:
               description: 'WALK,...'
               type: string
@@ -2450,8 +2510,7 @@ components:
           description: code unique with in the country only
           type: string
         country:
-          type: string
-          description: the country the station is located in
+          $ref: '#/components/schemas/CountryDef'
         codes:
           type: array
           items:
@@ -2466,29 +2525,24 @@ components:
             The codes that can be used to represent the given station on the system.
             There can be several codes, in which case  it is relevant to have a list
             of couples.
-        name:
-          description: station name in local character set
-          type: string
-        nameLatin:
-          description: station name in Latin character representation
-          type: string
-        nameAscIi:
-          description: >-
-            station name in ASCII characters (a-z,A-Z,0-9,/,:,(,) ) for legacy
-            systems
-          type: string
         geoCoordinate:
           $ref: '#/components/schemas/GeoCoordinateDef'
         names:
-          description: names depending on a local language of the country
+          description: names of the station depending on language and charset
           type: array
           items:
             type: object
             properties:
               language:
                 type: string
+                description: the language for the entry, following ISO code
+                default: 'eng'
               name:
                 type: string
+              charset:
+                type: string
+                default: 'UTF-8'
+                description: the charset in which then name should be read
             additionalProperties: false
       additionalProperties: false
 
@@ -2503,8 +2557,7 @@ components:
           type: string
           description: the code representing the station in the specified code-list           
         country:
-          type: string
-          description: the country the station is located in
+          $ref: '#/components/schemas/CountryDef'
         name:
           type: string
           description : name of the station in the requested language
@@ -2584,7 +2637,6 @@ components:
          - city,
          - postalCode,
          - country
-
     POICodeList:
       description: Code list used for the POI codes.
       type: string
@@ -2654,22 +2706,19 @@ components:
             properties:
               codeList:
                 $ref: '#/components/schemas/POICodeList'
-              stationCode:
+              POICode:
                 type: string
                 description: the code representing the POI in the specified code list
           description: >-
             The codes that can be used to represent the given POI on the system. There can be several codes, 
             in which case it is relevant to have a list of couples.
         country:
-          description: country
-          type: string
-          example: Schweiz 
+          $ref: '#/components/schemas/CountryDef'
         name:
           description: name of the point of interest
           type: string
           example: Bern Baerengraben (Denkmal)
       required:
-        - country
         - localCode
       additionalProperties: false
 
@@ -2736,10 +2785,11 @@ components:
         - latitude
         - longitude
       additionalProperties: false
-
-    TripSearchCriteria:
+    TripRequest:
       type: object
       properties:
+        tripSearchCriteria: 
+          $ref: '#/components/schemas/TripSearchCriteria'
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only
@@ -2749,6 +2799,9 @@ components:
             enum:
               - TRIPS
               - TRIPS.LOCATIONS
+    TripSearchCriteria:
+      type: object
+      properties:
         stopBehavior:
           description: >-
             Influences what stops are to be returned in response
@@ -2783,9 +2836,10 @@ components:
           default: false
         transportMode:
           description: >-
-            transport mode (code list of MERITS). Optional for offer requests,
-            included for alignment with FSM
-          type: string
+            transport mode (code list of MERITS). Optional for offer requests, included for alignment with FSM. If not set, no restriction is applied
+          type: array
+          items:
+            type: string
         serviceBrands:
           type: array
           items:
@@ -2839,19 +2893,12 @@ components:
           $ref: '#/components/schemas/CurrencyDef'
           description:
             The currency returned might be different from the one requested.
-        embed:
-          description: >-
-            Influences whether referenced resources are returned in full or as references only
-          type: array
-          items:
-            type: string
-            enum:
-              - OFFERPARTS
+        
 
     TripOfferRequest:
       type: object
       properties:
-        id:
+        tripId:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
@@ -2888,13 +2935,15 @@ components:
               - ALL
               - TRIPOFFERS
               - TRIPOFFERS.TRIP
+              - TRIPOFFERS.TRIP.LOCATIONS
               - TRIPOFFERS.OFFERS
+              - TRIPOFFERS.OFFERS.OFFERPARTS
               - TRIPOFFERS.PASSENGERS
       required:
         - passengers
       description: >-
-        Defines the parameters needed to request a trip, standalone or in the context of an offer request. Note at least one
-        of the tripId, tripRef or trip elements must be set.
+        Defines the parameters needed to request an offer, either based on either  an existing trip (that is then passed by Id, Ref or in full) plus a set of offer search criterias, or based on tripsearch and offer search criteria. At least one
+        of the tripId, tripRef,trip elements or tripSearchCriteria must be set.
     TripOffer:
       type: object
       properties:
@@ -3086,7 +3135,7 @@ components:
       type: object
       properties:
         country:
-          type: string
+          $ref: '#/components/schemas/CountryDef'
         amount:
           description: amount
           type: number
@@ -3228,11 +3277,7 @@ components:
             $ref: '#/components/schemas/ReductionCardReferenceDef'
         gender:
           $ref: '#/components/schemas/GenderDef'
-      required:
-        - dateOfBirth
-        - reductionCards
       additionalProperties: false  
-      
     PassengerPassportDef:
       description: >- 
         Travel document data to be exchanged for border control in case of legal requirements
@@ -3365,11 +3410,6 @@ components:
           oneOf:
             - $ref: '#/components/schemas/Location'
             - $ref: '#/components/schemas/ConnectionPointDef'
-        segmentId:
-          description: >-
-            Reference to a trip segment in case the section corresponds to a
-            segment in the trip and the trip is part of the offer
-          type: string
       required:
         - start
         - end
@@ -3541,10 +3581,6 @@ components:
       required:
         - type
         - description
-        - afterSalesFee
-        - validFrom
-        - validUntil
-  
     AfterSalesFeeDef:
       type: object
       properties:
@@ -3558,9 +3594,6 @@ components:
           format: date-time     
       required:
        - price
-       - validFrom
-       - validUntil           
-
     RefundTypeDef:
           type: string
           enum:
@@ -3800,6 +3833,13 @@ components:
           $ref: '#/components/schemas/ReservationDetailsDef'          
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'
+        optionality:
+                description: MANDATORY - the booking can not be made without reservation, INCLUDED - reservation is included in the offer but is not mandatory, OPTIONAL reservation is not included but can be integrated in the same ticket
+                type: string
+                enum:
+                  - OPTIONAL
+                  - MANDATORY
+                  - INCLUDED
       required:
         - id,
         - offerPart,
@@ -3843,13 +3883,15 @@ components:
       description: place selection from a graphical display of coaches
       type: object
       properties:
-        selectedCoach:
+        selectedCoaches:
           description: selected coach and places in case of graphical reservation
           type: array
           items:
             minItems: 1
             type: object
             properties:
+              coachNr: 
+                type: string
               selectedPlaces:
                 description: selected places in case of graphical booking
                 type: array
@@ -3944,6 +3986,13 @@ components:
             $ref: '#/components/schemas/Link'
         offerPart:
           $ref: '#/components/schemas/OfferPart'
+        optionality:
+                description: MANDATORY - the booking can not be made without reservation, INCLUDED - reservation is included in the offer but is not mandatory, OPTIONAL reservation is not included but can be integrated in the same ticket
+                type: string
+                enum:
+                  - OPTIONAL
+                  - MANDATORY
+                  - INCLUDED
         category:
           type: string
           
@@ -4175,10 +4224,28 @@ components:
     FulfillmentsDef:
       description: >-
         list of fulfillments in a booking
-      type: array
-      items:
-        $ref: '#/components/schemas/Fulfillment'
-
+      type: object
+      properties:
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+        
+    FulfillmentsPatch:
+      type: object
+      properties:
+        fulfillmentUpdates:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                example: d290f1ee-6c54-4b01-90e6-d701748f0851
+              status: 
+                type: string
+                enum: [CONFIRMED]
     Fulfillment:
       type: object
       properties:
@@ -4188,7 +4255,7 @@ components:
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
         status: 
           type: string
-          enum: [CREATED, CHECKEDIN, REFUNDED]
+          enum: [CONFIRMED, FULFILLED, CHECKEDIN, REFUNDED]
         
         controlNumber:
           type: string
@@ -4669,7 +4736,9 @@ components:
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef' 
         reservationLegacyParameter:
-          $ref: '#/components/schemas/LegacyReservationParameterDef'            
+          $ref: '#/components/schemas/LegacyReservationParameterDef'
+        coveredSection:
+          $ref: '#/components/schemas/TravelSectionDef'
       required:
         - id
         - type
@@ -4789,13 +4858,11 @@ components:
       required:
         - validityRange
       additionalProperties: false
-
     TravelerTypeDef:
       description: >- 
-        Values from the traveler type code list IRS 90918-10 - TODO
-        YOUNG_CHILD, CHILD, YOUTH, ADULT, SENIOR, FAMILY_CHILD, ACCOMP_PRM, PRM_CHILD, WHEELCHAIR, PERSON, PRM, DOG, LUGGAGE, BICYCLE, ACCOMP_DOG, CAR, MOTORCYCLE, TRAILER, PRAM
+        Values from the traveler type code list IRS 90918-10 
       type: string
-      
+      default: 'PERSON'
     LayoutsDef:
       type: object
       properties:
@@ -4804,7 +4871,6 @@ components:
           items:
             $ref: '#/components/schemas/CoachLayoutDef'
       additionalProperties: false
-      
     CoachLayoutDef:
       description: >-
         coach layout providing data to draw a coach layout. The items of a coach
@@ -5566,11 +5632,13 @@ components:
       properties:
         preferenceGroup:
           type: string
+          example: 'SEAT_DIRECTION'
         preferences:
           type: array
           minItems: 1
           items:
             type: string
+            example: 'FORWARD_FACING'
       required:
         - preferenceGroup
         - preferences
@@ -5785,7 +5853,15 @@ components:
           items:
             $ref:  '#/components/schemas/FulfillmentOption' 
         offerSearchCriteria:
-            $ref:  '#/components/schemas/OfferSearchCriteria'  
+            $ref:  '#/components/schemas/OfferSearchCriteria'
+        embed:
+          description: >-
+            Influences whether referenced resources are returned in full or as references only
+          type: array
+          items:
+            type: string
+            enum:
+              - OFFERPARTS
               
     NonTripOfferCollectionDef:
       type: array
@@ -5920,6 +5996,4 @@ components:
             - width
             - height
           additionalProperties: false
-      required:
-        - type
       additionalProperties: false
