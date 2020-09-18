@@ -4,7 +4,7 @@ servers:
     url: 'https://virtserver.swaggerhub.com/Real-IT/FSM_MVP/1.0.0'
 info:
   title: UIC 90918-10 - OSDM
-  version: 0.9.2
+  version: 0.9.0
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -41,17 +41,10 @@ tags:
       resources to retrieve products information on one or more products
   - name: Fulfillments  
     description: >-
-      resources to retrieve fulfillments, e.g., tickets
+      resources to retrieve fulfillments, e.g. tickets
   - name: RefundOffers
     description: >-
       resources to get and accept a refund offer
-  - name: ExchangeOffers
-    description: >-
-      resources to get and accept a exchange offer
-  - name: CoachLayouts
-    description: >-
-      resources to get layouts of coaches
-
 paths:
   /locations:
     get:
@@ -2584,8 +2577,7 @@ components:
       properties:
         id:
           type: string
-          format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          description: unique id of this location on this server.
         type:
           oneOf:
             - $ref: '#/components/schemas/StationDetailsDef'
@@ -2615,13 +2607,9 @@ components:
       type: object
       description: used to encode an address using the standard street address attributes
       properties:
-        street:
+        street_nr:
           type: string
-          example: Segantinistrasse
-        houseNr:
-          description: house number
-          type: string
-          example: 7
+          example: Segantinistrasse 23
         city:
           description: city
           type: string
@@ -2658,8 +2646,7 @@ components:
       properties:
         id:
           type: string
-          format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          description: unique id of this trip on this server.
         segments:
           type: array
           items:
@@ -2813,9 +2800,9 @@ components:
             - ORIGIN_DESTINATION_ONLY
             - REAL_BOARDING_ALIGHTING
         origin:
-          $ref: '#/components/schemas/Location'
+          $ref: '#/components/schemas/LocationRef'
         destination:
-          $ref: '#/components/schemas/Location'
+          $ref: '#/components/schemas/LocationRef'
         viaValues:
           description: >-
             Ordered list of via locations within the trip. Unique code value has
@@ -2823,7 +2810,7 @@ components:
             underlying system.
           type: array
           items:
-            $ref: '#/components/schemas/Location'
+            $ref: '#/components/schemas/LocationRef'
         travelDateTime:
           type: string
           format: date-time
@@ -2986,7 +2973,7 @@ components:
     RequestedInformation:
       type: string
       description: >-
-        regular-expression indicating the data that must be set in the data
+        boolean-expression indicating the data that must be set in the data
         model in order to proceed to next step of the process
     OfferSummary:
       type: object
@@ -2999,8 +2986,8 @@ components:
           $ref: '#/components/schemas/CurrencyPriceDef'
         overallServiceClass:
           $ref: '#/components/schemas/ServiceClassDef'
-        overallServiceLevel:
-          $ref: '#/components/schemas/ServiceLevelIdDef'
+        overallAccommodationType:
+          $ref: '#/components/schemas/AccommodationType'
         overallFlexibility:
           $ref: '#/components/schemas/Flexibility'
       required:
@@ -3187,13 +3174,13 @@ components:
             RICS company code or the upcoming compatible ERA company code. In
             case proprietary codes are used on a bilateral base the codes must
             have at least 5 positions and start with x.
-        serviceClasses:
+        comfortClasses:
           description: >-
-            list of service classes in case this class is available for
+            list of comfort classes in case this card is available for
             different classes
           type: array
           items:
-            $ref: '#/components/schemas/ServiceClassIdDef'
+            $ref: '#/components/schemas/ComfortClassDef'
       required:
         - cardId
         - cardValueType
@@ -3427,7 +3414,9 @@ components:
           example: Andreas Dupont
         reference:
           $ref: '#/components/schemas/PassengerReferenceDef'
-          
+    AccommodationType:
+      type: string
+      description:  AccommodationType defintion out ocf AccoTypeCodeList
     ServiceLevelIdDef:
       description: >-
         Code of the service level, code-list in IRS 90918-1.
@@ -3516,8 +3505,7 @@ components:
       properties:
         id:
           type: string
-          format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          description: unique id of this product on this server.
         code:
           type: string
           description: >-
@@ -3912,17 +3900,14 @@ components:
       type: object
       description: segmentIndex references a segmentIndex in the trip part within the offer reply
       properties:
-         serviceLevel:
-            $ref: '#/components/schemas/ServiceLevelIdDef'  
+         accommodationType:
+            $ref: '#/components/schemas/AccommodationType'  
          reservedPlaces:
           description: reserved places in a confirmed reservation. Multiple place packs are needed to combined person and bicycle reservations
           type: array
           items:
               $ref: '#/components/schemas/PlacePackDef'
-      required:
-        - serviceLevel,
-        - reservedPlaces
-     
+  
     PlacePackDef:
         type: object
         description: selection of places with common properties
