@@ -226,7 +226,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TripDef'
+                $ref: '#/components/schemas/Trip'
         '400':
           description: bad input parameters
           content:
@@ -699,7 +699,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PassengerDef'
+                $ref: '#/components/schemas/Passenger'
           headers:
             Content-Language:
               schema:
@@ -753,14 +753,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PassengerDef'
+              $ref: '#/components/schemas/Passenger'
       responses:
         '200':
           description: Passenger successfully patched
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PassengerDef'
+                $ref: '#/components/schemas/Passenger'
           headers:
             Content-Language:
               schema:
@@ -818,7 +818,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PassengerDef'
+                $ref: '#/components/schemas/Passenger'
           headers:
             Content-Language:
               schema:
@@ -872,14 +872,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PassengerDef'
+              $ref: '#/components/schemas/Passenger'
       responses:
         '200':
           description: Passenger successfully patched
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PassengerDef'
+                $ref: '#/components/schemas/Passenger'
           headers:
             Content-Language:
               schema:
@@ -2079,13 +2079,69 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+    delete:
+      tags:
+        - RefundOffers
+      summary: >-
+        The DELETE refundOffers action allows to cancel a refundOffer without waiting for expiry. 
+      operationId: deleteRefundOffersId
+      parameters:
+        - in: path
+          name: bookingId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the offer the offerPart is part of.      
+        - in: path
+          name: refundOfferId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the product to delete.
+      responses:
+        '200':
+          description: RefundOffer confirmed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefundOffer'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
           
   '/bookings/{bookingId}/exchangeOffers':
     post:
       tags:
         - ExchangeOffers
       summary: >-
-        The POST exchangeOffers initiates an exchange process by creating a ExchangeOffer resource
+        *** NOT-MVP *** The POST exchangeOffers initiates an exchange process by creating a ExchangeOffer resource
         containing the needed information on the potential operation. The proposition can then be 
         accepted via a PATCH, deleted or left to die at the end of its lifetime. 
       operationId: postExchangeOffersBookingId
@@ -2136,7 +2192,7 @@ paths:
       tags:
         - ExchangeOffers
       summary: >-
-        The PATCH exchangeOffers action allows to accept and confirm an exchange operation. 
+        *** NOT-MVP *** The PATCH exchangeOffers action allows to accept and confirm an exchange operation. 
       operationId: patchExchangeOffersId
       parameters:
         - in: path
@@ -2200,7 +2256,7 @@ paths:
         - CoachLayouts 
       description: get coach layouts
       summary: >-
-        Retrieve the coach layout description needed for graphical reservation    
+        *** NOT-MVP ***Retrieve the coach layout description needed for graphical reservation    
       operationId: getCoachLayouts
       responses:
         '200':
@@ -2519,7 +2575,7 @@ components:
             There can be several codes, in which case  it is relevant to have a list
             of couples.
         geoCoordinate:
-          $ref: '#/components/schemas/GeoCoordinateDef'
+          $ref: '#/components/schemas/GeoCoordinate'
         names:
           description: names of the station depending on language and charset
           type: array
@@ -2554,6 +2610,8 @@ components:
         name:
           type: string
           description : name of the station in the requested language
+        geoCoordinate:
+          $ref: '#/components/schemas/GeoCoordinate'
       required:
         - country
         - code
@@ -2562,6 +2620,9 @@ components:
     LocationRef:
       type: object
       properties:
+        id:
+          type: string
+          description: unique id of this location on this server.
         href:
           type: string
           format: url
@@ -2583,7 +2644,7 @@ components:
             - $ref: '#/components/schemas/StationDetailsDef'
             - $ref: '#/components/schemas/POI'
             - $ref: '#/components/schemas/Address'
-            - $ref: '#/components/schemas/GeoCoordinateDef'
+            - $ref: '#/components/schemas/GeoCoordinate'
         links:
           type: array
           description: Context information required by the services.
@@ -2609,6 +2670,7 @@ components:
       properties:
         street_nr:
           type: string
+          description: the street name and house number (if applicable)
           example: Segantinistrasse 23
         city:
           description: city
@@ -2620,6 +2682,8 @@ components:
           example: 3006
         country:
           $ref: '#/components/schemas/CountryDef'
+        geoCoordinate:
+          $ref: '#/components/schemas/GeoCoordinate'
       required:
          - street,
          - city,
@@ -2633,6 +2697,9 @@ components:
     TripRef:
       type: object
       properties:
+        id:
+          type: string
+          description: unique id of this trip on this server.
         href:
           type: string
           format: url
@@ -2641,7 +2708,7 @@ components:
           type: string
           example: Bruxelles-Midi - Paris-Nord 2020/07/01 10:05
 
-    TripDef:
+    Trip:
       type: object
       properties:
         id:
@@ -2705,6 +2772,8 @@ components:
           description: name of the point of interest
           type: string
           example: Bern Baerengraben (Denkmal)
+        geoCoordinate:
+          $ref: '#/components/schemas/GeoCoordinate'
       required:
         - localCode
       additionalProperties: false
@@ -2721,7 +2790,7 @@ components:
           items:
             oneOf:
              - $ref: '#/components/schemas/TripRef'
-             - $ref: '#/components/schemas/TripDef'
+             - $ref: '#/components/schemas/Trip'
         scrollBackContext:
           type: string
           description: >-
@@ -2737,7 +2806,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    GeoCoordinateDef:
+    GeoCoordinate:
       description: >-
         Used to provide any geo-encoded location, regardless of environment, using longitude and latitude coordinates.
       type: object
@@ -2897,7 +2966,7 @@ components:
           format: url
           example: 'http://some.provider/trip/2345'
         trip:
-          $ref: '#/components/schemas/TripDef'
+          $ref: '#/components/schemas/Trip'
         requestedSection:
           $ref: '#/components/schemas/TravelSectionDef'
         requestedFulfillmentOptions:
@@ -2907,7 +2976,7 @@ components:
         passengers:
           type: array
           items:
-            $ref: '#/components/schemas/PassengerDef'
+            $ref: '#/components/schemas/Passenger'
         tripSearchCriteria:
           $ref: '#/components/schemas/TripSearchCriteria'
         offerSearchCriteria:
@@ -2941,7 +3010,7 @@ components:
         trip:
           oneOf:
             - $ref: '#/components/schemas/TripRef'
-            - $ref: '#/components/schemas/TripDef'
+            - $ref: '#/components/schemas/Trip'
         offers:
           type: array
           items:
@@ -2953,7 +3022,7 @@ components:
           items:
             oneOf:
               - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/PassengerDef'
+              - $ref: '#/components/schemas/Passenger'
         links:
           type: array
           items:
@@ -2962,6 +3031,10 @@ components:
     TripOfferRef:
       type: object
       properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -2999,6 +3072,10 @@ components:
     Offer:
       type: object
       properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         offerMessages:
           type: array
           items:
@@ -3016,7 +3093,7 @@ components:
         trip:
           oneOf:
             - $ref: '#/components/schemas/TripRef'
-            - $ref: '#/components/schemas/TripDef'
+            - $ref: '#/components/schemas/Trip'
         validFrom:
           type: string
           format: date-time
@@ -3059,6 +3136,10 @@ components:
     OfferRef:
       type: object
       properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -3214,7 +3295,7 @@ components:
        stable reference to a passenger within the offer and booking
       type: string
       
-    PassengerDef:
+    Passenger:
       type: object
       description: >-
         passenger of transportable (e.g. bicycle)
@@ -3405,6 +3486,10 @@ components:
     PassengerRef:
       type: object
       properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -3454,7 +3539,7 @@ components:
           items:
             oneOf:
               - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/PassengerDef'
+              - $ref: '#/components/schemas/Passenger'
         requiredPersonalData:
           $ref: '#/components/schemas/PersonalDataConstraintDef'
         validFrom:
@@ -3485,6 +3570,9 @@ components:
     ProductRef:
       type: object
       properties:
+        id:
+          type: string
+          description: unique id of this product on this server.
         href:
           type: string
           format: url
@@ -3699,6 +3787,7 @@ components:
         - id              
    
     PlaceAvailabilityDef:
+      description: \*** NOT-MVP *** structure used for graphical place selection
       type: object
       properties:
         coaches:
@@ -3868,7 +3957,7 @@ components:
         - offerPart
         - reservationDetails
     SelectedPlacesDef:
-      description: place selection from a graphical display of coaches
+      description: \*** NOT-MVP *** place selection from a graphical display of coaches
       type: object
       properties:
         selectedCoaches:
@@ -3984,6 +4073,10 @@ components:
     OfferPartRef:
       type: object
       properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -4110,7 +4203,7 @@ components:
           items:
             oneOf:
               - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/PassengerDef'
+              - $ref: '#/components/schemas/Passenger'
         fulfillments:
           type: array
           items:
@@ -4369,6 +4462,10 @@ components:
     FulfillmentRef:
       type: object
       properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -4438,6 +4535,10 @@ components:
     RefundOfferRef:
       type: object
       properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -4477,7 +4578,7 @@ components:
           items:
             oneOf:
               - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/PassengerDef'
+              - $ref: '#/components/schemas/Passenger'
         fulfillments:
           type: array
           items:
@@ -5346,7 +5447,7 @@ components:
           type: array
           minItems: 1
           items:
-            $ref: '#/components/schemas/GeoCoordinateDef'
+            $ref: '#/components/schemas/GeoCoordinate'
       additionalProperties: false
     
     ViaStationsDef:
@@ -5826,13 +5927,13 @@ components:
           items:
             type: string
         geoCoordinate:
-          $ref: '#/components/schemas/GeoCoordinateDef'
+          $ref: '#/components/schemas/GeoCoordinate'
         travelPeriod:
           $ref: '#/components/schemas/CalendarDef'
         passengers:
           type: array
           items:
-            $ref:  '#/components/schemas/PassengerDef'  
+            $ref:  '#/components/schemas/Passenger'  
         requestedFulfillmentOptions: 
           type: array
           items:
