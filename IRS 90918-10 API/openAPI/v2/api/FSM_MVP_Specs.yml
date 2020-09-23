@@ -2919,8 +2919,9 @@ components:
           type: boolean
           default: false
       required:
-        - originValue
-        - destinationValue
+        - origin
+        - destination
+        - travelDateTime
 
     OfferSearchCriteria:
       type: object
@@ -2930,7 +2931,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Flexibility'
-        serviceClasses:
+        serviceClassIds:
           type: array
           items:
             $ref: '#/components/schemas/ServiceClassIdDef'
@@ -2949,26 +2950,21 @@ components:
           $ref: '#/components/schemas/CurrencyDef'
           description:
             The currency returned might be different from the one requested.
-        
 
     TripOfferRequest:
       type: object
       properties:
-        tripId:
-          type: string
-          format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          description: >-
-            optionally used instead of tripSearchCriteria element, if the offers
-            are to be constructed for a previously built trip
-        tripRef:
-          type: string
-          format: url
-          example: 'http://some.provider/trip/2345'
-        trip:
-          $ref: '#/components/schemas/Trip'
-        requestedSection:
-          $ref: '#/components/schemas/TravelSectionDef'
+        tripSearch:
+          oneOf:
+            - type: object
+              properties:
+                trip:
+                  $ref: '#/components/schemas/Trip'
+                requestedSection:
+                 $ref: '#/components/schemas/TravelSectionDef'
+              required:
+                - trip
+            - $ref: '#/components/schemas/TripSearchCriteria'
         requestedFulfillmentOptions:
           type: array
           items:
@@ -2977,8 +2973,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
-        tripSearchCriteria:
-          $ref: '#/components/schemas/TripSearchCriteria'
         offerSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
         embed:
@@ -2996,7 +2990,9 @@ components:
               - TRIPOFFERS.OFFERS.OFFERPARTS
               - TRIPOFFERS.PASSENGERS
       required:
+        - tripSearch
         - passengers
+        
       description: >-
         Defines the parameters needed to request an offer, either based on either  an existing trip (that is then passed by Id, Ref or in full) plus a set of offer search criterias, or based on tripsearch and offer search criteria. At least one
         of the tripId, tripRef,trip elements or tripSearchCriteria must be set.
@@ -3057,16 +3053,17 @@ components:
       properties:
         minimalPrice:
           $ref: '#/components/schemas/CurrencyPriceDef'
-        overallServiceClass:
-          $ref: '#/components/schemas/ServiceClassDef'
+        overallServiceClassId:
+          $ref: '#/components/schemas/ServiceClassIdDef'
+        overallComfortClass:
+          $ref: '#/components/schemas/ComfortClassDef'
         overallAccommodationType:
           $ref: '#/components/schemas/AccommodationType'
         overallFlexibility:
           $ref: '#/components/schemas/Flexibility'
       required:
         - minimalPrice
-        - overallServiceClass
-        - overallServiceLevel
+        - overallServiceClassId
         - overallFlexibility
 
     Offer:
@@ -3094,16 +3091,19 @@ components:
           oneOf:
             - $ref: '#/components/schemas/TripRef'
             - $ref: '#/components/schemas/Trip'
+          description: Note that trip element cannot be embedded in tripoffer context as the TRIPOFFERS.OFFERS.TRIP value is not a possible embed value for TripOffers.
         validFrom:
           type: string
           format: date-time
+          description: defines the minimum validity period of the trip booked, meaning the period during which it will be possible to travel with the fulfillments for this offer 
         validTo:
           type: string
           format: date-time 
-        supportedMediaTypes:
+          description: defines the minimum validity period of the trip booked, meaning the period during which it will be possible to travel with the fulfillments for this offer
+        availableFulfillmentOptions:
           type: array
           items:
-            $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+            $ref: '#/components/schemas/FulfillmentOption'
         offerPartRefs:
           type: array        
           items:
@@ -3205,9 +3205,9 @@ components:
         country:
           $ref: '#/components/schemas/CountryDef'
         amount:
-          description: amount
+          description: amount in cents
           type: number
-          format: float
+          format: int32
         percentage:
           type: number
           format: float
@@ -3217,6 +3217,7 @@ components:
            $ref: '#/components/schemas/VatScopeDef'
       required:
         - country
+        - amount
       additionalProperties: false
       
     VatScopeDef:
@@ -3264,6 +3265,7 @@ components:
             $ref: '#/components/schemas/ComfortClassDef'
       required:
         - cardId
+        - cardValue
         - cardValueType
       additionalProperties: false
       
@@ -3452,8 +3454,6 @@ components:
           type: string
           description: >-
             the name the carrier itself uses to designate this specific service class
-        comfortClass:
-          $ref: '#/components/schemas/ComfortClassDef'
       required:
         - id
       additionalProperties: false
@@ -3497,8 +3497,7 @@ components:
         title:
           type: string
           example: Andreas Dupont
-        reference:
-          $ref: '#/components/schemas/PassengerReferenceDef'
+          
     AccommodationType:
       type: string
       description:  AccommodationType defintion out ocf AccoTypeCodeList
@@ -3523,9 +3522,7 @@ components:
     OfferPart:
       type: object
       properties:
-        confirmed: 
-          type: boolean
-          description: indicates whether the offerpart is confirmed or not. The information is needed mainly for handling partial confirmation cases
+
         price:
           $ref: '#/components/schemas/CurrencyPriceDef'
         pricingMode:
@@ -3540,6 +3537,12 @@ components:
             oneOf:
               - $ref: '#/components/schemas/PassengerRef'
               - $ref: '#/components/schemas/Passenger'
+        providerOrderReference:
+          type: string
+          description: the order reference of the order the offer part is in on the provider side
+        finalProviderReference:
+          type: string
+          description: the order reference of the order the offer part is in on the final provider side = the provider actually hosting or allocating  the product
         requiredPersonalData:
           $ref: '#/components/schemas/PersonalDataConstraintDef'
         validFrom:
@@ -3565,8 +3568,7 @@ components:
                 description: indices of the segments in the trip given by the provider of the offer
                 type: array
                 items:
-                  type: string
-                  
+                  type: number
     ProductRef:
       type: object
       properties:
@@ -3775,9 +3777,8 @@ components:
         passengers:
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/PassengerReferenceDef'
+            $ref: '#/components/schemas/PassengerRef'
+
         selectedPlaceProperties: 
           type: array
           items:
@@ -3907,7 +3908,7 @@ components:
         offerPart:
           $ref: '#/components/schemas/OfferPart'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'          
+          $ref: '#/components/schemas/ReservationDetails'          
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'
         optionality:
@@ -3949,7 +3950,7 @@ components:
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'
+          $ref: '#/components/schemas/ReservationDetails'
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'          
       required:
@@ -3985,7 +3986,7 @@ components:
         - selectedCoach
         - selectedPlaces
 
-    ReservationDetailsDef:
+    ReservationDetails:
       type: object
       description: segmentIndex references a segmentIndex in the trip part within the offer reply
       properties:
@@ -4372,9 +4373,7 @@ components:
             list of passengers on the booking in case the booking does not cover all passengers
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/PassengerReferenceDef'
-              - $ref: '#/components/schemas/PassengerRef'
+            $ref: '#/components/schemas/PassengerRef'
         documentType:
          type: string
          enum:
@@ -4818,7 +4817,7 @@ components:
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidityConstraintDef'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'            
+          $ref: '#/components/schemas/ReservationDetails'            
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef' 
         reservationLegacyParameter:
@@ -5762,7 +5761,7 @@ components:
       properties:
         id:
           $ref: '#/components/schemas/ServiceLevelIdDef'
-        combiningServiceClasses:
+        combiningServiceClassIds:
           description: list of service class ids that can be combined with these service levels
           type: array
           items:
