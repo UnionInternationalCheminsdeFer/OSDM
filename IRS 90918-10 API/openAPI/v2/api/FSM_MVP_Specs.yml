@@ -3308,8 +3308,6 @@ components:
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: >-
            id of the passenger resource in case service to patch a single passenger is provided. The id needs to be implemented transient with a short time to lifedue to GdPR
-        type:
-          $ref:  '#/components/schemas/TravelerTypeDef'  
         reference:
           description: >-
             stable reference to passengers from other elements, or from caller
@@ -3347,6 +3345,13 @@ components:
             $ref: '#/components/schemas/ReductionCardReferenceDef'
         gender:
           $ref: '#/components/schemas/GenderDef'
+        prmNeeds:
+          type: string
+          enum:
+            - WHEELCHAIR
+            - ACCOMPDOG
+            - COMPANIONSEAT
+            - COMPANION
       additionalProperties: false  
     PassengerPassportDef:
       description: >- 
