@@ -1110,7 +1110,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Reservation'
+              $ref: '#/components/schemas/ReservationPatch'
       responses:
         '200':
           description: Place successfully selected
@@ -1235,7 +1235,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/IntegratedReservation'
+              $ref: '#/components/schemas/IntegratedReservationPatch'
       responses:
         '200':
           description: Place successfully selected
@@ -1610,6 +1610,7 @@ paths:
                 - BOOKEDOFFERS.OFFERPARTS
                 - PASSENGERS
                 - TICKETS
+                - REFUND_PROPOSITIONS
       responses:
         '200':
           description: booking found
@@ -2919,8 +2920,9 @@ components:
           type: boolean
           default: false
       required:
-        - originValue
-        - destinationValue
+        - origin
+        - destination
+        - travelDateTime
 
     OfferSearchCriteria:
       type: object
@@ -2930,7 +2932,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Flexibility'
-        serviceClasses:
+        comfortclasses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ComfortClassDef'
+          description: >-
+            The classes returned might be different from the requested classes.
+        serviceClassIds:
           type: array
           items:
             $ref: '#/components/schemas/ServiceClassIdDef'
@@ -2939,36 +2947,25 @@ components:
         reservationOffersOnly:
           type: boolean
           default: false
-        languages:
-          type: array
-          items:
-            type: string
-          description: >-
-            The language returned might be different from the languages request. The list is a prioritized list.
         currency:
           $ref: '#/components/schemas/CurrencyDef'
           description:
             The currency returned might be different from the one requested.
-        
 
     TripOfferRequest:
       type: object
       properties:
-        tripId:
-          type: string
-          format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          description: >-
-            optionally used instead of tripSearchCriteria element, if the offers
-            are to be constructed for a previously built trip
-        tripRef:
-          type: string
-          format: url
-          example: 'http://some.provider/trip/2345'
-        trip:
-          $ref: '#/components/schemas/Trip'
-        requestedSection:
-          $ref: '#/components/schemas/TravelSectionDef'
+        tripSearch:
+          oneOf:
+            - type: object
+              properties:
+                trip:
+                  $ref: '#/components/schemas/Trip'
+                requestedSection:
+                 $ref: '#/components/schemas/TravelSectionDef'
+              required:
+                - trip
+            - $ref: '#/components/schemas/TripSearchCriteria'
         requestedFulfillmentOptions:
           type: array
           items:
@@ -2977,8 +2974,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
-        tripSearchCriteria:
-          $ref: '#/components/schemas/TripSearchCriteria'
         offerSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
         embed:
@@ -2996,7 +2991,9 @@ components:
               - TRIPOFFERS.OFFERS.OFFERPARTS
               - TRIPOFFERS.PASSENGERS
       required:
+        - tripSearch
         - passengers
+        
       description: >-
         Defines the parameters needed to request an offer, either based on either  an existing trip (that is then passed by Id, Ref or in full) plus a set of offer search criterias, or based on tripsearch and offer search criteria. At least one
         of the tripId, tripRef,trip elements or tripSearchCriteria must be set.
@@ -3057,16 +3054,17 @@ components:
       properties:
         minimalPrice:
           $ref: '#/components/schemas/CurrencyPriceDef'
-        overallServiceClass:
-          $ref: '#/components/schemas/ServiceClassDef'
+        overallServiceClassId:
+          $ref: '#/components/schemas/ServiceClassIdDef'
+        overallComfortClass:
+          $ref: '#/components/schemas/ComfortClassDef'
         overallAccommodationType:
           $ref: '#/components/schemas/AccommodationType'
         overallFlexibility:
           $ref: '#/components/schemas/Flexibility'
       required:
         - minimalPrice
-        - overallServiceClass
-        - overallServiceLevel
+        - overallServiceClassId
         - overallFlexibility
 
     Offer:
@@ -3094,16 +3092,19 @@ components:
           oneOf:
             - $ref: '#/components/schemas/TripRef'
             - $ref: '#/components/schemas/Trip'
+          description: Note that trip element cannot be embedded in tripoffer context as the TRIPOFFERS.OFFERS.TRIP value is not a possible embed value for TripOffers.
         validFrom:
           type: string
           format: date-time
+          description: defines the minimum validity period of the trip booked, meaning the period during which it will be possible to travel with the fulfillments for this offer 
         validTo:
           type: string
           format: date-time 
-        supportedMediaTypes:
+          description: defines the minimum validity period of the trip booked, meaning the period during which it will be possible to travel with the fulfillments for this offer
+        availableFulfillmentOptions:
           type: array
           items:
-            $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+            $ref: '#/components/schemas/FulfillmentOption'
         offerPartRefs:
           type: array        
           items:
@@ -3205,9 +3206,9 @@ components:
         country:
           $ref: '#/components/schemas/CountryDef'
         amount:
-          description: amount
+          description: amount in cents
           type: number
-          format: float
+          format: int32
         percentage:
           type: number
           format: float
@@ -3217,6 +3218,7 @@ components:
            $ref: '#/components/schemas/VatScopeDef'
       required:
         - country
+        - amount
       additionalProperties: false
       
     VatScopeDef:
@@ -3255,16 +3257,35 @@ components:
             RICS company code or the upcoming compatible ERA company code. In
             case proprietary codes are used on a bilateral base the codes must
             have at least 5 positions and start with x.
-        comfortClasses:
-          description: >-
-            list of comfort classes in case this card is available for
-            different classes
-          type: array
-          items:
-            $ref: '#/components/schemas/ComfortClassDef'
       required:
-        - cardId
+        - cardValue
         - cardValueType
+      additionalProperties: false
+    LoyaltyCardReferenceDef:
+      type: object
+      properties:
+        cardValue:
+          description: code of the card type according to code list
+          type: string
+        cardValueType:
+          description: code list for the cardValue provided
+          type: string
+        cardName:
+          description: card name for printing on fulfillments
+          type: string
+        cardNumber:
+          type: string
+          description: the unique number identifying the loyalty card.
+        issuer:
+          type: string
+          description: >-
+            RICS company code or the upcoming compatible ERA company code. In
+            case proprietary codes are used on a bilateral base the codes must
+            have at least 5 positions and start with x.
+      required:
+        - cardValue
+        - cardValueType
+        - cardNumber
       additionalProperties: false
       
     CardIdentificationDef:
@@ -3306,8 +3327,6 @@ components:
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: >-
            id of the passenger resource in case service to patch a single passenger is provided. The id needs to be implemented transient with a short time to lifedue to GdPR
-        type:
-          $ref:  '#/components/schemas/TravelerTypeDef'  
         reference:
           description: >-
             stable reference to passengers from other elements, or from caller
@@ -3343,8 +3362,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReductionCardReferenceDef'
+        loyaltyCards:
+          description: loyalty cards owned by the passenger 
+          type: array
+          items:
+            $ref: '#/components/schemas/LoyaltyCardReferenceDef'
         gender:
           $ref: '#/components/schemas/GenderDef'
+        prmNeeds:
+          type: string
+          enum:
+            - WHEELCHAIR
+            - ACCOMPDOG
+            - COMPANIONSEAT
+            - COMPANION
       additionalProperties: false  
     PassengerPassportDef:
       description: >- 
@@ -3373,7 +3404,7 @@ components:
         documentId:
           type: string
         documentType:
-          description: 'values: passport,id-card,diplomatic passport,refugee travel document'
+          description: Refer to codelist for values
           type: string
         gender:
           $ref: '#/components/schemas/GenderDef'
@@ -3452,8 +3483,6 @@ components:
           type: string
           description: >-
             the name the carrier itself uses to designate this specific service class
-        comfortClass:
-          $ref: '#/components/schemas/ComfortClassDef'
       required:
         - id
       additionalProperties: false
@@ -3497,8 +3526,7 @@ components:
         title:
           type: string
           example: Andreas Dupont
-        reference:
-          $ref: '#/components/schemas/PassengerReferenceDef'
+          
     AccommodationType:
       type: string
       description:  AccommodationType defintion out ocf AccoTypeCodeList
@@ -3523,9 +3551,7 @@ components:
     OfferPart:
       type: object
       properties:
-        confirmed: 
-          type: boolean
-          description: indicates whether the offerpart is confirmed or not. The information is needed mainly for handling partial confirmation cases
+
         price:
           $ref: '#/components/schemas/CurrencyPriceDef'
         pricingMode:
@@ -3540,6 +3566,12 @@ components:
             oneOf:
               - $ref: '#/components/schemas/PassengerRef'
               - $ref: '#/components/schemas/Passenger'
+        providerBookingReference:
+          type: string
+          description: the booking reference of the booking the offer part is in on the provider side
+        finalProviderBookingReference:
+          type: string
+          description: the booking reference of the order the offer part is in on the final provider side = the provider actually hosting or allocating  the product
         requiredPersonalData:
           $ref: '#/components/schemas/PersonalDataConstraintDef'
         validFrom:
@@ -3565,8 +3597,7 @@ components:
                 description: indices of the segments in the trip given by the provider of the offer
                 type: array
                 items:
-                  type: string
-                  
+                  type: number
     ProductRef:
       type: object
       properties:
@@ -3616,6 +3647,8 @@ components:
           $ref: '#/components/schemas/ExchangeTypeDef'
         serviceClass:
           $ref: '#/components/schemas/ServiceClassDef'
+        comfortClass:
+          $ref: '#/components/schemas/ComfortClassDef'
         fulfillmentMediaTypes:
           type: array
           items:
@@ -3733,6 +3766,29 @@ components:
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
                 
+    PlaceSelectionPatch:
+      type: object
+      description: >-
+        place selection options and selected options in an offer
+        - selected optional place properties (selectedOptions)
+        - selectedPlaces from a graphical place selection (selectedPlaces)
+        - reference place for adjacent reservation (referencePlace)
+      properties:
+        referencePlace: 
+          description: selected place for an adjacent reservation (NEARBY)
+          type: object    
+          properties:
+            placeNumber:
+              type: string
+            coachNumber:
+              type: string
+        selectedOptions:
+          type: array
+          items: 
+            $ref: '#/components/schemas/PlaceOptionsBundleDef'
+        selectedPlaces:
+          $ref: '#/components/schemas/SelectedPlacesDef'
+
     PlaceSelectionDef:
       type: object
       description: >-
@@ -3775,9 +3831,8 @@ components:
         passengers:
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/PassengerReferenceDef'
+            $ref: '#/components/schemas/PassengerRef'
+
         selectedPlaceProperties: 
           type: array
           items:
@@ -3907,7 +3962,7 @@ components:
         offerPart:
           $ref: '#/components/schemas/OfferPart'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'          
+          $ref: '#/components/schemas/ReservationDetails'          
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'
         optionality:
@@ -3949,13 +4004,29 @@ components:
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'
+          $ref: '#/components/schemas/ReservationDetails'
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'          
       required:
         - id,
         - offerPart
         - reservationDetails
+        
+    ReservationPatch:
+      type: object
+      description: >-
+        reservationPatch is the structure used to modify reservations. It is a subset of the complete reservation element
+      properties:
+        placeSelection:
+          $ref: '#/components/schemas/PlaceSelectionPatch'
+
+    IntegratedReservationPatch:
+      description: reservation includes the reservation options in the initial offer it needs to be updated with the selected places before the confirmation which creates the reservation details including the reserved places   
+      type: object
+      properties:
+        placeSelection:
+          $ref: '#/components/schemas/PlaceSelectionPatch'          
+    
     SelectedPlacesDef:
       description: \*** NOT-MVP *** place selection from a graphical display of coaches
       type: object
@@ -3985,7 +4056,7 @@ components:
         - selectedCoach
         - selectedPlaces
 
-    ReservationDetailsDef:
+    ReservationDetails:
       type: object
       description: segmentIndex references a segmentIndex in the trip part within the offer reply
       properties:
@@ -4094,11 +4165,6 @@ components:
     BookingRequest:
       type: object
       properties:
-        bookingId:
-          type: string
-          format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          description: id of the selected booking. Only required if it is desired to add the specified offers to an existing booking. Special conditions may apply 
         selectedOffers:
           type: array
           items:
@@ -4152,7 +4218,6 @@ components:
               - BOOKEDOFFERS.TRIPS.LOCATIONS
               - BOOKEDOFFERS.OFFERPARTS
               - PASSENGERS
-              - TICKETS
               - REFUND_PROPOSITIONS
 
     Booking:
@@ -4372,9 +4437,7 @@ components:
             list of passengers on the booking in case the booking does not cover all passengers
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/PassengerReferenceDef'
-              - $ref: '#/components/schemas/PassengerRef'
+            $ref: '#/components/schemas/PassengerRef'
         documentType:
          type: string
          enum:
@@ -4818,7 +4881,7 @@ components:
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidityConstraintDef'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'            
+          $ref: '#/components/schemas/ReservationDetails'            
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef' 
         reservationLegacyParameter:
@@ -4946,9 +5009,8 @@ components:
       additionalProperties: false
     TravelerTypeDef:
       description: >- 
-        Values from the traveler type code list IRS 90918-10 
+        Subset of the values from the traveler type code list IRS 90918-10 
       type: string
-      default: 'PERSON'
     LayoutsDef:
       type: object
       properties:
@@ -5762,7 +5824,7 @@ components:
       properties:
         id:
           $ref: '#/components/schemas/ServiceLevelIdDef'
-        combiningServiceClasses:
+        combiningServiceClassIds:
           description: list of service class ids that can be combined with these service levels
           type: array
           items:
