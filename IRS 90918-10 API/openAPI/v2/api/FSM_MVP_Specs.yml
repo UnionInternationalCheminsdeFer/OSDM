@@ -3566,12 +3566,12 @@ components:
             oneOf:
               - $ref: '#/components/schemas/PassengerRef'
               - $ref: '#/components/schemas/Passenger'
-        providerOrderReference:
+        providerBookingReference:
           type: string
-          description: the order reference of the order the offer part is in on the provider side
-        finalProviderReference:
+          description: the booking reference of the booking the offer part is in on the provider side
+        finalProviderBookingReference:
           type: string
-          description: the order reference of the order the offer part is in on the final provider side = the provider actually hosting or allocating  the product
+          description: the booking reference of the order the offer part is in on the final provider side = the provider actually hosting or allocating  the product
         requiredPersonalData:
           $ref: '#/components/schemas/PersonalDataConstraintDef'
         validFrom:
