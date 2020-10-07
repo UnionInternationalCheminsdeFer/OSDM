@@ -2577,23 +2577,8 @@ components:
             of couples.
         geoCoordinate:
           $ref: '#/components/schemas/GeoCoordinate'
-        names:
-          description: names of the station depending on language and charset
-          type: array
-          items:
-            type: object
-            properties:
-              language:
-                type: string
-                description: the language for the entry, following ISO code
-                default: 'eng'
-              name:
-                type: string
-              charset:
-                type: string
-                default: 'UTF-8'
-                description: the charset in which then name should be read
-            additionalProperties: false
+        name:
+          $ref: '#/components/schemas/TextDef'
       additionalProperties: false
 
     StationDef:
