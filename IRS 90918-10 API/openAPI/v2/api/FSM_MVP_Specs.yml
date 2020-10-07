@@ -4864,6 +4864,8 @@ components:
           $ref: '#/components/schemas/ServiceConstraintDef'
         carrierConstraint:
           $ref: '#/components/schemas/CarrierConstraintDef'
+        regulatoryConditions:
+          $ref: '#/components/schemas/RegulatoryConditionsDef'
         serviceClass:
           $ref: '#/components/schemas/ServiceClassDef'
         serviceLevel:
@@ -4888,6 +4890,8 @@ components:
           $ref: '#/components/schemas/LegacyReservationParameterDef'
         coveredSection:
           $ref: '#/components/schemas/TravelSectionDef'
+        requiredPersonalData:
+          $ref: '#/components/schemas/PersonalDataConstraintDef'          
       required:
         - id
         - type
@@ -4897,6 +4901,20 @@ components:
         - afterSalesCondition
       additionalProperties: false
       
+    RegulatoryConditionsDef:
+      description: >- 
+         general conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and conditions in the conditions of combined offers and indicate them to the customer where required. Which indications are mandatory to be shown to the customer will be defined in the SCICs
+         CIV: terms and conditions according to COTIV regulation
+         MD:  terms and conditions according to SMPS regulation
+         EU-PRR: terms and conditions according to EU-PRR regulation
+      type: array
+      items: 
+         type: string
+         enum:
+         - CIT
+         - MD
+         - EU-PRR
+         
     LegacyAccountingIdentifierDef:
       description: identifier of the fare in the current 301 accounting file
       type: object
