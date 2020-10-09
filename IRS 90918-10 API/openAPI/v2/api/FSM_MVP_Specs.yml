@@ -4287,8 +4287,15 @@ components:
           description: >-
             Refund offer is created with the details of the to-be-confirmed refund operation. 
             One refund offer can then be confirmed, which turns it into a refund.
-        exchange:
-            $ref: '#/components/schemas/ExchangeDef'
+        afterSale:
+          oneOf:
+            - $ref: '#/components/schemas/RefundDef'
+            - $ref: '#/components/schemas/ExchangeDef'        
+          discriminator:
+            propertyName: afterSale
+            mapping:            
+                refund:   '#/components/schemas/RefundDef'
+                exchange: '#/components/schemas/ExchangeDef'
         exchangeOffers:
           type: array
           items:
@@ -4327,6 +4334,7 @@ components:
         title:
           type: string
           example: booking 2345
+          
 
     BookingPatchRequest:
       type: object
@@ -4763,7 +4771,37 @@ components:
           type: string
           enum:
             - CONFIRMED
-            
+        
+    RefundDef:
+      description: >- 
+       result of a successful confirmation of a refund. 
+      type: object
+      properties:
+        reimbursementStatus:
+          description: >-
+            If set to IMMEDIATE the distributor is allowed to return the 
+            reimbursement amount immediately.
+          type: string
+          enum:
+            - IMMEDIATE
+            - DELAYED
+        reimbursementDateTime:
+          type: string
+          format: date-time
+        appliedOverruleCode:
+          $ref: '#/components/schemas/AfterSaleReasonDef'
+        refundFee:
+          $ref: '#/components/schemas/CurrencyPriceDef'
+        refundableAmount:
+          $ref: '#/components/schemas/CurrencyPriceDef'    
+        newBooking: 
+          oneOf:
+            - $ref: '#/components/schemas/Booking'
+            - $ref: '#/components/schemas/BookingRef'
+      required:
+        - reimbursementStatus
+        - refundFee
+        - refundableAmount        
 
     Problem:
       type: object
