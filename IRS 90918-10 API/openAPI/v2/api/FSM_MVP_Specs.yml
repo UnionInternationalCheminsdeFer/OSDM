@@ -4946,10 +4946,31 @@ components:
       additionalProperties: false  
       
     CalendarDef:
-      type: array
-      items:
-        type: string
-        format: date-time
+      description: calendar
+      type: object
+      properties:
+        id:
+          description: >- 
+            id of the calendar within the bulk data not contained in online data
+          type: string
+        fromDate:
+          type: string
+          format: date-time
+        untilDate:
+          type: string
+          format: date-time
+        dates:
+          description: >-
+            dates included in the calendar. In case no dates are provided the range is assumed to be valid
+          type: array
+          items:
+            type: string
+            format: date-time
+        utcOffset:
+          description: >- 
+            offset to UTC in minutes (number of minutes to be added to get UTC dates)
+          type: number
+          format: int32
         
     TimeUnitDef:
        type: string
