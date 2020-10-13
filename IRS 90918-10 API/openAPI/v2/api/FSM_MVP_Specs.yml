@@ -4917,7 +4917,7 @@ components:
       items: 
          type: string
          enum:
-         - CIT
+         - CIV
          - MD
          - EU-PRR
          
