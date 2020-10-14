@@ -3563,8 +3563,9 @@ components:
           
     AccommodationType:
       type: string
-      description:  AccommodationType defintion out ocf AccoTypeCodeList
-      
+      description: >-
+        Code of the service level, code-list in IRS 90918-1.
+
     ServiceLevelIdDef:
       description: >-
         Code of the service level, code-list in IRS 90918-1.
