@@ -2944,6 +2944,9 @@ components:
         - travelDateTime
 
     OfferSearchCriteria:
+      description: >-
+            search parameter for offers
+            - The currency returned might be different from the one requested.
       type: object
       properties:
         flexibilities:
@@ -2968,8 +2971,7 @@ components:
           default: false
         currency:
           $ref: '#/components/schemas/CurrencyDef'
-          description:
-            The currency returned might be different from the one requested.
+
 
     TripOfferRequest:
       type: object
@@ -3066,6 +3068,7 @@ components:
       description: >-
         boolean-expression indicating the data that must be set in the data
         model in order to proceed to next step of the process
+        
     OfferSummary:
       type: object
       description: >-
@@ -3209,9 +3212,14 @@ components:
         currency:
           $ref: '#/components/schemas/CurrencyDef'
         amount:
-          description: amount in cents
+          description: >-
+              by default of the scale the amount in cents
           type: number
           format: int32
+        scale:
+          description: scale of the amount - the number of positions after the comma
+          type: number
+          default: 2
         vatDetails:
           type: array
           items:
@@ -3226,9 +3234,14 @@ components:
         country:
           $ref: '#/components/schemas/CountryDef'
         amount:
-          description: amount in cents
+          description: >-
+              by default of the scale the amount in cents
           type: number
           format: int32
+        scale:
+          description: scale of the amount - the number of positions after the comma
+          type: number
+          default: 2          
         percentage:
           type: number
           format: float
@@ -3328,15 +3341,11 @@ components:
         - cardIssuer
         - cardType
       
-    PassengerReferenceDef:
-      description: >- 
-       stable reference to a passenger within the offer and booking
-      type: string
-      
+
     Passenger:
       type: object
       description: >-
-        passenger of transportable (e.g. bicycle)
+        passenger 
       properties:
         id: 
           type: string
@@ -3599,7 +3608,12 @@ components:
           format: date-time
           description: >-
             Validity of offer towards passenger 
-        productRefs:
+        status: 
+          description: >-
+            status of an offer part in case a provider allows partial refunds, otherwise the status of the offer applies
+          type: string
+          enum: [CONFIRMED, FULFILLED, USED, REFUNDED]            
+        products:
           type: array
           items:
             type: object
@@ -3629,6 +3643,9 @@ components:
 
     Product:
       type: object
+      description: >-
+         description element - Structured description of the sales or after-sales conditions
+         description element example: Loisir Non-flex Adult Fare
       required:
         - id
         - description
@@ -3647,15 +3664,11 @@ components:
             mapping from an even lower-level provider).
           example: PT00AD
         description:
-          type: string
-          description: the textual description of the product
-          example: Loisir Non-flex Adult Fare
+          $ref: '#/components/schemas/TextDef'
         conditions:
           type: array
           items:
             $ref: '#/components/schemas/ProductCondition'
-          description: >-
-            Structured description of the sales or after-sales conditions.
         refundable:
           $ref: '#/components/schemas/RefundTypeDef'
         exchangeable:
@@ -3693,7 +3706,7 @@ components:
         type:
           $ref: '#/components/schemas/ConditionTypeDef'
         description:
-          type: string
+          $ref: '#/components/schemas/TextDef'
         validFrom:
           type: string
           format: date-time
@@ -3837,7 +3850,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PassengerRef'
-
         selectedPlaceProperties: 
           type: array
           items:
@@ -4053,6 +4065,8 @@ components:
                   type: object
                   properties:
                     passengerReference: 
+                      description: >-
+                        reference of the passenger for this place. passengers might need to be assigned to specific places in case of multiple compartments in night trains 
                       type: string
                     place: 
                       type: string
@@ -4075,7 +4089,10 @@ components:
   
     PlacePackDef:
         type: object
-        description: selection of places with common properties
+        description: >-
+           selection of places with common properties
+           description element - textual description of the places
+           placeProperties is mandatory for allocator mode, for distributors the textual description is used
         properties:
           id:
             type: string
@@ -4095,6 +4112,8 @@ components:
             type: array
             items:
               type: string
+          description:
+             $ref: '#/components/schemas/TextDef'
           placeProperties:
             description: place properties to be indicated to the customer
             type: array
@@ -4119,7 +4138,7 @@ components:
           - vehicle
           - coach
           - places
-          - placeProperties  
+        additionalProperties: false
              
     Ancillary:
       type: object
@@ -4246,8 +4265,9 @@ components:
               code:
                 type: string
               text:
-                type: string
-          description: This element can be used to pass specific information on the booking, such as a price difference with the initially offered price at booking time 
+                $ref: '#/components/schemas/TextDef'  
+          description: >-
+            This element can be used to pass specific information on the booking, such as a price difference with the initially offered price at booking time 
           
         provisionalBalance: 
           $ref: '#/components/schemas/CurrencyPriceDef'
@@ -4287,8 +4307,15 @@ components:
           description: >-
             Refund offer is created with the details of the to-be-confirmed refund operation. 
             One refund offer can then be confirmed, which turns it into a refund.
-        exchange:
-            $ref: '#/components/schemas/ExchangeDef'
+        afterSale:
+          oneOf:
+            - $ref: '#/components/schemas/RefundDef'
+            - $ref: '#/components/schemas/ExchangeDef'        
+          discriminator:
+            propertyName: afterSale
+            mapping:            
+                refund:   '#/components/schemas/RefundDef'
+                exchange: '#/components/schemas/ExchangeDef'
         exchangeOffers:
           type: array
           items:
@@ -4378,10 +4405,19 @@ components:
                 format: uuid
                 example: d290f1ee-6c54-4b01-90e6-d701748f0851
               status: 
+                description: CG TODO clarify state, must be OPEN and FULFILLED only
                 type: string
-                enum: [FULFILLED]
+                enum: 
+                  - FULFILLED
+                  - CONFIRMED
                 
     Fulfillment:
+      description: >-
+        a fulfillment is a document (or part of a document in allocator mode) that
+        - allows the passenger to prove his travel right
+        - provides easier access to trains and stations
+        - allows an exchange for other services (voucher)
+        a fulfillment refers to services of one or multiple offer parts or a fare (allocator mode).
       type: object
       properties:
         id:
@@ -4389,8 +4425,13 @@ components:
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
         status: 
+          description: CG TODO clarify state, must be OPEN and FULFILLED only
           type: string
-          enum: [CONFIRMED, FULFILLED, CHECKEDIN, REFUNDED]
+          enum: 
+            - CONFIRMED
+            - FULFILLED
+            - CHECKEDIN 
+            - REFUNDED
         price:
           $ref: '#/components/schemas/CurrencyPriceDef'
         controlNumber:
@@ -4598,17 +4639,6 @@ components:
           type: string
           example: Refund Paris-Barcelona Andre Dupont 2020-07-23
           
-    TicketRequest:
-      type: object
-      properties:
-        bookingId:
-          type: string
-          format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          description: id of the booking to fulfill (no partial fulfillment)
-      required:
-        - bookingId
-        
     RefundOfferRequest:
       description: request for a refund. Fulfillments can be provided in case the booking contains multiple individual fulfillments
       type: object
@@ -4678,6 +4708,8 @@ components:
         appliedOverruleCode:
           $ref: '#/components/schemas/AfterSaleReasonDef'
         fulfillments:
+          description: >-
+            affected fulfillments. In case of secure paper these need to be collected from the passenger.
           type: array
           items: 
             $ref: '#/components/schemas/FulfillmentRef'
@@ -4756,7 +4788,7 @@ components:
           type: string
           enum:
             - CONFIRMED
-            
+        
     RefundDef:
       description: >- 
        result of a successful confirmation of a refund. 
@@ -4786,7 +4818,7 @@ components:
       required:
         - reimbursementStatus
         - refundFee
-        - refundableAmount
+        - refundableAmount        
 
     Problem:
       type: object
@@ -4885,7 +4917,22 @@ components:
         - combinationConstraint
         - travelValidityConstraint
         - afterSalesCondition
-        
+      additionalProperties: false
+      
+    RegulatoryConditionsDef:
+      description: >- 
+         general conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and conditions in the conditions of combined offers and indicate them to the customer where required. Which indications are mandatory to be shown to the customer will be defined in the SCICs
+         CIV: terms and conditions according to COTIV regulation
+         MD:  terms and conditions according to SMPS regulation
+         EU-PRR: terms and conditions according to EU-PRR regulation
+      type: array
+      items: 
+         type: string
+         enum:
+         - CIV
+         - MD
+         - EU-PRR
+         
     LegacyAccountingIdentifierDef:
       description: identifier of the fare in the current 301 accounting file
       type: object
@@ -4910,10 +4957,31 @@ components:
           maximum: 9999
       
     CalendarDef:
-      type: array
-      items:
-        type: string
-        format: date-time
+      description: calendar
+      type: object
+      properties:
+        id:
+          description: >- 
+            id of the calendar within the bulk data not contained in online data
+          type: string
+        fromDate:
+          type: string
+          format: date-time
+        untilDate:
+          type: string
+          format: date-time
+        dates:
+          description: >-
+            dates included in the calendar. In case no dates are provided the range is assumed to be valid
+          type: array
+          items:
+            type: string
+            format: date-time
+        utcOffset:
+          description: >- 
+            offset to UTC in minutes (number of minutes to be added to get UTC dates)
+          type: number
+          format: int32
         
     TimeUnitDef:
        type: string
@@ -5162,6 +5230,8 @@ components:
         - id
       
     PassengerConstraintDef:
+      description: >- 
+         allocator mode offline
       type: object
       properties:
         id:
