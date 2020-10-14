@@ -4977,7 +4977,7 @@ components:
       properties:
         id:
           description: >- 
-            id of the calendar within the bulk data not contained in online data
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
           type: string
         fromDate:
           type: string
@@ -5007,9 +5007,12 @@ components:
                     
     TravelValidityConstraintDef:
       type: object
+      description: >-
+        travel validity data are needed to create barcode and control data (ETCD) in allocator mode even in case they have been checked during the online sale
       properties:
         id:
-          description: mandatory in bulk data exchange
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
           type: string
         validTravelDates:
           $ref: '#/components/schemas/CalendarDef'
@@ -5077,6 +5080,8 @@ components:
           
       required:
         - validityRange
+      additionalProperties: false
+
       
     TravelerTypeDef:
       description: >- 
@@ -5089,6 +5094,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachLayoutDef'
+      additionalProperties: false
       
     CoachLayoutDef:
       description: >-
@@ -5246,10 +5252,12 @@ components:
       
     PassengerConstraintDef:
       description: >- 
-         allocator mode offline
+         used in allocator mode. Some data are required to be added to bar codes and control data (ETCD) even in case the fare was checked in online sales
       type: object
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange        
           type: string
         passengerType:
           description: see code list travelerType
@@ -5272,6 +5280,8 @@ components:
           type: boolean
           default: false
         combinationConstraint:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
           type: array
           items:
             type: object
@@ -5287,6 +5297,8 @@ components:
               - passengerTypeRef
             
         includedFreePassenger:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange        
           type: array
           items:
             type: object
@@ -5302,15 +5314,19 @@ components:
                 $ref: '#/components/schemas/TravelerTypeDef'
             
         passengerWeight:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange        
           type: number
           format: int32
         maxWeightedPassengers:
-          description: >-
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange        
             The total weighted number of passengers on the offer is restricted to be equal or smaller than this maximum
           type: number
           format: int32
         minWeightedPassengers:
-          description: >-
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange        
             The total weighted number of passengers on the offer is restricted to equal or larger than this minimum
           type: number
           format: int32
@@ -5323,7 +5339,8 @@ components:
       type: object
       properties:
         id:
-          description: in bulk data only
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
           type: string
         requiredCards:
           description: >-
@@ -5389,6 +5406,8 @@ components:
       type: object
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange        
           type: string
         combinationModels:
           type: array
@@ -5403,6 +5422,8 @@ components:
       type: object
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange        
           type: string
         afterSalesRules:
           type: array
@@ -5417,7 +5438,8 @@ components:
       type: object
       properties:
         id:
-          description: required for bulk data transfer
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
           type: string
         price:
           type: array
@@ -5463,16 +5485,20 @@ components:
           description: code list Reason for after sale
           type: string
         feeRef:
-          description: >-
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
             Reference to a price data item defining the fee; optional in case there is no fee but the 
             after sales transaction is allowed. Online services include fee directly in the fee tag.
           type: string
         fee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          description: >- 
+            \*** ONLINE-ONLY *** not used in bulk data, multicurrency used for fares
+          $ref: '#/components/schemas/PriceDef'
         applicationTime:
           $ref: '#/components/schemas/RelativeTimeDef'
         applicationTimeStamp:
-          description: absolute application time (UTC) in case of online services
+          description: >- 
+            \*** ONLINE-ONLY *** absolute application time (UTC) in case of online services
           type: string
           format: date-time
         carrierFee:
@@ -5652,6 +5678,8 @@ components:
       type: object
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange        
           type: string
         acceptedControlSecurityTypes:
           type: array
@@ -5692,7 +5720,6 @@ components:
           description: a separate fulfillment per traveler is permitted
           type: boolean
       required:
-        - id
         - acceptedFulfillmentTypes
         - individualTicketingPermitted
  
@@ -5700,6 +5727,8 @@ components:
       type: object
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange        
           type: string
         requiredData:
           type: array
@@ -5846,6 +5875,8 @@ components:
         Either excluded or included carriers can be set.
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange        
           type: string
         includedCarrier:
           type: array
@@ -5872,6 +5903,8 @@ components:
         id:
           $ref: '#/components/schemas/ServiceLevelIdDef'
         combiningServiceClassIds:
+          description: >- 
+            \*** BULK-ONLY *** 
           description: list of service class ids that can be combined with these service levels
           type: array
           items:
@@ -5897,6 +5930,8 @@ components:
       type: object
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange        
           type: string
         includedServiceBrands:
           type: array
@@ -5925,6 +5960,8 @@ components:
         regional constraint of the fare- offline bulk data use the id of connection points whereas in an online environment the connection point is included
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange        
           type: string
         entryConnectionPointId:
           description: connection point connecting two fare regimes
