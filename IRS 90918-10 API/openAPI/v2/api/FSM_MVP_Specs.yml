@@ -4,7 +4,7 @@ servers:
     url: 'https://virtserver.swaggerhub.com/Real-IT/FSM_MVP/1.0.0'
 info:
   title: UIC 90918-10 - OSDM
-  version: 0.9.0
+  version: 0.9.7
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -44,6 +44,12 @@ tags:
   - name: RefundOffers
     description: >-
       resources to get and accept a refund offer
+  - name: ExchangeOffers
+    description: >-
+      resources to get and accept an exchange offer
+  - name: CoachLayouts
+    description: >-
+      resources to get the layout of a coach
 paths:
   /locations:
     get:
@@ -915,6 +921,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+
   '/products/{productId}':
     get:
       tags:
@@ -3323,7 +3330,9 @@ components:
       
     CardIdentificationDef:
       description: >-
-        card information used to identify passengers in control, trailing and leading parts of the numer are possible in case the entire number is not allowed. For passenger identification at least one of the leading, trailing or full number must be provided
+        Card information used to identify passengers in control, trailing and leading parts 
+        of the number are possible in case the entire number is not allowed. 
+        For passenger identification at least one of the leading, trailing or full number must be provided.
       type: object
       properties:
         issuer:
@@ -3355,7 +3364,6 @@ components:
         - code
       additionalProperties: false
      
-
     Passenger:
       type: object
       description: >-
@@ -3366,7 +3374,8 @@ components:
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: >-
-           id of the passenger resource in case service to patch a single passenger is provided. The id needs to be implemented transient with a short time to lifedue to GdPR
+            Id of the passenger resource in case service to patch a single passenger is provided.
+            The id needs to be implemented transient with a short time to life due to GdPR.
         reference:
           description: >-
             stable reference to passengers from other elements, or from caller
@@ -3443,7 +3452,7 @@ components:
         documentId:
           type: string
         documentType:
-          description: Refer to codelist for values
+          description: Refer to code list for values
           type: string
         gender:
           $ref: '#/components/schemas/GenderDef'
@@ -3462,8 +3471,9 @@ components:
     PassengerDetailsDef:
       type: object
       description: >- 
-        PassengerDetails providing personal information 
-        only information required in the offer. It is not allowed to send personal information not required in the offer reply. It is not allowed to send tehse personal data already in the offer request.
+        PassengerDetails providing personal information only information required in the offer. 
+        It is not allowed to send personal information not required in the offer reply. 
+        It is not allowed to send these personal data already in the offer request.
       properties:
         eMails:
           type: array
@@ -3529,7 +3539,7 @@ components:
       type: string
       x-extensible-enum:
         - FIRST
-        - SECOND 
+        - SECOND
       
     TravelSectionDef:
       type: object
@@ -4193,7 +4203,7 @@ components:
             http://some.provider/integratedReservation/2345'
         title:
           type: string
-          example: ICE wifi onboard 2020-07-11 or ICE Bruxelles-Frankfurt child 2020-07-12
+          example: ICE WIFI onboard 2020-07-11 or ICE Bruxelles-Frankfurt child 2020-07-12
       description: >-
         References all the offer part elements in an uniform format. an
         offerPartRef can therefore refer to reservation, integrated reservation
@@ -5136,8 +5146,8 @@ components:
                   Code list according to UIC90918-1
                    - value R: to right
                    - value L: to left
-                   - value U: up (from right side of a coach pointing to the middle of the aile)
-                   - value D: down (from right side of the coach pointing to the middle of the aile)
+                   - value U: up (from right side of a coach pointing to the middle of the aisle)
+                   - value D: down (from right side of the coach pointing to the middle of the aisle)
                 type: string
               remarkId:
                 description: >-
@@ -5492,7 +5502,7 @@ components:
           type: string
         fee:
           description: >- 
-            \*** ONLINE-ONLY *** not used in bulk data, multicurrency used for fares
+            \*** ONLINE-ONLY *** not used in bulk data, multi currency used for fares
           $ref: '#/components/schemas/PriceDef'
         applicationTime:
           $ref: '#/components/schemas/RelativeTimeDef'
@@ -5904,8 +5914,7 @@ components:
           $ref: '#/components/schemas/ServiceLevelIdDef'
         combiningServiceClassIds:
           description: >- 
-            \*** BULK-ONLY *** 
-          description: list of service class ids that can be combined with these service levels
+            \*** BULK-ONLY *** list of service class ids that can be combined with these service levels
           type: array
           items:
             $ref: '#/components/schemas/ServiceClassIdDef'
