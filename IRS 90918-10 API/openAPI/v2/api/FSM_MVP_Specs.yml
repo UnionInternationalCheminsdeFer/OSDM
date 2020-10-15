@@ -28,7 +28,7 @@ tags:
   - name: Offer Parts
     description: >-
       resources to manipulate parts of an offer consisting of, e.g., admissions, reservations,
-      integrated reservations or ancillaries 
+      or ancillaries 
   - name: Bookings
     description: >-
       resources to manipulate bookings
@@ -1159,132 +1159,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
         '501':
-          description: Not implemented        
-  '/offers/{offerId}/integrated-reservations/{integratedReservationId}':
-    get:
-      tags:
-        - Offer Parts
-      summary: >-
-        The GET integrated-reservation service returns the information on the
-        IntegratedReservation with the id provided.
-      operationId: getIntegratedReservationsId
-      parameters:
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the offer the offerPart is part of.      
-        - in: path
-          name: integratedReservationId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the IntegratedReservation to get.
-      responses:
-        '200':
-          description: Integrated reservation found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/IntegratedReservation'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented
-    patch:
-      tags:
-        - Offer Parts
-      summary: >-
-        The PATCH of the place selections service allows updating reservation elements, to update the desired
-        selection of places and to retrieve selectable places for a graphical display
-      description: >-
-        The patch can be used to update the selection of place properties, the available places for graphical 
-        displays, the selected optional place properties for a subsequent booking and the selected places from
-        a graphical display. The update response will show the available/accepted properties. An update with
-        empty available places will update the available places list in the reply.
-      operationId: patchIntegratedReservationId
-      parameters:
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the offer to patch.
-        - in: path
-          name: integratedReservationId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the integrated reservation to patch.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/IntegratedReservationPatch'
-      responses:
-        '200':
-          description: Place successfully selected
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Reservation'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented        
+          description: Not implemented   
           
   '/offers/{offerId}/ancillaries/{ancillaryId}':
     get:
@@ -3148,10 +3023,6 @@ components:
           type: array        
           items:              
             $ref: '#/components/schemas/Reservation'
-        integratedReservations:
-          type: array        
-          items:  
-            $ref: '#/components/schemas/IntegratedReservation'
         ancillaries:
           type: array        
           items:  
@@ -4008,66 +3879,27 @@ components:
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'
         optionality:
-                description: MANDATORY - the booking can not be made without reservation, INCLUDED - reservation is included in the offer but is not mandatory, OPTIONAL reservation is not included but can be integrated in the same ticket
-                type: string
-                x-extensible-enum:
-                  - OPTIONAL
-                  - MANDATORY
-                  - INCLUDED
+          description: >-
+            - MANDATORY: the booking can not be made without reservation
+            - INCLUDED: the reservation is included in the offer but is not mandatory
+            - OPTIONAL: the reservation is not included but can be integrated in the same ticket
+          type: string
+          x-extensible-enum:
+            - OPTIONAL
+            - MANDATORY
+            - INCLUDED
       required:
         - id,
         - offerPart,
         - reservationDetails
-
-    IntegratedReservation:
-      description: reservation includes the reservation options in the initial offer it needs to be updated with the selected places before the confirmation which creates the reservation details including the reserved places   
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        offerPart:
-          $ref: '#/components/schemas/OfferPart'
-        ancillaries:
-          type: array
-          items:
-            type: object
-            properties:
-              relationType:
-                type: string
-                enum:
-                  - OPTIONAL
-                  - INCLUDED
-              ancillary:
-                $ref: '#/components/schemas/OfferPartRef'
-        reservationDetails:
-          $ref: '#/components/schemas/ReservationDetails'
-        placeSelection:
-          $ref: '#/components/schemas/PlaceSelectionDef'          
-      required:
-        - id,
-        - offerPart
-        - reservationDetails
-        
+       
     ReservationPatch:
       type: object
       description: >-
         reservationPatch is the structure used to modify reservations. It is a subset of the complete reservation element
       properties:
         placeSelection:
-          $ref: '#/components/schemas/PlaceSelectionPatch'
-
-    IntegratedReservationPatch:
-      description: reservation includes the reservation options in the initial offer it needs to be updated with the selected places before the confirmation which creates the reservation details including the reserved places   
-      type: object
-      properties:
-        placeSelection:
-          $ref: '#/components/schemas/PlaceSelectionPatch'          
+          $ref: '#/components/schemas/PlaceSelectionPatch'       
     
     SelectedPlacesDef:
       description: \*** NOT-MVP *** place selection from a graphical display of coaches
@@ -4179,12 +4011,15 @@ components:
         offerPart:
           $ref: '#/components/schemas/OfferPart'
         optionality:
-                description: MANDATORY - the booking can not be made without reservation, INCLUDED - reservation is included in the offer but is not mandatory, OPTIONAL reservation is not included but can be integrated in the same ticket
-                type: string
-                x-extensible-enum:
-                  - OPTIONAL
-                  - MANDATORY
-                  - INCLUDED
+          description: >-
+            - MANDATORY: the booking can not be made without reservation
+            - INCLUDED: the reservation is included in the offer but is not mandatory
+            - OPTIONAL: the reservation is not included but can be integrated in the same ticket
+          type: string
+          x-extensible-enum:
+            - OPTIONAL
+            - MANDATORY
+            - INCLUDED
         category:
           type: string
           
@@ -4200,14 +4035,14 @@ components:
           format: url
           example: >-
             http://some.provider/ancillary/2345 or
-            http://some.provider/integratedReservation/2345'
+            http://some.provider/reservation/2345'
         title:
           type: string
           example: ICE WIFI onboard 2020-07-11 or ICE Bruxelles-Frankfurt child 2020-07-12
       description: >-
         References all the offer part elements in an uniform format. an
-        offerPartRef can therefore refer to reservation, integrated reservation
-        admission or ancillary (in its href)
+        offerPartRef can therefore refer to reservation, admission
+        or ancillary (in its href).
         
     BookingRequest:
       type: object
@@ -4517,7 +4352,8 @@ components:
     
     FulfillmentItemDef:
       description: >-
-       Fulfillment items to be integrated in to tickets, e.g. visual security elements, additional bar codes, control keys
+       Fulfillment items to be integrated in to tickets, 
+       e.g. visual security elements, additional bar codes, control keys
       type: object
       properties:
         fulfillmentMedia:
@@ -6139,7 +5975,7 @@ components:
             $ref: '#/components/schemas/Link'
       description: >-
         Non trip offers do not reference a trip, thus no reservations
-        or integrated reservations can be offered by definition.
+        can be offered by definition.
             
     TransportableDef:
       description: >- 
