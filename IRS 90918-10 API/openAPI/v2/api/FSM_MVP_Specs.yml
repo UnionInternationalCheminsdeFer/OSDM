@@ -83,11 +83,10 @@ paths:
               - ANY_CODE
               - CODELIST
               - COORDS
-        - name: matchCodeList
+        - name: CodeListForMatch
           in: query
           description: >-
             In case match-value is code-list, the code-list to search into
-            TODO clarify
           schema:
             type: string
           required: false
@@ -1412,7 +1411,7 @@ paths:
       tags:
         - Bookings
       summary: >-
-        The POST bookings search service allows to search for and find bookings based on a set of criteria. It
+        *** NOT-MVP *** The POST bookings search service allows to search for and find bookings based on a set of criteria. It
         returns a list of booking ids.
       description: >-
         There are searching criteria that need to be supported. by passenger 
@@ -2717,7 +2716,7 @@ components:
         type:
           oneOf:
             - $ref: '#/components/schemas/StationDetailsDef'
-            - $ref: '#/components/schemas/POI'
+            - $ref: '#/components/schemas/Poi'
             - $ref: '#/components/schemas/Address'
             - $ref: '#/components/schemas/GeoCoordinate'
         links:
@@ -2762,7 +2761,7 @@ components:
          - street
          - city
          - postalCode
-    POICodeList:
+    PoiCodeList:
       description: Code list used for the POI codes.
       type: string
       default: UIC
@@ -2805,6 +2804,14 @@ components:
             Total duration over all segment's (format see
             https://www.w3.org/TR/xmlschema11-2/#duration)
           example: P2DT3H4M
+        direction:
+          description: indicates the trip direction
+          type: string
+          x-extensible-enum:
+            - SINGLE
+            - OUTWARD
+            - INWARD
+            - UNSPECIFIED
         links:
           type: array
           description: Context information required by the services.
@@ -2819,7 +2826,7 @@ components:
       type: number
       format: int32
 
-    POI:
+    Poi:
       description: >-
         POI (for point of Interest) represent a location that is not a train station but still relevant to the 
         description of the trip. It could be a public transport stop, an exhibition, an event hall, a shopping mall etc.
@@ -2831,8 +2838,8 @@ components:
             type: object
             properties:
               codeList:
-                $ref: '#/components/schemas/POICodeList'
-              POICode:
+                $ref: '#/components/schemas/PoiCodeList'
+              poiCode:
                 type: string
                 description: the code representing the POI in the specified code list
           description: >-
@@ -2927,7 +2934,9 @@ components:
               - TRIPS
               - TRIPS.LOCATIONS
               - NONE
+              - ALL
             default: ALL
+            
     TripSearchCriteria:
       type: object
       properties:
@@ -2987,7 +2996,7 @@ components:
         serviceBrands:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ServiceBrandCodeDef'
         maxChanges:
           description: >-
             Max amount of transport-product changes (0 for direct
@@ -3053,6 +3062,19 @@ components:
               required:
                 - trip
             - $ref: '#/components/schemas/TripSearchCriteria'
+        returnSearchParameters:
+          description: this property can be used in case a return trip is being requested. This will allow to benefit from return-specific fares or product
+          type: object
+          properties:
+            returndate:
+              type: string
+              format: date-time
+              description: to be provided when creating the collection of outward travels so that the provider knows when a return travel can be expected and propose appropriate product and fares
+            outwardSelectedOfferId:
+               type: string
+               format: uuid
+               example: d290f1ee-6c54-4b01-90e6-d701748f0851
+               description: to be provided when creating the collection of inward travels so that the provider knows what the outward offer is and and propose compatible product and fares
         requestedFulfillmentOptions:
           type: array
           items:
@@ -3659,6 +3681,10 @@ components:
           format: date-time
           description: >-
             Validity of offer towards passenger 
+        refundable:
+          $ref: '#/components/schemas/RefundTypeDef'
+        exchangeable:
+          $ref: '#/components/schemas/ExchangeTypeDef'
         productRefs:
           type: array
           items:
@@ -3673,6 +3699,7 @@ components:
                 type: array
                 items:
                   type: number
+            
     ProductRef:
       type: object
       properties:
@@ -3716,10 +3743,6 @@ components:
             $ref: '#/components/schemas/ProductCondition'
           description: >-
             Structured description of the sales or after-sales conditions.
-        refundable:
-          $ref: '#/components/schemas/RefundTypeDef'
-        exchangeable:
-          $ref: '#/components/schemas/ExchangeTypeDef'
         serviceClass:
           $ref: '#/components/schemas/ServiceClassDef'
         comfortClass:
@@ -3748,12 +3771,15 @@ components:
          - SOCIAL_MEDIA_ACCOUNTS
 
     ProductCondition:
+      description: describes sales and aftersales conditions applicable to the product. For a product to be refundable or exchangeable, at least one refund or exchange (respectively) condition must be present
       type: object
       properties:
         type:
           $ref: '#/components/schemas/ConditionTypeDef'
         description:
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/TranslationDef' 
         validFrom:
           type: string
           format: date-time
@@ -3761,23 +3787,12 @@ components:
           type: string
           format: date-time
         afterSalesFee:
-          $ref: '#/components/schemas/AfterSalesFeeDef'
+          $ref: '#/components/schemas/CurrencyPriceDef'
+         
       required:
         - type
         - description
-    AfterSalesFeeDef:
-      type: object
-      properties:
-        price:
-          $ref: '#/components/schemas/CurrencyPriceDef'
-        validFrom:
-          type: string
-          format: date-time
-        validUntil:
-          type: string
-          format: date-time     
-      required:
-       - price
+
     RefundTypeDef:
           type: string
           enum:
@@ -4350,10 +4365,12 @@ components:
       type: object
       description: >-
         Allows setting the required fulfillment type, e.g. value paper
-        or e-ticket.
+        or e-ticket and preferred fulfillment Media. The latter is optional and relevant in some cases only
       properties:
-        fulfillmentType:
+        requestedfulfillmentType:
           $ref: '#/components/schemas/FulfillmentType'
+        preferredFulfillmentMedia:
+          $ref: '#/components/schemas/FulfillmentMediaTypeDef'
 
     FulfillmentOption:
       description: >-
