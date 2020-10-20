@@ -28,7 +28,7 @@ tags:
   - name: Offer Parts
     description: >-
       resources to manipulate parts of an offer consisting of, e.g., admissions, reservations,
-      or ancillaries 
+      or ancillaries; if permitted, also fares are offered. 
   - name: Bookings
     description: >-
       resources to manipulate bookings
