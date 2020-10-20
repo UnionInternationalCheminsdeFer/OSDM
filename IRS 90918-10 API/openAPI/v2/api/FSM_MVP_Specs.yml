@@ -19,9 +19,9 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
-  - name: Journey
+  - name: Trips
     description: >-
-      resources to access timetable-only information
+      resources to search for trips and locations
   - name: Offers
     description: >-
       resources to get bookable offers
@@ -54,7 +54,7 @@ paths:
   /locations:
     get:
       tags:
-        - Journey
+        - Trips
       summary: >-
         The GET locations service returns matching locations for a given match value based on MatchType.
       operationId: getLocations
@@ -152,7 +152,7 @@ paths:
   '/locations/{locationId}':
     get:
       tags:
-        - Journey
+        - Trips
       summary: >-
         The GET locations service retrieves a location element.
       operationId: getLocationsId
@@ -189,7 +189,7 @@ paths:
   '/trips/{tripId}':
     get:
       tags:
-        - Journey
+        - Trips
       summary:
         The GET trips service retrieves a trip element representing a train travel made of one or more
         segments. Depending on the embed either references or full location definitions will be returned
@@ -243,7 +243,7 @@ paths:
   '/trips-collection/{tripsCollectionId}':
     get:
       tags:
-        - Journey
+        - Trips
       summary: >-
         The GET trips-collection service returns a collection of different trips for a specified
         origin and destination (and via). The unique codes of the origin and
@@ -340,7 +340,7 @@ paths:
   /trips-collection:
     post:
       tags:
-        - Journey
+        - Trips
       summary: >-
         The GET tripsCollection service returns different trips for a specified
         origin and destination (and via). The unique codes of the origin and
@@ -2480,7 +2480,8 @@ components:
     
     StationDef:
       description: >-
-        Used to represent a station location. This is a location that can be used as origin and destination for a train journey
+        Used to represent a station location. This is a location that can be used as origin and 
+        destination for a trip search.
       type: object
       properties:
         stationCode:
