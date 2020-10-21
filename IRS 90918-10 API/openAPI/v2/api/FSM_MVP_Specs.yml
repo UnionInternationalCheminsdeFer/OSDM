@@ -4,7 +4,7 @@ servers:
     url: 'https://virtserver.swaggerhub.com/Real-IT/FSM_MVP/1.0.0'
 info:
   title: UIC 90918-10 - OSDM
-  version: 0.9.0
+  version: 0.9.7
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -27,8 +27,7 @@ tags:
       resources to get bookable offers
   - name: Offer Parts
     description: >-
-      resources to manipulate parts of an offer consisting of, e.g., admissions, reservations,
-      integrated reservations or ancillaries 
+      resources to manipulate parts of an offer consisting of, e.g., admissions, reservations or ancillaries 
   - name: Bookings
     description: >-
       resources to manipulate bookings
@@ -44,6 +43,12 @@ tags:
   - name: RefundOffers
     description: >-
       resources to get and accept a refund offer
+  - name: ExchangeOffers
+    description: >-
+      resources to get and accept an exchange offer
+  - name: CoachLayouts
+    description: >-
+      resources to get the layout of a coach
 paths:
   /locations:
     get:
@@ -81,12 +86,12 @@ paths:
             enum:
               - NAME
               - ANY_CODE
-              - CODELIST
+              - CODE_LIST
               - COORDS
-        - name: CodeListForMatch
+        - name: codeListForMatch
           in: query
           description: >-
-            In case match-value is code-list, the code-list to search into
+            In case match-value is CODE_LIST, indicates the code-list to search into for the matchValue
           schema:
             type: string
           required: false
@@ -135,8 +140,8 @@ paths:
                       oneOf:
                         - $ref: '#/components/schemas/LocationRef'
                         - $ref: '#/components/schemas/Location'
-                      description: >-
-                        Depending on the embed either references or full location definitions are returned. 
+                    description: >-
+                      Depending on the embed either references or full location definitions are returned. 
         '400':
           description: bad input parameter
           content:
@@ -955,6 +960,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+          
   '/products/{productId}':
     get:
       tags:
@@ -3156,6 +3162,7 @@ components:
       description: >-
         boolean-expression indicating the data that must be set in the data
         model in order to proceed to next step of the process
+        
     OfferSummary:
       type: object
       description: >-
@@ -3343,13 +3350,14 @@ components:
     ReductionCardReferenceDef:
       type: object
       properties:
-        cardValue:
+        code:
           description: code of the card type according to code list
           type: string
-        cardValueType:
-          description: code list for the cardValue provided
+        codeList:
+          description: code list for the code of the card provided
           type: string
-        cardName:
+          default: UIC
+        name:
           description: card name for printing on fulfillments
           type: string
         issuer:
@@ -3359,22 +3367,23 @@ components:
             case proprietary codes are used on a bilateral base the codes must
             have at least 5 positions and start with x.
       required:
-        - cardValue
-        - cardValueType
+        - code
+        - codeList
+      additionalProperties: false
       
     LoyaltyCardReferenceDef:
       type: object
       properties:
-        cardValue:
+        code:
           description: code of the card type according to code list
           type: string
-        cardValueType:
-          description: code list for the cardValue provided
+        codeList:
+          description: code list for the code provided
           type: string
-        cardName:
+        name:
           description: card name for printing on fulfillments
           type: string
-        cardNumber:
+        number:
           type: string
           description: the unique number identifying the loyalty card.
         issuer:
@@ -3384,9 +3393,8 @@ components:
             case proprietary codes are used on a bilateral base the codes must
             have at least 5 positions and start with x.
       required:
-        - cardValue
-        - cardValueType
-        - cardNumber
+        - codeList
+        - code
       
     CardIdentificationDef:
       description: >-
@@ -3410,33 +3418,28 @@ components:
         - cardIssuer
         - cardType
       
-    PassengerReferenceDef:
-      description: >- 
-       stable reference to a passenger within the offer and booking
-      type: string
-      
     Passenger:
       type: object
       description: >-
-        passenger of transportable (e.g. bicycle)
+        passenger or transportable (e.g. bicycle)
       properties:
         id: 
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: >-
-           id of the passenger resource in case service to patch a single passenger is provided. The id needs to be implemented transient with a short time to lifedue to GdPR
+           id of the passenger resource in case service to patch a single passenger is provided.
         reference:
           description: >-
             stable reference to passengers from other elements, or from caller
             system.
           type: string
-        passengerAbstract:
+        abstract:
           $ref: '#/components/schemas/PassengerAbstractDef'
-        passengerDetails:
+        details:
           $ref: '#/components/schemas/PassengerDetailsDef'
-        passengerPassport:
-          $ref: '#/components/schemas/PassengerPassportDef'
+        passport:
+          $ref: '#/components/schemas/PassportDef'
         cardIdentification:
           $ref: '#/components/schemas/CardIdentificationDef'
         transportableDetails:
@@ -3475,7 +3478,7 @@ components:
             - COMPANIONSEAT
             - COMPANION
         
-    PassengerPassportDef:
+    PassportDef:
       description: >- 
         Travel document data to be exchanged for border control in case of legal requirements
         PassengerDetails providing personal information only information required in the offer. 
@@ -3502,7 +3505,7 @@ components:
         documentId:
           type: string
         documentType:
-          description: Refer to codelist for values
+          description: Refer to code list for values
           type: string
         gender:
           $ref: '#/components/schemas/GenderDef'
@@ -3622,7 +3625,7 @@ components:
           
     AccommodationType:
       type: string
-      description:  AccommodationType defintion out ocf AccoTypeCodeList
+      description:  Accommodation type definition out of AccoTypeCodeList
       
     ServiceLevelIdDef:
       description: >-
@@ -3716,6 +3719,8 @@ components:
 
     Product:
       type: object
+      description: >-
+         Structured description of the product , its name, comfort and sales / after-sales conditions
       required:
         - id
         - description
@@ -3734,7 +3739,7 @@ components:
             mapping from an even lower-level provider).
           example: PT00AD
         description:
-          type: string
+          $ref: '#/components/schemas/TextDef'
           description: the textual description of the product
           example: Loisir Non-flex Adult Fare
         conditions:
@@ -3779,7 +3784,7 @@ components:
         description:
           type: array
           items:
-            $ref: '#/components/schemas/TranslationDef' 
+            $ref: '#/components/schemas/TranslationDef'
         validFrom:
           type: string
           format: date-time
@@ -3788,31 +3793,30 @@ components:
           format: date-time
         afterSalesFee:
           $ref: '#/components/schemas/CurrencyPriceDef'
-         
       required:
         - type
         - description
 
     RefundTypeDef:
-          type: string
-          enum:
-            - YES
-            - NO
-            - WITH_CONDITIONS
+      type: string
+      enum:
+        - YES
+        - NO
+        - WITH_CONDITIONS
             
     ExchangeTypeDef:
-          type: string
-          enum:
-            - YES
-            - NO
-            - WITH_CONDITIONS
+      type: string
+      enum:
+        - YES
+        - NO
+        - WITH_CONDITIONS
 
     ConditionTypeDef:
-          type: string
-          x-extensible-enum:
-            - SALE
-            - EXCHANGE
-            - REFUND
+      type: string
+      x-extensible-enum:
+        - SALE
+        - EXCHANGE
+        - REFUND
 
     Admission:
       type: object
@@ -4046,18 +4050,16 @@ components:
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'
         optionality:
-                description: MANDATORY - the booking can not be made without reservation, INCLUDED - reservation is included in the offer but is not mandatory, OPTIONAL reservation is not included but can be integrated in the same ticket
-                type: string
-                x-extensible-enum:
-                  - OPTIONAL
-                  - MANDATORY
-                  - INCLUDED
+          description: MANDATORY - the booking can not be made without reservation, INCLUDED - reservation is included in the offer but is not mandatory, OPTIONAL reservation is not included but can be integrated in the same ticket
+          type: string
+          x-extensible-enum:
+            - OPTIONAL
+            - MANDATORY
+            - INCLUDED
       required:
         - id,
         - commonOfferPartAttributes,
         - reservationDetails
-
-   
         
     ReservationPatch:
       type: object
@@ -4088,10 +4090,12 @@ components:
                   type: object
                   properties:
                     passengerReference: 
+                      description: >-
+                        reference of the passenger for this place. 
+                        passengers might need to be assigned to specific places in case of multiple compartments in night trains 
                       type: string
                     place: 
-                      type: string
-      
+                      type: string  
       required:
         - selectedCoach
         - selectedPlaces
@@ -4110,7 +4114,10 @@ components:
   
     PlacePackDef:
         type: object
-        description: selection of places with common properties
+        description: >-
+           selection of places with common properties
+           description element - textual description of the places
+           placeProperties is mandatory for allocator mode, for distributors the textual description is used
         properties:
           id:
             type: string
@@ -4154,7 +4161,6 @@ components:
           - vehicle
           - coach
           - places
-          - placeProperties  
              
     Ancillary:
       type: object
@@ -4170,12 +4176,12 @@ components:
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         optionality:
-                description: MANDATORY - the booking can not be made without reservation, INCLUDED - reservation is included in the offer but is not mandatory, OPTIONAL reservation is not included but can be integrated in the same ticket
-                type: string
-                x-extensible-enum:
-                  - OPTIONAL
-                  - MANDATORY
-                  - INCLUDED
+          description: MANDATORY - the booking can not be made without reservation, INCLUDED - reservation is included in the offer but is not mandatory, OPTIONAL reservation is not included but can be integrated in the same ticket
+          type: string
+          x-extensible-enum:
+            - OPTIONAL
+            - MANDATORY
+            - INCLUDED
         category:
           type: string
       required :
@@ -4200,7 +4206,7 @@ components:
           example: ICE wifi onboard 2020-07-11 or ICE Bruxelles-Frankfurt child 2020-07-12
       description: >-
         References all the offer part elements in an uniform format. an
-        offerPartRef can therefore refer to reservation, integrated reservation
+        offerPartRef can therefore refer to reservation,
         admission or ancillary (in its href)
         
     BookingRequest:
@@ -4411,6 +4417,12 @@ components:
                 enum: [FULFILLED]
                 
     Fulfillment:
+      description: >-
+        a fulfillment is a document (or part of a document in allocator mode) that
+        - allows the passenger to prove his travel right
+        - provides easier access to trains and stations
+        - allows an exchange for other services (voucher)
+        a fulfillment refers to services of one or multiple offer parts or a fare (allocator mode).
       type: object
       properties:
         id:
@@ -4481,7 +4493,8 @@ components:
     
     FulfillmentItemDef:
       description: >-
-       Fulfillment items to be integrated in to tickets, e.g. visual security elements, additional bar codes, control keys
+       Fulfillment items to be integrated in to tickets, 
+       e.g. visual security elements, additional bar codes, control keys
       type: object
       properties:
         fulfillmentMedia:
@@ -4708,6 +4721,8 @@ components:
         appliedOverruleCode:
           $ref: '#/components/schemas/AfterSaleReasonDef'
         fulfillments:
+          description: >-
+            affected fulfillments. In case of secure paper these need to be collected from the passenger.
           type: array
           items: 
             $ref: '#/components/schemas/FulfillmentRef'
@@ -4915,6 +4930,7 @@ components:
         - combinationConstraint
         - travelValidityConstraint
         - afterSalesCondition
+      addititionalProperties: false
         
         
     RegulatoryConditionsDef:
@@ -4955,10 +4971,31 @@ components:
           maximum: 9999
       
     CalendarDef:
-      type: array
-      items:
-        type: string
-        format: date-time
+      description: calendar
+      type: object
+      properties:
+        id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
+          type: string
+        fromDate:
+          type: string
+          format: date-time
+        untilDate:
+          type: string
+          format: date-time
+        dates:
+          description: >-
+            dates included in the calendar. In case no dates are provided the range is assumed to be valid
+          type: array
+          items:
+            type: string
+            format: date-time
+        utcOffset:
+          description: >- 
+            offset to UTC in minutes (number of minutes to be added to get UTC dates)
+          type: number
+          format: int32
         
     TimeUnitDef:
        type: string
@@ -4969,9 +5006,13 @@ components:
                     
     TravelValidityConstraintDef:
       type: object
+      description: >-
+        travel validity data are needed to create barcode and control data (ETCD)
+        in allocator mode even in case they have been checked during the online sale
       properties:
         id:
-          description: mandatory in bulk data exchange
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
           type: string
         validTravelDates:
           $ref: '#/components/schemas/CalendarDef'
@@ -5092,8 +5133,8 @@ components:
                   Code list according to UIC90918-1
                    - value R: to right
                    - value L: to left
-                   - value U: up (from right side of a coach pointing to the middle of the aile)
-                   - value D: down (from right side of the coach pointing to the middle of the aile)
+                   - value U: up (from right side of a coach pointing to the middle of the aisle)
+                   - value D: down (from right side of the coach pointing to the middle of the aisle)
                 type: string
               remarkId:
                 description: >-
@@ -5207,9 +5248,14 @@ components:
         - id
       
     PassengerConstraintDef:
+      description: >- 
+         used in allocator mode. Some data are required to be added to bar codes and control data (ETCD) 
+         even in case the fare was checked in online sales
       type: object
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange     
           type: string
         passengerType:
           description: see code list travelerType
@@ -5232,6 +5278,8 @@ components:
           type: boolean
           default: false
         combinationConstraint:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
           type: array
           items:
             type: object
@@ -5247,6 +5295,8 @@ components:
               - passengerTypeRef
             
         includedFreePassenger:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange 
           type: array
           items:
             type: object
@@ -5262,15 +5312,19 @@ components:
                 $ref: '#/components/schemas/TravelerTypeDef'
             
         passengerWeight:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange 
           type: number
           format: int32
         maxWeightedPassengers:
-          description: >-
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange  
             The total weighted number of passengers on the offer is restricted to be equal or smaller than this maximum
           type: number
           format: int32
         minWeightedPassengers:
-          description: >-
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange   
             The total weighted number of passengers on the offer is restricted to equal or larger than this minimum
           type: number
           format: int32
@@ -5283,7 +5337,8 @@ components:
       type: object
       properties:
         id:
-          description: in bulk data only
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
           type: string
         requiredCards:
           description: >-
@@ -5349,6 +5404,8 @@ components:
       type: object
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange  
           type: string
         combinationModels:
           type: array
@@ -5363,6 +5420,8 @@ components:
       type: object
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange  
           type: string
         afterSalesRules:
           type: array
@@ -5377,7 +5436,8 @@ components:
       type: object
       properties:
         id:
-          description: required for bulk data transfer
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
           type: string
         price:
           type: array
@@ -5424,15 +5484,18 @@ components:
           type: string
         feeRef:
           description: >-
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
             Reference to a price data item defining the fee; optional in case there is no fee but the 
             after sales transaction is allowed. Online services include fee directly in the fee tag.
           type: string
         fee:
+          description: >- 
+            \*** ONLINE-ONLY *** not used in bulk data, multi currency used for fares
           $ref: '#/components/schemas/CurrencyPriceDef'
         applicationTime:
           $ref: '#/components/schemas/RelativeTimeDef'
         applicationTimeStamp:
-          description: absolute application time (UTC) in case of online services
+          description:  \*** ONLINE-ONLY *** absolute application time (UTC) in case of online services
           type: string
           format: date-time
         carrierFee:
@@ -5612,6 +5675,8 @@ components:
       type: object
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange 
           type: string
         acceptedControlSecurityTypes:
           type: array
@@ -5660,6 +5725,8 @@ components:
       type: object
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange 
           type: string
         requiredData:
           type: array
@@ -5806,6 +5873,8 @@ components:
         Either excluded or included carriers can be set.
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange     
           type: string
         includedCarrier:
           type: array
@@ -5832,7 +5901,8 @@ components:
         id:
           $ref: '#/components/schemas/ServiceLevelIdDef'
         combiningServiceClassIds:
-          description: list of service class ids that can be combined with these service levels
+          description: >- 
+            \*** BULK-ONLY *** list of service class ids that can be combined with these service levels
           type: array
           items:
             $ref: '#/components/schemas/ServiceClassIdDef'
@@ -5857,6 +5927,8 @@ components:
       type: object
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange    
           type: string
         includedServiceBrands:
           type: array
@@ -5885,6 +5957,8 @@ components:
         regional constraint of the fare- offline bulk data use the id of connection points whereas in an online environment the connection point is included
       properties:
         id:
+          description: >- 
+            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange    
           type: string
         entryConnectionPointId:
           description: connection point connecting two fare regimes
@@ -5991,7 +6065,10 @@ components:
         geoCoordinate:
           $ref: '#/components/schemas/GeoCoordinate'
         travelPeriod:
-          $ref: '#/components/schemas/CalendarDef'
+          type: array
+          items:
+            type: string
+            format: date-time
         passengers:
           type: array
           items:
@@ -6054,7 +6131,7 @@ components:
             $ref: '#/components/schemas/Link'
       description: >-
         Non trip offers do not reference a trip, thus no reservations
-        or integrated reservations can be offered by definition.
+         can be offered by definition.
             
     TransportableDef:
       description: >- 
