@@ -62,12 +62,18 @@ paths:
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred as a
-            response to the request (see RFC2616-sec14.4). 
-            Supporting locations in English (en) is a most.
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
           schema:
             type: string
           required: false
+        - name: access-token 
+          in: header
+          required: true
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          schema:
+            type: string
         - name: matchValue
           in: query
           schema:
@@ -158,6 +164,21 @@ paths:
         The GET locations service retrieves a location element.
       operationId: getLocationsId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: locationId
           schema:
@@ -201,6 +222,21 @@ paths:
         segments. Depending on the embed either references or full location definitions will be returned
       operationId: getTripsId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: tripId
           schema:
@@ -235,6 +271,13 @@ paths:
       responses:
         '200':
           description: the requested trip
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                default: 'public, max-age=10000'
+                description: >-
+                  A trip resource is fairly persistent and has a medium time to live to allow short-term caching.
           content:
             application/json:
               schema:
@@ -260,6 +303,21 @@ paths:
         destination can be resolved using the locations service.
       operationId: getTripsCollectionId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: tripsCollectionId
           schema:
@@ -268,14 +326,6 @@ paths:
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the trip to get.
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred as a
-            response to the request (see RFC2616-sec14.4).
-          schema:
-            type: string
-          required: false
         - name: scrollContext
           in: query
           description: >-
@@ -317,6 +367,7 @@ paths:
       responses:
         '200':
           description: Trip(s) found
+          
           content:
             application/json:
               schema:
@@ -362,6 +413,13 @@ paths:
         destination can be resolved using the locations service.
       operationId: postTripsCollection
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
         - name: Accept-Language
           in: header
           description: >-
@@ -423,6 +481,21 @@ paths:
         origin and destination can be resolved using the locations service.
       operationId: getTripOffersCollectionId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: tripOffersCollectionId
           schema:
@@ -431,14 +504,6 @@ paths:
             example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the trip to get.
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred as a
-            response to the request (see RFC2616-sec14.4).
-          schema:
-            type: string
-          required: false
         - name: scrollContext
           in: query
           description: >-
@@ -530,6 +595,13 @@ paths:
         specified origin and destination (and via) locations. 
       operationId: postTripOffersCollection
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
         - name: Accept-Language
           in: header
           description: >-
@@ -589,6 +661,21 @@ paths:
         The GET trip-offers service returns different offers for a specified trip offer id.
       operationId: getTripOffersId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false  
         - in: path
           name: tripOfferId
           schema:
@@ -662,6 +749,21 @@ paths:
          The GET offers service returns the offer with the requested included sub resources in a given state.
       operationId: getOffersId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: offerId
           schema:
@@ -732,6 +834,21 @@ paths:
        The GET passenger service returns the passenger's information.
       operationId: getOfferPassengersId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: offerId
           schema:
@@ -788,6 +905,21 @@ paths:
         The PATCH passenger service allows updating a passenger's information.
       operationId: patchOfferPassenger
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: offerId
           schema:
@@ -851,6 +983,21 @@ paths:
        The GET passenger service returns the passenger's information.
       operationId: getBookingPassengersId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: bookingId
           schema:
@@ -907,6 +1054,21 @@ paths:
         The PATCH passenger service allows updating a passenger's information.
       operationId: patchBookingPassenger
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: bookingId
           schema:
@@ -970,6 +1132,21 @@ paths:
         The GET product service returns the information on products with the id provided.
       operationId: getProductsId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: productId
           schema:
@@ -1026,6 +1203,21 @@ paths:
         The GET admission service returns the information on the admission with the id provided.
       operationId: getAdmissionId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: offerId
           schema:
@@ -1088,6 +1280,21 @@ paths:
         The GET reservation service returns the information on the reservation with the id provided.
       operationId: getReservationsId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: offerId
           schema:
@@ -1155,6 +1362,21 @@ paths:
         empty available places will update the available places list in the reply.
       operationId: patchReservationId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: offerId
           schema:
@@ -1223,6 +1445,21 @@ paths:
         The GET ancillaries service returns the information on the ancillary with the id provided.
       operationId: getAncillariesId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: offerId
           schema:
@@ -1290,6 +1527,21 @@ paths:
         Otherwise a forbidden message is returned. 
       operationId: getFaresId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: offerId
           schema:
@@ -1357,6 +1609,21 @@ paths:
         empty available places will update the available places list in the reply.
       operationId: patchFareId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: offerId
           schema:
@@ -1426,6 +1693,21 @@ paths:
         Auftragsnummer) or by fulfillment reference (e.g. ticket number).
       operationId: getBookings
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: query
           name: embed
           description: >-
@@ -1491,6 +1773,13 @@ paths:
         The POST bookings create service allows to create a booking based on a previously requested offer. The offer id is provided in the query.
       operationId: postBookings
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
         - name: Accept-Language
           in: header
           description: >-
@@ -1552,6 +1841,21 @@ paths:
         The GET booking service returns the information on the booking with the id provided.
       operationId: getBookingsId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: bookingId
           schema:
@@ -1625,6 +1929,13 @@ paths:
         is only possible before the booking is confirmed.
       operationId: deleteBookingsId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
         - in: path
           name: bookingId
           schema:
@@ -1677,6 +1988,21 @@ paths:
         The PATCH bookings service allows updating the fulfillment type of the booking
       operationId: confirmBooking
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: bookingId
           schema:
@@ -1732,6 +2058,21 @@ paths:
         currently contained in the provided booking.
       operationId: postFulfillments
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: bookingId
           schema:
@@ -1797,6 +2138,21 @@ paths:
         The PATCH fulfillments service allows the effective fulfillment of one ore more confirmed fulfillment. 
       operationId: patchFulfillment
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: bookingId
           schema:
@@ -1869,6 +2225,21 @@ paths:
         The GET ticket service returns the information on the ticket with the id provided.
       operationId: getFulfillmentId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: fulfillmentId
           schema:
@@ -1926,6 +2297,21 @@ paths:
         accepted via a PATCH, deleted or left to die at the end of its lifetime.
       operationId: postRefundOffersBookingId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: bookingId
           schema:
@@ -1987,6 +2373,21 @@ paths:
         The GET refundOffer service returns the refund offer with the id provided.
       operationId: getRefundOffersId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: bookingId
           schema:
@@ -2049,6 +2450,21 @@ paths:
         The PATCH refundOffers action allows to accept and confirm a refund operation. 
       operationId: patchRefundOffersId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: bookingId
           schema:
@@ -2115,6 +2531,13 @@ paths:
         The DELETE refundOffers action allows to cancel a refundOffer without waiting for expiry. 
       operationId: deleteRefundOffersId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
         - in: path
           name: bookingId
           schema:
@@ -2180,6 +2603,21 @@ paths:
         accepted via a PATCH, deleted or left to die at the end of its lifetime. 
       operationId: postExchangeOffersBookingId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: bookingId
           schema:
@@ -2229,6 +2667,21 @@ paths:
         *** NOT-MVP *** The PATCH exchangeOffers action allows to accept and confirm an exchange operation. 
       operationId: patchExchangeOffersId
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: path
           name: bookingId
           schema:
@@ -2292,6 +2745,22 @@ paths:
       summary: >-
         *** NOT-MVP ***Retrieve the coach layout description needed for graphical reservation    
       operationId: getCoachLayouts
+      parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
       responses:
         '200':
           description: coach layouts
@@ -2330,6 +2799,21 @@ paths:
         Get offers not linked to trips based on key words or regional information (e.g. for passes or seasonal tickets)          
       operationId: searchOffers
       parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
         - in: query
           name: version
           description: schema version
@@ -4934,8 +5418,6 @@ components:
         - combinationConstraint
         - travelValidityConstraint
         - afterSalesCondition
-      addititionalProperties: false
-        
         
     RegulatoryConditionsDef:
       description: >- 
