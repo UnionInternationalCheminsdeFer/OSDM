@@ -3784,9 +3784,14 @@ components:
         currency:
           $ref: '#/components/schemas/CurrencyDef'
         amount:
-          description: amount in cents
+          description: amount
           type: number
           format: int32
+        scale:
+          description: scale of the amount - the number of positions after the comma
+          type: integer
+          format: int32
+          default: 2          
         vatDetails:
           type: array
           items:
@@ -3801,9 +3806,14 @@ components:
         country:
           $ref: '#/components/schemas/CountryDef'
         amount:
-          description: amount in cents
+          description: amount
           type: number
           format: int32
+        scale:
+          description: scale of the amount - the number of positions after the comma
+          type: integer
+          format: int32
+          default: 2    
         percentage:
           type: number
           format: float
