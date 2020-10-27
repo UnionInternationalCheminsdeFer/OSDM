@@ -5440,8 +5440,8 @@ components:
          type: string
          enum:
          - CIV
-         - MD
-         - EU-PRR
+         - MC
+         - EU_PRR
         
     LegacyAccountingIdentifierDef:
       description: identifier of the fare in the current 301 accounting file
