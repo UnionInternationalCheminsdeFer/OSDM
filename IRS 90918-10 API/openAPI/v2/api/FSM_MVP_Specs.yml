@@ -6190,9 +6190,11 @@ components:
         requiredBarCodes:
           description: >-
             One of the listed bar codes must be provided.
-          type: array
-          items:
-            type: string
+          type: string
+          x-extensible-enum:
+             - FCB
+             - TLB
+             - SSB
         requiredSiS:
           description: >-
             To guarantee security in system (SiS) of the fulfillment one of the listed interfaces is required.
