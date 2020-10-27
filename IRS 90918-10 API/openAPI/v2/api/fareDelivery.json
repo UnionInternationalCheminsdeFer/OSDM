@@ -1,0 +1,11 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "http://uic.org//schemas/passenger/eticket/v1/fareDelivery.json",
+	"type": "object",
+	"properties": {
+		"FareStructureDelivery": {
+			"$ref": "offlineOSDM.json#/components/schemas/FareDeliveryDef"
+		}
+	},
+	"additionalProperties": false
+}
