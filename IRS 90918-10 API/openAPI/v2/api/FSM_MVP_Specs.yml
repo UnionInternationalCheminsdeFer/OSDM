@@ -6129,8 +6129,8 @@ components:
         to go to the main rail station).
       properties:
         binaryZoneId:
-          type: integer
-          format: Base64
+          type: string
+          format: base64
           description: 
             Id to support local traffic standards (e.g. VDV,...)
         carrier:
