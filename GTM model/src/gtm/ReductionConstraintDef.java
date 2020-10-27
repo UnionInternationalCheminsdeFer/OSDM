@@ -16,24 +16,23 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class ReductionConstraintDef {
 
     /**
-     * 
-     * (Required)
+     * in bulk data only
      * 
      */
     @JsonProperty("id")
+    @JsonPropertyDescription("in bulk data only")
     private String id;
     /**
-     * one of the listed cards is required to be valid at the time of travel. 
+     * One of the listed cards is required to be valid at the time of travel.
      * (Required)
      * 
      */
     @JsonProperty("requiredCards")
-    @JsonPropertyDescription("one of the listed cards is required to be valid at the time of travel. ")
-    private List<RequiredCard> requiredCards = new ArrayList<RequiredCard>();
+    @JsonPropertyDescription("One of the listed cards is required to be valid at the time of travel.")
+    private List<ReductionCardReferenceDef> requiredCards = new ArrayList<ReductionCardReferenceDef>();
 
     /**
-     * 
-     * (Required)
+     * in bulk data only
      * 
      */
     @JsonProperty("id")
@@ -42,8 +41,7 @@ public class ReductionConstraintDef {
     }
 
     /**
-     * 
-     * (Required)
+     * in bulk data only
      * 
      */
     @JsonProperty("id")
@@ -52,22 +50,22 @@ public class ReductionConstraintDef {
     }
 
     /**
-     * one of the listed cards is required to be valid at the time of travel. 
+     * One of the listed cards is required to be valid at the time of travel.
      * (Required)
      * 
      */
     @JsonProperty("requiredCards")
-    public List<RequiredCard> getRequiredCards() {
+    public List<ReductionCardReferenceDef> getRequiredCards() {
         return requiredCards;
     }
 
     /**
-     * one of the listed cards is required to be valid at the time of travel. 
+     * One of the listed cards is required to be valid at the time of travel.
      * (Required)
      * 
      */
     @JsonProperty("requiredCards")
-    public void setRequiredCards(List<RequiredCard> requiredCards) {
+    public void setRequiredCards(List<ReductionCardReferenceDef> requiredCards) {
         this.requiredCards = requiredCards;
     }
 

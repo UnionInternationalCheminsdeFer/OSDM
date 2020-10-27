@@ -382,6 +382,8 @@ public class GtmValidator extends EObjectValidator {
 				return validateStationRelationType((StationRelationType)value, diagnostics, context);
 			case GtmPackage.STATION_FARE_DETAIL_TYPE:
 				return validateStationFareDetailType((StationFareDetailType)value, diagnostics, context);
+			case GtmPackage.REGULATORY_CONDITION:
+				return validateRegulatoryCondition((RegulatoryCondition)value, diagnostics, context);
 			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
 				return validateAfterSalesTransactionType((AfterSalesTransactionType)value, diagnostics, context);
 			case GtmPackage.BARCODE_TYPES:
@@ -2373,6 +2375,15 @@ public class GtmValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateStationFareDetailType(StationFareDetailType stationFareDetailType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRegulatoryCondition(RegulatoryCondition regulatoryCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

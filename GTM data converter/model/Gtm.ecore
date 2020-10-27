@@ -405,6 +405,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="fulfillmentConstraint"
         eType="#//FulfillmentConstraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="passengerConstraint" eType="#//PassengerConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="regulatoryConditions" upperBound="-1"
+        eType="#//RegulatoryCondition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="afterSalesRule" eType="#//AfterSalesRule"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//DataSource"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacyAccountingIdentifier"
@@ -909,8 +911,7 @@
       <details key="constraints" value="COORDINATE_LIMITS"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="system" eType="#//GeoSystem"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="#//GeoUnit"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accuracy" eType="#//GeoUnit"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accuracy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="longitude" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="latitude" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
@@ -1054,6 +1055,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="legacyConversion" eType="#//LegacyConversionType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="individualContracts" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="regulatoryConditions" upperBound="-1"
+        eType="#//RegulatoryCondition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AfterSalesTemplate">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="transactionType" eType="#//AfterSalesTransactionType"/>
@@ -1311,6 +1314,11 @@
     <eLiterals name="ON_ARRIVAL"/>
     <eLiterals name="ON_DEPARTURE"/>
     <eLiterals name="ON_ARRIVAL_ON__DEPARTURE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RegulatoryCondition">
+    <eLiterals name="CIV"/>
+    <eLiterals name="MC" value="1"/>
+    <eLiterals name="EU_PRR" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AfterSalesTransactionType">
     <eLiterals name="REFUND" value="1"/>

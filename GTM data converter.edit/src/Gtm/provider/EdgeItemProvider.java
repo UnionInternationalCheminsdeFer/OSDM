@@ -63,7 +63,6 @@ public class EdgeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addSystemPropertyDescriptor(object);
-			addUnitPropertyDescriptor(object);
 			addAccuracyPropertyDescriptor(object);
 			addLongitudePropertyDescriptor(object);
 			addLatitudePropertyDescriptor(object);
@@ -94,28 +93,6 @@ public class EdgeItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Unit feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUnitPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Edge_unit_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Edge_unit_feature", "_UI_Edge_type"),
-				 GtmPackage.Literals.EDGE__UNIT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Accuracy feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -132,7 +109,7 @@ public class EdgeItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -221,7 +198,6 @@ public class EdgeItemProvider
 
 		switch (notification.getFeatureID(Edge.class)) {
 			case GtmPackage.EDGE__SYSTEM:
-			case GtmPackage.EDGE__UNIT:
 			case GtmPackage.EDGE__ACCURACY:
 			case GtmPackage.EDGE__LONGITUDE:
 			case GtmPackage.EDGE__LATITUDE:

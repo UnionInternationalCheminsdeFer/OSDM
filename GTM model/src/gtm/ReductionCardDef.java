@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "issuer",
-    "Id",
+    "id",
     "name",
     "nameRef",
     "serviceClasses",
@@ -21,20 +21,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class ReductionCardDef {
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
     @JsonProperty("issuer")
-    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
+    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x")
     private String issuer;
     /**
-     * id of the card within the issuer
+     * id of the card type within the issuer
      * (Required)
      * 
      */
-    @JsonProperty("Id")
-    @JsonPropertyDescription("id of the card within the issuer")
+    @JsonProperty("id")
+    @JsonPropertyDescription("id of the card type within the issuer")
     private String id;
     /**
      * directly included text in case of online services
@@ -57,7 +57,7 @@ public class ReductionCardDef {
      */
     @JsonProperty("serviceClasses")
     @JsonPropertyDescription("list of service classes in case this class is available for different classes")
-    private List<ServiceClassDef> serviceClasses = new ArrayList<ServiceClassDef>();
+    private List<gtm.ServiceClassDefinitionDef.ServiceClassIdDef> serviceClasses = new ArrayList<gtm.ServiceClassDefinitionDef.ServiceClassIdDef>();
     /**
      * LOYALTY_CARD,REDUCTION_CARD,PASS
      * 
@@ -74,7 +74,7 @@ public class ReductionCardDef {
     private Boolean cardIdRequired = false;
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
@@ -84,7 +84,7 @@ public class ReductionCardDef {
     }
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
@@ -94,21 +94,21 @@ public class ReductionCardDef {
     }
 
     /**
-     * id of the card within the issuer
+     * id of the card type within the issuer
      * (Required)
      * 
      */
-    @JsonProperty("Id")
+    @JsonProperty("id")
     public String getId() {
         return id;
     }
 
     /**
-     * id of the card within the issuer
+     * id of the card type within the issuer
      * (Required)
      * 
      */
-    @JsonProperty("Id")
+    @JsonProperty("id")
     public void setId(String id) {
         this.id = id;
     }
@@ -156,7 +156,7 @@ public class ReductionCardDef {
      * 
      */
     @JsonProperty("serviceClasses")
-    public List<ServiceClassDef> getServiceClasses() {
+    public List<gtm.ServiceClassDefinitionDef.ServiceClassIdDef> getServiceClasses() {
         return serviceClasses;
     }
 
@@ -165,7 +165,7 @@ public class ReductionCardDef {
      * 
      */
     @JsonProperty("serviceClasses")
-    public void setServiceClasses(List<ServiceClassDef> serviceClasses) {
+    public void setServiceClasses(List<gtm.ServiceClassDefinitionDef.ServiceClassIdDef> serviceClasses) {
         this.serviceClasses = serviceClasses;
     }
 

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "id",
-    "combiningServiceClasses",
+    "combiningServiceClassIds",
     "textRef",
     "text",
     "includesClassName",
@@ -20,19 +20,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class ServiceLevelDef {
 
     /**
-     * 
+     * Code of the service level, code-list in IRS 90918-1.
      * (Required)
      * 
      */
     @JsonProperty("id")
+    @JsonPropertyDescription("Code of the service level, code-list in IRS 90918-1.")
     private String id;
     /**
      * list of service class ids that can be combined with these service levels
      * 
      */
-    @JsonProperty("combiningServiceClasses")
+    @JsonProperty("combiningServiceClassIds")
     @JsonPropertyDescription("list of service class ids that can be combined with these service levels")
-    private List<String> combiningServiceClasses = new ArrayList<String>();
+    private List<gtm.ServiceClassDefinitionDef.ServiceClassIdDef> combiningServiceClassIds = new ArrayList<gtm.ServiceClassDefinitionDef.ServiceClassIdDef>();
     /**
      * id of the text describing the service level
      * 
@@ -42,6 +43,7 @@ public class ServiceLevelDef {
     private String textRef;
     /**
      * directly included text in case of online services
+     * (Required)
      * 
      */
     @JsonProperty("text")
@@ -58,7 +60,7 @@ public class ServiceLevelDef {
     private String reservationParameterId;
 
     /**
-     * 
+     * Code of the service level, code-list in IRS 90918-1.
      * (Required)
      * 
      */
@@ -68,7 +70,7 @@ public class ServiceLevelDef {
     }
 
     /**
-     * 
+     * Code of the service level, code-list in IRS 90918-1.
      * (Required)
      * 
      */
@@ -81,18 +83,18 @@ public class ServiceLevelDef {
      * list of service class ids that can be combined with these service levels
      * 
      */
-    @JsonProperty("combiningServiceClasses")
-    public List<String> getCombiningServiceClasses() {
-        return combiningServiceClasses;
+    @JsonProperty("combiningServiceClassIds")
+    public List<gtm.ServiceClassDefinitionDef.ServiceClassIdDef> getCombiningServiceClassIds() {
+        return combiningServiceClassIds;
     }
 
     /**
      * list of service class ids that can be combined with these service levels
      * 
      */
-    @JsonProperty("combiningServiceClasses")
-    public void setCombiningServiceClasses(List<String> combiningServiceClasses) {
-        this.combiningServiceClasses = combiningServiceClasses;
+    @JsonProperty("combiningServiceClassIds")
+    public void setCombiningServiceClassIds(List<gtm.ServiceClassDefinitionDef.ServiceClassIdDef> combiningServiceClassIds) {
+        this.combiningServiceClassIds = combiningServiceClassIds;
     }
 
     /**
@@ -115,6 +117,7 @@ public class ServiceLevelDef {
 
     /**
      * directly included text in case of online services
+     * (Required)
      * 
      */
     @JsonProperty("text")
@@ -124,6 +127,7 @@ public class ServiceLevelDef {
 
     /**
      * directly included text in case of online services
+     * (Required)
      * 
      */
     @JsonProperty("text")
@@ -167,9 +171,9 @@ public class ServiceLevelDef {
         sb.append('=');
         sb.append(((this.id == null)?"<null>":this.id));
         sb.append(',');
-        sb.append("combiningServiceClasses");
+        sb.append("combiningServiceClassIds");
         sb.append('=');
-        sb.append(((this.combiningServiceClasses == null)?"<null>":this.combiningServiceClasses));
+        sb.append(((this.combiningServiceClassIds == null)?"<null>":this.combiningServiceClassIds));
         sb.append(',');
         sb.append("textRef");
         sb.append('=');
@@ -200,10 +204,10 @@ public class ServiceLevelDef {
         int result = 1;
         result = ((result* 31)+((this.reservationParameterId == null)? 0 :this.reservationParameterId.hashCode()));
         result = ((result* 31)+((this.includesClassName == null)? 0 :this.includesClassName.hashCode()));
-        result = ((result* 31)+((this.combiningServiceClasses == null)? 0 :this.combiningServiceClasses.hashCode()));
         result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
         result = ((result* 31)+((this.textRef == null)? 0 :this.textRef.hashCode()));
         result = ((result* 31)+((this.text == null)? 0 :this.text.hashCode()));
+        result = ((result* 31)+((this.combiningServiceClassIds == null)? 0 :this.combiningServiceClassIds.hashCode()));
         return result;
     }
 
@@ -216,7 +220,7 @@ public class ServiceLevelDef {
             return false;
         }
         ServiceLevelDef rhs = ((ServiceLevelDef) other);
-        return (((((((this.reservationParameterId == rhs.reservationParameterId)||((this.reservationParameterId!= null)&&this.reservationParameterId.equals(rhs.reservationParameterId)))&&((this.includesClassName == rhs.includesClassName)||((this.includesClassName!= null)&&this.includesClassName.equals(rhs.includesClassName))))&&((this.combiningServiceClasses == rhs.combiningServiceClasses)||((this.combiningServiceClasses!= null)&&this.combiningServiceClasses.equals(rhs.combiningServiceClasses))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.textRef == rhs.textRef)||((this.textRef!= null)&&this.textRef.equals(rhs.textRef))))&&((this.text == rhs.text)||((this.text!= null)&&this.text.equals(rhs.text))));
+        return (((((((this.reservationParameterId == rhs.reservationParameterId)||((this.reservationParameterId!= null)&&this.reservationParameterId.equals(rhs.reservationParameterId)))&&((this.includesClassName == rhs.includesClassName)||((this.includesClassName!= null)&&this.includesClassName.equals(rhs.includesClassName))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.textRef == rhs.textRef)||((this.textRef!= null)&&this.textRef.equals(rhs.textRef))))&&((this.text == rhs.text)||((this.text!= null)&&this.text.equals(rhs.text))))&&((this.combiningServiceClassIds == rhs.combiningServiceClassIds)||((this.combiningServiceClassIds!= null)&&this.combiningServiceClassIds.equals(rhs.combiningServiceClassIds))));
     }
 
 }

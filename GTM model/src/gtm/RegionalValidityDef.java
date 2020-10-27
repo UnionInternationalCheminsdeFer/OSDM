@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * one of the elements Zone,ViaStation,TrainLink, Line, Polygone
+ * One of the elements Zone, ViaStation, TrainLink, Line, or Polygon defining the regional validity
  * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "viaStations",
     "trainLink",
     "line",
-    "polygone"
+    "polygon"
 })
 public class RegionalValidityDef {
 
@@ -29,16 +29,26 @@ public class RegionalValidityDef {
     @JsonProperty("seqNb")
     @JsonPropertyDescription("order number of the list item")
     private Integer seqNb;
+    /**
+     * carrier - carrier responsible for the transport. entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station). terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main rail station).
+     * 
+     */
     @JsonProperty("zone")
+    @JsonPropertyDescription("carrier - carrier responsible for the transport. entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station). terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main rail station).")
     private ZoneDef zone;
     @JsonProperty("viaStations")
     private ViaStationsDef viaStations;
     @JsonProperty("trainLink")
     private TrainLinkDef trainLink;
+    /**
+     * terminalStation - in case the product requires a destination within the zone (e.g. local ticket  to go to the main rail station).  entryStation - Station to enter the zone in case the product requires to enter the zone via a  specific station (e.g. local zone ticket to start from the main rail station).
+     * 
+     */
     @JsonProperty("line")
+    @JsonPropertyDescription("terminalStation - in case the product requires a destination within the zone (e.g. local ticket  to go to the main rail station).  entryStation - Station to enter the zone in case the product requires to enter the zone via a  specific station (e.g. local zone ticket to start from the main rail station).")
     private LineDef line;
-    @JsonProperty("polygone")
-    private PolygoneDef polygone;
+    @JsonProperty("polygon")
+    private PolygonDef polygon;
 
     /**
      * order number of the list item
@@ -58,11 +68,19 @@ public class RegionalValidityDef {
         this.seqNb = seqNb;
     }
 
+    /**
+     * carrier - carrier responsible for the transport. entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station). terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main rail station).
+     * 
+     */
     @JsonProperty("zone")
     public ZoneDef getZone() {
         return zone;
     }
 
+    /**
+     * carrier - carrier responsible for the transport. entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station). terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main rail station).
+     * 
+     */
     @JsonProperty("zone")
     public void setZone(ZoneDef zone) {
         this.zone = zone;
@@ -88,24 +106,32 @@ public class RegionalValidityDef {
         this.trainLink = trainLink;
     }
 
+    /**
+     * terminalStation - in case the product requires a destination within the zone (e.g. local ticket  to go to the main rail station).  entryStation - Station to enter the zone in case the product requires to enter the zone via a  specific station (e.g. local zone ticket to start from the main rail station).
+     * 
+     */
     @JsonProperty("line")
     public LineDef getLine() {
         return line;
     }
 
+    /**
+     * terminalStation - in case the product requires a destination within the zone (e.g. local ticket  to go to the main rail station).  entryStation - Station to enter the zone in case the product requires to enter the zone via a  specific station (e.g. local zone ticket to start from the main rail station).
+     * 
+     */
     @JsonProperty("line")
     public void setLine(LineDef line) {
         this.line = line;
     }
 
-    @JsonProperty("polygone")
-    public PolygoneDef getPolygone() {
-        return polygone;
+    @JsonProperty("polygon")
+    public PolygonDef getPolygon() {
+        return polygon;
     }
 
-    @JsonProperty("polygone")
-    public void setPolygone(PolygoneDef polygone) {
-        this.polygone = polygone;
+    @JsonProperty("polygon")
+    public void setPolygon(PolygonDef polygon) {
+        this.polygon = polygon;
     }
 
     @Override
@@ -132,9 +158,9 @@ public class RegionalValidityDef {
         sb.append('=');
         sb.append(((this.line == null)?"<null>":this.line));
         sb.append(',');
-        sb.append("polygone");
+        sb.append("polygon");
         sb.append('=');
-        sb.append(((this.polygone == null)?"<null>":this.polygone));
+        sb.append(((this.polygon == null)?"<null>":this.polygon));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -148,10 +174,10 @@ public class RegionalValidityDef {
     public int hashCode() {
         int result = 1;
         result = ((result* 31)+((this.trainLink == null)? 0 :this.trainLink.hashCode()));
+        result = ((result* 31)+((this.polygon == null)? 0 :this.polygon.hashCode()));
         result = ((result* 31)+((this.zone == null)? 0 :this.zone.hashCode()));
         result = ((result* 31)+((this.line == null)? 0 :this.line.hashCode()));
         result = ((result* 31)+((this.seqNb == null)? 0 :this.seqNb.hashCode()));
-        result = ((result* 31)+((this.polygone == null)? 0 :this.polygone.hashCode()));
         result = ((result* 31)+((this.viaStations == null)? 0 :this.viaStations.hashCode()));
         return result;
     }
@@ -165,7 +191,7 @@ public class RegionalValidityDef {
             return false;
         }
         RegionalValidityDef rhs = ((RegionalValidityDef) other);
-        return (((((((this.trainLink == rhs.trainLink)||((this.trainLink!= null)&&this.trainLink.equals(rhs.trainLink)))&&((this.zone == rhs.zone)||((this.zone!= null)&&this.zone.equals(rhs.zone))))&&((this.line == rhs.line)||((this.line!= null)&&this.line.equals(rhs.line))))&&((this.seqNb == rhs.seqNb)||((this.seqNb!= null)&&this.seqNb.equals(rhs.seqNb))))&&((this.polygone == rhs.polygone)||((this.polygone!= null)&&this.polygone.equals(rhs.polygone))))&&((this.viaStations == rhs.viaStations)||((this.viaStations!= null)&&this.viaStations.equals(rhs.viaStations))));
+        return (((((((this.trainLink == rhs.trainLink)||((this.trainLink!= null)&&this.trainLink.equals(rhs.trainLink)))&&((this.polygon == rhs.polygon)||((this.polygon!= null)&&this.polygon.equals(rhs.polygon))))&&((this.zone == rhs.zone)||((this.zone!= null)&&this.zone.equals(rhs.zone))))&&((this.line == rhs.line)||((this.line!= null)&&this.line.equals(rhs.line))))&&((this.seqNb == rhs.seqNb)||((this.seqNb!= null)&&this.seqNb.equals(rhs.seqNb))))&&((this.viaStations == rhs.viaStations)||((this.viaStations!= null)&&this.viaStations.equals(rhs.viaStations))));
     }
 
 }

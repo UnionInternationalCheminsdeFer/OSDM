@@ -1,5 +1,4 @@
-/**
- */
+
 package Gtm;
 
 import org.eclipse.emf.common.util.EList;

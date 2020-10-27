@@ -6,21 +6,21 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum FulfillmentTypeDef {
+public enum Transfer {
 
-    SIP("SIP"),
-    SID("SID"),
-    SIS("SIS");
+    BOOKING("BOOKING"),
+    SIS_CONTROL("SIS_CONTROL"),
+    SID_CONTROL("SID_CONTROL");
     private final String value;
-    private final static Map<String, FulfillmentTypeDef> CONSTANTS = new HashMap<String, FulfillmentTypeDef>();
+    private final static Map<String, Transfer> CONSTANTS = new HashMap<String, Transfer>();
 
     static {
-        for (FulfillmentTypeDef c: values()) {
+        for (Transfer c: values()) {
             CONSTANTS.put(c.value, c);
         }
     }
 
-    private FulfillmentTypeDef(String value) {
+    private Transfer(String value) {
         this.value = value;
     }
 
@@ -35,8 +35,8 @@ public enum FulfillmentTypeDef {
     }
 
     @JsonCreator
-    public static FulfillmentTypeDef fromValue(String value) {
-        FulfillmentTypeDef constant = CONSTANTS.get(value);
+    public static Transfer fromValue(String value) {
+        Transfer constant = CONSTANTS.get(value);
         if (constant == null) {
             throw new IllegalArgumentException(value);
         } else {

@@ -1,10 +1,14 @@
 
 package gtm;
 
+import java.util.HashMap;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -14,38 +18,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class AllowedChange {
 
     /**
-     * IN_GENERAL,MARRIAGE,DOCUMENT_CHANGE,AGENT_ERROR
+     * 
      * (Required)
      * 
      */
     @JsonProperty("acceptedReason")
-    @JsonPropertyDescription("IN_GENERAL,MARRIAGE,DOCUMENT_CHANGE,AGENT_ERROR")
-    private String acceptedReason;
+    private AllowedChange.AcceptedReason acceptedReason;
     /**
      * the change is limited to n hours after booking confirmation
      * 
      */
     @JsonProperty("timeLimit")
     @JsonPropertyDescription("the change is limited to n hours after booking confirmation")
-    private Float timeLimit;
+    private Integer timeLimit;
 
     /**
-     * IN_GENERAL,MARRIAGE,DOCUMENT_CHANGE,AGENT_ERROR
+     * 
      * (Required)
      * 
      */
     @JsonProperty("acceptedReason")
-    public String getAcceptedReason() {
+    public AllowedChange.AcceptedReason getAcceptedReason() {
         return acceptedReason;
     }
 
     /**
-     * IN_GENERAL,MARRIAGE,DOCUMENT_CHANGE,AGENT_ERROR
+     * 
      * (Required)
      * 
      */
     @JsonProperty("acceptedReason")
-    public void setAcceptedReason(String acceptedReason) {
+    public void setAcceptedReason(AllowedChange.AcceptedReason acceptedReason) {
         this.acceptedReason = acceptedReason;
     }
 
@@ -54,7 +57,7 @@ public class AllowedChange {
      * 
      */
     @JsonProperty("timeLimit")
-    public Float getTimeLimit() {
+    public Integer getTimeLimit() {
         return timeLimit;
     }
 
@@ -63,7 +66,7 @@ public class AllowedChange {
      * 
      */
     @JsonProperty("timeLimit")
-    public void setTimeLimit(Float timeLimit) {
+    public void setTimeLimit(Integer timeLimit) {
         this.timeLimit = timeLimit;
     }
 
@@ -105,6 +108,47 @@ public class AllowedChange {
         }
         AllowedChange rhs = ((AllowedChange) other);
         return (((this.timeLimit == rhs.timeLimit)||((this.timeLimit!= null)&&this.timeLimit.equals(rhs.timeLimit)))&&((this.acceptedReason == rhs.acceptedReason)||((this.acceptedReason!= null)&&this.acceptedReason.equals(rhs.acceptedReason))));
+    }
+
+    public enum AcceptedReason {
+
+        IN_GENERAL("IN_GENERAL"),
+        MARRIAGE("MARRIAGE"),
+        DOCUMENT_CHANGE("DOCUMENT_CHANGE"),
+        AGENT_ERROR("AGENT_ERROR");
+        private final String value;
+        private final static Map<String, AllowedChange.AcceptedReason> CONSTANTS = new HashMap<String, AllowedChange.AcceptedReason>();
+
+        static {
+            for (AllowedChange.AcceptedReason c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        private AcceptedReason(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        @JsonValue
+        public String value() {
+            return this.value;
+        }
+
+        @JsonCreator
+        public static AllowedChange.AcceptedReason fromValue(String value) {
+            AllowedChange.AcceptedReason constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
+        }
+
     }
 
 }

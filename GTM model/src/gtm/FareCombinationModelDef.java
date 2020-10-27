@@ -21,58 +21,58 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class FareCombinationModelDef {
 
     /**
-     * SEPARATE_TICKET.SEPARATE_CONTRACT,CLUSTERING,COMBINING
+     * Possible models are SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING.  The models need to be supported by the allocator.
      * (Required)
      * 
      */
     @JsonProperty("model")
-    @JsonPropertyDescription("SEPARATE_TICKET.SEPARATE_CONTRACT,CLUSTERING,COMBINING")
+    @JsonPropertyDescription("Possible models are SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING.  The models need to be supported by the allocator.")
     private String model;
     /**
-     * list of all carriers where the model can be applied, in case the list is empty all combinations are allowed.
+     * List of all carriers where the model can be applied, in case the list is empty all combinations are allowed.
      * 
      */
     @JsonProperty("combinableCarrier")
-    @JsonPropertyDescription("list of all carriers where the model can be applied, in case the list is empty all combinations are allowed.")
+    @JsonPropertyDescription("List of all carriers where the model can be applied, in case the list is empty all combinations are allowed.")
     private List<String> combinableCarrier = new ArrayList<String>();
     /**
-     * this combination model applies only in case the fare is combined with another carrier
+     * This combination model applies only in case the fare is combined with another carrier
      * 
      */
     @JsonProperty("onlyWhenCombined")
-    @JsonPropertyDescription("this combination model applies only in case the fare is combined with another carrier")
+    @JsonPropertyDescription("This combination model applies only in case the fare is combined with another carrier")
     private Boolean onlyWhenCombined = false;
     /**
-     * in case of CLUSTERING model: the cluster to which the fare belongs
+     * In case of CLUSTERING model: the cluster to which the fare belongs
      * 
      */
     @JsonProperty("referenceCluster")
-    @JsonPropertyDescription("in case of CLUSTERING model: the cluster to which the fare belongs")
+    @JsonPropertyDescription("In case of CLUSTERING model: the cluster to which the fare belongs")
     private String referenceCluster;
     /**
-     * in case of CLUSTERIMNG model: the other clusters taht allow a combination
+     * In case of CLUSTERING model: the other clusters that allow a combination
      * 
      */
     @JsonProperty("allowedClusters")
-    @JsonPropertyDescription("in case of CLUSTERIMNG model: the other clusters taht allow a combination")
+    @JsonPropertyDescription("In case of CLUSTERING model: the other clusters that allow a combination")
     private List<String> allowedClusters = new ArrayList<String>();
     /**
-     * list of allowed allocators. in case the list is empty all allocators with a sales contract are permitted.
+     * List of allowed allocators. If the list is empty all allocators with a sales contract are permitted.
      * 
      */
     @JsonProperty("allowedAllocators")
-    @JsonPropertyDescription("list of allowed allocators. in case the list is empty all allocators with a sales contract are permitted.")
+    @JsonPropertyDescription("List of allowed allocators. If the list is empty all allocators with a sales contract are permitted.")
     private List<String> allowedAllocators = new ArrayList<String>();
     /**
-     * list of carriers where a common contract with separate tickets are allowed. 
+     * List of carriers where a common contract with separate fulfillments are allowed.
      * 
      */
     @JsonProperty("allowedCommonContracts")
-    @JsonPropertyDescription("list of carriers where a common contract with separate tickets are allowed. ")
+    @JsonPropertyDescription("List of carriers where a common contract with separate fulfillments are allowed.")
     private List<String> allowedCommonContracts = new ArrayList<String>();
 
     /**
-     * SEPARATE_TICKET.SEPARATE_CONTRACT,CLUSTERING,COMBINING
+     * Possible models are SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING.  The models need to be supported by the allocator.
      * (Required)
      * 
      */
@@ -82,7 +82,7 @@ public class FareCombinationModelDef {
     }
 
     /**
-     * SEPARATE_TICKET.SEPARATE_CONTRACT,CLUSTERING,COMBINING
+     * Possible models are SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING.  The models need to be supported by the allocator.
      * (Required)
      * 
      */
@@ -92,7 +92,7 @@ public class FareCombinationModelDef {
     }
 
     /**
-     * list of all carriers where the model can be applied, in case the list is empty all combinations are allowed.
+     * List of all carriers where the model can be applied, in case the list is empty all combinations are allowed.
      * 
      */
     @JsonProperty("combinableCarrier")
@@ -101,7 +101,7 @@ public class FareCombinationModelDef {
     }
 
     /**
-     * list of all carriers where the model can be applied, in case the list is empty all combinations are allowed.
+     * List of all carriers where the model can be applied, in case the list is empty all combinations are allowed.
      * 
      */
     @JsonProperty("combinableCarrier")
@@ -110,7 +110,7 @@ public class FareCombinationModelDef {
     }
 
     /**
-     * this combination model applies only in case the fare is combined with another carrier
+     * This combination model applies only in case the fare is combined with another carrier
      * 
      */
     @JsonProperty("onlyWhenCombined")
@@ -119,7 +119,7 @@ public class FareCombinationModelDef {
     }
 
     /**
-     * this combination model applies only in case the fare is combined with another carrier
+     * This combination model applies only in case the fare is combined with another carrier
      * 
      */
     @JsonProperty("onlyWhenCombined")
@@ -128,7 +128,7 @@ public class FareCombinationModelDef {
     }
 
     /**
-     * in case of CLUSTERING model: the cluster to which the fare belongs
+     * In case of CLUSTERING model: the cluster to which the fare belongs
      * 
      */
     @JsonProperty("referenceCluster")
@@ -137,7 +137,7 @@ public class FareCombinationModelDef {
     }
 
     /**
-     * in case of CLUSTERING model: the cluster to which the fare belongs
+     * In case of CLUSTERING model: the cluster to which the fare belongs
      * 
      */
     @JsonProperty("referenceCluster")
@@ -146,7 +146,7 @@ public class FareCombinationModelDef {
     }
 
     /**
-     * in case of CLUSTERIMNG model: the other clusters taht allow a combination
+     * In case of CLUSTERING model: the other clusters that allow a combination
      * 
      */
     @JsonProperty("allowedClusters")
@@ -155,7 +155,7 @@ public class FareCombinationModelDef {
     }
 
     /**
-     * in case of CLUSTERIMNG model: the other clusters taht allow a combination
+     * In case of CLUSTERING model: the other clusters that allow a combination
      * 
      */
     @JsonProperty("allowedClusters")
@@ -164,7 +164,7 @@ public class FareCombinationModelDef {
     }
 
     /**
-     * list of allowed allocators. in case the list is empty all allocators with a sales contract are permitted.
+     * List of allowed allocators. If the list is empty all allocators with a sales contract are permitted.
      * 
      */
     @JsonProperty("allowedAllocators")
@@ -173,7 +173,7 @@ public class FareCombinationModelDef {
     }
 
     /**
-     * list of allowed allocators. in case the list is empty all allocators with a sales contract are permitted.
+     * List of allowed allocators. If the list is empty all allocators with a sales contract are permitted.
      * 
      */
     @JsonProperty("allowedAllocators")
@@ -182,7 +182,7 @@ public class FareCombinationModelDef {
     }
 
     /**
-     * list of carriers where a common contract with separate tickets are allowed. 
+     * List of carriers where a common contract with separate fulfillments are allowed.
      * 
      */
     @JsonProperty("allowedCommonContracts")
@@ -191,7 +191,7 @@ public class FareCombinationModelDef {
     }
 
     /**
-     * list of carriers where a common contract with separate tickets are allowed. 
+     * List of carriers where a common contract with separate fulfillments are allowed.
      * 
      */
     @JsonProperty("allowedCommonContracts")

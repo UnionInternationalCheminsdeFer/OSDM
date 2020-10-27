@@ -1,11 +1,22 @@
 
 package gtm;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonValue;
 
+
+/**
+ * single fare within a blk fare data delivery
+ * 
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "id",
@@ -15,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "regionalConstraintRef",
     "serviceConstraintRef",
     "carrierConstraintRef",
+    "regulatoryConditions",
     "serviceClassRef",
     "serviceLevelRef",
     "passengerConstraintRef",
@@ -41,13 +53,13 @@ public class FareDef {
     @JsonPropertyDescription("unique id of the fare item to be included in accountings")
     private String id;
     /**
-     * IRT,NRT,RES,ANX
+     * Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
      * (Required)
      * 
      */
     @JsonProperty("fareType")
-    @JsonPropertyDescription("IRT,NRT,RES,ANX")
-    private String fareType;
+    @JsonPropertyDescription("Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.")
+    private FareDef.FareTypeDef fareType;
     /**
      * reference to the offer name
      * 
@@ -73,6 +85,13 @@ public class FareDef {
     private String serviceConstraintRef;
     @JsonProperty("carrierConstraintRef")
     private String carrierConstraintRef;
+    /**
+     * general conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and conditions in the conditions of combined offers and indicate them to the customer where required. Which indications are mandatory to be shown to the customer will be defined in the SCICs CIV: terms and conditions according to COTIV regulation MD:  terms and conditions according to SMPS regulation EU-PRR: terms and conditions according to EU-PRR regulation
+     * 
+     */
+    @JsonProperty("regulatoryConditions")
+    @JsonPropertyDescription("general conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and conditions in the conditions of combined offers and indicate them to the customer where required. Which indications are mandatory to be shown to the customer will be defined in the SCICs CIV: terms and conditions according to COTIV regulation MD:  terms and conditions according to SMPS regulation EU-PRR: terms and conditions according to EU-PRR regulation")
+    private List<RegulatoryConditionsDef> regulatoryConditions = new ArrayList<RegulatoryConditionsDef>();
     @JsonProperty("serviceClassRef")
     private String serviceClassRef;
     @JsonProperty("serviceLevelRef")
@@ -92,18 +111,18 @@ public class FareDef {
     @JsonProperty("personalDataConstraintRef")
     private String personalDataConstraintRef;
     /**
-     * identifier of the fare in the current 301 accounting file data
+     * identifier of the fare in the current 301 accounting file
      * 
      */
     @JsonProperty("legacyAccountingIdentifier")
-    @JsonPropertyDescription("identifier of the fare in the current 301 accounting file data")
-    private LegacyAccountingIdentifier legacyAccountingIdentifier;
+    @JsonPropertyDescription("identifier of the fare in the current 301 accounting file")
+    private LegacyAccountingIdentifierDef legacyAccountingIdentifier;
     /**
-     * reference to a text with the details of the fare 
+     * reference to a text with the details of the fare
      * 
      */
     @JsonProperty("fareDetailDescriptionRef")
-    @JsonPropertyDescription("reference to a text with the details of the fare ")
+    @JsonPropertyDescription("reference to a text with the details of the fare")
     private String fareDetailDescriptionRef;
     @JsonProperty("salesAvailabilityConstraintRef")
     private String salesAvailabilityConstraintRef;
@@ -143,22 +162,22 @@ public class FareDef {
     }
 
     /**
-     * IRT,NRT,RES,ANX
+     * Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
      * (Required)
      * 
      */
     @JsonProperty("fareType")
-    public String getFareType() {
+    public FareDef.FareTypeDef getFareType() {
         return fareType;
     }
 
     /**
-     * IRT,NRT,RES,ANX
+     * Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
      * (Required)
      * 
      */
     @JsonProperty("fareType")
-    public void setFareType(String fareType) {
+    public void setFareType(FareDef.FareTypeDef fareType) {
         this.fareType = fareType;
     }
 
@@ -234,6 +253,24 @@ public class FareDef {
     @JsonProperty("carrierConstraintRef")
     public void setCarrierConstraintRef(String carrierConstraintRef) {
         this.carrierConstraintRef = carrierConstraintRef;
+    }
+
+    /**
+     * general conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and conditions in the conditions of combined offers and indicate them to the customer where required. Which indications are mandatory to be shown to the customer will be defined in the SCICs CIV: terms and conditions according to COTIV regulation MD:  terms and conditions according to SMPS regulation EU-PRR: terms and conditions according to EU-PRR regulation
+     * 
+     */
+    @JsonProperty("regulatoryConditions")
+    public List<RegulatoryConditionsDef> getRegulatoryConditions() {
+        return regulatoryConditions;
+    }
+
+    /**
+     * general conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and conditions in the conditions of combined offers and indicate them to the customer where required. Which indications are mandatory to be shown to the customer will be defined in the SCICs CIV: terms and conditions according to COTIV regulation MD:  terms and conditions according to SMPS regulation EU-PRR: terms and conditions according to EU-PRR regulation
+     * 
+     */
+    @JsonProperty("regulatoryConditions")
+    public void setRegulatoryConditions(List<RegulatoryConditionsDef> regulatoryConditions) {
+        this.regulatoryConditions = regulatoryConditions;
     }
 
     @JsonProperty("serviceClassRef")
@@ -327,25 +364,25 @@ public class FareDef {
     }
 
     /**
-     * identifier of the fare in the current 301 accounting file data
+     * identifier of the fare in the current 301 accounting file
      * 
      */
     @JsonProperty("legacyAccountingIdentifier")
-    public LegacyAccountingIdentifier getLegacyAccountingIdentifier() {
+    public LegacyAccountingIdentifierDef getLegacyAccountingIdentifier() {
         return legacyAccountingIdentifier;
     }
 
     /**
-     * identifier of the fare in the current 301 accounting file data
+     * identifier of the fare in the current 301 accounting file
      * 
      */
     @JsonProperty("legacyAccountingIdentifier")
-    public void setLegacyAccountingIdentifier(LegacyAccountingIdentifier legacyAccountingIdentifier) {
+    public void setLegacyAccountingIdentifier(LegacyAccountingIdentifierDef legacyAccountingIdentifier) {
         this.legacyAccountingIdentifier = legacyAccountingIdentifier;
     }
 
     /**
-     * reference to a text with the details of the fare 
+     * reference to a text with the details of the fare
      * 
      */
     @JsonProperty("fareDetailDescriptionRef")
@@ -354,7 +391,7 @@ public class FareDef {
     }
 
     /**
-     * reference to a text with the details of the fare 
+     * reference to a text with the details of the fare
      * 
      */
     @JsonProperty("fareDetailDescriptionRef")
@@ -450,6 +487,10 @@ public class FareDef {
         sb.append('=');
         sb.append(((this.carrierConstraintRef == null)?"<null>":this.carrierConstraintRef));
         sb.append(',');
+        sb.append("regulatoryConditions");
+        sb.append('=');
+        sb.append(((this.regulatoryConditions == null)?"<null>":this.regulatoryConditions));
+        sb.append(',');
         sb.append("serviceClassRef");
         sb.append('=');
         sb.append(((this.serviceClassRef == null)?"<null>":this.serviceClassRef));
@@ -533,6 +574,7 @@ public class FareDef {
         result = ((result* 31)+((this.serviceClassRef == null)? 0 :this.serviceClassRef.hashCode()));
         result = ((result* 31)+((this.passengerConstraintRef == null)? 0 :this.passengerConstraintRef.hashCode()));
         result = ((result* 31)+((this.priceRef == null)? 0 :this.priceRef.hashCode()));
+        result = ((result* 31)+((this.regulatoryConditions == null)? 0 :this.regulatoryConditions.hashCode()));
         result = ((result* 31)+((this.individualContracts == null)? 0 :this.individualContracts.hashCode()));
         result = ((result* 31)+((this.combinationConstraintRef == null)? 0 :this.combinationConstraintRef.hashCode()));
         result = ((result* 31)+((this.fullfillmentConstraintRef == null)? 0 :this.fullfillmentConstraintRef.hashCode()));
@@ -555,7 +597,48 @@ public class FareDef {
             return false;
         }
         FareDef rhs = ((FareDef) other);
-        return (((((((((((((((((((((((this.fareDetailDescriptionRef == rhs.fareDetailDescriptionRef)||((this.fareDetailDescriptionRef!= null)&&this.fareDetailDescriptionRef.equals(rhs.fareDetailDescriptionRef)))&&((this.travelValidityConstraintRef == rhs.travelValidityConstraintRef)||((this.travelValidityConstraintRef!= null)&&this.travelValidityConstraintRef.equals(rhs.travelValidityConstraintRef))))&&((this.afterSalesRulesRef == rhs.afterSalesRulesRef)||((this.afterSalesRulesRef!= null)&&this.afterSalesRulesRef.equals(rhs.afterSalesRulesRef))))&&((this.serviceConstraintRef == rhs.serviceConstraintRef)||((this.serviceConstraintRef!= null)&&this.serviceConstraintRef.equals(rhs.serviceConstraintRef))))&&((this.serviceLevelRef == rhs.serviceLevelRef)||((this.serviceLevelRef!= null)&&this.serviceLevelRef.equals(rhs.serviceLevelRef))))&&((this.nameRef == rhs.nameRef)||((this.nameRef!= null)&&this.nameRef.equals(rhs.nameRef))))&&((this.carrierConstraintRef == rhs.carrierConstraintRef)||((this.carrierConstraintRef!= null)&&this.carrierConstraintRef.equals(rhs.carrierConstraintRef))))&&((this.personalDataConstraintRef == rhs.personalDataConstraintRef)||((this.personalDataConstraintRef!= null)&&this.personalDataConstraintRef.equals(rhs.personalDataConstraintRef))))&&((this.reductionConstraintRef == rhs.reductionConstraintRef)||((this.reductionConstraintRef!= null)&&this.reductionConstraintRef.equals(rhs.reductionConstraintRef))))&&((this.serviceClassRef == rhs.serviceClassRef)||((this.serviceClassRef!= null)&&this.serviceClassRef.equals(rhs.serviceClassRef))))&&((this.passengerConstraintRef == rhs.passengerConstraintRef)||((this.passengerConstraintRef!= null)&&this.passengerConstraintRef.equals(rhs.passengerConstraintRef))))&&((this.priceRef == rhs.priceRef)||((this.priceRef!= null)&&this.priceRef.equals(rhs.priceRef))))&&((this.individualContracts == rhs.individualContracts)||((this.individualContracts!= null)&&this.individualContracts.equals(rhs.individualContracts))))&&((this.combinationConstraintRef == rhs.combinationConstraintRef)||((this.combinationConstraintRef!= null)&&this.combinationConstraintRef.equals(rhs.combinationConstraintRef))))&&((this.fullfillmentConstraintRef == rhs.fullfillmentConstraintRef)||((this.fullfillmentConstraintRef!= null)&&this.fullfillmentConstraintRef.equals(rhs.fullfillmentConstraintRef))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.regionalConstraintRef == rhs.regionalConstraintRef)||((this.regionalConstraintRef!= null)&&this.regionalConstraintRef.equals(rhs.regionalConstraintRef))))&&((this.fareType == rhs.fareType)||((this.fareType!= null)&&this.fareType.equals(rhs.fareType))))&&((this.legacyAccountingIdentifier == rhs.legacyAccountingIdentifier)||((this.legacyAccountingIdentifier!= null)&&this.legacyAccountingIdentifier.equals(rhs.legacyAccountingIdentifier))))&&((this.reservationParameterRef == rhs.reservationParameterRef)||((this.reservationParameterRef!= null)&&this.reservationParameterRef.equals(rhs.reservationParameterRef))))&&((this.salesAvailabilityConstraintRef == rhs.salesAvailabilityConstraintRef)||((this.salesAvailabilityConstraintRef!= null)&&this.salesAvailabilityConstraintRef.equals(rhs.salesAvailabilityConstraintRef))))&&((this.legacyConversion == rhs.legacyConversion)||((this.legacyConversion!= null)&&this.legacyConversion.equals(rhs.legacyConversion))));
+        return ((((((((((((((((((((((((this.fareDetailDescriptionRef == rhs.fareDetailDescriptionRef)||((this.fareDetailDescriptionRef!= null)&&this.fareDetailDescriptionRef.equals(rhs.fareDetailDescriptionRef)))&&((this.travelValidityConstraintRef == rhs.travelValidityConstraintRef)||((this.travelValidityConstraintRef!= null)&&this.travelValidityConstraintRef.equals(rhs.travelValidityConstraintRef))))&&((this.afterSalesRulesRef == rhs.afterSalesRulesRef)||((this.afterSalesRulesRef!= null)&&this.afterSalesRulesRef.equals(rhs.afterSalesRulesRef))))&&((this.serviceConstraintRef == rhs.serviceConstraintRef)||((this.serviceConstraintRef!= null)&&this.serviceConstraintRef.equals(rhs.serviceConstraintRef))))&&((this.serviceLevelRef == rhs.serviceLevelRef)||((this.serviceLevelRef!= null)&&this.serviceLevelRef.equals(rhs.serviceLevelRef))))&&((this.nameRef == rhs.nameRef)||((this.nameRef!= null)&&this.nameRef.equals(rhs.nameRef))))&&((this.carrierConstraintRef == rhs.carrierConstraintRef)||((this.carrierConstraintRef!= null)&&this.carrierConstraintRef.equals(rhs.carrierConstraintRef))))&&((this.personalDataConstraintRef == rhs.personalDataConstraintRef)||((this.personalDataConstraintRef!= null)&&this.personalDataConstraintRef.equals(rhs.personalDataConstraintRef))))&&((this.reductionConstraintRef == rhs.reductionConstraintRef)||((this.reductionConstraintRef!= null)&&this.reductionConstraintRef.equals(rhs.reductionConstraintRef))))&&((this.serviceClassRef == rhs.serviceClassRef)||((this.serviceClassRef!= null)&&this.serviceClassRef.equals(rhs.serviceClassRef))))&&((this.passengerConstraintRef == rhs.passengerConstraintRef)||((this.passengerConstraintRef!= null)&&this.passengerConstraintRef.equals(rhs.passengerConstraintRef))))&&((this.priceRef == rhs.priceRef)||((this.priceRef!= null)&&this.priceRef.equals(rhs.priceRef))))&&((this.regulatoryConditions == rhs.regulatoryConditions)||((this.regulatoryConditions!= null)&&this.regulatoryConditions.equals(rhs.regulatoryConditions))))&&((this.individualContracts == rhs.individualContracts)||((this.individualContracts!= null)&&this.individualContracts.equals(rhs.individualContracts))))&&((this.combinationConstraintRef == rhs.combinationConstraintRef)||((this.combinationConstraintRef!= null)&&this.combinationConstraintRef.equals(rhs.combinationConstraintRef))))&&((this.fullfillmentConstraintRef == rhs.fullfillmentConstraintRef)||((this.fullfillmentConstraintRef!= null)&&this.fullfillmentConstraintRef.equals(rhs.fullfillmentConstraintRef))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.regionalConstraintRef == rhs.regionalConstraintRef)||((this.regionalConstraintRef!= null)&&this.regionalConstraintRef.equals(rhs.regionalConstraintRef))))&&((this.fareType == rhs.fareType)||((this.fareType!= null)&&this.fareType.equals(rhs.fareType))))&&((this.legacyAccountingIdentifier == rhs.legacyAccountingIdentifier)||((this.legacyAccountingIdentifier!= null)&&this.legacyAccountingIdentifier.equals(rhs.legacyAccountingIdentifier))))&&((this.reservationParameterRef == rhs.reservationParameterRef)||((this.reservationParameterRef!= null)&&this.reservationParameterRef.equals(rhs.reservationParameterRef))))&&((this.salesAvailabilityConstraintRef == rhs.salesAvailabilityConstraintRef)||((this.salesAvailabilityConstraintRef!= null)&&this.salesAvailabilityConstraintRef.equals(rhs.salesAvailabilityConstraintRef))))&&((this.legacyConversion == rhs.legacyConversion)||((this.legacyConversion!= null)&&this.legacyConversion.equals(rhs.legacyConversion))));
+    }
+
+    public enum FareTypeDef {
+
+        ADMISSION("ADMISSION"),
+        RESERVATION("RESERVATION"),
+        INTEGRATED_RESERVATION("INTEGRATED_RESERVATION"),
+        ANCILLARY("ANCILLARY");
+        private final String value;
+        private final static Map<String, FareDef.FareTypeDef> CONSTANTS = new HashMap<String, FareDef.FareTypeDef>();
+
+        static {
+            for (FareDef.FareTypeDef c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        private FareTypeDef(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        @JsonValue
+        public String value() {
+            return this.value;
+        }
+
+        @JsonCreator
+        public static FareDef.FareTypeDef fromValue(String value) {
+            FareDef.FareTypeDef constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
+        }
+
     }
 
 }

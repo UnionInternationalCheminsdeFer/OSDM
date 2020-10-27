@@ -1,10 +1,14 @@
 
 package gtm;
 
+import java.util.HashMap;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -15,13 +19,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class RelativeTimeDef {
 
     /**
-     * MINUTES,DAYS,HOURS
+     * Time unit in days, hours or minutes.
      * (Required)
      * 
      */
     @JsonProperty("timeUnit")
-    @JsonPropertyDescription("MINUTES,DAYS,HOURS")
-    private String timeUnit;
+    @JsonPropertyDescription("Time unit in days, hours or minutes.")
+    private RelativeTimeDef.TimeUnit timeUnit;
     /**
      * 
      * (Required)
@@ -30,31 +34,31 @@ public class RelativeTimeDef {
     @JsonProperty("timeValue")
     private Integer timeValue;
     /**
-     * BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY
+     * Time reference.
      * (Required)
      * 
      */
     @JsonProperty("timeReference")
-    @JsonPropertyDescription("BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY")
-    private String timeReference;
+    @JsonPropertyDescription("Time reference.")
+    private RelativeTimeDef.TimeReference timeReference;
 
     /**
-     * MINUTES,DAYS,HOURS
+     * Time unit in days, hours or minutes.
      * (Required)
      * 
      */
     @JsonProperty("timeUnit")
-    public String getTimeUnit() {
+    public RelativeTimeDef.TimeUnit getTimeUnit() {
         return timeUnit;
     }
 
     /**
-     * MINUTES,DAYS,HOURS
+     * Time unit in days, hours or minutes.
      * (Required)
      * 
      */
     @JsonProperty("timeUnit")
-    public void setTimeUnit(String timeUnit) {
+    public void setTimeUnit(RelativeTimeDef.TimeUnit timeUnit) {
         this.timeUnit = timeUnit;
     }
 
@@ -79,22 +83,22 @@ public class RelativeTimeDef {
     }
 
     /**
-     * BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY
+     * Time reference.
      * (Required)
      * 
      */
     @JsonProperty("timeReference")
-    public String getTimeReference() {
+    public RelativeTimeDef.TimeReference getTimeReference() {
         return timeReference;
     }
 
     /**
-     * BEFORE_DEPARTURE,AFTER_DEPARTURE,AFTER_SALE,BEFOR_START_VALIDITY,AFTER_END_VALIDITY
+     * Time reference.
      * (Required)
      * 
      */
     @JsonProperty("timeReference")
-    public void setTimeReference(String timeReference) {
+    public void setTimeReference(RelativeTimeDef.TimeReference timeReference) {
         this.timeReference = timeReference;
     }
 
@@ -141,6 +145,88 @@ public class RelativeTimeDef {
         }
         RelativeTimeDef rhs = ((RelativeTimeDef) other);
         return ((((this.timeValue == rhs.timeValue)||((this.timeValue!= null)&&this.timeValue.equals(rhs.timeValue)))&&((this.timeReference == rhs.timeReference)||((this.timeReference!= null)&&this.timeReference.equals(rhs.timeReference))))&&((this.timeUnit == rhs.timeUnit)||((this.timeUnit!= null)&&this.timeUnit.equals(rhs.timeUnit))));
+    }
+
+    public enum TimeReference {
+
+        BEFORE_DEPARTURE("BEFORE_DEPARTURE"),
+        AFTER_DEPARTURE("AFTER_DEPARTURE"),
+        AFTER_SALE("AFTER_SALE"),
+        BEFORE_START_VALIDITY("BEFORE_START_VALIDITY"),
+        AFTER_END_VALIDITY("AFTER_END_VALIDITY");
+        private final String value;
+        private final static Map<String, RelativeTimeDef.TimeReference> CONSTANTS = new HashMap<String, RelativeTimeDef.TimeReference>();
+
+        static {
+            for (RelativeTimeDef.TimeReference c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        private TimeReference(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        @JsonValue
+        public String value() {
+            return this.value;
+        }
+
+        @JsonCreator
+        public static RelativeTimeDef.TimeReference fromValue(String value) {
+            RelativeTimeDef.TimeReference constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
+        }
+
+    }
+
+    public enum TimeUnit {
+
+        DAYS("DAYS"),
+        HOURS("HOURS"),
+        MINUTES("MINUTES");
+        private final String value;
+        private final static Map<String, RelativeTimeDef.TimeUnit> CONSTANTS = new HashMap<String, RelativeTimeDef.TimeUnit>();
+
+        static {
+            for (RelativeTimeDef.TimeUnit c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        private TimeUnit(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        @JsonValue
+        public String value() {
+            return this.value;
+        }
+
+        @JsonCreator
+        public static RelativeTimeDef.TimeUnit fromValue(String value) {
+            RelativeTimeDef.TimeUnit constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
+        }
+
     }
 
 }

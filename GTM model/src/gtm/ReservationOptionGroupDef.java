@@ -10,33 +10,63 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "preferenceGroup",
-    "preference"
+    "preferences"
 })
 public class ReservationOptionGroupDef {
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("preferenceGroup")
     private String preferenceGroup;
-    @JsonProperty("preference")
-    private List<String> preference = new ArrayList<String>();
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @JsonProperty("preferences")
+    private List<String> preferences = new ArrayList<String>();
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("preferenceGroup")
     public String getPreferenceGroup() {
         return preferenceGroup;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("preferenceGroup")
     public void setPreferenceGroup(String preferenceGroup) {
         this.preferenceGroup = preferenceGroup;
     }
 
-    @JsonProperty("preference")
-    public List<String> getPreference() {
-        return preference;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @JsonProperty("preferences")
+    public List<String> getPreferences() {
+        return preferences;
     }
 
-    @JsonProperty("preference")
-    public void setPreference(List<String> preference) {
-        this.preference = preference;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @JsonProperty("preferences")
+    public void setPreferences(List<String> preferences) {
+        this.preferences = preferences;
     }
 
     @Override
@@ -47,9 +77,9 @@ public class ReservationOptionGroupDef {
         sb.append('=');
         sb.append(((this.preferenceGroup == null)?"<null>":this.preferenceGroup));
         sb.append(',');
-        sb.append("preference");
+        sb.append("preferences");
         sb.append('=');
-        sb.append(((this.preference == null)?"<null>":this.preference));
+        sb.append(((this.preferences == null)?"<null>":this.preferences));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -63,7 +93,7 @@ public class ReservationOptionGroupDef {
     public int hashCode() {
         int result = 1;
         result = ((result* 31)+((this.preferenceGroup == null)? 0 :this.preferenceGroup.hashCode()));
-        result = ((result* 31)+((this.preference == null)? 0 :this.preference.hashCode()));
+        result = ((result* 31)+((this.preferences == null)? 0 :this.preferences.hashCode()));
         return result;
     }
 
@@ -76,7 +106,7 @@ public class ReservationOptionGroupDef {
             return false;
         }
         ReservationOptionGroupDef rhs = ((ReservationOptionGroupDef) other);
-        return (((this.preferenceGroup == rhs.preferenceGroup)||((this.preferenceGroup!= null)&&this.preferenceGroup.equals(rhs.preferenceGroup)))&&((this.preference == rhs.preference)||((this.preference!= null)&&this.preference.equals(rhs.preference))));
+        return (((this.preferenceGroup == rhs.preferenceGroup)||((this.preferenceGroup!= null)&&this.preferenceGroup.equals(rhs.preferenceGroup)))&&((this.preferences == rhs.preferences)||((this.preferences!= null)&&this.preferences.equals(rhs.preferences))));
     }
 
 }

@@ -1,9 +1,6 @@
 package Gtm.jsonImportExport;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,6 +23,7 @@ import Gtm.CarrierConstraint;
 import Gtm.CarrierConstraints;
 import Gtm.CarrierResourceLocation;
 import Gtm.CarrierResourceLocations;
+import Gtm.ClassId;
 import Gtm.Clusters;
 import Gtm.CombinationConstraints;
 import Gtm.ConnectionPoint;
@@ -64,6 +62,7 @@ import Gtm.ReductionConstraints;
 import Gtm.RegionalConstraint;
 import Gtm.RegionalConstraints;
 import Gtm.RegionalValidity;
+import Gtm.RegulatoryCondition;
 import Gtm.RelativeTime;
 import Gtm.RequiredPersonalData;
 import Gtm.RequiredReductionCard;
@@ -106,48 +105,53 @@ import Gtm.nls.NationalLanguageSupport;
 import gtm.AfterSalesConditionDef;
 import gtm.AfterSalesRuleDef;
 import gtm.AllowedChange;
+import gtm.BarCodeTypesDef;
 import gtm.CalendarDef;
 import gtm.CarrierConstraintDef;
 import gtm.CarrierResourceLocationDef;
 import gtm.CombinationConstraint;
 import gtm.ConnectionPointDef;
-import gtm.CrossBorderCondition;
+import gtm.ControlSecurityTypeDef;
+import gtm.CrossBorderConditionDef;
 import gtm.CurrencyPriceDef;
-import gtm.Delivery;
 import gtm.ExcludedTimeRange;
 import gtm.FareCombinationConstraintDef;
 import gtm.FareCombinationModelDef;
+import gtm.FareDataDef;
 import gtm.FareDef;
 import gtm.FareDelivery;
+import gtm.FareDeliveryDef;
+import gtm.FareDeliveryDetailsDef;
 import gtm.FareReferenceStationSetDef;
 import gtm.FareResourceLocationDef;
-import gtm.FareStructure;
-import gtm.FareStructureDeliveryDef;
-import gtm.FulfillmentTypeDef;
-import gtm.FullfillmentConstraintDef;
-import gtm.GeoCoordinateDef;
+import gtm.FulfillmentConstraintDef;
+import gtm.GeoCoordinate;
 import gtm.IncludedFreePassenger;
-import gtm.LegacyAccountingIdentifier;
+import gtm.LegacyAccountingIdentifierDef;
+import gtm.LegacyReservationParameterDef;
 import gtm.LineDef;
 import gtm.OnlineResourceDef;
 import gtm.PassengerConstraintDef;
 import gtm.PersonalDataConstraintDef;
-import gtm.PolygoneDef;
+import gtm.PolygonDef;
 import gtm.PriceDef;
 import gtm.ReductionCardDef;
+import gtm.ReductionCardReferenceDef;
 import gtm.ReductionConstraintDef;
 import gtm.RegionalConstraintDef;
 import gtm.RegionalValidityDef;
+import gtm.RegulatoryConditionsDef;
 import gtm.RelativeTimeDef;
-import gtm.RequiredCard;
 import gtm.RequiredDatum;
+import gtm.RequiredSi;
 import gtm.ReservationOptionGroupDef;
 import gtm.ReservationOptions;
 import gtm.ReservationParameterDef;
-import gtm.ReservationParams9181;
 import gtm.ReturnConstraint;
 import gtm.SalesAvailabilityConstraintDef;
-import gtm.ServiceClassDef;
+import gtm.ServiceClassDefinitionDef;
+import gtm.ServiceClassDefinitionDef.ComfortClassDef;
+import gtm.ServiceClassDefinitionDef.ServiceClassIdDef;
 import gtm.ServiceConstraintDef;
 import gtm.ServiceLevelDef;
 import gtm.StationDef;
@@ -155,9 +159,10 @@ import gtm.StationNamesDef;
 import gtm.StationResourceLocationDef;
 import gtm.TextDef;
 import gtm.TrainResourceLocationDef;
+import gtm.Transfer;
 import gtm.TranslationDef;
 import gtm.TravelValidityConstraintDef;
-import gtm.VatDetail;
+import gtm.VatDetailDef;
 import gtm.ViaStationsDef;
 import gtm.ZoneDef;
 import gtm.ZoneDefinitionDef;
@@ -179,8 +184,9 @@ public class GtmJsonExporter {
 	 *
 	 *
 	 * "2012-04-21T18:25:43-05:00"             ISO 8601
+	 * 
+	 * 	private DateFormat jsondf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ"); //$NON-NLS-1$
 	 */
-	private DateFormat jsondf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ"); //$NON-NLS-1$
 
 	
 	public GtmJsonExporter () {
@@ -193,12 +199,12 @@ public class GtmJsonExporter {
 		
 	
 		FareDelivery export = new FareDelivery();
-		FareStructureDeliveryDef exportData = new FareStructureDeliveryDef();
+		FareDeliveryDef exportData = new FareDeliveryDef();
 		export.setFareStructureDelivery(exportData);
 		
 		exportData.setDelivery(convertDeliveryToJson(gtm.getDelivery()));
 		
-		FareStructure fares = new FareStructure();
+		FareDataDef fares = new FareDataDef();
 		exportData.setFareStructure(fares);
 
 					
@@ -408,7 +414,7 @@ public class GtmJsonExporter {
 		jz.setNameUTF8(z.getNameUtf8());
 		jz.setZoneId(z.getZoneId());
 		jz.setNutsCodes(convertNuts(z.getNutsCodes()));
-		jz.setPloygone(convertToJson(z.getPolygone()));
+		jz.setPloygon(convertToJson(z.getPolygone()));
 		jz.setStationList(convertStationsToJson(z.getStationSet().getStations()));
 		
 		return jz;
@@ -462,8 +468,8 @@ public class GtmJsonExporter {
 			for (Station station: o.getStations()) {
 				
 				StationDef stationJ = new StationDef();
-				stationJ.setCountry(Integer.toString(station.getCountry().getCode()));
-				stationJ.setLocalCode(station.getCode());
+				stationJ.setCountry(station.getCountry().getISOcode());
+				stationJ.setCode(100000 * station.getCountry().getCode() + station.getCode());
 				list.add(stationJ);
 			}
 			oJ.setStations(list);
@@ -686,10 +692,10 @@ public class GtmJsonExporter {
 	}
 
 
-	private static List<ServiceClassDef> convertServiceClassDefinitions(ServiceClassDefinitions list) {
+	private static List<ServiceClassDefinitionDef> convertServiceClassDefinitions(ServiceClassDefinitions list) {
 		if (list == null) return null;
 		if (list.getServiceClassDefinitions().isEmpty()) return null;
-		ArrayList<ServiceClassDef> listJson = new ArrayList<ServiceClassDef>();
+		ArrayList<ServiceClassDefinitionDef> listJson = new ArrayList<ServiceClassDefinitionDef>();
 		for (ServiceClass element: list.getServiceClassDefinitions()) {
 			listJson.add(convertToJson(element));
 		}
@@ -697,20 +703,45 @@ public class GtmJsonExporter {
 	}
 
 
-
-
-	private static ServiceClassDef convertToJson(ServiceClass sc) {
+	private static ServiceClassIdDef convertToCodeJson(ServiceClass sc) {
 		if (sc == null) return null;
-		ServiceClassDef scJ = new ServiceClassDef();
 		
 		if (sc.getId()!= null) {
-			scJ.setId(sc.getId().getName());
+			return convertServiceClass(sc.getId());
+		}
+
+		return null;
+	}
+
+	
+	private static ServiceClassIdDef convertServiceClass(ClassId id) {
+		if (id != null) {
+			if (id.equals(ClassId.A)) {
+				return ServiceClassIdDef.BEST;
+			} else if (id.equals(ClassId.B)) {
+				 return ServiceClassIdDef.HIGH;
+			} if (id.equals(ClassId.C)) {
+				return ServiceClassIdDef.STANDARD;
+			} if (id.equals(ClassId.D)) {
+				return ServiceClassIdDef.BASIC;
+			}
+		}
+		return null;
+	}
+
+	private static ServiceClassDefinitionDef convertToJson(ServiceClass sc) {
+		if (sc == null) return null;
+		
+		ServiceClassDefinitionDef scJ = new ServiceClassDefinitionDef();
+		
+		if (sc.getId()!= null) {
+			scJ.setId(convertServiceClass(sc.getId()));
 		}
 		if (sc.getText()!=null) {
 			scJ.setTextRef(sc.getText().getId());
 		}
 		if (sc.getClassicClass()!= null) {
-			scJ.setClassicClass(sc.getClassicClass().getName());
+			scJ.setComfortClass(ComfortClassDef.fromValue(sc.getClassicClass().getName().toUpperCase()));
 		}
 		return scJ;
 	}
@@ -795,7 +826,7 @@ public class GtmJsonExporter {
 			for (String s: p.getPreference()) {
 				pL.add(s);
 			}
-			oJ.setPreference(pL);
+			oJ.setPreferences(pL);
 		}
 		
 		return oJ;
@@ -804,9 +835,9 @@ public class GtmJsonExporter {
 
 
 
-	private static ReservationParams9181 convertToJson(Gtm.ReservationParams9181 p) {
+	private static LegacyReservationParameterDef convertToJson(Gtm.ReservationParams9181 p) {
 		if (p == null) return null;
-		ReservationParams9181 pJ = new ReservationParams9181();
+		LegacyReservationParameterDef pJ = new LegacyReservationParameterDef();
 		
 		pJ.setBerthType(p.getBerthType().getName());
 		pJ.setCoachTypeCode(Integer.toString(p.getCoachType()));
@@ -895,7 +926,7 @@ public class GtmJsonExporter {
 		if (r == null) return null;
 		RegionalConstraintDef rJ = new RegionalConstraintDef();
 		rJ.setId(r.getId());
-		rJ.setDistance(r.getDistance());
+		rJ.setDistance((int) r.getDistance());
 		if (r.getEntryConnectionPoint() != null) {
 			rJ.setEntryConnectionPointId(r.getEntryConnectionPoint().getId());
 		}
@@ -924,7 +955,7 @@ public class GtmJsonExporter {
 		rvJ.setViaStations(convertToJson(rv.getViaStation()));
 		rvJ.setLine(convertToJson(rv.getLine()));
 		rvJ.setZone(convertToJson(rv.getZone()));
-		rvJ.setPolygone(convertToJson(rv.getPolygone()));
+		rvJ.setPolygon(convertToJson(rv.getPolygone()));
 		
 		return rvJ;
 	}
@@ -932,13 +963,13 @@ public class GtmJsonExporter {
 
 
 
-	private static PolygoneDef convertToJson(Polygone p) {
+	private static PolygonDef convertToJson(Polygone p) {
 		if (p == null) return null;
-		PolygoneDef pJ = new PolygoneDef();
+		PolygonDef pJ = new PolygonDef();
 		
 		if (p.getEdge()!= null && !p.getEdge().isEmpty()){
 			
-			ArrayList<GeoCoordinateDef> listJ = new ArrayList<GeoCoordinateDef>();
+			ArrayList<GeoCoordinate> listJ = new ArrayList<GeoCoordinate>();
 			
 			for ( Edge e : p.getEdge()) {
 				listJ.add(convertToJson(e));
@@ -953,16 +984,14 @@ public class GtmJsonExporter {
 
 
 
-	private static GeoCoordinateDef convertToJson(Edge e) {
+	private static GeoCoordinate convertToJson(Edge e) {
 		if (e == null) return null;
-		GeoCoordinateDef gJ = new GeoCoordinateDef();
+		GeoCoordinate gJ = new GeoCoordinate();
 		
-		gJ.setAccuracy(e.getAccuracy().getName());
+		gJ.setAccuracy(e.getAccuracy());
 		gJ.setLatitude(e.getLatitude());
 		gJ.setLongitude(e.getLongitude());
-		gJ.setSystem(GeoCoordinateDef.System.fromValue(e.getSystem().getName()));
-		gJ.setUnit(GeoCoordinateDef.GeoCoordinateUnitDef.fromValue(e.getUnit().getName()));
-
+		gJ.setSystem(GeoCoordinate.System.fromValue(e.getSystem().getName()));
 		return gJ;
 	}
 
@@ -999,7 +1028,7 @@ public class GtmJsonExporter {
 		if (z == null) return null;
 		LineDef zJ = new LineDef();
 		if (z.getBinaryZoneId()!= null && z.getBinaryZoneId().length > 0) {
-			zJ.setBinaryZoneId(Base64.encode(z.getBinaryZoneId()));
+			zJ.setBinaryLineId(Base64.encode(z.getBinaryZoneId()));
 		}
 		if (z.getCarrier()!=null) {
 			zJ.setCarrier(z.getCarrier().getCode());
@@ -1117,19 +1146,21 @@ public class GtmJsonExporter {
 		rcJ.setId(rc.getId());
 		
 		if (rc.getRequiredReductionCards() != null && !rc.getRequiredReductionCards().isEmpty()) {
-			ArrayList<RequiredCard> listJ = new ArrayList<RequiredCard>();
+			ArrayList<ReductionCardReferenceDef> listJ = new ArrayList<ReductionCardReferenceDef>();
 			
 			for (RequiredReductionCard e : rc.getRequiredReductionCards()) {
 				
-				RequiredCard eJ = new RequiredCard();
-				if (e.getCardClass() != null) {
-					eJ.setCardClassId(e.getCardClass().getId().getName());
+				ReductionCardReferenceDef eJ = new ReductionCardReferenceDef();
+				
+				eJ.setCardName(e.getName());
+				
+				if (e.getCard() != null && e.getCard().getCardIssuer() != null) {
+					eJ.setIssuer(e.getCard().getCardIssuer().getCode());
 				}
 				
 				if (e.getCard() != null) {
-					eJ.setCardId(e.getCard().getId());
+					eJ.setCardValue(e.getCard().getId());
 				}
-				eJ.setCardName(e.getName());
 				
 			}
 
@@ -1164,10 +1195,10 @@ public class GtmJsonExporter {
 		}
 		if (card.getServiceClasses()!= null && !card.getServiceClasses().isEmpty()) {
 			
-			ArrayList<ServiceClassDef> listJ = new ArrayList<ServiceClassDef>();
+			List<ServiceClassIdDef> listJ = new ArrayList<ServiceClassIdDef>();
 			
 			for (ServiceClass sc : card.getServiceClasses()) {
-				listJ.add(convertToJson(sc));
+				listJ.add(convertToCodeJson(sc));
 			}
 			
 			cardJ.setServiceClasses(listJ);
@@ -1235,8 +1266,8 @@ public class GtmJsonExporter {
 		for (AllowedPersonalDataChanges apc : ac) {
 			
 			AllowedChange acJ = new AllowedChange();
-			acJ.setAcceptedReason(apc.getAcceptedReason().getName());
-			acJ.setTimeLimit((float) apc.getTimeLimit());
+			acJ.setAcceptedReason(AllowedChange.AcceptedReason.fromValue(apc.getAcceptedReason().getName().toUpperCase()));
+			acJ.setTimeLimit((int) apc.getTimeLimit());
 			
 		}
 
@@ -1273,13 +1304,13 @@ public class GtmJsonExporter {
 
 
 
-	private static List<String> convertPersonalDataTransferToJson(EList<PersonalDataTransferType> trl) {
+	private static List<Transfer> convertPersonalDataTransferToJson(EList<PersonalDataTransferType> trl) {
 		if (trl == null || trl.isEmpty()) return null;
 			
-		ArrayList<String> listJ = new ArrayList<String>();
+		ArrayList<Transfer> listJ = new ArrayList<Transfer>();
 		
 		for (PersonalDataTransferType t : trl) {
-			listJ.add(t.getName());
+			listJ.add(Transfer.valueOf(t.getName().toUpperCase()));
 		}
 
 		return listJ;
@@ -1287,25 +1318,25 @@ public class GtmJsonExporter {
 
 
 
-	private static List<FulfillmentTypeDef> convertFulFillmentTypesToJson(EList<FulfillmentType> ftl) {
+	private static List<ControlSecurityTypeDef> convertFulFillmentTypesToJson(EList<FulfillmentType> ftl) {
 		
 		if (ftl == null || ftl.isEmpty()) return null;
-		ArrayList<FulfillmentTypeDef> listJ = new ArrayList<FulfillmentTypeDef>();
+		ArrayList<ControlSecurityTypeDef> listJ = new ArrayList<ControlSecurityTypeDef>();
 		for (FulfillmentType f : ftl) {
-			listJ.add(FulfillmentTypeDef.fromValue(f.getName()));
+			listJ.add(ControlSecurityTypeDef.fromValue(f.getName().toUpperCase()));
 		}
 		return listJ;
 	}
 	
 
-	private static List<CrossBorderCondition> convertCrossBorderConditionToJson(EList<Gtm.CrossBorderCondition> cbl) {
+	private static List<CrossBorderConditionDef> convertCrossBorderConditionToJson(EList<Gtm.CrossBorderCondition> cbl) {
 		if (cbl == null || cbl.isEmpty()) return null;
 		
-		ArrayList<CrossBorderCondition> cblJ = new ArrayList<CrossBorderCondition>();
+		ArrayList<CrossBorderConditionDef> cblJ = new ArrayList<CrossBorderConditionDef>();
 		
 		for (Gtm.CrossBorderCondition c : cbl) {
 			
-			CrossBorderCondition cJ = new CrossBorderCondition();
+			CrossBorderConditionDef cJ = new CrossBorderConditionDef();
 			cJ.setAffectedServiceBrands(convertServiceBrandsToJson(c.getAffectedServiceBrands()));
 			cJ.setFromCountry(c.getFromCountry().getISOcode());
 			cJ.setToCountry(c.getToCountry().getISOcode());
@@ -1374,9 +1405,9 @@ public class GtmJsonExporter {
 			passJ.setCombinationConstraint(listJ);
 		}
 		
-		passJ.setIsAncilliaryItem(pass.isIsAncilliary());
+		passJ.setIsAncillaryItem(pass.isIsAncilliary());
 		passJ.setLowerAgeLimit(pass.getLowerAgeLimit());
-		passJ.setMaxWeightedPasseners(pass.getMaxTotalPassengerWeight());
+		passJ.setMaxWeightedPassengers(pass.getMaxTotalPassengerWeight());
 		passJ.setMinWeightedPassengers(pass.getMinTotalPassengerWeight());
 		if (pass.getText()!= null) {
 			passJ.setNameRef(pass.getText().getId());
@@ -1394,10 +1425,10 @@ public class GtmJsonExporter {
 
 
 
-	private static List<FullfillmentConstraintDef> convertFullfillmentConstraints(FulfillmentConstraints list) {
+	private static List<FulfillmentConstraintDef> convertFullfillmentConstraints(FulfillmentConstraints list) {
 		if (list == null) return null;
 		if (list.getFulfillmentConstraints().isEmpty()) return null;
-		ArrayList<FullfillmentConstraintDef> listJson = new ArrayList<FullfillmentConstraintDef>();
+		ArrayList<FulfillmentConstraintDef> listJson = new ArrayList<FulfillmentConstraintDef>();
 		for (FulfillmentConstraint element: list.getFulfillmentConstraints()) {
 			listJson.add(convertToJson(element));
 		}
@@ -1407,15 +1438,15 @@ public class GtmJsonExporter {
 
 
 
-	private static FullfillmentConstraintDef convertToJson(FulfillmentConstraint fc) {
+	private static FulfillmentConstraintDef convertToJson(FulfillmentConstraint fc) {
 		if (fc == null) return null;
-		FullfillmentConstraintDef fcJ = new FullfillmentConstraintDef();
+		FulfillmentConstraintDef fcJ = new FulfillmentConstraintDef();
 		fcJ.setId(fc.getId());
 		
 		if (fc.getAcceptedBarcodes() != null && fc.getAcceptedBarcodes().getAcceptedBarcodes() != null && !fc.getAcceptedBarcodes().getAcceptedBarcodes().isEmpty()) {
 			fcJ.setAcceptedBarCodes(convertBarCodeTypes(fc.getAcceptedBarcodes().getAcceptedBarcodes()));
 		}
-		fcJ.setAcceptedFullfillmentTypes(convertFulFillmentTypesToJson(fc.getAcceptedFulfilmentTypes()));
+		fcJ.setAcceptedControlSecurityTypes(convertFulFillmentTypesToJson(fc.getAcceptedFulfilmentTypes()));
 		fcJ.setIndividualTicketingPermitted(fc.isIndividualTicketingPermitted());
 		
 		if (fc.getRequiredBarcodes() != null && fc.getRequiredBarcodes().getRequiredBarcodes() != null && !fc.getRequiredBarcodes().getRequiredBarcodes().isEmpty()) {
@@ -1427,20 +1458,20 @@ public class GtmJsonExporter {
 	}
 
 
-	private static List<String> convertBarCodeTypes(EList<BarcodeTypes> el) {
+	private static List<BarCodeTypesDef> convertBarCodeTypes(EList<BarcodeTypes> el) {
 		if (el == null || el.isEmpty()) return null;
-		ArrayList<String> listJ = new ArrayList<String>();
-		for (Enumerator e : el) {	listJ.add(e.getName());	}
+		ArrayList<BarCodeTypesDef> listJ = new ArrayList<BarCodeTypesDef>();
+		for (Enumerator e : el) {	listJ.add(BarCodeTypesDef.fromValue(e.getName().toUpperCase()));	}
 		return listJ;
 	}
 
 
 
 
-	private static List<String> convertControlDataExchangeTypesToJson(EList<ControlDataExchangeTypes> el) {
+	private static List<RequiredSi> convertControlDataExchangeTypesToJson(EList<ControlDataExchangeTypes> el) {
 		if (el == null || el.isEmpty()) return null;
-		ArrayList<String> listJ = new ArrayList<String>();
-		for (Enumerator e : el) {	listJ.add(e.getName());	}
+		ArrayList<RequiredSi> listJ = new ArrayList<RequiredSi>();
+		for (Enumerator e : el) {	listJ.add(RequiredSi.fromValue(e.getName().toUpperCase()));	}
 		return listJ;
 	}
 
@@ -1607,7 +1638,7 @@ public class GtmJsonExporter {
 		fareJ.setId(fare.getId());
 		
 		if (fare.getType() != null) {
-			fareJ.setFareType(fare.getType().getName());
+			fareJ.setFareType(FareDef.FareTypeDef.valueOf(fare.getType().getName().toUpperCase()));
 		}
 		
 		if (fare.getAfterSalesRule() != null) {
@@ -1632,7 +1663,7 @@ public class GtmJsonExporter {
 		if (fare.getLegacyAccountingIdentifier()!= null) {
 			
 		
-			LegacyAccountingIdentifier lai = new LegacyAccountingIdentifier();
+			LegacyAccountingIdentifierDef lai = new LegacyAccountingIdentifierDef();
 			
 			lai.setSerialId(fare.getLegacyAccountingIdentifier().getSeriesId());
 			lai.setTariffId(fare.getLegacyAccountingIdentifier().getTariffId());
@@ -1699,6 +1730,18 @@ public class GtmJsonExporter {
 		
 		fare.setIndividualContracts(fareJ.getIndividualContracts());
 		
+		//regulatory regimes
+		if (fare.getRegulatoryConditions() != null && !fare.getRegulatoryConditions().isEmpty()) {
+			
+			for (RegulatoryCondition r : fare.getRegulatoryConditions()) {
+				
+				RegulatoryConditionsDef rj = RegulatoryConditionsDef.fromValue(r.getName());
+				fareJ.getRegulatoryConditions().add(rj);
+
+			}
+	
+		}
+		
 		return fareJ;
 	}
 
@@ -1762,9 +1805,9 @@ public class GtmJsonExporter {
 		if (s.getCountry() == null) {
 			sJ.setCountry(NationalLanguageSupport.GtmJsonExporter_27);
 		} else {
-			sJ.setCountry(Integer.toString(s.getCountry().getCode()));
+			sJ.setCountry(s.getCountry().getISOcode());
 		}
-		sJ.setLocalCode(s.getCode());
+		sJ.setCode(100000 * s.getCountry().getCode() + s.getCode());
 		return sJ;
 	}
 
@@ -1869,17 +1912,13 @@ public class GtmJsonExporter {
 		if (cal == null) return null;
 		CalendarDef calJ = new CalendarDef();
 		calJ.setId(cal.getId());
-		calJ.setUTCoffset(cal.getUtcOffset());		
+		calJ.setUtcOffset(cal.getUtcOffset());		
 		
-		calJ.setFromDate(jsondf.format(cal.getFromDate()));
-		calJ.setUntilDate(jsondf.format(cal.getUntilDate()));		
+		calJ.setFromDate(cal.getFromDate());
+		calJ.setUntilDate(cal.getUntilDate());		
 		
 		if (cal.getDates() != null && !cal.getDates().isEmpty()) {
-			ArrayList<String> days = new ArrayList<String>();
-			for (Date date : cal.getDates()) {
-				days.add(jsondf.format(date));
-			}
-			calJ.setDates(days);
+			calJ.setDates(cal.getDates());
 		}
 			
 		return calJ;
@@ -1925,8 +1964,8 @@ public class GtmJsonExporter {
 		if (rt == null) return null;
 		
 		RelativeTimeDef rtJ = new RelativeTimeDef();
-		rtJ.setTimeUnit(rt.getUnit().getName());
-		rtJ.setTimeReference(rt.getReference().getName());
+		rtJ.setTimeUnit(RelativeTimeDef.TimeUnit.valueOf(rt.getUnit().getName().toUpperCase()));
+		rtJ.setTimeReference(RelativeTimeDef.TimeReference.valueOf(rt.getReference().getName().toUpperCase()));
 		rtJ.setTimeValue(rt.getValue());
 			
 		return rtJ;
@@ -1976,17 +2015,18 @@ public class GtmJsonExporter {
 			
 			CurrencyPriceDef curDef = new CurrencyPriceDef();
 			
-			curDef.setAmount(cur.getAmount());
+			//assume euro cent
+			curDef.setAmount((int) (100 * cur.getAmount()));
 			curDef.setCurrency(cur.getCurrency().getIsoCode());
 			
-			ArrayList<VatDetail> vatDefs = new ArrayList<VatDetail>();
+			ArrayList<VatDetailDef> vatDefs = new ArrayList<VatDetailDef>();
 									
 			for ( VATDetail vat : cur.getVATdetails()) {
 				
-				VatDetail vatDef = new VatDetail();
-				vatDef.setAmount(vat.getAmount());
+				VatDetailDef vatDef = new VatDetailDef();
+				vatDef.setAmount((int) (100 * vat.getAmount()));
 				vatDef.setTaxId(vat.getTaxId());
-				vatDef.setScope(vat.getScope().getName());
+				vatDef.setScope(VatDetailDef.VatScopeDef.fromValue(vat.getScope().getName().toUpperCase()));
 				vatDef.setPercentage(vat.getPercentage());
 				vatDef.setCountry(vat.getCountry().getISOcode());
 				vatDefs.add(vatDef);
@@ -2000,9 +2040,9 @@ public class GtmJsonExporter {
 	}
 	
 
-	private static Delivery convertDeliveryToJson(Gtm.Delivery idelivery) {
+	private static FareDeliveryDetailsDef convertDeliveryToJson(Gtm.Delivery idelivery) {
 		if (idelivery == null) return null;
-		Delivery delivery = new Delivery();
+		FareDeliveryDetailsDef delivery = new FareDeliveryDetailsDef();
 		delivery.setFareProvider(idelivery.getProvider().getCode());
 		delivery.setDeliveryId(idelivery.getId());
 		delivery.setOptionalDelivery(idelivery.isOptional());

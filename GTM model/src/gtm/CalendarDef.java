@@ -2,6 +2,7 @@
 package gtm;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * valid on all days in case no calendar is provided
+ * calendar
  * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -19,50 +20,38 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "fromDate",
     "untilDate",
     "dates",
-    "UTCoffset"
+    "utcOffset"
 })
 public class CalendarDef {
 
     /**
-     * 
-     * (Required)
+     * \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
      * 
      */
     @JsonProperty("id")
+    @JsonPropertyDescription("\\*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange")
     private String id;
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @JsonProperty("fromDate")
-    private String fromDate;
-    /**
-     * 
-     * (Required)
-     * 
-     */
+    private Date fromDate;
     @JsonProperty("untilDate")
-    private String untilDate;
+    private Date untilDate;
     /**
-     * dates included in the calendar. In case no dates are provided the entire range is assumed to be valid
+     * dates included in the calendar. In case no dates are provided the range is assumed to be valid
      * 
      */
     @JsonProperty("dates")
-    @JsonPropertyDescription("dates included in the calendar. In case no dates are provided the entire range is assumed to be valid")
-    private List<String> dates = new ArrayList<String>();
+    @JsonPropertyDescription("dates included in the calendar. In case no dates are provided the range is assumed to be valid")
+    private List<Date> dates = new ArrayList<Date>();
     /**
-     * offsett to UTC in minutes (number of minutes to be added to get UTC dates)
-     * (Required)
+     * offset to UTC in minutes (number of minutes to be added to get UTC dates)
      * 
      */
-    @JsonProperty("UTCoffset")
-    @JsonPropertyDescription("offsett to UTC in minutes (number of minutes to be added to get UTC dates)")
-    private Integer uTCoffset;
+    @JsonProperty("utcOffset")
+    @JsonPropertyDescription("offset to UTC in minutes (number of minutes to be added to get UTC dates)")
+    private Integer utcOffset;
 
     /**
-     * 
-     * (Required)
+     * \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
      * 
      */
     @JsonProperty("id")
@@ -71,8 +60,7 @@ public class CalendarDef {
     }
 
     /**
-     * 
-     * (Required)
+     * \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
      * 
      */
     @JsonProperty("id")
@@ -80,80 +68,60 @@ public class CalendarDef {
         this.id = id;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @JsonProperty("fromDate")
-    public String getFromDate() {
+    public Date getFromDate() {
         return fromDate;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @JsonProperty("fromDate")
-    public void setFromDate(String fromDate) {
+    public void setFromDate(Date fromDate) {
         this.fromDate = fromDate;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @JsonProperty("untilDate")
-    public String getUntilDate() {
+    public Date getUntilDate() {
         return untilDate;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @JsonProperty("untilDate")
-    public void setUntilDate(String untilDate) {
+    public void setUntilDate(Date untilDate) {
         this.untilDate = untilDate;
     }
 
     /**
-     * dates included in the calendar. In case no dates are provided the entire range is assumed to be valid
+     * dates included in the calendar. In case no dates are provided the range is assumed to be valid
      * 
      */
     @JsonProperty("dates")
-    public List<String> getDates() {
+    public List<Date> getDates() {
         return dates;
     }
 
     /**
-     * dates included in the calendar. In case no dates are provided the entire range is assumed to be valid
+     * dates included in the calendar. In case no dates are provided the range is assumed to be valid
      * 
      */
     @JsonProperty("dates")
-    public void setDates(List<String> dates) {
+    public void setDates(List<Date> dates) {
         this.dates = dates;
     }
 
     /**
-     * offsett to UTC in minutes (number of minutes to be added to get UTC dates)
+     * offset to UTC in minutes (number of minutes to be added to get UTC dates)
      * 
      */
-    @JsonProperty("UTCoffset")
-    public Integer getUTCoffset() {
-        return uTCoffset;
+    @JsonProperty("utcOffset")
+    public Integer getUtcOffset() {
+        return utcOffset;
     }
 
     /**
-     * offsett to UTC in minutes (number of minutes to be added to get UTC dates)
+     * offset to UTC in minutes (number of minutes to be added to get UTC dates)
      * 
      */
-    @JsonProperty("UTCoffset")
-    public void setUTCoffset(Integer uTCoffset) {
-        this.uTCoffset = uTCoffset;
+    @JsonProperty("utcOffset")
+    public void setUtcOffset(Integer utcOffset) {
+        this.utcOffset = utcOffset;
     }
 
     @Override
@@ -176,9 +144,9 @@ public class CalendarDef {
         sb.append('=');
         sb.append(((this.dates == null)?"<null>":this.dates));
         sb.append(',');
-        sb.append("uTCoffset");
+        sb.append("utcOffset");
         sb.append('=');
-        sb.append(((this.uTCoffset == null)?"<null>":this.uTCoffset));
+        sb.append(((this.utcOffset == null)?"<null>":this.utcOffset));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -194,7 +162,7 @@ public class CalendarDef {
         result = ((result* 31)+((this.fromDate == null)? 0 :this.fromDate.hashCode()));
         result = ((result* 31)+((this.dates == null)? 0 :this.dates.hashCode()));
         result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
-        result = ((result* 31)+((this.uTCoffset == null)? 0 :this.uTCoffset.hashCode()));
+        result = ((result* 31)+((this.utcOffset == null)? 0 :this.utcOffset.hashCode()));
         result = ((result* 31)+((this.untilDate == null)? 0 :this.untilDate.hashCode()));
         return result;
     }
@@ -208,7 +176,7 @@ public class CalendarDef {
             return false;
         }
         CalendarDef rhs = ((CalendarDef) other);
-        return ((((((this.fromDate == rhs.fromDate)||((this.fromDate!= null)&&this.fromDate.equals(rhs.fromDate)))&&((this.dates == rhs.dates)||((this.dates!= null)&&this.dates.equals(rhs.dates))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.uTCoffset == rhs.uTCoffset)||((this.uTCoffset!= null)&&this.uTCoffset.equals(rhs.uTCoffset))))&&((this.untilDate == rhs.untilDate)||((this.untilDate!= null)&&this.untilDate.equals(rhs.untilDate))));
+        return ((((((this.fromDate == rhs.fromDate)||((this.fromDate!= null)&&this.fromDate.equals(rhs.fromDate)))&&((this.dates == rhs.dates)||((this.dates!= null)&&this.dates.equals(rhs.dates))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.utcOffset == rhs.utcOffset)||((this.utcOffset!= null)&&this.utcOffset.equals(rhs.utcOffset))))&&((this.untilDate == rhs.untilDate)||((this.untilDate!= null)&&this.untilDate.equals(rhs.untilDate))));
     }
 
 }

@@ -20,18 +20,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class TravelValidityConstraintDef {
 
     /**
-     * 
-     * (Required)
+     * mandatory in bulk data exchange
      * 
      */
     @JsonProperty("id")
+    @JsonPropertyDescription("mandatory in bulk data exchange")
     private String id;
     /**
-     * valid on all days in case no calendar is provided
+     * calendar
      * 
      */
     @JsonProperty("validTravelDates")
-    @JsonPropertyDescription("valid on all days in case no calendar is provided")
+    @JsonPropertyDescription("calendar")
     private CalendarDef validTravelDates;
     /**
      * 
@@ -41,11 +41,11 @@ public class TravelValidityConstraintDef {
     @JsonProperty("validityRange")
     private ValidityRange validityRange;
     /**
-     * time ranges excluded from the validity (e.g. off peak tickets)
+     * time ranges excluded from the validity (e.g. off peak fulfillments)
      * 
      */
     @JsonProperty("excludedTimeRange")
-    @JsonPropertyDescription("time ranges excluded from the validity (e.g. off peak tickets)")
+    @JsonPropertyDescription("time ranges excluded from the validity (e.g. off peak fulfillments)")
     private List<ExcludedTimeRange> excludedTimeRange = new ArrayList<ExcludedTimeRange>();
     /**
      * number of allowed travel days (e.g. 3 travel days within 2 weeks)
@@ -63,8 +63,7 @@ public class TravelValidityConstraintDef {
     private ReturnConstraint returnConstraint;
 
     /**
-     * 
-     * (Required)
+     * mandatory in bulk data exchange
      * 
      */
     @JsonProperty("id")
@@ -73,8 +72,7 @@ public class TravelValidityConstraintDef {
     }
 
     /**
-     * 
-     * (Required)
+     * mandatory in bulk data exchange
      * 
      */
     @JsonProperty("id")
@@ -83,7 +81,7 @@ public class TravelValidityConstraintDef {
     }
 
     /**
-     * valid on all days in case no calendar is provided
+     * calendar
      * 
      */
     @JsonProperty("validTravelDates")
@@ -92,7 +90,7 @@ public class TravelValidityConstraintDef {
     }
 
     /**
-     * valid on all days in case no calendar is provided
+     * calendar
      * 
      */
     @JsonProperty("validTravelDates")
@@ -121,7 +119,7 @@ public class TravelValidityConstraintDef {
     }
 
     /**
-     * time ranges excluded from the validity (e.g. off peak tickets)
+     * time ranges excluded from the validity (e.g. off peak fulfillments)
      * 
      */
     @JsonProperty("excludedTimeRange")
@@ -130,7 +128,7 @@ public class TravelValidityConstraintDef {
     }
 
     /**
-     * time ranges excluded from the validity (e.g. off peak tickets)
+     * time ranges excluded from the validity (e.g. off peak fulfillments)
      * 
      */
     @JsonProperty("excludedTimeRange")

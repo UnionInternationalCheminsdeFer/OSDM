@@ -130,6 +130,7 @@ import Gtm.ReductionConstraints;
 import Gtm.RegionalConstraint;
 import Gtm.RegionalConstraints;
 import Gtm.RegionalValidity;
+import Gtm.RegulatoryCondition;
 import Gtm.RelativeTime;
 import Gtm.RequiredBarcodes;
 import Gtm.RequiredPersonalData;
@@ -1233,6 +1234,13 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	private EEnum stationFareDetailTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum regulatoryConditionEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -3365,8 +3373,17 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFareElement_RegulatoryConditions() {
+		return (EAttribute)fareElementEClass.getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getFareElement_AfterSalesRule() {
-		return (EReference)fareElementEClass.getEStructuralFeatures().get(19);
+		return (EReference)fareElementEClass.getEStructuralFeatures().get(20);
 	}
 
 	/**
@@ -3375,7 +3392,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	public EAttribute getFareElement_DataSource() {
-		return (EAttribute)fareElementEClass.getEStructuralFeatures().get(20);
+		return (EAttribute)fareElementEClass.getEStructuralFeatures().get(21);
 	}
 
 	/**
@@ -3384,7 +3401,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	public EReference getFareElement_LegacyAccountingIdentifier() {
-		return (EReference)fareElementEClass.getEStructuralFeatures().get(21);
+		return (EReference)fareElementEClass.getEStructuralFeatures().get(22);
 	}
 
 	/**
@@ -3393,7 +3410,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	public EAttribute getFareElement_LegacyConversion() {
-		return (EAttribute)fareElementEClass.getEStructuralFeatures().get(22);
+		return (EAttribute)fareElementEClass.getEStructuralFeatures().get(23);
 	}
 
 	/**
@@ -3402,7 +3419,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * @generated
 	 */
 	public EAttribute getFareElement_IndividualContracts() {
-		return (EAttribute)fareElementEClass.getEStructuralFeatures().get(23);
+		return (EAttribute)fareElementEClass.getEStructuralFeatures().get(24);
 	}
 
 	/**
@@ -5669,7 +5686,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEdge_Unit() {
+	public EAttribute getEdge_Accuracy() {
 		return (EAttribute)edgeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5678,7 +5695,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEdge_Accuracy() {
+	public EAttribute getEdge_Longitude() {
 		return (EAttribute)edgeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -5687,17 +5704,8 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEdge_Longitude() {
-		return (EAttribute)edgeEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getEdge_Latitude() {
-		return (EAttribute)edgeEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)edgeEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -6391,6 +6399,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 */
 	public EAttribute getFareTemplate_IndividualContracts() {
 		return (EAttribute)fareTemplateEClass.getEStructuralFeatures().get(24);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFareTemplate_RegulatoryConditions() {
+		return (EAttribute)fareTemplateEClass.getEStructuralFeatures().get(25);
 	}
 
 	/**
@@ -7721,6 +7738,15 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getRegulatoryCondition() {
+		return regulatoryConditionEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getAfterSalesTransactionType() {
 		return afterSalesTransactionTypeEEnum;
 	}
@@ -8342,6 +8368,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEReference(fareElementEClass, FARE_ELEMENT__REDUCTION_CONSTRAINT);
 		createEReference(fareElementEClass, FARE_ELEMENT__FULFILLMENT_CONSTRAINT);
 		createEReference(fareElementEClass, FARE_ELEMENT__PASSENGER_CONSTRAINT);
+		createEAttribute(fareElementEClass, FARE_ELEMENT__REGULATORY_CONDITIONS);
 		createEReference(fareElementEClass, FARE_ELEMENT__AFTER_SALES_RULE);
 		createEAttribute(fareElementEClass, FARE_ELEMENT__DATA_SOURCE);
 		createEReference(fareElementEClass, FARE_ELEMENT__LEGACY_ACCOUNTING_IDENTIFIER);
@@ -8658,7 +8685,6 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 
 		edgeEClass = createEClass(EDGE);
 		createEAttribute(edgeEClass, EDGE__SYSTEM);
-		createEAttribute(edgeEClass, EDGE__UNIT);
 		createEAttribute(edgeEClass, EDGE__ACCURACY);
 		createEAttribute(edgeEClass, EDGE__LONGITUDE);
 		createEAttribute(edgeEClass, EDGE__LATITUDE);
@@ -8749,6 +8775,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		createEReference(fareTemplateEClass, FARE_TEMPLATE__PASSENGER_CONSTRAINT);
 		createEAttribute(fareTemplateEClass, FARE_TEMPLATE__LEGACY_CONVERSION);
 		createEAttribute(fareTemplateEClass, FARE_TEMPLATE__INDIVIDUAL_CONTRACTS);
+		createEAttribute(fareTemplateEClass, FARE_TEMPLATE__REGULATORY_CONDITIONS);
 
 		afterSalesTemplateEClass = createEClass(AFTER_SALES_TEMPLATE);
 		createEAttribute(afterSalesTemplateEClass, AFTER_SALES_TEMPLATE__TRANSACTION_TYPE);
@@ -8930,6 +8957,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		// Create enums
 		stationRelationTypeEEnum = createEEnum(STATION_RELATION_TYPE);
 		stationFareDetailTypeEEnum = createEEnum(STATION_FARE_DETAIL_TYPE);
+		regulatoryConditionEEnum = createEEnum(REGULATORY_CONDITION);
 		afterSalesTransactionTypeEEnum = createEEnum(AFTER_SALES_TRANSACTION_TYPE);
 		barcodeTypesEEnum = createEEnum(BARCODE_TYPES);
 		classicClassTypeEEnum = createEEnum(CLASSIC_CLASS_TYPE);
@@ -9263,6 +9291,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEReference(getFareElement_ReductionConstraint(), this.getReductionConstraint(), null, "reductionConstraint", null, 0, 1, FareElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFareElement_FulfillmentConstraint(), this.getFulfillmentConstraint(), null, "fulfillmentConstraint", null, 0, 1, FareElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFareElement_PassengerConstraint(), this.getPassengerConstraint(), null, "passengerConstraint", null, 0, 1, FareElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFareElement_RegulatoryConditions(), this.getRegulatoryCondition(), "regulatoryConditions", null, 0, -1, FareElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFareElement_AfterSalesRule(), this.getAfterSalesRule(), null, "afterSalesRule", null, 0, 1, FareElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFareElement_DataSource(), this.getDataSource(), "dataSource", null, 0, 1, FareElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFareElement_LegacyAccountingIdentifier(), this.getLegacyAccountingIdentifier(), null, "legacyAccountingIdentifier", null, 0, 1, FareElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -9583,8 +9612,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 
 		initEClass(edgeEClass, Edge.class, "Edge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEdge_System(), this.getGeoSystem(), "system", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEdge_Unit(), this.getGeoUnit(), "unit", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEdge_Accuracy(), this.getGeoUnit(), "accuracy", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEdge_Accuracy(), ecorePackage.getEFloat(), "accuracy", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEdge_Longitude(), ecorePackage.getEFloat(), "longitude", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEdge_Latitude(), ecorePackage.getEFloat(), "latitude", null, 0, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -9674,6 +9702,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEReference(getFareTemplate_PassengerConstraint(), this.getPassengerConstraint(), null, "passengerConstraint", null, 0, 1, FareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFareTemplate_LegacyConversion(), this.getLegacyConversionType(), "legacyConversion", null, 0, 1, FareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFareTemplate_IndividualContracts(), ecorePackage.getEBoolean(), "individualContracts", "false", 0, 1, FareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFareTemplate_RegulatoryConditions(), this.getRegulatoryCondition(), "regulatoryConditions", null, 0, -1, FareTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(afterSalesTemplateEClass, AfterSalesTemplate.class, "AfterSalesTemplate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAfterSalesTemplate_TransactionType(), this.getAfterSalesTransactionType(), "transactionType", null, 0, 1, AfterSalesTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -9872,6 +9901,11 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		addEEnumLiteral(stationFareDetailTypeEEnum, StationFareDetailType.ON_ARRIVAL);
 		addEEnumLiteral(stationFareDetailTypeEEnum, StationFareDetailType.ON_DEPARTURE);
 		addEEnumLiteral(stationFareDetailTypeEEnum, StationFareDetailType.ON_ARRIVAL_ON_DEPARTURE);
+
+		initEEnum(regulatoryConditionEEnum, RegulatoryCondition.class, "RegulatoryCondition");
+		addEEnumLiteral(regulatoryConditionEEnum, RegulatoryCondition.CIV);
+		addEEnumLiteral(regulatoryConditionEEnum, RegulatoryCondition.MC);
+		addEEnumLiteral(regulatoryConditionEEnum, RegulatoryCondition.EU_PRR);
 
 		initEEnum(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.class, "AfterSalesTransactionType");
 		addEEnumLiteral(afterSalesTransactionTypeEEnum, AfterSalesTransactionType.REFUND);

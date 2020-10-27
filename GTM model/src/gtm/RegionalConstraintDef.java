@@ -8,12 +8,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+
+/**
+ * regional constraint of the fare-offline bulk data use the id of connection points whereas in an online environment the connection point is included
+ * 
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "id",
     "entryConnectionPointId",
+    "entryConnectionPoint",
     "exitConnectionPointId",
-    "RegionalValidity",
+    "exitConnectionPoint",
+    "regionalValidity",
     "distance"
 })
 public class RegionalConstraintDef {
@@ -28,13 +35,32 @@ public class RegionalConstraintDef {
     @JsonPropertyDescription("connection point connecting two fare regimes")
     private String entryConnectionPointId;
     /**
+     * connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
+     * 
+     */
+    @JsonProperty("entryConnectionPoint")
+    @JsonPropertyDescription("connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.")
+    private ConnectionPointDef entryConnectionPoint;
+    /**
      * connection point connecting two fare regimes
      * 
      */
     @JsonProperty("exitConnectionPointId")
     @JsonPropertyDescription("connection point connecting two fare regimes")
     private String exitConnectionPointId;
-    @JsonProperty("RegionalValidity")
+    /**
+     * connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
+     * 
+     */
+    @JsonProperty("exitConnectionPoint")
+    @JsonPropertyDescription("connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.")
+    private ConnectionPointDef exitConnectionPoint;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @JsonProperty("regionalValidity")
     private List<RegionalValidityDef> regionalValidity = new ArrayList<RegionalValidityDef>();
     /**
      * distance in km for statistics 
@@ -42,7 +68,7 @@ public class RegionalConstraintDef {
      */
     @JsonProperty("distance")
     @JsonPropertyDescription("distance in km for statistics ")
-    private Float distance;
+    private Integer distance;
 
     @JsonProperty("id")
     public String getId() {
@@ -73,6 +99,24 @@ public class RegionalConstraintDef {
     }
 
     /**
+     * connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
+     * 
+     */
+    @JsonProperty("entryConnectionPoint")
+    public ConnectionPointDef getEntryConnectionPoint() {
+        return entryConnectionPoint;
+    }
+
+    /**
+     * connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
+     * 
+     */
+    @JsonProperty("entryConnectionPoint")
+    public void setEntryConnectionPoint(ConnectionPointDef entryConnectionPoint) {
+        this.entryConnectionPoint = entryConnectionPoint;
+    }
+
+    /**
      * connection point connecting two fare regimes
      * 
      */
@@ -90,12 +134,40 @@ public class RegionalConstraintDef {
         this.exitConnectionPointId = exitConnectionPointId;
     }
 
-    @JsonProperty("RegionalValidity")
+    /**
+     * connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
+     * 
+     */
+    @JsonProperty("exitConnectionPoint")
+    public ConnectionPointDef getExitConnectionPoint() {
+        return exitConnectionPoint;
+    }
+
+    /**
+     * connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
+     * 
+     */
+    @JsonProperty("exitConnectionPoint")
+    public void setExitConnectionPoint(ConnectionPointDef exitConnectionPoint) {
+        this.exitConnectionPoint = exitConnectionPoint;
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @JsonProperty("regionalValidity")
     public List<RegionalValidityDef> getRegionalValidity() {
         return regionalValidity;
     }
 
-    @JsonProperty("RegionalValidity")
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @JsonProperty("regionalValidity")
     public void setRegionalValidity(List<RegionalValidityDef> regionalValidity) {
         this.regionalValidity = regionalValidity;
     }
@@ -105,7 +177,7 @@ public class RegionalConstraintDef {
      * 
      */
     @JsonProperty("distance")
-    public Float getDistance() {
+    public Integer getDistance() {
         return distance;
     }
 
@@ -114,7 +186,7 @@ public class RegionalConstraintDef {
      * 
      */
     @JsonProperty("distance")
-    public void setDistance(Float distance) {
+    public void setDistance(Integer distance) {
         this.distance = distance;
     }
 
@@ -130,9 +202,17 @@ public class RegionalConstraintDef {
         sb.append('=');
         sb.append(((this.entryConnectionPointId == null)?"<null>":this.entryConnectionPointId));
         sb.append(',');
+        sb.append("entryConnectionPoint");
+        sb.append('=');
+        sb.append(((this.entryConnectionPoint == null)?"<null>":this.entryConnectionPoint));
+        sb.append(',');
         sb.append("exitConnectionPointId");
         sb.append('=');
         sb.append(((this.exitConnectionPointId == null)?"<null>":this.exitConnectionPointId));
+        sb.append(',');
+        sb.append("exitConnectionPoint");
+        sb.append('=');
+        sb.append(((this.exitConnectionPoint == null)?"<null>":this.exitConnectionPoint));
         sb.append(',');
         sb.append("regionalValidity");
         sb.append('=');
@@ -154,10 +234,12 @@ public class RegionalConstraintDef {
     public int hashCode() {
         int result = 1;
         result = ((result* 31)+((this.regionalValidity == null)? 0 :this.regionalValidity.hashCode()));
+        result = ((result* 31)+((this.distance == null)? 0 :this.distance.hashCode()));
         result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
         result = ((result* 31)+((this.exitConnectionPointId == null)? 0 :this.exitConnectionPointId.hashCode()));
         result = ((result* 31)+((this.entryConnectionPointId == null)? 0 :this.entryConnectionPointId.hashCode()));
-        result = ((result* 31)+((this.distance == null)? 0 :this.distance.hashCode()));
+        result = ((result* 31)+((this.entryConnectionPoint == null)? 0 :this.entryConnectionPoint.hashCode()));
+        result = ((result* 31)+((this.exitConnectionPoint == null)? 0 :this.exitConnectionPoint.hashCode()));
         return result;
     }
 
@@ -170,7 +252,7 @@ public class RegionalConstraintDef {
             return false;
         }
         RegionalConstraintDef rhs = ((RegionalConstraintDef) other);
-        return ((((((this.regionalValidity == rhs.regionalValidity)||((this.regionalValidity!= null)&&this.regionalValidity.equals(rhs.regionalValidity)))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.exitConnectionPointId == rhs.exitConnectionPointId)||((this.exitConnectionPointId!= null)&&this.exitConnectionPointId.equals(rhs.exitConnectionPointId))))&&((this.entryConnectionPointId == rhs.entryConnectionPointId)||((this.entryConnectionPointId!= null)&&this.entryConnectionPointId.equals(rhs.entryConnectionPointId))))&&((this.distance == rhs.distance)||((this.distance!= null)&&this.distance.equals(rhs.distance))));
+        return ((((((((this.regionalValidity == rhs.regionalValidity)||((this.regionalValidity!= null)&&this.regionalValidity.equals(rhs.regionalValidity)))&&((this.distance == rhs.distance)||((this.distance!= null)&&this.distance.equals(rhs.distance))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.exitConnectionPointId == rhs.exitConnectionPointId)||((this.exitConnectionPointId!= null)&&this.exitConnectionPointId.equals(rhs.exitConnectionPointId))))&&((this.entryConnectionPointId == rhs.entryConnectionPointId)||((this.entryConnectionPointId!= null)&&this.entryConnectionPointId.equals(rhs.entryConnectionPointId))))&&((this.entryConnectionPoint == rhs.entryConnectionPoint)||((this.entryConnectionPoint!= null)&&this.entryConnectionPoint.equals(rhs.entryConnectionPoint))))&&((this.exitConnectionPoint == rhs.exitConnectionPoint)||((this.exitConnectionPoint!= null)&&this.exitConnectionPoint.equals(rhs.exitConnectionPoint))));
     }
 
 }

@@ -28,14 +28,19 @@ public class ReservationParameterDef {
     private String id;
     @JsonProperty("reservationRequired")
     private Boolean reservationRequired = false;
-    @JsonProperty("reservationParams918-1")
-    private ReservationParams9181 reservationParams9181;
     /**
-     * options for reservations, Not: full details might be provided in the online version only
+     * reservation parameter to support the UIC 90918-1 interface for booking
+     * 
+     */
+    @JsonProperty("reservationParams918-1")
+    @JsonPropertyDescription("reservation parameter to support the UIC 90918-1 interface for booking")
+    private LegacyReservationParameterDef reservationParams9181;
+    /**
+     * options for reservations, Note: full details might be provided in the online version only
      * 
      */
     @JsonProperty("reservationOptions")
-    @JsonPropertyDescription("options for reservations, Not: full details might be provided in the online version only")
+    @JsonPropertyDescription("options for reservations, Note: full details might be provided in the online version only")
     private ReservationOptions reservationOptions;
     /**
      * service brand mode for which a reservation is mandatory
@@ -82,18 +87,26 @@ public class ReservationParameterDef {
         this.reservationRequired = reservationRequired;
     }
 
+    /**
+     * reservation parameter to support the UIC 90918-1 interface for booking
+     * 
+     */
     @JsonProperty("reservationParams918-1")
-    public ReservationParams9181 getReservationParams9181() {
+    public LegacyReservationParameterDef getReservationParams9181() {
         return reservationParams9181;
     }
 
+    /**
+     * reservation parameter to support the UIC 90918-1 interface for booking
+     * 
+     */
     @JsonProperty("reservationParams918-1")
-    public void setReservationParams9181(ReservationParams9181 reservationParams9181) {
+    public void setReservationParams9181(LegacyReservationParameterDef reservationParams9181) {
         this.reservationParams9181 = reservationParams9181;
     }
 
     /**
-     * options for reservations, Not: full details might be provided in the online version only
+     * options for reservations, Note: full details might be provided in the online version only
      * 
      */
     @JsonProperty("reservationOptions")
@@ -102,7 +115,7 @@ public class ReservationParameterDef {
     }
 
     /**
-     * options for reservations, Not: full details might be provided in the online version only
+     * options for reservations, Note: full details might be provided in the online version only
      * 
      */
     @JsonProperty("reservationOptions")

@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class FareReferenceStationSet {
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
     @JsonProperty("carrier")
-    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
+    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x")
     private String carrier;
     /**
      * 
@@ -38,7 +38,7 @@ public class FareReferenceStationSet {
     private String name;
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
@@ -48,7 +48,7 @@ public class FareReferenceStationSet {
     }
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */

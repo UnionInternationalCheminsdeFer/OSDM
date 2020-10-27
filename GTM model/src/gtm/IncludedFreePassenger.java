@@ -14,17 +14,22 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class IncludedFreePassenger {
 
     /**
-     * number of passengers that can be included with one passenger for free. The number is given in fractions. The calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog for free)
+     * Number of passengers that can be included with one passenger for free. The number is given in fractions. The  calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog  for free).
      * 
      */
     @JsonProperty("number")
-    @JsonPropertyDescription("number of passengers that can be included with one passenger for free. The number is given in fractions. The calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog for free)")
+    @JsonPropertyDescription("Number of passengers that can be included with one passenger for free. The number is given in fractions. The  calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog  for free).")
     private Integer number;
+    /**
+     * Subset of the values from the traveler type code list IRS 90918-10 
+     * 
+     */
     @JsonProperty("passengerTypeRef")
+    @JsonPropertyDescription("Subset of the values from the traveler type code list IRS 90918-10 ")
     private String passengerTypeRef;
 
     /**
-     * number of passengers that can be included with one passenger for free. The number is given in fractions. The calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog for free)
+     * Number of passengers that can be included with one passenger for free. The number is given in fractions. The  calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog  for free).
      * 
      */
     @JsonProperty("number")
@@ -33,7 +38,7 @@ public class IncludedFreePassenger {
     }
 
     /**
-     * number of passengers that can be included with one passenger for free. The number is given in fractions. The calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog for free)
+     * Number of passengers that can be included with one passenger for free. The number is given in fractions. The  calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog  for free).
      * 
      */
     @JsonProperty("number")
@@ -41,11 +46,19 @@ public class IncludedFreePassenger {
         this.number = number;
     }
 
+    /**
+     * Subset of the values from the traveler type code list IRS 90918-10 
+     * 
+     */
     @JsonProperty("passengerTypeRef")
     public String getPassengerTypeRef() {
         return passengerTypeRef;
     }
 
+    /**
+     * Subset of the values from the traveler type code list IRS 90918-10 
+     * 
+     */
     @JsonProperty("passengerTypeRef")
     public void setPassengerTypeRef(String passengerTypeRef) {
         this.passengerTypeRef = passengerTypeRef;

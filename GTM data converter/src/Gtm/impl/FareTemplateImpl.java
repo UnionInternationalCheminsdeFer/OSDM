@@ -16,6 +16,7 @@ import Gtm.PersonalDataConstraint;
 import Gtm.Price;
 import Gtm.ReductionConstraint;
 import Gtm.RegionalConstraint;
+import Gtm.RegulatoryCondition;
 import Gtm.ReservationParameter;
 import Gtm.SalesAvailabilityConstraint;
 import Gtm.ServiceClass;
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -70,6 +72,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link Gtm.impl.FareTemplateImpl#getPassengerConstraint <em>Passenger Constraint</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getLegacyConversion <em>Legacy Conversion</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#isIndividualContracts <em>Individual Contracts</em>}</li>
+ *   <li>{@link Gtm.impl.FareTemplateImpl#getRegulatoryConditions <em>Regulatory Conditions</em>}</li>
  * </ul>
  *
  * @generated
@@ -393,6 +396,16 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 	 * @ordered
 	 */
 	protected boolean individualContracts = INDIVIDUAL_CONTRACTS_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getRegulatoryConditions() <em>Regulatory Conditions</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRegulatoryConditions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<RegulatoryCondition> regulatoryConditions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1270,6 +1283,18 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<RegulatoryCondition> getRegulatoryConditions() {
+		if (regulatoryConditions == null) {
+			regulatoryConditions = new EDataTypeUniqueEList<RegulatoryCondition>(RegulatoryCondition.class, this, GtmPackage.FARE_TEMPLATE__REGULATORY_CONDITIONS);
+		}
+		return regulatoryConditions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -1356,6 +1381,8 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 				return getLegacyConversion();
 			case GtmPackage.FARE_TEMPLATE__INDIVIDUAL_CONTRACTS:
 				return isIndividualContracts();
+			case GtmPackage.FARE_TEMPLATE__REGULATORY_CONDITIONS:
+				return getRegulatoryConditions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1445,6 +1472,10 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 			case GtmPackage.FARE_TEMPLATE__INDIVIDUAL_CONTRACTS:
 				setIndividualContracts((Boolean)newValue);
 				return;
+			case GtmPackage.FARE_TEMPLATE__REGULATORY_CONDITIONS:
+				getRegulatoryConditions().clear();
+				getRegulatoryConditions().addAll((Collection<? extends RegulatoryCondition>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1532,6 +1563,9 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 			case GtmPackage.FARE_TEMPLATE__INDIVIDUAL_CONTRACTS:
 				setIndividualContracts(INDIVIDUAL_CONTRACTS_EDEFAULT);
 				return;
+			case GtmPackage.FARE_TEMPLATE__REGULATORY_CONDITIONS:
+				getRegulatoryConditions().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1594,6 +1628,8 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 				return legacyConversion != LEGACY_CONVERSION_EDEFAULT;
 			case GtmPackage.FARE_TEMPLATE__INDIVIDUAL_CONTRACTS:
 				return individualContracts != INDIVIDUAL_CONTRACTS_EDEFAULT;
+			case GtmPackage.FARE_TEMPLATE__REGULATORY_CONDITIONS:
+				return regulatoryConditions != null && !regulatoryConditions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1620,6 +1656,8 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 		result.append(legacyConversion);
 		result.append(", individualContracts: ");
 		result.append(individualContracts);
+		result.append(", regulatoryConditions: ");
+		result.append(regulatoryConditions);
 		result.append(')');
 		return result.toString();
 	}

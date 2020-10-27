@@ -17,12 +17,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class TranslationDef {
 
     /**
-     * ISO language codes
+     * 
      * (Required)
      * 
      */
     @JsonProperty("language")
-    @JsonPropertyDescription("ISO language codes")
     private String language;
     /**
      * 
@@ -50,7 +49,7 @@ public class TranslationDef {
     private String shortText;
 
     /**
-     * ISO language codes
+     * 
      * (Required)
      * 
      */
@@ -60,7 +59,7 @@ public class TranslationDef {
     }
 
     /**
-     * ISO language codes
+     * 
      * (Required)
      * 
      */

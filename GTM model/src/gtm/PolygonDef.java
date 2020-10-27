@@ -11,25 +11,25 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "edge"
 })
-public class PolygoneDef {
+public class PolygonDef {
 
     @JsonProperty("edge")
-    private List<GeoCoordinateDef> edge = new ArrayList<GeoCoordinateDef>();
+    private List<GeoCoordinate> edge = new ArrayList<GeoCoordinate>();
 
     @JsonProperty("edge")
-    public List<GeoCoordinateDef> getEdge() {
+    public List<GeoCoordinate> getEdge() {
         return edge;
     }
 
     @JsonProperty("edge")
-    public void setEdge(List<GeoCoordinateDef> edge) {
+    public void setEdge(List<GeoCoordinate> edge) {
         this.edge = edge;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(PolygoneDef.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(PolygonDef.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("edge");
         sb.append('=');
         sb.append(((this.edge == null)?"<null>":this.edge));
@@ -54,10 +54,10 @@ public class PolygoneDef {
         if (other == this) {
             return true;
         }
-        if ((other instanceof PolygoneDef) == false) {
+        if ((other instanceof PolygonDef) == false) {
             return false;
         }
-        PolygoneDef rhs = ((PolygoneDef) other);
+        PolygonDef rhs = ((PolygonDef) other);
         return ((this.edge == rhs.edge)||((this.edge!= null)&&this.edge.equals(rhs.edge)));
     }
 
