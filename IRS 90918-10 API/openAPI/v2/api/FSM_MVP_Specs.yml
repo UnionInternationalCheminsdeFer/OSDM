@@ -5801,19 +5801,16 @@ components:
           description: >- 
             \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange 
           type: number
-          format: int32
         maxWeightedPassengers:
           description: >- 
             \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange  
             The total weighted number of passengers on the offer is restricted to be equal or smaller than this maximum
           type: number
-          format: int32
         minWeightedPassengers:
           description: >- 
             \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange   
             The total weighted number of passengers on the offer is restricted to equal or larger than this minimum
           type: number
-          format: int32
       required:
         - id
         - passengerType
