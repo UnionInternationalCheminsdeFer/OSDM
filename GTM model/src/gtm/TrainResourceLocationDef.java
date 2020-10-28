@@ -17,12 +17,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class TrainResourceLocationDef {
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
     @JsonProperty("carrier")
-    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
+    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x")
     private String carrier;
     /**
      * ztrain number (without service brand abbreviation)
@@ -41,7 +41,7 @@ public class TrainResourceLocationDef {
     private List<OnlineResourceDef> onlineResource = new ArrayList<OnlineResourceDef>();
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
@@ -51,7 +51,7 @@ public class TrainResourceLocationDef {
     }
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */

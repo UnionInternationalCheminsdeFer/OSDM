@@ -8,9 +8,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+
+/**
+ * terminalStation - in case the product requires a destination within the zone (e.g. local ticket  to go to the main rail station).  entryStation - Station to enter the zone in case the product requires to enter the zone via a  specific station (e.g. local zone ticket to start from the main rail station).
+ * 
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "binaryZoneId",
+    "binaryLineId",
     "carrier",
     "city",
     "entryStation",
@@ -21,27 +26,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class LineDef {
 
     /**
-     * base 64 encoded data
+     * Id to support local traffic standards (e.g. VDV,...).
      * 
      */
-    @JsonProperty("binaryZoneId")
-    @JsonPropertyDescription("base 64 encoded data")
-    private String binaryZoneId;
+    @JsonProperty("binaryLineId")
+    @JsonPropertyDescription("Id to support local traffic standards (e.g. VDV,...).")
+    private String binaryLineId;
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
     @JsonProperty("carrier")
-    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
+    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x")
     private String carrier;
     @JsonProperty("city")
     private Integer city;
+    /**
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
+     * 
+     */
     @JsonProperty("entryStation")
+    @JsonPropertyDescription("Used to represent a station location. This is a location that can be used as origin and destination for a train journey")
     private StationDef entryStation;
     @JsonProperty("lineId")
     private List<String> lineId = new ArrayList<String>();
+    /**
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
+     * 
+     */
     @JsonProperty("terminalStation")
+    @JsonPropertyDescription("Used to represent a station location. This is a location that can be used as origin and destination for a train journey")
     private StationDef terminalStation;
     /**
      * Nomenclature des units territoriales statistiques  
@@ -53,25 +68,25 @@ public class LineDef {
     private String nutsCode;
 
     /**
-     * base 64 encoded data
+     * Id to support local traffic standards (e.g. VDV,...).
      * 
      */
-    @JsonProperty("binaryZoneId")
-    public String getBinaryZoneId() {
-        return binaryZoneId;
+    @JsonProperty("binaryLineId")
+    public String getBinaryLineId() {
+        return binaryLineId;
     }
 
     /**
-     * base 64 encoded data
+     * Id to support local traffic standards (e.g. VDV,...).
      * 
      */
-    @JsonProperty("binaryZoneId")
-    public void setBinaryZoneId(String binaryZoneId) {
-        this.binaryZoneId = binaryZoneId;
+    @JsonProperty("binaryLineId")
+    public void setBinaryLineId(String binaryLineId) {
+        this.binaryLineId = binaryLineId;
     }
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
@@ -81,7 +96,7 @@ public class LineDef {
     }
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
@@ -100,11 +115,19 @@ public class LineDef {
         this.city = city;
     }
 
+    /**
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
+     * 
+     */
     @JsonProperty("entryStation")
     public StationDef getEntryStation() {
         return entryStation;
     }
 
+    /**
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
+     * 
+     */
     @JsonProperty("entryStation")
     public void setEntryStation(StationDef entryStation) {
         this.entryStation = entryStation;
@@ -120,11 +143,19 @@ public class LineDef {
         this.lineId = lineId;
     }
 
+    /**
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
+     * 
+     */
     @JsonProperty("terminalStation")
     public StationDef getTerminalStation() {
         return terminalStation;
     }
 
+    /**
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
+     * 
+     */
     @JsonProperty("terminalStation")
     public void setTerminalStation(StationDef terminalStation) {
         this.terminalStation = terminalStation;
@@ -154,9 +185,9 @@ public class LineDef {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(LineDef.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("binaryZoneId");
+        sb.append("binaryLineId");
         sb.append('=');
-        sb.append(((this.binaryZoneId == null)?"<null>":this.binaryZoneId));
+        sb.append(((this.binaryLineId == null)?"<null>":this.binaryLineId));
         sb.append(',');
         sb.append("carrier");
         sb.append('=');
@@ -198,8 +229,8 @@ public class LineDef {
         result = ((result* 31)+((this.city == null)? 0 :this.city.hashCode()));
         result = ((result* 31)+((this.lineId == null)? 0 :this.lineId.hashCode()));
         result = ((result* 31)+((this.entryStation == null)? 0 :this.entryStation.hashCode()));
+        result = ((result* 31)+((this.binaryLineId == null)? 0 :this.binaryLineId.hashCode()));
         result = ((result* 31)+((this.terminalStation == null)? 0 :this.terminalStation.hashCode()));
-        result = ((result* 31)+((this.binaryZoneId == null)? 0 :this.binaryZoneId.hashCode()));
         return result;
     }
 
@@ -212,7 +243,7 @@ public class LineDef {
             return false;
         }
         LineDef rhs = ((LineDef) other);
-        return ((((((((this.carrier == rhs.carrier)||((this.carrier!= null)&&this.carrier.equals(rhs.carrier)))&&((this.nutsCode == rhs.nutsCode)||((this.nutsCode!= null)&&this.nutsCode.equals(rhs.nutsCode))))&&((this.city == rhs.city)||((this.city!= null)&&this.city.equals(rhs.city))))&&((this.lineId == rhs.lineId)||((this.lineId!= null)&&this.lineId.equals(rhs.lineId))))&&((this.entryStation == rhs.entryStation)||((this.entryStation!= null)&&this.entryStation.equals(rhs.entryStation))))&&((this.terminalStation == rhs.terminalStation)||((this.terminalStation!= null)&&this.terminalStation.equals(rhs.terminalStation))))&&((this.binaryZoneId == rhs.binaryZoneId)||((this.binaryZoneId!= null)&&this.binaryZoneId.equals(rhs.binaryZoneId))));
+        return ((((((((this.carrier == rhs.carrier)||((this.carrier!= null)&&this.carrier.equals(rhs.carrier)))&&((this.nutsCode == rhs.nutsCode)||((this.nutsCode!= null)&&this.nutsCode.equals(rhs.nutsCode))))&&((this.city == rhs.city)||((this.city!= null)&&this.city.equals(rhs.city))))&&((this.lineId == rhs.lineId)||((this.lineId!= null)&&this.lineId.equals(rhs.lineId))))&&((this.entryStation == rhs.entryStation)||((this.entryStation!= null)&&this.entryStation.equals(rhs.entryStation))))&&((this.binaryLineId == rhs.binaryLineId)||((this.binaryLineId!= null)&&this.binaryLineId.equals(rhs.binaryLineId))))&&((this.terminalStation == rhs.terminalStation)||((this.terminalStation!= null)&&this.terminalStation.equals(rhs.terminalStation))));
     }
 
 }

@@ -22,12 +22,12 @@ public class CombinationConstraint {
     @JsonPropertyDescription("number of passengers allowed per accompanying passenger")
     private Integer maxNumber;
     /**
-     * reference to the type of the acompanying passenger
+     * Subset of the values from the traveler type code list IRS 90918-10 
      * (Required)
      * 
      */
     @JsonProperty("passengerTypeRef")
-    @JsonPropertyDescription("reference to the type of the acompanying passenger")
+    @JsonPropertyDescription("Subset of the values from the traveler type code list IRS 90918-10 ")
     private String passengerTypeRef;
 
     /**
@@ -51,7 +51,7 @@ public class CombinationConstraint {
     }
 
     /**
-     * reference to the type of the acompanying passenger
+     * Subset of the values from the traveler type code list IRS 90918-10 
      * (Required)
      * 
      */
@@ -61,7 +61,7 @@ public class CombinationConstraint {
     }
 
     /**
-     * reference to the type of the acompanying passenger
+     * Subset of the values from the traveler type code list IRS 90918-10 
      * (Required)
      * 
      */

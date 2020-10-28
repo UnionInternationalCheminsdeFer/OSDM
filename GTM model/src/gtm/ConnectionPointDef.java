@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * connection point connecting two fare regimes 
+ * connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
  * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -32,6 +32,11 @@ public class ConnectionPointDef {
     private String legacyBorderPointCode;
     @JsonProperty("name")
     private String name;
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("stationSets")
     private List<List<StationDef>> stationSets = new ArrayList<List<StationDef>>();
 
@@ -75,11 +80,21 @@ public class ConnectionPointDef {
         this.name = name;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("stationSets")
     public List<List<StationDef>> getStationSets() {
         return stationSets;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("stationSets")
     public void setStationSets(List<List<StationDef>> stationSets) {
         this.stationSets = stationSets;

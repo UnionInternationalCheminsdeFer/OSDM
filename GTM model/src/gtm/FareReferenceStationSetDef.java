@@ -26,12 +26,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 public class FareReferenceStationSetDef {
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
     @JsonProperty("fareProvider")
-    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
+    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x")
     private String fareProvider;
     /**
      * code of the fare reference station set used in regional validity. Unique within the fare provider.
@@ -68,7 +68,7 @@ public class FareReferenceStationSetDef {
     private String nameUTF8;
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
@@ -78,7 +78,7 @@ public class FareReferenceStationSetDef {
     }
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */

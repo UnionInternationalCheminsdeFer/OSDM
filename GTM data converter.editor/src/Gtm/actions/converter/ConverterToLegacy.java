@@ -1,7 +1,6 @@
 package Gtm.actions.converter;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -38,11 +37,9 @@ import Gtm.LegacyBorderSide;
 import Gtm.LegacyCalculationType;
 import Gtm.LegacyConversionType;
 import Gtm.LegacyRouteFare;
-import Gtm.LegacyRouteFares;
 import Gtm.LegacySeparateContractSeries;
 import Gtm.LegacySeries;
 import Gtm.LegacySeriesType;
-import Gtm.LegacyStation;
 import Gtm.LegacyViastation;
 import Gtm.Price;
 import Gtm.RegionalConstraint;

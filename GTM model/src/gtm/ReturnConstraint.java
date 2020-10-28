@@ -22,12 +22,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class ReturnConstraint {
 
     /**
-     * number of days after departure or start of validity of the last return 
+     * number of days after departure or start of validity of the last return
      * (Required)
      * 
      */
     @JsonProperty("latestReturn")
-    @JsonPropertyDescription("number of days after departure or start of validity of the last return ")
+    @JsonPropertyDescription("number of days after departure or start of validity of the last return")
     private Integer latestReturn;
     /**
      * number of days after departure or start of validity of the earliest return
@@ -46,7 +46,7 @@ public class ReturnConstraint {
     private List<Integer> excludedWeekdays = new ArrayList<Integer>();
 
     /**
-     * number of days after departure or start of validity of the last return 
+     * number of days after departure or start of validity of the last return
      * (Required)
      * 
      */
@@ -56,7 +56,7 @@ public class ReturnConstraint {
     }
 
     /**
-     * number of days after departure or start of validity of the last return 
+     * number of days after departure or start of validity of the last return
      * (Required)
      * 
      */

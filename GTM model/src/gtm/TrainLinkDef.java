@@ -1,6 +1,7 @@
 
 package gtm;
 
+import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
@@ -16,18 +17,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class TrainLinkDef {
 
     /**
-     * 
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
      * (Required)
      * 
      */
     @JsonProperty("fromStation")
+    @JsonPropertyDescription("Used to represent a station location. This is a location that can be used as origin and destination for a train journey")
     private StationDef fromStation;
     /**
-     * 
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
      * (Required)
      * 
      */
     @JsonProperty("toStation")
+    @JsonPropertyDescription("Used to represent a station location. This is a location that can be used as origin and destination for a train journey")
     private StationDef toStation;
     /**
      * 
@@ -37,16 +40,16 @@ public class TrainLinkDef {
     @JsonProperty("train")
     private String train;
     /**
-     * UTC date in format YYYY-MM-DDThh:mm:ssTZD. TDZ should be given as offset: (eg. 1997-07-16T19:20:30.45+01:00)
+     * date and time of the departure where the train link starts
      * (Required)
      * 
      */
     @JsonProperty("travelDate")
-    @JsonPropertyDescription("UTC date in format YYYY-MM-DDThh:mm:ssTZD. TDZ should be given as offset: (eg. 1997-07-16T19:20:30.45+01:00)")
-    private String travelDate;
+    @JsonPropertyDescription("date and time of the departure where the train link starts")
+    private Date travelDate;
 
     /**
-     * 
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
      * (Required)
      * 
      */
@@ -56,7 +59,7 @@ public class TrainLinkDef {
     }
 
     /**
-     * 
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
      * (Required)
      * 
      */
@@ -66,7 +69,7 @@ public class TrainLinkDef {
     }
 
     /**
-     * 
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
      * (Required)
      * 
      */
@@ -76,7 +79,7 @@ public class TrainLinkDef {
     }
 
     /**
-     * 
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
      * (Required)
      * 
      */
@@ -106,22 +109,22 @@ public class TrainLinkDef {
     }
 
     /**
-     * UTC date in format YYYY-MM-DDThh:mm:ssTZD. TDZ should be given as offset: (eg. 1997-07-16T19:20:30.45+01:00)
+     * date and time of the departure where the train link starts
      * (Required)
      * 
      */
     @JsonProperty("travelDate")
-    public String getTravelDate() {
+    public Date getTravelDate() {
         return travelDate;
     }
 
     /**
-     * UTC date in format YYYY-MM-DDThh:mm:ssTZD. TDZ should be given as offset: (eg. 1997-07-16T19:20:30.45+01:00)
+     * date and time of the departure where the train link starts
      * (Required)
      * 
      */
     @JsonProperty("travelDate")
-    public void setTravelDate(String travelDate) {
+    public void setTravelDate(Date travelDate) {
         this.travelDate = travelDate;
     }
 

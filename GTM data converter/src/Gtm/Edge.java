@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link Gtm.Edge#getSystem <em>System</em>}</li>
- *   <li>{@link Gtm.Edge#getUnit <em>Unit</em>}</li>
  *   <li>{@link Gtm.Edge#getAccuracy <em>Accuracy</em>}</li>
  *   <li>{@link Gtm.Edge#getLongitude <em>Longitude</em>}</li>
  *   <li>{@link Gtm.Edge#getLatitude <em>Latitude</em>}</li>
@@ -51,54 +50,26 @@ public interface Edge extends EObject {
 	void setSystem(GeoSystem value);
 
 	/**
-	 * Returns the value of the '<em><b>Unit</b></em>' attribute.
-	 * The literals are from the enumeration {@link Gtm.GeoUnit}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Unit</em>' attribute.
-	 * @see Gtm.GeoUnit
-	 * @see #setUnit(GeoUnit)
-	 * @see Gtm.GtmPackage#getEdge_Unit()
-	 * @model
-	 * @generated
-	 */
-	GeoUnit getUnit();
-
-	/**
-	 * Sets the value of the '{@link Gtm.Edge#getUnit <em>Unit</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Unit</em>' attribute.
-	 * @see Gtm.GeoUnit
-	 * @see #getUnit()
-	 * @generated
-	 */
-	void setUnit(GeoUnit value);
-
-	/**
 	 * Returns the value of the '<em><b>Accuracy</b></em>' attribute.
-	 * The literals are from the enumeration {@link Gtm.GeoUnit}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Accuracy</em>' attribute.
-	 * @see Gtm.GeoUnit
-	 * @see #setAccuracy(GeoUnit)
+	 * @see #setAccuracy(float)
 	 * @see Gtm.GtmPackage#getEdge_Accuracy()
 	 * @model
 	 * @generated
 	 */
-	GeoUnit getAccuracy();
+	float getAccuracy();
 
 	/**
 	 * Sets the value of the '{@link Gtm.Edge#getAccuracy <em>Accuracy</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Accuracy</em>' attribute.
-	 * @see Gtm.GeoUnit
 	 * @see #getAccuracy()
 	 * @generated
 	 */
-	void setAccuracy(GeoUnit value);
+	void setAccuracy(float value);
 
 	/**
 	 * Returns the value of the '<em><b>Longitude</b></em>' attribute.

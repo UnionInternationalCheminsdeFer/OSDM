@@ -15,11 +15,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 })
 public class PersonalDataConstraintDef {
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @JsonProperty("id")
     private String id;
     @JsonProperty("requiredData")
@@ -27,21 +22,11 @@ public class PersonalDataConstraintDef {
     @JsonProperty("allowedChanges")
     private List<AllowedChange> allowedChanges = new ArrayList<AllowedChange>();
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @JsonProperty("id")
     public String getId() {
         return id;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @JsonProperty("id")
     public void setId(String id) {
         this.id = id;

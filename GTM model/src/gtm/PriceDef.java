@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -15,11 +16,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class PriceDef {
 
     /**
-     * 
-     * (Required)
+     * required for bulk data transfer
      * 
      */
     @JsonProperty("id")
+    @JsonPropertyDescription("required for bulk data transfer")
     private String id;
     /**
      * 
@@ -30,8 +31,7 @@ public class PriceDef {
     private List<CurrencyPriceDef> price = new ArrayList<CurrencyPriceDef>();
 
     /**
-     * 
-     * (Required)
+     * required for bulk data transfer
      * 
      */
     @JsonProperty("id")
@@ -40,8 +40,7 @@ public class PriceDef {
     }
 
     /**
-     * 
-     * (Required)
+     * required for bulk data transfer
      * 
      */
     @JsonProperty("id")

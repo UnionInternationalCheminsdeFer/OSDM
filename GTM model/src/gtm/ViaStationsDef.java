@@ -17,13 +17,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "carrier",
     "route",
     "serviceBrand",
-    "Station",
+    "station",
     "fareReferenceStationSet"
 })
 public class ViaStationsDef {
 
     @JsonProperty("isBorder")
-    private Boolean isBorder;
+    private Boolean isBorder = false;
     @JsonProperty("routeId")
     private Integer routeId;
     @JsonProperty("seriesId")
@@ -31,27 +31,28 @@ public class ViaStationsDef {
     @JsonProperty("alternativeRoute")
     private List<ViaStationsDef> alternativeRoute = new ArrayList<ViaStationsDef>();
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * 
      */
     @JsonProperty("carrier")
-    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
+    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x")
     private String carrier;
     @JsonProperty("route")
     private List<ViaStationsDef> route = new ArrayList<ViaStationsDef>();
     /**
-     * restriction  to a specific service brand
+     * restriction to a specific service brand
      * 
      */
     @JsonProperty("serviceBrand")
-    @JsonPropertyDescription("restriction  to a specific service brand")
+    @JsonPropertyDescription("restriction to a specific service brand")
     private String serviceBrand;
     /**
-     * 
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
      * (Required)
      * 
      */
-    @JsonProperty("Station")
+    @JsonProperty("station")
+    @JsonPropertyDescription("Used to represent a station location. This is a location that can be used as origin and destination for a train journey")
     private StationDef station;
     /**
      * reference to a list of stations included in the fare
@@ -102,7 +103,7 @@ public class ViaStationsDef {
     }
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * 
      */
     @JsonProperty("carrier")
@@ -111,7 +112,7 @@ public class ViaStationsDef {
     }
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * 
      */
     @JsonProperty("carrier")
@@ -130,7 +131,7 @@ public class ViaStationsDef {
     }
 
     /**
-     * restriction  to a specific service brand
+     * restriction to a specific service brand
      * 
      */
     @JsonProperty("serviceBrand")
@@ -139,7 +140,7 @@ public class ViaStationsDef {
     }
 
     /**
-     * restriction  to a specific service brand
+     * restriction to a specific service brand
      * 
      */
     @JsonProperty("serviceBrand")
@@ -148,21 +149,21 @@ public class ViaStationsDef {
     }
 
     /**
-     * 
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
      * (Required)
      * 
      */
-    @JsonProperty("Station")
+    @JsonProperty("station")
     public StationDef getStation() {
         return station;
     }
 
     /**
-     * 
+     * Used to represent a station location. This is a location that can be used as origin and destination for a train journey
      * (Required)
      * 
      */
-    @JsonProperty("Station")
+    @JsonProperty("station")
     public void setStation(StationDef station) {
         this.station = station;
     }

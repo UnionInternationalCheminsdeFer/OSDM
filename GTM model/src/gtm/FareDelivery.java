@@ -12,15 +12,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class FareDelivery {
 
     @JsonProperty("FareStructureDelivery")
-    private FareStructureDeliveryDef fareStructureDelivery;
+    private FareDeliveryDef fareStructureDelivery;
 
     @JsonProperty("FareStructureDelivery")
-    public FareStructureDeliveryDef getFareStructureDelivery() {
+    public FareDeliveryDef getFareStructureDelivery() {
         return fareStructureDelivery;
     }
 
     @JsonProperty("FareStructureDelivery")
-    public void setFareStructureDelivery(FareStructureDeliveryDef fareStructureDelivery) {
+    public void setFareStructureDelivery(FareDeliveryDef fareStructureDelivery) {
         this.fareStructureDelivery = fareStructureDelivery;
     }
 

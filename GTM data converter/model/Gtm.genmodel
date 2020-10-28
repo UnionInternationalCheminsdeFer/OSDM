@@ -20,6 +20,11 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//StationFareDetailType/ON_DEPARTURE"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//StationFareDetailType/ON_ARRIVAL_ON__DEPARTURE"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//RegulatoryCondition">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//RegulatoryCondition/CIV"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//RegulatoryCondition/MC"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//RegulatoryCondition/EU_PRR"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//AfterSalesTransactionType">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/REFUND"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//AfterSalesTransactionType/EXCHANGE"/>
@@ -611,6 +616,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/reductionConstraint"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/fulfillmentConstraint"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/passengerConstraint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareElement/regulatoryConditions"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/afterSalesRule"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareElement/dataSource"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareElement/legacyAccountingIdentifier"/>
@@ -934,7 +940,6 @@
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//Edge">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Edge/system"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Edge/unit"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Edge/accuracy"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Edge/longitude"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//Edge/latitude"/>
@@ -1025,6 +1030,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/passengerConstraint"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/legacyConversion"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/individualContracts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/regulatoryConditions"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//AfterSalesTemplate">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesTemplate/transactionType"/>

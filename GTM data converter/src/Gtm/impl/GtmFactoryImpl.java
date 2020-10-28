@@ -218,6 +218,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return createStationRelationTypeFromString(eDataType, initialValue);
 			case GtmPackage.STATION_FARE_DETAIL_TYPE:
 				return createStationFareDetailTypeFromString(eDataType, initialValue);
+			case GtmPackage.REGULATORY_CONDITION:
+				return createRegulatoryConditionFromString(eDataType, initialValue);
 			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
 				return createAfterSalesTransactionTypeFromString(eDataType, initialValue);
 			case GtmPackage.BARCODE_TYPES:
@@ -315,6 +317,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return convertStationRelationTypeToString(eDataType, instanceValue);
 			case GtmPackage.STATION_FARE_DETAIL_TYPE:
 				return convertStationFareDetailTypeToString(eDataType, instanceValue);
+			case GtmPackage.REGULATORY_CONDITION:
+				return convertRegulatoryConditionToString(eDataType, instanceValue);
 			case GtmPackage.AFTER_SALES_TRANSACTION_TYPE:
 				return convertAfterSalesTransactionTypeToString(eDataType, instanceValue);
 			case GtmPackage.BARCODE_TYPES:
@@ -1877,6 +1881,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * @generated
 	 */
 	public String convertStationFareDetailTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RegulatoryCondition createRegulatoryConditionFromString(EDataType eDataType, String initialValue) {
+		RegulatoryCondition result = RegulatoryCondition.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertRegulatoryConditionToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

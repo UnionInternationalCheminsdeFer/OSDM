@@ -1731,6 +1731,11 @@ public class ConverterFromLegacy {
 		fare.setTravelValidity(fareTemplate.getTravelValidity());
 		fare.setType(fareTemplate.getType());
 		fare.setLegacyConversion(fareTemplate.getLegacyConversion());
+		
+		if (fareTemplate.getRegulatoryConditions() != null && !fareTemplate.getRegulatoryConditions().isEmpty()) {
+			fare.getRegulatoryConditions().addAll(fareTemplate.getRegulatoryConditions());
+		}
+		
 	}
 	
 

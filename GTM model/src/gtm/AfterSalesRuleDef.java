@@ -28,22 +28,22 @@ public class AfterSalesRuleDef {
     @JsonPropertyDescription("code list Reason for after sale")
     private String transactionType;
     /**
-     * reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction is allowed. Online services will include fee directly in the fee tag
+     * Reference to a price data item defining the fee; optional in case there is no fee but the  after sales transaction is allowed. Online services include fee directly in the fee tag.
      * 
      */
     @JsonProperty("feeRef")
-    @JsonPropertyDescription("reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction is allowed. Online services will include fee directly in the fee tag")
+    @JsonPropertyDescription("Reference to a price data item defining the fee; optional in case there is no fee but the  after sales transaction is allowed. Online services include fee directly in the fee tag.")
     private String feeRef;
     @JsonProperty("fee")
     private PriceDef fee;
     @JsonProperty("applicationTime")
     private RelativeTimeDef applicationTime;
     /**
-     * absolute application time (UTC) in case of online serices
+     * absolute application time (UTC) in case of online services
      * 
      */
     @JsonProperty("applicationTimeStamp")
-    @JsonPropertyDescription("absolute application time (UTC) in case of online serices")
+    @JsonPropertyDescription("absolute application time (UTC) in case of online services")
     private Date applicationTimeStamp;
     /**
      * indicates that the fee belongs to the carrier
@@ -81,7 +81,7 @@ public class AfterSalesRuleDef {
     }
 
     /**
-     * reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction is allowed. Online services will include fee directly in the fee tag
+     * Reference to a price data item defining the fee; optional in case there is no fee but the  after sales transaction is allowed. Online services include fee directly in the fee tag.
      * 
      */
     @JsonProperty("feeRef")
@@ -90,7 +90,7 @@ public class AfterSalesRuleDef {
     }
 
     /**
-     * reference to a price data item defining the fee; optional in case there is no fee but the after sales transaction is allowed. Online services will include fee directly in the fee tag
+     * Reference to a price data item defining the fee; optional in case there is no fee but the  after sales transaction is allowed. Online services include fee directly in the fee tag.
      * 
      */
     @JsonProperty("feeRef")
@@ -119,7 +119,7 @@ public class AfterSalesRuleDef {
     }
 
     /**
-     * absolute application time (UTC) in case of online serices
+     * absolute application time (UTC) in case of online services
      * 
      */
     @JsonProperty("applicationTimeStamp")
@@ -128,7 +128,7 @@ public class AfterSalesRuleDef {
     }
 
     /**
-     * absolute application time (UTC) in case of online serices
+     * absolute application time (UTC) in case of online services
      * 
      */
     @JsonProperty("applicationTimeStamp")

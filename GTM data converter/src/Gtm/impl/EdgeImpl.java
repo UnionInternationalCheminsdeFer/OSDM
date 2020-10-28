@@ -4,7 +4,6 @@ package Gtm.impl;
 
 import Gtm.Edge;
 import Gtm.GeoSystem;
-import Gtm.GeoUnit;
 import Gtm.GtmPackage;
 import org.eclipse.emf.common.notify.Notification;
 
@@ -22,7 +21,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link Gtm.impl.EdgeImpl#getSystem <em>System</em>}</li>
- *   <li>{@link Gtm.impl.EdgeImpl#getUnit <em>Unit</em>}</li>
  *   <li>{@link Gtm.impl.EdgeImpl#getAccuracy <em>Accuracy</em>}</li>
  *   <li>{@link Gtm.impl.EdgeImpl#getLongitude <em>Longitude</em>}</li>
  *   <li>{@link Gtm.impl.EdgeImpl#getLatitude <em>Latitude</em>}</li>
@@ -52,26 +50,6 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	protected GeoSystem system = SYSTEM_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getUnit() <em>Unit</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUnit()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final GeoUnit UNIT_EDEFAULT = GeoUnit.MICRO_DEGREE;
-
-	/**
-	 * The cached value of the '{@link #getUnit() <em>Unit</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUnit()
-	 * @generated
-	 * @ordered
-	 */
-	protected GeoUnit unit = UNIT_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getAccuracy() <em>Accuracy</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,7 +57,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final GeoUnit ACCURACY_EDEFAULT = GeoUnit.MICRO_DEGREE;
+	protected static final float ACCURACY_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getAccuracy() <em>Accuracy</em>}' attribute.
@@ -89,7 +67,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * @generated
 	 * @ordered
 	 */
-	protected GeoUnit accuracy = ACCURACY_EDEFAULT;
+	protected float accuracy = ACCURACY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getLongitude() <em>Longitude</em>}' attribute.
@@ -176,28 +154,7 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GeoUnit getUnit() {
-		return unit;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUnit(GeoUnit newUnit) {
-		GeoUnit oldUnit = unit;
-		unit = newUnit == null ? UNIT_EDEFAULT : newUnit;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.EDGE__UNIT, oldUnit, unit));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GeoUnit getAccuracy() {
+	public float getAccuracy() {
 		return accuracy;
 	}
 
@@ -206,9 +163,9 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAccuracy(GeoUnit newAccuracy) {
-		GeoUnit oldAccuracy = accuracy;
-		accuracy = newAccuracy == null ? ACCURACY_EDEFAULT : newAccuracy;
+	public void setAccuracy(float newAccuracy) {
+		float oldAccuracy = accuracy;
+		accuracy = newAccuracy;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.EDGE__ACCURACY, oldAccuracy, accuracy));
 	}
@@ -265,8 +222,6 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 		switch (featureID) {
 			case GtmPackage.EDGE__SYSTEM:
 				return getSystem();
-			case GtmPackage.EDGE__UNIT:
-				return getUnit();
 			case GtmPackage.EDGE__ACCURACY:
 				return getAccuracy();
 			case GtmPackage.EDGE__LONGITUDE:
@@ -288,11 +243,8 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 			case GtmPackage.EDGE__SYSTEM:
 				setSystem((GeoSystem)newValue);
 				return;
-			case GtmPackage.EDGE__UNIT:
-				setUnit((GeoUnit)newValue);
-				return;
 			case GtmPackage.EDGE__ACCURACY:
-				setAccuracy((GeoUnit)newValue);
+				setAccuracy((Float)newValue);
 				return;
 			case GtmPackage.EDGE__LONGITUDE:
 				setLongitude((Float)newValue);
@@ -314,9 +266,6 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 		switch (featureID) {
 			case GtmPackage.EDGE__SYSTEM:
 				setSystem(SYSTEM_EDEFAULT);
-				return;
-			case GtmPackage.EDGE__UNIT:
-				setUnit(UNIT_EDEFAULT);
 				return;
 			case GtmPackage.EDGE__ACCURACY:
 				setAccuracy(ACCURACY_EDEFAULT);
@@ -341,8 +290,6 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 		switch (featureID) {
 			case GtmPackage.EDGE__SYSTEM:
 				return system != SYSTEM_EDEFAULT;
-			case GtmPackage.EDGE__UNIT:
-				return unit != UNIT_EDEFAULT;
 			case GtmPackage.EDGE__ACCURACY:
 				return accuracy != ACCURACY_EDEFAULT;
 			case GtmPackage.EDGE__LONGITUDE:
@@ -365,8 +312,6 @@ public class EdgeImpl extends MinimalEObjectImpl.Container implements Edge {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (system: ");
 		result.append(system);
-		result.append(", unit: ");
-		result.append(unit);
 		result.append(", accuracy: ");
 		result.append(accuracy);
 		result.append(", longitude: ");

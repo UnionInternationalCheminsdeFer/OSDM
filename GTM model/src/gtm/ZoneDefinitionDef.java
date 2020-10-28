@@ -19,19 +19,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "zoneId",
     "name",
     "nameUTF8",
-    "ploygone",
+    "ploygon",
     "stationList",
     "nutsCodes"
 })
 public class ZoneDefinitionDef {
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
     @JsonProperty("carrier")
-    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
+    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x")
     private String carrier;
     /**
      * 
@@ -44,15 +44,15 @@ public class ZoneDefinitionDef {
     private String name;
     @JsonProperty("nameUTF8")
     private String nameUTF8;
-    @JsonProperty("ploygone")
-    private PolygoneDef ploygone;
+    @JsonProperty("ploygon")
+    private PolygonDef ploygon;
     @JsonProperty("stationList")
     private List<StationDef> stationList = new ArrayList<StationDef>();
     @JsonProperty("nutsCodes")
     private List<String> nutsCodes = new ArrayList<String>();
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
@@ -62,7 +62,7 @@ public class ZoneDefinitionDef {
     }
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
@@ -111,14 +111,14 @@ public class ZoneDefinitionDef {
         this.nameUTF8 = nameUTF8;
     }
 
-    @JsonProperty("ploygone")
-    public PolygoneDef getPloygone() {
-        return ploygone;
+    @JsonProperty("ploygon")
+    public PolygonDef getPloygon() {
+        return ploygon;
     }
 
-    @JsonProperty("ploygone")
-    public void setPloygone(PolygoneDef ploygone) {
-        this.ploygone = ploygone;
+    @JsonProperty("ploygon")
+    public void setPloygon(PolygonDef ploygon) {
+        this.ploygon = ploygon;
     }
 
     @JsonProperty("stationList")
@@ -161,9 +161,9 @@ public class ZoneDefinitionDef {
         sb.append('=');
         sb.append(((this.nameUTF8 == null)?"<null>":this.nameUTF8));
         sb.append(',');
-        sb.append("ploygone");
+        sb.append("ploygon");
         sb.append('=');
-        sb.append(((this.ploygone == null)?"<null>":this.ploygone));
+        sb.append(((this.ploygon == null)?"<null>":this.ploygon));
         sb.append(',');
         sb.append("stationList");
         sb.append('=');
@@ -190,7 +190,7 @@ public class ZoneDefinitionDef {
         result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
         result = ((result* 31)+((this.zoneId == null)? 0 :this.zoneId.hashCode()));
         result = ((result* 31)+((this.nameUTF8 == null)? 0 :this.nameUTF8 .hashCode()));
-        result = ((result* 31)+((this.ploygone == null)? 0 :this.ploygone.hashCode()));
+        result = ((result* 31)+((this.ploygon == null)? 0 :this.ploygon.hashCode()));
         return result;
     }
 
@@ -203,7 +203,7 @@ public class ZoneDefinitionDef {
             return false;
         }
         ZoneDefinitionDef rhs = ((ZoneDefinitionDef) other);
-        return ((((((((this.carrier == rhs.carrier)||((this.carrier!= null)&&this.carrier.equals(rhs.carrier)))&&((this.nutsCodes == rhs.nutsCodes)||((this.nutsCodes!= null)&&this.nutsCodes.equals(rhs.nutsCodes))))&&((this.stationList == rhs.stationList)||((this.stationList!= null)&&this.stationList.equals(rhs.stationList))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.zoneId == rhs.zoneId)||((this.zoneId!= null)&&this.zoneId.equals(rhs.zoneId))))&&((this.nameUTF8 == rhs.nameUTF8)||((this.nameUTF8 != null)&&this.nameUTF8 .equals(rhs.nameUTF8))))&&((this.ploygone == rhs.ploygone)||((this.ploygone!= null)&&this.ploygone.equals(rhs.ploygone))));
+        return ((((((((this.carrier == rhs.carrier)||((this.carrier!= null)&&this.carrier.equals(rhs.carrier)))&&((this.nutsCodes == rhs.nutsCodes)||((this.nutsCodes!= null)&&this.nutsCodes.equals(rhs.nutsCodes))))&&((this.stationList == rhs.stationList)||((this.stationList!= null)&&this.stationList.equals(rhs.stationList))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.zoneId == rhs.zoneId)||((this.zoneId!= null)&&this.zoneId.equals(rhs.zoneId))))&&((this.nameUTF8 == rhs.nameUTF8)||((this.nameUTF8 != null)&&this.nameUTF8 .equals(rhs.nameUTF8))))&&((this.ploygon == rhs.ploygon)||((this.ploygon!= null)&&this.ploygon.equals(rhs.ploygon))));
     }
 
 }

@@ -2,6 +2,7 @@
  */
 package Gtm;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.FareElement#getReductionConstraint <em>Reduction Constraint</em>}</li>
  *   <li>{@link Gtm.FareElement#getFulfillmentConstraint <em>Fulfillment Constraint</em>}</li>
  *   <li>{@link Gtm.FareElement#getPassengerConstraint <em>Passenger Constraint</em>}</li>
+ *   <li>{@link Gtm.FareElement#getRegulatoryConditions <em>Regulatory Conditions</em>}</li>
  *   <li>{@link Gtm.FareElement#getAfterSalesRule <em>After Sales Rule</em>}</li>
  *   <li>{@link Gtm.FareElement#getDataSource <em>Data Source</em>}</li>
  *   <li>{@link Gtm.FareElement#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
@@ -464,6 +466,20 @@ public interface FareElement extends EObject {
 	 * @generated
 	 */
 	void setPassengerConstraint(PassengerConstraint value);
+
+	/**
+	 * Returns the value of the '<em><b>Regulatory Conditions</b></em>' attribute list.
+	 * The list contents are of type {@link Gtm.RegulatoryCondition}.
+	 * The literals are from the enumeration {@link Gtm.RegulatoryCondition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Regulatory Conditions</em>' attribute list.
+	 * @see Gtm.RegulatoryCondition
+	 * @see Gtm.GtmPackage#getFareElement_RegulatoryConditions()
+	 * @model
+	 * @generated
+	 */
+	EList<RegulatoryCondition> getRegulatoryConditions();
 
 	/**
 	 * Returns the value of the '<em><b>After Sales Rule</b></em>' reference.

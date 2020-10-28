@@ -1,10 +1,14 @@
 
 package gtm;
 
+import java.util.HashMap;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -15,13 +19,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class ValidityRange {
 
     /**
-     * DAYS, HOURS, MINUTES
+     * 
      * (Required)
      * 
      */
     @JsonProperty("timeUnit")
-    @JsonPropertyDescription("DAYS, HOURS, MINUTES")
-    private String timeUnit;
+    private ValidityRange.TimeUnitDef timeUnit;
     /**
      * 
      * (Required)
@@ -38,22 +41,22 @@ public class ValidityRange {
     private Float hoursAfterMidnight;
 
     /**
-     * DAYS, HOURS, MINUTES
+     * 
      * (Required)
      * 
      */
     @JsonProperty("timeUnit")
-    public String getTimeUnit() {
+    public ValidityRange.TimeUnitDef getTimeUnit() {
         return timeUnit;
     }
 
     /**
-     * DAYS, HOURS, MINUTES
+     * 
      * (Required)
      * 
      */
     @JsonProperty("timeUnit")
-    public void setTimeUnit(String timeUnit) {
+    public void setTimeUnit(ValidityRange.TimeUnitDef timeUnit) {
         this.timeUnit = timeUnit;
     }
 
@@ -138,6 +141,46 @@ public class ValidityRange {
         }
         ValidityRange rhs = ((ValidityRange) other);
         return ((((this.hoursAfterMidnight == rhs.hoursAfterMidnight)||((this.hoursAfterMidnight!= null)&&this.hoursAfterMidnight.equals(rhs.hoursAfterMidnight)))&&((this.value == rhs.value)||((this.value!= null)&&this.value.equals(rhs.value))))&&((this.timeUnit == rhs.timeUnit)||((this.timeUnit!= null)&&this.timeUnit.equals(rhs.timeUnit))));
+    }
+
+    public enum TimeUnitDef {
+
+        DAYS("DAYS"),
+        HOURS("HOURS"),
+        MINUTES("MINUTES");
+        private final String value;
+        private final static Map<String, ValidityRange.TimeUnitDef> CONSTANTS = new HashMap<String, ValidityRange.TimeUnitDef>();
+
+        static {
+            for (ValidityRange.TimeUnitDef c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        private TimeUnitDef(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        @JsonValue
+        public String value() {
+            return this.value;
+        }
+
+        @JsonCreator
+        public static ValidityRange.TimeUnitDef fromValue(String value) {
+            ValidityRange.TimeUnitDef constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
+        }
+
     }
 
 }

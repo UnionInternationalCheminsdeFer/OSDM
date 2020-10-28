@@ -17,19 +17,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class CarrierResourceLocationDef {
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
     @JsonProperty("carrier")
-    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
+    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x")
     private String carrier;
     /**
-     * Service brand code, code list published on UIC web site
+     * Service brand codes allowed in response, code list can be found on  [https:/uic.org/passenger/passenger-services-group/article/service-brand-code-list] (https:/uic.org/passenger/passenger-services-group/article/service-brand-code-list)
      * 
      */
     @JsonProperty("serviceBrandCode")
-    @JsonPropertyDescription("Service brand code, code list published on UIC web site")
+    @JsonPropertyDescription("Service brand codes allowed in response, code list can be found on  [https:/uic.org/passenger/passenger-services-group/article/service-brand-code-list] (https:/uic.org/passenger/passenger-services-group/article/service-brand-code-list)")
     private Integer serviceBrandCode;
     /**
      * 
@@ -40,7 +40,7 @@ public class CarrierResourceLocationDef {
     private List<OnlineResourceDef> onlineResource = new ArrayList<OnlineResourceDef>();
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
@@ -50,7 +50,7 @@ public class CarrierResourceLocationDef {
     }
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
@@ -60,7 +60,7 @@ public class CarrierResourceLocationDef {
     }
 
     /**
-     * Service brand code, code list published on UIC web site
+     * Service brand codes allowed in response, code list can be found on  [https:/uic.org/passenger/passenger-services-group/article/service-brand-code-list] (https:/uic.org/passenger/passenger-services-group/article/service-brand-code-list)
      * 
      */
     @JsonProperty("serviceBrandCode")
@@ -69,7 +69,7 @@ public class CarrierResourceLocationDef {
     }
 
     /**
-     * Service brand code, code list published on UIC web site
+     * Service brand codes allowed in response, code list can be found on  [https:/uic.org/passenger/passenger-services-group/article/service-brand-code-list] (https:/uic.org/passenger/passenger-services-group/article/service-brand-code-list)
      * 
      */
     @JsonProperty("serviceBrandCode")

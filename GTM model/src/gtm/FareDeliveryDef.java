@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "delivery",
     "fareStructure"
 })
-public class FareStructureDeliveryDef {
+public class FareDeliveryDef {
 
     /**
      * 
@@ -18,14 +18,14 @@ public class FareStructureDeliveryDef {
      * 
      */
     @JsonProperty("delivery")
-    private Delivery delivery;
+    private FareDeliveryDetailsDef delivery;
     /**
      * 
      * (Required)
      * 
      */
     @JsonProperty("fareStructure")
-    private FareStructure fareStructure;
+    private FareDataDef fareStructure;
 
     /**
      * 
@@ -33,7 +33,7 @@ public class FareStructureDeliveryDef {
      * 
      */
     @JsonProperty("delivery")
-    public Delivery getDelivery() {
+    public FareDeliveryDetailsDef getDelivery() {
         return delivery;
     }
 
@@ -43,7 +43,7 @@ public class FareStructureDeliveryDef {
      * 
      */
     @JsonProperty("delivery")
-    public void setDelivery(Delivery delivery) {
+    public void setDelivery(FareDeliveryDetailsDef delivery) {
         this.delivery = delivery;
     }
 
@@ -53,7 +53,7 @@ public class FareStructureDeliveryDef {
      * 
      */
     @JsonProperty("fareStructure")
-    public FareStructure getFareStructure() {
+    public FareDataDef getFareStructure() {
         return fareStructure;
     }
 
@@ -63,14 +63,14 @@ public class FareStructureDeliveryDef {
      * 
      */
     @JsonProperty("fareStructure")
-    public void setFareStructure(FareStructure fareStructure) {
+    public void setFareStructure(FareDataDef fareStructure) {
         this.fareStructure = fareStructure;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(FareStructureDeliveryDef.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(FareDeliveryDef.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("delivery");
         sb.append('=');
         sb.append(((this.delivery == null)?"<null>":this.delivery));
@@ -100,10 +100,10 @@ public class FareStructureDeliveryDef {
         if (other == this) {
             return true;
         }
-        if ((other instanceof FareStructureDeliveryDef) == false) {
+        if ((other instanceof FareDeliveryDef) == false) {
             return false;
         }
-        FareStructureDeliveryDef rhs = ((FareStructureDeliveryDef) other);
+        FareDeliveryDef rhs = ((FareDeliveryDef) other);
         return (((this.delivery == rhs.delivery)||((this.delivery!= null)&&this.delivery.equals(rhs.delivery)))&&((this.fareStructure == rhs.fareStructure)||((this.fareStructure!= null)&&this.fareStructure.equals(rhs.fareStructure))));
     }
 

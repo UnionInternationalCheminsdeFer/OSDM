@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * one of the lists of exclueded or included service brands only
+ * Either excluded or included service brands can be set.
  * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

@@ -17,6 +17,7 @@ import Gtm.PersonalDataConstraint;
 import Gtm.Price;
 import Gtm.ReductionConstraint;
 import Gtm.RegionalConstraint;
+import Gtm.RegulatoryCondition;
 import Gtm.ReservationParameter;
 import Gtm.SalesAvailabilityConstraint;
 import Gtm.ServiceClass;
@@ -25,14 +26,17 @@ import Gtm.ServiceLevel;
 import Gtm.Text;
 import Gtm.TravelValidityConstraint;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,6 +65,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.FareElementImpl#getReductionConstraint <em>Reduction Constraint</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getFulfillmentConstraint <em>Fulfillment Constraint</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getPassengerConstraint <em>Passenger Constraint</em>}</li>
+ *   <li>{@link Gtm.impl.FareElementImpl#getRegulatoryConditions <em>Regulatory Conditions</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getAfterSalesRule <em>After Sales Rule</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getDataSource <em>Data Source</em>}</li>
  *   <li>{@link Gtm.impl.FareElementImpl#getLegacyAccountingIdentifier <em>Legacy Accounting Identifier</em>}</li>
@@ -290,6 +295,16 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 	 * @ordered
 	 */
 	protected PassengerConstraint passengerConstraint;
+
+	/**
+	 * The cached value of the '{@link #getRegulatoryConditions() <em>Regulatory Conditions</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRegulatoryConditions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<RegulatoryCondition> regulatoryConditions;
 
 	/**
 	 * The cached value of the '{@link #getAfterSalesRule() <em>After Sales Rule</em>}' reference.
@@ -1066,6 +1081,18 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<RegulatoryCondition> getRegulatoryConditions() {
+		if (regulatoryConditions == null) {
+			regulatoryConditions = new EDataTypeUniqueEList<RegulatoryCondition>(RegulatoryCondition.class, this, GtmPackage.FARE_ELEMENT__REGULATORY_CONDITIONS);
+		}
+		return regulatoryConditions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public AfterSalesRule getAfterSalesRule() {
 		if (afterSalesRule != null && afterSalesRule.eIsProxy()) {
 			InternalEObject oldAfterSalesRule = (InternalEObject)afterSalesRule;
@@ -1281,6 +1308,8 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 			case GtmPackage.FARE_ELEMENT__PASSENGER_CONSTRAINT:
 				if (resolve) return getPassengerConstraint();
 				return basicGetPassengerConstraint();
+			case GtmPackage.FARE_ELEMENT__REGULATORY_CONDITIONS:
+				return getRegulatoryConditions();
 			case GtmPackage.FARE_ELEMENT__AFTER_SALES_RULE:
 				if (resolve) return getAfterSalesRule();
 				return basicGetAfterSalesRule();
@@ -1301,6 +1330,7 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -1360,6 +1390,10 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return;
 			case GtmPackage.FARE_ELEMENT__PASSENGER_CONSTRAINT:
 				setPassengerConstraint((PassengerConstraint)newValue);
+				return;
+			case GtmPackage.FARE_ELEMENT__REGULATORY_CONDITIONS:
+				getRegulatoryConditions().clear();
+				getRegulatoryConditions().addAll((Collection<? extends RegulatoryCondition>)newValue);
 				return;
 			case GtmPackage.FARE_ELEMENT__AFTER_SALES_RULE:
 				setAfterSalesRule((AfterSalesRule)newValue);
@@ -1445,6 +1479,9 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 			case GtmPackage.FARE_ELEMENT__PASSENGER_CONSTRAINT:
 				setPassengerConstraint((PassengerConstraint)null);
 				return;
+			case GtmPackage.FARE_ELEMENT__REGULATORY_CONDITIONS:
+				getRegulatoryConditions().clear();
+				return;
 			case GtmPackage.FARE_ELEMENT__AFTER_SALES_RULE:
 				setAfterSalesRule((AfterSalesRule)null);
 				return;
@@ -1510,6 +1547,8 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 				return fulfillmentConstraint != null;
 			case GtmPackage.FARE_ELEMENT__PASSENGER_CONSTRAINT:
 				return passengerConstraint != null;
+			case GtmPackage.FARE_ELEMENT__REGULATORY_CONDITIONS:
+				return regulatoryConditions != null && !regulatoryConditions.isEmpty();
 			case GtmPackage.FARE_ELEMENT__AFTER_SALES_RULE:
 				return afterSalesRule != null;
 			case GtmPackage.FARE_ELEMENT__DATA_SOURCE:
@@ -1540,6 +1579,8 @@ public class FareElementImpl extends MinimalEObjectImpl.Container implements Far
 		result.append(type);
 		result.append(", dataDescription: ");
 		result.append(dataDescription);
+		result.append(", regulatoryConditions: ");
+		result.append(regulatoryConditions);
 		result.append(", dataSource: ");
 		result.append(dataSource);
 		result.append(", legacyConversion: ");

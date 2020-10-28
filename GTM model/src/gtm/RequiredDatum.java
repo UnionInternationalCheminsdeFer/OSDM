@@ -19,39 +19,40 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class RequiredDatum {
 
     /**
-     * 
+     * see code list IRS 90918-10
      * (Required)
      * 
      */
     @JsonProperty("dataItem")
+    @JsonPropertyDescription("see code list IRS 90918-10")
     private String dataItem;
     /**
-     * BOOKING,SIS_CONTROL,SID_CONTROL
+     * Transfer mode: BOOKING, SIS_CONTROL, SID_CONTROL.
      * (Required)
      * 
      */
     @JsonProperty("transfer")
-    @JsonPropertyDescription("BOOKING,SIS_CONTROL,SID_CONTROL")
-    private List<String> transfer = new ArrayList<String>();
+    @JsonPropertyDescription("Transfer mode: BOOKING, SIS_CONTROL, SID_CONTROL.")
+    private List<Transfer> transfer = new ArrayList<Transfer>();
     @JsonProperty("ticketHolderOnly")
     private Boolean ticketHolderOnly = false;
     /**
-     * the dara are required only in case one of the cross border conditions apply
+     * the data are required only in case one of the cross border conditions apply
      * 
      */
     @JsonProperty("crossBorder")
-    @JsonPropertyDescription("the dara are required only in case one of the cross border conditions apply")
-    private List<CrossBorderCondition> crossBorder = new ArrayList<CrossBorderCondition>();
+    @JsonPropertyDescription("the data are required only in case one of the cross border conditions apply")
+    private List<CrossBorderConditionDef> crossBorder = new ArrayList<CrossBorderConditionDef>();
     /**
-     * type of fulfillment in case the presonal data are required for that type only
+     * type of fulfillment in case the personal data are required for that type only
      * 
      */
     @JsonProperty("fulfillmentType")
-    @JsonPropertyDescription("type of fulfillment in case the presonal data are required for that type only")
-    private List<FulfillmentTypeDef> fulfillmentType = new ArrayList<FulfillmentTypeDef>();
+    @JsonPropertyDescription("type of fulfillment in case the personal data are required for that type only")
+    private List<ControlSecurityTypeDef> fulfillmentType = new ArrayList<ControlSecurityTypeDef>();
 
     /**
-     * 
+     * see code list IRS 90918-10
      * (Required)
      * 
      */
@@ -61,7 +62,7 @@ public class RequiredDatum {
     }
 
     /**
-     * 
+     * see code list IRS 90918-10
      * (Required)
      * 
      */
@@ -71,22 +72,22 @@ public class RequiredDatum {
     }
 
     /**
-     * BOOKING,SIS_CONTROL,SID_CONTROL
+     * Transfer mode: BOOKING, SIS_CONTROL, SID_CONTROL.
      * (Required)
      * 
      */
     @JsonProperty("transfer")
-    public List<String> getTransfer() {
+    public List<Transfer> getTransfer() {
         return transfer;
     }
 
     /**
-     * BOOKING,SIS_CONTROL,SID_CONTROL
+     * Transfer mode: BOOKING, SIS_CONTROL, SID_CONTROL.
      * (Required)
      * 
      */
     @JsonProperty("transfer")
-    public void setTransfer(List<String> transfer) {
+    public void setTransfer(List<Transfer> transfer) {
         this.transfer = transfer;
     }
 
@@ -101,38 +102,38 @@ public class RequiredDatum {
     }
 
     /**
-     * the dara are required only in case one of the cross border conditions apply
+     * the data are required only in case one of the cross border conditions apply
      * 
      */
     @JsonProperty("crossBorder")
-    public List<CrossBorderCondition> getCrossBorder() {
+    public List<CrossBorderConditionDef> getCrossBorder() {
         return crossBorder;
     }
 
     /**
-     * the dara are required only in case one of the cross border conditions apply
+     * the data are required only in case one of the cross border conditions apply
      * 
      */
     @JsonProperty("crossBorder")
-    public void setCrossBorder(List<CrossBorderCondition> crossBorder) {
+    public void setCrossBorder(List<CrossBorderConditionDef> crossBorder) {
         this.crossBorder = crossBorder;
     }
 
     /**
-     * type of fulfillment in case the presonal data are required for that type only
+     * type of fulfillment in case the personal data are required for that type only
      * 
      */
     @JsonProperty("fulfillmentType")
-    public List<FulfillmentTypeDef> getFulfillmentType() {
+    public List<ControlSecurityTypeDef> getFulfillmentType() {
         return fulfillmentType;
     }
 
     /**
-     * type of fulfillment in case the presonal data are required for that type only
+     * type of fulfillment in case the personal data are required for that type only
      * 
      */
     @JsonProperty("fulfillmentType")
-    public void setFulfillmentType(List<FulfillmentTypeDef> fulfillmentType) {
+    public void setFulfillmentType(List<ControlSecurityTypeDef> fulfillmentType) {
         this.fulfillmentType = fulfillmentType;
     }
 

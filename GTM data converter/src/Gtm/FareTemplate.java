@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.FareTemplate#getPassengerConstraint <em>Passenger Constraint</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getLegacyConversion <em>Legacy Conversion</em>}</li>
  *   <li>{@link Gtm.FareTemplate#isIndividualContracts <em>Individual Contracts</em>}</li>
+ *   <li>{@link Gtm.FareTemplate#getRegulatoryConditions <em>Regulatory Conditions</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getFareTemplate()
@@ -619,6 +620,20 @@ public interface FareTemplate extends EObject {
 	 * @generated
 	 */
 	void setIndividualContracts(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Regulatory Conditions</b></em>' attribute list.
+	 * The list contents are of type {@link Gtm.RegulatoryCondition}.
+	 * The literals are from the enumeration {@link Gtm.RegulatoryCondition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Regulatory Conditions</em>' attribute list.
+	 * @see Gtm.RegulatoryCondition
+	 * @see Gtm.GtmPackage#getFareTemplate_RegulatoryConditions()
+	 * @model
+	 * @generated
+	 */
+	EList<RegulatoryCondition> getRegulatoryConditions();
 
 
 } // FareTemplate

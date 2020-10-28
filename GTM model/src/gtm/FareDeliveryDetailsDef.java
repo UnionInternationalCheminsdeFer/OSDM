@@ -16,15 +16,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "version",
     "acceptedVersion"
 })
-public class Delivery {
+public class FareDeliveryDetailsDef {
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
     @JsonProperty("fareProvider")
-    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x")
+    @JsonPropertyDescription("RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x")
     private String fareProvider;
     /**
      * unique id of this data delivery
@@ -68,7 +68,7 @@ public class Delivery {
     private String acceptedVersion;
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
@@ -78,7 +78,7 @@ public class Delivery {
     }
 
     /**
-     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x
+     * RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the  codes must have at least 5 positions and start with x
      * (Required)
      * 
      */
@@ -196,7 +196,7 @@ public class Delivery {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Delivery.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(FareDeliveryDetailsDef.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("fareProvider");
         sb.append('=');
         sb.append(((this.fareProvider == null)?"<null>":this.fareProvider));
@@ -251,10 +251,10 @@ public class Delivery {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Delivery) == false) {
+        if ((other instanceof FareDeliveryDetailsDef) == false) {
             return false;
         }
-        Delivery rhs = ((Delivery) other);
+        FareDeliveryDetailsDef rhs = ((FareDeliveryDetailsDef) other);
         return ((((((((this.deliveryId == rhs.deliveryId)||((this.deliveryId!= null)&&this.deliveryId.equals(rhs.deliveryId)))&&((this.acceptedVersion == rhs.acceptedVersion)||((this.acceptedVersion!= null)&&this.acceptedVersion.equals(rhs.acceptedVersion))))&&((this.replacementDeliveryId == rhs.replacementDeliveryId)||((this.replacementDeliveryId!= null)&&this.replacementDeliveryId.equals(rhs.replacementDeliveryId))))&&((this.optionalDelivery == rhs.optionalDelivery)||((this.optionalDelivery!= null)&&this.optionalDelivery.equals(rhs.optionalDelivery))))&&((this.fareProvider == rhs.fareProvider)||((this.fareProvider!= null)&&this.fareProvider.equals(rhs.fareProvider))))&&((this.previousDeliveryId == rhs.previousDeliveryId)||((this.previousDeliveryId!= null)&&this.previousDeliveryId.equals(rhs.previousDeliveryId))))&&((this.version == rhs.version)||((this.version!= null)&&this.version.equals(rhs.version))));
     }
 

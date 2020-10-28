@@ -82,6 +82,7 @@ public class FareElementItemProvider
 			addReductionConstraintPropertyDescriptor(object);
 			addFulfillmentConstraintPropertyDescriptor(object);
 			addPassengerConstraintPropertyDescriptor(object);
+			addRegulatoryConditionsPropertyDescriptor(object);
 			addAfterSalesRulePropertyDescriptor(object);
 			addDataSourcePropertyDescriptor(object);
 			addLegacyConversionPropertyDescriptor(object);
@@ -509,6 +510,28 @@ public class FareElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Regulatory Conditions feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRegulatoryConditionsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FareElement_regulatoryConditions_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareElement_regulatoryConditions_feature", "_UI_FareElement_type"),
+				 GtmPackage.Literals.FARE_ELEMENT__REGULATORY_CONDITIONS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the After Sales Rule feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -669,6 +692,7 @@ public class FareElementItemProvider
 			case GtmPackage.FARE_ELEMENT__ID:
 			case GtmPackage.FARE_ELEMENT__TYPE:
 			case GtmPackage.FARE_ELEMENT__DATA_DESCRIPTION:
+			case GtmPackage.FARE_ELEMENT__REGULATORY_CONDITIONS:
 			case GtmPackage.FARE_ELEMENT__DATA_SOURCE:
 			case GtmPackage.FARE_ELEMENT__LEGACY_CONVERSION:
 			case GtmPackage.FARE_ELEMENT__INDIVIDUAL_CONTRACTS:
