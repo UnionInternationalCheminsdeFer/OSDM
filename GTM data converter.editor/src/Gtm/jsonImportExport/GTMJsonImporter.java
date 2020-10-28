@@ -928,7 +928,7 @@ public class GTMJsonImporter {
 	private CurrencyPrice convert(CurrencyPriceDef jcp) {
 		if (jcp == null) return null;
 		CurrencyPrice o = GtmFactory.eINSTANCE.createCurrencyPrice(); 
-		o.setAmount(jcp.getAmount().floatValue());
+		o.setAmount(jcp.getAmount().floatValue() / 100);
 		o.setCurrency(getCurrency(jcp.getCurrency()));
 		return o;
 	}

@@ -1,29 +1,36 @@
 
 package gtm;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+
+/**
+ * directly included text in case of online services
+ * 
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "language",
+    "id",
     "textUTF8",
+    "translations",
     "text",
     "shortTextUtf8",
     "shortText"
 })
-public class Translations {
+public class TextDef {
 
     /**
-     * ISO language codes
+     * 
      * (Required)
      * 
      */
-    @JsonProperty("language")
-    @JsonPropertyDescription("ISO language codes")
-    private String language;
+    @JsonProperty("id")
+    private String id;
     /**
      * 
      * (Required)
@@ -31,6 +38,8 @@ public class Translations {
      */
     @JsonProperty("textUTF8")
     private String textUTF8;
+    @JsonProperty("translations")
+    private List<TranslationDef> translations = new ArrayList<TranslationDef>();
     /**
      * text without special characters according to ICAO specification
      * (Required)
@@ -50,23 +59,23 @@ public class Translations {
     private String shortText;
 
     /**
-     * ISO language codes
+     * 
      * (Required)
      * 
      */
-    @JsonProperty("language")
-    public String getLanguage() {
-        return language;
+    @JsonProperty("id")
+    public String getId() {
+        return id;
     }
 
     /**
-     * ISO language codes
+     * 
      * (Required)
      * 
      */
-    @JsonProperty("language")
-    public void setLanguage(String language) {
-        this.language = language;
+    @JsonProperty("id")
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -87,6 +96,16 @@ public class Translations {
     @JsonProperty("textUTF8")
     public void setTextUTF8(String textUTF8) {
         this.textUTF8 = textUTF8;
+    }
+
+    @JsonProperty("translations")
+    public List<TranslationDef> getTranslations() {
+        return translations;
+    }
+
+    @JsonProperty("translations")
+    public void setTranslations(List<TranslationDef> translations) {
+        this.translations = translations;
     }
 
     /**
@@ -140,14 +159,18 @@ public class Translations {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Translations.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("language");
+        sb.append(TextDef.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("id");
         sb.append('=');
-        sb.append(((this.language == null)?"<null>":this.language));
+        sb.append(((this.id == null)?"<null>":this.id));
         sb.append(',');
         sb.append("textUTF8");
         sb.append('=');
         sb.append(((this.textUTF8 == null)?"<null>":this.textUTF8));
+        sb.append(',');
+        sb.append("translations");
+        sb.append('=');
+        sb.append(((this.translations == null)?"<null>":this.translations));
         sb.append(',');
         sb.append("text");
         sb.append('=');
@@ -172,11 +195,12 @@ public class Translations {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.language == null)? 0 :this.language.hashCode()));
         result = ((result* 31)+((this.textUTF8 == null)? 0 :this.textUTF8 .hashCode()));
-        result = ((result* 31)+((this.text == null)? 0 :this.text.hashCode()));
         result = ((result* 31)+((this.shortTextUtf8 == null)? 0 :this.shortTextUtf8 .hashCode()));
+        result = ((result* 31)+((this.translations == null)? 0 :this.translations.hashCode()));
         result = ((result* 31)+((this.shortText == null)? 0 :this.shortText.hashCode()));
+        result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
+        result = ((result* 31)+((this.text == null)? 0 :this.text.hashCode()));
         return result;
     }
 
@@ -185,11 +209,11 @@ public class Translations {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Translations) == false) {
+        if ((other instanceof TextDef) == false) {
             return false;
         }
-        Translations rhs = ((Translations) other);
-        return ((((((this.language == rhs.language)||((this.language!= null)&&this.language.equals(rhs.language)))&&((this.textUTF8 == rhs.textUTF8)||((this.textUTF8 != null)&&this.textUTF8 .equals(rhs.textUTF8))))&&((this.text == rhs.text)||((this.text!= null)&&this.text.equals(rhs.text))))&&((this.shortTextUtf8 == rhs.shortTextUtf8)||((this.shortTextUtf8 != null)&&this.shortTextUtf8 .equals(rhs.shortTextUtf8))))&&((this.shortText == rhs.shortText)||((this.shortText!= null)&&this.shortText.equals(rhs.shortText))));
+        TextDef rhs = ((TextDef) other);
+        return (((((((this.textUTF8 == rhs.textUTF8)||((this.textUTF8 != null)&&this.textUTF8 .equals(rhs.textUTF8)))&&((this.shortTextUtf8 == rhs.shortTextUtf8)||((this.shortTextUtf8 != null)&&this.shortTextUtf8 .equals(rhs.shortTextUtf8))))&&((this.translations == rhs.translations)||((this.translations!= null)&&this.translations.equals(rhs.translations))))&&((this.shortText == rhs.shortText)||((this.shortText!= null)&&this.shortText.equals(rhs.shortText))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.text == rhs.text)||((this.text!= null)&&this.text.equals(rhs.text))));
     }
 
 }
