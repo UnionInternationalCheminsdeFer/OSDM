@@ -2228,7 +2228,7 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth token used to authentify the consumer API - Refer to implementer documentation for information on how to get a token 
           required: true
           schema:
             type: string
@@ -2286,6 +2286,81 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+    patch:
+      tags:
+        - Fulfillments
+      summary: >-
+        The patch fulfillment service allows to add a stock control number to the printing. This is used to support stock control processes for secure paper ticktes. It is usedin case of secure paper only and only in case the fulfillment returns the entier printable ticket thus in distributor mode. Multiple changes of the stockNumber are permitted in case of printing problems.
+      operationId: patchFulfillmentStockNumber
+      parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
+        - in: path
+          name: fulfillmentId
+          schema:
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          required: true
+          description: ID of the product to get.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentPatchRequest'        
+      responses:
+        '200':
+          description: fulfillment found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  fulfillment:
+                    $ref: '#/components/schemas/Fulfillment'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented          
+          
+          
           
   '/bookings/{bookingId}/refundOffers':
     post:
@@ -4818,6 +4893,8 @@ components:
             One refund offer can then be confirmed, which turns it into a refund.
         exchange:
             $ref: '#/components/schemas/ExchangeDef'
+        refund:
+            $ref: '#/components/schemas/RefundDef'
         exchangeOffers:
           type: array
           items:
@@ -4896,6 +4973,8 @@ components:
           items:
             $ref: '#/components/schemas/Fulfillment'
         
+        
+        
     FulfillmentsPatch:
       type: object
       properties:
@@ -4911,6 +4990,14 @@ components:
               status: 
                 type: string
                 enum: [FULFILLED]
+         
+    FulfillmentPatchRequest:
+      description: >-
+         Data from the distributor to be included in the printing. Used for the stockNumber in case of secure paper stock.
+      type: object
+      properties:
+        stockNumber:
+          type: string
                 
     Fulfillment:
       description: >-
@@ -4919,6 +5006,8 @@ components:
         - provides easier access to trains and stations
         - allows an exchange for other services (voucher)
         a fulfillment refers to services of one or multiple offer parts or a fare (allocator mode).
+        - price
+            note that price is present here as an optional element as fututre evolution indicate a possible separation between fulfillment info and financial information.Please refer to UIC leaflet XXX for more information on current status
       type: object
       properties:
         id:
@@ -4930,11 +5019,15 @@ components:
           enum: [CONFIRMED, FULFILLED, CHECKEDIN, REFUNDED]
         price:
           $ref: '#/components/schemas/CurrencyPriceDef'
-          description: note the price is present here as an optional element as fututre evolution indicate a possible separation between fulfillment info and financial information.Please refer to UIC leaflet XXX for more information on current status
+
         controlNumber:
           type: string
           description: >-
             Ticket Control Number
+        stockNumber: 
+          type: string
+          description: >- 
+            physical paper stock number in case of secure paper tickets when a double print mechanism is used to secure the stock. This is used only with secure paper fulfilments. In case of printing on multiple units from a role only one number is reprinted on the ticket. This item is used to double printing only, not for the stock control itself as the secure paper stock might have been from a different provider than the fulfillment. The stock number is only present when the distributor added it via a patch previously. 
         offerParts:
           type: array
           items:
@@ -5240,6 +5333,9 @@ components:
        - exchangeOffer
 
     ExchangeOfferConfirmDef:
+      description: >-
+        - afterSalesFee
+            used in allocator mode only. In case the allocator is responsible for calculating (specific combination model) the refund fee according to his rules the fee is given to the fare provider responsible for the accounting and apportioning of shares    
       type: object
       properties:
         id:
@@ -5251,7 +5347,9 @@ components:
           type: string
           enum:
             - CONFIRMED
-            
+        afterSalesFee:
+          $ref: '#/components/schemas/CurrencyPriceDef'
+          
     ExchangeDef:
       description: >- 
        Result of a successful confirmation of an exchange. 
@@ -5287,6 +5385,9 @@ components:
 
     RefundOfferConfirm:
       type: object
+      description: >-
+        - afterSalesFee
+            used in allocator mode only. In case the allocator is responsible for calculating the refund fee according to his rules the fee is given to the fare provider responsible for the accounting and apportioning of shares
       properties:
         id:
           type: string
@@ -5297,6 +5398,8 @@ components:
           type: string
           enum:
             - CONFIRMED
+        afterSalesFee:
+          $ref: '#/components/schemas/CurrencyPriceDef'
             
     RefundDef:
       description: >- 
@@ -5373,7 +5476,6 @@ components:
         to carry machine-readable details of errors in a HTTP response to avoid
         the need to define new error response formats for HTTP APIs.
         See: https://tools.ietf.org/html/rfc7807
-
     #Fare-specific elements begin
     FareOnlineDef:
       type: object
