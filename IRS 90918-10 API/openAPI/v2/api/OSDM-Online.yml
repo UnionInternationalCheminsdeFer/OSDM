@@ -1,4 +1,4 @@
-openapi: 3.0.3openapi: 3.0.3
+openapi: 3.0.openapi: 3.0.3
 servers:
   - description: osdm dummy server
     url: 'https://virtserver.swaggerhub.com/Real-IT/FSM_MVP/1.0.0'
