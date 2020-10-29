@@ -69,13 +69,12 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ControlDataExchangeTypes">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/IRS90918_4_PEER2PEER"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/IRS90918_4_REGISTRY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/PROPRIETARY"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//FareType">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/NRT"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/IRT"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/RES"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/RPT"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/ANCILLARY"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//FulfillmentType">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FulfillmentType/SID"/>
@@ -108,7 +107,7 @@
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//InterfaceType">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//InterfaceType/IRS90918_1_RESERVATION_BINARY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//InterfaceType/GTM"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//InterfaceType/OSDM"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//InterfaceType/IRS90918_1_RESERVATION_XML"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//LegacyCalculationType">

@@ -49,14 +49,14 @@ public enum FareType implements Enumerator {
 	RES(2, "RES", "RES"),
 
 	/**
-	 * The '<em><b>RPT</b></em>' literal object.
+	 * The '<em><b>ANCILLARY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RPT_VALUE
+	 * @see #ANCILLARY_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RPT(3, "RPT", "RPT");
+	ANCILLARY(3, "ANCILLARY", "ANCILLARY");
 
 	/**
 	 * The '<em><b>NRT</b></em>' literal value.
@@ -92,15 +92,15 @@ public enum FareType implements Enumerator {
 	public static final int RES_VALUE = 2;
 
 	/**
-	 * The '<em><b>RPT</b></em>' literal value.
+	 * The '<em><b>ANCILLARY</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RPT
+	 * @see #ANCILLARY
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RPT_VALUE = 3;
+	public static final int ANCILLARY_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Fare Type</b></em>' enumerators.
@@ -113,7 +113,7 @@ public enum FareType implements Enumerator {
 			NRT,
 			IRT,
 			RES,
-			RPT,
+			ANCILLARY,
 		};
 
 	/**
@@ -173,7 +173,7 @@ public enum FareType implements Enumerator {
 			case NRT_VALUE: return NRT;
 			case IRT_VALUE: return IRT;
 			case RES_VALUE: return RES;
-			case RPT_VALUE: return RPT;
+			case ANCILLARY_VALUE: return ANCILLARY;
 		}
 		return null;
 	}

@@ -2,6 +2,7 @@ package Gtm.jsonImportExport;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -37,6 +38,7 @@ import Gtm.FareElements;
 import Gtm.FareResourceLocations;
 import Gtm.FareStationSetDefinition;
 import Gtm.FareStationSetDefinitions;
+import Gtm.FareType;
 import Gtm.FulfillmentConstraint;
 import Gtm.FulfillmentConstraints;
 import Gtm.FulfillmentType;
@@ -119,6 +121,7 @@ import gtm.FareCombinationConstraintDef;
 import gtm.FareCombinationModelDef;
 import gtm.FareDataDef;
 import gtm.FareDef;
+import gtm.FareDef.FareTypeDef;
 import gtm.FareDelivery;
 import gtm.FareDeliveryDef;
 import gtm.FareDeliveryDetailsDef;
@@ -1461,7 +1464,9 @@ public class GtmJsonExporter {
 	private static List<BarCodeTypesDef> convertBarCodeTypes(EList<BarcodeTypes> el) {
 		if (el == null || el.isEmpty()) return null;
 		ArrayList<BarCodeTypesDef> listJ = new ArrayList<BarCodeTypesDef>();
-		for (Enumerator e : el) {	listJ.add(BarCodeTypesDef.fromValue(e.getName().toUpperCase()));	}
+		for (Enumerator e : el) {	
+			listJ.add(BarCodeTypesDef.fromValue(e.getName().toUpperCase()));	
+		}
 		return listJ;
 	}
 
@@ -1471,12 +1476,26 @@ public class GtmJsonExporter {
 	private static List<RequiredSi> convertControlDataExchangeTypesToJson(EList<ControlDataExchangeTypes> el) {
 		if (el == null || el.isEmpty()) return null;
 		ArrayList<RequiredSi> listJ = new ArrayList<RequiredSi>();
-		for (Enumerator e : el) {	listJ.add(RequiredSi.fromValue(e.getName().toUpperCase()));	}
+		Iterator<ControlDataExchangeTypes> it = el.iterator();
+		while (it.hasNext()) {
+		    ControlDataExchangeTypes e = it.next();
+			listJ.add(convert(e));	
+		}
 		return listJ;
 	}
 
 
 
+
+	private static RequiredSi convert(ControlDataExchangeTypes e) {
+		if (e == ControlDataExchangeTypes.IRS90918_4PEER2PEER) {
+			return RequiredSi.PEER_TO_PEER;
+		}
+		if (e == ControlDataExchangeTypes.IRS90918_4REGISTRY) {
+			return RequiredSi.REGISTRY;
+		}
+		return null;
+	}
 
 	private static FareResourceLocationDef convertFareResourceLocation(FareResourceLocations rl) {
 		if (rl == null) return null;
@@ -1638,7 +1657,7 @@ public class GtmJsonExporter {
 		fareJ.setId(fare.getId());
 		
 		if (fare.getType() != null) {
-			fareJ.setFareType(FareDef.FareTypeDef.valueOf(fare.getType().getName().toUpperCase()));
+			fareJ.setFareType(convert(fare.getType()));
 		}
 		
 		if (fare.getAfterSalesRule() != null) {
@@ -1747,6 +1766,24 @@ public class GtmJsonExporter {
 
 
 
+
+	private static FareTypeDef convert(FareType type) {
+		
+		if (type == FareType.NRT) {
+			return FareTypeDef.ADMISSION;
+		}
+		if (type == FareType.RES) {
+			return FareTypeDef.RESERVATION;
+		}		
+		if (type == FareType.IRT) {
+			return FareTypeDef.INTEGRATED_RESERVATION;
+		}		
+		if (type == FareType.ANCILLARY) {
+			return FareTypeDef.ANCILLARY;
+		}		
+		return null;
+
+	}
 
 	private static List<ConnectionPointDef> convertConnectionPoints(ConnectionPoints list) {
 		if (list == null) return null;

@@ -36,7 +36,7 @@ public enum StationFareDetailType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ON_ARRIVAL(0, "ON_ARRIVAL", "ON_ARRIVAL"),
+	ON_ARRIVAL(1, "ON_ARRIVAL", "ON_ARRIVAL"),
 
 	/**
 	 * The '<em><b>ON DEPARTURE</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum StationFareDetailType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ON_DEPARTURE(0, "ON_DEPARTURE", "ON_DEPARTURE"),
+	ON_DEPARTURE(2, "ON_DEPARTURE", "ON_DEPARTURE"),
 
 	/**
 	 * The '<em><b>ON ARRIVAL ON DEPARTURE</b></em>' literal object.
@@ -56,7 +56,7 @@ public enum StationFareDetailType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ON_ARRIVAL_ON_DEPARTURE(0, "ON_ARRIVAL_ON__DEPARTURE", "ON_ARRIVAL_ON__DEPARTURE");
+	ON_ARRIVAL_ON_DEPARTURE(3, "ON_ARRIVAL_ON__DEPARTURE", "ON_ARRIVAL_ON__DEPARTURE");
 
 	/**
 	 * The '<em><b>NO DESCRIPTION</b></em>' literal value.
@@ -78,7 +78,7 @@ public enum StationFareDetailType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ON_ARRIVAL_VALUE = 0;
+	public static final int ON_ARRIVAL_VALUE = 1;
 
 	/**
 	 * The '<em><b>ON DEPARTURE</b></em>' literal value.
@@ -89,7 +89,7 @@ public enum StationFareDetailType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ON_DEPARTURE_VALUE = 0;
+	public static final int ON_DEPARTURE_VALUE = 2;
 
 	/**
 	 * The '<em><b>ON ARRIVAL ON DEPARTURE</b></em>' literal value.
@@ -100,7 +100,7 @@ public enum StationFareDetailType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ON_ARRIVAL_ON_DEPARTURE_VALUE = 0;
+	public static final int ON_ARRIVAL_ON_DEPARTURE_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Station Fare Detail Type</b></em>' enumerators.
@@ -171,6 +171,9 @@ public enum StationFareDetailType implements Enumerator {
 	public static StationFareDetailType get(int value) {
 		switch (value) {
 			case NO_DESCRIPTION_VALUE: return NO_DESCRIPTION;
+			case ON_ARRIVAL_VALUE: return ON_ARRIVAL;
+			case ON_DEPARTURE_VALUE: return ON_DEPARTURE;
+			case ON_ARRIVAL_ON_DEPARTURE_VALUE: return ON_ARRIVAL_ON_DEPARTURE;
 		}
 		return null;
 	}
