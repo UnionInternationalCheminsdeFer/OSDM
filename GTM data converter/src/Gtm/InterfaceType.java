@@ -29,16 +29,14 @@ public enum InterfaceType implements Enumerator {
 	IRS90918_1RESERVATION_BINARY(1, "IRS90918_1_RESERVATION_BINARY", "IRS90918_1_RESERVATION_BINARY"),
 
 	/**
-	 * The '<em><b>GTM</b></em>' literal object.
+	 * The '<em><b>OSDM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GTM_VALUE
+	 * @see #OSDM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GTM(2, "GTM", "GTM"),
-
-	/**
+	OSDM(2, "OSDM", "OSDM"), /**
 	 * The '<em><b>IRS90918 1RESERVATION XML</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,15 +58,15 @@ public enum InterfaceType implements Enumerator {
 	public static final int IRS90918_1RESERVATION_BINARY_VALUE = 1;
 
 	/**
-	 * The '<em><b>GTM</b></em>' literal value.
+	 * The '<em><b>OSDM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GTM
+	 * @see #OSDM
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GTM_VALUE = 2;
+	public static final int OSDM_VALUE = 2;
 
 	/**
 	 * The '<em><b>IRS90918 1RESERVATION XML</b></em>' literal value.
@@ -90,7 +88,7 @@ public enum InterfaceType implements Enumerator {
 	private static final InterfaceType[] VALUES_ARRAY =
 		new InterfaceType[] {
 			IRS90918_1RESERVATION_BINARY,
-			GTM,
+			OSDM,
 			IRS90918_1RESERVATION_XML,
 		};
 
@@ -149,7 +147,7 @@ public enum InterfaceType implements Enumerator {
 	public static InterfaceType get(int value) {
 		switch (value) {
 			case IRS90918_1RESERVATION_BINARY_VALUE: return IRS90918_1RESERVATION_BINARY;
-			case GTM_VALUE: return GTM;
+			case OSDM_VALUE: return OSDM;
 			case IRS90918_1RESERVATION_XML_VALUE: return IRS90918_1RESERVATION_XML;
 		}
 		return null;

@@ -36,17 +36,7 @@ public enum ControlDataExchangeTypes implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	IRS90918_4REGISTRY(1, "IRS90918_4_REGISTRY", "IRS90918_4_REGISTRY"),
-
-	/**
-	 * The '<em><b>PROPRIETARY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROPRIETARY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROPRIETARY(3, "PROPRIETARY", "PROPRIETARY");
+	IRS90918_4REGISTRY(1, "IRS90918_4_REGISTRY", "IRS90918_4_REGISTRY");
 
 	/**
 	 * The '<em><b>IRS90918 4PEER2PEER</b></em>' literal value.
@@ -71,17 +61,6 @@ public enum ControlDataExchangeTypes implements Enumerator {
 	public static final int IRS90918_4REGISTRY_VALUE = 1;
 
 	/**
-	 * The '<em><b>PROPRIETARY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROPRIETARY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int PROPRIETARY_VALUE = 3;
-
-	/**
 	 * An array of all the '<em><b>Control Data Exchange Types</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -91,7 +70,6 @@ public enum ControlDataExchangeTypes implements Enumerator {
 		new ControlDataExchangeTypes[] {
 			IRS90918_4PEER2PEER,
 			IRS90918_4REGISTRY,
-			PROPRIETARY,
 		};
 
 	/**
@@ -150,7 +128,6 @@ public enum ControlDataExchangeTypes implements Enumerator {
 		switch (value) {
 			case IRS90918_4PEER2PEER_VALUE: return IRS90918_4PEER2PEER;
 			case IRS90918_4REGISTRY_VALUE: return IRS90918_4REGISTRY;
-			case PROPRIETARY_VALUE: return PROPRIETARY;
 		}
 		return null;
 	}

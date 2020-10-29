@@ -33,6 +33,7 @@ import gtm.FareCombinationConstraintDef;
 import gtm.FareCombinationModelDef;
 import gtm.FareDataDef;
 import gtm.FareDef;
+import gtm.FareDef.FareTypeDef;
 import gtm.FareDelivery;
 import gtm.FareDeliveryDetailsDef;
 import gtm.FareReferenceStationSetDef;
@@ -1130,9 +1131,21 @@ public class GTMJsonImporter {
 		ArrayList<ControlDataExchangeTypes> l = new ArrayList<ControlDataExchangeTypes> ();
 		if (list == null || list.isEmpty()) return l;
 		for (RequiredSi s : list) {
-			l.add(ControlDataExchangeTypes.getByName(s.name()));
+			l.add(convert(s));
 		}
 		return l;
+	}
+
+
+	private ControlDataExchangeTypes convert(RequiredSi s) {
+		if (s == RequiredSi.PEER_TO_PEER) {
+			return ControlDataExchangeTypes.IRS90918_4PEER2PEER;
+		}
+		if (s == RequiredSi.REGISTRY) {
+			return ControlDataExchangeTypes.IRS90918_4REGISTRY;
+		}
+
+		return null;
 	}
 
 
@@ -1301,6 +1314,9 @@ public class GTMJsonImporter {
 	private FareElement convert(FareDef jf) {
 		if (jf == null) return null;
 		FareElement f = GtmFactory.eINSTANCE.createFareElement();
+		
+		f.setType(convert(jf.getFareType()));
+		
 		f.setId(jf.getId());
 		f.setAfterSalesRule(findAfterSaleRule(jf.getAfterSalesRulesRef()));
 		f.setCarrierConstraint(findCarrierConstraint(jf.getCarrierConstraintRef()));
@@ -1335,6 +1351,24 @@ public class GTMJsonImporter {
 
 		return f;
 	}
+
+	private FareType convert(FareTypeDef fareType) {
+		
+		if (fareType == FareTypeDef.ADMISSION) {
+			return FareType.NRT;
+		}
+		if (fareType == FareTypeDef.RESERVATION) {
+			return FareType.RES;
+		}		
+		if (fareType == FareTypeDef.INTEGRATED_RESERVATION) {
+			return FareType.IRT;
+		}		
+		if (fareType == FareTypeDef.ANCILLARY) {
+			return FareType.ANCILLARY;
+		}		
+		return null;
+	}
+
 
 	private Text findText(String id) {
 		if (id == null || id.length() < 1) return null;

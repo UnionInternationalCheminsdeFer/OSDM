@@ -9951,13 +9951,12 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 		initEEnum(controlDataExchangeTypesEEnum, ControlDataExchangeTypes.class, "ControlDataExchangeTypes");
 		addEEnumLiteral(controlDataExchangeTypesEEnum, ControlDataExchangeTypes.IRS90918_4PEER2PEER);
 		addEEnumLiteral(controlDataExchangeTypesEEnum, ControlDataExchangeTypes.IRS90918_4REGISTRY);
-		addEEnumLiteral(controlDataExchangeTypesEEnum, ControlDataExchangeTypes.PROPRIETARY);
 
 		initEEnum(fareTypeEEnum, FareType.class, "FareType");
 		addEEnumLiteral(fareTypeEEnum, FareType.NRT);
 		addEEnumLiteral(fareTypeEEnum, FareType.IRT);
 		addEEnumLiteral(fareTypeEEnum, FareType.RES);
-		addEEnumLiteral(fareTypeEEnum, FareType.RPT);
+		addEEnumLiteral(fareTypeEEnum, FareType.ANCILLARY);
 
 		initEEnum(fulfillmentTypeEEnum, FulfillmentType.class, "FulfillmentType");
 		addEEnumLiteral(fulfillmentTypeEEnum, FulfillmentType.SID);
@@ -9990,7 +9989,7 @@ public class GtmPackageImpl extends EPackageImpl implements GtmPackage {
 
 		initEEnum(interfaceTypeEEnum, InterfaceType.class, "InterfaceType");
 		addEEnumLiteral(interfaceTypeEEnum, InterfaceType.IRS90918_1RESERVATION_BINARY);
-		addEEnumLiteral(interfaceTypeEEnum, InterfaceType.GTM);
+		addEEnumLiteral(interfaceTypeEEnum, InterfaceType.OSDM);
 		addEEnumLiteral(interfaceTypeEEnum, InterfaceType.IRS90918_1RESERVATION_XML);
 
 		initEEnum(legacyCalculationTypeEEnum, LegacyCalculationType.class, "LegacyCalculationType");
