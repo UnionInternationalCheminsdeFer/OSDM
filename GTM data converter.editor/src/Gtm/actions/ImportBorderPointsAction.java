@@ -36,7 +36,7 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 
 
 	public ImportBorderPointsAction(IEditingDomainProvider editingDomainProvider) {
-		super("Import border points", editingDomainProvider);
+		super(NationalLanguageSupport.ImportBorderPointsAction_0, editingDomainProvider);
 		this.setToolTipText(this.getText());
 		setImageDescriptor(GtmUtils.getImageDescriptor("/icons/importBorderpoints.png")); //$NON-NLS-1$
 	}
@@ -60,7 +60,7 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 
 		if (tool.getCodeLists() == null || tool.getCodeLists().getCarriers() == null || tool.getCodeLists().getCarriers().getCarriers().isEmpty() ) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("Carriers have to be loaded before border points");
+			dialog.setText(NationalLanguageSupport.ImportBorderPointsAction_2);
 			dialog.setMessage(dialog.getText());
 			dialog.open(); 
 			return;
@@ -68,13 +68,15 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 
 		if (tool.getCodeLists() == null || tool.getCodeLists().getStations() == null || tool.getCodeLists().getStations().getStations().isEmpty() ) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText("Stations have to be loaded before border points");
+			dialog.setText(NationalLanguageSupport.ImportBorderPointsAction_3);
 			dialog.setMessage(dialog.getText());
 			dialog.open(); 
 			return;
 		}		
 		
-		BufferedReader br = super.getReader(NationalLanguageSupport.ImportServiceBrandsAction_4);
+		BufferedReader br = super.getReader(NationalLanguageSupport.ImportBorderPointsAction_4);
+		
+		if (br == null) return;
 
 		IRunnableWithProgress operation =	new IRunnableWithProgress() {
 			// This is the method that gets invoked when the operation runs.
@@ -83,13 +85,13 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 				
 				try {
 					
-					monitor.beginTask("Import border points", 250); 
+					monitor.beginTask(NationalLanguageSupport.ImportBorderPointsAction_0, 250); 
 		
 					monitor.subTask(NationalLanguageSupport.ImportServiceBrandsAction_6);
 					prepareStructure(tool, domain);
 					monitor.worked(10);
 
-					monitor.subTask("Import border points");
+					monitor.subTask(NationalLanguageSupport.ImportBorderPointsAction_0);
 					
 					
 					HashMap<Integer,Station> stationMap = GtmUtils.getStationMap(tool);
@@ -111,11 +113,11 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 						}
 					}
 
-					monitor.subTask("Add border points to data");
+					monitor.subTask(NationalLanguageSupport.ImportBorderPointsAction_14);
 					Command command = SetCommand.create(domain, tool.getConversionFromLegacy().getLegacy108() , GtmPackage.Literals.LEGACY108__LEGACY_BORDER_POINTS, borderPoints);
 			        if (command != null && command.canExecute()) {
 			        	domain.getCommandStack().execute(command);
-						writeConsoleInfo("Border points imported: " + Integer.toString(borderPoints.getLegacyBorderPoints().size()), editor);
+						writeConsoleInfo(NationalLanguageSupport.ImportBorderPointsAction_12 + Integer.toString(borderPoints.getLegacyBorderPoints().size()), editor);
 			        }	
 					monitor.worked(10);
 					monitor.done();
@@ -134,7 +136,7 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 			new ProgressMonitorDialog(editor.getSite().getShell()).run(true, false, operation);
 		} catch (Exception exception) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			dialog.setText(NationalLanguageSupport.ImportServiceBrandsAction_13);
+			dialog.setText(NationalLanguageSupport.ImportBorderPointsAction_13);
 			dialog.setMessage(exception.getMessage());
 			dialog.open(); 
 			GtmEditorPlugin.INSTANCE.log(exception);

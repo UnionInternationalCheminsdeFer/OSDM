@@ -442,6 +442,8 @@ public class GTMJsonImporter {
 
 
 	private ReturnValidityConstraint convert(ReturnConstraint jr) {
+		if (jr == null) return  null;
+		
 		ReturnValidityConstraint o = GtmFactory.eINSTANCE.createReturnValidityConstraint();
 		o.setEarliestReturn(jr.getEarliestReturn());
 		o.setLatestReturn(jr.getLatestReturn());
@@ -461,9 +463,14 @@ public class GTMJsonImporter {
 
 
 	private ValidityRange convert(gtm.ValidityRange jv) {
+		if (jv == null) return null;
 		ValidityRange v = GtmFactory.eINSTANCE.createValidityRange();
-		v.setHoursAfterMidnight(jv.getHoursAfterMidnight());  
-		v.setUnit(TimeUnit.getByName(jv.getTimeUnit().name()));
+		if (jv.getHoursAfterMidnight() != null) {
+			v.setHoursAfterMidnight(jv.getHoursAfterMidnight()); 
+		}
+		if (jv.getTimeUnit() != null) {
+			v.setUnit(TimeUnit.getByName(jv.getTimeUnit().name()));
+		}
 		v.setValue(jv.getValue());   
 		return v;
 	}
@@ -554,7 +561,9 @@ public class GTMJsonImporter {
 		s.setId(convertServiceClassId(js.getId()));
 		
 		s.setText(findText(js.getTextRef()));
-		s.setClassicClass(ClassicClassType.getByName(js.getComfortClass().name()));
+		if (js.getComfortClass() != null) {
+			s.setClassicClass(ClassicClassType.getByName(js.getComfortClass().name()));
+		}
 		return s;
 	}
 
@@ -609,8 +618,12 @@ public class GTMJsonImporter {
 	private StartOfSale convertStartDate(RelativeTimeDef jo) {
 		if (jo == null) return null;
 		StartOfSale o = GtmFactory.eINSTANCE.createStartOfSale();
-		o.setReference(TimeReferenceType.getByName(jo.getTimeReference().name()));
-		o.setUnit(TimeUnit.getByName(jo.getTimeUnit().name()));
+		if (jo.getTimeReference()!= null) {
+			o.setReference(TimeReferenceType.getByName(jo.getTimeReference().name()));
+		}
+		if (jo.getTimeUnit() != null) {
+			o.setUnit(TimeUnit.getByName(jo.getTimeUnit().name()));
+		}
 		o.setValue(jo.getTimeValue());
 		return o;
 	}
@@ -619,8 +632,12 @@ public class GTMJsonImporter {
 	private EndOfSale convertEndDate(RelativeTimeDef jo) {
 		if (jo == null) return null;
 		EndOfSale o = GtmFactory.eINSTANCE.createEndOfSale();
-		o.setReference(TimeReferenceType.getByName(jo.getTimeReference().name()));
-		o.setUnit(TimeUnit.getByName(jo.getTimeUnit().name()));
+		if (jo.getTimeReference()!= null) {
+			o.setReference(TimeReferenceType.getByName(jo.getTimeReference().name()));
+		}
+		if (jo.getTimeUnit() != null) {
+			o.setUnit(TimeUnit.getByName(jo.getTimeUnit().name()));
+		}
 		o.setValue(jo.getTimeValue());
 		return o;
 	}
@@ -965,7 +982,9 @@ public class GTMJsonImporter {
 		for (AllowedChange ja : jl) {
 			AllowedPersonalDataChanges o = GtmFactory.eINSTANCE.createAllowedPersonalDataChanges();
 			o.setTimeLimit(ja.getTimeLimit()); 
-			o.setAcceptedReason(PersonalDataChangeReason.getByName(ja.getAcceptedReason().name()));
+			if (ja.getAcceptedReason()!= null) {
+				o.setAcceptedReason(PersonalDataChangeReason.getByName(ja.getAcceptedReason().name()));
+			}
 		}
 		return l;
 	}
@@ -1737,8 +1756,12 @@ public class GTMJsonImporter {
 	private ApplicationTime convert(RelativeTimeDef ja) {
 		if (ja == null) return null;
 		ApplicationTime a = GtmFactory.eINSTANCE.createApplicationTime();
-		a.setReference(TimeReferenceType.getByName(ja.getTimeReference().name()));
-		a.setUnit(TimeUnit.getByName(ja.getTimeUnit().name()));
+		if (ja.getTimeReference()!= null) {
+			a.setReference(TimeReferenceType.getByName(ja.getTimeReference().name()));
+		}
+		if (ja.getTimeUnit()!= null) {
+			a.setUnit(TimeUnit.getByName(ja.getTimeUnit().name()));
+		}
 		a.setValue(ja.getTimeValue());
 		return a;
 	}

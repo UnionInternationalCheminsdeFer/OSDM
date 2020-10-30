@@ -55,12 +55,7 @@
       <actionSet
             label="%_UI_GtmEditorAdvisor_ActionSet_label"
             visible="true"
-            id="GtmEditorAdvisorActionSet">
-         <action
-               label="%_UI_Menu_About_label"
-               class="Gtm.presentation.GtmEditorAdvisor$AboutAction"
-               menubarPath="help/additions"
-               id="Gtm.presentation.GtmEditorAdvisorAboutAction"/>
+            id="GtmEditorAdvisorActionSet">                
          <action
                label="%_UI_Menu_OpenURI_label"
                definitionId="Gtm.presentation.GtmEditorAdvisorOpenURICommand"
@@ -106,10 +101,10 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="GTM_data_converter.editor.GtmEditorAdvisorApplication"
-            name="GTM data converter">
+            name="OSDM data converter">
          <property
                name="appName"
-               value="GTM data converter">
+               value="OSDM data converter">
          </property>
          <property
                name="aboutImage"
