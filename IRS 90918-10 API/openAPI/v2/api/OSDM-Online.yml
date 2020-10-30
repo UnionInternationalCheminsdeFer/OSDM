@@ -130,7 +130,7 @@ paths:
               enum:
                 - ALL
                 - NONE
-              default: ALL
+            default: ALL
       responses:
         '200':
           description: the set of stations matching the provided input
@@ -267,7 +267,7 @@ paths:
               enum:
                 - ALL
                 - NONE
-              default: ALL
+            default: ALL
       responses:
         '200':
           description: the requested trip
@@ -363,7 +363,7 @@ paths:
                 - TRIPS
                 - TRIPS.LOCATIONS
                 - NONE
-              default: ALL
+            default: ALL
       responses:
         '200':
           description: Trip(s) found
@@ -545,7 +545,7 @@ paths:
                 - TRIPOFFERS.OFFERS.OFFERPARTS
                 - TRIPOFFERS.PASSENGERS
                 - NONE
-              default: ALL
+            default: ALL
       responses:
         '200':
           description: Trip Offer Collection(s) found
@@ -2228,7 +2228,7 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implementer documentation for information on how to get a token 
+            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
           required: true
           schema:
             type: string
@@ -2286,81 +2286,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-    patch:
-      tags:
-        - Fulfillments
-      summary: >-
-        The patch fulfillment service allows to add a stock control number to the printing. This is used to support stock control processes for secure paper ticktes. It is usedin case of secure paper only and only in case the fulfillment returns the entier printable ticket thus in distributor mode. Multiple changes of the stockNumber are permitted in case of printing problems.
-      operationId: patchFulfillmentStockNumber
-      parameters:
-        - name: access-token 
-          in: header
-          description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-        - in: path
-          name: fulfillmentId
-          schema:
-            type: string
-            format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
-          required: true
-          description: ID of the product to get.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FulfillmentPatchRequest'        
-      responses:
-        '200':
-          description: fulfillment found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  fulfillment:
-                    $ref: '#/components/schemas/Fulfillment'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented          
-          
-          
           
   '/bookings/{bookingId}/refundOffers':
     post:
@@ -3107,7 +3032,7 @@ components:
               type: string
               example: P2DT3H4M
             transferType:
-              description: 'WALK,...'
+              description: 'WALK,... refer to the transerType codelist'
               type: string
           required:
             - duration
@@ -3199,13 +3124,7 @@ components:
         codes:
           type: array
           items:
-            type: object
-            properties:
-              codeList:
-                $ref: '#/components/schemas/StationCodeListDef'
-              stationCode:
-                type: string
-                description: the code representing the station in the specified code-list
+            $ref: '#/components/schemas/StationCode'
           description: >-
             The codes that can be used to represent the given station on the system.
             There can be several codes, in which case  it is relevant to have a list
@@ -3213,41 +3132,14 @@ components:
         geoCoordinate:
           $ref: '#/components/schemas/GeoCoordinate'
         names:
-          description: names of the station depending on language and charset
+          description: names of the station depending on language
           type: array
           items:
-            type: object
-            properties:
-              language:
-                type: string
-                description: the language for the entry, following ISO code
-                default: 'eng'
-              name:
-                type: string
-              charset:
-                type: string
-                default: 'UTF-8'
-                description: the charset in which then name should be read
-    
-    StationDef:
-      description: >-
-        Used to represent a station location. This is a location that can be used as origin and 
-        destination for a trip search.
-      type: object
-      properties:
-        stationCode:
-             $ref: '#/components/schemas/StationCode'
-        country:
-          $ref: '#/components/schemas/CountryDef'
-        name:
-          type: string
-          description : name of the station in the requested language
-        geoCoordinate:
-          $ref: '#/components/schemas/GeoCoordinate'
+            $ref: '#/components/schemas/TranslationDef'
       required:
         - country
-        - stationCode
-        
+        - codes
+    
     StationCode:
       type: object
       properties:
@@ -3292,8 +3184,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
       required:
-        - country
-        - LocationCode
+        - id
      
     StationCodeListDef:
       description: >-
@@ -3379,11 +3270,16 @@ components:
             - OUTWARD
             - INWARD
             - UNSPECIFIED
+          default: UNSPECIFIED
         links:
           type: array
           description: Context information required by the services.
           items:
             $ref: '#/components/schemas/Link'
+      required:
+        - id  
+        - origin
+        - destination
 
     ServiceBrandCodeDef:
       description: >-
@@ -3414,10 +3310,12 @@ components:
             in which case it is relevant to have a list of couples.
         country:
           $ref: '#/components/schemas/CountryDef'
-        name:
-          description: name of the point of interest
-          type: string
-          example: Bern Baerengraben (Denkmal)
+        names:
+          description: names of the point of interest depending on language
+          type: array
+          items:
+            $ref: '#/components/schemas/TranslationDef'
+          example: Bern Baerengraben (Denkmal), 'DE'
         geoCoordinate:
           $ref: '#/components/schemas/GeoCoordinate'
       required:
@@ -3450,6 +3348,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      required:
+        - id
+        - tripsCollection
 
     GeoCoordinate:
       description: >-
@@ -3526,7 +3427,7 @@ components:
               description: id of the location to use as origin
         destination:
           oneOf:
-            - $ref: '#/components/schemas/StationDef'
+            - $ref: '#/components/schemas/StationCode'
             - type: string
               format: uuid
               example: d290f1ee-6c54-4b01-90e6-d701748f0851
@@ -3539,7 +3440,7 @@ components:
           type: array
           items:
             oneOf:
-              - $ref: '#/components/schemas/StationDef'
+              - $ref: '#/components/schemas/StationDetailsDef'
               - type: string
                 format: uuid
                 example: d290f1ee-6c54-4b01-90e6-d701748f0851
@@ -3591,7 +3492,7 @@ components:
       type: object
       properties:
         flexibilities:
-          description: Defines the flexibility levels desired in the fares returned
+          description: Defines the flexibility levels desired in the fares returned. This refers to the aftersales flexibility levels as defined in IRS-90918-10
           type: array
           items:
             $ref: '#/components/schemas/Flexibility'
@@ -3620,28 +3521,33 @@ components:
       properties:
         tripSearch:
           oneOf:
-            - type: object
-              properties:
-                trip:
-                  $ref: '#/components/schemas/Trip'
-                requestedSection:
-                 $ref: '#/components/schemas/TravelSectionDef'
-              required:
-                - trip
+            - type: array
+              items:
+                type: object
+                properties:
+                  trip:
+                    $ref: '#/components/schemas/Trip'
+                  requestedSection:
+                   $ref: '#/components/schemas/TravelSectionDef'
+                required:
+                  - trip
             - $ref: '#/components/schemas/TripSearchCriteria'
         returnSearchParameters:
           description: this property can be used in case a return trip is being requested. This will allow to benefit from return-specific fares or product
           type: object
           properties:
-            returndate:
+            inwardReturndate:
               type: string
               format: date-time
               description: to be provided when creating the collection of outward travels so that the provider knows when a return travel can be expected and propose appropriate product and fares
-            outwardSelectedOfferId:
+            outwardTripOfferCollecionId: 
                type: string
                format: uuid
                example: d290f1ee-6c54-4b01-90e6-d701748f0851
-               description: to be provided when creating the collection of inward travels so that the provider knows what the outward offer is and and propose compatible product and fares
+               description: to be provided when creating the collection of inward travels so that the provider can relate the inward travels to the outward travels context.
+            outwardSelectedOfferHash:
+               type: string
+               description: to be provided when creating the collection of inward travels so that the provider knows what the outward offer is and and propose compatible product and fares. If the API consmuer wishes to get all possibilities, "*" can be provided 
         requestedFulfillmentOptions:
           type: array
           items:
@@ -3702,6 +3608,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      required: 
+        - id
+        - trip
+        - offers
+        - passengers
 
     TripOfferRef:
       type: object
@@ -3753,18 +3664,29 @@ components:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
-        offerMessages:
+        offerSummary:
+          $ref: '#/components/schemas/OfferSummary'
+        offerHash:
+          type: object
+          properties:
+            mandatory:
+              type: boolean
+            offerHash:
+              type: string
+          description: the offerHash can/must (depending on the mandatory flag) be used in some cases to restrict the set of offers returned in a subsequent and related offer search to only compatible ones. Note the offerHash does not need to be unique.
+        combinationHashes:
           type: array
           items:
             type: object
             properties:
-              code:
+              combinationType: 
                 type: string
-              text:
+                x-extensible-enum:
+                  - RETURN
+              hash: 
                 type: string
-          description: This element can be used to pass specific information on the offer, such as an overbooking warning
-        offerSummary:
-          $ref: '#/components/schemas/OfferSummary'
+          description: lists the hashes (and their type) that will allow identifying  sets of compatible offers, for example when booking a return trip with specific return fares. If no hash is provided, there is no constraint on this specific offer
+              
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         availableFulfillmentTypes:
@@ -3804,6 +3726,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      required:
+        - id
+        - offerSummary
+        
 
     OfferRef:
       type: object
@@ -3847,6 +3773,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      required:
+        - id
+        - tripOffers
 
     CurrencyDef:
       description: ISO4217 currency codes
@@ -3859,14 +3788,9 @@ components:
         currency:
           $ref: '#/components/schemas/CurrencyDef'
         amount:
-          description: amount
+          description: amount in cents
           type: number
           format: int32
-        scale:
-          description: scale of the amount - the number of positions after the comma
-          type: integer
-          format: int32
-          default: 2          
         vatDetails:
           type: array
           items:
@@ -3881,14 +3805,9 @@ components:
         country:
           $ref: '#/components/schemas/CountryDef'
         amount:
-          description: amount
+          description: amount in cents
           type: number
           format: int32
-        scale:
-          description: scale of the amount - the number of positions after the comma
-          type: integer
-          format: int32
-          default: 2    
         percentage:
           type: number
           format: float
@@ -4141,7 +4060,9 @@ components:
         trainStaffInfo:
           description: >-
             Information text provided by the issuing system in a controlled way (e.g. VIP customer).
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/TranslationDef'
       
     ServiceClassDef:
       type: object
@@ -4243,8 +4164,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentOption'
-        requiredPersonalData:
-          $ref: '#/components/schemas/PersonalDataConstraintDef'
         validFrom:
           type: string
           format: date-time
@@ -4310,7 +4229,9 @@ components:
             mapping from an even lower-level provider).
           example: PT00AD
         description:
-          $ref: '#/components/schemas/TextDef'
+          type: array
+          items:
+            $ref: '#/components/schemas/TranslationDef'
           description: the textual description of the product
           example: Loisir Non-flex Adult Fare
         conditions:
@@ -4323,6 +4244,8 @@ components:
           $ref: '#/components/schemas/ServiceClassDef'
         comfortClass:
           $ref: '#/components/schemas/ComfortClassDef'
+        trainbound:
+          type: boolean
         fulfillmentOptions:
           type: array
           items:
@@ -4893,8 +4816,6 @@ components:
             One refund offer can then be confirmed, which turns it into a refund.
         exchange:
             $ref: '#/components/schemas/ExchangeDef'
-        refund:
-            $ref: '#/components/schemas/RefundDef'
         exchangeOffers:
           type: array
           items:
@@ -4973,8 +4894,6 @@ components:
           items:
             $ref: '#/components/schemas/Fulfillment'
         
-        
-        
     FulfillmentsPatch:
       type: object
       properties:
@@ -4990,14 +4909,6 @@ components:
               status: 
                 type: string
                 enum: [FULFILLED]
-         
-    FulfillmentPatchRequest:
-      description: >-
-         Data from the distributor to be included in the printing. Used for the stockNumber in case of secure paper stock.
-      type: object
-      properties:
-        stockNumber:
-          type: string
                 
     Fulfillment:
       description: >-
@@ -5006,8 +4917,6 @@ components:
         - provides easier access to trains and stations
         - allows an exchange for other services (voucher)
         a fulfillment refers to services of one or multiple offer parts or a fare (allocator mode).
-        - price
-            note that price is present here as an optional element as fututre evolution indicate a possible separation between fulfillment info and financial information.Please refer to UIC leaflet XXX for more information on current status
       type: object
       properties:
         id:
@@ -5019,15 +4928,11 @@ components:
           enum: [CONFIRMED, FULFILLED, CHECKEDIN, REFUNDED]
         price:
           $ref: '#/components/schemas/CurrencyPriceDef'
-
+          description: note the price is present here as an optional element as fututre evolution indicate a possible separation between fulfillment info and financial information.Please refer to UIC leaflet XXX for more information on current status
         controlNumber:
           type: string
           description: >-
             Ticket Control Number
-        stockNumber: 
-          type: string
-          description: >- 
-            physical paper stock number in case of secure paper tickets when a double print mechanism is used to secure the stock. This is used only with secure paper fulfilments. In case of printing on multiple units from a role only one number is reprinted on the ticket. This item is used to double printing only, not for the stock control itself as the secure paper stock might have been from a different provider than the fulfillment. The stock number is only present when the distributor added it via a patch previously. 
         offerParts:
           type: array
           items:
@@ -5333,9 +5238,6 @@ components:
        - exchangeOffer
 
     ExchangeOfferConfirmDef:
-      description: >-
-        - afterSalesFee
-            used in allocator mode only. In case the allocator is responsible for calculating (specific combination model) the refund fee according to his rules the fee is given to the fare provider responsible for the accounting and apportioning of shares    
       type: object
       properties:
         id:
@@ -5347,9 +5249,7 @@ components:
           type: string
           enum:
             - CONFIRMED
-        afterSalesFee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
-          
+            
     ExchangeDef:
       description: >- 
        Result of a successful confirmation of an exchange. 
@@ -5385,9 +5285,6 @@ components:
 
     RefundOfferConfirm:
       type: object
-      description: >-
-        - afterSalesFee
-            used in allocator mode only. In case the allocator is responsible for calculating the refund fee according to his rules the fee is given to the fare provider responsible for the accounting and apportioning of shares
       properties:
         id:
           type: string
@@ -5398,8 +5295,6 @@ components:
           type: string
           enum:
             - CONFIRMED
-        afterSalesFee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
             
     RefundDef:
       description: >- 
@@ -5476,6 +5371,7 @@ components:
         to carry machine-readable details of errors in a HTTP response to avoid
         the need to define new error response formats for HTTP APIs.
         See: https://tools.ietf.org/html/rfc7807
+
     #Fare-specific elements begin
     FareOnlineDef:
       type: object
@@ -5523,6 +5419,8 @@ components:
           $ref: '#/components/schemas/LegacyReservationParameterDef'
         coveredSection:
           $ref: '#/components/schemas/TravelSectionDef'
+        requiredPersonalData:
+          $ref: '#/components/schemas/PersonalDataConstraintDef'
       required:
         - id
         - type
@@ -5542,8 +5440,8 @@ components:
          type: string
          enum:
          - CIV
-         - MC
-         - EU_PRR
+         - MD
+         - EU-PRR
         
     LegacyAccountingIdentifierDef:
       description: identifier of the fare in the current 301 accounting file
@@ -5913,16 +5811,19 @@ components:
           description: >- 
             \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange 
           type: number
+          format: int32
         maxWeightedPassengers:
           description: >- 
             \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange  
             The total weighted number of passengers on the offer is restricted to be equal or smaller than this maximum
           type: number
+          format: int32
         minWeightedPassengers:
           description: >- 
             \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange   
             The total weighted number of passengers on the offer is restricted to equal or larger than this minimum
           type: number
+          format: int32
       required:
         - id
         - passengerType
@@ -6144,13 +6045,13 @@ components:
           type: number
           format: int32
         entryStation:
-          $ref: '#/components/schemas/StationDef'
+          $ref: '#/components/schemas/StationDetailsDef'
         lineId:
           type: array
           items:
             type: string
         terminalStation:
-          $ref: '#/components/schemas/StationDef'
+          $ref: '#/components/schemas/StationDetailsDef'
         nutsCode:
           description: >-
             Nomenclature des units territoriales statistiques  
@@ -6163,9 +6064,9 @@ components:
       type: object
       properties:
         fromStation:
-          $ref: '#/components/schemas/StationDef'
+          $ref: '#/components/schemas/StationDetailsDef'
         toStation:
-          $ref: '#/components/schemas/StationDef'
+          $ref: '#/components/schemas/StationDetailsDef'
         train:
           type: string
         travelDate:
@@ -6214,7 +6115,7 @@ components:
           description: restriction to a specific service brand
           type: string
         station:
-          $ref: '#/components/schemas/StationDef'
+          $ref: '#/components/schemas/StationDetailsDef'
         fareReferenceStationSet:
           description: reference to a list of stations included in the fare
           type: object
@@ -6241,8 +6142,8 @@ components:
         to go to the main rail station).
       properties:
         binaryZoneId:
-          type: string
-          format: base64
+          type: integer
+          format: Base64
           description: 
             Id to support local traffic standards (e.g. VDV,...)
         carrier:
@@ -6251,9 +6152,9 @@ components:
           type: number
           format: int32
         entryStation:
-          $ref: '#/components/schemas/StationDef'
+          $ref: '#/components/schemas/StationDetailsDef'
         terminalStation:
-          $ref: '#/components/schemas/StationDef'
+          $ref: '#/components/schemas/StationDetailsDef'
         zoneIds:
           description: to be used in bar codes
           type: array
@@ -6292,11 +6193,9 @@ components:
         requiredBarCodes:
           description: >-
             One of the listed bar codes must be provided.
-          type: string
-          x-extensible-enum:
-             - FCB
-             - TLB
-             - SSB
+          type: array
+          items:
+            type: string
         requiredSiS:
           description: >-
             To guarantee security in system (SiS) of the fulfillment one of the listed interfaces is required.
@@ -6581,19 +6480,12 @@ components:
       properties:
         language:
           type: string
-        textUTF8:
-          type: string
         text:
-          description: text without special characters according to ICAO specification
-          type: string
-        shortTextUtf8:
           type: string
         shortText:
-          description: text without special characters according to ICAO specification
           type: string
       required:
         - language
-        - textUTF8
         - text
     
     TextDef:
@@ -6602,23 +6494,16 @@ components:
       properties:
         id:
           type: string
-        textUTF8:
-          type: string
         translations:
           type: array
           items:
             $ref: '#/components/schemas/TranslationDef'
         text:
-          description: text without special characters according to ICAO specification
-          type: string
-        shortTextUtf8:
           type: string
         shortText:
-          description: text without special characters according to ICAO specification
           type: string
       required:
         - id
-        - textUTF8
         - text
     
     ConnectionPointDef:
@@ -6636,7 +6521,7 @@ components:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/StationDef'
+              $ref: '#/components/schemas/StationDetailsDef'
       required:
         - id
         - stationSets
