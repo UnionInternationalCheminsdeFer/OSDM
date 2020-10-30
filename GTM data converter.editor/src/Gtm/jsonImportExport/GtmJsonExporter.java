@@ -89,6 +89,7 @@ import Gtm.StationNames;
 import Gtm.StationResourceLocation;
 import Gtm.StationResourceLocations;
 import Gtm.StationSet;
+import Gtm.TaxScope;
 import Gtm.Text;
 import Gtm.Texts;
 import Gtm.TimeRange;
@@ -166,6 +167,7 @@ import gtm.Transfer;
 import gtm.TranslationDef;
 import gtm.TravelValidityConstraintDef;
 import gtm.VatDetailDef;
+import gtm.VatDetailDef.VatScopeDef;
 import gtm.ViaStationsDef;
 import gtm.ZoneDef;
 import gtm.ZoneDefinitionDef;
@@ -2063,7 +2065,7 @@ public class GtmJsonExporter {
 				VatDetailDef vatDef = new VatDetailDef();
 				vatDef.setAmount((int) (100 * vat.getAmount()));
 				vatDef.setTaxId(vat.getTaxId());
-				vatDef.setScope(VatDetailDef.VatScopeDef.fromValue(vat.getScope().getName().toUpperCase()));
+				vatDef.setScope(convert(vat.getScope()));
 				vatDef.setPercentage(vat.getPercentage());
 				vatDef.setCountry(vat.getCountry().getISOcode());
 				vatDefs.add(vatDef);
@@ -2076,6 +2078,23 @@ public class GtmJsonExporter {
 		
 	}
 	
+	
+
+	private static VatScopeDef convert(TaxScope scope) {
+		
+		if (scope == TaxScope.ANY) {
+			return null;
+		} else if (scope == TaxScope.INTERNALTIONAL) {
+			return VatScopeDef.INTERNATIONAL;
+		} else if (scope == TaxScope.LONG_DISTANCE) {
+			return VatScopeDef.LONG_DISTANCE;
+		} else if (scope == TaxScope.NATIONAL) {
+			return VatScopeDef.NATIONAL;
+		} else if (scope == TaxScope.SHORT_DISTANCE) {
+			return VatScopeDef.SHORT_DISTANCE;
+		} 
+		return null;
+	}
 
 	private static FareDeliveryDetailsDef convertDeliveryToJson(Gtm.Delivery idelivery) {
 		if (idelivery == null) return null;
