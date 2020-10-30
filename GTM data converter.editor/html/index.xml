@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <index version="1.0">
 
-<entry keyword="GTM data converter"><topic href="html/gettingstarted/gettingstarted.html" /></entry>
+<entry keyword="OSDM data converter"><topic href="html/gettingstarted/gettingstarted.html" /></entry>
 <entry keyword="Fare"><topic href="html/reference/datadescription.html" /></entry>
 <entry keyword="Station"><topic href="html/reference/data_stationcodes.html" /></entry>
 <entry keyword="Service Brand"><topic href="html/reference/data_servicebrandcodes.html" /></entry>
