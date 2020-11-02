@@ -13,7 +13,7 @@ info:
     API interface.
   contact:
     name: Nicolas Selleslagh
-    url: https://confluence.sbb.ch/display/FrSM20
+    url: https://confluence.sbb.ch/display/FSM20
     email: Nicolas.Selleslagh@benerail.com
   license:
     name: Apache 2.0
@@ -5810,7 +5810,7 @@ components:
         passengerWeight:
           description: >- 
             \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange 
-          type: number
+          type: integer
           format: int32
         maxWeightedPassengers:
           description: >- 
@@ -6142,8 +6142,8 @@ components:
         to go to the main rail station).
       properties:
         binaryZoneId:
-          type: integer
-          format: Base64
+          type: string
+          format: base64
           description: 
             Id to support local traffic standards (e.g. VDV,...)
         carrier:
