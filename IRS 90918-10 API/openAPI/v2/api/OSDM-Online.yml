@@ -13,7 +13,7 @@ info:
     API interface.
   contact:
     name: Nicolas Selleslagh
-    url: https://confluence.sbb.ch/display/FSM20
+    url: https://confluence.sbb.ch/display/FrSM20
     email: Nicolas.Selleslagh@benerail.com
   license:
     name: Apache 2.0
@@ -545,7 +545,7 @@ paths:
                 - TRIPOFFERS.OFFERS.OFFERPARTS
                 - TRIPOFFERS.PASSENGERS
                 - NONE
-            default: ALL
+            default: [ALL]
       responses:
         '200':
           description: Trip Offer Collection(s) found
@@ -3110,9 +3110,7 @@ components:
       
     StationDetailsDef:
       description: >-
-        Details of a station. Station names are not translated but provided in some
-        cases in multiple character sets in case stations are named in local
-        characters and additionally in latin characters. In some countries stations have
+        Details of a station. In some countries stations have
         multiple names depending on the countries local languages.
       type: object
       properties:
@@ -3545,9 +3543,9 @@ components:
                format: uuid
                example: d290f1ee-6c54-4b01-90e6-d701748f0851
                description: to be provided when creating the collection of inward travels so that the provider can relate the inward travels to the outward travels context.
-            outwardSelectedOfferHash:
+            outwardSelectedOfferId:
                type: string
-               description: to be provided when creating the collection of inward travels so that the provider knows what the outward offer is and and propose compatible product and fares. If the API consmuer wishes to get all possibilities, "*" can be provided 
+               description: to be provided when creating the collection of inward travels so that the provider knows what the outward offer is and and propose compatible offers only if desired or mandatory.
         requestedFulfillmentOptions:
           type: array
           items:
@@ -4245,6 +4243,8 @@ components:
         comfortClass:
           $ref: '#/components/schemas/ComfortClassDef'
         trainbound:
+          type: boolean
+        returnProduct:
           type: boolean
         fulfillmentOptions:
           type: array
@@ -6480,6 +6480,7 @@ components:
       properties:
         language:
           type: string
+          description: language code following  RFC2616-sec14.4
         text:
           type: string
         shortText:
