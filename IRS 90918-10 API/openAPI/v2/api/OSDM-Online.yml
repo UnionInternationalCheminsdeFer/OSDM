@@ -4418,6 +4418,9 @@ components:
 
     Admission:
       type: object
+      description:
+        An admission represents a travel right, or the entitlement to travel onboard a train between 
+        the given origin and destination, following the given route. It does not include a seat reservation. 
       properties:
         id:
           type: string
@@ -4447,6 +4450,9 @@ components:
                   - INCLUDED
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
+      required:
+        - id
+        - commonOfferPartAttributes
                 
     PlaceSelectionPatch:
       type: object
@@ -4659,8 +4665,8 @@ components:
             - MANDATORY
             - INCLUDED
       required:
-        - id,
-        - commonOfferPartAttributes,
+        - id
+        - commonOfferPartAttributes
         - reservationDetails
         
     ReservationPatch:
