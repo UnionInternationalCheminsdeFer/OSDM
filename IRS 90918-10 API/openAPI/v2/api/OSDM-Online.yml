@@ -4372,10 +4372,6 @@ components:
         id:
           type: string
           format: uuid
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         isReservationRequired:
@@ -4396,6 +4392,10 @@ components:
                   - INCLUDED
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
       required:
         - id
         - commonOfferPartAttributes
@@ -4588,10 +4588,6 @@ components:
         id:
           type: string
           format: uuid
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         reservationDetails:
@@ -4608,6 +4604,10 @@ components:
             - INCLUDED
             - MANDATORY
             - OPTIONAL
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
 
       required:
         - id
@@ -4721,10 +4721,6 @@ components:
         id:
           type: string
           format: uuid
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         optionality:
@@ -4737,6 +4733,10 @@ components:
             - OPTIONAL
         category:
           type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
       required :
         - id
         - commonOfferPartAttributes
@@ -5452,7 +5452,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-
             
     TransportableDef:
       type: object
