@@ -62,7 +62,8 @@ paths:
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -71,7 +72,8 @@ paths:
           in: header
           required: true
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           schema:
             type: string
         - name: matchValue
@@ -122,7 +124,8 @@ paths:
         - in: query
           name: embed
           description: >-
-            Influences whether referenced resources are returned in full or as references only. If not specified, none of the nested resources will be embedded
+            Influences whether referenced resources are returned in full or as references only. 
+            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -167,14 +170,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -197,7 +202,7 @@ paths:
                 default: 'public, max-age=43200'
                 description: >-
                   A location resource is persistent and has a long time to live to allow long-term caching. Any update of
-                  the location information will lead to the creation of a new resource
+                  the location information leads to the creation of a new resource.
           content:
             application/json:
               schema:
@@ -219,20 +224,22 @@ paths:
         - Trips
       summary:
         The GET trips service retrieves a trip element representing a train travel made of one or more
-        segments. Depending on the embed either references or full location definitions will be returned
+        segments. Depending on the embed either references or full location definitions will be returned.
       operationId: getTripsId
       parameters:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -259,7 +266,8 @@ paths:
         - in: query
           name: embed
           description: >-
-            Influences whether referenced resources are returned in full or as references only. If not specified, none of the nested resources will be embedded
+            Influences whether referenced resources are returned in full or as references only. 
+            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -306,14 +314,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation 
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -353,7 +363,8 @@ paths:
         - in: query
           name: embed
           description: >-
-            Influences whether referenced resources are returned in full or as references only. If not specified, none of the nested resources will be embedded
+            Influences whether referenced resources are returned in full or as references only. 
+            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -416,7 +427,8 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
@@ -484,14 +496,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -531,7 +545,8 @@ paths:
         - in: query
           name: embed
           description: >-
-            Influences whether referenced resources are returned in full or as references only. If not specified, none of the nested resources will be embedded
+            Influences whether referenced resources are returned in full or as references only. 
+            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -598,7 +613,8 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
@@ -664,14 +680,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response 
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -687,7 +705,8 @@ paths:
         - in: query
           name: embed
           description: >-
-            Influences whether referenced resources are returned in full or as references only. If not specified, none of the nested resources will be embedded
+            Influences whether referenced resources are returned in full or as references only. 
+            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -752,14 +771,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -775,7 +796,8 @@ paths:
         - in: query
           name: embed
           description: >-
-            Influences whether referenced resources are returned in full or as references only. If not specified, none of the nested resources will be embedded
+            Influences whether referenced resources are returned in full or as references only.
+            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -837,14 +859,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -908,14 +932,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -986,14 +1012,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -1057,14 +1085,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -1135,14 +1165,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -1206,14 +1238,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -1283,14 +1317,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -1365,14 +1401,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -1448,14 +1486,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -1530,14 +1570,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -1612,14 +1654,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -1696,14 +1740,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -1711,7 +1757,8 @@ paths:
         - in: query
           name: embed
           description: >-
-            Influences whether referenced resources are returned in full or as references only. If not specified, none of the nested resources will be embedded
+            Influences whether referenced resources are returned in full or as references only.
+            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -1770,13 +1817,15 @@ paths:
       tags:
         - Bookings
       summary: >-
-        The POST bookings create service allows to create a booking based on a previously requested offer. The offer id is provided in the query.
+        The POST bookings create service allows to create a booking based on a previously requested offer. 
+        The offer id is provided in the query.
       operationId: postBookings
       parameters:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
@@ -1844,14 +1893,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -1867,7 +1918,8 @@ paths:
         - in: query
           name: embed
           description: >-
-            Influences whether referenced resources are returned in full or as references only.If not specified, none of the nested resources will be embedded
+            Influences whether referenced resources are returned in full or as references only.
+            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -1932,7 +1984,8 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
@@ -1991,14 +2044,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -2061,14 +2116,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -2141,14 +2198,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -2228,14 +2287,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -2300,14 +2361,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -2376,14 +2439,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -2453,14 +2518,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -2534,7 +2601,8 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
@@ -2606,14 +2674,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -2630,7 +2700,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ExchangeOfferRequestDef'
+              $ref: '#/components/schemas/ExchangeOfferRequest'
       responses:
         '200': 
           description: Refund offer created
@@ -2670,14 +2740,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -2749,14 +2821,16 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response 
+            to the request (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -2802,7 +2876,8 @@ paths:
         - name: access-token 
           in: header
           description: >-
-            OAuth token used to authentify the consumer API - Refer to implenter documentation for information on how to get a token 
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
           required: true
           schema:
             type: string
@@ -2876,7 +2951,9 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/ResRef'
-        description: This element can be used to pass non-blocking  information or event, such as a price difference with the initially offered price at booking time 
+        description: >-
+         This element can be used to pass non-blocking information or events,
+         such as a price difference with the initially offered price at booking time.
     ResRef:
       type: object
       properties:
@@ -3032,7 +3109,7 @@ components:
               type: string
               example: P2DT3H4M
             transferType:
-              description: 'WALK,... refer to the transerType codelist'
+              description: 'WALK,... refer to the transfer type code list'
               type: string
           required:
             - duration
@@ -3392,7 +3469,8 @@ components:
           $ref: '#/components/schemas/TripSearchCriteria'
         embed:
           description: >-
-            Influences whether referenced resources are returned in full or as references only If not specified, none of the nested resources will be embedded
+            Influences whether referenced resources are returned in full or as references only.
+            If not specified, none of the nested resources will be embedded.
           type: array
           items:
             type: string
@@ -3475,7 +3553,7 @@ components:
             is present in the resulting trip. Expressed in minutes.
           type: number
           format: int32
-        PRMAssistance:
+        needsPRMAssistance:
           description: >-
             OOS MVP indicates a need for an itinerary where end-to-end PMR
             assistance and accessibility is possible.
@@ -3490,11 +3568,13 @@ components:
       type: object
       properties:
         flexibilities:
-          description: Defines the flexibility levels desired in the fares returned. This refers to the aftersales flexibility levels as defined in IRS-90918-10
+          description: >-
+            Defines the flexibility levels desired of the fares returned.
+            This refers to the after sales flexibility levels as defined in IRS-90918-10
           type: array
           items:
             $ref: '#/components/schemas/Flexibility'
-        comfortclasses:
+        comfortClasses:
           type: array
           items:
             $ref: '#/components/schemas/ComfortClassDef'
@@ -3515,7 +3595,12 @@ components:
             The currency returned might be different from the one requested.
 
     TripOfferRequest:
-      type: object
+      type: object      
+      description: >-
+        Defines the parameters needed to request an offer, either based on either an
+        existing trip (that is then passed by Id, Ref or in full) plus a set of offer search
+        criterias, or based on tripsearch and offer search criteria. At least one
+        of the tripId, tripRef,trip elements or tripSearchCriteria must be set.
       properties:
         tripSearch:
           oneOf:
@@ -3531,21 +3616,32 @@ components:
                   - trip
             - $ref: '#/components/schemas/TripSearchCriteria'
         returnSearchParameters:
-          description: this property can be used in case a return trip is being requested. This will allow to benefit from return-specific fares or product
+          description: >-
+            This property can be used in case a return trip is being requested. 
+            This will allow to benefit from return-specific fares or product
           type: object
           properties:
-            inwardReturndate:
+            inwardReturnDate:
               type: string
               format: date-time
-              description: to be provided when creating the collection of outward travels so that the provider knows when a return travel can be expected and propose appropriate product and fares
-            outwardTripOfferCollecionId: 
+              description: >-
+                Needs to be provided when creating the collection of outward travels so that the
+                provider knows when a return travel can be expected and propose appropriate
+                product and fares.
+            outwardTripOfferCollectionId: 
                type: string
                format: uuid
                example: d290f1ee-6c54-4b01-90e6-d701748f0851
-               description: to be provided when creating the collection of inward travels so that the provider can relate the inward travels to the outward travels context.
+               description: >-
+                 Needs to be provided when creating the collection of inward travels so that the provider
+                 can relate the inward travels to the outward travels context.
             outwardSelectedOfferId:
                type: string
-               description: to be provided when creating the collection of inward travels so that the provider knows what the outward offer is and and propose compatible offers only if desired or mandatory.
+               format: uuid
+               example: d290f1ee-6c54-4b01-90e6-d701748f0851
+               description: >-
+                 Needs to be provided when creating the collection of inward travels so that the provider
+                 knows what the outward offer is and and propose compatible offers only if desired or mandatory.
         requestedFulfillmentOptions:
           type: array
           items:
@@ -3558,7 +3654,8 @@ components:
           $ref: '#/components/schemas/OfferSearchCriteria'
         embed:
           description: >-
-            Influences whether referenced resources are returned in full or as references only. If not specified, none of the nested resources will be embedded
+            Influences whether referenced resources are returned in full or as references only.
+            If not specified, none of the nested resources will be embedded.
           type: array
           items:
             type: string
@@ -3575,10 +3672,7 @@ components:
       required:
         - tripSearch
         - passengers
-        
-      description: >-
-        Defines the parameters needed to request an offer, either based on either  an existing trip (that is then passed by Id, Ref or in full) plus a set of offer search criterias, or based on tripsearch and offer search criteria. At least one
-        of the tripId, tripRef,trip elements or tripSearchCriteria must be set.
+
     TripOffer:
       type: object
       properties:
@@ -3630,8 +3724,8 @@ components:
     RequestedInformation:
       type: string
       description: >-
-        boolean-expression indicating the data that must be set in the data
-        model in order to proceed to next step of the process
+        Boolean-expression indicating the data that must be set in the data
+        model in order to proceed to next step of the process.
         
     OfferSummary:
       type: object
@@ -3667,11 +3761,15 @@ components:
         offerHash:
           type: object
           properties:
-            mandatory:
+            isMandatory:
               type: boolean
+              default: false
             offerHash:
               type: string
-          description: the offerHash can/must (depending on the mandatory flag) be used in some cases to restrict the set of offers returned in a subsequent and related offer search to only compatible ones. Note the offerHash does not need to be unique.
+          description: >-
+            The offerHash can/must (depending on the mandatory flag) be used in some cases to restrict the set of
+            offers returned in a subsequent and related offer search to only compatible ones.
+            Note the offerHash does not need to be unique.
         combinationHashes:
           type: array
           items:
@@ -3683,8 +3781,10 @@ components:
                   - RETURN
               hash: 
                 type: string
-          description: lists the hashes (and their type) that will allow identifying  sets of compatible offers, for example when booking a return trip with specific return fares. If no hash is provided, there is no constraint on this specific offer
-              
+          description: >-
+            List of hashes (and their type) that allow identifying sets of compatible offers,
+            for example when booking a return trip with specific return fares. 
+            If no hash is provided, there is no constraint on this specific offer.
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         availableFulfillmentTypes:
@@ -3727,7 +3827,6 @@ components:
       required:
         - id
         - offerSummary
-        
 
     OfferRef:
       type: object
@@ -4012,8 +4111,9 @@ components:
     PassengerDetailsDef:
       type: object
       description: >- 
-        PassengerDetails providing personal information 
-        only information required in the offer. It is not allowed to send personal information not required in the offer reply. It is not allowed to send tehse personal data already in the offer request.
+        PassengerDetails providing personal information only information required in the offer.
+        It is not allowed to send personal information not required in the offer reply.
+        It is not allowed to send these personal data already in the offer request.
       properties:
         eMails:
           type: array
@@ -4242,10 +4342,11 @@ components:
           $ref: '#/components/schemas/ServiceClassDef'
         comfortClass:
           $ref: '#/components/schemas/ComfortClassDef'
-        trainbound:
+        isTrainBound:
           type: boolean
-        returnProduct:
+        isReturnProduct:
           type: boolean
+          default: false
         fulfillmentOptions:
           type: array
           items:
@@ -4270,7 +4371,10 @@ components:
          - SOCIAL_MEDIA_ACCOUNTS
 
     ProductCondition:
-      description: describes sales and aftersales conditions applicable to the product. For a product to be refundable or exchangeable, at least one refund or exchange (respectively) condition must be present
+      description: >-
+        Describes sales and after sales conditions applicable to the product. 
+        For a product to be refundable or exchangeable, at least one refund or exchange 
+        (respectively) condition must be present.
       type: object
       properties:
         type:
@@ -4314,6 +4418,9 @@ components:
 
     Admission:
       type: object
+      description:
+        An admission represents a travel right, or the entitlement to travel onboard a train between 
+        the given origin and destination, following the given route. It does not include a seat reservation. 
       properties:
         id:
           type: string
@@ -4325,7 +4432,7 @@ components:
             $ref: '#/components/schemas/Link'
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
-        reservationRequired:
+        isReservationRequired:
           type: boolean
         reservations:
           type: array
@@ -4343,6 +4450,9 @@ components:
                   - INCLUDED
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
+      required:
+        - id
+        - commonOfferPartAttributes
                 
     PlaceSelectionPatch:
       type: object
@@ -4370,7 +4480,7 @@ components:
     PlaceSelectionDef:
       type: object
       description: >-
-        place selection options and selected options in an offer
+        Place selection options and selected options in an offer
         - optional place properties to choose from
         - selected optional place properties (selectedOptions)
         - selectable places for a graphical place selection 
@@ -4456,7 +4566,7 @@ components:
                                - ALLOCATED
                                - FREE
                                - RESTRICTED                        
-                          selectable:
+                          isSelectable:
                             description: >-
                               to indicate individual places as non-selectable in
                               case complete compartments must be selected
@@ -4467,7 +4577,7 @@ components:
                         
                     status:
                       type: string
-                    selectable:
+                    isSelectable:
                       description: to indicate compartments selectable as a whole only
                       type: boolean
                       default: false
@@ -4521,13 +4631,14 @@ components:
                   - TRAIN_HEAD                
             required:
               - number
-              - layoutId
-                            
+              - layoutId                    
                 
     Reservation:
       type: object
       description: >-
-        reservation includes the reference to the in the initial offer. The offer needs to be updated with the selected places before the confirmation which creates the reservation details including the reserved places
+        Reservation includes the reference to the in the initial offer. 
+        The offer needs to be updated with the selected places before the confirmation
+        which creates the reservation details including the reserved places.
       properties:
         id:
           type: string
@@ -4544,15 +4655,18 @@ components:
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'
         optionality:
-          description: MANDATORY - the booking can not be made without reservation, INCLUDED - reservation is included in the offer but is not mandatory, OPTIONAL reservation is not included but can be integrated in the same ticket
+          description: >-
+            MANDATORY: the booking can not be made without reservation
+            INCLUDED: the reservation is included in the offer but is not mandatory
+            OPTIONAL: the reservation is not included but can be integrated in the same ticket
           type: string
           x-extensible-enum:
             - OPTIONAL
             - MANDATORY
             - INCLUDED
       required:
-        - id,
-        - commonOfferPartAttributes,
+        - id
+        - commonOfferPartAttributes
         - reservationDetails
         
     ReservationPatch:
@@ -4670,7 +4784,10 @@ components:
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         optionality:
-          description: MANDATORY - the booking can not be made without reservation, INCLUDED - reservation is included in the offer but is not mandatory, OPTIONAL reservation is not included but can be integrated in the same ticket
+          description: >-
+            MANDATORY: the booking can not be made without reservation, 
+            INCLUDED: the reservation is included in the offer but is not mandatory, 
+            OPTIONAL: the reservation is not included but can be integrated in the same ticket
           type: string
           x-extensible-enum:
             - OPTIONAL
@@ -4748,7 +4865,8 @@ components:
               - selectedOfferId
         embed:
           description: >-
-            Influences whether referenced resources are returned in full or as references only. If not specified, none of the nested resources will be embedded
+            Influences whether referenced resources are returned in full or as references only.
+            If not specified, none of the nested resources will be embedded.
           type: array
           items:
             type: string
@@ -4865,9 +4983,10 @@ components:
       type: object
       description: >-
         Allows setting the required fulfillment type, e.g. value paper
-        or e-ticket and preferred fulfillment Media. The latter is optional and relevant in some cases only
+        or e-ticket and preferred fulfillment media. 
+        The latter is optional and relevant in some cases only.
       properties:
-        requestedfulfillmentType:
+        requestedFulfillmentType:
           $ref: '#/components/schemas/FulfillmentType'
         preferredFulfillmentMedia:
           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
@@ -4928,7 +5047,10 @@ components:
           enum: [CONFIRMED, FULFILLED, CHECKEDIN, REFUNDED]
         price:
           $ref: '#/components/schemas/CurrencyPriceDef'
-          description: note the price is present here as an optional element as fututre evolution indicate a possible separation between fulfillment info and financial information.Please refer to UIC leaflet XXX for more information on current status
+          description: >-
+            Note the price is present here as an optional element as future evolution indicate a possible
+            separation between fulfillment info and financial information. Please refer to UIC leaflet XXX
+            for more information on current status
         controlNumber:
           type: string
           description: >-
@@ -5024,7 +5146,7 @@ components:
                 description: link to download the security feature
                 type: string
                 format: uri
-        mandatory:
+        isMandatory:
           description: >-
             The use of the provided features is mandatory
           type: boolean
@@ -5037,7 +5159,14 @@ components:
   
     SecurityFeatureTypeDef:
       description: >-
-        "RAW_BAR_CODE" binary data too be included in an bar code, "MATRIX_BAR_CODE" binary data of the black and white pixel matrix of a square bar code, "PNG_BAR_CODE" png image data of a bar code, "JPG_BAR_CODE" jpg data of a bar code, "PNG_VISUAL_ELEMENT" png image data of a visual element, "JPG_VISUAL_ELEMENT" jpg data of a visual element, "GIF_VISUAL_ELEMENT" gif data of a visual element
+        Possible formats:
+         - "RAW_BAR_CODE" binary data too be included in an bar code, 
+         - "MATRIX_BAR_CODE" binary data of the black and white pixel matrix of a square bar code,
+         - "PNG_BAR_CODE" png image data of a bar code,
+         - "JPG_BAR_CODE" jpg data of a bar code, 
+         - "PNG_VISUAL_ELEMENT" png image data of a visual element, 
+         - "JPG_VISUAL_ELEMENT" jpg data of a visual element, 
+         - "GIF_VISUAL_ELEMENT" gif data of a visual element
       type: string
       x-extensible-enum:
         - RAW_BAR_CODE
@@ -5147,7 +5276,8 @@ components:
         - bookingId
         
     RefundOfferRequest:
-      description: request for a refund. Fulfillments can be provided in case the booking contains multiple individual fulfillments
+      description: 
+        Request for a refund. Fulfillments can be provided in case the booking contains multiple individual fulfillments
       type: object
       properties:
         fulfillmentIds:
@@ -5160,8 +5290,9 @@ components:
         overruleCode: 
           $ref: '#/components/schemas/AfterSaleReasonDef'
 
-    ExchangeOfferRequestDef:
-      description: request for a refund. Fulfillments can be provided in case the booking contains multiple individual fulfillments
+    ExchangeOfferRequest:
+      description: 
+        Request for an exchange. Fulfillments can be provided in case the booking contains multiple individual fulfillments
       type: object
       properties:
         passengerRefs:
@@ -5338,7 +5469,7 @@ components:
             it SHOULD provide human-readable documentation for the problem type
             (e.g., using HTML).
           default: 'about:blank'
-          example: 'https://zalando.github.io/problem/constraint-violation'
+          example: 'https://example.com/probs/passenger-too-young'
         title:
           type: string
           description: >-
@@ -5431,10 +5562,12 @@ components:
         
     RegulatoryConditionsDef:
       description: >- 
-         general conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and conditions in the conditions of combined offers and indicate them to the customer where required. Which indications are mandatory to be shown to the customer will be defined in the SCICs
-         CIV: terms and conditions according to COTIV regulation
-         MD:  terms and conditions according to SMPS regulation
-         EU-PRR: terms and conditions according to EU-PRR regulation
+         General conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and
+         conditions in the conditions of combined offers and indicate them to the customer where required. Which indications are
+         mandatory to be shown to the customer will be defined in the SCICs
+          - CIV: terms and conditions according to COTIV regulation
+          - MD:  terms and conditions according to SMPS regulation
+          - EU-PRR: terms and conditions according to EU-PRR regulation
       type: array
       items: 
          type: string
@@ -5866,7 +5999,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CompanyDef'
-        onlyWhenCombined:
+        isValidOnlyWhenCombined:
           description: >-
             This combination model applies only in case the fare is combined with another carrier
           type: boolean
@@ -5994,11 +6127,11 @@ components:
           description:  \*** ONLINE-ONLY *** absolute application time (UTC) in case of online services
           type: string
           format: date-time
-        carrierFee:
+        isCarrierFee:
           description: indicates that the fee belongs to the carrier
           type: boolean
           default: true
-        individualContracts:
+        supportsIndividualContracts:
           description: indicates that the after sales of this fare can be treated independently per person.
           type: boolean
           default: false
@@ -6450,7 +6583,7 @@ components:
     RegionalConstraintDef:
       type: object
       description: >-
-        regional constraint of the fare- offline bulk data use the id of connection points whereas in an online environment the connection point is included
+        Regional constraint of the fare- offline bulk data use the id of connection points whereas in an online environment the connection point is included
       properties:
         id:
           description: >- 
@@ -6508,7 +6641,8 @@ components:
         - text
     
     ConnectionPointDef:
-      description: connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
+      description: >-
+        Connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
       type: object
       properties:
         id:
@@ -6564,7 +6698,8 @@ components:
             $ref:  '#/components/schemas/OfferSearchCriteria'
         embed:
           description: >-
-            Influences whether referenced resources are returned in full or as references only. If not specified, none of the nested resources will be embedded
+            Influences whether referenced resources are returned in full or as references only. 
+            If not specified, none of the nested resources will be embedded.
           type: array
           items:
             type: string
@@ -6618,7 +6753,8 @@ components:
             
     TransportableDef:
       description: >- 
-        transportables which are handled similar to passengers like dogs, bicycles, car transport. These transportables might need a ticket or reservation.
+        Transportables which are handled similar to passengers like dogs, bicycles, car transport.
+        These transportables might need a ticket or reservation.
       type: object
       properties:
         type:
