@@ -5365,8 +5365,192 @@ components:
         - refundFee
         - refundableAmount
 
+    OfferSearchDef:
+      type: object
+      description: >-
+        Search parameter for an offer search on offers not based on a trip (e.g. passes)
+      properties:
+        searchTags:
+          description: >-
+            list of tags to search for
+          type: array
+          items:
+            type: string
+        nutsCodes:
+          description: >-
+            Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
+          type: array
+          items:
+            type: string
+        geoCoordinate:
+          $ref: '#/components/schemas/GeoCoordinate'
+        travelPeriod:
+          type: array
+          items:
+            type: string
+            format: date-time
+        passengers:
+          type: array
+          items:
+            $ref:  '#/components/schemas/Passenger'  
+        requestedFulfillmentOptions: 
+          type: array
+          items:
+            $ref:  '#/components/schemas/FulfillmentOption' 
+        offerSearchCriteria:
+            $ref:  '#/components/schemas/OfferSearchCriteria'
+        embed:
+          description: >-
+            Influences whether referenced resources are returned in full or as references only. 
+            If not specified, none of the nested resources will be embedded.
+          type: array
+          items:
+            type: string
+            enum:
+              - OFFERPARTS
+              - NONE
+              - ALL
+            default: ALL
+              
+    NonTripOfferCollectionDef:
+      type: array
+      items:
+        $ref: '#/components/schemas/NonTripOfferDef'
+    
+    NonTripOfferDef:
+      type: object
+      description: >-
+        Non trip offers do not reference a trip, thus no reservations can be offered by definition.
+      properties:
+        offerSummary:
+          $ref: '#/components/schemas/OfferSummary'
+        requestedInformation:
+          $ref: '#/components/schemas/RequestedInformation'
+        validFrom:
+          type: string
+          format: date-time
+        validTo:
+          type: string
+          format: date-time 
+        availableFulfillmentTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentType'
+        admissions:
+          type: array        
+          items: 
+            $ref: '#/components/schemas/Admission'
+        ancillaries:
+          type: array        
+          items:  
+            $ref: '#/components/schemas/Ancillary'
+        fares:
+          type: array
+          items:
+            $ref: '#/components/schemas/FareOnlineDef'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+
+            
+    TransportableDef:
+      type: object
+      description: >- 
+        Transportables which are handled similar to passengers like dogs, bicycles, car transport.
+        These transportables might need a ticket or reservation.
+      properties:
+        type:
+          $ref: '#/components/schemas/TravelerTypeDef'
+        car:
+          type: object
+          properties:
+            weight:
+              type: number
+              format: int32
+            length:
+              type: number
+              format: int32
+            width:
+              type: number
+              format: int32
+            height:
+              type: number
+              format: int32
+            model:
+              type: string
+              description: >-
+                free text description of the model (e.g. BMW X5)       
+            attachedItems:
+              description: >-
+                indication of items attached to the car
+              type: array
+              items:
+                type: string
+                x-extensible-enum:
+                 - ROOF_RACK
+                 - BICYCLE_STAND
+            plate:
+              description: >-
+                The trailer plate is a personal data item and must not be provided in an offer request. 
+                It must be patched into the offer after the customer accepted the offer for booking.
+              type: string
+          required:
+            - weight
+            - length
+            - width
+            - height
+            - model
+        motorCycle:
+          type: object
+          properties:
+            includingSideCar:
+              type: boolean
+              default: false
+            plate:
+              description: >-
+                The trailer plate is a personal data item and must not be provided in an offer request. 
+                It must be patched into the offer after the customer accepted the offer for booking 
+              type: string   
+          required:
+            - includingSideCar
+        trailer:
+          type: object
+          properties:
+            weight:
+              description: weight in kg
+              type: number
+              format: int32
+            length:
+              description: length in cm
+              type: number
+              format: int32
+            width:
+              description: width in cm
+              type: number
+              format: int32
+            height:
+              description: length in cm
+              type: number
+              format: int32
+            plate:
+              description: >-
+                The trailer plate is a personal data item and must not be provided in an offer request. 
+                It must be patched into the offer after the customer accepted the offer for booking 
+              type: string
+          required:
+            - weight
+            - length
+            - width
+            - height
+
     Problem:
       type: object
+      description: >-
+        Problem Details for HTTP APIs (RFC 7807) defines a "problem detail" as a way
+        to carry machine-readable details of errors in a HTTP response to avoid
+        the need to define new error response formats for HTTP APIs.
+        See: https://tools.ietf.org/html/rfc7807
       properties:
         type:
           type: string
@@ -5404,13 +5588,9 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
-      description: >-
-        Problem Details for HTTP APIs (RFC 7807) defines a "problem detail" as a way
-        to carry machine-readable details of errors in a HTTP response to avoid
-        the need to define new error response formats for HTTP APIs.
-        See: https://tools.ietf.org/html/rfc7807
 
-    #Fare-specific elements begin
+    #### Fare-specific elements begin
+
     FareOnlineDef:
       type: object
       properties:
@@ -6567,183 +6747,5 @@ components:
       required:
         - id
         - stationSets
-    #Fare-specific elements end
-    
-    OfferSearchDef:
-      description: >-
-         search parameter for an offer search on offers not based on a trip (e.g. passes)
-      type: object
-      properties:
-        searchTags:
-          description: >-
-            list of tags to search for
-          type: array
-          items:
-            type: string
-        nutsCodes:
-          description: >-
-            Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
-          type: array
-          items:
-            type: string
-        geoCoordinate:
-          $ref: '#/components/schemas/GeoCoordinate'
-        travelPeriod:
-          type: array
-          items:
-            type: string
-            format: date-time
-        passengers:
-          type: array
-          items:
-            $ref:  '#/components/schemas/Passenger'  
-        requestedFulfillmentOptions: 
-          type: array
-          items:
-            $ref:  '#/components/schemas/FulfillmentOption' 
-        offerSearchCriteria:
-            $ref:  '#/components/schemas/OfferSearchCriteria'
-        embed:
-          description: >-
-            Influences whether referenced resources are returned in full or as references only. 
-            If not specified, none of the nested resources will be embedded.
-          type: array
-          items:
-            type: string
-            enum:
-              - OFFERPARTS
-              - NONE
-              - ALL
-            default: ALL
-              
-    NonTripOfferCollectionDef:
-      type: array
-      items:
-        $ref: '#/components/schemas/NonTripOfferDef'
-    
-    NonTripOfferDef:
-      type: object
-      properties:
-        offerSummary:
-          $ref: '#/components/schemas/OfferSummary'
-        requestedInformation:
-          $ref: '#/components/schemas/RequestedInformation'
-        validFrom:
-          type: string
-          format: date-time
-        validTo:
-          type: string
-          format: date-time 
-        availableFulfillmentTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentType'
-        admissions:
-          type: array        
-          items: 
-            $ref: '#/components/schemas/Admission'
-        ancillaries:
-          type: array        
-          items:  
-            $ref: '#/components/schemas/Ancillary'
-        fares:
-          type: array
-          items:
-            $ref: '#/components/schemas/FareOnlineDef'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-      description: >-
-        Non trip offers do not reference a trip, thus no reservations
-         can be offered by definition.
-            
-    TransportableDef:
-      description: >- 
-        Transportables which are handled similar to passengers like dogs, bicycles, car transport.
-        These transportables might need a ticket or reservation.
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/TravelerTypeDef'
-        car:
-          type: object
-          properties:
-            weight:
-              type: number
-              format: int32
-            length:
-              type: number
-              format: int32
-            width:
-              type: number
-              format: int32
-            height:
-              type: number
-              format: int32
-            model:
-              type: string
-              description: >-
-                free text description of the model (e.g. BMW X5)       
-            attachedItems:
-              description: >-
-                indication of items attached to the car
-              type: array
-              items:
-                type: string
-                x-extensible-enum:
-                 - ROOF_RACK
-                 - BICYCLE_STAND
-            plate:
-              description: >-
-                The trailer plate is a personal data item and must not be provided in an offer request. 
-                It must be patched into the offer after the customer accepted the offer for booking.
-              type: string
-          required:
-            - weight
-            - length
-            - width
-            - height
-            - model
-        motorCycle:
-          type: object
-          properties:
-            includingSideCar:
-              type: boolean
-              default: false
-            plate:
-              description: >-
-                The trailer plate is a personal data item and must not be provided in an offer request. 
-                It must be patched into the offer after the customer accepted the offer for booking 
-              type: string   
-          required:
-            - includingSideCar
-        trailer:
-          type: object
-          properties:
-            weight:
-              description: weight in kg
-              type: number
-              format: int32
-            length:
-              description: length in cm
-              type: number
-              format: int32
-            width:
-              description: width in cm
-              type: number
-              format: int32
-            height:
-              description: length in cm
-              type: number
-              format: int32
-            plate:
-              description: >-
-                The trailer plate is a personal data item and must not be provided in an offer request. 
-                It must be patched into the offer after the customer accepted the offer for booking 
-              type: string
-          required:
-            - weight
-            - length
-            - width
-            - height
+
+    ##### Fare-specific elements end
