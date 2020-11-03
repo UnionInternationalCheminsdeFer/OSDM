@@ -4587,8 +4587,7 @@ components:
                 type: string
               status:
                 description: >-
-                  status of the coach if the status applies to all places of the
-                  coach
+                  status of the coach if the status applies to all places of the coach
                 type: string
                 x-extensible-enum:
                    - ALLOCATED
@@ -4656,14 +4655,15 @@ components:
           $ref: '#/components/schemas/PlaceSelectionDef'
         optionality:
           description: >-
-            MANDATORY: the booking can not be made without reservation
-            INCLUDED: the reservation is included in the offer but is not mandatory
-            OPTIONAL: the reservation is not included but can be integrated in the same ticket
+            INCLUDED: the reservation is included in the offer
+            MANDATORY: the reservation is mandatory for the booking
+            OPTIONAL: the reservation is not included but can be added optionally
           type: string
           x-extensible-enum:
-            - OPTIONAL
-            - MANDATORY
             - INCLUDED
+            - MANDATORY
+            - OPTIONAL
+
       required:
         - id
         - commonOfferPartAttributes
@@ -4785,14 +4785,12 @@ components:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         optionality:
           description: >-
-            MANDATORY: the booking can not be made without reservation, 
-            INCLUDED: the reservation is included in the offer but is not mandatory, 
-            OPTIONAL: the reservation is not included but can be integrated in the same ticket
+            INCLUDED: the ancillary is included in the offer but is not mandatory 
+            OPTIONAL: the ancillary is not included but can be optionally added
           type: string
           x-extensible-enum:
-            - OPTIONAL
-            - MANDATORY
             - INCLUDED
+            - OPTIONAL
         category:
           type: string
       required :
@@ -4893,7 +4891,15 @@ components:
           description: >-
             The unique booking reference in the provider system. Usually refers to an order number or PNR.
         status:
-          $ref: '#/components/schemas/BookingStatus'
+          type: string
+          enum:
+            - PREBOOKED
+            - CONFIRMED
+            - FULFILLED
+            - CANCELLED
+            - REFUNDED
+            - EXCHANGED
+            - ERROR
         provisionalBalance: 
           $ref: '#/components/schemas/CurrencyPriceDef'
         confirmedBalance: 
@@ -4950,17 +4956,6 @@ components:
         - id
         - status
         - passengers
-    
-    BookingStatus:
-      type: string
-      enum:
-        - PREBOOKED
-        - CONFIRMED
-        - FULFILLED
-        - CANCELLED
-        - REFUNDED
-        - EXCHANGED
-        - ERROR
 
     BookingRef:
       type: object
@@ -5015,19 +5010,18 @@ components:
         
     FulfillmentsPatch:
       type: object
+      description: >-
+        Changes the fulfillment to status FULFILLED.
       properties:
         fulfillmentUpdates:
           type: array
           items:
             type: object
             properties:
-              id:
+              fulfilledFulfillmentId:
                 type: string
                 format: uuid
                 example: d290f1ee-6c54-4b01-90e6-d701748f0851
-              status: 
-                type: string
-                enum: [FULFILLED]
                 
     Fulfillment:
       description: >-
@@ -5044,7 +5038,11 @@ components:
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
         status: 
           type: string
-          enum: [CONFIRMED, FULFILLED, CHECKEDIN, REFUNDED]
+          enum: 
+            - CONFIRMED
+            - FULFILLED
+            - CHECKEDIN
+            - REFUNDED
         price:
           $ref: '#/components/schemas/CurrencyPriceDef'
           description: >-
@@ -5070,7 +5068,7 @@ components:
             fulfillment items to be integrated into tickets (allocator mode)
           type: array
           items:
-              $ref: '#/components/schemas/FulfillmentItemDef'
+            $ref: '#/components/schemas/FulfillmentItemDef'
         links:
           type: array
           items:
@@ -5083,12 +5081,6 @@ components:
       properties:
         medium: 
           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
-        passengers:
-          description: >-
-            list of passengers on the booking in case the booking does not cover all passengers
-          type: array
-          items:
-            $ref: '#/components/schemas/PassengerRef'
         documentType:
          type: string
          x-extensible-enum:
@@ -5097,12 +5089,6 @@ components:
             - BOARDING_PASS
             - INFORMATION
             - VOUCHER
-        status:
-          type: string
-          enum:
-            - ACTIVE
-            - CANCELLED
-            - TRAVELLED   
         documentLink:
           type: string
           format: uri    
@@ -5204,6 +5190,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RefundOffer'
+  
     RefundOffer:
       type: object
       properties:
@@ -5295,16 +5282,13 @@ components:
         Request for an exchange. Fulfillments can be provided in case the booking contains multiple individual fulfillments
       type: object
       properties:
-        passengerRefs:
+        fulfillmentIds:
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/Passenger'
-        fulfillments:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentRef'
+            type: string
+            format: uuid
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+            description: id of the fulfillment to exchange
         overruleCode: 
           $ref: '#/components/schemas/AfterSaleReasonDef'
 
@@ -5370,16 +5354,14 @@ components:
 
     ExchangeOfferConfirmDef:
       type: object
+      description: >-
+        Changes the exchange offer to the status CONFIRMED.
       properties:
-        id:
+        confirmedExchangeOfferId:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the exchange offer
-        status:
-          type: string
-          enum:
-            - CONFIRMED
             
     ExchangeDef:
       description: >- 
@@ -5416,20 +5398,18 @@ components:
 
     RefundOfferConfirm:
       type: object
+      description: >-
+        Changes the refund offer to status CONFIRMED
       properties:
-        id:
+        confirmedRefundOfferId:
           type: string
           format: uuid
           example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the refund offer
-        status:
-          type: string
-          enum:
-            - CONFIRMED
             
     RefundDef:
       description: >- 
-       result of a successful confirmation of a refund. 
+        result of a successful confirmation of a refund. 
       type: object
       properties:
         reimbursementStatus:
@@ -6443,30 +6423,30 @@ components:
         - SIS
     
     LegacyReservationParameterDef:
-          type: object
-          description: reservation parameter to support the UIC 90918-1 interface for booking
-          properties:
-            travelClass:
-              description: 90918-1 class code in reservation
-              type: string
-            serviceLevelCode:
-              description: service level code defined in UIC 90918-1
-              type: string
-            serviceCode:
-              description: service code to be used in reservation
-              type: string
-            berthType:
-              type: string
-            coachTypeCode:
-              type: string
-            compartmentTypeCode:
-              type: string
-            tariff:
-              type: string
-          required:
-            - travelClass
-            - serviceLevelCode
-            - serviceCode
+      type: object
+      description: reservation parameter to support the UIC 90918-1 interface for booking
+      properties:
+        travelClass:
+          description: 90918-1 class code in reservation
+          type: string
+        serviceLevelCode:
+          description: service level code defined in UIC 90918-1
+          type: string
+        serviceCode:
+          description: service code to be used in reservation
+          type: string
+        berthType:
+          type: string
+        coachTypeCode:
+          type: string
+        compartmentTypeCode:
+          type: string
+        tariff:
+          type: string
+      required:
+        - travelClass
+        - serviceLevelCode
+        - serviceCode
           
     ReservationOnlineOptionDef:
       type: object
