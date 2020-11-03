@@ -333,7 +333,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the trip to get.
         - name: scrollContext
@@ -515,7 +514,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the trip to get.
         - name: scrollContext
@@ -699,7 +697,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the trip to get.
         - in: query
@@ -790,7 +787,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the trip to get.
         - in: query
@@ -878,7 +874,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the passenger is in.
         - in: path
@@ -886,7 +881,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the passenger to get.
       responses:
@@ -951,7 +945,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the passenger is in.
         - in: path
@@ -959,7 +952,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the passenger to get.
       requestBody:
@@ -1031,7 +1023,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking the passenger is in.
         - in: path
@@ -1039,7 +1030,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the passenger to get.
       responses:
@@ -1104,7 +1094,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking the passenger is in.
         - in: path
@@ -1112,7 +1101,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the passenger to get.
       requestBody:
@@ -1257,7 +1245,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
@@ -1265,7 +1252,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the admission to get.
       responses:
@@ -1336,7 +1322,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
@@ -1344,7 +1329,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the reservation to get.
       responses:
@@ -1420,7 +1404,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer to patch.
         - in: path
@@ -1428,7 +1411,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the reservation to patch.
       requestBody:
@@ -1505,7 +1487,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
@@ -1513,7 +1494,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the ancillary to get.
       responses:
@@ -1589,7 +1569,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
@@ -1597,7 +1576,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the fares to get.
       responses:
@@ -1673,7 +1651,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer to patch.
         - in: path
@@ -1681,7 +1658,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the fare to patch.
       requestBody:
@@ -1912,7 +1888,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the product to get.
         - in: query
@@ -1994,7 +1969,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking to delete.
       responses:
@@ -2063,7 +2037,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking to be patched      
       requestBody:
@@ -2135,7 +2108,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking to be patched        
       responses:
@@ -2217,7 +2189,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking to be patched        
       requestBody:
@@ -2306,7 +2277,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the product to get.
       responses:
@@ -2380,7 +2350,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking.      
       requestBody:
@@ -2458,7 +2427,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking  
         - in: path
@@ -2466,7 +2434,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the refund offer to get.
       responses:
@@ -2537,7 +2504,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.      
         - in: path
@@ -2545,7 +2511,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the product to get.
       requestBody:
@@ -2611,7 +2576,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.      
         - in: path
@@ -2619,7 +2583,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the product to delete.
       responses:
@@ -2693,7 +2656,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.      
       requestBody:
@@ -2759,7 +2721,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking to be exchanged.  
         - in: path
@@ -2767,7 +2728,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the exchange offer.
       requestBody:
@@ -3402,7 +3362,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         tripsCollection:
           type: array
           items:
@@ -3499,14 +3458,12 @@ components:
             - $ref: '#/components/schemas/StationCode'
             - type: string
               format: uuid
-              example: d290f1ee-6c54-4b01-90e6-d701748f0851
               description: id of the location to use as origin
         destination:
           oneOf:
             - $ref: '#/components/schemas/StationCode'
             - type: string
               format: uuid
-              example: d290f1ee-6c54-4b01-90e6-d701748f0851
               description: id of the location to use as destination
         viaValues:
           description: >-
@@ -3519,7 +3476,6 @@ components:
               - $ref: '#/components/schemas/StationDetailsDef'
               - type: string
                 format: uuid
-                example: d290f1ee-6c54-4b01-90e6-d701748f0851
                 description: id of the location to use as origin
         travelDateTime:
           type: string
@@ -3631,14 +3587,12 @@ components:
             outwardTripOfferCollectionId: 
                type: string
                format: uuid
-               example: d290f1ee-6c54-4b01-90e6-d701748f0851
                description: >-
                  Needs to be provided when creating the collection of inward travels so that the provider
                  can relate the inward travels to the outward travels context.
             outwardSelectedOfferId:
                type: string
                format: uuid
-               example: d290f1ee-6c54-4b01-90e6-d701748f0851
                description: >-
                  Needs to be provided when creating the collection of inward travels so that the provider
                  knows what the outward offer is and and propose compatible offers only if desired or mandatory.
@@ -3679,7 +3633,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         trip:
           oneOf:
             - $ref: '#/components/schemas/TripRef'
@@ -3712,7 +3665,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -3755,7 +3707,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         offerSummary:
           $ref: '#/components/schemas/OfferSummary'
         offerHash:
@@ -3834,7 +3785,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -3849,7 +3799,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         tripOffers:
           type: array
           items:
@@ -4013,7 +3962,6 @@ components:
         id: 
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: >-
            id of the passenger resource in case service to patch a single passenger is provided.
         reference:
@@ -4204,7 +4152,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -4425,7 +4372,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         links:
           type: array
           items:
@@ -4642,7 +4588,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         links:
           type: array
           items:
@@ -4776,7 +4721,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         links:
           type: array
           items:
@@ -4803,7 +4747,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -4829,14 +4772,12 @@ components:
               selectedOfferId:
                 type: string
                 format: uuid
-                example: d290f1ee-6c54-4b01-90e6-d701748f0851
                 description: id of the selected offer
               selectedOptionalReservationsIds:
                 type: array
                 items:
                   type: string
                   format: uuid
-                  example: d290f1ee-6c54-4b01-90e6-d701748f0851
                   description: >-
                     If relevant, ids of the selected optional reservations.
               selectedOptionalAncillaries:
@@ -4847,7 +4788,6 @@ components:
                     ancillaryId:
                       type: string
                       format: uuid
-                      example: d290f1ee-6c54-4b01-90e6-d701748f0851
                       description: >-
                         If relevant, ids of the selected optional ancillaries.
                     passengerIds:
@@ -4855,7 +4795,6 @@ components:
                       items:
                         type: string
                         format: uuid
-                        example: d290f1ee-6c54-4b01-90e6-d701748f0851
                         description: >-
                           Id of the passengers the selected optional ancillaries are for.
             description: the list of offer ids that need to be provisionally booked, with possibly the reservations and ancillaries associated that should be booked as well. It has to be a list in case of return trip (2 offers would be booked)
@@ -4885,7 +4824,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         reference:
           type: string
           description: >-
@@ -5021,7 +4959,6 @@ components:
               fulfilledFulfillmentId:
                 type: string
                 format: uuid
-                example: d290f1ee-6c54-4b01-90e6-d701748f0851
                 
     Fulfillment:
       description: >-
@@ -5035,7 +4972,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         status: 
           type: string
           enum: 
@@ -5169,7 +5105,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -5197,7 +5132,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the refund offer
         validUntil:
           type: string
@@ -5242,7 +5176,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -5257,7 +5190,6 @@ components:
         bookingId:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the booking to fulfill (no partial fulfillment)
       required:
         - bookingId
@@ -5272,7 +5204,6 @@ components:
           items:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
             description: id of the fulfillment to refund
         overruleCode: 
           $ref: '#/components/schemas/AfterSaleReasonDef'
@@ -5287,7 +5218,6 @@ components:
           items:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
             description: id of the fulfillment to exchange
         overruleCode: 
           $ref: '#/components/schemas/AfterSaleReasonDef'
@@ -5305,7 +5235,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the exchange offer
         validUntil:
           type: string
@@ -5360,7 +5289,6 @@ components:
         confirmedExchangeOfferId:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the exchange offer
             
     ExchangeDef:
@@ -5404,7 +5332,6 @@ components:
         confirmedRefundOfferId:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the refund offer
             
     RefundDef:
