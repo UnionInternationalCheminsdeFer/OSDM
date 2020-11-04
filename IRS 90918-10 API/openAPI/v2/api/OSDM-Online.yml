@@ -125,7 +125,6 @@ paths:
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only. 
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -267,7 +266,6 @@ paths:
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only. 
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -363,7 +361,6 @@ paths:
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only. 
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -544,7 +541,6 @@ paths:
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only. 
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -703,7 +699,6 @@ paths:
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only. 
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -793,7 +788,6 @@ paths:
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -1734,7 +1728,6 @@ paths:
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -1894,7 +1887,6 @@ paths:
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -3429,7 +3421,6 @@ components:
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only.
-            If not specified, none of the nested resources will be embedded.
           type: array
           items:
             type: string
@@ -3609,7 +3600,6 @@ components:
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only.
-            If not specified, none of the nested resources will be embedded.
           type: array
           items:
             type: string
@@ -4797,7 +4787,6 @@ components:
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only.
-            If not specified, none of the nested resources will be embedded.
           type: array
           items:
             type: string
@@ -5396,7 +5385,6 @@ components:
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only. 
-            If not specified, none of the nested resources will be embedded.
           type: array
           items:
             type: string
