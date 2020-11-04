@@ -4,7 +4,7 @@ servers:
     url: 'https://virtserver.swaggerhub.com/Real-IT/FSM_MVP/1.0.0'
 info:
   title: UIC 90918-10 - OSDM
-  version: 0.9.7
+  version: 0.9.8
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -12,7 +12,7 @@ info:
     The OSDM specification combines the allocator and distributor modes into one aligned
     API interface.
   contact:
-    name: Nicolas Selleslagh
+    name: Nicolas Selleslagh, Clemens Gantert and Andreas Schlapbach
     url: https://confluence.sbb.ch/display/FSM20
     email: Nicolas.Selleslagh@benerail.com
   license:
@@ -2902,11 +2902,12 @@ components:
           elementList:
             type: array
             items:
-              $ref: '#/components/schemas/ResRef'
+              $ref: '#/components/schemas/ResourceRef'
         description: >-
          This element can be used to pass non-blocking information or events,
          such as a price difference with the initially offered price at booking time.
-    ResRef:
+
+    ResourceRef:
       type: object
       properties:
         id:
@@ -2980,9 +2981,9 @@ components:
           $ref: '#/components/schemas/LocationRef'
 
     BookingSearchReplyDef:
+      type: object
       description: >-
         Reply on a search for bookings
-      type: object
       properties:
         bookings:
           type: array
@@ -2993,10 +2994,10 @@ components:
 
     Link:
       type: object
-      required:
-        - contentTypes
-        - href
-        - relation
+      description: >-
+        The underlying system may provide additional links pointing on further
+        information (such as HTML download links, web sites or extended APIs).
+        Mechanism to add flexible extensions specific to an underlying system.
       properties:
         contentTypes:
           type: array
@@ -3022,17 +3023,17 @@ components:
           format: int32
           example: 1
           description: Version of the current relation.
-      description: >-
-        The underlying system may provide additional links pointing on further
-        information (such as HTML download links, web sites or extended APIs).
-        Mechanism to add flexible extensions specific to an underlying system.
+      required:
+        - contentTypes
+        - href
+        - relation
         
     Segment:
+      type: object
       description: >-
         A segment represents a subsection of a trip that is realized with the same transport. In railways it is typically one
         train (between the moment traveller steps on-board until stepping out of that train), but could be using a different means
         of transportation. 
-      type: object
       properties:
         index:
           type: number
@@ -3087,7 +3088,6 @@ components:
                 Transport mode (code list of MERITS). Optional for offer
                 requests, included for alignment with FSM
               type: string
-              
         stops:
           description: >-
             The list of stops encountered between origin and destination. origin is the first stop mentioned and destination the last 
@@ -3132,16 +3132,15 @@ components:
               or intermediate stop along a segment of a trip.
             required:
               - station
-            
       required:
         - seqId
         - vehicle
       
     StationDetailsDef:
+      type: object
       description: >-
         Details of a station. In some countries stations have
         multiple names depending on the countries local languages.
-      type: object
       properties:
         localCode:
           description: code unique with in the country only
@@ -3246,6 +3245,7 @@ components:
          - street
          - city
          - postalCode
+
     PoiCodeList:
       description: Code list used for the POI codes.
       type: string
@@ -3317,10 +3317,10 @@ components:
       format: int32
 
     Poi:
+      type: object
       description: >-
         POI (for point of Interest) represent a location that is not a train station but still relevant to the 
         description of the trip. It could be a public transport stop, an exhibition, an event hall, a shopping mall etc.
-      type: object
       properties:
         codes:
           type: array
@@ -3379,9 +3379,9 @@ components:
         - tripsCollection
 
     GeoCoordinate:
+      type: object
       description: >-
         Used to provide any geo-encoded location, regardless of environment, using longitude and latitude coordinates.
-      type: object
       properties:
         system:
           description: >-
@@ -3563,10 +3563,10 @@ components:
                   - trip
             - $ref: '#/components/schemas/TripSearchCriteria'
         returnSearchParameters:
+          type: object
           description: >-
             This property can be used in case a return trip is being requested. 
             This will allow to benefit from return-specific fares or product
-          type: object
           properties:
             inwardReturnDate:
               type: string
@@ -3895,6 +3895,7 @@ components:
       required:
         - code
         - codeList
+        - name
       additionalProperties: false
       
     LoyaltyCardReferenceDef:
@@ -4004,12 +4005,12 @@ components:
             - COMPANION
         
     PassportDef:
+      type: object
       description: >- 
         Travel document data to be exchanged for border control in case of legal requirements
         PassengerDetails providing personal information only information required in the offer. 
         It is not allowed to send personal information not required in the offer reply. 
         It is legally not allowed to send these personal data already in the offer request.
-      type: object
       properties:
         cityOfBirth:
           type: string
@@ -4395,8 +4396,8 @@ components:
         - reference place for adjacent reservation (referencePlace)
       properties:
         referencePlace: 
-          description: selected place for an adjacent reservation (NEARBY)
           type: object    
+          description: selected place for an adjacent reservation (NEARBY)
           properties:
             placeNumber:
               type: string
@@ -4425,8 +4426,8 @@ components:
           description: vehicle / train number is necessary in  case of train parts with different train numbers
           type: string           
         referencePlace: 
-          description: selected place for an adjacent reservation (NEARBY)
           type: object    
+          description: selected place for an adjacent reservation (NEARBY)
           properties:
             placeNumber:
               type: string
@@ -4461,8 +4462,8 @@ components:
         - id              
    
     PlaceAvailabilityDef:
-      description: \*** NOT-MVP *** structure used for graphical place selection
       type: object
+      description: \*** NOT-MVP *** structure used for graphical place selection
       properties:
         coaches:
           description: >-
@@ -4908,9 +4909,9 @@ components:
           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
 
     FulfillmentOption:
+      type: object
       description: >-
         CIT paper implies printing on value paper which is stock controlled.
-      type: object
       properties:
         fulfillmentType:
           $ref: '#/components/schemas/FulfillmentType'
@@ -4920,9 +4921,9 @@ components:
            $ref: '#/components/schemas/FulfillmentMediaTypeDef'
            
     FulfillmentsDef:
+      type: object
       description: >-
         list of fulfillments in a booking
-      type: object
       properties:
         fulfillments:
           type: array
@@ -4944,13 +4945,13 @@ components:
                 format: uuid
                 
     Fulfillment:
+      type: object
       description: >-
         a fulfillment is a document (or part of a document in allocator mode) that
         - allows the passenger to prove his travel right
         - provides easier access to trains and stations
         - allows an exchange for other services (voucher)
         a fulfillment refers to services of one or multiple offer parts or a fare (allocator mode).
-      type: object
       properties:
         id:
           type: string
@@ -4994,9 +4995,9 @@ components:
             $ref: '#/components/schemas/Link'
     
     FulfillmentDocumentDef:
+      type: object
       description: >-
         document created for fulfillment
-      type: object
       properties:
         medium: 
           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
@@ -5013,10 +5014,10 @@ components:
           format: uri    
     
     FulfillmentItemDef:
+      type: object
       description: >-
        Fulfillment items to be integrated in to tickets, 
        e.g. visual security elements, additional bar codes, control keys
-      type: object
       properties:
         fulfillmentMedia:
           description: >-
@@ -5178,9 +5179,9 @@ components:
         - bookingId
         
     RefundOfferRequest:
+      type: object
       description: 
         Request for a refund. Fulfillments can be provided in case the booking contains multiple individual fulfillments
-      type: object
       properties:
         fulfillmentIds:
           type: array
@@ -5192,9 +5193,9 @@ components:
           $ref: '#/components/schemas/AfterSaleReasonDef'
 
     ExchangeOfferRequest:
+      type: object
       description: 
         Request for an exchange. Fulfillments can be provided in case the booking contains multiple individual fulfillments
-      type: object
       properties:
         fulfillmentIds:
           type: array
@@ -5275,10 +5276,10 @@ components:
           description: id of the exchange offer
             
     ExchangeDef:
-      description: >- 
-       Result of a successful confirmation of an exchange. 
-       The new booking and the original booking are returned.
       type: object
+      description: >- 
+        Result of a successful confirmation of an exchange. 
+        The new booking and the original booking are returned.
       properties:
         reimbursementStatus:
           description: >-
@@ -5318,9 +5319,9 @@ components:
           description: id of the refund offer
             
     RefundDef:
+      type: object
       description: >- 
         result of a successful confirmation of a refund. 
-      type: object
       properties:
         reimbursementStatus:
           description: >-
@@ -5668,7 +5669,6 @@ components:
           maximum: 9999
       
     CalendarDef:
-      description: calendar
       type: object
       properties:
         id:
@@ -5791,11 +5791,11 @@ components:
             $ref: '#/components/schemas/CoachLayoutDef'
       
     CoachLayoutDef:
+      type: object
       description: >-
         coach layout providing data to draw a coach layout. The items of a coach
         are located via coordinates with (0,0) in the upper left corner. All
         coordinates are given without sign. 
-      type: object
       properties:
         id:
           type: string
@@ -5945,10 +5945,10 @@ components:
         - id
       
     PassengerConstraintDef:
+      type: object
       description: >- 
          used in allocator mode. Some data are required to be added to bar codes and control data (ETCD) 
          even in case the fare was checked in online sales
-      type: object
       properties:
         id:
           description: >- 
@@ -6209,9 +6209,9 @@ components:
     RegionalValidityDef:
       type: array
       items:
+        type: object
         description: >- 
           One of the elements Zone, ViaStation, TrainLink, Line, or Polygon defining the regional validity
-        type: object
         properties:
           seqNb:
             description: order number of the list item
@@ -6318,8 +6318,8 @@ components:
         station:
           $ref: '#/components/schemas/StationDetailsDef'
         fareReferenceStationSet:
-          description: reference to a list of stations included in the fare
           type: object
+          description: reference to a list of stations included in the fare
           properties:
             carrier:
               $ref: '#/components/schemas/CompanyDef'
@@ -6619,9 +6619,9 @@ components:
         - text
     
     ServiceConstraintDef:
+      type: object
       description: >-
         Either excluded or included service brands can be set.
-      type: object
       properties:
         id:
           description: >- 
@@ -6691,8 +6691,8 @@ components:
         - text
     
     TextDef:
-      description: directly included text in case of online services
       type: object
+      description: directly included text in case of online services
       properties:
         id:
           type: string
@@ -6709,9 +6709,9 @@ components:
         - text
     
     ConnectionPointDef:
+      type: object
       description: >-
         Connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
-      type: object
       properties:
         id:
           type: string
