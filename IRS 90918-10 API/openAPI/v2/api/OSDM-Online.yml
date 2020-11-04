@@ -4162,12 +4162,14 @@ components:
           
     AccommodationType:
       type: string
-      description:  Accommodation type definition out of AccoTypeCodeList
+      description:  >-
+        Accommodation type definition out of AccoTypeCodeList
       
     ServiceLevelIdDef:
+      type: string
       description: >-
         Code of the service level, code-list in IRS 90918-1.
-      type: string
+
       
     Flexibility:
       type: string
@@ -4176,19 +4178,16 @@ components:
         - MIDFLEX
         - NONFLEX
 
-    PricingModeDef:
-      type: string
-      enum:
-        - COLLECTIVE
-        - INDIVIDUAL        
-        
     CommonOfferPartAttributes:
       type: object
       properties:
         price:
           $ref: '#/components/schemas/CurrencyPriceDef'
         pricingMode:
-          $ref: '#/components/schemas/PricingModeDef'
+          type: string
+          enum:
+            - COLLECTIVE
+            - INDIVIDUAL 
         reductionsApplied:
           type: array
           items:
@@ -4220,9 +4219,17 @@ components:
           description: >-
             Validity of offer towards passenger 
         refundable:
-          $ref: '#/components/schemas/RefundTypeDef'
+          type: string
+          enum:
+            - YES
+            - NO
+            - WITH_CONDITIONS
         exchangeable:
-          $ref: '#/components/schemas/ExchangeTypeDef'
+          type: string
+          enum:
+            - YES
+            - NO
+            - WITH_CONDITIONS
         productRefs:
           type: array
           items:
@@ -4237,6 +4244,12 @@ components:
                 type: array
                 items:
                   type: number
+      required:
+        - price
+        - passengerRefs
+        - validFrom
+        - refundable
+        - exchangeable
             
     ProductRef:
       type: object
@@ -4256,13 +4269,6 @@ components:
       type: object
       description: >-
          Structured description of the product , its name, comfort and sales / after-sales conditions
-      required:
-        - id
-        - description
-        - conditions
-        - refundable
-        - exchangeable
-        - fulfillmentOptions
       properties:
         id:
           type: string
@@ -4302,11 +4308,18 @@ components:
           type: string
         carrierConstraintText:
           type: string
+      required:
+        - id
+        - description
+        - conditions
+        - refundable
+        - exchangeable
+        - fulfillmentOptions
           
     FulfillmentMediaTypeDef:
+       type: string
        description: >-
-         Fulfillment types. RCT2, RCCST and UIC-PDF are official UIC standards.
-       type: string        
+         Fulfillment types. RCT2, RCCST and UIC-PDF are official UIC standards.     
        x-extensible-enum:
          - RCT2
          - RCCST
@@ -4318,14 +4331,18 @@ components:
          - SOCIAL_MEDIA_ACCOUNTS
 
     ProductCondition:
+      type: object
       description: >-
         Describes sales and after sales conditions applicable to the product. 
         For a product to be refundable or exchangeable, at least one refund or exchange 
         (respectively) condition must be present.
-      type: object
       properties:
         type:
-          $ref: '#/components/schemas/ConditionTypeDef'
+          type: string
+          x-extensible-enum:
+            - SALE
+            - EXCHANGE
+            - REFUND
         description:
           type: array
           items:
@@ -4341,27 +4358,6 @@ components:
       required:
         - type
         - description
-
-    RefundTypeDef:
-      type: string
-      enum:
-        - YES
-        - NO
-        - WITH_CONDITIONS
-            
-    ExchangeTypeDef:
-      type: string
-      enum:
-        - YES
-        - NO
-        - WITH_CONDITIONS
-
-    ConditionTypeDef:
-      type: string
-      x-extensible-enum:
-        - SALE
-        - EXCHANGE
-        - REFUND
 
     Admission:
       type: object
@@ -4466,7 +4462,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PassengerRef'
-
         selectedPlaceProperties: 
           type: array
           items:
@@ -4608,7 +4603,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-
       required:
         - id
         - commonOfferPartAttributes
@@ -4666,54 +4660,54 @@ components:
               $ref: '#/components/schemas/PlacePackDef'
   
     PlacePackDef:
-        type: object
-        description: >-
-           selection of places with common properties
-           description element - textual description of the places
-           placeProperties is mandatory for allocator mode, for distributors the textual description is used
-        properties:
-          id:
+      type: object
+      description: >-
+          selection of places with common properties
+          description element - textual description of the places
+          placeProperties is mandatory for allocator mode, for distributors the textual description is used
+      properties:
+        id:
+          type: string
+        passengerReferences:
+          description: reference of the traveller / reservation holder
+          type: string
+        vehicle:
+          description: vehicle number (e.g. train number)
+          type: string  
+        coach:
+          type: string
+        places:
+          description: descriptive string of the places (e.g. 11-35,51)
+          type: string
+        placeIds:
+          description: list of individual place numbers
+          type: array
+          items:
             type: string
-          passengerReferences:
-            description: reference of the traveller / reservation holder
-            type: string
-          vehicle:
-            description: vehicle number (e.g. train number)
-            type: string  
-          coach:
-            type: string
-          places:
-            description: descriptive string of the places (e.g. 11-35,51)
-            type: string
-          placeIds:
-            description: list of individual place numbers
-            type: array
-            items:
-              type: string
-          placeProperties:
-            description: place properties to be indicated to the customer
-            type: array
-            items:
-              type: object
-              description: place properties of places in the place pack. Properties without a  number refer to all places
-              properties:
-                placeProperty:
-                  description: see code list
-                  type: string
-                number:
-                  description: number of places with this property
-                  type: number
-                priority:
-                  description: priority for displaying a list of properties
-                  type: number
-              required:
-                - placeProperty
-        required:         
-          - id
-          - reference
-          - vehicle
-          - coach
-          - places
+        placeProperties:
+          description: place properties to be indicated to the customer
+          type: array
+          items:
+            type: object
+            description: place properties of places in the place pack. Properties without a  number refer to all places
+            properties:
+              placeProperty:
+                description: see code list
+                type: string
+              number:
+                description: number of places with this property
+                type: number
+              priority:
+                description: priority for displaying a list of properties
+                type: number
+            required:
+              - placeProperty
+      required:         
+        - id
+        - reference
+        - vehicle
+        - coach
+        - places
              
     Ancillary:
       type: object
