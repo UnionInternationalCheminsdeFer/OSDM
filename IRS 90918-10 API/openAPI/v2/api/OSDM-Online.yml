@@ -4,7 +4,7 @@ servers:
     url: 'https://virtserver.swaggerhub.com/Real-IT/FSM_MVP/1.0.0'
 info:
   title: UIC 90918-10 - OSDM
-  version: 0.9.7
+  version: 0.9.8
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -12,7 +12,7 @@ info:
     The OSDM specification combines the allocator and distributor modes into one aligned
     API interface.
   contact:
-    name: Nicolas Selleslagh
+    name: Nicolas Selleslagh, Clemens Gantert and Andreas Schlapbach
     url: https://confluence.sbb.ch/display/FSM20
     email: Nicolas.Selleslagh@benerail.com
   license:
@@ -125,7 +125,6 @@ paths:
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only. 
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -267,7 +266,6 @@ paths:
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only. 
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -333,7 +331,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the trip to get.
         - name: scrollContext
@@ -364,7 +361,6 @@ paths:
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only. 
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -515,7 +511,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the trip to get.
         - name: scrollContext
@@ -546,7 +541,6 @@ paths:
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only. 
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -699,14 +693,12 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the trip to get.
         - in: query
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only. 
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -790,14 +782,12 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the trip to get.
         - in: query
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -878,7 +868,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the passenger is in.
         - in: path
@@ -886,7 +875,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the passenger to get.
       responses:
@@ -951,7 +939,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the passenger is in.
         - in: path
@@ -959,7 +946,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the passenger to get.
       requestBody:
@@ -1031,7 +1017,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking the passenger is in.
         - in: path
@@ -1039,7 +1024,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the passenger to get.
       responses:
@@ -1104,7 +1088,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking the passenger is in.
         - in: path
@@ -1112,7 +1095,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the passenger to get.
       requestBody:
@@ -1257,7 +1239,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
@@ -1265,7 +1246,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the admission to get.
       responses:
@@ -1336,7 +1316,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
@@ -1344,7 +1323,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the reservation to get.
       responses:
@@ -1420,7 +1398,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer to patch.
         - in: path
@@ -1428,7 +1405,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the reservation to patch.
       requestBody:
@@ -1505,7 +1481,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
@@ -1513,7 +1488,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the ancillary to get.
       responses:
@@ -1589,7 +1563,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
@@ -1597,7 +1570,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the fares to get.
       responses:
@@ -1673,7 +1645,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer to patch.
         - in: path
@@ -1681,7 +1652,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the fare to patch.
       requestBody:
@@ -1758,7 +1728,6 @@ paths:
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -1912,14 +1881,12 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the product to get.
         - in: query
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
-            If not specified, none of the nested resources will be embedded.
           schema:
             type: array
             items:
@@ -1994,7 +1961,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking to delete.
       responses:
@@ -2063,7 +2029,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking to be patched      
       requestBody:
@@ -2135,7 +2100,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking to be patched        
       responses:
@@ -2217,7 +2181,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking to be patched        
       requestBody:
@@ -2306,7 +2269,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the product to get.
       responses:
@@ -2380,7 +2342,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking.      
       requestBody:
@@ -2458,7 +2419,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking  
         - in: path
@@ -2466,7 +2426,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the refund offer to get.
       responses:
@@ -2537,7 +2496,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.      
         - in: path
@@ -2545,7 +2503,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the product to get.
       requestBody:
@@ -2611,7 +2568,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.      
         - in: path
@@ -2619,7 +2575,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the product to delete.
       responses:
@@ -2693,7 +2648,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the offer the offerPart is part of.      
       requestBody:
@@ -2759,7 +2713,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the booking to be exchanged.  
         - in: path
@@ -2767,7 +2720,6 @@ paths:
           schema:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
           required: true
           description: ID of the exchange offer.
       requestBody:
@@ -2950,11 +2902,12 @@ components:
           elementList:
             type: array
             items:
-              $ref: '#/components/schemas/ResRef'
+              $ref: '#/components/schemas/ResourceRef'
         description: >-
          This element can be used to pass non-blocking information or events,
          such as a price difference with the initially offered price at booking time.
-    ResRef:
+
+    ResourceRef:
       type: object
       properties:
         id:
@@ -3028,9 +2981,9 @@ components:
           $ref: '#/components/schemas/LocationRef'
 
     BookingSearchReplyDef:
+      type: object
       description: >-
         Reply on a search for bookings
-      type: object
       properties:
         bookings:
           type: array
@@ -3041,10 +2994,10 @@ components:
 
     Link:
       type: object
-      required:
-        - contentTypes
-        - href
-        - relation
+      description: >-
+        The underlying system may provide additional links pointing on further
+        information (such as HTML download links, web sites or extended APIs).
+        Mechanism to add flexible extensions specific to an underlying system.
       properties:
         contentTypes:
           type: array
@@ -3070,17 +3023,17 @@ components:
           format: int32
           example: 1
           description: Version of the current relation.
-      description: >-
-        The underlying system may provide additional links pointing on further
-        information (such as HTML download links, web sites or extended APIs).
-        Mechanism to add flexible extensions specific to an underlying system.
+      required:
+        - contentTypes
+        - href
+        - relation
         
     Segment:
+      type: object
       description: >-
         A segment represents a subsection of a trip that is realized with the same transport. In railways it is typically one
         train (between the moment traveller steps on-board until stepping out of that train), but could be using a different means
         of transportation. 
-      type: object
       properties:
         index:
           type: number
@@ -3135,7 +3088,6 @@ components:
                 Transport mode (code list of MERITS). Optional for offer
                 requests, included for alignment with FSM
               type: string
-              
         stops:
           description: >-
             The list of stops encountered between origin and destination. origin is the first stop mentioned and destination the last 
@@ -3180,16 +3132,15 @@ components:
               or intermediate stop along a segment of a trip.
             required:
               - station
-            
       required:
         - seqId
         - vehicle
       
     StationDetailsDef:
+      type: object
       description: >-
         Details of a station. In some countries stations have
         multiple names depending on the countries local languages.
-      type: object
       properties:
         localCode:
           description: code unique with in the country only
@@ -3294,6 +3245,7 @@ components:
          - street
          - city
          - postalCode
+
     PoiCodeList:
       description: Code list used for the POI codes.
       type: string
@@ -3365,10 +3317,10 @@ components:
       format: int32
 
     Poi:
+      type: object
       description: >-
         POI (for point of Interest) represent a location that is not a train station but still relevant to the 
         description of the trip. It could be a public transport stop, an exhibition, an event hall, a shopping mall etc.
-      type: object
       properties:
         codes:
           type: array
@@ -3402,7 +3354,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         tripsCollection:
           type: array
           items:
@@ -3428,9 +3379,9 @@ components:
         - tripsCollection
 
     GeoCoordinate:
+      type: object
       description: >-
         Used to provide any geo-encoded location, regardless of environment, using longitude and latitude coordinates.
-      type: object
       properties:
         system:
           description: >-
@@ -3470,7 +3421,6 @@ components:
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only.
-            If not specified, none of the nested resources will be embedded.
           type: array
           items:
             type: string
@@ -3499,14 +3449,12 @@ components:
             - $ref: '#/components/schemas/StationCode'
             - type: string
               format: uuid
-              example: d290f1ee-6c54-4b01-90e6-d701748f0851
               description: id of the location to use as origin
         destination:
           oneOf:
             - $ref: '#/components/schemas/StationCode'
             - type: string
               format: uuid
-              example: d290f1ee-6c54-4b01-90e6-d701748f0851
               description: id of the location to use as destination
         viaValues:
           description: >-
@@ -3519,7 +3467,6 @@ components:
               - $ref: '#/components/schemas/StationDetailsDef'
               - type: string
                 format: uuid
-                example: d290f1ee-6c54-4b01-90e6-d701748f0851
                 description: id of the location to use as origin
         travelDateTime:
           type: string
@@ -3616,10 +3563,10 @@ components:
                   - trip
             - $ref: '#/components/schemas/TripSearchCriteria'
         returnSearchParameters:
+          type: object
           description: >-
             This property can be used in case a return trip is being requested. 
             This will allow to benefit from return-specific fares or product
-          type: object
           properties:
             inwardReturnDate:
               type: string
@@ -3631,14 +3578,12 @@ components:
             outwardTripOfferCollectionId: 
                type: string
                format: uuid
-               example: d290f1ee-6c54-4b01-90e6-d701748f0851
                description: >-
                  Needs to be provided when creating the collection of inward travels so that the provider
                  can relate the inward travels to the outward travels context.
             outwardSelectedOfferId:
                type: string
                format: uuid
-               example: d290f1ee-6c54-4b01-90e6-d701748f0851
                description: >-
                  Needs to be provided when creating the collection of inward travels so that the provider
                  knows what the outward offer is and and propose compatible offers only if desired or mandatory.
@@ -3655,7 +3600,6 @@ components:
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only.
-            If not specified, none of the nested resources will be embedded.
           type: array
           items:
             type: string
@@ -3679,7 +3623,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         trip:
           oneOf:
             - $ref: '#/components/schemas/TripRef'
@@ -3712,7 +3655,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -3755,7 +3697,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         offerSummary:
           $ref: '#/components/schemas/OfferSummary'
         offerHash:
@@ -3800,7 +3741,7 @@ components:
           type: string
           format: date-time
           description: defines the minimum validity period of the trip booked, meaning the period during which it will be possible to travel with the fulfillments for this offer 
-        validTo:
+        validUntil:
           type: string
           format: date-time 
           description: defines the minimum validity period of the trip booked, meaning the period during which it will be possible to travel with the fulfillments for this offer
@@ -3834,7 +3775,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -3849,7 +3789,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         tripOffers:
           type: array
           items:
@@ -3956,6 +3895,7 @@ components:
       required:
         - code
         - codeList
+        - name
       additionalProperties: false
       
     LoyaltyCardReferenceDef:
@@ -4013,7 +3953,6 @@ components:
         id: 
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: >-
            id of the passenger resource in case service to patch a single passenger is provided.
         reference:
@@ -4066,12 +4005,12 @@ components:
             - COMPANION
         
     PassportDef:
+      type: object
       description: >- 
         Travel document data to be exchanged for border control in case of legal requirements
         PassengerDetails providing personal information only information required in the offer. 
         It is not allowed to send personal information not required in the offer reply. 
         It is legally not allowed to send these personal data already in the offer request.
-      type: object
       properties:
         cityOfBirth:
           type: string
@@ -4204,7 +4143,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -4215,12 +4153,14 @@ components:
           
     AccommodationType:
       type: string
-      description:  Accommodation type definition out of AccoTypeCodeList
+      description:  >-
+        Accommodation type definition out of AccoTypeCodeList
       
     ServiceLevelIdDef:
+      type: string
       description: >-
         Code of the service level, code-list in IRS 90918-1.
-      type: string
+
       
     Flexibility:
       type: string
@@ -4229,19 +4169,16 @@ components:
         - MIDFLEX
         - NONFLEX
 
-    PricingModeDef:
-      type: string
-      enum:
-        - COLLECTIVE
-        - INDIVIDUAL        
-        
     CommonOfferPartAttributes:
       type: object
       properties:
         price:
           $ref: '#/components/schemas/CurrencyPriceDef'
         pricingMode:
-          $ref: '#/components/schemas/PricingModeDef'
+          type: string
+          enum:
+            - COLLECTIVE
+            - INDIVIDUAL 
         reductionsApplied:
           type: array
           items:
@@ -4267,15 +4204,23 @@ components:
           format: date-time
           description: >-
             Validity of offer towards passenger 
-        validTo:
+        validUntil:
           type: string
           format: date-time
           description: >-
             Validity of offer towards passenger 
         refundable:
-          $ref: '#/components/schemas/RefundTypeDef'
+          type: string
+          enum:
+            - YES
+            - NO
+            - WITH_CONDITIONS
         exchangeable:
-          $ref: '#/components/schemas/ExchangeTypeDef'
+          type: string
+          enum:
+            - YES
+            - NO
+            - WITH_CONDITIONS
         productRefs:
           type: array
           items:
@@ -4290,6 +4235,12 @@ components:
                 type: array
                 items:
                   type: number
+      required:
+        - price
+        - passengerRefs
+        - validFrom
+        - refundable
+        - exchangeable
             
     ProductRef:
       type: object
@@ -4309,13 +4260,6 @@ components:
       type: object
       description: >-
          Structured description of the product , its name, comfort and sales / after-sales conditions
-      required:
-        - id
-        - description
-        - conditions
-        - refundable
-        - exchangeable
-        - fulfillmentOptions
       properties:
         id:
           type: string
@@ -4355,11 +4299,18 @@ components:
           type: string
         carrierConstraintText:
           type: string
+      required:
+        - id
+        - description
+        - conditions
+        - refundable
+        - exchangeable
+        - fulfillmentOptions
           
     FulfillmentMediaTypeDef:
+       type: string
        description: >-
-         Fulfillment types. RCT2, RCCST and UIC-PDF are official UIC standards.
-       type: string        
+         Fulfillment types. RCT2, RCCST and UIC-PDF are official UIC standards.     
        x-extensible-enum:
          - RCT2
          - RCCST
@@ -4371,14 +4322,18 @@ components:
          - SOCIAL_MEDIA_ACCOUNTS
 
     ProductCondition:
+      type: object
       description: >-
         Describes sales and after sales conditions applicable to the product. 
         For a product to be refundable or exchangeable, at least one refund or exchange 
         (respectively) condition must be present.
-      type: object
       properties:
         type:
-          $ref: '#/components/schemas/ConditionTypeDef'
+          type: string
+          x-extensible-enum:
+            - SALE
+            - EXCHANGE
+            - REFUND
         description:
           type: array
           items:
@@ -4395,27 +4350,6 @@ components:
         - type
         - description
 
-    RefundTypeDef:
-      type: string
-      enum:
-        - YES
-        - NO
-        - WITH_CONDITIONS
-            
-    ExchangeTypeDef:
-      type: string
-      enum:
-        - YES
-        - NO
-        - WITH_CONDITIONS
-
-    ConditionTypeDef:
-      type: string
-      x-extensible-enum:
-        - SALE
-        - EXCHANGE
-        - REFUND
-
     Admission:
       type: object
       description:
@@ -4425,11 +4359,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         isReservationRequired:
@@ -4450,6 +4379,10 @@ components:
                   - INCLUDED
               ancillary:
                 $ref: '#/components/schemas/OfferPartRef'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
       required:
         - id
         - commonOfferPartAttributes
@@ -4463,8 +4396,8 @@ components:
         - reference place for adjacent reservation (referencePlace)
       properties:
         referencePlace: 
-          description: selected place for an adjacent reservation (NEARBY)
           type: object    
+          description: selected place for an adjacent reservation (NEARBY)
           properties:
             placeNumber:
               type: string
@@ -4493,8 +4426,8 @@ components:
           description: vehicle / train number is necessary in  case of train parts with different train numbers
           type: string           
         referencePlace: 
-          description: selected place for an adjacent reservation (NEARBY)
           type: object    
+          description: selected place for an adjacent reservation (NEARBY)
           properties:
             placeNumber:
               type: string
@@ -4520,7 +4453,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PassengerRef'
-
         selectedPlaceProperties: 
           type: array
           items:
@@ -4530,8 +4462,8 @@ components:
         - id              
    
     PlaceAvailabilityDef:
-      description: \*** NOT-MVP *** structure used for graphical place selection
       type: object
+      description: \*** NOT-MVP *** structure used for graphical place selection
       properties:
         coaches:
           description: >-
@@ -4587,8 +4519,7 @@ components:
                 type: string
               status:
                 description: >-
-                  status of the coach if the status applies to all places of the
-                  coach
+                  status of the coach if the status applies to all places of the coach
                 type: string
                 x-extensible-enum:
                    - ALLOCATED
@@ -4643,11 +4574,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         reservationDetails:
@@ -4656,14 +4582,18 @@ components:
           $ref: '#/components/schemas/PlaceSelectionDef'
         optionality:
           description: >-
-            MANDATORY: the booking can not be made without reservation
-            INCLUDED: the reservation is included in the offer but is not mandatory
-            OPTIONAL: the reservation is not included but can be integrated in the same ticket
+            INCLUDED: the reservation is included in the offer
+            MANDATORY: the reservation is mandatory for the booking
+            OPTIONAL: the reservation is not included but can be added optionally
           type: string
           x-extensible-enum:
-            - OPTIONAL
-            - MANDATORY
             - INCLUDED
+            - MANDATORY
+            - OPTIONAL
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
       required:
         - id
         - commonOfferPartAttributes
@@ -4721,54 +4651,54 @@ components:
               $ref: '#/components/schemas/PlacePackDef'
   
     PlacePackDef:
-        type: object
-        description: >-
-           selection of places with common properties
-           description element - textual description of the places
-           placeProperties is mandatory for allocator mode, for distributors the textual description is used
-        properties:
-          id:
+      type: object
+      description: >-
+          selection of places with common properties
+          description element - textual description of the places
+          placeProperties is mandatory for allocator mode, for distributors the textual description is used
+      properties:
+        id:
+          type: string
+        passengerReferences:
+          description: reference of the traveller / reservation holder
+          type: string
+        vehicle:
+          description: vehicle number (e.g. train number)
+          type: string  
+        coach:
+          type: string
+        places:
+          description: descriptive string of the places (e.g. 11-35,51)
+          type: string
+        placeIds:
+          description: list of individual place numbers
+          type: array
+          items:
             type: string
-          passengerReferences:
-            description: reference of the traveller / reservation holder
-            type: string
-          vehicle:
-            description: vehicle number (e.g. train number)
-            type: string  
-          coach:
-            type: string
-          places:
-            description: descriptive string of the places (e.g. 11-35,51)
-            type: string
-          placeIds:
-            description: list of individual place numbers
-            type: array
-            items:
-              type: string
-          placeProperties:
-            description: place properties to be indicated to the customer
-            type: array
-            items:
-              type: object
-              description: place properties of places in the place pack. Properties without a  number refer to all places
-              properties:
-                placeProperty:
-                  description: see code list
-                  type: string
-                number:
-                  description: number of places with this property
-                  type: number
-                priority:
-                  description: priority for displaying a list of properties
-                  type: number
-              required:
-                - placeProperty
-        required:         
-          - id
-          - reference
-          - vehicle
-          - coach
-          - places
+        placeProperties:
+          description: place properties to be indicated to the customer
+          type: array
+          items:
+            type: object
+            description: place properties of places in the place pack. Properties without a  number refer to all places
+            properties:
+              placeProperty:
+                description: see code list
+                type: string
+              number:
+                description: number of places with this property
+                type: number
+              priority:
+                description: priority for displaying a list of properties
+                type: number
+            required:
+              - placeProperty
+      required:         
+        - id
+        - reference
+        - vehicle
+        - coach
+        - places
              
     Ancillary:
       type: object
@@ -4776,25 +4706,22 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         optionality:
           description: >-
-            MANDATORY: the booking can not be made without reservation, 
-            INCLUDED: the reservation is included in the offer but is not mandatory, 
-            OPTIONAL: the reservation is not included but can be integrated in the same ticket
+            INCLUDED: the ancillary is included in the offer but is not mandatory 
+            OPTIONAL: the ancillary is not included but can be optionally added
           type: string
           x-extensible-enum:
-            - OPTIONAL
-            - MANDATORY
             - INCLUDED
+            - OPTIONAL
         category:
           type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
       required :
         - id
         - commonOfferPartAttributes
@@ -4805,7 +4732,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -4831,14 +4757,12 @@ components:
               selectedOfferId:
                 type: string
                 format: uuid
-                example: d290f1ee-6c54-4b01-90e6-d701748f0851
                 description: id of the selected offer
               selectedOptionalReservationsIds:
                 type: array
                 items:
                   type: string
                   format: uuid
-                  example: d290f1ee-6c54-4b01-90e6-d701748f0851
                   description: >-
                     If relevant, ids of the selected optional reservations.
               selectedOptionalAncillaries:
@@ -4849,7 +4773,6 @@ components:
                     ancillaryId:
                       type: string
                       format: uuid
-                      example: d290f1ee-6c54-4b01-90e6-d701748f0851
                       description: >-
                         If relevant, ids of the selected optional ancillaries.
                     passengerIds:
@@ -4857,7 +4780,6 @@ components:
                       items:
                         type: string
                         format: uuid
-                        example: d290f1ee-6c54-4b01-90e6-d701748f0851
                         description: >-
                           Id of the passengers the selected optional ancillaries are for.
             description: the list of offer ids that need to be provisionally booked, with possibly the reservations and ancillaries associated that should be booked as well. It has to be a list in case of return trip (2 offers would be booked)
@@ -4866,7 +4788,6 @@ components:
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only.
-            If not specified, none of the nested resources will be embedded.
           type: array
           items:
             type: string
@@ -4887,13 +4808,20 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         reference:
           type: string
           description: >-
             The unique booking reference in the provider system. Usually refers to an order number or PNR.
         status:
-          $ref: '#/components/schemas/BookingStatus'
+          type: string
+          enum:
+            - PREBOOKED
+            - CONFIRMED
+            - FULFILLED
+            - CANCELLED
+            - REFUNDED
+            - EXCHANGED
+            - ERROR
         provisionalBalance: 
           $ref: '#/components/schemas/CurrencyPriceDef'
         confirmedBalance: 
@@ -4950,17 +4878,6 @@ components:
         - id
         - status
         - passengers
-    
-    BookingStatus:
-      type: string
-      enum:
-        - PREBOOKED
-        - CONFIRMED
-        - FULFILLED
-        - CANCELLED
-        - REFUNDED
-        - EXCHANGED
-        - ERROR
 
     BookingRef:
       type: object
@@ -4992,9 +4909,9 @@ components:
           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
 
     FulfillmentOption:
+      type: object
       description: >-
         CIT paper implies printing on value paper which is stock controlled.
-      type: object
       properties:
         fulfillmentType:
           $ref: '#/components/schemas/FulfillmentType'
@@ -5004,9 +4921,9 @@ components:
            $ref: '#/components/schemas/FulfillmentMediaTypeDef'
            
     FulfillmentsDef:
+      type: object
       description: >-
         list of fulfillments in a booking
-      type: object
       properties:
         fulfillments:
           type: array
@@ -5015,36 +4932,37 @@ components:
         
     FulfillmentsPatch:
       type: object
+      description: >-
+        Changes the fulfillment to status FULFILLED.
       properties:
         fulfillmentUpdates:
           type: array
           items:
             type: object
             properties:
-              id:
+              fulfilledFulfillmentId:
                 type: string
                 format: uuid
-                example: d290f1ee-6c54-4b01-90e6-d701748f0851
-              status: 
-                type: string
-                enum: [FULFILLED]
                 
     Fulfillment:
+      type: object
       description: >-
         a fulfillment is a document (or part of a document in allocator mode) that
         - allows the passenger to prove his travel right
         - provides easier access to trains and stations
         - allows an exchange for other services (voucher)
         a fulfillment refers to services of one or multiple offer parts or a fare (allocator mode).
-      type: object
       properties:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         status: 
           type: string
-          enum: [CONFIRMED, FULFILLED, CHECKEDIN, REFUNDED]
+          enum: 
+            - CONFIRMED
+            - FULFILLED
+            - CHECKEDIN
+            - REFUNDED
         price:
           $ref: '#/components/schemas/CurrencyPriceDef'
           description: >-
@@ -5070,25 +4988,19 @@ components:
             fulfillment items to be integrated into tickets (allocator mode)
           type: array
           items:
-              $ref: '#/components/schemas/FulfillmentItemDef'
+            $ref: '#/components/schemas/FulfillmentItemDef'
         links:
           type: array
           items:
             $ref: '#/components/schemas/Link'
     
     FulfillmentDocumentDef:
+      type: object
       description: >-
         document created for fulfillment
-      type: object
       properties:
         medium: 
           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
-        passengers:
-          description: >-
-            list of passengers on the booking in case the booking does not cover all passengers
-          type: array
-          items:
-            $ref: '#/components/schemas/PassengerRef'
         documentType:
          type: string
          x-extensible-enum:
@@ -5097,21 +5009,15 @@ components:
             - BOARDING_PASS
             - INFORMATION
             - VOUCHER
-        status:
-          type: string
-          enum:
-            - ACTIVE
-            - CANCELLED
-            - TRAVELLED   
         documentLink:
           type: string
           format: uri    
     
     FulfillmentItemDef:
+      type: object
       description: >-
        Fulfillment items to be integrated in to tickets, 
        e.g. visual security elements, additional bar codes, control keys
-      type: object
       properties:
         fulfillmentMedia:
           description: >-
@@ -5183,7 +5089,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -5204,13 +5109,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RefundOffer'
+  
     RefundOffer:
       type: object
       properties:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the refund offer
         validUntil:
           type: string
@@ -5255,7 +5160,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
         href:
           type: string
           format: url
@@ -5270,41 +5174,35 @@ components:
         bookingId:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the booking to fulfill (no partial fulfillment)
       required:
         - bookingId
         
     RefundOfferRequest:
+      type: object
       description: 
         Request for a refund. Fulfillments can be provided in case the booking contains multiple individual fulfillments
-      type: object
       properties:
         fulfillmentIds:
           type: array
           items:
             type: string
             format: uuid
-            example: d290f1ee-6c54-4b01-90e6-d701748f0851
             description: id of the fulfillment to refund
         overruleCode: 
           $ref: '#/components/schemas/AfterSaleReasonDef'
 
     ExchangeOfferRequest:
+      type: object
       description: 
         Request for an exchange. Fulfillments can be provided in case the booking contains multiple individual fulfillments
-      type: object
       properties:
-        passengerRefs:
+        fulfillmentIds:
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/Passenger'
-        fulfillments:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentRef'
+            type: string
+            format: uuid
+            description: id of the fulfillment to exchange
         overruleCode: 
           $ref: '#/components/schemas/AfterSaleReasonDef'
 
@@ -5321,7 +5219,6 @@ components:
         id:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the exchange offer
         validUntil:
           type: string
@@ -5370,22 +5267,19 @@ components:
 
     ExchangeOfferConfirmDef:
       type: object
+      description: >-
+        Changes the exchange offer to the status CONFIRMED.
       properties:
-        id:
+        confirmedExchangeOfferId:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the exchange offer
-        status:
-          type: string
-          enum:
-            - CONFIRMED
             
     ExchangeDef:
-      description: >- 
-       Result of a successful confirmation of an exchange. 
-       The new booking and the original booking are returned.
       type: object
+      description: >- 
+        Result of a successful confirmation of an exchange. 
+        The new booking and the original booking are returned.
       properties:
         reimbursementStatus:
           description: >-
@@ -5416,21 +5310,18 @@ components:
 
     RefundOfferConfirm:
       type: object
+      description: >-
+        Changes the refund offer to status CONFIRMED
       properties:
-        id:
+        confirmedRefundOfferId:
           type: string
           format: uuid
-          example: d290f1ee-6c54-4b01-90e6-d701748f0851
           description: id of the refund offer
-        status:
-          type: string
-          enum:
-            - CONFIRMED
             
     RefundDef:
-      description: >- 
-       result of a successful confirmation of a refund. 
       type: object
+      description: >- 
+        result of a successful confirmation of a refund. 
       properties:
         reimbursementStatus:
           description: >-
@@ -5458,8 +5349,190 @@ components:
         - refundFee
         - refundableAmount
 
+    OfferSearchDef:
+      type: object
+      description: >-
+        Search parameter for an offer search on offers not based on a trip (e.g. passes)
+      properties:
+        searchTags:
+          description: >-
+            list of tags to search for
+          type: array
+          items:
+            type: string
+        nutsCodes:
+          description: >-
+            Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
+          type: array
+          items:
+            type: string
+        geoCoordinate:
+          $ref: '#/components/schemas/GeoCoordinate'
+        travelPeriod:
+          type: array
+          items:
+            type: string
+            format: date-time
+        passengers:
+          type: array
+          items:
+            $ref:  '#/components/schemas/Passenger'  
+        requestedFulfillmentOptions: 
+          type: array
+          items:
+            $ref:  '#/components/schemas/FulfillmentOption' 
+        offerSearchCriteria:
+            $ref:  '#/components/schemas/OfferSearchCriteria'
+        embed:
+          description: >-
+            Influences whether referenced resources are returned in full or as references only. 
+          type: array
+          items:
+            type: string
+            enum:
+              - OFFERPARTS
+              - NONE
+              - ALL
+            default: ALL
+              
+    NonTripOfferCollectionDef:
+      type: array
+      items:
+        $ref: '#/components/schemas/NonTripOfferDef'
+    
+    NonTripOfferDef:
+      type: object
+      description: >-
+        Non trip offers do not reference a trip, thus no reservations can be offered by definition.
+      properties:
+        offerSummary:
+          $ref: '#/components/schemas/OfferSummary'
+        requestedInformation:
+          $ref: '#/components/schemas/RequestedInformation'
+        validFrom:
+          type: string
+          format: date-time
+        validUntil:
+          type: string
+          format: date-time 
+        availableFulfillmentTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentType'
+        admissions:
+          type: array        
+          items: 
+            $ref: '#/components/schemas/Admission'
+        ancillaries:
+          type: array        
+          items:  
+            $ref: '#/components/schemas/Ancillary'
+        fares:
+          type: array
+          items:
+            $ref: '#/components/schemas/FareOnlineDef'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+            
+    TransportableDef:
+      type: object
+      description: >- 
+        Transportables which are handled similar to passengers like dogs, bicycles, car transport.
+        These transportables might need a ticket or reservation.
+      properties:
+        type:
+          $ref: '#/components/schemas/TravelerTypeDef'
+        car:
+          type: object
+          properties:
+            weight:
+              type: number
+              format: int32
+            length:
+              type: number
+              format: int32
+            width:
+              type: number
+              format: int32
+            height:
+              type: number
+              format: int32
+            model:
+              type: string
+              description: >-
+                free text description of the model (e.g. BMW X5)       
+            attachedItems:
+              description: >-
+                indication of items attached to the car
+              type: array
+              items:
+                type: string
+                x-extensible-enum:
+                 - ROOF_RACK
+                 - BICYCLE_STAND
+            plate:
+              description: >-
+                The trailer plate is a personal data item and must not be provided in an offer request. 
+                It must be patched into the offer after the customer accepted the offer for booking.
+              type: string
+          required:
+            - weight
+            - length
+            - width
+            - height
+            - model
+        motorCycle:
+          type: object
+          properties:
+            includingSideCar:
+              type: boolean
+              default: false
+            plate:
+              description: >-
+                The trailer plate is a personal data item and must not be provided in an offer request. 
+                It must be patched into the offer after the customer accepted the offer for booking 
+              type: string   
+          required:
+            - includingSideCar
+        trailer:
+          type: object
+          properties:
+            weight:
+              description: weight in kg
+              type: number
+              format: int32
+            length:
+              description: length in cm
+              type: number
+              format: int32
+            width:
+              description: width in cm
+              type: number
+              format: int32
+            height:
+              description: length in cm
+              type: number
+              format: int32
+            plate:
+              description: >-
+                The trailer plate is a personal data item and must not be provided in an offer request. 
+                It must be patched into the offer after the customer accepted the offer for booking 
+              type: string
+          required:
+            - weight
+            - length
+            - width
+            - height
+
     Problem:
       type: object
+      description: >-
+        Problem Details for HTTP APIs (RFC 7807) defines a "problem detail" as a way
+        to carry machine-readable details of errors in a HTTP response to avoid
+        the need to define new error response formats for HTTP APIs.
+        See: https://tools.ietf.org/html/rfc7807
       properties:
         type:
           type: string
@@ -5497,13 +5570,9 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
-      description: >-
-        Problem Details for HTTP APIs (RFC 7807) defines a "problem detail" as a way
-        to carry machine-readable details of errors in a HTTP response to avoid
-        the need to define new error response formats for HTTP APIs.
-        See: https://tools.ietf.org/html/rfc7807
 
-    #Fare-specific elements begin
+    #### Fare-specific elements begin
+
     FareOnlineDef:
       type: object
       properties:
@@ -5600,7 +5669,6 @@ components:
           maximum: 9999
       
     CalendarDef:
-      description: calendar
       type: object
       properties:
         id:
@@ -5723,11 +5791,11 @@ components:
             $ref: '#/components/schemas/CoachLayoutDef'
       
     CoachLayoutDef:
+      type: object
       description: >-
         coach layout providing data to draw a coach layout. The items of a coach
         are located via coordinates with (0,0) in the upper left corner. All
         coordinates are given without sign. 
-      type: object
       properties:
         id:
           type: string
@@ -5877,10 +5945,10 @@ components:
         - id
       
     PassengerConstraintDef:
+      type: object
       description: >- 
          used in allocator mode. Some data are required to be added to bar codes and control data (ETCD) 
          even in case the fare was checked in online sales
-      type: object
       properties:
         id:
           description: >- 
@@ -6141,9 +6209,9 @@ components:
     RegionalValidityDef:
       type: array
       items:
+        type: object
         description: >- 
           One of the elements Zone, ViaStation, TrainLink, Line, or Polygon defining the regional validity
-        type: object
         properties:
           seqNb:
             description: order number of the list item
@@ -6250,8 +6318,8 @@ components:
         station:
           $ref: '#/components/schemas/StationDetailsDef'
         fareReferenceStationSet:
-          description: reference to a list of stations included in the fare
           type: object
+          description: reference to a list of stations included in the fare
           properties:
             carrier:
               $ref: '#/components/schemas/CompanyDef'
@@ -6443,30 +6511,30 @@ components:
         - SIS
     
     LegacyReservationParameterDef:
-          type: object
-          description: reservation parameter to support the UIC 90918-1 interface for booking
-          properties:
-            travelClass:
-              description: 90918-1 class code in reservation
-              type: string
-            serviceLevelCode:
-              description: service level code defined in UIC 90918-1
-              type: string
-            serviceCode:
-              description: service code to be used in reservation
-              type: string
-            berthType:
-              type: string
-            coachTypeCode:
-              type: string
-            compartmentTypeCode:
-              type: string
-            tariff:
-              type: string
-          required:
-            - travelClass
-            - serviceLevelCode
-            - serviceCode
+      type: object
+      description: reservation parameter to support the UIC 90918-1 interface for booking
+      properties:
+        travelClass:
+          description: 90918-1 class code in reservation
+          type: string
+        serviceLevelCode:
+          description: service level code defined in UIC 90918-1
+          type: string
+        serviceCode:
+          description: service code to be used in reservation
+          type: string
+        berthType:
+          type: string
+        coachTypeCode:
+          type: string
+        compartmentTypeCode:
+          type: string
+        tariff:
+          type: string
+      required:
+        - travelClass
+        - serviceLevelCode
+        - serviceCode
           
     ReservationOnlineOptionDef:
       type: object
@@ -6551,9 +6619,9 @@ components:
         - text
     
     ServiceConstraintDef:
+      type: object
       description: >-
         Either excluded or included service brands can be set.
-      type: object
       properties:
         id:
           description: >- 
@@ -6623,8 +6691,8 @@ components:
         - text
     
     TextDef:
-      description: directly included text in case of online services
       type: object
+      description: directly included text in case of online services
       properties:
         id:
           type: string
@@ -6641,9 +6709,9 @@ components:
         - text
     
     ConnectionPointDef:
+      type: object
       description: >-
         Connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
-      type: object
       properties:
         id:
           type: string
@@ -6660,183 +6728,5 @@ components:
       required:
         - id
         - stationSets
-    #Fare-specific elements end
-    
-    OfferSearchDef:
-      description: >-
-         search parameter for an offer search on offers not based on a trip (e.g. passes)
-      type: object
-      properties:
-        searchTags:
-          description: >-
-            list of tags to search for
-          type: array
-          items:
-            type: string
-        nutsCodes:
-          description: >-
-            Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
-          type: array
-          items:
-            type: string
-        geoCoordinate:
-          $ref: '#/components/schemas/GeoCoordinate'
-        travelPeriod:
-          type: array
-          items:
-            type: string
-            format: date-time
-        passengers:
-          type: array
-          items:
-            $ref:  '#/components/schemas/Passenger'  
-        requestedFulfillmentOptions: 
-          type: array
-          items:
-            $ref:  '#/components/schemas/FulfillmentOption' 
-        offerSearchCriteria:
-            $ref:  '#/components/schemas/OfferSearchCriteria'
-        embed:
-          description: >-
-            Influences whether referenced resources are returned in full or as references only. 
-            If not specified, none of the nested resources will be embedded.
-          type: array
-          items:
-            type: string
-            enum:
-              - OFFERPARTS
-              - NONE
-              - ALL
-            default: ALL
-              
-    NonTripOfferCollectionDef:
-      type: array
-      items:
-        $ref: '#/components/schemas/NonTripOfferDef'
-    
-    NonTripOfferDef:
-      type: object
-      properties:
-        offerSummary:
-          $ref: '#/components/schemas/OfferSummary'
-        requestedInformation:
-          $ref: '#/components/schemas/RequestedInformation'
-        validFrom:
-          type: string
-          format: date-time
-        validTo:
-          type: string
-          format: date-time 
-        availableFulfillmentTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentType'
-        admissions:
-          type: array        
-          items: 
-            $ref: '#/components/schemas/Admission'
-        ancillaries:
-          type: array        
-          items:  
-            $ref: '#/components/schemas/Ancillary'
-        fares:
-          type: array
-          items:
-            $ref: '#/components/schemas/FareOnlineDef'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-      description: >-
-        Non trip offers do not reference a trip, thus no reservations
-         can be offered by definition.
-            
-    TransportableDef:
-      description: >- 
-        Transportables which are handled similar to passengers like dogs, bicycles, car transport.
-        These transportables might need a ticket or reservation.
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/TravelerTypeDef'
-        car:
-          type: object
-          properties:
-            weight:
-              type: number
-              format: int32
-            length:
-              type: number
-              format: int32
-            width:
-              type: number
-              format: int32
-            height:
-              type: number
-              format: int32
-            model:
-              type: string
-              description: >-
-                free text description of the model (e.g. BMW X5)       
-            attachedItems:
-              description: >-
-                indication of items attached to the car
-              type: array
-              items:
-                type: string
-                x-extensible-enum:
-                 - ROOF_RACK
-                 - BICYCLE_STAND
-            plate:
-              description: >-
-                The trailer plate is a personal data item and must not be provided in an offer request. 
-                It must be patched into the offer after the customer accepted the offer for booking.
-              type: string
-          required:
-            - weight
-            - length
-            - width
-            - height
-            - model
-        motorCycle:
-          type: object
-          properties:
-            includingSideCar:
-              type: boolean
-              default: false
-            plate:
-              description: >-
-                The trailer plate is a personal data item and must not be provided in an offer request. 
-                It must be patched into the offer after the customer accepted the offer for booking 
-              type: string   
-          required:
-            - includingSideCar
-        trailer:
-          type: object
-          properties:
-            weight:
-              description: weight in kg
-              type: number
-              format: int32
-            length:
-              description: length in cm
-              type: number
-              format: int32
-            width:
-              description: width in cm
-              type: number
-              format: int32
-            height:
-              description: length in cm
-              type: number
-              format: int32
-            plate:
-              description: >-
-                The trailer plate is a personal data item and must not be provided in an offer request. 
-                It must be patched into the offer after the customer accepted the offer for booking 
-              type: string
-          required:
-            - weight
-            - length
-            - width
-            - height
+
+    ##### Fare-specific elements end
