@@ -3751,7 +3751,7 @@ components:
           type: string
           format: date-time
           description: defines the minimum validity period of the trip booked, meaning the period during which it will be possible to travel with the fulfillments for this offer 
-        validTo:
+        validUntil:
           type: string
           format: date-time 
           description: defines the minimum validity period of the trip booked, meaning the period during which it will be possible to travel with the fulfillments for this offer
@@ -4214,7 +4214,7 @@ components:
           format: date-time
           description: >-
             Validity of offer towards passenger 
-        validTo:
+        validUntil:
           type: string
           format: date-time
           description: >-
@@ -5429,7 +5429,7 @@ components:
         validFrom:
           type: string
           format: date-time
-        validTo:
+        validUntil:
           type: string
           format: date-time 
         availableFulfillmentTypes:
