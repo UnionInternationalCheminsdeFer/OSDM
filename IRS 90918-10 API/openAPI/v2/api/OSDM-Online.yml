@@ -4161,7 +4161,6 @@ components:
       description: >-
         Code of the service level, code-list in IRS 90918-1.
 
-      
     Flexibility:
       type: string
       x-extensible-enum:
@@ -5691,13 +5690,6 @@ components:
           type: number
           format: int32
         
-    TimeUnitDef:
-       type: string
-       enum:
-         - DAYS
-         - HOURS
-         - MINUTES
-                    
     TravelValidityConstraintOnlineDef:
       type: object
       description: >-
@@ -5710,7 +5702,11 @@ components:
           type: object
           properties:
             timeUnit:
-               $ref: '#/components/schemas/TimeUnitDef'
+              type: string
+              enum:
+                - DAYS
+                - HOURS
+                - MINUTES
             value:
               type: number
             hoursAfterMidnight:
@@ -5765,7 +5761,6 @@ components:
           required:
             - latestReturn
             - earliestReturn
-          
       required:
         - validityRange
       
@@ -6520,7 +6515,7 @@ components:
         regionalValidity:
           $ref: '#/components/schemas/RegionalValidityDef'
         distance:
-          description: 'distance in km for statistics '
+          description: Distance in km for statistics
           type: number
           format: int32
       required:
