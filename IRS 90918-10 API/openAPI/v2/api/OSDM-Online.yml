@@ -5586,31 +5586,31 @@ components:
         fareDetailDescription:
           $ref: '#/components/schemas/TextDef'
         price:
-          $ref: '#/components/schemas/PriceDef'
+          $ref: '#/components/schemas/PriceOnlineDef'
         regionalConstraint:
-          $ref: '#/components/schemas/RegionalConstraintDef'
+          $ref: '#/components/schemas/RegionalConstraintOnlineDef'
         serviceConstraint:
-          $ref: '#/components/schemas/ServiceConstraintDef'
+          $ref: '#/components/schemas/ServiceConstraintOnlineDef'
         carrierConstraint:
-          $ref: '#/components/schemas/CarrierConstraintDef'
+          $ref: '#/components/schemas/CarrierConstraintOnlineDef'
         regulatoryConditions:
           $ref: '#/components/schemas/RegulatoryConditionsDef'
         serviceClass:
           $ref: '#/components/schemas/ServiceClassDef'
         serviceLevel:
-          $ref: '#/components/schemas/ServiceLevelDef'
+          $ref: '#/components/schemas/ServiceLevelOnlineDef'
         afterSalesCondition:
-          $ref: '#/components/schemas/AfterSalesConditionDef'
+          $ref: '#/components/schemas/AfterSalesConditionOnlineDef'
         combinationConstraint:
-          $ref: '#/components/schemas/FareCombinationConstraintDef'
+          $ref: '#/components/schemas/FareCombinationConstraintOnlineDef'
         fulfillmentConstraint:
-          $ref: '#/components/schemas/FulfillmentConstraintDef'
+          $ref: '#/components/schemas/FulfillmentConstraintOnlineDef'
         reductionConstraint:
-          $ref: '#/components/schemas/ReductionConstraintDef'
+          $ref: '#/components/schemas/ReductionConstraintOnlineDef'
         legacyAccountingIdentifier:
           $ref: '#/components/schemas/LegacyAccountingIdentifierDef'
         travelValidityConstraint:
-          $ref: '#/components/schemas/TravelValidityConstraintDef'
+          $ref: '#/components/schemas/TravelValidityConstraintOnlineDef'
         reservationDetails:
           $ref: '#/components/schemas/ReservationDetails'            
         placeSelection:
@@ -5620,7 +5620,7 @@ components:
         coveredSection:
           $ref: '#/components/schemas/TravelSectionDef'
         requiredPersonalData:
-          $ref: '#/components/schemas/PersonalDataConstraintDef'
+          $ref: '#/components/schemas/PersonalDataConstraintOnlineDef'
       required:
         - id
         - type
@@ -5656,7 +5656,8 @@ components:
           minimum: 0
           maximum: 99999
         addId:
-          description: sequential number of regional validities (leading positions in case the series is too short
+          description: >-
+            Sequential number of regional validities (leading positions in case the series is too short
           type: number
           format: int32
           minimum: 0
@@ -5668,13 +5669,9 @@ components:
           minimum: 0
           maximum: 9999
       
-    CalendarDef:
+    CalendarOnlineDef:
       type: object
       properties:
-        id:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
-          type: string
         fromDate:
           type: string
           format: date-time
@@ -5701,18 +5698,14 @@ components:
          - HOURS
          - MINUTES
                     
-    TravelValidityConstraintDef:
+    TravelValidityConstraintOnlineDef:
       type: object
       description: >-
         travel validity data are needed to create barcode and control data (ETCD)
         in allocator mode even in case they have been checked during the online sale
       properties:
-        id:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
-          type: string
         validTravelDates:
-          $ref: '#/components/schemas/CalendarDef'
+          $ref: '#/components/schemas/CalendarOnlineDef'
         validityRange:
           type: object
           properties:
@@ -5725,8 +5718,7 @@ components:
               type: number
           required:
             - timeUnit
-            - value
-          
+            - value  
         excludedTimeRange:
           description: time ranges excluded from the validity (e.g. off peak fulfillments)
           type: array
@@ -5748,7 +5740,6 @@ components:
               - from
               - until
               - scope
-            
         numberOfTravelDays:
           description: number of allowed travel days (e.g. 3 travel days within 2 weeks)
           type: number
@@ -5782,6 +5773,7 @@ components:
       description: >- 
         Subset of the values from the traveler type code list IRS 90918-10 
       type: string
+    
     LayoutsDef:
       type: object
       properties:
@@ -5937,106 +5929,15 @@ components:
             y:
               type: number
               format: int32
-          
         containerType:
           type: string
           default: RECTANGLE
       required:
         - id
-      
-    PassengerConstraintDef:
-      type: object
-      description: >- 
-         used in allocator mode. Some data are required to be added to bar codes and control data (ETCD) 
-         even in case the fare was checked in online sales
-      properties:
-        id:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange     
-          type: string
-        passengerType:
-          description: see code list travelerType
-          type: string
-        nameRef:
-          type: string
-        upperAgeLimit:
-          type: number
-          format: int32
-        lowerAgeLimit:
-          type: number
-          format: int32
-        ageLimitToTravelAlone:
-          type: number
-          format: int32
-        ageLimitForReservation:
-          type: number
-          format: int32
-        isAncillaryItem:
-          type: boolean
-          default: false
-        combinationConstraint:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
-          type: array
-          items:
-            type: object
-            properties:
-              maxNumber:
-                description: number of passengers allowed per accompanying passenger
-                type: number
-                format: int32
-              passengerTypeRef:
-                $ref: '#/components/schemas/TravelerTypeDef'
-            required:
-              - maxNumber
-              - passengerTypeRef
-            
-        includedFreePassenger:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange 
-          type: array
-          items:
-            type: object
-            properties:
-              number:
-                description: >-
-                  Number of passengers that can be included with one passenger for free. The number is given in fractions. The 
-                  calculation needs a precision of 1 digit fraction (e.g. with 0.33 dogs you need 3 adults to transport one dog 
-                  for free).
-                type: number
-                format: int32
-              passengerTypeRef:
-                $ref: '#/components/schemas/TravelerTypeDef'
-            
-        passengerWeight:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange 
-          type: integer
-          format: int32
-        maxWeightedPassengers:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange  
-            The total weighted number of passengers on the offer is restricted to be equal or smaller than this maximum
-          type: number
-          format: int32
-        minWeightedPassengers:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange   
-            The total weighted number of passengers on the offer is restricted to equal or larger than this minimum
-          type: number
-          format: int32
-      required:
-        - id
-        - passengerType
-        - nameRef
-      
-    ReductionConstraintDef:
+
+    ReductionConstraintOnlineDef:
       type: object
       properties:
-        id:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
-          type: string
         requiredCards:
           description: >-
             One of the listed cards is required to be valid at the time of travel.
@@ -6097,52 +5998,39 @@ components:
       required:
         - model
  
-    FareCombinationConstraintDef:
+    FareCombinationConstraintOnlineDef:
       type: object
       properties:
-        id:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange  
-          type: string
         combinationModels:
           type: array
           minItems: 1
           items:
             $ref: '#/components/schemas/FareCombinationModelDef'
       required:
-        - id
         - combinationModels
  
-    AfterSalesConditionDef:
+    AfterSalesConditionOnlineDef:
       type: object
       properties:
-        id:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange  
-          type: string
         afterSalesRules:
           type: array
           minItems: 1
           items:
-            $ref: '#/components/schemas/AfterSalesRuleDef'
+            $ref: '#/components/schemas/AfterSalesRuleOnlineDef'
       required:
-        - id
         - afterSalesRules
  
-    PriceDef:
+    PriceOnlineDef:
       type: object
+      description: allows specifying a price in multiple currencies
       properties:
-        id:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
-          type: string
         price:
           type: array
+          minItems: 1
           items:
             $ref: '#/components/schemas/CurrencyPriceDef'
       required:
         - price
-      description: allows specifying a price in multiple currencies
  
     RelativeTimeDef:
       type: object
@@ -6173,26 +6061,18 @@ components:
         - timeValue
         - timeReference
  
-    AfterSalesRuleDef:
+    AfterSalesRuleOnlineDef:
       type: object
       properties:
         transactionType:
           description: code list Reason for after sale
           type: string
-        feeRef:
-          description: >-
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange
-            Reference to a price data item defining the fee; optional in case there is no fee but the 
-            after sales transaction is allowed. Online services include fee directly in the fee tag.
-          type: string
         fee:
-          description: >- 
-            \*** ONLINE-ONLY *** not used in bulk data, multi currency used for fares
           $ref: '#/components/schemas/CurrencyPriceDef'
         applicationTime:
           $ref: '#/components/schemas/RelativeTimeDef'
         applicationTimeStamp:
-          description:  \*** ONLINE-ONLY *** absolute application time (UTC) in case of online services
+          description: Absolute application time (UTC) in case of online services
           type: string
           format: date-time
         isCarrierFee:
@@ -6200,7 +6080,7 @@ components:
           type: boolean
           default: true
         supportsIndividualContracts:
-          description: indicates that the after sales of this fare can be treated independently per person.
+          description: Indicates that the after sales of this fare can be treated independently per person.
           type: boolean
           default: false
       required:
@@ -6368,13 +6248,9 @@ components:
       required:
         - carrier
  
-    FulfillmentConstraintDef:
+    FulfillmentConstraintOnlineDef:
       type: object
       properties:
-        id:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange 
-          type: string
         acceptedControlSecurityTypes:
           type: array
           minItems: 1
@@ -6414,17 +6290,12 @@ components:
           description: a separate fulfillment per traveler is permitted
           type: boolean
       required:
-        - id
         - acceptedFulfillmentTypes
         - individualTicketingPermitted
  
-    PersonalDataConstraintDef:
+    PersonalDataConstraintOnlineDef:
       type: object
       properties:
-        id:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange 
-          type: string
         requiredData:
           type: array
           minItems: 1
@@ -6461,7 +6332,6 @@ components:
             required:
               - dataItem
               - transfer
-            
         allowedChanges:
           type: array
           items:
@@ -6564,15 +6434,11 @@ components:
         - preferenceGroup
         - preferences
       
-    CarrierConstraintDef:
+    CarrierConstraintOnlineDef:
       type: object
       description: >-
         Either excluded or included carriers can be set.
       properties:
-        id:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange     
-          type: string
         includedCarrier:
           type: array
           items:
@@ -6592,17 +6458,11 @@ components:
         - STANDARD
         - BASIC
     
-    ServiceLevelDef:
+    ServiceLevelOnlineDef:
       type: object
       properties:
         id:
           $ref: '#/components/schemas/ServiceLevelIdDef'
-        combiningServiceClassIds:
-          description: >- 
-            \*** BULK-ONLY *** list of service class ids that can be combined with these service levels
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceClassIdDef'
         textRef:
           description: id of the text describing the service level
           type: string
@@ -6623,10 +6483,6 @@ components:
       description: >-
         Either excluded or included service brands can be set.
       properties:
-        id:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange    
-          type: string
         includedServiceBrands:
           type: array
           items:
@@ -6635,8 +6491,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ServiceBrandCodeDef'
-      required:
-        - id
     
     FareTypeDef:
       description: >-
@@ -6648,15 +6502,11 @@ components:
         - INTEGRATED_RESERVATION
         - ANCILLARY
     
-    RegionalConstraintDef:
+    RegionalConstraintOnlineDef:
       type: object
       description: >-
         Regional constraint of the fare- offline bulk data use the id of connection points whereas in an online environment the connection point is included
       properties:
-        id:
-          description: >- 
-            \*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange    
-          type: string
         entryConnectionPointId:
           description: connection point connecting two fare regimes
           type: string
@@ -6681,7 +6531,7 @@ components:
       properties:
         language:
           type: string
-          description: language code following  RFC2616-sec14.4
+          description: language code following RFC2616-sec14.4
         text:
           type: string
         shortText:
