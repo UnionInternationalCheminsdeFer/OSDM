@@ -1945,7 +1945,7 @@ paths:
         - Bookings
       summary: >-
         The DELETE booking service deletes the booking with the id provided. It
-        is only possible before the booking is confirmed.
+        is only possible before the booking is confirmed or in case of a technical problem in confirming multiple independent bookings within a sales transaction. Deletes on a confirmed booking must be documented and evidence on the issue must be provided on request. The delete on a confirmed booking is allowed immediately after the confirmation of the booking, but must be repeated according to the error handling rules in case the delete fails.
       operationId: deleteBookingsId
       parameters:
         - name: access-token 
@@ -2906,7 +2906,6 @@ components:
         description: >-
          This element can be used to pass non-blocking information or events,
          such as a price difference with the initially offered price at booking time.
-
     ResourceRef:
       type: object
       properties:
@@ -3825,8 +3824,12 @@ components:
           $ref: '#/components/schemas/CurrencyDef'
         amount:
           description: amount in cents
-          type: number
+          type: integer
           format: int32
+        scale: 
+          description: scale of the amount - the number of positions after the comma
+          type: integer
+          default: 2
         vatDetails:
           type: array
           items:
@@ -3842,8 +3845,12 @@ components:
           $ref: '#/components/schemas/CountryDef'
         amount:
           description: amount in cents
-          type: number
+          type: integer
           format: int32
+        scale: 
+          description: scale of the amount - the number of positions after the comma
+          type: integer
+          default: 2          
         percentage:
           type: number
           format: float
@@ -4160,7 +4167,6 @@ components:
       type: string
       description: >-
         Code of the service level, code-list in IRS 90918-1.
-
     Flexibility:
       type: string
       x-extensible-enum:
@@ -5569,7 +5575,6 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
-
     #### Fare-specific elements begin
 
     FareOnlineDef:
@@ -6556,11 +6561,9 @@ components:
     ConnectionPointDef:
       type: object
       description: >-
-        Connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
+        Connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets. A legacy border point code might be provided as an additional code within the stations (code list BORDER_POINT). In case the connection point is a real station this station is indicated. In case the connection point is inbetween stations for each side of the border real  stations must be provided. Multiple sets of station can be provided in the rare case that the connection point conects more than two station (A-B and A-C). Multiple stations within a set at one side of the border might be provided in case of changes (new stations build near the border). Providing the UIC code for the station is mandatory. 
       properties:
         id:
-          type: string
-        legacyBorderPointCode:
           type: string
         name:
           type: string
