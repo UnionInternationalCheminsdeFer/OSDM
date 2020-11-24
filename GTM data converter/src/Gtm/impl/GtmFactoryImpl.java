@@ -168,11 +168,12 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.REQUIRED_REDUCTION_CARD: return createRequiredReductionCard();
 			case GtmPackage.CONVERSION_FROM_LEGACY: return createConversionFromLegacy();
 			case GtmPackage.CONVERSION_PARAMS: return createConversionParams();
+			case GtmPackage.LEGACY_FARE_TEMPLATES: return createLegacyFareTemplates();
 			case GtmPackage.FARE_TEMPLATE: return createFareTemplate();
 			case GtmPackage.AFTER_SALES_TEMPLATE: return createAfterSalesTemplate();
+			case GtmPackage.ON_BORDER_STATIONS: return createOnBorderStations();
 			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS: return createLegacyStationToServiceConstraintMappings();
 			case GtmPackage.LEGACY_BORDER_POINT: return createLegacyBorderPoint();
-			case GtmPackage.ON_BORDER_STATIONS: return createOnBorderStations();
 			case GtmPackage.LEGACY_FAKE_BORDER_STATIONS: return createLegacyFakeBorderStations();
 			case GtmPackage.LEGACY_BORDER_SIDE: return createLegacyBorderSide();
 			case GtmPackage.LEGACY_BORDER_POINTS: return createLegacyBorderPoints();
@@ -200,7 +201,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.LEGACY_DISTANCE_FARES: return createLegacyDistanceFares();
 			case GtmPackage.LEGACY_DISTANCE_FARE: return createLegacyDistanceFare();
 			case GtmPackage.LEGACY_VIASTATION: return createLegacyViastation();
-			case GtmPackage.LEGACY_FARE_TEMPLATES: return createLegacyFareTemplates();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -226,6 +226,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return createBarcodeTypesFromString(eDataType, initialValue);
 			case GtmPackage.CLASSIC_CLASS_TYPE:
 				return createClassicClassTypeFromString(eDataType, initialValue);
+			case GtmPackage.CLASS_ID:
+				return createClassIdFromString(eDataType, initialValue);
 			case GtmPackage.CHARACTER_SET:
 				return createCharacterSetFromString(eDataType, initialValue);
 			case GtmPackage.CLUSTERS:
@@ -234,6 +236,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return createCombinationModelFromString(eDataType, initialValue);
 			case GtmPackage.CONTROL_DATA_EXCHANGE_TYPES:
 				return createControlDataExchangeTypesFromString(eDataType, initialValue);
+			case GtmPackage.DATA_SOURCE:
+				return createDataSourceFromString(eDataType, initialValue);
 			case GtmPackage.FARE_TYPE:
 				return createFareTypeFromString(eDataType, initialValue);
 			case GtmPackage.FULFILLMENT_TYPE:
@@ -244,6 +248,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return createGeoUnitFromString(eDataType, initialValue);
 			case GtmPackage.GRAPHICAL_RESERVATION_TYPE:
 				return createGraphicalReservationTypeFromString(eDataType, initialValue);
+			case GtmPackage.GENERIC_REDUCTION_CARDS:
+				return createGenericReductionCardsFromString(eDataType, initialValue);
 			case GtmPackage.HEMISPHERE_EW:
 				return createHemisphereEWFromString(eDataType, initialValue);
 			case GtmPackage.HEMISPHERE_NS:
@@ -276,8 +282,12 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return createReservationServiceFromString(eDataType, initialValue);
 			case GtmPackage.RESERVATION_BERTH_TYPE:
 				return createReservationBerthTypeFromString(eDataType, initialValue);
+			case GtmPackage.ROUNDING_TYPE:
+				return createRoundingTypeFromString(eDataType, initialValue);
 			case GtmPackage.SCHEMA_VERSION:
 				return createSchemaVersionFromString(eDataType, initialValue);
+			case GtmPackage.SERVICE_MODE:
+				return createServiceModeFromString(eDataType, initialValue);
 			case GtmPackage.TIME_ZONE:
 				return createTimeZoneFromString(eDataType, initialValue);
 			case GtmPackage.TAX_SCOPE:
@@ -292,14 +302,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return createTravelerTypeFromString(eDataType, initialValue);
 			case GtmPackage.WEEK_DAY:
 				return createWeekDayFromString(eDataType, initialValue);
-			case GtmPackage.DATA_SOURCE:
-				return createDataSourceFromString(eDataType, initialValue);
-			case GtmPackage.CLASS_ID:
-				return createClassIdFromString(eDataType, initialValue);
-			case GtmPackage.GENERIC_REDUCTION_CARDS:
-				return createGenericReductionCardsFromString(eDataType, initialValue);
-			case GtmPackage.SERVICE_MODE:
-				return createServiceModeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -325,6 +327,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return convertBarcodeTypesToString(eDataType, instanceValue);
 			case GtmPackage.CLASSIC_CLASS_TYPE:
 				return convertClassicClassTypeToString(eDataType, instanceValue);
+			case GtmPackage.CLASS_ID:
+				return convertClassIdToString(eDataType, instanceValue);
 			case GtmPackage.CHARACTER_SET:
 				return convertCharacterSetToString(eDataType, instanceValue);
 			case GtmPackage.CLUSTERS:
@@ -333,6 +337,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return convertCombinationModelToString(eDataType, instanceValue);
 			case GtmPackage.CONTROL_DATA_EXCHANGE_TYPES:
 				return convertControlDataExchangeTypesToString(eDataType, instanceValue);
+			case GtmPackage.DATA_SOURCE:
+				return convertDataSourceToString(eDataType, instanceValue);
 			case GtmPackage.FARE_TYPE:
 				return convertFareTypeToString(eDataType, instanceValue);
 			case GtmPackage.FULFILLMENT_TYPE:
@@ -343,6 +349,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return convertGeoUnitToString(eDataType, instanceValue);
 			case GtmPackage.GRAPHICAL_RESERVATION_TYPE:
 				return convertGraphicalReservationTypeToString(eDataType, instanceValue);
+			case GtmPackage.GENERIC_REDUCTION_CARDS:
+				return convertGenericReductionCardsToString(eDataType, instanceValue);
 			case GtmPackage.HEMISPHERE_EW:
 				return convertHemisphereEWToString(eDataType, instanceValue);
 			case GtmPackage.HEMISPHERE_NS:
@@ -375,8 +383,12 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return convertReservationServiceToString(eDataType, instanceValue);
 			case GtmPackage.RESERVATION_BERTH_TYPE:
 				return convertReservationBerthTypeToString(eDataType, instanceValue);
+			case GtmPackage.ROUNDING_TYPE:
+				return convertRoundingTypeToString(eDataType, instanceValue);
 			case GtmPackage.SCHEMA_VERSION:
 				return convertSchemaVersionToString(eDataType, instanceValue);
+			case GtmPackage.SERVICE_MODE:
+				return convertServiceModeToString(eDataType, instanceValue);
 			case GtmPackage.TIME_ZONE:
 				return convertTimeZoneToString(eDataType, instanceValue);
 			case GtmPackage.TAX_SCOPE:
@@ -391,14 +403,6 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 				return convertTravelerTypeToString(eDataType, instanceValue);
 			case GtmPackage.WEEK_DAY:
 				return convertWeekDayToString(eDataType, instanceValue);
-			case GtmPackage.DATA_SOURCE:
-				return convertDataSourceToString(eDataType, instanceValue);
-			case GtmPackage.CLASS_ID:
-				return convertClassIdToString(eDataType, instanceValue);
-			case GtmPackage.GENERIC_REDUCTION_CARDS:
-				return convertGenericReductionCardsToString(eDataType, instanceValue);
-			case GtmPackage.SERVICE_MODE:
-				return convertServiceModeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -2701,6 +2705,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	 * @generated
 	 */
 	public String convertServiceModeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RoundingType createRoundingTypeFromString(EDataType eDataType, String initialValue) {
+		RoundingType result = RoundingType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertRoundingTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

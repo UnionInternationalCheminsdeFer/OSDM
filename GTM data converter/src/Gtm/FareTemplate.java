@@ -16,12 +16,12 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Gtm.FareTemplate#getPriceFactor <em>Price Factor</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getPrice <em>Price</em>}</li>
+ *   <li>{@link Gtm.FareTemplate#getRoundingMode <em>Rounding Mode</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getType <em>Type</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getAfterSalesTemplate <em>After Sales Template</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getDataDescription <em>Data Description</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getText <em>Text</em>}</li>
- *   <li>{@link Gtm.FareTemplate#getRegionalConstraint <em>Regional Constraint</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getServiceConstraint <em>Service Constraint</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getCarrierConstraint <em>Carrier Constraint</em>}</li>
  *   <li>{@link Gtm.FareTemplate#getServiceClass <em>Service Class</em>}</li>
@@ -117,6 +117,31 @@ public interface FareTemplate extends EObject {
 	 * @generated
 	 */
 	void setPrice(Price value);
+
+	/**
+	 * Returns the value of the '<em><b>Rounding Mode</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gtm.RoundingType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Rounding Mode</em>' attribute.
+	 * @see Gtm.RoundingType
+	 * @see #setRoundingMode(RoundingType)
+	 * @see Gtm.GtmPackage#getFareTemplate_RoundingMode()
+	 * @model
+	 * @generated
+	 */
+	RoundingType getRoundingMode();
+
+	/**
+	 * Sets the value of the '{@link Gtm.FareTemplate#getRoundingMode <em>Rounding Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Rounding Mode</em>' attribute.
+	 * @see Gtm.RoundingType
+	 * @see #getRoundingMode()
+	 * @generated
+	 */
+	void setRoundingMode(RoundingType value);
 
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
@@ -220,28 +245,6 @@ public interface FareTemplate extends EObject {
 	 * @generated
 	 */
 	void setText(Text value);
-
-	/**
-	 * Returns the value of the '<em><b>Regional Constraint</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Regional Constraint</em>' reference.
-	 * @see #setRegionalConstraint(RegionalConstraint)
-	 * @see Gtm.GtmPackage#getFareTemplate_RegionalConstraint()
-	 * @model
-	 * @generated
-	 */
-	RegionalConstraint getRegionalConstraint();
-
-	/**
-	 * Sets the value of the '{@link Gtm.FareTemplate#getRegionalConstraint <em>Regional Constraint</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Regional Constraint</em>' reference.
-	 * @see #getRegionalConstraint()
-	 * @generated
-	 */
-	void setRegionalConstraint(RegionalConstraint value);
 
 	/**
 	 * Returns the value of the '<em><b>Service Constraint</b></em>' reference.

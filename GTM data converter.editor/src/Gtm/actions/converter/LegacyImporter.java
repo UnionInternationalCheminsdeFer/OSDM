@@ -573,6 +573,44 @@ public class LegacyImporter {
 	
 	private Legacy108Station decodeTCVGLine(String st , String charset) {
 		
+		//	1 code of the supplying RU numeric 4 M TAP TSI Technical Document B.8 1-4 e.g. 0081 for ÖBB 
+		//	2 station code numeric 5 M TAP TSI Technical Document B.9 5-9  
+		//	3 Key flag for station code numeric 1 M  10 0, 1 or 2 (see point 2.2) 
+		//	4 Old railway code numeric 5 O TAP TSI Technical Document B.9 11-15 This field is only used when stations are first introduced. 
+		//	5 35-character station designation alpha numeric 35 M  16-50 Station designation in the national language including accents and in upper and lower case. 
+		//	6 Flag 1 for the 35- character station designation numeric 1 M  51 0 or 3 (see point 2.2) 
+		//	7 17-character station designation alpha numeric 17 M  52-68 Computer notation with no accents but in upper and lower case. The file is to be transferred in the ascending alphanumeric order of this field. 
+		//	8 Flag 2 for the 17- character station designation numeric 1 M  69 0 or 3 (see point 2.2) 
+		//	9 17-character route description of station alpha numeric 17 O  70-86 Field 7 notation for route instruction purposes. 
+		//	10 Flag 3 for the 17- character route description of the station numeric 1 M  87 0 or 3 (see point 2.2) 
+		//	11 Zone numeric 4 O  88-91  
+		//	12 Flag 4 for zone numeric 1 O  92 0 or 3 (see point 2.2) 
+		//	13 border-point code numeric 4 O Code List  B.1.3 93-96 Where a station has the status of a border station, the border point code shall be entered in this field and may not be omitted. 
+		//	14 Flag 5 for border- point code numeric 1 M  97 0 or 3 (see point 2.2) 
+		//	15 reserved alpha numeric 2 M  98-99  
+		//	16 reserved alpha numeric 1 M  100  
+		//	17 reserved numeric 2 M  101-102  
+		//	18 reserved numeric 1 M  103  
+		//	19 1st pictogram code numeric 4 O  104-107 numeric pictogram code as listed in Appendix L. 
+		//	20 2nd pictogram code numeric 4 O  108-111  
+		//	21 3rd pictogram code numeric 4 O  112-115  
+		//	22 Flag 7 of pictogram codes numeric 1 O  116 This field relates to fields 19-21; 0 or 3 (see point 2.2). 
+		//	23 Font numeric 1 M  117 Determines font for printing of fare only 1 = normal 2 = bold 3 = italics 
+		//	24 Flag 8 for font numeric 1 M  118 0 or 3 (see point 2.2) 
+		//	25 Designation for third party RU  alpha numeric 10 O  119-128 Details of private transport undertaking to which the station applies. 
+		//	26 Flag 9 for third party RU numeric 1 M  129 0 or 3 (see point 2.2) 
+		//	27  code for fare reference station numeric 5 O TAP TSI Technical Document B.9 130-134  code for station setting fare/price in respect of field 2. 
+		//	28 Flag 10 for fare reference station numeric 1 M  135 0 or 3 (see point 2.2) 
+		//	29  code for accounting station numeric 5 O TAP TSI Technical Document B.9 136-140 This field is only used if there is a separate accounting station. 
+		//	30 Flag 11 for accounting station numeric 1 M  141 0 or 3 (see point 2.2) 
+		//	31 Station latitude numeric 10 O  142-1 51 Latitude using Gauss-Krüger coordinate system 10-digit figure with 6 decimal places 
+		//	32 Station’s longitude numeric 10 O  152-161 Longitude using Gauss-Krüger coordinate system 10-digit figure with 6 decimal places 
+		//	33 Flag 12 for geographic details numeric 1 M  162 This field relates to fields 31-32;  0 or 3 (see point 2.2) 
+		//	34 First day of validity of fare numeric 8 M  163-170 Expressed as: 'YYYYMMDD' 
+		//	35 Version number numeric 2 M  171-172 Sequential version number related to the fare date; '01' for the first issue, '02' for the second, etc. 
+		//	36 Last day of validity of fare numeric 8 M  173-180 Expressed as: 'YYYYMMDD' 
+			
+		
 		try {
 		
 		String flag  		= st.substring(9, 10);
@@ -584,7 +622,7 @@ public class LegacyImporter {
 	
 		String nameASCII 	= st.substring(51,68).trim();	
 
-		String shortNameASCII 	= st.substring(51,68).trim();	
+		String shortNameASCII 	= st.substring(69,86).trim();	
 		
 		int code	= 0;
 		try  {

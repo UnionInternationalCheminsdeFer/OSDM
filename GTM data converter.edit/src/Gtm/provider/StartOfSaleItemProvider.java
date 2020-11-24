@@ -3,6 +3,8 @@
 package Gtm.provider;
 
 
+import Gtm.StartOfSale;
+import Gtm.TimeUnit;
 import java.util.Collection;
 import java.util.List;
 
@@ -58,11 +60,15 @@ public class StartOfSaleItemProvider extends RelativeTimeItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		TimeUnit labelValue = ((StartOfSale)object).getUnit();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_StartOfSale_type") :
+			getString("_UI_StartOfSale_type") + " " + label;
 	}
 
 

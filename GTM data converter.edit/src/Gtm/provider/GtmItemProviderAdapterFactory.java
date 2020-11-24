@@ -3637,11 +3637,12 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (requiredReductionCardItemProvider != null) requiredReductionCardItemProvider.dispose();
 		if (conversionFromLegacyItemProvider != null) conversionFromLegacyItemProvider.dispose();
 		if (conversionParamsItemProvider != null) conversionParamsItemProvider.dispose();
+		if (legacyFareTemplatesItemProvider != null) legacyFareTemplatesItemProvider.dispose();
 		if (fareTemplateItemProvider != null) fareTemplateItemProvider.dispose();
 		if (afterSalesTemplateItemProvider != null) afterSalesTemplateItemProvider.dispose();
+		if (onBorderStationsItemProvider != null) onBorderStationsItemProvider.dispose();
 		if (legacyStationToServiceConstraintMappingsItemProvider != null) legacyStationToServiceConstraintMappingsItemProvider.dispose();
 		if (legacyBorderPointItemProvider != null) legacyBorderPointItemProvider.dispose();
-		if (onBorderStationsItemProvider != null) onBorderStationsItemProvider.dispose();
 		if (legacyFakeBorderStationsItemProvider != null) legacyFakeBorderStationsItemProvider.dispose();
 		if (legacyBorderSideItemProvider != null) legacyBorderSideItemProvider.dispose();
 		if (legacyBorderPointsItemProvider != null) legacyBorderPointsItemProvider.dispose();
@@ -3669,7 +3670,6 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (legacyDistanceFaresItemProvider != null) legacyDistanceFaresItemProvider.dispose();
 		if (legacyDistanceFareItemProvider != null) legacyDistanceFareItemProvider.dispose();
 		if (legacyViastationItemProvider != null) legacyViastationItemProvider.dispose();
-		if (legacyFareTemplatesItemProvider != null) legacyFareTemplatesItemProvider.dispose();
 	}
 
 }

@@ -66,11 +66,11 @@ public class FareTemplateItemProvider
 
 			addPriceFactorPropertyDescriptor(object);
 			addPricePropertyDescriptor(object);
+			addRoundingModePropertyDescriptor(object);
 			addIdPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 			addDataDescriptionPropertyDescriptor(object);
 			addTextPropertyDescriptor(object);
-			addRegionalConstraintPropertyDescriptor(object);
 			addServiceConstraintPropertyDescriptor(object);
 			addCarrierConstraintPropertyDescriptor(object);
 			addServiceClassPropertyDescriptor(object);
@@ -132,6 +132,28 @@ public class FareTemplateItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Rounding Mode feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRoundingModePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FareTemplate_roundingMode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_roundingMode_feature", "_UI_FareTemplate_type"),
+				 GtmPackage.Literals.FARE_TEMPLATE__ROUNDING_MODE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -216,28 +238,6 @@ public class FareTemplateItemProvider
 				 getString("_UI_FareTemplate_text_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_text_feature", "_UI_FareTemplate_type"),
 				 GtmPackage.Literals.FARE_TEMPLATE__TEXT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Regional Constraint feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRegionalConstraintPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FareTemplate_regionalConstraint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FareTemplate_regionalConstraint_feature", "_UI_FareTemplate_type"),
-				 GtmPackage.Literals.FARE_TEMPLATE__REGIONAL_CONSTRAINT,
 				 true,
 				 false,
 				 true,
@@ -691,6 +691,7 @@ public class FareTemplateItemProvider
 
 		switch (notification.getFeatureID(FareTemplate.class)) {
 			case GtmPackage.FARE_TEMPLATE__PRICE_FACTOR:
+			case GtmPackage.FARE_TEMPLATE__ROUNDING_MODE:
 			case GtmPackage.FARE_TEMPLATE__ID:
 			case GtmPackage.FARE_TEMPLATE__TYPE:
 			case GtmPackage.FARE_TEMPLATE__DATA_DESCRIPTION:

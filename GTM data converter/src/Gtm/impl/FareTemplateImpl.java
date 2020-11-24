@@ -15,9 +15,9 @@ import Gtm.PassengerConstraint;
 import Gtm.PersonalDataConstraint;
 import Gtm.Price;
 import Gtm.ReductionConstraint;
-import Gtm.RegionalConstraint;
 import Gtm.RegulatoryCondition;
 import Gtm.ReservationParameter;
+import Gtm.RoundingType;
 import Gtm.SalesAvailabilityConstraint;
 import Gtm.ServiceClass;
 import Gtm.ServiceConstraint;
@@ -49,12 +49,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getPriceFactor <em>Price Factor</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getPrice <em>Price</em>}</li>
+ *   <li>{@link Gtm.impl.FareTemplateImpl#getRoundingMode <em>Rounding Mode</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getId <em>Id</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getType <em>Type</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getAfterSalesTemplate <em>After Sales Template</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getDataDescription <em>Data Description</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getText <em>Text</em>}</li>
- *   <li>{@link Gtm.impl.FareTemplateImpl#getRegionalConstraint <em>Regional Constraint</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getServiceConstraint <em>Service Constraint</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getCarrierConstraint <em>Carrier Constraint</em>}</li>
  *   <li>{@link Gtm.impl.FareTemplateImpl#getServiceClass <em>Service Class</em>}</li>
@@ -116,6 +116,26 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 	 * @ordered
 	 */
 	protected Price price;
+
+	/**
+	 * The default value of the '{@link #getRoundingMode() <em>Rounding Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRoundingMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final RoundingType ROUNDING_MODE_EDEFAULT = RoundingType.HALFUP;
+
+	/**
+	 * The cached value of the '{@link #getRoundingMode() <em>Rounding Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRoundingMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected RoundingType roundingMode = ROUNDING_MODE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -196,16 +216,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 	 * @ordered
 	 */
 	protected Text text;
-
-	/**
-	 * The cached value of the '{@link #getRegionalConstraint() <em>Regional Constraint</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRegionalConstraint()
-	 * @generated
-	 * @ordered
-	 */
-	protected RegionalConstraint regionalConstraint;
 
 	/**
 	 * The cached value of the '{@link #getServiceConstraint() <em>Service Constraint</em>}' reference.
@@ -515,6 +525,27 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RoundingType getRoundingMode() {
+		return roundingMode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRoundingMode(RoundingType newRoundingMode) {
+		RoundingType oldRoundingMode = roundingMode;
+		roundingMode = newRoundingMode == null ? ROUNDING_MODE_EDEFAULT : newRoundingMode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_TEMPLATE__ROUNDING_MODE, oldRoundingMode, roundingMode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getId() {
 		return id;
 	}
@@ -621,44 +652,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 		text = newText;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_TEMPLATE__TEXT, oldText, text));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RegionalConstraint getRegionalConstraint() {
-		if (regionalConstraint != null && regionalConstraint.eIsProxy()) {
-			InternalEObject oldRegionalConstraint = (InternalEObject)regionalConstraint;
-			regionalConstraint = (RegionalConstraint)eResolveProxy(oldRegionalConstraint);
-			if (regionalConstraint != oldRegionalConstraint) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GtmPackage.FARE_TEMPLATE__REGIONAL_CONSTRAINT, oldRegionalConstraint, regionalConstraint));
-			}
-		}
-		return regionalConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RegionalConstraint basicGetRegionalConstraint() {
-		return regionalConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRegionalConstraint(RegionalConstraint newRegionalConstraint) {
-		RegionalConstraint oldRegionalConstraint = regionalConstraint;
-		regionalConstraint = newRegionalConstraint;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.FARE_TEMPLATE__REGIONAL_CONSTRAINT, oldRegionalConstraint, regionalConstraint));
 	}
 
 	/**
@@ -1319,6 +1312,8 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 			case GtmPackage.FARE_TEMPLATE__PRICE:
 				if (resolve) return getPrice();
 				return basicGetPrice();
+			case GtmPackage.FARE_TEMPLATE__ROUNDING_MODE:
+				return getRoundingMode();
 			case GtmPackage.FARE_TEMPLATE__ID:
 				return getId();
 			case GtmPackage.FARE_TEMPLATE__TYPE:
@@ -1330,9 +1325,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 			case GtmPackage.FARE_TEMPLATE__TEXT:
 				if (resolve) return getText();
 				return basicGetText();
-			case GtmPackage.FARE_TEMPLATE__REGIONAL_CONSTRAINT:
-				if (resolve) return getRegionalConstraint();
-				return basicGetRegionalConstraint();
 			case GtmPackage.FARE_TEMPLATE__SERVICE_CONSTRAINT:
 				if (resolve) return getServiceConstraint();
 				return basicGetServiceConstraint();
@@ -1402,6 +1394,9 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 			case GtmPackage.FARE_TEMPLATE__PRICE:
 				setPrice((Price)newValue);
 				return;
+			case GtmPackage.FARE_TEMPLATE__ROUNDING_MODE:
+				setRoundingMode((RoundingType)newValue);
+				return;
 			case GtmPackage.FARE_TEMPLATE__ID:
 				setId((String)newValue);
 				return;
@@ -1417,9 +1412,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 				return;
 			case GtmPackage.FARE_TEMPLATE__TEXT:
 				setText((Text)newValue);
-				return;
-			case GtmPackage.FARE_TEMPLATE__REGIONAL_CONSTRAINT:
-				setRegionalConstraint((RegionalConstraint)newValue);
 				return;
 			case GtmPackage.FARE_TEMPLATE__SERVICE_CONSTRAINT:
 				setServiceConstraint((ServiceConstraint)newValue);
@@ -1494,6 +1486,9 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 			case GtmPackage.FARE_TEMPLATE__PRICE:
 				setPrice((Price)null);
 				return;
+			case GtmPackage.FARE_TEMPLATE__ROUNDING_MODE:
+				setRoundingMode(ROUNDING_MODE_EDEFAULT);
+				return;
 			case GtmPackage.FARE_TEMPLATE__ID:
 				setId(ID_EDEFAULT);
 				return;
@@ -1508,9 +1503,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 				return;
 			case GtmPackage.FARE_TEMPLATE__TEXT:
 				setText((Text)null);
-				return;
-			case GtmPackage.FARE_TEMPLATE__REGIONAL_CONSTRAINT:
-				setRegionalConstraint((RegionalConstraint)null);
 				return;
 			case GtmPackage.FARE_TEMPLATE__SERVICE_CONSTRAINT:
 				setServiceConstraint((ServiceConstraint)null);
@@ -1582,6 +1574,8 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 				return isSetPriceFactor();
 			case GtmPackage.FARE_TEMPLATE__PRICE:
 				return price != null;
+			case GtmPackage.FARE_TEMPLATE__ROUNDING_MODE:
+				return roundingMode != ROUNDING_MODE_EDEFAULT;
 			case GtmPackage.FARE_TEMPLATE__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case GtmPackage.FARE_TEMPLATE__TYPE:
@@ -1592,8 +1586,6 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 				return DATA_DESCRIPTION_EDEFAULT == null ? dataDescription != null : !DATA_DESCRIPTION_EDEFAULT.equals(dataDescription);
 			case GtmPackage.FARE_TEMPLATE__TEXT:
 				return text != null;
-			case GtmPackage.FARE_TEMPLATE__REGIONAL_CONSTRAINT:
-				return regionalConstraint != null;
 			case GtmPackage.FARE_TEMPLATE__SERVICE_CONSTRAINT:
 				return serviceConstraint != null;
 			case GtmPackage.FARE_TEMPLATE__CARRIER_CONSTRAINT:
@@ -1646,6 +1638,8 @@ public class FareTemplateImpl extends MinimalEObjectImpl.Container implements Fa
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (priceFactor: ");
 		if (priceFactorESet) result.append(priceFactor); else result.append("<unset>");
+		result.append(", roundingMode: ");
+		result.append(roundingMode);
 		result.append(", id: ");
 		result.append(id);
 		result.append(", type: ");

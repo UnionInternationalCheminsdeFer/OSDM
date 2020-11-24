@@ -53,6 +53,18 @@ Data structures used in the fare template reference data in the final fare struc
 <tr><td>Content</td><td>Description</td></tr>
 <tr><td>price factor</td><td>a factor to calculate the price depending on the price given in the 108.1 data. The factor is applied and the result is rounded to Euro-Cents</td></tr>
 <tr><td>price</td><td>A fixed price that can be defined manually in the fare structure. If this price is set the price factor will not be applied and the series price is replaced by this price.</td></tr>
+<tr><td>rounding mode</td><td>Rounding rule applied to the price. <br/><br/>
+
+<ul>
+<li> Up: rounding up to one cent</li>
+<li> Down: rounding down to one cent</li>
+<li> Half-Up: rounding up to one cent for 0.5 to 0.9 cents and down for 0.1 to 0.4 cents</li>
+<li> Half-Down: rounding up to one cent for 0.6 to 0.9 cents and down for 0.1 to 0.5 cents</li>
+<li> Half-Even: rounding half up if the left digit is odd, half down otherwise (preserves the mean value)</li>
+</ul>
+
+
+</td></tr>
 <tr><td>data description</td><td>Text to name the fare template. This text as no effect on the final data.</td></tr>
 <tr><td>Fare detail description</td><td>A detailed description can be added to the fare. The fare detail description is a text that must to be edited in the fare structure first. Then it can be selected in the fare template.</td></tr>
 <tr><td>Fulfillment Constraint</td><td>A fulfillment constraint to be added to the fare. The fulfillment constraint must be edited in the fare structure first and can then be selected in the fare template.</td></tr>
