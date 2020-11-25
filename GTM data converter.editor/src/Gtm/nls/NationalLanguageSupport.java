@@ -399,6 +399,15 @@ public class NationalLanguageSupport extends NLS{
 	public static String ImportLegayTask_BorderPoints;
 	public static String ImportLegayTask_TCVLfile;
 
+
+	public static String ImportBorderPointsAction_0;
+	public static String ImportBorderPointsAction_2;
+	public static String ImportBorderPointsAction_3;
+	public static String ImportBorderPointsAction_4;
+	public static String ImportBorderPointsAction_13;
+	public static String ImportBorderPointsAction_12;
+	public static String ImportBorderPointsAction_14;
+	
     static {
         // initialize resource bundle
         NLS.initializeMessages(BUNDLE_NAME, NationalLanguageSupport.class);

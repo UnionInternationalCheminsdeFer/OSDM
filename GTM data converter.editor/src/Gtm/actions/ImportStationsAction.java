@@ -82,6 +82,8 @@ public class ImportStationsAction extends BasicGtmAction {
 			
 			
 			BufferedReader reader = getReader(NationalLanguageSupport.ImportStationsAction_10);
+			
+			if (reader == null) return;
 
 			IRunnableWithProgress operation =	new IRunnableWithProgress() {
 				// This is the method that gets invoked when the operation runs.

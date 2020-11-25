@@ -2,7 +2,6 @@
 <?pde version="3.5"?>
 
 <product name="GTM data converter" uid="GTMproduct" id="GTM_data_converter.editor.GTMproduct" application="GTM_data_converter.editor.GtmEditorAdvisorApplication" version="1.1" useFeatures="false" includeLaunchers="true">
-
    <aboutInfo>
       <image path="/GTM data converter.editor/icons/UIC GIF square_96.gif"/>
       <text>

@@ -1316,9 +1316,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="StationFareDetailType">
     <eLiterals name="NO_DESCRIPTION"/>
-    <eLiterals name="ON_ARRIVAL"/>
-    <eLiterals name="ON_DEPARTURE"/>
-    <eLiterals name="ON_ARRIVAL_ON__DEPARTURE"/>
+    <eLiterals name="ON_ARRIVAL" value="1"/>
+    <eLiterals name="ON_DEPARTURE" value="2"/>
+    <eLiterals name="ON_ARRIVAL_ON__DEPARTURE" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RegulatoryCondition">
     <eLiterals name="CIV"/>
@@ -1369,13 +1369,12 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ControlDataExchangeTypes">
     <eLiterals name="IRS90918_4_PEER2PEER" value="2" literal="IRS90918_4_PEER2PEER"/>
     <eLiterals name="IRS90918_4_REGISTRY" value="1"/>
-    <eLiterals name="PROPRIETARY" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FareType">
     <eLiterals name="NRT"/>
     <eLiterals name="IRT" value="1"/>
     <eLiterals name="RES" value="2"/>
-    <eLiterals name="RPT" value="3"/>
+    <eLiterals name="ANCILLARY" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FulfillmentType">
     <eLiterals name="SID" value="2"/>
@@ -1408,7 +1407,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="InterfaceType">
     <eLiterals name="IRS90918_1_RESERVATION_BINARY" value="1" literal="IRS90918_1_RESERVATION_BINARY"/>
-    <eLiterals name="GTM" value="2"/>
+    <eLiterals name="OSDM" value="2"/>
     <eLiterals name="IRS90918_1_RESERVATION_XML" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="LegacyCalculationType">

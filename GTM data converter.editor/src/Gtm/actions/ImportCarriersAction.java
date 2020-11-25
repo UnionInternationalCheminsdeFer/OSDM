@@ -54,6 +54,8 @@ public class ImportCarriersAction extends ImportCsvDataAction {
 		
 		BufferedReader br = super.getReader(NationalLanguageSupport.ImportCarriersAction_4);
 
+		if (br == null) return;
+		
 		IRunnableWithProgress operation =	new IRunnableWithProgress() {
 			// This is the method that gets invoked when the operation runs.
 
