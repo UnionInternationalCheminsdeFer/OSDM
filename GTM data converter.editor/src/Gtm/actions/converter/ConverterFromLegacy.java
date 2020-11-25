@@ -79,6 +79,8 @@ import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.DirtyCommand;
 import Gtm.presentation.GtmEditor;
 
+import Gtm.RouteDescriptionBuilder;
+
 /**
  * The Class ConverterFromLegacy.
  */
