@@ -512,6 +512,10 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createConversionParamsAdapter();
 			}
 			@Override
+			public Adapter caseLegacyFareTemplates(LegacyFareTemplates object) {
+				return createLegacyFareTemplatesAdapter();
+			}
+			@Override
 			public Adapter caseFareTemplate(FareTemplate object) {
 				return createFareTemplateAdapter();
 			}
@@ -520,16 +524,16 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createAfterSalesTemplateAdapter();
 			}
 			@Override
+			public Adapter caseOnBorderStations(OnBorderStations object) {
+				return createOnBorderStationsAdapter();
+			}
+			@Override
 			public Adapter caseLegacyStationToServiceConstraintMappings(LegacyStationToServiceConstraintMappings object) {
 				return createLegacyStationToServiceConstraintMappingsAdapter();
 			}
 			@Override
 			public Adapter caseLegacyBorderPoint(LegacyBorderPoint object) {
 				return createLegacyBorderPointAdapter();
-			}
-			@Override
-			public Adapter caseOnBorderStations(OnBorderStations object) {
-				return createOnBorderStationsAdapter();
 			}
 			@Override
 			public Adapter caseLegacyFakeBorderStations(LegacyFakeBorderStations object) {
@@ -638,10 +642,6 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseLegacyViastation(LegacyViastation object) {
 				return createLegacyViastationAdapter();
-			}
-			@Override
-			public Adapter caseLegacyFareTemplates(LegacyFareTemplates object) {
-				return createLegacyFareTemplatesAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

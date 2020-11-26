@@ -118,7 +118,7 @@ paths:
           description: 'The number of locations to be returned ([1..50]).'
           required: false
           schema:
-            type: number
+            type: integer
             format: int32
             default: 10
         - in: query
@@ -1945,7 +1945,7 @@ paths:
         - Bookings
       summary: >-
         The DELETE booking service deletes the booking with the id provided. It
-        is only possible before the booking is confirmed.
+        is only possible before the booking is confirmed or in case of a technical problem in confirming multiple independent bookings within a sales transaction. Deletes on a confirmed booking must be documented and evidence on the issue must be provided on request. The delete on a confirmed booking is allowed immediately after the confirmation of the booking, but must be repeated according to the error handling rules in case the delete fails.
       operationId: deleteBookingsId
       parameters:
         - name: access-token 
@@ -2906,7 +2906,6 @@ components:
         description: >-
          This element can be used to pass non-blocking information or events,
          such as a price difference with the initially offered price at booking time.
-
     ResourceRef:
       type: object
       properties:
@@ -3019,7 +3018,7 @@ components:
           example: Get Map
           description: Relation of this link to the current entity.
         version:
-          type: number
+          type: integer
           format: int32
           example: 1
           description: Version of the current relation.
@@ -3036,7 +3035,7 @@ components:
         of transportation. 
       properties:
         index:
-          type: number
+          type: integer
           format: int32
           description: sequence number of the segment in the ordering of all segments of the trip
         origin:
@@ -3109,7 +3108,7 @@ components:
                 type: string
                 format: date-time
               index:
-                type: number
+                type: integer
                 format: int32
                 example: 5
                 description: >-
@@ -3313,7 +3312,7 @@ components:
         Service brand codes allowed in response, code list can be found on 
         [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list]
         (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
-      type: number
+      type: integer
       format: int32
 
     Poi:
@@ -3394,9 +3393,10 @@ components:
             - GRS80
           default: WGS84
         accuracy:
-          description: to be provided in degree. TODO clarify semantics
+          description: accuracy of the provided coordinates to be used when comparing coordinates
           type: number
           format: float
+          example: 0.00002
         latitude:
           description: >-
             Geographic coordinate that specifies the north-south position of a point on the earths surface
@@ -3492,13 +3492,13 @@ components:
           description: >-
             Max amount of transport-product changes (0 for direct
             connection, default/max=11)
-          type: number
+          type: integer
           format: int32
         extendedChangeTime:
           description: >-
             OOS MVP Indicates additional transfer time required where a transfer
             is present in the resulting trip. Expressed in minutes.
-          type: number
+          type: integer
           format: int32
         needsPRMAssistance:
           description: >-
@@ -3825,8 +3825,12 @@ components:
           $ref: '#/components/schemas/CurrencyDef'
         amount:
           description: amount in cents
-          type: number
+          type: integer
           format: int32
+        scale: 
+          description: scale of the amount - the number of positions after the comma
+          type: integer
+          default: 2
         vatDetails:
           type: array
           items:
@@ -3842,8 +3846,12 @@ components:
           $ref: '#/components/schemas/CountryDef'
         amount:
           description: amount in cents
-          type: number
+          type: integer
           format: int32
+        scale: 
+          description: scale of the amount - the number of positions after the comma
+          type: integer
+          default: 2          
         percentage:
           type: number
           format: float
@@ -4160,7 +4168,6 @@ components:
       type: string
       description: >-
         Code of the service level, code-list in IRS 90918-1.
-
     Flexibility:
       type: string
       x-extensible-enum:
@@ -4233,7 +4240,8 @@ components:
                 description: indices of the segments in the trip given by the provider of the offer
                 type: array
                 items:
-                  type: number
+                  type: integer
+                  format: int32
       required:
         - price
         - passengerRefs
@@ -4686,10 +4694,12 @@ components:
                 type: string
               number:
                 description: number of places with this property
-                type: number
+                type: integer
+                format: int32
               priority:
                 description: priority for displaying a list of properties
-                type: number
+                type: integer
+                format: int32
             required:
               - placeProperty
       required:         
@@ -5447,16 +5457,16 @@ components:
           type: object
           properties:
             weight:
-              type: number
+              type: integer
               format: int32
             length:
-              type: number
+              type: integer
               format: int32
             width:
-              type: number
+              type: integer
               format: int32
             height:
-              type: number
+              type: integer
               format: int32
             model:
               type: string
@@ -5500,19 +5510,19 @@ components:
           properties:
             weight:
               description: weight in kg
-              type: number
+              type: integer
               format: int32
             length:
               description: length in cm
-              type: number
+              type: integer
               format: int32
             width:
               description: width in cm
-              type: number
+              type: integer
               format: int32
             height:
               description: length in cm
-              type: number
+              type: integer
               format: int32
             plate:
               description: >-
@@ -5549,7 +5559,7 @@ components:
             for engineers (usually not suited for non technical stakeholders and
             not localized); example: Service Unavailable
         status:
-          type: number
+          type: integer
           format: int32
           description: >-
             The HTTP status code generated by the origin server for this occurrence
@@ -5569,7 +5579,6 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
-
     #### Fare-specific elements begin
 
     FareOnlineDef:
@@ -5650,20 +5659,20 @@ components:
       properties:
         serialId:
           description: sequential number of regional validities
-          type: number
+          type: integer
           format: int32
           minimum: 0
           maximum: 99999
         addId:
           description: >-
             Sequential number of regional validities (leading positions in case the series is too short
-          type: number
+          type: integer
           format: int32
           minimum: 0
           maximum: 99
         tariffId:
           description: sequential number of the fares for one regional validity
-          type: number
+          type: integer
           format: int32
           minimum: 0
           maximum: 9999
@@ -5687,7 +5696,7 @@ components:
         utcOffset:
           description: >- 
             offset to UTC in minutes (number of minutes to be added to get UTC dates)
-          type: number
+          type: integer
           format: int32
         
     TravelValidityConstraintOnlineDef:
@@ -5708,10 +5717,12 @@ components:
                 - HOURS
                 - MINUTES
             value:
-              type: number
+              type: integer
+              format: int32
             hoursAfterMidnight:
               description: validity extended after midnight
-              type: number
+              type: integer
+              format: int32
           required:
             - timeUnit
             - value  
@@ -5723,11 +5734,11 @@ components:
             properties:
               from:
                 description: minutes of the day in the time zone of travel
-                type: number
+                type: integer
                 format: int32
               until:
                 description: minutes of the day in the time zone of travel
-                type: number
+                type: integer
                 format: int32
               scope:
                 description: 'START_OF_TRAVEL,COMPLETE_RANGE'
@@ -5738,7 +5749,7 @@ components:
               - scope
         numberOfTravelDays:
           description: number of allowed travel days (e.g. 3 travel days within 2 weeks)
-          type: number
+          type: integer
           format: int32
         returnConstraint:
           description: a return trip with the same carrier must be sold in combination
@@ -5746,17 +5757,17 @@ components:
           properties:
             latestReturn:
               description: number of days after departure or start of validity of the last return
-              type: number
+              type: integer
               format: int32
             earliestReturn:
               description: number of days after departure or start of validity of the earliest return
-              type: number
+              type: integer
               format: int32
             excludedWeekdays:
               description: weekdays (ISO day of the week, 1 = Monday) between travel and return where travel is not allowed
               type: array
               items:
-                type: number
+                type: integer
                 format: int32
           required:
             - latestReturn
@@ -5795,12 +5806,12 @@ components:
               x:
                 description: >-
                   horizontal coordinate of the center of the place
-                type: number
+                type: integer
                 format: int32
               y:
                 description: >-
                   vertical coordinate of the center of the place
-                type: number
+                type: integer
                 format: int32
               id:
                 description: >-
@@ -5853,12 +5864,12 @@ components:
               x:
                 description: >-
                   horizontal coordinate of the center of the place
-                type: number
+                type: integer
                 format: int32
               y:
                 description: >-
                   vertical coordinate of the center of the place
-                type: number
+                type: integer
                 format: int32
               id:
                 description: >-
@@ -5884,12 +5895,12 @@ components:
               x:
                 description: >-
                   horizontal coordinate of the center of the place
-                type: number
+                type: integer
                 format: int32
               y:
                 description: >-
                   vertical coordinate of the center of the place
-                type: number
+                type: integer
                 format: int32
               id:
                 description: >-
@@ -5919,10 +5930,10 @@ components:
           type: object
           properties:
             x:
-              type: number
+              type: integer
               format: int32
             y:
-              type: number
+              type: integer
               format: int32
         containerType:
           type: string
@@ -6039,7 +6050,7 @@ components:
             - HOURS
             - MINUTES
         timeValue:
-          type: number
+          type: integer
           format: int32
         timeReference:
           description: >-
@@ -6090,7 +6101,7 @@ components:
         properties:
           seqNb:
             description: order number of the list item
-            type: number
+            type: integer
             format: int32
           zone:
             $ref: '#/components/schemas/ZoneDef'
@@ -6118,7 +6129,7 @@ components:
         carrier:
           $ref: '#/components/schemas/CompanyDef'
         city:
-          type: number
+          type: integer
           format: int32
         entryStation:
           $ref: '#/components/schemas/StationDetailsDef'
@@ -6172,10 +6183,10 @@ components:
           type: boolean
           default: false
         routeId:
-          type: number
+          type: integer
           format: int32
         seriesId:
-          type: number
+          type: integer
           format: int32
         alternativeRoute:
           type: array
@@ -6225,7 +6236,7 @@ components:
         carrier:
           $ref: '#/components/schemas/CompanyDef'
         city:
-          type: number
+          type: integer
           format: int32
         entryStation:
           $ref: '#/components/schemas/StationDetailsDef'
@@ -6235,7 +6246,7 @@ components:
           description: to be used in bar codes
           type: array
           items:
-            type: number
+            type: integer
             format: int32
         nutsCode:
           description: Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
@@ -6341,7 +6352,7 @@ components:
                   - AGENT_ERROR
               timeLimit:
                 description: the change is limited to n hours after booking confirmation
-                type: number
+                type: integer
                 format: int32
             required:
               - acceptedReason
@@ -6516,7 +6527,7 @@ components:
           $ref: '#/components/schemas/RegionalValidityDef'
         distance:
           description: Distance in km for statistics
-          type: number
+          type: integer
           format: int32
       required:
         - regionalValidity
@@ -6556,11 +6567,9 @@ components:
     ConnectionPointDef:
       type: object
       description: >-
-        Connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
+        Connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets. A legacy border point code might be provided as an additional code within the stations (code list BORDER_POINT). In case the connection point is a real station this station is indicated. In case the connection point is inbetween stations for each side of the border real  stations must be provided. Multiple sets of station can be provided in the rare case that the connection point conects more than two station (A-B and A-C). Multiple stations within a set at one side of the border might be provided in case of changes (new stations build near the border). Providing the UIC code for the station is mandatory. 
       properties:
         id:
-          type: string
-        legacyBorderPointCode:
           type: string
         name:
           type: string

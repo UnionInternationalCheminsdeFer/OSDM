@@ -262,14 +262,7 @@ public class ConversionParamsItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return "Conversion Mappings";
-		/*
-		 * String label = ((ConversionParams)object).getTaxId();
-
-		return label == null || label.length() == 0 ?
-			getString("_UI_ConversionParams_type") :
-			getString("_UI_ConversionParams_type") + " " + label;
-					 */
+		return getString("_UI_ConversionParams_type");
 	}
 
 

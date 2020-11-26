@@ -736,6 +736,12 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GtmPackage.LEGACY_FARE_TEMPLATES: {
+				LegacyFareTemplates legacyFareTemplates = (LegacyFareTemplates)theEObject;
+				T result = caseLegacyFareTemplates(legacyFareTemplates);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GtmPackage.FARE_TEMPLATE: {
 				FareTemplate fareTemplate = (FareTemplate)theEObject;
 				T result = caseFareTemplate(fareTemplate);
@@ -748,6 +754,12 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GtmPackage.ON_BORDER_STATIONS: {
+				OnBorderStations onBorderStations = (OnBorderStations)theEObject;
+				T result = caseOnBorderStations(onBorderStations);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS: {
 				LegacyStationToServiceConstraintMappings legacyStationToServiceConstraintMappings = (LegacyStationToServiceConstraintMappings)theEObject;
 				T result = caseLegacyStationToServiceConstraintMappings(legacyStationToServiceConstraintMappings);
@@ -757,12 +769,6 @@ public class GtmSwitch<T> extends Switch<T> {
 			case GtmPackage.LEGACY_BORDER_POINT: {
 				LegacyBorderPoint legacyBorderPoint = (LegacyBorderPoint)theEObject;
 				T result = caseLegacyBorderPoint(legacyBorderPoint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.ON_BORDER_STATIONS: {
-				OnBorderStations onBorderStations = (OnBorderStations)theEObject;
-				T result = caseOnBorderStations(onBorderStations);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -925,12 +931,6 @@ public class GtmSwitch<T> extends Switch<T> {
 			case GtmPackage.LEGACY_VIASTATION: {
 				LegacyViastation legacyViastation = (LegacyViastation)theEObject;
 				T result = caseLegacyViastation(legacyViastation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GtmPackage.LEGACY_FARE_TEMPLATES: {
-				LegacyFareTemplates legacyFareTemplates = (LegacyFareTemplates)theEObject;
-				T result = caseLegacyFareTemplates(legacyFareTemplates);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

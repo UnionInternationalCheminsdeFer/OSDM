@@ -5,6 +5,7 @@ package Gtm.provider;
 
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
+import Gtm.RouteDescriptionBuilder;
 import Gtm.ViaStation;
 
 import java.util.Collection;
@@ -206,14 +207,11 @@ public class ViaStationItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ViaStation)object).getDataDescription();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ViaStation_type") :
-			getString("_UI_ViaStation_type") + " " + label;
+		return RouteDescriptionBuilder.getRouteDescription((ViaStation) object);
 	}
 
 
