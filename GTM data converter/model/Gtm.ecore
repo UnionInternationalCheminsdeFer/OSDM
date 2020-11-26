@@ -1017,6 +1017,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="convertServiceConstraints"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LegacyFareTemplates">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fareTemplates" upperBound="-1"
+        eType="#//FareTemplate" containment="true" resolveProxies="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FareTemplate">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="PRICE_FACTOR_MUST TYPE_MUST TRAVEL_VALIDITY_MUST COMBINATION_CONSTRAINT_MUST PASSENGER_CONSTRAINT_MUST FULFILMENT_CONSTRAINT_MUST LEGACY_CONVERSION_MUST SERVICE_CLASS_MUST PRICE_OR_FACTOR"/>
@@ -1024,13 +1028,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="priceFactor" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Float"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="price" eType="#//Price"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roundingMode" eType="#//RoundingType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//FareType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="afterSalesTemplate" upperBound="-1"
         eType="#//AfterSalesTemplate" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataDescription" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="text" eType="#//Text"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="regionalConstraint" eType="#//RegionalConstraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serviceConstraint" eType="#//ServiceConstraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="carrierConstraint" eType="#//CarrierConstraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serviceClass" eType="#//ServiceClass"/>
@@ -1066,6 +1070,10 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="feeFactor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OnBorderStations">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stations" eType="#//StationSet"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyStationToServiceConstraintMappings">
     <eOperations name="findServiceConstraint" eType="#//ServiceConstraint">
       <eParameters name="stationCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -1081,10 +1089,6 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="borderSides" upperBound="-1"
         eType="#//LegacyBorderSide" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OnBorderStations">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="stations" eType="#//StationSet"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyFakeBorderStations">
     <eStructuralFeatures xsi:type="ecore:EReference" name="stations" eType="#//StationSet"
@@ -1305,10 +1309,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="optional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LegacyFareTemplates">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fareTemplates" upperBound="-1"
-        eType="#//FareTemplate" containment="true" resolveProxies="false"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="StationFareDetailType">
     <eLiterals name="NO_DESCRIPTION"/>
     <eLiterals name="ON_ARRIVAL" value="1"/>
@@ -1334,6 +1334,12 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ClassicClassType">
     <eLiterals name="FIRST" value="1"/>
     <eLiterals name="SECOND" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ClassId">
+    <eLiterals name="A" value="1"/>
+    <eLiterals name="B" value="2"/>
+    <eLiterals name="C" value="3"/>
+    <eLiterals name="D" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CharacterSet">
     <eLiterals name="LATIN1_ISO88591" value="1" literal="LATIN-1_ISO-8859-1"/>
@@ -1365,6 +1371,12 @@
     <eLiterals name="IRS90918_4_PEER2PEER" value="2" literal="IRS90918_4_PEER2PEER"/>
     <eLiterals name="IRS90918_4_REGISTRY" value="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DataSource">
+    <eLiterals name="MANUAL" value="1"/>
+    <eLiterals name="CONVERTED" value="2"/>
+    <eLiterals name="IMPORTED" value="3"/>
+    <eLiterals name="GENERATED" value="4"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FareType">
     <eLiterals name="NRT"/>
     <eLiterals name="IRT" value="1"/>
@@ -1391,6 +1403,17 @@
     <eLiterals name="IRS90918_1" value="1"/>
     <eLiterals name="GTM" value="2"/>
     <eLiterals name="NONE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="GenericReductionCards">
+    <eLiterals name="UIC_EURAIL" value="1"/>
+    <eLiterals name="UIC_INTERRAIL" value="2"/>
+    <eLiterals name="UIC_FIP_DUTY" value="3"/>
+    <eLiterals name="UIC_FIP_LEISURE_FREE" value="4"/>
+    <eLiterals name="UIC_FIP_LEISURE_REDU" value="5"/>
+    <eLiterals name="UIC_RAILPLUS" value="6"/>
+    <eLiterals name="UIC_RIT_1" value="7"/>
+    <eLiterals name="UIC_RIT_2" value="8"/>
+    <eLiterals name="UIC_RIT_3" value="9"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="HemisphereEW">
     <eLiterals name="EAST"/>
@@ -1553,9 +1576,35 @@
     <eLiterals name="T3" value="5"/>
     <eLiterals name="T4" value="6"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RoundingType">
+    <eLiterals name="HALFUP"/>
+    <eLiterals name="DOWN" value="1"/>
+    <eLiterals name="HALFEVEN" value="2"/>
+    <eLiterals name="UP" value="3"/>
+    <eLiterals name="HALFDOWN" value="4"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SchemaVersion">
     <eLiterals name="V_1_0" value="1" literal="1.0"/>
     <eLiterals name="V_0_0" value="2" literal="0.0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ServiceMode">
+    <eLiterals name="HIGH_SPEED_TRAIN" value="8"/>
+    <eLiterals name="HISTORIC_TRAIN" value="16"/>
+    <eLiterals name="INTERCITY" value="9"/>
+    <eLiterals name="REGIONAL" value="11"/>
+    <eLiterals name="INTERREGIONAL" value="10"/>
+    <eLiterals name="TRAIN" value="37"/>
+    <eLiterals name="URBAN" value="12"/>
+    <eLiterals name="TRAM" value="35"/>
+    <eLiterals name="UNDERGROUND" value="36"/>
+    <eLiterals name="NIGHT_TRAIN" value="13"/>
+    <eLiterals name="SHARED_TAXI" value="34"/>
+    <eLiterals name="MOTOR_RAIL" value="14"/>
+    <eLiterals name="MOUNTAIN_TRAIN"/>
+    <eLiterals name="PLANE" value="3"/>
+    <eLiterals name="COACH_GROUP" value="31"/>
+    <eLiterals name="SHIP" value="32"/>
+    <eLiterals name="BUS" value="33"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TimeZone">
     <eLiterals name="CET" value="1" literal="Central European Time"/>
@@ -1613,47 +1662,5 @@
     <eLiterals name="FRIDAY" value="5"/>
     <eLiterals name="SATURDAY" value="6"/>
     <eLiterals name="SUNDAY" value="7"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="DataSource">
-    <eLiterals name="MANUAL" value="1"/>
-    <eLiterals name="CONVERTED" value="2"/>
-    <eLiterals name="IMPORTED" value="3"/>
-    <eLiterals name="GENERATED" value="4"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ClassId">
-    <eLiterals name="A" value="1"/>
-    <eLiterals name="B" value="2"/>
-    <eLiterals name="C" value="3"/>
-    <eLiterals name="D" value="4"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="GenericReductionCards">
-    <eLiterals name="UIC_EURAIL" value="1"/>
-    <eLiterals name="UIC_INTERRAIL" value="2"/>
-    <eLiterals name="UIC_FIP_DUTY" value="3"/>
-    <eLiterals name="UIC_FIP_LEISURE_FREE" value="4"/>
-    <eLiterals name="UIC_FIP_LEISURE_REDU" value="5"/>
-    <eLiterals name="UIC_RAILPLUS" value="6"/>
-    <eLiterals name="UIC_RIT_1" value="7"/>
-    <eLiterals name="UIC_RIT_2" value="8"/>
-    <eLiterals name="UIC_RIT_3" value="9"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ServiceMode">
-    <eLiterals name="HIGH_SPEED_TRAIN" value="8"/>
-    <eLiterals name="HISTORIC_TRAIN" value="16"/>
-    <eLiterals name="INTERCITY" value="9"/>
-    <eLiterals name="REGIONAL" value="11"/>
-    <eLiterals name="INTERREGIONAL" value="10"/>
-    <eLiterals name="TRAIN" value="37"/>
-    <eLiterals name="URBAN" value="12"/>
-    <eLiterals name="TRAM" value="35"/>
-    <eLiterals name="UNDERGROUND" value="36"/>
-    <eLiterals name="NIGHT_TRAIN" value="13"/>
-    <eLiterals name="SHARED_TAXI" value="34"/>
-    <eLiterals name="MOTOR_RAIL" value="14"/>
-    <eLiterals name="MOUNTAIN_TRAIN"/>
-    <eLiterals name="PLANE" value="3"/>
-    <eLiterals name="COACH_GROUP" value="31"/>
-    <eLiterals name="SHIP" value="32"/>
-    <eLiterals name="BUS" value="33"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -40,6 +40,12 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassicClassType/FIRST"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassicClassType/SECOND"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ClassId">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassId/A"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassId/B"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassId/C"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassId/D"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//CharacterSet">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CharacterSet/LATIN1_ISO88591"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//CharacterSet/LATIN2_ISO88592"/>
@@ -70,6 +76,12 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/IRS90918_4_PEER2PEER"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ControlDataExchangeTypes/IRS90918_4_REGISTRY"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//DataSource">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//DataSource/MANUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//DataSource/CONVERTED"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//DataSource/IMPORTED"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//DataSource/GENERATED"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//FareType">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/NRT"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//FareType/IRT"/>
@@ -96,6 +108,17 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GraphicalReservationType/IRS90918_1"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GraphicalReservationType/GTM"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GraphicalReservationType/NONE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//GenericReductionCards">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_EURAIL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_INTERRAIL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_FIP_DUTY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_FIP_LEISURE_FREE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_FIP_LEISURE_REDU"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RAILPLUS"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RIT_1"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RIT_2"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RIT_3"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//HemisphereEW">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//HemisphereEW/EAST"/>
@@ -258,9 +281,35 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationBerthType/T3"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ReservationBerthType/T4"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//RoundingType">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//RoundingType/HALFUP"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//RoundingType/DOWN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//RoundingType/HALFEVEN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//RoundingType/UP"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//RoundingType/HALFDOWN"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//SchemaVersion">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//SchemaVersion/V_1_0"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//SchemaVersion/V_0_0"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ServiceMode">
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/HIGH_SPEED_TRAIN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/HISTORIC_TRAIN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/INTERCITY"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/REGIONAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/INTERREGIONAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/TRAIN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/URBAN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/TRAM"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/UNDERGROUND"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/NIGHT_TRAIN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/SHARED_TAXI"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/MOTOR_RAIL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/MOUNTAIN_TRAIN"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/PLANE"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/COACH_GROUP"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/SHIP"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/BUS"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TimeZone">
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeZone/CET"/>
@@ -318,48 +367,6 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/FRIDAY"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/SATURDAY"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//WeekDay/SUNDAY"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//DataSource">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//DataSource/MANUAL"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//DataSource/CONVERTED"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//DataSource/IMPORTED"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//DataSource/GENERATED"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ClassId">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassId/A"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassId/B"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassId/C"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ClassId/D"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//GenericReductionCards">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_EURAIL"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_INTERRAIL"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_FIP_DUTY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_FIP_LEISURE_FREE"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_FIP_LEISURE_REDU"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RAILPLUS"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RIT_1"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RIT_2"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//GenericReductionCards/UIC_RIT_3"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//ServiceMode">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/HIGH_SPEED_TRAIN"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/HISTORIC_TRAIN"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/INTERCITY"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/REGIONAL"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/INTERREGIONAL"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/TRAIN"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/URBAN"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/TRAM"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/UNDERGROUND"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/NIGHT_TRAIN"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/SHARED_TAXI"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/MOTOR_RAIL"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/MOUNTAIN_TRAIN"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/PLANE"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/COACH_GROUP"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/SHIP"/>
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//ServiceMode/BUS"/>
     </genEnums>
     <genClasses ecoreClass="Gtm.ecore#//GTMTool">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//GTMTool/conversionFromLegacy"/>
@@ -725,7 +732,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//SalesAvailabilityConstraint/dataSource"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//SalesRestriction">
-      <genFeatures property="None" notify="false" createChild="false" propertyDescription="sales dates"
+      <genFeatures property="None" children="true" createChild="true" propertyDescription="sales dates"
           propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//SalesRestriction/salesDates"/>
       <genFeatures property="None" children="true" createChild="true" propertyDescription="start of sale"
           ecoreFeature="ecore:EReference Gtm.ecore#//SalesRestriction/startOfSale"/>
@@ -1003,15 +1010,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConversionParams/convertFareDescriptions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConversionParams/convertServiceConstraints"/>
     </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//LegacyFareTemplates">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyFareTemplates/fareTemplates"/>
+    </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//FareTemplate" labelFeature="#//Gtm/FareTemplate/dataDescription">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/priceFactor"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/price"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/roundingMode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/afterSalesTemplate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//FareTemplate/dataDescription"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/text"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/regionalConstraint"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/serviceConstraint"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/carrierConstraint"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//FareTemplate/serviceClass"/>
@@ -1037,6 +1047,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//AfterSalesTemplate/applicationTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesTemplate/feeFactor"/>
     </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//OnBorderStations">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//OnBorderStations/stations"/>
+    </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//LegacyStationToServiceConstraintMappings">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyStationToServiceConstraintMappings/legacyStationToServiceBrandMappings"/>
       <genOperations ecoreOperation="Gtm.ecore#//LegacyStationToServiceConstraintMappings/findServiceConstraint">
@@ -1048,9 +1061,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderPoint/fakeBorderStations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderPoint/onBorderStations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyBorderPoint/borderSides"/>
-    </genClasses>
-    <genClasses ecoreClass="Gtm.ecore#//OnBorderStations">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//OnBorderStations/stations"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//LegacyFakeBorderStations">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyFakeBorderStations/stations"/>
@@ -1214,9 +1224,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyViastation/position"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyViastation/code"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//LegacyViastation/optional"/>
-    </genClasses>
-    <genClasses ecoreClass="Gtm.ecore#//LegacyFareTemplates">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyFareTemplates/fareTemplates"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

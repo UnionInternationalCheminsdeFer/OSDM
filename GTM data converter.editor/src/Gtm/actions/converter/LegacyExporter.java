@@ -503,7 +503,7 @@ public class LegacyExporter {
 		//	6 Flag 1 for the 35- character station designation numeric 1 M  51 0 or 3 (see point 2.2) 
 		sb.append("0"); //$NON-NLS-1$
 		//	7 17-character station designation alpha numeric 17 M  52-68 Computer notation with no accents but in upper and lower case. The file is to be transferred in the ascending alphanumeric order of this field. 
-		sb.append(String.format("%-17s",GtmUtils.limitStringLengthWithConsoleEntry(station.getShortName(),17,editor,NationalLanguageSupport.LegacyExporter_106)));				 //$NON-NLS-1$
+		sb.append(String.format("%-17s",GtmUtils.limitStringLengthWithConsoleEntry(station.getName(),17,editor,NationalLanguageSupport.LegacyExporter_106)));				 //$NON-NLS-1$
 		//	8 Flag 2 for the 17- character station designation numeric 1 M  69 0 or 3 (see point 2.2) 
 		sb.append("0");		 //$NON-NLS-1$
 		//	9 17-character route description of station alpha numeric 17 O  70-86 Field 7 notation for route instruction purposes. 

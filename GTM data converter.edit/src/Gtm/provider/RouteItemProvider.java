@@ -6,6 +6,7 @@ package Gtm.provider;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.Route;
+import Gtm.RouteDescriptionBuilder;
 
 import java.util.Collection;
 import java.util.List;
@@ -110,11 +111,11 @@ public class RouteItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Route_type");
+		return RouteDescriptionBuilder.getRouteDescription((Route) object);
 	}
 
 

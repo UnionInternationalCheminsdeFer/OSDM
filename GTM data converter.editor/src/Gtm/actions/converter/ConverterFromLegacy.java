@@ -1,5 +1,7 @@
 package Gtm.actions.converter;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -59,6 +61,8 @@ import Gtm.LegacyViastation;
 import Gtm.Price;
 import Gtm.RegionalConstraint;
 import Gtm.RegionalValidity;
+import Gtm.RoundingType;
+import Gtm.RouteDescriptionBuilder;
 import Gtm.SalesAvailabilityConstraint;
 import Gtm.SalesRestriction;
 import Gtm.ServiceConstraint;
@@ -713,41 +717,13 @@ public class ConverterFromLegacy {
 		
 		
 		//handle departure
-		int code =  series.getToStation();
-		Station departureStation = null;
-		FareStationSetDefinition departureFareStation = null;
-		departureStation = getStation(tool, country, code);
-		if (departureStation  == null) {
-			departureStation = findBorderPointMappingStation(code);
-		} 		
-		if (departureStation  == null) {
-			departureFareStation = findFareStation(code);
-		} 
-		if (departureStation == null && departureFareStation == null) {
-			String message = NationalLanguageSupport.ConverterFromLegacy_7 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_8 + Integer.toString(code);
-			writeConsoleError(message);
-			throw new ConverterException(message);
-		}
+		ViaStation viaDeparture = getViaStation(tool, country, series.getToStation(),series.getNumber());
 
 		//handle arrival
-		code =  series.getFromStation();
-		Station arrivalStation = null;
-		FareStationSetDefinition arrivalFareStation = null;
-		arrivalStation = getStation(tool, country, code);
-		if (arrivalStation  == null) {
-			arrivalStation = findBorderPointMappingStation(code);
-		} 		
-		if (arrivalStation  == null) {
-			arrivalFareStation = findFareStation(code);
-		} 
-		if (arrivalStation == null && arrivalFareStation == null) {
-			String message = NationalLanguageSupport.ConverterFromLegacy_9 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_10 + Integer.toString(code);
-			writeConsoleError(message);
-			throw new ConverterException(message);
-		}		
+		ViaStation viaArrival = getViaStation(tool, country, series.getFromStation(),series.getNumber());	
 		
 		//set connection points 
-		setConnectionPoints(series, departureStation, arrivalStation, constraint, true);
+		setConnectionPoints(series, viaDeparture.getStation(), viaArrival.getStation(), constraint, true);
 		
 		
 		//handle route
@@ -761,12 +737,6 @@ public class ConverterFromLegacy {
 		region.setViaStation(mainViaStation);
 		mainViaStation.setRoute(GtmFactory.eINSTANCE.createRoute());
 
-		ViaStation viaDeparture = GtmFactory.eINSTANCE.createViaStation();
-		if (departureStation != null) {
-			viaDeparture.setStation(departureStation);
-		} else if (departureFareStation != null) {
-			viaDeparture.setFareStationSet(departureFareStation);
-		}
 		
 		mainViaStation.getRoute().getStations().add(viaDeparture);
 
@@ -785,7 +755,7 @@ public class ConverterFromLegacy {
 					lastRoute = mainRoute;
 					lastPosition = mainRoutePosition;
 					try {
-						addToRoute(lastRoute, legacyViaStation, country);
+						addToRoute(lastRoute, legacyViaStation, country,series.getNumber());
 					} catch (ConverterException e) {
 						String message = NationalLanguageSupport.ConverterFromLegacy_13 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_14 + e.getMessage();
 						writeConsoleError(message);
@@ -800,7 +770,7 @@ public class ConverterFromLegacy {
 					lastRoute = alternativeRoute.getStations();
 					lastPosition = legacyViaStation.getPosition();
 					try {
-						addToRoute(lastRoute, legacyViaStation, country);
+						addToRoute(lastRoute, legacyViaStation, country,series.getNumber());
 					} catch (ConverterException e) {
 						String message = NationalLanguageSupport.ConverterFromLegacy_15 + Integer.toString(series.getNumber()) + ") : " + e.getMessage(); //$NON-NLS-2$
 						writeConsoleError(message);
@@ -813,7 +783,7 @@ public class ConverterFromLegacy {
 					try {
 						alternativeRoutesVia.getAlternativeRoutes().add(alternativeRoute);
 						lastRoute = alternativeRoute.getStations();						
-						addToRoute(lastRoute, legacyViaStation, country);
+						addToRoute(lastRoute, legacyViaStation, country,series.getNumber());
 					} catch (ConverterException e) {
 						String message = NationalLanguageSupport.ConverterFromLegacy_17 + Integer.toString(series.getNumber()) + ") :" + e.getMessage(); //$NON-NLS-2$
 						writeConsoleError(message);
@@ -822,7 +792,7 @@ public class ConverterFromLegacy {
 				}
 			} else {
 				try {
-					addToRoute(lastRoute, legacyViaStation, country);
+					addToRoute(lastRoute, legacyViaStation, country,series.getNumber());
 				} catch (ConverterException e) {
 					String message = NationalLanguageSupport.ConverterFromLegacy_19 + Integer.toString(series.getNumber()) + ") : " + e.getMessage(); //$NON-NLS-2$
 					writeConsoleError(message);
@@ -832,20 +802,41 @@ public class ConverterFromLegacy {
 		}
 		
 		//handle arrival
-		
-		ViaStation via = GtmFactory.eINSTANCE.createViaStation();
-		via.setStation(arrivalStation);
-		via.setFareStationSet(arrivalFareStation);
-		via.setDataDescription(via.getDescription());
-		mainRoute.add(via);
-			
-		setDescription(mainViaStation);
+		viaArrival.setDataDescription(viaArrival.getDescription());
+		mainRoute.add(viaArrival);	
 		
 		constraint.setDataDescription(RouteDescriptionBuilder.getRouteDescription(constraint.getRegionalValidity()));
 		
 		return constraint;
 	}
 	
+	private ViaStation getViaStation(GTMTool tool, Country country, int code,int seriesNumber) throws ConverterException {
+
+		Station station = null;
+		FareStationSetDefinition fareStationSet = null;
+		fareStationSet = findFareStation(code);
+		if (fareStationSet == null) {
+			station = getStation(tool, country, code);
+			if (station  == null) {
+				station = findBorderPointMappingStation(code);
+			} 		
+		} 
+		if (station == null && fareStationSet == null) {
+			String message = NationalLanguageSupport.ConverterFromLegacy_7 + Integer.toString(seriesNumber) + NationalLanguageSupport.ConverterFromLegacy_8 + Integer.toString(code);
+			writeConsoleError(message);
+			throw new ConverterException(message);
+		}
+		
+		ViaStation viaStation = GtmFactory.eINSTANCE.createViaStation();
+		viaStation.setStation(station);
+		viaStation.setFareStationSet(fareStationSet);
+		viaStation.setDataDescription(viaStation.getDescription());
+		return viaStation;
+	}
+
+
+
+
 	/**
 	 * Creates the regional constraint.
 	 *
@@ -976,7 +967,7 @@ public class ConverterFromLegacy {
 	 * Gets the border point code.
 	 *
 	 * @param tool the tool
-	 * @param stationcode the stationcode
+	 * @param stationcode the station code
 	 * @return the border point code
 	 */
 	private static int getBorderPointCode(GTMTool tool, int stationcode) {
@@ -1005,42 +996,13 @@ public class ConverterFromLegacy {
 		Country country = tool.getConversionFromLegacy().getParams().getCountry();
 		
 		//handle departure
-		int code =  series.getFromStation();
-		Station departureStation = null;
-		FareStationSetDefinition departureFareStation = null;
-		departureStation = getStation(tool, country, code);
-		if (departureStation  == null) {
-			departureStation = findBorderPointMappingStation(code);
-		} 		
-		if (departureStation  == null) {
-			departureFareStation = findFareStation(code);
-		} 
-		if (departureStation == null && departureFareStation == null) {
-			String message = NationalLanguageSupport.ConverterFromLegacy_23 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_24 + Integer.toString(code);
-			writeConsoleError(message);
-			throw new ConverterException(message);
-		}
+		ViaStation viaDeparture = getViaStation(tool, country, series.getFromStation(),series.getNumber());
 
 		//handle arrival
-		code =  series.getToStation();
-		Station arrivalStation = null;
-		FareStationSetDefinition arrivalFareStation = null;
-		arrivalStation = getStation(tool, country, code);
-		if (arrivalStation  == null) {
-			arrivalStation = findBorderPointMappingStation(code);
-		} 		
-		if (arrivalStation  == null) {
-			arrivalFareStation = findFareStation(code);
-		} 
-		if (arrivalStation == null && arrivalFareStation == null) {
-			String message = NationalLanguageSupport.ConverterFromLegacy_25 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_26 + Integer.toString(code);
-			writeConsoleError(message);
-			throw new ConverterException(message);
-		}	
-		
+		ViaStation viaArrival = getViaStation(tool, country, series.getToStation(),series.getNumber());
 		
 		//set connection points 
-		setConnectionPoints(series, departureStation, arrivalStation, constraint, false);
+		setConnectionPoints(series, viaDeparture.getStation(), viaArrival.getStation(), constraint, false);
 		
 		
 		//create route
@@ -1053,10 +1015,6 @@ public class ConverterFromLegacy {
 		region.setViaStation(mainViaStation);
 		constraint.getRegionalValidity().add(region);
 		
-		ViaStation viaDeparture = GtmFactory.eINSTANCE.createViaStation();
-		if (departureStation != null) {
-			viaDeparture.setStation(departureStation);
-		}
 		mainViaStation.getRoute().getStations().add(viaDeparture);
 
 		int mainRoutePosition = 1;
@@ -1074,7 +1032,7 @@ public class ConverterFromLegacy {
 					lastPosition = mainRoutePosition;
 					alternativeRoutesVia = null;
 					try {
-						addToRoute(lastRoute, legacyViaStation, country);
+						addToRoute(lastRoute, legacyViaStation, country,series.getNumber());
 					} catch (ConverterException e) {
 						String message = NationalLanguageSupport.ConverterFromLegacy_29 + Integer.toString(series.getNumber()) + ") : " + e.getMessage(); //$NON-NLS-2$
 						writeConsoleError(message);
@@ -1089,7 +1047,7 @@ public class ConverterFromLegacy {
 					lastRoute = alternativeRoute.getStations();
 					lastPosition = legacyViaStation.getPosition();
 					try {
-						addToRoute(lastRoute, legacyViaStation, country);
+						addToRoute(lastRoute, legacyViaStation, country,series.getNumber());
 					} catch (ConverterException e) {
 						String message = "error in series: " + Integer.toString(series.getNumber()) + ") : " + e.getMessage(); //$NON-NLS-2$
 						writeConsoleError(message);
@@ -1102,7 +1060,7 @@ public class ConverterFromLegacy {
 					try {
 						alternativeRoutesVia.getAlternativeRoutes().add(alternativeRoute);
 						lastRoute = alternativeRoute.getStations();
-						addToRoute(lastRoute, legacyViaStation, country);
+						addToRoute(lastRoute, legacyViaStation, country,series.getNumber());
 					} catch (ConverterException e) {
 						String message = NationalLanguageSupport.ConverterFromLegacy_33 + Integer.toString(series.getNumber()) + ") :" + e.getMessage(); //$NON-NLS-2$
 						writeConsoleError(message);
@@ -1112,7 +1070,7 @@ public class ConverterFromLegacy {
 			} else {
 				//we stay in the same route
 				try {
-					addToRoute(lastRoute, legacyViaStation, country);
+					addToRoute(lastRoute, legacyViaStation, country,series.getNumber());
 				} catch (ConverterException e) {
 					String message = NationalLanguageSupport.ConverterFromLegacy_35 + Integer.toString(series.getNumber()) + NationalLanguageSupport.ConverterFromLegacy_36 + e.getMessage();
 					writeConsoleError(message);
@@ -1121,42 +1079,13 @@ public class ConverterFromLegacy {
 		}
 		
 		
-		
-		ViaStation via = GtmFactory.eINSTANCE.createViaStation();
-		via.setStation(arrivalStation);
-		via.setFareStationSet(arrivalFareStation);
-		mainRoute.add(via);			
-		setDescription(mainViaStation);
+		mainRoute.add(viaArrival);				
 		
 		constraint.setDataDescription(RouteDescriptionBuilder.getRouteDescription(constraint.getRegionalValidity()));
 		
 		return constraint;
 	}
 	
-	/**
-	 * Sets the description.
-	 *
-	 * @param via the new description
-	 */
-	private void setDescription(ViaStation via) {
-		if (via == null) return;
-		via.setDataDescription(via.getDescription());
-		if (via.getRoute() != null && via.getRoute().getStations() != null &&  !via.getRoute().getStations().isEmpty())
-		for (ViaStation v1 : via.getRoute().getStations() ) {
-			v1.setDataDescription(v1.getDescription());
-		}
-		if (via.getAlternativeRoutes() != null && !via.getAlternativeRoutes().isEmpty()) {
-			for (AlternativeRoute ar :  via.getAlternativeRoutes()) {
-				if (ar.getStations() != null && !ar.getStations().isEmpty()) {
-				  for (ViaStation v2: ar.getStations()){
-					  v2.setDataDescription(v2.getDescription());
-				  }
-				}
-			}
-		}
-		
-		
-	}
 
 	/**
 	 * Find connection point.
@@ -1404,31 +1333,15 @@ public class ConverterFromLegacy {
 	 * @param lastRoute the last route
 	 * @param legacyViaStation the legacy via station
 	 * @param country the country
+	 * @param seriesNumber 
 	 * @throws ConverterException the converter exception
 	 */
-	private void addToRoute(EList<ViaStation> lastRoute, LegacyViastation legacyViaStation, Country country) throws ConverterException {
-		ViaStation via = GtmFactory.eINSTANCE.createViaStation();
-		int code = legacyViaStation.getCode();
-		Station station = getStation(tool, country,code);
-		if (station != null) {
-			via.setStation(station);
-		} 
-		FareStationSetDefinition fareStation = findFareStation(code);
-		if (fareStation != null) {
-			via.setFareStationSet(fareStation);
-		}
-		if (station != null || fareStation != null) {
+	private void addToRoute(EList<ViaStation> lastRoute, LegacyViastation legacyViaStation, Country country, int seriesNumber) throws ConverterException {
+		
+		ViaStation via = getViaStation(tool, country,legacyViaStation.getCode(), seriesNumber);
+		if (via != null) {
 			lastRoute.add(via);
-		} else {
-			
-			if (isMappedStation(code)) {
-				return;
-			} else {	
-				String message = NationalLanguageSupport.ConverterFromLegacy_39 + Integer.toString(code);
-				writeConsoleError(message);
-				throw new ConverterException(message);
-			}
-		}
+		} 
 	}
 
 	/**
@@ -1525,8 +1438,28 @@ public class ConverterFromLegacy {
 			amount = amount * fareTemplate.getPriceFactor();
 			
 			// 2 digits for EUR
-			double scale = Math.pow(10, 2);
-		    amount = (float) (Math.round(amount * scale) / scale);
+			//double scale = Math.pow(10, 2);
+			//double centAmout = amount * scale;
+			
+			BigDecimal bd = null;
+			if (fareTemplate.getRoundingMode() == RoundingType.DOWN) {
+				 bd = new BigDecimal(amount).setScale(2, RoundingMode.DOWN);
+				 amount = bd.floatValue();
+			} else if (fareTemplate.getRoundingMode() == RoundingType.UP) {
+				 bd = new BigDecimal(amount).setScale(2, RoundingMode.UP);
+				 amount = bd.floatValue();
+			} else if (fareTemplate.getRoundingMode() == RoundingType.HALFDOWN) {
+				 bd = new BigDecimal(amount).setScale(2, RoundingMode.HALF_DOWN);
+				 amount = bd.floatValue();
+			} else if (fareTemplate.getRoundingMode() == RoundingType.HALFEVEN) {
+				 bd = new BigDecimal(amount).setScale(2, RoundingMode.HALF_EVEN);
+				 amount = bd.floatValue();
+			} else if (fareTemplate.getRoundingMode() == RoundingType.HALFUP) {
+				 bd = new BigDecimal(amount).setScale(2, RoundingMode.HALF_UP);
+				 amount = bd.floatValue();
+			} 
+
+		    //amount = (float) (Math.round(amount * scale) / scale);
 			
 		    price = createPrice(amount);
 		    
@@ -2176,7 +2109,7 @@ public class ConverterFromLegacy {
 				
 				if (legacyStation.getStationCode() == legacyStation.getFareReferenceStationCode())  {
 					//this is the station defining the name
-					def.setName(legacyStation.getName());
+					def.setName(legacyStation.getShortName());
 					def.setNameUtf8(legacyStation.getNameUTF8());
 				} else {
 				
@@ -2242,6 +2175,7 @@ public class ConverterFromLegacy {
 				if (station != null) {
 					station.setNameCaseASCII(lStation.getName());
 					station.setNameCaseUTF8(lStation.getNameUTF8());
+					station.setShortNameCaseASCII(lStation.getShortName());
 					station.setLegacyBorderPointCode(lStation.getBorderPointCode());
 					stationNames.getStationName().add(station);
 				}

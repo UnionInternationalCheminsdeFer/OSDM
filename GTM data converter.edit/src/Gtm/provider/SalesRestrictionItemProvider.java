@@ -77,6 +77,7 @@ public class SalesRestrictionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(GtmPackage.Literals.SALES_RESTRICTION__SALES_DATES);
 			childrenFeatures.add(GtmPackage.Literals.SALES_RESTRICTION__START_OF_SALE);
 			childrenFeatures.add(GtmPackage.Literals.SALES_RESTRICTION__END_OF_SALE);
 		}
@@ -131,6 +132,7 @@ public class SalesRestrictionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SalesRestriction.class)) {
+			case GtmPackage.SALES_RESTRICTION__SALES_DATES:
 			case GtmPackage.SALES_RESTRICTION__START_OF_SALE:
 			case GtmPackage.SALES_RESTRICTION__END_OF_SALE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -149,6 +151,11 @@ public class SalesRestrictionItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.SALES_RESTRICTION__SALES_DATES,
+				 GtmFactory.eINSTANCE.createCalendar()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -312,16 +312,18 @@ public class GtmValidator extends EObjectValidator {
 				return validateConversionFromLegacy((ConversionFromLegacy)value, diagnostics, context);
 			case GtmPackage.CONVERSION_PARAMS:
 				return validateConversionParams((ConversionParams)value, diagnostics, context);
+			case GtmPackage.LEGACY_FARE_TEMPLATES:
+				return validateLegacyFareTemplates((LegacyFareTemplates)value, diagnostics, context);
 			case GtmPackage.FARE_TEMPLATE:
 				return validateFareTemplate((FareTemplate)value, diagnostics, context);
 			case GtmPackage.AFTER_SALES_TEMPLATE:
 				return validateAfterSalesTemplate((AfterSalesTemplate)value, diagnostics, context);
+			case GtmPackage.ON_BORDER_STATIONS:
+				return validateOnBorderStations((OnBorderStations)value, diagnostics, context);
 			case GtmPackage.LEGACY_STATION_TO_SERVICE_CONSTRAINT_MAPPINGS:
 				return validateLegacyStationToServiceConstraintMappings((LegacyStationToServiceConstraintMappings)value, diagnostics, context);
 			case GtmPackage.LEGACY_BORDER_POINT:
 				return validateLegacyBorderPoint((LegacyBorderPoint)value, diagnostics, context);
-			case GtmPackage.ON_BORDER_STATIONS:
-				return validateOnBorderStations((OnBorderStations)value, diagnostics, context);
 			case GtmPackage.LEGACY_FAKE_BORDER_STATIONS:
 				return validateLegacyFakeBorderStations((LegacyFakeBorderStations)value, diagnostics, context);
 			case GtmPackage.LEGACY_BORDER_SIDE:
@@ -376,8 +378,6 @@ public class GtmValidator extends EObjectValidator {
 				return validateLegacyDistanceFare((LegacyDistanceFare)value, diagnostics, context);
 			case GtmPackage.LEGACY_VIASTATION:
 				return validateLegacyViastation((LegacyViastation)value, diagnostics, context);
-			case GtmPackage.LEGACY_FARE_TEMPLATES:
-				return validateLegacyFareTemplates((LegacyFareTemplates)value, diagnostics, context);
 			case GtmPackage.STATION_RELATION_TYPE:
 				return validateStationRelationType((StationRelationType)value, diagnostics, context);
 			case GtmPackage.STATION_FARE_DETAIL_TYPE:
@@ -390,6 +390,8 @@ public class GtmValidator extends EObjectValidator {
 				return validateBarcodeTypes((BarcodeTypes)value, diagnostics, context);
 			case GtmPackage.CLASSIC_CLASS_TYPE:
 				return validateClassicClassType((ClassicClassType)value, diagnostics, context);
+			case GtmPackage.CLASS_ID:
+				return validateClassId((ClassId)value, diagnostics, context);
 			case GtmPackage.CHARACTER_SET:
 				return validateCharacterSet((CharacterSet)value, diagnostics, context);
 			case GtmPackage.CLUSTERS:
@@ -398,6 +400,8 @@ public class GtmValidator extends EObjectValidator {
 				return validateCombinationModel((CombinationModel)value, diagnostics, context);
 			case GtmPackage.CONTROL_DATA_EXCHANGE_TYPES:
 				return validateControlDataExchangeTypes((ControlDataExchangeTypes)value, diagnostics, context);
+			case GtmPackage.DATA_SOURCE:
+				return validateDataSource((DataSource)value, diagnostics, context);
 			case GtmPackage.FARE_TYPE:
 				return validateFareType((FareType)value, diagnostics, context);
 			case GtmPackage.FULFILLMENT_TYPE:
@@ -408,6 +412,8 @@ public class GtmValidator extends EObjectValidator {
 				return validateGeoUnit((GeoUnit)value, diagnostics, context);
 			case GtmPackage.GRAPHICAL_RESERVATION_TYPE:
 				return validateGraphicalReservationType((GraphicalReservationType)value, diagnostics, context);
+			case GtmPackage.GENERIC_REDUCTION_CARDS:
+				return validateGenericReductionCards((GenericReductionCards)value, diagnostics, context);
 			case GtmPackage.HEMISPHERE_EW:
 				return validateHemisphereEW((HemisphereEW)value, diagnostics, context);
 			case GtmPackage.HEMISPHERE_NS:
@@ -440,8 +446,12 @@ public class GtmValidator extends EObjectValidator {
 				return validateReservationService((ReservationService)value, diagnostics, context);
 			case GtmPackage.RESERVATION_BERTH_TYPE:
 				return validateReservationBerthType((ReservationBerthType)value, diagnostics, context);
+			case GtmPackage.ROUNDING_TYPE:
+				return validateRoundingType((RoundingType)value, diagnostics, context);
 			case GtmPackage.SCHEMA_VERSION:
 				return validateSchemaVersion((SchemaVersion)value, diagnostics, context);
+			case GtmPackage.SERVICE_MODE:
+				return validateServiceMode((ServiceMode)value, diagnostics, context);
 			case GtmPackage.TIME_ZONE:
 				return validateTimeZone((TimeZone)value, diagnostics, context);
 			case GtmPackage.TAX_SCOPE:
@@ -456,14 +466,6 @@ public class GtmValidator extends EObjectValidator {
 				return validateTravelerType((TravelerType)value, diagnostics, context);
 			case GtmPackage.WEEK_DAY:
 				return validateWeekDay((WeekDay)value, diagnostics, context);
-			case GtmPackage.DATA_SOURCE:
-				return validateDataSource((DataSource)value, diagnostics, context);
-			case GtmPackage.CLASS_ID:
-				return validateClassId((ClassId)value, diagnostics, context);
-			case GtmPackage.GENERIC_REDUCTION_CARDS:
-				return validateGenericReductionCards((GenericReductionCards)value, diagnostics, context);
-			case GtmPackage.SERVICE_MODE:
-				return validateServiceMode((ServiceMode)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -7155,6 +7157,15 @@ public class GtmValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateServiceMode(ServiceMode serviceMode, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRoundingType(RoundingType roundingType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
