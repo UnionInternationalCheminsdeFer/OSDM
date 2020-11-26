@@ -5176,17 +5176,7 @@ components:
         title:
           type: string
           example: Refund Paris-Barcelona Andre Dupont 2020-07-23
-          
-    TicketRequest:
-      type: object
-      properties:
-        bookingId:
-          type: string
-          format: uuid
-          description: id of the booking to fulfill (no partial fulfillment)
-      required:
-        - bookingId
-        
+                
     RefundOfferRequest:
       type: object
       description: 
@@ -5327,37 +5317,6 @@ components:
           format: uuid
           description: id of the refund offer
             
-    RefundDef:
-      type: object
-      description: >- 
-        result of a successful confirmation of a refund. 
-      properties:
-        reimbursementStatus:
-          description: >-
-            If set to IMMEDIATE the distributor is allowed to return the 
-            reimbursement amount immediately.
-          type: string
-          enum:
-            - IMMEDIATE
-            - DELAYED
-        reimbursementDateTime:
-          type: string
-          format: date-time
-        appliedOverruleCode:
-          $ref: '#/components/schemas/AfterSaleReasonDef'
-        refundFee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
-        refundableAmount:
-          $ref: '#/components/schemas/CurrencyPriceDef'    
-        newBooking: 
-          oneOf:
-            - $ref: '#/components/schemas/Booking'
-            - $ref: '#/components/schemas/BookingRef'
-      required:
-        - reimbursementStatus
-        - refundFee
-        - refundableAmount
-
     OfferSearchDef:
       type: object
       description: >-
