@@ -6404,7 +6404,14 @@ components:
     ConnectionPointDef:
       type: object
       description: >-
-        Connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets. A legacy border point code might be provided as an additional code within the stations (code list BORDER_POINT). In case the connection point is a real station this station is indicated. In case the connection point is inbetween stations for each side of the border real  stations must be provided. Multiple sets of station can be provided in the rare case that the connection point conects more than two station (A-B and A-C). Multiple stations within a set at one side of the border might be provided in case of changes (new stations build near the border). Providing the UIC code for the station is mandatory. 
+        Connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
+        A legacy border point code might be provided as an additional code within the stations (code list BORDER_POINT). 
+        In case the connection point is a real station this station is indicated. 
+        In case the connection point is between stations for each side of the border real stations must be provided. 
+        Multiple sets of station can be provided in the rare case that the connection point connects more than two station (A-B and A-C).
+        Multiple stations within a set at one side of the border might be provided in case of changes (new stations build near the border). 
+        
+        Providing the UIC code for the station is mandatory. 
       properties:
         id:
           type: string
