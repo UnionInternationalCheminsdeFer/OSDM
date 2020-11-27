@@ -1945,7 +1945,11 @@ paths:
         - Bookings
       summary: >-
         The DELETE booking service deletes the booking with the id provided. It
-        is only possible before the booking is confirmed or in case of a technical problem in confirming multiple independent bookings within a sales transaction. Deletes on a confirmed booking must be documented and evidence on the issue must be provided on request. The delete on a confirmed booking is allowed immediately after the confirmation of the booking, but must be repeated according to the error handling rules in case the delete fails.
+        is only possible before the booking is confirmed or in case of a technical problem in confirming multiple 
+        independent bookings within a sales transaction. Deletes on a confirmed booking must be documented
+         and evidence on the issue must be provided on request. 
+         The delete on a confirmed booking is allowed immediately after the confirmation of the booking, 
+         but must be repeated according to the error handling rules in case the delete fails.
       operationId: deleteBookingsId
       parameters:
         - name: access-token 
@@ -2835,7 +2839,8 @@ paths:
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response to the request
+            (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -2905,6 +2910,7 @@ components:
         description: >-
          This element can be used to pass non-blocking information or events,
          such as a price difference with the initially offered price at booking time.
+  
     Resource:
       type: object
       description: used to represent a non-specified resource in the API.
@@ -2978,9 +2984,9 @@ components:
           format: date-time
           description: >-
             End date for the travel date range to search.
-        originId: 
+        origin: 
           $ref: '#/components/schemas/Location'
-        destinationId:
+        destination:
           $ref: '#/components/schemas/Location'
 
     BookingSearchReplyDef:
@@ -3245,7 +3251,7 @@ components:
           description: unique id of this trip on this server.
         title:
           type: string
-          example: Bruxelles-Midi - Paris-Nord 2020/07/01 10:05
+          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET
         segments:
           type: array
           items:
@@ -3450,7 +3456,8 @@ components:
           default: false
         transportMode:
           description: >-
-            transport mode (code list of MERITS). Optional for offer requests, included for alignment with FSM. If not set, no restriction is applied
+            Transport mode (code list of MERITS). Optional for offer requests. 
+            If not set, no restriction is applied.
           type: array
           items:
             type: string
@@ -3515,9 +3522,9 @@ components:
       type: object      
       description: >-
         Defines the parameters needed to request an offer, either based on either an
-        existing trip (that is then passed by Id, Ref or in full) plus a set of offer search
-        criterias, or based on tripsearch and offer search criteria. At least one
-        of the tripId, tripRef,trip elements or tripSearchCriteria must be set.
+        existing trip (that is then passed in) plus a set of offer search
+        criteria, or based on tripsearch and offer search criteria. At least one
+        of the trip or tripSearchCriteria must be set.
       properties:
         tripSearch:
           oneOf:
@@ -3595,7 +3602,7 @@ components:
           format: uuid
         title:
           type: string
-          example: 'Bruxelles-Midi 10:05 20200701'     
+          example: Bruxelles-Midi 2020-07-01 10:05 CET
         trip:
           $ref: '#/components/schemas/Trip'
         offers:
@@ -3651,7 +3658,7 @@ components:
           format: uuid
         title:
           type: string
-          example: 'Bruxelles-Midi - Paris-Nord 10:05 20200701 NF 50 EUR'       
+          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET,  Nomal Fare, 50 EUR
         offerSummary:
           $ref: '#/components/schemas/OfferSummary'
         offerHash:
@@ -3689,15 +3696,21 @@ components:
             $ref: '#/components/schemas/FulfillmentType'
         trip:
           $ref: '#/components/schemas/Trip'
-          description: Note that trip element cannot be embedded in tripoffer context as the TRIPOFFERS.OFFERS.TRIP value is not a possible embed value for TripOffers.
+          description: >-
+            Note that trip element cannot be embedded in tripoffer context as the
+            TRIPOFFERS.OFFERS.TRIP value is not a possible embed value for TripOffers.
         validFrom:
           type: string
           format: date-time
-          description: defines the minimum validity period of the trip booked, meaning the period during which it will be possible to travel with the fulfillments for this offer 
+          description: >-
+            Defines the minimum validity period of the trip booked, meaning the period 
+            during which it will be possible to travel with the fulfillments for this offer.
         validUntil:
           type: string
           format: date-time 
-          description: defines the minimum validity period of the trip booked, meaning the period during which it will be possible to travel with the fulfillments for this offer
+          description: >-
+            Defines the minimum validity period of the trip booked, meaning the period 
+            during which it will be possible to travel with the fulfillments for this offer.
         admissions:
           type: array        
           items: 
@@ -3900,7 +3913,7 @@ components:
           type: string
           format: uuid
           description: >-
-           id of the passenger resource in case service to patch a single passenger is provided.
+            Id of the passenger resource in case service to patch a single passenger is provided.
         title:
           type: string
           example: Andreas Schlapbach
@@ -4066,8 +4079,8 @@ components:
       
     ComfortClassDef:
       description: >-
-            Generic class classification, mostly used to harmonize choice and
-            representation across multiple carriers
+        Generic class classification, mostly used to harmonize choice and
+        representation across multiple carriers.
       type: string
       x-extensible-enum:
         - FIRST
@@ -4097,6 +4110,7 @@ components:
       type: string
       description: >-
         Code of the service level, code-list in IRS 90918-1.
+ 
     Flexibility:
       type: string
       x-extensible-enum:
@@ -4118,16 +4132,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReductionCardReferenceDef'
-        passengerRefs:
+        passengers:
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
         providerBookingReference:
           type: string
-          description: the booking reference of the booking the offer part is in on the provider side
+          description: >-
+            The booking reference of the booking the offer part is in on the provider side.
         finalProviderBookingReference:
           type: string
-          description: the booking reference of the order the offer part is in on the final provider side = the provider actually hosting or allocating  the product
+          description: >-
+            The booking reference of the order the offer part is in on the final provider 
+            side = the provider actually hosting or allocating  the product.
         availableFulfillmentOptions:
           type: array
           items:
@@ -4154,7 +4171,7 @@ components:
             - YES
             - NO
             - WITH_CONDITIONS
-        productRefs:
+        products:
           type: array
           items:
             type: object
@@ -4169,7 +4186,7 @@ components:
                   format: int32
       required:
         - price
-        - passengerRefs
+        - passengers
         - validFrom
         - refundable
         - exchangeable
@@ -4563,7 +4580,9 @@ components:
          accommodationType:
             $ref: '#/components/schemas/AccommodationType'  
          reservedPlaces:
-          description: reserved places in a confirmed reservation. Multiple place packs are needed to combined person and bicycle reservations
+          description: >-
+            Reserved places in a confirmed reservation. 
+            Multiple place packs are needed to combined person and bicycle reservations
           type: array
           items:
               $ref: '#/components/schemas/PlacePackDef'
@@ -4662,7 +4681,7 @@ components:
             http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'
         title:
           type: string
-          example: ICE wifi onboard 2020-07-11 or ICE Bruxelles-Frankfurt child 2020-07-12
+          example: ICE Wifi on Board 2020-07-11
         links:
           type: array
           items:
@@ -4708,7 +4727,9 @@ components:
                         format: uuid
                         description: >-
                           Id of the passengers the selected optional ancillaries are for.
-            description: the list of offer ids that need to be provisionally booked, with possibly the reservations and ancillaries associated that should be booked as well. It has to be a list in case of return trip (2 offers would be booked)
+            description: >-
+              The list of offers that need to be provisionally booked, with possibly the reservations
+              and ancillaries associated that should be booked as well. 
             required:
               - selectedOfferId
         embed:
@@ -4779,7 +4800,7 @@ components:
           items:
             $ref: '#/components/schemas/RefundOffer'
           description: >-
-            Refund offer is created with the details of the to-be-confirmed refund operation. 
+            Refund offers are created with the details of the to-be-confirmed refund operation. 
             One refund offer can then be confirmed, which turns it into a refund.
         exchange:
             $ref: '#/components/schemas/ExchangeDef'
@@ -4788,7 +4809,7 @@ components:
           items:
             $ref: '#/components/schemas/ExchangeOfferDef'
           description: >-
-            Exchange offer is created with the details of the to-be-confirmed refund operation. 
+            Exchange offers created with the details of the to-be-confirmed refund operation. 
             One exchange offer can then be confirmed, which turns it into an exchange and
             confirms the new booking.         
         links:
@@ -4858,7 +4879,7 @@ components:
       type: object
       description: >-
         a fulfillment is a document (or part of a document in allocator mode) that
-        - allows the passenger to prove his travel right
+        - allows the passenger to prove its travel right
         - provides easier access to trains and stations
         - allows an exchange for other services (voucher)
         a fulfillment refers to services of one or multiple offer parts or a fare (allocator mode).
@@ -4877,8 +4898,8 @@ components:
           $ref: '#/components/schemas/CurrencyPriceDef'
           description: >-
             Note the price is present here as an optional element as future evolution indicate a possible
-            separation between fulfillment info and financial information. Please refer to UIC leaflet XXX
-            for more information on current status
+            separation between fulfillment info and financial information. 
+            Please refer to UIC leaflet XXX for more information on current status.
         controlNumber:
           type: string
           description: >-
@@ -5416,6 +5437,7 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
+ 
     #### Fare-specific elements begin
 
     FareOnlineDef:
