@@ -146,9 +146,7 @@ paths:
                   locations:
                     type: array
                     items:
-                      oneOf:
-                        - $ref: '#/components/schemas/LocationRef'
-                        - $ref: '#/components/schemas/Location'
+                      $ref: '#/components/schemas/Location'
                     description: >-
                       Depending on the embed either references or full location definitions are returned. 
         '400':
@@ -217,6 +215,7 @@ paths:
             "application/problem+json":
               schema:
                 $ref: '#/components/schemas/Problem'
+
   '/trips/{tripId}':
     get:
       tags:
@@ -299,6 +298,7 @@ paths:
             "application/problem+json":
               schema:
                 $ref: '#/components/schemas/Problem'
+
   '/trips-collection/{tripsCollectionId}':
     get:
       tags:
@@ -373,8 +373,7 @@ paths:
             default: ALL
       responses:
         '200':
-          description: Trip(s) found
-          
+          description: Trip(s) found   
           content:
             application/json:
               schema:
@@ -410,6 +409,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+
   /trips-collection:
     post:
       tags:
@@ -479,6 +479,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+
   /trip-offers-collection/{tripOffersCollectionId}:
     get:
       tags:
@@ -594,7 +595,6 @@ paths:
         '501':
           description: Not implemented
           
-          
   /trip-offers-collection:
     post:
       tags:
@@ -663,6 +663,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+
   /trip-offers/{tripOfferId}:
     get:
       tags:
@@ -750,8 +751,7 @@ paths:
                 $ref: '#/components/schemas/Problem'         
         '501':
           description: Not implemented     
-          
-          
+   
   '/offers/{offerId}':
     get:
       tags:
@@ -1286,6 +1286,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+
   '/offers/{offerId}/reservations/{reservationId}':
     get:
       tags:
@@ -1693,7 +1694,6 @@ paths:
         '501':
           description: Not implemented        
  
-
   /bookings/search:       
     post:
       tags:
@@ -1945,7 +1945,11 @@ paths:
         - Bookings
       summary: >-
         The DELETE booking service deletes the booking with the id provided. It
-        is only possible before the booking is confirmed or in case of a technical problem in confirming multiple independent bookings within a sales transaction. Deletes on a confirmed booking must be documented and evidence on the issue must be provided on request. The delete on a confirmed booking is allowed immediately after the confirmation of the booking, but must be repeated according to the error handling rules in case the delete fails.
+        is only possible before the booking is confirmed or in case of a technical problem in confirming multiple 
+        independent bookings within a sales transaction. Deletes on a confirmed booking must be documented
+         and evidence on the issue must be provided on request. 
+         The delete on a confirmed booking is allowed immediately after the confirmation of the booking, 
+         but must be repeated according to the error handling rules in case the delete fails.
       operationId: deleteBookingsId
       parameters:
         - name: access-token 
@@ -2466,7 +2470,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-
     patch:
       tags:
         - RefundOffers
@@ -2836,7 +2839,8 @@ paths:
         - name: Accept-Language
           in: header
           description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request (see RFC2616-sec14.4). 
+            Describes the set of natural languages that are preferred for localized text in the response to the request
+            (see RFC2616-sec14.4). 
             Supporting English (en) is a must.
           schema:
             type: string
@@ -2902,16 +2906,21 @@ components:
           elementList:
             type: array
             items:
-              $ref: '#/components/schemas/ResourceRef'
+              $ref: '#/components/schemas/Resource'
         description: >-
          This element can be used to pass non-blocking information or events,
          such as a price difference with the initially offered price at booking time.
-    ResourceRef:
+  
+    Resource:
       type: object
+      description: used to represent a non-specified resource in the API.
       properties:
         id:
           type: string
           description: unique id of this resource on this server.
+        title:
+          type: string
+          example: Bruxelles-Midi    
         type:
           type: string
           enum:
@@ -2928,10 +2937,11 @@ components:
           type: string
           format: url
           example: 'http://some.provider/location/2345'
-        title:
-          type: string
-          example: Bruxelles-Midi    
-      description: used to represent a non-specified resource in the API.
+      required:
+        - id
+        - title
+        - type
+        - href
     
     BookingSearchParameterDef:
       type: object
@@ -2974,10 +2984,10 @@ components:
           format: date-time
           description: >-
             End date for the travel date range to search.
-        originId: 
-          $ref: '#/components/schemas/LocationRef'
-        destinationId:
-          $ref: '#/components/schemas/LocationRef'
+        origin: 
+          $ref: '#/components/schemas/Location'
+        destination:
+          $ref: '#/components/schemas/Location'
 
     BookingSearchReplyDef:
       type: object
@@ -2987,9 +2997,7 @@ components:
         bookings:
           type: array
           items: 
-            oneOf:
-            - $ref: '#/components/schemas/BookingRef'
-            - $ref: '#/components/schemas/Booking'
+            $ref: '#/components/schemas/Booking'
 
     Link:
       type: object
@@ -3039,14 +3047,10 @@ components:
           format: int32
           description: sequence number of the segment in the ordering of all segments of the trip
         origin:
-          oneOf:
-            - $ref: '#/components/schemas/LocationRef'
-            - $ref: '#/components/schemas/Location'
+          $ref: '#/components/schemas/Location'
           description: departure point of the segment
         destination:
-          oneOf:
-            - $ref: '#/components/schemas/LocationRef'
-            - $ref: '#/components/schemas/Location'
+          $ref: '#/components/schemas/Location'
           description: arrival point of the segment
         duration: 
           description: duration of the segment in  ISO 8601 Durations
@@ -3096,9 +3100,7 @@ components:
             type: object
             properties:
               station:
-                oneOf:
-                  - $ref: '#/components/schemas/LocationRef'
-                  - $ref: '#/components/schemas/Location'
+                $ref: '#/components/schemas/Location'
               departureDateTime:
                 description: date and time in the time zone of the station
                 type: string
@@ -3177,26 +3179,15 @@ components:
         - code
         - codeList
     
-    LocationRef:
-      type: object
-      properties:
-        id:
-          type: string
-          description: unique id of this location on this server.
-        href:
-          type: string
-          format: url
-          example: 'http://some.provider/location/2345'
-        title:
-          type: string
-          example: Bruxelles-Midi
-
     Location:
       type: object
       properties:
         id:
           type: string
           description: unique id of this location on this server.
+        title:
+          type: string
+          example: Bruxelles-Midi
         type:
           oneOf:
             - $ref: '#/components/schemas/StationDetailsDef'
@@ -3210,6 +3201,8 @@ components:
             $ref: '#/components/schemas/Link'
       required:
         - id
+        - title
+        - links
      
     StationCodeListDef:
       description: >-
@@ -3250,38 +3243,23 @@ components:
       type: string
       default: UIC
 
-    TripRef:
-      type: object
-      properties:
-        id:
-          type: string
-          description: unique id of this trip on this server.
-        href:
-          type: string
-          format: url
-          example: 'http://some.provider/trip/2345'
-        title:
-          type: string
-          example: Bruxelles-Midi - Paris-Nord 2020/07/01 10:05
-
     Trip:
       type: object
       properties:
         id:
           type: string
           description: unique id of this trip on this server.
+        title:
+          type: string
+          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET
         segments:
           type: array
           items:
             $ref: '#/components/schemas/Segment'
         origin:
-          oneOf:
-            - $ref: '#/components/schemas/LocationRef'
-            - $ref: '#/components/schemas/Location'
+          $ref: '#/components/schemas/Location'
         destination:
-          oneOf:
-            - $ref: '#/components/schemas/LocationRef'
-            - $ref: '#/components/schemas/Location'
+          $ref: '#/components/schemas/Location'
         duration:
           type: string
           description: >-
@@ -3304,8 +3282,8 @@ components:
             $ref: '#/components/schemas/Link'
       required:
         - id  
-        - origin
-        - destination
+        - title
+        - links
 
     ServiceBrandCodeDef:
       description: >-
@@ -3356,9 +3334,7 @@ components:
         tripsCollection:
           type: array
           items:
-            oneOf:
-             - $ref: '#/components/schemas/TripRef'
-             - $ref: '#/components/schemas/Trip'
+            $ref: '#/components/schemas/Trip'
         scrollBackContext:
           type: string
           description: >-
@@ -3480,7 +3456,8 @@ components:
           default: false
         transportMode:
           description: >-
-            transport mode (code list of MERITS). Optional for offer requests, included for alignment with FSM. If not set, no restriction is applied
+            Transport mode (code list of MERITS). Optional for offer requests. 
+            If not set, no restriction is applied.
           type: array
           items:
             type: string
@@ -3545,9 +3522,9 @@ components:
       type: object      
       description: >-
         Defines the parameters needed to request an offer, either based on either an
-        existing trip (that is then passed by Id, Ref or in full) plus a set of offer search
-        criterias, or based on tripsearch and offer search criteria. At least one
-        of the tripId, tripRef,trip elements or tripSearchCriteria must be set.
+        existing trip (that is then passed in) plus a set of offer search
+        criteria, or based on tripsearch and offer search criteria. At least one
+        of the trip or tripSearchCriteria must be set.
       properties:
         tripSearch:
           oneOf:
@@ -3623,22 +3600,19 @@ components:
         id:
           type: string
           format: uuid
+        title:
+          type: string
+          example: Bruxelles-Midi 2020-07-01 10:05 CET
         trip:
-          oneOf:
-            - $ref: '#/components/schemas/TripRef'
-            - $ref: '#/components/schemas/Trip'
+          $ref: '#/components/schemas/Trip'
         offers:
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/OfferRef'
-              - $ref: '#/components/schemas/Offer'
+            $ref: '#/components/schemas/Offer'
         passengers:
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/Passenger'
+            $ref: '#/components/schemas/Passenger'
         links:
           type: array
           items:
@@ -3646,22 +3620,7 @@ components:
       required: 
         - id
         - trip
-        - offers
-        - passengers
-
-    TripOfferRef:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        href:
-          type: string
-          format: url
-          example: 'http://some.provider/tripOffer/2345'
-        title:
-          type: string
-          example: 'Bruxelles-Midi 10:05 20200701'
+        - links
 
     RequestedInformation:
       type: string
@@ -3697,6 +3656,9 @@ components:
         id:
           type: string
           format: uuid
+        title:
+          type: string
+          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET,  Nomal Fare, 50 EUR
         offerSummary:
           $ref: '#/components/schemas/OfferSummary'
         offerHash:
@@ -3733,18 +3695,22 @@ components:
           items:
             $ref: '#/components/schemas/FulfillmentType'
         trip:
-          oneOf:
-            - $ref: '#/components/schemas/TripRef'
-            - $ref: '#/components/schemas/Trip'
-          description: Note that trip element cannot be embedded in tripoffer context as the TRIPOFFERS.OFFERS.TRIP value is not a possible embed value for TripOffers.
+          $ref: '#/components/schemas/Trip'
+          description: >-
+            Note that trip element cannot be embedded in tripoffer context as the
+            TRIPOFFERS.OFFERS.TRIP value is not a possible embed value for TripOffers.
         validFrom:
           type: string
           format: date-time
-          description: defines the minimum validity period of the trip booked, meaning the period during which it will be possible to travel with the fulfillments for this offer 
+          description: >-
+            Defines the minimum validity period of the trip booked, meaning the period 
+            during which it will be possible to travel with the fulfillments for this offer.
         validUntil:
           type: string
           format: date-time 
-          description: defines the minimum validity period of the trip booked, meaning the period during which it will be possible to travel with the fulfillments for this offer
+          description: >-
+            Defines the minimum validity period of the trip booked, meaning the period 
+            during which it will be possible to travel with the fulfillments for this offer.
         admissions:
           type: array        
           items: 
@@ -3767,21 +3733,8 @@ components:
             $ref: '#/components/schemas/Link'
       required:
         - id
-        - offerSummary
-
-    OfferRef:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        href:
-          type: string
-          format: url
-          example: 'http://some.provider/offer/2345'
-        title:
-          type: string
-          example: 'Bruxelles-Midi - Paris-Nord 10:05 20200701 NF 50 EUR'
+        - title
+        - links
 
     TripOffersCollection:
       type: object
@@ -3792,9 +3745,7 @@ components:
         tripOffers:
           type: array
           items:
-            oneOf:
-            - $ref: '#/components/schemas/TripOfferRef'
-            - $ref: '#/components/schemas/TripOffer'
+            $ref: '#/components/schemas/TripOffer'
         scrollBackContext:
           type: string
           description: >-
@@ -3952,7 +3903,7 @@ components:
       required:
         - cardIssuer
         - cardType
-      
+    
     Passenger:
       type: object
       description: >-
@@ -3962,7 +3913,10 @@ components:
           type: string
           format: uuid
           description: >-
-           id of the passenger resource in case service to patch a single passenger is provided.
+            Id of the passenger resource in case service to patch a single passenger is provided.
+        title:
+          type: string
+          example: Andreas Schlapbach
         reference:
           description: >-
             stable reference to passengers from other elements, or from caller
@@ -3983,7 +3937,9 @@ components:
           items:
             $ref: '#/components/schemas/Link'
       required:
-        - reference
+        - id
+        - title
+        - links
         
     PassengerAbstractDef:
       type: object
@@ -4123,8 +4079,8 @@ components:
       
     ComfortClassDef:
       description: >-
-            Generic class classification, mostly used to harmonize choice and
-            representation across multiple carriers
+        Generic class classification, mostly used to harmonize choice and
+        representation across multiple carriers.
       type: string
       x-extensible-enum:
         - FIRST
@@ -4144,20 +4100,6 @@ components:
       required:
         - start
         - end
-      
-    PassengerRef:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        href:
-          type: string
-          format: url
-          example: 'http://some.provider/passenger/2345'
-        title:
-          type: string
-          example: Andreas Dupont
           
     AccommodationType:
       type: string
@@ -4168,6 +4110,7 @@ components:
       type: string
       description: >-
         Code of the service level, code-list in IRS 90918-1.
+ 
     Flexibility:
       type: string
       x-extensible-enum:
@@ -4189,18 +4132,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReductionCardReferenceDef'
-        passengerRefs:
+        passengers:
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/Passenger'
+            $ref: '#/components/schemas/Passenger'
         providerBookingReference:
           type: string
-          description: the booking reference of the booking the offer part is in on the provider side
+          description: >-
+            The booking reference of the booking the offer part is in on the provider side.
         finalProviderBookingReference:
           type: string
-          description: the booking reference of the order the offer part is in on the final provider side = the provider actually hosting or allocating  the product
+          description: >-
+            The booking reference of the order the offer part is in on the final provider 
+            side = the provider actually hosting or allocating  the product.
         availableFulfillmentOptions:
           type: array
           items:
@@ -4227,15 +4171,13 @@ components:
             - YES
             - NO
             - WITH_CONDITIONS
-        productRefs:
+        products:
           type: array
           items:
             type: object
             properties:
-              productRef:
-                oneOf:
-                  - $ref: '#/components/schemas/ProductRef'
-                  - $ref: '#/components/schemas/Product'
+              product:
+                $ref: '#/components/schemas/Product'
               segmentIndices:
                 description: indices of the segments in the trip given by the provider of the offer
                 type: array
@@ -4244,25 +4186,11 @@ components:
                   format: int32
       required:
         - price
-        - passengerRefs
+        - passengers
         - validFrom
         - refundable
         - exchangeable
             
-    ProductRef:
-      type: object
-      properties:
-        id:
-          type: string
-          description: unique id of this product on this server.
-        href:
-          type: string
-          format: url
-          example: 'http://some.provider/product/2345'
-        title:
-          type: string
-          example: TGV Lyria Loisir 2
-
     Product:
       type: object
       description: >-
@@ -4271,6 +4199,9 @@ components:
         id:
           type: string
           description: unique id of this product on this server.
+        title:
+          type: string
+          example: TGV Lyria Loisir 2
         code:
           type: string
           description: >-
@@ -4308,11 +4239,8 @@ components:
           type: string
       required:
         - id
-        - description
-        - conditions
-        - refundable
-        - exchangeable
-        - fulfillmentOptions
+        - title
+        - links
           
     FulfillmentMediaTypeDef:
        type: string
@@ -4373,7 +4301,7 @@ components:
         reservations:
           type: array
           items:
-            $ref: '#/components/schemas/OfferPartRef'
+            $ref: '#/components/schemas/OfferPart'
         ancillaries:
           type: array
           items:
@@ -4385,7 +4313,7 @@ components:
                   - OPTIONAL
                   - INCLUDED
               ancillary:
-                $ref: '#/components/schemas/OfferPartRef'
+                $ref: '#/components/schemas/OfferPart'
         links:
           type: array
           items:
@@ -4459,7 +4387,7 @@ components:
         passengers:
           type: array
           items:
-            $ref: '#/components/schemas/PassengerRef'
+            $ref: '#/components/schemas/Passenger'
         selectedPlaceProperties: 
           type: array
           items:
@@ -4652,7 +4580,9 @@ components:
          accommodationType:
             $ref: '#/components/schemas/AccommodationType'  
          reservedPlaces:
-          description: reserved places in a confirmed reservation. Multiple place packs are needed to combined person and bicycle reservations
+          description: >-
+            Reserved places in a confirmed reservation. 
+            Multiple place packs are needed to combined person and bicycle reservations
           type: array
           items:
               $ref: '#/components/schemas/PlacePackDef'
@@ -4735,25 +4665,31 @@ components:
         - id
         - commonOfferPartAttributes
           
-    OfferPartRef:
+    OfferPart:
       type: object
+      description: >-
+        References all the offer part elements in an uniform format.
+        An OfferPart can therefore refer to reservation, admission or ancillary (in its parts).
       properties:
         id:
           type: string
           format: uuid
-        href:
+        parts:
           type: string
           format: url
           example: >-
-            http://some.provider/ancillary/2345 or
-            http://some.provider/reservation/2345'
+            http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'
         title:
           type: string
-          example: ICE wifi onboard 2020-07-11 or ICE Bruxelles-Frankfurt child 2020-07-12
-      description: >-
-        References all the offer part elements in an uniform format. an
-        offerPartRef can therefore refer to reservation,
-        admission or ancillary (in its href)
+          example: ICE Wifi on Board 2020-07-11
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      required:
+        - id
+        - title
+        - links
         
     BookingRequest:
       type: object
@@ -4791,7 +4727,9 @@ components:
                         format: uuid
                         description: >-
                           Id of the passengers the selected optional ancillaries are for.
-            description: the list of offer ids that need to be provisionally booked, with possibly the reservations and ancillaries associated that should be booked as well. It has to be a list in case of return trip (2 offers would be booked)
+            description: >-
+              The list of offers that need to be provisionally booked, with possibly the reservations
+              and ancillaries associated that should be booked as well. 
             required:
               - selectedOfferId
         embed:
@@ -4817,6 +4755,9 @@ components:
         id:
           type: string
           format: uuid
+        title:
+          type: string
+          example: booking 2345
         reference:
           type: string
           description: >-
@@ -4845,29 +4786,21 @@ components:
         bookedOffers:
           type: array
           items:
-            oneOf:
-            - $ref: '#/components/schemas/OfferRef'
-            - $ref: '#/components/schemas/Offer'
+            $ref: '#/components/schemas/Offer'
         passengers:
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/PassengerRef'
-              - $ref: '#/components/schemas/Passenger'
+            $ref: '#/components/schemas/Passenger'
         fulfillments:
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/FulfillmentRef'
-              - $ref: '#/components/schemas/Fulfillment'
+            $ref: '#/components/schemas/Fulfillment'
         refundOffers:
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/RefundOfferRef'
-              - $ref: '#/components/schemas/RefundOffer'
+            $ref: '#/components/schemas/RefundOffer'
           description: >-
-            Refund offer is created with the details of the to-be-confirmed refund operation. 
+            Refund offers are created with the details of the to-be-confirmed refund operation. 
             One refund offer can then be confirmed, which turns it into a refund.
         exchange:
             $ref: '#/components/schemas/ExchangeDef'
@@ -4876,7 +4809,7 @@ components:
           items:
             $ref: '#/components/schemas/ExchangeOfferDef'
           description: >-
-            Exchange offer is created with the details of the to-be-confirmed refund operation. 
+            Exchange offers created with the details of the to-be-confirmed refund operation. 
             One exchange offer can then be confirmed, which turns it into an exchange and
             confirms the new booking.         
         links:
@@ -4885,19 +4818,8 @@ components:
             $ref: '#/components/schemas/Link'
       required:
         - id
-        - status
-        - passengers
-
-    BookingRef:
-      type: object
-      properties:
-        href:
-          type: string
-          format: url
-          example: 'http://some.provider/booking/2345'
-        title:
-          type: string
-          example: booking 2345
+        - type
+        - links
           
     FulfillmentType:
       type: string      
@@ -4957,7 +4879,7 @@ components:
       type: object
       description: >-
         a fulfillment is a document (or part of a document in allocator mode) that
-        - allows the passenger to prove his travel right
+        - allows the passenger to prove its travel right
         - provides easier access to trains and stations
         - allows an exchange for other services (voucher)
         a fulfillment refers to services of one or multiple offer parts or a fare (allocator mode).
@@ -4976,8 +4898,8 @@ components:
           $ref: '#/components/schemas/CurrencyPriceDef'
           description: >-
             Note the price is present here as an optional element as future evolution indicate a possible
-            separation between fulfillment info and financial information. Please refer to UIC leaflet XXX
-            for more information on current status
+            separation between fulfillment info and financial information. 
+            Please refer to UIC leaflet XXX for more information on current status.
         controlNumber:
           type: string
           description: >-
@@ -4985,7 +4907,7 @@ components:
         offerParts:
           type: array
           items:
-            $ref: '#/components/schemas/OfferPartRef'
+            $ref: '#/components/schemas/OfferPart'
         documents:
           description: >-
             complete document created for fulfillment
@@ -5002,6 +4924,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      required:
+       - id
+       - title
+       - links
     
     FulfillmentDocumentDef:
       type: object
@@ -5092,20 +5018,6 @@ components:
         - JPG_VISUAL_ELEMENT
         - GIF_VISUAL_ELEMENT
   
-    FulfillmentRef:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        href:
-          type: string
-          format: url
-          example: 'http://some.provider/ticket/2345'
-        title:
-          type: string
-          example: Ticket Paris-Barcelona Andre Dupont 2020-07-23
-   
     AfterSaleReasonDef:
       description: >-
         Reason for and type of an after sale, Code list in IRS 90918-10.
@@ -5126,6 +5038,9 @@ components:
           type: string
           format: uuid
           description: id of the refund offer
+        title:
+          type: string
+          example: Refund Paris-Barcelona Andre Dupont 2020-07-23
         validUntil:
           type: string
           format: date-time
@@ -5150,32 +5065,19 @@ components:
         fulfillments:
           type: array
           items: 
-            $ref: '#/components/schemas/FulfillmentRef'
+            $ref: '#/components/schemas/Fulfillment'
         refundFee:
           $ref: '#/components/schemas/CurrencyPriceDef'
         refundableAmount:
           $ref: '#/components/schemas/CurrencyPriceDef'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
       required:
        - id
-       - validUntil
-       - status
-       - reimbursementStatus
-       - refundFee
-       - refundableAmount
-       
-    RefundOfferRef:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        href:
-          type: string
-          format: url
-          example: 'http://some.provider/bookings/2345/refundOffers/123'
-        title:
-          type: string
-          example: Refund Paris-Barcelona Andre Dupont 2020-07-23
+       - title
+       - links
                 
     RefundOfferRequest:
       type: object
@@ -5246,15 +5148,14 @@ components:
             affected fulfillments. In case of secure paper these need to be collected from the passenger.
           type: array
           items: 
-            $ref: '#/components/schemas/FulfillmentRef'
+            $ref: '#/components/schemas/Fulfillment'
         exchangeFee:
           $ref: '#/components/schemas/CurrencyPriceDef'
         refundableAmount:
           $ref: '#/components/schemas/CurrencyPriceDef'
         offer:
           oneOf:
-           - $ref: '#/components/schemas/TripOffer'  
-           - $ref: '#/components/schemas/TripOfferRef'
+           - $ref: '#/components/schemas/TripOffer'
            - $ref: '#/components/schemas/NonTripOfferDef'
       required:
        - id
@@ -5298,9 +5199,7 @@ components:
         refundableAmount:
           $ref: '#/components/schemas/CurrencyPriceDef'    
         newBooking: 
-          oneOf:
-            - $ref: '#/components/schemas/Booking'
-            - $ref: '#/components/schemas/BookingRef'
+          $ref: '#/components/schemas/Booking'
       required:
         - reimbursementStatus
         - exchangeFee
@@ -5538,6 +5437,7 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
+ 
     #### Fare-specific elements begin
 
     FareOnlineDef:
@@ -6526,7 +6426,14 @@ components:
     ConnectionPointDef:
       type: object
       description: >-
-        Connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets. A legacy border point code might be provided as an additional code within the stations (code list BORDER_POINT). In case the connection point is a real station this station is indicated. In case the connection point is inbetween stations for each side of the border real  stations must be provided. Multiple sets of station can be provided in the rare case that the connection point conects more than two station (A-B and A-C). Multiple stations within a set at one side of the border might be provided in case of changes (new stations build near the border). Providing the UIC code for the station is mandatory. 
+        Connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
+        A legacy border point code might be provided as an additional code within the stations (code list BORDER_POINT). 
+        In case the connection point is a real station this station is indicated. 
+        In case the connection point is between stations for each side of the border real stations must be provided. 
+        Multiple sets of station can be provided in the rare case that the connection point connects more than two station (A-B and A-C).
+        Multiple stations within a set at one side of the border might be provided in case of changes (new stations build near the border). 
+        
+        Providing the UIC code for the station is mandatory. 
       properties:
         id:
           type: string
