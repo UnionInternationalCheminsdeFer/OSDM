@@ -3120,7 +3120,17 @@ components:
       type: object
       properties:
         codeList:
-          $ref: '#/components/schemas/StationCodeListDef'
+          description: >-
+            Code list used for the station codes: 
+              - UIC: UIC codes as used by merits (UIC country code + local code)
+              - UIC-R: UIC codes for reservation (UIC country code + local code reservation) 
+              - ERA: future ERA station code
+          type: string
+          enum:
+            - UIC
+            - UIC-R
+            - ERA
+          default: UIC
         code:
           type: string
           description: the code representing the station in the specified code-list     
@@ -3152,15 +3162,6 @@ components:
         - id
         - title
         - links
-     
-    StationCodeListDef:
-      description: >-
-        Code list used for the station codes: UIC = UIC codes as used by merits
-        (UIC country code + local code) = Default// UIC-R = UIC codes for
-        reservation (UIC country code + local code reservation) // ERA = future
-        ERA station code
-      type: string
-      default: UIC
 
     Address:
       type: object
