@@ -3828,16 +3828,7 @@ components:
        - NATIONAL
        - SHORT_DISTANCE
        - LONG_DISTANCE
-
-    GenderDef:
-      description: >- 
-        The gender of the passenger, which is important in the case of night trains.
-      type: string
-      enum:
-        - MALE
-        - FEMALE
-        - X
-        
+       
     ReductionCardReferenceDef:
       type: object
       properties:
@@ -3965,7 +3956,13 @@ components:
           items:
             $ref: '#/components/schemas/LoyaltyCardReferenceDef'
         gender:
-          $ref: '#/components/schemas/GenderDef'
+          description: >- 
+            The gender of the passenger, which is important in the case of night trains.
+          type: string
+          enum:
+            - MALE
+            - FEMALE
+            - X
         prmNeeds:
           type: string
           x-extensible-enum:
@@ -4007,7 +4004,13 @@ components:
           description: Refer to code list for values
           type: string
         gender:
-          $ref: '#/components/schemas/GenderDef'
+          description: >- 
+            The gender of the passenger, which is important in the case of night trains.
+          type: string
+          enum:
+            - MALE
+            - FEMALE
+            - X
         limitOfValidity:
           type: string
           format: date-time
