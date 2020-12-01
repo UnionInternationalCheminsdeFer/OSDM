@@ -2118,7 +2118,9 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   fulfillments:
-                    $ref: '#/components/schemas/FulfillmentsDef'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Fulfillment'
         '202': 
           description: >- 
             Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
@@ -2591,7 +2593,9 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   fulfillments:
-                    $ref: '#/components/schemas/FulfillmentsDef'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Fulfillment'
           headers:
             Content-Language:
               schema:
@@ -4865,16 +4869,6 @@ components:
           type: array
           items:
            $ref: '#/components/schemas/FulfillmentMediaTypeDef'
-           
-    FulfillmentsDef:
-      type: object
-      description: >-
-        list of fulfillments in a booking
-      properties:
-        fulfillments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Fulfillment'
         
     FulfillmentsPatch:
       type: object
