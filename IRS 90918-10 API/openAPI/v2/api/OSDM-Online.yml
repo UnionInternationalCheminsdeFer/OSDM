@@ -112,7 +112,8 @@ paths:
             be provided for mass downloads
           required: false
           schema:
-            $ref: '#/components/schemas/CountryDef'
+            description: ISO 3166 2A codes
+            type: string
         - name: limit
           in: query
           description: 'The number of locations to be returned ([1..50]).'
@@ -185,8 +186,7 @@ paths:
           name: locationId
           schema:
             type: string
-            description: opaque and unique (on this server) id for the location
-           
+            description: opaque and unique (on this server) id for the location          
           required: true
           description: ID of the location resource to be retrieved.
       responses:
@@ -3147,7 +3147,8 @@ components:
           description: code unique with in the country only
           type: string
         country:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         codes:
           type: array
           items:
@@ -3230,7 +3231,8 @@ components:
           type: string
           example: 3006
         country:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         geoCoordinate:
           $ref: '#/components/schemas/GeoCoordinate'
       required:
@@ -3313,7 +3315,8 @@ components:
             The codes that can be used to represent the given POI on the system. There can be several codes, 
             in which case it is relevant to have a list of couples.
         country:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         names:
           description: names of the point of interest depending on language
           type: array
@@ -3796,7 +3799,8 @@ components:
       type: object
       properties:
         country:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         amount:
           description: amount in cents
           type: integer
@@ -3986,11 +3990,14 @@ components:
         cityOfResidence:
           type: string
         countryOfBirth:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         countryOfIssue:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         countryOfResidence:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         dateOfIssue:
           type: string
           format: date-time
@@ -4008,7 +4015,8 @@ components:
           description: ICAO transliteration identical as written in the document
           type: string
         nationality:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
       required:
         - documentType
         - name
@@ -5493,8 +5501,7 @@ components:
         requiredPersonalData:
           $ref: '#/components/schemas/PersonalDataConstraintOnlineDef'
         passengerConstraints:
-          $ref: '#/components/schemas/PassengerConstraintsDef'
-          
+          $ref: '#/components/schemas/PassengerConstraintsDef'          
       required:
         - id
         - type
@@ -5502,7 +5509,6 @@ components:
         - combinationConstraint
         - travelValidityConstraint
         - afterSalesCondition
-
 
     PassengerConstraintsDef:
       description: >-
@@ -5522,7 +5528,6 @@ components:
                  type: integer
                  format: int32
 
-        
     RegulatoryConditionsDef:
       description: >- 
          General conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and
@@ -6247,9 +6252,11 @@ components:
       type: object
       properties:
         fromCountry:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         toCountry:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         affectedServiceBrands:
           type: array
           items:
@@ -6257,11 +6264,6 @@ components:
       required:
         - fromCountry
         - toCountry
- 
-    CountryDef:
-      description: >-
-        ISO 3166 2A codes
-      type: string
       
     ControlSecurityTypeDef:
       description: >-
