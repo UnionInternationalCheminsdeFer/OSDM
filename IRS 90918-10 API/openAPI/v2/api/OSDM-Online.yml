@@ -3643,6 +3643,8 @@ components:
           $ref: '#/components/schemas/ComfortClassDef'
         overallAccommodationType:
           $ref: '#/components/schemas/AccommodationType'
+        overallAccommodationSubType:
+          $ref: '#/components/schemas/AccommodationSubType'          
         overallFlexibility:
           $ref: '#/components/schemas/Flexibility'
       required:
@@ -4104,13 +4106,13 @@ components:
     AccommodationType:
       type: string
       description:  >-
-        Accommodation type definition out of AccoTypeCodeList
+        Accommodation type definition out of AccommodationTypeCodeList
       
-    ServiceLevelIdDef:
+    AccommodationSubType:
       type: string
-      description: >-
-        Code of the service level, code-list in IRS 90918-1.
- 
+      description:  >-
+        Accommodation type definition out of AccommodationSubTypeCodeList      
+       
     Flexibility:
       type: string
       x-extensible-enum:
@@ -4579,6 +4581,8 @@ components:
       properties:
          accommodationType:
             $ref: '#/components/schemas/AccommodationType'  
+         accommodationSubType:
+            $ref: '#/components/schemas/AccommodationSubType'  
          reservedPlaces:
           description: >-
             Reserved places in a confirmed reservation. 
@@ -5464,8 +5468,8 @@ components:
           $ref: '#/components/schemas/RegulatoryConditionsDef'
         serviceClass:
           $ref: '#/components/schemas/ServiceClassDef'
-        serviceLevel:
-          $ref: '#/components/schemas/ServiceLevelOnlineDef'
+        accommodationDetails:
+          $ref: '#/components/schemas/AccommodationTypeOnlineDef'              
         afterSalesCondition:
           $ref: '#/components/schemas/AfterSalesConditionOnlineDef'
         combinationConstraint:
@@ -5488,6 +5492,9 @@ components:
           $ref: '#/components/schemas/TravelSectionDef'
         requiredPersonalData:
           $ref: '#/components/schemas/PersonalDataConstraintOnlineDef'
+        passengerConstraints:
+          $ref: '#/components/schemas/PassengerConstraintsDef'
+          
       required:
         - id
         - type
@@ -5495,6 +5502,26 @@ components:
         - combinationConstraint
         - travelValidityConstraint
         - afterSalesCondition
+
+
+    PassengerConstraintsDef:
+      description: >-
+        passenger constraints to be included in bar codes
+      type: array
+      items: 
+         type: object
+         properties:
+            number:
+                 description: number of passengers with this constraint
+                 type: integer
+                 format: int32                 
+            upperAgeLimit:
+                 type: integer
+                 format: int32
+            lowerAgeLimit:
+                 type: integer
+                 format: int32
+
         
     RegulatoryConditionsDef:
       description: >- 
@@ -6259,17 +6286,36 @@ components:
           description: service code to be used in reservation
           type: string
         berthType:
+          description: berth type code in UIC 90918-1 to be used in reservation
           type: string
         coachTypeCode:
+          description: coach type code in UIC 90918-1 to be used in reservation
           type: string
         compartmentTypeCode:
+          description: compartment type code in UIC 90918-1 to be used in reservation
           type: string
         tariff:
-          type: string
+          description: tariff according to UIC 90918-1 to be used for booking 
+          type: array
+          items:
+            $ref: '#/components/schemas/LegacyReservationTariffDef'
       required:
         - travelClass
         - serviceLevelCode
         - serviceCode
+
+    LegacyReservationTariffDef:
+       description: legacy tariff code and number of items or persons in case UIC 90918-1 is used for booking
+       type: object
+       properties:
+          number:
+            description: number of items with this tariff code
+            type: integer
+            format: int32
+          code: 
+            description:  legacy tariff code
+            type: integer
+            format: int32            
           
     ReservationOnlineOptionDef:
       type: object
@@ -6323,14 +6369,13 @@ components:
         - STANDARD
         - BASIC
     
-    ServiceLevelOnlineDef:
+    AccommodationTypeOnlineDef:
       type: object
       properties:
-        id:
-          $ref: '#/components/schemas/ServiceLevelIdDef'
-        textRef:
-          description: id of the text describing the service level
-          type: string
+        accommodationType:
+            $ref: '#/components/schemas/AccommodationType'  
+        accommodationSubType:
+            $ref: '#/components/schemas/AccommodationSubType'              
         text:
           $ref: '#/components/schemas/TextDef'
         includesClassName:
