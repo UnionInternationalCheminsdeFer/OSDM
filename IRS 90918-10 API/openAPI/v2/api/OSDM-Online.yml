@@ -1747,7 +1747,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BookingSearchParameterDef'          
+              $ref: '#/components/schemas/BookingSearchParameter'          
       responses:
         '200':
           description: Booking ids found
@@ -1759,7 +1759,7 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   searchResults:
-                    $ref: '#/components/schemas/BookingSearchReplyDef'  
+                    $ref: '#/components/schemas/BookingSearchReply'  
         '400':
           description: Bad request
           content:
@@ -2942,62 +2942,6 @@ components:
         - title
         - type
         - href
-    
-    BookingSearchParameterDef:
-      type: object
-      description: >-
-        parameter to be used to search for a booking. Contains personal data. 
-        For a search via personal data an exact match of all elements 
-        - first name, last name and date of birth - is mandatory. 
-        In case a ticket holder is indicated the parameter must match the ticket holder. 
-        TODO - legal check by CIT
-      properties:
-        passengerFirstName:
-          type: string
-          description: >-
-            First name of a passenger in the booking.      
-        passengerLastName:
-          type: string
-          description: >-
-            Last name of a passenger in the booking.
-        passengerDateOfBirth:
-          type: string
-          format: date
-          description: >-
-            Date of birth of a passenger in the booking.
-        bookingReference:
-          type: string
-          format: date
-          description: >-
-            Human-readable booking reference for the booking, e.g. PNR.
-        fulfillmentReference:
-          type: string
-          description: >-
-            Human-readable fulfillment reference for the booking, e.g. ticket number.
-        travelDateBegin:
-          type: string
-          format: date-time
-          description: >-
-            Begin date for the travel date range to search.
-        travelDateEnd:
-          type: string
-          format: date-time
-          description: >-
-            End date for the travel date range to search.
-        origin: 
-          $ref: '#/components/schemas/Location'
-        destination:
-          $ref: '#/components/schemas/Location'
-
-    BookingSearchReplyDef:
-      type: object
-      description: >-
-        Reply on a search for bookings
-      properties:
-        bookings:
-          type: array
-          items: 
-            $ref: '#/components/schemas/Booking'
 
     Link:
       type: object
@@ -4853,6 +4797,62 @@ components:
           $ref: '#/components/schemas/FulfillmentType'
         preferredFulfillmentMedia:
           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+    
+    BookingSearchParameter:
+      type: object
+      description: >-
+        parameter to be used to search for a booking. Contains personal data. 
+        For a search via personal data an exact match of all elements 
+        - first name, last name and date of birth - is mandatory. 
+        In case a ticket holder is indicated the parameter must match the ticket holder. 
+        TODO - legal check by CIT
+      properties:
+        passengerFirstName:
+          type: string
+          description: >-
+            First name of a passenger in the booking.      
+        passengerLastName:
+          type: string
+          description: >-
+            Last name of a passenger in the booking.
+        passengerDateOfBirth:
+          type: string
+          format: date
+          description: >-
+            Date of birth of a passenger in the booking.
+        bookingReference:
+          type: string
+          format: date
+          description: >-
+            Human-readable booking reference for the booking, e.g. PNR.
+        fulfillmentReference:
+          type: string
+          description: >-
+            Human-readable fulfillment reference for the booking, e.g. ticket number.
+        travelDateBegin:
+          type: string
+          format: date-time
+          description: >-
+            Begin date for the travel date range to search.
+        travelDateEnd:
+          type: string
+          format: date-time
+          description: >-
+            End date for the travel date range to search.
+        origin: 
+          $ref: '#/components/schemas/Location'
+        destination:
+          $ref: '#/components/schemas/Location'
+
+    BookingSearchReply:
+      type: object
+      description: >-
+        Reply on a search for bookings
+      properties:
+        bookings:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Booking'
 
     FulfillmentOption:
       type: object
