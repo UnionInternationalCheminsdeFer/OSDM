@@ -3085,38 +3085,7 @@ components:
       required:
         - seqId
         - vehicle
-      
-    StationDetailsDef:
-      type: object
-      description: >-
-        Details of a station. In some countries stations have
-        multiple names depending on the countries local languages.
-      properties:
-        localCode:
-          description: code unique with in the country only
-          type: string
-        country:
-          description: ISO 3166 2A codes
-          type: string
-        codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/StationCode'
-          description: >-
-            The codes that can be used to represent the given station on the system.
-            There can be several codes, in which case  it is relevant to have a list
-            of couples.
-        geoCoordinate:
-          $ref: '#/components/schemas/GeoCoordinate'
-        names:
-          description: names of the station depending on language
-          type: array
-          items:
-            $ref: '#/components/schemas/TranslationDef'
-      required:
-        - country
-        - codes
-    
+         
     StationCode:
       type: object
       properties:
@@ -3150,9 +3119,9 @@ components:
           example: Bruxelles-Midi
         type:
           description: >-
-            The ConnectionPointDef exists to define virtual border point  
+            The ConnectionPointDef exists to define virtual border points between two station.  
           oneOf:
-            - $ref: '#/components/schemas/StationDetailsDef'
+            - $ref: '#/components/schemas/StationCode'
             - $ref: '#/components/schemas/Poi'
             - $ref: '#/components/schemas/Address'
             - $ref: '#/components/schemas/GeoCoordinate'
@@ -3377,17 +3346,11 @@ components:
             - ORIGIN_DESTINATION_ONLY
             - REAL_BOARDING_ALIGHTING
         origin:
-          oneOf:
-            - $ref: '#/components/schemas/StationCode'
-            - type: string
-              format: uuid
-              description: id of the location to use as origin
+          description: id of the location to use as origin
+          $ref: '#/components/schemas/StationCode'
         destination:
-          oneOf:
-            - $ref: '#/components/schemas/StationCode'
-            - type: string
-              format: uuid
-              description: id of the location to use as destination
+          description: id of the location to use as destination
+          $ref: '#/components/schemas/StationCode'
         viaValues:
           description: >-
             Ordered list of via locations within the trip. Unique code value has
@@ -3395,11 +3358,7 @@ components:
             underlying system.
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/StationDetailsDef'
-              - type: string
-                format: uuid
-                description: id of the location to use as origin
+            $ref: '#/components/schemas/StationCode'
         travelDateTime:
           type: string
           format: date-time
@@ -6054,6 +6013,37 @@ components:
         - toStation
         - train
         - travelDate
+    
+    StationDetailsDef:
+      type: object
+      description: >-
+        Details of a station. In some countries stations have
+        multiple names depending on the countries local languages.
+      properties:
+        localCode:
+          description: code unique with in the country only
+          type: string
+        country:
+          description: ISO 3166 2A codes
+          type: string
+        codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StationCode'
+          description: >-
+            The codes that can be used to represent the given station on the system.
+            There can be several codes, in which case  it is relevant to have a list
+            of couples.
+        geoCoordinate:
+          $ref: '#/components/schemas/GeoCoordinate'
+        names:
+          description: names of the station depending on language
+          type: array
+          items:
+            $ref: '#/components/schemas/TranslationDef'
+      required:
+        - country
+        - codes
     
     PolygonDef:
       type: object
