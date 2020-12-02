@@ -561,12 +561,12 @@ paths:
           content:
             application/json:
               schema:
-               type: object
-               properties:
-                 warnings:
-                   $ref: '#/components/schemas/WarningMessageList'
-                 tripOffersCollection:
-                   $ref: '#/components/schemas/TripOffersCollection'
+                type: object
+                properties:
+                  warnings:
+                     $ref: '#/components/schemas/WarningMessageList'
+                  tripOffersCollection:
+                     $ref: '#/components/schemas/TripOffersCollection'
           headers:
             Content-Language:
               schema:
