@@ -3037,8 +3037,7 @@ components:
               $ref: '#/components/schemas/ServiceBrandCodeDef'
             transportMode:
               description: >-
-                Transport mode (code list of MERITS). Optional for offer
-                requests, included for alignment with FSM
+                Transport mode (code list of MERITS).
               type: string
         stops:
           description: >-
@@ -3175,7 +3174,7 @@ components:
           description: unique id of this trip on this server.
         title:
           type: string
-          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET
+          example: Bruxelles-Midi - Paris-Nord, 2020-07-01 10:05 CET
         segments:
           type: array
           items:
@@ -3208,14 +3207,6 @@ components:
         - id  
         - title
         - links
-
-    ServiceBrandCodeDef:
-      description: >-
-        Service brand codes allowed in response, code list can be found on 
-        [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list]
-        (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
-      type: integer
-      format: int32
 
     Poi:
       type: object
@@ -3986,7 +3977,15 @@ components:
         - MALE
         - FEMALE
         - X
-      
+
+    ServiceBrandCodeDef:
+      description: >-
+        Service brand codes allowed in response, code list can be found on 
+        [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list]
+        (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
+      type: integer
+      format: int32
+
     ServiceClassDef:
       type: object
       properties:
@@ -6077,8 +6076,7 @@ components:
           items:
             $ref: '#/components/schemas/ViaStationsDef'
         serviceBrand:
-          description: restriction to a specific service brand
-          type: string
+          $ref: '#/components/schemas/ServiceBrandCodeDef'
         station:
           $ref: '#/components/schemas/StationDetailsDef'
         fareReferenceStationSet:
