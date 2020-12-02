@@ -3542,7 +3542,7 @@ components:
         of the whole offer. 
       properties:
         minimalPrice:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         overallServiceClassId:
           $ref: '#/components/schemas/ServiceClassDef'
         overallComfortClass:
@@ -3961,7 +3961,7 @@ components:
       type: object
       properties:
         price:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         pricingMode:
           type: string
           enum:
@@ -4119,7 +4119,7 @@ components:
           type: string
           format: date-time
         afterSalesFee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
       required:
         - type
         - description
@@ -4614,9 +4614,9 @@ components:
             - EXCHANGED
             - ERROR
         provisionalBalance: 
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         confirmedBalance: 
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         ticketTimeLimit:
@@ -4782,7 +4782,7 @@ components:
             - CHECKEDIN
             - REFUNDED
         price:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
           description: >-
             Note the price is present here as an optional element as future evolution indicate a possible
             separation between fulfillment info and financial information. 
@@ -4951,9 +4951,9 @@ components:
           items: 
             $ref: '#/components/schemas/Fulfillment'
         refundFee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         refundableAmount:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         links:
           type: array
           items:
@@ -5040,9 +5040,9 @@ components:
           items: 
             $ref: '#/components/schemas/Fulfillment'
         exchangeFee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         refundableAmount:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         offer:
           oneOf:
            - $ref: '#/components/schemas/TripOffer'
@@ -5087,9 +5087,9 @@ components:
             Reason for and type of an after sale, Code list in IRS 90918-10.
           type: string
         exchangeFee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         refundableAmount:
-          $ref: '#/components/schemas/CurrencyPriceDef'    
+          $ref: '#/components/schemas/CurrencyPrice'    
         newBooking: 
           $ref: '#/components/schemas/Booking'
       required:
@@ -5796,7 +5796,7 @@ components:
           type: array
           minItems: 1
           items:
-            $ref: '#/components/schemas/CurrencyPriceDef'
+            $ref: '#/components/schemas/CurrencyPrice'
       required:
         - price
  
@@ -5836,7 +5836,7 @@ components:
           description: code list Reason for after sale
           type: string
         fee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         applicationTime:
           $ref: '#/components/schemas/RelativeTimeDef'
         applicationTimeStamp:
@@ -6392,7 +6392,7 @@ components:
     #### Common elements start
     ## Referenced by distributor as well as allocator part
 
-    CurrencyPriceDef:
+    CurrencyPrice:
       type: object
       minProperties: 1
       properties:
