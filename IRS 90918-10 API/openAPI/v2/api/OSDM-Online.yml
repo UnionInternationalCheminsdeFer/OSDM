@@ -4412,7 +4412,7 @@ components:
         - selectedCoach
         - selectedPlaces
 
-    ReservationDetails:
+    ReservationDetailsDef:
       type: object
       description: segmentIndex references a segmentIndex in the trip part within the offer reply
       properties:
@@ -5359,7 +5359,7 @@ components:
         serviceClass:
           $ref: '#/components/schemas/ServiceClass'
         accommodationDetails:
-          $ref: '#/components/schemas/AccommodationTypeOnlineDef'              
+          $ref: '#/components/schemas/AccommodationTypeOnlineDef'            
         afterSalesCondition:
           $ref: '#/components/schemas/AfterSalesConditionOnlineDef'
         combinationConstraint:
@@ -5373,9 +5373,9 @@ components:
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidityConstraintOnlineDef'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetails'            
+          $ref: '#/components/schemas/ReservationDetailsDef'       
         placeSelection:
-          $ref: '#/components/schemas/PlaceSelectionDef' 
+          $ref: '#/components/schemas/PlaceSelectionDef'
         reservationLegacyParameter:
           $ref: '#/components/schemas/LegacyReservationParameterDef'
         coveredSection:
@@ -5383,7 +5383,7 @@ components:
         requiredPersonalData:
           $ref: '#/components/schemas/PersonalDataConstraintOnlineDef'
         passengerConstraints:
-          $ref: '#/components/schemas/PassengerConstraintsDef'          
+          $ref: '#/components/schemas/PassengerConstraintsDef'
       required:
         - id
         - type
