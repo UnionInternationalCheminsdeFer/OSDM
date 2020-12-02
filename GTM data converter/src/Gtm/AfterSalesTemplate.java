@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.AfterSalesTemplate#isCarrierFee <em>Carrier Fee</em>}</li>
  *   <li>{@link Gtm.AfterSalesTemplate#getApplicationTime <em>Application Time</em>}</li>
  *   <li>{@link Gtm.AfterSalesTemplate#getFeeFactor <em>Fee Factor</em>}</li>
+ *   <li>{@link Gtm.AfterSalesTemplate#getRoundingMode <em>Rounding Mode</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getAfterSalesTemplate()
@@ -115,5 +116,30 @@ public interface AfterSalesTemplate extends EObject {
 	 * @generated
 	 */
 	void setFeeFactor(float value);
+
+	/**
+	 * Returns the value of the '<em><b>Rounding Mode</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gtm.RoundingType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Rounding Mode</em>' attribute.
+	 * @see Gtm.RoundingType
+	 * @see #setRoundingMode(RoundingType)
+	 * @see Gtm.GtmPackage#getAfterSalesTemplate_RoundingMode()
+	 * @model
+	 * @generated
+	 */
+	RoundingType getRoundingMode();
+
+	/**
+	 * Sets the value of the '{@link Gtm.AfterSalesTemplate#getRoundingMode <em>Rounding Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Rounding Mode</em>' attribute.
+	 * @see Gtm.RoundingType
+	 * @see #getRoundingMode()
+	 * @generated
+	 */
+	void setRoundingMode(RoundingType value);
 
 } // AfterSalesTemplate

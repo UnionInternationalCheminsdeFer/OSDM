@@ -2084,7 +2084,7 @@ public class GtmJsonExporter {
 		
 		if (scope == TaxScope.ANY) {
 			return null;
-		} else if (scope == TaxScope.INTERNALTIONAL) {
+		} else if (scope == TaxScope.INTERNATIONAL) {
 			return VatScopeDef.INTERNATIONAL;
 		} else if (scope == TaxScope.LONG_DISTANCE) {
 			return VatScopeDef.LONG_DISTANCE;

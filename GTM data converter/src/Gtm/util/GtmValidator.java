@@ -312,6 +312,10 @@ public class GtmValidator extends EObjectValidator {
 				return validateConversionFromLegacy((ConversionFromLegacy)value, diagnostics, context);
 			case GtmPackage.CONVERSION_PARAMS:
 				return validateConversionParams((ConversionParams)value, diagnostics, context);
+			case GtmPackage.VAT_TEMPLATES:
+				return validateVatTemplates((VatTemplates)value, diagnostics, context);
+			case GtmPackage.VAT_TEMPLATE:
+				return validateVatTemplate((VatTemplate)value, diagnostics, context);
 			case GtmPackage.LEGACY_FARE_TEMPLATES:
 				return validateLegacyFareTemplates((LegacyFareTemplates)value, diagnostics, context);
 			case GtmPackage.FARE_TEMPLATE:
@@ -1062,6 +1066,24 @@ public class GtmValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVatTemplates(VatTemplates vatTemplates, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(vatTemplates, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVatTemplate(VatTemplate vatTemplate, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(vatTemplate, diagnostics, context);
 	}
 
 	/**

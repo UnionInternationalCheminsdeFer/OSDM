@@ -12,10 +12,9 @@ import Gtm.LegacyFareStationSetMappings;
 import Gtm.LegacyFareTemplates;
 import Gtm.LegacyStationMappings;
 import Gtm.LegacyStationToServiceConstraintMappings;
-
+import Gtm.VatTemplates;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -44,6 +43,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.ConversionParamsImpl#getStationImportFilter <em>Station Import Filter</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#isConvertFareDescriptions <em>Convert Fare Descriptions</em>}</li>
  *   <li>{@link Gtm.impl.ConversionParamsImpl#isConvertServiceConstraints <em>Convert Service Constraints</em>}</li>
+ *   <li>{@link Gtm.impl.ConversionParamsImpl#getVatTemplates <em>Vat Templates</em>}</li>
  * </ul>
  *
  * @generated
@@ -238,6 +238,16 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected boolean convertServiceConstraints = CONVERT_SERVICE_CONSTRAINTS_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getVatTemplates() <em>Vat Templates</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVatTemplates()
+	 * @generated
+	 * @ordered
+	 */
+	protected VatTemplates vatTemplates;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -750,6 +760,49 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public VatTemplates getVatTemplates() {
+		return vatTemplates;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetVatTemplates(VatTemplates newVatTemplates, NotificationChain msgs) {
+		VatTemplates oldVatTemplates = vatTemplates;
+		vatTemplates = newVatTemplates;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__VAT_TEMPLATES, oldVatTemplates, newVatTemplates);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setVatTemplates(VatTemplates newVatTemplates) {
+		if (newVatTemplates != vatTemplates) {
+			NotificationChain msgs = null;
+			if (vatTemplates != null)
+				msgs = ((InternalEObject)vatTemplates).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CONVERSION_PARAMS__VAT_TEMPLATES, null, msgs);
+			if (newVatTemplates != null)
+				msgs = ((InternalEObject)newVatTemplates).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GtmPackage.CONVERSION_PARAMS__VAT_TEMPLATES, null, msgs);
+			msgs = basicSetVatTemplates(newVatTemplates, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.CONVERSION_PARAMS__VAT_TEMPLATES, newVatTemplates, newVatTemplates));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -769,6 +822,8 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 				return basicSetEndOfSale(null, msgs);
 			case GtmPackage.CONVERSION_PARAMS__START_OF_SALE:
 				return basicSetStartOfSale(null, msgs);
+			case GtmPackage.CONVERSION_PARAMS__VAT_TEMPLATES:
+				return basicSetVatTemplates(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -810,6 +865,8 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 				return isConvertFareDescriptions();
 			case GtmPackage.CONVERSION_PARAMS__CONVERT_SERVICE_CONSTRAINTS:
 				return isConvertServiceConstraints();
+			case GtmPackage.CONVERSION_PARAMS__VAT_TEMPLATES:
+				return getVatTemplates();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -819,6 +876,7 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -863,6 +921,9 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case GtmPackage.CONVERSION_PARAMS__CONVERT_SERVICE_CONSTRAINTS:
 				setConvertServiceConstraints((Boolean)newValue);
+				return;
+			case GtmPackage.CONVERSION_PARAMS__VAT_TEMPLATES:
+				setVatTemplates((VatTemplates)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -918,6 +979,9 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 			case GtmPackage.CONVERSION_PARAMS__CONVERT_SERVICE_CONSTRAINTS:
 				setConvertServiceConstraints(CONVERT_SERVICE_CONSTRAINTS_EDEFAULT);
 				return;
+			case GtmPackage.CONVERSION_PARAMS__VAT_TEMPLATES:
+				setVatTemplates((VatTemplates)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -958,6 +1022,8 @@ public class ConversionParamsImpl extends MinimalEObjectImpl.Container implement
 				return convertFareDescriptions != CONVERT_FARE_DESCRIPTIONS_EDEFAULT;
 			case GtmPackage.CONVERSION_PARAMS__CONVERT_SERVICE_CONSTRAINTS:
 				return convertServiceConstraints != CONVERT_SERVICE_CONSTRAINTS_EDEFAULT;
+			case GtmPackage.CONVERSION_PARAMS__VAT_TEMPLATES:
+				return vatTemplates != null;
 		}
 		return super.eIsSet(featureID);
 	}

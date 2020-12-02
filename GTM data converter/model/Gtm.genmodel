@@ -319,7 +319,7 @@
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TimeZone/WET"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Gtm.ecore#//TaxScope">
-      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/INTERNALTIONAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/INTERNATIONAL"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/NATIONAL"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/SHORT_DISTANCE"/>
       <genEnumLiterals ecoreEnumLiteral="Gtm.ecore#//TaxScope/LONG_DISTANCE"/>
@@ -995,8 +995,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ConversionFromLegacy/params"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//ConversionParams">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConversionParams/TaxId"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConversionParams/VATpercentage"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConversionParams/TaxId"
+          suppressedUnsetVisibility="false"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConversionParams/VATpercentage"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//ConversionParams/country"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ConversionParams/legacyBorderPointMappings"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//ConversionParams/legacyStationMappings"/>
@@ -1009,6 +1010,17 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConversionParams/stationImportFilter"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConversionParams/convertFareDescriptions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//ConversionParams/convertServiceConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Gtm.ecore#//ConversionParams/vatTemplates"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//VatTemplates">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//VatTemplates/vatTemplates"/>
+    </genClasses>
+    <genClasses ecoreClass="Gtm.ecore#//VatTemplate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//VatTemplate/scope"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//VatTemplate/country"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//VatTemplate/percentage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//VatTemplate/taxId"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//LegacyFareTemplates">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//LegacyFareTemplates/fareTemplates"/>
@@ -1046,6 +1058,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesTemplate/carrierFee"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//AfterSalesTemplate/applicationTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesTemplate/feeFactor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//AfterSalesTemplate/roundingMode"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//OnBorderStations">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gtm.ecore#//OnBorderStations/stations"/>

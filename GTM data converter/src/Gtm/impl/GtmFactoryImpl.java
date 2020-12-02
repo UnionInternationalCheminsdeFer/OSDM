@@ -168,6 +168,8 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 			case GtmPackage.REQUIRED_REDUCTION_CARD: return createRequiredReductionCard();
 			case GtmPackage.CONVERSION_FROM_LEGACY: return createConversionFromLegacy();
 			case GtmPackage.CONVERSION_PARAMS: return createConversionParams();
+			case GtmPackage.VAT_TEMPLATES: return createVatTemplates();
+			case GtmPackage.VAT_TEMPLATE: return createVatTemplate();
 			case GtmPackage.LEGACY_FARE_TEMPLATES: return createLegacyFareTemplates();
 			case GtmPackage.FARE_TEMPLATE: return createFareTemplate();
 			case GtmPackage.AFTER_SALES_TEMPLATE: return createAfterSalesTemplate();
@@ -1516,6 +1518,26 @@ public class GtmFactoryImpl extends EFactoryImpl implements GtmFactory {
 	public ConversionParams createConversionParams() {
 		ConversionParamsImpl conversionParams = new ConversionParamsImpl();
 		return conversionParams;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VatTemplates createVatTemplates() {
+		VatTemplatesImpl vatTemplates = new VatTemplatesImpl();
+		return vatTemplates;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VatTemplate createVatTemplate() {
+		VatTemplateImpl vatTemplate = new VatTemplateImpl();
+		return vatTemplate;
 	}
 
 	/**

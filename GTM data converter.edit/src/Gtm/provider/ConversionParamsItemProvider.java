@@ -64,58 +64,12 @@ public class ConversionParamsItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTaxIdPropertyDescriptor(object);
-			addVATpercentagePropertyDescriptor(object);
 			addCountryPropertyDescriptor(object);
 			addStationImportFilterPropertyDescriptor(object);
 			addConvertFareDescriptionsPropertyDescriptor(object);
 			addConvertServiceConstraintsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Tax Id feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTaxIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConversionParams_TaxId_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConversionParams_TaxId_feature", "_UI_ConversionParams_type"),
-				 GtmPackage.Literals.CONVERSION_PARAMS__TAX_ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the VA Tpercentage feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addVATpercentagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConversionParams_VATpercentage_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConversionParams_VATpercentage_feature", "_UI_ConversionParams_type"),
-				 GtmPackage.Literals.CONVERSION_PARAMS__VA_TPERCENTAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -226,6 +180,7 @@ public class ConversionParamsItemProvider
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__END_OF_SALE);
 			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__START_OF_SALE);
+			childrenFeatures.add(GtmPackage.Literals.CONVERSION_PARAMS__VAT_TEMPLATES);
 		}
 		return childrenFeatures;
 	}
@@ -293,6 +248,7 @@ public class ConversionParamsItemProvider
 			case GtmPackage.CONVERSION_PARAMS__LEGACY_STATION_TO_FARE_DETAIL_MAPPINGS:
 			case GtmPackage.CONVERSION_PARAMS__END_OF_SALE:
 			case GtmPackage.CONVERSION_PARAMS__START_OF_SALE:
+			case GtmPackage.CONVERSION_PARAMS__VAT_TEMPLATES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -349,6 +305,11 @@ public class ConversionParamsItemProvider
 			(createChildParameter
 				(GtmPackage.Literals.CONVERSION_PARAMS__START_OF_SALE,
 				 GtmFactory.eINSTANCE.createEndOfSale()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GtmPackage.Literals.CONVERSION_PARAMS__VAT_TEMPLATES,
+				 GtmFactory.eINSTANCE.createVatTemplates()));
 	}
 
 	/**

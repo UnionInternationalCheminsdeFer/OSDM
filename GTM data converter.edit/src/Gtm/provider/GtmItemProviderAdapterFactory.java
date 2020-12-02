@@ -2642,6 +2642,52 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.VatTemplates} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VatTemplatesItemProvider vatTemplatesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.VatTemplates}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVatTemplatesAdapter() {
+		if (vatTemplatesItemProvider == null) {
+			vatTemplatesItemProvider = new VatTemplatesItemProvider(this);
+		}
+
+		return vatTemplatesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gtm.VatTemplate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VatTemplateItemProvider vatTemplateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gtm.VatTemplate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVatTemplateAdapter() {
+		if (vatTemplateItemProvider == null) {
+			vatTemplateItemProvider = new VatTemplateItemProvider(this);
+		}
+
+		return vatTemplateItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link Gtm.FareTemplate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3637,6 +3683,8 @@ public class GtmItemProviderAdapterFactory extends GtmAdapterFactory implements 
 		if (requiredReductionCardItemProvider != null) requiredReductionCardItemProvider.dispose();
 		if (conversionFromLegacyItemProvider != null) conversionFromLegacyItemProvider.dispose();
 		if (conversionParamsItemProvider != null) conversionParamsItemProvider.dispose();
+		if (vatTemplatesItemProvider != null) vatTemplatesItemProvider.dispose();
+		if (vatTemplateItemProvider != null) vatTemplateItemProvider.dispose();
 		if (legacyFareTemplatesItemProvider != null) legacyFareTemplatesItemProvider.dispose();
 		if (fareTemplateItemProvider != null) fareTemplateItemProvider.dispose();
 		if (afterSalesTemplateItemProvider != null) afterSalesTemplateItemProvider.dispose();
