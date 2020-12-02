@@ -3416,7 +3416,7 @@ components:
         comfortClasses:
           type: array
           items:
-            $ref: '#/components/schemas/ComfortClassDef'
+            $ref: '#/components/schemas/ComfortClass'
           description: >-
             The classes returned might be different from the requested classes.
         serviceClassIds:
@@ -3555,7 +3555,7 @@ components:
         overallServiceClassId:
           $ref: '#/components/schemas/ServiceClassIdDef'
         overallComfortClass:
-          $ref: '#/components/schemas/ComfortClassDef'
+          $ref: '#/components/schemas/ComfortClass'
         overallAccommodationType:
           $ref: '#/components/schemas/AccommodationType'
         overallAccommodationSubType:
@@ -3999,7 +3999,7 @@ components:
       required:
         - id
       
-    ComfortClassDef:
+    ComfortClass:
       description: >-
         Generic class classification, mostly used to harmonize choice and
         representation across multiple carriers.
@@ -4141,7 +4141,7 @@ components:
         serviceClass:
           $ref: '#/components/schemas/ServiceClassDef'
         comfortClass:
-          $ref: '#/components/schemas/ComfortClassDef'
+          $ref: '#/components/schemas/ComfortClass'
         isTrainBound:
           type: boolean
         isReturnProduct:
