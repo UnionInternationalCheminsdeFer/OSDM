@@ -4366,7 +4366,7 @@ components:
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetails'          
+          $ref: '#/components/schemas/ReservationDetailsDef'
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'
         optionality:
