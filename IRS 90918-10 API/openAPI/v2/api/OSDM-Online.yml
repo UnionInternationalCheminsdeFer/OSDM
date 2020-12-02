@@ -3906,13 +3906,7 @@ components:
           items:
             $ref: '#/components/schemas/LoyaltyCardReferenceDef'
         gender:
-          description: >- 
-            The gender of the passenger, which is important in the case of night trains.
-          type: string
-          enum:
-            - MALE
-            - FEMALE
-            - X
+          $ref: '#/components/schemas/Gender'
         prmNeeds:
           type: string
           x-extensible-enum:
@@ -3954,13 +3948,7 @@ components:
           description: Refer to code list for values
           type: string
         gender:
-          description: >- 
-            The gender of the passenger, which is important in the case of night trains.
-          type: string
-          enum:
-            - MALE
-            - FEMALE
-            - X
+          $ref: '#/components/schemas/Gender'
         limitOfValidity:
           type: string
           format: date-time
@@ -4027,6 +4015,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TranslationDef'
+
+    Gender:
+      description: >- 
+        The gender of the passenger, which is important in the case of night trains.
+      type: string
+      enum:
+        - MALE
+        - FEMALE
+        - X
       
     ServiceClassDef:
       type: object
