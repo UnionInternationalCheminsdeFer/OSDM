@@ -5326,7 +5326,9 @@ components:
         These transportables might need a ticket or reservation.
       properties:
         type:
-          $ref: '#/components/schemas/TravelerTypeDef'
+          description: >- 
+            Subset of the values from the traveler type code list IRS 90918-10 
+          type: string
         car:
           type: object
           properties:
@@ -5669,12 +5671,7 @@ components:
             - earliestReturn
       required:
         - validityRange
-      
-    TravelerTypeDef:
-      description: >- 
-        Subset of the values from the traveler type code list IRS 90918-10 
-      type: string
-    
+
     LayoutsDef:
       type: object
       properties:
