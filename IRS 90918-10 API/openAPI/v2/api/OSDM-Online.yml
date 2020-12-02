@@ -3118,13 +3118,13 @@ components:
           example: Bruxelles-Midi
         type:
           description: >-
-            The ConnectionPointDef exists to define virtual border points between two station.  
+            The ConnectionPoint exists to define virtual border points between two stations.  
           oneOf:
             - $ref: '#/components/schemas/StationCode'
             - $ref: '#/components/schemas/Poi'
             - $ref: '#/components/schemas/Address'
             - $ref: '#/components/schemas/GeoCoordinate'
-            - $ref: '#/components/schemas/ConnectionPointDef'
+            - $ref: '#/components/schemas/ConnectionPoint'
         links:
           type: array
           description: Context information required by the services.
@@ -3304,7 +3304,22 @@ components:
       required:
         - latitude
         - longitude
-      
+
+    ConnectionPoint:
+      type: object
+      description: >-
+        Connection point connecting two fare regimes. T
+        Providing the UIC code for the station is mandatory. 
+      properties:
+        stations:
+          type: array
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/StationCode'
+      required:
+        - stations
+
     TripRequest:
       type: object
       properties:
