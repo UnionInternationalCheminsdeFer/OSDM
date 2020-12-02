@@ -3543,8 +3543,8 @@ components:
       properties:
         minimalPrice:
           $ref: '#/components/schemas/CurrencyPrice'
-        overallServiceClassId:
-          $ref: '#/components/schemas/ServiceClassDef'
+        overallServiceClass:
+          $ref: '#/components/schemas/ServiceClass'
         overallComfortClass:
           $ref: '#/components/schemas/ComfortClass'
         overallAccommodationType:
@@ -3555,7 +3555,7 @@ components:
           $ref: '#/components/schemas/Flexibility'
       required:
         - minimalPrice
-        - overallServiceClassId
+        - overallServiceClass
         - overallFlexibility
 
     Offer:
