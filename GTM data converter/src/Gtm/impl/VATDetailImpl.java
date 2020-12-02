@@ -111,7 +111,7 @@ public class VATDetailImpl extends MinimalEObjectImpl.Container implements VATDe
 	 * @generated
 	 * @ordered
 	 */
-	protected static final TaxScope SCOPE_EDEFAULT = TaxScope.INTERNALTIONAL;
+	protected static final TaxScope SCOPE_EDEFAULT = TaxScope.INTERNATIONAL;
 
 	/**
 	 * The cached value of the '{@link #getScope() <em>Scope</em>}' attribute.

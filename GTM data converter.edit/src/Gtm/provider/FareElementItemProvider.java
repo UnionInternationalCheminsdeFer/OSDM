@@ -3,6 +3,7 @@
 package Gtm.provider;
 
 
+import Gtm.DataSource;
 import Gtm.FareElement;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
@@ -666,11 +667,22 @@ public class FareElementItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FareElement)object).getId();
+		
+		String description = ((FareElement)object).getDataDescription();
+		String id = ((FareElement)object).getId();
+		String label = null;
+		
+		if ( ((FareElement)object).getDataSource() == DataSource.CONVERTED){
+			label = description;
+		} else {
+			label = id;
+		}
+
+		
 		return label == null || label.length() == 0 ?
 			getString("_UI_FareElement_type") :
 			getString("_UI_FareElement_type") + " " + label;

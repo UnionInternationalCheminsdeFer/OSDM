@@ -159,21 +159,30 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 		 * column 5: fake merits stations
 		 * column 6: stations on border or on carrier 1 side
 		 * column 7: stations on border or on carrier 2 side
+		 * column 8: name (for documentation only)
 		 */
 		
 		
 		String[] strings = st.split(";"); //$NON-NLS-1$
 		
-		if (strings.length < 8) return null;
+		if (strings.length < 9) return null;
 		
 		try {
+			   
+			    String name = "no name";
+				if (strings.length > 8) {
+					name = strings[8];
+				}
+				String errorId = strings[0] + " - " + name;
+				String carrierString1 = strings[1];
+				String carrierString2 = strings[3];				
 			
 				LegacyBorderPoint p = GtmFactory.eINSTANCE.createLegacyBorderPoint();
 				
 				try {
 					p.setBorderPointCode(Integer.parseInt(strings[0]));
 				} catch (Exception e) {
-					writeConsoleError("border point import: invalid border point code: " + strings[0],editor);
+					writeConsoleError("border point import: invalid border point code: " + errorId,editor);
 					return null;
 				}
 				
@@ -185,7 +194,7 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 					legacyStationCode1 = Integer.parseInt(strings[2]);
 					legacyStationCode2 = Integer.parseInt(strings[4]);					
 				} catch (Exception e) {
-					writeConsoleError("border point import: legacy station code missing in border point: " + strings[0],editor);
+					writeConsoleError("border point import: legacy station code missing in border point: " + errorId,editor);
 					return null;
 				}
 
@@ -194,7 +203,7 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 				}
 				Carrier carrier1 = findCarrier(tool, strings[1]);
 				if (carrier1 == null) {
-					String message = "border point import: carrier 1 not found in border point: " + strings[0];
+					String message = "border point import: first carrier " + carrierString1 + " not found in border point: " + errorId;
 					writeConsoleError(message,editor);
 					return null;
 				}
@@ -204,7 +213,7 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 				}
 				Carrier carrier2 = findCarrier(tool, strings[3]);
 				if (carrier2 == null) {
-					String message = "border point import: carrier 2 not found in border point: " + strings[0];
+					String message = "border point import: second carrier " + carrierString2 + " not found in border point: " + errorId;
 					writeConsoleError(message,editor);
 					return null;
 				}
@@ -217,7 +226,7 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 				
 				StationSet set1 = addStationSet(strings[6],stationMap, editor,strings[0]);
 				if (set1 == null || set1.getStations() == null || set1.getStations().isEmpty()) {
-					String message = "border point import: border stations for carrier 1 missing in border point: " + strings[0];
+					String message = "border point import: border stations for first carrier  " + carrierString1 + " missing in border point: " + errorId;
 					writeConsoleError(message,editor);
 					return null;
 				}
@@ -228,7 +237,7 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 				
 				StationSet set2 = addStationSet(strings[7],stationMap, editor, strings[0]);
 				if (set2 == null || set2.getStations() == null || set2.getStations().isEmpty()) {
-					String message = "border point import: border stations for carrier 2 missing in border point: " + strings[0];
+					String message = "border point import: border stations for second carrier " + carrierString2 + " missing in border point: " + errorId;
 					writeConsoleError(message,editor);
 					return null;
 				}				

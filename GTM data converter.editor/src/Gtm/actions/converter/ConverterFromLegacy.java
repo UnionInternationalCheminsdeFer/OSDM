@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.TimeZone;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -75,6 +76,7 @@ import Gtm.StationNames;
 import Gtm.StationSet;
 import Gtm.TaxScope;
 import Gtm.VATDetail;
+import Gtm.VatTemplate;
 import Gtm.ViaStation;
 import Gtm.console.ConsoleUtil;
 import Gtm.nls.NationalLanguageSupport;
@@ -423,7 +425,7 @@ public class ConverterFromLegacy {
 		
 		try {
 			
-			Price price = convertSeriesToPrice(tool, series, fareTemplate, dateRange, priceList);
+			Price price = convertSeriesToPrice(tool, series, fareTemplate, dateRange, priceList,regionalConstraint);
 		
 			if (regionalConstraint != null) {
 				convertSeriesToFare(tool, series, fareTemplate, DIRECTION_ORIGINAL,legacyFareCounter,price,regionalConstraint,dateRange,afterSalesRules, priceList, fares);
@@ -469,17 +471,8 @@ public class ConverterFromLegacy {
 		for (AfterSalesTemplate feeTemplate : template.getAfterSalesTemplate()) {
 			
 			AfterSalesCondition condition = GtmFactory.eINSTANCE.createAfterSalesCondition();
-		
-			float feeAmount = price.getCurrencies().get(0).getAmount();
-			feeAmount = feeAmount * feeTemplate.getFeeFactor();
-			// 2 digits for EUR
-			double scale = Math.pow(10, 2);
-			feeAmount = (float) (Math.round(feeAmount * scale) / scale);
 			
-			Price fee = createPrice(feeAmount);
-			if (fee == null) return null;
-			
-			fee = findPrice(fee, priceList);
+			Price fee = createFee(price, feeTemplate,  priceList );
 
 			condition.setFee(fee);
 			condition.setTransactionType(feeTemplate.getTransactionType());
@@ -499,6 +492,51 @@ public class ConverterFromLegacy {
 
 	
 	
+	private Price createFee(Price price, AfterSalesTemplate feeTemplate, ArrayList<Price> priceList) {
+		
+		if (price == null || price.getCurrencies()== null || price.getCurrencies().isEmpty()) return null;
+		
+		float amount = price.getCurrencies().get(0).getAmount();
+		amount = amount * feeTemplate.getFeeFactor();
+
+		BigDecimal bd = null;
+		if (feeTemplate.getRoundingMode() == RoundingType.DOWN) {
+			 bd = new BigDecimal(amount).setScale(2, RoundingMode.DOWN);
+			 amount = bd.floatValue();
+		} else if (feeTemplate.getRoundingMode() == RoundingType.UP) {
+			 bd = new BigDecimal(amount).setScale(2, RoundingMode.UP);
+			 amount = bd.floatValue();
+		} else if (feeTemplate.getRoundingMode() == RoundingType.HALFDOWN) {
+			 bd = new BigDecimal(amount).setScale(2, RoundingMode.HALF_DOWN);
+			 amount = bd.floatValue();
+		} else if (feeTemplate.getRoundingMode() == RoundingType.HALFEVEN) {
+			 bd = new BigDecimal(amount).setScale(2, RoundingMode.HALF_EVEN);
+			 amount = bd.floatValue();
+		} else if (feeTemplate.getRoundingMode() == RoundingType.HALFUP) {
+			 bd = new BigDecimal(amount).setScale(2, RoundingMode.HALF_UP);
+			 amount = bd.floatValue();
+		} 
+		
+		
+		Price fee = GtmFactory.eINSTANCE.createPrice();
+		fee.setDataSource(DataSource.CONVERTED);
+		
+		for (CurrencyPrice cp : price.getCurrencies()) {
+			CurrencyPrice curPrice = GtmFactory.eINSTANCE.createCurrencyPrice();
+			curPrice.setAmount(amount);
+			curPrice.setCurrency(cp.getCurrency());
+			fee.getCurrencies().add(curPrice);
+		}
+	
+		fee = findPrice(fee, priceList);
+		
+		return fee;
+
+	}
+
+
+
+
 	/**
 	 * Find the existing after sales rule or add the given one to the list.
 	 *
@@ -607,10 +645,25 @@ public class ConverterFromLegacy {
 	 */
 	private static Price findPrice(Price newPrice, ArrayList<Price> priceList) {
 		
+		if (newPrice == null) return null;
+		
 		for (Price price : priceList) {
 			
-			if (price.getCurrencies().get(0).getAmount() == newPrice.getCurrencies().get(0).getAmount()) {
-				return price;
+			
+			CurrencyPrice cp = price.getCurrencies().get(0);
+			CurrencyPrice ncp = newPrice.getCurrencies().get(0);
+			
+			if (price.getCurrencies().size() == newPrice.getCurrencies().size() &&
+				cp.getAmount() == ncp.getAmount()) {
+				
+				if (cp.getVATdetails() == null && cp.getVATdetails() == null) {
+					return price;
+				} else {
+					//compare VAT details
+					if (equalVatDetails(cp.getVATdetails(),ncp.getVATdetails())){
+						return price;
+					}
+				}
 			}
 			
 		}
@@ -619,6 +672,34 @@ public class ConverterFromLegacy {
 
 		return newPrice;
 	}
+
+
+	private static boolean equalVatDetails(EList<VATDetail> vat1, EList<VATDetail> vat2) {
+
+		if (vat1.size() != vat2.size()) return false;
+		
+		for (VATDetail v1 : vat1) {
+			
+			boolean match = false;
+			for (VATDetail v2 : vat2) {
+				if (v1.getScope().equals(v2.getScope())){
+					match = true;
+				}
+				if (match) {
+					if (!v1.getCountry().equals(v2.getCountry())) return false;
+					if (!v1.getTaxId().equals(v2.getTaxId())) return false;		
+					if (v1.getPercentage() != v2.getPercentage()) return false;
+					if (v1.getAmount() != v2.getAmount()) return false;
+				}
+			}
+			if (!match) return false;
+
+		}
+
+		return true;
+	}
+
+
 
 
 	/**
@@ -1413,10 +1494,11 @@ public class ConverterFromLegacy {
 	 * @param series the series
 	 * @param fareTemplate the fare template
 	 * @param dateRange the date range
+	 * @param regionalConstraint 
 	 * @return the price
 	 * @throws ConverterException the converter exception
 	 */
-	public Price convertSeriesToPrice(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, DateRange dateRange, ArrayList<Price> priceList) throws ConverterException{
+	public Price convertSeriesToPrice(GTMTool tool, LegacySeries series, FareTemplate fareTemplate, DateRange dateRange, ArrayList<Price> priceList, RegionalConstraint regionalConstraint) throws ConverterException{
 		
 	    
 		if (fareTemplate.getPrice() != null) {
@@ -1461,7 +1543,7 @@ public class ConverterFromLegacy {
 
 		    //amount = (float) (Math.round(amount * scale) / scale);
 			
-		    price = createPrice(amount);
+		    price = createPrice(amount,regionalConstraint);
 		    
 			if (price != null) {
 				price = findPrice(price, priceList);
@@ -1481,30 +1563,157 @@ public class ConverterFromLegacy {
 	 * Creates the price.
 	 *
 	 * @param amount the amount
+	 * @param regionalConstraint 
+	 * @param series 
 	 * @return the price
 	 */
-	private Price createPrice( float amount) {
+	private Price createPrice(float amount, RegionalConstraint regionalConstraint) {
 		
 		Price price = GtmFactory.eINSTANCE.createPrice();
 		price.setDataSource(DataSource.CONVERTED);
 			
-
 		CurrencyPrice curPrice = GtmFactory.eINSTANCE.createCurrencyPrice();
 		curPrice.setAmount(amount);
 		curPrice.setCurrency(tool.getCodeLists().getCurrencies().findCurrency("EUR")); //$NON-NLS-1$
 	
-		VATDetail vatDetail = GtmFactory.eINSTANCE.createVATDetail();
-		vatDetail.setPercentage(tool.getConversionFromLegacy().getParams().getVATpercentage());
-		vatDetail.setCountry(myCountry);
-		vatDetail.setTaxId(tool.getConversionFromLegacy().getParams().getTaxId());
-		vatDetail.setScope(TaxScope.ANY);
-		vatDetail.setAmount(amount * tool.getConversionFromLegacy().getParams().getVATpercentage()/100);
-		curPrice.getVATdetails().add(vatDetail);
+		addVat(curPrice,regionalConstraint);
 	
 		price.getCurrencies().add(curPrice);
 		return price;
 		
 	}
+	
+
+	private Country getStartCountry(RegionalValidity region) {
+		
+	   ViaStation viaStation = region.getViaStation();
+	   if (viaStation == null) return null;
+
+	   ViaStation via = viaStation.getRoute().getStations().get(0);
+	   if (via.getStation() != null) {
+		 return via.getStation().getCountry();
+	   } else if (via.getFareStationSet() != null) {
+		 return via.getFareStationSet().getStations().get(0).getCountry();
+	   }
+	   return null;		
+	}
+		
+	private Country getEndCountry(RegionalValidity region) {
+		
+	    ViaStation viaStation = region.getViaStation();
+	    if (viaStation == null) return null;
+
+		ViaStation via = viaStation.getRoute().getStations().get(viaStation.getRoute().getStations().size() - 1);
+		if (via.getStation() != null) {
+			return  via.getStation().getCountry();
+		} else if (via.getFareStationSet() != null) {
+			return via.getFareStationSet().getStations().get(0).getCountry();
+		}
+		return null;
+	}
+
+	private void addVat(CurrencyPrice curPrice, RegionalConstraint regionalConstraint) {
+		
+		//no vat data
+	    if (tool.getConversionFromLegacy().getParams() == null || 
+	    	tool.getConversionFromLegacy().getParams().getVatTemplates() == null || 
+	       	tool.getConversionFromLegacy().getParams().getVatTemplates().getVatTemplates() == null || 	    	
+	    	tool.getConversionFromLegacy().getParams().getVatTemplates().getVatTemplates().isEmpty()) {
+	    	return;
+	    }
+	    
+	    Country country = tool.getConversionFromLegacy().getParams().getCountry();
+		//get the common country at start and end of the regional validity
+	    //vat can be calculated for one country only
+		//Country country = getCountry(regionalConstraint);
+		if (country == null) return;
+
+		ArrayList<VatTemplate> vatTemplates = new ArrayList<VatTemplate>();	
+		
+		for (VatTemplate vat : tool.getConversionFromLegacy().getParams().getVatTemplates().getVatTemplates()) {
+			
+			if ((vat.getScope() == TaxScope.ANY || vat.getScope() == TaxScope.NATIONAL)	&& 
+				 vat.getCountry().equals(country)) {
+				vatTemplates.add(vat);
+			}
+			if (regionalConstraint.getEntryConnectionPoint() != null || regionalConstraint.getExitConnectionPoint() != null) {
+				if (vat.getScope() == TaxScope.INTERNATIONAL && vat.getCountry().equals(country)) {
+					vatTemplates.add(vat);
+				}
+			}
+		}
+		
+		for (VatTemplate vatTemplate: vatTemplates) {
+			VATDetail vatDetail = GtmFactory.eINSTANCE.createVATDetail();
+			vatDetail.setPercentage(vatTemplate.getPercentage());
+			vatDetail.setCountry(vatTemplate.getCountry());
+			vatDetail.setTaxId(vatTemplate.getTaxId());
+			vatDetail.setScope(vatTemplate.getScope());
+			BigDecimal bd = new BigDecimal(curPrice.getAmount()*vatTemplate.getPercentage()/100).setScale(2, RoundingMode.UP);
+			vatDetail.setAmount(bd.floatValue());
+			curPrice.getVATdetails().add(vatDetail);
+		}
+	}
+
+	/*
+	 * find the common country at the start and end of the regional validity
+	 */
+	private Country getCountry(RegionalConstraint region) {
+	
+	    if (region == null) {
+	    	return null;
+	    }
+		
+		Set<Country> startCountries = new HashSet<Country>();
+		Set<Country> endCountries = new HashSet<Country>();		
+		
+		if (region == null || 
+			region.getRegionalValidity() == null || 
+			region.getRegionalValidity().isEmpty()) {
+			return null;
+		}
+		
+		
+		if (region.getExitConnectionPoint() != null && 
+			region.getExitConnectionPoint().getConnectedStationSets() != null && 
+			!region.getExitConnectionPoint().getConnectedStationSets().isEmpty()) { 
+			for (StationSet set : region.getExitConnectionPoint().getConnectedStationSets()) {
+				for (Station station : set.getStations())  {
+					endCountries.add(station.getCountry());	
+				}
+			}
+		}
+	
+		Country c1 = getEndCountry(region.getRegionalValidity().get(0));
+		if (c1 != null) {
+			endCountries.add(c1);	
+		}
+		
+		if (region.getEntryConnectionPoint() != null && 
+			region.getEntryConnectionPoint().getConnectedStationSets() != null && 
+			!region.getEntryConnectionPoint().getConnectedStationSets().isEmpty()) { 
+			for (StationSet set : region.getEntryConnectionPoint().getConnectedStationSets()) {
+				for (Station station : set.getStations())  {
+					startCountries.add(station.getCountry());	
+				}
+			}
+		}		
+		
+		Country c2  = getStartCountry(region.getRegionalValidity().get(0));
+		if (c2 != null) {
+			startCountries.add(c2);	
+		}
+		
+		for (Country country : startCountries) {
+			if (country != null && endCountries.contains(country)) {
+				return country;
+			}
+		}
+		
+		return null;
+	}
+
+	
 	
 	/**
 	 * Gets the adult amount.

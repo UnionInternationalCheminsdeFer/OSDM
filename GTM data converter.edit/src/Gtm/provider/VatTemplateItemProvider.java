@@ -3,10 +3,9 @@
 package Gtm.provider;
 
 
-import Gtm.AfterSalesTemplate;
-import Gtm.AfterSalesTransactionType;
-import Gtm.GtmFactory;
 import Gtm.GtmPackage;
+import Gtm.TaxScope;
+import Gtm.VatTemplate;
 
 import java.util.Collection;
 import java.util.List;
@@ -15,8 +14,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
@@ -31,12 +28,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link Gtm.AfterSalesTemplate} object.
+ * This is the item provider adapter for a {@link Gtm.VatTemplate} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AfterSalesTemplateItemProvider 
+public class VatTemplateItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -50,7 +47,7 @@ public class AfterSalesTemplateItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AfterSalesTemplateItemProvider(AdapterFactory adapterFactory) {
+	public VatTemplateItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,28 +62,28 @@ public class AfterSalesTemplateItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTransactionTypePropertyDescriptor(object);
-			addCarrierFeePropertyDescriptor(object);
-			addFeeFactorPropertyDescriptor(object);
-			addRoundingModePropertyDescriptor(object);
+			addScopePropertyDescriptor(object);
+			addCountryPropertyDescriptor(object);
+			addPercentagePropertyDescriptor(object);
+			addTaxIdPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Transaction Type feature.
+	 * This adds a property descriptor for the Scope feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTransactionTypePropertyDescriptor(Object object) {
+	protected void addScopePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AfterSalesTemplate_transactionType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AfterSalesTemplate_transactionType_feature", "_UI_AfterSalesTemplate_type"),
-				 GtmPackage.Literals.AFTER_SALES_TEMPLATE__TRANSACTION_TYPE,
+				 getString("_UI_VatTemplate_scope_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VatTemplate_scope_feature", "_UI_VatTemplate_type"),
+				 GtmPackage.Literals.VAT_TEMPLATE__SCOPE,
 				 true,
 				 false,
 				 false,
@@ -96,41 +93,41 @@ public class AfterSalesTemplateItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Carrier Fee feature.
+	 * This adds a property descriptor for the Country feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCarrierFeePropertyDescriptor(Object object) {
+	protected void addCountryPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AfterSalesTemplate_carrierFee_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AfterSalesTemplate_carrierFee_feature", "_UI_AfterSalesTemplate_type"),
-				 GtmPackage.Literals.AFTER_SALES_TEMPLATE__CARRIER_FEE,
+				 getString("_UI_VatTemplate_country_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VatTemplate_country_feature", "_UI_VatTemplate_type"),
+				 GtmPackage.Literals.VAT_TEMPLATE__COUNTRY,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Fee Factor feature.
+	 * This adds a property descriptor for the Percentage feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFeeFactorPropertyDescriptor(Object object) {
+	protected void addPercentagePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AfterSalesTemplate_feeFactor_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AfterSalesTemplate_feeFactor_feature", "_UI_AfterSalesTemplate_type"),
-				 GtmPackage.Literals.AFTER_SALES_TEMPLATE__FEE_FACTOR,
+				 getString("_UI_VatTemplate_percentage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VatTemplate_percentage_feature", "_UI_VatTemplate_type"),
+				 GtmPackage.Literals.VAT_TEMPLATE__PERCENTAGE,
 				 true,
 				 false,
 				 false,
@@ -140,19 +137,19 @@ public class AfterSalesTemplateItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Rounding Mode feature.
+	 * This adds a property descriptor for the Tax Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRoundingModePropertyDescriptor(Object object) {
+	protected void addTaxIdPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AfterSalesTemplate_roundingMode_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AfterSalesTemplate_roundingMode_feature", "_UI_AfterSalesTemplate_type"),
-				 GtmPackage.Literals.AFTER_SALES_TEMPLATE__ROUNDING_MODE,
+				 getString("_UI_VatTemplate_taxId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VatTemplate_taxId_feature", "_UI_VatTemplate_type"),
+				 GtmPackage.Literals.VAT_TEMPLATE__TAX_ID,
 				 true,
 				 false,
 				 false,
@@ -162,44 +159,14 @@ public class AfterSalesTemplateItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(GtmPackage.Literals.AFTER_SALES_TEMPLATE__APPLICATION_TIME);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns AfterSalesTemplate.gif.
+	 * This returns VatTemplate.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AfterSalesTemplate"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/VatTemplate"));
 	}
 
 	/**
@@ -210,11 +177,11 @@ public class AfterSalesTemplateItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		AfterSalesTransactionType labelValue = ((AfterSalesTemplate)object).getTransactionType();
+		TaxScope labelValue = ((VatTemplate)object).getScope();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_AfterSalesTemplate_type") :
-			getString("_UI_AfterSalesTemplate_type") + " " + label;
+			getString("_UI_VatTemplate_type") :
+			getString("_UI_VatTemplate_type") + " " + label;
 	}
 
 
@@ -229,15 +196,11 @@ public class AfterSalesTemplateItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AfterSalesTemplate.class)) {
-			case GtmPackage.AFTER_SALES_TEMPLATE__TRANSACTION_TYPE:
-			case GtmPackage.AFTER_SALES_TEMPLATE__CARRIER_FEE:
-			case GtmPackage.AFTER_SALES_TEMPLATE__FEE_FACTOR:
-			case GtmPackage.AFTER_SALES_TEMPLATE__ROUNDING_MODE:
+		switch (notification.getFeatureID(VatTemplate.class)) {
+			case GtmPackage.VAT_TEMPLATE__SCOPE:
+			case GtmPackage.VAT_TEMPLATE__PERCENTAGE:
+			case GtmPackage.VAT_TEMPLATE__TAX_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case GtmPackage.AFTER_SALES_TEMPLATE__APPLICATION_TIME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -253,11 +216,6 @@ public class AfterSalesTemplateItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.AFTER_SALES_TEMPLATE__APPLICATION_TIME,
-				 GtmFactory.eINSTANCE.createApplicationTime()));
 	}
 
 	/**

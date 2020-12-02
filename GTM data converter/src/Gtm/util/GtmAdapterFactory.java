@@ -512,6 +512,14 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 				return createConversionParamsAdapter();
 			}
 			@Override
+			public Adapter caseVatTemplates(VatTemplates object) {
+				return createVatTemplatesAdapter();
+			}
+			@Override
+			public Adapter caseVatTemplate(VatTemplate object) {
+				return createVatTemplateAdapter();
+			}
+			@Override
 			public Adapter caseLegacyFareTemplates(LegacyFareTemplates object) {
 				return createLegacyFareTemplatesAdapter();
 			}
@@ -2214,6 +2222,34 @@ public class GtmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConversionParamsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.VatTemplates <em>Vat Templates</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.VatTemplates
+	 * @generated
+	 */
+	public Adapter createVatTemplatesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gtm.VatTemplate <em>Vat Template</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gtm.VatTemplate
+	 * @generated
+	 */
+	public Adapter createVatTemplateAdapter() {
 		return null;
 	}
 

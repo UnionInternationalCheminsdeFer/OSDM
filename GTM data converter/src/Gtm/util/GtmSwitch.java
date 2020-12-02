@@ -736,6 +736,18 @@ public class GtmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GtmPackage.VAT_TEMPLATES: {
+				VatTemplates vatTemplates = (VatTemplates)theEObject;
+				T result = caseVatTemplates(vatTemplates);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GtmPackage.VAT_TEMPLATE: {
+				VatTemplate vatTemplate = (VatTemplate)theEObject;
+				T result = caseVatTemplate(vatTemplate);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GtmPackage.LEGACY_FARE_TEMPLATES: {
 				LegacyFareTemplates legacyFareTemplates = (LegacyFareTemplates)theEObject;
 				T result = caseLegacyFareTemplates(legacyFareTemplates);
@@ -2600,6 +2612,36 @@ public class GtmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConversionParams(ConversionParams object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Vat Templates</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Vat Templates</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVatTemplates(VatTemplates object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Vat Template</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Vat Template</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVatTemplate(VatTemplate object) {
 		return null;
 	}
 

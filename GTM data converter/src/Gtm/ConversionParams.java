@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gtm.ConversionParams#getStationImportFilter <em>Station Import Filter</em>}</li>
  *   <li>{@link Gtm.ConversionParams#isConvertFareDescriptions <em>Convert Fare Descriptions</em>}</li>
  *   <li>{@link Gtm.ConversionParams#isConvertServiceConstraints <em>Convert Service Constraints</em>}</li>
+ *   <li>{@link Gtm.ConversionParams#getVatTemplates <em>Vat Templates</em>}</li>
  * </ul>
  *
  * @see Gtm.GtmPackage#getConversionParams()
@@ -41,7 +42,7 @@ public interface ConversionParams extends EObject {
 	 * @return the value of the '<em>Tax Id</em>' attribute.
 	 * @see #setTaxId(String)
 	 * @see Gtm.GtmPackage#getConversionParams_TaxId()
-	 * @model
+	 * @model transient="true"
 	 * @generated
 	 */
 	String getTaxId();
@@ -63,7 +64,7 @@ public interface ConversionParams extends EObject {
 	 * @return the value of the '<em>VA Tpercentage</em>' attribute.
 	 * @see #setVATpercentage(float)
 	 * @see Gtm.GtmPackage#getConversionParams_VATpercentage()
-	 * @model
+	 * @model transient="true"
 	 * @generated
 	 */
 	float getVATpercentage();
@@ -341,5 +342,27 @@ public interface ConversionParams extends EObject {
 	 * @generated
 	 */
 	void setConvertServiceConstraints(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Vat Templates</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Vat Templates</em>' containment reference.
+	 * @see #setVatTemplates(VatTemplates)
+	 * @see Gtm.GtmPackage#getConversionParams_VatTemplates()
+	 * @model containment="true"
+	 * @generated
+	 */
+	VatTemplates getVatTemplates();
+
+	/**
+	 * Sets the value of the '{@link Gtm.ConversionParams#getVatTemplates <em>Vat Templates</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Vat Templates</em>' containment reference.
+	 * @see #getVatTemplates()
+	 * @generated
+	 */
+	void setVatTemplates(VatTemplates value);
 
 } // ConversionParams

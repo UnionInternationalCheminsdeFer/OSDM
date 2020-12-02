@@ -3,10 +3,9 @@
 package Gtm.provider;
 
 
-import Gtm.AlternativeRoute;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
-import Gtm.RouteDescriptionBuilder;
+import Gtm.VatTemplates;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,6 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -28,12 +28,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link Gtm.AlternativeRoute} object.
+ * This is the item provider adapter for a {@link Gtm.VatTemplates} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AlternativeRouteItemProvider 
+public class VatTemplatesItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -47,7 +47,7 @@ public class AlternativeRouteItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AlternativeRouteItemProvider(AdapterFactory adapterFactory) {
+	public VatTemplatesItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -78,7 +78,7 @@ public class AlternativeRouteItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GtmPackage.Literals.ALTERNATIVE_ROUTE__STATIONS);
+			childrenFeatures.add(GtmPackage.Literals.VAT_TEMPLATES__VAT_TEMPLATES);
 		}
 		return childrenFeatures;
 	}
@@ -97,25 +97,25 @@ public class AlternativeRouteItemProvider
 	}
 
 	/**
-	 * This returns AlternativeRoute.gif.
+	 * This returns VatTemplates.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AlternativeRoute"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/VatTemplates"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return RouteDescriptionBuilder.getRouteDescription((AlternativeRoute) object);
+		return getString("_UI_VatTemplates_type");
 	}
 
 
@@ -130,8 +130,8 @@ public class AlternativeRouteItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AlternativeRoute.class)) {
-			case GtmPackage.ALTERNATIVE_ROUTE__STATIONS:
+		switch (notification.getFeatureID(VatTemplates.class)) {
+			case GtmPackage.VAT_TEMPLATES__VAT_TEMPLATES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -151,8 +151,8 @@ public class AlternativeRouteItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GtmPackage.Literals.ALTERNATIVE_ROUTE__STATIONS,
-				 GtmFactory.eINSTANCE.createViaStation()));
+				(GtmPackage.Literals.VAT_TEMPLATES__VAT_TEMPLATES,
+				 GtmFactory.eINSTANCE.createVatTemplate()));
 	}
 
 	/**

@@ -992,8 +992,10 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="COUNTRY_MUST AT_LEAST_ONE_LEGACY_FARE_TEMPLATE"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="TaxId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VATpercentage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="TaxId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VATpercentage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"
+        transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="country" eType="#//Country"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="legacyBorderPointMappings"
         eType="#//LegacyBoderPointMappings" containment="true"/>
@@ -1016,6 +1018,18 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="convertServiceConstraints"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vatTemplates" eType="#//VatTemplates"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VatTemplates">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vatTemplates" upperBound="-1"
+        eType="#//VatTemplate" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VatTemplate">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scope" eType="#//TaxScope"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="country" eType="#//Country"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="percentage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="taxId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LegacyFareTemplates">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fareTemplates" upperBound="-1"
@@ -1069,6 +1083,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="applicationTime" eType="#//ApplicationTime"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="feeFactor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roundingMode" eType="#//RoundingType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OnBorderStations">
     <eStructuralFeatures xsi:type="ecore:EReference" name="stations" eType="#//StationSet"
@@ -1614,7 +1629,7 @@
     <eLiterals name="WET" value="5" literal="Western European Time"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TaxScope">
-    <eLiterals name="INTERNALTIONAL" value="1"/>
+    <eLiterals name="INTERNATIONAL" value="1" literal="INTERNATIONAL"/>
     <eLiterals name="NATIONAL" value="2"/>
     <eLiterals name="SHORT_DISTANCE" value="3"/>
     <eLiterals name="LONG_DISTANCE" value="4"/>

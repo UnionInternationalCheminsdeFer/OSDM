@@ -7,6 +7,7 @@ import Gtm.AfterSalesTransactionType;
 import Gtm.ApplicationTime;
 import Gtm.GtmPackage;
 
+import Gtm.RoundingType;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gtm.impl.AfterSalesTemplateImpl#isCarrierFee <em>Carrier Fee</em>}</li>
  *   <li>{@link Gtm.impl.AfterSalesTemplateImpl#getApplicationTime <em>Application Time</em>}</li>
  *   <li>{@link Gtm.impl.AfterSalesTemplateImpl#getFeeFactor <em>Fee Factor</em>}</li>
+ *   <li>{@link Gtm.impl.AfterSalesTemplateImpl#getRoundingMode <em>Rounding Mode</em>}</li>
  * </ul>
  *
  * @generated
@@ -102,6 +104,26 @@ public class AfterSalesTemplateImpl extends MinimalEObjectImpl.Container impleme
 	 * @ordered
 	 */
 	protected float feeFactor = FEE_FACTOR_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRoundingMode() <em>Rounding Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRoundingMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final RoundingType ROUNDING_MODE_EDEFAULT = RoundingType.HALFUP;
+
+	/**
+	 * The cached value of the '{@link #getRoundingMode() <em>Rounding Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRoundingMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected RoundingType roundingMode = ROUNDING_MODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -233,6 +255,27 @@ public class AfterSalesTemplateImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RoundingType getRoundingMode() {
+		return roundingMode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRoundingMode(RoundingType newRoundingMode) {
+		RoundingType oldRoundingMode = roundingMode;
+		roundingMode = newRoundingMode == null ? ROUNDING_MODE_EDEFAULT : newRoundingMode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GtmPackage.AFTER_SALES_TEMPLATE__ROUNDING_MODE, oldRoundingMode, roundingMode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -258,6 +301,8 @@ public class AfterSalesTemplateImpl extends MinimalEObjectImpl.Container impleme
 				return getApplicationTime();
 			case GtmPackage.AFTER_SALES_TEMPLATE__FEE_FACTOR:
 				return getFeeFactor();
+			case GtmPackage.AFTER_SALES_TEMPLATE__ROUNDING_MODE:
+				return getRoundingMode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -281,6 +326,9 @@ public class AfterSalesTemplateImpl extends MinimalEObjectImpl.Container impleme
 				return;
 			case GtmPackage.AFTER_SALES_TEMPLATE__FEE_FACTOR:
 				setFeeFactor((Float)newValue);
+				return;
+			case GtmPackage.AFTER_SALES_TEMPLATE__ROUNDING_MODE:
+				setRoundingMode((RoundingType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -306,6 +354,9 @@ public class AfterSalesTemplateImpl extends MinimalEObjectImpl.Container impleme
 			case GtmPackage.AFTER_SALES_TEMPLATE__FEE_FACTOR:
 				setFeeFactor(FEE_FACTOR_EDEFAULT);
 				return;
+			case GtmPackage.AFTER_SALES_TEMPLATE__ROUNDING_MODE:
+				setRoundingMode(ROUNDING_MODE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -326,6 +377,8 @@ public class AfterSalesTemplateImpl extends MinimalEObjectImpl.Container impleme
 				return applicationTime != null;
 			case GtmPackage.AFTER_SALES_TEMPLATE__FEE_FACTOR:
 				return feeFactor != FEE_FACTOR_EDEFAULT;
+			case GtmPackage.AFTER_SALES_TEMPLATE__ROUNDING_MODE:
+				return roundingMode != ROUNDING_MODE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -346,6 +399,8 @@ public class AfterSalesTemplateImpl extends MinimalEObjectImpl.Container impleme
 		result.append(carrierFee);
 		result.append(", feeFactor: ");
 		result.append(feeFactor);
+		result.append(", roundingMode: ");
+		result.append(roundingMode);
 		result.append(')');
 		return result.toString();
 	}

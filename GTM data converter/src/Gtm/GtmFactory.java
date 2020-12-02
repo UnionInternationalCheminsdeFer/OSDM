@@ -1021,6 +1021,24 @@ public interface GtmFactory extends EFactory {
 	ConversionParams createConversionParams();
 
 	/**
+	 * Returns a new object of class '<em>Vat Templates</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Vat Templates</em>'.
+	 * @generated
+	 */
+	VatTemplates createVatTemplates();
+
+	/**
+	 * Returns a new object of class '<em>Vat Template</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Vat Template</em>'.
+	 * @generated
+	 */
+	VatTemplate createVatTemplate();
+
+	/**
 	 * Returns a new object of class '<em>Fare Template</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
