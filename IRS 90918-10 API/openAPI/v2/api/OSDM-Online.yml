@@ -112,7 +112,7 @@ paths:
             be provided for mass downloads
           required: false
           schema:
-            $ref: '#/components/schemas/CountryDef'
+            type: string
         - name: limit
           in: query
           description: 'The number of locations to be returned ([1..50]).'
@@ -185,8 +185,7 @@ paths:
           name: locationId
           schema:
             type: string
-            description: opaque and unique (on this server) id for the location
-           
+            description: opaque and unique (on this server) id for the location          
           required: true
           description: ID of the location resource to be retrieved.
       responses:
@@ -562,12 +561,12 @@ paths:
           content:
             application/json:
               schema:
-               type: object
-               properties:
-                 warnings:
-                   $ref: '#/components/schemas/WarningMessageList'
-                 tripOffersCollection:
-                   $ref: '#/components/schemas/TripOffersCollection'
+                type: object
+                properties:
+                  warnings:
+                     $ref: '#/components/schemas/WarningMessageList'
+                  tripOffersCollection:
+                     $ref: '#/components/schemas/TripOffersCollection'
           headers:
             Content-Language:
               schema:
@@ -1747,7 +1746,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BookingSearchParameterDef'          
+              $ref: '#/components/schemas/BookingSearchParameter'          
       responses:
         '200':
           description: Booking ids found
@@ -1759,7 +1758,7 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   searchResults:
-                    $ref: '#/components/schemas/BookingSearchReplyDef'  
+                    $ref: '#/components/schemas/BookingSearchReply'  
         '400':
           description: Bad request
           content:
@@ -2118,7 +2117,9 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   fulfillments:
-                    $ref: '#/components/schemas/FulfillmentsDef'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Fulfillment'
         '202': 
           description: >- 
             Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
@@ -2204,7 +2205,9 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   fulfillments:
-                    $ref: '#/components/schemas/FulfillmentsDef'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Fulfillment'
         '202': 
           description: >- 
             Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
@@ -2591,7 +2594,9 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   fulfillments:
-                    $ref: '#/components/schemas/FulfillmentsDef'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Fulfillment'
           headers:
             Content-Language:
               schema:
@@ -2942,62 +2947,6 @@ components:
         - title
         - type
         - href
-    
-    BookingSearchParameterDef:
-      type: object
-      description: >-
-        parameter to be used to search for a booking. Contains personal data. 
-        For a search via personal data an exact match of all elements 
-        - first name, last name and date of birth - is mandatory. 
-        In case a ticket holder is indicated the parameter must match the ticket holder. 
-        TODO - legal check by CIT
-      properties:
-        passengerFirstName:
-          type: string
-          description: >-
-            First name of a passenger in the booking.      
-        passengerLastName:
-          type: string
-          description: >-
-            Last name of a passenger in the booking.
-        passengerDateOfBirth:
-          type: string
-          format: date
-          description: >-
-            Date of birth of a passenger in the booking.
-        bookingReference:
-          type: string
-          format: date
-          description: >-
-            Human-readable booking reference for the booking, e.g. PNR.
-        fulfillmentReference:
-          type: string
-          description: >-
-            Human-readable fulfillment reference for the booking, e.g. ticket number.
-        travelDateBegin:
-          type: string
-          format: date-time
-          description: >-
-            Begin date for the travel date range to search.
-        travelDateEnd:
-          type: string
-          format: date-time
-          description: >-
-            End date for the travel date range to search.
-        origin: 
-          $ref: '#/components/schemas/Location'
-        destination:
-          $ref: '#/components/schemas/Location'
-
-    BookingSearchReplyDef:
-      type: object
-      description: >-
-        Reply on a search for bookings
-      properties:
-        bookings:
-          type: array
-          items: 
-            $ref: '#/components/schemas/Booking'
 
     Link:
       type: object
@@ -3136,42 +3085,22 @@ components:
       required:
         - seqId
         - vehicle
-      
-    StationDetailsDef:
-      type: object
-      description: >-
-        Details of a station. In some countries stations have
-        multiple names depending on the countries local languages.
-      properties:
-        localCode:
-          description: code unique with in the country only
-          type: string
-        country:
-          $ref: '#/components/schemas/CountryDef'
-        codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/StationCode'
-          description: >-
-            The codes that can be used to represent the given station on the system.
-            There can be several codes, in which case  it is relevant to have a list
-            of couples.
-        geoCoordinate:
-          $ref: '#/components/schemas/GeoCoordinate'
-        names:
-          description: names of the station depending on language
-          type: array
-          items:
-            $ref: '#/components/schemas/TranslationDef'
-      required:
-        - country
-        - codes
-    
+         
     StationCode:
       type: object
       properties:
         codeList:
-          $ref: '#/components/schemas/StationCodeListDef'
+          description: >-
+            Code list used for the station codes: 
+              - UIC: UIC codes as used by merits (UIC country code + local code)
+              - UIC-R: UIC codes for reservation (UIC country code + local code reservation) 
+              - ERA: future ERA station code
+          type: string
+          x-extensible-enum:
+            - UIC
+            - UIC-R
+            - ERA
+          default: UIC
         code:
           type: string
           description: the code representing the station in the specified code-list     
@@ -3189,11 +3118,14 @@ components:
           type: string
           example: Bruxelles-Midi
         type:
+          description: >-
+            The ConnectionPointDef exists to define virtual border points between two station.  
           oneOf:
-            - $ref: '#/components/schemas/StationDetailsDef'
+            - $ref: '#/components/schemas/StationCode'
             - $ref: '#/components/schemas/Poi'
             - $ref: '#/components/schemas/Address'
             - $ref: '#/components/schemas/GeoCoordinate'
+            - $ref: '#/components/schemas/ConnectionPointDef'
         links:
           type: array
           description: Context information required by the services.
@@ -3203,15 +3135,6 @@ components:
         - id
         - title
         - links
-     
-    StationCodeListDef:
-      description: >-
-        Code list used for the station codes: UIC = UIC codes as used by merits
-        (UIC country code + local code) = Default// UIC-R = UIC codes for
-        reservation (UIC country code + local code reservation) // ERA = future
-        ERA station code
-      type: string
-      default: UIC
 
     Address:
       type: object
@@ -3230,7 +3153,8 @@ components:
           type: string
           example: 3006
         country:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         geoCoordinate:
           $ref: '#/components/schemas/GeoCoordinate'
       required:
@@ -3313,7 +3237,8 @@ components:
             The codes that can be used to represent the given POI on the system. There can be several codes, 
             in which case it is relevant to have a list of couples.
         country:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         names:
           description: names of the point of interest depending on language
           type: array
@@ -3421,17 +3346,11 @@ components:
             - ORIGIN_DESTINATION_ONLY
             - REAL_BOARDING_ALIGHTING
         origin:
-          oneOf:
-            - $ref: '#/components/schemas/StationCode'
-            - type: string
-              format: uuid
-              description: id of the location to use as origin
+          description: id of the location to use as origin
+          $ref: '#/components/schemas/StationCode'
         destination:
-          oneOf:
-            - $ref: '#/components/schemas/StationCode'
-            - type: string
-              format: uuid
-              description: id of the location to use as destination
+          description: id of the location to use as destination
+          $ref: '#/components/schemas/StationCode'
         viaValues:
           description: >-
             Ordered list of via locations within the trip. Unique code value has
@@ -3439,11 +3358,7 @@ components:
             underlying system.
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/StationDetailsDef'
-              - type: string
-                format: uuid
-                description: id of the location to use as origin
+            $ref: '#/components/schemas/StationCode'
         travelDateTime:
           type: string
           format: date-time
@@ -3796,7 +3711,8 @@ components:
       type: object
       properties:
         country:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         amount:
           description: amount in cents
           type: integer
@@ -3824,16 +3740,7 @@ components:
        - NATIONAL
        - SHORT_DISTANCE
        - LONG_DISTANCE
-
-    GenderDef:
-      description: >- 
-        The gender of the passenger, which is important in the case of night trains.
-      type: string
-      enum:
-        - MALE
-        - FEMALE
-        - X
-        
+       
     ReductionCardReferenceDef:
       type: object
       properties:
@@ -3961,7 +3868,7 @@ components:
           items:
             $ref: '#/components/schemas/LoyaltyCardReferenceDef'
         gender:
-          $ref: '#/components/schemas/GenderDef'
+          $ref: '#/components/schemas/Gender'
         prmNeeds:
           type: string
           x-extensible-enum:
@@ -3986,11 +3893,14 @@ components:
         cityOfResidence:
           type: string
         countryOfBirth:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         countryOfIssue:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         countryOfResidence:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         dateOfIssue:
           type: string
           format: date-time
@@ -4000,7 +3910,7 @@ components:
           description: Refer to code list for values
           type: string
         gender:
-          $ref: '#/components/schemas/GenderDef'
+          $ref: '#/components/schemas/Gender'
         limitOfValidity:
           type: string
           format: date-time
@@ -4008,7 +3918,8 @@ components:
           description: ICAO transliteration identical as written in the document
           type: string
         nationality:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
       required:
         - documentType
         - name
@@ -4066,6 +3977,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TranslationDef'
+
+    Gender:
+      description: >- 
+        The gender of the passenger, which is important in the case of night trains.
+      type: string
+      enum:
+        - MALE
+        - FEMALE
+        - X
       
     ServiceClassDef:
       type: object
@@ -4092,13 +4012,9 @@ components:
       type: object
       properties:
         start:
-          oneOf:
-            - $ref: '#/components/schemas/Location'
-            - $ref: '#/components/schemas/ConnectionPointDef'
+          $ref: '#/components/schemas/Location'
         end:
-          oneOf:
-            - $ref: '#/components/schemas/Location'
-            - $ref: '#/components/schemas/ConnectionPointDef'
+          $ref: '#/components/schemas/Location'
       required:
         - start
         - end
@@ -4244,7 +4160,7 @@ components:
         - title
         - links
           
-    FulfillmentMediaTypeDef:
+    FulfillmentMediaType:
        type: string
        description: >-
          Fulfillment types. RCT2, RCCST and UIC-PDF are official UIC standards.     
@@ -4841,7 +4757,63 @@ components:
         requestedFulfillmentType:
           $ref: '#/components/schemas/FulfillmentType'
         preferredFulfillmentMedia:
-          $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+          $ref: '#/components/schemas/FulfillmentMediaType'
+    
+    BookingSearchParameter:
+      type: object
+      description: >-
+        parameter to be used to search for a booking. Contains personal data. 
+        For a search via personal data an exact match of all elements 
+        - first name, last name and date of birth - is mandatory. 
+        In case a ticket holder is indicated the parameter must match the ticket holder. 
+        TODO - legal check by CIT
+      properties:
+        passengerFirstName:
+          type: string
+          description: >-
+            First name of a passenger in the booking.      
+        passengerLastName:
+          type: string
+          description: >-
+            Last name of a passenger in the booking.
+        passengerDateOfBirth:
+          type: string
+          format: date
+          description: >-
+            Date of birth of a passenger in the booking.
+        bookingReference:
+          type: string
+          format: date
+          description: >-
+            Human-readable booking reference for the booking, e.g. PNR.
+        fulfillmentReference:
+          type: string
+          description: >-
+            Human-readable fulfillment reference for the booking, e.g. ticket number.
+        travelDateBegin:
+          type: string
+          format: date-time
+          description: >-
+            Begin date for the travel date range to search.
+        travelDateEnd:
+          type: string
+          format: date-time
+          description: >-
+            End date for the travel date range to search.
+        origin: 
+          $ref: '#/components/schemas/Location'
+        destination:
+          $ref: '#/components/schemas/Location'
+
+    BookingSearchReply:
+      type: object
+      description: >-
+        Reply on a search for bookings
+      properties:
+        bookings:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Booking'
 
     FulfillmentOption:
       type: object
@@ -4853,17 +4825,7 @@ components:
         media: 
           type: array
           items:
-           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
-           
-    FulfillmentsDef:
-      type: object
-      description: >-
-        list of fulfillments in a booking
-      properties:
-        fulfillments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Fulfillment'
+           $ref: '#/components/schemas/FulfillmentMediaType'
         
     FulfillmentsPatch:
       type: object
@@ -4917,13 +4879,13 @@ components:
             complete document created for fulfillment
           type: array
           items: 
-            $ref: '#/components/schemas/FulfillmentDocumentDef'
+            $ref: '#/components/schemas/FulfillmentDocument'
         fulfillmentItems:
           description: >-
             fulfillment items to be integrated into tickets (allocator mode)
           type: array
           items:
-            $ref: '#/components/schemas/FulfillmentItemDef'
+            $ref: '#/components/schemas/FulfillmentItem'
         links:
           type: array
           items:
@@ -4933,13 +4895,13 @@ components:
        - title
        - links
     
-    FulfillmentDocumentDef:
+    FulfillmentDocument:
       type: object
       description: >-
         document created for fulfillment
       properties:
         medium: 
-          $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+          $ref: '#/components/schemas/FulfillmentMediaType'
         documentType:
          type: string
          x-extensible-enum:
@@ -4952,7 +4914,7 @@ components:
           type: string
           format: uri    
     
-    FulfillmentItemDef:
+    FulfillmentItem:
       type: object
       description: >-
        Fulfillment items to be integrated in to tickets, 
@@ -4963,7 +4925,7 @@ components:
            list of fulfillment media where this item applies
           type: array
           items:
-           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+           $ref: '#/components/schemas/FulfillmentMediaType'
         travelerReference:
           description: reference to a traveler
           type: string
@@ -5021,11 +4983,6 @@ components:
         - PNG_VISUAL_ELEMENT
         - JPG_VISUAL_ELEMENT
         - GIF_VISUAL_ELEMENT
-  
-    AfterSaleReasonDef:
-      description: >-
-        Reason for and type of an after sale, Code list in IRS 90918-10.
-      type: string
       
     RefundOffersCollection:
       type: object
@@ -5065,7 +5022,9 @@ components:
           type: string
           format: date-time
         appliedOverruleCode:
-          $ref: '#/components/schemas/AfterSaleReasonDef'
+          description: >-
+            Reason for and type of an after sale, Code list in IRS 90918-10.
+          type: string
         fulfillments:
           type: array
           items: 
@@ -5095,7 +5054,9 @@ components:
             format: uuid
             description: id of the fulfillment to refund
         overruleCode: 
-          $ref: '#/components/schemas/AfterSaleReasonDef'
+          description: >-
+            Reason for and type of an after sale, Code list in IRS 90918-10.
+          type: string
 
     ExchangeOfferRequest:
       type: object
@@ -5109,7 +5070,9 @@ components:
             format: uuid
             description: id of the fulfillment to exchange
         overruleCode: 
-          $ref: '#/components/schemas/AfterSaleReasonDef'
+          description: >-
+            Reason for and type of an after sale, Code list in IRS 90918-10.
+          type: string
 
     ExchangeOffersCollectionDef:
       type: array
@@ -5146,7 +5109,9 @@ components:
           type: string
           format: date-time
         appliedOverruleCode:
-          $ref: '#/components/schemas/AfterSaleReasonDef'
+          description: >-
+            Reason for and type of an after sale, Code list in IRS 90918-10.
+          type: string
         fulfillments:
           description: >-
             affected fulfillments. In case of secure paper these need to be collected from the passenger.
@@ -5197,7 +5162,9 @@ components:
           type: string
           format: date-time
         appliedOverruleCode:
-          $ref: '#/components/schemas/AfterSaleReasonDef'
+          description: >-
+            Reason for and type of an after sale, Code list in IRS 90918-10.
+          type: string
         exchangeFee:
           $ref: '#/components/schemas/CurrencyPriceDef'
         refundableAmount:
@@ -5314,7 +5281,9 @@ components:
         These transportables might need a ticket or reservation.
       properties:
         type:
-          $ref: '#/components/schemas/TravelerTypeDef'
+          description: >- 
+            Subset of the values from the traveler type code list IRS 90918-10 
+          type: string
         car:
           type: object
           properties:
@@ -5493,8 +5462,7 @@ components:
         requiredPersonalData:
           $ref: '#/components/schemas/PersonalDataConstraintOnlineDef'
         passengerConstraints:
-          $ref: '#/components/schemas/PassengerConstraintsDef'
-          
+          $ref: '#/components/schemas/PassengerConstraintsDef'          
       required:
         - id
         - type
@@ -5502,7 +5470,6 @@ components:
         - combinationConstraint
         - travelValidityConstraint
         - afterSalesCondition
-
 
     PassengerConstraintsDef:
       description: >-
@@ -5522,7 +5489,6 @@ components:
                  type: integer
                  format: int32
 
-        
     RegulatoryConditionsDef:
       description: >- 
          General conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and
@@ -5660,12 +5626,7 @@ components:
             - earliestReturn
       required:
         - validityRange
-      
-    TravelerTypeDef:
-      description: >- 
-        Subset of the values from the traveler type code list IRS 90918-10 
-      type: string
-    
+
     LayoutsDef:
       type: object
       properties:
@@ -6053,6 +6014,37 @@ components:
         - train
         - travelDate
     
+    StationDetailsDef:
+      type: object
+      description: >-
+        Details of a station. In some countries stations have
+        multiple names depending on the countries local languages.
+      properties:
+        localCode:
+          description: code unique with in the country only
+          type: string
+        country:
+          description: ISO 3166 2A codes
+          type: string
+        codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StationCode'
+          description: >-
+            The codes that can be used to represent the given station on the system.
+            There can be several codes, in which case  it is relevant to have a list
+            of couples.
+        geoCoordinate:
+          $ref: '#/components/schemas/GeoCoordinate'
+        names:
+          description: names of the station depending on language
+          type: array
+          items:
+            $ref: '#/components/schemas/TranslationDef'
+      required:
+        - country
+        - codes
+    
     PolygonDef:
       type: object
       properties:
@@ -6247,9 +6239,11 @@ components:
       type: object
       properties:
         fromCountry:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         toCountry:
-          $ref: '#/components/schemas/CountryDef'
+          description: ISO 3166 2A codes
+          type: string
         affectedServiceBrands:
           type: array
           items:
@@ -6257,11 +6251,6 @@ components:
       required:
         - fromCountry
         - toCountry
- 
-    CountryDef:
-      description: >-
-        ISO 3166 2A codes
-      type: string
       
     ControlSecurityTypeDef:
       description: >-
