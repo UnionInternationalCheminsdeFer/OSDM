@@ -4205,7 +4205,7 @@ components:
         - title
         - links
           
-    FulfillmentMediaTypeDef:
+    FulfillmentMediaType:
        type: string
        description: >-
          Fulfillment types. RCT2, RCCST and UIC-PDF are official UIC standards.     
@@ -4802,7 +4802,7 @@ components:
         requestedFulfillmentType:
           $ref: '#/components/schemas/FulfillmentType'
         preferredFulfillmentMedia:
-          $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+          $ref: '#/components/schemas/FulfillmentMediaType'
     
     BookingSearchParameter:
       type: object
@@ -4870,7 +4870,7 @@ components:
         media: 
           type: array
           items:
-           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+           $ref: '#/components/schemas/FulfillmentMediaType'
         
     FulfillmentsPatch:
       type: object
@@ -4924,13 +4924,13 @@ components:
             complete document created for fulfillment
           type: array
           items: 
-            $ref: '#/components/schemas/FulfillmentDocumentDef'
+            $ref: '#/components/schemas/FulfillmentDocument'
         fulfillmentItems:
           description: >-
             fulfillment items to be integrated into tickets (allocator mode)
           type: array
           items:
-            $ref: '#/components/schemas/FulfillmentItemDef'
+            $ref: '#/components/schemas/FulfillmentItem'
         links:
           type: array
           items:
@@ -4940,13 +4940,13 @@ components:
        - title
        - links
     
-    FulfillmentDocumentDef:
+    FulfillmentDocument:
       type: object
       description: >-
         document created for fulfillment
       properties:
         medium: 
-          $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+          $ref: '#/components/schemas/FulfillmentMediaType'
         documentType:
          type: string
          x-extensible-enum:
@@ -4959,7 +4959,7 @@ components:
           type: string
           format: uri    
     
-    FulfillmentItemDef:
+    FulfillmentItem:
       type: object
       description: >-
        Fulfillment items to be integrated in to tickets, 
@@ -4970,7 +4970,7 @@ components:
            list of fulfillment media where this item applies
           type: array
           items:
-           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+           $ref: '#/components/schemas/FulfillmentMediaType'
         travelerReference:
           description: reference to a traveler
           type: string
