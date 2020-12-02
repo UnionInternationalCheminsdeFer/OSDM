@@ -5514,8 +5514,10 @@ components:
                 type: integer
                 format: int32
               scope:
-                description: 'START_OF_TRAVEL,COMPLETE_RANGE'
                 type: string
+                enum:
+                  - START_OF_TRAVEL
+                  - COMPLETE_RANGE
             required:
               - from
               - until
