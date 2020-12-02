@@ -3034,11 +3034,10 @@ components:
                 Line number in case the vehicle does not have a number
               type: string
             serviceBrand:
-              $ref: '#/components/schemas/ServiceBrandCodeDef'
+              $ref: '#/components/schemas/ServiceBrandCode'
             transportMode:
               description: >-
-                Transport mode (code list of MERITS). Optional for offer
-                requests, included for alignment with FSM
+                Transport mode (code list of MERITS).
               type: string
         stops:
           description: >-
@@ -3119,13 +3118,13 @@ components:
           example: Bruxelles-Midi
         type:
           description: >-
-            The ConnectionPointDef exists to define virtual border points between two station.  
+            The ConnectionPoint exists to define virtual border points between two stations.  
           oneOf:
             - $ref: '#/components/schemas/StationCode'
             - $ref: '#/components/schemas/Poi'
             - $ref: '#/components/schemas/Address'
             - $ref: '#/components/schemas/GeoCoordinate'
-            - $ref: '#/components/schemas/ConnectionPointDef'
+            - $ref: '#/components/schemas/ConnectionPoint'
         links:
           type: array
           description: Context information required by the services.
@@ -3175,7 +3174,7 @@ components:
           description: unique id of this trip on this server.
         title:
           type: string
-          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET
+          example: Bruxelles-Midi - Paris-Nord, 2020-07-01 10:05 CET
         segments:
           type: array
           items:
@@ -3208,14 +3207,6 @@ components:
         - id  
         - title
         - links
-
-    ServiceBrandCodeDef:
-      description: >-
-        Service brand codes allowed in response, code list can be found on 
-        [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list]
-        (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
-      type: integer
-      format: int32
 
     Poi:
       type: object
@@ -3313,7 +3304,22 @@ components:
       required:
         - latitude
         - longitude
-      
+
+    ConnectionPoint:
+      type: object
+      description: >-
+        Connection point connecting two fare regimes. T
+        Providing the UIC code for the station is mandatory. 
+      properties:
+        stations:
+          type: array
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/StationCode'
+      required:
+        - stations
+
     TripRequest:
       type: object
       properties:
@@ -3379,7 +3385,7 @@ components:
         serviceBrands:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceBrandCodeDef'
+            $ref: '#/components/schemas/ServiceBrandCode'
         maxChanges:
           description: >-
             Max amount of transport-product changes (0 for direct
@@ -3416,20 +3422,20 @@ components:
         comfortClasses:
           type: array
           items:
-            $ref: '#/components/schemas/ComfortClassDef'
+            $ref: '#/components/schemas/ComfortClass'
           description: >-
             The classes returned might be different from the requested classes.
         serviceClassIds:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceClassIdDef'
+            $ref: '#/components/schemas/ServiceClassId'
           description: >-
             The classes returned might be different from the requested classes.
         reservationOffersOnly:
           type: boolean
           default: false
         currency:
-          $ref: '#/components/schemas/CurrencyDef'
+          $ref: '#/components/schemas/Currency'
           description:
             The currency returned might be different from the one requested.
 
@@ -3551,11 +3557,11 @@ components:
         of the whole offer. 
       properties:
         minimalPrice:
-          $ref: '#/components/schemas/CurrencyPriceDef'
-        overallServiceClassId:
-          $ref: '#/components/schemas/ServiceClassIdDef'
+          $ref: '#/components/schemas/CurrencyPrice'
+        overallServiceClass:
+          $ref: '#/components/schemas/ServiceClass'
         overallComfortClass:
-          $ref: '#/components/schemas/ComfortClassDef'
+          $ref: '#/components/schemas/ComfortClass'
         overallAccommodationType:
           $ref: '#/components/schemas/AccommodationType'
         overallAccommodationSubType:
@@ -3564,7 +3570,7 @@ components:
           $ref: '#/components/schemas/Flexibility'
       required:
         - minimalPrice
-        - overallServiceClassId
+        - overallServiceClass
         - overallFlexibility
 
     Offer:
@@ -3575,7 +3581,7 @@ components:
           format: uuid
         title:
           type: string
-          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET,  Nomal Fare, 50 EUR
+          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
         offerSummary:
           $ref: '#/components/schemas/OfferSummary'
         offerHash:
@@ -3681,65 +3687,7 @@ components:
         - id
         - tripOffers
 
-    CurrencyDef:
-      description: ISO4217 currency codes
-      type: string
 
-    CurrencyPriceDef:
-      type: object
-      minProperties: 1
-      properties:
-        currency:
-          $ref: '#/components/schemas/CurrencyDef'
-        amount:
-          description: amount in cents
-          type: integer
-          format: int32
-        scale: 
-          description: scale of the amount - the number of positions after the comma
-          type: integer
-          default: 2
-        vatDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/VatDetailDef'
-      required:
-        - currency
-        - amount
-      
-    VatDetailDef:
-      type: object
-      properties:
-        country:
-          description: ISO 3166 2A codes
-          type: string
-        amount:
-          description: amount in cents
-          type: integer
-          format: int32
-        scale: 
-          description: scale of the amount - the number of positions after the comma
-          type: integer
-          default: 2          
-        percentage:
-          type: number
-          format: float
-        taxId:
-          type: string
-        scope:
-           $ref: '#/components/schemas/VatScopeDef'
-      required:
-        - country
-        - amount
-      
-    VatScopeDef:
-      description: scope where the VAT applies
-      type: string
-      x-extensible-enum:
-       - INTERNATIONAL
-       - NATIONAL
-       - SHORT_DISTANCE
-       - LONG_DISTANCE
        
     ReductionCardReferenceDef:
       type: object
@@ -3799,7 +3747,7 @@ components:
         cardId:
           type: string
         cardIssuer:
-          $ref: '#/components/schemas/CompanyDef'
+          $ref: '#/components/schemas/Company'
         cardType:
           description: Code table to be defined in tariff description data
           type: string
@@ -3986,20 +3934,8 @@ components:
         - MALE
         - FEMALE
         - X
-      
-    ServiceClassDef:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/ServiceClassIdDef'
-        carrierName:
-          type: string
-          description: >-
-            the name the carrier itself uses to designate this specific service class
-      required:
-        - id
-      
-    ComfortClassDef:
+
+    ComfortClass:
       description: >-
         Generic class classification, mostly used to harmonize choice and
         representation across multiple carriers.
@@ -4040,7 +3976,7 @@ components:
       type: object
       properties:
         price:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         pricingMode:
           type: string
           enum:
@@ -4139,9 +4075,9 @@ components:
           description: >-
             Structured description of the sales or after-sales conditions.
         serviceClass:
-          $ref: '#/components/schemas/ServiceClassDef'
+          $ref: '#/components/schemas/ServiceClass'
         comfortClass:
-          $ref: '#/components/schemas/ComfortClassDef'
+          $ref: '#/components/schemas/ComfortClass'
         isTrainBound:
           type: boolean
         isReturnProduct:
@@ -4198,7 +4134,7 @@ components:
           type: string
           format: date-time
         afterSalesFee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
       required:
         - type
         - description
@@ -4403,7 +4339,7 @@ components:
                  - CHANGING
                  - STARING_IN_DIRECTION
               coachOwner:
-                $ref: '#/components/schemas/CompanyDef'
+                $ref: '#/components/schemas/Company'
               specialCoach:
                 description: >-
                   indication of special coach 
@@ -4430,7 +4366,7 @@ components:
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetails'          
+          $ref: '#/components/schemas/ReservationDetailsDef'
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'
         optionality:
@@ -4491,7 +4427,7 @@ components:
         - selectedCoach
         - selectedPlaces
 
-    ReservationDetails:
+    ReservationDetailsDef:
       type: object
       description: segmentIndex references a segmentIndex in the trip part within the offer reply
       properties:
@@ -4693,9 +4629,9 @@ components:
             - EXCHANGED
             - ERROR
         provisionalBalance: 
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         confirmedBalance: 
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         ticketTimeLimit:
@@ -4861,7 +4797,7 @@ components:
             - CHECKEDIN
             - REFUNDED
         price:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
           description: >-
             Note the price is present here as an optional element as future evolution indicate a possible
             separation between fulfillment info and financial information. 
@@ -5030,9 +4966,9 @@ components:
           items: 
             $ref: '#/components/schemas/Fulfillment'
         refundFee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         refundableAmount:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         links:
           type: array
           items:
@@ -5119,9 +5055,9 @@ components:
           items: 
             $ref: '#/components/schemas/Fulfillment'
         exchangeFee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         refundableAmount:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         offer:
           oneOf:
            - $ref: '#/components/schemas/TripOffer'
@@ -5166,9 +5102,9 @@ components:
             Reason for and type of an after sale, Code list in IRS 90918-10.
           type: string
         exchangeFee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         refundableAmount:
-          $ref: '#/components/schemas/CurrencyPriceDef'    
+          $ref: '#/components/schemas/CurrencyPrice'    
         newBooking: 
           $ref: '#/components/schemas/Booking'
       required:
@@ -5436,9 +5372,9 @@ components:
         regulatoryConditions:
           $ref: '#/components/schemas/RegulatoryConditionsDef'
         serviceClass:
-          $ref: '#/components/schemas/ServiceClassDef'
+          $ref: '#/components/schemas/ServiceClass'
         accommodationDetails:
-          $ref: '#/components/schemas/AccommodationTypeOnlineDef'              
+          $ref: '#/components/schemas/AccommodationTypeOnlineDef'            
         afterSalesCondition:
           $ref: '#/components/schemas/AfterSalesConditionOnlineDef'
         combinationConstraint:
@@ -5452,9 +5388,9 @@ components:
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidityConstraintOnlineDef'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetails'            
+          $ref: '#/components/schemas/ReservationDetailsDef'       
         placeSelection:
-          $ref: '#/components/schemas/PlaceSelectionDef' 
+          $ref: '#/components/schemas/PlaceSelectionDef'
         reservationLegacyParameter:
           $ref: '#/components/schemas/LegacyReservationParameterDef'
         coveredSection:
@@ -5462,7 +5398,7 @@ components:
         requiredPersonalData:
           $ref: '#/components/schemas/PersonalDataConstraintOnlineDef'
         passengerConstraints:
-          $ref: '#/components/schemas/PassengerConstraintsDef'          
+          $ref: '#/components/schemas/PassengerConstraintsDef'
       required:
         - id
         - type
@@ -5593,8 +5529,10 @@ components:
                 type: integer
                 format: int32
               scope:
-                description: 'START_OF_TRAVEL,COMPLETE_RANGE'
                 type: string
+                enum:
+                  - START_OF_TRAVEL
+                  - COMPLETE_RANGE
             required:
               - from
               - until
@@ -5800,12 +5738,6 @@ components:
       required:
         - requiredCards
  
-    CompanyDef:
-      description: >-
-        RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the 
-        codes must have at least 5 positions and start with x
-      type: string
-
     FareCombinationModelDef:
       type: object
       properties:
@@ -5820,7 +5752,7 @@ components:
             all combinations are allowed.
           type: array
           items:
-            $ref: '#/components/schemas/CompanyDef'
+            $ref: '#/components/schemas/Company'
         isValidOnlyWhenCombined:
           description: >-
             This combination model applies only in case the fare is combined with another carrier
@@ -5841,13 +5773,13 @@ components:
             List of allowed allocators. If the list is empty all allocators with a sales contract are permitted.
           type: array
           items:
-            $ref: '#/components/schemas/CompanyDef'
+            $ref: '#/components/schemas/Company'
         allowedCommonContracts:
           description: >-
             List of carriers where a common contract with separate fulfillments are allowed.
           type: array
           items:
-            $ref: '#/components/schemas/CompanyDef'
+            $ref: '#/components/schemas/Company'
       required:
         - model
  
@@ -5881,7 +5813,7 @@ components:
           type: array
           minItems: 1
           items:
-            $ref: '#/components/schemas/CurrencyPriceDef'
+            $ref: '#/components/schemas/CurrencyPrice'
       required:
         - price
  
@@ -5921,7 +5853,7 @@ components:
           description: code list Reason for after sale
           type: string
         fee:
-          $ref: '#/components/schemas/CurrencyPriceDef'
+          $ref: '#/components/schemas/CurrencyPrice'
         applicationTime:
           $ref: '#/components/schemas/RelativeTimeDef'
         applicationTimeStamp:
@@ -5974,7 +5906,7 @@ components:
           description: >-
             Id to support local traffic standards (e.g. VDV,...).
         carrier:
-          $ref: '#/components/schemas/CompanyDef'
+          $ref: '#/components/schemas/Company'
         city:
           type: integer
           format: int32
@@ -6071,14 +6003,13 @@ components:
           items:
             $ref: '#/components/schemas/ViaStationsDef'
         carrier:
-          $ref: '#/components/schemas/CompanyDef'
+          $ref: '#/components/schemas/Company'
         route:
           type: array
           items:
             $ref: '#/components/schemas/ViaStationsDef'
         serviceBrand:
-          description: restriction to a specific service brand
-          type: string
+          $ref: '#/components/schemas/ServiceBrandCode'
         station:
           $ref: '#/components/schemas/StationDetailsDef'
         fareReferenceStationSet:
@@ -6086,7 +6017,7 @@ components:
           description: reference to a list of stations included in the fare
           properties:
             carrier:
-              $ref: '#/components/schemas/CompanyDef'
+              $ref: '#/components/schemas/Company'
             code:
               type: string
             name:
@@ -6112,7 +6043,7 @@ components:
           description: 
             Id to support local traffic standards (e.g. VDV,...)
         carrier:
-          $ref: '#/components/schemas/CompanyDef'
+          $ref: '#/components/schemas/Company'
         city:
           type: integer
           format: int32
@@ -6247,7 +6178,7 @@ components:
         affectedServiceBrands:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceBrandCodeDef'
+            $ref: '#/components/schemas/ServiceBrandCode'
       required:
         - fromCountry
         - toCountry
@@ -6348,16 +6279,6 @@ components:
           items:
             type: string
     
-    ServiceClassIdDef:
-      description: >-
-       Level of quality, finer grained than the comfort class.
-      type: string
-      x-extensible-enum:
-        - BEST
-        - HIGH
-        - STANDARD
-        - BASIC
-    
     AccommodationTypeOnlineDef:
       type: object
       properties:
@@ -6385,11 +6306,11 @@ components:
         includedServiceBrands:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceBrandCodeDef'
+            $ref: '#/components/schemas/ServiceBrandCode'
         excludedServiceBrands:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceBrandCodeDef'
+            $ref: '#/components/schemas/ServiceBrandCode'
     
     FareTypeDef:
       description: >-
@@ -6484,3 +6405,105 @@ components:
         - stationSets
 
     ##### Fare-specific elements end
+
+    #### Common elements start
+    ## Referenced by distributor as well as allocator part
+
+    CurrencyPrice:
+      type: object
+      minProperties: 1
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        amount:
+          description: amount in cents
+          type: integer
+          format: int32
+        scale: 
+          description: scale of the amount - the number of positions after the comma
+          type: integer
+          default: 2
+        vatDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/VatDetail'
+      required:
+        - currency
+        - amount
+
+    Currency:
+      description: ISO4217 currency codes
+      type: string  
+
+    VatDetail:
+      type: object
+      properties:
+        country:
+          description: ISO 3166 2A codes
+          type: string
+        amount:
+          description: amount in cents
+          type: integer
+          format: int32
+        scale: 
+          description: scale of the amount - the number of positions after the comma
+          type: integer
+          default: 2          
+        percentage:
+          type: number
+          format: float
+        taxId:
+          type: string
+        scope:
+           $ref: '#/components/schemas/VatScope'
+      required:
+        - country
+        - amount
+      
+    VatScope:
+      description: scope where the VAT applies
+      type: string
+      x-extensible-enum:
+       - INTERNATIONAL
+       - NATIONAL
+       - SHORT_DISTANCE
+       - LONG_DISTANCE
+    
+    Company:
+      description: >-
+        RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the 
+        codes must have at least 5 positions and start with x
+      type: string
+
+    ServiceBrandCode:
+      description: >-
+        Service brand codes allowed in response, code list can be found on 
+        [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list]
+        (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
+      type: integer
+      format: int32
+
+    ServiceClass:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ServiceClassId'
+        carrierName:
+          type: string
+          description: >-
+            the name the carrier itself uses to designate this specific service class
+      required:
+        - id
+      
+    ServiceClassId:
+      description: >-
+       Level of quality, finer grained than the comfort class.
+      type: string
+      x-extensible-enum:
+        - BEST
+        - HIGH
+        - STANDARD
+        - BASIC
+
+    #### Common elements end
+    
