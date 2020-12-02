@@ -3127,7 +3127,7 @@ components:
               - UIC-R: UIC codes for reservation (UIC country code + local code reservation) 
               - ERA: future ERA station code
           type: string
-          enum:
+          x-extensible-enum:
             - UIC
             - UIC-R
             - ERA
