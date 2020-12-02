@@ -5028,11 +5028,6 @@ components:
         - PNG_VISUAL_ELEMENT
         - JPG_VISUAL_ELEMENT
         - GIF_VISUAL_ELEMENT
-  
-    AfterSaleReasonDef:
-      description: >-
-        Reason for and type of an after sale, Code list in IRS 90918-10.
-      type: string
       
     RefundOffersCollection:
       type: object
@@ -5072,7 +5067,9 @@ components:
           type: string
           format: date-time
         appliedOverruleCode:
-          $ref: '#/components/schemas/AfterSaleReasonDef'
+          description: >-
+            Reason for and type of an after sale, Code list in IRS 90918-10.
+          type: string
         fulfillments:
           type: array
           items: 
@@ -5102,7 +5099,9 @@ components:
             format: uuid
             description: id of the fulfillment to refund
         overruleCode: 
-          $ref: '#/components/schemas/AfterSaleReasonDef'
+          description: >-
+            Reason for and type of an after sale, Code list in IRS 90918-10.
+          type: string
 
     ExchangeOfferRequest:
       type: object
@@ -5116,7 +5115,9 @@ components:
             format: uuid
             description: id of the fulfillment to exchange
         overruleCode: 
-          $ref: '#/components/schemas/AfterSaleReasonDef'
+          description: >-
+            Reason for and type of an after sale, Code list in IRS 90918-10.
+          type: string
 
     ExchangeOffersCollectionDef:
       type: array
@@ -5153,7 +5154,9 @@ components:
           type: string
           format: date-time
         appliedOverruleCode:
-          $ref: '#/components/schemas/AfterSaleReasonDef'
+          description: >-
+            Reason for and type of an after sale, Code list in IRS 90918-10.
+          type: string
         fulfillments:
           description: >-
             affected fulfillments. In case of secure paper these need to be collected from the passenger.
@@ -5204,7 +5207,9 @@ components:
           type: string
           format: date-time
         appliedOverruleCode:
-          $ref: '#/components/schemas/AfterSaleReasonDef'
+          description: >-
+            Reason for and type of an after sale, Code list in IRS 90918-10.
+          type: string
         exchangeFee:
           $ref: '#/components/schemas/CurrencyPriceDef'
         refundableAmount:
