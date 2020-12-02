@@ -3149,11 +3149,14 @@ components:
           type: string
           example: Bruxelles-Midi
         type:
+          description: >-
+            The ConnectionPointDef exists to define virtual border point  
           oneOf:
             - $ref: '#/components/schemas/StationDetailsDef'
             - $ref: '#/components/schemas/Poi'
             - $ref: '#/components/schemas/Address'
             - $ref: '#/components/schemas/GeoCoordinate'
+            - $ref: '#/components/schemas/ConnectionPointDef'
         links:
           type: array
           description: Context information required by the services.
@@ -4050,13 +4053,9 @@ components:
       type: object
       properties:
         start:
-          oneOf:
-            - $ref: '#/components/schemas/Location'
-            - $ref: '#/components/schemas/ConnectionPointDef'
+          $ref: '#/components/schemas/Location'
         end:
-          oneOf:
-            - $ref: '#/components/schemas/Location'
-            - $ref: '#/components/schemas/ConnectionPointDef'
+          $ref: '#/components/schemas/Location'
       required:
         - start
         - end
