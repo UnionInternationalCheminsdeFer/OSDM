@@ -112,7 +112,6 @@ paths:
             be provided for mass downloads
           required: false
           schema:
-            description: ISO 3166 2A codes
             type: string
         - name: limit
           in: query
@@ -2206,7 +2205,9 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   fulfillments:
-                    $ref: '#/components/schemas/FulfillmentsDef'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Fulfillment'
         '202': 
           description: >- 
             Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
