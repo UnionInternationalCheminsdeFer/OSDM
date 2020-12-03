@@ -112,7 +112,7 @@ paths:
             be provided for mass downloads
           required: false
           schema:
-            type: string
+            $ref: '#/components/schemas/CountryDef'
         - name: limit
           in: query
           description: 'The number of locations to be returned ([1..50]).'
@@ -185,7 +185,8 @@ paths:
           name: locationId
           schema:
             type: string
-            description: opaque and unique (on this server) id for the location          
+            description: opaque and unique (on this server) id for the location
+           
           required: true
           description: ID of the location resource to be retrieved.
       responses:
@@ -380,8 +381,30 @@ paths:
                 properties:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
+                  id:
+                    type: string
+                    format: uuid
                   tripsCollection:
-                    $ref: '#/components/schemas/TripsCollection'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Trip'
+                  scrollBackContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll backward. 
+                      (Value depends on underlying system.)
+                  scrollForwardContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll forward.
+                      (Value depends on underlying system.)
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+                required:
+                  - id
+                  - tripsCollection
           headers:
             Content-Language:
               schema:
@@ -450,8 +473,30 @@ paths:
                 properties:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
+                  id:
+                    type: string
+                    format: uuid
                   tripsCollection:
-                    $ref: '#/components/schemas/TripsCollection'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Trip'
+                  scrollBackContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll backward. 
+                      (Value depends on underlying system.)
+                  scrollForwardContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll forward.
+                      (Value depends on underlying system.)
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+                required:
+                  - id
+                  - tripsCollection
           headers:
             Content-Language:
               schema:
@@ -564,9 +609,31 @@ paths:
                 type: object
                 properties:
                   warnings:
-                     $ref: '#/components/schemas/WarningMessageList'
-                  tripOffersCollection:
-                     $ref: '#/components/schemas/TripOffersCollection'
+                    $ref: '#/components/schemas/WarningMessageList'
+                  id:
+                    type: string
+                    format: uuid
+                  tripOffers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TripOffer'
+                  scrollBackContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll backward. (Value
+                      depends on underlying system.)
+                  scrollForwardContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll forward.
+                      (Value depends on underlying system.)
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+                required:
+                  - id
+                  - tripOffers
           headers:
             Content-Language:
               schema:
@@ -634,8 +701,30 @@ paths:
                 properties:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
-                  tripOffersCollection:
-                    $ref: '#/components/schemas/TripOffersCollection'
+                  id:
+                    type: string
+                    format: uuid
+                  tripOffers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TripOffer'
+                  scrollBackContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll backward. (Value
+                      depends on underlying system.)
+                  scrollForwardContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll forward.
+                      (Value depends on underlying system.)
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+                required:
+                  - id
+                  - tripOffers
           headers:
             Content-Language:
               schema:
@@ -1746,7 +1835,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BookingSearchParameter'          
+              $ref: '#/components/schemas/BookingSearchParameterDef'          
       responses:
         '200':
           description: Booking ids found
@@ -1758,7 +1847,7 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   searchResults:
-                    $ref: '#/components/schemas/BookingSearchReply'  
+                    $ref: '#/components/schemas/BookingSearchReplyDef'  
         '400':
           description: Bad request
           content:
@@ -2117,9 +2206,7 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   fulfillments:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Fulfillment'
+                    $ref: '#/components/schemas/FulfillmentsDef'
         '202': 
           description: >- 
             Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
@@ -2205,9 +2292,7 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   fulfillments:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Fulfillment'
+                    $ref: '#/components/schemas/FulfillmentsDef'
         '202': 
           description: >- 
             Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
@@ -2594,9 +2679,7 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   fulfillments:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Fulfillment'
+                    $ref: '#/components/schemas/FulfillmentsDef'
           headers:
             Content-Language:
               schema:
@@ -2947,6 +3030,62 @@ components:
         - title
         - type
         - href
+    
+    BookingSearchParameterDef:
+      type: object
+      description: >-
+        parameter to be used to search for a booking. Contains personal data. 
+        For a search via personal data an exact match of all elements 
+        - first name, last name and date of birth - is mandatory. 
+        In case a ticket holder is indicated the parameter must match the ticket holder. 
+        TODO - legal check by CIT
+      properties:
+        passengerFirstName:
+          type: string
+          description: >-
+            First name of a passenger in the booking.      
+        passengerLastName:
+          type: string
+          description: >-
+            Last name of a passenger in the booking.
+        passengerDateOfBirth:
+          type: string
+          format: date
+          description: >-
+            Date of birth of a passenger in the booking.
+        bookingReference:
+          type: string
+          format: date
+          description: >-
+            Human-readable booking reference for the booking, e.g. PNR.
+        fulfillmentReference:
+          type: string
+          description: >-
+            Human-readable fulfillment reference for the booking, e.g. ticket number.
+        travelDateBegin:
+          type: string
+          format: date-time
+          description: >-
+            Begin date for the travel date range to search.
+        travelDateEnd:
+          type: string
+          format: date-time
+          description: >-
+            End date for the travel date range to search.
+        origin: 
+          $ref: '#/components/schemas/Location'
+        destination:
+          $ref: '#/components/schemas/Location'
+
+    BookingSearchReplyDef:
+      type: object
+      description: >-
+        Reply on a search for bookings
+      properties:
+        bookings:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Booking'
 
     Link:
       type: object
@@ -3034,10 +3173,11 @@ components:
                 Line number in case the vehicle does not have a number
               type: string
             serviceBrand:
-              $ref: '#/components/schemas/ServiceBrandCode'
+              $ref: '#/components/schemas/ServiceBrandCodeDef'
             transportMode:
               description: >-
-                Transport mode (code list of MERITS).
+                Transport mode (code list of MERITS). Optional for offer
+                requests, included for alignment with FSM
               type: string
         stops:
           description: >-
@@ -3084,22 +3224,42 @@ components:
       required:
         - seqId
         - vehicle
-         
+      
+    StationDetailsDef:
+      type: object
+      description: >-
+        Details of a station. In some countries stations have
+        multiple names depending on the countries local languages.
+      properties:
+        localCode:
+          description: code unique with in the country only
+          type: string
+        country:
+          $ref: '#/components/schemas/CountryDef'
+        codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StationCode'
+          description: >-
+            The codes that can be used to represent the given station on the system.
+            There can be several codes, in which case  it is relevant to have a list
+            of couples.
+        geoCoordinate:
+          $ref: '#/components/schemas/GeoCoordinate'
+        names:
+          description: names of the station depending on language
+          type: array
+          items:
+            $ref: '#/components/schemas/TranslationDef'
+      required:
+        - country
+        - codes
+    
     StationCode:
       type: object
       properties:
         codeList:
-          description: >-
-            Code list used for the station codes: 
-              - UIC: UIC codes as used by merits (UIC country code + local code)
-              - UIC-R: UIC codes for reservation (UIC country code + local code reservation) 
-              - ERA: future ERA station code
-          type: string
-          x-extensible-enum:
-            - UIC
-            - UIC-R
-            - ERA
-          default: UIC
+          $ref: '#/components/schemas/StationCodeListDef'
         code:
           type: string
           description: the code representing the station in the specified code-list     
@@ -3117,14 +3277,11 @@ components:
           type: string
           example: Bruxelles-Midi
         type:
-          description: >-
-            The ConnectionPoint exists to define virtual border points between two stations.  
           oneOf:
-            - $ref: '#/components/schemas/StationCode'
+            - $ref: '#/components/schemas/StationDetailsDef'
             - $ref: '#/components/schemas/Poi'
             - $ref: '#/components/schemas/Address'
             - $ref: '#/components/schemas/GeoCoordinate'
-            - $ref: '#/components/schemas/ConnectionPoint'
         links:
           type: array
           description: Context information required by the services.
@@ -3134,6 +3291,15 @@ components:
         - id
         - title
         - links
+     
+    StationCodeListDef:
+      description: >-
+        Code list used for the station codes: UIC = UIC codes as used by merits
+        (UIC country code + local code) = Default// UIC-R = UIC codes for
+        reservation (UIC country code + local code reservation) // ERA = future
+        ERA station code
+      type: string
+      default: UIC
 
     Address:
       type: object
@@ -3152,8 +3318,7 @@ components:
           type: string
           example: 3006
         country:
-          description: ISO 3166 2A codes
-          type: string
+          $ref: '#/components/schemas/CountryDef'
         geoCoordinate:
           $ref: '#/components/schemas/GeoCoordinate'
       required:
@@ -3174,7 +3339,7 @@ components:
           description: unique id of this trip on this server.
         title:
           type: string
-          example: Bruxelles-Midi - Paris-Nord, 2020-07-01 10:05 CET
+          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET
         segments:
           type: array
           items:
@@ -3208,6 +3373,14 @@ components:
         - title
         - links
 
+    ServiceBrandCodeDef:
+      description: >-
+        Service brand codes allowed in response, code list can be found on 
+        [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list]
+        (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
+      type: integer
+      format: int32
+
     Poi:
       type: object
       description: >-
@@ -3228,8 +3401,7 @@ components:
             The codes that can be used to represent the given POI on the system. There can be several codes, 
             in which case it is relevant to have a list of couples.
         country:
-          description: ISO 3166 2A codes
-          type: string
+          $ref: '#/components/schemas/CountryDef'
         names:
           description: names of the point of interest depending on language
           type: array
@@ -3240,34 +3412,6 @@ components:
           $ref: '#/components/schemas/GeoCoordinate'
       required:
         - localCode
-      
-    TripsCollection:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        tripsCollection:
-          type: array
-          items:
-            $ref: '#/components/schemas/Trip'
-        scrollBackContext:
-          type: string
-          description: >-
-            Scroll reference for the current response to scroll backward. 
-            (Value depends on underlying system.)
-        scrollForwardContext:
-          type: string
-          description: >-
-            Scroll reference for the current response to scroll forward.
-            (Value depends on underlying system.)
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-      required:
-        - id
-        - tripsCollection
 
     GeoCoordinate:
       type: object
@@ -3304,22 +3448,7 @@ components:
       required:
         - latitude
         - longitude
-
-    ConnectionPoint:
-      type: object
-      description: >-
-        Connection point connecting two fare regimes. T
-        Providing the UIC code for the station is mandatory. 
-      properties:
-        stations:
-          type: array
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/StationCode'
-      required:
-        - stations
-
+      
     TripRequest:
       type: object
       properties:
@@ -3352,11 +3481,17 @@ components:
             - ORIGIN_DESTINATION_ONLY
             - REAL_BOARDING_ALIGHTING
         origin:
-          description: id of the location to use as origin
-          $ref: '#/components/schemas/StationCode'
+          oneOf:
+            - $ref: '#/components/schemas/StationCode'
+            - type: string
+              format: uuid
+              description: id of the location to use as origin
         destination:
-          description: id of the location to use as destination
-          $ref: '#/components/schemas/StationCode'
+          oneOf:
+            - $ref: '#/components/schemas/StationCode'
+            - type: string
+              format: uuid
+              description: id of the location to use as destination
         viaValues:
           description: >-
             Ordered list of via locations within the trip. Unique code value has
@@ -3364,17 +3499,23 @@ components:
             underlying system.
           type: array
           items:
-            $ref: '#/components/schemas/StationCode'
-        travelDateTime:
-          type: string
-          format: date-time
-        isArrival:
-          description: >-
-            Defines whether or not the given travel date/time is the latest
-            arrival (true arriving at given time; false departing at given
-            time).
-          type: boolean
-          default: false
+            oneOf:
+              - $ref: '#/components/schemas/StationCode'
+              - type: string
+                format: uuid
+                description: id of the location to use as origin
+        travelDateTime: 
+          type: object
+          properties:
+            dateTime: 
+              type: string
+              format: date-time
+            isArrival:
+              description: >-
+                Defines whether or not the given travel date/time is the latest
+                arrival (true arriving at given time; false departing at given time).
+              type: boolean
+              default: false
         transportMode:
           description: >-
             Transport mode (code list of MERITS). Optional for offer requests. 
@@ -3385,7 +3526,7 @@ components:
         serviceBrands:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceBrandCode'
+            $ref: '#/components/schemas/ServiceBrandCodeDef'
         maxChanges:
           description: >-
             Max amount of transport-product changes (0 for direct
@@ -3422,20 +3563,20 @@ components:
         comfortClasses:
           type: array
           items:
-            $ref: '#/components/schemas/ComfortClass'
+            $ref: '#/components/schemas/ComfortClassDef'
           description: >-
             The classes returned might be different from the requested classes.
         serviceClassIds:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceClassId'
+            $ref: '#/components/schemas/ServiceClassIdDef'
           description: >-
             The classes returned might be different from the requested classes.
         reservationOffersOnly:
           type: boolean
           default: false
         currency:
-          $ref: '#/components/schemas/Currency'
+          $ref: '#/components/schemas/CurrencyDef'
           description:
             The currency returned might be different from the one requested.
 
@@ -3557,20 +3698,18 @@ components:
         of the whole offer. 
       properties:
         minimalPrice:
-          $ref: '#/components/schemas/CurrencyPrice'
-        overallServiceClass:
-          $ref: '#/components/schemas/ServiceClass'
+          $ref: '#/components/schemas/CurrencyPriceDef'
+        overallServiceClassId:
+          $ref: '#/components/schemas/ServiceClassIdDef'
         overallComfortClass:
-          $ref: '#/components/schemas/ComfortClass'
+          $ref: '#/components/schemas/ComfortClassDef'
         overallAccommodationType:
           $ref: '#/components/schemas/AccommodationType'
-        overallAccommodationSubType:
-          $ref: '#/components/schemas/AccommodationSubType'          
         overallFlexibility:
           $ref: '#/components/schemas/Flexibility'
       required:
         - minimalPrice
-        - overallServiceClass
+        - overallServiceClassId
         - overallFlexibility
 
     Offer:
@@ -3581,7 +3720,7 @@ components:
           format: uuid
         title:
           type: string
-          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
+          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET,  Nomal Fare, 50 EUR
         offerSummary:
           $ref: '#/components/schemas/OfferSummary'
         offerHash:
@@ -3658,37 +3797,74 @@ components:
         - id
         - title
         - links
+    CurrencyDef:
+      description: ISO4217 currency codes
+      type: string
 
-    TripOffersCollection:
+    CurrencyPriceDef:
+      type: object
+      minProperties: 1
+      properties:
+        currency:
+          $ref: '#/components/schemas/CurrencyDef'
+        amount:
+          description: amount in cents
+          type: integer
+          format: int32
+        scale: 
+          description: scale of the amount - the number of positions after the comma
+          type: integer
+          default: 2
+        vatDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/VatDetailDef'
+      required:
+        - currency
+        - amount
+      
+    VatDetailDef:
       type: object
       properties:
-        id:
+        country:
+          $ref: '#/components/schemas/CountryDef'
+        amount:
+          description: amount in cents
+          type: integer
+          format: int32
+        scale: 
+          description: scale of the amount - the number of positions after the comma
+          type: integer
+          default: 2          
+        percentage:
+          type: number
+          format: float
+        taxId:
           type: string
-          format: uuid
-        tripOffers:
-          type: array
-          items:
-            $ref: '#/components/schemas/TripOffer'
-        scrollBackContext:
-          type: string
-          description: >-
-            Scroll reference for the current response to scroll backward. (Value
-            depends on underlying system.)
-        scrollForwardContext:
-          type: string
-          description: >-
-            Scroll reference for the current response to scroll forward.
-            (Value depends on underlying system.)
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        scope:
+           $ref: '#/components/schemas/VatScopeDef'
       required:
-        - id
-        - tripOffers
+        - country
+        - amount
+      
+    VatScopeDef:
+      description: scope where the VAT applies
+      type: string
+      x-extensible-enum:
+       - INTERNATIONAL
+       - NATIONAL
+       - SHORT_DISTANCE
+       - LONG_DISTANCE
 
-
-       
+    GenderDef:
+      description: >- 
+        The gender of the passenger, which is important in the case of night trains.
+      type: string
+      enum:
+        - MALE
+        - FEMALE
+        - X
+        
     ReductionCardReferenceDef:
       type: object
       properties:
@@ -3747,7 +3923,7 @@ components:
         cardId:
           type: string
         cardIssuer:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyDef'
         cardType:
           description: Code table to be defined in tariff description data
           type: string
@@ -3816,7 +3992,7 @@ components:
           items:
             $ref: '#/components/schemas/LoyaltyCardReferenceDef'
         gender:
-          $ref: '#/components/schemas/Gender'
+          $ref: '#/components/schemas/GenderDef'
         prmNeeds:
           type: string
           x-extensible-enum:
@@ -3841,14 +4017,11 @@ components:
         cityOfResidence:
           type: string
         countryOfBirth:
-          description: ISO 3166 2A codes
-          type: string
+          $ref: '#/components/schemas/CountryDef'
         countryOfIssue:
-          description: ISO 3166 2A codes
-          type: string
+          $ref: '#/components/schemas/CountryDef'
         countryOfResidence:
-          description: ISO 3166 2A codes
-          type: string
+          $ref: '#/components/schemas/CountryDef'
         dateOfIssue:
           type: string
           format: date-time
@@ -3858,7 +4031,7 @@ components:
           description: Refer to code list for values
           type: string
         gender:
-          $ref: '#/components/schemas/Gender'
+          $ref: '#/components/schemas/GenderDef'
         limitOfValidity:
           type: string
           format: date-time
@@ -3866,8 +4039,7 @@ components:
           description: ICAO transliteration identical as written in the document
           type: string
         nationality:
-          description: ISO 3166 2A codes
-          type: string
+          $ref: '#/components/schemas/CountryDef'
       required:
         - documentType
         - name
@@ -3925,17 +4097,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TranslationDef'
-
-    Gender:
-      description: >- 
-        The gender of the passenger, which is important in the case of night trains.
-      type: string
-      enum:
-        - MALE
-        - FEMALE
-        - X
-
-    ComfortClass:
+      
+    ServiceClassDef:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ServiceClassIdDef'
+        carrierName:
+          type: string
+          description: >-
+            the name the carrier itself uses to designate this specific service class
+      required:
+        - id
+      
+    ComfortClassDef:
       description: >-
         Generic class classification, mostly used to harmonize choice and
         representation across multiple carriers.
@@ -3948,9 +4123,13 @@ components:
       type: object
       properties:
         start:
-          $ref: '#/components/schemas/Location'
+          oneOf:
+            - $ref: '#/components/schemas/Location'
+            - $ref: '#/components/schemas/ConnectionPointDef'
         end:
-          $ref: '#/components/schemas/Location'
+          oneOf:
+            - $ref: '#/components/schemas/Location'
+            - $ref: '#/components/schemas/ConnectionPointDef'
       required:
         - start
         - end
@@ -3958,13 +4137,13 @@ components:
     AccommodationType:
       type: string
       description:  >-
-        Accommodation type definition out of AccommodationTypeCodeList
+        Accommodation type definition out of AccoTypeCodeList
       
-    AccommodationSubType:
+    ServiceLevelIdDef:
       type: string
-      description:  >-
-        Accommodation type definition out of AccommodationSubTypeCodeList      
-       
+      description: >-
+        Code of the service level, code-list in IRS 90918-1.
+ 
     Flexibility:
       type: string
       x-extensible-enum:
@@ -3976,7 +4155,7 @@ components:
       type: object
       properties:
         price:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/CurrencyPriceDef'
         pricingMode:
           type: string
           enum:
@@ -4075,9 +4254,9 @@ components:
           description: >-
             Structured description of the sales or after-sales conditions.
         serviceClass:
-          $ref: '#/components/schemas/ServiceClass'
+          $ref: '#/components/schemas/ServiceClassDef'
         comfortClass:
-          $ref: '#/components/schemas/ComfortClass'
+          $ref: '#/components/schemas/ComfortClassDef'
         isTrainBound:
           type: boolean
         isReturnProduct:
@@ -4096,7 +4275,7 @@ components:
         - title
         - links
           
-    FulfillmentMediaType:
+    FulfillmentMediaTypeDef:
        type: string
        description: >-
          Fulfillment types. RCT2, RCCST and UIC-PDF are official UIC standards.     
@@ -4134,7 +4313,7 @@ components:
           type: string
           format: date-time
         afterSalesFee:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/CurrencyPriceDef'
       required:
         - type
         - description
@@ -4339,7 +4518,7 @@ components:
                  - CHANGING
                  - STARING_IN_DIRECTION
               coachOwner:
-                $ref: '#/components/schemas/Company'
+                $ref: '#/components/schemas/CompanyDef'
               specialCoach:
                 description: >-
                   indication of special coach 
@@ -4366,7 +4545,7 @@ components:
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'
+          $ref: '#/components/schemas/ReservationDetails'          
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'
         optionality:
@@ -4427,14 +4606,12 @@ components:
         - selectedCoach
         - selectedPlaces
 
-    ReservationDetailsDef:
+    ReservationDetails:
       type: object
       description: segmentIndex references a segmentIndex in the trip part within the offer reply
       properties:
          accommodationType:
             $ref: '#/components/schemas/AccommodationType'  
-         accommodationSubType:
-            $ref: '#/components/schemas/AccommodationSubType'  
          reservedPlaces:
           description: >-
             Reserved places in a confirmed reservation. 
@@ -4629,9 +4806,9 @@ components:
             - EXCHANGED
             - ERROR
         provisionalBalance: 
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/CurrencyPriceDef'
         confirmedBalance: 
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/CurrencyPriceDef'
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         ticketTimeLimit:
@@ -4693,63 +4870,7 @@ components:
         requestedFulfillmentType:
           $ref: '#/components/schemas/FulfillmentType'
         preferredFulfillmentMedia:
-          $ref: '#/components/schemas/FulfillmentMediaType'
-    
-    BookingSearchParameter:
-      type: object
-      description: >-
-        parameter to be used to search for a booking. Contains personal data. 
-        For a search via personal data an exact match of all elements 
-        - first name, last name and date of birth - is mandatory. 
-        In case a ticket holder is indicated the parameter must match the ticket holder. 
-        TODO - legal check by CIT
-      properties:
-        passengerFirstName:
-          type: string
-          description: >-
-            First name of a passenger in the booking.      
-        passengerLastName:
-          type: string
-          description: >-
-            Last name of a passenger in the booking.
-        passengerDateOfBirth:
-          type: string
-          format: date
-          description: >-
-            Date of birth of a passenger in the booking.
-        bookingReference:
-          type: string
-          format: date
-          description: >-
-            Human-readable booking reference for the booking, e.g. PNR.
-        fulfillmentReference:
-          type: string
-          description: >-
-            Human-readable fulfillment reference for the booking, e.g. ticket number.
-        travelDateBegin:
-          type: string
-          format: date-time
-          description: >-
-            Begin date for the travel date range to search.
-        travelDateEnd:
-          type: string
-          format: date-time
-          description: >-
-            End date for the travel date range to search.
-        origin: 
-          $ref: '#/components/schemas/Location'
-        destination:
-          $ref: '#/components/schemas/Location'
-
-    BookingSearchReply:
-      type: object
-      description: >-
-        Reply on a search for bookings
-      properties:
-        bookings:
-          type: array
-          items: 
-            $ref: '#/components/schemas/Booking'
+          $ref: '#/components/schemas/FulfillmentMediaTypeDef'
 
     FulfillmentOption:
       type: object
@@ -4761,7 +4882,17 @@ components:
         media: 
           type: array
           items:
-           $ref: '#/components/schemas/FulfillmentMediaType'
+           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
+           
+    FulfillmentsDef:
+      type: object
+      description: >-
+        list of fulfillments in a booking
+      properties:
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
         
     FulfillmentsPatch:
       type: object
@@ -4797,7 +4928,7 @@ components:
             - CHECKEDIN
             - REFUNDED
         price:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/CurrencyPriceDef'
           description: >-
             Note the price is present here as an optional element as future evolution indicate a possible
             separation between fulfillment info and financial information. 
@@ -4815,13 +4946,13 @@ components:
             complete document created for fulfillment
           type: array
           items: 
-            $ref: '#/components/schemas/FulfillmentDocument'
+            $ref: '#/components/schemas/FulfillmentDocumentDef'
         fulfillmentItems:
           description: >-
             fulfillment items to be integrated into tickets (allocator mode)
           type: array
           items:
-            $ref: '#/components/schemas/FulfillmentItem'
+            $ref: '#/components/schemas/FulfillmentItemDef'
         links:
           type: array
           items:
@@ -4831,13 +4962,13 @@ components:
        - title
        - links
     
-    FulfillmentDocument:
+    FulfillmentDocumentDef:
       type: object
       description: >-
         document created for fulfillment
       properties:
         medium: 
-          $ref: '#/components/schemas/FulfillmentMediaType'
+          $ref: '#/components/schemas/FulfillmentMediaTypeDef'
         documentType:
          type: string
          x-extensible-enum:
@@ -4850,7 +4981,7 @@ components:
           type: string
           format: uri    
     
-    FulfillmentItem:
+    FulfillmentItemDef:
       type: object
       description: >-
        Fulfillment items to be integrated in to tickets, 
@@ -4861,7 +4992,7 @@ components:
            list of fulfillment media where this item applies
           type: array
           items:
-           $ref: '#/components/schemas/FulfillmentMediaType'
+           $ref: '#/components/schemas/FulfillmentMediaTypeDef'
         travelerReference:
           description: reference to a traveler
           type: string
@@ -4919,6 +5050,11 @@ components:
         - PNG_VISUAL_ELEMENT
         - JPG_VISUAL_ELEMENT
         - GIF_VISUAL_ELEMENT
+  
+    AfterSaleReasonDef:
+      description: >-
+        Reason for and type of an after sale, Code list in IRS 90918-10.
+      type: string
       
     RefundOffersCollection:
       type: object
@@ -4958,17 +5094,15 @@ components:
           type: string
           format: date-time
         appliedOverruleCode:
-          description: >-
-            Reason for and type of an after sale, Code list in IRS 90918-10.
-          type: string
+          $ref: '#/components/schemas/AfterSaleReasonDef'
         fulfillments:
           type: array
           items: 
             $ref: '#/components/schemas/Fulfillment'
         refundFee:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/CurrencyPriceDef'
         refundableAmount:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/CurrencyPriceDef'
         links:
           type: array
           items:
@@ -4990,9 +5124,7 @@ components:
             format: uuid
             description: id of the fulfillment to refund
         overruleCode: 
-          description: >-
-            Reason for and type of an after sale, Code list in IRS 90918-10.
-          type: string
+          $ref: '#/components/schemas/AfterSaleReasonDef'
 
     ExchangeOfferRequest:
       type: object
@@ -5006,9 +5138,7 @@ components:
             format: uuid
             description: id of the fulfillment to exchange
         overruleCode: 
-          description: >-
-            Reason for and type of an after sale, Code list in IRS 90918-10.
-          type: string
+          $ref: '#/components/schemas/AfterSaleReasonDef'
 
     ExchangeOffersCollectionDef:
       type: array
@@ -5045,9 +5175,7 @@ components:
           type: string
           format: date-time
         appliedOverruleCode:
-          description: >-
-            Reason for and type of an after sale, Code list in IRS 90918-10.
-          type: string
+          $ref: '#/components/schemas/AfterSaleReasonDef'
         fulfillments:
           description: >-
             affected fulfillments. In case of secure paper these need to be collected from the passenger.
@@ -5055,9 +5183,9 @@ components:
           items: 
             $ref: '#/components/schemas/Fulfillment'
         exchangeFee:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/CurrencyPriceDef'
         refundableAmount:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/CurrencyPriceDef'
         offer:
           oneOf:
            - $ref: '#/components/schemas/TripOffer'
@@ -5098,13 +5226,11 @@ components:
           type: string
           format: date-time
         appliedOverruleCode:
-          description: >-
-            Reason for and type of an after sale, Code list in IRS 90918-10.
-          type: string
+          $ref: '#/components/schemas/AfterSaleReasonDef'
         exchangeFee:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/CurrencyPriceDef'
         refundableAmount:
-          $ref: '#/components/schemas/CurrencyPrice'    
+          $ref: '#/components/schemas/CurrencyPriceDef'    
         newBooking: 
           $ref: '#/components/schemas/Booking'
       required:
@@ -5217,9 +5343,7 @@ components:
         These transportables might need a ticket or reservation.
       properties:
         type:
-          description: >- 
-            Subset of the values from the traveler type code list IRS 90918-10 
-          type: string
+          $ref: '#/components/schemas/TravelerTypeDef'
         car:
           type: object
           properties:
@@ -5372,9 +5496,9 @@ components:
         regulatoryConditions:
           $ref: '#/components/schemas/RegulatoryConditionsDef'
         serviceClass:
-          $ref: '#/components/schemas/ServiceClass'
-        accommodationDetails:
-          $ref: '#/components/schemas/AccommodationTypeOnlineDef'            
+          $ref: '#/components/schemas/ServiceClassDef'
+        serviceLevel:
+          $ref: '#/components/schemas/ServiceLevelOnlineDef'
         afterSalesCondition:
           $ref: '#/components/schemas/AfterSalesConditionOnlineDef'
         combinationConstraint:
@@ -5388,17 +5512,15 @@ components:
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidityConstraintOnlineDef'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'       
+          $ref: '#/components/schemas/ReservationDetails'            
         placeSelection:
-          $ref: '#/components/schemas/PlaceSelectionDef'
+          $ref: '#/components/schemas/PlaceSelectionDef' 
         reservationLegacyParameter:
           $ref: '#/components/schemas/LegacyReservationParameterDef'
         coveredSection:
           $ref: '#/components/schemas/TravelSectionDef'
         requiredPersonalData:
           $ref: '#/components/schemas/PersonalDataConstraintOnlineDef'
-        passengerConstraints:
-          $ref: '#/components/schemas/PassengerConstraintsDef'
       required:
         - id
         - type
@@ -5406,25 +5528,7 @@ components:
         - combinationConstraint
         - travelValidityConstraint
         - afterSalesCondition
-
-    PassengerConstraintsDef:
-      description: >-
-        passenger constraints to be included in bar codes
-      type: array
-      items: 
-         type: object
-         properties:
-            number:
-                 description: number of passengers with this constraint
-                 type: integer
-                 format: int32                 
-            upperAgeLimit:
-                 type: integer
-                 format: int32
-            lowerAgeLimit:
-                 type: integer
-                 format: int32
-
+        
     RegulatoryConditionsDef:
       description: >- 
          General conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and
@@ -5529,10 +5633,8 @@ components:
                 type: integer
                 format: int32
               scope:
+                description: 'START_OF_TRAVEL,COMPLETE_RANGE'
                 type: string
-                enum:
-                  - START_OF_TRAVEL
-                  - COMPLETE_RANGE
             required:
               - from
               - until
@@ -5564,7 +5666,12 @@ components:
             - earliestReturn
       required:
         - validityRange
-
+      
+    TravelerTypeDef:
+      description: >- 
+        Subset of the values from the traveler type code list IRS 90918-10 
+      type: string
+    
     LayoutsDef:
       type: object
       properties:
@@ -5738,6 +5845,12 @@ components:
       required:
         - requiredCards
  
+    CompanyDef:
+      description: >-
+        RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the 
+        codes must have at least 5 positions and start with x
+      type: string
+
     FareCombinationModelDef:
       type: object
       properties:
@@ -5752,7 +5865,7 @@ components:
             all combinations are allowed.
           type: array
           items:
-            $ref: '#/components/schemas/Company'
+            $ref: '#/components/schemas/CompanyDef'
         isValidOnlyWhenCombined:
           description: >-
             This combination model applies only in case the fare is combined with another carrier
@@ -5773,13 +5886,13 @@ components:
             List of allowed allocators. If the list is empty all allocators with a sales contract are permitted.
           type: array
           items:
-            $ref: '#/components/schemas/Company'
+            $ref: '#/components/schemas/CompanyDef'
         allowedCommonContracts:
           description: >-
             List of carriers where a common contract with separate fulfillments are allowed.
           type: array
           items:
-            $ref: '#/components/schemas/Company'
+            $ref: '#/components/schemas/CompanyDef'
       required:
         - model
  
@@ -5813,7 +5926,7 @@ components:
           type: array
           minItems: 1
           items:
-            $ref: '#/components/schemas/CurrencyPrice'
+            $ref: '#/components/schemas/CurrencyPriceDef'
       required:
         - price
  
@@ -5853,7 +5966,7 @@ components:
           description: code list Reason for after sale
           type: string
         fee:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/CurrencyPriceDef'
         applicationTime:
           $ref: '#/components/schemas/RelativeTimeDef'
         applicationTimeStamp:
@@ -5906,7 +6019,7 @@ components:
           description: >-
             Id to support local traffic standards (e.g. VDV,...).
         carrier:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyDef'
         city:
           type: integer
           format: int32
@@ -5946,37 +6059,6 @@ components:
         - train
         - travelDate
     
-    StationDetailsDef:
-      type: object
-      description: >-
-        Details of a station. In some countries stations have
-        multiple names depending on the countries local languages.
-      properties:
-        localCode:
-          description: code unique with in the country only
-          type: string
-        country:
-          description: ISO 3166 2A codes
-          type: string
-        codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/StationCode'
-          description: >-
-            The codes that can be used to represent the given station on the system.
-            There can be several codes, in which case  it is relevant to have a list
-            of couples.
-        geoCoordinate:
-          $ref: '#/components/schemas/GeoCoordinate'
-        names:
-          description: names of the station depending on language
-          type: array
-          items:
-            $ref: '#/components/schemas/TranslationDef'
-      required:
-        - country
-        - codes
-    
     PolygonDef:
       type: object
       properties:
@@ -6003,13 +6085,14 @@ components:
           items:
             $ref: '#/components/schemas/ViaStationsDef'
         carrier:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyDef'
         route:
           type: array
           items:
             $ref: '#/components/schemas/ViaStationsDef'
         serviceBrand:
-          $ref: '#/components/schemas/ServiceBrandCode'
+          description: restriction to a specific service brand
+          type: string
         station:
           $ref: '#/components/schemas/StationDetailsDef'
         fareReferenceStationSet:
@@ -6017,7 +6100,7 @@ components:
           description: reference to a list of stations included in the fare
           properties:
             carrier:
-              $ref: '#/components/schemas/Company'
+              $ref: '#/components/schemas/CompanyDef'
             code:
               type: string
             name:
@@ -6043,7 +6126,7 @@ components:
           description: 
             Id to support local traffic standards (e.g. VDV,...)
         carrier:
-          $ref: '#/components/schemas/Company'
+          $ref: '#/components/schemas/CompanyDef'
         city:
           type: integer
           format: int32
@@ -6170,18 +6253,21 @@ components:
       type: object
       properties:
         fromCountry:
-          description: ISO 3166 2A codes
-          type: string
+          $ref: '#/components/schemas/CountryDef'
         toCountry:
-          description: ISO 3166 2A codes
-          type: string
+          $ref: '#/components/schemas/CountryDef'
         affectedServiceBrands:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceBrandCode'
+            $ref: '#/components/schemas/ServiceBrandCodeDef'
       required:
         - fromCountry
         - toCountry
+ 
+    CountryDef:
+      description: >-
+        ISO 3166 2A codes
+      type: string
       
     ControlSecurityTypeDef:
       description: >-
@@ -6206,36 +6292,17 @@ components:
           description: service code to be used in reservation
           type: string
         berthType:
-          description: berth type code in UIC 90918-1 to be used in reservation
           type: string
         coachTypeCode:
-          description: coach type code in UIC 90918-1 to be used in reservation
           type: string
         compartmentTypeCode:
-          description: compartment type code in UIC 90918-1 to be used in reservation
           type: string
         tariff:
-          description: tariff according to UIC 90918-1 to be used for booking 
-          type: array
-          items:
-            $ref: '#/components/schemas/LegacyReservationTariffDef'
+          type: string
       required:
         - travelClass
         - serviceLevelCode
         - serviceCode
-
-    LegacyReservationTariffDef:
-       description: legacy tariff code and number of items or persons in case UIC 90918-1 is used for booking
-       type: object
-       properties:
-          number:
-            description: number of items with this tariff code
-            type: integer
-            format: int32
-          code: 
-            description:  legacy tariff code
-            type: integer
-            format: int32            
           
     ReservationOnlineOptionDef:
       type: object
@@ -6279,13 +6346,24 @@ components:
           items:
             type: string
     
-    AccommodationTypeOnlineDef:
+    ServiceClassIdDef:
+      description: >-
+       Level of quality, finer grained than the comfort class.
+      type: string
+      x-extensible-enum:
+        - BEST
+        - HIGH
+        - STANDARD
+        - BASIC
+    
+    ServiceLevelOnlineDef:
       type: object
       properties:
-        accommodationType:
-            $ref: '#/components/schemas/AccommodationType'  
-        accommodationSubType:
-            $ref: '#/components/schemas/AccommodationSubType'              
+        id:
+          $ref: '#/components/schemas/ServiceLevelIdDef'
+        textRef:
+          description: id of the text describing the service level
+          type: string
         text:
           $ref: '#/components/schemas/TextDef'
         includesClassName:
@@ -6306,11 +6384,11 @@ components:
         includedServiceBrands:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceBrandCode'
+            $ref: '#/components/schemas/ServiceBrandCodeDef'
         excludedServiceBrands:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceBrandCode'
+            $ref: '#/components/schemas/ServiceBrandCodeDef'
     
     FareTypeDef:
       description: >-
@@ -6405,105 +6483,3 @@ components:
         - stationSets
 
     ##### Fare-specific elements end
-
-    #### Common elements start
-    ## Referenced by distributor as well as allocator part
-
-    CurrencyPrice:
-      type: object
-      minProperties: 1
-      properties:
-        currency:
-          $ref: '#/components/schemas/Currency'
-        amount:
-          description: amount in cents
-          type: integer
-          format: int32
-        scale: 
-          description: scale of the amount - the number of positions after the comma
-          type: integer
-          default: 2
-        vatDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/VatDetail'
-      required:
-        - currency
-        - amount
-
-    Currency:
-      description: ISO4217 currency codes
-      type: string  
-
-    VatDetail:
-      type: object
-      properties:
-        country:
-          description: ISO 3166 2A codes
-          type: string
-        amount:
-          description: amount in cents
-          type: integer
-          format: int32
-        scale: 
-          description: scale of the amount - the number of positions after the comma
-          type: integer
-          default: 2          
-        percentage:
-          type: number
-          format: float
-        taxId:
-          type: string
-        scope:
-           $ref: '#/components/schemas/VatScope'
-      required:
-        - country
-        - amount
-      
-    VatScope:
-      description: scope where the VAT applies
-      type: string
-      x-extensible-enum:
-       - INTERNATIONAL
-       - NATIONAL
-       - SHORT_DISTANCE
-       - LONG_DISTANCE
-    
-    Company:
-      description: >-
-        RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the 
-        codes must have at least 5 positions and start with x
-      type: string
-
-    ServiceBrandCode:
-      description: >-
-        Service brand codes allowed in response, code list can be found on 
-        [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list]
-        (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
-      type: integer
-      format: int32
-
-    ServiceClass:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/ServiceClassId'
-        carrierName:
-          type: string
-          description: >-
-            the name the carrier itself uses to designate this specific service class
-      required:
-        - id
-      
-    ServiceClassId:
-      description: >-
-       Level of quality, finer grained than the comfort class.
-      type: string
-      x-extensible-enum:
-        - BEST
-        - HIGH
-        - STANDARD
-        - BASIC
-
-    #### Common elements end
-    
