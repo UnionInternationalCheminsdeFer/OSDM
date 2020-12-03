@@ -3120,7 +3120,7 @@ components:
           description: >-
             The ConnectionPoint exists to define virtual border points between two stations.  
           oneOf:
-            - $ref: '#/components/schemas/StationCode'
+            - $ref: '#/components/schemas/StationDetailsDef'
             - $ref: '#/components/schemas/Poi'
             - $ref: '#/components/schemas/Address'
             - $ref: '#/components/schemas/GeoCoordinate'
@@ -3234,7 +3234,7 @@ components:
           description: names of the point of interest depending on language
           type: array
           items:
-            $ref: '#/components/schemas/TranslationDef'
+            $ref: '#/components/schemas/Translation'
           example: Bern Baerengraben (Denkmal), 'DE'
         geoCoordinate:
           $ref: '#/components/schemas/GeoCoordinate'
@@ -3456,7 +3456,7 @@ components:
                   trip:
                     $ref: '#/components/schemas/Trip'
                   requestedSection:
-                   $ref: '#/components/schemas/TravelSectionDef'
+                    $ref: '#/components/schemas/TravelSectionDef'
                 required:
                   - trip
             - $ref: '#/components/schemas/TripSearchCriteria'
@@ -3924,7 +3924,7 @@ components:
             Information text provided by the issuing system in a controlled way (e.g. VIP customer).
           type: array
           items:
-            $ref: '#/components/schemas/TranslationDef'
+            type: string
 
     Gender:
       description: >- 
@@ -4063,9 +4063,7 @@ components:
             mapping from an even lower-level provider).
           example: PT00AD
         description:
-          type: array
-          items:
-            $ref: '#/components/schemas/TranslationDef'
+          type: string
           description: the textual description of the product
           example: Loisir Non-flex Adult Fare
         conditions:
@@ -4124,9 +4122,7 @@ components:
             - EXCHANGE
             - REFUND
         description:
-          type: array
-          items:
-            $ref: '#/components/schemas/TranslationDef'
+          type: string
         validFrom:
           type: string
           format: date-time
@@ -4431,17 +4427,17 @@ components:
       type: object
       description: segmentIndex references a segmentIndex in the trip part within the offer reply
       properties:
-         accommodationType:
-            $ref: '#/components/schemas/AccommodationType'  
-         accommodationSubType:
-            $ref: '#/components/schemas/AccommodationSubType'  
-         reservedPlaces:
+        accommodationType:
+          $ref: '#/components/schemas/AccommodationType'  
+        accommodationSubType:
+          $ref: '#/components/schemas/AccommodationSubType'  
+        reservedPlaces:
           description: >-
             Reserved places in a confirmed reservation. 
             Multiple place packs are needed to combined person and bicycle reservations
           type: array
           items:
-              $ref: '#/components/schemas/PlacePackDef'
+            $ref: '#/components/schemas/PlacePackDef'
   
     PlacePackDef:
       type: object
@@ -5301,6 +5297,195 @@ components:
             - length
             - width
             - height
+    
+    ReservationOnlineOptionDef:
+      type: object
+      properties:
+        preferences:
+          description: possible preferences to be requested in reservation without changing the fare
+          type: array
+          items:
+            $ref: '#/components/schemas/ReservationOptionGroupDef'
+        graphicalReservation:
+          description: graphical reservation is supported, interface type "NO","UIC_918",..
+          type: string
+      
+    ReservationOptionGroupDef:
+      type: object
+      properties:
+        preferenceGroup:
+          type: string
+          example: 'SEAT_DIRECTION'
+        preferences:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            example: 'FORWARD_FACING'
+      required:
+        - preferenceGroup
+        - preferences
+      
+    LayoutsDef:
+      type: object
+      properties:
+        layouts:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoachLayoutDef'
+      
+    CoachLayoutDef:
+      type: object
+      description: >-
+        coach layout providing data to draw a coach layout. The items of a coach
+        are located via coordinates with (0,0) in the upper left corner. All
+        coordinates are given without sign. 
+      properties:
+        id:
+          type: string
+        places:
+          description: list of places included in the layout
+          type: array
+          items:
+            type: object
+            properties:
+              x:
+                description: >-
+                  horizontal coordinate of the center of the place
+                type: integer
+                format: int32
+              y:
+                description: >-
+                  vertical coordinate of the center of the place
+                type: integer
+                format: int32
+              id:
+                description: >-
+                  id of the graphical item type. Code list according to UIC90918-1
+                  graphical item type e.g. seat = 1, berth = 2, couchette = 3
+                type: string
+              number:
+                description: place number as displayed physically on the place
+                type: string
+              direction:
+                description: >-
+                  Direction of a place, defined optional as it might be omitted in
+                  case of berths in future. 
+                  Code list according to UIC90918-1
+                   - value R: to right
+                   - value L: to left
+                   - value U: up (from right side of a coach pointing to the middle of the aisle)
+                   - value D: down (from right side of the coach pointing to the middle of the aisle)
+                type: string
+              remarkId:
+                description: >-
+                  Remark concerning the place (e.g. to be used in a tool tip).
+                  Code list according to UIC90918-1 
+                   - value 1: place might have a table
+                   - value 2: table at the place might be missing 
+                   - value 3: place might have a different direction 
+                   - value 4: place might have a table and a different direction 
+                   - value 5: table at the place might be missing and place might have a different direction
+                   - value 6: place might be in compartment
+                   - value 7: place might be in open space  
+                type: string
+              zOrder:
+                description: >-
+                  Graphical layer where this item has to be placed. 
+                  Code list according to UIC90918-1
+                   - value 0: lowest layer usually used for walls 
+                   - value 1: middle layer usually used by places
+                   - value 2: top layer usually used by icons
+                type: string
+            required:
+              - x
+              - y
+              - id
+              - number
+        signs:
+          type: array
+          items:
+            type: object
+            properties:
+              x:
+                description: >-
+                  horizontal coordinate of the center of the place
+                type: integer
+                format: int32
+              y:
+                description: >-
+                  vertical coordinate of the center of the place
+                type: integer
+                format: int32
+              id:
+                description: >-
+                  id of the graphical item type. Code list according to UIC90918-1
+                  graphical item type e.g. silence area sign = 116
+                type: string
+              zOrder:
+                description: >-
+                  graphical layer where this item has to be placed. 
+                    0 = lowest layer usually used for walls 
+                    1 = middle layer usually used by places
+                    2 = top layer usually used by icons
+                type: string
+            required:
+              - x
+              - y
+              - id
+        internals:
+          type: array
+          items:
+            type: object
+            properties:
+              x:
+                description: >-
+                  horizontal coordinate of the center of the place
+                type: integer
+                format: int32
+              y:
+                description: >-
+                  vertical coordinate of the center of the place
+                type: integer
+                format: int32
+              id:
+                description: >-
+                  id of the graphical item type. Code list according to UIC90918-1
+                  graphical item type e.g. wall with angle to right height covers
+                  three places = 25
+                type: string
+              zOrder:
+                description: >-
+                  graphical layer where this item has to be placed. 
+                    0 = lowest layer usually used for walls 
+                    1 = middle layer usually used by places
+                    2 = top layer usually used by icons
+                type: string
+              mounting:
+                description: >-
+                  indicates, that the item is located at the upper border (U), the
+                  lower border (L), goes from upper to lower border (E) or is
+                  placed free (F)
+                type: string
+            required:
+              - x
+              - y
+              - id
+              - zOrder
+        gridsize:
+          type: object
+          properties:
+            x:
+              type: integer
+              format: int32
+            y:
+              type: integer
+              format: int32
+        containerType:
+          type: string
+          default: RECTANGLE
+      required:
+        - id
 
     Problem:
       type: object
@@ -5358,9 +5543,9 @@ components:
         type:
           $ref: '#/components/schemas/FareTypeDef'
         name:
-          $ref: '#/components/schemas/TextDef'
+          $ref: '#/components/schemas/Text'
         fareDetailDescription:
-          $ref: '#/components/schemas/TextDef'
+          $ref: '#/components/schemas/Text'
         price:
           $ref: '#/components/schemas/PriceOnlineDef'
         regionalConstraint:
@@ -5564,167 +5749,6 @@ components:
             - earliestReturn
       required:
         - validityRange
-
-    LayoutsDef:
-      type: object
-      properties:
-        layouts:
-          type: array
-          items:
-            $ref: '#/components/schemas/CoachLayoutDef'
-      
-    CoachLayoutDef:
-      type: object
-      description: >-
-        coach layout providing data to draw a coach layout. The items of a coach
-        are located via coordinates with (0,0) in the upper left corner. All
-        coordinates are given without sign. 
-      properties:
-        id:
-          type: string
-        places:
-          description: list of places included in the layout
-          type: array
-          items:
-            type: object
-            properties:
-              x:
-                description: >-
-                  horizontal coordinate of the center of the place
-                type: integer
-                format: int32
-              y:
-                description: >-
-                  vertical coordinate of the center of the place
-                type: integer
-                format: int32
-              id:
-                description: >-
-                  id of the graphical item type. Code list according to UIC90918-1
-                  graphical item type e.g. seat = 1, berth = 2, couchette = 3
-                type: string
-              number:
-                description: place number as displayed physically on the place
-                type: string
-              direction:
-                description: >-
-                  Direction of a place, defined optional as it might be omitted in
-                  case of berths in future. 
-                  Code list according to UIC90918-1
-                   - value R: to right
-                   - value L: to left
-                   - value U: up (from right side of a coach pointing to the middle of the aisle)
-                   - value D: down (from right side of the coach pointing to the middle of the aisle)
-                type: string
-              remarkId:
-                description: >-
-                  Remark concerning the place (e.g. to be used in a tool tip).
-                  Code list according to UIC90918-1 
-                   - value 1: place might have a table
-                   - value 2: table at the place might be missing 
-                   - value 3: place might have a different direction 
-                   - value 4: place might have a table and a different direction 
-                   - value 5: table at the place might be missing and place might have a different direction
-                   - value 6: place might be in compartment
-                   - value 7: place might be in open space  
-                type: string
-              zOrder:
-                description: >-
-                  Graphical layer where this item has to be placed. 
-                  Code list according to UIC90918-1
-                   - value 0: lowest layer usually used for walls 
-                   - value 1: middle layer usually used by places
-                   - value 2: top layer usually used by icons
-                type: string
-            required:
-              - x
-              - y
-              - id
-              - number
-        signs:
-          type: array
-          items:
-            type: object
-            properties:
-              x:
-                description: >-
-                  horizontal coordinate of the center of the place
-                type: integer
-                format: int32
-              y:
-                description: >-
-                  vertical coordinate of the center of the place
-                type: integer
-                format: int32
-              id:
-                description: >-
-                  id of the graphical item type. Code list according to UIC90918-1
-                  graphical item type e.g. silence area sign = 116
-                type: string
-              zOrder:
-                description: >-
-                  graphical layer where this item has to be placed. 
-                    0 = lowest layer usually used for walls 
-                    1 = middle layer usually used by places
-                    2 = top layer usually used by icons
-                type: string
-            required:
-              - x
-              - y
-              - id
-        internals:
-          type: array
-          items:
-            type: object
-            properties:
-              x:
-                description: >-
-                  horizontal coordinate of the center of the place
-                type: integer
-                format: int32
-              y:
-                description: >-
-                  vertical coordinate of the center of the place
-                type: integer
-                format: int32
-              id:
-                description: >-
-                  id of the graphical item type. Code list according to UIC90918-1
-                  graphical item type e.g. wall with angle to right height covers
-                  three places = 25
-                type: string
-              zOrder:
-                description: >-
-                  graphical layer where this item has to be placed. 
-                    0 = lowest layer usually used for walls 
-                    1 = middle layer usually used by places
-                    2 = top layer usually used by icons
-                type: string
-              mounting:
-                description: >-
-                  indicates, that the item is located at the upper border (U), the
-                  lower border (L), goes from upper to lower border (E) or is
-                  placed free (F)
-                type: string
-            required:
-              - x
-              - y
-              - id
-              - zOrder
-        gridsize:
-          type: object
-          properties:
-            x:
-              type: integer
-              format: int32
-            y:
-              type: integer
-              format: int32
-        containerType:
-          type: string
-          default: RECTANGLE
-      required:
-        - id
 
     ReductionConstraintOnlineDef:
       type: object
@@ -5972,7 +5996,7 @@ components:
           description: names of the station depending on language
           type: array
           items:
-            $ref: '#/components/schemas/TranslationDef'
+            $ref: '#/components/schemas/Translation'
       required:
         - country
         - codes
@@ -6237,34 +6261,6 @@ components:
             type: integer
             format: int32            
           
-    ReservationOnlineOptionDef:
-      type: object
-      properties:
-        preferences:
-          description: possible preferences to be requested in reservation without changing the fare
-          type: array
-          items:
-            $ref: '#/components/schemas/ReservationOptionGroupDef'
-        graphicalReservation:
-          description: graphical reservation is supported, interface type "NO","UIC_918",..
-          type: string
-      
-    ReservationOptionGroupDef:
-      type: object
-      properties:
-        preferenceGroup:
-          type: string
-          example: 'SEAT_DIRECTION'
-        preferences:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example: 'FORWARD_FACING'
-      required:
-        - preferenceGroup
-        - preferences
-      
     CarrierConstraintOnlineDef:
       type: object
       description: >-
@@ -6287,7 +6283,7 @@ components:
         accommodationSubType:
             $ref: '#/components/schemas/AccommodationSubType'              
         text:
-          $ref: '#/components/schemas/TextDef'
+          $ref: '#/components/schemas/Text'
         includesClassName:
           description: indicates that the class name is included
           type: boolean
@@ -6346,38 +6342,6 @@ components:
       required:
         - regionalValidity
     
-    TranslationDef:
-      type: object
-      properties:
-        language:
-          type: string
-          description: language code following RFC2616-sec14.4
-        text:
-          type: string
-        shortText:
-          type: string
-      required:
-        - language
-        - text
-    
-    TextDef:
-      type: object
-      description: directly included text in case of online services
-      properties:
-        id:
-          type: string
-        translations:
-          type: array
-          items:
-            $ref: '#/components/schemas/TranslationDef'
-        text:
-          type: string
-        shortText:
-          type: string
-      required:
-        - id
-        - text
-    
     ConnectionPointDef:
       type: object
       description: >-
@@ -6408,6 +6372,38 @@ components:
 
     #### Common elements start
     ## Referenced by distributor as well as allocator part
+
+    Translation:
+      type: object
+      properties:
+        language:
+          type: string
+          description: language code following RFC2616-sec14.4
+        text:
+          type: string
+        shortText:
+          type: string
+      required:
+        - language
+        - text
+    
+    Text:
+      type: object
+      description: directly included text in case of online services
+      properties:
+        id:
+          type: string
+        translations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Translation'
+        text:
+          type: string
+        shortText:
+          type: string
+      required:
+        - id
+        - text
 
     CurrencyPrice:
       type: object
