@@ -5588,12 +5588,6 @@ components:
           type: array
           items:
             type: string
-        allowedAllocators:
-          description: >-
-            List of allowed allocators. If the list is empty all allocators with a sales contract are permitted.
-          type: array
-          items:
-            $ref: '#/components/schemas/Company'
         allowedCommonContracts:
           description: >-
             List of carriers where a common contract with separate fulfillments are allowed.
