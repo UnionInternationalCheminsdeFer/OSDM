@@ -2948,42 +2948,7 @@ components:
         - type
         - href
 
-    Link:
-      type: object
-      description: >-
-        The underlying system may provide additional links pointing on further
-        information (such as HTML download links, web sites or extended APIs).
-        Mechanism to add flexible extensions specific to an underlying system.
-      properties:
-        contentTypes:
-          type: array
-          example: '["application/json", "application/pdf"]'
-          description: Possible content types of the resource.
-          items:
-            type: string
-        href:
-          type: string
-          format: uri
-          description: URL to the linked resource (no parameters needed).
-          example: 'https://www.brussels.info/train-stations/'
-        method:
-          type: string
-          example: GET
-          description: HTTP method to call the action
-        relation:
-          type: string
-          example: Get Map
-          description: Relation of this link to the current entity.
-        version:
-          type: integer
-          format: int32
-          example: 1
-          description: Version of the current relation.
-      required:
-        - contentTypes
-        - href
-        - relation
-        
+       
     Segment:
       type: object
       description: >-
@@ -3085,86 +3050,7 @@ components:
         - seqId
         - vehicle
          
-    StationCode:
-      type: object
-      properties:
-        codeList:
-          description: >-
-            Code list used for the station codes: 
-              - UIC: UIC codes as used by merits (UIC country code + local code)
-              - UIC-R: UIC codes for reservation (UIC country code + local code reservation) 
-              - ERA: future ERA station code
-          type: string
-          x-extensible-enum:
-            - UIC
-            - UIC-R
-            - ERA
-          default: UIC
-        code:
-          type: string
-          description: the code representing the station in the specified code-list     
-      required:
-        - code
-        - codeList
-    
-    Location:
-      type: object
-      properties:
-        id:
-          type: string
-          description: unique id of this location on this server.
-        title:
-          type: string
-          example: Bruxelles-Midi
-        type:
-          description: >-
-            The ConnectionPoint exists to define virtual border points between two stations.  
-          oneOf:
-            - $ref: '#/components/schemas/StationDetailsDef'
-            - $ref: '#/components/schemas/Poi'
-            - $ref: '#/components/schemas/Address'
-            - $ref: '#/components/schemas/GeoCoordinate'
-            - $ref: '#/components/schemas/ConnectionPoint'
-        links:
-          type: array
-          description: Context information required by the services.
-          items:
-            $ref: '#/components/schemas/Link'
-      required:
-        - id
-        - title
-        - links
 
-    Address:
-      type: object
-      description: used to encode an address using the standard street address attributes
-      properties:
-        street_nr:
-          type: string
-          description: the street name and house number (if applicable)
-          example: Segantinistrasse 23
-        city:
-          description: city
-          type: string
-          example: Bern
-        postalCode:
-          description: postal code
-          type: string
-          example: 3006
-        country:
-          description: ISO 3166 2A codes
-          type: string
-        geoCoordinate:
-          $ref: '#/components/schemas/GeoCoordinate'
-      required:
-         - street
-         - city
-         - postalCode
-
-    PoiCodeList:
-      description: Code list used for the POI codes.
-      type: string
-      default: UIC
 
     Trip:
       type: object
@@ -3208,39 +3094,7 @@ components:
         - title
         - links
 
-    Poi:
-      type: object
-      description: >-
-        POI (for point of Interest) represent a location that is not a train station but still relevant to the 
-        description of the trip. It could be a public transport stop, an exhibition, an event hall, a shopping mall etc.
-      properties:
-        codes:
-          type: array
-          items:
-            type: object
-            properties:
-              codeList:
-                $ref: '#/components/schemas/PoiCodeList'
-              poiCode:
-                type: string
-                description: the code representing the POI in the specified code list
-          description: >-
-            The codes that can be used to represent the given POI on the system. There can be several codes, 
-            in which case it is relevant to have a list of couples.
-        country:
-          description: ISO 3166 2A codes
-          type: string
-        names:
-          description: names of the point of interest depending on language
-          type: array
-          items:
-            $ref: '#/components/schemas/Translation'
-          example: Bern Baerengraben (Denkmal), 'DE'
-        geoCoordinate:
-          $ref: '#/components/schemas/GeoCoordinate'
-      required:
-        - localCode
-      
+
     TripsCollection:
       type: object
       properties:
@@ -3269,56 +3123,6 @@ components:
         - id
         - tripsCollection
 
-    GeoCoordinate:
-      type: object
-      description: >-
-        Used to provide any geo-encoded location, regardless of environment, using longitude and latitude coordinates.
-      properties:
-        system:
-          description: >-
-            geo coordinate system indication: 
-             - WGS84 = WGS 84 standard system,
-             - GRS80 = (outdated) GRS 80 coordinate system
-          type: string
-          x-extensible-enum:
-            - WGS84
-            - GRS80
-          default: WGS84
-        accuracy:
-          description: accuracy of the provided coordinates to be used when comparing coordinates
-          type: number
-          format: float
-          example: 0.00002
-        latitude:
-          description: >-
-            Geographic coordinate that specifies the north-south position of a point on the earths surface
-          type: number
-          format: float
-          example: 46.948825
-        longitude:
-          description: >-
-            Geographic coordinate that specifies the east-west position of a point on the earths surface.            
-          type: number
-          format: float
-          example: 7.439122
-      required:
-        - latitude
-        - longitude
-
-    ConnectionPoint:
-      type: object
-      description: >-
-        Connection point connecting two fare regimes. T
-        Providing the UIC code for the station is mandatory. 
-      properties:
-        stations:
-          type: array
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/StationCode'
-      required:
-        - stations
 
     TripRequest:
       type: object
@@ -3456,7 +3260,12 @@ components:
                   trip:
                     $ref: '#/components/schemas/Trip'
                   requestedSection:
-                    $ref: '#/components/schemas/TravelSectionDef'
+                    type: object
+                    properties:
+                      start:
+                        $ref: '#/components/schemas/Location'
+                      end:
+                        $ref: '#/components/schemas/Location'
                 required:
                   - trip
             - $ref: '#/components/schemas/TripSearchCriteria'
@@ -3944,16 +3753,7 @@ components:
         - FIRST
         - SECOND 
       
-    TravelSectionDef:
-      type: object
-      properties:
-        start:
-          $ref: '#/components/schemas/Location'
-        end:
-          $ref: '#/components/schemas/Location'
-      required:
-        - start
-        - end
+
           
     AccommodationType:
       type: string
@@ -5935,13 +5735,13 @@ components:
           type: integer
           format: int32
         entryStation:
-          $ref: '#/components/schemas/StationDetailsDef'
+          $ref: '#/components/schemas/StationDetail'
         lineId:
           type: array
           items:
             type: string
         terminalStation:
-          $ref: '#/components/schemas/StationDetailsDef'
+          $ref: '#/components/schemas/StationDetail'
         nutsCode:
           description: >-
             Nomenclature des units territoriales statistiques  
@@ -5954,9 +5754,9 @@ components:
       type: object
       properties:
         fromStation:
-          $ref: '#/components/schemas/StationDetailsDef'
+          $ref: '#/components/schemas/StationDetail'
         toStation:
-          $ref: '#/components/schemas/StationDetailsDef'
+          $ref: '#/components/schemas/StationDetail'
         train:
           type: string
         travelDate:
@@ -5970,36 +5770,7 @@ components:
         - train
         - travelDate
     
-    StationDetailsDef:
-      type: object
-      description: >-
-        Details of a station. In some countries stations have
-        multiple names depending on the countries local languages.
-      properties:
-        localCode:
-          description: code unique with in the country only
-          type: string
-        country:
-          description: ISO 3166 2A codes
-          type: string
-        codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/StationCode'
-          description: >-
-            The codes that can be used to represent the given station on the system.
-            There can be several codes, in which case  it is relevant to have a list
-            of couples.
-        geoCoordinate:
-          $ref: '#/components/schemas/GeoCoordinate'
-        names:
-          description: names of the station depending on language
-          type: array
-          items:
-            $ref: '#/components/schemas/Translation'
-      required:
-        - country
-        - codes
+
     
     PolygonDef:
       type: object
@@ -6035,7 +5806,7 @@ components:
         serviceBrand:
           $ref: '#/components/schemas/ServiceBrandCode'
         station:
-          $ref: '#/components/schemas/StationDetailsDef'
+          $ref: '#/components/schemas/StationDetail'
         fareReferenceStationSet:
           type: object
           description: reference to a list of stations included in the fare
@@ -6072,9 +5843,9 @@ components:
           type: integer
           format: int32
         entryStation:
-          $ref: '#/components/schemas/StationDetailsDef'
+          $ref: '#/components/schemas/StationDetail'
         terminalStation:
-          $ref: '#/components/schemas/StationDetailsDef'
+          $ref: '#/components/schemas/StationDetail'
         zoneIds:
           description: to be used in bar codes
           type: array
@@ -6189,7 +5960,18 @@ components:
                 format: int32
             required:
               - acceptedReason
- 
+    
+    TravelSectionDef:
+      type: object
+      properties:
+        start:
+          $ref: '#/components/schemas/Location'
+        end:
+          $ref: '#/components/schemas/Location'
+      required:
+        - start
+        - end
+
     CrossBorderConditionDef:
       type: object
       properties:
@@ -6363,7 +6145,7 @@ components:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/StationDetailsDef'
+              $ref: '#/components/schemas/StationDetail'
       required:
         - id
         - stationSets
@@ -6372,6 +6154,42 @@ components:
 
     #### Common elements start
     ## Referenced by distributor as well as allocator part
+
+    Link:
+      type: object
+      description: >-
+        The underlying system may provide additional links pointing on further
+        information (such as HTML download links, web sites or extended APIs).
+        Mechanism to add flexible extensions specific to an underlying system.
+      properties:
+        contentTypes:
+          type: array
+          example: '["application/json", "application/pdf"]'
+          description: Possible content types of the resource.
+          items:
+            type: string
+        href:
+          type: string
+          format: uri
+          description: URL to the linked resource (no parameters needed).
+          example: 'https://www.brussels.info/train-stations/'
+        method:
+          type: string
+          example: GET
+          description: HTTP method to call the action
+        relation:
+          type: string
+          example: Get Map
+          description: Relation of this link to the current entity.
+        version:
+          type: integer
+          format: int32
+          example: 1
+          description: Version of the current relation.
+      required:
+        - contentTypes
+        - href
+        - relation
 
     Translation:
       type: object
@@ -6500,6 +6318,199 @@ components:
         - HIGH
         - STANDARD
         - BASIC
+
+    Location:
+      type: object
+      properties:
+        id:
+          type: string
+          description: unique id of this location on this server.
+        title:
+          type: string
+          example: Bruxelles-Midi
+        type:
+          description: >-
+            The ConnectionPoint exists to define virtual border points between two stations.  
+          oneOf:
+            - $ref: '#/components/schemas/StationDetail'
+            - $ref: '#/components/schemas/Poi'
+            - $ref: '#/components/schemas/Address'
+            - $ref: '#/components/schemas/GeoCoordinate'
+            - $ref: '#/components/schemas/ConnectionPoint'
+        links:
+          type: array
+          description: Context information required by the services.
+          items:
+            $ref: '#/components/schemas/Link'
+      required:
+        - id
+        - title
+        - links
+  
+    StationDetail:
+      type: object
+      description: >-
+        Details of a station. In some countries stations have
+        multiple names depending on the countries local languages.
+      properties:
+        localCode:
+          description: code unique with in the country only
+          type: string
+        country:
+          description: ISO 3166 2A codes
+          type: string
+        codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StationCode'
+          description: >-
+            The codes that can be used to represent the given station on the system.
+            There can be several codes, in which case  it is relevant to have a list
+            of couples.
+        geoCoordinate:
+          $ref: '#/components/schemas/GeoCoordinate'
+        names:
+          description: names of the station depending on language
+          type: array
+          items:
+            $ref: '#/components/schemas/Translation'
+      required:
+        - country
+        - codes
+
+    StationCode:
+      type: object
+      properties:
+        codeList:
+          description: >-
+            Code list used for the station codes: 
+              - UIC: UIC codes as used by merits (UIC country code + local code)
+              - UIC-R: UIC codes for reservation (UIC country code + local code reservation) 
+              - ERA: future ERA station code
+          type: string
+          x-extensible-enum:
+            - UIC
+            - UIC-R
+            - ERA
+          default: UIC
+        code:
+          type: string
+          description: the code representing the station in the specified code-list     
+      required:
+        - code
+        - codeList
+    
+    Poi:
+      type: object
+      description: >-
+        POI (for point of Interest) represent a location that is not a train station but still relevant to the 
+        description of the trip. It could be a public transport stop, an exhibition, an event hall, a shopping mall etc.
+      properties:
+        codes:
+          type: array
+          items:
+            type: object
+            properties:
+              codeList:
+                description: Code list used for the POI codes.
+                type: string
+                default: UIC
+              code:
+                type: string
+                description: the code representing the POI in the specified code list
+          description: >-
+            The codes that can be used to represent the given POI on the system. There can be several codes, 
+            in which case it is relevant to have a list of couples.
+        country:
+          description: ISO 3166 2A codes
+          type: string
+        names:
+          description: names of the point of interest depending on language
+          type: array
+          items:
+            $ref: '#/components/schemas/Translation'
+          example: Bern Baerengraben (Denkmal)
+        geoCoordinate:
+          $ref: '#/components/schemas/GeoCoordinate'
+      required:
+        - localCode
+    
+    Address:
+      type: object
+      description: used to encode an address using the standard street address attributes
+      properties:
+        street_nr:
+          type: string
+          description: the street name and house number (if applicable)
+          example: Segantinistrasse 23
+        city:
+          description: city
+          type: string
+          example: Bern
+        postalCode:
+          description: postal code
+          type: string
+          example: 3006
+        country:
+          description: ISO 3166 2A codes
+          type: string
+        geoCoordinate:
+          $ref: '#/components/schemas/GeoCoordinate'
+      required:
+         - street
+         - city
+         - postalCode
+
+    GeoCoordinate:
+      type: object
+      description: >-
+        Used to provide any geo-encoded location, regardless of environment, using longitude and latitude coordinates.
+      properties:
+        system:
+          description: >-
+            geo coordinate system indication: 
+             - WGS84 = WGS 84 standard system,
+             - GRS80 = (outdated) GRS 80 coordinate system
+          type: string
+          x-extensible-enum:
+            - WGS84
+            - GRS80
+          default: WGS84
+        accuracy:
+          description: accuracy of the provided coordinates to be used when comparing coordinates
+          type: number
+          format: float
+          example: 0.00002
+        latitude:
+          description: >-
+            Geographic coordinate that specifies the north-south position of a point on the earths surface
+          type: number
+          format: float
+          example: 46.948825
+        longitude:
+          description: >-
+            Geographic coordinate that specifies the east-west position of a point on the earths surface.            
+          type: number
+          format: float
+          example: 7.439122
+      required:
+        - latitude
+        - longitude
+
+    ConnectionPoint:
+      type: object
+      description: >-
+        Connection point connecting two fare regimes.
+        Providing the UIC code for the station is mandatory. 
+      properties:
+        stations:
+          type: array
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/StationCode'
+      required:
+        - stations
 
     #### Common elements end
     
