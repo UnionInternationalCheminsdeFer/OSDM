@@ -3752,17 +3752,6 @@ components:
         - SECOND 
       
 
-          
-    AccommodationType:
-      type: string
-      description:  >-
-        Accommodation type definition out of AccommodationTypeCodeList
-      
-    AccommodationSubType:
-      type: string
-      description:  >-
-        Accommodation type definition out of AccommodationSubTypeCodeList      
-       
     Flexibility:
       type: string
       x-extensible-enum:
@@ -4160,7 +4149,7 @@ components:
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'
+          $ref: '#/components/schemas/ReservationDetail'
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'
         optionality:
@@ -4221,73 +4210,7 @@ components:
         - selectedCoach
         - selectedPlaces
 
-    ReservationDetailsDef:
-      type: object
-      description: segmentIndex references a segmentIndex in the trip part within the offer reply
-      properties:
-        accommodationType:
-          $ref: '#/components/schemas/AccommodationType'  
-        accommodationSubType:
-          $ref: '#/components/schemas/AccommodationSubType'  
-        reservedPlaces:
-          description: >-
-            Reserved places in a confirmed reservation. 
-            Multiple place packs are needed to combined person and bicycle reservations
-          type: array
-          items:
-            $ref: '#/components/schemas/PlacePackDef'
-  
-    PlacePackDef:
-      type: object
-      description: >-
-          selection of places with common properties
-          description element - textual description of the places
-          placeProperties is mandatory for allocator mode, for distributors the textual description is used
-      properties:
-        id:
-          type: string
-        passengerReferences:
-          description: reference of the traveller / reservation holder
-          type: string
-        vehicle:
-          description: vehicle number (e.g. train number)
-          type: string  
-        coach:
-          type: string
-        places:
-          description: descriptive string of the places (e.g. 11-35,51)
-          type: string
-        placeIds:
-          description: list of individual place numbers
-          type: array
-          items:
-            type: string
-        placeProperties:
-          description: place properties to be indicated to the customer
-          type: array
-          items:
-            type: object
-            description: place properties of places in the place pack. Properties without a  number refer to all places
-            properties:
-              placeProperty:
-                description: see code list
-                type: string
-              number:
-                description: number of places with this property
-                type: integer
-                format: int32
-              priority:
-                description: priority for displaying a list of properties
-                type: integer
-                format: int32
-            required:
-              - placeProperty
-      required:         
-        - id
-        - reference
-        - vehicle
-        - coach
-        - places
+
              
     Ancillary:
       type: object
@@ -5371,7 +5294,7 @@ components:
         travelValidityConstraint:
           $ref: '#/components/schemas/TravelValidityConstraintOnlineDef'
         reservationDetails:
-          $ref: '#/components/schemas/ReservationDetailsDef'       
+          $ref: '#/components/schemas/ReservationDetail'     
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionDef'
         reservationLegacyParameter:
@@ -6441,6 +6364,85 @@ components:
               $ref: '#/components/schemas/StationCode'
       required:
         - stations
+
+    ReservationDetail:
+      type: object
+      description: segmentIndex references a segmentIndex in the trip part within the offer reply
+      properties:
+        accommodationType:
+          $ref: '#/components/schemas/AccommodationType'  
+        accommodationSubType:
+          $ref: '#/components/schemas/AccommodationSubType'  
+        reservedPlaces:
+          description: >-
+            Reserved places in a confirmed reservation. 
+            Multiple place packs are needed to combined person and bicycle reservations
+          type: array
+          items:
+            $ref: '#/components/schemas/PlacePack'
+  
+    PlacePack:
+      type: object
+      description: >-
+          selection of places with common properties
+          description element - textual description of the places
+          placeProperties is mandatory for allocator mode, for distributors the textual description is used
+      properties:
+        id:
+          type: string
+        passengerReferences:
+          description: reference of the traveller / reservation holder
+          type: string
+        vehicle:
+          description: vehicle number (e.g. train number)
+          type: string  
+        coach:
+          type: string
+        places:
+          description: descriptive string of the places (e.g. 11-35,51)
+          type: string
+        placeIds:
+          description: list of individual place numbers
+          type: array
+          items:
+            type: string
+        placeProperties:
+          description: place properties to be indicated to the customer
+          type: array
+          items:
+            type: object
+            description: place properties of places in the place pack. Properties without a  number refer to all places
+            properties:
+              placeProperty:
+                description: see code list
+                type: string
+              number:
+                description: number of places with this property
+                type: integer
+                format: int32
+              priority:
+                description: priority for displaying a list of properties
+                type: integer
+                format: int32
+            required:
+              - placeProperty
+      required:         
+        - id
+        - reference
+        - vehicle
+        - coach
+        - places
+       
+    AccommodationType:
+      type: string
+      description:  >-
+        Accommodation type definition out of AccommodationTypeCodeList
+      
+    AccommodationSubType:
+      type: string
+      description:  >-
+        Accommodation type definition out of AccommodationSubTypeCodeList      
+       
 
     #### Common elements end
     
