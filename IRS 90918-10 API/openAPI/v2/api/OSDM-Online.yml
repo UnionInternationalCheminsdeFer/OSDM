@@ -3731,9 +3731,7 @@ components:
         trainStaffInfo:
           description: >-
             Information text provided by the issuing system in a controlled way (e.g. VIP customer).
-          type: array
-          items:
-            type: string
+          type: string
 
     Gender:
       description: >- 
