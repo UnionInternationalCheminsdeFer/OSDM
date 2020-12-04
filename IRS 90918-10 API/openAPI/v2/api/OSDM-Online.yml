@@ -3049,9 +3049,7 @@ components:
       required:
         - seqId
         - vehicle
-         
-
-
+  
     Trip:
       type: object
       properties:
@@ -3094,7 +3092,6 @@ components:
         - title
         - links
 
-
     TripsCollection:
       type: object
       properties:
@@ -3122,7 +3119,6 @@ components:
       required:
         - id
         - tripsCollection
-
 
     TripRequest:
       type: object
@@ -3495,252 +3491,8 @@ components:
       required:
         - id
         - tripOffers
-
-
-       
-    ReductionCardReferenceDef:
-      type: object
-      properties:
-        code:
-          description: code of the card type according to code list
-          type: string
-        codeList:
-          description: code list for the code of the card provided
-          type: string
-          default: UIC
-        name:
-          description: card name for printing on fulfillments
-          type: string
-        issuer:
-          type: string
-          description: >-
-            RICS company code or the upcoming compatible ERA company code. In
-            case proprietary codes are used on a bilateral base the codes must
-            have at least 5 positions and start with x.
-      required:
-        - code
-        - codeList
-        - name
-      additionalProperties: false
       
-    LoyaltyCardReferenceDef:
-      type: object
-      properties:
-        code:
-          description: code of the card type according to code list
-          type: string
-        codeList:
-          description: code list for the code provided
-          type: string
-        name:
-          description: card name for printing on fulfillments
-          type: string
-        number:
-          type: string
-          description: the unique number identifying the loyalty card.
-        issuer:
-          type: string
-          description: >-
-            RICS company code or the upcoming compatible ERA company code. In
-            case proprietary codes are used on a bilateral base the codes must
-            have at least 5 positions and start with x.
-      required:
-        - codeList
-        - code
-      
-    CardIdentificationDef:
-      description: >-
-        card issuer - RICS code in case of Railways, otherwise starting with
-      type: object
-      properties:
-        cardId:
-          type: string
-        cardIssuer:
-          $ref: '#/components/schemas/Company'
-        cardType:
-          description: Code table to be defined in tariff description data
-          type: string
-        leadingCardId:
-          type: string
-        trailingCardId:
-          type: string
-        cardNumber:
-          type: string
-      required:
-        - cardIssuer
-        - cardType
-    
-    Passenger:
-      type: object
-      description: >-
-        passenger or transportable (e.g. bicycle)
-      properties:
-        id: 
-          type: string
-          format: uuid
-          description: >-
-            Id of the passenger resource in case service to patch a single passenger is provided.
-        title:
-          type: string
-          example: Andreas Schlapbach
-        reference:
-          description: >-
-            stable reference to passengers from other elements, or from caller
-            system.
-          type: string
-        abstract:
-          $ref: '#/components/schemas/PassengerAbstractDef'
-        details:
-          $ref: '#/components/schemas/PassengerDetailsDef'
-        passport:
-          $ref: '#/components/schemas/PassportDef'
-        cardIdentification:
-          $ref: '#/components/schemas/CardIdentificationDef'
-        transportableDetails:
-          $ref: '#/components/schemas/TransportableDef'          
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-      required:
-        - id
-        - title
-        - links
-        
-    PassengerAbstractDef:
-      type: object
-      properties:
-        dateOfBirth:
-          description: date of birth of the passenger
-          type: string
-          format: date
-        reductionCards:
-          description: reduction cards owned by the passenger 
-          type: array
-          items:
-            $ref: '#/components/schemas/ReductionCardReferenceDef'
-        loyaltyCards:
-          description: loyalty cards owned by the passenger 
-          type: array
-          items:
-            $ref: '#/components/schemas/LoyaltyCardReferenceDef'
-        gender:
-          $ref: '#/components/schemas/Gender'
-        prmNeeds:
-          type: string
-          x-extensible-enum:
-            - WHEELCHAIR
-            - ACCOMPDOG
-            - COMPANIONSEAT
-            - COMPANION
-        
-    PassportDef:
-      type: object
-      description: >- 
-        Travel document data to be exchanged for border control in case of legal requirements
-        PassengerDetails providing personal information only information required in the offer. 
-        It is not allowed to send personal information not required in the offer reply. 
-        It is legally not allowed to send these personal data already in the offer request.
-      properties:
-        cityOfBirth:
-          type: string
-        cityOfIssue:
-          description: place where the document is issued
-          type: string
-        cityOfResidence:
-          type: string
-        countryOfBirth:
-          description: ISO 3166 2A codes
-          type: string
-        countryOfIssue:
-          description: ISO 3166 2A codes
-          type: string
-        countryOfResidence:
-          description: ISO 3166 2A codes
-          type: string
-        dateOfIssue:
-          type: string
-          format: date-time
-        documentId:
-          type: string
-        documentType:
-          description: Refer to code list for values
-          type: string
-        gender:
-          $ref: '#/components/schemas/Gender'
-        limitOfValidity:
-          type: string
-          format: date-time
-        name:
-          description: ICAO transliteration identical as written in the document
-          type: string
-        nationality:
-          description: ISO 3166 2A codes
-          type: string
-      required:
-        - documentType
-        - name
-      
-    PassengerDetailsDef:
-      type: object
-      description: >- 
-        PassengerDetails providing personal information only information required in the offer.
-        It is not allowed to send personal information not required in the offer reply.
-        It is not allowed to send these personal data already in the offer request.
-      properties:
-        eMails:
-          type: array
-          items:
-            type: string
-            format: email
-        language:
-          type: array
-          items:
-            type: string
-            description: Languages spoken by the traveler (ISO Language code)
-        firstName:
-          type: string
-        firstNameICAO:
-          description: ICAO transliteration
-          type: string
-        lastName:
-          type: string
-        lastNameICAO:
-          description: ICAO transliteration
-          type: string
-        title:
-          type: string
-        phones:
-          type: array
-          items:
-            type: string
-        socialMediaAccount:
-          type: array
-          items:
-            type: object
-            properties:
-              account:
-                type: string
-              accountType:
-                description: >-
-                  Example types: FACEBOOK, WHATSAPP, SKYPE, WECHAT,...
-                type: string
-            required:
-              - account
-              - accountType
-        trainStaffInfo:
-          description: >-
-            Information text provided by the issuing system in a controlled way (e.g. VIP customer).
-          type: string
 
-    Gender:
-      description: >- 
-        The gender of the passenger, which is important in the case of night trains.
-      type: string
-      enum:
-        - MALE
-        - FEMALE
-        - X
 
     ComfortClass:
       description: >-
@@ -3981,161 +3733,7 @@ components:
             $ref: '#/components/schemas/PlaceOptionsBundleDef'
         selectedPlaces:
           $ref: '#/components/schemas/SelectedPlacesDef'
-
-    PlaceSelectionDef:
-      type: object
-      description: >-
-        Place selection options and selected options in an offer
-        - optional place properties to choose from
-        - selected optional place properties (selectedOptions)
-        - selectable places for a graphical place selection 
-        - selectedPlaces from a graphical place selection (selectedPlaces)
-        - reference place for adjacent reservation (referencePlace)
-      properties:
-        reservationOptions:
-          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
-        vehicle:
-          description: vehicle / train number is necessary in  case of train parts with different train numbers
-          type: string           
-        referencePlace: 
-          type: object    
-          description: selected place for an adjacent reservation (NEARBY)
-          properties:
-            placeNumber:
-              type: string
-            coachNumber:
-              type: string
-        selectedOptions:
-          type: array
-          items: 
-            $ref: '#/components/schemas/PlaceOptionsBundleDef'
-        selectablePlaces:
-          $ref: '#/components/schemas/PlaceAvailabilityDef'
-        selectedPlaces:
-          $ref: '#/components/schemas/SelectedPlacesDef'
-      required:
-        - id      
-                
-    PlaceOptionsBundleDef:
-      type: object
-      description: >-
-        selection of places for reservation linked to passengers
-      properties:
-        passengers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Passenger'
-        selectedPlaceProperties: 
-          type: array
-          items:
-            description: selection from the optional place properties provided in the offer
-            type: string
-      required:
-        - id              
-   
-    PlaceAvailabilityDef:
-      type: object
-      description: \*** NOT-MVP *** structure used for graphical place selection
-      properties:
-        coaches:
-          description: >-
-            list of the coaches in a train run ordered according to the physical
-            ordering of the train
-          type: array
-          items:
-            type: object
-            properties:
-              compartments:
-                description: >-
-                  areas within a coach that holds places. Areas might be selectable
-                  as a whole. Usual areas would be classic compartments.
-                type: array
-                items:
-                  type: object
-                  properties:
-                    places:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          number:
-                            description: >-
-                              the place number as indicated at the place in the
-                              coach
-                            type: string
-                          status:
-                            description: status of the place
-                            type: string
-                            x-extensible-enum:
-                               - ALLOCATED
-                               - FREE
-                               - RESTRICTED                        
-                          isSelectable:
-                            description: >-
-                              to indicate individual places as non-selectable in
-                              case complete compartments must be selected
-                            type: boolean
-                            default: true
-                        required:
-                          - number
-                        
-                    status:
-                      type: string
-                    isSelectable:
-                      description: to indicate compartments selectable as a whole only
-                      type: boolean
-                      default: false
-                  
-              number:
-                description: coach number
-                type: string
-              status:
-                description: >-
-                  status of the coach if the status applies to all places of the coach
-                type: string
-                x-extensible-enum:
-                   - ALLOCATED
-                   - FREE
-                   - RESTRICTED
-              layoutId:
-                description: id to identify the coach layout
-                type: string
-              layoutIdUpperDeck:
-                description: id to identify a layout for the upper deck in a double deck coach
-                type: string
-              layoutIdLowerDeck:
-                description: id to identify a layout for the lower deck in a double deck coach
-                type: string
-              direction:
-                description: >-
-                  indication of the direction of travel standard direction is left
-                  to right with ascending coordinates in the layout values  U =
-                  unspecified
-                          in direction of the layout
-                          opposite to direction of the layout
-                          changing
-                          starting in direction but changing later
-                type: string
-                x-extensible-enum:
-                 - IN_DIRECTION
-                 - OPPOSITE_DIRECTION
-                 - CHANGING
-                 - STARING_IN_DIRECTION
-              coachOwner:
-                $ref: '#/components/schemas/Company'
-              specialCoach:
-                description: >-
-                  indication of special coach 
-                type: string
-                x-extensible-enum: 
-                  - RESTAURANT_COACH
-                  - BICYCLE_COACH
-                  - LUGGAGE_COACH
-                  - TRAIN_HEAD                
-            required:
-              - number
-              - layoutId                    
-                
+    
     Reservation:
       type: object
       description: >-
@@ -4178,40 +3776,7 @@ components:
       properties:
         placeSelection:
           $ref: '#/components/schemas/PlaceSelectionPatch'
-
-    SelectedPlacesDef:
-      description: \*** NOT-MVP *** place selection from a graphical display of coaches
-      type: object
-      properties:
-        selectedCoaches:
-          description: selected coach and places in case of graphical reservation
-          type: array
-          items:
-            minItems: 1
-            type: object
-            properties:
-              coachNr: 
-                type: string
-              selectedPlaces:
-                description: selected places in case of graphical booking
-                type: array
-                items:
-                  minItems: 1              
-                  type: object
-                  properties:
-                    passengerReference: 
-                      description: >-
-                        reference of the passenger for this place. 
-                        passengers might need to be assigned to specific places in case of multiple compartments in night trains 
-                      type: string
-                    place: 
-                      type: string  
-      required:
-        - selectedCoach
-        - selectedPlaces
-
-
-             
+          
     Ancillary:
       type: object
       properties:
@@ -6442,7 +6007,435 @@ components:
       type: string
       description:  >-
         Accommodation type definition out of AccommodationSubTypeCodeList      
-       
+
+    PlaceSelectionDef:
+      type: object
+      description: >-
+        Place selection options and selected options in an offer
+        - optional place properties to choose from
+        - selected optional place properties (selectedOptions)
+        - selectable places for a graphical place selection 
+        - selectedPlaces from a graphical place selection (selectedPlaces)
+        - reference place for adjacent reservation (referencePlace)
+      properties:
+        reservationOptions:
+          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
+        vehicle:
+          description: vehicle / train number is necessary in  case of train parts with different train numbers
+          type: string           
+        referencePlace: 
+          type: object    
+          description: selected place for an adjacent reservation (NEARBY)
+          properties:
+            placeNumber:
+              type: string
+            coachNumber:
+              type: string
+        selectedOptions:
+          type: array
+          items: 
+            $ref: '#/components/schemas/PlaceOptionsBundleDef'
+        selectablePlaces:
+          $ref: '#/components/schemas/PlaceAvailabilityDef'
+        selectedPlaces:
+          $ref: '#/components/schemas/SelectedPlacesDef'
+      required:
+        - id      
+                
+    PlaceOptionsBundleDef:
+      type: object
+      description: >-
+        selection of places for reservation linked to passengers
+      properties:
+        passengers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Passenger'
+        selectedPlaceProperties: 
+          type: array
+          items:
+            description: selection from the optional place properties provided in the offer
+            type: string
+      required:
+        - id              
+   
+    PlaceAvailabilityDef:
+      type: object
+      description: \*** NOT-MVP *** structure used for graphical place selection
+      properties:
+        coaches:
+          description: >-
+            list of the coaches in a train run ordered according to the physical
+            ordering of the train
+          type: array
+          items:
+            type: object
+            properties:
+              compartments:
+                description: >-
+                  areas within a coach that holds places. Areas might be selectable
+                  as a whole. Usual areas would be classic compartments.
+                type: array
+                items:
+                  type: object
+                  properties:
+                    places:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          number:
+                            description: >-
+                              the place number as indicated at the place in the
+                              coach
+                            type: string
+                          status:
+                            description: status of the place
+                            type: string
+                            x-extensible-enum:
+                               - ALLOCATED
+                               - FREE
+                               - RESTRICTED                        
+                          isSelectable:
+                            description: >-
+                              to indicate individual places as non-selectable in
+                              case complete compartments must be selected
+                            type: boolean
+                            default: true
+                        required:
+                          - number
+                        
+                    status:
+                      type: string
+                    isSelectable:
+                      description: to indicate compartments selectable as a whole only
+                      type: boolean
+                      default: false
+                  
+              number:
+                description: coach number
+                type: string
+              status:
+                description: >-
+                  status of the coach if the status applies to all places of the coach
+                type: string
+                x-extensible-enum:
+                   - ALLOCATED
+                   - FREE
+                   - RESTRICTED
+              layoutId:
+                description: id to identify the coach layout
+                type: string
+              layoutIdUpperDeck:
+                description: id to identify a layout for the upper deck in a double deck coach
+                type: string
+              layoutIdLowerDeck:
+                description: id to identify a layout for the lower deck in a double deck coach
+                type: string
+              direction:
+                description: >-
+                  indication of the direction of travel standard direction is left
+                  to right with ascending coordinates in the layout values  U =
+                  unspecified
+                          in direction of the layout
+                          opposite to direction of the layout
+                          changing
+                          starting in direction but changing later
+                type: string
+                x-extensible-enum:
+                 - IN_DIRECTION
+                 - OPPOSITE_DIRECTION
+                 - CHANGING
+                 - STARING_IN_DIRECTION
+              coachOwner:
+                $ref: '#/components/schemas/Company'
+              specialCoach:
+                description: >-
+                  indication of special coach 
+                type: string
+                x-extensible-enum: 
+                  - RESTAURANT_COACH
+                  - BICYCLE_COACH
+                  - LUGGAGE_COACH
+                  - TRAIN_HEAD                
+            required:
+              - number
+              - layoutId    
+
+    SelectedPlacesDef:
+      description: \*** NOT-MVP *** place selection from a graphical display of coaches
+      type: object
+      properties:
+        selectedCoaches:
+          description: selected coach and places in case of graphical reservation
+          type: array
+          items:
+            minItems: 1
+            type: object
+            properties:
+              coachNr: 
+                type: string
+              selectedPlaces:
+                description: selected places in case of graphical booking
+                type: array
+                items:
+                  minItems: 1              
+                  type: object
+                  properties:
+                    passengerReference: 
+                      description: >-
+                        reference of the passenger for this place. 
+                        passengers might need to be assigned to specific places in case of multiple compartments in night trains 
+                      type: string
+                    place: 
+                      type: string  
+      required:
+        - selectedCoach
+        - selectedPlaces
+
+    Passenger:
+      type: object
+      description: >-
+        passenger or transportable (e.g. bicycle)
+      properties:
+        id: 
+          type: string
+          format: uuid
+          description: >-
+            Id of the passenger resource in case service to patch a single passenger is provided.
+        title:
+          type: string
+          example: Andreas Schlapbach
+        reference:
+          description: >-
+            stable reference to passengers from other elements, or from caller
+            system.
+          type: string
+        abstract:
+          $ref: '#/components/schemas/PassengerAbstractDef'
+        details:
+          $ref: '#/components/schemas/PassengerDetailsDef'
+        passport:
+          $ref: '#/components/schemas/PassportDef'
+        cardIdentification:
+          $ref: '#/components/schemas/CardIdentificationDef'
+        transportableDetails:
+          $ref: '#/components/schemas/TransportableDef'          
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      required:
+        - id
+        - title
+        - links
+        
+    PassengerAbstractDef:
+      type: object
+      properties:
+        dateOfBirth:
+          description: date of birth of the passenger
+          type: string
+          format: date
+        reductionCards:
+          description: reduction cards owned by the passenger 
+          type: array
+          items:
+            $ref: '#/components/schemas/ReductionCardReferenceDef'
+        loyaltyCards:
+          description: loyalty cards owned by the passenger 
+          type: array
+          items:
+            $ref: '#/components/schemas/LoyaltyCardReferenceDef'
+        gender:
+          $ref: '#/components/schemas/Gender'
+        prmNeeds:
+          type: string
+          x-extensible-enum:
+            - WHEELCHAIR
+            - ACCOMPDOG
+            - COMPANIONSEAT
+            - COMPANION
+        
+    PassportDef:
+      type: object
+      description: >- 
+        Travel document data to be exchanged for border control in case of legal requirements
+        PassengerDetails providing personal information only information required in the offer. 
+        It is not allowed to send personal information not required in the offer reply. 
+        It is legally not allowed to send these personal data already in the offer request.
+      properties:
+        cityOfBirth:
+          type: string
+        cityOfIssue:
+          description: place where the document is issued
+          type: string
+        cityOfResidence:
+          type: string
+        countryOfBirth:
+          description: ISO 3166 2A codes
+          type: string
+        countryOfIssue:
+          description: ISO 3166 2A codes
+          type: string
+        countryOfResidence:
+          description: ISO 3166 2A codes
+          type: string
+        dateOfIssue:
+          type: string
+          format: date-time
+        documentId:
+          type: string
+        documentType:
+          description: Refer to code list for values
+          type: string
+        gender:
+          $ref: '#/components/schemas/Gender'
+        limitOfValidity:
+          type: string
+          format: date-time
+        name:
+          description: ICAO transliteration identical as written in the document
+          type: string
+        nationality:
+          description: ISO 3166 2A codes
+          type: string
+      required:
+        - documentType
+        - name
+      
+    PassengerDetailsDef:
+      type: object
+      description: >- 
+        PassengerDetails providing personal information only information required in the offer.
+        It is not allowed to send personal information not required in the offer reply.
+        It is not allowed to send these personal data already in the offer request.
+      properties:
+        eMails:
+          type: array
+          items:
+            type: string
+            format: email
+        language:
+          type: array
+          items:
+            type: string
+            description: Languages spoken by the traveler (ISO Language code)
+        firstName:
+          type: string
+        firstNameICAO:
+          description: ICAO transliteration
+          type: string
+        lastName:
+          type: string
+        lastNameICAO:
+          description: ICAO transliteration
+          type: string
+        title:
+          type: string
+        phones:
+          type: array
+          items:
+            type: string
+        socialMediaAccount:
+          type: array
+          items:
+            type: object
+            properties:
+              account:
+                type: string
+              accountType:
+                description: >-
+                  Example types: FACEBOOK, WHATSAPP, SKYPE, WECHAT,...
+                type: string
+            required:
+              - account
+              - accountType
+        trainStaffInfo:
+          description: >-
+            Information text provided by the issuing system in a controlled way (e.g. VIP customer).
+          type: string
+
+    Gender:
+      description: >- 
+        The gender of the passenger, which is important in the case of night trains.
+      type: string
+      enum:
+        - MALE
+        - FEMALE
+        - X
+  
+    ReductionCardReferenceDef:
+      type: object
+      properties:
+        code:
+          description: code of the card type according to code list
+          type: string
+        codeList:
+          description: code list for the code of the card provided
+          type: string
+          default: UIC
+        name:
+          description: card name for printing on fulfillments
+          type: string
+        issuer:
+          type: string
+          description: >-
+            RICS company code or the upcoming compatible ERA company code. In
+            case proprietary codes are used on a bilateral base the codes must
+            have at least 5 positions and start with x.
+      required:
+        - code
+        - codeList
+        - name
+      additionalProperties: false
+      
+    LoyaltyCardReferenceDef:
+      type: object
+      properties:
+        code:
+          description: code of the card type according to code list
+          type: string
+        codeList:
+          description: code list for the code provided
+          type: string
+        name:
+          description: card name for printing on fulfillments
+          type: string
+        number:
+          type: string
+          description: the unique number identifying the loyalty card.
+        issuer:
+          type: string
+          description: >-
+            RICS company code or the upcoming compatible ERA company code. In
+            case proprietary codes are used on a bilateral base the codes must
+            have at least 5 positions and start with x.
+      required:
+        - codeList
+        - code
+      
+    CardIdentificationDef:
+      description: >-
+        card issuer - RICS code in case of Railways, otherwise starting with
+      type: object
+      properties:
+        cardId:
+          type: string
+        cardIssuer:
+          $ref: '#/components/schemas/Company'
+        cardType:
+          description: Code table to be defined in tariff description data
+          type: string
+        leadingCardId:
+          type: string
+        trailingCardId:
+          type: string
+        cardNumber:
+          type: string
+      required:
+        - cardIssuer
+        - cardType
 
     #### Common elements end
     
