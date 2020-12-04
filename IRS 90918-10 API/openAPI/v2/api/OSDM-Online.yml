@@ -5378,8 +5378,6 @@ components:
           $ref: '#/components/schemas/LegacyReservationParameterDef'
         coveredSection:
           $ref: '#/components/schemas/TravelSectionDef'
-        requiredPersonalData:
-          $ref: '#/components/schemas/PersonalDataConstraintOnlineDef'
         passengerConstraints:
           $ref: '#/components/schemas/PassengerConstraintsDef'
       required:
@@ -5767,9 +5765,7 @@ components:
         - toStation
         - train
         - travelDate
-    
-
-    
+       
     PolygonDef:
       type: object
       properties:
@@ -5900,65 +5896,7 @@ components:
       required:
         - acceptedFulfillmentTypes
         - individualTicketingPermitted
- 
-    PersonalDataConstraintOnlineDef:
-      type: object
-      properties:
-        requiredData:
-          type: array
-          minItems: 1
-          items:
-            type: object
-            properties:
-              dataItem:
-                description: see code list IRS 90918-10
-                type: string
-              transfer:
-                description: >-
-                 Transfer mode: BOOKING, SIS_CONTROL, SID_CONTROL.
-                type: array
-                minItems: 1
-                items:
-                  type: string
-                  x-extensible-enum:
-                    - BOOKING
-                    - SIS_CONTROL
-                    - SID_CONTROL
-              ticketHolderOnly:
-                type: boolean
-                default: false
-              crossBorder:
-                description: the data are required only in case one of the cross border conditions apply
-                type: array
-                items:
-                  $ref: '#/components/schemas/CrossBorderConditionDef'
-              fulfillmentType:
-                description: type of fulfillment in case the personal data are required for that type only
-                type: array
-                items:
-                  $ref: '#/components/schemas/ControlSecurityTypeDef'
-            required:
-              - dataItem
-              - transfer
-        allowedChanges:
-          type: array
-          items:
-            type: object
-            properties:
-              acceptedReason:
-                type: string
-                x-extensible-enum:
-                  - IN_GENERAL
-                  - MARRIAGE
-                  - DOCUMENT_CHANGE
-                  - AGENT_ERROR
-              timeLimit:
-                description: the change is limited to n hours after booking confirmation
-                type: integer
-                format: int32
-            required:
-              - acceptedReason
-    
+   
     TravelSectionDef:
       type: object
       properties:
