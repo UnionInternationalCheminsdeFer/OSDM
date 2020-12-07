@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -61,8 +62,31 @@ public class SalesRestrictionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addSalesDatesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Sales Dates feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSalesDatesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SalesRestriction_salesDates_feature"),
+				 getString("_UI_SalesRestriction_salesDates_description"),
+				 GtmPackage.Literals.SALES_RESTRICTION__SALES_DATES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -77,7 +101,6 @@ public class SalesRestrictionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GtmPackage.Literals.SALES_RESTRICTION__SALES_DATES);
 			childrenFeatures.add(GtmPackage.Literals.SALES_RESTRICTION__START_OF_SALE);
 			childrenFeatures.add(GtmPackage.Literals.SALES_RESTRICTION__END_OF_SALE);
 		}
@@ -132,7 +155,6 @@ public class SalesRestrictionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SalesRestriction.class)) {
-			case GtmPackage.SALES_RESTRICTION__SALES_DATES:
 			case GtmPackage.SALES_RESTRICTION__START_OF_SALE:
 			case GtmPackage.SALES_RESTRICTION__END_OF_SALE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -151,11 +173,6 @@ public class SalesRestrictionItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(GtmPackage.Literals.SALES_RESTRICTION__SALES_DATES,
-				 GtmFactory.eINSTANCE.createCalendar()));
 
 		newChildDescriptors.add
 			(createChildParameter

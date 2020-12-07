@@ -146,6 +146,7 @@ import gtm.RegionalConstraintDef;
 import gtm.RegionalValidityDef;
 import gtm.RegulatoryConditionsDef;
 import gtm.RelativeTimeDef;
+import gtm.RelativeTimeDef.TimeUnit;
 import gtm.RequiredDatum;
 import gtm.RequiredSi;
 import gtm.ReservationOptionGroupDef;
@@ -2003,11 +2004,27 @@ public class GtmJsonExporter {
 		if (rt == null) return null;
 		
 		RelativeTimeDef rtJ = new RelativeTimeDef();
-		rtJ.setTimeUnit(RelativeTimeDef.TimeUnit.valueOf(rt.getUnit().getName().toUpperCase()));
+		rtJ.setTimeUnit(convertTimeUnit(rt.getUnit()));
 		rtJ.setTimeReference(RelativeTimeDef.TimeReference.valueOf(rt.getReference().getName().toUpperCase()));
 		rtJ.setTimeValue(rt.getValue());
 			
 		return rtJ;
+	}
+	
+	
+	
+	private static TimeUnit convertTimeUnit(Gtm.TimeUnit unit) {
+				
+		if (unit.equals(Gtm.TimeUnit.HOUR)) {
+			return  RelativeTimeDef.TimeUnit.HOURS;
+		} else if (unit.equals(Gtm.TimeUnit.MINUTE)) {
+			return  RelativeTimeDef.TimeUnit.MINUTES;
+		} else if (unit.equals(Gtm.TimeUnit.DAY)) {
+			return  RelativeTimeDef.TimeUnit.DAYS;
+		}
+		
+		return null;
+		
 	}
 
 
