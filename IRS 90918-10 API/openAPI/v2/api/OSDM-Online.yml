@@ -4,7 +4,7 @@ servers:
     url: 'https://virtserver.swaggerhub.com/Real-IT/FSM_MVP/1.0.0'
 info:
   title: UIC 90918-10 - OSDM
-  version: 0.9.8
+  version: 0.9.9
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -3730,9 +3730,9 @@ components:
         selectedOptions:
           type: array
           items: 
-            $ref: '#/components/schemas/PlaceOptionsBundleDef'
-        selectedPlaces:
-          $ref: '#/components/schemas/SelectedPlacesDef'
+            $ref: '#/components/schemas/PlaceOptionsBundle'
+        selectedCoach:
+          $ref: '#/components/schemas/SelectedCoach'
     
     Reservation:
       type: object
@@ -3749,7 +3749,7 @@ components:
         reservationDetails:
           $ref: '#/components/schemas/ReservationDetail'
         placeSelection:
-          $ref: '#/components/schemas/PlaceSelectionDef'
+          $ref: '#/components/schemas/PlaceSelection'
         optionality:
           description: >-
             INCLUDED: the reservation is included in the offer
@@ -4166,7 +4166,7 @@ components:
             type: object
             properties:
               type:
-                $ref: '#/components/schemas/SecurityFeatureTypeDef'
+                $ref: '#/components/schemas/SecurityFeatureType'
               uri:
                 description: link to download the security feature
                 type: string
@@ -4182,25 +4182,22 @@ components:
           type: boolean
           default: false
   
-    SecurityFeatureTypeDef:
+    SecurityFeatureType:
       description: >-
-        Possible formats:
-         - "RAW_BAR_CODE" binary data too be included in an bar code, 
-         - "MATRIX_BAR_CODE" binary data of the black and white pixel matrix of a square bar code,
-         - "PNG_BAR_CODE" png image data of a bar code,
-         - "JPG_BAR_CODE" jpg data of a bar code, 
-         - "PNG_VISUAL_ELEMENT" png image data of a visual element, 
-         - "JPG_VISUAL_ELEMENT" jpg data of a visual element, 
-         - "GIF_VISUAL_ELEMENT" gif data of a visual element
-      type: string
-      x-extensible-enum:
-        - RAW_BAR_CODE
-        - MATRIX_BAR_CODE
-        - PNG_BAR_CODE
-        - JPG_BAR_CODE
-        - PNG_VISUAL_ELEMENT
-        - JPG_VISUAL_ELEMENT
-        - GIF_VISUAL_ELEMENT
+        Defines type and format of the security feature.
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - VISUAL_ELEMENT
+            - BAR_CODE
+        format:
+          type: string
+          enum:
+            - PNG
+            - GIF
+            - SVG   
       
     RefundOffersCollection:
       type: object
@@ -4491,127 +4488,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-            
-    TransportableDef:
-      type: object
-      description: >- 
-        Transportables which are handled similar to passengers like dogs, bicycles, car transport.
-        These transportables might need a ticket or reservation.
-      properties:
-        type:
-          description: >- 
-            Subset of the values from the traveler type code list IRS 90918-10 
-          type: string
-        car:
-          type: object
-          properties:
-            weight:
-              type: integer
-              format: int32
-            length:
-              type: integer
-              format: int32
-            width:
-              type: integer
-              format: int32
-            height:
-              type: integer
-              format: int32
-            model:
-              type: string
-              description: >-
-                free text description of the model (e.g. BMW X5)       
-            attachedItems:
-              description: >-
-                indication of items attached to the car
-              type: array
-              items:
-                type: string
-                x-extensible-enum:
-                 - ROOF_RACK
-                 - BICYCLE_STAND
-            plate:
-              description: >-
-                The trailer plate is a personal data item and must not be provided in an offer request. 
-                It must be patched into the offer after the customer accepted the offer for booking.
-              type: string
-          required:
-            - weight
-            - length
-            - width
-            - height
-            - model
-        motorCycle:
-          type: object
-          properties:
-            includingSideCar:
-              type: boolean
-              default: false
-            plate:
-              description: >-
-                The trailer plate is a personal data item and must not be provided in an offer request. 
-                It must be patched into the offer after the customer accepted the offer for booking 
-              type: string   
-          required:
-            - includingSideCar
-        trailer:
-          type: object
-          properties:
-            weight:
-              description: weight in kg
-              type: integer
-              format: int32
-            length:
-              description: length in cm
-              type: integer
-              format: int32
-            width:
-              description: width in cm
-              type: integer
-              format: int32
-            height:
-              description: length in cm
-              type: integer
-              format: int32
-            plate:
-              description: >-
-                The trailer plate is a personal data item and must not be provided in an offer request. 
-                It must be patched into the offer after the customer accepted the offer for booking 
-              type: string
-          required:
-            - weight
-            - length
-            - width
-            - height
-    
-    ReservationOnlineOptionDef:
-      type: object
-      properties:
-        preferences:
-          description: possible preferences to be requested in reservation without changing the fare
-          type: array
-          items:
-            $ref: '#/components/schemas/ReservationOptionGroupDef'
-        graphicalReservation:
-          description: graphical reservation is supported, interface type "NO","UIC_918",..
-          type: string
-      
-    ReservationOptionGroupDef:
-      type: object
-      properties:
-        preferenceGroup:
-          type: string
-          example: 'SEAT_DIRECTION'
-        preferences:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            example: 'FORWARD_FACING'
-      required:
-        - preferenceGroup
-        - preferences
-      
+
     LayoutsDef:
       type: object
       properties:
@@ -4619,7 +4496,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CoachLayoutDef'
-      
+
     CoachLayoutDef:
       type: object
       description: >-
@@ -4861,7 +4738,7 @@ components:
         reservationDetails:
           $ref: '#/components/schemas/ReservationDetail'     
         placeSelection:
-          $ref: '#/components/schemas/PlaceSelectionDef'
+          $ref: '#/components/schemas/PlaceSelection'
         reservationLegacyParameter:
           $ref: '#/components/schemas/LegacyReservationParameterDef'
         coveredSection:
@@ -6008,7 +5885,7 @@ components:
       description:  >-
         Accommodation type definition out of AccommodationSubTypeCodeList      
 
-    PlaceSelectionDef:
+    PlaceSelection:
       type: object
       description: >-
         Place selection options and selected options in an offer
@@ -6019,12 +5896,13 @@ components:
         - reference place for adjacent reservation (referencePlace)
       properties:
         reservationOptions:
-          $ref: '#/components/schemas/ReservationOnlineOptionDef' 
+          $ref: '#/components/schemas/ReservationOnlineOption' 
         vehicle:
-          description: vehicle / train number is necessary in  case of train parts with different train numbers
-          type: string           
+          description: >-
+            Vehicle / train number is necessary in case of train parts with different train numbers
+          type: string
         referencePlace: 
-          type: object    
+          type: object
           description: selected place for an adjacent reservation (NEARBY)
           properties:
             placeNumber:
@@ -6033,16 +5911,41 @@ components:
               type: string
         selectedOptions:
           type: array
-          items: 
-            $ref: '#/components/schemas/PlaceOptionsBundleDef'
+          items:
+            $ref: '#/components/schemas/PlaceOptionsBundle'
         selectablePlaces:
-          $ref: '#/components/schemas/PlaceAvailabilityDef'
-        selectedPlaces:
-          $ref: '#/components/schemas/SelectedPlacesDef'
+          $ref: '#/components/schemas/PlaceAvailability'
+        selectedCoach:
+          $ref: '#/components/schemas/SelectedCoach'
+    
+    ReservationOnlineOption:
+      type: object
+      properties:
+        preferences:
+          description: possible preferences to be requested in reservation without changing the fare
+          type: array
+          items:
+            $ref: '#/components/schemas/ReservationOptionGroup'
+        graphicalReservation:
+          description: graphical reservation is supported, interface type "NO","UIC_918",..
+          type: string
+      
+    ReservationOptionGroup:
+      type: object
+      properties:
+        preferenceGroup:
+          type: string
+          example: SEAT_DIRECTION
+        preferences:
+          type: array
+          items:
+            type: string
+            example: 'FORWARD_FACING'
       required:
-        - id      
-                
-    PlaceOptionsBundleDef:
+        - preferenceGroup
+        - preferences
+
+    PlaceOptionsBundle:
       type: object
       description: >-
         selection of places for reservation linked to passengers
@@ -6052,16 +5955,16 @@ components:
           items:
             $ref: '#/components/schemas/Passenger'
         selectedPlaceProperties: 
+          description: Properties of places as defined in 90810-10.
           type: array
           items:
             description: selection from the optional place properties provided in the offer
             type: string
-      required:
-        - id              
    
-    PlaceAvailabilityDef:
+    PlaceAvailability:
       type: object
-      description: \*** NOT-MVP *** structure used for graphical place selection
+      description: >-
+        ToDo: Review by Klaus :-)
       properties:
         coaches:
           description: >-
@@ -6086,8 +5989,7 @@ components:
                         properties:
                           number:
                             description: >-
-                              the place number as indicated at the place in the
-                              coach
+                              the place number as indicated at the place in the coach
                             type: string
                           status:
                             description: status of the place
@@ -6103,15 +6005,13 @@ components:
                             type: boolean
                             default: true
                         required:
-                          - number
-                        
+                          - number                
                     status:
                       type: string
                     isSelectable:
                       description: to indicate compartments selectable as a whole only
                       type: boolean
                       default: false
-                  
               number:
                 description: coach number
                 type: string
@@ -6150,9 +6050,8 @@ components:
               coachOwner:
                 $ref: '#/components/schemas/Company'
               specialCoach:
-                description: >-
-                  indication of special coach 
                 type: string
+                description: indication of special coach 
                 x-extensible-enum: 
                   - RESTAURANT_COACH
                   - BICYCLE_COACH
@@ -6162,48 +6061,49 @@ components:
               - number
               - layoutId    
 
-    SelectedPlacesDef:
-      description: \*** NOT-MVP *** place selection from a graphical display of coaches
+    SelectedCoach:
       type: object
+      description: >-
+        Place selection from a graphical display of coaches.
       properties:
         selectedCoaches:
           description: selected coach and places in case of graphical reservation
           type: array
           items:
-            minItems: 1
+            $ref: '#/components/schemas/SelectedPlaces'
+      required:
+        - selectedCoaches
+  
+    SelectedPlaces:
+      type: object
+      properties:
+        coachNumber: 
+          type: string
+        selectedPlaces:
+          description: selected places in case of graphical booking
+          type: array
+          items:           
             type: object
             properties:
-              coachNr: 
+              passengerId:
+                description: >-
+                  reference of the passenger.id
                 type: string
-              selectedPlaces:
-                description: selected places in case of graphical booking
-                type: array
-                items:
-                  minItems: 1              
-                  type: object
-                  properties:
-                    passengerReference: 
-                      description: >-
-                        reference of the passenger for this place. 
-                        passengers might need to be assigned to specific places in case of multiple compartments in night trains 
-                      type: string
-                    place: 
-                      type: string  
-      required:
-        - selectedCoach
-        - selectedPlaces
+                format: uuid
+              place:
+                type: string 
 
     Passenger:
       type: object
       description: >-
-        passenger or transportable (e.g. bicycle)
+        Passenger information needed at offering step.
       properties:
         id: 
           type: string
-          format: uuid
           description: >-
             Id of the passenger resource in case service to patch a single passenger is provided.
-        title:
+          format: uuid
+        abstract:
           type: string
           example: Andreas Schlapbach
         reference:
@@ -6211,26 +6111,6 @@ components:
             stable reference to passengers from other elements, or from caller
             system.
           type: string
-        abstract:
-          $ref: '#/components/schemas/PassengerAbstractDef'
-        details:
-          $ref: '#/components/schemas/PassengerDetailsDef'
-        passport:
-          $ref: '#/components/schemas/PassportDef'
-        transportableDetails:
-          $ref: '#/components/schemas/TransportableDef'          
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-      required:
-        - id
-        - title
-        - links
-        
-    PassengerAbstractDef:
-      type: object
-      properties:
         dateOfBirth:
           description: date of birth of the passenger
           type: string
@@ -6242,6 +6122,12 @@ components:
             $ref: '#/components/schemas/CardReference'
         gender:
           $ref: '#/components/schemas/Gender'
+        details:
+          $ref: '#/components/schemas/PassengerDetail'
+        passport:
+          $ref: '#/components/schemas/IdentificationDocument'
+        transportableDetails:
+          $ref: '#/components/schemas/Transportable'          
         prmNeeds:
           type: string
           x-extensible-enum:
@@ -6249,8 +6135,157 @@ components:
             - ACCOMPDOG
             - COMPANIONSEAT
             - COMPANION
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      required:
+        - id
+        - title
+        - links
         
-    PassportDef:
+    PassengerDetail:
+      type: object
+      description: >- 
+        Passenger information potentially needed at booking step. The main purpose is
+        being able to inform the customer of delays or disruptions.
+
+        PassengerDetails providing personal information only information required in the booking.
+        It is not allowed to send personal information not required in the booking reply.
+        It is not allowed to send these personal data already in the booking request.
+      properties:
+        preferredLanguage:
+          type: string
+          description: Languages spoken by the traveler (ISO Language code)
+        title:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        eMail:
+          type: string
+        phone:
+          description: Preferably a mobile phone
+          type: string
+
+    Gender:
+      description: >- 
+        The gender of the passenger, which is important in the case of night trains.
+      type: string
+      enum:
+        - MALE
+        - FEMALE
+        - X
+
+    Transportable:
+      type: object
+      description: >- 
+        Transportables which are handled similar to passengers like dogs, bicycles, car transport.
+        These transportables might need a ticket or reservation.
+      properties:
+        type:
+          description: >- 
+            Subset of the values from the traveler type code list IRS 90918-10 
+          type: string
+          x-extensible-enum:
+            - PET
+            - BICYCLE
+            - CAR
+            - MOTOR_CYCLE
+            - CAR_TRAILER
+        car:
+          $ref: '#/components/schemas/Car'
+        motorCycle:
+          $ref: '#/components/schemas/MotorCycle'
+        trailer:
+          $ref: '#/components/schemas/Trailer'
+      required:
+        - type
+
+    Car:
+      type: object
+      properties:
+        weight:
+          type: integer
+          format: int32
+        length:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        model:
+          type: string
+          description: Free text description of the model (e.g. BMW X5)       
+        attachedItems:
+          description: Indication of items attached to the car
+          type: array
+          items:
+            type: string
+            x-extensible-enum:
+              - ROOF_RACK
+              - BICYCLE_STAND
+        plate:
+          description: >-
+            The trailer plate is a personal data item and must not be provided in an offer request. 
+            It must be patched into the offer after the customer accepted the offer for booking.
+          type: string
+      required:
+        - weight
+        - length
+        - width
+        - height
+        - model
+
+    MotorCycle:    
+      type: object
+      properties:
+        includingSideCar:
+          type: boolean
+          default: false
+        plate:
+          description: >-
+            The trailer plate is a personal data item and must not be provided in an offer request. 
+            It must be patched into the offer after the customer accepted the offer for booking 
+          type: string   
+      required:
+        - includingSideCar
+
+    Trailer:
+      type: object
+      properties:
+        weight:
+          description: weight in kg
+          type: integer
+          format: int32
+        length:
+          description: length in cm
+          type: integer
+          format: int32
+        width:
+          description: width in cm
+          type: integer
+          format: int32
+        height:
+          description: length in cm
+          type: integer
+          format: int32
+        plate:
+          description: >-
+            The trailer plate is a personal data item and must not be provided in an offer request. 
+            It must be patched into the offer after the customer accepted the offer for booking 
+          type: string
+      required:
+        - weight
+        - length
+        - width
+        - height
+
+    IdentificationDocument:
       type: object
       description: >- 
         Travel document data to be exchanged for border control in case of legal requirements
@@ -6258,6 +6293,18 @@ components:
         It is not allowed to send personal information not required in the offer reply. 
         It is legally not allowed to send these personal data already in the offer request.
       properties:
+        id:
+          description: Identifier on the document.
+          type: string
+        type:
+          description: Refer to code list for values
+          type: string
+        name:
+          description: ICAO transliteration identical as written in the document
+          type: string
+        nationality:
+          description: ISO 3166 2A codes
+          type: string
         cityOfBirth:
           type: string
         cityOfIssue:
@@ -6277,86 +6324,14 @@ components:
         dateOfIssue:
           type: string
           format: date-time
-        documentId:
-          type: string
-        documentType:
-          description: Refer to code list for values
-          type: string
         gender:
           $ref: '#/components/schemas/Gender'
         limitOfValidity:
           type: string
           format: date-time
-        name:
-          description: ICAO transliteration identical as written in the document
-          type: string
-        nationality:
-          description: ISO 3166 2A codes
-          type: string
       required:
-        - documentType
-        - name
-      
-    PassengerDetailsDef:
-      type: object
-      description: >- 
-        PassengerDetails providing personal information only information required in the offer.
-        It is not allowed to send personal information not required in the offer reply.
-        It is not allowed to send these personal data already in the offer request.
-      properties:
-        eMails:
-          type: array
-          items:
-            type: string
-            format: email
-        language:
-          type: array
-          items:
-            type: string
-            description: Languages spoken by the traveler (ISO Language code)
-        firstName:
-          type: string
-        firstNameICAO:
-          description: ICAO transliteration
-          type: string
-        lastName:
-          type: string
-        lastNameICAO:
-          description: ICAO transliteration
-          type: string
-        title:
-          type: string
-        phones:
-          type: array
-          items:
-            type: string
-        socialMediaAccount:
-          type: array
-          items:
-            type: object
-            properties:
-              account:
-                type: string
-              accountType:
-                description: >-
-                  Example types: FACEBOOK, WHATSAPP, SKYPE, WECHAT,...
-                type: string
-            required:
-              - account
-              - accountType
-        trainStaffInfo:
-          description: >-
-            Information text provided by the issuing system in a controlled way (e.g. VIP customer).
-          type: string
-
-    Gender:
-      description: >- 
-        The gender of the passenger, which is important in the case of night trains.
-      type: string
-      enum:
-        - MALE
-        - FEMALE
-        - X
+        - id
+        - type
       
     CardReference:
       type: object
@@ -6383,6 +6358,7 @@ components:
         issuer:
           $ref: '#/components/schemas/Company'
       required:
+        - type
         - codeList
         - code
 
