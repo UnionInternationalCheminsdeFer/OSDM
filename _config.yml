@@ -24,6 +24,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-seo-tag
+  - jekyll-remote-theme
   - kramdown-parser-gfm
 
 exclude:
