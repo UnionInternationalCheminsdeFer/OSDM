@@ -1,0 +1,131 @@
+title: Offers Data Model
+
+class Trip <<R,Orchid>> #linen {
+}
+
+class Segment <<D, Green>> #linen {
+}
+
+class TripOffer <<R,orchid>>  {
+id
+trips: [trips]
+offers: [offers]
+passengers: [passengers]
+}
+
+class Offer <<R,orchid>> { 
+id
+minimalPrice: price
+overallServiceClass: FIRST/SECOND
+overallServiceRank: FIRST_A,B,C/SECOND_A,B,C
+overallFlexibility: FULL/SEMI/NONE
+validFrom: date
+validUntil: date
+requestedInformation: String
+OfferParts: [OfferParts]
+Fares:[Fares]
+Trip: Trip
+} 
+
+abstract class OfferPart <<D,green>> #lightgrey {
+id
+price
+pricingMode: INDIVIDUAL/COLLECTIVE
+validity
+reductionsApplied 
+passengerReferences
+validFrom: date
+validUntil: date
+passengers: [passengers]
+requiredPersonalData: string
+products: [products]
+}
+
+class Ancillary <<R,orchid>> {
+category
+}
+
+class Admission <<R,orchid>> {
+reservationRequired 
+reservations: [reservations]
+ancillaries: [ancillaries]
+<<opt>> numericAvailability
+}
+
+
+class Reservation<<R,orchid>> {
+<<opt>> numericAvailability
+reservationDetails: {reservation details}
+placeSelection: {place selection information}
+} 
+
+class Product <<R,orchid>> {
+code
+description
+conditions
+exchangeable: YES/NO/WITH_CONDITIONS
+refundable: YES/NO/WITH_CONDITIONS
+segmentReferences
+serviceClass: FIRST_A,B,C, SECOND_A,B,C
+serviceRankLabel
+serviceConstraint
+carrierConstraint
+}
+
+class Fare <<R,orchid>> {
+id*
+type*
+name
+fareDetailDescription
+price
+regionalConstraint*
+serviceConstraint
+carrierConstraint
+serviceClass
+serviceLevel
+afterSalesCondition*
+combinationConstraint*
+fulfillmentConstraint
+reductionConstraint
+legacyAccountingIdentifier
+travelValidityConstraint*
+reservationDetails
+reservationLegacyParameter
+}
+
+class Passenger <<R, orchid>> {
+id
+externalPassengerReference
+dateOfBirth
+gender
+LastName
+Firstname
+PassportInformation
+Reductions
+Type
+}
+
+class PlaceSelection_ReservationOptions <<D, green>> {
+  Available options
+}
+
+TripOffer "1" *-- "1..n" Offer
+TripOffer "1" *-- "1..n" Passenger
+TripOffer "1" *-- "1" Trip
+Trip "1" -- "1..n" Segment
+Offer "1" *-- "0..n" Admission
+Offer "1" *-- "0..n" Reservation
+Offer "1" *-- "0..n" Ancillary
+Offer "1" *-- "0..n" Fare
+Offer "1" *-- "1" Trip
+OfferPart <|-- Admission
+OfferPart <|-- Reservation
+OfferPart <|-- Ancillary
+OfferPart o-- "0..n" Product
+Admission .> "0..n" Reservation:optional/\nincluded/\nmandatory
+Admission .> "0..n" Ancillary:optional/\nincluded
+Product .>"1..n" Segment
+Reservation*--"1..n" PlaceSelection_ReservationOptions
+Fare *--"1..n" PlaceSelection_ReservationOptions
+
+OfferPart .. Passenger

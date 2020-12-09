@@ -1,0 +1,15 @@
+hide footbox
+
+actor API_Consumer 
+
+== Searching for locations & retrieving references only ==
+API_Consumer -> OSDM_Provider: GET /Locations/?matchValue="MU"&matchType="NAME"
+OSDM_Provider --> API_Consumer: LocationRef List
+
+== Searching for locations & retrieving full resources ==
+API_Consumer -> OSDM_Provider: GET /Locations/?matchValue="MU"&matchType="NAME"&embed="LOCATIONS"
+OSDM_Provider --> API_Consumer: <Locations List>
+
+== Retrieving one specific location resource ==
+API_Consumer -> OSDM_Provider: GET /Locations/12345
+OSDM_Provider --> API_Consumer: <Location 12345>

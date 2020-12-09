@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="561px" preserveAspectRatio="none" style="width:481px;height:561px;" version="1.1" viewBox="0 0 481 561" width="481px" zoomAndPan="magnify"><defs><filter height="300%" id="f14zwtcv58rc83" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="253" x="107.75" y="16.708">Trips &amp; Locations Datamodel</text><!--MD5=[18f5b4ccae6e62f3670d3aa352beb4cd]
+class Trip--><rect codeLine="3" fill="#FAF0E6" filter="url(#f14zwtcv58rc83)" height="112.0234" id="Trip" style="stroke:#A80036;stroke-width:1.5;" width="139" x="35" y="27.9531"/><ellipse cx="88.75" cy="43.9531" fill="#DA70D6" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M89.9531,44.0938 Q90.3125,44.1719 90.5781,44.4531 Q90.8594,44.7188 91.25,45.5 L93.4844,49.9531 L90.7969,49.9531 L89.2969,46.8281 Q89.2344,46.6875 89.125,46.4531 Q88.4688,45.0625 87.5781,45.0625 L86.7969,45.0625 L86.7969,49.9531 L84.3594,49.9531 L84.3594,37.5625 L87.8906,37.5625 Q90.2813,37.5625 91.3125,38.4063 Q92.3594,39.25 92.3594,41.1563 Q92.3594,42.4375 91.7344,43.2031 Q91.125,43.9531 89.9531,44.0938 Z M86.7969,39.625 L86.7969,43 L87.9531,43 Q88.9688,43 89.3906,42.6094 Q89.8281,42.2031 89.8281,41.2969 Q89.8281,40.4063 89.3906,40.0156 Q88.9688,39.625 87.9531,39.625 L86.7969,39.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="23" x="109.25" y="48.1074">Trip</text><line style="stroke:#A80036;stroke-width:1.5;" x1="36" x2="173" y1="59.9531" y2="59.9531"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="51" x="41" y="74.1636">id: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="89" x="41" y="86.9683">Origin: Location</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="119" x="41" y="99.7729">Destination: Location</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="127" x="41" y="112.5776">segments:[Segments]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="88" x="41" y="125.3823">duration: string</text><line style="stroke:#A80036;stroke-width:1.5;" x1="36" x2="173" y1="131.9766" y2="131.9766"/><!--MD5=[220eb97dd738422dcfb96be6c83c4129]
+class Segment--><rect codeLine="11" fill="#FAF0E6" filter="url(#f14zwtcv58rc83)" height="150.4375" id="Segment" style="stroke:#A80036;stroke-width:1.5;" width="195" x="7" y="199.9531"/><ellipse cx="72.25" cy="215.9531" fill="#008000" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M71.8438,211.7656 L71.8438,219.75 L72.5,219.75 Q73.9375,219.75 74.5469,218.8438 Q75.1719,217.9219 75.1719,215.75 Q75.1719,213.5781 74.5469,212.6719 Q73.9375,211.7656 72.5,211.7656 L71.8438,211.7656 Z M69.3906,209.5625 L72.0156,209.5625 Q75.0469,209.5625 76.375,211.0156 Q77.7188,212.4531 77.7188,215.75 Q77.7188,219.0469 76.375,220.5 Q75.0469,221.9531 72.0156,221.9531 L69.3906,221.9531 L69.3906,209.5625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="56" x="92.75" y="220.1074">Segment</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="201" y1="231.9531" y2="231.9531"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="104" x="13" y="246.1636">description: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="82" x="13" y="258.9683">index: number</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="89" x="13" y="271.7729">Origin: Location</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="119" x="13" y="284.5776">Destination: Location</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="74" x="13" y="297.3823">stops: [Stop]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="88" x="13" y="310.187">duration: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="183" x="13" y="322.9917">transfer: {transfer information}</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="169" x="13" y="335.7964">vehicle: {vehicle information}</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="201" y1="342.3906" y2="342.3906"/><!--MD5=[4f1f3706c1a355a8488e154afcaed5df]
+class Location--><rect codeLine="22" fill="#FAF0E6" filter="url(#f14zwtcv58rc83)" height="73.6094" id="Location" style="stroke:#A80036;stroke-width:1.5;" width="258" x="209.5" y="46.9531"/><ellipse cx="307.75" cy="62.9531" fill="#DA70D6" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M308.9531,63.0938 Q309.3125,63.1719 309.5781,63.4531 Q309.8594,63.7188 310.25,64.5 L312.4844,68.9531 L309.7969,68.9531 L308.2969,65.8281 Q308.2344,65.6875 308.125,65.4531 Q307.4688,64.0625 306.5781,64.0625 L305.7969,64.0625 L305.7969,68.9531 L303.3594,68.9531 L303.3594,56.5625 L306.8906,56.5625 Q309.2813,56.5625 310.3125,57.4063 Q311.3594,58.25 311.3594,60.1563 Q311.3594,61.4375 310.7344,62.2031 Q310.125,62.9531 308.9531,63.0938 Z M305.7969,58.625 L305.7969,62 L306.9531,62 Q307.9688,62 308.3906,61.6094 Q308.8281,61.2031 308.8281,60.2969 Q308.8281,59.4063 308.3906,59.0156 Q307.9688,58.625 306.9531,58.625 L305.7969,58.625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="53" x="328.25" y="67.1074">Location</text><line style="stroke:#A80036;stroke-width:1.5;" x1="210.5" x2="466.5" y1="78.9531" y2="78.9531"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="51" x="215.5" y="93.1636">id: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="246" x="215.5" y="105.9683">type : Station/POI/Address/GeoCoordinates</text><line style="stroke:#A80036;stroke-width:1.5;" x1="210.5" x2="466.5" y1="112.5625" y2="112.5625"/><!--MD5=[e817ac89aa025528a1ddf8e2c0b98a5e]
+class Stop--><rect codeLine="27" fill="#FAF0E6" filter="url(#f14zwtcv58rc83)" height="137.6328" id="Stop" style="stroke:#A80036;stroke-width:1.5;" width="122" x="43.5" y="409.9531"/><ellipse cx="85.95" cy="425.9531" fill="#008000" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M85.5438,421.7656 L85.5438,429.75 L86.2,429.75 Q87.6375,429.75 88.2469,428.8438 Q88.8719,427.9219 88.8719,425.75 Q88.8719,423.5781 88.2469,422.6719 Q87.6375,421.7656 86.2,421.7656 L85.5438,421.7656 Z M83.0906,419.5625 L85.7156,419.5625 Q88.7469,419.5625 90.075,421.0156 Q91.4188,422.4531 91.4188,425.75 Q91.4188,429.0469 90.075,430.5 Q88.7469,431.9531 85.7156,431.9531 L83.0906,431.9531 L83.0906,419.5625 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="29" x="106.05" y="430.1074">Stop</text><line style="stroke:#A80036;stroke-width:1.5;" x1="44.5" x2="164.5" y1="441.9531" y2="441.9531"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="73" x="49.5" y="456.1636">name: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="82" x="49.5" y="468.9683">index: number</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="94" x="49.5" y="481.7729">station: Location</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="110" x="49.5" y="494.5776">departureDateTime</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="90" x="49.5" y="507.3823">arrivalDateTime</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="87" x="49.5" y="520.187">departureTrack</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="67" x="49.5" y="532.9917">arrivalTrack</text><line style="stroke:#A80036;stroke-width:1.5;" x1="44.5" x2="164.5" y1="539.5859" y2="539.5859"/><!--MD5=[bb2556086b62dc4c783ad2c58432fee6]
+link Trip to Segment--><path codeLine="37" d="M104.5,140.1231 C104.5,158.7631 104.5,179.8731 104.5,199.7331 " fill="none" id="Trip-Segment" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="25" x="78.3086" y="188.9012">1:m</text><!--MD5=[5553acd5f0df04fc34f257e0e4b73629]
+link Segment to Stop--><path codeLine="38" d="M104.5,350.0231 C104.5,369.6131 104.5,390.6631 104.5,409.9231 " fill="none" id="Segment-Stop" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="25" x="78.2109" y="399.1236">1:m</text><!--MD5=[6bae36f507f4f88f2fa3cb159d9863fd]
+@startuml
+title: Trips & Locations Datamodel
+
+class Trip <<R,Orchid>> #linen {
+id: string
+Origin: Location
+Destination: Location
+segments:[Segments]
+duration: string
+}
+
+class Segment <<D, Green>> #linen {
+description: string
+index: number
+Origin: Location
+Destination: Location
+stops: [Stop]
+duration: string
+transfer: {transfer information}
+vehicle: {vehicle information}
+}
+
+class Location <<R,Orchid>> #linen {
+id: string
+type : Station/POI/Address/GeoCoordinates
+}
+
+class Stop <<D, Green>> #linen {
+name: string
+index: number
+station: Location
+departureDateTime
+arrivalDateTime
+departureTrack
+arrivalTrack
+}
+
+Trip - - "1:m" Segment
+Segment - - "1:m" Stop
+@enduml
+
+PlantUML version 1.2020.22(Sun Dec 06 10:36:27 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

@@ -1,0 +1,25 @@
+hide footbox
+
+actor API_Consumer 
+
+== Creating the trip collection & getting the initial set of trips ==
+API_Consumer -> OSDM_Provider: POST /Trips-collection <MUNCHEN-PARIS, 23/10/2021>
+OSDM_Provider -> Journey_Planner : <retrieve trips information based on API Consumer request>
+Journey_Planner --> OSDM_Provider : <trips information>
+OSDM_Provider --> API_Consumer: <Trips-Collection with list of Trip Refs & scrolling tokens>
+
+== Scrolling to the (chronologically) next set of trips in the collection  ==
+API_Consumer -> OSDM_Provider: GET /Trips-Collections/2345?scrollContext="#AEF34D26C345"
+OSDM_Provider -> Journey_Planner : <retrieve trips information based on scrollContext OR copmuted new params>
+Journey_Planner --> OSDM_Provider : <trips information>
+OSDM_Provider --> API_Consumer: <Trips-Collection with list of Trip Refs & scrolling tokens>
+
+== Scrolling to the (chronologically) next set of trips in the collection, returning full trips details but only location Refs  ==
+API_Consumer -> OSDM_Provider: GET /Trips-Collections/2345?scrollContext="#AEF34D26C345"&embed="TRIPS"
+OSDM_Provider -> Journey_Planner : <retrieve trips information based on scrollContext OR copmuted new params>
+Journey_Planner --> OSDM_Provider : <trips information>
+OSDM_Provider --> API_Consumer: <Trips-Collection with list of Trip resources & scrolling tokens>
+
+== Retrieving the details of one trip, with full locations details ==
+API_Consumer -> OSDM_Provider: GET /Trips/3456?embed="LOCATIONS"
+OSDM_Provider --> API_Consumer: <Trip 3456>

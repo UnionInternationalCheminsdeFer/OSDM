@@ -1,0 +1,146 @@
+title: Bookings Data Model
+
+class Trip <<R,Orchid>> #linen {
+}
+
+class Segment <<D, Green>> #linen {
+}
+
+class BookedOffer <<R,orchid>> #lightcyan { 
+id
+minimalPrice: price
+overallServiceClass: FIRST/SECOND
+overallServiceRank: FIRST_A,B,C/SECOND_A,B,C
+overallFlexibility: FULL/SEMI/NONE
+validFrom: date
+validTo: date
+requestedInformation: String
+OfferParts: [OfferParts]
+Fares:[Fares]
+Trip: Trip
+} 
+
+abstract class OfferPart <<D,green>> #lightgrey {
+}
+
+class Ancillary <<R,orchid>> {
+category
+}
+
+class Admission <<R,orchid>> {
+reservationRequired 
+reservations: [reservations]
+ancillaries: [ancillaries]
+<<opt>> numericAvailability
+}
+
+class Reservation<<R,orchid>> {
+<<opt>> numericAvailability
+reservationDetails: {reservation details}
+placeSelection: {place selection information}
+} 
+
+class Product <<R,orchid>> {
+}
+
+class Fare <<R,orchid>> {
+
+}
+
+class Passenger <<R, orchid>> {
+id
+externalPassengerReference
+dateOfBirth
+gender
+LastName
+Firstname
+PassportInformation
+Reductions
+Type
+}
+
+class Booking <<R,orchid>> #lightcyan {
+id
+status
+bookingMessages
+requestedInformation
+ticketTimeLimit
+fulfillmentOptions: fulfillmentOptions
+bookedOffers: Offers
+
+}
+note left: possible states PREBOOKED, BOOKED, FULFILLED, CANCELLED\n Booked represents the state between the booking\nconfirmation and the issuance of the tickets.
+
+class FulfillmentOption <<D,green>> #lightcyan  {
+type
+}
+
+class ReservationDetails_ReservedPlaces<<D, green>> #lightcyan {
+passengerId
+<<opt>> placeNumber
+<<opt>> coachNumber
+<<opt>> direction
+}
+
+note right of Product
+reference is the unique internal id that allows to
+link fulfillments to products. It has no functional meaning
+end note
+
+class Fulfillment  <<R,orchid>> #bisque{
+id
+status
+tcn
+productReferences
+}
+
+class RefundOffer <<R, orchid>> #lightgreen {
+  id
+  validUntil
+  reimbursementStatus
+  reimbursementDateTime
+  appliedOverrule
+  fulfillments:[fulfillments]
+  RefundFee
+  RefundableAmount 
+}
+
+note bottom of Fulfillment
+Possible statuses:
+TICKETED
+CANCELLED: following a refund operation
+BOARDED: checked on board by a controlling agency.
+
+Tcn:  unique ticket number for a railway
+end note
+
+Booking "1"*-"1..n" Passenger
+Booking "1"*--"1..n" FulfillmentOption
+Booking "1"-"0..n" RefundOffer
+RefundOffer "1"--"1..n" Fulfillment
+
+Booking "1"*--"1..2" BookedOffer
+Trip "1" *- "1..n" Segment
+Booking "1"*--"0..n" Fulfillment
+
+Admission "1"*--"1..n" Product
+Reservation"1"*--"0..1" Product
+Ancillary "1"*--"0..1" Product
+
+BookedOffer "1" *-- "0..n" Admission
+BookedOffer "1" *-- "0..n" Reservation
+BookedOffer "1" *-- "0..n" Fare
+BookedOffer "1" *-- "0..n" Ancillary
+BookedOffer "1"*--"0..1" Trip
+OfferPart <|-- Admission
+OfferPart <|-- Reservation
+OfferPart <|-- Ancillary
+Admission .>"0..n" Reservation:optional/included/mandatory
+Admission .>"0..n" Ancillary:optional/included
+Reservation*--"1..n" ReservationDetails_ReservedPlaces
+
+note as floatingNote
+FulfillmentOption, RequestedInformation and
+TicketTimeLimit are only meaningful at 
+pre-booking stage
+end note

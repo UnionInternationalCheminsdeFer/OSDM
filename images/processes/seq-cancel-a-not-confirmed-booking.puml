@@ -1,0 +1,13 @@
+hide footbox
+
+actor API_Consumer 
+
+== setting additional passenger information that may be required to confirm the booking, starting from the booking overview ==
+API_Consumer -> OSDM_Provider: GET /Bookings/5678?embed="BOOKEDOFFERS"
+OSDM_Provider --> API_Consumer: <Booking with booked offers>
+API_Consumer -> OSDM_Provider: DELETE /Bookings/5678
+loop for each offerPart or FareProvider booking in bookedOffers
+    OSDM_Provider -> FareProvider: cancel booking 
+	FareProvider --> OSDM_Provider : OK response (can vary per FareProvider)
+end
+OSDM_Provider --> API_Consumer: 200 OK

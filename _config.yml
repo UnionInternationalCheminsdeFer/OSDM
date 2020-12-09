@@ -1,1 +1,41 @@
-theme: jekyll-theme-cayman
+title: Open Sales and Distribution Model
+email: andreas.schlapbach@sbb.ch
+
+description: >- # this means to ignore newlines until "baseurl:"
+  You can edit this line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+
+baseurl: "" # the subpath of your site, e.g. /blog
+
+url: "http://osdm.github.com"
+
+permalink: pretty
+
+favicon: favicon.png
+
+# Build settings
+
+theme: bulma-clean-theme
+# theme: jekyll-theme-cayman
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - kramdown-parser-gfm
+
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+livereload: true
+
+markdown: kramdown

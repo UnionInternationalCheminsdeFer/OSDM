@@ -1,0 +1,38 @@
+title: Trips & Locations Datamodel
+
+class Trip <<R,Orchid>> #linen {
+id: string
+Origin: Location
+Destination: Location
+segments:[Segments]
+duration: string
+}
+
+class Segment <<D, Green>> #linen {
+description: string
+index: number
+Origin: Location
+Destination: Location
+stops: [Stop]
+duration: string
+transfer: {transfer information}
+vehicle: {vehicle information}
+}
+
+class Location <<R,Orchid>> #linen {
+id: string
+type : Station/POI/Address/GeoCoordinates
+}
+
+class Stop <<D, Green>> #linen {
+name: string
+index: number
+station: Location
+departureDateTime
+arrivalDateTime
+departureTrack
+arrivalTrack
+}
+
+Trip -- "1:m" Segment
+Segment -- "1:m" Stop 

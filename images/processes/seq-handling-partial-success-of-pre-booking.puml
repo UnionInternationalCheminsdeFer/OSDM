@@ -1,0 +1,29 @@
+hide footbox
+
+== Creating the trip collection & getting the initial set of trips ==
+API_Consumer -> OSDM_Provider: POST /Trips-offers-collection <MUNCHEN-PARIS, 23/10/2021, 2 pax, dob, ...>
+OSDM_Provider -> Journey_Planner : <retrieve trips information based on API Consumer request>
+Journey_Planner --> OSDM_Provider : <trips information>
+OSDM_Provider -> OSDM_Provider: determine FareProvider for each segment
+OSDM_Provider -> OSDM_Provider : create offer requests
+OSDM_Provider -> FareProvider1: get offers 
+FareProvider1 --> OSDM_Provider : request with trips
+OSDM_Provider -> FareProvider2: get offers 
+FareProvider2 --> OSDM_Provider : request with trips
+OSDM_Provider -> OSDM_Provider : reconcile trips and \nconstruct global offers
+OSDM_Provider --> API_Consumer: <Trips-offers-Collection with list of references to tripOffers and scrolling tokens>
+
+== Creating a booking based on one of the received offers ==
+API_Consumer -> OSDM_Provider: POST /bookings/ <offerId= 8765>
+OSDM_Provider -> OSDM_Provider : create local booking 5678
+OSDM_Provider -> FareProvider1: provisionally book offerpart1 
+FareProvider1 --> OSDM_Provider : OK response (can vary per FareProvider)
+OSDM_Provider -> OSDM_Provider : add FareProvider booking to local booking
+OSDM_Provider -> FareProvider2: provisionally book offerpart2 
+FareProvider2 --> OSDM_Provider : NOK response (can vary per FareProvider)
+
+OSDM_Provider -> FareProvider1: DELETE /Bookings/5678
+FareProvider1 --> OSDM_Provider : OK response (can vary per FareProvider)
+
+== respond to API Consumer with an error message ==
+OSDM_Provider --> API_Consumer: 400 NOK (JSon Problem object)

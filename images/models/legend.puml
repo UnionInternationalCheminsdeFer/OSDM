@@ -1,0 +1,20 @@
+class Resource <<R,Orchid>> #white {
+}
+
+class Data_Structure <<D,Green>> #white {
+}
+
+class Trips_Locations_space #linen {
+}
+
+class Offer_space {
+}
+
+class Booking_space #lightCyan {
+}
+
+class Fulfillment_space #bisque {
+}
+
+class Aftersales_space #lightgreen {
+}

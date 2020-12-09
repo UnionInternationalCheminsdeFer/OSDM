@@ -1,0 +1,43 @@
+hide footbox
+
+actor API_Consumer 
+
+== Creating the trip collection & getting the initial set of trips ==
+API_Consumer -> OSDM_Provider: POST /Trips-offers-collection <MUNCHEN-PARIS, 23/10/2021, 2 pax, dob, ...>
+OSDM_Provider -> Journey_Planner : <retrieve trips information based on API Consumer request>
+Journey_Planner --> OSDM_Provider : <trips information>
+loop for each trip    
+    loop for each segment
+        OSDM_Provider -> OSDM_Provider: determine FareProvider
+    end
+end
+OSDM_Provider -> OSDM_Provider : create offer requests
+loop for each request
+    OSDM_Provider -> FareProvider: get offers 
+    FareProvider -> FareProvider: calculate offers
+    FareProvider --> OSDM_Provider : request with trips
+end
+OSDM_Provider -> OSDM_Provider : reconcile trips and \nconstruct global offers
+OSDM_Provider --> API_Consumer: <Trips-offers-Collection with list of TripOffer Refs scrolling tokens>
+
+== Scrolling to the (chronologically) next set of trips in the trip offer collection, returning trip offers, trips, offers and passengers, but no locations nor offerparts  ==
+API_Consumer -> OSDM_Provider: GET /Trips-offers-Collections/5678?scrollContext="#AEF34D26C345"&\nembed="TRIPOFFERS, TRIPOFFERS.TRIPS,TRIPOFFERS.OFFERS, TRIPOFFERS.PASSENGERS"
+OSDM_Provider -> Journey_Planner : <retrieve next trips information based on scrollContext OR copmuted new params>
+Journey_Planner --> OSDM_Provider : <trips information>
+loop for each trip    
+    loop for each segment
+        OSDM_Provider -> OSDM_Provider: determine FareProvider
+    end
+end
+OSDM_Provider -> OSDM_Provider : create offer requests
+loop for each request
+    OSDM_Provider -> FareProvider: get offers 
+    FareProvider -> FareProvider: calculate offers
+    FareProvider --> OSDM_Provider : response with offers
+end
+OSDM_Provider -> OSDM_Provider : reconcile trips and \nconstruct global offers
+OSDM_Provider --> API_Consumer: <Trip-offers-Collection with list of Trip resources, offers, passengers & scrolling tokens>
+
+== Retrieving the details of one offer, with full details of all included resources ==
+API_Consumer -> OSDM_Provider: GET /Offers/3456?embed="ALL"
+OSDM_Provider --> API_Consumer: <Offer 3456>

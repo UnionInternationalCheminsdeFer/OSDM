@@ -1,0 +1,15 @@
+[*] --> prebooked : POST /Bookings with OfferIds, Optional AccoIds, Optional ancillaries
+
+prebooked --> confirmed: POST /Bookings/id/fulfillments \n where at least 1 fulfillment is confirmed
+prebooked --> cancelled: DELETE /Bookings/id
+prebooked --> cancelled: ticket-time-limit reached
+prebooked --> error: unrecoverable error \nat confirmation/fulfillment
+prebooked --> fulfilled: POST /Bookings/id/fulfillments \n where all fulfillments are fulfilled
+cancelled --> [*]: grace period expired
+confirmed --> fulfilled: PATCH /bookings/id/fulfillments \n <all fulfillments are now fulfilled>
+confirmed --> refunded: patch /bookings/id/refundOffer \n <all fulfillments refunded>
+confirmed --> error: unrecoverable error at fulfillment \n <of a confirmed booking>
+fulfilled --> refunded: patch /bookings/id/refundOffer \n<all fulfillments refunded>
+fulfilled --> [*] : archiving
+refunded --> [*] : archiving
+error --> [*] : DELETE /booking \nin a cleanup context

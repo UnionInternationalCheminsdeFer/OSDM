@@ -1,0 +1,13 @@
+hide footbox
+== Cancelling a refund offer ==
+API_Consumer -> OSDM_Provider: GET /Bookings/5678?embed="BOOKEDOFFERS, TRIPS,FULFILLMENTS, REFUNDOFFERS"
+OSDM_Provider --> API_Consumer: <Booking with BookedOffers, Trips,Fulfillments and Refund Offers resources>
+API_Consumer -> OSDM_Provider: DELETE /Bookings/5678/exchangeOffers/23
+loop for each fulfillment in the refund offer request
+    alt FareProvider supports refund offers 
+      OSDM_Provider -> FareProvider: cancel refund offer
+	  FareProvider --> OSDM_Provider : OK
+   
+    end
+end
+OSDM_Provider --> API_Consumer: 200 OK

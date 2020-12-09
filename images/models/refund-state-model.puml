@@ -1,0 +1,4 @@
+[*] --> Proposed: POST /Bookings/id/refundOffers
+Proposed--> Confirmed: PATCH /Bookings/id/refundOffers
+Proposed--> [*] : DELETE /Bookings/id/refundOffers\n OR refundOffer expiry
+Confirmed --> [*] : archiving
