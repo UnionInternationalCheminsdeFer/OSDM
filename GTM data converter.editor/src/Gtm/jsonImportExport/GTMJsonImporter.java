@@ -74,6 +74,7 @@ import gtm.TrainResourceLocationDef;
 import gtm.Transfer;
 import gtm.TranslationDef;
 import gtm.TravelValidityConstraintDef;
+import gtm.ValidityRange.TimeUnitDef;
 import gtm.ViaStationsDef;
 import gtm.ZoneDef;
 import gtm.ZoneDefinitionDef;
@@ -469,12 +470,41 @@ public class GTMJsonImporter {
 			v.setHoursAfterMidnight(jv.getHoursAfterMidnight()); 
 		}
 		if (jv.getTimeUnit() != null) {
-			v.setUnit(TimeUnit.getByName(jv.getTimeUnit().name()));
+			v.setUnit(convertTimeUnit(jv.getTimeUnit()));
 		}
 		v.setValue(jv.getValue());   
 		return v;
 	}
-
+	
+	
+	private static Gtm.TimeUnit convertTimeUnit(TimeUnitDef unit) {
+		
+		if (unit.equals(TimeUnitDef.HOURS)) {
+			return  Gtm.TimeUnit.HOUR;
+		} else if (unit.equals(TimeUnitDef.MINUTES)) {
+			return  Gtm.TimeUnit.MINUTE;
+		} else if (unit.equals(TimeUnitDef.DAYS)) {
+			return  Gtm.TimeUnit.DAY;
+		}
+		
+		return null;
+		
+	}
+	
+	private static Gtm.TimeUnit convertTimeUnit(RelativeTimeDef.TimeUnit unit) {
+				
+		if (unit.equals(RelativeTimeDef.TimeUnit.HOURS)) {
+			return  Gtm.TimeUnit.HOUR;
+		} else if (unit.equals(RelativeTimeDef.TimeUnit.MINUTES)) {
+			return  Gtm.TimeUnit.MINUTE;
+		} else if (unit.equals(RelativeTimeDef.TimeUnit.DAYS)) {
+			return  Gtm.TimeUnit.DAY;
+		}
+		
+		return null;
+		
+	}
+	
 
 	private SupportedOnlineServices convertSupportedOnlineServices(List<String> jl) {
 
@@ -622,7 +652,7 @@ public class GTMJsonImporter {
 			o.setReference(TimeReferenceType.getByName(jo.getTimeReference().name()));
 		}
 		if (jo.getTimeUnit() != null) {
-			o.setUnit(TimeUnit.getByName(jo.getTimeUnit().name()));
+			o.setUnit(convertTimeUnit(jo.getTimeUnit()));
 		}
 		o.setValue(jo.getTimeValue());
 		return o;
@@ -636,7 +666,7 @@ public class GTMJsonImporter {
 			o.setReference(TimeReferenceType.getByName(jo.getTimeReference().name()));
 		}
 		if (jo.getTimeUnit() != null) {
-			o.setUnit(TimeUnit.getByName(jo.getTimeUnit().name()));
+			o.setUnit(convertTimeUnit(jo.getTimeUnit()));
 		}
 		o.setValue(jo.getTimeValue());
 		return o;
@@ -1760,7 +1790,7 @@ public class GTMJsonImporter {
 			a.setReference(TimeReferenceType.getByName(ja.getTimeReference().name()));
 		}
 		if (ja.getTimeUnit()!= null) {
-			a.setUnit(TimeUnit.getByName(ja.getTimeUnit().name()));
+			a.setUnit(convertTimeUnit(ja.getTimeUnit()));
 		}
 		a.setValue(ja.getTimeValue());
 		return a;

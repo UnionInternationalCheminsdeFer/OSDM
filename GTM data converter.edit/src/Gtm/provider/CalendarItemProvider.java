@@ -241,11 +241,22 @@ public class CalendarItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Calendar)object).getName();
+		
+		Calendar c = (Calendar)object;
+		String label = c.getName();
+		StringBuilder sb = new StringBuilder();
+		if (label == null || label.length() == 1) {
+			if (c.getDates() == null || c.getDates().isEmpty()) {
+				sb.append(c.getFromDate()).append(" - ").append(c.getUntilDate());
+			} else {
+				sb.append(c.getDates());
+			}
+			label = sb.toString();
+		}
 		return label == null || label.length() == 0 ?
 			getString("_UI_Calendar_type") :
 			getString("_UI_Calendar_type") + " " + label;

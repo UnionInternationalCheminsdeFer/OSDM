@@ -732,7 +732,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gtm.ecore#//SalesAvailabilityConstraint/dataSource"/>
     </genClasses>
     <genClasses ecoreClass="Gtm.ecore#//SalesRestriction">
-      <genFeatures property="None" children="true" createChild="true" propertyDescription="sales dates"
+      <genFeatures notify="false" createChild="false" propertyDescription="sales dates"
           propertySortChoices="true" ecoreFeature="ecore:EReference Gtm.ecore#//SalesRestriction/salesDates"/>
       <genFeatures property="None" children="true" createChild="true" propertyDescription="start of sale"
           ecoreFeature="ecore:EReference Gtm.ecore#//SalesRestriction/startOfSale"/>
