@@ -17,7 +17,9 @@ favicon: favicon.png
 
 remote_theme: chrisrhymes/bulma-clean-theme
 # theme: bulma-clean-theme
-# theme: jekyll-theme-cayman
+
+# Don't publish files in the future
+future: false
 
 plugins:
   - jekyll-feed
