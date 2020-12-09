@@ -5,7 +5,6 @@ layout: page
 show_sidebar: true
 hero_link: http://localhost
 hero_link_text: Download Specification
-
 ---
 
 ## Introduction
