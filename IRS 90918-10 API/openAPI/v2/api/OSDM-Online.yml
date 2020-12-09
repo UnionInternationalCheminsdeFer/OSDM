@@ -380,8 +380,30 @@ paths:
                 properties:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
+                  id:
+                    type: string
+                    format: uuid
                   tripsCollection:
-                    $ref: '#/components/schemas/TripsCollection'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Trip'
+                  scrollBackContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll backward. 
+                      (Value depends on underlying system.)
+                  scrollForwardContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll forward.
+                      (Value depends on underlying system.)
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+                required:
+                  - id
+                  - tripsCollection
           headers:
             Content-Language:
               schema:
@@ -450,8 +472,30 @@ paths:
                 properties:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
+                  id:
+                    type: string
+                    format: uuid
                   tripsCollection:
-                    $ref: '#/components/schemas/TripsCollection'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Trip'
+                  scrollBackContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll backward. 
+                      (Value depends on underlying system.)
+                  scrollForwardContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll forward.
+                      (Value depends on underlying system.)
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+                required:
+                  - id
+                  - tripsCollection
           headers:
             Content-Language:
               schema:
@@ -565,8 +609,30 @@ paths:
                 properties:
                   warnings:
                      $ref: '#/components/schemas/WarningMessageList'
-                  tripOffersCollection:
-                     $ref: '#/components/schemas/TripOffersCollection'
+                  id:
+                    type: string
+                    format: uuid
+                  tripOffers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TripOffer'
+                  scrollBackContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll backward. (Value
+                      depends on underlying system.)
+                  scrollForwardContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll forward.
+                      (Value depends on underlying system.)
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+                required:
+                  - id
+                  - tripOffers
           headers:
             Content-Language:
               schema:
@@ -634,8 +700,30 @@ paths:
                 properties:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
-                  tripOffersCollection:
-                    $ref: '#/components/schemas/TripOffersCollection'
+                  id:
+                    type: string
+                    format: uuid
+                  tripOffers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TripOffer'
+                  scrollBackContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll backward. (Value
+                      depends on underlying system.)
+                  scrollForwardContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll forward.
+                      (Value depends on underlying system.)
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+                required:
+                  - id
+                  - tripOffers
           headers:
             Content-Language:
               schema:
@@ -3092,34 +3180,6 @@ components:
         - title
         - links
 
-    TripsCollection:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        tripsCollection:
-          type: array
-          items:
-            $ref: '#/components/schemas/Trip'
-        scrollBackContext:
-          type: string
-          description: >-
-            Scroll reference for the current response to scroll backward. 
-            (Value depends on underlying system.)
-        scrollForwardContext:
-          type: string
-          description: >-
-            Scroll reference for the current response to scroll forward.
-            (Value depends on underlying system.)
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-      required:
-        - id
-        - tripsCollection
-
     TripRequest:
       type: object
       properties:
@@ -3166,15 +3226,18 @@ components:
           items:
             $ref: '#/components/schemas/StationCode'
         travelDateTime:
-          type: string
-          format: date-time
-        isArrival:
-          description: >-
-            Defines whether or not the given travel date/time is the latest
-            arrival (true arriving at given time; false departing at given
-            time).
-          type: boolean
-          default: false
+          type: object
+          properties:
+            dateTime:
+              type: string
+              format: date-time
+            isArrival:
+              type: boolean
+              default: false
+              description: >-
+                Defines whether or not the given travel date/time is the latest
+                arrival (true arriving at given time; false departing at given
+                time).
         transportMode:
           description: >-
             Transport mode (code list of MERITS). Optional for offer requests. 
@@ -3463,36 +3526,6 @@ components:
         - id
         - title
         - links
-
-    TripOffersCollection:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        tripOffers:
-          type: array
-          items:
-            $ref: '#/components/schemas/TripOffer'
-        scrollBackContext:
-          type: string
-          description: >-
-            Scroll reference for the current response to scroll backward. (Value
-            depends on underlying system.)
-        scrollForwardContext:
-          type: string
-          description: >-
-            Scroll reference for the current response to scroll forward.
-            (Value depends on underlying system.)
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-      required:
-        - id
-        - tripOffers
-      
-
 
     ComfortClass:
       description: >-
@@ -4156,7 +4189,7 @@ components:
             type: object
             properties:
               type:
-                $ref: '#/components/schemas/SecurityFeatureTypeDef'
+                $ref: '#/components/schemas/SecurityFeatureType'
               data:
                 description: base 64 encoded data
                 type: string
