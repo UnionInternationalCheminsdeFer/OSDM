@@ -17,7 +17,7 @@ To join forces and represent the **rail sector as a whole** the two initiatives 
 
 ## Contact
 
-For further informaiton contact [Vittorio Carta](mailto:vittoirio.carta@deutschebahn.com).
+For further informaiton contact [Vittorio Carta](mailto:vittorio.carta@deutschebahn.com).
 
 ## Copyright
 
