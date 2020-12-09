@@ -15,7 +15,8 @@ favicon: favicon.png
 
 # Build settings
 
-theme: bulma-clean-theme
+remote_theme: chrisrhymes/bulma-clean-theme
+# theme: bulma-clean-theme
 # theme: jekyll-theme-cayman
 
 plugins:
