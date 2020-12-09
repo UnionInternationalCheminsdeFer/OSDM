@@ -13,9 +13,13 @@ The Open Sales and Distribution Model has emerged from the **nTM (new Tariff Mod
 
 - The Full Service Model (FSM 2.0) initiative defines an open standard for the distribution of rail services (bookings, reservations, integrated reservations and additional services) within Europe and beyond. By standardizing the distribution interface, the distribution of products and services can be greatly simplified.
 
-To join forces and represent the **rail sector as a whole** the two initiatives have been merged into the [OSDM](/.) initiative. The specification is now supported by the UIC as Leaflet 90918-10.
+To join forces and represent the **rail sector as a whole** the two initiatives have been merged into the [OSDM](/.) initiative. The specification is now supported by the [UIC](https://uic.org) as Leaflet 90918-10.
+
+## Contact
+
+For further informaiton contact [Vittorio Carta](mailto:vittoirio.carta@deutschebahn.com).
 
 ## Copyright
 
 This documentation copyrighted by [UIC](https://www.uic.org) is published under
-the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.html).
+the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.html) Open Source Licence.
