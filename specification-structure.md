@@ -1,22 +1,25 @@
 ---
 layout: page
-title: Specification Structure
+title: Specification
 permalink: /spec/
-hide_hero: true
 ---
-
-## Specification Structure
 
 The **OSDM** specification is structured into two parts:
 
-### An Offline Part
+### Part I: An Offline Model
 
-Lorem ipsum
+To do.
 
-### An Online Part
+### Part II: An Online API
 
-Structured as follows:
+Apart form the descrption with the [Online API](./OSDM-Online-v0.9.9.yml)
+ is explained in this documents:
 
 - [Technical Principles](./technical-principles)
 - [Processes](./processes)
 - [Models](./models)
+
+### Catalog of Code Lists
+
+A [Catalog of Code Lists](./catalog-of-code-lists) defines attributes
+and provides references to standards used.

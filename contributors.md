@@ -2,12 +2,11 @@
 layout: page
 title: Contributors
 permalink: /contributors/
-hide_hero: true
 ---
 
 ## Contributors
 
-The following experts have contributed to this specification.
+The following experts have contributed to the **OSDM** specification.
 
 - Bayer Ralf (DB)
 - Carta Vittorio (DB)
@@ -21,15 +20,16 @@ The following experts have contributed to this specification.
 - Hirzel Peter (SBB)
 - Klapwijk Roland (Sqills)
 - Kovar Klaus (ÖBB)
-- Mariorenzi Luca (TrenItalia)
+- Mariorenzi Luca (Trenitalia)
 - Nieuwerth Johan (Sqills)
 - Nyman Hernik (SilverRail)
 - Olsson Anders (SilverRail)
 - Parmigiani Elisa (Amadeus)
 - Quemerais Manuel (SNCF)
+- Reumer Mike (BENE)
 - Ruiz Enrique (Hitrail)
 - Schinor Normen (DB)
 - Schlapbach Andreas (SBB)
 - Selleslagh Nicolas (BENE)
 - Setta Fabrice (uic)
-- Turri Stefano (TrenItalia/IBM)
+- Turri Stefano (Trenitalia/IBM)

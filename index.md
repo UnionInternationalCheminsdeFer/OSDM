@@ -3,7 +3,7 @@ title: OSDM
 subtitle: Open Sales and Distribution Model
 layout: page
 show_sidebar: true
-hero_link: http://localhost
+hero_link: ./OSDM-Online-v0.9.9.yml
 hero_link_text: Download Specification
 ---
 
