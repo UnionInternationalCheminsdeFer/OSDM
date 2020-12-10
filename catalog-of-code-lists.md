@@ -49,7 +49,7 @@ RS 90918-1 (Service Level).
 |`O4`|	Motorcycle |
 |`O5`|	Motorcycle with sidecar  |
 |`O8`|	Vehicle parking place category 6 – 8 |
-|`OB`|	Bycicle |
+|`OB`|	Bicycle |
 |`OT`|	Tandem Bicycle|
 |`P`|	T2|
 |`PD`|	Private compartment berth deluxe |

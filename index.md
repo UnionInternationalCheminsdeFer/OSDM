@@ -74,23 +74,22 @@ Analogously, the after-sale process is modelled in the following steps:
 - Fulfillment of the booking
 
 To address the second goal, we studied the existing commercial products and
-online distribution/carrier systems of BENE, DB, öBB, RENFE, SBB, SNCF,
-Trenitalia and others as well as distribution solutions provided by Amadeus,
-Silverrail, Trainline and others. Furthermore, the Hermes/HOSA reservation
-system as well as existing UIC leaflets were carefully examined.
+online distribution/carrier systems of **BENE**, **DB**, **öBB**, **RENFE**, 
+**SBB**, **SNCF**, **Trenitalia** and others as well as distribution solutions
+provided by **Amadeus**, **Silverrail**, **Trainline** and others. Furthermore, 
+the Hermes/HOSA reservation system as well as existing **UIC leaflets** were carefully examined.
 
-By involving the experts of the parties, we are confident that the OSDM online
+By involving the experts of the parties, we are confident that the OSDM 
 standard is powerful enough to support the distribution of existing or upcoming
 commercial products and can be implemented and supported at reasonable cost.
 
-To address the third goal we took an end to end approach to the call chain from
-distributor to allocater to fare provider (a.k.a carrier) and aligned the
+To address the third goal we took an **end-to-end approach** to the call chain from
+**Distributor** to **Allocator** to **Fare Provider (a.k.a Carrier)** and aligned the
 interfaces by modelling them the same.  Thus calling a provider, an allocator
 or a fare provider is exactly the same from an API perspective. The only
 difference is that in allocator mode you get fare specific information needed.
-
-Doing this no complex transformation or mapping layers are required.
+This ensure that no complex transformation or mapping layers are required.
 
 ## Access to the Specification
 
-The API is publicly available here: OSDM-OnlineAPI.yml
+All documents are **publicly available** in the [Specification](./spec) section.
