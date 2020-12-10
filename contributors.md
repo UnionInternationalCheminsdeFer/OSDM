@@ -31,4 +31,5 @@ The following experts have contributed to this specification.
 - Schinor Normen (DB)
 - Schlapbach Andreas (SBB)
 - Selleslagh Nicolas (BENE)
-- Turri Stefano (TrenItalia)
+- Setta Fabrice (uic)
+- Turri Stefano (TrenItalia/IBM)

@@ -1,0 +1,21 @@
+partition "Sale" {
+  (*) --> [POST /trip-offers/collections] "Get Offers"
+  "Get Offers"--> [POST /bookings] "Book"
+  "Book"--> [PATCH /bookings/{bookingId})] "Confirm"
+  "Book" --> [POST /bookings/{bookingId}/fulfillments] "Fulfill"
+  "Confirm"-->[POST /bookings/{bookingId}/fulfillments] "Fulfill"
+}
+
+partition "Refund" {
+  "Fulfill" --> [POST /bookings/{id}/refundOffers] "Get Refund Offers"
+  "Get Refund Offers"--> [POST /bookings/{bookingId}/fulfillments] "Refund"
+}
+
+partition "Exchange" {
+  "Fulfill" --> [POST /bookings/{id}/exchangeOffers] "Get Exchange Offers"
+  "Get Exchange Offers"--> [POST /bookings/{bookingId}/fulfillments] "Exchanged"
+}
+
+"Fulfill" --> (*)
+"Refund" --> (*)
+"Exchanged" --> (*)
