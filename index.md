@@ -3,18 +3,18 @@ title: OSDM
 subtitle: Open Sales and Distribution Model
 layout: page
 show_sidebar: true
-hero_link: http://localhost
+hero_link: ./OSDM-Online-v0.9.9.yml
 hero_link_text: Download Specification
-
 ---
 
 ## Introduction
 
-The aims of the **Open Sales and Distribution Model (OSDM)** are twofold: 
+The aims of the **Open Sales and Distribution Model (OSDM)** are twofold:
 
-1. to substantially simplify the booking process for customers of international
-   trips and, 
-2. to lower distribution costs for distributors and railway carriers.
+1. to substantially **simplify the booking process for customers** of rail
+   trips and,
+2. to **lower complexity and distribution costs** for distributors and 
+   railway carriers.
 
 OSDM strengthens rail as a convenient and ecological means of transportation by
 simplifying distribution. Finally, it lays a solid fundament which can be
@@ -23,8 +23,8 @@ extended to the distribution of other means of transportation.
 The OSDM API and specification essentially consists of two parts: **Offline
 API** and **Online API**. The Online API works in two modes: **Distributor Mode**
 and **Allocator Mode**. The Allocator Mode differs from the Distributor
-Mode only in that additionally to *admissions*, *reservations*, *integrated
-reservations*, or *ancillaries* also *priced segments (aka. fares)* are offered
+Mode only in that additionally to **admissions**, **reservations**, **integrated
+reservations**, or **ancillaries** also **priced segments (aka. fares)** are offered
 and can be booked.
 
 The OSDM API and specification are *Open Source* and freely available to all
@@ -65,13 +65,13 @@ This resulted in a booking process modelled by the following steps:
 - Getting offers
 - Booking an offer
 - Confirmation of the booking
-- Fulfilment of the booking
+- Fulfillment of the booking
 
 Analogously, the after-sale process is modelled in the following steps:
 
 - Getting a refund/exchange offers
 - Booking a refund/exchange offer
-- Fulfilment of the booking
+- Fulfillment of the booking
 
 To address the second goal, we studied the existing commercial products and
 online distribution/carrier systems of BENE, DB, öBB, RENFE, SBB, SNCF,

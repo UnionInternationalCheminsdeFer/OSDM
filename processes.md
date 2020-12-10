@@ -11,11 +11,22 @@ This page shows a representation of the data models underlying the API
 specifications. It is therefore not a strict representation of the resources
 themselves (those are self-represented in the OpenAPI specifications.)
 
-As such, some of the details of how the information is structured in the API
+The main purpose of this document is therefore to help a quicker
+understanding of the API and its underlying concepts. As such, some of
+the details of how the information is structured in the API
 are not represented or simplified in the data models.
 
-The main purpose of this data model is therefore to help a quicker
-understanding of the API and its underlying concepts.
+## Process Flow
+
+![Process Flow](../images/processes/act-process-flow.svg)
+
+The process flow starts with getting offers which can be chosen by the customer. Once
+selected they can be prebooked and after the payment process (which is outside of the
+scope of this document) they can be booked. The fulfillment of the booking can either
+be on paper or paperless.
+
+If needed bookings can either be refunded or exchanged by providing the customer with
+a refund or exchange offer which can the be booked by the customer.
 
 ## Trips and Locations Processes
 
@@ -197,33 +208,33 @@ The idea is actually fairly simple: in case no filtering is applied on the
 inward offers using the `offerHash` filter mentioned above, the returned inward
 offers may not all be compatible with all outward offers. Identifying
 compatible pairs are simply identified by the fact that they have the same (set
-of) return combinationHash(es).
+of) return combinationHash(es). Offers with no return combinationHashes have
+no constraints.
 
-Offers with no return combinationHashes have no constraints.
+Hereunder an example illustrating this concept:
 
-Hereunder a small example illustrating this concept:
+##### Outward Offers
 
-Outward Offers	
-Inward Offers	
-Valid Combinations
-Offer	combinationHashes	Offer	combinationHashes	Offer1 + Offer5 OK
-Offer1	
+- Offer1: -
+- Offer2: #123
+- Offer3: #234, #123
+- Offer4: -
 
-Offer5	
+##### Inward Offers
 
-Offer4 + Offer5 OK
+- Offer5: -
+- Offer6: #123
+- Offer7: #234
+- Offer8: #123, #234
 
-Offer2	123	
-Offer6	123	
-Offer2 + Offer6 OK
-Offer3	234	123	Offer7	234	
-Offer3 + Offer8 OK
-Offer4	
+##### Valid Combinations
 
-Offer8	123	234	
+- Offer1 + Offer5 (no constraint on hashes)
+- Offer4 + Offer5
+- Offer2 + Offer6
+- Offer3 + Offer8
 
-
-Offer7 cannot be combined with any offer on the outward set
+Offer7 cannot be combined with any offer on the outward set.
 
 #### Products Covering Both Directions
 
@@ -543,17 +554,17 @@ captured, it is recommended for the API consumer to properly cancel the booking
 on the **Distributor** side. In case this is not done the booking will be
 cancelled when the ticket time limit is reached, but in the meantime all
 related resources (seats etc) will remain unavailable for other requests. Upon
-receiving a DELETE verb for a given booking, the **Distributor** should
+receiving a `DELETE /bookings` for a given booking, the **Distributor** should
 obviously do its own cleaning as well, and if needed pass on the cancel to its
 sub-providers.
 
-In case of a partial success for booking, the DELETE verb can also be used to
+In case of a partial success for booking, the `DELETE /bookings` can also be used to
 clean-up the bookings on sub-providers where the pre-booking succeeded and who
 support the OSDM protocol.
 
-Regardless of whether the cancel occurred through an explicit DELETE or expiry
-of the ticket-time-limit, the booking state will then change to `CANCELLED` for
-a short "grace" period, before being completely cleaned-up (offer parts are
+Regardless of whether the cancel occurred through an explicit `DELETE /bookings`
+or expiry of the ticket-time-limit, the booking state will then change to `CANCELLED`
+for a short "grace" period, before being completely cleaned-up (offer parts are
 well cleaned-up immediately). This grace period aims at ensuring that any
 ongoing operation with the booking is given sufficient time to get an explicit
 info on the cancelled status of the booking. The choice of the duration of that
@@ -735,11 +746,11 @@ refunded in one go.
 
 In order to perform a refund, the API consumer first has to create a
 refundOffer in the booking where the fulfillments to refund are located with a
-POST refundOffer. If the set of fulfillments provided is a valid set for
+`POST refundOffer`. If the set of fulfillments provided is a valid set for
 refund, the operation creates a refundOffer that contains the information that
 is relevant to the refund operation at the moment the refund offer was created.
 This includes information such as the amount that will be refunded, any
-potential refund fee, etc (see the model for more details 
+potential refund fee, etc (see the model for more details).
 
 ### Cancel a Refund Offer
 

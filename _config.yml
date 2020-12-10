@@ -2,8 +2,7 @@ title: Open Sales and Distribution Model
 email: andreas.schlapbach@sbb.ch
 
 description: >- # this means to ignore newlines until "baseurl:"
-  You can edit this line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Open Sales and Distribution Model to simplify rail distribution.
 
 baseurl: "/UIC-New-Tariff-Model" # the subpath of your site, e.g. /blog
 
@@ -13,10 +12,12 @@ permalink: pretty
 
 favicon: favicon.png
 
-# Build settings
+#hide_share_buttons: true
+#theme_color: '#eeeeee'
 
+# Build settings
 remote_theme: chrisrhymes/bulma-clean-theme
-# theme: bulma-clean-theme
+
 
 # Don't publish files in the future
 future: false

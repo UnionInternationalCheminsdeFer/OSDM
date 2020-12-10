@@ -1,12 +1,14 @@
 # Things needing to be done
 
-- Add graphics
 - Add offline specification
-- Fix navigation
+- Add code lists
+- Improve navigation
 - Add contact
+- Add specification to download
 - Add Google Analytics
 - Fix favicon
 
-# Done
+## Done
 
+- Add graphics
 - Fix tables
