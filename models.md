@@ -135,6 +135,19 @@ Indeed, in most cases the **Allocator** provider will propose several offers of
 different comfort and flexibility levels. In this resources, the trip resource
 representing the trip the offers are for and the passengers for the trip.
 
+#### Offers with partial coverage
+It is possible in OSDM to propose offers covering only a subset of the requested trip under very specific conditions:
+
+- the segments covered by a given offer are indicated through the `coveredSegmentIndexes` property
+- all offers covering the same set of segments belong to the same  `offerCluster`. As such, their `offerCluster` identifier must be filled-in and identical
+- A `segment` can only be covered in one `offerCluster` within a `tripOffer` (no overlap)
+- each `segment` of the `trip` must be covered by at least one `offer` in each `TripOffer` (no gap)
+
+![Clusters-no-overlap](../images/models/clusters1.svg "Clusters-no-overlap")
+
+![Clusters-no-gap](../images/models/clusters2.svg "Clusters-no-gap")
+
+
 ### OfferParts
 
 Although `OfferParts` are by themselves not a resources, they deserve a separate
