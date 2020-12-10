@@ -3464,6 +3464,16 @@ components:
             The offerHash can/must (depending on the mandatory flag) be used in some cases to restrict the set of
             offers returned in a subsequent and related offer search to only compatible ones.
             Note the offerHash does not need to be unique.
+        coveredSegmentIndexes:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: >-
+            relevant only in case the offer only covers parts of the trip. This will indicate which segments are covered by the specific offer
+        offerCluster:
+          type: string
+          description: relevant only in case the offer only covers parts of the trip. This will indicate which offer cluster this offer is part of.
         combinationHashes:
           type: array
           items:
