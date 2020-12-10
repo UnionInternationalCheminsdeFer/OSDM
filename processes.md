@@ -446,11 +446,18 @@ abandoned without properly cancelling it. However, some systems may decide a
 longer time. Obviously, the value for the booking ticket-time limit can never
 exceed the earliest ticket time limit of any of its offer parts.
 
+#### Provisionally booking a return trip
+While this may not be true for al providers, most of them  will require that the outward and the return parts of a return trips are booked together in order to actually book a return-specific product. Therefore, when building a return travel, the API consumer should always specify the outward offer(s) and return offer(s) in the same `POST /bookings` operation.
+
+#### Provisionally booking a trip with offers clusters
+When booking for a trip for which several offer clusters were provided ( [[see offer clusters | Models#offers-with-partial-coverage]] ), the API consumer must be careful to always select one and only one offer from each offer cluster in the tripOffer. This ensures that even though the selection is done per offer cluster, the complete trip is covered exactly without any gap nor overlap. However, the provider implementers must verify and validate the set of offers selected is valid. if the trip being booked is also a return trip, then the rule applies for each direction.
+
+
 ### Handling Partial Success of Pre-Booking
 
 ![Handling Partial Success of Pre-Booking](../images/processes/seq-handling-partial-success-of-pre-booking.svg)
 
-As an **Distributor**, partial pre-booking is not expected. As a consequence
+As a **Distributor**, partial pre-booking is not expected. As a consequence
 all pre-booking operations are either fully successful or not executed at all.
 However, as an allocator, An **Distributor** system may be configured in such
 ways that it is able to combine offers from different sub-providers (via an
