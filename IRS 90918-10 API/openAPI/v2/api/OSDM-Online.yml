@@ -2863,7 +2863,7 @@ paths:
         - CoachLayouts 
       description: get coach layouts
       summary: >-
-        *** NOT-MVP ***Retrieve the coach layout description needed for graphical reservation    
+        Retrieve the coach layout description needed for graphical reservation    
       operationId: getCoachLayouts
       parameters:
         - name: access-token 
@@ -2889,7 +2889,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LayoutsDef'
+                $ref: '#/components/schemas/Layouts'
         '400':
           description: Bad request
           content:
@@ -4522,15 +4522,15 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    LayoutsDef:
+    Layouts:
       type: object
       properties:
         layouts:
           type: array
           items:
-            $ref: '#/components/schemas/CoachLayoutDef'
+            $ref: '#/components/schemas/CoachLayout'
 
-    CoachLayoutDef:
+    CoachLayout:
       type: object
       description: >-
         coach layout providing data to draw a coach layout. The items of a coach
@@ -4545,21 +4545,6 @@ components:
           items:
             type: object
             properties:
-              x:
-                description: >-
-                  horizontal coordinate of the center of the place
-                type: integer
-                format: int32
-              y:
-                description: >-
-                  vertical coordinate of the center of the place
-                type: integer
-                format: int32
-              id:
-                description: >-
-                  id of the graphical item type. Code list according to UIC90918-1
-                  graphical item type e.g. seat = 1, berth = 2, couchette = 3
-                type: string
               number:
                 description: place number as displayed physically on the place
                 type: string
@@ -4568,11 +4553,16 @@ components:
                   Direction of a place, defined optional as it might be omitted in
                   case of berths in future. 
                   Code list according to UIC90918-1
-                   - value R: to right
-                   - value L: to left
-                   - value U: up (from right side of a coach pointing to the middle of the aisle)
-                   - value D: down (from right side of the coach pointing to the middle of the aisle)
+                   - RIGHT: to right
+                   - LEFT: to left
+                   - UP: up (from right side of a coach pointing to the middle of the aisle)
+                   - DOWN: down (from right side of the coach pointing to the middle of the aisle)
                 type: string
+                enum:
+                  - RIGHT
+                  - LEFT
+                  - UP
+                  - DOWN
               remarkId:
                 description: >-
                   Remark concerning the place (e.g. to be used in a tool tip).
@@ -4585,90 +4575,56 @@ components:
                    - value 6: place might be in compartment
                    - value 7: place might be in open space  
                 type: string
-              zOrder:
-                description: >-
-                  Graphical layer where this item has to be placed. 
-                  Code list according to UIC90918-1
-                   - value 0: lowest layer usually used for walls 
-                   - value 1: middle layer usually used by places
-                   - value 2: top layer usually used by icons
-                type: string
+                x-extensible-enum:
+                 - VALUE1-TODO
+              coords:
+                $ref: '#/components/schemas/LayoutCoordinates'             
             required:
-              - x
-              - y
               - id
               - number
+              - coords
         signs:
           type: array
           items:
             type: object
             properties:
-              x:
+              icon:
                 description: >-
-                  horizontal coordinate of the center of the place
-                type: integer
-                format: int32
-              y:
-                description: >-
-                  vertical coordinate of the center of the place
-                type: integer
-                format: int32
-              id:
-                description: >-
-                  id of the graphical item type. Code list according to UIC90918-1
+                  Icon id of the graphical item type. Code list according to UIC90918-1
                   graphical item type e.g. silence area sign = 116
                 type: string
-              zOrder:
-                description: >-
-                  graphical layer where this item has to be placed. 
-                    0 = lowest layer usually used for walls 
-                    1 = middle layer usually used by places
-                    2 = top layer usually used by icons
-                type: string
+              coords:
+                $ref: '#/components/schemas/LayoutCoordinates'
             required:
-              - x
-              - y
-              - id
+              - icon
+              - coords
         internals:
           type: array
           items:
             type: object
             properties:
-              x:
+              icon:
                 description: >-
-                  horizontal coordinate of the center of the place
-                type: integer
-                format: int32
-              y:
-                description: >-
-                  vertical coordinate of the center of the place
-                type: integer
-                format: int32
-              id:
-                description: >-
-                  id of the graphical item type. Code list according to UIC90918-1
-                  graphical item type e.g. wall with angle to right height covers
-                  three places = 25
-                type: string
-              zOrder:
-                description: >-
-                  graphical layer where this item has to be placed. 
-                    0 = lowest layer usually used for walls 
-                    1 = middle layer usually used by places
-                    2 = top layer usually used by icons
+                  icon id of the graphical item type. Code list according to UIC90918-1
+                  graphical item type e.g. seat = 1, berth = 2, couchette = 3
                 type: string
               mounting:
                 description: >-
                   indicates, that the item is located at the upper border (U), the
                   lower border (L), goes from upper to lower border (E) or is
-                  placed free (F)
+                  placed free (F).
                 type: string
+                enum:
+                  - UPPER_BORDER
+                  - LOWER_BORDER
+                  - UPPER_TO_LOWER_BORDER
+                  - FREE
+              coords:
+                $ref: '#/components/schemas/LayoutCoordinates'
             required:
-              - x
-              - y
-              - id
-              - zOrder
-        gridsize:
+              - icon
+              - coords
+        gridSize:
           type: object
           properties:
             x:
@@ -4677,11 +4633,34 @@ components:
             y:
               type: integer
               format: int32
-        containerType:
-          type: string
-          default: RECTANGLE
       required:
         - id
+
+    LayoutCoordinates:
+      type: object
+      properties:
+        x:
+          description: >-
+            horizontal coordinate of the center of the place
+          type: integer
+          format: int32
+        y:
+          description: >-
+            vertical coordinate of the center of the place
+          type: integer
+          format: int32
+        zOrder:
+          description: >-
+            Graphical layer where this item has to be placed. 
+            Code list according to UIC90918-1
+              - value 0: lowest layer usually used for walls 
+              - value 1: middle layer usually used by places
+              - value 2: top layer usually used by icons
+          type: string
+      required:
+        - x
+        - y
+        - zOrder
 
     Problem:
       type: object
