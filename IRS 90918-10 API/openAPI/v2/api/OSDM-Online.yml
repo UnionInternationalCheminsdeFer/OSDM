@@ -2757,7 +2757,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExchangeOffersCollectionDef'
+                $ref: '#/components/schemas/ExchangeOffersCollection'
         '400':
           description: Bad request
           content:
@@ -2918,7 +2918,7 @@ paths:
         '501':
           description: Not implemented
 
-  '/offers':
+  '/offer-collections':
     post:
       tags:
         - Offers 
@@ -2945,12 +2945,6 @@ paths:
           schema:
             type: string
           required: false
-        - in: query
-          name: version
-          description: schema version
-          required: true
-          schema:
-            type: string
       requestBody:
         description: request parameter for offer search
         required: true
@@ -4299,7 +4293,8 @@ components:
     RefundOfferRequest:
       type: object
       description: 
-        Request for a refund. Fulfillments can be provided in case the booking contains multiple individual fulfillments
+        Request for a refund. 
+        Fulfillments can be provided in case the booking contains multiple individual fulfillments.
       properties:
         fulfillmentIds:
           type: array
@@ -4308,27 +4303,35 @@ components:
             format: uuid
             description: id of the fulfillment to refund
         overruleCode: 
-          description: >-
-            Reason for and type of an after sale, Code list in IRS 90918-10.
-          type: string
+          $ref: '#/components/schemas/OverruleCode'
+      required:
+        - fulfillmentIds
 
     ExchangeOfferRequest:
       type: object
       description: 
-        Request for an exchange. Fulfillments can be provided in case the booking contains multiple individual fulfillments
+        Request for an exchange. 
+        Fulfillments can be provided in case the booking contains multiple individual fulfillments.
       properties:
         fulfillmentIds:
           type: array
           items:
             type: string
             format: uuid
-            description: id of the fulfillment to exchange
-        overruleCode: 
-          description: >-
-            Reason for and type of an after sale, Code list in IRS 90918-10.
-          type: string
+            description: id of the fulfillment to refund
+        tripOfferRequest:
+          $ref: '#/components/schemas/TripOfferRequest'
+        overruleCode:
+          $ref: '#/components/schemas/OverruleCode'
+      required:
+        - tripOfferRequest
 
-    ExchangeOffersCollectionDef:
+    OverruleCode: 
+      type: string
+      description: >-
+        Reason for and type of an after sale, code list in IRS 90918-10.
+
+    ExchangeOffersCollection:
       type: array
       items:
         $ref: '#/components/schemas/ExchangeOfferDef'
