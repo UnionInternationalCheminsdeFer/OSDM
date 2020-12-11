@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Team
-permalink: /contributors/
+permalink: /team/
 ---
 
 ## Core Team
