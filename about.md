@@ -6,7 +6,7 @@ permalink: /about/
 
 ## Background
 
-The Open Sales and Distribution Model has emerged from the **nTM (new Tariff Model)** and **FSM (Full Service Model)** initiatives:
+The Open Sales and Distribution Model has emerged from the **new Tariff Model (nTM)** and [Full Service Model (FSM 2.0)](https://tsga.eu/fsm) initiatives:
 
 - The initiative new Tariff Model (nTM) initiated by UIC established the successor standard of
   **PRIFIS**. It defines on the one hand an offline standard for the exchange of priced segments
