@@ -23,9 +23,17 @@ The Open Sales and Distribution Model has emerged from the **nTM (new Tariff Mod
 
 To join forces and represent the **rail sector as a whole** the two initiatives have been merged into the [OSDM](/.) initiative. The specification will be supported by the [UIC](https://uic.org) as **IRS 90918-10**.
 
+## Contributing
+
+This is an open-source project, and your contributions are welcome. The repository is [hosted on GitHub](https://github.com/UnionInternationalCheminsdeFer/OSDM). See the [README](https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/gh-pages/README.md) for instructions and guidelines.
+
+## Reporting Issues
+
+Find a typo or inaccurate statement? Please [create an issue](https://github.com/UnionInternationalCheminsdeFer/OSDM) in the GitHub project.
+
 ## Contact
 
-For further information contact [Vittorio Carta](mailto:vittorio.carta@deutschebahn.com).
+For further information contact one of the [core teams members](../team).
 
 ## Copyright
 

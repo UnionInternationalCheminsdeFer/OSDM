@@ -4,11 +4,11 @@ title: Specification
 permalink: /spec/
 ---
 
-The **OSDM** specification is structured into two parts:
+The [OSDM specification](./) is structured into two parts:
 
 ### Part I: An Offline Model
 
-To do.
+Wiil be released until December 17th.
 
 ### Part II: An Online API
 

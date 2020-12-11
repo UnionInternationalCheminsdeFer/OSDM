@@ -8,7 +8,7 @@ permalink: /contributors/
 
 The [OSDM specification](../spec) effort has been driven by
 
-- [Gantert Clemens](https://www.linkedin.com/in/clemens-g-88783725) (DG)
+- [Gantert Clemens](https://www.linkedin.com/in/clemens-g-88783725) (DB)
 - [Schlapbach Andreas](https://www.linkedin.com/in/andreas-schlapbach-09b095ab/) (SBB)
 - [Selleslagh Nicolas](https://linkedin.com/in/nicolasselleslagh) (BENE)
 
