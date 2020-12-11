@@ -3049,10 +3049,10 @@ components:
           format: int32
           description: sequence number of the segment in the ordering of all segments of the trip
         origin:
-          $ref: '#/components/schemas/Location'
+          $ref: '#/components/schemas/Stop'
           description: departure point of the segment
         destination:
-          $ref: '#/components/schemas/Location'
+          $ref: '#/components/schemas/Stop'
           description: arrival point of the segment
         duration: 
           description: duration of the segment in  ISO 8601 Durations
@@ -3098,45 +3098,47 @@ components:
             one. This list is only returned when the stopBehavior is set to REAL_BOARDING_ALIGHTING
           type: array
           items:
-            type: object
-            properties:
-              station:
-                $ref: '#/components/schemas/Location'
-              departureDateTime:
-                description: date and time in the time zone of the station
-                type: string
-                format: date-time
-              arrivalDateTime:
-                description: date and time in the time zone of the station
-                type: string
-                format: date-time
-              index:
-                type: integer
-                format: int32
-                example: 5
-                description: >-
-                  Unique value [0..*] within the segment, guaranteeing an
-                  ascending order, though the value may jump non-continuously.
-              departureTrack:
-                type: string
-                example: 13A
-                description: >-
-                  The info about the departure-track of the stop. Format depends
-                  on operator.
-              arrivalTrack:
-                type: string
-                example: 13B
-                description: >-
-                  The info about the arrival-track of the stop. Format depends
-                  on operator.
-            description: >-
-              Represents a location or station. Either a departure, arrival
-              or intermediate stop along a segment of a trip.
-            required:
-              - station
+            $ref: '#/components/schemas/Stop'
       required:
         - seqId
         - vehicle
+    Stop:
+      type: object
+      properties:
+        station:
+          $ref: '#/components/schemas/Location'
+        departureDateTime:
+          description: date and time in the time zone of the station
+          type: string
+          format: date-time
+        arrivalDateTime:
+          description: date and time in the time zone of the station
+          type: string
+          format: date-time
+        index:
+          type: integer
+          format: int32
+          example: 5
+          description: >-
+            Unique value [0..*] within the segment, guaranteeing an
+            ascending order, though the value may jump non-continuously.
+        departureTrack:
+          type: string
+          example: 13A
+          description: >-
+            The info about the departure-track of the stop. Format depends
+            on operator.
+        arrivalTrack:
+          type: string
+          example: 13B
+          description: >-
+            The info about the arrival-track of the stop. Format depends
+            on operator.
+      description: >-
+        Represents a location or station. Either a departure, arrival
+        or intermediate stop along a segment of a trip.
+      required:
+        - station
   
     Trip:
       type: object
@@ -3152,9 +3154,9 @@ components:
           items:
             $ref: '#/components/schemas/Segment'
         origin:
-          $ref: '#/components/schemas/Location'
+          $ref: '#/components/schemas/Stop'
         destination:
-          $ref: '#/components/schemas/Location'
+          $ref: '#/components/schemas/Stop'
         duration:
           type: string
           description: >-
@@ -3464,6 +3466,16 @@ components:
             The offerHash can/must (depending on the mandatory flag) be used in some cases to restrict the set of
             offers returned in a subsequent and related offer search to only compatible ones.
             Note the offerHash does not need to be unique.
+        coveredSegmentIndexes:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: >-
+            relevant only in case the offer only covers parts of the trip. This will indicate which segments are covered by the specific offer
+        offerCluster:
+          type: string
+          description: relevant only in case the offer only covers parts of the trip. This will indicate which offer cluster this offer is part of.
         combinationHashes:
           type: array
           items:
