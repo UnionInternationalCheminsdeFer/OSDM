@@ -34,27 +34,34 @@ a refund or exchange offer which can the be booked by the customer.
 
 ![Looking Up Locations](../images/processes/seq-looking-up-locations.svg)
 
-The `\locations` Lookup can be used by an API provider in order to search for locations. Two typical uses cases would be
+The `\locations` Lookup can be used by an API provider in order to search for locations.
+Two typical uses cases would be
 
 - getting a set of locations (in full or as reference) from a substring of the name
 - getting full details on a location based on on of its codes
 
-Note that the functionality is not intended to trigger a "dump" of the complete locations list or to build a full "browsing" functionality, hence the lack of pagination features here.
+Note that the functionality is not intended to trigger a "dump" of the complete locations
+list or to build a full "browsing" functionality, hence the lack of pagination features here.
 
-Given the high stability of this information, locations are given a long time to live and get responses can be cached for a long period, so these operations should not be too costly in terms of calls or bandwidth.
+Given the high stability of this information, locations are given a long time to live
+and get responses can be cached for a long period, so these operations should not be too
+costly in terms of calls or bandwidth.
 
 #### Error handling
 
-Error handling by the **:Distributor** remains basic here as a handful of cases have to be handled:
+Error handling by the **Distributor** remains basic here as a handful of cases have to be handled:
 
 - invalid characters in the search string
 - no result found for the given criteria.
 - The search did not return any result
 - unknown error on server side
 
-In all cases, the error handling starts and stops with the **Distributor** returning the appropriate JSON Problem element
+In all cases, the error handling starts and stops with the **Distributor** 
+returning the appropriate JSON Problem element.
 
-In case the error can apply to multiple fields, it is recommended to provide additional details such as the incriminated field in the detail property of the `Problem` element.
+In case the error can apply to multiple fields, it is recommended to provide 
+additional details such as the incriminated field in the detail property of 
+the `Problem` element.
 
 ### Getting and Browsing Trips
 
@@ -63,7 +70,7 @@ In case the error can apply to multiple fields, it is recommended to provide add
 If the API consumer only needs a schedule, and no bookable offer, it has the
 possibility to create a trips collection using `POST /trip-collection`. If the
 query is successful, the initial response to this will be a set of trips
-matching the provided search criteria. 
+matching the provided search criteria.
 
 Please refer to the Yaml specifications for the list of search criteria
 available. Depending on their respective journey planner capabilities, it could
@@ -78,7 +85,7 @@ the appropriate scrolling-tokens. As with all cases where nested resources can
 be returned, individually or in list, the embed feature allows specifying
 whether complete trips should be returned or only a title and a link. A GET
 verb without any scrolling-token will simply return the last set of trips
-return. 
+return.
 
 It is important that once a trip has been generated, its time to live has a
 sufficient duration to allow the possible subsequent uses:
@@ -138,13 +145,13 @@ offerparts, potentially coming from different sub-providers (OSDM compliant or
 not). However, in preparing offers with multiple offer parts for the API
 consumer, the **Distributors** must follow the following rules :
 
-- The POST `/tripoffers-collection` only generates complete offers covering the
+- The POST `/trip-offers-collection` only generates complete offers covering the
   complete trip (or complete section) requested.
 - While the combination logic is left to the **Distributor**, it is recommended to
-  only build and retain offers that are *homogeneous* (as much as possible) in 
+  only build and retain offers that are *homogeneous* (as much as possible) in
   terms of flexibility and comfort.
 - Each offer request should create a new offer context with a dedicated
-  tripoffer collection resource and dedicated subresources, since it is
+  `/trip-offers-collection` resource and dedicated subresources, since it is
   possible, and may even be required to patch offers with data that is specific
   to the booking dialog at hand in order to perform the booking.
 
@@ -195,7 +202,9 @@ To get offer for the inward travel, the API consumer will have to provide
   offerHash. If the offerHash is provided in the inward offer request, the
   provider should then only return offers that are compatible with the indicated
   (set of) outward offers.  
-  Note that depending on whether the offerHash is mandatory or not and whether it is unique per outward offer, it may or may not be mandatory to select the outward offer before th inward offer request can be constructed.
+  Note that depending on whether the offerHash is mandatory or not and whether it
+  is unique per outward offer, it may or may not be mandatory to select the outward 
+  offer before th inward offer request can be constructed.
 
 #### Using combinationHashes
 
@@ -272,14 +281,13 @@ number of changes
 
 ## A complex example mixing Offers and Fares
 
-### Request from front-end
+### Request From Front-end
 
 I want to go from Rotterdam to Wien StefanPlatz via Antwerp
 
-### Request submitted to SNCB
+### Request Submitted to SNCB
 
 Proposed trip by timetable system:
-
 
 | Origin - Destination| Train Number |
 | --- | --- |
@@ -289,28 +297,17 @@ Proposed trip by timetable system:
 | Frankfurt → Wien Hbf | RailJet RJ 23 (optional reservation) |
 | Wien Hbf → Wien Stefanplatz | Metro |
 
-### FareProvider resolution returns
+### Fare Provider Resolution returns
 
 | Origin - Destination | Train Number | Fare Provider | Consolidated |
 | --- | --- | --- | --- |
-| Rotterdam → Antwerp | Thalys 9324 (integrated reservation) | PAO |  PAO |
+| Rotterdam → Antwerp | Thalys 9324 (integrated reservation) | PAO | PAO |
 | Antwerp → Liège | IC 2345 + IR 5567 | Fare SNCB | Fare SNCB |
-| Liège → Frankfurt | ICE 122 (mandatory reservation)|  NVS-Gus | NVS-Gus
-| Frankfurt → Wien Hbf | RailJet RJ 23 (optional reservation) | Frankfurt → Salzburg(border) : nTM-DB | Fare DB | 
-| | | Salzburg (border) → WienHbf : | | nTM-OBB| |
+| Liège → Frankfurt | ICE 122 (mandatory reservation)|  GUS | GUS
+| Frankfurt → Wien Hbf | RailJet RJ 23 (optional reservation) | Frankfurt → Salzburg (Border) | Fare DB |
+| | | Salzburg (Border) → WienHbf | Fare ÖBB| |
 | | | Frankfurt → Wien Hbf (reservation) | Fare ÖBB |
-| Wien Hbf → Wien Stefanplatz|  Metro | Fare ÖBB
-
-## TODO
-
-- make a more realistic selection.
-- The reservation part for the ICE could be returned as a fare (could be
-  useful f ex to include your own fees as allocator and not those of the
-provider, or to harmonize after sales since it is put on the same ticket)
-- Add the storage diagram
-- Add the conclusions form the examples steps about modelling open points
-
-ToDo graphics
+| Wien Hbf → Wien Stefanplatz|  Metro | Fare ÖBB |
 
 ## Completing Offers for Provisional Booking
 
@@ -329,7 +326,7 @@ some information (usually on passengers) may be mandatory in order to proceed
 with the booking. The `RequestedInformation` property will provide the details of
 what needs to be specified in order to book a given offer. These details are
 provided under the form of a boolean expression, referring to the passenger
-model elements using dot notation (with the tripoffer as the root). For
+model elements using dot notation (with the `TripOffer` as the root). For
 example, if it is required that name and first name are set to proceed
 RequestedInformation would be :
 
@@ -440,18 +437,30 @@ This is the time for which the provider will hold a booking in pre-booked
 state, waiting for the confirmation while guaranteeing the booking for the
 given products, spaces at the announced price. Obviously, this value only has a
 meaning for a booking in pre-booked state. A commonly accepted value would be
-around 30 minutes, which is normally sufficient to allow finalising the
+around 30 minutes, which is normally sufficient to allow finalizing the
 booking,while not monopolizing resources too long in case the booking is
 abandoned without properly cancelling it. However, some systems may decide a
 longer time. Obviously, the value for the booking ticket-time limit can never
 exceed the earliest ticket time limit of any of its offer parts.
 
-#### Provisionally booking a return trip
-While this may not be true for al providers, most of them  will require that the outward and the return parts of a return trips are booked together in order to actually book a return-specific product. Therefore, when building a return travel, the API consumer should always specify the outward offer(s) and return offer(s) in the same `POST /bookings` operation.
+#### Provisionally Booking a Return Trip
+
+While this may not be true for all providers, most of them require that the
+outward and the return parts of a return trips are booked together in order
+to actually book a return-specific product. Therefore, when building a return
+travel, the API consumer should always specify the outward offer(s) and return
+offer(s) in the same `POST /bookings` operation.
 
 #### Provisionally booking a trip with offers clusters
-When booking for a trip for which several offer clusters were provided ( [[see offer clusters | Models#offers-with-partial-coverage]] ), the API consumer must be careful to always select one and only one offer from each offer cluster in the tripOffer. This ensures that even though the selection is done per offer cluster, the complete trip is covered exactly without any gap nor overlap. However, the provider implementers must verify and validate the set of offers selected is valid. if the trip being booked is also a return trip, then the rule applies for each direction.
 
+When booking for a trip for which several offer clusters were provided
+([see offer clusters](../models#offers-with-partial-coverage))), the API
+consumer must be careful to always select one and only one offer from each
+offer cluster in the tripOffer. This ensures that even though the selection
+is done per offer cluster, the complete trip is covered exactly without any
+gap nor overlap. However, the provider implementers must verify and validate the
+set of offers selected is valid. if the trip being booked is also a return
+trip, then the rule applies for each direction.
 
 ### Handling Partial Success of Pre-Booking
 
