@@ -37,5 +37,5 @@ For further information contact one of the [core teams members](../team).
 
 ## Copyright
 
-This documentation copyrighted by [UIC](https://www.uic.org) is published under
-the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.html) Open Source Licence.
+This documentation is published under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.html).
+Open Source Licence. Copyright by [UIC](https://www.uic.org).
