@@ -2857,6 +2857,67 @@ paths:
         '501':
           description: Not implemented
 
+  '/coachLayouts/{layoutId}':
+    get:
+      tags:
+        - CoachLayouts 
+      description: get coach layout
+      summary: >-
+        Retrieve a coach layout description needed for graphical reservation    
+      operationId: getCoachLayout
+      parameters:
+        - name: access-token 
+          in: header
+          description: >-
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response 
+            to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
+        - in: path
+          description: id of the layout
+          name: layoutId
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: coach layouts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoachLayout'
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+
+
   '/coachLayouts':
     get:
       tags:
@@ -2890,6 +2951,19 @@ paths:
             type: string
             format: uuid
           required: false
+        - in: query
+          name: embed
+          description: >-
+            Influences whether referenced resources are returned in full or as references only.
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - ALL
+                - LAYOUT
+                - NONE
+              default: ALL          
       responses:
         '200':
           description: coach layouts
@@ -4342,7 +4416,6 @@ components:
       type: string
       description: >-
         Reason for and type of an after sale, code list in IRS 90918-10.
-
     ExchangeOffersCollection:
       type: array
       items:
@@ -5921,7 +5994,6 @@ components:
       type: string
       description:  >-
         Accommodation type definition out of AccommodationSubTypeCodeList      
-
     PlaceSelection:
       type: object
       description: >-
@@ -6183,7 +6255,6 @@ components:
       description: >- 
         Passenger information potentially needed at booking step. The main purpose is
         being able to inform the customer of delays or disruptions.
-
         PassengerDetails providing personal information only information required in the booking.
         It is not allowed to send personal information not required in the booking reply.
         It is not allowed to send these personal data already in the booking request.
