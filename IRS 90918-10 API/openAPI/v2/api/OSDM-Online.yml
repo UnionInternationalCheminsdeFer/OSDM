@@ -2883,6 +2883,13 @@ paths:
           schema:
             type: string
           required: false
+        - in: query 
+          description: id of the trip to offer
+          name: offerId
+          schema:
+            type: string
+            format: uuid
+          required: false
       responses:
         '200':
           description: coach layouts
@@ -3035,7 +3042,6 @@ components:
         - title
         - type
         - href
-
        
     Segment:
       type: object
@@ -4525,10 +4531,14 @@ components:
     Layouts:
       type: object
       properties:
+        selectablePlaces:
+          $ref: '#/components/schemas/PlaceAvailability'
         layouts:
           type: array
           items:
             $ref: '#/components/schemas/CoachLayout'
+      required:
+        - layouts
 
     CoachLayout:
       type: object
@@ -4590,7 +4600,7 @@ components:
             properties:
               icon:
                 description: >-
-                  Icon id of the graphical item type. Code list according to UIC90918-1
+                  Icon type of the graphical item type. Code list according to UIC90918-1
                   graphical item type e.g. silence area sign = 116
                 type: string
               coords:
@@ -4605,7 +4615,7 @@ components:
             properties:
               icon:
                 description: >-
-                  icon id of the graphical item type. Code list according to UIC90918-1
+                  icon type of the graphical item type. Code list according to UIC90918-1
                   graphical item type e.g. seat = 1, berth = 2, couchette = 3
                 type: string
               mounting:
@@ -5925,8 +5935,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceOptionsBundle'
-        selectablePlaces:
-          $ref: '#/components/schemas/PlaceAvailability'
         selectedCoach:
           $ref: '#/components/schemas/SelectedCoach'
     
@@ -5960,7 +5968,7 @@ components:
     PlaceOptionsBundle:
       type: object
       description: >-
-        selection of places for reservation linked to passengers
+        Place selection of places for reservation linked to passengers.
       properties:
         passengers:
           type: array
@@ -5976,19 +5984,19 @@ components:
     PlaceAvailability:
       type: object
       description: >-
-        ToDo: Review by Klaus :-)
+        Availability of places on coaches.
       properties:
         coaches:
           description: >-
-            list of the coaches in a train run ordered according to the physical
-            ordering of the train
+            List of the coaches in a train run ordered according to the physical
+            ordering of the train.
           type: array
           items:
             type: object
             properties:
               compartments:
                 description: >-
-                  areas within a coach that holds places. Areas might be selectable
+                  Areas within a coach that holds places. Areas might be selectable
                   as a whole. Usual areas would be classic compartments.
                 type: array
                 items:
@@ -5997,27 +6005,7 @@ components:
                     places:
                       type: array
                       items:
-                        type: object
-                        properties:
-                          number:
-                            description: >-
-                              the place number as indicated at the place in the coach
-                            type: string
-                          status:
-                            description: status of the place
-                            type: string
-                            x-extensible-enum:
-                               - ALLOCATED
-                               - FREE
-                               - RESTRICTED                        
-                          isSelectable:
-                            description: >-
-                              to indicate individual places as non-selectable in
-                              case complete compartments must be selected
-                            type: boolean
-                            default: true
-                        required:
-                          - number                
+                        $ref: '#/components/schemas/Place'
                     status:
                       type: string
                     isSelectable:
@@ -6028,13 +6016,7 @@ components:
                 description: coach number
                 type: string
               status:
-                description: >-
-                  status of the coach if the status applies to all places of the coach
-                type: string
-                x-extensible-enum:
-                   - ALLOCATED
-                   - FREE
-                   - RESTRICTED
+                $ref: '#/components/schemas/AvailabilityStatus'
               layoutId:
                 description: id to identify the coach layout
                 type: string
@@ -6047,14 +6029,10 @@ components:
               direction:
                 description: >-
                   indication of the direction of travel standard direction is left
-                  to right with ascending coordinates in the layout values  U =
-                  unspecified
-                          in direction of the layout
-                          opposite to direction of the layout
-                          changing
-                          starting in direction but changing later
+                  to right with ascending coordinates in the layout values.
                 type: string
                 x-extensible-enum:
+                 - UNSPECIFIED
                  - IN_DIRECTION
                  - OPPOSITE_DIRECTION
                  - CHANGING
@@ -6072,6 +6050,35 @@ components:
             required:
               - number
               - layoutId    
+
+    Place:
+      description: description of a place
+      type: object
+      properties:
+        number:
+          description: >-
+            the place number as indicated at the place in the coach
+          type: string
+        status:
+          $ref: '#/components/schemas/AvailabilityStatus'
+        isSelectable:
+          description: >-
+            Flag to indicate individual places as non-selectable in
+            case complete compartments must be selected
+          type: boolean
+          default: true
+      required:
+        - number
+        - status
+
+    AvailabilityStatus:
+      description: status of the place or coach
+      type: string
+      enum:
+        - ALLOCATED
+        - FREE
+        - RESTRICTED
+      default: FREE
 
     SelectedCoach:
       type: object
