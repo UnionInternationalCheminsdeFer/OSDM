@@ -6,7 +6,7 @@ permalink: /about/
 
 ## Background
 
-The Open Sales and Distribution Model has emerged from the **nTM (new Tariff Model)** and **FSM (Full Service Model)** initiatives:
+The Open Sales and Distribution Model has emerged from the **new Tariff Model (nTM)** and [Full Service Model (FSM 2.0)](https://tsga.eu/fsm) initiatives:
 
 - The initiative new Tariff Model (nTM) initiated by UIC established the successor standard of
   **PRIFIS**. It defines on the one hand an offline standard for the exchange of priced segments
@@ -21,7 +21,7 @@ The Open Sales and Distribution Model has emerged from the **nTM (new Tariff Mod
   services) within Europe and beyond. By standardizing the distribution interface, the distribution of
   products and services can be greatly simplified.
 
-To join forces and represent the **rail sector as a whole** the two initiatives have been merged into the [OSDM](/.) initiative. The specification will be supported by the [UIC](https://uic.org) as **IRS 90918-10**.
+To join forces and represent the **rail sector as a whole** the two initiatives have been merged into this initiative. The specification will be supported by the [UIC](https://uic.org) as **IRS 90918-10**.
 
 ## Contributing
 
@@ -37,5 +37,5 @@ For further information contact one of the [core teams members](../team).
 
 ## Copyright
 
-This documentation copyrighted by [UIC](https://www.uic.org) is published under
-the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.html) Open Source Licence.
+This documentation is published under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.html).
+Open Source Licence. Copyright by [UIC](https://www.uic.org).

@@ -8,7 +8,9 @@ permalink: /team/
 
 The [OSDM specification](../spec) effort has been driven by
 
+- [Eder Sabine](https://www.linkedin.com/in/sabine-eder-3315a512b/) (ÖBB)
 - [Gantert Clemens](https://www.linkedin.com/in/clemens-g-88783725) (DB)
+- [Parmigiani Elisa](https://www.linkedin.com/in/elisa-parmigiani-186b5745/) (Amadeus)
 - [Schlapbach Andreas](https://www.linkedin.com/in/andreas-schlapbach-09b095ab/) (SBB)
 - [Selleslagh Nicolas](https://linkedin.com/in/nicolasselleslagh) (BENE)
 
@@ -19,7 +21,6 @@ The following experts from distributors and railways have contributed to the [OS
 - Bayer Ralf (DB)
 - Carta Vittorio (DB)
 - Dorsch Jessica (DB)
-- Eder Sabine (ÖBB)
 - Gellner Alexander (SBB)
 - Godfroy Quentin (Trainline)
 - Heider Reinhold (ÖBB)
@@ -31,7 +32,6 @@ The following experts from distributors and railways have contributed to the [OS
 - Nieuwerth Johan (Sqills)
 - Nyman Hernik (SilverRail)
 - Olsson Anders (SilverRail)
-- Parmigiani Elisa (Amadeus)
 - Quemerais Manuel (SNCF)
 - Reumer Mike (BENE)
 - Ruiz Enrique (Hitrail)

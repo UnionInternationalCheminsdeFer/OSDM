@@ -5,6 +5,7 @@ hide_hero: true
 permalink: /spec/catalog-of-code-lists
 ---
 # Catalog of Code Lists
+
 This code lists are provided for convenience only. The mandatory code lists are 
 provided within the schema or within the IRS90918-10 specification.
 
@@ -63,7 +64,6 @@ RS 90918-1 (Service Level).
 |`U`|	T3 with shower & WC |
 |`W`|	Double with shower |
 
-
 ## Carrier
 
 Carrier codes used in OSDM are based on the [UIC RICS Company Code](https://uic.org/support-activities/it/rics?recherche=RICS%20code) standard.
@@ -99,7 +99,7 @@ Language codes used in OSDM are based on the [ISO 639-1](https://en.wikipedia.or
 | `ID_CARD` |  |
 | `PASSPORT` |  |
 | `DIPLOMATIC_PASSPORT` |  |
-| `REFUGGE_TRAVEL_DOCUMENT` |  |
+| `REFUGEE_TRAVEL_DOCUMENT` |  |
 | `DRIVING_LICENCE` |  |
 
 ## Place Property
@@ -113,7 +113,7 @@ Language codes used in OSDM are based on the [ISO 639-1](https://en.wikipedia.or
 | `AIR-CONDITIONED`||
 | `BICYCLE`| Bicycle |
 | `BICYCLE_INCL_SEAT`| Bicycle including seat|
-|` BISTRO`| Places in a coach with self-service bistro|
+| `BISTRO` | Places in a coach with self-service bistro|
 | `BUSINESS`| Manager compartment/business|
 | `CABIN8`| |
 | `CARRE`| Carré (4 seats facing normally 2nd Class)|
@@ -181,22 +181,21 @@ POICode: Values are depending on code list and set is too large to be reproduced
 
 ## Reduction Cards
 
-UIC codelist:
+UIC code list:
 
-|Card-Id |Issuer | Description | Type |
-|--------|-------|-------------|------|
-|`UIC_EURAIL` | Eurail | Eurail Pass |`PASS`|
-|`UIC_INTERRAIL` | Eurail | Interrail Pass |`PASS`|
-|`UIC_FIP_LEASURE_RED` |  FIP |  FIP reduction (50%) | `REDUCTION_CARD`|
-|`UIC_FIP_DUTY` |  FIP |  FIP duty |  `PASS`|
-|`UIC_FIP_LEASURE_FREE` |  FIP |  FIP free personal use |  `PASS`|
-|`UIC_RAILPLU` | S *  | A pure rail plus card | `REDUCTION_CARD`|
-|`UIC_RIT_1`  | *  | RIT reduction for RIT 1 members | `REDUCTION_CARD`|
-|`UIC_RIT_2`  | * |  RIT reduction for RIT 2 members | `REDUCTION_CARD`|
-|`UIC_RIT_3` |  * |  RIT reduction for RIT 3 members | `REDUCTION_CARD`|
+| Card-Id | Issuer | Description | Type |
+|---------|--------|-------------|------|
+| `UIC_EURAIL` | Eurail | Eurail Pass | `PASS` |
+| `UIC_INTERRAIL` | Eurail | Interrail Pass | `PASS` |
+| `UIC_FIP_LEASURE_RED` |  FIP |  FIP reduction (50%) | `REDUCTION_CARD` |
+| `UIC_FIP_DUTY` |  FIP |  FIP duty | `PASS`|
+| `UIC_FIP_LEASURE_FREE` |  FIP |  FIP free personal use | `PASS` |
+| `UIC_RAILPLUS` | *  | A pure rail plus card | `REDUCTION_CARD` |
+| `UIC_RIT_1` | * | RIT reduction for RIT 1 members | `REDUCTION_CARD` |
+| `UIC_RIT_2` | * | RIT reduction for RIT 2 members | `REDUCTION_CARD` |
+| `UIC_RIT_3` | * | RIT reduction for RIT 3 members | `REDUCTION_CARD` |
 
-Other parties are allowed to accept additionnal reduction cards.
-
+Other parties are allowed to accept additional reduction cards.
 
 ## Refund Overrule Codes
 
@@ -254,7 +253,7 @@ Legacy reservation code defined in UIC 90918-1.
 | `LEVEL` | Upper or lower deck|
 | `PLACE_GROUPING` | Compartment / Open Space|
 | `PLACE_LOCATION` | Place location (Aisle, Window)|
-| `USAGE `| Different usage types for different coach areas|
+| `USAGE` | Different usage types for different coach areas|
 | `VEHICLE`|  Different types of vehicles|
 
 
@@ -265,81 +264,81 @@ https://uic.org/spip.php?action=telecharger&arg=3007
 
 | Service Brand Code | Abbreviation | Reservation Ticket Text | MERITS Description |
 |--------------------|--------------|-------------------------|--------------------|
-| `33`| 	| Ferry | Ship |
+| `33`| | Ferry | Ship |
 | `37`|	| normal train |	Train|
-| `46`| 	`TAJ`| 	TAJ| 	Day car train|
-| `47`| 	`TAC`| 	TAC| 	Car sleeper train, motor rail (CST)|
-| `48`| 	`SAE`| 	SAE| 	Unaccompanied car service, motor rail|
-| `49`| 	`EIC`| 	ExpressIC | 	Fast and Comfortable Interregional trains|
-| `50`| 	`EC` | 	EuroCity | 	EuroCity|
-| `51`| 	`ICE`| 	ICE| 	ICE|
-| `52`| 	`AVE`| 	AVE| 	AVE|
-| `53`| 	`EIL`| 	EUROSTAR| 	Eurostar|
+| `46`| `TAJ`| 	TAJ| 	Day car train|
+| `47`| `TAC`| 	TAC| 	Car sleeper train, motor rail (CST)|
+| `48`| `SAE`| 	SAE| 	Unaccompanied car service, motor rail|
+| `49`| `EIC`| 	ExpressIC | 	Fast and Comfortable Interregional trains|
+| `50`| `EC` | 	EuroCity | 	EuroCity|
+| `51`| `ICE`| 	ICE| 	ICE|
+| `52`| `AVE`| 	AVE| 	AVE|
+| `53`| `EIL`| 	EUROSTAR| 	Eurostar|
 | `54`| | |	Talgo|
-| `55`| 	`OTU`| 	Oresundstog| 	Oresundstog|
-| `56`| 	`TGV`| 	TGV| 	TGV Bruxelles – Lille / Province|
-| `58`| 	`TRN`| 	Intercités| 	Intercités|
-| `59`| 	`AE`| 	ALLEGRO| 	Allegro|
-| `60`| 	`ECB`| 	EuroCityBrenner	EuroCityBrenner|
+| `55`| `OTU`| 	Oresundstog| 	Oresundstog|
+| `56`| `TGV`| 	TGV| 	TGV Bruxelles – Lille / Province|
+| `58`| `TRN`| 	Intercités| 	Intercités|
+| `59`| `AE`| 	ALLEGRO| 	Allegro|
+| `60`| `ECB`| 	EuroCityBrenner	EuroCityBrenner|
 | `62`| | |Suburban service|
 | `63`|	`IC`| 	Intercity|   	Intercity|
 | `64`|||	Hotel Train|
 | `65`| |	Ferry	| hydrofoil|
-| `66`| 	`IC`| 	Intercity |  	Inter City Lyn|
+| `66`| `IC`| 	Intercity |  	Inter City Lyn|
 | `67`| |	| TRN|
 | `68`| | |	International|
 | `69`| | |	Express|
-| `70`| 	`EN`| 	EuroNight  | 	Euro Night|
-| `71`| 	`HST`| 	High-speed train| 	High-speed train|
-| `72`| 	`TRN`| 	TRAIN| 	Train SNCF|
-| `73`| 	`TGV`| 	TGV| 	TGV Sud-Est|
-| `74`| 	`TGV`| 	TGV| 	TGV Atlantique|
-| `75`| 	`TGV`| 	TGV| 	TGV Nord|
-| `76`| 	`TGV`| 	TGV| 	TGV Lyria|
-| `77`| 	`TGV`| 	TGV| 	TGV Duplex|
-| `79`| 	`TGV`| 	TGV| 	TGV Est|
-| `80`| 	`TGV`| 	TGV| 	TGV Interconnexion|
-| `82`| 	|THALYS | 	Thalys|
-| `83`| 	|Ferry  |	hovercraft|
-| `84`| 	`RE`| 	regional train|	Regional|
-| `85`| 	`GPE`| 	Gotthard Panorama Express	|Gotthard Panorama Express
-| `87`| 	| PENDOLINO  | 	Pendolino
-| `88`| 	| |Suburban|
-| `89`| 	`ALV`| 	Alvia| 	Alvia|
-| `90`| 	`AVN`| 	Avant| 	Avant|
-| `91`| 	`TER`| 	TRAIN| 	Regional TER|
-| `92`| 	`REG`| 	Regiontog| 	Regiontog|
-| `93`| 	`FB`| 	FRECCIABIANCA|	FRECCIABIANCA|
-| `94`| 	`SC`| 	SuperCity| 	Supercity|
-| `95`| 	`CNL`| 	City Night Line (D) 	DB Nachtzug|
-| `96`| 	`INI`| 	InterCityNotte Italia  	InterCityNotte|
-| `97`| 	`GB`| 	ATOC MEMBER OPERATED SERVICE	ATOC MEMBER OPERATED SERVICE|
-| `98`| 	`ESI`| 	ES Italia | 	Eurostar Italia|
-| `99`| 	||Funicular|
-| `100`| 	||Airport train|
+| `70`| `EN`| 	EuroNight  | 	Euro Night|
+| `71`| `HST`| 	High-speed train| 	High-speed train|
+| `72`| `TRN`| 	TRAIN| 	Train SNCF|
+| `73`| `TGV`| 	TGV| 	TGV Sud-Est|
+| `74`| `TGV`| 	TGV| 	TGV Atlantique|
+| `75`| `TGV`| 	TGV| 	TGV Nord|
+| `76`| `TGV`| 	TGV| 	TGV Lyria|
+| `77`| `TGV`| 	TGV| 	TGV Duplex|
+| `79`| `TGV`| 	TGV| 	TGV Est|
+| `80`| `TGV`| 	TGV| 	TGV Interconnexion|
+| `82`| |THALYS | 	Thalys|
+| `83`| |Ferry  |	hovercraft|
+| `84`| `RE`| 	regional train|	Regional|
+| `85`| `GPE`| 	Gotthard Panorama Express	|Gotthard Panorama Express
+| `87`| | PENDOLINO  | 	Pendolino
+| `88`| | |Suburban|
+| `89`| `ALV`| 	Alvia| 	Alvia|
+| `90`| `AVN`| 	Avant| 	Avant|
+| `91`| `TER`| 	TRAIN| 	Regional TER|
+| `92`| `REG`| 	Regiontog| 	Regiontog|
+| `93`| `FB`| 	FRECCIABIANCA|	FRECCIABIANCA|
+| `94`| `SC`| 	SuperCity| 	Supercity|
+| `95`| `CNL`| 	City Night Line (D) 	DB Nachtzug|
+| `96`| `INI`| 	InterCityNotte Italia  	InterCityNotte|
+| `97`| `GB`| 	ATOC MEMBER OPERATED SERVICE	ATOC MEMBER OPERATED SERVICE|
+| `98`| `ESI`| 	ES Italia | 	Eurostar Italia|
+| `99`| ||Funicular|
+| `100`|	||Airport train|
 | `101`| 	||Night train|
 | `102`| 	||Touristic train|
 | `107`| 	||Historical train, steam engine train|
-| `108`| 	`IRE`| 	IRE	|Interregio-Express|
-| `109`| 	`RB`| 	RB|	Regionalbahn|
-| `110`| 	`RE`|	RE|	Regional-Express|
-| `111`| 	`RT`| 	RT|	RegioTram|
+| `108`| `IRE`| 	IRE	|Interregio-Express|
+| `109`| `RB`| 	RB|	Regionalbahn|
+| `110`| `RE`|	RE|	Regional-Express|
+| `111`| `RT`| 	RT|	RegioTram|
 | `112`| ||	Shinkansen
-| `113`| 	`THT`| 	TrainHotel Talgo	|Train hotel talgo|
-| `114`| 	`EUR`| 	Euromed|	Euromed
-| `115`| 	`ALR`| 	Alaris|	Alaris|
-| `116`| 	`ALT`| 	Altaria|	Altaria|
-| `117`| 	`ARC`| 	Arco	|Arco|
+| `113`| `THT`| 	TrainHotel Talgo	|Train hotel talgo|
+| `114`| `EUR`| 	Euromed|	Euromed
+| `115`| `ALR`| 	Alaris|	Alaris|
+| `116`| `ALT`| 	Altaria|	Altaria|
+| `117`| `ARC`| 	Arco	|Arco|
 | `119`| 	||S-Bahn
 | `121`| 	||Night Train	Night Train
-| `122`| 	`IR`| 	Interregional	| Interregional
-| `123`| 	`IRN`| 	Interregional Night Train |	Interregional Night Train
-| `124`| 	`NLT`| 	TOLSTOI	| Tolstoi
+| `122`| `IR`| 	Interregional	| Interregional
+| `123`| `IRN`| 	Interregional Night Train |	Interregional Night Train
+| `124`| `NLT`| 	TOLSTOI	| Tolstoi
 | `126`| 	|  |  ARZ||
-| `128`| 	`AVE`| 	RENFE SNCF EN COOPERATION	| Renfe SNCF|
-| `129`| 	`TGV`| 	TGV INOUI	| Renfe SNCF|
-| `130`| 	`BUS`| 	IC Bus |	Bus|
-| `131`| 	`BUS`| 	IC Bus International	|Bus|
+| `128`| `AVE`| 	RENFE SNCF EN COOPERATION	| Renfe SNCF|
+| `129`| `TGV`| 	TGV INOUI	| Renfe SNCF|
+| `130`| `BUS`| 	IC Bus |	Bus|
+| `131`| `BUS`| 	IC Bus International	|Bus|
 | `153`| 	|special train |	Sonderzug|
 | `154`| 	||InterCityRapid|
 | `155`| 	||InterPici|
@@ -348,62 +347,61 @@ https://uic.org/spip.php?action=telecharger&arg=3007
 | `159`| 	| Bus |	IC Ersatzbus|
 | `160`| 	|Bus 	| IP Ersatzbus|
 | `162`| 	|Bus 	| Replacement Bus|
-| `163`| 	`TGV`| 	TGV|	TGV Duplex Lyria|
-| `166`| 	`TGV`| 	TGV INOUI|	TGV Duplex France Allemagne|
-| `170`| 	`YHT`| 	YHT|	High speed train in Turkey|
-| `171`| 	`FA`|	FRECCIARGENTO|	FRECCIARGENTO|
-| `172`| 	`FR`| 	FRECCIAROSSA|	FRECCIAROSSA|
-| `173`| 	`AP`| 	Albula Panorama	| Albula Panorama (Panoramic Car)|
-| `174`| 	`BEX`| 	Bernina Express	|Bernina Express (Panorama Train)|
-| `175`| 	`GEX`| 	Glacier Express	| Glacier Express (Panorama Train)|
-| `176`| 	`GP`| 	Golden Pass	|Golden Pass (Panorama Train)|
-| `177`| 	`BNI`| 	Bernina Panorama|	Bernina Panorama (Panoramic Car)|
-| `178`| 	`zb`| 	zb Zentralbahn AG|	Luzern-Interlaken Express (Panorama Train)|
-| `179`| 	`BXB`| 	Bernina Express Bus|	Bernina Express (Panorama Bus)|
-| `200`| 	`GGB`| 	Gornergrat Bahn	Mountain| train|
-| `202`| 	`ICE`| 	ICE-Allemagne France  |	ICE Allemagne-France|
+| `163`| `TGV`| 	TGV|	TGV Duplex Lyria|
+| `166`| `TGV`| 	TGV INOUI|	TGV Duplex France Allemagne|
+| `170`| `YHT`| 	YHT|	High speed train in Turkey|
+| `171`| `FA`|	FRECCIARGENTO|	FRECCIARGENTO|
+| `172`| `FR`| 	FRECCIAROSSA|	FRECCIAROSSA|
+| `173`| `AP`| 	Albula Panorama	| Albula Panorama (Panoramic Car)|
+| `174`| `BEX`| 	Bernina Express	|Bernina Express (Panorama Train)|
+| `175`| `GEX`| 	Glacier Express	| Glacier Express (Panorama Train)|
+| `176`| `GP`| 	Golden Pass	|Golden Pass (Panorama Train)|
+| `177`| `BNI`| 	Bernina Panorama|	Bernina Panorama (Panoramic Car)|
+| `178`| `zb`| 	zb Zentralbahn AG|	Luzern-Interlaken Express (Panorama Train)|
+| `179`| `BXB`| 	Bernina Express Bus|	Bernina Express (Panorama Bus)|
+| `200`| `GGB`| 	Gornergrat Bahn	Mountain| train|
+| `202`| `ICE`| 	ICE-Allemagne France  |	ICE Allemagne-France|
 | `203`|	| ÖBB-NIGHTLINE	|ÖBB Night Line|
-| `205`| 	`ICP`| 	Intercity Plus| 	Intercity Plus|
-| `206`| 	`RID`| 	Riviera Day |	Riviera day|
-| `207`| 	`RIN`| 	Riviera Night| 	Riviera night|
-| `209`| 	`RJ`| 	R A I L JET|  	Rail Jet|
-| `213`| 	`AZ`| 	DB Autozug |	DB Autozug|
+| `205`| `ICP`| 	Intercity Plus| 	Intercity Plus|
+| `206`| `RID`| 	Riviera Day |	Riviera day|
+| `207`| `RIN`| 	Riviera Night| 	Riviera night|
+| `209`| `RJ`| 	R A I L JET|  	Rail Jet|
+| `213`| `AZ`| 	DB Autozug |	DB Autozug|
 | `214`| 	| Berlin-Warszawa-Expresas | 	Berlin-Warszawa-Express|
 | `215`| 	| Railpromo Austria Express/Treski|	Austria Express/Treski|
-| `216`| 	`PRECIOS`| MERCADO|	Precios Mercado|
-| `219`| 	`TGV`| 	TGV|	TGV|
-| `223`| 	`FB`| 	FB|	FernBus|
-| `224`| 	`ICB`| 	Intercitybus|	ÖBB-Intercitybus|
-| `225`| 	`TLK`| 	TLK train 	|Yours Rail Lines|
-| `226`| 	`A`| 	RailBus|	RailBus|
-| `227`| 	`BUS`| 	Replacement bus for Regional Train|	Replacement bus for Regional Train|
-| `228`| 	`IR`| 	InterREGIO train|	InterREGIO train|
-| `229`| 	`IRB`| 	Replacement bus for InterRegio train|	Replacement bus for InterRegio train|
-| `230`| 	`MP`| 	Fast International Train|	Fast International Train|
-| `231`| 	`MR`| 	musicREGIO train|	musicREGIO train|
-| `232`| 	`OS`| 	Stopping Train|	Stopping Train|
-| `233`| 	`P`| 	Fast Train|	Fast Train|
-| `234`| 	`R`| 	REGIO train|	REGIO train|
-| `235`| 	`RE`| 	REGIOekspres train|	REGIOekspres train|
-| `236`| 	`VR`| 	viaREGIO| train	viaREGIO train|
-| `237`| 	`TK`| 	TurKol|	TurKol|
-| `238`| 	`EIP`| 	EIC Premium|	High-speed train|
-| `239`| 	`SKM`| 	PKP SKM| w Trojmiescie	PKP| SKM w Trojmiescie|
-| `240`| 	`SA`| 	SAPSAN|	High speed train|
-| `242`| 	`STR`| 	STRIZH|	Strizh night train|
-| `243`| 	`STR`| 	STRIZH|	Strizh interregional|
-| `244`| 	`NJ`| 	NJ	|NJ Night Jet|
-| `245`| 	`CAR`| 	AUTOCAR|	French regional buses (not sold via Hermes)|
-| `246`| 	`RJX`| 	RJX|	RJX railjet xpress|
-| `247`| 	`CJX`| 	CJX|	CJX cityjet xpress|
+| `216`| `PRECIOS`| MERCADO|	Precios Mercado|
+| `219`| `TGV`| 	TGV|	TGV|
+| `223`| `FB`| 	FB|	FernBus|
+| `224`| `ICB`| 	Intercitybus|	ÖBB-Intercitybus|
+| `225`| `TLK`| 	TLK train 	|Yours Rail Lines|
+| `226`| `A`| 	RailBus|	RailBus|
+| `227`| `BUS`| 	Replacement bus for Regional Train|	Replacement bus for Regional Train|
+| `228`| `IR`| 	InterREGIO train|	InterREGIO train|
+| `229`| `IRB`| 	Replacement bus for InterRegio train|	Replacement bus for InterRegio train|
+| `230`| `MP`| 	Fast International Train|	Fast International Train|
+| `231`| `MR`| 	musicREGIO train|	musicREGIO train|
+| `232`| `OS`| 	Stopping Train|	Stopping Train|
+| `233`| `P`| 	Fast Train|	Fast Train|
+| `234`| `R`| 	REGIO train|	REGIO train|
+| `235`| `RE`| 	REGIOekspres train|	REGIOekspres train|
+| `236`| `VR`| 	viaREGIO| train	viaREGIO train|
+| `237`| `TK`| 	TurKol|	TurKol|
+| `238`| `EIP`| 	EIC Premium|	High-speed train|
+| `239`| `SKM`| 	PKP SKM| w Trojmiescie	PKP| SKM w Trojmiescie|
+| `240`| `SA`| 	SAPSAN|	High speed train|
+| `242`| `STR`| 	STRIZH|	Strizh night train|
+| `243`| `STR`| 	STRIZH|	Strizh interregional|
+| `244`| `NJ`| 	NJ	|NJ Night Jet|
+| `245`| `CAR`| 	AUTOCAR|	French regional buses (not sold via Hermes)|
+| `246`| `RJX`| 	RJX|	RJX railjet xpress|
+| `247`| `CJX`| 	CJX|	CJX cityjet xpress|
 | `248`| 	| Night train BC |	Night train BC |
-| `249`| 	`TGV`| 	TGV INOUI|	TGV INOUI|
-| `250`| 	`TGV`| 	TGV INOUI|	TGV INOUI DUPLEX (double decker TGV)|
-| `251`| 	`ALI`| 	Aare Linth| 	Aare Linth (Panorama Train)|
-| `252`| 	`TGO`| 	Treno Gottardo| 	Treno Gottardo (Panorama Train)|
-| `253`| 	`VAE`| 	Voralpen-Express| 	Voralpen-Express (Panorama Train)|
-| `254`| 	`LK`| 	FRECCIALINK|	FRECCIALINK|
-
+| `249`| `TGV`| 	TGV INOUI|	TGV INOUI|
+| `250`| `TGV`| 	TGV INOUI|	TGV INOUI DUPLEX (double decker TGV)|
+| `251`| `ALI`| 	Aare Linth| 	Aare Linth (Panorama Train)|
+| `252`| `TGO`| 	Treno Gottardo| 	Treno Gottardo (Panorama Train)|
+| `253`| `VAE`| 	Voralpen-Express| 	Voralpen-Express (Panorama Train)|
+| `254`| `LK`| 	FRECCIALINK|	FRECCIALINK|
 
 ## Service Class
 

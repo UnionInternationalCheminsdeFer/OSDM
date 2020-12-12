@@ -18,13 +18,13 @@ concepts.
 
 ### Legend
 
-![Legend](../images/models/legend.svg "Legend")
+![Legend](../images/models/legend.svg)
 
 ## Trips and Locations
 
 ### Trips and Locations Data Model
 
-![Trips and Locations Data Model](../images/models/trips-locations.svg "Trips and Locations Data Model")
+![Trips and Locations Data Model](../images/models/trips-locations.svg)
 
 ## Main Resources
 
@@ -34,7 +34,7 @@ Locations are resources representing a specific location in a trip: departure,
 origin, intermediate stop or other. They can be of different types:
 
 - **Station**: represent a train station. It is obviously the most relevant
-  type for **OSDM**. Stations can be indicated as codes from different code
+  type for OSDM. Stations can be indicated as codes from different code
 sets. As with other code list based representations in the API, using the UIC
 code set is highly recommended.
 
@@ -60,7 +60,7 @@ to destination station. A trip is composed of one or more segments.
 
 Each segment (also sometimes called legs) represent a connection between two
 locations where the traveller will either step in a transport or step out of a
-transport (most likely a train). 3 types can be distinguished: 
+transport (most likely a train). 3 types can be distinguished:
 
 - **origin**: departure location of the segment
 - **destination**: arrival location of the segment
@@ -79,7 +79,7 @@ way between departure and arrival of each segment
 
 ### Offers Data Model
 
-![Offers Data Model](../images/models/offers-data-model.svg "Offers Data Model")
+![Offers Data Model](../images/models/offers-data-model.svg)
 
 ## Main Resources
 
@@ -135,18 +135,26 @@ Indeed, in most cases the **Allocator** provider will propose several offers of
 different comfort and flexibility levels. In this resources, the trip resource
 representing the trip the offers are for and the passengers for the trip.
 
-#### Offers with partial coverage
-It is possible in OSDM to propose offers covering only a subset of the requested trip under very specific conditions:
+#### Offers with Partial Coverage
 
-- the segments covered by a given offer are indicated through the `coveredSegmentIndexes` property
-- all offers covering the same set of segments belong to the same  `offerCluster`. As such, their `offerCluster` identifier must be filled-in and identical
-- A `segment` can only be covered in one `offerCluster` within a `tripOffer` (no overlap)
-- each `segment` of the `trip` must be covered by at least one `offer` in each `TripOffer` (no gap)
+It is possible in OSDM to propose offers covering only a subset of the requested trip
+under specific conditions:
+
+- the segments covered by a given offer are indicated through the `coveredSegmentIndexes`
+  property
+- all offers covering the same set of segments belong to the same  `offerCluster`. As such,
+  their `offerCluster` identifier must be filled-in and identical
+- a `segment` can only be covered in one `offerCluster` within a `tripOffer` (no overlap)
+- each `segment` of the `trip` must be covered by at least one `offer` in each `TripOffer`
+  (no gap)
+
+*Example with no overlap*
 
 ![Clusters-no-overlap](../images/models/clusters1.svg "Clusters-no-overlap")
 
-![Clusters-no-gap](../images/models/clusters2.svg "Clusters-no-gap")
+*Example with no gap*
 
+![Clusters-no-gap](../images/models/clusters2.svg "Clusters-no-gap")
 
 ### OfferParts
 
@@ -232,7 +240,7 @@ compared to admission products:
   once the offer will have been booked, the exact reserved places, with their
   properties and links to the concerned passengers
 
-- Place selection Details: contains several elements related to the selection 
+- Place selection Details: contains several elements related to the selection
   of places:
 
   - `ReservationOptions` show, at offer retrieval stag which options are
@@ -269,7 +277,7 @@ price update took place.
 ### Offer Parts - Ancillaries
 
 Ancillaries are used to represent non-transport products associated with the
-transportation request submitted. It could be onboard services such as a wifi
+transportation request submitted. It could be onboard services such as a WIFI
 connection or a meal, or services associated with one of the stops, or
 origin/destination, like a parking spot or lounge access.
 
@@ -361,7 +369,7 @@ passenger types he is using internally
   internally this clearly defined notion to the internal representation.
 
 The presentation hereunder provides some additional examples of high-level
-offer modellings for pure-OSDM offers
+offer modellings for pure-OSDM offers.
 
 ## Booking
 
@@ -395,14 +403,14 @@ the fulfillment. Only electronic fulfillment is considered in the MVP scope.
 
 `BookedOffers` are actually the same resources as the offers except that they are
 now booked. Most of the resource remains unchanged, except for the sections on
-reservation details (either in reservation or integrated reservation offerparts,
+reservation details (either in reservation or integrated reservation `Offerpart`s,
 or in fares), where but the sections related to the reserved places (in
 reservationDetails) will now be populated with the references to the space
 allocated by the provider system where the transport product is hosted.
 
 ### Fulfillments
 
-Fulfillments could once have been called tickets. But the evolutions in the
+`Fulfillments` could once have been called tickets. But the evolutions in the
 industry have led this to be a limitative naming, as various kinds of
 ticketless onboard controls are rapidly taking over and become the norm rather
 than the exception. Since in OSDM only the distribution part of the process is
@@ -412,7 +420,7 @@ From a distribution standpoint, the only needs are
 The possibility to point at a fulfillment representing an offer part (= the id)
 for after sales operations.  The capability to link this fulfillment to that
 associated offer part they relate to.  A business identifier that can be used
-in associated processes. For railways, that would be the Ticket Control Number 
+in associated processes. For railways, that would be the Ticket Control Number
 (TCN).
 
 Links to the documents or other security features that can be used to
