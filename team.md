@@ -30,7 +30,7 @@ The following experts from distributors and railways have contributed to the [OS
 - Kovar Klaus (ÖBB)
 - Mariorenzi Luca (Trenitalia)
 - Nieuwerth Johan (Sqills)
-- Nyman Hernik (SilverRail)
+- Nyman Henrik (SilverRail)
 - Olsson Anders (SilverRail)
 - Quemerais Manuel (SNCF)
 - Reumer Mike (BENE)

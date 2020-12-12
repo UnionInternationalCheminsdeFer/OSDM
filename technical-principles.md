@@ -5,14 +5,13 @@ hide_hero: true
 permalink: /spec/technical-principles
 ---
 
-# Technical Principles
+## Design Guidelines
 
-## Design guidelines
+- **Do not reinvent the wheel** - Use existing concepts whenever possible (e.g. type system of OpenAPI, Problem details,...).
+- Strive for a Level 3 of [REST maturity](https://martinfowler.com/articles/richardsonMaturityModel.html).
+- Use [semantic versioning](https://semver.org).
 
-- **Do not reinvent the wheel** - Use existing concepts whenever possible (e.g. type system of OpenAPI, Problem details,...)
-- Strive for a high level of REST maturity (level >2)
-
-## Derived guidelines
+## Derived Guidelines
 
 - Whenever a resource returned in a response can contain embedded resources, the request must allow specifying whether and which embedded resources should be returned in full or as references.
 - Follow [Zalando RESTful API and Event Scheme guidelines](https://opensource.zalando.com/restful-api-guidelines/)
@@ -76,10 +75,10 @@ For example at SBB we use [3Scale](https://www.redhat.com/de/technologies/jboss-
 
 ### User Lookup
 
-From a devOps perspective it might by hard to control who uses your API (for e.g. ClientId and secret might by passed around or hacked)
+From a devOps perspective it might by hard to control who uses your API (for e.g. `ClientId` and secret might by passed around or hacked).
 
 The following issues should be defined outside of OSDM:
 
 - Additional legal contracts with consumer
 - IP white listing
-- Mapping of related user properties to the technical ClientId
+- Mapping of related user properties to the technical `ClientId`

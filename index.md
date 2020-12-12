@@ -13,7 +13,7 @@ The aims of the **Open Sales and Distribution Model (OSDM)** are twofold:
 
 1. to substantially **simplify the booking process for customers** of rail
    trips and,
-2. to **lower complexity and distribution costs** for distributors and 
+2. to **lower complexity and distribution costs** for distributors and
    railway carriers.
 
 OSDM strengthens rail as a convenient and ecological means of transportation by
@@ -21,7 +21,7 @@ simplifying distribution. Finally, it lays a solid fundament which can be
 extended to the distribution of other means of transportation.
 
 The OSDM API and specification essentially consists of two parts: **Offline
-API** and **Online API**. The Online API works in two modes: **Distributor Mode**
+Model** and **Online API**. The Online API works in two modes: **Distributor Mode**
 and **Allocator Mode**. The Allocator Mode differs from the Distributor
 Mode only in that additionally to **admissions**, **reservations**, **integrated
 reservations**, or **ancillaries** also **priced segments (aka. fares)** are offered
@@ -33,7 +33,7 @@ paradigm.
 
 ## Roles
 
-The API is split between roles participants can take:
+The OSDM Model is split between roles participants can take:
 
 - **Fare Provider** – defining the fare and combination rules and providing
   them to allocators offline or online.
@@ -44,11 +44,11 @@ managing compensations processes, managing the stock control process.
 - **Distributor** – selling tickets from one or more allocators to the
   customer. Selecting the allocators and joining multiple independent bookings.
 
-A RU or system provider can support more than one role.
+A railway or a system provider can support more than one role.
 
 ## Design Goals
 
-The design of the OSDM Online API focuses on three main goals:
+The design of the OSDM-Online API focuses on three main goals:
 
 1. To provide a convenient way for a customer to book an international train
    service, including refund and exchange processes.
@@ -74,12 +74,12 @@ Analogously, the after-sale process is modelled in the following steps:
 - Fulfillment of the booking
 
 To address the second goal, we studied the existing commercial products and
-online distribution/carrier systems of **BENE**, **DB**, **öBB**, **RENFE**, 
+online distribution/carrier systems of **BENE**, **DB**, **öBB**, **RENFE**,
 **SBB**, **SNCF**, **Trenitalia** and others as well as distribution solutions
-provided by **Amadeus**, **Silverrail**, **Trainline** and others. Furthermore, 
-the Hermes/HOSA reservation system as well as existing **UIC leaflets** were carefully examined.
+provided by **Amadeus**, **Silverrail**, **Sqills**, **Trainline** and others.
+Furthermore,  the **Hermes/HOSA** reservation eco-system as well as existing **UIC leaflets** were carefully examined and taken into account.
 
-By involving the experts of the parties, we are confident that the OSDM 
+By involving the experts of the parties, we are confident that the OSDM
 standard is powerful enough to support the distribution of existing or upcoming
 commercial products and can be implemented and supported at reasonable cost.
 

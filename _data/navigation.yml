@@ -1,5 +1,7 @@
 - name: Specification
   link: spec/
+- name: Organization
+  link: organization/
 - name: Team
   link: team/
 - name: About
