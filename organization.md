@@ -6,7 +6,7 @@ permalink: /organization/
 
 ## Evolution Process
 
-As customer and business **need change**, the specification needs to evolve
+As customer and business **needs change**, the specification needs to evolve
 continuously. To address the need for improvement the project has been setup in
 an **agile manner**.
 

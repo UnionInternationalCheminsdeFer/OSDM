@@ -20,16 +20,16 @@ OSDM strengthens rail as a convenient and ecological means of transportation by
 simplifying distribution. Finally, it lays a solid fundament which can be
 extended to the distribution of other means of transportation.
 
-The OSDM API and specification essentially consists of two parts: **Offline
+The OSDM Online API and specification essentially consists of two parts: **Offline
 Model** and **Online API**. The Online API works in two modes: **Distributor Mode**
 and **Allocator Mode**. The Allocator Mode differs from the Distributor
-Mode only in that additionally to **admissions**, **reservations**, **integrated
-reservations**, or **ancillaries** also **priced segments (aka. fares)** are offered
-and can be booked.
+Mode only in that additionally to **Admissions (aka. tickets)**, **Reservations**,
+**Inegrated reservations**, or **ancillaries** also **priced segments (aka. fares)**
+are offered and can be booked.
 
-The OSDM API and specification are *Open Source* and freely available to all
-parties interested. The OSDM API is modelled in YAML fully supporting the REST
-paradigm.
+The OSDM Model and documents are **Open Source** and freely available to all
+parties interested. The OSDM-Online API is modelled in `YAML`, fully supporting the
+`REST paradigm`.
 
 ## Roles
 
@@ -77,10 +77,11 @@ To address the second goal, we studied the existing commercial products and
 online distribution/carrier systems of **BENE**, **DB**, **öBB**, **RENFE**,
 **SBB**, **SNCF**, **Trenitalia** and others as well as distribution solutions
 provided by **Amadeus**, **Silverrail**, **Sqills**, **Trainline** and others.
-Furthermore,  the **Hermes/HOSA** reservation eco-system as well as existing **UIC leaflets** were carefully examined and taken into account.
+Furthermore,  the **Hermes/HOSA** reservation eco-system as well as existing 
+**UIC leaflets** were carefully examined and taken into account.
 
 By involving the experts of the parties, we are confident that the OSDM
-standard is powerful enough to support the distribution of existing or upcoming
+Model is powerful enough to support the distribution of existing or upcoming
 commercial products and can be implemented and supported at reasonable cost.
 
 To address the third goal we took an **end-to-end approach** to the call chain from
