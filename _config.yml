@@ -18,9 +18,11 @@ favicon: favicon.png
 # Build settings
 remote_theme: chrisrhymes/bulma-clean-theme
 
-
 # Don't publish files in the future
 future: false
+
+# Measuring hits
+google-analytics: UA-185392233-1
 
 plugins:
   - jekyll-feed
