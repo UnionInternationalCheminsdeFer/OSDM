@@ -150,11 +150,11 @@ under specific conditions:
 
 *Example with no overlap*
 
-![Clusters-no-overlap](./images/models/clusters1.svg "Clusters-no-overlap")
+![Clusters-no-overlap](./images/models/clusters1.svg)
 
 *Example with no gap*
 
-![Clusters-no-gap](./images/models/clusters2.svg "Clusters-no-gap")
+![Clusters-no-gap](./images/models/clusters2.svg)
 
 ### OfferParts
 
@@ -375,7 +375,7 @@ offer modellings for pure-OSDM offers.
 
 ### Booking Data Model
 
-![Bookings Data Model](../images/models/bookings-data-model.svg "Bookings Data Model")
+![Bookings Data Model](./images/models/bookings-data-model.svg)
 
 ### Main Resources
 
@@ -446,12 +446,12 @@ the tripOffers, but it is worth mentioning it separately here as
 
 ### Booking State Model
 
-![Booking State Model](../images/models/booking-state-model.svg "Booking State Model")
+![Booking State Model](./images/models/booking-state-model.svg)
 
 ### Fulfillment State Model
 
-![Fulfillment State Model](../images/models/fulfillment-state-model.svg "Fulfillment State Model")
+![Fulfillment State Model](./images/models/fulfillment-state-model.svg)
 
 ### Refund State Model
 
-![Refund State Data Model](../images/models/refund-state-model.svg "Refund State Model")
+![Refund State Data Model](./images/models/refund-state-model.svg)

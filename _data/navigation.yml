@@ -9,6 +9,8 @@
       link: technical-principles/
     - name: Models
       link: models/
+    - name: Processes
+      link: processes/
     - name: Catalog of Code Lists
       link: catalog-of-code-lists/
 - name: Organization
