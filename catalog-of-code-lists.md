@@ -2,7 +2,7 @@
 layout: page
 title:  Catalog of Code Lists
 hide_hero: true
-permalink: /spec/catalog-of-code-lists
+permalink: /catalog-of-code-lists
 ---
 # Catalog of Code Lists
 

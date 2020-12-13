@@ -1,11 +1,11 @@
 # Things needing to be done
 
 - Add offline specification
-- Improve navigation
 - Fix favicon
 
 ## Done
 
+- Improve navigation
 - Add code lists
 - Add contact
 - Add specification to download

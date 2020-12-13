@@ -2,7 +2,7 @@
 layout: page
 title: Models
 hide_hero: true
-permalink: /spec/models
+permalink: /models
 ---
 
 ## Introduction

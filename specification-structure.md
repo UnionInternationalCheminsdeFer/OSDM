@@ -8,11 +8,11 @@ The [OSDM specification](./) is structured into two parts:
 
 ### Part I: An Offline Model
 
-Will be released until December 17th.
+The [Offline Model](offline-model) will be released until December 17th.
 
 ### Part II: An Online API
 
-The the [Online API](./OSDM-Online-v0.9.9.yml) is explained in this documents:
+The [Online API](./OSDM-Online-v0.9.9.yml) is explained in this documents:
 
 - [Technical Principles](./technical-principles)
 - [Processes](./processes)
