@@ -225,7 +225,7 @@ Legacy reservation code defined in UIC 90918-1.
 | `COMPARTMENT` | `PLACE_GROUPING` |
 | `OPEN_SPACE` | `PLACE_GROUPING` |
 | `TABLE` || Places at a table |
-| `BICYCLE` | `VEHICLE` | | Bicycle |
+| `BICYCLE` | `VEHICLE` | Bicycle |
 | `TANDEM` | `VEHICLE` | Tandem bicycle
 | `PRAM` | `VEHICLE` | Space for a pram |
 | `AIR-CONDITIONED` | |
@@ -278,7 +278,7 @@ https://uic.org/spip.php?action=telecharger&arg=3007
 | `56`| `TGV`| 	TGV| 	TGV Bruxelles – Lille / Province|
 | `58`| `TRN`| 	Intercités| 	Intercités|
 | `59`| `AE`| 	ALLEGRO| 	Allegro|
-| `60`| `ECB`| 	EuroCityBrenner	EuroCityBrenner|
+| `60`| `ECB`| 	EuroCityBrenner|	EuroCityBrenner|
 | `62`| | |Suburban service|
 | `63`|	`IC`| 	Intercity|   	Intercity|
 | `64`|||	Hotel Train|
@@ -300,7 +300,7 @@ https://uic.org/spip.php?action=telecharger&arg=3007
 | `82`| |THALYS | 	Thalys|
 | `83`| |Ferry  |	hovercraft|
 | `84`| `RE`| 	regional train|	Regional|
-| `85`| `GPE`| 	Gotthard Panorama Express	|Gotthard Panorama Express
+| `85`| `GPE`| 	Gotthard Panorama Express | Gotthard Panorama Express
 | `87`| | PENDOLINO  | 	Pendolino
 | `88`| | |Suburban|
 | `89`| `ALV`| 	Alvia| 	Alvia|
@@ -309,9 +309,9 @@ https://uic.org/spip.php?action=telecharger&arg=3007
 | `92`| `REG`| 	Regiontog| 	Regiontog|
 | `93`| `FB`| 	FRECCIABIANCA|	FRECCIABIANCA|
 | `94`| `SC`| 	SuperCity| 	Supercity|
-| `95`| `CNL`| 	City Night Line (D) 	DB Nachtzug|
-| `96`| `INI`| 	InterCityNotte Italia  	InterCityNotte|
-| `97`| `GB`| 	ATOC MEMBER OPERATED SERVICE	ATOC MEMBER OPERATED SERVICE|
+| `95`| `CNL`| 	City Night Line (D) |	DB Nachtzug|
+| `96`| `INI`| 	InterCityNotte Italia  |	InterCityNotte|
+| `97`| `GB`| 	ATOC MEMBER OPERATED SERVICE |	ATOC MEMBER OPERATED SERVICE|
 | `98`| `ESI`| 	ES Italia | 	Eurostar Italia|
 | `99`| ||Funicular|
 | `100`|	||Airport train|
@@ -386,7 +386,7 @@ https://uic.org/spip.php?action=telecharger&arg=3007
 | `236`| `VR`| 	viaREGIO| train	viaREGIO train|
 | `237`| `TK`| 	TurKol|	TurKol|
 | `238`| `EIP`| 	EIC Premium|	High-speed train|
-| `239`| `SKM`| 	PKP SKM| w Trojmiescie	PKP| SKM w Trojmiescie|
+| `239`| `SKM`| 	PKP SKM w Trojmiescie	PKP| SKM w Trojmiescie|
 | `240`| `SA`| 	SAPSAN|	High speed train|
 | `242`| `STR`| 	STRIZH|	Strizh night train|
 | `243`| `STR`| 	STRIZH|	Strizh interregional|
