@@ -24,7 +24,7 @@ The OSDM Online API and specification essentially consists of two parts: **Offli
 Model** and **Online API**. The Online API works in two modes: **Distributor Mode**
 and **Allocator Mode**. The Allocator Mode differs from the Distributor
 Mode only in that additionally to **Admissions (aka. tickets)**, **Reservations**,
-**Inegrated reservations**, or **ancillaries** also **priced segments (aka. fares)**
+**Integrated reservations**, or **ancillaries** also **priced segments (aka. fares)**
 are offered and can be booked.
 
 The OSDM Model and documents are **Open Source** and freely available to all

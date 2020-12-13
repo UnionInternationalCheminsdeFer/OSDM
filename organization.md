@@ -64,3 +64,12 @@ state **accepted for design**.
 **designed**.
 - The steering board releases **major, i.e. breaking changes** → the
   improvement is **published**.
+
+## Road Map
+
+| PI | End Date   | Improvements in Scope |
+|----|:----------:|------------|
+| 0  | 17.12.2020 | I-0*, I-11, I-12, I-14 & I-15 |
+| 1  | 11.02.2021 | Candidates: I-1, I-2, I-5, I-9 |
+| 2  | 24.06.2021 |
+| 3  | 28.10.2021 |
