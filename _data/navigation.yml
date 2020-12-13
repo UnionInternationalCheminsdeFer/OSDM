@@ -8,9 +8,9 @@
     - name: Technical Principles
       link: technical-principles
     - name: Models
-      link: models/
+      link: models
     - name: Catalog of Code Lists
-      link: catalog-of-code-lists/
+      link: catalog-of-code-lists
 - name: Organization
   link: organization/
 - name: Team

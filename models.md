@@ -18,13 +18,13 @@ concepts.
 
 ### Legend
 
-![Legend](../images/models/legend.svg)
+![Legend](./images/models/legend.svg)
 
 ## Trips and Locations
 
 ### Trips and Locations Data Model
 
-![Trips and Locations Data Model](../images/models/trips-locations.svg)
+![Trips and Locations Data Model](./images/models/trips-locations.svg)
 
 ## Main Resources
 
@@ -79,7 +79,7 @@ way between departure and arrival of each segment
 
 ### Offers Data Model
 
-![Offers Data Model](../images/models/offers-data-model.svg)
+![Offers Data Model](./images/models/offers-data-model.svg)
 
 ## Main Resources
 
@@ -150,11 +150,11 @@ under specific conditions:
 
 *Example with no overlap*
 
-![Clusters-no-overlap](../images/models/clusters1.svg "Clusters-no-overlap")
+![Clusters-no-overlap](./images/models/clusters1.svg "Clusters-no-overlap")
 
 *Example with no gap*
 
-![Clusters-no-gap](../images/models/clusters2.svg "Clusters-no-gap")
+![Clusters-no-gap](./images/models/clusters2.svg "Clusters-no-gap")
 
 ### OfferParts
 
