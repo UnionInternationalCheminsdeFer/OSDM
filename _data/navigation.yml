@@ -2,15 +2,15 @@
   link: spec/
   dropdown:
     - name: Offline Model
-      link: offline-model
+      link: offline-model/
     - name: Online API
       link: OSDM-Online-v0.9.9.yml
     - name: Technical Principles
-      link: technical-principles
+      link: technical-principles/
     - name: Models
-      link: models
+      link: models/
     - name: Catalog of Code Lists
-      link: catalog-of-code-lists
+      link: catalog-of-code-lists/
 - name: Organization
   link: organization/
 - name: Team

@@ -2,9 +2,8 @@
 layout: page
 title:  Catalog of Code Lists
 hide_hero: true
-permalink: /catalog-of-code-lists
+permalink: /catalog-of-code-lists/
 ---
-# Catalog of Code Lists
 
 This code lists are provided for convenience only. The mandatory code lists are 
 provided within the schema or within the IRS90918-10 specification.
