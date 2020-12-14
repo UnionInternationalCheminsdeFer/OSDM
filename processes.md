@@ -615,7 +615,7 @@ fares actually hosted in subprovider systems (OSDM compliant or not), a lot
 more takes place  behind the scene. Indeed, the **Distributor** will have to
 
 - confirm or fulfill the bookings towards all the subproviders
-- retrieve the fulfillment details to populate its own booking responses 
+- retrieve the fulfillment details to populate its own booking responses
   (and databases, most likely)
 - build the fulfillments elements 
 - update relevant booking properties as described above.
@@ -681,7 +681,7 @@ The following options are then available to the API Consumer:
   confirm the not-yet confirmed content in the booking, while leaving the
   confirmed unchanged.
 - Either directly, or after a few attempts on re-confirming, the booking
-  needs to be cleaned-up so it can have a consistent status again (meaning 
+  needs to be cleaned-up so it can have a consistent status again (meaning
   the totality of the content is confirmed). To do so:
 
   - The API consumer must start by cancelling the non-confirmed content. He
