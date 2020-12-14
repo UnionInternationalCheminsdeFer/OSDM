@@ -34,7 +34,7 @@ Illustration of the concepts:
 ### Structure of an Improvement
 
 An improvement is structured similar to an [epic](https://www.scaledagileframework.com/epic/)
-in the [SAFe](https://www.scaledagileframework.com/) as follows:
+in the [SAFe](https://www.scaledagileframework.com/) framework as follows:
 
 - **Name**: Short name for the improvement
 - **Owner**: Name of the owner
@@ -67,9 +67,15 @@ state **accepted for design**.
 
 ## Road Map
 
-| PI | End Date   | Improvements in Scope |
+The specification, i.e., the product is improved in fixed-length time boxes similar to
+a [programm increment](https://www.scaledagileframework.com/program-increment/)
+in the [SAFe](https://www.scaledagileframework.com/).
+
+The following increments are planned:
+
+| Iteration | End Date   | Improvements in Scope |
 |----|:----------:|------------|
-| 0  | 17.12.2020 | *I-0*, *I-11*, *I-12*, *I-14* & *I-15* |
-| 1  | 11.02.2021 | Candidates: *I-1*, *I-2*, *I-5*, *I-9* |
+| 0  | 17.12.2020 | *Improvement-0*, *Improvement-11*, *Improvement-12*, *Improvement-14* & *Improvement-15* |
+| 1  | 11.02.2021 | Candidates: *Improvement-1*, *Improvement-2*, *Improvement-5*, *Improvement-9* |
 | 2  | 24.06.2021 |
 | 3  | 28.10.2021 |
