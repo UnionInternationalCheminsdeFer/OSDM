@@ -281,17 +281,18 @@ number of changes
 
 #### Getting Coach Layouts
 
-To support graphical seat reservation which allow a customer to conveniently
-choose its preferred place two resources are added:
+Graphical seat reservation allows a customer to conveniently choose its
+preferred place. Therefore two resources are added: First, `GET /coachLayouts`
+to import all coach-layouts of an allocator. This service can be used periodically
+as master data service . Second, `GET /coachLayouts/{layoutId}` returns the
+information for a given `layoutId` and can be used during the on-line offering
+and booking process.
 
-1. `GET /coach-layouts`
-2. `GET /coach-layouts`
-
-## A complex example mixing Offers and Fares
+## A Complex Example Mixing Offers and Fares
 
 ### Request From Front-end
 
-I want to go from Rotterdam to Wien StefanPlatz via Antwerp
+I want to go from Rotterdam to Wien Stephansplatz via Antwerp.
 
 ### Request Submitted to SNCB
 
@@ -303,7 +304,7 @@ Proposed trip by timetable system:
 | Antwerp → Liège | IC 2345 + IR 5567 |
 | Liège → Frankfurt | ICE 122 (mandatory reservation) |
 | Frankfurt → Wien Hbf | RailJet RJ 23 (optional reservation) |
-| Wien Hbf → Wien Stefanplatz | Metro |
+| Wien Hbf → Wien Stephansplatz | Metro |
 
 ### Fare Provider Resolution returns
 
@@ -315,11 +316,11 @@ Proposed trip by timetable system:
 | Frankfurt → Wien Hbf | RailJet RJ 23 (optional reservation) | Frankfurt → Salzburg (Border) | Fare DB |
 | | | Salzburg (Border) → WienHbf | Fare ÖBB| |
 | | | Frankfurt → Wien Hbf (reservation) | Fare ÖBB |
-| Wien Hbf → Wien Stefanplatz|  Metro | Fare ÖBB |
+| Wien Hbf → Wien Stephansplatz|  Metro | Fare ÖBB |
 
 ## Completing Offers for Provisional Booking
 
-![Completing Offers for Provisonal Booking](./images/processes/seq-completing-offers-for-provisonal-booking.svg)
+![Completing Offers for Provisional Booking](./images/processes/seq-completing-offers-for-provisonal-booking.svg)
 
 Once an offer has been selected some additional steps can be taken to complete
 the information:
@@ -355,7 +356,7 @@ its whole is presented, only property explicitly listed as updateable can be
 provided with a value. Attempting to modify another property must result in an
 error.
 
-For accommodation preferences, the following properties can be updated: 
+For accommodation preferences, the following properties can be updated:
 
 - Reservation:
   - `reservation.placeSelection.selectedOptions`
@@ -412,20 +413,20 @@ times it will be mandatory. If this is the case, a collection of offer ids (and
 associated reservations and ancillaries) is given instead of just one. However,
 note that in this case the passengers party for all booked offers needs to be
 the same. To ensure this, the passenger reference of each member of the
-passenger party must remain the same from one offer to the other. 
+passenger party must remain the same from one offer to the other.
 
 If the booking succeeds, a new booking resource is created. In this booking,
 the booked offers can be found and should look a lot like the offers as they
-were in the offer responses, with the exception that for
-(integrated)reservations and fares, the reservedPlaces element will now be
-populated with the places that have actually be assigned to the passengers for
+were in the offer responses, with the exception that for (integrated)
+reservations and fares, the reservedPlaces element will now be populated
+with the places that have actually be assigned to the passengers for
 this offer part.
 
 The passengers in the booking resources are also the same type of resources as
 the ones manipulated in offers. However, they have to be different resources
 with different ids (the passengers references do remain unchanged).
 
-Initially, a booking will have the status `PREBOOKED` (see also the booking 
+Initially, a booking will have the status `PREBOOKED` (see also the booking
 status model).
 
 At the root of the booking structure, Two balance elements are provided, in
@@ -515,7 +516,7 @@ events and situations can be communicated through the `Warning` messages:
 - Booking an offer will not book the reservations in the offer unless they
   have an "included" relationship with an admission of that offer. In order to
 add a non-included reservation to a booking, the reservation ids will have to
-be passed additionally or it will not be booked. 
+be passed additionally or it will not be booked.
 - It is up to the OSDM API implementing party to decide whether booked offers
   can have the same resource ids as the offers in the shopping stage. However,
 it is assumed in the specifications that this is not the case, and the API
@@ -530,7 +531,7 @@ copied in the booking, and those of the following offers will be ignored.
 ![Completing Booking for Confirmation and Fulfillment](./images/processes/seq-completing-booking-for-confirmation-and-fulfillment.svg)
 
 When the booking has been successfully created, some additional changes may be
-desired or even required before the booking can be confirmed. 
+desired or even required before the booking can be confirmed.
 
 - As with offers, some passenger information may be required. If this is the
 case, the mechanism used is exactly the same as for offers: the
@@ -585,7 +586,7 @@ for a short "grace" period, before being completely cleaned-up (offer parts are
 well cleaned-up immediately). This grace period aims at ensuring that any
 ongoing operation with the booking is given sufficient time to get an explicit
 info on the cancelled status of the booking. The choice of the duration of that
-grace period is left to the implementer.
+grace period is left to the implementor.
 
 #### Error handling
 
