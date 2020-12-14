@@ -2863,7 +2863,8 @@ paths:
         - CoachLayouts 
       description: get coach layouts
       summary: >-
-        Retrieve the coach layout description needed for graphical reservation.  
+        Retrieve the coach layout description needed for graphical reservation. The coach
+        layouts can either be retrieved as a complete list or specificatty for a train identified via offerId and reservationId or fareId
       operationId: getCoachLayouts
       parameters:
         - name: Access-Token 
@@ -2890,6 +2891,20 @@ paths:
             type: string
             format: uuid
           required: false
+        - in: query 
+          description: id of the reservation offer part within the offer
+          name: reservationId
+          schema:
+            type: string
+            format: uuid
+          required: false
+        - in: query 
+          description: id of the fare within the offer
+          name: fareId
+          schema:
+            type: string
+            format: uuid
+          required: false          
         - in: query
           name: embed
           description: >-
