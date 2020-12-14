@@ -22,7 +22,11 @@ remote_theme: chrisrhymes/bulma-clean-theme
 future: false
 
 # Measuring hits
-google-analytics: UA-185392233-1
+#google-analytics: UA-185392233-1
+
+jekyll_analytics:
+  GoogleAnalytics: 
+    id: UA-185392233-1
 
 plugins:
   - jekyll-analytics
