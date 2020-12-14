@@ -68,7 +68,7 @@ paths:
           schema:
             type: string
           required: false
-        - name: access-token 
+        - name: Access-Token 
           in: header
           required: true
           description: >-
@@ -164,7 +164,7 @@ paths:
         The GET locations service retrieves a location element.
       operationId: getLocationsId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -224,7 +224,7 @@ paths:
         segments. Depending on the embed either references or full location definitions will be returned.
       operationId: getTripsId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -308,7 +308,7 @@ paths:
         destination can be resolved using the locations service.
       operationId: getTripsCollectionId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation 
@@ -441,7 +441,7 @@ paths:
         destination can be resolved using the locations service.
       operationId: postTripsCollection
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -533,7 +533,7 @@ paths:
         origin and destination can be resolved using the locations service.
       operationId: getTripOffersCollectionId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -669,7 +669,7 @@ paths:
         specified origin and destination (and via) locations. 
       operationId: postTripOffersCollection
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -759,7 +759,7 @@ paths:
         The GET trip-offers service returns different offers for a specified trip offer id.
       operationId: getTripOffersId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -847,7 +847,7 @@ paths:
          The GET offers service returns the offer with the requested included sub resources in a given state.
       operationId: getOffersId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -933,7 +933,7 @@ paths:
        The GET passenger service returns the passenger's information.
       operationId: getOfferPassengersId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -1004,7 +1004,7 @@ paths:
         The PATCH passenger service allows updating a passenger's information.
       operationId: patchOfferPassenger
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -1082,7 +1082,7 @@ paths:
        The GET passenger service returns the passenger's information.
       operationId: getBookingPassengersId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -1153,7 +1153,7 @@ paths:
         The PATCH passenger service allows updating a passenger's information.
       operationId: patchBookingPassenger
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -1231,7 +1231,7 @@ paths:
         The GET product service returns the information on products with the id provided.
       operationId: getProductsId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -1304,7 +1304,7 @@ paths:
         The GET admission service returns the information on the admission with the id provided.
       operationId: getAdmissionId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -1382,7 +1382,7 @@ paths:
         The GET reservation service returns the information on the reservation with the id provided.
       operationId: getReservationsId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -1464,7 +1464,7 @@ paths:
         empty available places will update the available places list in the reply.
       operationId: patchReservationId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -1547,7 +1547,7 @@ paths:
         The GET ancillaries service returns the information on the ancillary with the id provided.
       operationId: getAncillariesId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -1629,7 +1629,7 @@ paths:
         Otherwise a forbidden message is returned. 
       operationId: getFaresId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -1711,7 +1711,7 @@ paths:
         empty available places will update the available places list in the reply.
       operationId: patchFareId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -1794,7 +1794,7 @@ paths:
         Auftragsnummer) or by fulfillment reference (e.g. ticket number).
       operationId: getBookings
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -1877,7 +1877,7 @@ paths:
         The offer id is provided in the query.
       operationId: postBookings
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -1946,7 +1946,7 @@ paths:
         The GET booking service returns the information on the booking with the id provided.
       operationId: getBookingsId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -2039,7 +2039,7 @@ paths:
          but must be repeated according to the error handling rules in case the delete fails.
       operationId: deleteBookingsId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -2098,7 +2098,7 @@ paths:
         The PATCH bookings service allows updating the fulfillment type of the booking
       operationId: confirmBooking
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -2169,7 +2169,7 @@ paths:
         currently contained in the provided booking.
       operationId: postFulfillments
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -2252,7 +2252,7 @@ paths:
         The PATCH fulfillments service allows the effective fulfillment of one ore more confirmed fulfillment. 
       operationId: patchFulfillment
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -2342,7 +2342,7 @@ paths:
         The GET ticket service returns the information on the ticket with the id provided.
       operationId: getFulfillmentId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -2415,7 +2415,7 @@ paths:
         accepted via a PATCH, deleted or left to die at the end of its lifetime.
       operationId: postRefundOffersBookingId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -2492,7 +2492,7 @@ paths:
         The GET refundOffer service returns the refund offer with the id provided.
       operationId: getRefundOffersId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -2568,7 +2568,7 @@ paths:
         The PATCH refundOffers action allows to accept and confirm a refund operation. 
       operationId: patchRefundOffersId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -2649,7 +2649,7 @@ paths:
         The DELETE refundOffers action allows to cancel a refundOffer without waiting for expiry. 
       operationId: deleteRefundOffersId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -2722,7 +2722,7 @@ paths:
         accepted via a PATCH, deleted or left to die at the end of its lifetime. 
       operationId: postExchangeOffersBookingId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -2787,7 +2787,7 @@ paths:
         *** NOT-MVP *** The PATCH exchangeOffers action allows to accept and confirm an exchange operation. 
       operationId: patchExchangeOffersId
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -2866,7 +2866,7 @@ paths:
         Retrieve a coach layout description needed for graphical reservation    
       operationId: getCoachLayout
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -2927,7 +2927,7 @@ paths:
         Retrieve the coach layout description needed for graphical reservation    
       operationId: getCoachLayouts
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -3002,7 +3002,7 @@ paths:
         Get offers not linked to trips based on key words or regional information (e.g. for passes or seasonal tickets)          
       operationId: searchOffers
       parameters:
-        - name: access-token 
+        - name: Access-Token 
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
