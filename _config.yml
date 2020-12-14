@@ -25,6 +25,7 @@ future: false
 google-analytics: UA-185392233-1
 
 plugins:
+  - jekyll-analytics
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-paginate
