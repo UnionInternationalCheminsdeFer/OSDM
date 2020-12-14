@@ -12,7 +12,8 @@ The [Offline Model](../offline-model) will be released until December 17th.
 
 ### Part II: An Online API
 
-The [Online API](./OSDM-Online-v0.9.9.yml) is explained in this documents:
+The [Online API](https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/0.9.9)
+is explained in this documents:
 
 - [Technical Principles](../technical-principles/)
 - [Processes](../processes/)
