@@ -279,6 +279,14 @@ number of changes
 - Schedule mismatch between systems
 - Unknown error on server side
 
+#### Getting Coach Layouts
+
+To support graphical seat reservation which allow a customer to conveniently
+choose its preferred place two resources are added:
+
+1. `GET /coach-layouts`
+2. `GET /coach-layouts`
+
 ## A complex example mixing Offers and Fares
 
 ### Request From Front-end
