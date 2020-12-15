@@ -212,23 +212,22 @@ An elementary fare to create an offer linking all constraints to one price.
 
 The fare combination constraint defines the rules of combining fares from different carriers. It provides a list of combination models the allocator can choose of.
 
-| Content |	Description |
+| Content | Description |
 |---|---|
-| model |	Code of the combination model applied
-| combinableCarriers |	List of carriers that can be combined with this fare. If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes.
-| onlyWhenCombined |	Indicates that this fare can be used only if it is combined with another fare of another carrier.
-referenceCluster	Cluster within the clustering model to which this fare belongs
-allowedClusters	List of clusters with which this fare can be combined
-allowedAllocators	List of allocators which can combine this fare. . . If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes.
+| `model` | Code of the combination model applied
+| `combinableCarriers` | List of carriers that can be combined with this fare. If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes.
+| `onlyWhenCombined` | Indicates that this fare can be used only if it is combined with another fare of another carrier.
+| `referenceCluster` | Cluster within the clustering model to which this fare belongs
+| `allowedClusters` | List of clusters with which this fare can be combined
+| `allowedAllocators` | List of allocators which can combine this fare. . . If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes.
 
 Allowed allocators is not present in the online data.
-allowedCommonContracts	List of Carriers with which the allocator can for a common contract. If empty, there is no restriction in indicating common contracts to the passenger except for the SEPARATE_CONTRACT model. Carriers are listed by their RICS company codes. 
+| `allowedCommonContracts` |	List of Carriers with which the allocator can for a common contract. If empty, there is no restriction in indicating common contracts to the passenger except for the SEPARATE_CONTRACT model. Carriers are listed by their RICS company codes.|
 
-
-Figure 10 fare combination constraint data structure
+<!-- Figure 10 fare combination constraint data structure
 
 Figure 11 fare combination constraint data structure
- 
+  -->
 
 Combination model code	Description
 SEPARATE_CONTRACT	This is the model for not combining the fares in one ticket and not allowing the integration in one contract. The rules applied for this ticket are exactly the rules defined by the carrier in the fare data.
