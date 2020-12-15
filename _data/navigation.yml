@@ -1,6 +1,8 @@
 - name: Specification
   link: spec/
   dropdown:
+    - name: Common Data Structures
+      link: common-data-structures/
     - name: Offline Model
       link: offline-model/
     - name: Online API

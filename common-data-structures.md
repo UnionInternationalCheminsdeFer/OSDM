@@ -2,7 +2,7 @@
 layout: page
 title: Common Data Structure
 hide_hero: true
-permalink: /common-data-structure.md/
+permalink: /common-data-structures/
 ---
 
 ## Common Data Structures in Offline and Online Mode
@@ -11,6 +11,7 @@ The following chapters contain the detailed description of data structures used 
 The data structure definitions are used in the bulk data exchange and the online services. The requirements listed in chapter “Requirements” reference the data structures that implement the requirement. 
 
 ### General
+
 The following general data types shall be used:
 
 - DateTime Formats:  Date time values must be encoded according to  RFC 3339, section 5.6.
@@ -32,17 +33,17 @@ Within the online part the required personal data are indicated. The general gra
 Required data are indicated in a structured way using the following language:
 Data elements are indicated by their path to the resource separated by dots:
 
-- passenger.gender
-- passenger.email
-- passenger.phoneNumber
+- `passenger.gender`
+- `passenger.email`
+- `passenger.phoneNumber`
 
 The required data elements can be combined using the logical operators:
 
-- AND
-- OR
+- `AND`
+- `OR`
 
-Brackets  “(“ and “)” can be used in the standard way as for logical expressions
-Example: `passenger.gender AND (passenger.email OR passenger.phoneNumber)` 
+Brackets  “(“ and “)” can be used in the standard way as for logical expressions, e.g.:
+`passenger.gender AND (passenger.email OR passenger.phoneNumber)`
 
 Keywords can be used for specific topic:
 
@@ -91,8 +92,12 @@ An after sales fee is applied from a time before departure, after sale,..)
 
 In case multiple rules apply to the same after sales transaction the rule with the closest time in the future must be applied.
 
-### Data constraints
-fee/feeRef	In online services a fee is included directly, in bulk data exchange a fee must be included in the list of prices and referenced by an id.
+#### Data constraints
+
+| Code | Description |
+|---|---|
+| `fee/feeRef` |	In online services a fee is included directly, in bulk data exchange a fee must be included in the list of prices and referenced by an id. |
+
 The fee provided must include the currency EUR if not agreed bilaterally otherwise.
 applicationTime/applicationTimeStamp	An application time stamp can be used in online services only.
 If an application time stamp is provided the allocation Time as relative time must not be included.
@@ -101,22 +106,29 @@ If an application time stamp is provided the allocation Time as relative time mu
 A calendar is referenced by a unique id which can be referenced from other data structures linked to the fare.
 A Calendar defines a list of days between two dates. If the dates are not provided in UTC the offset to UTC must be provided additionally.
 
-### Data constraints
-fromDate/untilDate	fromDate and untilDate must be provided.
-fromDate <= untilDate
-dates	fromDate <= date <= untilDate
+#### Data constraints
 
- 
+- `fromDate/untilDate`	fromDate and untilDate must be provided.
+- `fromDate <= untilDate`
+- dates: `fromDate <= date <= untilDate`
+
 ### CarrierConstraint
+
 The carrier constraint can be referenced by a fare via the id.
+
 Carrier constraint limits an open fare - not linked to a train - to some carriers. The carriers can be specified either as exclusion list or alternatively as inclusion list.
+
 Carriers are specified by their Company code (RICS code).
+
 The included / excluded carriers are also part of the FCB barcode (IRS 90918-4) content and the ticket control data (IRS 90918-9).
 
 The offline data structure includes an additional id to reference the constraint within a fare data delivery.
 
-Data constraints
-includedCarriers/excludedCarriers	Either a list of included or a list of excluded carriers must be provided. It is not allowed to provide both lists.
+#### Data constraints
+
+| Code | Description |
+|---|---|
+| `includedCarriers/excludedCarriers` | Either a list of included or a list of excluded carriers must be provided. It is not allowed to provide both lists.|
 
 ### ConnectionPoint
 
@@ -140,26 +152,28 @@ As on both sides of a connection multiple small stations could be connected and 
 Figure 7 connection points - complex case 2 -->
 
 The online data structure does not include the id and the legacy code.
- 
+
 <!-- Figure 8 ConnectionPoint data structure offline -->
 
 #### Data constraints
 
-stationSets	At least one set with one station must be provided in case the fare border is a real station.
-Two station sets must be provided in case the fare border is inbetween two real stations. 
-legacyBorderPointCode	The legacy border point code must be provided for the time being. New implementations should not use the border point code.
+| Code | Description |
+|---|---|
+| `stationSets` | At least one set with one station must be provided in case the fare border is a real station. Two station sets must be provided in case the fare border is between two real stations. |
+| `legacyBorderPointCode` | The legacy border point code must be provided for the time being. New implementations should not use the border point code. |
 
 ### Fare
+
 An elementary fare to create an offer linking all constraints to one price.
-Data elements
-fareType	NRT, IRT, Anxilliaries , Reservations
-name	Name of the fare
-fareDetailDescription
-	Additional explanation on the fare (e.g. on included fees like Diabolo or Venice fee)
 
-price	Price with currency EUR must be provided if not otherwise agreed bilaterally.
+| Data elements | Description |
+|---|---|
+|fareType |	NRT, IRT, Anxilliaries , Reservations
+| name |	Name of the fare
+| fareDetailDescription |	Additional explanation on the fare (e.g. on included fees like Diabolo or Venice fee)
+| price |	Price with currency EUR must be provided if not otherwise agreed bilaterally.
+| regionalConstraint| 	Definition of the regiuonal validity of the fare and the geographical combination rules (connection points)
 
-regionalConstraint	Definition of the regiuonal validity of the fare and the geographical combination rules (connection points)
 serviceConstraint	Restrictions of the service allowed to be used
 carrierConstraint	Restriction on the carriers that can be used with the fare.
 serviceClass	Class the passenger can use
@@ -182,18 +196,23 @@ legacyConversion	Defines whether this fare is allowed to be converted to the old
 •	ONLY – this fare is provided for conversion only
 
  
-Figure 9 Fare element data structure (offline)
+<!-- Figure 9 Fare element data structure (offline) -->
  
-Data constraints
-price	A price must be provided for all offline fares including those where the price is zero.
-legacyAccountingIdentifier	In case 30301 in the current version is used to accounting these data must be provided for offline fares
-serviceClass	Must be provided for offline fares
-combinationConstraint	Must be provided for offline fares
-travelValidityConstraint	Must be provided for offline fares
-SalesAvailabilityConstraint	Must be provided for offline fares
+#### Data constraints
+
+| Code | Description |
+|---|---|
+| `price` | A price must be provided for all offline fares including those where the price is zero. |
+| `legacyAccountingIdentifier` | In case 30301 in the current version is used to accounting these data must be provided for offline fares |
+| `serviceClass` | Must be provided for offline fares
+| `combinationConstraint` | Must be provided for offline fares
+| `travelValidityConstraint` | Must be provided for offline fares
+| `salesAvailabilityConstraint` | Must be provided for offline fares
 
 ### FareCombinationConstraint
+
 The fare combination constraint defines the rules of combining fares from different carriers. It provides a list of combination models the allocator can choose of.
+
 Content	Description
 model	Code of the combination model applied
 combinableCarriers	List of carriers that can be combined with this fare. If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes.

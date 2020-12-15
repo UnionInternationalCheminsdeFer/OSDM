@@ -4,11 +4,17 @@ title: Specification
 permalink: /spec/
 ---
 
-The [OSDM specification](./) is structured into two parts:
+The [OSDM specification](./) is structured into three parts sharing common
+data structures:
+
+### Common Data Structures
+
+The  [Common Data Structures](../common-data-structures/) are shared between the 
+Offline Model and the Online API.
 
 ### Part I: An Offline Model
 
-The [Offline Model](../offline-model) will be released until December 17th.
+The [Offline Model](../offline-model/) defines how the offline data can be exchanged.
 
 ### Part II: An Online API
 
@@ -21,5 +27,5 @@ is explained in this documents:
 
 ### Catalog of Code Lists
 
-A [Catalog of Code Lists](/catalog-of-code-lists) defines attributes
+A [Catalog of Code Lists](/catalog-of-code-lists/) defines attributes
 and provides references to standards used.
