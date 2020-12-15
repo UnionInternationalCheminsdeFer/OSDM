@@ -168,28 +168,27 @@ An elementary fare to create an offer linking all constraints to one price.
 
 | Data elements | Description |
 |---|---|
-|fareType |	NRT, IRT, Anxilliaries , Reservations
+| fareType |	NRT, IRT, Anxilliaries , Reservations
 | name |	Name of the fare
 | fareDetailDescription |	Additional explanation on the fare (e.g. on included fees like Diabolo or Venice fee)
 | price |	Price with currency EUR must be provided if not otherwise agreed bilaterally.
 | regionalConstraint| 	Definition of the regiuonal validity of the fare and the geographical combination rules (connection points)
-
-serviceConstraint	Restrictions of the service allowed to be used
-carrierConstraint	Restriction on the carriers that can be used with the fare.
-serviceClass	Class the passenger can use
-serviceLevel	Mode detailed category of places the passenger can use.
-passengerConstraint	Rules and restrictions on the passenger types allowed to use the fare and rules on combining passengers. 
-afterSalesRules	After sales rules for the fare. In case the allocator is responsible for the aftersales rules this is almost empty.
-combinationConstraint	Rules on the model of combination of this fare with fares of other carriers.
-fulfilmentConstraint	Restrictions and requirements on the fulfilment and security to be applied by the allocator.
-reductionConstraint	Rules on reduction cards necessary to apply the fare.
-reservationParameter	Information on parameters for reservation via the 90918-1 interface and reservation options.
-regulatoryConditions	Legal regimes to be applied to the fate (e.g. COTIV, SMPS regulations)
-personalDataConstraint	Rules on the personal data to be provided in a booking
-legacyAccountingIdentifier	Data to be included in the current IRS 30301 accounting data format.
-salesAvailabilityConstraint	Rules on the allowed sates dates for the fare.
-travelValidityConstraint	Rules on the validity for travel of this fare.
-legacyConversion	Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules.
+| serviceConstraint |	Restrictions of the service allowed to be used
+| carrierConstraint | 	Restriction on the carriers that can be used with the fare.
+| serviceClass |	Class the passenger can use
+| serviceLevel |	Mode detailed category of places the passenger can use.
+| passengerConstraint |	Rules and restrictions on the passenger types allowed to use the fare and rules on combining passengers. 
+| afterSalesRules |	After sales rules for the fare. In case the allocator is responsible for the aftersales rules this is almost empty.
+| combinationConstraint |	Rules on the model of combination of this fare with fares of other carriers.
+| fulfilmentConstraint |	Restrictions and requirements on the fulfillment and security to be applied by the allocator.
+| reductionConstraint |	Rules on reduction cards necessary to apply the fare.
+| reservationParameter |	Information on parameters for reservation via the 90918-1 interface and reservation options.
+| regulatoryConditions |	Legal regimes to be applied to the fate (e.g. COTIV, SMPS regulations)
+| personalDataConstraint |	Rules on the personal data to be provided in a booking
+| legacyAccountingIdentifier |	Data to be included in the current IRS 30301 accounting data format.
+| salesAvailabilityConstraint |	Rules on the allowed sates dates for the fare.
+| travelValidityConstraint |	Rules on the validity for travel of this fare.
+| legacyConversion |	Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules.
 
 •	YES
 •	NO
@@ -213,10 +212,11 @@ legacyConversion	Defines whether this fare is allowed to be converted to the old
 
 The fare combination constraint defines the rules of combining fares from different carriers. It provides a list of combination models the allocator can choose of.
 
-Content	Description
-model	Code of the combination model applied
-combinableCarriers	List of carriers that can be combined with this fare. If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes.
-onlyWhenCombined	Indicates that this fare can be used only if it is combined with another fare of another carrier.
+| Content |	Description |
+|---|---|
+| model |	Code of the combination model applied
+| combinableCarriers |	List of carriers that can be combined with this fare. If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes.
+| onlyWhenCombined |	Indicates that this fare can be used only if it is combined with another fare of another carrier.
 referenceCluster	Cluster within the clustering model to which this fare belongs
 allowedClusters	List of clusters with which this fare can be combined
 allowedAllocators	List of allocators which can combine this fare. . . If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes.
