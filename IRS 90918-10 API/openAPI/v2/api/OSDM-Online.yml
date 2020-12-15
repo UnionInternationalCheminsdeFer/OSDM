@@ -2857,74 +2857,14 @@ paths:
         '501':
           description: Not implemented
 
-  '/coachLayouts/{layoutId}':
-    get:
-      tags:
-        - CoachLayouts 
-      description: get coach layout
-      summary: >-
-        Retrieve a coach layout description needed for graphical reservation    
-      operationId: getCoachLayout
-      parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response 
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-        - in: path
-          description: id of the layout
-          name: layoutId
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: coach layouts
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CoachLayout'
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented
-
-
   '/coachLayouts':
     get:
       tags:
         - CoachLayouts 
       description: get coach layouts
       summary: >-
-        Retrieve the coach layout description needed for graphical reservation    
+        Retrieve the coach layout description needed for graphical reservation. The coach
+        layouts can either be retrieved as a complete list or specificatty for a train identified via offerId and reservationId or fareId
       operationId: getCoachLayouts
       parameters:
         - name: Access-Token 
@@ -2951,6 +2891,20 @@ paths:
             type: string
             format: uuid
           required: false
+        - in: query 
+          description: id of the reservation offer part within the offer
+          name: reservationId
+          schema:
+            type: string
+            format: uuid
+          required: false
+        - in: query 
+          description: id of the fare within the offer
+          name: fareId
+          schema:
+            type: string
+            format: uuid
+          required: false          
         - in: query
           name: embed
           description: >-
@@ -2992,6 +2946,66 @@ paths:
         '501':
           description: Not implemented
 
+  '/coachLayouts/{layoutId}':
+    get:
+      tags:
+        - CoachLayouts
+      description: get coach layout
+      summary: >-
+        Retrieve a coach layout description needed for graphical reservation for a given layout id.
+      operationId: getCoachLayout
+      parameters:
+        - name: Access-Token
+          in: header
+          description: >-
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4).
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
+        - in: path
+          description: id of the layout
+          name: layoutId
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: coach layouts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoachLayout'
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+
   '/offer-collections':
     post:
       tags:
@@ -2999,10 +3013,10 @@ paths:
       description: >- 
         Get offers based on key words or regional information not linked to trips
       summary: >-
-        Get offers not linked to trips based on key words or regional information (e.g. for passes or seasonal tickets)          
+        Get offers not linked to trips based on key words or regional information (e.g. for passes or seasonal tickets)
       operationId: searchOffers
       parameters:
-        - name: Access-Token 
+        - name: Access-Token
           in: header
           description: >-
             OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
@@ -3014,7 +3028,7 @@ paths:
           in: header
           description: >-
             Describes the set of natural languages that are preferred for localized text in the response to the request
-            (see RFC2616-sec14.4). 
+            (see RFC2616-sec14.4).
             Supporting English (en) is a must.
           schema:
             type: string
