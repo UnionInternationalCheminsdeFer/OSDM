@@ -16,11 +16,11 @@ A specification as a **product** which is managed as follows:
 
 - We have a backlog of improvements where everybody can contribute.
 - An improvement addresses a need and solves a problem, thus producing **value**.
-- The **OSDM executive committee** prioritizes the backlog based on the value
+- The **OSDM executive committee** (Chair: [Marc Guigon]() & [Vittorio Carta]()) prioritizes the backlog based on the value
   for the **railway customer** and the **railway sector** as a whole.
 - The **OSDM executive committee** is a **fair representation** of the parties
   involved, thus railways and distributors and others.
-- The **OSDM technical working group** designs and implements improvements to
+- The **OSDM technical working group** (Chair: [Clemens Gantert]() & [Andreas Schlapbach]()) designs and implements improvements to
   the standard. To stay focused, the work in progress should not be larger than
   five items.
 - The **OSDM technical working group** takes special care not to break

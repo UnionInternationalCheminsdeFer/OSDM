@@ -30,6 +30,7 @@ are offered and can be booked.
 The OSDM Model and documents are **Open Source** and freely available to all
 parties interested. The OSDM-Online API is modelled in `YAML`, fully supporting the
 `REST paradigm`.
+
 ## Background
 
 The Open Sales and Distribution Model has emerged from the **new Tariff Model (nTM)** and [Full Service Model (FSM 2.0)](https://tsga.eu/fsm) initiatives:
@@ -92,11 +93,11 @@ Analogously, the after-sale process is modelled in the following steps:
 - Fulfillment of the booking
 
 To address the second goal, we studied the existing commercial products and
-online distribution/carrier systems of **BENE**, **DB**, **öBB**, **RENFE**,
-**SBB**, **SNCF**, **Trenitalia** and others as well as distribution solutions
-provided by **Amadeus**, **Silverrail**, **Sqills**, **Trainline** and others.
-Furthermore,  the **Hermes/HOSA** reservation eco-system as well as existing 
-**UIC leaflets** were carefully examined and taken into account.
+online distribution/carrier systems of **BENE**, **CD**, **DB**, **DSB**,**öBB**,
+**PKP IC**, **RENFE**, **RDG**, **SBB**, **SJ**, **SNCF**, **Trenitalia** and others
+as well as distribution solutions provided by **Amadeus**, **Sabre**, **Silverrail**, **Sqills**, **Trainline**, **Travelport** and others. Furthermore, the **Hermes/HOSA** reservation eco-system as well as existing  **UIC leaflets** were carefully examined and taken into account.
+
+The following advisors from **CER**, **CIT**, **ECTAA**, **EU Traveltech** and sounding boards among other **European Commission** and **European Rail Agency** were involved from the start.
 
 By involving the experts of the parties, we are confident that the OSDM
 Model is powerful enough to support the distribution of existing or upcoming
