@@ -449,9 +449,9 @@ Overrule code to request a refund without fees.
 
 | Code | Description |
 |---|---|
-|STRIKE | Refund due to strike |
-|SALES_STAFF_ERROR | Refund due to an error made by the sales staff |
-|PAYMENT_FAILURE | Refund as the payment failed |
+| `STRIKE` | Refund due to strike |
+| `SALES_STAFF_ERROR` | Refund due to an error made by the sales staff |
+| `PAYMENT_FAILURE` | Refund as the payment failed |
 
 Personal data items
 
@@ -486,10 +486,10 @@ The reduction cards of a carrier are listed in the bulk data.
 | Code | Description |
 |---|---|
 | `id` | Unique id of the card. The id must start with the RICS code of the carrier
-| `name` | Name and short name of the card. The name should be used for the card selection by the customer, the short name should be used for barcodes.Usually the card name is not translated, but the card name might be provided in different languages by carriers in multilingual countries. |
+| `name` | Name and short name of the card. The name should be used for the card selection by the customer, the short name should be used for bar codes.Usually the card name is not translated, but the card name might be provided in different languages by carriers in multilingual countries. |
 | `serviceClass` | Service class indicated for the class |
 | `issuer` | Issuer of the card. Usually the carrier providing the fare data. |
-| `type` | Type of the cards to separate between loyalty cards, cards that are tickets (passes), and reduction cards (LOYALTY_CARD,REDUCTION_CARD,PASS).|
+| `type` | Type of the cards to separate between loyalty cards, cards that are tickets (passes), and reduction cards (`LOYALTY_CARD`, `REDUCTION_CARD,PASS`).|
 | `cardIdRequired` | Indicates that the card id must be provided in the prebooking request to validate the card. This card cannot be used without the online services for booking |
 
 <!-- Figure 27 reduction cards offline -->
@@ -557,7 +557,7 @@ ReservationParameter provide data on how to combine reservations with NRT fares,
 | Code | Description |
 | --- | --- |
 | `reservationRequired` | A reservation must be made accompanying an NRT ticket. |
-| `reservationParameters981-1` | Parameters to request the correct reservation using the interface according to IRS 90918-1 |
+| `reservationParameters981-1` | Parameters to request the correct reservation using the interface according to IRS 90918-1. |
 | `reservationOptions` | Reservation options available that would not change the offer (same price and conditions) (e.g. Aisle or Window). The information is static and does not mean that such an option is still available. The preferences are grouped in case a selection is required (Aisle or Window). |
 
 <!-- Figure 35 ReservationParameter data structure
