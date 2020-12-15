@@ -3069,7 +3069,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Layouts'
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  selectablePlaces:
+                    $ref: '#/components/schemas/PlaceAvailability'
+                  layouts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CoachLayout'
         '400':
           description: Bad request
           content:
@@ -3129,7 +3138,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CoachLayout'
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  CoachLayout: 
+                    $ref: '#/components/schemas/CoachLayout'
         '400':
           description: Bad request
           content:
@@ -4854,8 +4868,6 @@ components:
     Layouts:
       type: object
       properties:
-        selectablePlaces:
-          $ref: '#/components/schemas/PlaceAvailability'
         layouts:
           type: array
           items:
@@ -4872,6 +4884,10 @@ components:
       properties:
         id:
           type: string
+          description: unique id of this coachLayout on this server
+        title:
+          type: string
+          example: coach 3 train T122
         places:
           description: list of places included in the layout
           type: array
@@ -4966,8 +4982,16 @@ components:
             y:
               type: integer
               format: int32
+        links:
+          type: array
+          description: Context information required by the services.
+          items:
+            $ref: '#/components/schemas/Link'
       required:
         - id
+        - title
+        - links
+    
 
     LayoutCoordinates:
       type: object
@@ -5688,7 +5712,7 @@ components:
       description: >-
         Either excluded or included carriers can be set.
       properties:
-        includedCarrier:
+        restrictedToCarrier:
           type: array
           items:
             type: string
@@ -5721,7 +5745,7 @@ components:
       description: >-
         Either excluded or included service brands can be set.
       properties:
-        includedServiceBrands:
+        restrictedToServiceBrands:
           type: array
           items:
             $ref: '#/components/schemas/ServiceBrandCode'
