@@ -168,27 +168,27 @@ An elementary fare to create an offer linking all constraints to one price.
 
 | Data elements | Description |
 |---|---|
-| fareType |	NRT, IRT, Anxilliaries , Reservations
-| name |	Name of the fare
-| fareDetailDescription |	Additional explanation on the fare (e.g. on included fees like Diabolo or Venice fee)
-| price |	Price with currency EUR must be provided if not otherwise agreed bilaterally.
-| regionalConstraint| 	Definition of the regiuonal validity of the fare and the geographical combination rules (connection points)
-| serviceConstraint |	Restrictions of the service allowed to be used
-| carrierConstraint | 	Restriction on the carriers that can be used with the fare.
-| serviceClass |	Class the passenger can use
-| serviceLevel |	Mode detailed category of places the passenger can use.
-| passengerConstraint |	Rules and restrictions on the passenger types allowed to use the fare and rules on combining passengers. 
-| afterSalesRules |	After sales rules for the fare. In case the allocator is responsible for the aftersales rules this is almost empty.
-| combinationConstraint |	Rules on the model of combination of this fare with fares of other carriers.
-| fulfilmentConstraint |	Restrictions and requirements on the fulfillment and security to be applied by the allocator.
-| reductionConstraint |	Rules on reduction cards necessary to apply the fare.
-| reservationParameter |	Information on parameters for reservation via the 90918-1 interface and reservation options.
-| regulatoryConditions |	Legal regimes to be applied to the fate (e.g. COTIV, SMPS regulations)
-| personalDataConstraint |	Rules on the personal data to be provided in a booking
-| legacyAccountingIdentifier |	Data to be included in the current IRS 30301 accounting data format.
-| salesAvailabilityConstraint |	Rules on the allowed sates dates for the fare.
-| travelValidityConstraint |	Rules on the validity for travel of this fare.
-| legacyConversion |	Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules.
+| `fareType` |	`NRT`, `IRT`, Anxilliaries , Reservations
+| `name` |	Name of the fare
+| `fareDetailDescription` |	Additional explanation on the fare (e.g. on included fees like Diabolo or Venice fee)
+| `price` |	Price with currency EUR must be provided if not otherwise agreed bilaterally.
+| `regionalConstraint` | 	Definition of the regiuonal validity of the fare and the geographical combination rules (connection points)
+| `serviceConstraint` |	Restrictions of the service allowed to be used
+| `carrierConstraint` | 	Restriction on the carriers that can be used with the fare.
+| `serviceClass` |	Class the passenger can use
+| `serviceLevel` |	Mode detailed category of places the passenger can use.
+| `passengerConstraint` |	Rules and restrictions on the passenger types allowed to use the fare and rules on combining passengers. 
+| `afterSalesRules` |	After sales rules for the fare. In case the allocator is responsible for the aftersales rules this is almost empty.
+| `combinationConstraint` |	Rules on the model of combination of this fare with fares of other carriers.
+| `fulfilmentConstraint` |	Restrictions and requirements on the fulfillment and security to be applied by the allocator.
+| `reductionConstraint` |	Rules on reduction cards necessary to apply the fare.
+| `reservationParameter` |	Information on parameters for reservation via the 90918-1 interface and reservation options.
+| `regulatoryConditions` |	Legal regimes to be applied to the fate (e.g. COTIV, SMPS regulations)
+| `personalDataConstraint` |	Rules on the personal data to be provided in a booking
+| `legacyAccountingIdentifier` |	Data to be included in the current IRS 30301 accounting data format.
+| `salesAvailabilityConstraint` |	Rules on the allowed sates dates for the fare.
+| `travelValidityConstraint` |	Rules on the validity for travel of this fare.
+| `legacyConversion` |	Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules.
 
 •	YES
 •	NO
@@ -230,33 +230,54 @@ Figure 11 fare combination constraint data structure
   -->
 
 Combination model code	Description
-SEPARATE_CONTRACT	This is the model for not combining the fares in one ticket and not allowing the integration in one contract. The rules applied for this ticket are exactly the rules defined by the carrier in the fare data.
+
+#### SEPARATE_CONTRACT Model
+
+This is the model for not combining the fares in one ticket and not allowing the integration in one contract. The rules applied for this ticket are exactly the rules defined by the carrier in the fare data.
+
 The allocator must ensure that it is clear for the customer that no common contract was established.
-SEPARATE_TICKET	This is the model for not combining the fares in one ticket, so the rules applied for this ticket are exactly the rules defined by the carrier in the fare data. The allocator can form a common contract for the whole journey.
-CLUSTER	The CLUSTERING model tries to simplify conditions and fares for the customer but sacrifices a part of the control of the carrier on his fares.
+
+#### SEPARATE_TICKET Model
+
+This is the model for not combining the fares in one ticket, so the rules applied for this ticket are exactly the rules defined by the carrier in the fare data. The allocator can form a common contract for the whole journey.
+
+##### CLUSTER	
+
+The CLUSTERING model tries to simplify conditions and fares for the customer but sacrifices a part of the control of the carrier on his fares.
+
 Similar types of fares are defined to belong to the same “cluster”.  The after sales conditions for a cluster are defined by the allocator. However, the after sales conditions must basic rules on after sales for that cluster.
+
 The clusters correspond to the flexibility a passenger receives to change the booked train. This corresponds directly to the after sales conditions. Hereby the fees to be paid for such an exchange are essential for the definition of clusters and not the complexity of the process to change. Thus, a train bound ticket and an open ticket belong to the same cluster in case the fees to change to different trains / times are comparable.
+
 The after sales fees can be demanded by the carrier.
+
 The other conditions might either be listed per carrier or combined by rules.
+
 The customer buying products from one allocator has a simple unique view on after salles conditions.
 
 The basic parameters defining the price must be obeyed individually within separately on the combined fare/offer:
-o	route description / train link
-o	class of service
-o	passenger types
-COMBINE	The COMBINING model tries to be close to the fare conditions defined by the carrier but sacrifices the simplicity of the fare towards the customer.
+-	route description / train link
+- 	class of service
+- 	passenger types
+
+#### COMBINE Model
+
+The COMBINING model tries to be close to the fare conditions defined by the carrier but sacrifices the simplicity of the fare towards the customer.
+
 The after sales conditions of the different fares will be combined into one condition to reflect the conditions of all included carriers.  
+
 The after sales conditions will thus depend on the combinations of carriers.
 
 At any time, the after sales fees defined by the carriers are applied on the price part of these carriers only. The result is a list of times with increasing fees.
+
 E.g.:
-Carrier 1:            10%    20 days before departure   price: 100€
-Carrier 2:	90%	2 days before departure  price: 200 €
+- Carrier 1:            10%    20 days before departure   price: 100€
+- Carrier 2:	90%	2 days before departure  price: 200 €
               Result: 		10€ fee  	20 days before departure
 			190€ fee	2 days before departure
 
-
 #### Additional clustering model data:
+
 Fare clusters reflect the flexibility a fare provides to the customer. Flexibility is defined by the after sales conditions that apply when a passenger wants to change his ticket.
 Fare cluster code	description
 BUSINESS	Refundable after the departure or last day of validity
@@ -276,6 +297,7 @@ Non exchangeable
 Minimum validity applies
 
 Combinations of fares of different clusters is allowed with the fare clusters listed in allowedClusters. However not all combinations would be provided to the customer. A fare will be combined with a fare  of the same cluster and in case his is not available with one of the higher clusters. 
+
 E.g.:
 Carrier 1:	BUSINESS	 CombinableClusters: BUSINESS,FULL_FLEX,SEMI_FLEX, NON_FLEX
 SEMI_FLEX 	 CombinableClusters: SEMI_FLEX, NON_FLEX
@@ -289,7 +311,9 @@ A NON_FLEX would be formally allowed, but with the same price as the SEMI_FLEX s
 	NON_FLEX 	(Carrier 1 SEMI_FLEX + Carrier 2 FULL_FLEX)
 Other combinations would also be formally allowed by the data but suppressed as they would only offer a higher price. These should be suppressed by the allocator. E.g.:
 	FULL_FLEX 	(Carrier 1 BUSINESS + Carrier 2 BUSINESS)
-Data constraints
+
+#### Data constraints
+
 combinationModel	At least one model must be provided
 
 ### FareResourceLocation
@@ -351,10 +375,9 @@ A `legacyCode` can be provided to include the current code in the 108.1 data.
 | `legacyCode` | A legacyCode must be provided for the time being. New implementations should not rely on that code.
 | `name` |The name should not include ”/”.”*”.
 
-### FulfilmentConstraint
+### FulfillmentConstraint
 
-The fulfilment constraint limits the applicable types of fulfilment and defined whether control
- data need to be transferred via a standard interface (IRS 90918-4).
+The fulfillment constraint limits the applicable types of fulflilment and defined whether control data need to be transferred via a standard interface (IRS 90918-4).
  
 <!-- Figure 18 Fulfilmentconstraint data structure -->
 
@@ -368,17 +391,20 @@ PASS	Pass for travelling
 ControlDataExchangeType
 	for barcodes:		BarcodeType
 	for fulfilment:		ControlSecurityType
-Data constraints
+
+#### Data constraints
+
 acceptedFulfilmentType	At least one accepted fulfilment type must be provided
 
 ### Line
+
 Line defines the regional validity on a specific line. It might have additional restrictions to enter or leave at specific stations or to be used within an area or city only.
  
 <!-- Figure 19 Line data structure -->
 
 ### PassengerConstraint
 
-Passenger constraint defines restrictions of a fare concerning passengers. In online services the structure is reduced to constraints that need to be passed on for control to barcodes and control registries.
+Passenger constraint defines restrictions of a fare concerning passengers. In online services the structure is reduced to constraints that need to be passed on for control to bar codes and control registries.
 
 <!-- Figure 20 PassengerConstraint data structure offline -->
 
@@ -463,11 +489,11 @@ Figure 29 ReductionCardReference data structure -->
 
 Definition of a regional validity of a fare. The regional validity constraint is defined by an entry connection point and an exit connection point to combine this regional validity with other regional validities of other carriers and the specification of the regional validity that is sued and described in IRS 90918-4 for ticket control. The entry or exit connection point might be missing in case the fare cannot be combined or can be combined on one side only.
 
-| Content |	Description |
+| Content | Description |
 |---|---|
-| entryConnectionPoint	| Defines the connection point for connecting this fare at the start of regional validity (see ConnectionPoint)
-| exitConnectionPoint	| Defines the connection point for connecting this fare at the start of regional validity (see ConnectionPoint)
-|regionalValidity	|Definition of the regional validity as defined in IRS 90918-4. I provide data structures for zones, Lines, train links, geographical polygons and routes.
+| `entryConnectionPoint` | Defines the connection point for connecting this fare at the start of regional validity (see ConnectionPoint)
+| `exitConnectionPoint` | Defines the connection point for connecting this fare at the start of regional validity (see ConnectionPoint)
+| `regionalValidity` | Definition of the regional validity as defined in IRS 90918-4. I provide data structures for zones, Lines, train links, geographical polygons and routes.
 
 The connection points are included for combining regions. When combining two regional validities from two carriers the connection points will disappear in the combined data structure for bar codes and ticket control and from the textual description for the passenger.
 
