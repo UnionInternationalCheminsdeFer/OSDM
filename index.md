@@ -95,7 +95,9 @@ Analogously, the after-sale process is modelled in the following steps:
 To address the second goal, we studied the existing commercial products and
 online distribution/carrier systems of **BENE**, **CD**, **DB**, **DSB**,**öBB**,
 **PKP IC**, **RENFE**, **RDG**, **SBB**, **SJ**, **SNCF**, **Trenitalia** and others
-as well as distribution solutions provided by **Amadeus**, **Sabre**, **Silverrail**, **Sqills**, **Trainline**, **Travelport** and others. Furthermore, the **Hermes/HOSA** reservation eco-system as well as existing  **UIC leaflets** were carefully examined and taken into account.
+**UIC Railways** as well as distribution solutions provided by **Amadeus**, **Sabre**,
+**Silverrail**, **Sqills**, **Trainline**, **Travelport** and others. Furthermore, the
+**Hermes/HOSA** reservation eco-system as well as existing  **UIC leaflets** were carefully examined and taken into account.
 
 The following advisors from **CER**, **CIT**, **ECTAA**, **EU Traveltech** and sounding boards among other **European Commission** and **European Rail Agency** were involved from the start.
 
@@ -104,7 +106,7 @@ Model is powerful enough to support the distribution of existing or upcoming
 commercial products and can be implemented and supported at reasonable cost.
 
 To address the third goal we took an **end-to-end approach** to the call chain from
-**Distributor** to **Allocator** to **Fare Provider (a.k.a Carrier)** and aligned the
+**Distributor** to **Allocator** to **Fare Provider (aka. Carrier)** and aligned the
 interfaces by modelling them the same.  Thus calling a provider, an allocator
 or a fare provider is exactly the same from an API perspective. The only
 difference is that in allocator mode you get fare specific information needed.
