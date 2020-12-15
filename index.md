@@ -57,9 +57,9 @@ The OSDM Model is split between roles participants can take:
 - **Fare Provider** – defining the fare and combination rules and providing
   them to allocators offline or online.
 - **Allocator** – combining fares, defining after sales rules within the frames
-  et by the fare provider, providing combined offers and managing the booking
-transaction, managing the ticket security (barcode, control processes),
-managing compensations processes, managing the stock control process.
+  set by the fare provider, providing combined offers and managing the booking
+  transaction, managing the ticket security (barcode, control processes),
+  managing compensations processes, managing the stock control process.
 - **Distributor** – selling tickets from one or more allocators to the
   customer. Selecting the allocators and joining multiple independent bookings.
 
@@ -99,7 +99,8 @@ online distribution/carrier systems of **BENE**, **CD**, **DB**, **DSB**,**öBB*
 **Silverrail**, **Sqills**, **Trainline**, **Travelport** and others. Furthermore, the
 **Hermes/HOSA** reservation eco-system as well as existing  **UIC leaflets** were carefully examined and taken into account.
 
-The following advisors from **CER**, **CIT**, **ECTAA**, **EU Traveltech** and sounding boards among other **European Commission** and **European Rail Agency** were involved from the start.
+Advisors from **CER**, **CIT**, **ECTAA**, **EU Traveltech** and sounding boards from
+the **European Commission** as well as the **European Rail Agency** were involved from the start and guided the effort.
 
 By involving the experts of the parties, we are confident that the OSDM
 Model is powerful enough to support the distribution of existing or upcoming

@@ -27,7 +27,7 @@ is explained in this documents:
 
 ## Catalog of Code Lists
 
-A [Catalog of Code Lists](/catalog-of-code-lists/) defines attributes
+A [Catalog of Code Lists](../catalog-of-code-lists/) defines attributes
 and provides references to standards used.
 
 ## Specification As Leaflet

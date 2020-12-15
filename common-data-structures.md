@@ -7,15 +7,16 @@ permalink: /common-data-structures/
 
 ## Common Data Structures in Offline and Online Mode
 
-The following chapters contain the detailed description of data structures used to describe fares. 
-The data structure definitions are used in the bulk data exchange and the online services. The requirements listed in chapter “Requirements” reference the data structures that implement the requirement. 
+The following chapters contain the detailed description of data structures used to describe fares.
+
+The data structure definitions are used in the bulk data exchange and the online services. The requirements listed in chapter “Requirements” reference the data structures that implement the requirement.
 
 ### General
 
 The following general data types shall be used:
 
-- DateTime Formats:  Date time values must be encoded according to  RFC 3339, section 5.6.
-- Station Codes:  Station codes must be taken from the MERITS code list.
+- DateTime Formats: Date time values must be encoded according to  RFC 3339, section 5.6.
+- Station Codes: Station codes must be taken from the MERITS code list.
 - Station Names: Station names should not include ”/”,”*”. These characters are used to define routes and alternative routes in route descriptions.
 
 ### Versioning
@@ -26,7 +27,8 @@ Minor minor versions will include additional documentation only.
 
 ### Indication of personal data
 
-Within the online part the required personal data are indicated. The general grammar to indicate required data is used.
+Within the online part the required personal data are indicated. The general grammar 
+to indicate required data is used.
 
 ### Indication of required data
 
@@ -59,56 +61,55 @@ The data structures to be used are defined in the schema and open api specificat
 ### AfterSalesRules
 
 After sales conditions define fees to be taken in case of an after sales transaction on behalf of a customer. The after sales transactions considered are:
+
 - Cancellation (= Refund)
 - Exchange with a new fare of the same carrier
 - Exchange with a new fare of another carrier
 - Upgrade
 
-*See code list:  TransactionType*
+See code list: `TransactionType`
 
 The after sales rules might include rules for a delayed payment to avoid fraud. This might depend in the type of fulfillment. (e.g. no cash refund on electronically payed tickets, no refund unless ticket control data have been received, …).
 
-The refund fee can be claimed by the carrier. 
+The refund fee can be claimed by the carrier.
 
 The after sales rules bundle a set of after sales conditions under an id that can be referenced by a fare.
 
 An after sales condition applies for a set of after sales transactions and specified:
-- the fee to be applied
--	the time when the fee needs to be applied
--	whether the fee needs to be given to the carrier or can be kept by the allocator
-The data include the amount to be refunded. The amount is given to avoid any calculations with complex rules (percentage + minimum / maximum value) at the allocator side.:
--	The value and currency to be applied
--	A percentage for customer information. Due to rounding errors a calculated percentage could result in strange numbers (e.g. 9.99% instead of 10%) 
--	The unit on which the value is calculated (travellers or bookings)
-The time when the fee needs to be applied is defined by:
--	The time unit (hours, minutes, ...)
--	The time difference value
--	The time reference (before departure…)
 
-See code lists:   
-TimeReference , TimeUnit
+- the fee to be applied
+- the time when the fee needs to be applied
+- whether the fee needs to be given to the carrier or can be kept by the allocator
+- The data include the amount to be refunded. The amount is given to avoid any calculations with complex rules (percentage + minimum / maximum value) at the allocator side.:
+- The value and currency to be applied
+- A percentage for customer information. Due to rounding errors a calculated percentage could result in strange numbers (e.g. 9.99% instead of 10%) 
+- The unit on which the value is calculated (travellers or bookings)
+The time when the fee needs to be applied is defined by:
+- The time unit (hours, minutes, ...)
+- The time difference value
+- The time reference (before departure…)
+
+See code lists: `TimeReference`, `TimeUnit`
 
 An after sales fee is applied from a time before departure, after sale,..)
 
 In case multiple rules apply to the same after sales transaction the rule with the closest time in the future must be applied.
 
-#### Data constraints
+#### Data Constraints on AfterSaleRule
 
 | Code | Description |
 |---|---|
-| `fee/feeRef` |	In online services a fee is included directly, in bulk data exchange a fee must be included in the list of prices and referenced by an id. |
-
-The fee provided must include the currency EUR if not agreed bilaterally otherwise.
-applicationTime/applicationTimeStamp	An application time stamp can be used in online services only.
-If an application time stamp is provided the allocation Time as relative time must not be included.
+| `fee/feeRef` | In online services a fee is included directly, in bulk data exchange a fee must be included in the list of prices and referenced by an id. The fee provided must include the currency EUR if not agreed bilaterally otherwise. |
+| `applicationTime` / `applicationTimeStamp` | An application time stamp can be used in online services only. If an application time stamp is provided the allocation Time as relative time must not be included.
 
 ### Calendar
+
 A calendar is referenced by a unique id which can be referenced from other data structures linked to the fare.
 A Calendar defines a list of days between two dates. If the dates are not provided in UTC the offset to UTC must be provided additionally.
 
-#### Data constraints
+#### Data Constraints on Calendar
 
-- `fromDate/untilDate`	fromDate and untilDate must be provided.
+- `fromDate', 'untilDate`	fromDate and untilDate must be provided.
 - `fromDate <= untilDate`
 - dates: `fromDate <= date <= untilDate`
 
@@ -124,7 +125,7 @@ The included / excluded carriers are also part of the FCB barcode (IRS 90918-4) 
 
 The offline data structure includes an additional id to reference the constraint within a fare data delivery.
 
-#### Data constraints
+#### Data Constraints on CarrierConstraint
 
 | Code | Description |
 |---|---|
@@ -132,7 +133,9 @@ The offline data structure includes an additional id to reference the constraint
 
 ### ConnectionPoint
 
-A connection point defines a point where two regional validities of different carriers can be connected. A connection point is implemented as the list of stations which hit connects. 
+A connection point defines a point where two regional validities of different carriers
+can be connected. A connection point is implemented as the list of stations which hit
+connects.
 
 In case a route ends at a real station the connection point includes the real station.
 
@@ -155,7 +158,7 @@ The online data structure does not include the id and the legacy code.
 
 <!-- Figure 8 ConnectionPoint data structure offline -->
 
-#### Data constraints
+#### Data Constraints on ConnectionPoint
 
 | Code | Description |
 |---|---|
@@ -168,36 +171,35 @@ An elementary fare to create an offer linking all constraints to one price.
 
 | Data elements | Description |
 |---|---|
-| `fareType` |	`NRT`, `IRT`, Anxilliaries , Reservations
-| `name` |	Name of the fare
-| `fareDetailDescription` |	Additional explanation on the fare (e.g. on included fees like Diabolo or Venice fee)
-| `price` |	Price with currency EUR must be provided if not otherwise agreed bilaterally.
-| `regionalConstraint` | 	Definition of the regiuonal validity of the fare and the geographical combination rules (connection points)
-| `serviceConstraint` |	Restrictions of the service allowed to be used
-| `carrierConstraint` | 	Restriction on the carriers that can be used with the fare.
-| `serviceClass` |	Class the passenger can use
-| `serviceLevel` |	Mode detailed category of places the passenger can use.
-| `passengerConstraint` |	Rules and restrictions on the passenger types allowed to use the fare and rules on combining passengers. 
-| `afterSalesRules` |	After sales rules for the fare. In case the allocator is responsible for the aftersales rules this is almost empty.
-| `combinationConstraint` |	Rules on the model of combination of this fare with fares of other carriers.
-| `fulfilmentConstraint` |	Restrictions and requirements on the fulfillment and security to be applied by the allocator.
-| `reductionConstraint` |	Rules on reduction cards necessary to apply the fare.
-| `reservationParameter` |	Information on parameters for reservation via the 90918-1 interface and reservation options.
-| `regulatoryConditions` |	Legal regimes to be applied to the fate (e.g. COTIV, SMPS regulations)
-| `personalDataConstraint` |	Rules on the personal data to be provided in a booking
-| `legacyAccountingIdentifier` |	Data to be included in the current IRS 30301 accounting data format.
-| `salesAvailabilityConstraint` |	Rules on the allowed sates dates for the fare.
-| `travelValidityConstraint` |	Rules on the validity for travel of this fare.
-| `legacyConversion` |	Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules.
+| `fareType` | `NRT`, `IRT`, Anxilliaries , Reservations
+| `name` | Name of the fare
+| `fareDetailDescription` | Additional explanation on the fare (e.g. on included fees like Diabolo or Venice fee)
+| `price` | Price with currency EUR must be provided if not otherwise agreed bilaterally.
+| `regionalConstraint` | Definition of the regiuonal validity of the fare and the geographical combination rules (connection points)
+| `serviceConstraint` | Restrictions of the service allowed to be used
+| `carrierConstraint` | Restriction on the carriers that can be used with the fare.
+| `serviceClass` | Class the passenger can use
+| `serviceLevel` | Mode detailed category of places the passenger can use.
+| `passengerConstraint` | Rules and restrictions on the passenger types allowed to use the fare and rules on combining passengers.
+| `afterSalesRules` | After sales rules for the fare. In case the allocator is responsible for the aftersales rules this is almost empty.
+| `combinationConstraint` | Rules on the model of combination of this fare with fares of other carriers.
+| `fulfilmentConstraint` | Restrictions and requirements on the fulfillment and security to be applied by the allocator.
+| `reductionConstraint` | Rules on reduction cards necessary to apply the fare.
+| `reservationParameter` | Information on parameters for reservation via the 90918-1 interface and reservation options.
+| `regulatoryConditions` | Legal regimes to be applied to the fate (e.g. COTIV, SMPS regulations).
+| `personalDataConstraint` | Rules on the personal data to be provided in a booking.
+| `legacyAccountingIdentifier` | Data to be included in the current IRS 30301 accounting data format.
+| `salesAvailabilityConstraint` | Rules on the allowed sates dates for the fare.
+| `travelValidityConstraint` | Rules on the validity for travel of this fare.
+| `legacyConversion` | Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules.
 
 •	YES
 •	NO
 •	ONLY – this fare is provided for conversion only
 
- 
 <!-- Figure 9 Fare element data structure (offline) -->
- 
-#### Data constraints
+
+#### Data Constraints on Fare
 
 | Code | Description |
 |---|---|
@@ -222,7 +224,7 @@ The fare combination constraint defines the rules of combining fares from differ
 | `allowedAllocators` | List of allocators which can combine this fare. . . If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes.
 
 Allowed allocators is not present in the online data.
-| `allowedCommonContracts` |	List of Carriers with which the allocator can for a common contract. If empty, there is no restriction in indicating common contracts to the passenger except for the SEPARATE_CONTRACT model. Carriers are listed by their RICS company codes.|
+| `allowedCommonContracts` | List of Carriers with which the allocator can for a common contract. If empty, there is no restriction in indicating common contracts to the passenger except for the SEPARATE_CONTRACT model. Carriers are listed by their RICS company codes.|
 
 <!-- Figure 10 fare combination constraint data structure
 
@@ -241,9 +243,9 @@ The allocator must ensure that it is clear for the customer that no common contr
 
 This is the model for not combining the fares in one ticket, so the rules applied for this ticket are exactly the rules defined by the carrier in the fare data. The allocator can form a common contract for the whole journey.
 
-##### CLUSTER	
+##### CLUSTER Model
 
-The CLUSTERING model tries to simplify conditions and fares for the customer but sacrifices a part of the control of the carrier on his fares.
+The *CLUSTERING model* tries to simplify conditions and fares for the customer but sacrifices a part of the control of the carrier on his fares.
 
 Similar types of fares are defined to belong to the same “cluster”.  The after sales conditions for a cluster are defined by the allocator. However, the after sales conditions must basic rules on after sales for that cluster.
 
@@ -253,16 +255,17 @@ The after sales fees can be demanded by the carrier.
 
 The other conditions might either be listed per carrier or combined by rules.
 
-The customer buying products from one allocator has a simple unique view on after salles conditions.
+The customer buying products from one allocator has a simple unique view on after sales conditions.
 
 The basic parameters defining the price must be obeyed individually within separately on the combined fare/offer:
--	route description / train link
-- 	class of service
-- 	passenger types
 
-#### COMBINE Model
+- route description / train link
+- class of service
+- passenger types
 
-The COMBINING model tries to be close to the fare conditions defined by the carrier but sacrifices the simplicity of the fare towards the customer.
+#### COMBINING Model
+
+The *COMBINING Model* tries to be close to the fare conditions defined by the carrier but sacrifices the simplicity of the fare towards the customer.
 
 The after sales conditions of the different fares will be combined into one condition to reflect the conditions of all included carriers.  
 
@@ -271,6 +274,7 @@ The after sales conditions will thus depend on the combinations of carriers.
 At any time, the after sales fees defined by the carriers are applied on the price part of these carriers only. The result is a list of times with increasing fees.
 
 E.g.:
+
 - Carrier 1:            10%    20 days before departure   price: 100€
 - Carrier 2:	90%	2 days before departure  price: 200 €
               Result: 		10€ fee  	20 days before departure
@@ -279,6 +283,7 @@ E.g.:
 #### Additional clustering model data:
 
 Fare clusters reflect the flexibility a fare provides to the customer. Flexibility is defined by the after sales conditions that apply when a passenger wants to change his ticket.
+
 Fare cluster code	description
 BUSINESS	Refundable after the departure or last day of validity
 Exchangeable after the departure or last day of validity
@@ -296,7 +301,7 @@ Non refundable
 Non exchangeable
 Minimum validity applies
 
-Combinations of fares of different clusters is allowed with the fare clusters listed in allowedClusters. However not all combinations would be provided to the customer. A fare will be combined with a fare  of the same cluster and in case his is not available with one of the higher clusters. 
+Combinations of fares of different clusters is allowed with the fare clusters listed in `allowedClusters`. However not all combinations would be provided to the customer. A fare will be combined with a fare  of the same cluster and in case his is not available with one of the higher clusters.
 
 E.g.:
 Carrier 1:	BUSINESS	 CombinableClusters: BUSINESS,FULL_FLEX,SEMI_FLEX, NON_FLEX
@@ -312,25 +317,30 @@ A NON_FLEX would be formally allowed, but with the same price as the SEMI_FLEX s
 Other combinations would also be formally allowed by the data but suppressed as they would only offer a higher price. These should be suppressed by the allocator. E.g.:
 	FULL_FLEX 	(Carrier 1 BUSINESS + Carrier 2 BUSINESS)
 
-#### Data constraints
+#### Data Constraints on FareCombinationConstraint
 
-combinationModel	At least one model must be provided
+| Code | Description |
+|---|---|
+| `combinationModel` | At least one model must be provided |
 
 ### FareResourceLocation
 
 Fare resource location provides data on where to find online services for fares. 
 The fare location provides three options:
+
 - Link a resource to a carrier – the carrier must be known from the timetable
 - Link a resource to the train – the data must be updated in case of new trains
 - Link a resource to stations:
-  -	The link can be made for stations and for connection points
-  -	The link is valid if start and end station (or connection points) provide the link
+  - The link can be made for stations and for connection points
+  - The link is valid if start and end station (or connection points) provide the link
 
 The online link provides information on:
-- The type of resource either for a whole train of an area. In case of a train the request must be for the train route between stations (e.g. IRT), whereas for areas there might be multiple splits in-between a train run (e.g. NRT).
 
-<!-- 
-Figure 12 FareResourceLocation data structure
+- The type of resource either for a whole train of an area. In case of a train the
+  request must be for the train route between stations (e.g. IRT), whereas for areas
+  there might be multiple splits in-between a train run (e.g. NRT).
+
+<!-- Figure 12 FareResourceLocation data structure
 
 Figure 13 FareResourceLocation data structure - carrier link
  
@@ -346,7 +356,9 @@ Code lists:
 Graphics Icons
 
 Graphic icons are used to display a coach including its facilities based on the coach layout and availability of places. The graphical items include frames and icons to display seats etc. Graphical items must be provided by the sales application of the issuer application to ensure a unique look and feel of the application.
+
 The coach layout provides only the position of graphic items (co-ordinates) not the graphical presentation at the sales application (pictures).
+
 A large table spans two places, whereas a small table spans only one place. A small wall spans two places and a large wall spans 3 places. A very small wall spans one place only.
 
 Interface Type
@@ -368,7 +380,7 @@ A `legacyCode` can be provided to include the current code in the 108.1 data.
 
 <!-- Figure 17 FareReferenceStationSet Definition data structure -->
 
-#### Data constraints
+#### Data Constraints on FareReferenceStationSet
 
 |Code | Description|
 |---|---|
@@ -377,7 +389,7 @@ A `legacyCode` can be provided to include the current code in the 108.1 data.
 
 ### FulfillmentConstraint
 
-The fulfillment constraint limits the applicable types of fulflilment and defined whether control data need to be transferred via a standard interface (IRS 90918-4).
+The fulfillment constraint limits the applicable types of fulflillment and defined whether control data need to be transferred via a standard interface (IRS 90918-4).
  
 <!-- Figure 18 Fulfilmentconstraint data structure -->
 
@@ -392,9 +404,11 @@ ControlDataExchangeType
 	for barcodes:		BarcodeType
 	for fulfilment:		ControlSecurityType
 
-#### Data constraints
+#### Data Constraints on FulfillmentConstraint
 
-acceptedFulfilmentType	At least one accepted fulfilment type must be provided
+| Code | Description |
+|---|---|
+| `acceptedFulfilmentType` | At least one accepted fulfillment type must be provided
 
 ### Line
 
@@ -408,7 +422,7 @@ Passenger constraint defines restrictions of a fare concerning passengers. In on
 
 <!-- Figure 20 PassengerConstraint data structure offline -->
 
-#### Data constraints
+#### Data Constraints on PassengerConstraint
 
 `upperAgeLimit, lowerAgeLimit	upperAgeLimit >= lowerAgeLimit`
 
@@ -423,19 +437,21 @@ The requirement for personal data might depend on the type of fulfilment or on s
 
 | Code | Description |
 |---|---|
-| `acceptedReason` |	Accepted reason to change personal data after booking confirmation. See code list: Personal data change reasons |
-| `transfer` |	The way the personal data are transferred. See code list:  Personal data transfer types| 
-| `ticketHolderOnly`|	Personal data are required for the ticket holder only 
-| `dataItem` | Code` of the data item required
+| `acceptedReason` | Accepted reason to change personal data after booking confirmation. See code list: Personal data change reasons |
+| `transfer` | The way the personal data are transferred. See code list:  Personal data transfer types |
+| `ticketHolderOnly`| Personal data are required for the ticket holder only |
+| `dataItem` | Code` of the data item required |
 
 See code list: LanguageCode
 ISO-639-1 codes
 OverruleCode
 Overrule code to request a refund without fees.
-Code	Description
-STRIKE	Refund due to strike 
-SALES_STAFF_ERROR	Refund due to an error made by the sales staff
-PAYMENT_FAILURE	Refund as the payment failed 
+
+| Code | Description |
+|---|---|
+|STRIKE | Refund due to strike |
+|SALES_STAFF_ERROR | Refund due to an error made by the sales staff |
+|PAYMENT_FAILURE | Refund as the payment failed |
 
 Personal data items
 
@@ -444,7 +460,7 @@ Personal data items
 Figure 22 allowed changes on personal data
 
 Figure 23 cross border conditions for personal data -->
- 
+
 ### Price
 
 The price data structure provides the price or a fee including the VAT details optionally in different currencies.
@@ -457,7 +473,7 @@ Figure 26 VAT details within a price -->
 
 Scope: see code list TaxScope
 
-#### Data constraints
+#### Data Constraints on Price
 
 `amount	Amount >=  sum of VAT-amounts`
  
@@ -467,14 +483,15 @@ The reduction cards of a carrier are listed in the bulk data.
 
 #### List of cards of the carrier:
 
-| Id |	Unique id of the card. The id must start with the RICS code of the carrier
+| Code | Description |
 |---|---|
-| `name` |	Name and short name of the card. The name should be used for the card selection by the customer, the short name should be used for barcodes.Usually the card name is not translated, but the card name might be provided in different languages by carriers in multilingual countries. |
-| `serviceClass` |	Service class indicated for the class |
-| `issuer` |	Issuer of the card. Usually the carrier providing the fare data. |
-| `type` | 	Type of the cards to separate between loyalty cards, cards that are tickets (passes), and reduction cards (LOYALTY_CARD,REDUCTION_CARD,PASS).|
-| `cardIdRequired` |	Indicates that the card id must be provided in the prebooking request to validate the card. This card cannot be used without the online services for booking |
- 
+| `id` | Unique id of the card. The id must start with the RICS code of the carrier
+| `name` | Name and short name of the card. The name should be used for the card selection by the customer, the short name should be used for barcodes.Usually the card name is not translated, but the card name might be provided in different languages by carriers in multilingual countries. |
+| `serviceClass` | Service class indicated for the class |
+| `issuer` | Issuer of the card. Usually the carrier providing the fare data. |
+| `type` | Type of the cards to separate between loyalty cards, cards that are tickets (passes), and reduction cards (LOYALTY_CARD,REDUCTION_CARD,PASS).|
+| `cardIdRequired` | Indicates that the card id must be provided in the prebooking request to validate the card. This card cannot be used without the online services for booking |
+
 <!-- Figure 27 reduction cards offline -->
 
 ### ReductionConstraint
@@ -498,6 +515,7 @@ Definition of a regional validity of a fare. The regional validity constraint is
 The connection points are included for combining regions. When combining two regional validities from two carriers the connection points will disappear in the combined data structure for bar codes and ticket control and from the textual description for the passenger.
 
 E.g.:
+
 - Carrier 1: RegionalConstraint  {Exit (A,B), RegionalValidity X – Y/Z- A}
 - Carrier 2: RegionalConstraint  {Entry (A,B), RegionalValidity B – C/D – E}
 - *Result*:  X*Y/Z*A*B*C/D*E
@@ -506,14 +524,14 @@ The allocator might need to remove doubled stations in routes in case the connec
 
 - Carrier 1: RegionalConstraint  {Exit (A), RegionalValidity X – Y/Z- A}
 - Carrier 2: RegionalConstraint  {Entry (A), RegionalValidity A – C/D – E}
-- *Result*:  X*Y/Z*A*A*C/D*E  X*Y/Z*A*C/D*E
+- *Result*:  X*Y/Z*A*A*C/D*E --> X*Y/Z*A*C/D*E
 
 #### Connecting Regional Validity to trips:
 
 The regional constraint is connected to the timetable via the regional validity, the connection points are used to combine regional constraints.
 
 To support legacy implementations the connection points can provide a border point code linked with the timetable.
- 
+
 <!-- Figure 30 Connection points and timetable routes
 
 Figure 31 Regional validity constraint data structure -->
@@ -527,7 +545,7 @@ The data structure `RegionalValidity` is defined in UIC IRS 90918-4 and included
 <!-- Figure 32 regional validity data structure -->
 
 Extended route data structure including fare reference station sets.
- 
+
 <!-- Figure 33 route description (ViaStation) data structure
 
 Figure 34 RegionalValidity data structure - copy of 90918-4 -->
@@ -539,8 +557,8 @@ ReservationParameter provide data on how to combine reservations with NRT fares,
 | Code | Description |
 | --- | --- |
 | `reservationRequired` | A reservation must be made accompanying an NRT ticket. |
-| `reservationParameters981-1` | Parameters to request the correct reservation using the interface according to IRS 90918-1 | 
-| `reservationOptions`	| Reservation options available that would not change the offer (same price and conditions) (e.g. Aisle or Window). The information is static and does not mean that such an option is still available. The preferences are grouped in case a selection is required (Aisle or Window). |
+| `reservationParameters981-1` | Parameters to request the correct reservation using the interface according to IRS 90918-1 |
+| `reservationOptions` | Reservation options available that would not change the offer (same price and conditions) (e.g. Aisle or Window). The information is static and does not mean that such an option is still available. The preferences are grouped in case a selection is required (Aisle or Window). |
 
 <!-- Figure 35 ReservationParameter data structure
  
@@ -549,22 +567,23 @@ Figure 36 Reservation Parameter - support for 90918-1 reservation interface
 Figure 37 ReservationParameter data structure - reservation options -->
 
 Code Lists
--	Code list Preference Groups: see Preference groups
--	Code list Preferences: see Preferences of places
+
+- Code list Preference Groups: see Preference groups
+- Code list Preferences: see Preferences of places
 
 ### StationDetail
 
 Details on stations including codes and names. Codes must include the MERITS code in case it is defined for a station.
- 
+
 <!-- Figure 38 structure Station detail data -->
 
 ### StationNames
 
-Station names provides multilanguage names in short and long form as currently no other data source can provide these names. Short names are used within the route descriptions whereas the long for is used for entry and exit stations.
+Station names provides multi language names in short and long form as currently no other data source can provide these names. Short names are used within the route descriptions whereas the long for is used for entry and exit stations.
 
 A legacy border point code can be provided during the migration to the OSDM data model.
 
-Figure 39 structure Station detail data (offline only)
+<!-- Figure 39 structure Station detail data (offline only) -->
 
 ### Text
 
