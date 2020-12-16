@@ -16,6 +16,31 @@ understanding of the API and its underlying concepts. As such, some of
 the details of how the information is structured in the API
 are not represented or simplified in the data models.
 
+## Overview of Services
+
+|Resources | Description |
+|---|---|
+| `/locations` | Resources to search for locations
+| `/trips` | Resources to search for trips
+| `/trip-offers-collection` | Resources to get bookable offers
+| `/trip-offers` | *dito*
+| `/offers` | *dito*
+| `/offers/{id}/admissions` | Resources to manipulate parts of an offer consisting of, e.g., admissions, ..  
+| `/offers/{id}/reservations` | .. reservations,..
+| `/offers/{id}/ancillaries` | .. ancillaries,..
+| `/offers/{id}/fares` | .. or if permitted also fares.
+| `/bookings` | Resources to manipulate bookings
+| `/offers/{id}/passengers` | Resources to manipulate a passenger's information at every stage of the flow
+| `/bookings/{id}/passengers` | *dito*
+| `/products` | Resources to retrieve products information on one or more products
+| `/bookings/{id}/fulfillments`| Resources to retrieve fulfillments, e.g. tickets
+| `/fulfillments` | *dito*
+| `/bookings/{Id}/refundOffers` | Resources to get and accept a refund offer
+| `/bookings/{Id}/refundOffers/{refundOfferId}` | *dito*
+| `/bookings/{Id}/exchangeOffers` | Resources to get and accept a exchange offer
+| `/bookings/{}/exchangeOffers/{exchangeOfferId}` | *dito*
+| `/coachLayouts` | Resources to get layouts of coaches
+
 ## Process Flow
 
 ![Process Flow](./images/processes/act-process-flow.svg)
