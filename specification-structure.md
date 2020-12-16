@@ -30,6 +30,11 @@ is explained in this documents:
 A [Catalog of Code Lists](../catalog-of-code-lists/) defines attributes
 and provides references to standards used.
 
-## Specification As Leaflet
+## Compliance to the Specification
 
-The is published is also published as [IRS-90918-10 Leaflet](../docs/IRS-90918-10-V2020.pdf).
+In order for an implementation to be compliant, depending on its role, a set of service need to be
+implemented as lined out in the [Compliance](../compliance/) section.
+
+## Availability as UIC Leaflet
+
+The specification is also available as [IRS-90918-10 Leaflet](../docs/IRS-90918-10-V2020.pdf).
