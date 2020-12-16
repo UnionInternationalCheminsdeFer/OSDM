@@ -9,7 +9,7 @@ data structures:
 
 ## Common Data Structures
 
-The  [Common Data Structures](../common-data-structures/) are shared between the 
+The  [Common Data Structures](../common-data-structures/) are shared between the
 Offline Model and the Online API.
 
 ## Part I: An Offline Model

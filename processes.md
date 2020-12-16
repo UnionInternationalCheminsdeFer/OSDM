@@ -23,8 +23,8 @@ are not represented or simplified in the data models.
 | `/locations` | Resources to search for locations
 | `/trips` | Resources to search for trips
 | `/trip-offers-collection` | Resources to get bookable offers
-| `/trip-offers` | *dito*
-| `/offers` | *dito*
+| `/trip-offers` | *dito* |
+| `/offers` | *dito* |
 | `/offers/{id}/admissions` | Resources to manipulate parts of an offer consisting of, e.g., admissions, ..  
 | `/offers/{id}/reservations` | .. reservations,..
 | `/offers/{id}/ancillaries` | .. ancillaries,..
@@ -74,18 +74,19 @@ costly in terms of calls or bandwidth.
 
 #### Error handling
 
-Error handling by the **Distributor** remains basic here as a handful of cases have to be handled:
+Error handling by the **Distributor** remains basic here as a handful of cases have to
+be handled:
 
 - invalid characters in the search string
 - no result found for the given criteria.
 - The search did not return any result
 - unknown error on server side
 
-In all cases, the error handling starts and stops with the **Distributor** 
+In all cases, the error handling starts and stops with the **Distributor**
 returning the appropriate JSON Problem element.
 
-In case the error can apply to multiple fields, it is recommended to provide 
-additional details such as the incriminated field in the detail property of 
+In case the error can apply to multiple fields, it is recommended to provide
+additional details such as the incriminated field in the detail property of
 the `Problem` element.
 
 ### Getting and Browsing Trips
@@ -176,7 +177,7 @@ consumer, the **Distributors** must follow the following rules :
   only build and retain offers that are *homogeneous* (as much as possible) in
   terms of flexibility and comfort.
 - Each offer request should create a new offer context with a dedicated
-  `/trip-offers-collection` resource and dedicated subresources, since it is
+  `/trip-offers-collection` resource and dedicated sub-resources, since it is
   possible, and may even be required to patch offers with data that is specific
   to the booking dialog at hand in order to perform the booking.
 
@@ -222,13 +223,13 @@ To get offer for the inward travel, the API consumer will have to provide
   outward offer, or the set of potential offers (as the `offerHash` does not
   have to be unique. E.g. all offers for a given date might have the same
   offerHash if the constraint is only on date) can or must be provided.
-  Whether the offerHash is mandatory in the inward offer request is indicated by 
+  Whether the offerHash is mandatory in the inward offer request is indicated by
   the "mandatory flag" that is provided in the outward offer response next to each
   offerHash. If the offerHash is provided in the inward offer request, the
   provider should then only return offers that are compatible with the indicated
   (set of) outward offers.  
   Note that depending on whether the offerHash is mandatory or not and whether it
-  is unique per outward offer, it may or may not be mandatory to select the outward 
+  is unique per outward offer, it may or may not be mandatory to select the outward
   offer before th inward offer request can be constructed.
 
 #### Using combinationHashes
@@ -343,7 +344,7 @@ Proposed trip by timetable system:
 | | | Frankfurt → Wien Hbf (reservation) | Fare ÖBB |
 | Wien Hbf → Wien Stephansplatz|  Metro | Fare ÖBB |
 
-## Completing Offers for Provisional Booking
+### Completing Offers for Provisional Booking
 
 ![Completing Offers for Provisional Booking](./images/processes/seq-completing-offers-for-provisonal-booking.svg)
 
@@ -355,7 +356,7 @@ the information:
   times a seat, but could be sleeping accommodation for night trains), either
 for the type of accommodation space, or its exact location.
 
-While selecting accommodation preferences will be optionally most of the time, 
+While selecting accommodation preferences will be optionally most of the time,
 some information (usually on passengers) may be mandatory in order to proceed
 with the booking. The `RequestedInformation` property will provide the details of
 what needs to be specified in order to book a given offer. These details are
@@ -509,7 +510,7 @@ consumers, as one undividable product or as a bundled pack.
 
 Unfortunately, when the booking is attempted, the process may encounter errors
 leading to the booking failing with some of the sub-providers, while it will
-have succeeded  for other parts of the offer, directed to other sub-providers.
+have succeeded for other parts of the offer, directed to other sub-providers.
 The result is a partially pre-booked booking. Since this situation is not
 compliant with the OSDM specifications, this situation needs to be rolled back.
 This can be done by cancelling the pre-bookings that were successful (on an
@@ -562,7 +563,7 @@ desired or even required before the booking can be confirmed.
 case, the mechanism used is exactly the same as for offers: the
 `requestedInformation` property at booking level will indicate which information
 is needed to confirm using boolean expressions and dot notation. Updating the
-values is done via  a PATCH on passenger subresources of the booking (as for
+values is done via  a PATCH on passenger sub-resources of the booking (as for
 the offer). Even if all the required data is already present, it could still be
 relevant to update these values. For example a dummy date of birth might, due
 to the selected fulfillment type now be requested to be the exact date and
@@ -636,13 +637,13 @@ will be confirmed and fulfilled in one step from the API consumer standpoint:
   and linked
 
 However, in case the **Distributor** acts as a distributor for products or
-fares actually hosted in subprovider systems (OSDM compliant or not), a lot
+fares actually hosted in sub-provider systems (OSDM compliant or not), a lot
 more takes place  behind the scene. Indeed, the **Distributor** will have to
 
-- confirm or fulfill the bookings towards all the subproviders
+- confirm or fulfill the bookings towards all the sub-providers
 - retrieve the fulfillment details to populate its own booking responses
   (and databases, most likely)
-- build the fulfillments elements 
+- build the fulfillments elements
 - update relevant booking properties as described above.
 
 #### Error handling
@@ -665,7 +666,7 @@ sub-providers on request of its API consumer) has several options to handle the
 situation:
 
 In all cases, the middle **Distributor** obviously has the option of
-proactively retrying to confirm on OSDM subproviders where the confirmation
+proactively retrying to confirm on OSDM sub-providers where the confirmation
 failed. But this may keep on failing beyond a reasonable waiting time for the
 API consumer. A different strategy then needs to be applied:
 
@@ -771,7 +772,7 @@ These are the required information needed per process step for major parties
 | DB | In general one first name and name, regardless of the number of travelers. In case of regional trains, however, all names and surnames are needed, unless printed on security paper. ||
 |öBB | Passenger names  are needed (first name and surname) Birth date  may be needed. Some reduction  cards require the number to be provided at pre-booking time, in order to be pre-checked. In other cases, the cards are simply checked on-board  phone number  or  email  (once per order - as contact information) | phone number  or  email  (once per order - as contact information)|
 | RENFE | Per passenger: Name, first name, surname Document type and identity document (DNI, NIE or passport). A phone number  or  email. | Per passenger: Name, first name, surname Document type  and  Identity document.  (DNI, NIE or passport) A  phone number  or  email. |
-| SBB |	Per passenger: name  and first name date of birth. Additional sales parameters for some, none MVP products ||	e-mail |
+| SBB | Per passenger: name  and first name date of birth. Additional sales parameters for some, none MVP products ||e-mail |
 | SNCF | Birth date  is mandatory, a fake date can be used at offer time, but the real one must be provided at pre-booking time | |
 | Eurostar/Thalys | first name and name | Thalys loyalty card number
 

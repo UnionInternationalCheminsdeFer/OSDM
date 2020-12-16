@@ -27,7 +27,7 @@ Minor minor versions will include additional documentation only.
 
 ### Indication of personal data
 
-Within the online part the required personal data are indicated. The general grammar 
+Within the online part the required personal data are indicated. The general grammar
 to indicate required data is used.
 
 ### Indication of required data
@@ -44,15 +44,8 @@ The required data elements can be combined using the logical operators:
 - `AND`
 - `OR`
 
-Brackets  “(“ and “)” can be used in the standard way as for logical expressions, e.g.:
+Brackets  `(` and `)` can be used in the standard way as for logical expressions, e.g.:
 `passenger.gender AND (passenger.email OR passenger.phoneNumber)`
-
-Keywords can be used for specific topic:
-
-- TICKETHOLDER
-Keyword	Meaning	example
-TICKETHOLDER	The data element is required for the ticket holder only	passenger.email AND TICKETHOLDER
-The passenger e-mail is required for the ticket holder only
 
 ### Detailed data structures
 
@@ -82,7 +75,7 @@ An after sales condition applies for a set of after sales transactions and speci
 - whether the fee needs to be given to the carrier or can be kept by the allocator
 - The data include the amount to be refunded. The amount is given to avoid any calculations with complex rules (percentage + minimum / maximum value) at the allocator side.:
 - The value and currency to be applied
-- A percentage for customer information. Due to rounding errors a calculated percentage could result in strange numbers (e.g. 9.99% instead of 10%) 
+- A percentage for customer information. Due to rounding errors a calculated percentage could result in strange numbers (e.g. 9.99% instead of 10%)
 - The unit on which the value is calculated (travellers or bookings)
 The time when the fee needs to be applied is defined by:
 - The time unit (hours, minutes, ...)
@@ -104,14 +97,17 @@ In case multiple rules apply to the same after sales transaction the rule with t
 
 ### Calendar
 
-A calendar is referenced by a unique id which can be referenced from other data structures linked to the fare.
+A Calendar is referenced by a unique id which can be referenced from other data structures linked to the fare.
 A Calendar defines a list of days between two dates. If the dates are not provided in UTC the offset to UTC must be provided additionally.
+
+<!-- Figure 4 Calendar data structure -->
 
 #### Data Constraints on Calendar
 
-- `fromDate', 'untilDate`	fromDate and untilDate must be provided.
-- `fromDate <= untilDate`
-- dates: `fromDate <= date <= untilDate`
+| Code | Description |
+|---|---|
+| `fromDate`, `untilDate` | fromDate and untilDate must be provided and `fromDate <= untilDate`
+| `dates` | `fromDate` <= `date` <= `untilDate`
 
 ### CarrierConstraint
 
@@ -124,6 +120,8 @@ Carriers are specified by their Company code (RICS code).
 The included / excluded carriers are also part of the FCB barcode (IRS 90918-4) content and the ticket control data (IRS 90918-9).
 
 The offline data structure includes an additional id to reference the constraint within a fare data delivery.
+
+<!-- Figure 5 carrier constraint data structure (offline) -->
 
 #### Data Constraints on CarrierConstraint
 
@@ -171,19 +169,19 @@ An elementary fare to create an offer linking all constraints to one price.
 
 | Data elements | Description |
 |---|---|
-| `fareType` | `NRT`, `IRT`, Anxilliaries , Reservations
+| `fareType` | **NRT**, **IRT**, **Ancillaries** , **Reservations**
 | `name` | Name of the fare
 | `fareDetailDescription` | Additional explanation on the fare (e.g. on included fees like Diabolo or Venice fee)
 | `price` | Price with currency EUR must be provided if not otherwise agreed bilaterally.
-| `regionalConstraint` | Definition of the regiuonal validity of the fare and the geographical combination rules (connection points)
+| `regionalConstraint` | Definition of the regional validity of the fare and the geographical combination rules (connection points)
 | `serviceConstraint` | Restrictions of the service allowed to be used
 | `carrierConstraint` | Restriction on the carriers that can be used with the fare.
 | `serviceClass` | Class the passenger can use
 | `serviceLevel` | Mode detailed category of places the passenger can use.
 | `passengerConstraint` | Rules and restrictions on the passenger types allowed to use the fare and rules on combining passengers.
-| `afterSalesRules` | After sales rules for the fare. In case the allocator is responsible for the aftersales rules this is almost empty.
+| `afterSalesRules` | After sales rules for the fare. In case the allocator is responsible for the after sales rules this is almost empty.
 | `combinationConstraint` | Rules on the model of combination of this fare with fares of other carriers.
-| `fulfilmentConstraint` | Restrictions and requirements on the fulfillment and security to be applied by the allocator.
+| `fulfillmentConstraint` | Restrictions and requirements on the fulfillment and security to be applied by the allocator.
 | `reductionConstraint` | Rules on reduction cards necessary to apply the fare.
 | `reservationParameter` | Information on parameters for reservation via the 90918-1 interface and reservation options.
 | `regulatoryConditions` | Legal regimes to be applied to the fate (e.g. COTIV, SMPS regulations).
@@ -191,11 +189,7 @@ An elementary fare to create an offer linking all constraints to one price.
 | `legacyAccountingIdentifier` | Data to be included in the current IRS 30301 accounting data format.
 | `salesAvailabilityConstraint` | Rules on the allowed sates dates for the fare.
 | `travelValidityConstraint` | Rules on the validity for travel of this fare.
-| `legacyConversion` | Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules.
-
-•	YES
-•	NO
-•	ONLY – this fare is provided for conversion only
+| `legacyConversion` | Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules (`YES`, `NO`, `ONLY` (this fare is provided for conversion only))
 
 <!-- Figure 9 Fare element data structure (offline) -->
 
@@ -221,35 +215,40 @@ The fare combination constraint defines the rules of combining fares from differ
 | `onlyWhenCombined` | Indicates that this fare can be used only if it is combined with another fare of another carrier.
 | `referenceCluster` | Cluster within the clustering model to which this fare belongs
 | `allowedClusters` | List of clusters with which this fare can be combined
-| `allowedAllocators` | List of allocators which can combine this fare. . . If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes.
-
-Allowed allocators is not present in the online data.
+| `allowedAllocators` | List of allocators which can combine this fare. . . If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes. Allowed allocators is not present in the online data. |
 | `allowedCommonContracts` | List of Carriers with which the allocator can for a common contract. If empty, there is no restriction in indicating common contracts to the passenger except for the SEPARATE_CONTRACT model. Carriers are listed by their RICS company codes.|
 
-<!-- Figure 10 fare combination constraint data structure
+<!-- Figure 10 fare combination constraint data structure -->
+<!-- Figure 11 fare combination constraint data structure  -->
 
-Figure 11 fare combination constraint data structure
-  -->
+#### Combination Model
 
-Combination model code	Description
+##### SEPARATE_CONTRACT Model
 
-#### SEPARATE_CONTRACT Model
-
-This is the model for not combining the fares in one ticket and not allowing the integration in one contract. The rules applied for this ticket are exactly the rules defined by the carrier in the fare data.
+This `SEPARATE_CONTRACT` model is the model for not combining the fares in one ticket and not allowing
+the integration in one contract. The rules applied for this ticket are exactly the rules defined by the
+carrier in the fare data.
 
 The allocator must ensure that it is clear for the customer that no common contract was established.
 
-#### SEPARATE_TICKET Model
+##### SEPARATE_TICKET Model
 
-This is the model for not combining the fares in one ticket, so the rules applied for this ticket are exactly the rules defined by the carrier in the fare data. The allocator can form a common contract for the whole journey.
+This `SEPARATE_TICKET` model is the model for not combining the fares in one ticket, so the rules applied
+for this ticket are exactly the rules defined by the carrier in the fare data. The allocator can form a
+common contract for the whole journey.
 
-##### CLUSTER Model
+###### CLUSTER Model
 
-The *CLUSTERING model* tries to simplify conditions and fares for the customer but sacrifices a part of the control of the carrier on his fares.
+The `CLUSTERING` model* tries to simplify conditions and fares for the customer but sacrifices a part of
+the control of the carrier on his fares.
 
-Similar types of fares are defined to belong to the same “cluster”.  The after sales conditions for a cluster are defined by the allocator. However, the after sales conditions must basic rules on after sales for that cluster.
+Similar types of fares are defined to belong to the same “cluster”.  The after sales conditions for a cluster
+are defined by the allocator. However, the after sales conditions must basic rules on after sales for that cluster.
 
-The clusters correspond to the flexibility a passenger receives to change the booked train. This corresponds directly to the after sales conditions. Hereby the fees to be paid for such an exchange are essential for the definition of clusters and not the complexity of the process to change. Thus, a train bound ticket and an open ticket belong to the same cluster in case the fees to change to different trains / times are comparable.
+The clusters correspond to the flexibility a passenger receives to change the booked train. This corresponds directly
+to the after sales conditions. Hereby the fees to be paid for such an exchange are essential for the definition of
+clusters and not the complexity of the process to change. Thus, a train bound ticket and an open ticket belong to the
+same cluster in case the fees to change to different trains / times are comparable.
 
 The after sales fees can be demanded by the carrier.
 
@@ -263,59 +262,70 @@ The basic parameters defining the price must be obeyed individually within separ
 - class of service
 - passenger types
 
-#### COMBINING Model
+##### COMBINING Model
 
-The *COMBINING Model* tries to be close to the fare conditions defined by the carrier but sacrifices the simplicity of the fare towards the customer.
+The `COMBINING` model tries to be close to the fare conditions defined by the carrier but sacrifices the simplicity
+of the fare towards the customer.
 
-The after sales conditions of the different fares will be combined into one condition to reflect the conditions of all included carriers.  
+The after sales conditions of the different fares will be combined into one condition to reflect the conditions of
+all included carriers.  
 
 The after sales conditions will thus depend on the combinations of carriers.
 
-At any time, the after sales fees defined by the carriers are applied on the price part of these carriers only. The result is a list of times with increasing fees.
+At any time, the after sales fees defined by the carriers are applied on the price part of these carriers only.
+The result is a list of times with increasing fees.
 
-E.g.:
+*Example*
 
-- Carrier 1:            10%    20 days before departure   price: 100€
-- Carrier 2:	90%	2 days before departure  price: 200 €
-              Result: 		10€ fee  	20 days before departure
-			190€ fee	2 days before departure
+- Carrier 1: 10% 20 days before departure. Price: 100€
+- Carrier 2: 90% 2 days before departure. Price: 200 €
+- Result:  
+  - 10€ fee: 20 days before departure
+  - 190€ fee: 2 days before departure
 
-#### Additional clustering model data:
+#### Additional Clustering Model Data
 
 Fare clusters reflect the flexibility a fare provides to the customer. Flexibility is defined by the after sales conditions that apply when a passenger wants to change his ticket.
 
-Fare cluster code	description
-BUSINESS	Refundable after the departure or last day of validity
-Exchangeable after the departure or last day of validity
-FULL_FLEX	Refundable before the departure or last day of validity
-Exchangeable before the departure or last day of validity	
-SEMI_FLEX	Refundable with fee depending on conditions of the allocator
-Exchangeable with fee depending on conditions of the allocator
-Minimum validity applies
-NON_FLEX	Non refundable
-Non exchangeable
-Minimum validity applies
-PROMO	Used on a bilateral basis only.
+| Fare cluster code | description |
+|---|---|
+|BUSINESS | Refundable/Exchangeable after the departure or last day of validity |
+|FULL_FLEX | Refundable/Exchangeable before the departure or last day of validity |
+|SEMI_FLEX | Refundable/Exchangeable with fee depending on conditions of the allocator. Minimum validity applies |
+|NON_FLEX | Non refundable. Non exchangeable. Minimum validity applies|
+|PROMO | Used on a bilateral basis only. Non refundable. Non exchangeable. Minimum validity applies|
 
-Non refundable
-Non exchangeable
-Minimum validity applies
+Combinations of fares of different clusters is allowed with the fare clusters listed in `allowedClusters`.
+However not all combinations would be provided to the customer. A fare will be combined with a fare of
+the same cluster and in case his is not available with one of the higher clusters.
 
-Combinations of fares of different clusters is allowed with the fare clusters listed in `allowedClusters`. However not all combinations would be provided to the customer. A fare will be combined with a fare  of the same cluster and in case his is not available with one of the higher clusters.
+*Example*
 
-E.g.:
-Carrier 1:	BUSINESS	 CombinableClusters: BUSINESS,FULL_FLEX,SEMI_FLEX, NON_FLEX
-SEMI_FLEX 	 CombinableClusters: SEMI_FLEX, NON_FLEX
-Carrier 2:	BUSINESS 	 CombinableClusters: BUSINESS,FULL_FLEX,SEMI_FLEX, NON_FLEX
-FULL_FLEX 	 CombinableClusters: FULL_FLEX,SEMI_FLEX, NON_FLEX
+- Carrier 1:
+
+  - `BUSINESS` -> CombinableClusters: `BUSINESS`, `FULL_FLEX`, `SEMI_FLEX`, `NON_FLEX`
+  - `SEMI_FLEX` -> CombinableClusters: `SEMI_FLEX`, `NON_FLEX`
+
+- Carrier 2:
+
+  - `BUSINESS` -> CombinableClusters: `BUSINESS`, `FULL_FLEX`, `SEMI_FLEX`, `NON_FLEX`
+  - `FULL_FLEX` -> CombinableClusters: `FULL_FLEX`, `SEMI_FLEX`, `NON_FLEX`
+
 Possible combined offers are:
-	BUSINESS 	(Carrier 1 BUSINESS + Carrier 2 BUSINESS)
-	FULL_FLEX 	(Carrier 1 BUSINESS + Carrier 2 FULL_FLEX)
-	SEMI_FLEX 	(Carrier 1 SEMI_FLEX + Carrier 2 FULL_FLEX)
-A NON_FLEX would be formally allowed, but with the same price as the SEMI_FLEX so it should not be shown to the customer:
-	NON_FLEX 	(Carrier 1 SEMI_FLEX + Carrier 2 FULL_FLEX)
-Other combinations would also be formally allowed by the data but suppressed as they would only offer a higher price. These should be suppressed by the allocator. E.g.:
-	FULL_FLEX 	(Carrier 1 BUSINESS + Carrier 2 BUSINESS)
+
+- `BUSINESS` (Carrier 1 `BUSINESS` + Carrier 2 `BUSINESS`)
+- `FULL_FLEX` (Carrier 1 `BUSINESS` + Carrier 2 `FULL_FLEX`)
+- `SEMI_FLEX` (Carrier 1 `SEMI_FLEX` + Carrier 2 `FULL_FLEX`)
+
+A `NON_FLEX` would be formally allowed, but with the same price as the `SEMI_FLEX` so
+it should not be shown to the customer:
+
+- `NON_FLEX` (Carrier 1 `SEMI_FLEX` + Carrier 2 `FULL_FLEX`)
+
+Other combinations would also be formally allowed by the data but suppressed as they
+would only offer a higher price. These should be suppressed by the allocator. E.g.:
+
+- `FULL_FLEX` (Carrier 1 `BUSINESS` + Carrier 2 `BUSINESS`)
 
 #### Data Constraints on FareCombinationConstraint
 
@@ -325,7 +335,7 @@ Other combinations would also be formally allowed by the data but suppressed as 
 
 ### FareResourceLocation
 
-Fare resource location provides data on where to find online services for fares. 
+Fare resource location provides data on where to find online services for fares.
 The fare location provides three options:
 
 - Link a resource to a carrier – the carrier must be known from the timetable
@@ -351,9 +361,7 @@ Figure 15 FareResourceLocation data structure - station link
 Figure 16 FareResourceLocation data structure - online resource
 -->
 
-Code lists:
- 
-Graphics Icons
+#### Graphics Icons
 
 Graphic icons are used to display a coach including its facilities based on the coach layout and availability of places. The graphical items include frames and icons to display seats etc. Graphical items must be provided by the sales application of the issuer application to ensure a unique look and feel of the application.
 
@@ -361,10 +369,11 @@ The coach layout provides only the position of graphic items (co-ordinates) not 
 
 A large table spans two places, whereas a small table spans only one place. A small wall spans two places and a large wall spans 3 places. A very small wall spans one place only.
 
-Interface Type
-Fehler! Verweisquelle konnte nicht gefunden werden.
-Data constraints
-System	For reservation interface 90810-1 the reservation system code is used.
+#### Data constraints on FareResourceLocation
+
+| Code | Description
+|---|---|
+| `System`| For reservation interface 90810-1 the reservation system code is used.
 
 ### FareReferenceStationSet
 
@@ -389,20 +398,25 @@ A `legacyCode` can be provided to include the current code in the 108.1 data.
 
 ### FulfillmentConstraint
 
-The fulfillment constraint limits the applicable types of fulflillment and defined whether control data need to be transferred via a standard interface (IRS 90918-4).
- 
+The fulfillment constraint limits the applicable types of fulfillment and defined whether
+control data need to be transferred via a standard interface (IRS 90918-4).
+
 <!-- Figure 18 Fulfilmentconstraint data structure -->
 
-Code lists:
-	for required SiS: 	CardType
+Code lists for required SiS:  `CardType`
+
 The following code list defines the card types for cards used
-Predefined Card-Ids	Description
-LOYALTY_CARD	Loyalty card
-REDUCTION_CARD	Card providing reduction
-PASS	Pass for travelling
-ControlDataExchangeType
-	for barcodes:		BarcodeType
-	for fulfilment:		ControlSecurityType
+
+| Predefined Card-Ids | Description |
+|---|---|
+| LOYALTY_CARD |Loyalty card |
+| REDUCTION_CARD |Card providing reduction
+| PASS |Pass for travelling
+
+`ControlDataExchangeType`:
+
+- for bar codes: `BarcodeType`
+- for fulfillment: `ControlSecurityType`
 
 #### Data Constraints on FulfillmentConstraint
 
@@ -413,7 +427,7 @@ ControlDataExchangeType
 ### Line
 
 Line defines the regional validity on a specific line. It might have additional restrictions to enter or leave at specific stations or to be used within an area or city only.
- 
+
 <!-- Figure 19 Line data structure -->
 
 ### PassengerConstraint
@@ -424,36 +438,33 @@ Passenger constraint defines restrictions of a fare concerning passengers. In on
 
 #### Data Constraints on PassengerConstraint
 
-`upperAgeLimit, lowerAgeLimit	upperAgeLimit >= lowerAgeLimit`
+| Code | Description |
+|---|---|
+| `upperAgeLimit`, `lowerAgeLimit` | `upperAgeLimit` >= `lowerAgeLimit` |
 
 ### PersonalDataConstraint
 
 Specification of personal data to be delivered to the carrier. Personal data might be included in:
 
--	Booking service (OSDM and/or IRS 90918-1)
--	Control data (bar code and/or control data delivery IRS 90918-4)
+- Booking service (OSDM and/or IRS 90918-1)
+- Control data (bar code and/or control data delivery IRS 90918-4)
 
-The requirement for personal data might depend on the type of fulfilment or on specific border crossings.
+The requirement for personal data might depend on the type of fulfillment or on specific border crossings.
 
 | Code | Description |
 |---|---|
 | `acceptedReason` | Accepted reason to change personal data after booking confirmation. See code list: Personal data change reasons |
 | `transfer` | The way the personal data are transferred. See code list:  Personal data transfer types |
 | `ticketHolderOnly`| Personal data are required for the ticket holder only |
-| `dataItem` | Code` of the data item required |
+| `dataItem` | Code of the data item required. Consists of `languageCode`, `overruleCode` (see below) and personal data items. |
 
-See code list: LanguageCode
-ISO-639-1 codes
-OverruleCode
-Overrule code to request a refund without fees.
+#### Overrule Code
 
 | Code | Description |
 |---|---|
 | `STRIKE` | Refund due to strike |
 | `SALES_STAFF_ERROR` | Refund due to an error made by the sales staff |
 | `PAYMENT_FAILURE` | Refund as the payment failed |
-
-Personal data items
 
 <!-- Figure 21 Required Personal data structure
 
@@ -475,13 +486,15 @@ Scope: see code list TaxScope
 
 #### Data Constraints on Price
 
-`amount	Amount >=  sum of VAT-amounts`
- 
+| Code | Description |
+|---|---|
+|`amount`|`Amount` >=  `sum of VAT-amounts`
+
 ### ReductionCard
 
 The reduction cards of a carrier are listed in the bulk data.
 
-#### List of cards of the carrier:
+#### List of Carrier Cards
 
 | Code | Description |
 |---|---|
@@ -526,15 +539,14 @@ The allocator might need to remove doubled stations in routes in case the connec
 - Carrier 2: RegionalConstraint  {Entry (A), RegionalValidity A – C/D – E}
 - *Result*:  X*Y/Z*A*A*C/D*E --> X*Y/Z*A*C/D*E
 
-#### Connecting Regional Validity to trips:
+#### Connecting Regional Validity to Trips
 
 The regional constraint is connected to the timetable via the regional validity, the connection points are used to combine regional constraints.
 
 To support legacy implementations the connection points can provide a border point code linked with the timetable.
 
-<!-- Figure 30 Connection points and timetable routes
-
-Figure 31 Regional validity constraint data structure -->
+<!-- Figure 30 Connection points and timetable routes -->
+<!-- Figure 31 Regional validity constraint data structure -->
 
 The online data structure will not use the id and will directly include the entry and exit connection point, whereas the offline structure will include the id of the connection point pointing to a connection point within the same data delivery.
 
@@ -624,7 +636,7 @@ The online data structure will not provide the id.
 
 <!-- Figure 42 structure Service Constraints -->
 
-#### Data Constraints on ServlceConstraint
+#### Data Constraints on ServiceConstraint
 
 | Code | Description |
 |---|---|
