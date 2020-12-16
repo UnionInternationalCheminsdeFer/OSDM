@@ -1,7 +1,7 @@
 openapi: 3.0.3
 servers:
-  - description: fsm dummy server
-    url: 'https://virtserver.swaggerhub.com/Real-IT/FSM_MVP/1.0.0'
+  - description: dummy server
+    url: 'https://virtserver.swaggerhub.com/Real-IT/dummy/1.0.0'
 info:
   title: UIC 90918-10 - OSDM
   version: 0.9.9
@@ -2777,7 +2777,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
         '501':
-          description: Not implemented   
+          description: Not implemented 
+
+  '/bookings/{bookingId}/exchangeOffers/{exchangeOfferId}':   
     get:
       tags:
         - ExchangeOffers
@@ -2853,9 +2855,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
         '501':
-          description: Not implemented
-          
-  '/bookings/{bookingId}/exchangeOffers/{exchangeOfferId}':          
+          description: Not implemented  
     patch:
       tags:
         - ExchangeOffers
@@ -4674,7 +4674,6 @@ components:
       type: string
       description: >-
         Reason for and type of an after sale, code list in IRS 90918-10.
-
     ExchangeOffersCollection:
       type: array
       items:
