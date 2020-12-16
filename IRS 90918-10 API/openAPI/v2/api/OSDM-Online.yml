@@ -55,8 +55,7 @@ paths:
     get:
       tags:
         - Trips
-      summary: >-
-        The GET locations service returns matching locations for a given match value based on MatchType.
+      summary: Returns matching locations for a given match value based on MatchType.
       operationId: getLocations
       parameters:
         - name: Accept-Language
@@ -160,8 +159,7 @@ paths:
     get:
       tags:
         - Trips
-      summary: >-
-        The GET locations service retrieves a location element.
+      summary: Returns a location element with a given locationId.
       operationId: getLocationsId
       parameters:
         - name: Access-Token 
@@ -219,9 +217,10 @@ paths:
     get:
       tags:
         - Trips
-      summary:
-        The GET trips service retrieves a trip element representing a train travel made of one or more
-        segments. Depending on the embed either references or full location definitions will be returned.
+      summary: Returns a trip element representing a travel trip.
+      description:
+        A trip consists of one or more segments for a given tripId. Depending on the 
+        embed either references or full location definitions is returned.
       operationId: getTripsId
       parameters:
         - name: Access-Token 
@@ -302,9 +301,9 @@ paths:
     get:
       tags:
         - Trips
-      summary: >-
-        The GET trips-collection service returns a collection of different trips for a specified
-        origin and destination (and via). The unique codes of the origin and
+      summary: Returns a collection of trips for a specified origin and destination (and via).
+      description: >-
+        The unique codes of the origin and
         destination can be resolved using the locations service.
       operationId: getTripsCollectionId
       parameters:
@@ -435,9 +434,9 @@ paths:
     post:
       tags:
         - Trips
-      summary: >-
-        The GET tripsCollection service returns different trips for a specified
-        origin and destination (and via). The unique codes of the origin and
+      summary: Returns a collection trips for a specified origin and destination (and via). 
+      description:
+        The unique codes of the origin and
         destination can be resolved using the locations service.
       operationId: postTripsCollection
       parameters:
@@ -527,10 +526,9 @@ paths:
     get:
       tags:
         - Offers
-      summary: >-
-        The GET tripOffersCollection service returns different offers and trips for a
-        specified origin and destination (and via). The unique codes of the
-        origin and destination can be resolved using the locations service.
+      summary: Returns different offers and trips for a specified origin and destination (and via). 
+      description:
+        The unique codes of the origin and destination can be resolved using the locations service.
       operationId: getTripOffersCollectionId
       parameters:
         - name: Access-Token 
@@ -644,7 +642,7 @@ paths:
           content:
             "application/problem+json":
               schema:
-                $ref: '#/components/schemas/Problem'          
+                $ref: '#/components/schemas/Problem'
         '401':
           description: Unauthorized
         '403':
@@ -664,9 +662,7 @@ paths:
     post:
       tags:
         - Offers
-      summary: >-
-        The POST tripsOffersCollection service returns different trip offers for a
-        specified origin and destination (and via) locations. 
+      summary: Returns trip offers for origin and destination (and via) locations. 
       operationId: postTripOffersCollection
       parameters:
         - name: Access-Token 
@@ -755,8 +751,7 @@ paths:
     get:
       tags:
         - Offers
-      summary: >-
-        The GET trip-offers service returns different offers for a specified trip offer id.
+      summary: Returns different offers for a specified tripOfferId.
       operationId: getTripOffersId
       parameters:
         - name: Access-Token 
@@ -835,16 +830,15 @@ paths:
           content:
             "application/problem+json":
               schema:
-                $ref: '#/components/schemas/Problem'         
+                $ref: '#/components/schemas/Problem'
         '501':
-          description: Not implemented     
+          description: Not implemented
    
   '/offers/{offerId}':
     get:
       tags:
         - Offers
-      summary: >-
-         The GET offers service returns the offer with the requested included sub resources in a given state.
+      summary: Returns an offer fpr the id requested.
       operationId: getOffersId
       parameters:
         - name: Access-Token 
@@ -929,8 +923,7 @@ paths:
     get:
       tags:
         - Passengers
-      summary: >-
-       The GET passenger service returns the passenger's information.
+      summary: Returns the passenger's information at offer process step.
       operationId: getOfferPassengersId
       parameters:
         - name: Access-Token 
@@ -1000,8 +993,7 @@ paths:
     patch:
       tags:
         - Passengers
-      summary: 
-        The PATCH passenger service allows updating a passenger's information.
+      summary: Allows updating a passenger's information at offer step.
       operationId: patchOfferPassenger
       parameters:
         - name: Access-Token 
@@ -1078,8 +1070,7 @@ paths:
     get:
       tags:
         - Passengers
-      summary: >-
-       The GET passenger service returns the passenger's information.
+      summary: Returns the passenger's information at booking step.
       operationId: getBookingPassengersId
       parameters:
         - name: Access-Token 
@@ -1149,8 +1140,7 @@ paths:
     patch:
       tags:
         - Passengers
-      summary: 
-        The PATCH passenger service allows updating a passenger's information.
+      summary: Allows updating a passenger's information at booking step.
       operationId: patchBookingPassenger
       parameters:
         - name: Access-Token 
@@ -1227,8 +1217,7 @@ paths:
     get:
       tags:
         - Products
-      summary: >-
-        The GET product service returns the information on products with the id provided.
+      summary: Returns a product for the id provided.
       operationId: getProductsId
       parameters:
         - name: Access-Token 
@@ -1300,8 +1289,7 @@ paths:
     get:
       tags:
         - Offer Parts
-      summary: >-
-        The GET admission service returns the information on the admission with the id provided.
+      summary: Returns an admission for the ids provided.
       operationId: getAdmissionId
       parameters:
         - name: Access-Token 
@@ -1378,8 +1366,7 @@ paths:
     get:
       tags:
         - Offer Parts
-      summary: >-
-        The GET reservation service returns the information on the reservation with the id provided.
+      summary: Returns a reservation for the ids provided.
       operationId: getReservationsId
       parameters:
         - name: Access-Token 
@@ -1454,9 +1441,7 @@ paths:
     patch:
       tags:
         - Offer Parts
-      summary: >-
-        The PATCH of the place selections service allows updating reservation elements, to update the desired
-        selection of places and to retrieve selectable places for a graphical display
+      summary: Allows updating reservation elements.
       description: >-
         The patch can be used to update the selection of place properties, the available places for graphical 
         displays, the selected optional place properties for a subsequent booking and the selected places from
@@ -1543,8 +1528,7 @@ paths:
     get:
       tags:
         - Offer Parts
-      summary: >-
-        The GET ancillaries service returns the information on the ancillary with the id provided.
+      summary: Returns an ancillary for the ids provided.
       operationId: getAncillariesId
       parameters:
         - name: Access-Token 
@@ -1621,8 +1605,7 @@ paths:
     get:
       tags:
         - Offer Parts
-      summary: >-
-        The GET fares service returns the information on the ancillary with the id provided.
+      summary: Returns a fare for the ids provided.
       description: >-
         For the fares only the start and the end location are considered.
         Fares are only returned if the API is called as allocator with the correct grants.
@@ -1701,9 +1684,7 @@ paths:
     patch:
       tags:
         - Offer Parts
-      summary: >-
-        The PATCH of the place selections service allows updating reservation elements, to update the desired
-        selection of places and to retrieve selectable places for a graphical display
+      summary: Allows updating reservation elements.
       description: >-
         The patch can be used to update the selection of place properties, the available places for graphical 
         displays, the selected optional place properties for a subsequent booking and the selected places from
@@ -1781,13 +1762,11 @@ paths:
         '501':
           description: Not implemented        
  
-  /bookings/search:       
+  /bookings/search:
     post:
       tags:
         - Bookings
-      summary: >-
-        *** NOT-MVP *** The POST bookings search service allows to search for and find bookings based on a set of criteria. It
-        returns a list of booking ids.
+      summary: Allows to search for and find bookings based on a set of criteria.
       description: >-
         There are searching criteria that need to be supported. by passenger 
         attributes (first name, name, date-of-birth), by booking reference (e.g. PNR, 
@@ -1868,13 +1847,11 @@ paths:
         '501':
           description: Not implemented
           
-  '/bookings':       
+  '/bookings':
     post:
       tags:
         - Bookings
-      summary: >-
-        The POST bookings create service allows to create a booking based on a previously requested offer. 
-        The offer id is provided in the query.
+      summary: Allows to create a booking based on a previously requested offer.
       operationId: postBookings
       parameters:
         - name: Access-Token 
@@ -1942,8 +1919,7 @@ paths:
     get:
       tags:
         - Bookings
-      summary: >-
-        The GET booking service returns the information on the booking with the id provided.
+      summary: Returns a booking with the id provided.
       operationId: getBookingsId
       parameters:
         - name: Access-Token 
@@ -2030,13 +2006,13 @@ paths:
     delete:
       tags:
         - Bookings
-      summary: >-
-        The DELETE booking service deletes the booking with the id provided. It
-        is only possible before the booking is confirmed or in case of a technical problem in confirming multiple 
+      summary: Deletes the booking with the id provided. 
+      description: >-
+        It is only possible before the booking is confirmed or in case of a technical problem in confirming multiple 
         independent bookings within a sales transaction. Deletes on a confirmed booking must be documented
-         and evidence on the issue must be provided on request. 
-         The delete on a confirmed booking is allowed immediately after the confirmation of the booking, 
-         but must be repeated according to the error handling rules in case the delete fails.
+        and evidence on the issue must be provided on request. 
+        The delete on a confirmed booking is allowed immediately after the confirmation of the booking, 
+        but must be repeated according to the error handling rules in case the delete fails.
       operationId: deleteBookingsId
       parameters:
         - name: Access-Token 
@@ -2094,8 +2070,7 @@ paths:
     patch:
       tags:
         - Bookings
-      summary: >-
-        The PATCH bookings service allows updating the fulfillment type of the booking
+      summary: Allows updating the fulfillment type of the booking.
       operationId: confirmBooking
       parameters:
         - name: Access-Token 
@@ -2164,9 +2139,7 @@ paths:
     post:
       tags:
         - Fulfillments
-      summary: >-
-        The POST fulfillments service triggers the fulfillment of the booking based on the information 
-        currently contained in the provided booking.
+      summary:  Triggers the fulfillment of the booking.
       operationId: postFulfillments
       parameters:
         - name: Access-Token 
@@ -2248,8 +2221,7 @@ paths:
     patch:
       tags:
         - Fulfillments
-      summary: >-
-        The PATCH fulfillments service allows the effective fulfillment of one ore more confirmed fulfillment. 
+      summary: Allows the effective fulfillment of one ore more confirmed fulfillment. 
       operationId: patchFulfillment
       parameters:
         - name: Access-Token 
@@ -2338,8 +2310,7 @@ paths:
     get:
       tags:
         - Fulfillments
-      summary: >-
-        The GET ticket service returns the information on the ticket with the id provided.
+      summary: Returns the fulfillment, aka. ticket for the provided id.
       operationId: getFulfillmentId
       parameters:
         - name: Access-Token 
@@ -2409,9 +2380,9 @@ paths:
     post:
       tags:
         - RefundOffers
-      summary: >-
-        The POST refundOffers initiates a refund process by creating a RefundOffer resource
-        containing the needed information on the potential operation. One refund offer can then be 
+      summary: Initiates a refund process by creating a RefundOffer resource.
+      description:
+        The RefundOffer contains the required information on the potential operation. One refund offer can then be 
         accepted via a PATCH, deleted or left to die at the end of its lifetime.
       operationId: postRefundOffersBookingId
       parameters:
@@ -2488,8 +2459,7 @@ paths:
     get:
       tags:
         - RefundOffers
-      summary: >-
-        The GET refundOffers service returns the refund offer with the id provided.
+      summary: Returns the refund offer for the ids provided.
       operationId: getRefundOffersId
       parameters:
         - name: Access-Token 
@@ -2564,8 +2534,7 @@ paths:
     patch:
       tags:
         - RefundOffers
-      summary: >-
-        The PATCH refundOffers action allows to accept and confirm a refund operation. 
+      summary: Allows to accept and confirm a refund offer.
       operationId: patchRefundOffersId
       parameters:
         - name: Access-Token 
@@ -2645,8 +2614,7 @@ paths:
     delete:
       tags:
         - RefundOffers
-      summary: >-
-        The DELETE refundOffers action allows to cancel a refundOffer without waiting for expiry. 
+      summary: Deletes a refundOffer without waiting for expiry.
       operationId: deleteRefundOffersId
       parameters:
         - name: Access-Token 
@@ -2716,10 +2684,10 @@ paths:
     post:
       tags:
         - ExchangeOffers
-      summary: >-
-        The POST exchangeOffers initiates an exchange process by creating a ExchangeOffer resource
-        containing the needed information on the potential operation. The proposition can then be 
-        accepted via a PATCH, deleted or left to die at the end of its lifetime. 
+      summary: Initiates an exchange process by creating a ExchangeOffer resource.
+      description: >-
+        The ExchangeOffer contains the needed information on the potential operation. 
+        The proposition can then be accepted via a PATCH, deleted or left to die at the end of its lifetime. 
       operationId: postExchangeOffersBookingId
       parameters:
         - name: Access-Token 
@@ -2781,8 +2749,7 @@ paths:
     get:
       tags:
         - ExchangeOffers
-      summary: >-
-        The GET exchangeOffers service returns the refund offer with the id provided.
+      summary: Returns the refund offer for the id provided.
       operationId: getExchangeOffersId
       parameters:
         - name: Access-Token 
@@ -2855,12 +2822,11 @@ paths:
         '501':
           description: Not implemented
           
-  '/bookings/{bookingId}/exchangeOffers/{exchangeOfferId}':          
+  '/bookings/{bookingId}/exchangeOffers/{exchangeOfferId}':
     patch:
       tags:
         - ExchangeOffers
-      summary: >-
-        The PATCH exchangeOffers action allows to prebook an exchange offer. 
+      summary: Allows to prebook an exchange offer. 
       operationId: patchExchangeOffersId
       parameters:
         - name: Access-Token 
@@ -2935,8 +2901,7 @@ paths:
     delete:
       tags:
         - ExchangeOffers
-      summary: >-
-        The DELETE exchangeOffers action allows to cancel a exchangeOffer without waiting for expiry. 
+      summary: Deletes an exchangeOffer without waiting for expiry. 
       operationId: deleteExchangeOffersId
       parameters:
         - name: Access-Token 
@@ -3006,10 +2971,10 @@ paths:
     get:
       tags:
         - CoachLayouts 
-      description: get coach layouts
-      summary: >-
+      summary: Returns all coach layouts.
+      description: >-
         Retrieve the coach layout description needed for graphical reservation. The coach
-        layouts can either be retrieved as a complete list or specificatty for a train identified via offerId and reservationId or fareId
+        layouts can either be retrieved as a complete list or specificity for a train identified via offerId and reservationId or fareId
       operationId: getCoachLayouts
       parameters:
         - name: Access-Token 
@@ -3095,10 +3060,10 @@ paths:
     get:
       tags:
         - CoachLayouts
-      description: get coach layout
-      summary: >-
+      summary: Returns a coach layout for a provided id.
+      description: >-
         Retrieve a coach layout description needed for graphical reservation for a given layout id.
-      operationId: getCoachLayout
+      operationId: getCoachLayoutsLayoutId
       parameters:
         - name: Access-Token
           in: header
@@ -3155,11 +3120,11 @@ paths:
     post:
       tags:
         - Offers 
+      summary: Returns offers for non-journey based products.
       description: >- 
-        Get offers based on key words or regional information not linked to trips
-      summary: >-
-        Get offers not linked to trips based on key words or regional information (e.g. for passes or seasonal tickets)
-      operationId: searchOffers
+        Get offers based on key words or regional information not linked to trips. 
+        This includes simple passes or one day tickets. 
+      operationId: offerCollections
       parameters:
         - name: Access-Token
           in: header
@@ -5913,7 +5878,7 @@ components:
       required:
         - country
         - amount
-      
+
     VatScope:
       description: scope where the VAT applies
       type: string
@@ -5922,7 +5887,7 @@ components:
        - NATIONAL
        - SHORT_DISTANCE
        - LONG_DISTANCE
-    
+
     Company:
       description: >-
         RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the 
@@ -6039,7 +6004,7 @@ components:
       required:
         - code
         - codeList
-    
+
     Poi:
       type: object
       description: >-
@@ -6074,7 +6039,7 @@ components:
           $ref: '#/components/schemas/GeoCoordinate'
       required:
         - localCode
-    
+
     Address:
       type: object
       description: used to encode an address using the standard street address attributes
@@ -6167,7 +6132,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlacePack'
-  
+
     PlacePack:
       type: object
       description: >-
@@ -6219,16 +6184,17 @@ components:
         - vehicle
         - coach
         - places
-       
+
     AccommodationType:
       type: string
       description:  >-
         Accommodation type definition out of AccommodationTypeCodeList
-      
+
     AccommodationSubType:
       type: string
       description:  >-
-        Accommodation type definition out of AccommodationSubTypeCodeList      
+        Accommodation type definition out of AccommodationSubTypeCodeList
+
     PlaceSelection:
       type: object
       description: >-
@@ -6259,7 +6225,7 @@ components:
             $ref: '#/components/schemas/PlaceOptionsBundle'
         selectedCoach:
           $ref: '#/components/schemas/SelectedCoach'
-    
+
     ReservationOnlineOption:
       type: object
       properties:
@@ -6271,7 +6237,7 @@ components:
         graphicalReservation:
           description: graphical reservation is supported, interface type "NO","UIC_918",..
           type: string
-      
+
     ReservationOptionGroup:
       type: object
       properties:
@@ -6414,7 +6380,7 @@ components:
             $ref: '#/components/schemas/SelectedPlaces'
       required:
         - selectedCoaches
-  
+
     SelectedPlaces:
       type: object
       properties:
@@ -6483,7 +6449,7 @@ components:
       required:
         - title
         - links
-        
+
     PassengerDetail:
       type: object
       description: >- 
@@ -6671,7 +6637,7 @@ components:
       required:
         - id
         - type
-      
+
     CardReference:
       type: object
       properties:
