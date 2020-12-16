@@ -33,7 +33,8 @@ parties interested. The OSDM-Online API is modelled in `YAML`, fully supporting 
 
 ## Background
 
-The Open Sales and Distribution Model has emerged from the **new Tariff Model (nTM)** and [Full Service Model (FSM 2.0)](https://tsga.eu/fsm) initiatives:
+The Open Sales and Distribution Model has emerged from the **new Tariff Model (nTM)** and
+[Full Service Model (FSM 2.0)](https://tsga.eu/fsm) initiatives:
 
 - The initiative new Tariff Model (nTM) initiated by UIC established the successor standard of
   **PRIFIS**. It defines on the one hand an offline standard for the exchange of priced segments
@@ -48,7 +49,9 @@ The Open Sales and Distribution Model has emerged from the **new Tariff Model (n
   services) within Europe and beyond. By standardizing the distribution interface, the distribution of
   products and services can be greatly simplified.
 
-To join forces and represent the **rail sector as a whole** the two initiatives have been merged into this initiative. The specification will be supported by the [UIC](https://uic.org) as **IRS 90918-10**.
+To join forces and represent the **rail sector as a whole** the two initiatives have been merged into
+this initiative. The specification will be supported by the [UIC](https://uic.org) as
+[IRS-90918-10 Leaflet](./docs/IRS-90918-10-V2020.pdf).
 
 ## Roles
 
@@ -97,10 +100,12 @@ online distribution/carrier systems of **BENE**, **CD**, **DB**, **DSB**,**öBB*
 **PKP IC**, **RENFE**, **RDG**, **SBB**, **SJ**, **SNCF**, **Trenitalia** and others
 **UIC Railways** as well as distribution solutions provided by **Amadeus**, **Sabre**,
 **Silverrail**, **Sqills**, **Trainline**, **Travelport** and others. Furthermore, the
-**Hermes/HOSA** reservation eco-system as well as existing  **UIC leaflets** were carefully examined and taken into account.
+**Hermes/HOSA** reservation eco-system as well as existing  **UIC leaflets** were
+carefully examined and taken into account.
 
 Advisors from **CER**, **CIT**, **ECTAA**, **EU Traveltech** and sounding boards from
-the **European Commission** as well as the **European Rail Agency** were involved from the start and guided the effort.
+the **European Commission** as well as the **European Rail Agency** were involved from
+the start and guided the effort.
 
 By involving the experts of the parties, we are confident that the OSDM
 Model is powerful enough to support the distribution of existing or upcoming
