@@ -47,7 +47,7 @@ The required data elements can be combined using the logical operators:
 Brackets  `(` and `)` can be used in the standard way as for logical expressions, e.g.:
 `passenger.gender AND (passenger.email OR passenger.phoneNumber)`
 
-### Detailed data structures
+#### Detailed data structures
 
 The data structures to be used are defined in the schema and open api specification files. This section serves as additional documentation only.
 
@@ -237,7 +237,7 @@ This `SEPARATE_TICKET` model is the model for not combining the fares in one tic
 for this ticket are exactly the rules defined by the carrier in the fare data. The allocator can form a
 common contract for the whole journey.
 
-###### CLUSTER Model
+##### CLUSTER Model
 
 The `CLUSTERING` model* tries to simplify conditions and fares for the customer but sacrifices a part of
 the control of the carrier on his fares.
@@ -668,7 +668,7 @@ compartment).
 
 The travel validity constraint defines at which times the passenger is permitted to travel.
 
-### Data Constrains on TravelValidityConstraint
+#### Data Constraints on TravelValidityConstraint
 
 <!-- Figure 44 travel validity data structure -->
 <!-- Figure 45 travel validity data structure – validity range -->
