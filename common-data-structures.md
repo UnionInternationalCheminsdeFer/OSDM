@@ -546,10 +546,9 @@ The data structure `RegionalValidity` is defined in UIC IRS 90918-4 and included
 
 Extended route data structure including fare reference station sets.
 
-<!-- Figure 33 route description (ViaStation) data structure
+<!-- Figure 33 route description (ViaStation) data structure -->
+<!-- Figure 34 RegionalValidity data structure - copy of 90918-4 -->
 
-Figure 34 RegionalValidity data structure - copy of 90918-4 -->
- 
 ### ReservationParameter
 
 ReservationParameter provide data on how to combine reservations with NRT fares, how to book reservations via the 90918-1 interface and which options a passenger has for reservation.
@@ -560,11 +559,9 @@ ReservationParameter provide data on how to combine reservations with NRT fares,
 | `reservationParameters981-1` | Parameters to request the correct reservation using the interface according to IRS 90918-1. |
 | `reservationOptions` | Reservation options available that would not change the offer (same price and conditions) (e.g. Aisle or Window). The information is static and does not mean that such an option is still available. The preferences are grouped in case a selection is required (Aisle or Window). |
 
-<!-- Figure 35 ReservationParameter data structure
- 
-Figure 36 Reservation Parameter - support for 90918-1 reservation interface
-
-Figure 37 ReservationParameter data structure - reservation options -->
+<!-- Figure 35 ReservationParameter data structure -->
+<!--Figure 36 Reservation Parameter - support for 90918-1 reservation interface -->
+<!-- Figure 37 ReservationParameter data structure - reservation options -->
 
 Code Lists
 
@@ -573,13 +570,16 @@ Code Lists
 
 ### StationDetail
 
-Details on stations including codes and names. Codes must include the MERITS code in case it is defined for a station.
+Details on stations including codes and names. Codes must include the MERITS code
+in case it is defined for a station.
 
 <!-- Figure 38 structure Station detail data -->
 
 ### StationNames
 
-Station names provides multi language names in short and long form as currently no other data source can provide these names. Short names are used within the route descriptions whereas the long for is used for entry and exit stations.
+Station names provides multi language names in short and long form as currently no
+other data source can provide these names. Short names are used within the route
+descriptions whereas the long for is used for entry and exit stations.
 
 A legacy border point code can be provided during the migration to the OSDM data model.
 
@@ -588,3 +588,89 @@ A legacy border point code can be provided during the migration to the OSDM data
 ### Text
 
 Used for all textual descriptions where translations might be needed.
+
+<!-- Figure 40 structure Text Data Structure -->
+
+### SalesAvailability
+
+Sales availability defines the constraints on the time when a sale of a fare can
+start or end. The sales availability is used in the offline data exchange only. A
+constraint is provides as a list of `salesRestrictions` that have to be applied.
+
+<!-- Figure 40 structure Sales Availability -->
+
+Sales restrictions can define a start and end of the sale relative to the date of
+sale or the date of travel.
+
+A reference to a calendar can be provided to indicate all sales dates.
+
+#### Data Constraint on SalesAvailability
+
+| Code | Description |
+|---|---|
+| `startOfSale`, `endOfSale` | `startOfSale` < `endOfSale`|
+
+### ServiceClass
+
+ServiceClass provides textual descriptions for the predefined service classes.
+
+<!-- Figure 41 structure Service ConstrClass -->
+
+### ServiceConstraint
+
+The service constraint limits a fare to specific service brands (train types). The constraint can either be defined as a list of service brands included or as a list of service brands excluded for the fare.
+
+The online data structure will not provide the id.
+
+<!-- Figure 42 structure Service Constraints -->
+
+#### Data Constraints on ServlceConstraint
+
+| Code | Description |
+|---|---|
+| `includedServiceBrands`, `excludedServiceBrands`| Only one of the lists can be used. Using both lists is forbidden. |
+
+### ServiceLevel
+
+The service level data provide additional information (e.g. text) in the offline
+data exchange in case the reservation API IRS90918-1 is used.
+
+Description of a service level. The service level defines a specific product on a train which can have a price (e.g. Double places with shower, …). It is more specific than just the classic travel class.
+
+The available service levels are defined in IRS 90918-1 element 308 (Service level code). The data
+indicate the service class that needs to be booked in case the reservation is not an IRT and parameters
+needed for reservation via the 90918-1 interface.
+
+Some service levels might require a mandatory reservation.
+
+Additional to a service level there might be reservation options that do not affect the price. There are
+listed in reservation options. (e.g. Upper or lower berth in the service level for double Sleeper
+compartment).
+
+<!-- Figure 43 Service level description (offline) -->
+
+### TravelValidityConstraint
+
+The travel validity constraint defines at which times the passenger is permitted to travel.
+
+### Data Constrains on TravelValidityConstraint
+
+<!-- Figure 44 travel validity data structure -->
+<!-- Figure 45 travel validity data structure – validity range -->
+<!-- Figure 46 travel validity data structure – excluded time range -->
+<!-- Figure 47 travel validity data structure- return constraint -->
+
+| Code | Description |
+|---|---|
+| `excludedTimeRange` |from time < to time
+| `numberOfTravelDays` |A duration must be provided
+| `returnConstraint` | `earliestReturn` < `latestReturn`
+
+### ZoneDefinition
+
+Definition of zones used in regional validity.
+
+The area of a zone can be defined by either a list of stations, geographical polygon of a list of NUTS
+codes. Multiple definitions are allowed in case they define the same area.
+
+<!-- Figure 48 Zone definition structure -->
