@@ -237,9 +237,9 @@ This `SEPARATE_TICKET` model is the model for not combining the fares in one tic
 for this ticket are exactly the rules defined by the carrier in the fare data. The allocator can form a
 common contract for the whole journey.
 
-##### CLUSTER Model
+##### CLUSTERING Model
 
-The `CLUSTERING` model* tries to simplify conditions and fares for the customer but sacrifices a part of
+The `CLUSTERING` model tries to simplify conditions and fares for the customer but sacrifices a part of
 the control of the carrier on his fares.
 
 Similar types of fares are defined to belong to the same “cluster”.  The after sales conditions for a cluster
