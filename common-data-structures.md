@@ -289,11 +289,11 @@ Fare clusters reflect the flexibility a fare provides to the customer. Flexibili
 
 | Fare cluster code | description |
 |---|---|
-|BUSINESS | Refundable/Exchangeable after the departure or last day of validity |
-|FULL_FLEX | Refundable/Exchangeable before the departure or last day of validity |
-|SEMI_FLEX | Refundable/Exchangeable with fee depending on conditions of the allocator. Minimum validity applies |
-|NON_FLEX | Non refundable. Non exchangeable. Minimum validity applies|
-|PROMO | Used on a bilateral basis only. Non refundable. Non exchangeable. Minimum validity applies|
+| `BUSINESS` | Refundable/Exchangeable after the departure or last day of validity |
+| `FULL_FLEX` | Refundable/Exchangeable before the departure or last day of validity |
+| `SEMI_FLEX` | Refundable/Exchangeable with fee depending on conditions of the allocator. Minimum validity applies |
+| `NON_FLEX` | Non refundable. Non exchangeable. Minimum validity applies|
+| `PROMO` | Used on a bilateral basis only. Non refundable. Non exchangeable. Minimum validity applies|
 
 Combinations of fares of different clusters is allowed with the fare clusters listed in `allowedClusters`.
 However not all combinations would be provided to the customer. A fare will be combined with a fare of
@@ -377,9 +377,12 @@ A large table spans two places, whereas a small table spans only one place. A sm
 
 ### FareReferenceStationSet
 
-The fare reference station set defines a set of stations where the fare is valid for all included stations.  This set can be used in the regionalValidity description.
+The fare reference station set defines a set of stations where the fare is valid for
+all included stations.  This set can be used in the regionalValidity description.
 
-The corresponding bar code ab ticket control data will only contain the code of the station set, but the allocator needs the complete list of station to link the fare to the train routes.
+The corresponding bar code ab ticket control data will only contain the code of the
+station set, but the allocator needs the complete list of station to link the fare to
+the train routes.
 
 A name can be provided.
 
@@ -391,27 +394,27 @@ A `legacyCode` can be provided to include the current code in the 108.1 data.
 
 #### Data Constraints on FareReferenceStationSet
 
-|Code | Description|
+| Code | Description |
 |---|---|
-| `legacyCode` | A legacyCode must be provided for the time being. New implementations should not rely on that code.
-| `name` |The name should not include ”/”.”*”.
+| `legacyCode` | A legacyCode must be provided for the time being. New implementations should not rely on that code. |
+| `name` | The name should not include ”/”.”*”. |
 
 ### FulfillmentConstraint
 
 The fulfillment constraint limits the applicable types of fulfillment and defined whether
 control data need to be transferred via a standard interface (IRS 90918-4).
 
-<!-- Figure 18 Fulfilmentconstraint data structure -->
+<!-- Figure 18 Fulfillment constraint data structure -->
 
-Code lists for required SiS:  `CardType`
+Code lists for required `SiS`: `CardType`
 
 The following code list defines the card types for cards used
 
 | Predefined Card-Ids | Description |
 |---|---|
-| LOYALTY_CARD |Loyalty card |
-| REDUCTION_CARD |Card providing reduction
-| PASS |Pass for travelling
+| `LOYALTY_CARD` | Loyalty card |
+| `REDUCTION_CARD` | Card providing reduction |
+| `PASS` | Pass for travelling |
 
 `ControlDataExchangeType`:
 
@@ -422,7 +425,7 @@ The following code list defines the card types for cards used
 
 | Code | Description |
 |---|---|
-| `acceptedFulfilmentType` | At least one accepted fulfillment type must be provided
+| `acceptedFulfillmentType` | At least one accepted fulfillment type must be provided
 
 ### Line
 
