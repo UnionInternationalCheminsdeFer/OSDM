@@ -6,7 +6,7 @@
     - name: Offline Model
       link: offline-model/
     - name: Online API
-      link: OSDM-Online-v0.9.9.yml
+      link: https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/0.9.9
     - name: Technical Principles
       link: technical-principles/
     - name: Models
@@ -15,6 +15,8 @@
       link: processes/
     - name: Catalog of Code Lists
       link: catalog-of-code-lists/
+    - name: Compliance
+      link: compliance/
 - name: Organization
   link: organization/
 - name: Team
