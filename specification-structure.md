@@ -32,4 +32,4 @@ and provides references to standards used.
 
 ## Specification As Leaflet
 
-The is published is also published as [IRS-90918-10 Leaflet](./IRS-90918-10-V2020.docx).
+The is published is also published as [IRS-90918-10 Leaflet](../docs/IRS-90918-10-V2020.pdf).

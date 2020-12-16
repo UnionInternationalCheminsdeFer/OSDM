@@ -3,7 +3,7 @@ title: OSDM
 subtitle: Open Sales and Distribution Model
 layout: page
 show_sidebar: true
-hero_link: ./IRS-90918-10-V2020.docx
+hero_link: ./docs/IRS-90918-10-V2020.pdf
 hero_link_text: Download Specification
 ---
 
