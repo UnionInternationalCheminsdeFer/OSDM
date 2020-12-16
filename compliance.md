@@ -5,6 +5,8 @@ hide_hero: true
 permalink: /compliance/
 ---
 
+## Compliance
+
 To be compliant with the OSDM specification in total a party must be compliant with the offline as well as the online part of the specification. However, a party can decide based on their business need to implement the offline or the online part online based on the role they want to play in the distribution and sales process.
 
 ![Compliance](../images/compliance/compliance.png)
