@@ -20,7 +20,6 @@ The [OSDM specification](../spec) effort has been driven by
 The following experts from distributors and railways have contributed to the [OSDM specification](../spec).
 
 - Bayer Ralf (DB)
-- Carta Vittorio (DB)
 - Dorsch Jessica (DB)
 - Gellner Alexander (SBB)
 - Godfroy Quentin (Trainline)
@@ -29,6 +28,7 @@ The following experts from distributors and railways have contributed to the [OS
 - Hirzel Peter (SBB)
 - Klapwijk Roland (Sqills)
 - Kovar Klaus (ÖBB)
+- Krebs Tabea (SBB)
 - Mariorenzi Luca (Trenitalia)
 - Nieuwerth Johan (Sqills)
 - Nyman Henrik (SilverRail)
