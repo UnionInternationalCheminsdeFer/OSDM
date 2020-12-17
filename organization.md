@@ -69,7 +69,7 @@ state **accepted for design**.
 
 The specification, i.e., the product is improved in fixed-length time boxes similar to
 a [programm increment](https://www.scaledagileframework.com/program-increment/)
-in the [SAFe](https://www.scaledagileframework.com/).
+in the [SAFe](https://www.scaledagileframework.com/) framework.
 
 The following increments are planned:
 
