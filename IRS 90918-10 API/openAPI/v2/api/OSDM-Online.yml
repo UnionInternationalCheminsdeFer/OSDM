@@ -5063,6 +5063,8 @@ components:
           $ref: '#/components/schemas/RegulatoryConditionsDef'
         serviceClass:
           $ref: '#/components/schemas/ServiceClass'
+        comfortClass:
+          $ref: '#/components/schemas/ComfortClass'
         accommodationDetails:
           $ref: '#/components/schemas/AccommodationTypeOnlineDef'            
         afterSalesCondition:
