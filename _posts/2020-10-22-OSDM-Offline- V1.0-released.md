@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  "OSDM-Offline V.1.0 Released"
-date:   2020-10-22 18:20:33 +0100
+title: "OSDM-Offline V.1.0 Released"
+author: Andreas Schlapbach
+date: 2020-10-22 18:20:33 +0100
 categories: jekyll update
 ---
 
