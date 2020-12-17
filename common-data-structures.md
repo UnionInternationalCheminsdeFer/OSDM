@@ -612,12 +612,14 @@ Sales availability defines the constraints on the time when a sale of a fare can
 start or end. The sales availability is used in the offline data exchange only. A
 constraint is provides as a list of `salesRestrictions` that have to be applied.
 
-<!-- Figure 40 structure Sales Availability -->
-
 Sales restrictions can define a start and end of the sale relative to the date of
 sale or the date of travel.
 
 A reference to a calendar can be provided to indicate all sales dates.
+
+<!-- Figure 40 structure Sales Availability -->
+
+![Sales Availability](../images/common-data-structures/sales-availability.png)
 
 #### Data Constraint on SalesAvailability
 
@@ -627,9 +629,11 @@ A reference to a calendar can be provided to indicate all sales dates.
 
 ### ServiceClass
 
-ServiceClass provides textual descriptions for the predefined service classes.
+Service class provides textual descriptions for the predefined service classes.
 
-<!-- Figure 41 structure Service ConstrClass -->
+<!-- Figure 41 structure Service Class -->
+
+![Service Class](../images/common-data-structures/service-class.png)
 
 ### ServiceConstraint
 
@@ -638,6 +642,8 @@ The service constraint limits a fare to specific service brands (train types). T
 The online data structure will not provide the id.
 
 <!-- Figure 42 structure Service Constraints -->
+
+![Service Constraint](../images/common-data-structures/service-constraint.png)
 
 #### Data Constraints on ServiceConstraint
 
@@ -650,7 +656,9 @@ The online data structure will not provide the id.
 The service level data provide additional information (e.g. text) in the offline
 data exchange in case the reservation API IRS90918-1 is used.
 
-Description of a service level. The service level defines a specific product on a train which can have a price (e.g. Double places with shower, …). It is more specific than just the classic travel class.
+Description of a service level. The service level defines a specific product on a train
+which can have a price (e.g. Double places with shower, …). It is more specific than 
+just the classic travel class.
 
 The available service levels are defined in IRS 90918-1 element 308 (Service level code). The data
 indicate the service class that needs to be booked in case the reservation is not an IRT and parameters
@@ -664,6 +672,8 @@ compartment).
 
 <!-- Figure 43 Service level description (offline) -->
 
+![Service Level](../images/common-data-structures/service-level.png)
+
 ### TravelValidityConstraint
 
 The travel validity constraint defines at which times the passenger is permitted to travel.
@@ -673,7 +683,15 @@ The travel validity constraint defines at which times the passenger is permitted
 <!-- Figure 44 travel validity data structure -->
 <!-- Figure 45 travel validity data structure – validity range -->
 <!-- Figure 46 travel validity data structure – excluded time range -->
-<!-- Figure 47 travel validity data structure- return constraint -->
+<!-- Figure 47 travel validity data structure - return constraint -->
+
+![Travel Validity](../images/common-data-structures/travel-validity.png)
+
+![Travel Validity - validity range](../images/common-data-structures/travel-validity-range.png)
+
+![Travel Validity - excluded time range](../images/common-data-structures/travel-validity-range.png)
+
+![Travel Validity - return constraint](../images/common-data-structures/travel-validity-range-return-constraint.png)
 
 | Code | Description |
 |---|---|
@@ -688,4 +706,4 @@ Definition of zones used in regional validity.
 The area of a zone can be defined by either a list of stations, geographical polygon of a list of NUTS
 codes. Multiple definitions are allowed in case they define the same area.
 
-<!-- Figure 48 Zone definition structure -->
+![Zone Definition](../images/common-data-structures/zone-definition.png)
