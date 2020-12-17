@@ -24,7 +24,7 @@ The OSDM Online API and specification essentially consists of two parts: **Offli
 Model** and **Online API**. The Online API works in two modes: **Distributor Mode**
 and **Allocator Mode**. The Allocator Mode differs from the Distributor
 Mode only in that additionally to **Admissions (aka. tickets)**, **Reservations**,
-**Integrated reservations**, or **ancillaries** also **priced segments (aka. fares)**
+**Integrated reservations**, or **Ancillaries** also **Fares (priced segments)**
 are offered and can be booked.
 
 The OSDM Model and documents are **Open Source** and freely available to all
@@ -96,11 +96,18 @@ Analogously, the after-sale process is modelled in the following steps:
 - Fulfillment of the booking
 
 To address the second goal, we studied the existing commercial products and
-online distribution/carrier systems of **BENE**, **CD**, **DB**, **DSB**,**öBB**,
-**PKP IC**, **RENFE**, **RDG**, **SBB**, **SJ**, **SNCF**, **Trenitalia** and others
-**UIC Railways** as well as distribution solutions provided by **Amadeus**, **Sabre**,
-**Silverrail**, **Sqills**, **Trainline**, **Travelport** and others. Furthermore, the
-**Hermes/HOSA** reservation eco-system as well as existing  **UIC leaflets** were
+online distribution/carrier systems of [BENE](https://www.benerail.com), [CD](https://www.cd.cz/),
+[DB](https://www.bahn.de/), [DSB](https://www.dsb.dk/en/), [öBB](https://www.oebb.at/),
+[PKP IC](https://www.intercity.pl/), [RENFE](https://www.renfe.com/), 
+[Rail Delivery Group](https://www.raildeliverygroup.com), [SBB](https://www.sbb.ch),
+[SJ](https://www.sj.se/), [SNCF](https://www.sncf.fr),
+[Trenitalia](https://www.trenitalia.com/) and other
+**UIC Railways** as well as distribution solutions provided by [Amadeus](https://amadeus.com/),
+[Sabre](https://www.sabre.com/), [Silverrail](https://www.silverrailtech.com/), 
+[Sqills](https://sqills.com/), [Trainline](https://www.thetrainline.com/),
+[Travelport](https://www.travelport.com/) and others. Furthermore, the
+[Hermes ecosystem](https://www.hitrail.com/hermes-ecosystem) for reservations
+as well as existing [UIC leaflets](https://www.shop-etf.com/en/leaflets-irs) were
 carefully examined and taken into account.
 
 Advisors from **CER**, **CIT**, **ECTAA**, **EU Traveltech** and sounding boards from
@@ -112,7 +119,7 @@ Model is powerful enough to support the distribution of existing or upcoming
 commercial products and can be implemented and supported at reasonable cost.
 
 To address the third goal we took an **end-to-end approach** to the call chain from
-**Distributor** to **Allocator** to **Fare Provider (aka. Carrier)** and aligned the
+**Distributor** to **Allocator** to **Fare Provider (aka. carrier)** and aligned the
 interfaces by modelling them the same.  Thus calling a provider, an allocator
 or a fare provider is exactly the same from an API perspective. The only
 difference is that in allocator mode you get fare specific information needed.
