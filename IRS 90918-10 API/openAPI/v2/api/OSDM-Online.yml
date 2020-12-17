@@ -4354,7 +4354,16 @@ components:
             - VOUCHER
         documentLink:
           type: string
-          format: uri    
+          format: uri
+        documentContent:
+          type: string
+          format: base64
+          description: >-
+            base64 encoded binary of the actual fulfillment document
+        documentFormat:
+          type: string
+          description: >-
+            physical format of the document provided via link or as binary content in Mime-Type format, e.g. application/pdf, image/jpeg etc.
     
     FulfillmentItem:
       type: object
