@@ -37,4 +37,5 @@ The following experts from distributors and railways have contributed to the [OS
 - Ruiz Enrique (Hitrail)
 - Schinor Normen (DB)
 - Setta Fabrice (uic)
+- Sánchez Zarco, Miguel Ánge (RENFE/Accenture)
 - Turri Stefano (Trenitalia/IBM)
