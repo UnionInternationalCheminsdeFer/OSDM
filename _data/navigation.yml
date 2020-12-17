@@ -6,7 +6,7 @@
     - name: Offline Model
       link: offline-model/
     - name: Online API
-      link: https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/0.9.9
+      link: https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/1.0.0
     - name: Technical Principles
       link: technical-principles/
     - name: Models

@@ -18,7 +18,7 @@ The [Offline Model](../offline-model/) defines how the offline data can be excha
 
 ## Part II: An Online API
 
-The [Online API](https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/0.9.9)
+The [Online API](https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/1.0.0)
 is explained in this documents:
 
 - [Technical Principles](../technical-principles/)
