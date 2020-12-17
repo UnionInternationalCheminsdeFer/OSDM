@@ -1654,7 +1654,7 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   fare:
-                    $ref: '#/components/schemas/FareOnlineDef'
+                    $ref: '#/components/schemas/FareOnline'
           headers:
             Content-Language:
               schema:
@@ -1727,7 +1727,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FareOnlineDef'
+              $ref: '#/components/schemas/FareOnline'
       responses:
         '200':
           description: Place successfully selected
@@ -3163,7 +3163,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OfferSearchDef'
+              $ref: '#/components/schemas/OfferSearch'
       responses:
         '200':
           description: offer collection
@@ -3175,7 +3175,7 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   nonTripOfferCollection:
-                    $ref: '#/components/schemas/NonTripOfferCollectionDef'
+                    $ref: '#/components/schemas/NonTripOfferCollection'
         '400':
           description: Bad request
           content:
@@ -3744,7 +3744,7 @@ components:
         fares:
           type: array
           items:
-            $ref: '#/components/schemas/FareOnlineDef'
+            $ref: '#/components/schemas/FareOnline'
         links:
           type: array
           items:
@@ -4712,7 +4712,7 @@ components:
         - refundableAmount
         - newBooking
             
-    OfferSearchDef:
+    OfferSearch:
       type: object
       description: >-
         Search parameter for an offer search on offers not based on a trip (e.g. passes).
@@ -4758,12 +4758,12 @@ components:
               - ALL
             default: ALL
               
-    NonTripOfferCollectionDef:
+    NonTripOfferCollection:
       type: array
       items:
-        $ref: '#/components/schemas/NonTripOfferDef'
+        $ref: '#/components/schemas/NonTripOffer'
     
-    NonTripOfferDef:
+    NonTripOffer:
       type: object
       description: >-
         Non trip offers do not reference a trip, thus no reservations can be offered by definition.
@@ -4793,7 +4793,7 @@ components:
         fares:
           type: array
           items:
-            $ref: '#/components/schemas/FareOnlineDef'
+            $ref: '#/components/schemas/FareOnline'
         links:
           type: array
           items:
@@ -4997,56 +4997,56 @@ components:
  
     #### Fare-specific elements begin
 
-    FareOnlineDef:
+    FareOnline:
       type: object
       properties:
         id:
           description: unique id of the fare item to be included in accounting
           type: string
         type:
-          $ref: '#/components/schemas/FareTypeDef'
+          $ref: '#/components/schemas/FareType'
         name:
           $ref: '#/components/schemas/Text'
         fareDetailDescription:
           $ref: '#/components/schemas/Text'
         price:
-          $ref: '#/components/schemas/PriceOnlineDef'
+          $ref: '#/components/schemas/PriceOnline'
         regionalConstraint:
-          $ref: '#/components/schemas/RegionalConstraintOnlineDef'
+          $ref: '#/components/schemas/RegionalConstraintOnline'
         serviceConstraint:
-          $ref: '#/components/schemas/ServiceConstraintOnlineDef'
+          $ref: '#/components/schemas/ServiceConstraintOnline'
         carrierConstraint:
-          $ref: '#/components/schemas/CarrierConstraintOnlineDef'
+          $ref: '#/components/schemas/CarrierConstraintOnline'
         regulatoryConditions:
-          $ref: '#/components/schemas/RegulatoryConditionsDef'
+          $ref: '#/components/schemas/RegulatoryConditions'
         serviceClass:
           $ref: '#/components/schemas/ServiceClass'
         comfortClass:
           $ref: '#/components/schemas/ComfortClass'
         accommodationDetails:
-          $ref: '#/components/schemas/AccommodationTypeOnlineDef'            
+          $ref: '#/components/schemas/AccommodationTypeOnline'            
         afterSalesCondition:
-          $ref: '#/components/schemas/AfterSalesConditionOnlineDef'
+          $ref: '#/components/schemas/AfterSalesConditionOnline'
         combinationConstraint:
-          $ref: '#/components/schemas/FareCombinationConstraintOnlineDef'
+          $ref: '#/components/schemas/FareCombinationConstraintOnline'
         fulfillmentConstraint:
-          $ref: '#/components/schemas/FulfillmentConstraintOnlineDef'
+          $ref: '#/components/schemas/FulfillmentConstraintOnline'
         reductionConstraint:
-          $ref: '#/components/schemas/ReductionConstraintOnlineDef'
+          $ref: '#/components/schemas/ReductionConstraintOnline'
         legacyAccountingIdentifier:
-          $ref: '#/components/schemas/LegacyAccountingIdentifierDef'
+          $ref: '#/components/schemas/LegacyAccountingIdentifier'
         travelValidityConstraint:
-          $ref: '#/components/schemas/TravelValidityConstraintOnlineDef'
+          $ref: '#/components/schemas/TravelValidityConstraintOnline'
         reservationDetails:
           $ref: '#/components/schemas/ReservationDetail'     
         placeSelection:
           $ref: '#/components/schemas/PlaceSelection'
         reservationLegacyParameter:
-          $ref: '#/components/schemas/LegacyReservationParameterDef'
+          $ref: '#/components/schemas/LegacyReservationParameter'
         coveredSection:
-          $ref: '#/components/schemas/TravelSectionDef'
+          $ref: '#/components/schemas/TravelSection'
         passengerConstraints:
-          $ref: '#/components/schemas/PassengerConstraintsDef'
+          $ref: '#/components/schemas/PassengerConstraints'
       required:
         - id
         - type
@@ -5055,7 +5055,7 @@ components:
         - travelValidityConstraint
         - afterSalesCondition
 
-    PassengerConstraintsDef:
+    PassengerConstraints:
       description: >-
         passenger constraints to be included in bar codes
       type: array
@@ -5073,7 +5073,7 @@ components:
                  type: integer
                  format: int32
 
-    RegulatoryConditionsDef:
+    RegulatoryConditions:
       description: >- 
          General conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and
          conditions in the conditions of combined offers and indicate them to the customer where required. Which indications are
@@ -5089,7 +5089,7 @@ components:
          - MD
          - EU-PRR
         
-    LegacyAccountingIdentifierDef:
+    LegacyAccountingIdentifier:
       description: identifier of the fare in the current 301 accounting file
       type: object
       properties:
@@ -5113,7 +5113,7 @@ components:
           minimum: 0
           maximum: 9999
       
-    CalendarOnlineDef:
+    CalendarOnline:
       type: object
       properties:
         fromDate:
@@ -5135,14 +5135,14 @@ components:
           type: integer
           format: int32
         
-    TravelValidityConstraintOnlineDef:
+    TravelValidityConstraintOnline:
       type: object
       description: >-
         travel validity data are needed to create barcode and control data (ETCD)
         in allocator mode even in case they have been checked during the online sale
       properties:
         validTravelDates:
-          $ref: '#/components/schemas/CalendarOnlineDef'
+          $ref: '#/components/schemas/CalendarOnline'
         validityRange:
           type: object
           properties:
@@ -5213,7 +5213,7 @@ components:
       required:
         - validityRange
 
-    ReductionConstraintOnlineDef:
+    ReductionConstraintOnline:
       type: object
       properties:
         requiredCards:
@@ -5225,7 +5225,7 @@ components:
       required:
         - requiredCards
  
-    FareCombinationModelDef:
+    FareCombinationModel:
       type: object
       properties:
         model:
@@ -5264,18 +5264,18 @@ components:
       required:
         - model
  
-    FareCombinationConstraintOnlineDef:
+    FareCombinationConstraintOnline:
       type: object
       properties:
         combinationModels:
           type: array
           minItems: 1
           items:
-            $ref: '#/components/schemas/FareCombinationModelDef'
+            $ref: '#/components/schemas/FareCombinationModel'
       required:
         - combinationModels
  
-    AfterSalesConditionOnlineDef:
+    AfterSalesConditionOnline:
       type: object
       properties:
         conditions:
@@ -5292,7 +5292,7 @@ components:
       required:
         - conditions
  
-    PriceOnlineDef:
+    PriceOnline:
       type: object
       description: allows specifying a price in multiple currencies
       properties:
@@ -5304,7 +5304,7 @@ components:
       required:
         - price
  
-    RelativeTimeDef:
+    RelativeTime:
       type: object
       properties:
         timeUnit:
@@ -5333,7 +5333,7 @@ components:
         - timeValue
         - timeReference
  
-    AfterSalesRuleOnlineDef:
+    AfterSalesRuleOnline:
       type: object
       properties:
         transactionType:
@@ -5342,7 +5342,7 @@ components:
         fee:
           $ref: '#/components/schemas/CurrencyPrice'
         applicationTime:
-          $ref: '#/components/schemas/RelativeTimeDef'
+          $ref: '#/components/schemas/RelativeTime'
         applicationTimeStamp:
           description: Absolute application time (UTC) in case of online services
           type: string
@@ -5355,7 +5355,7 @@ components:
       required:
         - transactionType
       
-    RegionalValidityDef:
+    RegionalValidity:
       type: array
       items:
         type: object
@@ -5367,17 +5367,17 @@ components:
             type: integer
             format: int32
           zone:
-            $ref: '#/components/schemas/ZoneDef'
+            $ref: '#/components/schemas/Zone'
           viaStations:
-            $ref: '#/components/schemas/ViaStationsDef'
+            $ref: '#/components/schemas/ViaStations'
           trainLink:
-            $ref: '#/components/schemas/TrainLinkDef'
+            $ref: '#/components/schemas/TrainLink'
           line:
-            $ref: '#/components/schemas/LineDef'
+            $ref: '#/components/schemas/Line'
           polygon:
-            $ref: '#/components/schemas/PolygonDef'
+            $ref: '#/components/schemas/Polygon'
     
-    LineDef:
+    Line:
       type: object
       description: >-
          terminalStation - in case the product requires a destination within the zone (e.g. local ticket 
@@ -5410,7 +5410,7 @@ components:
       required:
         - carrier
     
-    TrainLinkDef:
+    TrainLink:
       type: object
       properties:
         fromStation:
@@ -5430,7 +5430,7 @@ components:
         - train
         - travelDate
        
-    PolygonDef:
+    Polygon:
       type: object
       properties:
         edge:
@@ -5439,7 +5439,7 @@ components:
           items:
             $ref: '#/components/schemas/GeoCoordinate'
     
-    ViaStationsDef:
+    ViaStations:
       type: object
       properties:
         isBorder:
@@ -5454,13 +5454,13 @@ components:
         alternativeRoute:
           type: array
           items:
-            $ref: '#/components/schemas/ViaStationsDef'
+            $ref: '#/components/schemas/ViaStations'
         carrier:
           $ref: '#/components/schemas/Company'
         route:
           type: array
           items:
-            $ref: '#/components/schemas/ViaStationsDef'
+            $ref: '#/components/schemas/ViaStations'
         serviceBrand:
           $ref: '#/components/schemas/ServiceBrandCode'
         station:
@@ -5481,7 +5481,7 @@ components:
       required:
         - station
  
-    ZoneDef:
+    Zone:
       type: object
       description: >-
         carrier - carrier responsible for the transport.
@@ -5516,14 +5516,14 @@ components:
       required:
         - carrier
  
-    FulfillmentConstraintOnlineDef:
+    FulfillmentConstraintOnline:
       type: object
       properties:
         acceptedControlSecurityTypes:
           type: array
           minItems: 1
           items:
-            $ref: '#/components/schemas/ControlSecurityTypeDef'
+            $ref: '#/components/schemas/ControlSecurityType'
         acceptedBarCodes:
           description: for SiD fulfillment one of the listed bar codes is required
           type: array
@@ -5561,7 +5561,7 @@ components:
         - acceptedFulfillmentTypes
         - individualTicketingPermitted
    
-    TravelSectionDef:
+    TravelSection:
       type: object
       properties:
         start:
@@ -5572,7 +5572,7 @@ components:
         - start
         - end
 
-    CrossBorderConditionDef:
+    CrossBorderCondition:
       type: object
       properties:
         fromCountry:
@@ -5589,7 +5589,7 @@ components:
         - fromCountry
         - toCountry
       
-    ControlSecurityTypeDef:
+    ControlSecurityType:
       description: >-
         SIP: secure paper tickets; SID: security in data (signed bar code); SIS: security in system
       type: string
@@ -5598,7 +5598,7 @@ components:
         - SID
         - SIS
     
-    LegacyReservationParameterDef:
+    LegacyReservationParameter:
       type: object
       description: reservation parameter to support the UIC 90918-1 interface for booking
       properties:
@@ -5624,13 +5624,13 @@ components:
           description: tariff according to UIC 90918-1 to be used for booking 
           type: array
           items:
-            $ref: '#/components/schemas/LegacyReservationTariffDef'
+            $ref: '#/components/schemas/LegacyReservationTariff'
       required:
         - travelClass
         - serviceLevelCode
         - serviceCode
 
-    LegacyReservationTariffDef:
+    LegacyReservationTariff:
        description: legacy tariff code and number of items or persons in case UIC 90918-1 is used for booking
        type: object
        properties:
@@ -5643,7 +5643,7 @@ components:
             type: integer
             format: int32            
           
-    CarrierConstraintOnlineDef:
+    CarrierConstraintOnline:
       type: object
       description: >-
         Either excluded or included carriers can be set.
@@ -5657,7 +5657,7 @@ components:
           items:
             type: string
     
-    AccommodationTypeOnlineDef:
+    AccommodationTypeOnline:
       type: object
       properties:
         accommodationType:
@@ -5676,7 +5676,7 @@ components:
         - id
         - text
     
-    ServiceConstraintOnlineDef:
+    ServiceConstraintOnline:
       type: object
       description: >-
         Either excluded or included service brands can be set.
@@ -5690,7 +5690,7 @@ components:
           items:
             $ref: '#/components/schemas/ServiceBrandCode'
     
-    FareTypeDef:
+    FareType:
       description: >-
         Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
       type: string
@@ -5700,7 +5700,7 @@ components:
         - INTEGRATED_RESERVATION
         - ANCILLARY
     
-    RegionalConstraintOnlineDef:
+    RegionalConstraintOnline:
       type: object
       description: >-
         Regional constraint of the fare- offline bulk data use the id of connection points whereas in an online environment the connection point is included
@@ -5709,14 +5709,14 @@ components:
           description: connection point connecting two fare regimes
           type: string
         entryConnectionPoint:
-          $ref: '#/components/schemas/ConnectionPointDef'
+          $ref: '#/components/schemas/FareConnectionPoint'
         exitConnectionPointId:
           description: connection point connecting two fare regimes
           type: string
         exitConnectionPoint:
-          $ref: '#/components/schemas/ConnectionPointDef'
+          $ref: '#/components/schemas/FareConnectionPoint'
         regionalValidity:
-          $ref: '#/components/schemas/RegionalValidityDef'
+          $ref: '#/components/schemas/RegionalValidity'
         distance:
           description: Distance in km for statistics
           type: integer
@@ -5724,7 +5724,7 @@ components:
       required:
         - regionalValidity
     
-    ConnectionPointDef:
+    FareConnectionPoint:
       type: object
       description: >-
         Connection point connecting two fare regimes. The connection is possible between stations of the two provided station sets.
