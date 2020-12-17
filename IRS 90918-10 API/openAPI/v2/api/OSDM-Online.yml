@@ -3392,7 +3392,6 @@ components:
       required:
         - id  
         - title
-        - links
 
     TripRequest:
       type: object
@@ -3525,8 +3524,12 @@ components:
         of the trip or tripSearchCriteria must be set.
       properties:
         tripSearch:
-          oneOf:
-            - type: array
+          type: object      
+          description: >-  
+            one of trips or searchCriteria
+          properties:
+            trips:
+              type: array
               items:
                 type: object
                 properties:
@@ -3541,7 +3544,8 @@ components:
                         $ref: '#/components/schemas/Location'
                 required:
                   - trip
-            - $ref: '#/components/schemas/TripSearchCriteria'
+            searchCriteria:      
+              $ref: '#/components/schemas/TripSearchCriteria'
         returnSearchParameters:
           type: object
           description: >-
@@ -3623,7 +3627,6 @@ components:
       required: 
         - id
         - trip
-        - links
 
     RequestedInformation:
       type: string
@@ -3748,8 +3751,6 @@ components:
             $ref: '#/components/schemas/Link'
       required:
         - id
-        - title
-        - links
 
     ComfortClass:
       description: >-
@@ -3887,9 +3888,7 @@ components:
           type: string
       required:
         - id
-        - title
-        - links
-          
+
     FulfillmentMediaType:
        type: string
        description: >-
@@ -4083,9 +4082,7 @@ components:
             $ref: '#/components/schemas/Link'
       required:
         - id
-        - title
-        - links
-        
+
     BookingRequest:
       type: object
       properties:
@@ -4165,7 +4162,6 @@ components:
             - FULFILLED
             - CANCELLED
             - REFUNDED
-            - EXCHANGED
             - ERROR
         provisionalBalance: 
           $ref: '#/components/schemas/CurrencyPrice'
@@ -4214,8 +4210,7 @@ components:
       required:
         - id
         - type
-        - links
-          
+
     FulfillmentType:
       type: string      
       x-extensible-enum:
@@ -4367,8 +4362,6 @@ components:
             $ref: '#/components/schemas/Link'
       required:
        - id
-       - title
-       - links
     
     FulfillmentDocument:
       type: object
@@ -4512,9 +4505,7 @@ components:
             $ref: '#/components/schemas/Link'
       required:
        - id
-       - title
-       - links
-                
+
     RefundOfferRequest:
       type: object
       description: >-
@@ -4557,8 +4548,12 @@ components:
             format: uuid
             description: id of the fulfillment to refund
         tripSearch:
-          oneOf:
-            - type: array
+          type: object      
+          description: >-  
+            one of trips or searchCriteria
+          properties:
+            trips:
+              type: array
               items:
                 type: object
                 properties:
@@ -4573,7 +4568,8 @@ components:
                         $ref: '#/components/schemas/Location'
                 required:
                   - trip
-            - $ref: '#/components/schemas/TripSearchCriteria'
+            searchCriteria:      
+              $ref: '#/components/schemas/TripSearchCriteria'
         returnSearchParameters:
           type: object
           description: >-
@@ -4953,9 +4949,6 @@ components:
             $ref: '#/components/schemas/Link'
       required:
         - id
-        - title
-        - links
-    
 
     LayoutCoordinates:
       type: object
@@ -5949,6 +5942,9 @@ components:
 
     Location:
       type: object
+      description: >-
+        location includes one of station, poi, address, geoCoordinate, connectionPoint
+        The ConnectionPoint exists to define virtual border points between two stations.  
       properties:
         id:
           type: string
@@ -5956,15 +5952,16 @@ components:
         title:
           type: string
           example: Bruxelles-Midi
-        type:
-          description: >-
-            The ConnectionPoint exists to define virtual border points between two stations.  
-          oneOf:
-            - $ref: '#/components/schemas/StationDetail'
-            - $ref: '#/components/schemas/Poi'
-            - $ref: '#/components/schemas/Address'
-            - $ref: '#/components/schemas/GeoCoordinate'
-            - $ref: '#/components/schemas/ConnectionPoint'
+        station:
+          $ref: '#/components/schemas/StationDetail'
+        poi:
+          $ref: '#/components/schemas/Poi'
+        address:
+          $ref: '#/components/schemas/Address'
+        geoCoordinate:
+          $ref: '#/components/schemas/GeoCoordinate'
+        connectionPoint:
+          $ref: '#/components/schemas/ConnectionPoint'
         links:
           type: array
           description: Context information required by the services.
@@ -5973,8 +5970,7 @@ components:
       required:
         - id
         - title
-        - links
-  
+
     StationDetail:
       type: object
       description: >-
@@ -6691,4 +6687,3 @@ components:
         - code
 
     #### Common elements end
-    
