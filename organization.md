@@ -73,9 +73,9 @@ in the [SAFe](https://www.scaledagileframework.com/) framework.
 
 The following increments are planned:
 
-| Product Increments | End Date   | Improvements in Scope |
-|----|:----------:|------------|
-| 0  | 17.12.2020 | Reduce the complexity of the online model (I-0), Add support for round trips (I-11), Add support for Universal Rail Ticket (I-12), Let the customer choose offers per segments independently (I-14), & Add support for stock control numbers (I-15) |
-| 1  | 11.02.2021 | Support for stateless offers/booking processes (I-2), Add support for a fee (I-5), Enable combination rules between offers (I-1), Add binary in fulfillment messages (I-9) |
-| 2  | 24.06.2021 |
-| 3  | 28.10.2021 |
+| Product Increment | End Date   | Improvements in Scope |
+|------|:----------:|------------|
+| `PI-0` | 17.12.2020 | Reduce the complexity of the online model (I-0), Add support for round trips (I-11), Add support for Universal Rail Ticket (I-12), Let the customer choose offers per segments independently (I-14), & Add support for stock control numbers (I-15) |
+| `PI-1` | 11.02.2021 | Support for stateless offers/booking processes (I-2), Add support for a fee (I-5), Enable combination rules between offers (I-1), Add binary in fulfillment messages (I-9) |
+| `PI-2` | 24.06.2021 |
+| `PI-3` | 28.10.2021 |
