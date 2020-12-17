@@ -101,6 +101,7 @@ A Calendar is referenced by a unique id which can be referenced from other data 
 A Calendar defines a list of days between two dates. If the dates are not provided in UTC the offset to UTC must be provided additionally.
 
 <!-- Figure 4 Calendar data structure -->
+![Calendar](../images/common-data-structures/calendar.png)
 
 #### Data Constraints on Calendar
 
@@ -122,6 +123,8 @@ The included / excluded carriers are also part of the FCB barcode (IRS 90918-4) 
 The offline data structure includes an additional id to reference the constraint within a fare data delivery.
 
 <!-- Figure 5 carrier constraint data structure (offline) -->
+![Carrier Constraint Type](../images/common-data-structures/carrier-constraint-type.png)
+
 
 #### Data Constraints on CarrierConstraint
 
@@ -148,9 +151,9 @@ As on both sides of a connection multiple small stations could be connected and 
 1. Two fares can be connected in case their connection points share a common station in the provided station sets if only one set is provided by a connection point.
 2. Two fares can be connected in case their connection points share a common station in two if the provided station sets of each connection point.
 
-<!-- Figure 6 connection points - simple case 1
- 
-Figure 7 connection points - complex case 2 -->
+<!-- Figure 6 connection points - simple case 1 -->
+
+<!-- Figure 7 connection points - complex case 2 -->
 
 The online data structure does not include the id and the legacy code.
 
@@ -405,6 +408,7 @@ The fulfillment constraint limits the applicable types of fulfillment and define
 control data need to be transferred via a standard interface (IRS 90918-4).
 
 <!-- Figure 18 Fulfillment constraint data structure -->
+![Fulfillment Constraint](../images/common-data-structures/fulfillment-constraint.png)
 
 Code lists for required `SiS`: `CardType`
 
@@ -432,12 +436,14 @@ The following code list defines the card types for cards used
 Line defines the regional validity on a specific line. It might have additional restrictions to enter or leave at specific stations or to be used within an area or city only.
 
 <!-- Figure 19 Line data structure -->
+![Line](../images/common-data-structures/line.png)
 
 ### PassengerConstraint
 
 Passenger constraint defines restrictions of a fare concerning passengers. In online services the structure is reduced to constraints that need to be passed on for control to bar codes and control registries.
 
 <!-- Figure 20 PassengerConstraint data structure offline -->
+![Passenger Constraint](../images/common-data-structures/passenger-constraint.png)
 
 #### Data Constraints on PassengerConstraint
 
@@ -479,11 +485,11 @@ Figure 23 cross border conditions for personal data -->
 
 The price data structure provides the price or a fee including the VAT details optionally in different currencies.
 
-<!-- Figure 24 Price data structure with a list of currency prices
+<!-- Figure 24 Price data structure with a list of currency prices -->
 
-Figure 25 Price data structure of one currency
+<!-- Figure 25 Price data structure of one currency -->
 
-Figure 26 VAT details within a price -->
+<!-- Figure 26 VAT details within a price -->
 
 Scope: see code list TaxScope
 
@@ -508,15 +514,18 @@ The reduction cards of a carrier are listed in the bulk data.
 | `type` | Type of the cards to separate between loyalty cards, cards that are tickets (passes), and reduction cards (`LOYALTY_CARD`, `REDUCTION_CARD,PASS`).|
 | `cardIdRequired` | Indicates that the card id must be provided in the prebooking request to validate the card. This card cannot be used without the online services for booking |
 
-<!-- Figure 27 reduction cards offline -->
+<!-- Figure 27 reduction card offline -->
+![Reduction Card](../images/common-data-structures/reduction-card.png)
 
 ### ReductionConstraint
 
 A fare associated with this constraint requires one of the listed cards to be presented by the passenger on the trip. Card Ids can be taken from the listed cards provided within the fare data delivery or from the common code list in Reduction “cards”.
 
-<!-- Figure 28 ReductionCardConstraint data structure offline
+<!-- Figure 28 ReductionCardConstraint data structure offline -->
+![Reduction Constraint](../images/common-data-structures/reduction-constraint.png)
 
-Figure 29 ReductionCardReference data structure -->
+<!-- Figure 29 ReductionCardReference data structure -->
+![Reduction Card Reference](../images/common-data-structures/reduction-card-reference.png)
 
 ### RegionalConstraint
 
@@ -575,8 +584,9 @@ ReservationParameter provide data on how to combine reservations with NRT fares,
 | `reservationOptions` | Reservation options available that would not change the offer (same price and conditions) (e.g. Aisle or Window). The information is static and does not mean that such an option is still available. The preferences are grouped in case a selection is required (Aisle or Window). |
 
 <!-- Figure 35 ReservationParameter data structure -->
-<!--Figure 36 Reservation Parameter - support for 90918-1 reservation interface -->
+<!-- Figure 36 ReservationParameter - support for 90918-1 reservation interface -->
 <!-- Figure 37 ReservationParameter data structure - reservation options -->
+![Reservation Parameter](../images/common-data-structures/reservation-parameter.png)
 
 Code Lists
 
@@ -589,6 +599,7 @@ Details on stations including codes and names. Codes must include the MERITS cod
 in case it is defined for a station.
 
 <!-- Figure 38 structure Station detail data -->
+![Station Detail](../images/common-data-structures/station-detail.png)
 
 ### StationNames
 
@@ -599,12 +610,16 @@ descriptions whereas the long for is used for entry and exit stations.
 A legacy border point code can be provided during the migration to the OSDM data model.
 
 <!-- Figure 39 structure Station detail data (offline only) -->
+![Station Names](../images/common-data-structures/station-names.png)
 
 ### Text
 
 Used for all textual descriptions where translations might be needed.
 
 <!-- Figure 40 structure Text Data Structure -->
+![Text](../images/common-data-structures/text.png)
+
+![Translation](../images/common-data-structures/translation.png)
 
 ### SalesAvailability
 
@@ -687,9 +702,9 @@ The travel validity constraint defines at which times the passenger is permitted
 
 ![Travel Validity](../images/common-data-structures/travel-validity.png)
 
-![Travel Validity - validity range](../images/common-data-structures/travel-validity-range.png)
+![Travel Validity - validity range](../images/common-data-structures/travel-validity-validity-range.png)
 
-![Travel Validity - excluded time range](../images/common-data-structures/travel-validity-range.png)
+![Travel Validity - excluded time range](../images/common-data-structures/travel-validity-excluded-time-range.png)
 
 ![Travel Validity - return constraint](../images/common-data-structures/travel-validity-range-return-constraint.png)
 
