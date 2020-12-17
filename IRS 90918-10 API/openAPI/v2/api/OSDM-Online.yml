@@ -3866,7 +3866,7 @@ components:
         conditions:
           type: array
           items:
-            $ref: '#/components/schemas/ProductCondition'
+            $ref: '#/components/schemas/Condition'
           description: >-
             Structured description of the sales or after-sales conditions.
         serviceClass:
@@ -3903,33 +3903,7 @@ components:
          - ALLOCATOR_APP
          - SOCIAL_MEDIA_ACCOUNTS
 
-    ProductCondition:
-      type: object
-      description: >-
-        Describes sales and after sales conditions applicable to the product. 
-        For a product to be refundable or exchangeable, at least one refund or exchange 
-        (respectively) condition must be present.
-      properties:
-        type:
-          type: string
-          x-extensible-enum:
-            - SALE
-            - EXCHANGE
-            - REFUND
-        description:
-          type: string
-        validFrom:
-          type: string
-          format: date-time
-        validUntil:
-          type: string
-          format: date-time
-        afterSalesFee:
-          $ref: '#/components/schemas/CurrencyPrice'
-      required:
-        - type
-        - description
-
+    
     Admission:
       type: object
       description:
@@ -5047,6 +5021,8 @@ components:
           $ref: '#/components/schemas/RegulatoryConditionsDef'
         serviceClass:
           $ref: '#/components/schemas/ServiceClass'
+        comfortClass:
+          $ref: '#/components/schemas/ComfortClass'
         accommodationDetails:
           $ref: '#/components/schemas/AccommodationTypeOnlineDef'            
         afterSalesCondition:
@@ -5302,13 +5278,19 @@ components:
     AfterSalesConditionOnlineDef:
       type: object
       properties:
-        afterSalesRules:
+        conditions:
           type: array
           minItems: 1
           items:
-            $ref: '#/components/schemas/AfterSalesRuleOnlineDef'
+            $ref: '#/components/schemas/Condition'
+          description: >-
+            Structured description of the sales or after-sales conditions.
+        supportsIndividualContracts:
+          description: Indicates that the after sales of this fare can be treated independently per person.
+          type: boolean
+          default: false    
       required:
-        - afterSalesRules
+        - conditions
  
     PriceOnlineDef:
       type: object
@@ -5369,10 +5351,7 @@ components:
           description: indicates that the fee belongs to the carrier
           type: boolean
           default: true
-        supportsIndividualContracts:
-          description: Indicates that the after sales of this fare can be treated independently per person.
-          type: boolean
-          default: false
+       
       required:
         - transactionType
       
@@ -5939,6 +5918,41 @@ components:
         - HIGH
         - STANDARD
         - BASIC
+
+    Condition:
+      type: object
+      description: >-
+        Describes sales and after sales conditions applicable to the product. 
+        For a product to be refundable or exchangeable, at least one refund or exchange 
+        (respectively) condition must be present.
+      properties:
+        type:
+          type: string
+          x-extensible-enum:
+            - SALE
+            - EXCHANGE
+            - REFUND
+            - TRAVEL
+        description:
+          type: string
+        validFrom:
+          type: string
+          format: date-time
+        validUntil:
+          type: string
+          format: date-time
+        afterSalesFee:
+          type: object
+          properties:
+            feeAmount:
+              $ref: '#/components/schemas/CurrencyPrice'
+            isCarrierFee:
+              description: indicates that the fee belongs to the carrier
+              type: boolean
+              default: true
+      required:
+        - type
+        - description
 
     Location:
       type: object
