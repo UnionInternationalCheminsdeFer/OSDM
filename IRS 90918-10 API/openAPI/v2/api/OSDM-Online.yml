@@ -4,7 +4,7 @@ servers:
     url: 'https://virtserver.swaggerhub.com/Real-IT/dummy/1.0.0'
 info:
   title: UIC 90918-10 - OSDM
-  version: 0.9.9
+  version: 1.0.0
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -13,8 +13,8 @@ info:
     API interface.
   contact:
     name: Nicolas Selleslagh, Clemens Gantert and Andreas Schlapbach
-    url: https://confluence.sbb.ch/display/FSM20
-    email: Nicolas.Selleslagh@benerail.com
+    url: https://unioninternationalcheminsdefer.github.io/OSDM/
+    email: osdm@uic.org
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
