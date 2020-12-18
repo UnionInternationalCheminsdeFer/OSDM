@@ -16,8 +16,8 @@ The aims of the **Open Sales and Distribution Model (OSDM)** are twofold:
 2. to **lower complexity and distribution costs** for distributors and
    railway carriers.
 
-OSDM strengthens rail as a convenient and ecological means of transportation by
-simplifying distribution. Finally, it lays a solid fundament which can be
+OSDM **strengthens rail** as a convenient and ecological means of transportation by
+simplifying distribution. Finally, it lays a **solid fundament** which can be
 extended to the distribution of other means of transportation.
 
 The OSDM Online API and specification essentially consists of two parts: **Offline
