@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * Details of a station. Station names are not translated but provided in some cases in multiple character sets in case stations are named in local characters and additionally in latin characters. In some countries stations have multiple names depending on the countries local languages.
  * 
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonPropertyOrder({
     "localCode",
     "country",

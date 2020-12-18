@@ -613,6 +613,24 @@ public class GtmUtils {
 	public static void writeConsoleInfo(String message) {
 		ConsoleUtil.printInfo("Errors", message);
 	}	
+	
+	public static CompoundCommand setFareIds(GTMTool tool, EditingDomain domain) {
+		
+		if (tool == null || domain == null) return null;
+		
+		CompoundCommand command =  new CompoundCommand();
+
+		FareStructure fareStructure = tool.getGeneralTariffModel().getFareStructure();
+		
+		for (FareElement object : fareStructure.getFareElements().getFareElements()) {
+			if (object.getId() == null || object.getId().isEmpty()) {
+				setId(domain, object,GtmPackage.Literals.FARE_ELEMENT__ID, command);
+			}
+		}		
+		       
+        return command;
+
+	}
 
 	public static CompoundCommand setIds(GTMTool tool, EditingDomain domain) {
 		
@@ -674,13 +692,6 @@ public class GtmUtils {
 			}
 		}
 		
-		for (FareElement object : fareStructure.getFareElements().getFareElements()) {
-			if (object.getId() == null || object.getId().isEmpty()) {
-				setId(domain, object,GtmPackage.Literals.FARE_ELEMENT__ID, command);
-			}
-		}		
-		
-	
 		for (FulfillmentConstraint object : fareStructure.getFulfillmentConstraints().getFulfillmentConstraints()) {
 			i++;
 			if (object.getId() == null || object.getId().isEmpty()) {
@@ -834,6 +845,19 @@ public class GtmUtils {
 		Bundle bundle = Platform.getBundle(GtmEditorPlugin.PLUGIN_ID);
 		URL fileURL = bundle.getEntry(path); //$NON-NLS-1$
 		return ImageDescriptor.createFromURL(fileURL);
+	}
+	
+	public static void clearCommandStack(EditingDomain domain) {
+		//clears the command stack to reduce the memory footprint
+		boolean isDirty = false;
+		if (domain.getCommandStack().getMostRecentCommand() != null) {
+			isDirty = true;
+		}
+		domain.getCommandStack().flush();
+		System.gc();
+		if (isDirty) {
+			domain.getCommandStack().execute(new DirtyCommand());
+		}
 	}
 	
 	public static void clearCommandStack() {
@@ -991,6 +1015,13 @@ public class GtmUtils {
 		}
 		return stations;
 	}
+	
+	public static String getStationCode(Station s) {
+		String code = String.format("%02d%5s", s.getCountry().getCode(),s.getCode());
+		code.replace(' ','0');		
+		return code;
+	}
+	
 	
 	public static void writeConsoleError(String message, GtmEditor editor) {
 		try {

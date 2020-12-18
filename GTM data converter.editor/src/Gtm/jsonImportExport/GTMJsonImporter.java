@@ -90,6 +90,7 @@ public class GTMJsonImporter {
 	private HashMap<String,Currency> currencies = null;	
 	private HashMap<Integer,ServiceBrand> serviceBrands = null;
 	private HashMap<String,NutsCode> nutsCodes = null;
+	private HashMap<String,RegionalConstraint> regionalConstraints = null;
 	
 	private EditingDomain domain = null;
 	
@@ -123,6 +124,7 @@ public class GTMJsonImporter {
 		currencies = new HashMap<String,Currency>();	
 		serviceBrands = new HashMap<Integer,ServiceBrand>();
 		nutsCodes = new HashMap<String,NutsCode>();	
+		regionalConstraints = new HashMap<String,RegionalConstraint>();
 		this.domain = domain;
 		
 		stations = GtmUtils.getStationMap(tool);
@@ -171,10 +173,16 @@ public class GTMJsonImporter {
 		fareStructure.setStationNames(convertStationNames(fareDataDef.getStationNames()));
 		
 		updateMERITSStations(fareDataDef.getStationNames());
+
+		fareStructure.setFareStationSetDefinitions(convertFareStationSetDefinitions(fareDataDef.getFareReferenceStationSetDefinitions()));
+
+		fareStructure.setZoneDefinitions(convertZoneDefinitions(fareDataDef.getZoneDefinitions()));
 		
 		fareStructure.setAfterSalesRules(convertAfterSalesRulesList(fareDataDef.getAfterSalesConditions()));
 		
-		fareStructure.setCarrierConstraints(convertCarrierConstraintList(fareDataDef.getCarrierConstraints()));
+		if (fareDataDef.getCarrierConstraints() != null && !fareDataDef.getCarrierConstraints().isEmpty()) {
+			fareStructure.setCarrierConstraints(convertCarrierConstraintList(fareDataDef.getCarrierConstraints()));
+		}
 		
 		fareStructure.setCombinationConstraints(convertCombinationConstraintList(fareDataDef.getCombinationConstraints()));
 		
@@ -193,9 +201,7 @@ public class GTMJsonImporter {
 		fareStructure.setReductionCards(convertReductionCards(fareDataDef.getReductionCards()));
 		
 		fareStructure.setReductionConstraints(convertReductionConstraints(fareDataDef.getReductionConstraints()));
-		
-		fareStructure.setRegionalConstraints(convertRegionalConstraints(fareDataDef.getRegionalConstraints()));
-		
+			
 		fareStructure.setReservationParameters(convertReservationParameters(fareDataDef.getReservationParameters()));
 		
 		fareStructure.setSalesAvailabilityConstraints(convertSalesAvailabilities(fareDataDef.getSalesAvailabilityConstraint()));
@@ -209,10 +215,8 @@ public class GTMJsonImporter {
 		fareStructure.setSupportedOnlineServices(convertSupportedOnlineServices(fareDataDef.getSupportedOnlineServices()));
 		
 		fareStructure.setTravelValidityConstraints(convertTravelValidityConstraints(fareDataDef.getTravelValidityConstraints()));
-		
-		fareStructure.setFareStationSetDefinitions(convertFareStationSetDefinitions(fareDataDef.getFareReferenceStationSetDefinitions()));
 
-		fareStructure.setZoneDefinitions(convertZoneDefinitions(fareDataDef.getZoneDefinitions()));
+		fareStructure.setRegionalConstraints(convertRegionalConstraints(fareDataDef.getRegionalConstraints()));
 		
 		fareStructure.setFareElements(convertFareElementList(fareDataDef.getFares()));		
 		
@@ -551,8 +555,18 @@ public class GTMJsonImporter {
 	private ServiceConstraint convert(ServiceConstraintDef sc) {
 		ServiceConstraint o = GtmFactory.eINSTANCE.createServiceConstraint();
 		o.setId(sc.getId());
-		o.getExcludedServiceBrands().addAll(convertServiceBrandList(sc.getExcludedServiceBrands()));
-		o.getIncludedServiceBrands().addAll(convertServiceBrandList(sc.getIncludedServiceBrands()));
+		if (sc.getExcludedServiceBrands()!= null && !sc.getExcludedServiceBrands().isEmpty()) {
+			Collection<? extends ServiceBrand> sl = convertServiceBrandList(sc.getExcludedServiceBrands());
+			if (sl != null && !sl.isEmpty()) {
+				o.getExcludedServiceBrands().addAll(sl);
+			}
+		}
+		if (sc.getIncludedServiceBrands()!=null && !sc.getIncludedServiceBrands().isEmpty()) {
+			Collection<? extends ServiceBrand> sl = convertServiceBrandList(sc.getIncludedServiceBrands());
+			if (sl != null && !sl.isEmpty()) {           
+				o.getIncludedServiceBrands().addAll(sl);
+			}
+		}
 		return o;
 	}
 
@@ -763,7 +777,12 @@ public class GTMJsonImporter {
 		RegionalConstraints o = GtmFactory.eINSTANCE.createRegionalConstraints();
 		if (jl == null || jl.isEmpty()) return o;
 		for (RegionalConstraintDef jr : jl) {
-			o.getRegionalConstraints().add(convert(jr));
+			
+			RegionalConstraint rc = convert(jr);
+			if (rc != null) {
+				o.getRegionalConstraints().add(rc);
+				regionalConstraints.put(rc.getId(),rc);
+			}
 		}
 		return o;
 	}
@@ -833,10 +852,17 @@ public class GTMJsonImporter {
 			v.setStation(getStation(jv.getStation().getCode()));
 		}
 		
+		if (jv.getFareReferenceStationSet() != null) {
+			v.setFareStationSet(findFareStationSetDefinition(jv.getFareReferenceStationSet().getCode()));
+		}
+		
 		if (jv.getRoute()!= null && !jv.getRoute().isEmpty()) {
 			Route r = GtmFactory.eINSTANCE.createRoute();
 			for (ViaStationsDef jv2 : jv.getRoute()) {
-				r.getStations().add(convert(jv2));
+				ViaStation s = convert(jv2);
+				if (s != null) {
+					r.getStations().add(s);
+				}
 			}
 			v.setRoute(r);
 		}
@@ -850,6 +876,22 @@ public class GTMJsonImporter {
 			}
 		}
 		return v;
+	}
+
+
+	private FareStationSetDefinition findFareStationSetDefinition(String code) {
+
+		if (    tool.getGeneralTariffModel().getFareStructure().getFareStationSetDefinitions() != null 
+				&& tool.getGeneralTariffModel().getFareStructure().getFareStationSetDefinitions().getFareStationSetDefinitions() != null
+				&& !tool.getGeneralTariffModel().getFareStructure().getFareStationSetDefinitions().getFareStationSetDefinitions().isEmpty()
+				) {
+			for (FareStationSetDefinition fss :tool.getGeneralTariffModel().getFareStructure().getFareStationSetDefinitions().getFareStationSetDefinitions()){
+				if (code.equals(fss.getCode())) {
+					return fss;
+				}
+			}
+		}
+		return null;
 	}
 
 
@@ -1484,10 +1526,7 @@ public class GTMJsonImporter {
 
 	private RegionalConstraint findRegionalConstraint(String id) {
 		if (id == null || id.length() < 1) return null;
-		for (RegionalConstraint  o : fareStructure.getRegionalConstraints().getRegionalConstraints()) {
-			if (o.getId().equals(id)) return o;
-		}
-		return null;
+		return regionalConstraints.get(id);
 	}
 
 
@@ -1649,7 +1688,10 @@ public class GTMJsonImporter {
 		if (jo == null) return null;
 		CarrierConstraints o = GtmFactory.eINSTANCE.createCarrierConstraints();
 		for (CarrierConstraintDef cc : jo) {
-			o.getCarrierConstraints().add(convert(cc));
+			CarrierConstraint c = convert(cc);
+			if (c != null) {
+				o.getCarrierConstraints().add(c);
+			}
 		}
 		return o;
 	}
@@ -1659,8 +1701,18 @@ public class GTMJsonImporter {
 		if (cc == null) return null;
 		CarrierConstraint o = GtmFactory.eINSTANCE.createCarrierConstraint();
 		o.setId(cc.getId());
-		o.getExcludedCarriers().addAll(convertCarrierList(cc.getExcludedCarrier()));
-		o.getIncludedCarriers().addAll(convertCarrierList(cc.getIncludedCarrier()));		
+		if (cc.getExcludedCarrier() != null && !cc.getExcludedCarrier().isEmpty()) {
+			Collection<? extends Carrier> cl = convertCarrierList(cc.getExcludedCarrier());
+			if (cl != null && !cl.isEmpty()) {
+				o.getExcludedCarriers().addAll(cl);
+			}
+		}
+		if (cc.getIncludedCarrier() != null && !cc.getIncludedCarrier().isEmpty()) {
+			Collection<? extends Carrier> cl = convertCarrierList(cc.getIncludedCarrier());
+			if (cl != null && !cl.isEmpty()) {
+				o.getIncludedCarriers().addAll(cl);
+			}
+		}
 		return o;
 	}
 
@@ -1669,7 +1721,10 @@ public class GTMJsonImporter {
 		ArrayList<Carrier> l = new ArrayList<Carrier>();
 		if (jl == null || jl.isEmpty()) return l;
 		for (String jc: jl) {
-			l.add(getCarrier(jc));
+			Carrier c = getCarrier(jc);
+			if (c != null) {
+				l.add(c);
+			}
 		}
 		return l;
 	}
@@ -1679,7 +1734,10 @@ public class GTMJsonImporter {
 		Calendars o = GtmFactory.eINSTANCE.createCalendars();
 		if (jo == null) return o;
 		for (CalendarDef jc:  jo) {
-			o.getCalendars().add(convert(jc));
+			Calendar c = convert(jc);
+			if (c !=null) {
+				o.getCalendars().add(convert(jc));
+			}
 		}
 		return o;
 	}
@@ -1692,7 +1750,6 @@ public class GTMJsonImporter {
 		o.setDataSource(DataSource.IMPORTED);
 		o.setFromDate(jc.getFromDate());
 		o.setUntilDate(jc.getUntilDate());	
-
 		if ( jc.getDates() != null && !jc.getDates().isEmpty()) {
 			o.getDates().addAll(jc.getDates());
 		}
@@ -1706,7 +1763,10 @@ public class GTMJsonImporter {
 		if (jl == null || jl.isEmpty()) return null;
 		Texts o = GtmFactory.eINSTANCE.createTexts();
 		for (TextDef jo : jl) {
-			o.getTexts().add(convert(jo));
+			Text t = convert(jo);
+			if (t != null) {
+				o.getTexts().add(t);
+			}
 		}
 		return o;
 	}

@@ -104,6 +104,7 @@ import Gtm.WeekDay;
 import Gtm.Zone;
 import Gtm.ZoneDefinition;
 import Gtm.ZoneDefinitions;
+import Gtm.actions.GtmUtils;
 import Gtm.nls.NationalLanguageSupport;
 import gtm.AfterSalesConditionDef;
 import gtm.AfterSalesRuleDef;
@@ -126,6 +127,7 @@ import gtm.FareDef.FareTypeDef;
 import gtm.FareDelivery;
 import gtm.FareDeliveryDef;
 import gtm.FareDeliveryDetailsDef;
+import gtm.FareReferenceStationSet;
 import gtm.FareReferenceStationSetDef;
 import gtm.FareResourceLocationDef;
 import gtm.FulfillmentConstraintDef;
@@ -475,7 +477,7 @@ public class GtmJsonExporter {
 				
 				StationDef stationJ = new StationDef();
 				stationJ.setCountry(station.getCountry().getISOcode());
-				stationJ.setCode(100000 * station.getCountry().getCode() + station.getCode());
+				stationJ.setCode(GtmUtils.getStationCode(station));
 				list.add(stationJ);
 			}
 			oJ.setStations(list);
@@ -1068,25 +1070,62 @@ public class GtmJsonExporter {
 
 	private static ViaStationsDef convertToJson(ViaStation v) {
 		if (v == null) return null;
+		boolean isEmpty = true;
 		ViaStationsDef vJ = new ViaStationsDef();
 		if (v.getCarrier()!= null) {
 			vJ.setCarrier(v.getCarrier().getCode());
+			isEmpty = false;
 		}
-		if (v.getAlternativeRoutes()!=null) {
-			vJ.setAlternativeRoute(convertToJson(v.getAlternativeRoutes()));
+		if (v.getFareStationSet() != null) {
+			FareReferenceStationSet fss = convertToRouteJson(v.getFareStationSet());
+			if (fss != null) {
+				vJ.setFareReferenceStationSet(fss);
+				isEmpty = false;
+			}
+		}
+		
+		if (v.getAlternativeRoutes()!=null && !v.getAlternativeRoutes().isEmpty()) {
+			List<ViaStationsDef>  ar = convertToJson(v.getAlternativeRoutes());
+			if (ar != null && !ar.isEmpty()) {
+				vJ.setAlternativeRoute(ar);
+				isEmpty = false;
+			}
 		}
 		vJ.setIsBorder(false);
 		if (v.getRoute()!=null) {
-			vJ.setRoute(convertToJson(v.getRoute()));
+			List<ViaStationsDef> lv = convertToJson(v.getRoute());
+			if (lv != null && !lv.isEmpty()) {
+				vJ.setRoute(lv);
+				isEmpty = false;
+			}
 		}
 		if (v.getStation() != null) {
-			vJ.setStation(convertToJson(v.getStation()));
+			StationDef s = convertToJson(v.getStation());
+			if (s != null) {
+				vJ.setStation(s);
+				isEmpty = false;
+			}
 		}
-		return vJ;
+		if (isEmpty) {
+			return null;
+		} else {
+		  return vJ;
+		}
 	}
 
 
 
+
+	private static FareReferenceStationSet convertToRouteJson(FareStationSetDefinition fss) {
+		if (fss == null) return null;
+		FareReferenceStationSet frs = new FareReferenceStationSet();
+		frs.setCode(fss.getCode());
+		frs.setName(fss.getName());
+		if (fss.getCarrier() != null){
+			frs.setCarrier(fss.getCarrier().getCode());
+		}
+		return frs;
+	}
 
 	private static List<ViaStationsDef> convertToJson(Route r) {
 		if (r == null || r.getStations() == null || r.getStations().isEmpty()) return null;
@@ -1094,7 +1133,10 @@ public class GtmJsonExporter {
 		ArrayList<ViaStationsDef> listJ = new ArrayList<ViaStationsDef>();
 		
 		for ( ViaStation s : r.getStations()) {
-			listJ.add(convertToJson(s));
+			ViaStationsDef v = convertToJson(s);
+			if (v != null) {
+				listJ.add(v);
+			}
 		}
 		
 		return listJ;
@@ -1118,7 +1160,10 @@ public class GtmJsonExporter {
 				arJ.setAlternativeRoute(arslJ);
 				
 				for (ViaStation s : r.getStations()) {
-					arslJ.add(convertToJson(s));
+					ViaStationsDef v = convertToJson(s);
+					if (v != null) {
+						arslJ.add(v);
+					}
 				}
 				
 				arlJ.add(arJ);			
@@ -1847,7 +1892,9 @@ public class GtmJsonExporter {
 		} else {
 			sJ.setCountry(s.getCountry().getISOcode());
 		}
-		sJ.setCode(100000 * s.getCountry().getCode() + s.getCode());
+		String code = String.format("%02d%5s", s.getCountry().getCode(),s.getCode());
+		code.replace(' ','0');		
+		sJ.setCode(code);
 		return sJ;
 	}
 

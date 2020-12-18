@@ -1524,8 +1524,19 @@ public class GtmEditor
 	public boolean isDirty() {
 		if (!doSelectionChange) return true;
 		
+		boolean dirty = editingDomain.getResourceSet().getResources().get(0).isModified();
+		if (dirty) return true;
+		
 		return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
 	}
+	
+	public boolean isDirtyGen() {
+		if (!doSelectionChange) return true;
+		
+		return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
+	}
+	
+	
 
 	/**
 	 * This is for implementing {@link IEditorPart} and simply saves the model file.

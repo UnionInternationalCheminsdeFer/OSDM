@@ -55,7 +55,12 @@
       <actionSet
             label="%_UI_GtmEditorAdvisor_ActionSet_label"
             visible="true"
-            id="GtmEditorAdvisorActionSet">                
+            id="GtmEditorAdvisorActionSet">
+         <action
+               label="%_UI_Menu_About_label"
+               class="Gtm.presentation.GtmEditorAdvisor$AboutAction"
+               menubarPath="help/additions"
+               id="Gtm.presentation.GtmEditorAdvisorAboutAction"/>
          <action
                label="%_UI_Menu_OpenURI_label"
                definitionId="Gtm.presentation.GtmEditorAdvisorOpenURICommand"

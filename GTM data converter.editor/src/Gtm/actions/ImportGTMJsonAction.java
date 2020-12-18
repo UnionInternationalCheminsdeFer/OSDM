@@ -76,6 +76,53 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 				return;
 			}
 			
+			if (tool.getCodeLists() == null ||
+				tool.getCodeLists().getStations() == null ||
+				tool.getCodeLists().getStations().getStations() == null ||
+				tool.getCodeLists().getStations().getStations().isEmpty()
+				) {
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText(NationalLanguageSupport.ImportGTMJsonAction_10);
+				dialog.open(); 
+				return;
+			}
+			
+			if (tool.getCodeLists() == null ||
+				tool.getCodeLists().getCarriers() == null ||
+				tool.getCodeLists().getCarriers().getCarriers() == null ||
+				tool.getCodeLists().getCarriers().getCarriers().isEmpty()
+				) {
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText(NationalLanguageSupport.ImportGTMJsonAction_11);
+				dialog.open(); 
+				return;
+			}
+			
+			if (tool.getCodeLists() == null ||
+				tool.getCodeLists().getServiceBrands() == null ||
+				tool.getCodeLists().getServiceBrands().getServiceBrands() == null ||
+				tool.getCodeLists().getServiceBrands().getServiceBrands().isEmpty()
+				) {
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText(NationalLanguageSupport.ImportGTMJsonAction_12);
+				dialog.open(); 
+				return;
+			}
+			
+			if (tool.getCodeLists() == null ||
+				tool.getConversionFromLegacy() == null ||
+				tool.getConversionFromLegacy().getLegacy108() == null ||
+				tool.getConversionFromLegacy().getLegacy108().getLegacyBorderPoints() == null ||
+				tool.getConversionFromLegacy().getLegacy108().getLegacyBorderPoints().getLegacyBorderPoints() == null ||
+				tool.getConversionFromLegacy().getLegacy108().getLegacyBorderPoints().getLegacyBorderPoints().isEmpty()
+				) {
+				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
+				dialog.setText(NationalLanguageSupport.ImportGTMJsonAction_13);
+				dialog.open(); 
+				return;
+			}			
+			
+			
 			
 			File file = getFile();
 			if (file == null) return;
@@ -138,6 +185,7 @@ public class ImportGTMJsonAction extends BasicGtmAction {
 					
 					} catch (Exception e) {
 						e.printStackTrace();
+						GtmEditorPlugin.INSTANCE.log(e);
 					} finally {
 						monitor.done();
 					}

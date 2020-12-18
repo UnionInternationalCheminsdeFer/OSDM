@@ -9,6 +9,12 @@ public class NationalLanguageSupport extends NLS{
 
 
 
+	public static String ImportGTMJsonAction_10;
+	public static String ImportGTMJsonAction_11;
+	public static String ImportGTMJsonAction_12;
+	public static String ImportGTMJsonAction_13;
+
+
 	public static String BasicGtmAction_0;
 	public static String ConverterFromLegacy_0;
 

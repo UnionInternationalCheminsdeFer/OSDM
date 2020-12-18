@@ -20,6 +20,7 @@ import org.osgi.service.prefs.BackingStoreException;
 import Gtm.GTMTool;
 import Gtm.jsonImportExport.GtmJsonExporter;
 import Gtm.nls.NationalLanguageSupport;
+import Gtm.presentation.DirtyCommand;
 import Gtm.presentation.GtmEditor;
 import Gtm.presentation.GtmEditorPlugin;
 import export.ExportFareDelivery;
@@ -135,7 +136,12 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 						
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
+						GtmEditorPlugin.INSTANCE.log(e);
 					}  finally {
+						
+						//workaround for wrong dirty indication
+						domain.getCommandStack().execute(new DirtyCommand());
+						
 						monitor.done();
 					}
 				}
@@ -168,16 +174,27 @@ public class ExportGTMJsonAction extends BasicGtmAction {
   
 		private void insertIds(GTMTool tool,EditingDomain domain, GtmEditor editor) {
 			
+			GtmUtils.clearCommandStack(domain);
+			
 			CompoundCommand command =  GtmUtils.setIds(tool,domain);
 			
-			if (command == null) {
-				MessageBox dialog =  new MessageBox(editor.getSite().getShell(), SWT.ICON_ERROR | SWT.OK);
-				dialog.setText(NationalLanguageSupport.ExportGTMJsonAction_11);
-				dialog.open(); 
-				return;
-			}
+			if (command != null && !command.isEmpty()) {
+       	
+				if (!command.canExecute()) {
+					MessageBox dialog =  new MessageBox(editor.getSite().getShell(), SWT.ICON_ERROR | SWT.OK);
+					dialog.setText(NationalLanguageSupport.ExportGTMJsonAction_12);
+					dialog.open(); 
+					return;
+				}
+	        	
+	        	domain.getCommandStack().execute(command);
+	        	
+				GtmUtils.clearCommandStack(domain);
+	        }
 			
-	        if (command != null && !command.isEmpty()) {
+			command =  GtmUtils.setFareIds(tool,domain);
+			
+			if (command != null && !command.isEmpty()) {
 	        	
 				if (!command.canExecute()) {
 					MessageBox dialog =  new MessageBox(editor.getSite().getShell(), SWT.ICON_ERROR | SWT.OK);
@@ -187,6 +204,8 @@ public class ExportGTMJsonAction extends BasicGtmAction {
 				}
 	        	
 	        	domain.getCommandStack().execute(command);
+	        	
+				GtmUtils.clearCommandStack(domain);
 	        }
 
 		}
