@@ -114,17 +114,18 @@ A Calendar defines a list of days between two dates. If the dates are not provid
 
 The carrier constraint can be referenced by a fare via the id.
 
-Carrier constraint limits an open fare - not linked to a train - to some carriers. The carriers can be specified either as exclusion list or alternatively as inclusion list.
+Carrier constraint limits an open fare - not linked to a train - to some carriers. The carriers can
+be specified either as exclusion list or alternatively as inclusion list.
 
 Carriers are specified by their Company code (RICS code).
 
-The included / excluded carriers are also part of the FCB barcode (IRS 90918-4) content and the ticket control data (IRS 90918-9).
+The included / excluded carriers are also part of the FCB barcode (*IRS 90918-4*) content and the ticket
+control data (*IRS 90918-9*).
 
 The offline data structure includes an additional id to reference the constraint within a fare data delivery.
 
 <!-- Figure 5 carrier constraint data structure (offline) -->
 ![Carrier Constraint Type](../images/common-data-structures/carrier-constraint-type.png)
-
 
 #### Data Constraints on CarrierConstraint
 
@@ -158,6 +159,7 @@ As on both sides of a connection multiple small stations could be connected and 
 The online data structure does not include the id and the legacy code.
 
 <!-- Figure 8 ConnectionPoint data structure offline -->
+![Fare Connection Point](../images/common-data-structures/fare-connection-point.png)
 
 #### Data Constraints on ConnectionPoint
 
@@ -189,7 +191,7 @@ An elementary fare to create an offer linking all constraints to one price.
 | `reservationParameter` | Information on parameters for reservation via the 90918-1 interface and reservation options.
 | `regulatoryConditions` | Legal regimes to be applied to the fate (e.g. COTIV, SMPS regulations).
 | `personalDataConstraint` | Rules on the personal data to be provided in a booking.
-| `legacyAccountingIdentifier` | Data to be included in the current IRS 30301 accounting data format.
+| `legacyAccountingIdentifier` | Data to be included in the current *IRS 30301* accounting data format.
 | `salesAvailabilityConstraint` | Rules on the allowed sates dates for the fare.
 | `travelValidityConstraint` | Rules on the validity for travel of this fare.
 | `legacyConversion` | Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules (`YES`, `NO`, `ONLY` (this fare is provided for conversion only))
@@ -201,7 +203,7 @@ An elementary fare to create an offer linking all constraints to one price.
 | Code | Description |
 |---|---|
 | `price` | A price must be provided for all offline fares including those where the price is zero. |
-| `legacyAccountingIdentifier` | In case 30301 in the current version is used to accounting these data must be provided for offline fares |
+| `legacyAccountingIdentifier` | In case *IRS 30301* in the current version is used to accounting these data must be provided for offline fares |
 | `serviceClass` | Must be provided for offline fares
 | `combinationConstraint` | Must be provided for offline fares
 | `travelValidityConstraint` | Must be provided for offline fares
@@ -222,7 +224,10 @@ The fare combination constraint defines the rules of combining fares from differ
 | `allowedCommonContracts` | List of Carriers with which the allocator can for a common contract. If empty, there is no restriction in indicating common contracts to the passenger except for the SEPARATE_CONTRACT model. Carriers are listed by their RICS company codes.|
 
 <!-- Figure 10 fare combination constraint data structure -->
-<!-- Figure 11 fare combination constraint data structure  -->
+![Fare Combination Model](../images/common-data-structures/fare-combination-model.png)
+
+<!-- Figure 11 fare combination constraint data structure -->
+![Fare Combination Constraint](../images/common-data-structures/fare-combination-constraint.png)
 
 #### Combination Model
 
@@ -278,7 +283,7 @@ The after sales conditions will thus depend on the combinations of carriers.
 At any time, the after sales fees defined by the carriers are applied on the price part of these carriers only.
 The result is a list of times with increasing fees.
 
-*Example*
+###### Example
 
 - Carrier 1: 10% 20 days before departure. Price: 100€
 - Carrier 2: 90% 2 days before departure. Price: 200 €
@@ -302,7 +307,7 @@ Combinations of fares of different clusters is allowed with the fare clusters li
 However not all combinations would be provided to the customer. A fare will be combined with a fare of
 the same cluster and in case his is not available with one of the higher clusters.
 
-*Example*
+##### Example
 
 - Carrier 1:
 
@@ -353,16 +358,15 @@ The online link provides information on:
   request must be for the train route between stations (e.g. IRT), whereas for areas
   there might be multiple splits in-between a train run (e.g. NRT).
 
-<!-- Figure 12 FareResourceLocation data structure
+<!-- Figure 12 FareResourceLocation data structure -->
 
-Figure 13 FareResourceLocation data structure - carrier link
- 
-Figure 14 FareResourceLocation data structure - train link
+<!-- Figure 13 FareResourceLocation data structure - carrier link -->
 
-Figure 15 FareResourceLocation data structure - station link
- 
-Figure 16 FareResourceLocation data structure - online resource
--->
+<!-- Figure 14 FareResourceLocation data structure - train link -->
+
+<!-- Figure 15 FareResourceLocation data structure - station link -->
+
+<!-- Figure 16 FareResourceLocation data structure - online resource -->
 
 #### Graphics Icons
 
@@ -394,6 +398,7 @@ The station set is referenced by the company code of the fare provider and a cod
 A `legacyCode` can be provided to include the current code in the 108.1 data.
 
 <!-- Figure 17 FareReferenceStationSet Definition data structure -->
+![Fare Reference Station Set](../images/common-data-structures/fare-reference-station-set.png)
 
 #### Data Constraints on FareReferenceStationSet
 
@@ -405,7 +410,7 @@ A `legacyCode` can be provided to include the current code in the 108.1 data.
 ### FulfillmentConstraint
 
 The fulfillment constraint limits the applicable types of fulfillment and defined whether
-control data need to be transferred via a standard interface (IRS 90918-4).
+control data need to be transferred via a standard interface (*IRS 90918-4*).
 
 <!-- Figure 18 Fulfillment constraint data structure -->
 ![Fulfillment Constraint](../images/common-data-structures/fulfillment-constraint.png)
@@ -455,8 +460,8 @@ Passenger constraint defines restrictions of a fare concerning passengers. In on
 
 Specification of personal data to be delivered to the carrier. Personal data might be included in:
 
-- Booking service (OSDM and/or IRS 90918-1)
-- Control data (bar code and/or control data delivery IRS 90918-4)
+- Booking service (OSDM and/or *IRS 90918-1*)
+- Control data (bar code and/or control data delivery *IRS 90918-4*)
 
 The requirement for personal data might depend on the type of fulfillment or on specific border crossings.
 
@@ -512,7 +517,7 @@ The reduction cards of a carrier are listed in the bulk data.
 | `serviceClass` | Service class indicated for the class |
 | `issuer` | Issuer of the card. Usually the carrier providing the fare data. |
 | `type` | Type of the cards to separate between loyalty cards, cards that are tickets (passes), and reduction cards (`LOYALTY_CARD`, `REDUCTION_CARD,PASS`).|
-| `cardIdRequired` | Indicates that the card id must be provided in the prebooking request to validate the card. This card cannot be used without the online services for booking |
+| `cardIdRequired` | Indicates that the card id must be provided in the pre-booking request to validate the card. This card cannot be used without the online services for booking |
 
 <!-- Figure 27 reduction card offline -->
 ![Reduction Card](../images/common-data-structures/reduction-card.png)
@@ -529,13 +534,13 @@ A fare associated with this constraint requires one of the listed cards to be pr
 
 ### RegionalConstraint
 
-Definition of a regional validity of a fare. The regional validity constraint is defined by an entry connection point and an exit connection point to combine this regional validity with other regional validities of other carriers and the specification of the regional validity that is sued and described in IRS 90918-4 for ticket control. The entry or exit connection point might be missing in case the fare cannot be combined or can be combined on one side only.
+Definition of a regional validity of a fare. The regional validity constraint is defined by an entry connection point and an exit connection point to combine this regional validity with other regional validities of other carriers and the specification of the regional validity that is sued and described in *IRS 90918-4* for ticket control. The entry or exit connection point might be missing in case the fare cannot be combined or can be combined on one side only.
 
 | Content | Description |
 |---|---|
 | `entryConnectionPoint` | Defines the connection point for connecting this fare at the start of regional validity (see ConnectionPoint)
 | `exitConnectionPoint` | Defines the connection point for connecting this fare at the start of regional validity (see ConnectionPoint)
-| `regionalValidity` | Definition of the regional validity as defined in IRS 90918-4. I provide data structures for zones, Lines, train links, geographical polygons and routes.
+| `regionalValidity` | Definition of the regional validity as defined in *IRS 90918-4*. It provide data structures for zones, Lines, train links, geographical polygons and routes.
 
 The connection points are included for combining regions. When combining two regional validities from two carriers the connection points will disappear in the combined data structure for bar codes and ticket control and from the textual description for the passenger.
 
@@ -564,7 +569,7 @@ The online data structure will not use the id and will directly include the entr
 
 The regional validity contains also content that is applicable to synchronous data transfer only (e.g. train links for train bound offers).
 
-The data structure `RegionalValidity` is defined in UIC IRS 90918-4 and included by reference only. It provides a sequential list of region definitions that can be defined as zones, lines, train links (online version only) geographical areas (polygons) and route descriptions (via-stations). The route description is extended to include fare reference station sets within the route.
+The data structure `RegionalValidity` is defined in *IRS 90918-4* and included by reference only. It provides a sequential list of region definitions that can be defined as zones, lines, train links (online version only) geographical areas (polygons) and route descriptions (via-stations). The route description is extended to include fare reference station sets within the route.
   
 <!-- Figure 32 regional validity data structure -->
 
@@ -580,7 +585,7 @@ ReservationParameter provide data on how to combine reservations with NRT fares,
 | Code | Description |
 | --- | --- |
 | `reservationRequired` | A reservation must be made accompanying an NRT ticket. |
-| `reservationParameters981-1` | Parameters to request the correct reservation using the interface according to IRS 90918-1. |
+| `reservationParameters981-1` | Parameters to request the correct reservation using the interface according to *IRS 90918-1*. |
 | `reservationOptions` | Reservation options available that would not change the offer (same price and conditions) (e.g. Aisle or Window). The information is static and does not mean that such an option is still available. The preferences are grouped in case a selection is required (Aisle or Window). |
 
 <!-- Figure 35 ReservationParameter data structure -->
@@ -669,15 +674,15 @@ The online data structure will not provide the id.
 ### ServiceLevel
 
 The service level data provide additional information (e.g. text) in the offline
-data exchange in case the reservation API IRS90918-1 is used.
+data exchange in case the reservation API of *IRS 90918-1* is used.
 
 Description of a service level. The service level defines a specific product on a train
-which can have a price (e.g. Double places with shower, …). It is more specific than 
+which can have a price (e.g. Double places with shower, …). It is more specific than
 just the classic travel class.
 
-The available service levels are defined in IRS 90918-1 element 308 (Service level code). The data
+The available service levels are defined in *IRS 90918-1* element 308 (Service level code). The data
 indicate the service class that needs to be booked in case the reservation is not an IRT and parameters
-needed for reservation via the 90918-1 interface.
+needed for reservation via the *IRS 90918-1* interface.
 
 Some service levels might require a mandatory reservation.
 
