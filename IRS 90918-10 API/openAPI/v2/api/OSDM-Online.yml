@@ -4,7 +4,7 @@ servers:
     url: 'https://virtserver.swaggerhub.com/Real-IT/dummy/1.0.0'
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.0.0
+  version: 1.1.0-rc1
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -3886,6 +3886,10 @@ components:
           type: string
         carrierConstraintText:
           type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
       required:
         - id
 
@@ -3902,7 +3906,6 @@ components:
          - TICKETLESS
          - ALLOCATOR_APP
          - SOCIAL_MEDIA_ACCOUNTS
-
     
     Admission:
       type: object
@@ -4288,11 +4291,11 @@ components:
     Fulfillment:
       type: object
       description: >-
-        a fulfillment is a document (or part of a document in allocator mode) that
+        A fulfillment is a document (or part of a document in allocator mode) that
         - allows the passenger to prove its travel right
         - provides easier access to trains and stations
         - allows an exchange for other services (voucher)
-        a fulfillment refers to services of one or multiple offer parts or a fare (allocator mode).
+        A fulfillment refers to services of one or multiple offer parts or a fare (allocator mode).
       properties:
         id:
           type: string
@@ -4609,6 +4612,11 @@ components:
       type: string
       description: >-
         Reason for and type of an after sale, code list in IRS 90918-10.
+      x-extensible-enum:
+        - PAYMENT_FAILURE
+        - SALES_STAFF_ERROR
+        - STRIKE
+
     ExchangeOffersCollection:
       type: array
       items:
