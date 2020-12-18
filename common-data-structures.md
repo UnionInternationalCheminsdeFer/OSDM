@@ -176,12 +176,12 @@ An elementary fare to create an offer linking all constraints to one price.
 |---|---|
 | `fareType` | **NRT**, **IRT**, **Ancillaries** , **Reservations**
 | `name` | Name of the fare
-| `fareDetailDescription` | Additional explanation on the fare (e.g. on included fees like Diabolo or Venice fee)
+| `fareDetailDescription` | Additional explanation on the fare (e.g. on included fees like Diabolo or Venice fee).
 | `price` | Price with currency € must be provided if not otherwise agreed bilaterally.
-| `regionalConstraint` | Definition of the regional validity of the fare and the geographical combination rules (connection points)
-| `serviceConstraint` | Restrictions of the service allowed to be used
+| `regionalConstraint` | Definition of the regional validity of the fare and the geographical combination rules (connection points).
+| `serviceConstraint` | Restrictions of the service allowed to be used.
 | `carrierConstraint` | Restriction on the carriers that can be used with the fare.
-| `serviceClass` | Class the passenger can use
+| `serviceClass` | Class the passenger can use.
 | `serviceLevel` | Mode detailed category of places the passenger can use.
 | `passengerConstraint` | Rules and restrictions on the passenger types allowed to use the fare and rules on combining passengers.
 | `afterSalesRules` | After sales rules for the fare. In case the allocator is responsible for the after sales rules this is almost empty.
@@ -194,7 +194,7 @@ An elementary fare to create an offer linking all constraints to one price.
 | `legacyAccountingIdentifier` | Data to be included in the current *IRS 30301* accounting data format.
 | `salesAvailabilityConstraint` | Rules on the allowed sates dates for the fare.
 | `travelValidityConstraint` | Rules on the validity for travel of this fare.
-| `legacyConversion` | Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules (`YES`, `NO`, `ONLY` (this fare is provided for conversion only))
+| `legacyConversion` | Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules (`YES`, `NO`, `ONLY` (this fare is provided for conversion only)).
 
 <!-- Figure 9 Fare element data structure (offline) -->
 
@@ -711,12 +711,12 @@ The travel validity constraint defines at which times the passenger is permitted
 
 ![Travel Validity - excluded time range](../images/common-data-structures/travel-validity-excluded-time-range.png)
 
-![Travel Validity - return constraint](../images/common-data-structures/travel-validity-range-return-constraint.png)
+![Travel Validity - return constraint](../images/common-data-structures/travel-validity-return-constraint.png)
 
 | Code | Description |
 |---|---|
-| `excludedTimeRange` |from time < to time
-| `numberOfTravelDays` |A duration must be provided
+| `excludedTimeRange` | `from` time < `until` time
+| `numberOfTravelDays` | A duration must be provided
 | `returnConstraint` | `earliestReturn` < `latestReturn`
 
 ### ZoneDefinition
