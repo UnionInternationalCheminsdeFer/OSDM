@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * single fare within a blk fare data delivery
  * 
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonPropertyOrder({
     "id",
     "fareType",

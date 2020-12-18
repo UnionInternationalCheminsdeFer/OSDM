@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * identifier of the fare in the current 301 accounting file
  * 
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonPropertyOrder({
     "serialId",
     "addId",

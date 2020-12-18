@@ -903,6 +903,9 @@ public class ConverterFromLegacy {
 			} 		
 		} 
 		if (station == null && fareStationSet == null) {
+			if (isMappedStation(code)) {
+				return null;
+			}
 			String message = NationalLanguageSupport.ConverterFromLegacy_7 + Integer.toString(seriesNumber) + NationalLanguageSupport.ConverterFromLegacy_8 + Integer.toString(code);
 			writeConsoleError(message);
 			throw new ConverterException(message);
@@ -2333,9 +2336,11 @@ public class ConverterFromLegacy {
 					if (station != null) {
 						def.getStations().add(station);
 					} else {
-						// something strange happend
-						String message = NationalLanguageSupport.ConverterFromLegacy_50 + Integer.toString(legacyStation.getStationCode()) + NationalLanguageSupport.ConverterFromLegacy_51;
-						writeConsoleError(message);
+						if (!isMappedStation(legacyStation.getStationCode())) {
+							// something strange happend
+							String message = NationalLanguageSupport.ConverterFromLegacy_50 + Integer.toString(legacyStation.getStationCode()) + NationalLanguageSupport.ConverterFromLegacy_51;
+							writeConsoleError(message);
+						}
 					}
 				}
 				

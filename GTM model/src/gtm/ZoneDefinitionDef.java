@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * definition of a zone used to define regional validity. The area of the zone can be defined via a geo-poligone, a complte list of all contained stations or area codes from the NUTS code list. The carrier is eigther the carrier or transport authority responsible for the definition.
  * 
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonPropertyOrder({
     "carrier",
     "zoneId",

@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * Used to provide any geo-encoded location, regardless of environment, using longitude and latitude coordinates.
  * 
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonPropertyOrder({
     "system",
     "accuracy",

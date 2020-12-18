@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;
@@ -14,6 +13,8 @@ import org.eclipse.swt.widgets.Shell;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import gtm.FareDelivery;
 
@@ -28,6 +29,8 @@ public class ExportFareDelivery {
 	public void exportFareDelivery (FareDelivery fares, File file) {
 		
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(SerializationFeature.WRITE_EMPTY_JSON_ARRAYS, false);
+		mapper.setSerializationInclusion(JsonInclude.Include.NON_DEFAULT);
 		
 		try {
 
@@ -35,7 +38,7 @@ public class ExportFareDelivery {
 				file.createNewFile();
 			}
 		
-			Writer writer = new BufferedWriter (new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+			BufferedWriter writer = new BufferedWriter (new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
 			mapper.writeValue(writer, fares);
 			writer.close();
 		} catch (JsonGenerationException e) {

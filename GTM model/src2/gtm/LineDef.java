@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * terminalStation - in case the product requires a destination within the zone (e.g. local ticket  to go to the main rail station).  entryStation - Station to enter the zone in case the product requires to enter the zone via a  specific station (e.g. local zone ticket to start from the main rail station).
  * 
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonPropertyOrder({
     "binaryLineId",
     "carrier",
