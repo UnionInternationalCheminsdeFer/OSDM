@@ -145,7 +145,7 @@ In case the combination is not at a real station an indication is needed to defi
 
 This would also work with multiple stations.
 
-Connection points will include a border point code to support existing implementations where the border point code is compared with the timetable data. As in principle every station can become a connection point (e.g. all stops from Aachen to Brussels are connection points from DB to SNCB) implementations based on border point codes cannot cover all connections.
+Connection points will include a border point code to support existing implementations where the border point code is compared with the timetable data. As in principle every station can become a connection point (e.g. all stops from Aachen to Brussels are connection points from `DB` to `SNCB`) implementations based on border point codes cannot cover all connections.
 
 As on both sides of a connection multiple small stations could be connected and not all of them might be in the timetable of a train the connections point should allow to connect sets of stations.
 
@@ -177,7 +177,7 @@ An elementary fare to create an offer linking all constraints to one price.
 | `fareType` | **NRT**, **IRT**, **Ancillaries** , **Reservations**
 | `name` | Name of the fare
 | `fareDetailDescription` | Additional explanation on the fare (e.g. on included fees like Diabolo or Venice fee)
-| `price` | Price with currency EUR must be provided if not otherwise agreed bilaterally.
+| `price` | Price with currency € must be provided if not otherwise agreed bilaterally.
 | `regionalConstraint` | Definition of the regional validity of the fare and the geographical combination rules (connection points)
 | `serviceConstraint` | Restrictions of the service allowed to be used
 | `carrierConstraint` | Restriction on the carriers that can be used with the fare.
@@ -188,8 +188,8 @@ An elementary fare to create an offer linking all constraints to one price.
 | `combinationConstraint` | Rules on the model of combination of this fare with fares of other carriers.
 | `fulfillmentConstraint` | Restrictions and requirements on the fulfillment and security to be applied by the allocator.
 | `reductionConstraint` | Rules on reduction cards necessary to apply the fare.
-| `reservationParameter` | Information on parameters for reservation via the 90918-1 interface and reservation options.
-| `regulatoryConditions` | Legal regimes to be applied to the fate (e.g. COTIV, SMPS regulations).
+| `reservationParameter` | Information on parameters for reservation via the *IRS 90918-1* interface and reservation options.
+| `regulatoryConditions` | Legal regimes to be applied to the fate (e.g. `COTIV`, `SMPS` regulations).
 | `personalDataConstraint` | Rules on the personal data to be provided in a booking.
 | `legacyAccountingIdentifier` | Data to be included in the current *IRS 30301* accounting data format.
 | `salesAvailabilityConstraint` | Rules on the allowed sates dates for the fare.
@@ -221,7 +221,7 @@ The fare combination constraint defines the rules of combining fares from differ
 | `referenceCluster` | Cluster within the clustering model to which this fare belongs
 | `allowedClusters` | List of clusters with which this fare can be combined
 | `allowedAllocators` | List of allocators which can combine this fare. . . If empty, there is no restriction in combining different carriers. Carriers are listed by their RICS company codes. Allowed allocators is not present in the online data. |
-| `allowedCommonContracts` | List of Carriers with which the allocator can for a common contract. If empty, there is no restriction in indicating common contracts to the passenger except for the SEPARATE_CONTRACT model. Carriers are listed by their RICS company codes.|
+| `allowedCommonContracts` | List of Carriers with which the allocator can for a common contract. If empty, there is no restriction in indicating common contracts to the passenger except for the `SEPARATE_CONTRACT` model. Carriers are listed by their RICS company codes.|
 
 <!-- Figure 10 fare combination constraint data structure -->
 ![Fare Combination Model](../images/common-data-structures/fare-combination-model.png)
@@ -250,7 +250,7 @@ common contract for the whole journey.
 The `CLUSTERING` model tries to simplify conditions and fares for the customer but sacrifices a part of
 the control of the carrier on his fares.
 
-Similar types of fares are defined to belong to the same “cluster”.  The after sales conditions for a cluster
+Similar types of fares are defined to belong to the same cluster. The after sales conditions for a cluster
 are defined by the allocator. However, the after sales conditions must basic rules on after sales for that cluster.
 
 The clusters correspond to the flexibility a passenger receives to change the booked train. This corresponds directly
@@ -580,7 +580,7 @@ Extended route data structure including fare reference station sets.
 
 ### ReservationParameter
 
-ReservationParameter provide data on how to combine reservations with NRT fares, how to book reservations via the 90918-1 interface and which options a passenger has for reservation.
+ReservationParameter provide data on how to combine reservations with NRT fares, how to book reservations via the *IRS 90918-1* interface and which options a passenger has for reservation.
 
 | Code | Description |
 | --- | --- |
