@@ -15,3 +15,5 @@ from the Distributor Mode only in that additionally to **Admissions (aka. ticket
 
 The OSDM Model and documents are Open Source and freely available to all parties interested. 
 The OSDM-Online API is modelled in `YAML`, fully supporting the `REST paradigm`.
+
+Online Specification View: https://unioninternationalcheminsdefer.github.io/OSDM/
