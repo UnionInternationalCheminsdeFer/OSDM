@@ -2,21 +2,21 @@
   link: spec/
   dropdown:
     - name: Common Data Structures
-      link: common-data-structures/
+      link: spec/common-data-structures/
     - name: Offline Model
-      link: offline-model/
+      link: spec/offline-model/
     - name: Online API
       link: https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/1.0.0
     - name: Technical Principles
-      link: technical-principles/
+      link: spec/technical-principles/
     - name: Models
-      link: models/
+      link: spec/models/
     - name: Processes
-      link: processes/
+      link: spec/processes/
     - name: Catalog of Code Lists
-      link: catalog-of-code-lists/
+      link: spec/catalog-of-code-lists/
     - name: Compliance
-      link: compliance/
+      link: spec/compliance/
 - name: Organization
   link: organization/
 - name: Team

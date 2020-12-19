@@ -2,7 +2,7 @@
 layout: page
 title: Common Data Structure
 hide_hero: true
-permalink: /common-data-structures/
+permalink: /spec/common-data-structures/
 ---
 
 ## Common Data Structures in Offline and Online Mode
@@ -101,7 +101,7 @@ A Calendar is referenced by a unique id which can be referenced from other data 
 A Calendar defines a list of days between two dates. If the dates are not provided in UTC the offset to UTC must be provided additionally.
 
 <!-- Figure 4 Calendar data structure -->
-![Calendar](../images/common-data-structures/calendar.png)
+![Calendar](../../images/common-data-structures/calendar.png)
 
 #### Data Constraints on Calendar
 
@@ -125,7 +125,7 @@ control data (*IRS 90918-9*).
 The offline data structure includes an additional id to reference the constraint within a fare data delivery.
 
 <!-- Figure 5 carrier constraint data structure (offline) -->
-![Carrier Constraint Type](../images/common-data-structures/carrier-constraint-type.png)
+![Carrier Constraint Type](../../images/common-data-structures/carrier-constraint-type.png)
 
 #### Data Constraints on CarrierConstraint
 
@@ -652,8 +652,6 @@ A reference to a calendar can be provided to indicate all sales dates.
 Service class provides textual descriptions for the predefined service classes.
 
 <!-- Figure 41 structure Service Class -->
-
-![Service Class](../images/common-data-structures/service-class.png)
 
 ### ServiceConstraint
 

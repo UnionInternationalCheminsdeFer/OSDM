@@ -2,7 +2,7 @@
 layout: page
 title: Processes
 hide_hero: true
-permalink: /processes/
+permalink: /spec/processes/
 ---
 
 ## Introduction

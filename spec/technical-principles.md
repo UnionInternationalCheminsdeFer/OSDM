@@ -2,7 +2,7 @@
 layout: page
 title: Technical Principles
 hide_hero: true
-permalink: /technical-principles/
+permalink: /spec/technical-principles/
 ---
 
 ## Design Guidelines
