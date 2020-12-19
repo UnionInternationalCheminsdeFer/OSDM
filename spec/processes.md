@@ -43,7 +43,7 @@ are not represented or simplified in the data models.
 
 ## Process Flow
 
-![Process Flow](../../images/processes/act-process-flow.svg)
+![Process Flow](../images/processes/act-process-flow.svg)
 
 The process flow starts with getting offers which can be chosen by the customer. Once
 selected they can be prebooked and after the payment process (which is outside of the
@@ -57,7 +57,7 @@ a refund or exchange offer which can the be booked by the customer.
 
 ### Looking Up Locations
 
-![Looking Up Locations](../../images/processes/seq-looking-up-locations.svg)
+![Looking Up Locations](../images/processes/seq-looking-up-locations.svg)
 
 The `\locations` Lookup can be used by an API provider in order to search for locations.
 Two typical uses cases would be
@@ -91,7 +91,7 @@ the `Problem` element.
 
 ### Getting and Browsing Trips
 
-![Getting and Browsing Trips](../../images/processes/seq-getting-and-browsing-trips.svg)
+![Getting and Browsing Trips](../images/processes/seq-getting-and-browsing-trips.svg)
 
 If the API consumer only needs a schedule, and no bookable offer, it has the
 possibility to create a trips collection using `POST /trip-collection`. If the
@@ -145,7 +145,7 @@ additional details such as the incriminated field in the detail property of the
 
 ### Getting and Browsing Offers
 
-![Getting and Browsing Offers](../../images/processes/seq-getting-and-browsing-offers.svg)
+![Getting and Browsing Offers](../images/processes/seq-getting-and-browsing-offers.svg)
 
 Requesting and browsing offers works a lot like the trips: the API consumer
 submits search criteria, and a collection of "trip offers" is returned. This
@@ -290,7 +290,7 @@ directions (but then the total price will be incorrect when looking at the
 complete return travel), or split in any way desired between the outward and
 the return.
 
-![Products Covering Both Directions](../../images/processes/seq-products-covering-both-directions.svg)
+![Products Covering Both Directions](../images/processes/seq-products-covering-both-directions.svg)
 
 #### Error Handling
 
@@ -346,7 +346,7 @@ Proposed trip by timetable system:
 
 ### Completing Offers for Provisional Booking
 
-![Completing Offers for Provisional Booking](../../images/processes/seq-completing-offers-for-provisonal-booking.svg)
+![Completing Offers for Provisional Booking](../images/processes/seq-completing-offers-for-provisonal-booking.svg)
 
 Once an offer has been selected some additional steps can be taken to complete
 the information:
@@ -417,7 +417,7 @@ elements `(offer.fare|integratedReservation|reservation.placeSelection.reservati
 
 ### Creating a Booking Based on Offers
 
-![Creating a Booking Based on Offers](../../images/processes/seq-creating-a-booking-based-on-offers.svg)
+![Creating a Booking Based on Offers](../images/processes/seq-creating-a-booking-based-on-offers.svg)
 
 Once the offer selected has been completed and all requested information
 provided, the API consumer can continue to the booking of that offer. Along
@@ -499,7 +499,7 @@ trip, then the rule applies for each direction.
 
 ### Handling Partial Success of Pre-Booking
 
-![Handling Partial Success of Pre-Booking](../../images/processes/seq-handling-partial-success-of-pre-booking.svg)
+![Handling Partial Success of Pre-Booking](../images/processes/seq-handling-partial-success-of-pre-booking.svg)
 
 As a **Distributor**, partial pre-booking is not expected. As a consequence
 all pre-booking operations are either fully successful or not executed at all.
@@ -554,7 +554,7 @@ copied in the booking, and those of the following offers will be ignored.
 
 ### Completing Booking for Confirmation and Fulfillment
 
-![Completing Booking for Confirmation and Fulfillment](../../images/processes/seq-completing-booking-for-confirmation-and-fulfillment.svg)
+![Completing Booking for Confirmation and Fulfillment](../images/processes/seq-completing-booking-for-confirmation-and-fulfillment.svg)
 
 When the booking has been successfully created, some additional changes may be
 desired or even required before the booking can be confirmed.
@@ -591,7 +591,7 @@ property.
 
 ### Cancel a Not Confirmed Booking
 
-![Cancel a Not Confirmed Booking ](../../images/processes/seq-cancel-a-not-confirmed-booking.svg)
+![Cancel a Not Confirmed Booking ](../images/processes/seq-cancel-a-not-confirmed-booking.svg)
 
 In case a pre-booked booking is abandoned by its user, and this event is
 captured, it is recommended for the API consumer to properly cancel the booking
@@ -624,7 +624,7 @@ grace period is left to the implementor.
 
 ### Fulfillment Process
 
-![Fulfillment Process](../../images/processes/seq-fulfillment-process.svg)
+![Fulfillment Process](../images/processes/seq-fulfillment-process.svg)
 
 The fulfillment is the final step of the booking. In most cases, the booking
 will be confirmed and fulfilled in one step from the API consumer standpoint:
@@ -780,7 +780,7 @@ These are the required information needed per process step for major parties
 
 ### Request a Refund Offer
 
-![Request a Refund Offer](../../images/processes/seq-request-a-refund-offer.svg)
+![Request a Refund Offer](../images/processes/seq-request-a-refund-offer.svg)
 
 On a confirmed booking, and if it is allowed, after sales operations are also
 possible via the OSDM API. In OSDM, the refunds are taking place based on
@@ -798,12 +798,12 @@ potential refund fee, etc (see the model for more details).
 
 ### Cancel a Refund Offer
 
-![Cancel a Refund Offer](../../images/processes/seq-cancel-a-refund-offer.svg)
+![Cancel a Refund Offer](../images/processes/seq-cancel-a-refund-offer.svg)
 
 ### Confirm a Refund Offer
 
-![Confirm a Refund Offer](../../images/processes/seq-fulfillment-process.svg)
+![Confirm a Refund Offer](../images/processes/seq-fulfillment-process.svg)
 
 ## Example End-to-end Interaction
 
-![Example End to End Interaction](../../images/processes/seq-end-to-end-interaction.svg)
+![Example End to End Interaction](../images/processes/seq-end-to-end-interaction.svg)

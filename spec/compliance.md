@@ -13,7 +13,7 @@ party can decide based on their business need to implement the offline or the
 online part online based on the role they want to play in the distribution and
 sales process.
 
-![Compliance](../../images/compliance/compliance.png)
+![Compliance](../images/compliance/compliance.png)
 
 ## Compliance with the Offline Part
 

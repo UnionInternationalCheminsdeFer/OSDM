@@ -29,7 +29,7 @@ A specification as a **product** which is managed as follows:
 
 Illustration of the concepts:
 
-![Organization](../images/organization/organization.svg)
+![Organization](./images/organization/organization.svg)
 
 ### Structure of an Improvement
 
