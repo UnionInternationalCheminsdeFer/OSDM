@@ -4,6 +4,8 @@ title: Specification
 permalink: /spec/
 ---
 
+# Specification
+
 The [OSDM specification](./) is structured into three parts sharing common
 data structures:
 
