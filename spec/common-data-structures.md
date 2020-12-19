@@ -159,7 +159,7 @@ As on both sides of a connection multiple small stations could be connected and 
 The online data structure does not include the id and the legacy code.
 
 <!-- Figure 8 ConnectionPoint data structure offline -->
-![Fare Connection Point](../images/common-data-structures/fare-connection-point.png)
+![Fare Connection Point](../../images/common-data-structures/fare-connection-point.png)
 
 #### Data Constraints on ConnectionPoint
 
@@ -224,10 +224,10 @@ The fare combination constraint defines the rules of combining fares from differ
 | `allowedCommonContracts` | List of Carriers with which the allocator can for a common contract. If empty, there is no restriction in indicating common contracts to the passenger except for the `SEPARATE_CONTRACT` model. Carriers are listed by their RICS company codes.|
 
 <!-- Figure 10 fare combination constraint data structure -->
-![Fare Combination Model](../images/common-data-structures/fare-combination-model.png)
+![Fare Combination Model](../../images/common-data-structures/fare-combination-model.png)
 
 <!-- Figure 11 fare combination constraint data structure -->
-![Fare Combination Constraint](../images/common-data-structures/fare-combination-constraint.png)
+![Fare Combination Constraint](../../images/common-data-structures/fare-combination-constraint.png)
 
 #### Combination Model
 
@@ -398,7 +398,7 @@ The station set is referenced by the company code of the fare provider and a cod
 A `legacyCode` can be provided to include the current code in the 108.1 data.
 
 <!-- Figure 17 FareReferenceStationSet Definition data structure -->
-![Fare Reference Station Set](../images/common-data-structures/fare-reference-station-set.png)
+![Fare Reference Station Set](../../images/common-data-structures/fare-reference-station-set.png)
 
 #### Data Constraints on FareReferenceStationSet
 
@@ -413,7 +413,7 @@ The fulfillment constraint limits the applicable types of fulfillment and define
 control data need to be transferred via a standard interface (*IRS 90918-4*).
 
 <!-- Figure 18 Fulfillment constraint data structure -->
-![Fulfillment Constraint](../images/common-data-structures/fulfillment-constraint.png)
+![Fulfillment Constraint](../../images/common-data-structures/fulfillment-constraint.png)
 
 Code lists for required `SiS`: `CardType`
 
@@ -441,14 +441,14 @@ The following code list defines the card types for cards used
 Line defines the regional validity on a specific line. It might have additional restrictions to enter or leave at specific stations or to be used within an area or city only.
 
 <!-- Figure 19 Line data structure -->
-![Line](../images/common-data-structures/line.png)
+![Line](../../images/common-data-structures/line.png)
 
 ### PassengerConstraint
 
 Passenger constraint defines restrictions of a fare concerning passengers. In online services the structure is reduced to constraints that need to be passed on for control to bar codes and control registries.
 
 <!-- Figure 20 PassengerConstraint data structure offline -->
-![Passenger Constraint](../images/common-data-structures/passenger-constraint.png)
+![Passenger Constraint](../../images/common-data-structures/passenger-constraint.png)
 
 #### Data Constraints on PassengerConstraint
 
@@ -520,17 +520,17 @@ The reduction cards of a carrier are listed in the bulk data.
 | `cardIdRequired` | Indicates that the card id must be provided in the pre-booking request to validate the card. This card cannot be used without the online services for booking |
 
 <!-- Figure 27 reduction card offline -->
-![Reduction Card](../images/common-data-structures/reduction-card.png)
+![Reduction Card](../../images/common-data-structures/reduction-card.png)
 
 ### ReductionConstraint
 
 A fare associated with this constraint requires one of the listed cards to be presented by the passenger on the trip. Card Ids can be taken from the listed cards provided within the fare data delivery or from the common code list in Reduction “cards”.
 
 <!-- Figure 28 ReductionCardConstraint data structure offline -->
-![Reduction Constraint](../images/common-data-structures/reduction-constraint.png)
+![Reduction Constraint](../../images/common-data-structures/reduction-constraint.png)
 
 <!-- Figure 29 ReductionCardReference data structure -->
-![Reduction Card Reference](../images/common-data-structures/reduction-card-reference.png)
+![Reduction Card Reference](../../images/common-data-structures/reduction-card-reference.png)
 
 ### RegionalConstraint
 
@@ -591,7 +591,7 @@ ReservationParameter provide data on how to combine reservations with NRT fares,
 <!-- Figure 35 ReservationParameter data structure -->
 <!-- Figure 36 ReservationParameter - support for 90918-1 reservation interface -->
 <!-- Figure 37 ReservationParameter data structure - reservation options -->
-![Reservation Parameter](../images/common-data-structures/reservation-parameter.png)
+![Reservation Parameter](../../images/common-data-structures/reservation-parameter.png)
 
 Code Lists
 
@@ -604,7 +604,7 @@ Details on stations including codes and names. Codes must include the MERITS cod
 in case it is defined for a station.
 
 <!-- Figure 38 structure Station detail data -->
-![Station Detail](../images/common-data-structures/station-detail.png)
+![Station Detail](../../images/common-data-structures/station-detail.png)
 
 ### StationNames
 
@@ -615,16 +615,16 @@ descriptions whereas the long for is used for entry and exit stations.
 A legacy border point code can be provided during the migration to the OSDM data model.
 
 <!-- Figure 39 structure Station detail data (offline only) -->
-![Station Names](../images/common-data-structures/station-names.png)
+![Station Names](../../images/common-data-structures/station-names.png)
 
 ### Text
 
 Used for all textual descriptions where translations might be needed.
 
 <!-- Figure 40 structure Text Data Structure -->
-![Text](../images/common-data-structures/text.png)
+![Text](../../images/common-data-structures/text.png)
 
-![Translation](../images/common-data-structures/translation.png)
+![Translation](../../images/common-data-structures/translation.png)
 
 ### SalesAvailability
 
@@ -639,7 +639,7 @@ A reference to a calendar can be provided to indicate all sales dates.
 
 <!-- Figure 40 structure Sales Availability -->
 
-![Sales Availability](../images/common-data-structures/sales-availability.png)
+![Sales Availability](../../images/common-data-structures/sales-availability.png)
 
 #### Data Constraint on SalesAvailability
 
@@ -661,7 +661,7 @@ The online data structure will not provide the id.
 
 <!-- Figure 42 structure Service Constraints -->
 
-![Service Constraint](../images/common-data-structures/service-constraint.png)
+![Service Constraint](../../images/common-data-structures/service-constraint.png)
 
 #### Data Constraints on ServiceConstraint
 
@@ -690,7 +690,7 @@ compartment).
 
 <!-- Figure 43 Service level description (offline) -->
 
-![Service Level](../images/common-data-structures/service-level.png)
+![Service Level](../../images/common-data-structures/service-level.png)
 
 ### TravelValidityConstraint
 
@@ -703,13 +703,13 @@ The travel validity constraint defines at which times the passenger is permitted
 <!-- Figure 46 travel validity data structure – excluded time range -->
 <!-- Figure 47 travel validity data structure - return constraint -->
 
-![Travel Validity](../images/common-data-structures/travel-validity.png)
+![Travel Validity](../../images/common-data-structures/travel-validity.png)
 
-![Travel Validity - validity range](../images/common-data-structures/travel-validity-validity-range.png)
+![Travel Validity - validity range](../../images/common-data-structures/travel-validity-validity-range.png)
 
-![Travel Validity - excluded time range](../images/common-data-structures/travel-validity-excluded-time-range.png)
+![Travel Validity - excluded time range](../../images/common-data-structures/travel-validity-excluded-time-range.png)
 
-![Travel Validity - return constraint](../images/common-data-structures/travel-validity-return-constraint.png)
+![Travel Validity - return constraint](../../images/common-data-structures/travel-validity-return-constraint.png)
 
 | Code | Description |
 |---|---|
@@ -724,4 +724,4 @@ Definition of zones used in regional validity.
 The area of a zone can be defined by either a list of stations, geographical polygon of a list of NUTS
 codes. Multiple definitions are allowed in case they define the same area.
 
-![Zone Definition](../images/common-data-structures/zone-definition.png)
+![Zone Definition](../../images/common-data-structures/zone-definition.png)

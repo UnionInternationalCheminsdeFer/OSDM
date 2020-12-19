@@ -43,7 +43,7 @@ are not represented or simplified in the data models.
 
 ## Process Flow
 
-![Process Flow](./images/processes/act-process-flow.svg)
+![Process Flow](../../images/processes/act-process-flow.svg)
 
 The process flow starts with getting offers which can be chosen by the customer. Once
 selected they can be prebooked and after the payment process (which is outside of the
