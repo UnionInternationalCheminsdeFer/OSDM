@@ -65,10 +65,16 @@ state **accepted for design**.
 - The steering board releases **major, i.e. breaking changes** → the
   improvement is **published**.
 
+## Working Mode
+
+The technical working group meets online every Friday from 9:00 to 11:00.
+Participation is open to everybody and highly encouraged. If you wish to join, please contact
+[Schlapbach Andreas](https://www.linkedin.com/in/andreas-schlapbach-09b095ab/).
+
 ## Road Map
 
 The specification, i.e., the product is improved in fixed-length time boxes similar to
-a [programm increment](https://www.scaledagileframework.com/program-increment/)
+a [program increment](https://www.scaledagileframework.com/program-increment/)
 in the [SAFe](https://www.scaledagileframework.com/) framework.
 
 The following increments are planned:

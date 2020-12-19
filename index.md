@@ -42,7 +42,7 @@ The Open Sales and Distribution Model has emerged from the **new Tariff Model (n
   dynamically priced segments. The priced segments are calculated and provided by so-called fare
   providers. The priced segments are fetched by an allocator which combines these priced segments into
   a consistent offer and later into a booking and ticket. Essentially, this process allows the vision
-  of *"one trip - one ticket within Europe"* to be realized.
+  of *"one trip - one ticket within Europe"* to materialize.
 
 - The [Full Service Model (FSM 2.0)](https://tsga.eu/fsm) initiative defines an open standard for the
   distribution of rail services (bookings, reservations, integrated reservations and additional
@@ -122,8 +122,7 @@ To address the third goal we took an **end-to-end approach** to the call chain f
 **Distributor** to **Allocator** to **Fare Provider (aka. carrier)** and aligned the
 interfaces by modelling them the same.  Thus calling a provider, an allocator
 or a fare provider is exactly the same from an API perspective. The only
-difference is that in allocator mode you get fare specific information needed.
-This ensure that no complex transformation or mapping layers are required.
+difference is that in allocator mode you get fare specific information.
 
 ## Access to the Specification
 
