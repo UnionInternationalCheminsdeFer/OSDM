@@ -1,0 +1,24 @@
+hide footbox
+
+actor customer
+
+customer -> distributor: get an offer A to C
+distributor -> "allocator 1": get an offer A to C
+
+"allocator 1" -> "allocator 1": split trip into allocator
+"allocator 1" -> "fare provider 1": get a fare A to B
+note right: B can be a virtual border point
+"fare provider 1" --> "allocator 1": fare for A to B
+"allocator 1" -> "allocator 2": forward offer request for B to C
+
+"allocator 2" -> "fare provider 2": get a fare B to C
+"fare provider 2" --> "allocator 2": fare for B to C
+"allocator 2" -> "allocator 2": create offer part
+"allocator 2" --> "allocator 1": offerPart
+
+"allocator 1" -> "allocator 1": create offerPart from fares
+"allocator 1" -> "allocator 1": create offer from offerParts
+"allocator 1" --> distributor: offer
+
+distributor -> distributor: create overall offer
+distributor --> customer: overall offfer
