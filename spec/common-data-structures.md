@@ -92,7 +92,7 @@ In case multiple rules apply to the same after sales transaction the rule with t
 
 | Code | Description |
 |---|---|
-| `fee/feeRef` | In online services a fee is included directly, in bulk data exchange a fee must be included in the list of prices and referenced by an id. The fee provided must include the currency EUR if not agreed bilaterally otherwise. |
+| `fee/feeRef` | In online services a fee is included directly, in bulk data exchange a fee must be included in the list of prices and referenced by an id. The fee provided must include the currency € if not agreed bilaterally otherwise. |
 | `applicationTime` / `applicationTimeStamp` | An application time stamp can be used in online services only. If an application time stamp is provided the allocation Time as relative time must not be included.
 
 ### Calendar
