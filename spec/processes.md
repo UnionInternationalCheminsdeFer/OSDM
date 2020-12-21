@@ -23,8 +23,8 @@ are not represented or simplified in the data models.
 | `/locations` | Resources to search for locations
 | `/trips` | Resources to search for trips
 | `/trip-offers-collection` | Resources to get bookable offers
-| `/trip-offers/{tripOfferId}` | *dito* |
-| `/offers/{offerId}` | *dito* |
+| `/trip-offers/{tripOfferId}` | *dito*
+| `/offers/{offerId}` | *dito*
 | `/offers/{offerId}/admissions/{admissionId}` | Resources to manipulate parts of an offer consisting of, e.g., admissions, ..  
 | `/offers/{offerId}/reservations/{reservationId}` | .. reservations,..
 | `/offers/{offerId}/ancillaries/{ancillaryId}` | .. ancillaries,..
@@ -41,7 +41,7 @@ are not represented or simplified in the data models.
 | `/bookings/{bookingId}/exchangeOffers` | Resources to get and accept a exchange offer
 | `/bookings/{bookingId}/exchangeOffers/{exchangeOfferId}` | *dito*
 | `/coachLayouts` | Returns all coach layouts.
-  `/coachLayouts/{layoutId}` | Returns a coach layout for layout id
+| `/coachLayouts/{layoutId}` | Returns a coach layout for layout id
 
 ## Process Flow
 
