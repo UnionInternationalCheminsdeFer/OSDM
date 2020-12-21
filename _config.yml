@@ -12,8 +12,7 @@ permalink: pretty
 
 favicon: favicon.png
 
-#hide_share_buttons: true
-#theme_color: '#eeeeee'
+fixed_navbar: top
 
 # Build settings
 remote_theme: chrisrhymes/bulma-clean-theme
