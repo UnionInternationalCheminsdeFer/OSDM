@@ -61,11 +61,26 @@ public class RouteDescriptionBuilder {
 		
 		Route route = via.getRoute();
 		
-		StringBuilder label = new StringBuilder();
+		if (via.getRoute().getStations().size() < 3) {
+			return "";
+		}
 		
-		label.append(getRouteDescription(route));
+		int first = 1;
+		int last = route.getStations().size() - 1;
 		
-		return label.toString();
+		try {
+			StringBuilder label = new StringBuilder();
+			for (int i = first; i < last; i++) {
+				if (i > first) {
+					label.append("*");
+				}
+				label.append(getRouteDescription(route.getStations().get(i)));			
+			}
+			return label.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return " ";
+		}
 
 	}
 
