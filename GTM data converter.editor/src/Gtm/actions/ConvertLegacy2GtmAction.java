@@ -62,6 +62,11 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 		 */
 		protected void run (IStructuredSelection structuredSelection) {
 			
+			EditingDomain domain = GtmUtils.getActiveDomain();
+			if (domain == null) return;
+			
+			GtmEditor editor = GtmUtils.getActiveEditor(); 
+			
 			GTMTool tool = GtmUtils.getGtmTool();
 			
 			if (tool == null) {
@@ -74,7 +79,7 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 			Country country = tool.getConversionFromLegacy().getParams().getCountry();
 			if (country == null) {
 				String message = NationalLanguageSupport.ConvertLegacy2GtmAction_2;
-				GtmUtils.writeConsoleError(message);
+				GtmUtils.writeConsoleError(message, editor);
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 				dialog.setText(NationalLanguageSupport.ConvertLegacy2GtmAction_3);
 				dialog.open(); 
@@ -84,7 +89,7 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 			if (tool.getConversionFromLegacy().getParams().getLegacyFareTemplates() == null || 
 				tool.getConversionFromLegacy().getParams().getLegacyFareTemplates().getFareTemplates().isEmpty()	) {
 				String message = "No fare templates defined!";
-				GtmUtils.writeConsoleError(message);
+				GtmUtils.writeConsoleError(message, editor);
 				MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 				dialog.setText(NationalLanguageSupport.ConvertLegacy2GtmAction_3);
 				dialog.open(); 
@@ -92,10 +97,7 @@ public class ConvertLegacy2GtmAction extends BasicGtmAction {
 			}
 			
 			
-			EditingDomain domain = GtmUtils.getActiveDomain();
-			if (domain == null) return;
-			
-			GtmEditor editor = GtmUtils.getActiveEditor(); 
+
 			
 			ConverterFromLegacy converter = new ConverterFromLegacy(tool,domain,editor);
 			

@@ -194,10 +194,7 @@ public class ImportStationsAction extends BasicGtmAction {
 						Command addCommand = AddCommand.create(domain, tool.getCodeLists().getStations(), GtmPackage.Literals.STATIONS__STATIONS, newStations);
 						if (addCommand != null & addCommand.canExecute()) {
 							domain.getCommandStack().execute(addCommand);
-							editor.getSite().getShell().getDisplay().asyncExec(() -> {
-								GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportStationsAction_17 + Integer.toString(addedStationsF)+")" ); //$NON-NLS-2$
-							});
-
+							GtmUtils.writeConsoleError(NationalLanguageSupport.ImportStationsAction_17 + Integer.toString(addedStationsF)+")", editor); //$NON-NLS-2$
 						}
 						monitor.worked(1000);
 						
@@ -227,9 +224,7 @@ public class ImportStationsAction extends BasicGtmAction {
 						}
 						if (command != null & !command.isEmpty() & command.canExecute()) {
 							domain.getCommandStack().execute(command);
-							editor.getSite().getShell().getDisplay().asyncExec(() -> {
-								GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportStationsAction_20 + Integer.toString(updatedStationsF) + ")" ); //$NON-NLS-2$
-							});
+							GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportStationsAction_20 + Integer.toString(updatedStationsF) + ")" , editor); //$NON-NLS-2$
 						}
 						monitor.worked(1000);
 						
@@ -240,9 +235,7 @@ public class ImportStationsAction extends BasicGtmAction {
 						});
 					} catch (Exception e) {
 						String message = NationalLanguageSupport.ImportStationsAction_23  + " - " + e.getMessage();
-						editor.getSite().getShell().getDisplay().asyncExec(() -> {
-							ConsoleUtil.printError(NationalLanguageSupport.ConverterToLegacy_42, message);
-						});
+						GtmUtils.writeConsoleError(message, editor);
 					} finally {
 						monitor.done();
 					}
@@ -298,10 +291,7 @@ public class ImportStationsAction extends BasicGtmAction {
 				 //strange MERITS data
 				 if (countryCodeUIC == 0) {
 					 String message = NationalLanguageSupport.ImportStationsAction_27 + stationName;
-					 editor.getSite().getShell().getDisplay().asyncExec(() -> {
-							GtmUtils.writeConsoleError(message); 
-					 });
-					 
+					 GtmUtils.writeConsoleError(message, editor);
 					 return null;
 				 }
 				
@@ -343,18 +333,14 @@ public class ImportStationsAction extends BasicGtmAction {
 					 return station;
 				 } else {
 					 String message = NationalLanguageSupport.ImportStationsAction_28 + stationCode + " " + stationName; //$NON-NLS-2$
-					 editor.getSite().getShell().getDisplay().asyncExec(() -> {
-							GtmUtils.writeConsoleError(message); 
-					 });
+					 GtmUtils.writeConsoleError(message, editor);
 				 }
 			 
 			 
 			} catch (Exception e) {
 				 e.printStackTrace();
 				 String message = "could not decode edifact segment: " +  edifact;
-				 editor.getSite().getShell().getDisplay().asyncExec(() -> {
-						GtmUtils.writeConsoleError(message); 
-				 });
+				 GtmUtils.writeConsoleError(message, editor);
 			}
 			 return null;
 		}

@@ -34,6 +34,9 @@ public class LegacyExporter {
 	private Date fromDate = null;
 	private Date untilDate = null;	
 	
+	private boolean writeL = false;
+	private boolean writeP = false;
+	
 		
 	public LegacyExporter(GTMTool tool, Path path, GtmEditor editor) {
 		this.tool = tool;
@@ -45,6 +48,9 @@ public class LegacyExporter {
 		this.provider = tool.getConversionFromLegacy().getLegacy108().getCarrier().getCode();
 		this.fromDate = tool.getConversionFromLegacy().getLegacy108().getStartDate();
 		this.untilDate = tool.getConversionFromLegacy().getLegacy108().getEndDate();
+		
+		writeL = false;
+		writeP = false;
 
 	}
 	
@@ -64,6 +70,21 @@ public class LegacyExporter {
 	public void export(IProgressMonitor monitor) {
 		try {
 			
+			writeL = false;
+			writeP = false;
+			
+			if (tool.getConversionFromLegacy().getLegacy108().getLegacySeparateContractSeries() != null && 
+				!tool.getConversionFromLegacy().getLegacy108().getLegacySeparateContractSeries().getSeparateContractSeries().isEmpty()) {
+				writeL = true;
+			}
+				
+			if (tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions() != null &&
+				!tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions().getLegacyFares().isEmpty()) {
+				writeP = true;	
+			}
+						
+
+			
 			monitor.subTask(NationalLanguageSupport.LegacyExporter_1);
 			exportTCVfile();
 			monitor.worked(1);
@@ -77,11 +98,15 @@ public class LegacyExporter {
 			monitor.worked(1);
 			
 			monitor.subTask(NationalLanguageSupport.LegacyExporter_4);
-			exportTCVPfile();
+			if (writeP) {
+				exportTCVPfile();
+			}
 			monitor.worked(1);
 			
 			monitor.subTask(NationalLanguageSupport.LegacyExporter_5);
-			exportTCVLfile();
+			if (writeL) {
+				exportTCVLfile();
+			}
 			monitor.worked(1);
 			
 			
@@ -106,7 +131,7 @@ public class LegacyExporter {
 			String message = NationalLanguageSupport.LegacyExporter_7 + e.getLocalizedMessage();
 			dialog.setText(message);
 			dialog.open(); 
-			GtmUtils.writeConsoleError(message);
+			writeConsoleError(message);
 			e.printStackTrace();
 			return;
 
@@ -115,11 +140,6 @@ public class LegacyExporter {
 	
 
 	private void exportTCVLfile() throws IOException {
-		
-		if (tool.getConversionFromLegacy().getLegacy108().getLegacySeparateContractSeries() == null || 
-			tool.getConversionFromLegacy().getLegacy108().getLegacySeparateContractSeries().getSeparateContractSeries().isEmpty()) {
-			return;
-		}
 		
 		String provider = tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries().get(0).getSupplyingCarrierCode();
 		
@@ -161,9 +181,11 @@ public class LegacyExporter {
 
 	private void exportTCVPfile() throws IOException {
 		
+
+		
 		String provider = tool.getConversionFromLegacy().getLegacy108().getLegacySeriesList().getSeries().get(0).getSupplyingCarrierCode();
 		
-		BufferedWriter writer = getWriter(exportPath, "TCVL" + provider); //$NON-NLS-1$
+		BufferedWriter writer = getWriter(exportPath, "TCVP" + provider); //$NON-NLS-1$
 		
 		boolean firstLine = true;
 		
@@ -308,7 +330,7 @@ public class LegacyExporter {
 		
 		try {
 			
-			if (tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions() != null) {
+			if (tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions() != null && !tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions().getLegacyFares().isEmpty()) {
 		
 				for (Legacy108FareDescription fare : tool.getConversionFromLegacy().getLegacy108().getLegacyFareDescriptions().getLegacyFares()) {
 			
@@ -347,15 +369,37 @@ public class LegacyExporter {
 				tool.getConversionFromLegacy().getLegacy108().getStartDate(),
 				tool.getConversionFromLegacy().getLegacy108().getEndDate());
 		
-
-
 			writer.write(line1);
+			
 			writer.newLine();
 			writer.write(line2);
+			
+			if (writeP) {
+				String line3 = getHeaderLine("TCVP" + provider, provider, providerName, //$NON-NLS-1$
+				tool.getConversionFromLegacy().getLegacy108().getLegacyStations().getLegacyStations().size(),
+				tool.getConversionFromLegacy().getLegacy108().getStartDate(),
+				tool.getConversionFromLegacy().getLegacy108().getEndDate());
+				writer.newLine();					
+				writer.write(line3);
+			}
+			
+			if (writeL) {
+				String line3 = getHeaderLine("TCVL" + provider, provider, providerName, //$NON-NLS-1$
+				tool.getConversionFromLegacy().getLegacy108().getLegacyStations().getLegacyStations().size(),
+				tool.getConversionFromLegacy().getLegacy108().getStartDate(),
+				tool.getConversionFromLegacy().getLegacy108().getEndDate());
+				writer.newLine();					
+				writer.write(line3);
+			}			
+			
 			writer.close();
+			
+			
+			
+			
 		} catch (IOException e) {
 			String message = "could not write TCV file in: " + exportPath.toString();
-			GtmUtils.writeConsoleError(message);
+			writeConsoleError(message);
 			e.printStackTrace();
 		}
 
@@ -503,7 +547,7 @@ public class LegacyExporter {
 		//	6 Flag 1 for the 35- character station designation numeric 1 M  51 0 or 3 (see point 2.2) 
 		sb.append("0"); //$NON-NLS-1$
 		//	7 17-character station designation alpha numeric 17 M  52-68 Computer notation with no accents but in upper and lower case. The file is to be transferred in the ascending alphanumeric order of this field. 
-		sb.append(String.format("%-17s",GtmUtils.limitStringLengthWithConsoleEntry(station.getName(),17,editor,NationalLanguageSupport.LegacyExporter_106)));				 //$NON-NLS-1$
+		sb.append(String.format("%-17s",GtmUtils.limitStringLengthWithConsoleEntry(station.getShortName(),17,editor,NationalLanguageSupport.LegacyExporter_106)));				 //$NON-NLS-1$
 		//	8 Flag 2 for the 17- character station designation numeric 1 M  69 0 or 3 (see point 2.2) 
 		sb.append("0");		 //$NON-NLS-1$
 		//	9 17-character route description of station alpha numeric 17 O  70-86 Field 7 notation for route instruction purposes. 
@@ -608,11 +652,11 @@ public class LegacyExporter {
 		//	18 Flag 4 for usual route numeric 1 M  69 0 or 3 (see point 2.2) 
 		sb.append("0");		 //$NON-NLS-1$
 		//	19 Bus code alpha numeric 1 O  70 'B' entered here in the case of bus services 
-		sb.append("0");	 //$NON-NLS-1$
+		sb.append(" ");	 //$NON-NLS-1$
 		//	20 Flag 5 for bus code numeric 1 M  71 0 or 3 (see point 2.2) 
 		sb.append("0");		 //$NON-NLS-1$
 		//	21 Ferry code alpha numeric 1 O  72 'S' entered here in the case of ferry services 
-		sb.append("0");		 //$NON-NLS-1$
+		sb.append(" ");		 //$NON-NLS-1$
 		//	22 Flag 6 for ferry code numeric 1 M  73 0 or 3 (see point 2.2) 
 		sb.append("0");		 //$NON-NLS-1$
 		//	23 Carrier code separator 1 '<' 1 M  74 This field always contains the symbol '<'. 
@@ -744,6 +788,8 @@ public class LegacyExporter {
 		
 	}
 
-
+	private void writeConsoleError(String message) {
+		GtmUtils.writeConsoleError(message,editor);
+	}
 
 }

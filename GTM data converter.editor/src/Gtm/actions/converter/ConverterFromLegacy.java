@@ -1072,9 +1072,8 @@ public class ConverterFromLegacy {
 	 */
 	public RegionalConstraint convertSeriesToRegionalConstraint(LegacySeries series) throws ConverterException{
 		
-		RegionalConstraint constraint = GtmFactory.eINSTANCE.createRegionalConstraint();
-		constraint.setDataSource(DataSource.CONVERTED);
-		
+		RegionalConstraint constraint = createRegionalConstraint(series);
+			
 		int seqNb = 1;
 				
 		Country country = tool.getConversionFromLegacy().getParams().getCountry();

@@ -117,8 +117,8 @@ public class ImportServiceBrandsAction extends ImportCsvDataAction {
 			        
 			        if (command != null && !command.isEmpty()) {
 			        	domain.getCommandStack().execute(command);
-						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportServiceBrandsAction_9 + Integer.toString(added)+")" ); //$NON-NLS-2$
-						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportServiceBrandsAction_11 + Integer.toString(updated) + ")" ); //$NON-NLS-2$
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportServiceBrandsAction_9 + Integer.toString(added)+")", editor ); //$NON-NLS-2$
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportServiceBrandsAction_11 + Integer.toString(updated) + ")", editor ); //$NON-NLS-2$
 			        }	
 					monitor.worked(10);
 					monitor.done();

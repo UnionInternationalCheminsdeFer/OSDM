@@ -78,18 +78,14 @@ public class LegacyImporter {
 			charset = charsetlit.substring(i+1);
 			if (!Charset.isSupported(charset)) {
 				String message = NationalLanguageSupport.LegacyImporter_2;
-				editor.getSite().getShell().getDisplay().asyncExec(() -> {
-					GtmUtils.writeConsoleInfo(message);
-				});
+				GtmUtils.writeConsoleInfo(message, editor);
 				charset = null; 
 				return;
 			};
 
 		} catch (Exception e) {
 			String message = NationalLanguageSupport.LegacyImporter_3;
-			editor.getSite().getShell().getDisplay().asyncExec(() -> {
-				GtmUtils.writeConsoleError(message);
-			});
+			GtmUtils.writeConsoleError(message, editor);
 			e.printStackTrace();
 			return;
 		}
@@ -193,9 +189,7 @@ public class LegacyImporter {
 				}
 			} catch (IOException e) {
 				String message = "TCVL file import failed" + " - " + e.getMessage();
-				editor.getSite().getShell().getDisplay().asyncExec(() -> {
-					GtmUtils.writeConsoleError(message);
-				});
+				GtmUtils.writeConsoleError(message, editor);
 				e.printStackTrace();
 				return;
 			} 
@@ -205,10 +199,7 @@ public class LegacyImporter {
 			if (cmd.canExecute()) {
 				domain.getCommandStack().execute(cmd);
 				String message = "TCVL series imported: " + Integer.toString(list.getSeparateContractSeries().size());
-				editor.getSite().getShell().getDisplay().asyncExec(() -> {
-					GtmUtils.writeConsoleInfo(message);
-				});
-			
+				GtmUtils.writeConsoleInfo(message, editor);
 			}
 	}
 
@@ -277,9 +268,7 @@ public class LegacyImporter {
 				}
 			} catch (IOException e) {
 				String message = NationalLanguageSupport.LegacyImporter_9 + " - " + e.getMessage();
-				editor.getSite().getShell().getDisplay().asyncExec(() -> {
-					GtmUtils.writeConsoleError(message);
-				});
+				GtmUtils.writeConsoleError(message, editor);
 				e.printStackTrace();
 				return;
 			} 
@@ -289,10 +278,7 @@ public class LegacyImporter {
 			if (cmd.canExecute()) {
 				domain.getCommandStack().execute(cmd);
 				String message = NationalLanguageSupport.LegacyImporter_10 + Integer.toString(stations.getLegacyStations().size());
-				editor.getSite().getShell().getDisplay().asyncExec(() -> {
-					GtmUtils.writeConsoleInfo(message);
-				});
-			
+				GtmUtils.writeConsoleInfo(message, editor);			
 			}
 		
 	}
@@ -321,9 +307,7 @@ public class LegacyImporter {
 			}
 		} catch (IOException e) {
 			String message = NationalLanguageSupport.LegacyImporter_12 + " - " + e.getMessage();
-			editor.getSite().getShell().getDisplay().asyncExec(() -> {
-				GtmUtils.writeConsoleInfo(message);
-			});	
+			GtmUtils.writeConsoleInfo(message, editor);
 			e.printStackTrace();
 			return;
 		} 
@@ -332,9 +316,7 @@ public class LegacyImporter {
 		if (cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
 			String message = NationalLanguageSupport.LegacyImporter_13 + Integer.toString(seriesList.getSeries().size());
-			editor.getSite().getShell().getDisplay().asyncExec(() -> {
-				GtmUtils.writeConsoleInfo(message);
-			});
+			GtmUtils.writeConsoleInfo(message, editor);
 		}
 
 		
@@ -378,9 +360,7 @@ public class LegacyImporter {
 			} catch (IOException e) {
 				
 				String message = NationalLanguageSupport.LegacyImporter_14 + " - " + e.getMessage();
-				editor.getSite().getShell().getDisplay().asyncExec(() -> {
-					GtmUtils.writeConsoleInfo(message);
-				});
+				GtmUtils.writeConsoleInfo(message, editor);
 				e.printStackTrace();
 				return;
 			} 
@@ -398,9 +378,7 @@ public class LegacyImporter {
 			if (!command.isEmpty() && command.canExecute()) {
 				domain.getCommandStack().execute(command);
 				String message = NationalLanguageSupport.LegacyImporter_15 + Integer.toString(resultListRouteFares.getRouteFare().size());
-				editor.getSite().getShell().getDisplay().asyncExec(() -> {
-					GtmUtils.writeConsoleInfo(message);
-				});
+				GtmUtils.writeConsoleInfo(message, editor);
 			}
 			
 	}
@@ -532,9 +510,7 @@ public class LegacyImporter {
 			}
 		} catch (IOException e) {
 			String message = NationalLanguageSupport.LegacyImporter_18 + " - " + e.getMessage();
-			editor.getSite().getShell().getDisplay().asyncExec(() -> {
-				GtmUtils.writeConsoleError(message);
-			});
+			GtmUtils.writeConsoleError(message, editor);
 			e.printStackTrace();
 			return null;
 		} 
@@ -549,9 +525,7 @@ public class LegacyImporter {
 			br = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
 			String message = NationalLanguageSupport.LegacyImporter_19+ " - " + e.getMessage();
-			editor.getSite().getShell().getDisplay().asyncExec(() -> {
-				GtmUtils.writeConsoleError(message);
-			});
+			GtmUtils.writeConsoleError(message, editor);
 			e.printStackTrace();
 			return null;
 		} 
