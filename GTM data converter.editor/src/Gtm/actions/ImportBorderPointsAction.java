@@ -333,24 +333,10 @@ public class ImportBorderPointsAction extends ImportCsvDataAction {
 	}
 
 	private void writeConsoleInfo(String message, GtmEditor editor) {
-		try {
-			if (editor == null || message == null || message.length() == 0) return;
-			editor.getSite().getShell().getDisplay().asyncExec(() -> {
-				ConsoleUtil.printInfo("Errors", message);
-			});
-		} catch (Exception e) {	
-			e.printStackTrace();
-		}
+		GtmUtils.writeConsoleInfo(message, editor);
 	}
 	
 	private void writeConsoleError(String message, GtmEditor editor) {
-		try {
-			if (editor == null || message == null || message.length() == 0) return;
-			editor.getSite().getShell().getDisplay().asyncExec(() -> {
-				ConsoleUtil.printError("Errors", message);
-			});
-		} catch (Exception e) {	
-			e.printStackTrace();
-		}
+		GtmUtils.writeConsoleError(message, editor);
 	}
 }

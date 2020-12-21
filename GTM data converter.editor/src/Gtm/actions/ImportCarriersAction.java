@@ -116,8 +116,8 @@ public class ImportCarriersAction extends ImportCsvDataAction {
 			        
 			        if (command != null && !command.isEmpty()) {
 			        	domain.getCommandStack().execute(command);
-						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportCarriersAction_9 + Integer.toString(added)+")" ); //$NON-NLS-2$
-						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportCarriersAction_11 + Integer.toString(updated) + ")" ); //$NON-NLS-2$
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportCarriersAction_9 + Integer.toString(added)+")" , editor); //$NON-NLS-2$
+						GtmUtils.writeConsoleInfo(NationalLanguageSupport.ImportCarriersAction_11 + Integer.toString(updated) + ")" , editor); //$NON-NLS-2$
 			        }	
 					monitor.worked(10);
 					monitor.done();

@@ -481,12 +481,17 @@ public class LegacySeriesItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		LegacySeries legacySeries = (LegacySeries)object;
-		return getString("_UI_LegacySeries_type") + " " + legacySeries.getNumber();
+		String label = getString("_UI_LegacySeries_type") + " " + legacySeries.getNumber();
+		if (legacySeries.getRouteDescription() != null) {
+			label = label + " - " + legacySeries.getRouteDescription();
+		}
+		return label;
+		
 	}
 
 

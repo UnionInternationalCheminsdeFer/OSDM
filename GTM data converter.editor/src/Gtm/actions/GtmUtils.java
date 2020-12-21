@@ -127,7 +127,7 @@ public class GtmUtils {
 			domain.getCommandStack().execute(new DirtyCommand());
 		} else {
 			String message = "could not change data: " + command.getDescription();
-			GtmUtils.writeConsoleError(message);
+			GtmUtils.writeConsoleError(message,null);
 		}
 		
 		System.gc();
@@ -599,20 +599,6 @@ public class GtmUtils {
 	public static void populateServiceBrands(ServiceBrands brands) {
 		
 	}
-
-
-
-	public static void writeConsoleError(String message) {
-		ConsoleUtil.printError("Errors", message);
-	}
-
-	public static void writeConsoleWarning(String message) {
-		ConsoleUtil.printWarning("Errors", message);
-	}
-	
-	public static void writeConsoleInfo(String message) {
-		ConsoleUtil.printInfo("Errors", message);
-	}	
 	
 	public static CompoundCommand setFareIds(GTMTool tool, EditingDomain domain) {
 		
@@ -973,11 +959,7 @@ public class GtmUtils {
 		
 		
 		String truncated = s.substring(0, Math.min(maxChar, s.length()));
-
-		editor.getSite().getShell().getDisplay().asyncExec(() -> {
-			GtmUtils.writeConsoleError("text" + " truncated:" + s + " -- " + truncated); //$NON-NLS-1$ //$NON-NLS-3$
-		});
-		
+		GtmUtils.writeConsoleError("text" + " truncated:" + s + " -- " + truncated, editor);//$NON-NLS-1$ //$NON-NLS-3$
 		return truncated;
 	}
 	
@@ -1024,33 +1006,63 @@ public class GtmUtils {
 	
 	
 	public static void writeConsoleError(String message, GtmEditor editor) {
+		
+		if (message == null || message.length() == 0) {
+			return;
+		}
 		try {
-			if (editor == null || message == null || message.length() == 0) return;
-			editor.getSite().getShell().getDisplay().asyncExec(() -> {
-				ConsoleUtil.printError(NationalLanguageSupport.ConverterFromLegacy_53, message);
-			});
+			if (editor == null || message == null || message.length() == 0) {
+				GtmEditor e = GtmUtils.getActiveEditor();
+				e.getSite().getShell().getDisplay().asyncExec(() -> {
+					ConsoleUtil.printError(NationalLanguageSupport.ConverterFromLegacy_53, message);
+				});	
+			} else {
+				editor.getSite().getShell().getDisplay().asyncExec(() -> {
+					ConsoleUtil.printError(NationalLanguageSupport.ConverterFromLegacy_53, message);
+				});
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public static void writeConsoleInfo(String message, GtmEditor editor) {
+		if (message == null || message.length() == 0) {
+			return;
+		}
+		
 		try {
-			if (editor == null || message == null || message.length() == 0) return;
-			editor.getSite().getShell().getDisplay().asyncExec(() -> {
-				ConsoleUtil.printInfo(NationalLanguageSupport.ConverterFromLegacy_53, message);
-			});
+			if (editor == null) {
+				GtmEditor e = GtmUtils.getActiveEditor();
+				e.getSite().getShell().getDisplay().asyncExec(() -> {
+					ConsoleUtil.printInfo(NationalLanguageSupport.ConverterFromLegacy_53, message);
+				});	
+			} else {
+				editor.getSite().getShell().getDisplay().asyncExec(() -> {
+					ConsoleUtil.printInfo(NationalLanguageSupport.ConverterFromLegacy_53, message);
+				});
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public static void writeConsoleWarning(String message, GtmEditor editor) {
+		if (message == null || message.length() == 0) {
+			return;
+		}
+		
 		try {
-			if (editor == null || message == null || message.length() == 0) return;
-			editor.getSite().getShell().getDisplay().asyncExec(() -> {
-				ConsoleUtil.printWarning(NationalLanguageSupport.ConverterFromLegacy_53, message);
-			});
+			if (editor == null) {
+				GtmEditor e = GtmUtils.getActiveEditor();
+				e.getSite().getShell().getDisplay().asyncExec(() -> {
+					ConsoleUtil.printWarning(NationalLanguageSupport.ConverterFromLegacy_53, message);
+				});					
+			} else {
+				editor.getSite().getShell().getDisplay().asyncExec(() -> {
+					ConsoleUtil.printWarning(NationalLanguageSupport.ConverterFromLegacy_53, message);
+				});
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

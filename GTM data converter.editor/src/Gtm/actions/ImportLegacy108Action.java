@@ -39,6 +39,10 @@ public class ImportLegacy108Action extends BasicGtmAction {
 	@Override
 	protected void runAction(GTMTool tool) {
 		
+		EditingDomain domain = GtmUtils.getActiveDomain();
+		
+		GtmEditor editor = GtmUtils.getActiveEditor(); 
+		
 		if (tool == null) {
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 			dialog.setText(NationalLanguageSupport.ConvertLegacy2GtmAction_1);
@@ -50,7 +54,7 @@ public class ImportLegacy108Action extends BasicGtmAction {
 		Country country = tool.getConversionFromLegacy().getParams().getCountry();
 		if (country == null) {
 			String message = NationalLanguageSupport.ConvertLegacy2GtmAction_2;
-			GtmUtils.writeConsoleError(message);
+			GtmUtils.writeConsoleError(message, editor);
 			MessageBox dialog =  new MessageBox(Display.getDefault().getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 			dialog.setText(NationalLanguageSupport.ConvertLegacy2GtmAction_3);
 			dialog.open(); 
@@ -67,9 +71,6 @@ public class ImportLegacy108Action extends BasicGtmAction {
         
         File file = new File(path);
         
-		EditingDomain domain = GtmUtils.getActiveDomain();
-		
-		GtmEditor editor = GtmUtils.getActiveEditor(); 
 		
 		LegacyImporter importer = new LegacyImporter(GtmUtils.getGtmTool(), file.toPath(), domain, editor);
 		
