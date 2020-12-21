@@ -41,7 +41,7 @@ are not represented or simplified in the data models.
 | `/bookings/{bookingId}/exchangeOffers` | Resources to get and accept a exchange offer
 | `/bookings/{bookingId}/exchangeOffers/{exchangeOfferId}` | *dito*
 | `/coachLayouts` | Returns all coach layouts.
-  `/coachLayouts/{layoutId}` / Returns a coach layout for layout id
+  `/coachLayouts/{layoutId}` | Returns a coach layout for layout id
 
 ## Process Flow
 
