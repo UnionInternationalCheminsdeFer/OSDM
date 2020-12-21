@@ -23,30 +23,32 @@ are not represented or simplified in the data models.
 | `/locations` | Resources to search for locations
 | `/trips` | Resources to search for trips
 | `/trip-offers-collection` | Resources to get bookable offers
-| `/trip-offers` | *dito* |
-| `/offers` | *dito* |
-| `/offers/{id}/admissions` | Resources to manipulate parts of an offer consisting of, e.g., admissions, ..  
-| `/offers/{id}/reservations` | .. reservations,..
-| `/offers/{id}/ancillaries` | .. ancillaries,..
-| `/offers/{id}/fares` | .. or if permitted also fares.
+| `/trip-offers/{tripOfferId}` | *dito* |
+| `/offers/{offerId}` | *dito* |
+| `/offers/{offerId}/admissions/{admissionId}` | Resources to manipulate parts of an offer consisting of, e.g., admissions, ..  
+| `/offers/{offerId}/reservations/{reservationId}` | .. reservations,..
+| `/offers/{offerId}/ancillaries/{ancillaryId}` | .. ancillaries,..
+| `/offers/{offerId}/fares/{fareId}` | .. or if permitted also fares.
+  `/offer-collections` | Offers non-journey based products
 | `/bookings` | Resources to manipulate bookings
 | `/offers/{id}/passengers` | Resources to manipulate a passenger's information at every stage of the flow
-| `/bookings/{id}/passengers` | *dito*
+| `/bookings/{bookingId}/passengers/{passengerId}` | *dito*
 | `/products` | Resources to retrieve products information on one or more products
-| `/bookings/{id}/fulfillments`| Resources to retrieve fulfillments, e.g. tickets
+| `/bookings/{bookingId}/fulfillments`| Resources to retrieve fulfillments, e.g. tickets
 | `/fulfillments` | *dito*
-| `/bookings/{Id}/refundOffers` | Resources to get and accept a refund offer
-| `/bookings/{Id}/refundOffers/{refundOfferId}` | *dito*
-| `/bookings/{Id}/exchangeOffers` | Resources to get and accept a exchange offer
-| `/bookings/{}/exchangeOffers/{exchangeOfferId}` | *dito*
-| `/coachLayouts` | Resources to get layouts of coaches
+| `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer
+| `/bookings/{bookingId}/refundOffers/{refundOfferId}` | *dito*
+| `/bookings/{bookingId}/exchangeOffers` | Resources to get and accept a exchange offer
+| `/bookings/{bookingId}/exchangeOffers/{exchangeOfferId}` | *dito*
+| `/coachLayouts` | Returns all coach layouts.
+  `/coachLayouts/{layoutId}` / Returns a coach layout for layout id
 
 ## Process Flow
 
 ![Process Flow](../images/processes/act-process-flow.svg)
 
 The process flow starts with getting offers which can be chosen by the customer. Once
-selected they can be prebooked and after the payment process (which is outside of the
+selected they can be pre-booked and after the payment process (which is outside of the
 scope of this document) they can be booked. The fulfillment of the booking can either
 be on paper or paperless.
 
@@ -167,7 +169,7 @@ requested section must then be provided so that the provider knows which
 portion to work on.
 
 An offer request to an **Allocator** can lead to offers with multiple
-offerparts, potentially coming from different sub-providers (OSDM compliant or
+`OfferParts`, potentially coming from different sub-providers (OSDM compliant or
 not). However, in preparing offers with multiple offer parts for the API
 consumer, the **Distributors** must follow the following rules :
 
@@ -346,7 +348,7 @@ Proposed trip by timetable system:
 
 ### Completing Offers for Provisional Booking
 
-![Completing Offers for Provisional Booking](../images/processes/seq-completing-offers-for-provisonal-booking.svg)
+![Completing Offers for Provisional Booking](../images/processes/seq-completing-offers-for-provisional-booking.svg)
 
 Once an offer has been selected some additional steps can be taken to complete
 the information:
@@ -378,7 +380,7 @@ that need to be filled-in to proceed
 
 The two types of updates (accommodation preferences and passenger data updates)
 are applied using a PATCH verb on the related resources. While the resource in
-its whole is presented, only property explicitly listed as updateable can be
+its whole is presented, only property explicitly listed as updatable can be
 provided with a value. Attempting to modify another property must result in an
 error.
 
@@ -392,7 +394,7 @@ For accommodation preferences, the following properties can be updated:
   - `fare.placeSelection.selectedOptions`
   - `fare.placeSelection.selectedPlaces`
 
-For passengers, all properties are updateable except
+For passengers, all properties are updatable except
 
 - `id`
 - `reference`
@@ -694,7 +696,7 @@ If this strategy is chosen, the partial booking will then be returned with the
 following specific characteristics:
 
 - the returned booking has an `ERROR` status
-- fulfillment is available/fulfilled  only for some of the offerparts
+- fulfillment is available/fulfilled  only for some of the `OfferParts`
 - the confirmed balance amount only totals offer parts where the confirmation
   actually succeeded, while the provisional balance amounts to the total of
 the offer parts where the error occurred (or where the confirmation was never
