@@ -13,7 +13,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.edit.command.AddCommand;
+
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
@@ -31,6 +31,7 @@ import Gtm.GTMTool;
 import Gtm.GtmFactory;
 import Gtm.GtmPackage;
 import Gtm.Legacy108FareDescription;
+import Gtm.Legacy108FaresDescriptions;
 import Gtm.Legacy108Station;
 import Gtm.Legacy108Stations;
 import Gtm.LegacyBorderPoint;
@@ -40,6 +41,7 @@ import Gtm.LegacyConversionType;
 import Gtm.LegacyRouteFare;
 import Gtm.LegacyRouteFares;
 import Gtm.LegacySeparateContractSeries;
+import Gtm.LegacySeparateContractSeriesList;
 import Gtm.LegacySeries;
 import Gtm.LegacySeriesList;
 import Gtm.LegacySeriesType;
@@ -59,7 +61,6 @@ import Gtm.Translation;
 import Gtm.TravelerType;
 import Gtm.ViaStation;
 import Gtm.actions.GtmUtils;
-import Gtm.console.ConsoleUtil;
 import Gtm.nls.NationalLanguageSupport;
 import Gtm.presentation.DirtyCommand;
 import Gtm.presentation.GtmEditor;
@@ -223,14 +224,19 @@ public class 	ConverterToLegacy {
 		monitor.worked(1);
 
 		monitor.subTask(NationalLanguageSupport.ConverterToLegacy_13);	
-		com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacyStations(), GtmPackage.Literals.LEGACY108__LEGACY_FARE_DESCRIPTIONS, legacyFareDescriptions);
+		
+		Legacy108FaresDescriptions lfds = GtmFactory.eINSTANCE.createLegacy108FaresDescriptions();
+		lfds.getLegacyFares().addAll(legacyFareDescriptions.values());
+		com = SetCommand.create(domain, tool.getConversionFromLegacy().getLegacy108(), GtmPackage.Literals.LEGACY108__LEGACY_FARE_DESCRIPTIONS, lfds);
 		if (com != null && com.canExecute()) {
 			domain.getCommandStack().execute(com);
 		}
 		monitor.worked(1);
 		
 		monitor.subTask(NationalLanguageSupport.ConverterToLegacy_14);	
-		com = AddCommand.create(domain, tool.getConversionFromLegacy().getLegacy108().getLegacySeparateContractSeries(), GtmPackage.Literals.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES, legacySeparateContractSeries);
+		LegacySeparateContractSeriesList lscsl = GtmFactory.eINSTANCE.createLegacySeparateContractSeriesList();
+		lscsl.getSeparateContractSeries().addAll(legacySeparateContractSeries);
+		com = SetCommand.create(domain, tool.getConversionFromLegacy().getLegacy108(), GtmPackage.Literals.LEGACY108__LEGACY_SEPARATE_CONTRACT_SERIES, lscsl);
 		if (com != null && com.canExecute()) {
 			domain.getCommandStack().execute(com);
 		}
