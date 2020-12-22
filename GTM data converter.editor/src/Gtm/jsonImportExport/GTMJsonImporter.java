@@ -404,7 +404,7 @@ public class GTMJsonImporter {
 	private FareStationSetDefinitions convertFareStationSetDefinitions(List<FareReferenceStationSetDef> list) {
 		if (list == null || list.isEmpty()) return null;
 		FareStationSetDefinitions o = GtmFactory.eINSTANCE.createFareStationSetDefinitions();
-		
+
 		for (FareReferenceStationSetDef jz : list) {
 			o.getFareStationSetDefinitions().add(convert(jz));
 		}
@@ -421,8 +421,23 @@ public class GTMJsonImporter {
 		z.setNameUtf8(jz.getNameUTF8()); 
 		z.setLegacyCode(jz.getLegacyCode());
 		z.setCarrier(getCarrier(jz.getFareProvider()));
-		z.getStations().addAll(convertStationList(new ArrayList<StationDef>(jz.getStations())));
+		if (jz.getStations() != null && !jz.getStations().isEmpty()) {
+			z.getStations().addAll(convertStationRefList(jz));
+		}
 		return z;
+	}
+
+
+	private Collection<? extends Station> convertStationRefList(FareReferenceStationSetDef jz) {
+		
+		ArrayList<Station> sl = new ArrayList<Station>();
+		for (StationDef sd: jz.getStations()) {
+			Station s = stations.get(Integer.parseInt(sd.getCode()));	
+			if (s != null) {
+				sl.add(s);
+			}
+		}
+		return sl;
 	}
 
 
