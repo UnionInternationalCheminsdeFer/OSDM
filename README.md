@@ -13,7 +13,11 @@ The Online API works in two modes: **Distributor Mode** and **Allocator Mode**. 
 from the Distributor Mode only in that additionally to **Admissions (aka. tickets)**, **Reservations**, 
 **Integrated reservations**, or **ancillaries** also **priced segments (aka. fares)** are offered and can be booked.
 
-The OSDM Model and documents are Open Source and freely available to all parties interested. 
+The OSDM specification is Open Source and freely available to all parties interested. 
 The OSDM-Online API is modelled in `YAML`, fully supporting the `REST paradigm`.
 
-Online Specification View: https://unioninternationalcheminsdefer.github.io/OSDM/
+## Online Specification View
+
+ https://unioninternationalcheminsdefer.github.io/OSDM/
+
+The documentaion is available in the `gh-pages` branch of this repository.
