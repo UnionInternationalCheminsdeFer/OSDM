@@ -495,7 +495,7 @@ The requirement for personal data might depend on the type of fulfillment or on 
 ![Personal Data - Allowed Changes](../images/common-data-structures/personal-data-allowed-changes.png)
 
 <!-- Figure 23 cross border conditions for personal data -->
-![Personal Date - Cross Border Conditions](../images/common-data-structures/personal-data-cross-border.png)
+![Personal Date - Cross Border Conditions](../images/common-data-structures/personal-data-cross-border-conditions.png)
 
 ### Price
 
@@ -589,6 +589,8 @@ The regional validity contains also content that is applicable to synchronous da
 The data structure `RegionalValidity` is defined in *IRS 90918-4* and included by reference only. It provides a sequential list of region definitions that can be defined as zones, lines, train links (online version only) geographical areas (polygons) and route descriptions (via-stations). The route description is extended to include fare reference station sets within the route.
   
 <!-- Figure 32 regional validity data structure -->
+![Regional Validity 1/2](../images/common-data-structures/regional-validity.png)
+![Regional Validity 2/2](../images/common-data-structures/regional-validity-2.png)
 
 Extended route data structure including fare reference station sets.
 
@@ -609,9 +611,13 @@ ReservationParameter provide data on how to combine reservations with NRT fares,
 | `reservationOptions` | Reservation options available that would not change the offer (same price and conditions) (e.g. Aisle or Window). The information is static and does not mean that such an option is still available. The preferences are grouped in case a selection is required (Aisle or Window). |
 
 <!-- Figure 35 ReservationParameter data structure -->
+![Reservation Parameter](../images/common-data-structures/reservation-parameter-type.png)
+
 <!-- Figure 36 ReservationParameter - support for 90918-1 reservation interface -->
+![Reservation Parameter - 90918-1 Parameters](../images/common-data-structures/reservation-parameter-type-reservation-params918-1.png)
+
 <!-- Figure 37 ReservationParameter data structure - reservation options -->
-![Reservation Parameter](../images/common-data-structures/reservation-parameter.png)
+![Reservation Parameter - Reservation Options](../images/common-data-structures/reservation-options.png)
 
 Code Lists
 
@@ -644,7 +650,7 @@ Used for all textual descriptions where translations might be needed.
 <!-- Figure 40 structure Text Data Structure -->
 ![Text](../images/common-data-structures/text.png)
 
-<!-- Figure 40 structure Translation Data Structure -->
+<!-- Figure 41 structure Translation Data Structure -->
 ![Translation](../images/common-data-structures/translation.png)
 
 ### SalesAvailability
@@ -658,8 +664,11 @@ sale or the date of travel.
 
 A reference to a calendar can be provided to indicate all sales dates.
 
-<!-- Figure 40 structure Sales Availability -->
+<!-- Figure 42 structure Sales Availability -->
 ![Sales Availability](../images/common-data-structures/sales-availability.png)
+
+<!-- Figure 43 structure Sales Availability -->
+![Sales Availability](../images/common-data-structures/sales-availability-calendar.png)
 
 #### Data Constraint on SalesAvailability
 
@@ -671,7 +680,8 @@ A reference to a calendar can be provided to indicate all sales dates.
 
 Service class provides textual descriptions for the predefined service classes.
 
-<!-- Figure 41 structure Service Class -->
+<!-- Figure 44 structure Service Class -->
+![Service Constraint](../images/common-data-structures/service-class-definition.png)
 
 ### ServiceConstraint
 
@@ -679,7 +689,7 @@ The service constraint limits a fare to specific service brands (train types). T
 
 The online data structure will not provide the id.
 
-<!-- Figure 42 structure Service Constraints -->
+<!-- Figure 45 structure Service Constraints -->
 ![Service Constraint](../images/common-data-structures/service-constraint.png)
 
 #### Data Constraints on ServiceConstraint
@@ -707,7 +717,7 @@ Additional to a service level there might be reservation options that do not aff
 listed in reservation options. (e.g. Upper or lower berth in the service level for double Sleeper
 compartment).
 
-<!-- Figure 43 Service level description (offline) -->
+<!-- Figure 46 Service level description (offline) -->
 ![Service Level](../images/common-data-structures/service-level.png)
 
 ### TravelValidityConstraint
@@ -716,17 +726,16 @@ The travel validity constraint defines at which times the passenger is permitted
 
 #### Data Constraints on TravelValidityConstraint
 
-<!-- Figure 44 travel validity data structure -->
-<!-- Figure 45 travel validity data structure – validity range -->
-<!-- Figure 46 travel validity data structure – excluded time range -->
-<!-- Figure 47 travel validity data structure - return constraint -->
-
+<!-- Figure 47 travel validity data structure -->
 ![Travel Validity](../images/common-data-structures/travel-validity.png)
 
+<!-- Figure 48 travel validity data structure – validity range -->
 ![Travel Validity - validity range](../images/common-data-structures/travel-validity-validity-range.png)
 
+<!-- Figure 49 travel validity data structure – excluded time range -->
 ![Travel Validity - excluded time range](../images/common-data-structures/travel-validity-excluded-time-range.png)
 
+<!-- Figure 50 travel validity data structure - return constraint -->
 ![Travel Validity - return constraint](../images/common-data-structures/travel-validity-return-constraint.png)
 
 | Code | Description |
@@ -742,4 +751,5 @@ Definition of zones used in regional validity.
 The area of a zone can be defined by either a list of stations, geographical polygon of a list of NUTS
 codes. Multiple definitions are allowed in case they define the same area.
 
+<!-- Figure 51 zone definition -->
 ![Zone Definition](../images/common-data-structures/zone-definition.png)
