@@ -19,7 +19,7 @@ Contributions are welcome. Feel free to open a pull request with changes.
 
 The following self explanatory file layout is used:
 
-```
+```text
 ├── 404.html
 ├── Gemfile
 ├── Gemfile.lock
@@ -61,13 +61,13 @@ The following self explanatory file layout is used:
 *OSDM* uses the [Jekyll static site generator](http://jekyllrb.com/).
 After forking or cloning the repository, perform the following steps to generate the site and preview it:
 
-- Make sure you have ruby installed on your computer. See https://www.ruby-lang.org/en/downloads/
+- Make sure you have ruby installed on your computer. See [https://www.ruby-lang.org/en/downloads/](https://www.ruby-lang.org/en/downloads/)
 - `bundle install`
-- `bundle exec jekyll serve`
-- Point your browser at http://127.0.0.1:4000/OSDM
+- `bundle exec jekyll serve --livereload`
+- Point your browser at [http://127.0.0.1:4000/OSDM](http://127.0.0.1:4000/OSDM)
 
 ## License
 
 This documentation copyrighted by [UIC](https://www.uic.org) is published
-under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.html) 
+under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.html)
 Open Source Licence.
