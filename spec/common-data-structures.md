@@ -153,8 +153,10 @@ As on both sides of a connection multiple small stations could be connected and 
 2. Two fares can be connected in case their connection points share a common station in two if the provided station sets of each connection point.
 
 <!-- Figure 6 connection points - simple case 1 -->
+![Fare Connection Point - Simple Case](../images/common-data-structures/connection-simple-case.png)
 
 <!-- Figure 7 connection points - complex case 2 -->
+![Fare Connection Point - Complex Case](../images/common-data-structures/connection-complex-case.png)
 
 The online data structure does not include the id and the legacy code.
 
@@ -197,6 +199,7 @@ An elementary fare to create an offer linking all constraints to one price.
 | `legacyConversion` | Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules (`YES`, `NO`, `ONLY` (this fare is provided for conversion only)).
 
 <!-- Figure 9 Fare element data structure (offline) -->
+![Fare (Offline)](../images/common-data-structures/fare-offline.png)
 
 #### Data Constraints on Fare
 
@@ -283,7 +286,7 @@ The after sales conditions will thus depend on the combinations of carriers.
 At any time, the after sales fees defined by the carriers are applied on the price part of these carriers only.
 The result is a list of times with increasing fees.
 
-###### Example
+###### COMBINING Model Example
 
 - Carrier 1: 10% 20 days before departure. Price: 100€
 - Carrier 2: 90% 2 days before departure. Price: 200 €
@@ -307,7 +310,7 @@ Combinations of fares of different clusters is allowed with the fare clusters li
 However not all combinations would be provided to the customer. A fare will be combined with a fare of
 the same cluster and in case his is not available with one of the higher clusters.
 
-##### Example
+##### Clustering Model Example
 
 - Carrier 1:
 
@@ -359,14 +362,19 @@ The online link provides information on:
   there might be multiple splits in-between a train run (e.g. NRT).
 
 <!-- Figure 12 FareResourceLocation data structure -->
+![Fare Resource Location Type](../images/common-data-structures/fare-resource-location-type.png)
 
 <!-- Figure 13 FareResourceLocation data structure - carrier link -->
+![Fare Resource Location Type - Carrier Link](../images/common-data-structures/fare-resource-location-type-carrier-link.png)
 
 <!-- Figure 14 FareResourceLocation data structure - train link -->
+![Fare Resource Location Type - Train Link](../images/common-data-structures/fare-resource-location-type-train-link.png)
 
 <!-- Figure 15 FareResourceLocation data structure - station link -->
+![Fare Resource Location Type - Station Link](../images/common-data-structures/fare-resource-location-type-station-link.png)
 
 <!-- Figure 16 FareResourceLocation data structure - online resource -->
+![Fare Resource Location Type - Online Resource](../images/common-data-structures/fare-resource-location-type-online-resource.png)
 
 #### Graphics Icons
 
@@ -480,21 +488,27 @@ The requirement for personal data might depend on the type of fulfillment or on 
 | `SALES_STAFF_ERROR` | Refund due to an error made by the sales staff |
 | `PAYMENT_FAILURE` | Refund as the payment failed |
 
-<!-- Figure 21 Required Personal data structure
+<!-- Figure 21 Required Personal data structure -->
+![Personal Data](../images/common-data-structures/personal-data.png)
 
-Figure 22 allowed changes on personal data
+<!-- Figure 22 allowed changes on personal data -->
+![Personal Data - Allowed Changes](../images/common-data-structures/personal-data-allowed-changes.png)
 
-Figure 23 cross border conditions for personal data -->
+<!-- Figure 23 cross border conditions for personal data -->
+![Personal Date - Cross Border Conditions](../images/common-data-structures/perosnal-data-cross-border.png)
 
 ### Price
 
 The price data structure provides the price or a fee including the VAT details optionally in different currencies.
 
 <!-- Figure 24 Price data structure with a list of currency prices -->
+![Price](../images/common-data-structures/price.png)
 
 <!-- Figure 25 Price data structure of one currency -->
+![Currency Price](../images/common-data-structures/currency-price.png)
 
 <!-- Figure 26 VAT details within a price -->
+![VAT Detail](../images/common-data-structures/vat-detail.png)
 
 Scope: see code list TaxScope
 
@@ -563,7 +577,10 @@ The regional constraint is connected to the timetable via the regional validity,
 To support legacy implementations the connection points can provide a border point code linked with the timetable.
 
 <!-- Figure 30 Connection points and timetable routes -->
+![Connection Points and Timetable Routes](../images/common-data-structures/connection-points-timetable-routes.png)
+
 <!-- Figure 31 Regional validity constraint data structure -->
+![Regional Constraint](../images/common-data-structures/regional-constraint.png)
 
 The online data structure will not use the id and will directly include the entry and exit connection point, whereas the offline structure will include the id of the connection point pointing to a connection point within the same data delivery.
 
@@ -576,7 +593,10 @@ The data structure `RegionalValidity` is defined in *IRS 90918-4* and included b
 Extended route data structure including fare reference station sets.
 
 <!-- Figure 33 route description (ViaStation) data structure -->
-<!-- Figure 34 RegionalValidity data structure - copy of 90918-4 -->
+![Via Stations](../images/common-data-structures/via-stations.png)
+
+<!-- Figure 34 RegionalConstraint data structure - copy of 90918-4 -->
+![Regional Constraint](../images/common-data-structures/regional-constraint.png)
 
 ### ReservationParameter
 
@@ -624,6 +644,7 @@ Used for all textual descriptions where translations might be needed.
 <!-- Figure 40 structure Text Data Structure -->
 ![Text](../images/common-data-structures/text.png)
 
+<!-- Figure 40 structure Translation Data Structure -->
 ![Translation](../images/common-data-structures/translation.png)
 
 ### SalesAvailability
@@ -638,7 +659,6 @@ sale or the date of travel.
 A reference to a calendar can be provided to indicate all sales dates.
 
 <!-- Figure 40 structure Sales Availability -->
-
 ![Sales Availability](../images/common-data-structures/sales-availability.png)
 
 #### Data Constraint on SalesAvailability
@@ -660,7 +680,6 @@ The service constraint limits a fare to specific service brands (train types). T
 The online data structure will not provide the id.
 
 <!-- Figure 42 structure Service Constraints -->
-
 ![Service Constraint](../images/common-data-structures/service-constraint.png)
 
 #### Data Constraints on ServiceConstraint
@@ -689,7 +708,6 @@ listed in reservation options. (e.g. Upper or lower berth in the service level f
 compartment).
 
 <!-- Figure 43 Service level description (offline) -->
-
 ![Service Level](../images/common-data-structures/service-level.png)
 
 ### TravelValidityConstraint
