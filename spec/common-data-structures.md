@@ -153,10 +153,10 @@ As on both sides of a connection multiple small stations could be connected and 
 2. Two fares can be connected in case their connection points share a common station in two if the provided station sets of each connection point.
 
 <!-- Figure 6 connection points - simple case 1 -->
-![Fare Connection Point - Simple Case](../images/common-data-structures/connection-simple-case.png)
+![Fare Connection Point - Simple Case](../images/common-data-structures/fare-connection-point-simple-case.png)
 
 <!-- Figure 7 connection points - complex case 2 -->
-![Fare Connection Point - Complex Case](../images/common-data-structures/connection-complex-case.png)
+![Fare Connection Point - Complex Case](../images/common-data-structures/fare-connection-point-complex-case.png)
 
 The online data structure does not include the id and the legacy code.
 
