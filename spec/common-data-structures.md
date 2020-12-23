@@ -489,13 +489,13 @@ The requirement for personal data might depend on the type of fulfillment or on 
 | `PAYMENT_FAILURE` | Refund as the payment failed |
 
 <!-- Figure 21 Required Personal data structure -->
-![Personal Data](../images/common-data-structures/personal-data.png)
+![Personal Data](../images/common-data-structures/personal-data-required-data.png)
 
 <!-- Figure 22 allowed changes on personal data -->
 ![Personal Data - Allowed Changes](../images/common-data-structures/personal-data-allowed-changes.png)
 
 <!-- Figure 23 cross border conditions for personal data -->
-![Personal Date - Cross Border Conditions](../images/common-data-structures/perosnal-data-cross-border.png)
+![Personal Date - Cross Border Conditions](../images/common-data-structures/personal-data-cross-border.png)
 
 ### Price
 
