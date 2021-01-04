@@ -1,25 +1,33 @@
-# Errors and warnings messages
+---
+layout: page
+title: Errors and Warnings (Draft)
+hide_hero: true
+permalink: /spec/errors-warnings/
+---
 
 ## General HTTP error codes and generic situations
 
-The following error codes are used in the specification:
+The following standard HTTP error codes are used in the specification:
 
-| **Error Code** |
-|-----------------|
-| 404 |
-| 412 |
+| **Error Code** | **Description** |
+|----------------|-----------------|
+| `400` | Bad request |
+| `401` | Unauthorized |
+| `403` | Forbidden |
+| `404` | Not found |
+| `409` | Conflict (TODO) |
+| `500` | Internal server error |
+| `501` | Not implemented |
 
 ## Functional errors and the JSON Problem element
 
-The OSDM API makes use of the Json Problem structure to return
-information about functional errors in the handling of a request
-otherwise valid so outside of the 401, 403, 404 or 501). The problem
-structure is base on the Problem Details for HTTP APIs RFC (RFC 7807),
+The OSDM API makes use of the JSON Problem structure to return
+information about functional errors in the handling of a request.
+
+The problem structure is based on the Problem Details for HTTP APIs RFC (RFC 7807),
 which  defines a \"problem detail\" as a way to carry machine-readable
 details of errors in a HTTP response to avoid the need to define new
-error response formats for HTTP APIs.
-
-See [RfC-7807](https://tools.ietf.org/html/rfc7807) for more information.
+error response formats for HTTP APIs (See [RfC-7807](https://tools.ietf.org/html/rfc7807).
 
 For OSDM, the title property should begin with the code of the error
 type. This code should be the unique identifier for the functional
@@ -83,8 +91,8 @@ are required to use the following codes and descriptions for the
 situations identified in order to be compliant. In case they wish to
 pass additional warnings specific to their situation and not covered by
 any of the case below, they can do so by replacing the OSDM prefix with
-an \"X\_\" followed by an unique identifier for the provider (ex:
-\"X_NVS_NOMEAL\").
+an `X_` followed by an unique identifier for the provider (ex:
+`X_NVS_NOMEAL`).
 
 A warning message is typically made of a code and a text. Texts are not
 translated and the expected language there should be english. It is up
