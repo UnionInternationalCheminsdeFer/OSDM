@@ -3741,6 +3741,10 @@ components:
           type: array        
           items:  
             $ref: '#/components/schemas/Ancillary'
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fee'
         fares:
           type: array
           items:
@@ -4033,11 +4037,33 @@ components:
         - id
         - commonOfferPartAttributes
           
+    Fee:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        commonOfferPartAttributes:
+          $ref: '#/components/schemas/CommonOfferPartAttributes'
+        linkedOfferParts:
+          description: >-
+            References the OfferParts which trigger the inclusion of this fee.
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferPart'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      required :
+        - id
+        - commonOfferPartAttributes
+
     OfferPart:
       type: object
       description: >-
         References all the offer part elements in an uniform format.
-        An OfferPart can therefore refer to reservation, admission or ancillary (in its parts).
+        An OfferPart can therefore refer to reservation, admission, ancillary or fee (in its parts).
       properties:
         id:
           type: string
