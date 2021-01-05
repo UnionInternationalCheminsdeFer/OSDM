@@ -4340,27 +4340,27 @@ components:
     FulfillmentDocument:
       type: object
       description: >-
-        document created for fulfillment
+        document created for fulfillment. Providers should include either the link OR the content
       properties:
         medium: 
           $ref: '#/components/schemas/FulfillmentMediaType'
-        documentType:
-         type: string
-         x-extensible-enum:
+        type:
+          type: string
+          x-extensible-enum:
             - BOOKING_RECEIPT
             - TICKET
             - BOARDING_PASS
             - INFORMATION
             - VOUCHER
-        documentLink:
+        link:
           type: string
           format: uri
-        documentContent:
+        content:
           type: string
           format: base64
           description: >-
             base64 encoded binary of the actual fulfillment document
-        documentFormat:
+        format:
           type: string
           description: >-
             physical format of the document provided via link or as binary content in Mime-Type format, e.g. application/pdf, image/jpeg etc.
