@@ -5,6 +5,8 @@ hide_hero: true
 permalink: /spec/errors-warnings/
 ---
 
+# Errors and Warnings (Draft)
+
 ## General HTTP error codes and generic situations
 
 The following standard HTTP error codes are used in the specification:
@@ -99,4 +101,3 @@ translated and the expected language there should be english. It is up
 to the implementers to foresee a translation based on the code if
 relevant. Optionally, a warning message can contain reference to
 resources in the model
-
