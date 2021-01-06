@@ -61,7 +61,9 @@ The following sections describe which fare attributes are used at which step:
 
 ### Offer Creation Step
 
-Relevant fare attributes are:
+Relevant fare attributes for the offer creation step are:
+
+- `price`
 
 - `regionalConstraint`
   
@@ -71,100 +73,131 @@ Relevant fare attributes are:
 
 - `serviceConstraint`
 
-  Examples: IC, TGV, BEX,...
+  Examples: `IC`, `TGV`, `BEX`, ...
 
-  An allocator can only create offer if the trip/segment is run by the service.
+  An allocator can create offers only if the trip/segment is run by the service.
 
 - `carrierConstraint`
 
-  Examples: Thalys, Eurostar,...
+  Examples: Thalys, Eurostar, ...
 
-  An allocator can create offers if the trip/segement is run by the carrier.
+  An allocator can create offers only if the trip/segment is run by the carrier.
 
 - `regulatoryConditions`
 
-  Examples: CIV, MD, EU-PER
+  Examples: `CIV`, `MD` or `EU-PER`
 
-  Needs to be indicated in the offer to inform the customer.
+  The regulatory conditions Needs to be indicated in the offer to inform the customer.
 
 - `serviceClass`
 
-  Examples: HIGH, BEST, STANDARD, BASIC
+  Examples: `HIGH`, `BEST`, `STANDARD` or `BASIC`
 
-  Needs to be indicated in the offer to inform the customer.
+  The service class needs to be indicated in the offer to inform the customer.
 
 - `comfortClass`
 
-  Examples: FIRST, SECOND
+  Examples: `FIRST` or `SECOND`
 
-  Needs to be indicated in the offer to inform the customer.
+  The comfort class needs to be indicated in the offer to inform the customer.
+
+- `afterSalesCondition`
+
+  Example: Non-refundable after departure.
+
+  The refund/exchange conditions need to be indicated in the offer to inform the customer.
 
 - `serviceLevel`
   
-  Missing in fare, add!
+  TODO: Missing in fare, add!
 
 - `combinationConstraint`
 
   Examples: `SEPARATE_CONTRACTS` model, `SEPARATE_TICKETS` model, `CLUSTERING` model or `COMBINATION` model
 
-  An allocator can only combine fare according respecting the combination models
+  An allocator can only combine fares respecting the combination models.
 
 - `fulfillmentConstraint`
 
-  Examples: SIP, SID, SIS
+  Examples: `SIP`, `SID` or `SIS`
 
-  An allocator can only create offers which respect the fulfillment constraint
+  An allocator can only create offers which respect the constraints concerning the ticket control.
+
+- `reductionConstraint`
+
+  Example: `GA`, `Bahncard50`, ...
+
+  An allocator can create offers only if the passenger(s) own the reduction(s).
+
+- `travelValidityCondition`
+
+  Example: Valid 24h after departure
+
+  The validity needs to be communicated in the offer to inform the customer.
 
 - `coveredSection`
 
-  Examples: Start and end location
+  Example: Start and end location
 
   An allocator has to cover the whole trip from start to end location.
 
 - `passengerConstraints`
 
-  Examples: Age between 6 and 16 years
+  Example: Age between 6 and 16 years
 
   An allocator can only create offers respecting the age of the passenger(s).
 
-- `afterSalesCondition`
-
-  Examples: Non-refundable after departure.
-
-  The refund/exchange conditions need to be indicated in the offer to inform the customer.
-
 ### Pre-Booking Step
 
-Fare attributes are not relevant for this process step.
+Fare attributes are not relevant for the pre-booking process step.
 
 ### Booking Step
 
-Fare attributes are not relevant for this process step.
+Fare attributes are not relevant for the booking process step.
 
 ### Fulfillment Step
 
-Relevant fare attributes for this process step  are:
+Relevant fare attributes for this process step are:
 
 - `regionalConstraint`
+  
+  The regional constraint need to be communicated to the passenger(s), e.g. printed on the ticket.
 
 - `regulatoryConditions`
 
-  Needs to be printed on the ticket.
+  The regulatory conditions need to be communicated to the passengers(s), e.g., printed on the ticket.
 
 - `serviceClass`
 
-  Needs to be printed on the ticket.
+  The service class need to be communicated to the passengers(s), e.g., printed on the ticket.
 
-### After Sale Step
+- `travelValidityConstraint`
+
+  The date are needed to create valid barcode and control data.
 
 ### Accounting Step
 
-Relevant fare attribute is:
+Relevant fare attribute for the accounting step are:
+
+- `price`
 
 - `legacyAccountingIdentifier`
 
-### After Sale Offer Creation Step
+  The legacy accounting identifier information is used to right a correct 301 record.
 
-Relevant fare attributes are:
+## After Sale
+
+### Refund Offer Creation Step
+
+Relevant fare attributes for the creation of a refund offer are:
+
+- `price
 
 - `afterSaleConditions`
+
+  An allocator can create offers only if the after sale condition support after sale.
+
+### Exchange Offer Creation Step
+
+Relevant fare attributes for the creation of a refund offer are the `afterSaleConditions` as
+well as all the attributes for offer creation.
