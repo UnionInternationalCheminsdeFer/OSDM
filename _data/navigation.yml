@@ -17,6 +17,11 @@
       link: spec/catalog-of-code-lists/
     - name: Compliance
       link: spec/compliance/
+- name: Tools
+  link: tools/
+  dropdown:
+    - name: OSDM Converter Tool
+      link: https://unioninternationalcheminsdefer.github.io/OSDM-Converter/
 - name: Organization
   link: organization/
 - name: Team
