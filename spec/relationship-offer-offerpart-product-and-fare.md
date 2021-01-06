@@ -34,13 +34,13 @@ The fares contain all relevant information to create offers, bookings
 and fulfillments (aka. tickets). If a booking occurs the RU informs
 the RU of the fare sold using UIC 301.
 
-### Second Scenario: Import of Relevant fares at Offer Step
+### Second Scenario: Import of Relevant Fares at Offer Step
 
 At offer time, an allocator looks up the fares for a given origin/destination
 in its database. If it doesn't find it the allocator imports the relevant
 fares online. If a booking occurs the RU informs the RU of the fare sold using UIC 301.
 
-### Third Scenario: No explicit Import of Fares
+### Third Scenario: No Explicit Import of Fares
 
 For a given origin/destination and date of travel the relevant fares are
 returned as part of the `Offer`.
@@ -191,11 +191,11 @@ Relevant fare attribute for the accounting step are:
 
 Relevant fare attributes for the creation of a refund offer are:
 
-- `price
+- `price`
 
 - `afterSaleConditions`
 
-  An allocator can create offers only if the after sale condition support after sale.
+  An allocator can create offers only if the after sale condition support its creation.
 
 ### Exchange Offer Creation Step
 
