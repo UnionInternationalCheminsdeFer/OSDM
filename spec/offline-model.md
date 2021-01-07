@@ -51,3 +51,5 @@ Queue authentication and encryption must use TLS version 1.2.
 The fare structure delivery is the bulk data object collecting the fare data `fareStructure` of a delivery and the delivery meta data `delivery`.
 
 ![Data Structure for Bulk Data](../images/fare-data-structure/data-structure-for-bulk-data.png)
+
+![Fare Structure](../images/fare-data-structure/fare-offline.png)
