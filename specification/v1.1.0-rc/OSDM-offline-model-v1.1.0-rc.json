@@ -1617,6 +1617,7 @@
             "default": false
           },
           "combinationConstraint": {
+            "description": "constraints on accompagning passengers",
             "type": "array",
             "items": {
               "type": "object",
@@ -1626,12 +1627,16 @@
                   "type": "integer",
                   "format": "int32"
                 },
+                "minNumber": {
+                  "description": "number of passengers required as accompanying passenger",
+                  "type": "integer",
+                  "format": "int32"
+                },                
                 "passengerTypeRef": {
                   "$ref": "#/components/schemas/TravelerTypeDef"
                 }
               },
               "required": [
-                "maxNumber",
                 "passengerTypeRef"
               ],
               "additionalProperties": false
