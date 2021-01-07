@@ -5053,8 +5053,8 @@ components:
           $ref: '#/components/schemas/LegacyReservationParameter'
         coveredSection:
           $ref: '#/components/schemas/TravelSection'
-        passengerConstraints:
-          $ref: '#/components/schemas/PassengerConstraints'
+        passengerConstraint:
+          $ref: '#/components/schemas/PassengerConstraint'
       required:
         - id
         - type
@@ -5063,9 +5063,9 @@ components:
         - travelValidityConstraint
         - afterSalesCondition
 
-    PassengerConstraints:
+    PassengerConstraint:
       description: >-
-        passenger constraints to be included in bar codes
+        passenger constraint to be included in bar codes
       type: array
       items: 
          type: object
