@@ -20,7 +20,7 @@
 - name: Tools
   link: tools/
   dropdown:
-    - name: OSDM Converter Tool
+    - name: OSDM Converter
       link: https://unioninternationalcheminsdefer.github.io/OSDM-Converter/
 - name: Organization
   link: organization/
