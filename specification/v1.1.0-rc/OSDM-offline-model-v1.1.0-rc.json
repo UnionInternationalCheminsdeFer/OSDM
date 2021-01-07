@@ -1803,6 +1803,13 @@
             "description": "referenced text in bulk data",
             "type": "string"
           },
+          "includedCards": {
+            "description": "This card includes the listed cards",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReductionCardReferenceDef"
+            }
+          },     
           "serviceClasses": {
             "description": "list of service classes in case this class is available for different classes",
             "type": "array",
