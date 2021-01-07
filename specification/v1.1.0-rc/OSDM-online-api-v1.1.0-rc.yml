@@ -5034,7 +5034,19 @@ components:
         accommodationDetails:
           $ref: '#/components/schemas/AccommodationTypeOnline'            
         afterSalesCondition:
-          $ref: '#/components/schemas/AfterSalesConditionOnline'
+          type: object
+          properties:
+            conditions:
+              type: array
+              minItems: 1
+              items:
+                $ref: '#/components/schemas/Condition'
+              description: >-
+                Structured description of the sales or after-sales conditions.
+            supportsIndividualContracts:
+              description: Indicates that the after sales of this fare can be treated independently per person.
+              type: boolean
+              default: false
         combinationConstraint:
           $ref: '#/components/schemas/FareCombinationConstraintOnline'
         fulfillmentConstraint:
@@ -5282,23 +5294,6 @@ components:
             $ref: '#/components/schemas/FareCombinationModel'
       required:
         - combinationModels
- 
-    AfterSalesConditionOnline:
-      type: object
-      properties:
-        conditions:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/Condition'
-          description: >-
-            Structured description of the sales or after-sales conditions.
-        supportsIndividualContracts:
-          description: Indicates that the after sales of this fare can be treated independently per person.
-          type: boolean
-          default: false    
-      required:
-        - conditions
  
     PriceOnline:
       type: object
