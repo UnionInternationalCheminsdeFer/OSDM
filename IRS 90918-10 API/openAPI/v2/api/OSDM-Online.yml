@@ -4352,9 +4352,13 @@ components:
             - BOARDING_PASS
             - INFORMATION
             - VOUCHER
-        link:
+        downloadLink:
           type: string
           format: uri
+        downloadExpiry:
+          type: string
+          format: date-time
+          description: Expiration time of the download link, the document will not be available at the given URI after this time.
         content:
           type: string
           format: base64
@@ -4362,8 +4366,9 @@ components:
             base64 encoded binary of the actual fulfillment document
         format:
           type: string
+          example: "application/pdf"
           description: >-
-            physical format of the document provided via link or as binary content in Mime-Type format, e.g. application/pdf, image/jpeg etc.
+            physical format of the document provided via link or as binary content in Mime-Type format, e.g. application/pdf, image/jpeg etc. Must be filled if the content attribute is present.
     
     FulfillmentItem:
       type: object
