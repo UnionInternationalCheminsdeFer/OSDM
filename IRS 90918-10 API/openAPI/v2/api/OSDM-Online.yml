@@ -3937,6 +3937,10 @@ components:
                   - INCLUDED
               ancillary:
                 $ref: '#/components/schemas/OfferPart'
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fee'        
         links:
           type: array
           items:
@@ -3994,6 +3998,10 @@ components:
             - INCLUDED
             - MANDATORY
             - OPTIONAL
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fee'        
         links:
           type: array
           items:
@@ -4029,6 +4037,10 @@ components:
             - OPTIONAL
         category:
           type: string
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fee'        
         links:
           type: array
           items:
@@ -4043,14 +4055,39 @@ components:
         id:
           type: string
           format: uuid
-        commonOfferPartAttributes:
-          $ref: '#/components/schemas/CommonOfferPartAttributes'
-        linkedOfferParts:
+        title:
+          type: string
+          example: Reservierungsentgelt
+        price:
+          $ref: '#/components/schemas/CurrencyPrice'
+        applicability:
+          type: string
+          x-extensible-enum:
+            - BOOKING
+            - TRIP
+            - OFFERPART
+        providerBookingReference:
+          type: string
           description: >-
-            References the OfferParts which trigger the inclusion of this fee.
+            The booking reference of the booking the offer part is in on the provider side.
+        refundable:
+          type: string
+          enum:
+            - YES
+            - NO
+            - WITH_CONDITIONS
+        conditions:
           type: array
           items:
-            $ref: '#/components/schemas/OfferPart'
+            $ref: '#/components/schemas/Condition'
+          description: >-
+            Structured description of the sales or after-sales conditions.
+        productCode:
+          type: string
+          description: >-
+            The product code expressed in the provider system (could be a
+            mapping from an even lower-level provider).
+          example: PT00AD
         links:
           type: array
           items:
