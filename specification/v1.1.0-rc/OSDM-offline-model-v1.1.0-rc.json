@@ -2037,6 +2037,14 @@
             "description": "station name with upper and lower case letters in UTF8",
             "type": "string"
           },
+          "shortName": {
+            "description": "station name with upper and lower case letters in ASCII",
+            "type": "string"
+          },
+          "shortNameUtf8": {
+            "description": "station name with upper and lower case letters in UTF8",
+            "type": "string"
+          },          
           "legacyBorderPointCode": {
             "type": "integer"
           }
