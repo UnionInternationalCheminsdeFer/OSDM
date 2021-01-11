@@ -1,6 +1,8 @@
 - name: Specification
   link: spec/
   dropdown:
+    - name: Requirements
+      link: spec/requirements/
     - name: Common Data Structures
       link: spec/common-data-structures/
     - name: Offline Model
