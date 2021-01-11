@@ -431,9 +431,11 @@ An offer might be available from a specific time onwards or in a time
 range or time ranges (either in UTC or alternatively in the time zone of
 the ticket vendor).
 
-Example: Offer A is available from 3 months before departure until 2
-days before departure and can be purchased in June and July on Thursdays
-only.
+*Example:*
+
+  - Offer A is available from 3 months before departure until 2 days
+    before departure and can be purchased in June and July on Thursdays
+    only.
 
 Real examples
 
@@ -442,8 +444,8 @@ Real examples
   for 30 consecutive days of validity
 
   - purchase 01 JUN – 30 JUN
-  - travels in 01 JUL – 31 AUG à validity for usage
-  - 30 days of validity à validity for usage
+  - travels in 01 JUL – 31 AUG (validity for usage)
+  - 30 days of validity (validity for usage)
 
 - Available for purchase 180 to 0 days before departure day, valid for
     2 consecutive days
@@ -481,7 +483,7 @@ use a fare. To define this time there is a need to:
   number of days and hours later at a specified time in the time zone
   of the arrival station:
 
-Example:
+*Example:*
 
 > Start of Validity: 1.1.2020 00:00 CET
 >
@@ -519,12 +521,8 @@ Example:
   - Start and end of validity in UTC
   - Number of allowed trips or days
 
-<!-- -->
-
 - Examples:
-  - Valid Monday – Friday when work day from 09:00 until 03:00 the following day
-    - à Mo – Fr without holidays
-
+  - Valid Monday – Friday if work day from 09:00 until 03:00 the following day
   - Valid Saturday – Sunday and public holidays from 00:00 until 03:00 the
     following day
 
@@ -544,15 +542,7 @@ items carried by a passenger.
 - A number of passengers might be entitled to carry a number of passengers of
   another type for free (1 Adult + 1 accompanying person for PRM).
 
-**Implementation:**
-
-|     |     |
-|-----|-----|
-|     |     |
-|     |     |
-
-CodeDescriptionWALK**A walk**OTHER**Other types of transfer (e.g. taxi,
-local city transport not included in the offer,...)**PassengerTypes
+*Implementation:* **PassengerTypes**
 
 A fare might be available with a specific number of passengers only
 (group fares):
@@ -576,15 +566,16 @@ reductions to a fare.
 
 - A card might be valid only for combined tickets only (special NS card)
 
-- Multiple cards might apply to the same route segment, but only one
-    of them would be applied.
+- Multiple cards might apply to the same route segment, but only
+  one of them would be applied.
 
-- A reduction might grant a 100% price reduction à In this case an NRT
-    is created up to the final station the customer goes with the price
-    to the border of the area. The ticket indicates that the ticket has
-    a reduction of 100% within the area and an indication that it is
-    valid only together with the card. Pricing data are needed for the
-    free travel area to get the route description.
+- A reduction might grant a 100% price reduction
+
+  In this case an NRT is created up to the final station the customer goes with
+  the price to the border of the area. The ticket indicates that the ticket has
+  a reduction of 100% within the area and an indication that it is valid only
+  together with the card. Pricing data are needed for the free travel area to 
+  get the route description.
 
 *Implementation:* **ReductionCard**
 
@@ -812,7 +803,7 @@ Relevant attributes:
 
 #### CLUSTERING model
 
-The CLUSTERING model tries to simplify conditions and fares for the
+The `CLUSTERING` model tries to simplify conditions and fares for the
 customer but sacrifices a part of the control of the carrier on its
 fares.
 
@@ -847,13 +838,13 @@ The combined fare is available for sale only if all parts are available
 for sale.
 
 The following clusters are defined (with the order from high to low
-flexibility): BUSINESS à FULL-FLEX àSEMI-FLEX àNON-FLEX àPROMO
+flexibility): `BUSINESS` > `FULL-FLEX` > `SEMI-FLEX` > `NON-FLEX` > `PROMO`.
 
 Any of the clusters can contain train linked or non train-linked offers.
 
 Offers of a less restrictive cluster can be included in a more
 restrictive cluster using the more restrictive rules for the combined
-offer, e.g., BUSINESS + FULL-FLEX à FULL-FLEX
+offer, e.g., `BUSINESS` + `FULL-FLEX` leads to `FULL-FLEX`.
 
 `BUSINESS`:
 
@@ -906,7 +897,7 @@ are combinable according to the CLUSTERING MODEL.
 
 #### COMBINATION model
 
-The COMBINING model tries to be close to the fare conditions defined by
+The `COMBINING` model tries to be close to the fare conditions defined by
 the carrier but sacrifices the simplicity of the fare towards the
 customer.
 
