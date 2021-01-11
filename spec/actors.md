@@ -7,19 +7,32 @@ permalink: /spec/actors/
 
 *Note: to be released with version 1.1*
 
-## Actors in OSDM
+## Actors / Business Capabilities
+
+Actors are defined according to the UML specification. An Actor models a type of role played by an entity that interacts with the subject (e.g., by exchanging signals and data), but which is external to the subject.
+
+Actors may represent roles played by human users, external hardware, or other subjects.
+
+Note that **an actor does not necessarily represent a specific entity but merely a facet (i.e., “role”) of some entity** that is relevant to the specification of its associated use cases. Thus, a single instance may play the role of several different actors and, conversely, a given actor may be played by multiple different instances.
+
+The following diagram shows the actors and principal use cases involved in rail distribution and control. The principal use case relevant for this specification is marked in yellow.
+
+![Actor Model](../images/actors/actor-model.png)
+
+### Actors in OSDM
 
 | **Actor**   | **Description** | Motivation / Distinction to other roles |
 |-------------|-----------------|-----------------------------------------|
 | Allocator   | The **allocator** manages the lifecycle of a product sold (the travel contract). He therefore needs to establish information exchange with the ticket **vendor**, **carriers** and **TCOs** involved. The **allocator** makes products available to the **ticket vendor**. The allocator could provide direct services to the **passenger** to modify the ticket status (e.g. activate / check in on a ticket). The allocator combines fares defined by the carriers according to their rules.The allocator creates the ticket fulfillment data (e.g. pdf, pkpass, ...). *Note*: To avoid confusion due to usage differences (see the CIT term bank as well as the European TAP-TSI regulation), the terms “Issuer” and “Attributor” have been avoided in this IRS. | The allocator is introduced to separate the role of just selling tickets along a route (Ticket Vendor) from the role of creating the ticket content and providing it to vendors for sale.
-| Carrier     | The **carrier** is the owner of the fare- He provides the transport of the **traveller himself or via a substitute carrier**. The travel contract provided to the customer establishes a contract between the traveller and each carrier participating in the product. Carriers include Railway undertaking, Bus companies, Maritime companies. |
+| Carrier     | The **carrier** is the owner of the fare. He provides the transport service to the **traveller himself or via a substitute carrier**. The travel contract provided to the customer establishes a contract between the traveller and each carrier participating in the service. Carriers include Railway undertaking, Bus companies, Maritime companies. |
 | Customer    | The **customer** purchases a travel contract for one or more traveller. *Note*: **The customer** is entitled to receive refund payments.
-| Distributor | The distributor is the company selling the ticket provided and managed by the allocator to the customer. | Alias: **Ticket Vendor**
+| Distributor | The **distributor** is the company selling the ticket provided and managed by the allocator to the customer. | Alias: **Ticket Vendor**
 | Fare Provider | The **fare provider** manages fares on behalf of a carrier or a local transport authority.
 | Local Transport Authority | The **local transport authority** organizes the local traffic within an area a behalf of the government or is itself a governmental organization. It defines a fare structure for the local transport which all carriers included must apply.
-| Passenger | The **passenger** is the person who travels using a travel contract. | The passenger and the customer can be to distinct person, e.g., if a mom buys a ticket for her daughter.
-| Ticket Controller | Other means of ticket checking (e.g. gates) will also be named TCOs. | Alias: **Train Agent**
-| Ticket Vendor | The ticket vendor is the company selling the ticket provided and managed by the allocator to the customer. The ticket vendor does not combine fare into one ticket. | Alias: **Distributor** |
+| Passenger   | The **passenger** is the person who travels using a travel contract. | The passenger and the customer can be to distinct person, e.g., if a mom buys a ticket for her daughter.
+| Ticket Controller | Ticket checking machines, e.g. gates are also part of a ticket controller are also part of a **ticket controlling organization**. | Alias: **Train Agent**
+| Ticket Vendor | The **ticket vendor** is the company selling the ticket provided and managed by the allocator to the customer. The ticket vendor does not combine fare into one ticket. | Alias: **Distributor** |
+| Train agent | A **train agent** controls whether the passenger has a valid travel contract. The train agent is part of a **ticket controlling organization**. | Alias: **Ticket Controller** |
 
 ## Common Business Capabilities
 
