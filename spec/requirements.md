@@ -304,9 +304,9 @@ readable form if it is not at a “real” station.
 
 Are routes used as line routes or as bubble routes?
 
-A\*B/D\*C as line routes: A-E-C is not allowed
+`A*B/D*C` as line routes: `A-E-C` is not allowed
 
-A\*B/D\*C as bubble route: A-E-C is allowed
+`A*B/D*C` as bubble route: `A-E-C` is allowed
 
 *Decision*: only the line routes will be supported, “bubbles” must be defined as areas
 
@@ -316,7 +316,7 @@ description.
 #### Areas
 
 Areas for the regional validity are needed. The areas defined in IRS
-90918-4 (control) and IRS 90918-9 (bard codes) will be available for the
+90918-4 (control) and IRS 90918-9 (bar codes) will be available for the
 fares as well:
 
 - Zones
@@ -407,13 +407,13 @@ fare.
 
 *Implementation:* **SalesAvailability**
 
-**SalesAvailabilitySales** availability defines the constraints on the
+**SalesAvailability**  defines the constraints on the
 time when a sale of a fare can start or end. The sales availability is
 used in the offline data exchange only. A constraint is provides as a
 list of salesRestrictions that have to be applied.
 
-Sales restrictions can define a start and end of the sale relative to the
-date of sale or the date of travel.
+Sales restrictions can define a start and end of the sale relative to
+the date of sale or the date of travel.
 
 A reference to a calendar can be provided to indicate all sales dates.
 
@@ -433,9 +433,9 @@ the ticket vendor).
 
 *Example:*
 
-  - Offer A is available from 3 months before departure until 2 days
-    before departure and can be purchased in June and July on Thursdays
-    only.
+- Offer A is available from 3 months before departure until 2 days
+  before departure and can be purchased in June and July on Thursdays
+  only.
 
 Real examples
 

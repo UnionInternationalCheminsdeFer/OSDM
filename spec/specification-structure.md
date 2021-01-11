@@ -30,6 +30,10 @@ is explained in this documents:
 A [Catalog of Code Lists](./catalog-of-code-lists/) defines attributes
 and provides references to standards used.
 
+## Business Requirements
+
+Business needs leading to this specification are captured are in the [requirement](./requirements) and the [business capabilities](./business-capabilities) documents.
+
 ## Compliance to the Specification
 
 In order for an implementation to be compliant, depending on its role, a set of service need to be

@@ -3,8 +3,8 @@
   dropdown:
     - name: Requirements
       link: spec/requirements/
-    - name: Actors
-      link: spec/actors/
+    - name: Business Capabilities
+      link: spec/business-capabilities
     - name: Common Data Structures
       link: spec/common-data-structures/
     - name: Offline Model

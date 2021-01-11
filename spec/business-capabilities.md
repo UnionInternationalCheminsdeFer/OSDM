@@ -1,13 +1,13 @@
 ---
 layout: page
-title: Actors
+title: Business Capabilities
 hide_hero: true
-permalink: /spec/actors/
+permalink: /spec/business-capabilities/
 ---
 
 *Note: to be released with version 1.1*
 
-## Actors / Business Capabilities
+## Actor Model
 
 Actors are defined according to the UML specification. An Actor models a type of role played by an entity that interacts with the subject (e.g., by exchanging signals and data), but which is external to the subject.
 
@@ -17,7 +17,7 @@ Note that **an actor does not necessarily represent a specific entity but merely
 
 The following diagram shows the actors and principal use cases involved in rail distribution and control. The principal use case relevant for this specification is marked in yellow.
 
-![Actor Model](../images/actors/actor-model.png)
+![Actor Model](../images/business-capabilities/actor-model.png)
 
 ### Actors in OSDM
 
