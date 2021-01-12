@@ -14,10 +14,30 @@ The [OSDM specification](../spec) effort has been driven by
 - [Parmigiani Elisa](https://www.linkedin.com/in/elisa-parmigiani-186b5745/) (Amadeus)
 - [Schlapbach Andreas](https://www.linkedin.com/in/andreas-schlapbach-09b095ab/) (SBB)
 - [Selleslagh Nicolas](https://linkedin.com/in/nicolasselleslagh) (BENE)
+- [Sören Meyer](https://www.xing.com/profile/Soeren_Meyer17/cv) (DB)
 
 ## Contributors
 
 The following experts from distributors and railways have contributed to the [OSDM specification](../spec).
+
+### Business Experts
+
+- Barbara Assanti (TI)
+- Christian Mund (ÖBB)
+- Christian Walkling (DB)
+- Daniel Östersjö (Linkon)
+- Dennis Hieralal (BeNe)
+- Ilona Gaasendam (NS)
+- Jana Peleskova (CD)
+- Jaroslav Luckay (ZSSK)
+- Jonas Glanzmann (SBB)
+- Karl Winkler (ÖBB)
+- Natascha Hooft (SNCB)
+- Pal Haragos (MAV-Start)
+- Philippe Sterlingot (SNCF)
+- Timo Weber (SBB)
+
+### Technical Experts
 
 - Bayer Ralf (DB)
 - Dorsch Jessica (DB)
