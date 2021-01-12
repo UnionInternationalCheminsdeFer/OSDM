@@ -5,9 +5,9 @@ layout: page
 permalink: /spec/relationship-offer-offerpart-product-and-fare/
 ---
 
-## Draft
+*Note: to be released with version 1.1*
 
-The entities represent different concepts.
+The entities `offer`, `offerpart`, `product`and `fare` represent different concepts.
 
 An `offer` spans the whole trip consisting of segments. An `offerpart` spans a
 segment or - in the case of thru fares - multiple segments. An `offerpart`
@@ -48,7 +48,7 @@ returned as part of the `Offer`.
 If the fare is sold as part of an offer then the fare is booked online at the offering
 allocator.
 
-## Attributes of An Online Fare
+## Attributes of an Online Fare
 
 ![Attributes of An Online Fare](../images/models/attributes-online-fare.png)
 
@@ -87,7 +87,7 @@ Relevant fare attributes for the offer creation step are:
 
   Examples: `CIV`, `MD` or `EU-PER`
 
-  The regulatory conditions Needs to be indicated in the offer to inform the customer.
+  The regulatory conditions need to be indicated in the offer to inform the customer.
 
 - `serviceClass`
 
@@ -100,6 +100,12 @@ Relevant fare attributes for the offer creation step are:
   Examples: `FIRST` or `SECOND`
 
   The comfort class needs to be indicated in the offer to inform the customer.
+
+- `accommodationDetails`
+
+  Example: `SEAT`, `COUCHETTE`, `BERTH` or `VEHICLE`
+
+  If the train is a night train the accommodation details need to reflected in the offer.
 
 - `afterSalesCondition`
 
@@ -135,6 +141,10 @@ Relevant fare attributes for the offer creation step are:
 
   The validity needs to be communicated in the offer to inform the customer.
 
+- `placeSelection`
+  
+  TODO
+
 - `coveredSection`
 
   Example: Start and end location
@@ -165,15 +175,19 @@ Relevant fare attributes for this process step are:
 
 - `regulatoryConditions`
 
-  The regulatory conditions need to be communicated to the passengers(s), e.g., printed on the ticket.
+  The regulatory conditions need to be communicated to the passengers(s), e.g. printed on the ticket.
 
 - `serviceClass`
 
-  The service class need to be communicated to the passengers(s), e.g., printed on the ticket.
+  The service class need to be communicated to the passengers(s), e.g. printed on the ticket.
 
 - `travelValidityConstraint`
 
   The date are needed to create valid barcode and control data.
+
+- `reservationDetails`
+
+  The reserved places have to be communicated to the passengers(s), e.g. printed on the ticket.
 
 ### Accounting Step
 
@@ -199,5 +213,5 @@ Relevant fare attributes for the creation of a refund offer are:
 
 ### Exchange Offer Creation Step
 
-Relevant fare attributes for the creation of a refund offer are the `afterSaleConditions` as
-well as all the attributes for offer creation.
+Relevant fare attributes for the creation of a refund offer are the `afterSaleConditions`
+as well as all the attributes for offer creation.
