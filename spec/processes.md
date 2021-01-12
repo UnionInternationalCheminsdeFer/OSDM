@@ -365,18 +365,18 @@ what needs to be specified in order to book a given offer. These details are
 provided under the form of a boolean expression, referring to the passenger
 model elements using dot notation (with the `TripOffer` as the root). For
 example, if it is required that name and first name are set to proceed
-RequestedInformation would be :
+`RequestedInformation` would be :
 
-`passengerDetails.firstName AND passengerDetails.firstName`
+`passengerDetails.firstName AND passengerDetails.name`
 
 Another example, if on top of first and last names, at least one email or one
 phone number is needed:
 
-`(passenger[0], "passengerDetails.firstName AND passengerDetails.firstName" AND
+`(passenger[0], "passengerDetails.firstName AND passengerDetails.name" AND
 (passengerDetails.eMails[0] OR passengerDetails.phones[0])`
 
 By parsing this structure, the API consumer is able to identify the elements
-that need to be filled-in to proceed
+that need to be filled-in to proceed.
 
 The two types of updates (accommodation preferences and passenger data updates)
 are applied using a PATCH verb on the related resources. While the resource in
