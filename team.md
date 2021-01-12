@@ -25,7 +25,7 @@ The following experts from distributors and railways have contributed to the [OS
 - Barbara Assanti (TI)
 - Christian Mund (ÖBB)
 - Christian Walkling (DB)
-- Daniel Östersjö (Linkon)
+- Daniel Östersjö (Silverrail)
 - Dennis Hieralal (BeNe)
 - Ilona Gaasendam (NS)
 - Jana Peleskova (CD)

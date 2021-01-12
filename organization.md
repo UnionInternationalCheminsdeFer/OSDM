@@ -68,8 +68,11 @@ state **accepted for design**.
 ## Working Mode
 
 The technical working group meets online every Friday from 9:00 to 11:00.
-Participation is open to everybody and highly encouraged. If you wish to join, please contact
-[Schlapbach Andreas](https://www.linkedin.com/in/andreas-schlapbach-09b095ab/).
+Participation is open to everybody and highly encouraged. If you wish to join, please
+contact [Schlapbach Andreas](https://www.linkedin.com/in/andreas-schlapbach-09b095ab/).
+
+The meeting minutes as well as future improvements are documented in the
+[GitHub Wiki](https://github.com/UnionInternationalCheminsdeFer/OSDM/wiki).
 
 ## Road Map
 
