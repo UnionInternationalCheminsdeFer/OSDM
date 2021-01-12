@@ -3741,6 +3741,10 @@ components:
           type: array        
           items:  
             $ref: '#/components/schemas/Ancillary'
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fee'
         fares:
           type: array
           items:
@@ -3936,6 +3940,10 @@ components:
                   - INCLUDED
               ancillary:
                 $ref: '#/components/schemas/OfferPart'
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fee'  
         links:
           type: array
           items:
@@ -3993,6 +4001,10 @@ components:
             - INCLUDED
             - MANDATORY
             - OPTIONAL
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fee'  
         links:
           type: array
           items:
@@ -4028,6 +4040,10 @@ components:
             - OPTIONAL
         category:
           type: string
+        fees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fee' 
         links:
           type: array
           items:
@@ -4035,12 +4051,59 @@ components:
       required :
         - id
         - commonOfferPartAttributes
+
+    Fee:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          example: Reservierungsentgelt
+        price:
+          $ref: '#/components/schemas/CurrencyPrice'
+        applicability:
+          type: string
+          x-extensible-enum:
+            - BOOKING
+            - TRIP
+            - OFFERPART
+        providerBookingReference:
+          type: string
+          description: >-
+            The booking reference of the booking the offer part is in on the provider side.
+        refundable:
+          type: string
+          enum:
+            - YES
+            - NO
+            - WITH_CONDITIONS
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+          description: >-
+            Structured description of the sales or after-sales conditions.
+        productCode:
+          type: string
+          description: >-
+            The product code expressed in the provider system (could be a
+            mapping from an even lower-level provider).
+          example: Reservierungsentgelt
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      required :
+        - id
+        - price
           
     OfferPart:
       type: object
       description: >-
         References all the offer part elements in an uniform format.
-        An OfferPart can therefore refer to reservation, admission or ancillary (in its parts).
+        In its part, an OfferPart can refer to reservation, admission, ancillary or fee.
       properties:
         id:
           type: string
