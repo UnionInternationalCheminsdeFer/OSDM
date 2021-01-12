@@ -372,7 +372,7 @@ example, if it is required that name and first name are set to proceed
 Another example, if on top of first and last names, at least one email or one
 phone number is needed:
 
-`(passenger[0], "passengerDetails.firstName AND passengerDetails.name" AND
+`(passenger[0], passengerDetails.firstName AND passengerDetails.name AND
 (passengerDetails.eMails[0] OR passengerDetails.phones[0])`
 
 By parsing this structure, the API consumer is able to identify the elements

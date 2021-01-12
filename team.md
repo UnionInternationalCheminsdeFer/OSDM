@@ -22,20 +22,21 @@ The following experts from distributors and railways have contributed to the [OS
 
 ### Business Experts
 
-- Barbara Assanti (TI)
-- Christian Mund (ÖBB)
-- Christian Walkling (DB)
-- Daniel Östersjö (Silverrail)
-- Dennis Hieralal (BeNe)
-- Ilona Gaasendam (NS)
-- Jana Peleskova (CD)
-- Jaroslav Luckay (ZSSK)
-- Jonas Glanzmann (SBB)
-- Karl Winkler (ÖBB)
-- Natascha Hooft (SNCB)
-- Pal Haragos (MAV-Start)
-- Philippe Sterlingot (SNCF)
-- Timo Weber (SBB)
+- Assanti Barbara (TI)
+- Gaasendam Ilona (NS)
+- Glanzmann Jonas (SBB)
+- Haragos Pal (MAV-Start)
+- Hieralal Dennis (BeNe)
+- Hooft Natascha (SNCB)
+- Kraus Christine (DB)
+- Luckay Jaroslav (ZSSK)
+- Mund Christian (ÖBB)
+- Östersjö Daniel (Silverrail)
+- Peleskova Jana (CD)
+- Sterlingot Philippe (SNCF)
+- Walkling Christian (DB)
+- Weber Timo (SBB)
+- Winkler Karl (ÖBB)
 
 ### Technical Experts
 
