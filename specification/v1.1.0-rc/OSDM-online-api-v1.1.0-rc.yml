@@ -3130,7 +3130,7 @@ paths:
         '501':
           description: Not implemented
 
-  '/offer-collections':
+  '/offers-collection':
     post:
       tags:
         - Offers 
