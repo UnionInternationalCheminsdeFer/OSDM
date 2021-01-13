@@ -367,13 +367,13 @@ model elements using dot notation (with the `TripOffer` as the root). For
 example, if it is required that name and first name are set to proceed
 `RequestedInformation` would be :
 
-`passenger[<uuid>].passengerDetails.firstName AND passenger[<uuid>].passengerDetails.name`
+`passenger[<uuid>].details.firstName AND passenger[<uuid>].details.name`
 
 Another example, if on top of first and last names, at least one email or one
 phone number is needed:
 
-`(passenger[0].passengerDetails.firstName AND passenger[0].passengerDetails.name AND
-(passenger[0].passengerDetails.eMails OR passenger[0].passengerDetails.phones)`
+`(passenger[0].details.firstName AND passenger[0].details.name AND
+(passenger[0].details.eMails OR passenger[0].details.phones)`
 
 By parsing this structure, the API consumer is able to identify the elements
 that need to be filled-in to proceed. An initial version the [grammar for required

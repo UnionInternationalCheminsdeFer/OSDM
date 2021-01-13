@@ -1,1 +1,3 @@
-passenger[<uuid>].passengerDetails.firstName AND passenger[<uuid>].passengerDetails.name
+passenger[<uuid]>.details.phone
+
+passenger[<uuid>].details.firstName AND passenger[<uuid>].details.name
