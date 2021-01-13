@@ -77,20 +77,6 @@ layout: default
 		fill: rgba(0, 0, 0, 0.1);
 	}
 
-	svg.railroad-diagram text.diagram-text {
-		/* Multiple choice text, not working atm. */
-		font-size: 12px Hack, "Source Code Pro", monospace;
-		fill: red;
-	}
-
-	svg.railroad-diagram path.diagram-text {
-		/* Multiple choice text, not working atm. */
-		stroke-width: 1;
-		stroke: red;
-		fill: red;
-		cursor: help;
-	}
-
 	svg.railroad-diagram g.diagram-text:hover path.diagram-text {
 		/* Multiple choice text, not working atm. */
 		fill: #f00;
@@ -103,13 +89,13 @@ layout: default
 		Phone number required:
 	</p>
 	<pre>
-	passenger[ee764ee0-55a1-11eb-ae93-0242ac130002].details.phone
+passenger[ee764ee0-55a1-11eb-ae93-0242ac130002].details.phone
 	</pre>
 	<p>
 		First name and name required:
 	</p>
 	<pre>
-	passenger[ee764ee0-55a1-11eb-ae93-0242ac130004].details.firstName AND passenger[ee764ee0-55a1-11eb-ae93-0242ac130004].details.name	
+passenger[ee764ee0-55a1-11eb-ae93-0242ac130004].details.firstName AND passenger[ee764ee0-55a1-11eb-ae93-0242ac130004].details.name	
 	</pre>
 	</p>
 </div>
