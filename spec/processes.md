@@ -367,19 +367,20 @@ model elements using dot notation (with the `TripOffer` as the root). For
 example, if it is required that name and first name are set to proceed
 `RequestedInformation` would be :
 
-`passengerDetails.firstName AND passengerDetails.name`
+`passenger[<uuid>].passengerDetails.firstName AND passenger[<uuid>].passengerDetails.name`
 
 Another example, if on top of first and last names, at least one email or one
 phone number is needed:
 
-`(passenger[0], passengerDetails.firstName AND passengerDetails.name AND
-(passengerDetails.eMails[0] OR passengerDetails.phones[0])`
+`(passenger[0].passengerDetails.firstName AND passenger[0].passengerDetails.name AND
+(passenger[0].passengerDetails.eMails OR passenger[0].passengerDetails.phones)`
 
 By parsing this structure, the API consumer is able to identify the elements
-that need to be filled-in to proceed.
+that need to be filled-in to proceed. An initial version the [grammar for required
+information](./requested-information-grammar.rrd.html) is available for review.
 
 The two types of updates (accommodation preferences and passenger data updates)
-are applied using a PATCH verb on the related resources. While the resource in
+are applied using a `PATCH` verb on the related resources. While the resource in
 its whole is presented, only property explicitly listed as updatable can be
 provided with a value. Attempting to modify another property must result in an
 error.
