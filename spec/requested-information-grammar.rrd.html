@@ -1,6 +1,8 @@
 ---
+title: Requested Information Grammar
 permalink: /spec/requested-information-grammar.rrd.html
 layout: default
+
 ---
 
 <style id="_defaultStyles">
@@ -39,30 +41,40 @@ layout: default
 		color: var(--vscode-textPreformat-foreground);
 	}
 
-	blockquote {
-		background: var(--vscode-textBlockQuote-background);
-		border-color: var(--vscode-textBlockQuote-border);
+	h1 {
+		margin: 1.2em 0;
+		font-size: 2em;
+		font-weight: bolder;
 	}
 
-	kbd {
-		color: var(--vscode-editor-foreground);
-		border-radius: 3px;
-		vertical-align: middle;
-		padding: 1px 3px;
-
-		background-color: hsla(0, 0%, 50%, .17);
-		border: 1px solid rgba(71, 71, 71, .4);
-		border-bottom-color: rgba(88, 88, 88, .4);
-		box-shadow: inset 0 -1px 0 rgba(88, 88, 88, .4);
+	h2 {
+		margin: 1.1em 0;
+		font-size: 1.4em;
+		font-weight: bolder;
 	}
 
-	.vscode-light kbd {
-		background-color: hsla(0, 0%, 87%, .5);
-		border: 1px solid hsla(0, 0%, 80%, .7);
-		border-bottom-color: hsla(0, 0%, 73%, .7);
-		box-shadow: inset 0 -1px 0 hsla(0, 0%, 73%, .7);
+	h3 {
+		margin: 1em 0;
+		font-size: 1.2em;
+		font-weight: bolder;
 	}
 
+	h4 {
+		margin: 0.9em 0;
+		font-size: 1.1em;
+	}
+
+	ol {
+		margin-block-start: 0.2em;
+		box-sizing: border-box;
+		list-style: decimal;
+		list-style-type: decimal;
+		list-style-position: outside;
+	}
+
+	p {
+		margin-bottom: 0.9em;
+	}
 
 	/* Railroad diagrams */
 
