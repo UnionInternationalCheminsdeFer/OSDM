@@ -44,7 +44,7 @@ tags:
   - name: RefundOffers
     description: >-
       resources to get and accept a refund offer
-  - name: ExchangeOffers
+  - name: Exchange
     description: >-
       resources to get and accept an exchange offer
   - name: CoachLayouts
@@ -594,6 +594,7 @@ paths:
                 - TRIPOFFERS.TRIPS.LOCATIONS
                 - TRIPOFFERS.OFFERS
                 - TRIPOFFERS.OFFERS.OFFERPARTS
+                - TRIPOFFERS.OFFERS.OFFERPARTS.PRODUCTS
                 - TRIPOFFERS.PASSENGERS
                 - NONE
             default: [ALL]
@@ -792,6 +793,7 @@ paths:
                 - TRIPS.LOCATIONS
                 - OFFERS
                 - OFFERS.OFFERPARTS
+                - OFFERS.OFFERPARTS.PRODUCTS
                 - PASSENGERS
                 - NONE
               default: ALL
@@ -876,6 +878,7 @@ paths:
               enum:
                 - ALL
                 - OFFERPARTS
+                - OFFERPARTS.PRODUCTS
                 - TRIP
                 - TRIP.LOCATIONS
                 - NONE
@@ -1805,6 +1808,7 @@ paths:
                 - BOOKINGS.BOOKEDOFFERS.TRIP.LOCATIONS
                 - BOOKINGS.BOOKEDOFFERS
                 - BOOKINGS.BOOKEDOFFERS.OFFERPARTS
+                - BOOKINGS.BOOKEDOFFERS.OFFERPARTS.PRODUCTS
                 - BOOKINGS.PASSENGERS
                 - BOOKINGS.TICKETS  
                 - NONE
@@ -1960,9 +1964,16 @@ paths:
                 - BOOKEDOFFERS.TRIP.LOCATIONS
                 - BOOKEDOFFERS
                 - BOOKEDOFFERS.OFFERPARTS
+                - BOOKEDOFFERS.OFFERPARTS.PRODUCTS
                 - PASSENGERS
                 - TICKETS
                 - REFUND_PROPOSITIONS
+                - EXCHANGE_OPERATIONS
+                - EXCHANGE_OPERATIONS.OFFERS
+                - EXCHANGE_OPERATIONS.OFFERS.TRIP
+                - EXCHANGE_OPERATIONS.OFFERS.TRIP.LOCATIONS
+                - EXCHANGE_OPERATIONS.OFFERS.OFFERPARTS
+                - EXCHANGE_OPERATIONS.OFFERS.OFFERPARTS.PRODUCTS
                 - NONE
               default: ALL
       responses:
@@ -2070,7 +2081,8 @@ paths:
     patch:
       tags:
         - Bookings
-      summary: Allows updating the fulfillment type of the booking.
+        - Exchange
+      summary: The PATCH bookings service allows updating the fulfillment type of the booking, and also allows provisonal addition of an exchange to the booking
       operationId: confirmBooking
       parameters:
         - name: Access-Token 
@@ -2679,80 +2691,14 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-          
-  '/bookings/{bookingId}/exchangeOffers':
-    post:
-      tags:
-        - ExchangeOffers
-      summary: Initiates an exchange process by creating a ExchangeOffer resource.
-      description: >-
-        The ExchangeOffer contains the needed information on the potential operation. 
-        The proposition can then be accepted via a PATCH, deleted or left to die at the end of its lifetime. 
-      operationId: postExchangeOffersBookingId
-      parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-        - in: path
-          name: bookingId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the offer the offerPart is part of.      
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ExchangeOfferRequest'
-      responses:
-        '200': 
-          description: Refund offer created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExchangeOffersCollection'
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented 
 
-  '/bookings/{bookingId}/exchangeOffers/{exchangeOfferId}':   
+  '/bookings/{bookingId}/exchangeOperations/{exchangeOperationId}':   
     get:
       tags:
-        - ExchangeOffers
-      summary: Returns the refund offer for the id provided.
-      operationId: getExchangeOffersId
+        - Exchange
+      summary: >-
+        The GET exchangeOperation service returns the exchange operation with the id provided. It may be a provisional exchange or a confirmed one
+      operationId: getExchangeOperation
       parameters:
         - name: Access-Token 
           in: header
@@ -2779,15 +2725,32 @@ paths:
           required: true
           description: ID of the booking  
         - in: path
-          name: exchangeOfferId
+          name: exchangeOperationId
           schema:
             type: string
             format: uuid
           required: true
-          description: ID of the refund offer to get.
+          description: ID of the exchange operation to get.
+        - in: query
+          name: embed
+          description: >-
+            Influences whether referenced resources are returned in full or as references only.
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - ALL
+                - TRIP
+                - TRIP.LOCATIONS
+                - OFFERS
+                - OFFERS.OFFERPARTS
+                - OFFERS.OFFERPARTS.PRODUCTS
+                - PASSENGERS
+              default: ALL      
       responses:
         '200':
-          description: ExchangeOffer found
+          description: ExchangeOperation found
           content:
             application/json:
               schema:
@@ -2795,8 +2758,8 @@ paths:
                 properties:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
-                  exchangeOffer:
-                    $ref: '#/components/schemas/ExchangeOffer'
+                  exchangeOperation:
+                    $ref: '#/components/schemas/ExchangeOperation'
           headers:
             Content-Language:
               schema:
@@ -2825,9 +2788,10 @@ paths:
           description: Not implemented  
     patch:
       tags:
-        - ExchangeOffers
-      summary: Allows to prebook an exchange offer. 
-      operationId: patchExchangeOffersId
+        - Exchange
+      summary: >-
+        The PATCH exchangeOperation action allows to update an ongoing exchange operation. 
+      operationId: patchExchangeOperation
       parameters:
         - name: Access-Token 
           in: header
@@ -2854,24 +2818,29 @@ paths:
           required: true
           description: ID of the booking to be exchanged.  
         - in: path
-          name: exchangeOfferId
+          name: exchangeOperationId
           schema:
             type: string
             format: uuid
           required: true
-          description: ID of the exchange offer.
+          description: ID of the exchange operation.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ExchangeOfferConfirm'
+              $ref: '#/components/schemas/ExchangeOperationPatchRequest'
       responses:
         '200':
           description: Exchange successfully completed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Exchange'
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  exchangeOperation:
+                    $ref: '#/components/schemas/ExchangeOperation'
           headers:
             Content-Language:
               schema:
@@ -2900,9 +2869,10 @@ paths:
           description: Not implemented
     delete:
       tags:
-        - ExchangeOffers
-      summary: Deletes an exchangeOffer without waiting for expiry. 
-      operationId: deleteExchangeOffersId
+        - Exchange
+      summary: >-
+        The DELETE exchangeOperation action allows to cancel an ongoing exchangeOperation in provisinoal state without waiting for expiry. 
+      operationId: deleteExchangeOperation
       parameters:
         - name: Access-Token 
           in: header
@@ -2918,17 +2888,17 @@ paths:
             type: string
             format: uuid
           required: true
-          description: ID of the offer the offerPart is part of.      
+          description: ID of the booking containing the exchange operation
         - in: path
-          name: exchangeOfferId
+          name: exchangeOperationId
           schema:
             type: string
             format: uuid
           required: true
-          description: ID of the product to delete.
+          description: ID of the exchangeOperation to delete.
       responses:
         '200':
-          description: ExchangeOffer removed
+          description: ExchangeOperation removed
           content:
             application/json:
               schema:
@@ -2936,10 +2906,6 @@ paths:
                 properties:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
-                  fulfillments:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Fulfillment'
           headers:
             Content-Language:
               schema:
@@ -2966,6 +2932,333 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+
+  '/exchange-trip-offers-collection':
+    post:
+      tags:
+        - Exchange
+      summary: >-
+        The POST exchangeTripsOffersCollection service returns different exchange offers for a
+        specified fulfillments submitted given requested new trip characteristics. 
+      operationId: postExchangeTripOffersCollection
+      parameters:
+        - name: Access-Token 
+          in: header
+          description: >-
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred as a
+            response to the request (see RFC2616-sec14.4).
+          schema:
+            type: string
+          required: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExchangeTripOfferRequest'
+      responses:
+        '200':
+          description: Collection of Exchange trip offers found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  id:
+                    type: string
+                    format: uuid
+                  exchangeTripOffers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ExchangeTripOffer'
+                  scrollBackContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll backward. (Value
+                      depends on underlying system.)
+                  scrollForwardContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll forward.
+                      (Value depends on underlying system.)
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+                required:
+                  - id
+                  - exchangeTripOffers
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error        
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+
+  '/exchange-trip-offers-collection/{exchangeTripOffersCollectionId}':
+    get:
+      tags:
+        - Exchange
+      summary: >-
+        The GET tripOffersCollection service returns different offers and trips for a
+        specified origin and destination (and via). The unique codes of the
+        origin and destination can be resolved using the locations service.
+      operationId: getExchangeTripOffersCollectionId
+      parameters:
+        - name: Access-Token 
+          in: header
+          description: >-
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
+        - in: path
+          name: exchangeTripOffersCollectionId
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: ID of the trip to get.
+        - name: scrollContext
+          in: query
+          description: >-
+            Based on a previous search-response, earlier or later connections
+            for the same trip can be retrieved by scrolling back and forth (by
+            a pointer-context). You must use the same request parameters as in
+            the original trips-request and the given values in the response for
+            either "ScrollBack-Context" or "ScrollForward-Context" for optional
+            scrolling.
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: stopBehavior
+          description: >-
+            Influences what stops are to be returned in response
+            (ORIGIN_DESTINATION_ONLY returns no intermediate stops within a segment;
+            ALL_STOPS returns additionally intermediate stops within segments).
+          schema:
+            type: string
+            default: ORIGIN_DESTINATION_ONLY
+            enum:
+              - ORIGIN_DESTINATION_ONLY
+              - ALL_STOPS                    
+        - in: query
+          name: embed
+          description: >-
+            Influences whether referenced resources are returned in full or as references only. 
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - ALL
+                - TRIPOFFERS
+                - TRIPOFFERS.TRIPS
+                - TRIPOFFERS.TRIPS.LOCATIONS
+                - TRIPOFFERS.OFFERS
+                - TRIPOFFERS.OFFERS.OFFERPARTS
+                - TRIPOFFERS.OFFERS.OFFERPARTS.PRODUCTS
+                - TRIPOFFERS.PASSENGERS
+                - NONE
+            default: [ALL]
+      responses:
+        '200':
+          description: Trip Offer Collection(s) found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                     $ref: '#/components/schemas/WarningMessageList'
+                  id:
+                    type: string
+                    format: uuid
+                  fulfillmentIds:
+                    type: array
+                    items:
+                      type: string
+                      format: uuid
+                  overruleCode: 
+                    $ref: '#/components/schemas/OverruleCode'
+                  exchangeTripOffers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ExchangeTripOffer'
+                  scrollBackContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll backward. (Value
+                      depends on underlying system.)
+                  scrollForwardContext:
+                    type: string
+                    description: >-
+                      Scroll reference for the current response to scroll forward.
+                      (Value depends on underlying system.)
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+                required:
+                  - id
+                  - exchangeTripOffers
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'          
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+          
+
+  '/exchange-trip-offers/{exchangeTripOfferId}':
+    get:
+      tags:
+        - Exchange
+      summary: >-
+        The GET exchange-trip-offers service returns different offers for a specified trip offer id.
+      operationId: getExchangeTripOffersId
+      parameters:
+        - name: Access-Token 
+          in: header
+          description: >-
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response 
+            to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false  
+        - in: path
+          name: exchangeTripOfferId
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: ID of the trip to get.
+        - in: query
+          name: embed
+          description: >-
+            Influences whether referenced resources are returned in full or as references only. 
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - ALL              
+                - TRIPS
+                - TRIPS.LOCATIONS
+                - OFFERS
+                - OFFERS.OFFERPARTS
+                - OFFERS.OFFERPARTS.PRODUCTS
+                - PASSENGERS
+                - NONE
+              default: ALL
+      responses:
+        '200':
+          description: Trip offer found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  tripOffer:
+                    $ref: '#/components/schemas/ExchangeTripOffer'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'         
+        '501':
+          description: Not implemented     
+       
 
   '/coachLayouts':
     get:
@@ -3594,6 +3887,7 @@ components:
               - TRIPOFFERS.TRIP.LOCATIONS
               - TRIPOFFERS.OFFERS
               - TRIPOFFERS.OFFERS.OFFERPARTS
+              - TRIPOFFERS.OFFERS.OFFERPARTS.PRODUCTS
               - TRIPOFFERS.PASSENGERS
               - NONE
             default: ALL
@@ -3657,6 +3951,40 @@ components:
         - minimalPrice
         - overallServiceClass
         - overallFlexibility
+
+    OfferSelection:
+      type: object
+      properties:
+        selectedOfferId:
+          type: string
+          format: uuid
+          description: id of the selected offer or exchangeOffer
+        selectedOptionalReservationsIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+            description: >-
+              If relevant, ids of the selected optional reservations.
+        selectedOptionalAncillaries:
+          type: array
+          items:
+            type: object
+            properties:
+              ancillaryId:
+                type: string
+                format: uuid
+                description: >-
+                  If relevant, ids of the selected optional ancillaries.
+              passengerIds:
+                type: array
+                items:
+                  type: string
+                  format: uuid
+                  description: >-
+                    Id of the passengers the selected optional ancillaries are for. 
+      required:
+        - selectedOfferId       
 
     Offer:
       type: object
@@ -4066,41 +4394,9 @@ components:
         selectedOffers:
           type: array
           items:
-            type: object
-            properties:
-              selectedOfferId:
-                type: string
-                format: uuid
-                description: id of the selected offer
-              selectedOptionalReservationsIds:
-                type: array
-                items:
-                  type: string
-                  format: uuid
-                  description: >-
-                    If relevant, ids of the selected optional reservations.
-              selectedOptionalAncillaries:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    ancillaryId:
-                      type: string
-                      format: uuid
-                      description: >-
-                        If relevant, ids of the selected optional ancillaries.
-                    passengerIds:
-                      type: array
-                      items:
-                        type: string
-                        format: uuid
-                        description: >-
-                          Id of the passengers the selected optional ancillaries are for.
-            description: >-
-              The list of offers that need to be provisionally booked, with possibly the reservations
-              and ancillaries associated that should be booked as well. 
-            required:
-              - selectedOfferId
+            $ref: '#/components/schemas/OfferSelection'
+          description: >-
+            The list of offers that need to be provisionally booked, with possibly the reservations and ancillaries associated that should be booked as well. 
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -4113,8 +4409,15 @@ components:
               - BOOKEDOFFERS.TRIPS
               - BOOKEDOFFERS.TRIPS.LOCATIONS
               - BOOKEDOFFERS.OFFERPARTS
+              - BOOKEDOFFERS.OFFERPARTS.PRODUCTS
               - PASSENGERS
               - REFUND_PROPOSITIONS
+              - EXCHANGE_OPERATIONS
+              - EXCHANGE_OPERATIONS.OFFERS
+              - EXCHANGE_OPERATIONS.OFFERS.TRIP
+              - EXCHANGE_OPERATIONS.OFFERS.TRIP.LOCATIONS
+              - EXCHANGE_OPERATIONS.OFFERS.OFFERPARTS
+              - EXCHANGE_OPERATIONS.OFFERS.OFFERPARTS.PRODUCTS
               - NONE
             default: ALL
 
@@ -4170,16 +4473,10 @@ components:
           description: >-
             Refund offers are created with the details of the to-be-confirmed refund operation. 
             One refund offer can then be confirmed, which turns it into a refund.
-        exchange:
-            $ref: '#/components/schemas/Exchange'
-        exchangeOffers:
+        exchangeOperations:
           type: array
           items:
-            $ref: '#/components/schemas/ExchangeOffer'
-          description: >-
-            Exchange offers created with the details of the to-be-confirmed refund operation. 
-            One exchange offer can then be confirmed, which turns it into an exchange and
-            confirms the new booking.         
+            $ref: '#/components/schemas/ExchangeOperation'
         links:
           type: array
           items:
@@ -4197,14 +4494,43 @@ components:
     BookingPatchRequest:
       type: object
       description: >-
-        Allows setting the required fulfillment type, e.g. value paper
-        or e-ticket and preferred fulfillment media. 
-        The latter is optional and relevant in some cases only.
+        Allows modifying a general setting for the booking:
+         * setting the required fulfillment type, e.g. value paper
+           or e-ticket and preferred fulfillment media. 
+           The latter is optional and relevant in some cases only.
+         * Provisionally exchanging some of the fulfillments in the booking 
       properties:
         requestedFulfillmentType:
           $ref: '#/components/schemas/FulfillmentType'
         preferredFulfillmentMedia:
           $ref: '#/components/schemas/FulfillmentMediaType'
+        selectedExchangeOffers:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferSelection'
+        embed:
+          description: >-
+            Influences whether referenced resources are returned in full or as references only.
+          type: array
+          items:
+            type: string
+            enum:
+              - ALL
+              - BOOKEDOFFERS
+              - BOOKEDOFFERS.TRIPS
+              - BOOKEDOFFERS.TRIPS.LOCATIONS
+              - BOOKEDOFFERS.OFFERPARTS
+              - BOOKEDOFFERS.OFFERPARTS.PRODUCTS
+              - PASSENGERS
+              - REFUND_PROPOSITIONS
+              - EXCHANGE_OPERATIONS
+              - EXCHANGE_OPERATIONS.OFFERS
+              - EXCHANGE_OPERATIONS.OFFERS.TRIP
+              - EXCHANGE_OPERATIONS.OFFERS.TRIP.LOCATIONS
+              - EXCHANGE_OPERATIONS.OFFERS.OFFERPARTS
+              - EXCHANGE_OPERATIONS.OFFERS.OFFERPARTS.PRODUCTS
+              - NONE
+            default: ALL
     
     BookingSearchParameter:
       type: object
@@ -4425,6 +4751,15 @@ components:
             - PNG
             - GIF
             - SVG   
+    
+    OverruleCode: 
+      type: string
+      description: >-
+        Reason for and type of an after sale, code list in IRS 90918-10.
+      x-extensible-enum:
+        - PAYMENT_FAILURE
+        - SALES_STAFF_ERROR
+        - STRIKE
       
     RefundOffersCollection:
       type: object
@@ -4511,83 +4846,103 @@ components:
           description: id of the refund offer
       required:
         - confirmRefundOfferId 
-
-    ExchangeOfferRequest:
-      type: object
+    
+    ExchangeTripOfferRequest:
+      type: object      
       description: >-
-        Request for an exchange offer. 
-        Fulfillments can be provided in case the booking contains multiple individual fulfillments.
+        Defines the parameters needed to request an exchange offer, either based on either an
+        existing trip (that is then passed in) plus a set of offer search
+        criteria, or based on tripsearch and offer search criteria. At least one
+        of the trip or tripSearchCriteria must be set.
       properties:
+        tripOfferRequest:
+          $ref: '#/components/schemas/TripOfferRequest'
         fulfillmentIds:
           type: array
           items:
             type: string
             format: uuid
-            description: id of the fulfillment to refund
-        tripSearch:
-          type: object      
-          description: >-  
-            one of trips or searchCriteria
-          properties:
-            trips:
-              type: array
-              items:
-                type: object
-                properties:
-                  trip:
-                    $ref: '#/components/schemas/Trip'
-                  requestedSection:
-                    type: object
-                    properties:
-                      start:
-                        $ref: '#/components/schemas/Location'
-                      end:
-                        $ref: '#/components/schemas/Location'
-                required:
-                  - trip
-            searchCriteria:      
-              $ref: '#/components/schemas/TripSearchCriteria'
-        returnSearchParameters:
-          type: object
-          description: >-
-            This property can be used in case a return trip is being requested. 
-            This will allow to benefit from return-specific fares or product.
-          properties:
-            inwardReturnDate:
-              type: string
-              format: date-time
-              description: >-
-                Needs to be provided when creating the collection of outward travels so that the
-                provider knows when a return travel can be expected and propose appropriate.
-                product and fares.
-            outwardTripOfferCollectionId: 
-               type: string
-               format: uuid
-               description: >-
-                 Needs to be provided when creating the collection of inward travels so that the provider
-                 can relate the inward travels to the outward travels context.
-            outwardSelectedOfferId:
-               type: string
-               format: uuid
-               description: >-
-                 Needs to be provided when creating the collection of inward travels so that the provider
-                 knows what the outward offer is and and propose compatible offers only if desired or
-                 mandatory.
-        requestedFulfillmentOptions:
+        overruleCode: 
+          $ref: '#/components/schemas/OverruleCode'
+      required:
+        - tripOfferRequest
+        - fulfillmentIds
+
+    ExchangeTripOffer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          example: Bruxelles-Midi 2020-07-01 10:05 CET
+        trip:
+          $ref: '#/components/schemas/Trip'
+        exchangeOffers:
           type: array
           items:
-            $ref: '#/components/schemas/FulfillmentOption'
+            $ref: '#/components/schemas/ExchangeOffer'
         passengers:
-          description: >-
-            A Passenger can be reused from the existing booking if id or reference is set. Otherwise,
-            if any attribute needs to be changed, all the attributes have to be set anew.
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
-        offerSearchCriteria:
-          $ref: '#/components/schemas/OfferSearchCriteria'
-        overruleCode:
-          $ref: '#/components/schemas/OverruleCode'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      required: 
+        - id
+        - trip
+        - links
+
+    ExchangeOperation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          example: booking 2345
+        status:
+          type: string
+          enum:
+            - PREBOOKED
+            - CONFIRMED
+            - FULFILLED
+            - ERROR          
+        exchangeOffers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExchangeOffer'
+        fulfillments:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Fulfillment'        
+        ticketTimeLimit:
+          type: string
+          format: date-time
+        fulfillmentType:
+          $ref: '#/components/schemas/FulfillmentType'
+
+    ExchangeOperationPatchRequest:
+      type: object
+      description: >-
+        Allows modifying a general setting for the booking:
+         * setting the required fulfillment type, e.g. value paper
+           or e-ticket and preferred fulfillment media. 
+           The latter is optional and relevant in some cases only.
+         * Provisionally exchanging some of the fulfillments in the booking 
+      properties:
+        requestedFulfillmentType:
+          $ref: '#/components/schemas/FulfillmentType'
+        preferredFulfillmentMedia:
+          $ref: '#/components/schemas/FulfillmentMediaType'
+        selectedExchangeOffers:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferSelection'
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -4596,130 +4951,23 @@ components:
             type: string
             enum:
               - ALL
-              - TRIPOFFERS
-              - TRIPOFFERS.TRIP
-              - TRIPOFFERS.TRIP.LOCATIONS
-              - TRIPOFFERS.OFFERS
-              - TRIPOFFERS.OFFERS.OFFERPARTS
-              - TRIPOFFERS.PASSENGERS
-              - NONE
-            default: ALL
-      required:
-        - fulfillmentIds
-        - tripOfferRequest
-       
-    OverruleCode: 
-      type: string
-      description: >-
-        Reason for and type of an after sale, code list in IRS 90918-10.
-      x-extensible-enum:
-        - PAYMENT_FAILURE
-        - SALES_STAFF_ERROR
-        - STRIKE
-
-    ExchangeOffersCollection:
-      type: array
-      items:
-        $ref: '#/components/schemas/ExchangeOffer'
-        
+              - TRIP
+              - TRIP.LOCATIONS
+              - OFFERS
+              - OFFERS.OFFERPARTS
+              - OFFERS.OFFERPARTS.PRODUCTS
+              - PASSENGERS
+    
     ExchangeOffer:
       type: object
-      description: >-
-        Offer to exchange the referenced booking.
       properties:
-        id:
-          type: string
-          format: uuid
-          description: id of the exchange offer
-        validUntil:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-            - PROPOSED
-            - CONFIRMED
-          default: PROPOSED
-        reimbursementStatus:
-          description: >-
-            If set to IMMEDIATE the distributor is allowed to return the 
-            reimbursement amount immediately.
-          type: string
-          enum:
-            - IMMEDIATE
-            - DELAYED
-        reimbursementDateTime:
-          type: string
-          format: date-time
-        appliedOverruleCode:
-          description: >-
-            Reason for and type of an after sale, code list in IRS 90918-10.
-          type: string
-        fulfillments:
-          description: >-
-            Affected fulfillments. In case of secure paper these need to be collected from the passenger.
-          type: array
-          items: 
-            $ref: '#/components/schemas/Fulfillment'
-        exchangeFee:
-          $ref: '#/components/schemas/CurrencyPrice'
-        refundableAmount:
-          $ref: '#/components/schemas/CurrencyPrice'
         offer:
-          $ref: '#/components/schemas/TripOffer'      
-      required:
-       - id
-       - validUntil
-       - status
-       - reimbursementStatus
-       - exchangeFee
-       - refundableAmount
-
-    ExchangeOfferConfirm:
-      type: object
-      description: >-
-        Changes the exchange offer to the status PREBOOKED.
-      properties:
-        prebookedExchangeOfferId:
-          type: string
-          format: uuid
-          description: id of the exchange offer
-      required:
-        - prebookedExchangeOfferId 
-            
-    Exchange:
-      type: object
-      description: >- 
-        Result of a successful confirmation of an exchange. 
-        The new booking and the original booking are returned.
-      properties:
-        reimbursementStatus:
-          description: >-
-            If set to IMMEDIATE the distributor is allowed to return the 
-            reimbursement amount immediately.
-          type: string
-          enum:
-            - IMMEDIATE
-            - DELAYED
-        reimbursementDateTime:
-          type: string
-          format: date-time
-        appliedOverruleCode:
-          description: >-
-            Reason for and type of an after sale, Code list in IRS 90918-10.
-          type: string
+          $ref: '#/components/schemas/Offer'
         exchangeFee:
           $ref: '#/components/schemas/CurrencyPrice'
-        refundableAmount:
-          $ref: '#/components/schemas/CurrencyPrice'    
-        newBooking: 
-          $ref: '#/components/schemas/Booking'
-      required:
-        - reimbursementStatus
-        - exchangeFee
-        - refundableAmount
-        - newBooking
-            
+        exchangeBalance:
+          $ref: '#/components/schemas/CurrencyPrice'
+
     OfferSearch:
       type: object
       description: >-
