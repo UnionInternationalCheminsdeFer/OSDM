@@ -373,7 +373,7 @@ Another example, if on top of first and last names, at least one email or one
 phone number is needed:
 
 `(passenger[0].details.firstName AND passenger[0].details.name AND
-(passenger[0].details.eMails OR passenger[0].details.phones))`
+(passenger[0].details.eMail OR passenger[0].details.phone))`
 
 By parsing this structure, the API consumer is able to identify the elements
 that need to be filled-in to proceed. An initial version the [grammar for required
