@@ -1,3 +1,5 @@
 passenger[<uuid]>.details.phone
 
 passenger[<uuid>].details.firstName AND passenger[<uuid>].details.name
+
+passenger[<uuid>].details.firstName AND passenger[<uuid>].details.name AND (passenger[<uuid>].details.eMails OR passenger[<uuid>].details.phones)

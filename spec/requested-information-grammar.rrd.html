@@ -100,6 +100,12 @@ passenger[ee764ee0-55a1-11eb-ae93-0242ac130002].details.phone
 passenger[ee764ee0-55a1-11eb-ae93-0242ac130004].details.firstName AND passenger[ee764ee0-55a1-11eb-ae93-0242ac130004].details.name	
 	</pre>
 	</p>
+	<p>
+		More complex example:
+	</p>
+	<pre>
+		passenger[<uuid>].details.firstName AND passenger[<uuid>].details.name AND (passenger[<uuid>].details.eMails OR passenger[<uuid>].details.phones)		
+	</pre>
 </div>
 
 <div id="container">
