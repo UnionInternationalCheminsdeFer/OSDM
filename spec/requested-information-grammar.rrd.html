@@ -76,11 +76,6 @@ layout: default
 		stroke: #404040;
 		fill: rgba(0, 0, 0, 0.1);
 	}
-
-	svg.railroad-diagram g.diagram-text:hover path.diagram-text {
-		/* Multiple choice text, not working atm. */
-		fill: #f00;
-	}
 </style>
 
 <div id="container">
@@ -104,7 +99,7 @@ passenger[ee764ee0-55a1-11eb-ae93-0242ac130004].details.firstName AND passenger[
 		More complex example:
 	</p>
 	<pre>
-		passenger[<uuid>].details.firstName AND passenger[<uuid>].details.name AND (passenger[<uuid>].details.eMails OR passenger[<uuid>].details.phones)		
+passenger[<uuid>].details.firstName AND passenger[<uuid>].details.name AND (passenger[<uuid>].details.eMails OR passenger[<uuid>].details.phones)		
 	</pre>
 </div>
 
