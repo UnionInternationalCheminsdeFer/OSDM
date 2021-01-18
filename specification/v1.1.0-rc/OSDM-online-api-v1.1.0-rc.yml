@@ -6231,7 +6231,8 @@ components:
 
     ReservationDetail:
       type: object
-      description: segmentIndex references a segmentIndex in the trip part within the offer reply
+      description: >-
+        Describes the details of the reserved place(s).
       properties:
         accommodationType:
           $ref: '#/components/schemas/AccommodationType'  
