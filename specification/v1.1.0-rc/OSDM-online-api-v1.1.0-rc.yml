@@ -3262,10 +3262,8 @@ components:
           description: sequence number of the segment in the ordering of all segments of the trip
         origin:
           $ref: '#/components/schemas/Stop'
-          description: departure point of the segment
         destination:
           $ref: '#/components/schemas/Stop'
-          description: arrival point of the segment
         duration: 
           description: duration of the segment in  ISO 8601 Durations
           type: string
@@ -3425,10 +3423,8 @@ components:
             - ORIGIN_DESTINATION_ONLY
             - REAL_BOARDING_ALIGHTING
         origin:
-          description: id of the location to use as origin
           $ref: '#/components/schemas/StationCode'
         destination:
-          description: id of the location to use as destination
           $ref: '#/components/schemas/StationCode'
         viaValues:
           description: >-
@@ -5094,13 +5090,63 @@ components:
         fareDetailDescription:
           $ref: '#/components/schemas/Text'
         price:
-          $ref: '#/components/schemas/PriceOnline'
+          type: object
+          description: allows specifying a price in multiple currencies
+          properties:
+            price:
+              type: array
+              minItems: 1
+              items:
+                $ref: '#/components/schemas/CurrencyPrice'
         regionalConstraint:
-          $ref: '#/components/schemas/RegionalConstraintOnline'
+          type: object
+          description: >-
+            Regional constraint of the fare- offline bulk data use the id of connection points whereas in an online environment the connection point is included
+          properties:
+            entryConnectionPointId:
+              description: connection point connecting two fare regimes
+              type: string
+            entryConnectionPoint:
+              $ref: '#/components/schemas/FareConnectionPoint'
+            exitConnectionPointId:
+              description: connection point connecting two fare regimes
+              type: string
+            exitConnectionPoint:
+              $ref: '#/components/schemas/FareConnectionPoint'
+            regionalValidity:
+              $ref: '#/components/schemas/RegionalValidity'
+            distance:
+              description: Distance in km for statistics
+              type: integer
+              format: int32
+          required:
+            - regionalValidity         
         serviceConstraint:
-          $ref: '#/components/schemas/ServiceConstraintOnline'
+          type: object
+          description: >-
+            Either excluded or included service brands can be set.
+          properties:
+            restrictedToServiceBrands:
+              type: array
+              items:
+                $ref: '#/components/schemas/ServiceBrandCode'
+            excludedServiceBrands:
+              type: array
+              items:
+                $ref: '#/components/schemas/ServiceBrandCode'
         carrierConstraint:
-          $ref: '#/components/schemas/CarrierConstraintOnline'
+          type: object
+          description: >-
+            Either excluded or included carriers can be set.
+          properties:
+            restrictedToCarrier:
+              type: array
+              items:
+                type: string
+            excludedCarrier:
+              type: array
+              items:
+                type: string
         regulatoryConditions:
           $ref: '#/components/schemas/RegulatoryConditions'
         serviceClass:
@@ -5108,7 +5154,23 @@ components:
         comfortClass:
           $ref: '#/components/schemas/ComfortClass'
         accommodationDetails:
-          $ref: '#/components/schemas/AccommodationTypeOnline'            
+          type: object
+          properties:
+            accommodationType:
+                $ref: '#/components/schemas/AccommodationType'  
+            accommodationSubType:
+                $ref: '#/components/schemas/AccommodationSubType'              
+            text:
+              $ref: '#/components/schemas/Text'
+            includesClassName:
+              description: indicates that the class name is included
+              type: boolean
+              default: true
+            reservationParameterId:
+              type: string
+          required:
+            - id
+            - text          
         afterSalesCondition:
           type: object
           properties:
@@ -5124,25 +5186,232 @@ components:
               type: boolean
               default: false
         combinationConstraint:
-          $ref: '#/components/schemas/FareCombinationConstraintOnline'
-        fulfillmentConstraint:
-          $ref: '#/components/schemas/FulfillmentConstraintOnline'
+          type: object
+          properties:
+            combinationModels:
+              type: array
+              minItems: 1
+              items:
+                $ref: '#/components/schemas/FareCombinationModel'
+          required:
+            - combinationModels
+        fulfillmentConstraint:           
+          type: object
+          properties:
+            acceptedControlSecurityTypes:
+              type: array
+              minItems: 1
+              items:
+                $ref: '#/components/schemas/ControlSecurityType'
+            acceptedBarCodes:
+              description: for SiD fulfillment one of the listed bar codes is required
+              type: array
+              items:
+                description: >-
+                  Item according to IRS 90918-9: FCB, TLB, SSB
+                type: string
+                x-extensible-enum:
+                  - FCB
+                  - TLB
+                  - SSB
+            requiredBarCodes:
+              description: >-
+                One of the listed bar codes must be provided.
+              type: array
+              items:
+                type: string
+            requiredSiS:
+              description: >-
+                To guarantee security in system (SiS) of the fulfillment one of the listed interfaces is required.
+              type: array
+              items:
+                description: >-
+                  Interface type to ticket control data. REGISTRY means submitting
+                  the data to the central UIC registry. PEER_TO_PEER means data exchange
+                  is handled between the two parties directly.
+                type: string
+                x-extensible-enum:
+                  - REGISTRY
+                  - PEER_TO_PEER
+            individualTicketingPermitted:
+              description: a separate fulfillment per traveler is permitted
+              type: boolean
+          required:
+            - acceptedFulfillmentTypes
+            - individualTicketingPermitted
         reductionConstraint:
-          $ref: '#/components/schemas/ReductionConstraintOnline'
+          type: object
+          properties:
+            requiredCards:
+              description: >-
+                One of the listed cards is required to be valid at the time of travel.
+              type: array
+              items:
+                $ref: '#/components/schemas/CardReference'
+          required:
+            - requiredCards
         legacyAccountingIdentifier:
-          $ref: '#/components/schemas/LegacyAccountingIdentifier'
+          type: object
+          description: identifier of the fare in the current 301 accounting file
+          properties:
+            serialId:
+              description: sequential number of regional validities
+              type: integer
+              format: int32
+              minimum: 0
+              maximum: 99999
+            addId:
+              description: >-
+                Sequential number of regional validities (leading positions in case the series is too short
+              type: integer
+              format: int32
+              minimum: 0
+              maximum: 99
+            tariffId:
+              description: sequential number of the fares for one regional validity
+              type: integer
+              format: int32
+              minimum: 0
+              maximum: 9999
         travelValidityConstraint:
-          $ref: '#/components/schemas/TravelValidityConstraintOnline'
+          type: object
+          description: >-
+            travel validity data are needed to create barcode and control data (ETCD)
+            in allocator mode even in case they have been checked during the online sale
+          properties:
+            validTravelDates:
+              $ref: '#/components/schemas/CalendarOnline'
+            validityRange:
+              type: object
+              properties:
+                timeUnit:
+                  type: string
+                  enum:
+                    - DAYS
+                    - HOURS
+                    - MINUTES
+                value:
+                  type: integer
+                  format: int32
+                hoursAfterMidnight:
+                  description: validity extended after midnight
+                  type: integer
+                  format: int32
+              required:
+                - timeUnit
+                - value  
+            excludedTimeRange:
+              description: time ranges excluded from the validity (e.g. off peak fulfillments)
+              type: array
+              items:
+                type: object
+                properties:
+                  from:
+                    description: minutes of the day in the time zone of travel
+                    type: integer
+                    format: int32
+                  until:
+                    description: minutes of the day in the time zone of travel
+                    type: integer
+                    format: int32
+                  scope:
+                    type: string
+                    enum:
+                      - START_OF_TRAVEL
+                      - COMPLETE_RANGE
+                required:
+                  - from
+                  - until
+                  - scope
+            numberOfTravelDays:
+              description: number of allowed travel days (e.g. 3 travel days within 2 weeks)
+              type: integer
+              format: int32
+            returnConstraint:
+              description: a return trip with the same carrier must be sold in combination
+              type: object
+              properties:
+                latestReturn:
+                  description: number of days after departure or start of validity of the last return
+                  type: integer
+                  format: int32
+                earliestReturn:
+                  description: number of days after departure or start of validity of the earliest return
+                  type: integer
+                  format: int32
+                excludedWeekdays:
+                  description: weekdays (ISO day of the week, 1 = Monday) between travel and return where travel is not allowed
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
+              required:
+                - latestReturn
+                - earliestReturn
+          required:
+            - validityRange
         reservationDetails:
           $ref: '#/components/schemas/ReservationDetail'     
         placeSelection:
           $ref: '#/components/schemas/PlaceSelection'
         reservationLegacyParameter:
-          $ref: '#/components/schemas/LegacyReservationParameter'
+          type: object
+          description: reservation parameter to support the UIC 90918-1 interface for booking
+          properties:
+            travelClass:
+              description: 90918-1 class code in reservation
+              type: string
+            serviceLevelCode:
+              description: service level code defined in UIC 90918-1
+              type: string
+            serviceCode:
+              description: service code to be used in reservation
+              type: string
+            berthType:
+              description: berth type code in UIC 90918-1 to be used in reservation
+              type: string
+            coachTypeCode:
+              description: coach type code in UIC 90918-1 to be used in reservation
+              type: string
+            compartmentTypeCode:
+              description: compartment type code in UIC 90918-1 to be used in reservation
+              type: string
+            tariff:
+              description: tariff according to UIC 90918-1 to be used for booking 
+              type: array
+              items:
+                $ref: '#/components/schemas/LegacyReservationTariff'
+          required:
+            - travelClass
+            - serviceLevelCode
+            - serviceCode
         coveredSection:
-          $ref: '#/components/schemas/TravelSection'
+          type: object
+          properties:
+            start:
+              $ref: '#/components/schemas/Location'
+            end:
+              $ref: '#/components/schemas/Location'
+          required:
+            - start
+            - end
         passengerConstraint:
-          $ref: '#/components/schemas/PassengerConstraint'
+          description: >-
+            passenger constraint to be included in bar codes
+          type: array
+          items: 
+            type: object
+            properties:
+                number:
+                    description: number of passengers with this constraint
+                    type: integer
+                    format: int32                 
+                upperAgeLimit:
+                    type: integer
+                    format: int32
+                lowerAgeLimit:
+                    type: integer
+                    format: int32
       required:
         - id
         - type
@@ -5150,24 +5419,6 @@ components:
         - combinationConstraint
         - travelValidityConstraint
         - afterSalesCondition
-
-    PassengerConstraint:
-      description: >-
-        passenger constraint to be included in bar codes
-      type: array
-      items: 
-         type: object
-         properties:
-            number:
-                 description: number of passengers with this constraint
-                 type: integer
-                 format: int32                 
-            upperAgeLimit:
-                 type: integer
-                 format: int32
-            lowerAgeLimit:
-                 type: integer
-                 format: int32
 
     RegulatoryConditions:
       description: >- 
@@ -5184,31 +5435,7 @@ components:
          - CIV
          - MD
          - EU-PRR
-        
-    LegacyAccountingIdentifier:
-      description: identifier of the fare in the current 301 accounting file
-      type: object
-      properties:
-        serialId:
-          description: sequential number of regional validities
-          type: integer
-          format: int32
-          minimum: 0
-          maximum: 99999
-        addId:
-          description: >-
-            Sequential number of regional validities (leading positions in case the series is too short
-          type: integer
-          format: int32
-          minimum: 0
-          maximum: 99
-        tariffId:
-          description: sequential number of the fares for one regional validity
-          type: integer
-          format: int32
-          minimum: 0
-          maximum: 9999
-      
+
     CalendarOnline:
       type: object
       properties:
@@ -5230,97 +5457,7 @@ components:
             offset to UTC in minutes (number of minutes to be added to get UTC dates)
           type: integer
           format: int32
-        
-    TravelValidityConstraintOnline:
-      type: object
-      description: >-
-        travel validity data are needed to create barcode and control data (ETCD)
-        in allocator mode even in case they have been checked during the online sale
-      properties:
-        validTravelDates:
-          $ref: '#/components/schemas/CalendarOnline'
-        validityRange:
-          type: object
-          properties:
-            timeUnit:
-              type: string
-              enum:
-                - DAYS
-                - HOURS
-                - MINUTES
-            value:
-              type: integer
-              format: int32
-            hoursAfterMidnight:
-              description: validity extended after midnight
-              type: integer
-              format: int32
-          required:
-            - timeUnit
-            - value  
-        excludedTimeRange:
-          description: time ranges excluded from the validity (e.g. off peak fulfillments)
-          type: array
-          items:
-            type: object
-            properties:
-              from:
-                description: minutes of the day in the time zone of travel
-                type: integer
-                format: int32
-              until:
-                description: minutes of the day in the time zone of travel
-                type: integer
-                format: int32
-              scope:
-                type: string
-                enum:
-                  - START_OF_TRAVEL
-                  - COMPLETE_RANGE
-            required:
-              - from
-              - until
-              - scope
-        numberOfTravelDays:
-          description: number of allowed travel days (e.g. 3 travel days within 2 weeks)
-          type: integer
-          format: int32
-        returnConstraint:
-          description: a return trip with the same carrier must be sold in combination
-          type: object
-          properties:
-            latestReturn:
-              description: number of days after departure or start of validity of the last return
-              type: integer
-              format: int32
-            earliestReturn:
-              description: number of days after departure or start of validity of the earliest return
-              type: integer
-              format: int32
-            excludedWeekdays:
-              description: weekdays (ISO day of the week, 1 = Monday) between travel and return where travel is not allowed
-              type: array
-              items:
-                type: integer
-                format: int32
-          required:
-            - latestReturn
-            - earliestReturn
-      required:
-        - validityRange
 
-    ReductionConstraintOnline:
-      type: object
-      properties:
-        requiredCards:
-          description: >-
-            One of the listed cards is required to be valid at the time of travel.
-          type: array
-          items:
-            $ref: '#/components/schemas/CardReference'
-      required:
-        - requiredCards
- 
     FareCombinationModel:
       type: object
       properties:
@@ -5359,30 +5496,7 @@ components:
             $ref: '#/components/schemas/Company'
       required:
         - model
- 
-    FareCombinationConstraintOnline:
-      type: object
-      properties:
-        combinationModels:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/FareCombinationModel'
-      required:
-        - combinationModels
- 
-    PriceOnline:
-      type: object
-      description: allows specifying a price in multiple currencies
-      properties:
-        price:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/CurrencyPrice'
-      required:
-        - price
- 
+
     RelativeTime:
       type: object
       properties:
@@ -5411,29 +5525,7 @@ components:
         - timeUnit
         - timeValue
         - timeReference
- 
-    AfterSalesRuleOnline:
-      type: object
-      properties:
-        transactionType:
-          description: code list Reason for after sale
-          type: string
-        fee:
-          $ref: '#/components/schemas/CurrencyPrice'
-        applicationTime:
-          $ref: '#/components/schemas/RelativeTime'
-        applicationTimeStamp:
-          description: Absolute application time (UTC) in case of online services
-          type: string
-          format: date-time
-        isCarrierFee:
-          description: indicates that the fee belongs to the carrier
-          type: boolean
-          default: true
-       
-      required:
-        - transactionType
-      
+
     RegionalValidity:
       type: array
       items:
@@ -5594,62 +5686,6 @@ components:
           type: string
       required:
         - carrier
- 
-    FulfillmentConstraintOnline:
-      type: object
-      properties:
-        acceptedControlSecurityTypes:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/ControlSecurityType'
-        acceptedBarCodes:
-          description: for SiD fulfillment one of the listed bar codes is required
-          type: array
-          items:
-            description: >-
-              Item according to IRS 90918-9: FCB, TLB, SSB
-            type: string
-            x-extensible-enum:
-              - FCB
-              - TLB
-              - SSB
-        requiredBarCodes:
-          description: >-
-            One of the listed bar codes must be provided.
-          type: array
-          items:
-            type: string
-        requiredSiS:
-          description: >-
-            To guarantee security in system (SiS) of the fulfillment one of the listed interfaces is required.
-          type: array
-          items:
-            description: >-
-              Interface type to ticket control data. REGISTRY means submitting
-              the data to the central UIC registry. PEER_TO_PEER means data exchange
-              is handled between the two parties directly.
-            type: string
-            x-extensible-enum:
-              - REGISTRY
-              - PEER_TO_PEER
-        individualTicketingPermitted:
-          description: a separate fulfillment per traveler is permitted
-          type: boolean
-      required:
-        - acceptedFulfillmentTypes
-        - individualTicketingPermitted
-   
-    TravelSection:
-      type: object
-      properties:
-        start:
-          $ref: '#/components/schemas/Location'
-        end:
-          $ref: '#/components/schemas/Location'
-      required:
-        - start
-        - end
 
     CrossBorderCondition:
       type: object
@@ -5676,38 +5712,6 @@ components:
         - SIP
         - SID
         - SIS
-    
-    LegacyReservationParameter:
-      type: object
-      description: reservation parameter to support the UIC 90918-1 interface for booking
-      properties:
-        travelClass:
-          description: 90918-1 class code in reservation
-          type: string
-        serviceLevelCode:
-          description: service level code defined in UIC 90918-1
-          type: string
-        serviceCode:
-          description: service code to be used in reservation
-          type: string
-        berthType:
-          description: berth type code in UIC 90918-1 to be used in reservation
-          type: string
-        coachTypeCode:
-          description: coach type code in UIC 90918-1 to be used in reservation
-          type: string
-        compartmentTypeCode:
-          description: compartment type code in UIC 90918-1 to be used in reservation
-          type: string
-        tariff:
-          description: tariff according to UIC 90918-1 to be used for booking 
-          type: array
-          items:
-            $ref: '#/components/schemas/LegacyReservationTariff'
-      required:
-        - travelClass
-        - serviceLevelCode
-        - serviceCode
 
     LegacyReservationTariff:
        description: legacy tariff code and number of items or persons in case UIC 90918-1 is used for booking
@@ -5717,58 +5721,11 @@ components:
             description: number of items with this tariff code
             type: integer
             format: int32
-          code: 
-            description:  legacy tariff code
+          code:
+            description: legacy tariff code
             type: integer
-            format: int32            
-          
-    CarrierConstraintOnline:
-      type: object
-      description: >-
-        Either excluded or included carriers can be set.
-      properties:
-        restrictedToCarrier:
-          type: array
-          items:
-            type: string
-        excludedCarrier:
-          type: array
-          items:
-            type: string
-    
-    AccommodationTypeOnline:
-      type: object
-      properties:
-        accommodationType:
-            $ref: '#/components/schemas/AccommodationType'  
-        accommodationSubType:
-            $ref: '#/components/schemas/AccommodationSubType'              
-        text:
-          $ref: '#/components/schemas/Text'
-        includesClassName:
-          description: indicates that the class name is included
-          type: boolean
-          default: true
-        reservationParameterId:
-          type: string
-      required:
-        - id
-        - text
-    
-    ServiceConstraintOnline:
-      type: object
-      description: >-
-        Either excluded or included service brands can be set.
-      properties:
-        restrictedToServiceBrands:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceBrandCode'
-        excludedServiceBrands:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceBrandCode'
-    
+            format: int32
+  
     FareType:
       description: >-
         Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
@@ -5778,31 +5735,7 @@ components:
         - RESERVATION
         - INTEGRATED_RESERVATION
         - ANCILLARY
-    
-    RegionalConstraintOnline:
-      type: object
-      description: >-
-        Regional constraint of the fare- offline bulk data use the id of connection points whereas in an online environment the connection point is included
-      properties:
-        entryConnectionPointId:
-          description: connection point connecting two fare regimes
-          type: string
-        entryConnectionPoint:
-          $ref: '#/components/schemas/FareConnectionPoint'
-        exitConnectionPointId:
-          description: connection point connecting two fare regimes
-          type: string
-        exitConnectionPoint:
-          $ref: '#/components/schemas/FareConnectionPoint'
-        regionalValidity:
-          $ref: '#/components/schemas/RegionalValidity'
-        distance:
-          description: Distance in km for statistics
-          type: integer
-          format: int32
-      required:
-        - regionalValidity
-    
+
     FareConnectionPoint:
       type: object
       description: >-
