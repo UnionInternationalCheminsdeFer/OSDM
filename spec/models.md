@@ -178,8 +178,8 @@ These offer parts can be of different type, depending on what they represent:
 
 - **Admissions**
 - **Reservations**
-- **Integrated reservations**
 - **Ancillaries**
+- **Fees**
 
 However, all these different type share a significant amount of
 characteristics: they all apply to a defined set of passengers, have a price
@@ -284,6 +284,16 @@ origin/destination, like a parking spot or lounge access.
 This offer part is significantly simpler than those instantiating transport
 products, and only has one additional attribute, being the category of the
 ancillary.
+
+### Offer Parts - Fees
+
+Fees are used to represent additional costs for services or products. Offer 
+parts of type "fee" can be applied to the booking process (e.g. a service fee), 
+the trip (e.g. a reservation fee which is applied to all reservations in trains 
+running in the same direction, namely outward or inward travel) or other offer 
+parts. In contrast to other offer parts in OSDM, the customer is not free whether 
+to choose a fee or not: fees are generated and applied to other services or 
+products by the provider system.
 
 ### Products
 
@@ -403,10 +413,10 @@ the fulfillment. Only electronic fulfillment is considered in the MVP scope.
 
 `BookedOffers` are actually the same resources as the offers except that they are
 now booked. Most of the resource remains unchanged, except for the sections on
-reservation details (either in reservation or integrated reservation `Offerpart`s,
-or in fares), where but the sections related to the reserved places (in
-reservationDetails) will now be populated with the references to the space
-allocated by the provider system where the transport product is hosted.
+reservation details (either in reservation `Offerpart`s, or in fares), where
+but the sections related to the reserved places (in reservationDetails) will
+now be populated with the references to the space allocated by the provider
+system where the transport product is hosted.
 
 ### Fulfillments
 
