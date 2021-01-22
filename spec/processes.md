@@ -377,7 +377,7 @@ phone number is needed:
 
 By parsing this structure, the API consumer is able to identify the elements
 that need to be filled-in to proceed. An initial version the [grammar for required
-information](../requested-information-grammar.rrd.html) is available for review.
+information](../requested-information-grammar.html) is available for review.
 
 The two types of updates (accommodation preferences and passenger data updates)
 are applied using a `PATCH` verb on the related resources. While the resource in
