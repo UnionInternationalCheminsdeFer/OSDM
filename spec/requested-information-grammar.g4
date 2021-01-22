@@ -31,7 +31,7 @@ Attribute
 
 Identifier
     : UUID
-    | '0'
+    | 'ANY'
     ;
 
 UUID
