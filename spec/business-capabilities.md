@@ -13,7 +13,7 @@ Actors are defined according to the UML specification. An Actor models a type of
 
 Actors may represent roles played by human users, external hardware, or other subjects.
 
-Note that **an actor does not necessarily represent a specific entity but merely a facet (i.e., “role”) of some entity** that is relevant to the specification of its associated use cases. Thus, a single instance may play the role of several different actors and, conversely, a given actor may be played by multiple different instances.
+Note that **an actor does not necessarily represent a specific entity but merely a facet (e.g., “role”) of some entity** that is relevant to the specification of its associated use cases. Thus, a single instance may play the role of several different actors and, conversely, a given actor may be played by multiple different instances.
 
 The following diagram shows the actors and principal use cases involved in rail distribution and control. The principal use case relevant for this specification is marked in yellow.
 
