@@ -4219,7 +4219,7 @@ components:
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/Fee'  
+            $ref: '#/components/schemas/OfferPart'  
         links:
           type: array
           items:
@@ -4280,7 +4280,7 @@ components:
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/Fee'  
+            $ref: '#/components/schemas/OfferPart'  
         links:
           type: array
           items:
@@ -4319,7 +4319,7 @@ components:
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/Fee' 
+            $ref: '#/components/schemas/OfferPart' 
         links:
           type: array
           items:
