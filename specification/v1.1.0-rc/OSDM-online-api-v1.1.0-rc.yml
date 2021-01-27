@@ -6818,8 +6818,8 @@ components:
           type: string
         eMail:
           type: string
-        phone:
-          description: Preferably a mobile phone
+        phoneNumber:
+          description: Preferably a mobile phone number
           type: string
 
     Gender:
