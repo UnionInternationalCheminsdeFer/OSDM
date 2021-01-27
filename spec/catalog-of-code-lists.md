@@ -63,17 +63,53 @@ RS 90918-1 (Service Level).
 |`U`| T3 with shower & WC |
 |`W`| Double with shower |
 
+
+## BarcodeType
+
+| Code | Description |
+|------|-------------|
+| `FCB` | Flexible Conent Barcode - See IRS 90918-9 |
+| `TLB` | Ticket Layout Barcode - See IRS 90918-9 |
+| `SBB` | Small Structured Barcode -See IRS 90918-9 |
+
+## CardType
+| Code | Description |
+|------|-------------|
+| `LOYALTY_CARD` | Loyalty card |
+| `REDUCTION_CARD` | Card providing reduction |
+| `PASS` | Pass for travelling |
+
 ## Carrier
 
 Carrier codes used in OSDM are based on the [UIC RICS Company Code](https://uic.org/support-activities/it/rics?recherche=RICS%20code) standard.
+
+## ControlDataExchangeType
+
+| Code | Description |
+|------|-------------|
+| `REGISTRY` | See IRS 90918-4, data are deliverd to the UIC registry|
+| `PEER2PEER` | See IRS 90918-4, data are exchange peer 2 peer|
+
+## ControlSecurityType
+
+| Code | Description |
+|------|-------------|
+| `SIP  Security in Paper -CIT secure background See IRS 90918-9 |
+| `SID  Security in Data (e.g. signed barcode) See IRS 90918-9 
+| `SIS  Security in System (Onlice control vs. Tickte registry) See IRS 90918-9/90918-4 |
 
 ## Currency
 
 Currency codes used in OSDM are based on the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) standard.
 
-## Fare BerthType
+## FareType
 
-Legacy reservation code defined in UIC 90918-1.
+| Code | Description |
+|------|-------------|
+| `NRT` | NRT |
+| `IRT` | IRT |
+| `RES` | RES (with or without supplement) |
+| `ANCILLARY` | Ancillary |
 
 ## Fare CoachType
 
@@ -82,6 +118,14 @@ Legacy reservation code defined in UIC 90918-1.
 ## Fare CompartementTypeCode
 
 Legacy reservation code defined in UIC 90918-1.
+
+## Gender
+
+| Code | Description |
+|------|-------------|
+| `MALE` | Male |
+| `FEMALE` | Female |
+| `X` | Diverse |
 
 ## Language
 
@@ -213,9 +257,6 @@ Other parties are allowed to accept additional reduction cards.
 | `SALES_STAFF_ERROR` | Error made by sales staff |
 | `PAYMENT-FAILURE` | Cancellation made by the allocator due to a failed payment |
 
-## Reservation Service Code
-
-Legacy reservation code defined in UIC 90918-1.
 
 ## Reservation Preference
 
