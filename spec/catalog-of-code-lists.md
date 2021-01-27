@@ -441,23 +441,22 @@ Additional codelists can be defined by implementers. The codelist name should th
 
 | Code | Description | Transportable  | Bulk (Offline) | Online Request | Online Reply |
 |------|-------------|----------------|----------------|----------------|--------------|
-| YOUNG_CHILD | Young child defined by the carrier depending on the age |   | X |   | X |
-| CHILD | Child defined by the carrier depending on the age             |   | X |   | X |
-| YOUTH | Youth defined by the carrier depending on the age             |   | X |   | X |
-| ADULT | Adult defined by the carrier depending on the age             |   | X |   | X |
-| SENIOR | Senior defined by the carrier depending on the age           |   | X |   | X |
-| FAMILY_CHILD | Child associated with a family traveling together      |   | X | X | X |
-| ACCOMP_PRM | Accompanying Person for PRM                              |   | X |   | X |
-| PRM_CHILD | Handicapped young child accompanied by one person where the usual child according to the age price would be zero and the accompanying person would also be free                  |   | X |   | X |
-| WHEELCHAIR | Passenger with wheel-chair                               |   |   | X |   |
-| PERSON | Used in requests together with date of birth                 |   |   | X |   |
-| PRM | Person with reduced mobility – to be used in case of accompanying person or dog, date of birth must be provided additionally                                                   |   |   | X |   |   
-| DOG | A dog                                                           | X | X | X | X |
-| PET | A pet                                                           | X | X | X | X |
-| LUGGAGE | Over-size luggage                                           | X | X | X | X |
-| BICYCLE | A bicycle                                                   | X | X | X | X |
-| ACCOMP_DOG | An accompanying dog for a PRM                            | X | X | X | X |
-| CAR | A car for car-carriage trains                                   | X | X | X | X |
-| MOTOCYCLE | A motorcycle for car carriage trains                      | X | X | X | X |
-| TRAILER | A trailer for car carriage trains                           | X | X | X | X |
-
+| `YOUNG_CHILD` | Young child defined by the carrier depending on the age || X || X |
+| `CHILD` | Child defined by the carrier depending on the age || X || X |
+| `YOUTH` | Youth defined by the carrier depending on the age || X || X |
+| `ADULT` | Adult defined by the carrier depending on the age || X || X |
+| `SENIOR` | Senior defined by the carrier depending on the age || X || X |
+| `FAMILY_CHILD` | Child associated with a family traveling together || X | X | X |
+| `ACCOMP_PRM` | Accompanying Person for PRM || X || X |
+| `PRM_CHILD` | Handicapped young child accompanied by one person where the usual child according to the age price would be zero and the accompanying person would also be free || X || X |
+| `WHEELCHAIR` | Passenger with wheel-chair ||| X ||
+| `PERSON` | Used in requests together with date of birth ||| X ||
+| `PRM` | Person with reduced mobility – to be used in case of accompanying person or dog, date of birth must be provided additionally ||| X ||   
+| `DOG` | A dog | X | X | X | X |
+| `PET` | A pet but not a dog | X | X | X | X |
+| `LUGGAG` | Over-size luggage | X | X | X | X |
+| `BICYCLE` | A bicycle | X | X | X | X |
+| `ACCOMP_DOG` | An accompanying dog for a PRM | X | X | X | X |
+| `CAR` | A car for car-carriage trains | X | X | X | X |
+| `MOTOCYCLE` | A motorcycle for car carriage trains | X | X | X | X |
+| `TRAILER` | A trailer for car carriage trains | X | X | X | X |
