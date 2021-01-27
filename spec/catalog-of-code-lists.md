@@ -45,10 +45,10 @@ RS 90918-1 (Service Level).
 |`L`| Single |
 |`M`| Special |
 |`N`| Double |
-|`O3`| Vehicle parking place category 1 – 3 |
+|`O3`| Vehicle parking place category 1-3 |
 |`O4`| Motorcycle |
 |`O5`| Motorcycle with sidecar  |
-|`O8`| Vehicle parking place category 6 – 8 |
+|`O8`| Vehicle parking place category 6-8 |
 |`OB`| Bicycle |
 |`OT`| Tandem Bicycle|
 |`P`| T2|
@@ -68,7 +68,7 @@ RS 90918-1 (Service Level).
 
 | Code | Description |
 |------|-------------|
-| `FCB` | Flexible Conent Barcode - See IRS 90918-9 |
+| `FCB` | Flexible Content Barcode - See IRS 90918-9 |
 | `TLB` | Ticket Layout Barcode - See IRS 90918-9 |
 | `SBB` | Small Structured Barcode -See IRS 90918-9 |
 
@@ -87,7 +87,7 @@ Carrier codes used in OSDM are based on the [UIC RICS Company Code](https://uic.
 
 | Code | Description |
 |------|-------------|
-| `REGISTRY` | See IRS 90918-4, data are deliverd to the UIC registry|
+| `REGISTRY` | See IRS 90918-4, data are delivered to the UIC registry|
 | `PEER2PEER` | See IRS 90918-4, data are exchange peer 2 peer|
 
 ## ControlSecurityType
@@ -95,8 +95,8 @@ Carrier codes used in OSDM are based on the [UIC RICS Company Code](https://uic.
 | Code | Description |
 |------|-------------|
 | `SIP  Security in Paper -CIT secure background See IRS 90918-9 |
-| `SID  Security in Data (e.g. signed barcode) See IRS 90918-9 
-| `SIS  Security in System (Onlice control vs. Tickte registry) See IRS 90918-9/90918-4 |
+| `SID  Security in Data (e.g. signed barcode) See IRS 90918-9 |
+| `SIS  Security in System (Online control vs. Ticket registry) See IRS 90918-9/90918-4 |
 
 ## Currency
 
@@ -323,7 +323,7 @@ https://uic.org/spip.php?action=telecharger&arg=3007
 | `53`| `EIL`| EUROSTAR | Eurostar|
 | `54`| | | Talgo|
 | `55`| `OTU`| Oresundstog | Oresundstog|
-| `56`| `TGV`| TGV | TGV Bruxelles – Lille / Province|
+| `56`| `TGV`| TGV | TGV Bruxelles à Lille / Province|
 | `58`| `TRN`| Intercités| Intercités|
 | `59`| `AE`| ALLEGRO| Allegro|
 | `60`| `ECB`| EuroCityBrenner | EuroCityBrenner|
@@ -482,19 +482,19 @@ Corresponding to numerical codes in TAP-TSI / MERITS
 |------|-------------|
 | `HIGH_SPEED_TRAIN` | |
 | `HISTORIC_TRAIN` | |
-| `INTERCITY` | |	
+| `INTERCITY` | |
 | `REGIONAL` | |
-| `INTERREGIONAL` | |	
+| `INTERREGIONAL` | |
 | `TRAIN` | |
 | `URBAN` | |
 | `TRAM` | |
-| `UNDERGROUND` | |	
-| `NIGHT_TRAIN` | |	
-| `SHARED_TAXI` | |	
+| `UNDERGROUND` | |
+| `NIGHT_TRAIN` | |
+| `SHARED_TAXI` | |
 | `MOTOR_RAIL` | Car carriage trains |
 | `MOUNTAIN_TRAIN` | |
 | `PLANE` | |
-| `COACH_GROUP` | Group of coaches included in multiple trains (through coaches) |	
+| `COACH_GROUP` | Group of coaches included in multiple trains (through coaches) |
 | `SHIP` | |
 | `BUS` | |
 
@@ -513,7 +513,7 @@ Corresponding to numerical codes in TAP-TSI / MERITS
 | `PRM_CHILD` | Handicapped young child accompanied by one person where the usual child according to the age price would be zero and the accompanying person would also be free || X || X |
 | `WHEELCHAIR` | Passenger with wheel-chair ||| X ||
 | `PERSON` | Used in requests together with date of birth ||| X ||
-| `PRM` | Person with reduced mobility � to be used in case of accompanying person or dog, date of birth must be provided additionally ||| X ||   
+| `PRM` | Person with reduced mobility - to be used in case of accompanying person or dog, date of birth must be provided additionally ||| X ||
 | `DOG` | A dog | X | X | X | X |
 | `PET` | A pet but not a dog | X | X | X | X |
 | `LUGGAG` | Over-size luggage | X | X | X | X |
