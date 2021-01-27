@@ -435,7 +435,28 @@ Additional codelists can be defined by implementers. The codelist name should th
 
 ## Transport Mode
 
-??? Need Merits input
+Corresponding to numerical codes in TAP-TSI / MERITS
+
+| Code | Description |
+|------|-------------|
+| `HIGH_SPEED_TRAIN` ||
+| `HISTORIC_TRAIN` ||
+| `INTERCITY` ||	
+| `REGIONAL` ||
+| `INTERREGIONAL` ||	
+| `TRAIN` ||
+| `URBAN` ||
+| `TRAM` ||
+| `UNDERGROUND` ||	
+| `NIGHT_TRAIN` ||	
+| `SHARED_TAXI` ||	
+| `MOTOR_RAIL` | Car carriage trains |
+| `MOUNTAIN_TRAIN` ||
+| `PLANE` ||
+| `COACH_GROUP` | Group of coaches included in multipple trains (through coaches) |	
+| `SHIP` ||
+| `BUS` ||
+
 
 ## TravelerType
 
