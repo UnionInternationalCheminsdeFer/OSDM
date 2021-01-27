@@ -63,7 +63,6 @@ RS 90918-1 (Service Level).
 |`U`| T3 with shower & WC |
 |`W`| Double with shower |
 
-
 ## BarcodeType
 
 | Code | Description |
@@ -73,6 +72,7 @@ RS 90918-1 (Service Level).
 | `SBB` | Small Structured Barcode -See IRS 90918-9 |
 
 ## CardType
+
 | Code | Description |
 |------|-------------|
 | `LOYALTY_CARD` | Loyalty card |
@@ -256,7 +256,6 @@ Other parties are allowed to accept additional reduction cards.
 | `STRIKE` |   |
 | `SALES_STAFF_ERROR` | Error made by sales staff |
 | `PAYMENT-FAILURE` | Cancellation made by the allocator due to a failed payment |
-
 
 ## Reservation Preference
 
@@ -497,7 +496,6 @@ Corresponding to numerical codes in TAP-TSI / MERITS
 | `COACH_GROUP` | Group of coaches included in multiple trains (through coaches) |
 | `SHIP` | |
 | `BUS` | |
-
 
 ## TravelerType
 
