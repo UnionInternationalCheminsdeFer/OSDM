@@ -3,86 +3,284 @@ title: Offers Data Model
 class Trip <<R,Orchid>> #linen {
 }
 
+Trip *-- "1..n" Segment
+
 class Segment <<D, Green>> #linen {
 }
 
 class TripOffer <<R,orchid>>  {
-id
-trips: [trips]
-offers: [offers]
-passengers: [passengers]
+id*
+trip*: Trip
+offers: [Offer]
+passengers: [Passenger]
+links: [link]
 }
 
+TripOffer *-- "1..n" Offer
+TripOffer *-- "1..n" Passenger
+TripOffer *-- "1" Trip
+
 class Offer <<R,orchid>> { 
-id
-minimalPrice: price
-overallServiceClass: FIRST/SECOND
-overallServiceRank: FIRST_A,B,C/SECOND_A,B,C
-overallFlexibility: FULL/SEMI/NONE
+id*
+title
+offerSummary: OfferSummary
+offerHash
+coveredSegmentIndexes: [integer]
+offerCluster
+combinationHashes
+requestedInformation: string
+availableFulfillmentTypes: [FulfillmentType]
+trip: Trip
 validFrom: date
 validUntil: date
-requestedInformation: String
-OfferParts: [OfferParts]
-Fares:[Fares]
-Trip: Trip
-} 
+admissions: [Admission]
+reservations: [Reservation]
+ancilliaries: [Ancillary]
+fees: [Fee]
+fares: [FareOnline]
+links: [Link]
+}
+
+Offer *-- "0..n" Admission
+Offer *-- "0..n" Reservation
+Offer *-- "0..n" Ancillary
+Offer *-- "0..n" Fee
+Offer *-- "0..n" FareOnline
+Offer *-- "1" Trip
+Offer *-- "1..n" FulfillmentType
+Offer *-- "1" OfferSummary
+
+class OfferSummary <<R,orchid>> {
+  minimalPrice*: price
+  overallServiceClass*: string
+  overallComfortClass: FIRST/SECOND
+  overallAccommodationType: string
+  overallAccommodationSubType: string
+  overallFlexibility*: FULLFLEX/MIDFLEX/NOFLEX
+}
 
 abstract class OfferPart <<D,green>> #lightgrey {
 id
-price
-pricingMode: INDIVIDUAL/COLLECTIVE
-validity
-reductionsApplied 
-passengerReferences
-validFrom: date
-validUntil: date
-passengers: [passengers]
-requiredPersonalData: string
-products: [products]
+parts
+title
+links: [Link]
 }
+
+OfferPart <|-- Admission
+OfferPart <|-- Reservation
+OfferPart <|-- Ancillary
+OfferPart <|-- Fee
+
+class CommonOfferPartAttributes {
+  price
+  pricingMode: INDIVIDUAL/COLLECTIVE
+  reductionsApplied: [CardReference]
+  passengers: [Passenger]
+  providerBookingReference: string
+  finalProviderBookingReference: string
+  availableFulfillmentOptions: [FulfillmentOption]
+  validFrom: date
+  validUntil: date
+  refundable: YES/NO/WITH_CONDITIONS
+  exchangeable: YES/NO/WITH_CONDITIONS
+  products: [Product, segmentIndices]
+}
+
+CommonOfferPartAttributes *-- "0..n" CardReference
+CommonOfferPartAttributes *-- "1..n" Passenger
+CommonOfferPartAttributes *-- "1..n" FulfillmentOption
+CommonOfferPartAttributes o-- "0..n" Product
 
 class Ancillary <<R,orchid>> {
-category
+  id*
+  commonOfferPartAttributes*: CommonOfferPartAttributes
+  optionality: INCLUDED/OPTIONAL
+  category: string
+  fees: [OfferPart]
+  links: [Link]
 }
+
+Ancillary *-- "1" CommonOfferPartAttributes
+Ancillary *-- "1" CommonOfferPartAttributes
+Ancillary .>"0..n" Fee
+
 
 class Admission <<R,orchid>> {
-reservationRequired 
-reservations: [reservations]
-ancillaries: [ancillaries]
-<<opt>> numericAvailability
+  id
+  commonOfferPartAttributes: CommonOfferPartAttributes
+  isReservationRequired: boolean
+  reservations: [OfferPart]
+  ancilliaries: [OPTIONAL/INCLUDED, OfferPart]
+  fees: [OfferPart]
+  links: [Link]
 }
 
+Admission *-- "1" CommonOfferPartAttributes
+Admission .>"0..n" Reservation:optional/\nincluded/\nmandatory
+Admission .>"0..n" Ancilliary:optional/\nincluded
+Admission .>"0..n" Fee
 
 class Reservation<<R,orchid>> {
-<<opt>> numericAvailability
-reservationDetails: {reservation details}
-placeSelection: {place selection information}
+  id*
+  commonOfferPartAttributes*: CommonOfferPartAttributes
+  reservationDetails*: reservationDetails
+  placeSelection: PlaceSelection
+  optionality: INCLUDED/MANDATORY/OPTIONAL
+  fees: [OfferPart]
+  links: [Link]
 } 
 
-class Product <<R,orchid>> {
-code
-description
-conditions
-exchangeable: YES/NO/WITH_CONDITIONS
-refundable: YES/NO/WITH_CONDITIONS
-segmentReferences
-serviceClass: FIRST_A,B,C, SECOND_A,B,C
-serviceRankLabel
-serviceConstraint
-carrierConstraint
+Reservation *-- "1" CommonOfferPartAttributes
+Reservation *-- "1" ReservationDetail
+Reservation *-- "0..1" PlaceSelection
+Reservation .>"0..n" Fee
+
+class ReservationDetail<<R,orchid>> {
+accommodationType: string
+accommodationSubtype: string
+reservedPlaces: [PlacePack]
 }
 
-class Fare <<R,orchid>> {
+ReservationDetail *-- "0..n" PlacePack
+
+class PlacePack<<R,orchid>> {
+  id*
+  passengerReferences*: string
+  vehicle*: string
+  coach*: string
+  places*: string
+  placeIds: [string]
+  placeProperties: [placeProperty,number,priority]
+}
+
+class PlaceSelection<<R,orchid>> {
+reservationOptions
+vehicle
+referencePlace
+selectedOptions
+selectedCoach
+}
+
+class Fee<<R,orchid>> {
+  id*
+  title
+  price*: price
+  applicability: BOOKING/TRIP/OFFERPART
+  providerBookingReference: string
+  refundable: YES/NO/WITH_CONDITIONS
+  conditions: [Condition]
+  productCode: string
+  links: [Link]
+}
+
+Fee *-- "0..n" Condition
+
+class Product <<R,orchid>> {
 id*
-type*
+title
+code
+description
+conditions: [Condition]
+serviceClass: string
+comfortClass: FIRST/SECOND
+isTrainBound: boolean
+isReturnProduct: boolean
+fulfillmentOptions: [FulfillmentOption]
+serviceConstraintText: string
+carrierConstraintText: string
+links: [Link]
+}
+
+Product *-- "0..n" Condition
+Product *-- "1..n" FulfillmentOption
+
+class Condition<<R,orchid>> {
+  type*: SALE/EXCHANGE/REFUND/TRAVEL
+  description*: string
+  validFrom: date
+  validUntil: date
+  afterSalesFee.feeAmount: price
+  afterSalesFee.isCarrierFee: boolean
+}
+
+class FulfillmentOption<<R,orchid>> {
+  fulfillmentType: ETICKET/CIT_PAPER
+  media: RCT2/RCCST/UIC_PDF/PDF_A4/PKPASS/TICKETLESS/ALLOCATOR_APP/SOCIAL_MEDIA_ACCOUNTS
+}
+
+class Passenger <<R, orchid>> {
+id*
+abstract: string
+reference: string
+dateOfBirth: date
+cards: [CardReference]
+gender: MALE/FEMALE/X
+details: PassengerDetail
+passport: IdentificationDocument
+transportableDetails: Transportable
+prmneeds: WHEELCHAIR/ACCOMPDOG/COMPANIONSEAT/COMPANION
+links*: [Link]
+}
+
+Passenger *-- "0..n" CardReference
+Passenger *-- "0..1" PassengerDetail
+Passenger *-- "0..1" IdentificationDocument
+Passenger *-- "0..1" Transportable
+
+class PassengerDetail<<R,orchid>> {
+  preferredLanguage: string
+  title: string
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+}
+
+class CardReference<<R,orchid>> {
+  type*: REDUCTION/LOYALTY/BOTH
+  code*: string
+  codeList*: string
+  name: string
+  number: string
+  issuer: string
+}
+
+class IdentificationDocument<<R,orchid>> {
+  id*
+  type*: string
+  name: string
+  nationality: country
+  cityOfBirth: string
+  cityOfIssue: string
+  cityOfResidence: string
+  countryOfBirth: country
+  countryOfIssue: country
+  countryOfResidence: country
+  dateOfIssue: date
+  gender: MALE/FEMALE/X
+  limitOfValidity: date
+}
+
+class Transportable<<R,orchid>> {
+  type: PET/BICYLE/CAR/MOTOR_CYCLE/CAR_TRAILER
+  car: Car
+  motorCycle: motorCycle
+  trailer: trailer
+}
+
+class FareOnline <<R,orchid>> {
+id*
+type*: ADMISSION/RESERVATION/INTEGRATED_RESERVATION/ANCILLIARY
 name
 fareDetailDescription
 price
 regionalConstraint*
 serviceConstraint
+regulatoryConditions: CIV/MD/EU-PRR
 carrierConstraint
 serviceClass
-serviceLevel
+comfortClass: FIRST/SECOND
+accommodationDetails
 afterSalesCondition*
 combinationConstraint*
 fulfillmentConstraint
@@ -90,42 +288,8 @@ reductionConstraint
 legacyAccountingIdentifier
 travelValidityConstraint*
 reservationDetails
+placeSelection
 reservationLegacyParameter
+coveredSection
+passengerConstraint
 }
-
-class Passenger <<R, orchid>> {
-id
-externalPassengerReference
-dateOfBirth
-gender
-LastName
-Firstname
-PassportInformation
-Reductions
-Type
-}
-
-class PlaceSelection_ReservationOptions <<D, green>> {
-  Available options
-}
-
-TripOffer "1" *-- "1..n" Offer
-TripOffer "1" *-- "1..n" Passenger
-TripOffer "1" *-- "1" Trip
-Trip "1" -- "1..n" Segment
-Offer "1" *-- "0..n" Admission
-Offer "1" *-- "0..n" Reservation
-Offer "1" *-- "0..n" Ancillary
-Offer "1" *-- "0..n" Fare
-Offer "1" *-- "1" Trip
-OfferPart <|-- Admission
-OfferPart <|-- Reservation
-OfferPart <|-- Ancillary
-OfferPart o-- "0..n" Product
-Admission .> "0..n" Reservation:optional/\nincluded/\nmandatory
-Admission .> "0..n" Ancillary:optional/\nincluded
-Product .>"1..n" Segment
-Reservation*--"1..n" PlaceSelection_ReservationOptions
-Fare *--"1..n" PlaceSelection_ReservationOptions
-
-OfferPart .. Passenger
