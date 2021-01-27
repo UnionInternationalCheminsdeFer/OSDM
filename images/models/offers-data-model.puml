@@ -117,7 +117,7 @@ class Admission <<R,orchid>> {
 
 Admission *-- "1" CommonOfferPartAttributes
 Admission .>"0..n" Reservation:optional/\nincluded/\nmandatory
-Admission .>"0..n" Ancilliary:optional/\nincluded
+Admission .>"0..n" Ancillary:optional/\nincluded
 Admission .>"0..n" Fee
 
 class Reservation<<R,orchid>> {
