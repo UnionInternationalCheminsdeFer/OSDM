@@ -37,12 +37,12 @@ tags:
   - name: Fulfillments  
     description: >-
       resources to retrieve fulfillments, e.g. tickets
-  - name: RefundOffers
+  - name: Refund
     description: >-
       resources to get and accept a refund offer
-  - name: ExchangeOffers
+  - name: Exchange
     description: >-
-      resources to get and accept an exchange offer
+      resources to get exchange offers and book it
   - name: CoachLayouts
     description: >-
       resources to get the layout of a coach
@@ -1751,7 +1751,7 @@ paths:
   '/bookings/{bookingId}/refundOffers':
     post:
       tags:
-        - RefundOffers
+        - Refund
       summary: Initiates a refund process by creating a RefundOffer resource.
       description:
         The RefundOffer contains the required information on the potential operation. One refund offer can then be 
@@ -1830,7 +1830,7 @@ paths:
   '/bookings/{bookingId}/refundOffers/{refundOfferId}':
     get:
       tags:
-        - RefundOffers
+        - Refund
       summary: Returns the refund offer for the ids provided.
       operationId: getRefundOffersId
       parameters:
@@ -1905,7 +1905,7 @@ paths:
           description: Not implemented
     patch:
       tags:
-        - RefundOffers
+        - Refund
       summary: Allows to accept and confirm a refund offer.
       operationId: patchRefundOffersId
       parameters:
@@ -1985,7 +1985,7 @@ paths:
           description: Not implemented
     delete:
       tags:
-        - RefundOffers
+        - Refund
       summary: Deletes a refundOffer without waiting for expiry.
       operationId: deleteRefundOffersId
       parameters:
