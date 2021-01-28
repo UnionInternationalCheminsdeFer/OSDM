@@ -25,10 +25,6 @@ tags:
   - name: Offers
     description: >-
       resources to get bookable offers
-  - name: Offer Parts
-    description: >-
-      resources to manipulate parts of an offer consisting of, e.g., admissions, reservations,
-      or ancillaries; if permitted, also fares are offered. 
   - name: Bookings
     description: >-
       resources to manipulate bookings
@@ -833,6 +829,94 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+    post:
+      tags:
+        - Reservation
+        - Offer Parts
+        - Place Selection
+        - Availability
+      summary: Allows validating reservation selection parameters.
+      description: >-
+        post is used to allow a request body, but the offer remains unchainged
+        This service provides the alvailability service to be compliant with existing 90918-1 services (as-if-reservation)
+        The patch can be used to validate the selection of place properties, the available places for graphical 
+        displays, the selected optional place properties for a subsequent booking and the selected places from
+        a graphical display. The response will show the available/accepted properties. 
+      operationId: validateReservationSelectionId
+      parameters:
+        - name: Access-Token 
+          in: header
+          description: >-
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response
+            to the request (see RFC2616-sec14.4). 
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
+        - in: path
+          name: offerId
+          schema:
+            type: string
+          required: true
+          description: ID of the offer to patch.
+        - in: path
+          name: reservationId
+          schema:
+            type: string
+          required: true
+          description: ID of the fare where to validate the place availability.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaceSelectionQuery'
+      responses:
+        '200':
+          description: Place successfully selected
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  reservation:
+                    $ref: '#/components/schemas/ReservationAvailability'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented       
+
    
   '/offers/{offerId}':
     get:
@@ -919,153 +1003,6 @@ paths:
         '501':
           description: Not implemented
          
-  '/offers/{offerId}/passengers/{passengerId}':
-    get:
-      tags:
-        - Passengers
-      summary: Returns the passenger's information at offer process step.
-      operationId: getOfferPassengersId
-      parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the offer the passenger is in.
-        - in: path
-          name: passengerId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the passenger to get.
-      responses:
-        '200':
-          description: Passenger found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Passenger'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented
-    patch:
-      tags:
-        - Passengers
-      summary: Allows updating a passenger's information at offer step.
-      operationId: patchOfferPassenger
-      parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the offer the passenger is in.
-        - in: path
-          name: passengerId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the passenger to get.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Passenger'
-      responses:
-        '200':
-          description: Passenger successfully patched
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Passenger'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented
-  
   '/bookings/{bookingId}/passengers/{passengerId}':
     get:
       tags:
@@ -1213,564 +1150,6 @@ paths:
         '501':
           description: Not implemented
           
-  '/products/{productId}':
-    get:
-      tags:
-        - Products
-      summary: Returns a product for the id provided.
-      operationId: getProductsId
-      parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-        - in: path
-          name: productId
-          schema:
-            type: string
-            description: unique and opaque ID of the product
-          required: true
-          description: ID of the product to get.
-      responses:
-        '200':
-          description: Product found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Product'
-          headers:
-            Cache-Control:
-              schema:
-                type: string
-                default: 'public, max-age=43200'
-                description: >-
-                  A product resource has a long time to live to allow long-term caching. Any update of the product 
-                  information will lead to the creation of a new resource.
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented
-          
-  '/offers/{offerId}/admissions/{admissionId}':
-    get:
-      tags:
-        - Offer Parts
-      summary: Returns an admission for the ids provided.
-      operationId: getAdmissionId
-      parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the offer the offerPart is part of.
-        - in: path
-          name: admissionId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the admission to get.
-      responses:
-        '200':
-          description: Admission found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  admission:
-                    $ref: '#/components/schemas/Admission'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented
-
-  '/offers/{offerId}/reservations/{reservationId}':
-    get:
-      tags:
-        - Offer Parts
-      summary: Returns a reservation for the ids provided.
-      operationId: getReservationsId
-      parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the offer the offerPart is part of.
-        - in: path
-          name: reservationId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the reservation to get.
-      responses:
-        '200':
-          description: Reservation found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  reservation:
-                    $ref: '#/components/schemas/Reservation'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented
-
-    post:
-      tags:
-        - Reservation
-        - Offer Parts
-        - Place Selection
-        - Availability
-      summary: Allows validating reservation selection parameters.
-      description: >-
-        post is used to allow a request body, but the offer remains unchainged
-        This service provides the alvailability service to be compliant with existing 90918-1 services (as-if-reservation)
-        The patch can be used to validate the selection of place properties, the available places for graphical 
-        displays, the selected optional place properties for a subsequent booking and the selected places from
-        a graphical display. The response will show the available/accepted properties. 
-      operationId: validateReservationSelectionId
-      parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-        - in: path
-          name: offerId
-          schema:
-            type: string
-          required: true
-          description: ID of the offer to patch.
-        - in: path
-          name: reservationId
-          schema:
-            type: string
-          required: true
-          description: ID of the fare where to validate the place availability.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PlaceSelectionQuery'
-      responses:
-        '200':
-          description: Place successfully selected
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  reservation:
-                    $ref: '#/components/schemas/ReservationAvailability'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented       
-
-    patch:
-      tags:
-        - Offer Parts
-      summary: Allows updating reservation elements.
-      description: >-
-        The patch can be used to update the selection of place properties, the available places for graphical 
-        displays, the selected optional place properties for a subsequent booking and the selected places from
-        a graphical display. The update response will show the available/accepted properties. An update with
-        empty available places will update the available places list in the reply.
-      operationId: patchReservationId
-      parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the offer to patch.
-        - in: path
-          name: reservationId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the reservation to patch.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReservationPatch'
-      responses:
-        '200':
-          description: Place successfully selected
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  reservation:
-                    $ref: '#/components/schemas/Reservation'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented        
-  
-  '/offers/{offerId}/ancillaries/{ancillaryId}':
-    get:
-      tags:
-        - Offer Parts
-      summary: Returns an ancillary for the ids provided.
-      operationId: getAncillariesId
-      parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the offer the offerPart is part of.
-        - in: path
-          name: ancillaryId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the ancillary to get.
-      responses:
-        '200':
-          description: Ancillary found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  ancillary:
-                    $ref: '#/components/schemas/Ancillary'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented
-
-  '/offers/{offerId}/fares/{fareId}':
-    get:
-      tags:
-        - Offer Parts
-      summary: Returns a fare for the ids provided.
-      description: >-
-        For the fares only the start and the end location are considered.
-        Fares are only returned if the API is called as allocator with the correct grants.
-        Otherwise a forbidden message is returned. 
-      operationId: getFaresId
-      parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-        - in: path
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the offer the offerPart is part of.
-        - in: path
-          name: fareId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the fares to get.
-      responses:
-        '200':
-          description: Fare found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  fare:
-                    $ref: '#/components/schemas/FareOnline'
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented
-          
     post:
       tags:
         - Fare
@@ -1858,17 +1237,13 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented              
-          
-    patch:
+
+  '/products/{productId}':
+    get:
       tags:
-        - Offer Parts
-      summary: Allows updating reservation elements.
-      description: >-
-        The patch can be used to update the selection of place properties, the available places for graphical 
-        displays, the selected optional place properties for a subsequent booking and the selected places from
-        a graphical display. The update response will show the available/accepted properties. An update with
-        empty available places will update the available places list in the reply.
-      operationId: patchFareId
+        - Products
+      summary: Returns a product for the id provided.
+      operationId: getProductsId
       parameters:
         - name: Access-Token 
           in: header
@@ -1888,32 +1263,27 @@ paths:
             type: string
           required: false
         - in: path
-          name: offerId
+          name: productId
           schema:
             type: string
-            format: uuid
+            description: unique and opaque ID of the product
           required: true
-          description: ID of the offer to patch.
-        - in: path
-          name: fareId
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: ID of the fare to patch.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FareOnline'
+          description: ID of the product to get.
       responses:
         '200':
-          description: Place successfully selected
+          description: Product found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Reservation'
+                $ref: '#/components/schemas/Product'
           headers:
+            Cache-Control:
+              schema:
+                type: string
+                default: 'public, max-age=43200'
+                description: >-
+                  A product resource has a long time to live to allow long-term caching. Any update of the product 
+                  information will lead to the creation of a new resource.
             Content-Language:
               schema:
                 type: string
@@ -1938,7 +1308,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
         '501':
-          description: Not implemented        
+          description: Not implemented       
  
   /bookings/search:
     post:
@@ -4450,6 +3820,10 @@ components:
           example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
         offerSummary:
           $ref: '#/components/schemas/OfferSummary'
+        isReusable:
+          type: boolean
+          description: >-
+            Indicates whether the offerId can be used in more than one booking.
         offerHash:
           type: object
           properties:
@@ -4724,7 +4098,7 @@ components:
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/Fee'  
+            $ref: '#/components/schemas/OfferPart'  
         links:
           type: array
           items:
@@ -4785,7 +4159,7 @@ components:
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/Fee'  
+            $ref: '#/components/schemas/OfferPart'  
         links:
           type: array
           items:
@@ -4847,7 +4221,7 @@ components:
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/Fee' 
+            $ref: '#/components/schemas/OfferPart' 
         links:
           type: array
           items:
@@ -4973,6 +4347,54 @@ components:
             $ref: '#/components/schemas/Link'
       required:
         - id
+    
+    OfferSelection:
+      type: object
+      properties:
+        selectedOfferId:
+          type: string
+          format: uuid
+          description: id of the selected offer or exchangeOffer
+        selectedOptionalReservationsIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+            description: >-
+              If relevant, ids of the selected optional reservations.
+        selectedOptionalAncillaries:
+          type: array
+          items:
+            type: object
+            properties:
+              ancillaryId:
+                type: string
+                format: uuid
+                description: >-
+                  If relevant, ids of the selected optional ancillaries.
+              passengerIds:
+                type: array
+                items:
+                  type: string
+                  format: uuid
+                  description: >-
+                    Id of the passengers the selected optional ancillaries are for. 
+        passengers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Passenger'
+          description: >-
+            If needed (cf requiredInformation) or desired, this array allows providing the required details on some or all passengers    
+        placeSelections:
+          type: object
+          properties:
+            reservationId: 
+              type: string
+              format: uuid
+            placeSelection:
+              $ref: '#/components/schemas/PlaceSelectionPatch'
+      required:
+        - selectedOfferId       
 
     BookingRequest:
       type: object
@@ -4980,41 +4402,9 @@ components:
         selectedOffers:
           type: array
           items:
-            type: object
-            properties:
-              selectedOfferId:
-                type: string
-                format: uuid
-                description: id of the selected offer
-              selectedOptionalReservationsIds:
-                type: array
-                items:
-                  type: string
-                  format: uuid
-                  description: >-
-                    If relevant, ids of the selected optional reservations.
-              selectedOptionalAncillaries:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    ancillaryId:
-                      type: string
-                      format: uuid
-                      description: >-
-                        If relevant, ids of the selected optional ancillaries.
-                    passengerIds:
-                      type: array
-                      items:
-                        type: string
-                        format: uuid
-                        description: >-
-                          Id of the passengers the selected optional ancillaries are for.
-            description: >-
-              The list of offers that need to be provisionally booked, with possibly the reservations
-              and ancillaries associated that should be booked as well. 
-            required:
-              - selectedOfferId
+            $ref: '#/components/schemas/OfferSelection'
+          description: >-
+            The list of offers that need to be provisionally booked, with possibly the reservations and ancillaries associated that should be booked as well. 
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -5031,7 +4421,9 @@ components:
               - REFUND_PROPOSITIONS
               - NONE
             default: ALL
-
+      required:
+        - selectedOffers
+      
     Booking:
       type: object
       properties:
@@ -7502,8 +6894,8 @@ components:
           type: string
         eMail:
           type: string
-        phone:
-          description: Preferably a mobile phone
+        phoneNumber:
+          description: Preferably a mobile phone number
           type: string
 
     Gender:
