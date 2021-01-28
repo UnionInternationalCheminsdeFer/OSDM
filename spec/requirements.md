@@ -778,15 +778,6 @@ be the set of allowedCommonContracts for Fare B.
 separate contracts most be issued. Otherwise a combined contract can be
 issued.
 
-
-##### Implementation Aspect
-
-Relevant attributes:
-
-```js
-- FareCombinationConstraintDef.combinationModels.model == SEPARATE_TICKET
-```
-
 #### CLUSTERING model
 
 The `CLUSTERING` model tries to simplify conditions and fares for the
