@@ -24,8 +24,10 @@
 - name: Tools
   link: tools/
   dropdown:
+    - name: OSDM GitHub
+      link: https://github.com/UnionInternationalCheminsdeFer/OSDM/
     - name: OSDM Wiki
-      link: https://github.com/UnionInternationalCheminsdeFer/OSDM/wiki
+      link: https://github.com/UnionInternationalCheminsdeFer/OSDM/wiki/
     - name: OSDM Converter
       link: https://unioninternationalcheminsdefer.github.io/OSDM-Converter/
 - name: Organization
