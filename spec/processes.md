@@ -25,11 +25,7 @@ are not represented or simplified in the data models.
 | `/trip-offers-collection` | Resources to get bookable offers
 | `/trip-offers/{tripOfferId}` | *dito*
 | `/offers/{offerId}` | *dito*
-| `/offers/{offerId}/admissions/{admissionId}` | Resources to manipulate parts of an offer consisting of, e.g., admissions, ..  
-| `/offers/{offerId}/reservations/{reservationId}` | .. reservations,..
-| `/offers/{offerId}/ancillaries/{ancillaryId}` | .. ancillaries,..
-| `/offers/{offerId}/fares/{fareId}` | .. or if permitted also fares.
-  `/offer-collections` | Offers non-journey based products
+  `/offer-collections` | Resources to get offers for non-journey based products
 | `/bookings` | Resources to manipulate bookings
 | `/offers/{id}/passengers` | Resources to manipulate a passenger's information at every stage of the flow
 | `/bookings/{bookingId}/passengers/{passengerId}` | *dito*
@@ -38,8 +34,9 @@ are not represented or simplified in the data models.
 | `/fulfillments` | *dito*
 | `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer
 | `/bookings/{bookingId}/refundOffers/{refundOfferId}` | *dito*
-| `/bookings/{bookingId}/exchangeOffers` | Resources to get and accept a exchange offer
-| `/bookings/{bookingId}/exchangeOffers/{exchangeOfferId}` | *dito*
+| `/bookings/{bookingId}/exchangeOperations/{exchangerOperationId}` | Resources to get and accept a exchange offer
+| `/bookings/{bookingId}/exchange-trip-offers-collection` | *dito*
+| `/bookings/{bookingId}/exchange-trip-offers` | *dito*
 | `/coachLayouts` | Returns all coach layouts.
 | `/coachLayouts/{layoutId}` | Returns a coach layout for layout id
 
@@ -365,21 +362,22 @@ what needs to be specified in order to book a given offer. These details are
 provided under the form of a boolean expression, referring to the passenger
 model elements using dot notation (with the `TripOffer` as the root). For
 example, if it is required that name and first name are set to proceed
-RequestedInformation would be :
+`RequestedInformation` would be :
 
-`passengerDetails.firstName AND passengerDetails.firstName`
+`passenger[<uuid>].details.firstName AND passenger[<uuid>].details.name`
 
 Another example, if on top of first and last names, at least one email or one
 phone number is needed:
 
-`(passenger[0], "passengerDetails.firstName AND passengerDetails.firstName" AND
-(passengerDetails.eMails[0] OR passengerDetails.phones[0])`
+`(passenger[0].details.firstName AND passenger[0].details.name AND
+(passenger[0].details.eMail OR passenger[0].details.phone))`
 
 By parsing this structure, the API consumer is able to identify the elements
-that need to be filled-in to proceed
+that need to be filled-in to proceed. An initial version the [grammar for required
+information](../requested-information-grammar.html) is available for review.
 
 The two types of updates (accommodation preferences and passenger data updates)
-are applied using a PATCH verb on the related resources. While the resource in
+are applied using a `PATCH` verb on the related resources. While the resource in
 its whole is presented, only property explicitly listed as updatable can be
 provided with a value. Attempting to modify another property must result in an
 error.
@@ -770,13 +768,13 @@ These are the required information needed per process step for major parties
 
 | Distributor | Pre-booking Step | Booking Step | Fulfillment Step |
 |---|---|---|---|
-| Bene | | First name  and name ||
-| DB | In general one first name and name, regardless of the number of travelers. In case of regional trains, however, all names and surnames are needed, unless printed on security paper. ||
-|öBB | Passenger names  are needed (first name and surname) Birth date  may be needed. Some reduction  cards require the number to be provided at pre-booking time, in order to be pre-checked. In other cases, the cards are simply checked on-board  phone number  or  email  (once per order - as contact information) | phone number  or  email  (once per order - as contact information)|
-| RENFE | Per passenger: Name, first name, surname Document type and identity document (DNI, NIE or passport). A phone number  or  email. | Per passenger: Name, first name, surname Document type  and  Identity document.  (DNI, NIE or passport) A  phone number  or  email. |
-| SBB | Per passenger: name  and first name date of birth. Additional sales parameters for some, none MVP products ||e-mail |
-| SNCF | Birth date  is mandatory, a fake date can be used at offer time, but the real one must be provided at pre-booking time | |
-| Eurostar/Thalys | first name and name | Thalys loyalty card number
+| **Bene** | | `firstName` and `lastName` ||
+| **DB** | In general one `firstName` and `name`, regardless of the number of travelers. In case of regional trains, however, all names and sur names are needed, unless printed on security paper. ||
+| **öBB** | Both `firstName` and `lastName` are needed. Birth date may be needed. Some reduction cards require the number to be provided at pre-booking time, in order to be pre-checked. In other cases, the cards are simply checked on-board `phoneNumber` or `eMail` (once per order - as contact information) | `phoneNumber` or `eMail` (once per order - as contact information)|
+| **RENFE** | Per passenger: `firstName`, `lastName`, surname document type and identity document (DNI, NIE or passport). A `phoneNumber` or  `eMail`. | Per passenger: `firstName`, `lastName`, surname document type and Identity document.  (DNI, NIE or passport) A `phoneNumber` or `eMail`. |
+| **SBB** | Per passenger: `name` and `first name` date of birth. Additional sales parameters for some, additional products || `eMail` |
+| **SNCF** | `dateOfBirth` is mandatory, a fake date can be used at offer time, but the real one must be provided at pre-booking time | |
+| **Eurostar/Thalys** | `firstName` and `lastName` | Thalys loyalty card number |
 
 ## After Sales Processes
 

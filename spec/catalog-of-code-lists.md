@@ -45,10 +45,10 @@ RS 90918-1 (Service Level).
 |`L`| Single |
 |`M`| Special |
 |`N`| Double |
-|`O3`| Vehicle parking place category 1 – 3 |
+|`O3`| Vehicle parking place category 1-3 |
 |`O4`| Motorcycle |
 |`O5`| Motorcycle with sidecar  |
-|`O8`| Vehicle parking place category 6 – 8 |
+|`O8`| Vehicle parking place category 6-8 |
 |`OB`| Bicycle |
 |`OT`| Tandem Bicycle|
 |`P`| T2|
@@ -63,17 +63,53 @@ RS 90918-1 (Service Level).
 |`U`| T3 with shower & WC |
 |`W`| Double with shower |
 
+## BarcodeType
+
+| Code | Description |
+|------|-------------|
+| `FCB` | Flexible Content Barcode - See IRS 90918-9 |
+| `TLB` | Ticket Layout Barcode - See IRS 90918-9 |
+| `SBB` | Small Structured Barcode -See IRS 90918-9 |
+
+## CardType
+
+| Code | Description |
+|------|-------------|
+| `LOYALTY_CARD` | Loyalty card |
+| `REDUCTION_CARD` | Card providing reduction |
+| `PASS` | Pass for travelling |
+
 ## Carrier
 
 Carrier codes used in OSDM are based on the [UIC RICS Company Code](https://uic.org/support-activities/it/rics?recherche=RICS%20code) standard.
+
+## ControlDataExchangeType
+
+| Code | Description |
+|------|-------------|
+| `REGISTRY` | See IRS 90918-4, data are delivered to the UIC registry|
+| `PEER2PEER` | See IRS 90918-4, data are exchange peer 2 peer|
+
+## ControlSecurityType
+
+| Code | Description |
+|------|-------------|
+| `SIP  Security in Paper -CIT secure background See IRS 90918-9 |
+| `SID  Security in Data (e.g. signed barcode) See IRS 90918-9 |
+| `SIS  Security in System (Online control vs. Ticket registry) See IRS 90918-9/90918-4 |
 
 ## Currency
 
 Currency codes used in OSDM are based on the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) standard.
 
-## Fare BerthType
+## FareType
 
-Legacy reservation code defined in UIC 90918-1.
+| Code | Description |
+|------|-------------|
+| `NRT` | NRT |
+| `IRT` | IRT |
+| `RES` | RES (with or without supplement) |
+| `ANCILLARY` | Ancillary |
 
 ## Fare CoachType
 
@@ -82,6 +118,14 @@ Legacy reservation code defined in UIC 90918-1.
 ## Fare CompartementTypeCode
 
 Legacy reservation code defined in UIC 90918-1.
+
+## Gender
+
+| Code | Description |
+|------|-------------|
+| `MALE` | Male |
+| `FEMALE` | Female |
+| `X` | Diverse |
 
 ## Language
 
@@ -213,10 +257,6 @@ Other parties are allowed to accept additional reduction cards.
 | `SALES_STAFF_ERROR` | Error made by sales staff |
 | `PAYMENT-FAILURE` | Cancellation made by the allocator due to a failed payment |
 
-## Reservation Service Code
-
-Legacy reservation code defined in UIC 90918-1.
-
 ## Reservation Preference
 
 | Code | Group | Description |
@@ -282,7 +322,7 @@ https://uic.org/spip.php?action=telecharger&arg=3007
 | `53`| `EIL`| EUROSTAR | Eurostar|
 | `54`| | | Talgo|
 | `55`| `OTU`| Oresundstog | Oresundstog|
-| `56`| `TGV`| TGV | TGV Bruxelles – Lille / Province|
+| `56`| `TGV`| TGV | TGV Bruxelles à Lille / Province|
 | `58`| `TRN`| Intercités| Intercités|
 | `59`| `AE`| ALLEGRO| Allegro|
 | `60`| `ECB`| EuroCityBrenner | EuroCityBrenner|
@@ -435,17 +475,48 @@ Additional codelists can be defined by implementers. The codelist name should th
 
 ## Transport Mode
 
-??? Need Merits input
-
-## TravelerType
+Corresponding to numerical codes in TAP-TSI / MERITS
 
 | Code | Description |
 |------|-------------|
-| `DOG` | |
-| `ACCOMP_DOG` | |
-| `LUGGAGE` | |
-| `BICYCLE` | |
-| `CAR` | |
-| `MOTORCYCLE` |  |
-| `TRAILER` |  |
-| `PRM` | Person with reduced mobility |
+| `HIGH_SPEED_TRAIN` | |
+| `HISTORIC_TRAIN` | |
+| `INTERCITY` | |
+| `REGIONAL` | |
+| `INTERREGIONAL` | |
+| `TRAIN` | |
+| `URBAN` | |
+| `TRAM` | |
+| `UNDERGROUND` | |
+| `NIGHT_TRAIN` | |
+| `SHARED_TAXI` | |
+| `MOTOR_RAIL` | Car carriage trains |
+| `MOUNTAIN_TRAIN` | |
+| `PLANE` | |
+| `COACH_GROUP` | Group of coaches included in multiple trains (through coaches) |
+| `SHIP` | |
+| `BUS` | |
+
+## TravelerType
+
+| Code | Description | Transportable  | Bulk (Offline) | Online Request | Online Reply |
+|------|-------------|----------------|----------------|----------------|--------------|
+| `YOUNG_CHILD` | Young child defined by the carrier depending on the age || X || X |
+| `CHILD` | Child defined by the carrier depending on the age || X || X |
+| `YOUTH` | Youth defined by the carrier depending on the age || X || X |
+| `ADULT` | Adult defined by the carrier depending on the age || X || X |
+| `SENIOR` | Senior defined by the carrier depending on the age || X || X |
+| `FAMILY_CHILD` | Child associated with a family traveling together || X | X | X |
+| `ACCOMP_PRM` | Accompanying Person for PRM || X || X |
+| `PRM_CHILD` | Handicapped young child accompanied by one person where the usual child according to the age price would be zero and the accompanying person would also be free || X || X |
+| `WHEELCHAIR` | Passenger with wheel-chair ||| X ||
+| `PERSON` | Used in requests together with date of birth ||| X ||
+| `PRM` | Person with reduced mobility - to be used in case of accompanying person or dog, date of birth must be provided additionally ||| X ||
+| `DOG` | A dog | X | X | X | X |
+| `PET` | A pet but not a dog | X | X | X | X |
+| `LUGGAG` | Over-size luggage | X | X | X | X |
+| `BICYCLE` | A bicycle | X | X | X | X |
+| `ACCOMP_DOG` | An accompanying dog for a PRM | X | X | X | X |
+| `CAR` | A car for car-carriage trains | X | X | X | X |
+| `MOTOCYCLE` | A motorcycle for car carriage trains | X | X | X | X |
+| `TRAILER` | A trailer for car carriage trains | X | X | X | X |

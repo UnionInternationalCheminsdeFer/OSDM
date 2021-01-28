@@ -8,7 +8,9 @@
 # done
  
 pandoc -s \
--o OSDM-specification.docx \
+-o OSDM-specification-V1.1.0-rc.docx \
+foreword.md \
+requirements.md \
 specification-structure.md \
 common-data-structures.md \
 technical-principles.md \
