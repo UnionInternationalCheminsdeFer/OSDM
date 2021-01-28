@@ -158,6 +158,7 @@ Admission .>"0..n" Reservation:optional/included/mandatory
 Admission .>"0..n" Ancillary:optional/included
 Reservation*--"1..n" ReservationDetails_ReservedPlaces
 
+
 note as floatingNote
 FulfillmentOption, RequestedInformation and
 TicketTimeLimit are only meaningful at 
