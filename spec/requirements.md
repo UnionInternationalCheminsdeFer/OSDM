@@ -751,15 +751,33 @@ separately on the combined offer:
 The combined price is always the sum of the prices of the parts. The
 allocator might add a handling fee.
 
-#### SEPARATE_TICKETS model
+#### SEPARATE_CONTRACTS model
 
-This is the model for not combining the fares in one ticket, so the
-rules applied for this ticket are exactly the rules defined by the
-carrier in the fare data. The allocator can form a common contract for
-the whole journey.
+This is the model for not combining the fares in one ticket and not
+allowing the integration in one contract. The rules applied for this
+ticket are exactly the rules defined by the carrier in the fare data.
 
-Optionally this might be restricted by a list of carriers where this
-combination is allowed.
+The allocator must ensure that it is clear for the customer that no
+common contract was established.
+
+##### Implementation Aspect
+
+Relevant attributes:
+
+```js
+- FareCombinationConstraintDef.combinationModels.model == SEPARATE_CONTRACT
+- FareCombinationConstraintDef.combinationModels.allowedCommonContracts
+```
+
+##### Business Rule
+
+Let CC\_A be the set of allowedCommonContracts for Fare A and let CC\_B
+be the set of allowedCommonContracts for Fare B.
+
+**If** the intersection of two sets CC\_A and CC\_B is empty, **then**
+separate contracts most be issued. Otherwise a combined contract can be
+issued.
+
 
 ##### Implementation Aspect
 
