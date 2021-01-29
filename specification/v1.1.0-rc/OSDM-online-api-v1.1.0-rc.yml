@@ -37,12 +37,12 @@ tags:
   - name: Fulfillments  
     description: >-
       resources to retrieve fulfillments, e.g. tickets
-  - name: RefundOffers
+  - name: Refund
     description: >-
       resources to get and accept a refund offer
-  - name: ExchangeOffers
+  - name: Exchange
     description: >-
-      resources to get and accept an exchange offer
+      resources to get exchange offers and book it
   - name: CoachLayouts
     description: >-
       resources to get the layout of a coach
@@ -151,7 +151,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
                 
-  '/locations/{locationId}':
+  /locations/{locationId}:
     get:
       tags:
         - Trips
@@ -209,7 +209,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
 
-  '/trips/{tripId}':
+  /trips/{tripId}:
     get:
       tags:
         - Trips
@@ -293,7 +293,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Problem'
 
-  '/trips-collection/{tripsCollectionId}':
+  /trips-collection/{tripsCollectionId}:
     get:
       tags:
         - Trips
@@ -830,7 +830,7 @@ paths:
         '501':
           description: Not implemented
    
-  '/offers/{offerId}':
+  /offers/{offerId}:
     get:
       tags:
         - Offers
@@ -914,8 +914,75 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-         
-  '/bookings/{bookingId}/passengers/{passengerId}':
+
+  /offers-collection:
+    post:
+      tags:
+        - Offers 
+      summary: Returns offers for non-journey based products.
+      description: >- 
+        Get offers based on key words or regional information not linked to trips. 
+        This includes simple passes or one day tickets. 
+      operationId: offerCollections
+      parameters:
+        - name: Access-Token
+          in: header
+          description: >-
+            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+            for information on how to get a token.
+          required: true
+          schema:
+            type: string
+        - name: Accept-Language
+          in: header
+          description: >-
+            Describes the set of natural languages that are preferred for localized text in the response to the request
+            (see RFC2616-sec14.4).
+            Supporting English (en) is a must.
+          schema:
+            type: string
+          required: false
+      requestBody:
+        description: request parameter for offer search
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferSearch'
+      responses:
+        '200':
+          description: offer collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  nonTripOfferCollection:
+                    $ref: '#/components/schemas/NonTripOfferCollection'
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented
+
+  /bookings/{bookingId}/passengers/{passengerId}:
     get:
       tags:
         - Passengers
@@ -1062,7 +1129,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/products/{productId}':
+  /products/{productId}:
     get:
       tags:
         - Products
@@ -1219,7 +1286,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/bookings':
+  /bookings:
     post:
       tags:
         - Bookings
@@ -1287,7 +1354,7 @@ paths:
         '501':
           description: Not implemented
 
-  '/bookings/{bookingId}':
+  /bookings/{bookingId}:
     get:
       tags:
         - Bookings
@@ -1507,7 +1574,7 @@ paths:
         '501':
           description: Not implemented
    
-  '/bookings/{bookingId}/fulfillments':
+  /bookings/{bookingId}/fulfillments:
     post:
       tags:
         - Fulfillments
@@ -1678,7 +1745,7 @@ paths:
         '501':
           description: Not implemented
           
-  '/fulfillments/{fulfillmentId}':
+  /fulfillments/{fulfillmentId}:
     get:
       tags:
         - Fulfillments
@@ -1748,10 +1815,10 @@ paths:
         '501':
           description: Not implemented
           
-  '/bookings/{bookingId}/refundOffers':
+  /bookings/{bookingId}/refundOffers:
     post:
       tags:
-        - RefundOffers
+        - Refund
       summary: Initiates a refund process by creating a RefundOffer resource.
       description:
         The RefundOffer contains the required information on the potential operation. One refund offer can then be 
@@ -1827,10 +1894,10 @@ paths:
         '501':
           description: Not implemented
         
-  '/bookings/{bookingId}/refundOffers/{refundOfferId}':
+  /bookings/{bookingId}/refundOffers/{refundOfferId}:
     get:
       tags:
-        - RefundOffers
+        - Refund
       summary: Returns the refund offer for the ids provided.
       operationId: getRefundOffersId
       parameters:
@@ -1905,7 +1972,7 @@ paths:
           description: Not implemented
     patch:
       tags:
-        - RefundOffers
+        - Refund
       summary: Allows to accept and confirm a refund offer.
       operationId: patchRefundOffersId
       parameters:
@@ -1985,7 +2052,7 @@ paths:
           description: Not implemented
     delete:
       tags:
-        - RefundOffers
+        - Refund
       summary: Deletes a refundOffer without waiting for expiry.
       operationId: deleteRefundOffersId
       parameters:
@@ -2052,12 +2119,12 @@ paths:
         '501':
           description: Not implemented
           
-  '/bookings/{bookingId}/exchangeOperations/{exchangeOperationId}':   
+  /bookings/{bookingId}/exchangeOperations/{exchangeOperationId}:
     get:
       tags:
         - Exchange
       summary: >-
-        The GET exchangeOperation service returns the exchange operation with the id provided. It may be a provisional exchange or a confirmed one
+        Returns the exchange operation with the id provided. It may be a provisional or a confirmed exchange.
       operationId: getExchangeOperation
       parameters:
         - name: Access-Token 
@@ -2150,7 +2217,7 @@ paths:
       tags:
         - Exchange
       summary: >-
-        The PATCH exchangeOperation action allows to update an ongoing exchange operation. 
+        Allows to update an ongoing exchange operation. 
       operationId: patchExchangeOperation
       parameters:
         - name: Access-Token 
@@ -2231,7 +2298,7 @@ paths:
       tags:
         - Exchange
       summary: >-
-        The DELETE exchangeOperation action allows to cancel an ongoing exchangeOperation in provisinoal state without waiting for expiry. 
+        Cancels an ongoing exchange operation in provisional state. 
       operationId: deleteExchangeOperation
       parameters:
         - name: Access-Token 
@@ -2293,13 +2360,13 @@ paths:
         '501':
           description: Not implemented
 
-  '/exchange-trip-offers-collection':
+  /exchange-trip-offers-collection:
     post:
       tags:
         - Exchange
       summary: >-
-        The POST exchangeTripsOffersCollection service returns different exchange offers for a
-        specified fulfillments submitted given requested new trip characteristics. 
+        Returns different exchange offers for a specified fulfillments submitted given requested new trip 
+        characteristics. 
       operationId: postExchangeTripOffersCollection
       parameters:
         - name: Access-Token 
@@ -2325,7 +2392,7 @@ paths:
               $ref: '#/components/schemas/ExchangeTripOfferRequest'
       responses:
         '200':
-          description: Collection of Exchange trip offers found
+          description: Collection of exchange trip offers found
           content:
             application/json:
               schema:
@@ -2384,14 +2451,12 @@ paths:
         '501':
           description: Not implemented
 
-  '/exchange-trip-offers-collection/{exchangeTripOffersCollectionId}':
+  /exchange-trip-offers-collection/{exchangeTripOffersCollectionId}:
     get:
       tags:
         - Exchange
       summary: >-
-        The GET tripOffersCollection service returns different offers and trips for a
-        specified origin and destination (and via). The unique codes of the
-        origin and destination can be resolved using the locations service.
+        Returns different offers and trips for a specified origin and destination (and via).
       operationId: getExchangeTripOffersCollectionId
       parameters:
         - name: Access-Token 
@@ -2530,12 +2595,12 @@ paths:
           description: Not implemented
           
 
-  '/exchange-trip-offers/{exchangeTripOfferId}':
+  /exchange-trip-offers/{exchangeTripOfferId}:
     get:
       tags:
         - Exchange
       summary: >-
-        The GET exchange-trip-offers service returns different offers for a specified trip offer id.
+        Returns different offers for a specified trip offer id.
       operationId: getExchangeTripOffersId
       parameters:
         - name: Access-Token 
@@ -2619,7 +2684,7 @@ paths:
         '501':
           description: Not implemented     
 
-  '/coachLayouts':
+  /coachLayouts:
     get:
       tags:
         - CoachLayouts 
@@ -2717,7 +2782,7 @@ paths:
         '501':
           description: Not implemented
 
-  '/coachLayouts/{layoutId}':
+  /coachLayouts/{layoutId}:
     get:
       tags:
         - CoachLayouts
@@ -2782,72 +2847,6 @@ paths:
         '501':
           description: Not implemented
 
-  '/offers-collection':
-    post:
-      tags:
-        - Offers 
-      summary: Returns offers for non-journey based products.
-      description: >- 
-        Get offers based on key words or regional information not linked to trips. 
-        This includes simple passes or one day tickets. 
-      operationId: offerCollections
-      parameters:
-        - name: Access-Token
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request
-            (see RFC2616-sec14.4).
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-      requestBody:
-        description: request parameter for offer search
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OfferSearch'
-      responses:
-        '200':
-          description: offer collection
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  nonTripOfferCollection:
-                    $ref: '#/components/schemas/NonTripOfferCollection'
-        '400':
-          description: Bad request
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '500':
-          description: Internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'
-        '501':
-          description: Not implemented
 
 ## Components
 components:
