@@ -3212,9 +3212,8 @@ components:
                description: >-
                  Needs to be provided when creating the collection of inward travels so that the provider
                  can relate the inward travels to the outward travels context.
-            outwardSelectedOfferId:
+            outwardSelectedOfferTag:
                type: string
-               format: uuid
                description: >-
                  Needs to be provided when creating the collection of inward travels so that the provider
                  knows what the outward offer is and and propose compatible offers only if desired or mandatory.
@@ -3320,13 +3319,13 @@ components:
           type: boolean
           description: >-
             Indicates whether the offerId can be used in more than one booking.
-        offerHash:
+        offerTag:
           type: object
           properties:
             isMandatory:
               type: boolean
               default: false
-            offerHash:
+            offerTag:
               type: string
           description: >-
             The offerHash can/must (depending on the mandatory flag) be used in some cases to restrict the set of
@@ -3342,21 +3341,22 @@ components:
         offerCluster:
           type: string
           description: relevant only in case the offer only covers parts of the trip. This will indicate which offer cluster this offer is part of.
-        combinationHashes:
+        returnTags:
           type: array
           items:
-            type: object
-            properties:
-              combinationType: 
-                type: string
-                x-extensible-enum:
-                  - RETURN
-              hash: 
-                type: string
+            type: string
           description: >-
-            List of hashes (and their type) that allow identifying sets of compatible offers,
-            for example when booking a return trip with specific return fares. 
-            If no hash is provided, there is no constraint on this specific offer.
+            List of tags (and their type) that allow identifying sets of compatible offers when booking a return trip
+            involving return-specific fares. All returnTags must be present in the counterpart offer to allow combination
+            If no tag is provided, there is no return constraint on this specific offer.
+        tripTags:
+          type: array
+          items:
+            type: string
+          description: >-
+            List of tags (and their type) that allow identifying sets of compatible offers when trying to combine multiple offers covering one single trip. 
+            At least one (not all) tripTags must be in common to allow combination
+            If no tag is provided, there is no trip constraint on this specific offer.
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         availableFulfillmentTypes:
