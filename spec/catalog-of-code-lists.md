@@ -133,16 +133,16 @@ Legacy reservation code defined in UIC 90918-1.
 |------|-------------|-----------|------------------|---------------| 
 |![](../images/catalog-of-code-lists/graphics-icons/image001.png)|seat|1|to right|- |
 |![](../images/catalog-of-code-lists/graphics-icons/image002.png)|seat|1|to left|- | |
-|![](../images/catalog-of-code-lists/graphics-icons/image003.png)|seat|1|up|- | | >
+|![](../images/catalog-of-code-lists/graphics-icons/image003.png)|seat|1|up|- | |
 |![](../images/catalog-of-code-lists/graphics-icons/image004.png)|seat|1|bottom|- | |
 |![](../images/catalog-of-code-lists/graphics-icons/image005.png)|berth|2|to left|- | |
-|![](../images/catalog-of-code-lists/graphics-hicons/image006.png)|berth|2|to right|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image006.png)|berth|2|to right|- | |
 |![](../images/catalog-of-code-lists/graphics-icons/image007.png)|couchette|3|to right|- | |
 |![](../images/catalog-of-code-lists/graphics-icons/image009.jpg)|couchette|3|to left|- | | 
 |![](../images/catalog-of-code-lists/graphics-icons/image010.png)|small table|20|-|top | |
 |![](../images/catalog-of-code-lists/graphics-icons/image011.png)|small table|20|-|bottom | |
 |![](../images/catalog-of-code-lists/graphics-icons/image012.png)|big table|21|-|top | |
-|![](../images/catalog-of-code-lists/graphics-icons/image013.png)|big table|21|-|bottom | | >
+|![](../images/catalog-of-code-lists/graphics-icons/image013.png)|big table|21|-|bottom | |
 |![](../images/catalog-of-code-lists/graphics-icons/image014.png)|wall with angle to left, height covers three places|24|-|bottom | | 
 |![](../images/catalog-of-code-lists/graphics-icons/image015.png)|wall with angle to right, height covers three places|25|-|bottom | |
 |![](../images/catalog-of-code-lists/graphics-icons/image016.png)|wall with angle to left, height covers three places|24|-|top | |
@@ -224,11 +224,11 @@ Legacy reservation code defined in UIC 90918-1.
 |![](../images/catalog-of-code-lists/graphics-icons/image110.png)|mixed group/individual coach|129|-|- | |
 |![](../images/catalog-of-code-lists/graphics-icons/image112.jpg)|WiFi area|139|-|- | |
 |![](../images/catalog-of-code-lists/graphics-icons/image114.jpg)|Air condition |140|-|- | |
-|![](../images/catalog-of-code-lists/graphics-icons/image116.jpg)|font-family:"Arial",sans-serif;mso-ansi-language:USB ports for charging|141|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image116.jpg)|USB ports for charging|141|-|- | |
 |![](../images/catalog-of-code-lists/graphics-icons/image118.jpg)|business class|142|-|- | | 
 |![](../images/catalog-of-code-lists/graphics-icons/image119.png)|panorama coach|143|-|- | |
 |![](../images/catalog-of-code-lists/graphics-icons/image121.jpg)|luggage coach|173|-|- | |
-|![](../images/catalog-of-code-lists/graphics-icons/image123.jpg)|Sleeping car|174|-|- | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image123.jpg)|sleeping car|174|-|- | | 
 |![](../images/catalog-of-code-lists/graphics-icons/image125.jpg)|car-carrier|175|-|- |
 
 ## Language
