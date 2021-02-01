@@ -131,105 +131,105 @@ Legacy reservation code defined in UIC 90918-1.
 
 | icon | description | icon code | orientation used | mounting used | 
 |------|-------------|-----------|------------------|---------------| 
-|![seat1](../images/catalog-of-code-lists/graphics-icons/image001.png)|seat|1|to right|- |
-|![](../images/catalog-of-code-lists/graphics-icons/image002.png)|seat|1|to left|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image001.png)|seat|1|to right|- |
+|!(../images/catalog-of-code-lists/graphics-icons/image002.png)|seat|1|to left|- | |
 |!(../images/catalog-of-code-lists/graphics-icons/image003.png)|seat|1|up|- | | >
-|!(../images/catalog-of-code-lists/grapics-icons/image004.png)|seat|1|bottom|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image005.png)|berth|2|to left|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image006.png)|berth|2|to right|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image007.png)|couchette|3|to right|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image009.jpg)|couchette|3|to left|- | | 
-|!(../images/catalog-of-code-lists/grapics-icons/image010.png)|small table|20|-|top | |
-|!(../images/catalog-of-code-lists/grapics-icons/image011.png)|small table|20|-|bottom | |
-|!(../images/catalog-of-code-lists/grapics-icons/image012.png)|big table|21|-|top | |
-|!(../images/catalog-of-code-lists/grapics-icons/image013.png)|big table|21|-|bottom | | >
-|!(../images/catalog-of-code-lists/grapics-icons/image014.png)|wall with angle to left, height covers three places|24|-|bottom | | 
-|!(../images/catalog-of-code-lists/grapics-icons/image015.png)|wall with angle to right, height covers three places|25|-|bottom | |
-|!(../images/catalog-of-code-lists/grapics-icons/image016.png)|wall with angle to left, height covers three places|24|-|top | |
-|!(../images/catalog-of-code-lists/grapics-icons/image017.png)|wall with angle to right, height covers three places|25|-|top | |
-|!(../images/catalog-of-code-lists/grapics-icons/image018.png)|small wall with angle to left, height covers two places|27|-|bottom | |
-|!(../images/catalog-of-code-lists/grapics-icons/image019.png)|small wall with angle to right, height covers two places|28|-|bottom | |
-|!(../images/catalog-of-code-lists/grapics-icons/image020.png)|small wall with angle to left, height covers two places|27|-|top | |
-|!(../images/catalog-of-code-lists/grapics-icons/image021.png)|small wall with angle to right, height covers two places|28|-|top | | 
-|!(../images/catalog-of-code-lists/grapics-icons/image022.png)|wall between two compartments, height covers three places|23|-|bottom | |
-|!(../images/catalog-of-code-lists/grapics-icons/image023.png)|wall between two compartments, height covers three places|23|-|top | |
-|!(../images/catalog-of-code-lists/grapics-icons/image024.png)|small wall between two compartments, height covers two places|26|-|bottom | |
-|!(../images/catalog-of-code-lists/grapics-icons/image025.png)|small wall between two compartments, height covers two places|26|-|top | |
-|!(../images/catalog-of-code-lists/grapics-icons/image026.png)|small wall between two compartments, height covers two places|29|-|bottom | |
-|!(../images/catalog-of-code-lists/grapics-icons/image026.png)|small wall between two compartments,height covers two places|29|-|top | |
-|!(../images/catalog-of-code-lists/grapics-icons/image027.png)|very small wall between two compartments, height covers one places|32|-|bottom | |
-|!(../images/catalog-of-code-lists/grapics-icons/image028.png)|Very small wall between two compartments, height covers one places|32|-|top | |
-|!(../images/catalog-of-code-lists/grapics-icons/image029.png)|end-to-end wall|30|-|top-to-bottom | |
-|!(../images/catalog-of-code-lists/grapics-icons/image031.jpg)|Mobile wall between sleeping compartments, height covers three places|31|-|
-|!(../images/catalog-of-code-lists/grapics-icons/image032.png)|arrow indicating upper level|51|-|top-to-bottom | | 
-|!(../images/catalog-of-code-lists/grapics-icons/image033.png)|arrow indicating lower level|52|-|top-to-bottom | |
-|!(../images/catalog-of-code-lists/grapics-icons/image034.png)|arrow indicating upper level|53|-|top-to-bottom | |
-|!(../images/catalog-of-code-lists/grapics-icons/image035.png)|arrow indicating lower level|54|-|top-to-bottom | |
-|!(../images/catalog-of-code-lists/grapics-icons/image036.png)|1st class area|101|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image037.png)|2nd class area |100|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image038.png)|mobile phone area|103|-|- | | 
-|!(../images/catalog-of-code-lists/grapics-icons/image039.png)|mobile phone forbidden area|104|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image040.png)|silence area |116|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image041.png)|bar area|102|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image042.png)|dining area|107|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image043.png)|bicycle area|108|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image044.png)|luggage area|109|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image045.png)|luggage locker|110|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image046.png)|conference compartment|111|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image047.png)|wardrobe|113|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image048.png)|dust bin|114|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image049.png)|children play area|117|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image050.png)|Space for prams|112|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image051.png)|family area|106|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image052.png)|PRM area|105|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image053.png)|Priority Seats|120|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image054.png)|Non-smoker area|118|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image055.png)|WC|115|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image056.png)|power socket|119|-|- | | 
-|!(../images/catalog-of-code-lists/grapics-icons/image058.jpg)|WiFi area|130|-|- | | 
-|!(../images/catalog-of-code-lists/grapics-icons/image060.jpg)|PRM toilet|131|-|- | | 
-|!(../images/catalog-of-code-lists/grapics-icons/image062.jpg)|Air condition|132|-|- | | 
-|!(../images/catalog-of-code-lists/grapics-icons/image064.jpg)|USB ports for charging|133|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image066.png)|Reclining seat|134|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image067.png)|Window|135|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image069.jpg)|stairs upwards</span><span|136|-|- | | 
-|!(../images/catalog-of-code-lists/grapics-icons/image070.jpg)|stairs downwards|137|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image072.jpg)|Working compartment|144|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image074.jpg)|Cabin for allergic passengers|145|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image076.jpg)|Meeting lounge for 7 persons (Pendolino)|150|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image078.jpg)|Meeting lounge for 12 persons|151|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image080.jpg)|Space for skis|154|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image082.jpg)|Conductor working compartment|155|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image084.jpg)|Mobile phone booth|156|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image086.jpg)|T-loop (audio induction loop)|158|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image088.jpg)|Pets compartment|160|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image090.jpg)|Sleeping cabin with toilet and shower|161|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image092.jpg)|interconnectible sleeping compartments|162|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image094.jpg)|Shower|163|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image096.jpg)|Baby-care table|168|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image098.jpg)|push-button operated wheelchair ramp|170|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image099.png)|Sink / washbasin|171|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image101.jpg)|Ladies compartment|172|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image004.png)|seat|1|bottom|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image005.png)|berth|2|to left|- | |
+|!(../images/catalog-of-code-lists/graphics-hicons/image006.png)|berth|2|to right|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image007.png)|couchette|3|to right|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image009.jpg)|couchette|3|to left|- | | 
+|!(../images/catalog-of-code-lists/graphics-icons/image010.png)|small table|20|-|top | |
+|!(../images/catalog-of-code-lists/graphics-icons/image011.png)|small table|20|-|bottom | |
+|!(../images/catalog-of-code-lists/graphics-icons/image012.png)|big table|21|-|top | |
+|!(../images/catalog-of-code-lists/graphics-icons/image013.png)|big table|21|-|bottom | | >
+|!(../images/catalog-of-code-lists/graphics-icons/image014.png)|wall with angle to left, height covers three places|24|-|bottom | | 
+|!(../images/catalog-of-code-lists/graphics-icons/image015.png)|wall with angle to right, height covers three places|25|-|bottom | |
+|!(../images/catalog-of-code-lists/graphics-icons/image016.png)|wall with angle to left, height covers three places|24|-|top | |
+|!(../images/catalog-of-code-lists/graphics-icons/image017.png)|wall with angle to right, height covers three places|25|-|top | |
+|!(../images/catalog-of-code-lists/graphics-icons/image018.png)|small wall with angle to left, height covers two places|27|-|bottom | |
+|!(../images/catalog-of-code-lists/graphics-icons/image019.png)|small wall with angle to right, height covers two places|28|-|bottom | |
+|!(../images/catalog-of-code-lists/graphics-icons/image020.png)|small wall with angle to left, height covers two places|27|-|top | |
+|!(../images/catalog-of-code-lists/graphics-icons/image021.png)|small wall with angle to right, height covers two places|28|-|top | | 
+|!(../images/catalog-of-code-lists/graphics-icons/image022.png)|wall between two compartments, height covers three places|23|-|bottom | |
+|!(../images/catalog-of-code-lists/graphics-icons/image023.png)|wall between two compartments, height covers three places|23|-|top | |
+|!(../images/catalog-of-code-lists/graphics-icons/image024.png)|small wall between two compartments, height covers two places|26|-|bottom | |
+|!(../images/catalog-of-code-lists/graphics-icons/image025.png)|small wall between two compartments, height covers two places|26|-|top | |
+|!(../images/catalog-of-code-lists/graphics-icons/image026.png)|small wall between two compartments, height covers two places|29|-|bottom | |
+|!(../images/catalog-of-code-lists/graphics-icons/image026.png)|small wall between two compartments,height covers two places|29|-|top | |
+|!(../images/catalog-of-code-lists/graphics-icons/image027.png)|very small wall between two compartments, height covers one places|32|-|bottom | |
+|!(../images/catalog-of-code-lists/graphics-icons/image028.png)|Very small wall between two compartments, height covers one places|32|-|top | |
+|!(../images/catalog-of-code-lists/graphics-icons/image029.png)|end-to-end wall|30|-|top-to-bottom | |
+|!(../images/catalog-of-code-lists/graphics-icons/image031.jpg)|Mobile wall between sleeping compartments, height covers three places|31|-|
+|!(../images/catalog-of-code-lists/graphics-icons/image032.png)|arrow indicating upper level|51|-|top-to-bottom | | 
+|!(../images/catalog-of-code-lists/graphics-icons/image033.png)|arrow indicating lower level|52|-|top-to-bottom | |
+|!(../images/catalog-of-code-lists/graphics-icons/image034.png)|arrow indicating upper level|53|-|top-to-bottom | |
+|!(../images/catalog-of-code-lists/graphics-icons/image035.png)|arrow indicating lower level|54|-|top-to-bottom | |
+|!(../images/catalog-of-code-lists/graphics-icons/image036.png)|1st class area|101|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image037.png)|2nd class area |100|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image038.png)|mobile phone area|103|-|- | | 
+|!(../images/catalog-of-code-lists/graphics-icons/image039.png)|mobile phone forbidden area|104|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image040.png)|silence area |116|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image041.png)|bar area|102|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image042.png)|dining area|107|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image043.png)|bicycle area|108|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image044.png)|luggage area|109|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image045.png)|luggage locker|110|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image046.png)|conference compartment|111|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image047.png)|wardrobe|113|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image048.png)|dust bin|114|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image049.png)|children play area|117|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image050.png)|Space for prams|112|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image051.png)|family area|106|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image052.png)|PRM area|105|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image053.png)|Priority Seats|120|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image054.png)|Non-smoker area|118|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image055.png)|WC|115|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image056.png)|power socket|119|-|- | | 
+|!(../images/catalog-of-code-lists/graphics-icons/image058.jpg)|WiFi area|130|-|- | | 
+|!(../images/catalog-of-code-lists/graphics-icons/image060.jpg)|PRM toilet|131|-|- | | 
+|!(../images/catalog-of-code-lists/graphics-icons/image062.jpg)|Air condition|132|-|- | | 
+|!(../images/catalog-of-code-lists/graphics-icons/image064.jpg)|USB ports for charging|133|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image066.png)|Reclining seat|134|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image067.png)|Window|135|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image069.jpg)|stairs upwards</span><span|136|-|- | | 
+|!(../images/catalog-of-code-lists/graphics-icons/image070.jpg)|stairs downwards|137|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image072.jpg)|Working compartment|144|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image074.jpg)|Cabin for allergic passengers|145|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image076.jpg)|Meeting lounge for 7 persons (Pendolino)|150|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image078.jpg)|Meeting lounge for 12 persons|151|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image080.jpg)|Space for skis|154|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image082.jpg)|Conductor working compartment|155|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image084.jpg)|Mobile phone booth|156|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image086.jpg)|T-loop (audio induction loop)|158|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image088.jpg)|Pets compartment|160|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image090.jpg)|Sleeping cabin with toilet and shower|161|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image092.jpg)|interconnectible sleeping compartments|162|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image094.jpg)|Shower|163|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image096.jpg)|Baby-care table|168|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image098.jpg)|push-button operated wheelchair ramp|170|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image099.png)|Sink / washbasin|171|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image101.jpg)|Ladies compartment|172|-|- | |
 |||||||
 |||||||
 |icons concerning the entire coach||||||
-|!(../images/catalog-of-code-lists/grapics-icons/image102.png)|1st class coach|121|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image103.png)|2nd class coach|122|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image104.png)|mobile phone coach|127|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image105.png)|mobile phone forbidden in the entire coach|128|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image106.png)|1silence coach|126|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image107.png)|coffee bar|123|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image108.png)|dining car|124|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image109.png)|bicycle coach|125|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image110.png)|mixed group/individual coach|129|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image112.jpg)|WiFi area|139|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image114.jpg)|Air condition |140|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image116.jpg)|font-family:"Arial",sans-serif;mso-ansi-language:USB ports for charging|141|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image118.jpg)|business class|142|-|- | | 
-|!(../images/catalog-of-code-lists/grapics-icons/image119.png)|panorama coach|143|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image121.jpg)|luggage coach|173|-|- | |
-|!(../images/catalog-of-code-lists/grapics-icons/image123.jpg)|Sleeping car|174|-|- | | 
-|!(../images/catalog-of-code-lists/grapics-icons/image125.jpg)|car-carrier|175|-|- |
+|!(../images/catalog-of-code-lists/graphics-icons/image102.png)|1st class coach|121|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image103.png)|2nd class coach|122|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image104.png)|mobile phone coach|127|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image105.png)|mobile phone forbidden in the entire coach|128|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image106.png)|1silence coach|126|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image107.png)|coffee bar|123|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image108.png)|dining car|124|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image109.png)|bicycle coach|125|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image110.png)|mixed group/individual coach|129|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image112.jpg)|WiFi area|139|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image114.jpg)|Air condition |140|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image116.jpg)|font-family:"Arial",sans-serif;mso-ansi-language:USB ports for charging|141|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image118.jpg)|business class|142|-|- | | 
+|!(../images/catalog-of-code-lists/graphics-icons/image119.png)|panorama coach|143|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image121.jpg)|luggage coach|173|-|- | |
+|!(../images/catalog-of-code-lists/graphics-icons/image123.jpg)|Sleeping car|174|-|- | | 
+|!(../images/catalog-of-code-lists/graphics-icons/image125.jpg)|car-carrier|175|-|- |
 
 ## Language
 
