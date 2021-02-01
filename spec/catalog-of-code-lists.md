@@ -649,6 +649,31 @@ Additional codelists can be defined by implementers. The codelist name should th
 
 *StationCode*: Values are depending on codelist and set is too large to be reproduced.
 
+## Supported Online Services	
+
+|Code |Description	| 
+|-----|-----------------|
+|`OFFER`|	Offer service (without after sales offers)|
+|`BOOKING`|	Preliminary booking, confirm booking and cancellation|
+|`RESERVATION_LEGACY_918_1`|	Services according to the 90918-1 XML or binary specification|
+|`RESERVATION_PREF`|	Place allocation using preferences|
+|`RESERVATION_GRAPH`|	Place allocation using graphical place display|
+|`UPGRADE`|	Upgrade to an existing booking|
+|`INCREASE`|	Exchange with an increase of the number of passengers|
+|`DECREASE`|	Exchange with an decrease of the number of passengers|
+|`EXCHANGE`|	Exchange with the same number of passengers|
+|`FULFILLMENT`|	providing an entire tickets|
+|`FULFILLMENT_ITEMS`|	Providing security items for a ticket (e.g. additional bar codes)|
+
+## TaxScope
+
+|Code |Description	| 
+|-----|-----------------|
+|`INTERNATIONAL`|VAT applies in international tickets only. This needs to be applied in case the fare is integrated into an international ticket|
+|`NATIONAL`|VAT applies in national tickets only|
+|`SHORT_DISTANCE`|VAT applies in short distance tickets only|
+|`LONG_DISTANCE`|VAT applies in long distance tickets only. This needs to be applied in case the fare is integrated in a longer journey. |
+
 ## Transfer Type
 
 | Code | Description |
@@ -679,6 +704,37 @@ Corresponding to numerical codes in TAP-TSI / MERITS
 | `COACH_GROUP` | Group of coaches included in multiple trains (through coaches) |
 | `SHIP` | |
 | `BUS` | |
+
+## TimeReference
+
+|Code |Description	| 
+|-----|-----------------|
+|`BEFORE_DEPARTURE`|	Time value calculated relative to the departure (subtract from departure). The time zone of the departure station applies.|
+|`AFTER_DEPARTURE`|	Time value calculated relative to the departure (add to depature). The time zone of the departure station applies.|
+|`AFTER_SALE`|	Time value calculated relative to the sates time (add to sales time). The time zone of the sale applies.|
+|`BEFORE_START_VALIDITY`|	before the start of the validity. The time zone of the departure station applies.|
+|`AFTER_END_VALIDITY`|	after the start of the validity. The time zone of the departure station applies.|
+
+
+## TimeUnit
+|Code |Description	| 
+|-----|-----------------|
+|`DAY	`||
+|`MINUTE`|	|
+|`HOURE	`||
+
+## TransactionType
+
+Transaction type used in after sales rules for fares.
+
+|Code |Description	
+|-----|-----------------|
+|`REFUND`||
+|`EXCHANGE`|	|
+|`CARRIER_CHANGE`|	Exchange with a new fare of another carrier|
+|`EXCHANGE`|	Exchange with a new fare of the same carrier|
+|`UPGRADE`|	|
+
 
 ## TravelerType
 
