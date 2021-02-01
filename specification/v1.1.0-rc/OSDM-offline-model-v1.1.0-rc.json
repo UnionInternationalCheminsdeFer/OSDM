@@ -1601,11 +1601,13 @@
 				},
 				"maxWeightedPassengers": {
 					"description": "The total weighted number of passengers on the offer is restricted to be equal or smaller than this maximum",
-					"type": "number"
+					"type": "number",
+					"default": 999
 				},
 				"minWeightedPassengers": {
 					"description": "The total weighted number of passengers on the offer is restricted to equal or larger than this minimum",
-					"type": "number"
+					"type": "number",
+					"default": 0
 				}
 			},
 			"required": [
@@ -1655,12 +1657,14 @@
 							"maxNumber": {
 								"description": "number of passengers allowed per accompanying passenger",
 								"type": "integer",
-								"format": "int32"
+								"format": "int32",
+								"default": 999
 							},
 							"minNumber": {
 								"description": "number of passengers required as accompanying passenger",
 								"type": "integer",
-								"format": "int32"
+								"format": "int32",
+								"default": 999
 							},
 							"passengerTypeRef": {
 								"$ref": "#/definitions/TravelerTypeDef"
