@@ -231,6 +231,14 @@ Legacy reservation code defined in UIC 90918-1.
 |![](../images/catalog-of-code-lists/graphics-icons/image123.jpg)|sleeping car|174|-|- | | 
 |![](../images/catalog-of-code-lists/graphics-icons/image125.jpg)|car-carrier|175|-|- |
 
+## Interface Type
+
+| Code | Description   |
+|------|-------------------------------|
+|`IRS90918_1_RESERVATION_BINARY` | Reservation interface according to IRS90918-1 binary message format |
+|`IRS90918_1_RESERVATION_XML` | Reservation interface according to IRS90918-1 XML message format |
+|`OSDM` | OSDM API |
+
 ## Language
 
 Language codes used in OSDM are based on the [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) standard.
@@ -258,6 +266,57 @@ Refund because of breakage of a vehicle is handled in a separate process.
 | `DIPLOMATIC_PASSPORT` |  |
 | `REFUGEE_TRAVEL_DOCUMENT` |  |
 | `DRIVING_LICENCE` |  |
+
+## Personal data items
+
+Codes for personal data items that might be transferred to the carrier if required.
+
+| Code | Description   |
+|------|---------------|
+|`DATE_OF_BIRTH` |	Date of birth|
+|`E_MAIL`	|e-mail |
+|`PHONE`|	Phone number |
+|`FULL_NAME`|	Full name (first and last name)|
+|`LAST_NAME`|	Last name |
+|`SOCIAL_MEDIA_ACCOUNT`	|A social media account|
+|`LANGUAGE`|	Languages of the passenger|
+|`TITLE`	|Title of the passenger|
+|`DOC_TYPE`|	Type of the document if passport or id card are possible|
+|`DOC_ID`	|ID of the document|
+|`DOC_NAME`|	Name of the passenger as written on the document|
+|`DOC_CITY_OF_RESIDENCE`	|City of residence as written in the document|
+|`DOC_COUNTRY_OF_BIRTH`	||
+|`DOC_COUNTRY_OF_ISSUE`||
+|`DOC_COUNTRY_OF_RESDENCE`||
+|`DOC_DATE_OF_ISSUE	`||
+|`DOC_GENDER`|	Gender as written in the document|
+|`GENDER`	|Gender to be used for special bookings |
+|`DOC_NATIONALITY`	|Nationality as given in the documen|
+|`DOC_LIMIT_OF_VALIDITY	`|Limit of validity as written on the document|
+|`DOC_CITY_OF_ISSUE`	||
+|`DOC_CITY_OF_BIRTH`	||
+|`DOC_TYPE_PASSPORT`	|Document provided must be a passport|
+|`CARD_ISSUER`	|Card issuer|
+|`CARD_NUMBER`	|Card identifier|
+
+## Personal data transfer types
+
+| Code | Description   |
+|------|---------------|
+|`BOOKING`	|The data will be transfered via the booking services|
+|`PRE_BOOOKING`	|The data will be transfered via the pre-booking (offer) services|
+|`SIS_CONTROL`	|The data will be transfered via security in system control data exchange (IRS 90918-4)|
+|`SID`	|The data will be transfered via  a barcode|
+
+## Personal data change reasons
+
+| Code | Description   |
+|------|---------------|
+|`IN_GENERAL`	|No specific reason|
+|`MARRIAGE`	||
+|`DOCUMENT_CHANGE`|	E.g. passport was lost and replaced|
+|`AGENT_ERROR`	|Personal data were enterd wronlgy by the sales agent|
+
 
 ## Place Property
 
@@ -335,23 +394,41 @@ Additional code lists can be defined by implementers. The code list name should 
 
 POICode: Values are depending on code list and set is too large to be reproduced
 
-## Reduction Cards
+## Reduction cards
 
-UIC code list:
+The following code lists defines the commonly used cards which are not provided by a specific carrier:
 
-| Card-Id | Issuer | Description | Type |
-|---------|--------|-------------|------|
-| `UIC_EURAIL` | Eurail | Eurail Pass | `PASS` |
-| `UIC_INTERRAIL` | Eurail | Interrail Pass | `PASS` |
-| `UIC_FIP_LEASURE_RED` |  FIP |  FIP reduction (50%) | `REDUCTION_CARD` |
-| `UIC_FIP_DUTY` |  FIP |  FIP duty | `PASS`|
-| `UIC_FIP_LEASURE_FREE` |  FIP |  FIP free personal use | `PASS` |
-| `UIC_RAILPLUS` | *  | A pure rail plus card | `REDUCTION_CARD` |
-| `UIC_RIT_1` | * | RIT reduction for RIT 1 members | `REDUCTION_CARD` |
-| `UIC_RIT_2` | * | RIT reduction for RIT 2 members | `REDUCTION_CARD` |
-| `UIC_RIT_3` | * | RIT reduction for RIT 3 members | `REDUCTION_CARD` |
+|Predefined Card-Ids	|Issuer	| Description	| Type |
+|-----------------------|-------|---------------|------|
+|`UIC_EURAIL`	|Eurail	|Eurail Pass	|PASS|
+|`UIC_INTERRAIL`	|Eurail	|Interrail Pass	|PASS|
+|`UIC_FIP_LEASURE_RED`	|FIP|FIP reduction (50%)	|REDUCTION_CARD|
+|`UIC_FIP_DUTY`	|FIP	|FIP duty	|PASS|
+|`UIC_FIP_LEASURE_FREE`	|FIP|FIP free personal use	|PASS|
+|`UIC_RAILPLUS`	|*	|A pure rail plus card	|REDUCTION_CARD|
+|`UIC_RIT_1`	|*	|RIT reduction for RIT 1 members	|REDUCTION_CARD|
+|`UIC_RIT_2`	|*	|RIT reduction for RIT 2 members	|REDUCTION_CARD|
+|`UIC_RIT_3`	|*	|RIT reduction for RIT 3 members	|REDUCTION_CARD|
+|`UIC_EURAIL_1`	|Eurail	|Eurail Pass First Class	|PASS|
+|`UIC_INTERRAIL_1`|Eurail|Interrail Pass First Class	|PASS|
+|`UIC_FIP_LEASURE_RED_1`	|FIP|	FIP reduction (50%) First Class	|REDUCTION_CARD|
+|`UIC_FIP_DUTY_1`	|FIP	|FIP duty First Class	|PASS|
+|`UIC_FIP_LEASURE_FREE_1`	|FIP|	FIP free personal use First Class	|PASS|
+|`UIC_RAILPLUS_1`	|*	|A pure rail plus card First Class	|REDUCTION_CARD|
+|`UIC_RIT_1_1`|*	|RIT reduction for RIT 1 First Class members|REDUCTION_CARD|
+|`UIC_RIT_2_1`|*	|RIT reduction for RIT 2 First Class members|REDUCTION_CARD|
+|`UIC_RIT_3_1	`|*	|RIT reduction for RIT 3 First Class members|REDUCTION_CARD|
+|`UIC_EURAIL_2`|Eurail	|Eurail Pass Second Class|PASS|
+|`UIC_INTERRAIL_2`|Eurail |Interrail Pass Second Class|PASS|
+|`UIC_FIP_LEASURE_RED_2`|FIP	FIP reduction (50%) Second Class|REDUCTION_CARD|
+|`UIC_FIP_DUTY_2`|FIP	|FIP duty Second Class|PASS|
+|`UIC_FIP_LEASURE_FREE_2`|FIP|FIP free personal use Second Class|PASS|
+|`UIC_RAILPLUS_2`|*	|A pure rail plus card Second Class|REDUCTION_CARD|
+|`UIC_RIT_1_2`|*	|RIT reduction for RIT 1  members Second Class|REDUCTION_CARD|
+|`UIC_RIT_2_2`|*	|RIT reduction for RIT 2 members Second Class|REDUCTION_CARD|
+|`UIC_RIT_3_2`|*	|RIT reduction for RIT 3 members Second Class|REDUCTION_CARD|
 
-Other parties are allowed to accept additional reduction cards.
+Other cards should start with the RICS code of the issuer.
 
 ## Refund Overrule Codes
 
@@ -407,6 +484,8 @@ Other parties are allowed to accept additional reduction cards.
 | `PLACE_LOCATION` | Place location (Aisle, Window)|
 | `USAGE` | Different usage types for different coach areas|
 | `VEHICLE`|  Different types of vehicles|
+
+
 
 ## Service Brands
 
