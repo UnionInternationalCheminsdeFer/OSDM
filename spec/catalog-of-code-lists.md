@@ -131,8 +131,8 @@ Legacy reservation code defined in UIC 90918-1.
 
 | icon | description | icon code | orientation used | mounting used | 
 |------|-------------|-----------|------------------|---------------| 
-|!(../images/catalog-of-code-lists/grapics-icons/image001.png)|seat|1|to right|- |
-|!(../images/catalog-of-code-lists/grapics-icons/image002.png)|seat|1|to left|- | |
+|![seat1](../images/catalog-of-code-lists/grapics-icons/image001.png)|seat|1|to right|- |
+|![](../images/catalog-of-code-lists/grapics-icons/image002.png)|seat|1|to left|- | |
 |!(../images/catalog-of-code-lists/grapics-icons/image003.png)|seat|1|up|- | | >
 |!(../images/catalog-of-code-lists/grapics-icons/image004.png)|seat|1|bottom|- | |
 |!(../images/catalog-of-code-lists/grapics-icons/image005.png)|berth|2|to left|- | |
