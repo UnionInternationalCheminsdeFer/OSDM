@@ -54,23 +54,8 @@ paths:
       summary: Returns matching locations for a given match value based on MatchType.
       operationId: getLocations
       parameters:
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
-        - name: Access-Token 
-          in: header
-          required: true
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          schema:
-            type: string
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - name: matchValue
           in: query
           schema:
@@ -158,23 +143,8 @@ paths:
       summary: Returns a location element with a given locationId.
       operationId: getLocationsId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: locationId
           schema:
@@ -219,23 +189,8 @@ paths:
         embed either references or full location definitions is returned.
       operationId: getTripsId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: tripId
           schema:
@@ -303,23 +258,8 @@ paths:
         destination can be resolved using the locations service.
       operationId: getTripsCollectionId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation 
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: tripsCollectionId
           schema:
@@ -436,22 +376,8 @@ paths:
         destination can be resolved using the locations service.
       operationId: postTripsCollection
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred as a
-            response to the request (see RFC2616-sec14.4).
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
       requestBody:
         content:
           application/json:
@@ -527,23 +453,8 @@ paths:
         The unique codes of the origin and destination can be resolved using the locations service.
       operationId: getTripOffersCollectionId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: tripOffersCollectionId
           schema:
@@ -661,22 +572,8 @@ paths:
       summary: Returns trip offers for origin and destination (and via) locations. 
       operationId: postTripOffersCollection
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred as a
-            response to the request (see RFC2616-sec14.4).
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
       requestBody:
         content:
           application/json:
@@ -750,23 +647,8 @@ paths:
       summary: Returns different offers for a specified tripOfferId.
       operationId: getTripOffersId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response 
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false  
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: tripOfferId
           schema:
@@ -837,23 +719,8 @@ paths:
       summary: Returns an offer fpr the id requested.
       operationId: getOffersId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: offerId
           schema:
@@ -925,23 +792,8 @@ paths:
         This includes simple passes or one day tickets. 
       operationId: offerCollections
       parameters:
-        - name: Access-Token
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response to the request
-            (see RFC2616-sec14.4).
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
       requestBody:
         description: request parameter for offer search
         required: true
@@ -989,23 +841,8 @@ paths:
       summary: Returns the passenger's information at booking step.
       operationId: getBookingPassengersId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: bookingId
           schema:
@@ -1059,23 +896,8 @@ paths:
       summary: Allows updating a passenger's information at booking step.
       operationId: patchBookingPassenger
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: bookingId
           schema:
@@ -1136,23 +958,8 @@ paths:
       summary: Returns a product for the id provided.
       operationId: getProductsId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: productId
           schema:
@@ -1212,23 +1019,8 @@ paths:
         Auftragsnummer) or by fulfillment reference (e.g. ticket number).
       operationId: getBookings
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: query
           name: embed
           description: >-
@@ -1293,22 +1085,8 @@ paths:
       summary: Allows to create a booking based on a previously requested offer.
       operationId: postBookings
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred as a
-            response to the request (see RFC2616-sec14.4). 
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
       requestBody:
         content:
           application/json:
@@ -1361,23 +1139,8 @@ paths:
       summary: Returns a booking with the id provided.
       operationId: getBookingsId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: bookingId
           schema:
@@ -1454,14 +1217,7 @@ paths:
         but must be repeated according to the error handling rules in case the delete fails.
       operationId: deleteBookingsId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/accessToken"
         - in: path
           name: bookingId
           schema:
@@ -1512,23 +1268,8 @@ paths:
       summary: Allows updating the fulfillment type of the booking.
       operationId: confirmBooking
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: bookingId
           schema:
@@ -1581,23 +1322,8 @@ paths:
       summary:  Triggers the fulfillment of the booking.
       operationId: postFulfillments
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: bookingId
           schema:
@@ -1663,23 +1389,8 @@ paths:
       summary: Allows the effective fulfillment of one ore more confirmed fulfillment. 
       operationId: patchFulfillment
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: bookingId
           schema:
@@ -1752,23 +1463,8 @@ paths:
       summary: Returns the fulfillment, aka. ticket for the provided id.
       operationId: getFulfillmentId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: fulfillmentId
           schema:
@@ -1825,23 +1521,8 @@ paths:
         accepted via a PATCH, deleted or left to die at the end of its lifetime.
       operationId: postRefundOffersBookingId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: bookingId
           schema:
@@ -1901,23 +1582,8 @@ paths:
       summary: Returns the refund offer for the ids provided.
       operationId: getRefundOffersId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: bookingId
           schema:
@@ -1976,23 +1642,8 @@ paths:
       summary: Allows to accept and confirm a refund offer.
       operationId: patchRefundOffersId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: bookingId
           schema:
@@ -2056,14 +1707,7 @@ paths:
       summary: Deletes a refundOffer without waiting for expiry.
       operationId: deleteRefundOffersId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/accessToken"
         - in: path
           name: bookingId
           schema:
@@ -2127,23 +1771,8 @@ paths:
         Returns the exchange operation with the id provided. It may be a provisional or a confirmed exchange.
       operationId: getExchangeOperation
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: bookingId
           schema:
@@ -2220,23 +1849,8 @@ paths:
         Allows to update an ongoing exchange operation. 
       operationId: patchExchangeOperation
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: bookingId
           schema:
@@ -2301,14 +1915,7 @@ paths:
         Cancels an ongoing exchange operation in provisional state. 
       operationId: deleteExchangeOperation
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/accessToken"
         - in: path
           name: bookingId
           schema:
@@ -2369,22 +1976,8 @@ paths:
         characteristics. 
       operationId: postExchangeTripOffersCollection
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred as a
-            response to the request (see RFC2616-sec14.4).
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
       requestBody:
         content:
           application/json:
@@ -2459,23 +2052,8 @@ paths:
         Returns different offers and trips for a specified origin and destination (and via).
       operationId: getExchangeTripOffersCollectionId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: exchangeTripOffersCollectionId
           schema:
@@ -2603,23 +2181,8 @@ paths:
         Returns different offers for a specified trip offer id.
       operationId: getExchangeTripOffersId
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response 
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false  
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage" 
         - in: path
           name: exchangeTripOfferId
           schema:
@@ -2694,23 +2257,8 @@ paths:
         layouts can either be retrieved as a complete list or specificity for a train identified via offerId and reservationId or fareId
       operationId: getCoachLayouts
       parameters:
-        - name: Access-Token 
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response 
-            to the request (see RFC2616-sec14.4). 
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: query 
           description: id of the trip to offer
           name: offerId
@@ -2791,23 +2339,8 @@ paths:
         Retrieve a coach layout description needed for graphical reservation for a given layout id.
       operationId: getCoachLayoutsLayoutId
       parameters:
-        - name: Access-Token
-          in: header
-          description: >-
-            OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-            for information on how to get a token.
-          required: true
-          schema:
-            type: string
-        - name: Accept-Language
-          in: header
-          description: >-
-            Describes the set of natural languages that are preferred for localized text in the response
-            to the request (see RFC2616-sec14.4).
-            Supporting English (en) is a must.
-          schema:
-            type: string
-          required: false
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           description: id of the layout
           name: layoutId
@@ -2850,6 +2383,27 @@ paths:
 
 ## Components
 components:
+  parameters:
+    accessToken:
+      name: Access-Token 
+      in: header
+      description: >-
+        OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
+        for information on how to get a token.
+      required: true
+      schema:
+        type: string
+
+    acceptLanguage:
+      name: Accept-Language
+      in: header
+      description: >-
+        Describes the set of natural languages that are preferred for localized text in the response
+        to the request (see RFC2616-sec14.4). Supporting English (en) is a must.
+      schema:
+        type: string
+      required: false
+
   schemas:
     WarningMessageList:
       type: array
