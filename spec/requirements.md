@@ -162,11 +162,22 @@ An ancillary has a 1-to-1 relationship to a product.
 
 #### Requirements on Fees
 
-Sales fees of an allocator need to be possible for reservations,
-admissions or auxiliaries or collectively for a set of reservations.
+Fees of an allocator or a carrier can be required upon the sale of reservations,
+admissions or ancillaries or collectively for a set of reservations, or for a
+booking.
 
-Requirements on fees will be treated in more details within the next
-version.
+A fee has a value.
+
+A fee applies to one or more offer parts, and to one or more passengers.
+
+A fee is automatically added to a booking if the relevant offer parts are included, e.g. 
+a reservation fee is automatically added when any reservation has been selected.
+
+Whether a fee is refundable is defined by the tariff.
+
+The state of a fee depends on the state of the associated product.
+
+Fees are defined from Version 1.1 of the standard onwards.
 
 ### Requirements on Round Trips
 
