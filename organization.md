@@ -37,7 +37,9 @@ An improvement is structured similar to an [epic](https://www.scaledagileframewo
 in the [SAFe](https://www.scaledagileframework.com/) framework as follows:
 
 - **Name**: Short name for the improvement
+
 - **Owner**: Name of the owner
+
 - **Description**
   "For *customers* who *do something* the *solution*  is a *improvement*
   that *provides this value* unlike *current solution or non-existing solution*
@@ -45,6 +47,17 @@ in the [SAFe](https://www.scaledagileframework.com/) framework as follows:
 
 - **Business Value**: The business value which is generated after the improvement
   has been implemented (low/middle/high).
+
+- **Business Outcomes**: The measurable benefits that the business can anticipate if the epic
+  hypothesis is proven to be correct.
+
+- **Leading Indicators**: The early measures that will help predict the business outcome
+  hypothesis.
+
+- **Non-functional Requirements**: If a business requirement has critical non-functional constraints they should be noted here.
+
+- **Specification Effort**: An assessment of the effort to specify the improvement (*EXTRA_SMALL*, *SMALL*, *MEDIUM*, *LARGE*).
+
 
 ### State of an Improvement
 
