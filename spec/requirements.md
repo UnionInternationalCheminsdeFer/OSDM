@@ -789,24 +789,6 @@ be the set of allowedCommonContracts for Fare B.
 separate contracts most be issued. Otherwise a combined contract can be
 issued.
 
-#### SEPARATE_TICKETS model
-
-This is the model for not combining the fares in one ticket, so the
-rules applied for this ticket are exactly the rules defined by the
-carrier in the fare data. The allocator can form a common contract for
-the whole journey.
-
-Optionally this might be restricted by a list of carriers where this
-combination is allowed.
-
-##### Implementation Aspect
-
-Relevant attributes:
-
-```js
-- FareCombinationConstraintDef.combinationModels.model == SEPARATE_TICKET
-```
-
 #### CLUSTERING model
 
 The `CLUSTERING` model tries to simplify conditions and fares for the
@@ -815,7 +797,7 @@ fares.
 
 Similar types of fares are defined to belong to the same “cluster”. The
 after sales conditions for a cluster are defined by the allocator.
-However, the after sales conditions must basic rules on after sales for
+However, the after sales conditions must respect basic rules on after sales for
 that cluster.
 
 The clusters correspond to the flexibility a passenger receives to
@@ -846,7 +828,7 @@ for sale.
 The following clusters are defined (with the order from high to low
 flexibility): `BUSINESS` > `FULL-FLEX` > `SEMI-FLEX` > `NON-FLEX` > `PROMO`.
 
-Any of the clusters can contain train linked or non train-linked offers.
+Any of the clusters can contain train-linked or non train-linked offers.
 
 Offers of a less restrictive cluster can be included in a more
 restrictive cluster using the more restrictive rules for the combined
@@ -879,7 +861,7 @@ offer, e.g., `BUSINESS` + `FULL-FLEX` leads to `FULL-FLEX`.
 - Non refundable
 - Non exchangeable
 - Minimum validity applies
-- Restricted combination with another cluster offers
+- Restricted combination with other cluster offers
 
 ##### Implementation Aspect
 
@@ -974,13 +956,13 @@ The services must be aligned such that there is a close mapping to the
 processes supported by the services.
 
 The services must be aligned such that the call chain between the
-services does not involve unnecessary mappings between different actors
+services does not involve unnecessary mappings between different actors.
 
 ### Requirements on messages
 
 The messages of the online services must contain no unnecessary
 attributes or data structures. Unnecessary attributes are attributes
-that are not needed for the online processes
+that are not needed for the online processes.
 
 ### Requirements on extendibility
 
