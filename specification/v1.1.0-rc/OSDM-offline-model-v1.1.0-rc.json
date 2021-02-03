@@ -925,11 +925,11 @@
             }
           },
           "individualTicketingPermitted": {
-            "description": "a separate fulfillment per traveler is permitted",
+            "description": "a separate fulfillment per traveler is permitted. Individual fulfillment might not be permitted due to collective pricing of to reduce costs e.g. for ticket checks on board.",
             "type": "boolean",
             "default": false
           },
-          "separateTicketingRequired": {
+          "separateFulfillmentRequired": {
             "description": "a separate fulfillment for the regional constraint is required",
             "type": "boolean",
             "default": false
