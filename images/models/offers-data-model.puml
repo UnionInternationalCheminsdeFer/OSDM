@@ -50,7 +50,7 @@ Offer *-- "1" Trip
 Offer *-- "1..n" FulfillmentType
 Offer *-- "1" OfferSummary
 
-class OfferSummary <<R,orchid>> {
+class OfferSummary <<D,green>> {
   minimalPrice*: price
   overallServiceClass*: string
   overallComfortClass: FIRST/SECOND
@@ -91,7 +91,7 @@ CommonOfferPartAttributes *-- "1..n" Passenger
 CommonOfferPartAttributes *-- "1..n" FulfillmentOption
 CommonOfferPartAttributes o-- "0..n" Product
 
-class Ancillary <<R,orchid>> {
+class Ancillary <<D,green>> {
   id*
   commonOfferPartAttributes*: CommonOfferPartAttributes
   optionality: INCLUDED/OPTIONAL
@@ -105,7 +105,7 @@ Ancillary *-- "1" CommonOfferPartAttributes
 Ancillary .>"0..n" Fee
 
 
-class Admission <<R,orchid>> {
+class Admission <<D,green>> {
   id
   commonOfferPartAttributes: CommonOfferPartAttributes
   isReservationRequired: boolean
@@ -120,12 +120,12 @@ Admission .>"0..n" Reservation:optional/\nincluded/\nmandatory
 Admission .>"0..n" Ancillary:optional/\nincluded
 Admission .>"0..n" Fee
 
-class Reservation<<R,orchid>> {
+class Reservation <<D,green>> {
   id*
   commonOfferPartAttributes*: CommonOfferPartAttributes
   reservationDetails*: reservationDetails
   placeSelection: PlaceSelection
-  optionality: INCLUDED/MANDATORY/OPTIONAL
+  optionality: [INCLUDED/MANDATORY/OPTIONAL]
   fees: [OfferPart]
   links: [Link]
 } 
@@ -135,7 +135,7 @@ Reservation *-- "1" ReservationDetail
 Reservation *-- "0..1" PlaceSelection
 Reservation .>"0..n" Fee
 
-class ReservationDetail<<R,orchid>> {
+class ReservationDetail<<D,green>> {
 accommodationType: string
 accommodationSubtype: string
 reservedPlaces: [PlacePack]
@@ -143,7 +143,7 @@ reservedPlaces: [PlacePack]
 
 ReservationDetail *-- "0..n" PlacePack
 
-class PlacePack<<R,orchid>> {
+class PlacePack<<D,green>> {
   id*
   passengerReferences*: string
   vehicle*: string
@@ -153,7 +153,7 @@ class PlacePack<<R,orchid>> {
   placeProperties: [placeProperty,number,priority]
 }
 
-class PlaceSelection<<R,orchid>> {
+class PlaceSelection<<D,green>> {
 reservationOptions
 vehicle
 referencePlace
@@ -161,7 +161,7 @@ selectedOptions
 selectedCoach
 }
 
-class Fee<<R,orchid>> {
+class Fee<<D,green>> {
   id*
   title
   price*: price
@@ -194,7 +194,7 @@ links: [Link]
 Product *-- "0..n" Condition
 Product *-- "1..n" FulfillmentOption
 
-class Condition<<R,orchid>> {
+class Condition<<D,green>> {
   type*: SALE/EXCHANGE/REFUND/TRAVEL
   description*: string
   validFrom: date
@@ -203,7 +203,7 @@ class Condition<<R,orchid>> {
   afterSalesFee.isCarrierFee: boolean
 }
 
-class FulfillmentOption<<R,orchid>> {
+class FulfillmentOption<<D,green>> {
   fulfillmentType: ETICKET/CIT_PAPER
   media: RCT2/RCCST/UIC_PDF/PDF_A4/PKPASS/TICKETLESS/ALLOCATOR_APP/SOCIAL_MEDIA_ACCOUNTS
 }
@@ -227,7 +227,7 @@ Passenger *-- "0..1" PassengerDetail
 Passenger *-- "0..1" IdentificationDocument
 Passenger *-- "0..1" Transportable
 
-class PassengerDetail<<R,orchid>> {
+class PassengerDetail<<D,green>> {
   preferredLanguage: string
   title: string
   firstName: string
@@ -236,7 +236,7 @@ class PassengerDetail<<R,orchid>> {
   phone: string
 }
 
-class CardReference<<R,orchid>> {
+class CardReference<<D,green>> {
   type*: REDUCTION/LOYALTY/BOTH
   code*: string
   codeList*: string
@@ -245,7 +245,7 @@ class CardReference<<R,orchid>> {
   issuer: string
 }
 
-class IdentificationDocument<<R,orchid>> {
+class IdentificationDocument<<D,green>> {
   id*
   type*: string
   name: string
@@ -261,14 +261,14 @@ class IdentificationDocument<<R,orchid>> {
   limitOfValidity: date
 }
 
-class Transportable<<R,orchid>> {
+class Transportable<<D,green>> {
   type: PET/BICYLE/CAR/MOTOR_CYCLE/CAR_TRAILER
   car: Car
   motorCycle: motorCycle
   trailer: trailer
 }
 
-class FareOnline <<R,orchid>> {
+class FareOnline <<D,green>> {
 id*
 type*: ADMISSION/RESERVATION/INTEGRATED_RESERVATION/ANCILLIARY
 name
