@@ -2631,6 +2631,29 @@ components:
           $ref: '#/components/schemas/StationCode'
         destination:
           $ref: '#/components/schemas/StationCode'
+        requestedSection:
+          description: >-
+            Indicates the sub-part of the trip that is requested to price
+          type: object
+          properties:
+            start:
+              description: >-
+                Start of the sub-trip to price, either expressed as a station or as connection point
+              type: object
+              properties:
+                station:
+                  $ref: '#/components/schemas/StationCode'
+                connectionPoint:
+                  $ref: '#/components/schemas/ConnectionPoint'
+            end:
+              description: >-
+                End of the sub-trip to price, either expressed as a station or as connection point
+              type: object
+              properties:
+                station:
+                  $ref: '#/components/schemas/StationCode'
+                connectionPoint:
+                  $ref: '#/components/schemas/ConnectionPoint'
         viaValues:
           description: >-
             Ordered list of via locations within the trip. Unique code value has
@@ -3095,6 +3118,21 @@ components:
           type: string
         carrierConstraintText:
           type: string
+        combinationTags:
+          description: >-
+            Tags to indicate that some products from a provider can be sold only when in conjunction with product(s) from another provider using the same tag.
+            At least one, not all, combinationTags must be in common to allow combination. No combinationTags indicate that there are no combination constraints on the product.        
+          type: array
+          items:
+            type: object
+            properties:
+              combinationTag:
+                type: string
+              sellableStandalone:
+                description: >-
+                  When true it means that this product can be sold also when not in conjunction with a product with the same tag. This is needed to propose specific products from one provider (sellableStandalone=false) that depend on public ones of another (sellableStandalone=true).
+                type: boolean
+                default: true
         links:
           type: array
           items:
