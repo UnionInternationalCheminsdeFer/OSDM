@@ -833,6 +833,576 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
+  
+  '/offers/{offerId}/reservations/{reservationId}/available-preferences':             
+    get:
+      tags:
+        - Reservation
+        - Offer Parts
+        - Place Selection
+        - Availability
+      summary: Allows validating reservation selection parameters.
+      description: >-
+        The selected place preferences of the customer are checked for availability and the in combination available preferences are returned.
+        This service provides the alvailability service to be compliant with existing 90918-1 services (as-if-reservation)
+      operationId: validateReservationPreferencesId
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
+        - in: path
+          name: offerId
+          schema:
+            type: string
+          required: true
+          description: ID of the offer.
+        - in: path
+          name: reservationId
+          schema:
+            type: string
+          required: true
+          description: ID of the reservation where to validate the place availability
+        - in: query
+          name: preferences
+          description: >-
+            Place preferences (see code list PLacePreferences) the customer wants to have 
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: preferenceBundles
+          description: >-
+            Place preferences the customer wants to have applying to a selection of passengers or transportables only
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                passengerId:
+                  type: string
+                preferences:
+                 description: >-
+                    Place preferences (see code list PlacePreferences) the customer wants to have 
+                 type: array
+                 items:
+                   type: string
+      responses:
+        '200':
+          description: places available
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  reservation:
+                    $ref: '#/components/schemas/AvailablePlacePreferences'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented          
+          
+  '/offers/{offerId}/reservations/{reservationId}/nearby':             
+    get:
+      tags:
+        - Reservation
+        - Offer Parts
+        - Place Selection
+        - Availability
+      summary: >-
+        Allows validating reservation selection parameters near to a reference place.
+      description: >-
+        Check whether the reservation can be located near the provided reference place
+        If selected place preferences of the customer are provided they are checked for availability and the in combination available preferences are returned.
+        This service provides the alvailability service to be compliant with existing 90918-1 services (as-if-reservation)
+      operationId: validateReservationNearbyId
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
+        - in: path
+          name: offerId
+          schema:
+            type: string
+          required: true
+          description: ID of the offer.
+        - in: path
+          name: reservationId
+          schema:
+            type: string
+          required: true
+          description: ID of the reservation where to validate the place availability
+        - in: query
+          name: coach
+          description: coach of the referenced place
+          schema:
+            type: string
+        - in: query
+          name: place
+          description: place number of the referenced place
+          schema:
+            type: string          
+        - in: query
+          name: preferences
+          description: >-
+            Place preferences (see code list PLacePreferences) the customer wants to have 
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: preferenceBundles
+          description: >-
+            Place preferences the customer wants to have applying to a selection of passengers or transportables only
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                passengerId:
+                  type: string
+                preferences:
+                 description: >-
+                    Place preferences (see code list PlacePreferences) the customer wants to have 
+                 type: array
+                 items:
+                   type: string
+      responses:
+        '200':
+          description: nearby places available
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  reservation:
+                    $ref: '#/components/schemas/AvailablePlacePreferences'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented                
+          
+  '/offers/{offerId}/reservations/{reservationId}/place-map':             
+    get:
+      tags:
+        - Reservation
+        - Offer Parts
+        - Place Selection
+        - Availability
+      summary: Provides available places for place selection.
+      description: >-
+        Provide the availability per place to be displayed in a graphical place map for place selectionn.
+        If selected place preferences of the customer are provided they are checked for availability and the in combination available preferences are returned.
+      operationId: provideReservationSeatMap
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
+        - in: path
+          name: offerId
+          schema:
+            type: string
+          required: true
+          description: ID of the offer.
+        - in: path
+          name: reservationId
+          schema:
+            type: string
+          required: true
+          description: ID of the reservation where to validate the place availability
+        - in: query
+          name: preferences
+          description: >-
+            Place preferences (see code list PLacePreferences) the customer wants to have 
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: preferenceBundles
+          description: >-
+            Place preferences the customer wants to have applying to a selection of passengers or transportables only
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                passengerId:
+                  type: string
+                preferences:
+                 description: >-
+                    Place preferences (see code list PlacePreferences) the customer wants to have 
+                 type: array
+                 items:
+                   type: string
+      responses:
+        '200':
+          description: available places for selection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  reservation:
+                    $ref: '#/components/schemas/PlaceAvailability'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented                 
+          
+  '/offers/{offerId}/fares/{fareId}/available-preferences':             
+    get:
+      tags:
+        - Reservation
+        - Offer Parts
+        - Place Selection
+        - Availability
+      summary: Allows validating reservation selection parameters.
+      description: >-
+        The selected place preferences of the customer are checked for availability and the in combination available preferences are returned.
+        This service provides the alvailability service to be compliant with existing 90918-1 services (as-if-reservation)
+      operationId: validateFareReservationPreferencesId
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
+        - in: path
+          name: offerId
+          schema:
+            type: string
+          required: true
+          description: ID of the offer.
+        - in: path
+          name: fareId
+          schema:
+            type: string
+          required: true
+          description: ID of the fare where to validate the place availability
+        - in: query
+          name: preferences
+          description: >-
+            Place preferences (see code list PLacePreferences) the customer wants to have 
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: preferenceBundles
+          description: >-
+            Place preferences the customer wants to have applying to a selection of passengers or transportables only
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                passengerId:
+                  type: string
+                preferences:
+                 description: >-
+                    Place preferences (see code list PlacePreferences) the customer wants to have 
+                 type: array
+                 items:
+                   type: string
+      responses:
+        '200':
+          description: Places available
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  reservation:
+                    $ref: '#/components/schemas/AvailablePlacePreferences'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented      
+          
+  '/offers/{offerId}/fares/{fareId}/nearby':             
+    get:
+      tags:
+        - Reservation
+        - Offer Parts
+        - Place Selection
+        - Availability
+      summary: >-
+        Allows validating reservation selection parameters near to a reference place.
+      description: >-
+        Check whether the fare reservation can be located near the provided reference place (given by coach number and place number)
+        If selected place preferences of the customer are provided they are checked for availability and the in combination available preferences are returned.
+        This service provides the alvailability service to be compliant with existing 90918-1 services (as-if-reservation)
+      operationId: validateFareReservationNearbyId
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
+        - in: path
+          name: offerId
+          schema:
+            type: string
+          required: true
+          description: ID of the offer.
+        - in: path
+          name: fareId
+          schema:
+            type: string
+          required: true
+          description: ID of the fare where to validate the place availability
+        - in: query
+          name: coach
+          description: coach of the referenced place
+          schema:
+            type: string
+        - in: query
+          name: place
+          description: place number of the referenced place
+          schema:
+            type: string          
+        - in: query
+          name: preferences
+          description: >-
+            Place preferences (see code list PLacePreferences) the customer wants to have 
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: preferenceBundles
+          description: >-
+            Place preferences the customer wants to have applying to a selection of passengers or transportables only
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                passengerId:
+                  type: string
+                preferences:
+                 description: >-
+                    Place preferences (see code list PlacePreferences) the customer wants to have 
+                 type: array
+                 items:
+                   type: string
+      responses:
+        '200':
+          description: Places available
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  reservation:
+                    $ref: '#/components/schemas/AvailablePlacePreferences'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented      
+          
+  '/offers/{offerId}/fares/{fareId}/place-map':             
+    get:
+      tags:
+        - Reservation
+        - Offer Parts
+        - Place Selection
+        - Availability
+      summary: Provides available places for place selection
+      description: >-
+        Provide the availability per place to be displayed in a graphical place map for place selectionn.
+        If selected place preferences of the customer are provided they are checked for availability and the in combination available preferences are returned.
+      operationId: provideFareReservationPlaceMap
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
+        - in: path
+          name: offerId
+          schema:
+            type: string
+          required: true
+          description: ID of the offer.
+        - in: path
+          name: fareId
+          schema:
+            type: string
+          required: true
+          description: ID of the reservation fare where to get the place availability
+        - in: query
+          name: preferences
+          description: >-
+            Place preferences (see code list PLacePreferences) the customer wants to have 
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: preferenceBundles
+          description: >-
+            Place preferences the customer wants to have applying to a selection of passengers or transportables only
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                passengerId:
+                  type: string
+                preferences:
+                 description: >-
+                    Place preferences (see code list PlacePreferences) the customer wants to have 
+                 type: array
+                 items:
+                   type: string
+      responses:
+        '200':
+          description: selectable places
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  reservation:
+                    $ref: '#/components/schemas/PlaceAvailability'
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        '400':
+          description: Bad request
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '501':
+          description: Not implemented            
 
   /bookings/{bookingId}/passengers/{passengerId}:
     get:
@@ -4120,16 +4690,6 @@ components:
           items:
             $ref: '#/components/schemas/Link'
 
-    Layouts:
-      type: object
-      properties:
-        layouts:
-          type: array
-          items:
-            $ref: '#/components/schemas/CoachLayout'
-      required:
-        - layouts
-
     CoachLayout:
       type: object
       description: >-
@@ -4315,6 +4875,48 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
+ 
+    AvailablePlacePreferences:
+      type: object
+      properties:  
+          placePacks:
+            description: >-
+              Properties of the available places for the provided selection query       
+            type: array    
+            items:
+              type: object
+              properties:
+                accommodationType:
+                  $ref: '#/components/schemas/AccommodationType'  
+                accommodationSubType:
+                  $ref: '#/components/schemas/AccommodationSubType'  
+                passengerReferences:
+                  description: reference of the traveller / reservation holder
+                  type: string  
+                number:
+                  description: number of places 
+                  type: integer
+                  format: int32
+                availablePlaceProperties:
+                  description: >-
+                   Properties of the available places for the provided selection quer
+                  type: array    
+                  items:
+                    type: object
+                    description: place properties of places in the place pack. Properties without a  number refer to all places
+                    properties:
+                      placeProperty:
+                        description: see code list
+                        type: string
+                      number:
+                        description: number of places with this property
+                        type: integer
+                        format: int32
+                      priority:
+                        description: priority for displaying a list of properties
+                        type: integer
+                        format: int32
+ 
  
     #### Fare-specific elements begin
 
@@ -5476,12 +6078,10 @@ components:
       type: string
       description:  >-
         Accommodation type definition out of AccommodationTypeCodeList
-
     AccommodationSubType:
       type: string
       description:  >-
         Accommodation type definition out of AccommodationSubTypeCodeList
-
     PlaceSelection:
       type: object
       description: >-
@@ -5625,6 +6225,16 @@ components:
             required:
               - number
               - layoutId    
+        preSelection:
+          description: suggested preselection of places
+          type: array
+          items:
+            type: object
+            properties:
+              coach: 
+                type: string
+              place:
+                type: string
 
     Place:
       description: description of a place
