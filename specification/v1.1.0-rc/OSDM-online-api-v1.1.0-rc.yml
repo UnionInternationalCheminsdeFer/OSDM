@@ -2615,6 +2615,11 @@ components:
             default: ALL
             
     TripSearchCriteria:
+      description: >-
+        Trip search criteria can be specified in two alternative ways: 
+        - as a list of trips, composed of segments
+        - as a list of criteria, with mandatory origin and destination, plus other optional criteria (via stations, max number of changes,..)
+        In both cases, the API client can request the provider to price only a subset of the whole itinerary by using the requestedSection attribute
       type: object
       properties:
         stopBehavior:
@@ -2631,9 +2636,24 @@ components:
           $ref: '#/components/schemas/StationCode'
         destination:
           $ref: '#/components/schemas/StationCode'
+        trips:
+          type: array
+          items:
+            type: object
+            description: >-
+              a trip is a set of pair: a client generated key, that has to be echoed in the response for the client to easily match the received trips with the requested ones, and the list of segments composing the trip.
+            properties:
+              tripKey: 
+                type: string
+              trip:        
+               type: array
+               items:
+                 $ref: '#/components/schemas/Segment'
+            required:
+              - trip
         requestedSection:
           description: >-
-            Indicates the sub-part of the trip that is requested to price
+            Indicates the sub-part of the trip that is requested to price. When absent, the totality of the trip is requested for pricing.
           type: object
           properties:
             start:
@@ -2705,8 +2725,6 @@ components:
           type: boolean
           default: false
       required:
-        - origin
-        - destination
         - travelDateTime
 
     OfferSearchCriteria:
@@ -2742,34 +2760,10 @@ components:
     TripOfferRequest:
       type: object      
       description: >-
-        Defines the parameters needed to request an offer, either based on either an
-        existing trip (that is then passed in) plus a set of offer search
-        criteria, or based on tripsearch and offer search criteria. At least one
-        of the trip or tripSearchCriteria must be set.
+        Defines the parameters needed to request an offer. 
       properties:
-        tripSearch:
-          type: object      
-          description: >-  
-            one of trips or searchCriteria
-          properties:
-            trips:
-              type: array
-              items:
-                type: object
-                properties:
-                  trip:
-                    $ref: '#/components/schemas/Trip'
-                  requestedSection:
-                    type: object
-                    properties:
-                      start:
-                        $ref: '#/components/schemas/Location'
-                      end:
-                        $ref: '#/components/schemas/Location'
-                required:
-                  - trip
-            searchCriteria:      
-              $ref: '#/components/schemas/TripSearchCriteria'
+        tripSearchCriteria:
+          $ref: '#/components/schemas/TripSearchCriteria'      
         returnSearchParameters:
           type: object
           description: >-
@@ -2835,6 +2829,10 @@ components:
           example: Bruxelles-Midi 2020-07-01 10:05 CET
         trip:
           $ref: '#/components/schemas/Trip'
+        tripKey:
+          description: >-
+            client reference that could be received in a search with trips in input. In such cases it is expected to be echoed back.          
+          type: string
         offers:
           type: array
           items:
@@ -2905,9 +2903,9 @@ components:
             offerTag:
               type: string
           description: >-
-            The offerHash can/must (depending on the mandatory flag) be used in some cases to restrict the set of
+            The offerTag can/must (depending on the mandatory flag) be used in some cases to restrict the set of
             offers returned in a subsequent and related offer search to only compatible ones.
-            Note the offerHash does not need to be unique.
+            Note the offerTag does not need to be unique.
         coveredSegmentIndexes:
           type: array
           items:
@@ -2915,9 +2913,6 @@ components:
             format: int32
           description: >-
             relevant only in case the offer only covers parts of the trip. This will indicate which segments are covered by the specific offer
-        offerCluster:
-          type: string
-          description: relevant only in case the offer only covers parts of the trip. This will indicate which offer cluster this offer is part of.
         returnTags:
           type: array
           items:
@@ -3365,6 +3360,11 @@ components:
           type: string
           format: uuid
           description: id of the selected offer or exchangeOffer
+        afterSaleByDistributorOnly:
+          description: >-
+            in case the distributor has proposed this offer in conjunction with an offer of another provider constrained by a combinationTag, this flag must be set to true to indicate to the provider that aftersale must be done on the totality of the distributor's booking. Only aftersale requests triggered by the distributor can be safely processed on this offer. When the flag is not set, standard provider logic applies.
+          type: boolean
+          default: false
         selectedOptionalReservationsIds:
           type: array
           items:
