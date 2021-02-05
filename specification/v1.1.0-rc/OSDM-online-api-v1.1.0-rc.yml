@@ -2617,8 +2617,8 @@ components:
     TripSearchCriteria:
       description: >-
         Trip search criteria can be specified in two alternative ways: 
-        - as a list of trips, composed of segments
-        - as a list of criteria, with mandatory origin and destination, plus other optional criteria (via stations, max number of changes,..)
+        1/ as a list of trips, composed of segments
+        2/ as a list of criteria, with mandatory origin and destination, plus other optional criteria (via stations, max number of changes,..)
         In both cases, the API client can request the provider to price only a subset of the whole itinerary by using the requestedSection attribute
       type: object
       properties:
@@ -2641,7 +2641,7 @@ components:
           items:
             type: object
             description: >-
-              a trip is a set of pair: a client generated key, that has to be echoed in the response for the client to easily match the received trips with the requested ones, and the list of segments composing the trip.
+              a trip is a set of pairs: a client generated key, that has to be echoed in the response for the client to easily match the received trips with the requested ones, and the list of segments composing the trip.
             properties:
               tripKey: 
                 type: string
