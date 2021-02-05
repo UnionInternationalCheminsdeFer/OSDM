@@ -833,8 +833,7 @@ paths:
                 $ref: '#/components/schemas/Problem'
         '501':
           description: Not implemented
-          
-          
+  
   '/offers/{offerId}/reservations/{reservationId}/available-preferences':             
     get:
       tags:
