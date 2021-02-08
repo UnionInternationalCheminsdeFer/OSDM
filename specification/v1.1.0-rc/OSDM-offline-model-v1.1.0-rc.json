@@ -498,7 +498,7 @@
         "type": "object",
         "properties": {
           "model": {
-            "description": "Possible models are SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING.  The models need to be supported by the allocator.",
+            "description": "Possible models are SEPARATE_CONTRACT, CLUSTERING, COMBINING.  The models need to be supported by the allocator.",
             "type": "string"
           },
           "combinableCarrier": {
@@ -925,9 +925,15 @@
             }
           },
           "individualTicketingPermitted": {
-            "description": "a separate fulfillment per traveler is permitted",
-            "type": "boolean"
-          }
+            "description": "a separate fulfillment per traveler is permitted. Individual fulfillment might not be permitted due to collective pricing of to reduce costs e.g. for ticket checks on board.",
+            "type": "boolean",
+            "default": false
+          },
+          "separateFulfillmentRequired": {
+            "description": "a separate fulfillment for the regional constraint is required",
+            "type": "boolean",
+            "default": false
+          }          
         },
         "required": [
           "id",
