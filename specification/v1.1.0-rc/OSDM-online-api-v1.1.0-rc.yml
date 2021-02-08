@@ -28,13 +28,19 @@ tags:
   - name: Bookings
     description: >-
       resources to manipulate bookings
+  - name: Fares
+    description: >-
+      resources to access fares
+  - name: Reservations
+    description: >-
+      resources to access reservations
   - name: Passengers
     description: >-
       resources to manipulate a passenger's information at every stage of the flow
   - name: Products
     description: >-
       resources to retrieve products information on one or more products
-  - name: Fulfillments  
+  - name: Fulfillments
     description: >-
       resources to retrieve fulfillments, e.g. tickets
   - name: Refund
@@ -837,14 +843,11 @@ paths:
   '/offers/{offerId}/reservations/{reservationId}/available-preferences':             
     get:
       tags:
-        - Reservation
-        - Offer Parts
-        - Place Selection
-        - Availability
+        - Reservations
       summary: Allows validating reservation selection parameters.
       description: >-
         The selected place preferences of the customer are checked for availability and the in combination available preferences are returned.
-        This service provides the alvailability service to be compliant with existing 90918-1 services (as-if-reservation)
+        This service provides the availability service to be compliant with existing 90918-1 services (as-if-reservation).
       operationId: validateReservationPreferencesId
       parameters:
         - $ref: "#/components/parameters/accessToken"
@@ -928,16 +931,14 @@ paths:
   '/offers/{offerId}/reservations/{reservationId}/nearby':             
     get:
       tags:
-        - Reservation
-        - Offer Parts
-        - Place Selection
-        - Availability
+        - Reservations
       summary: >-
         Allows validating reservation selection parameters near to a reference place.
       description: >-
         Check whether the reservation can be located near the provided reference place
-        If selected place preferences of the customer are provided they are checked for availability and the in combination available preferences are returned.
-        This service provides the alvailability service to be compliant with existing 90918-1 services (as-if-reservation)
+        If selected place preferences of the customer are provided they are checked for availability and the in 
+        combination available preferences are returned. This service provides the availability service to be 
+        compliant with existing 90918-1 services (as-if-reservation).
       operationId: validateReservationNearbyId
       parameters:
         - $ref: "#/components/parameters/accessToken"
@@ -1031,14 +1032,12 @@ paths:
   '/offers/{offerId}/reservations/{reservationId}/place-map':             
     get:
       tags:
-        - Reservation
-        - Offer Parts
-        - Place Selection
-        - Availability
+        - Reservations
       summary: Provides available places for place selection.
       description: >-
-        Provide the availability per place to be displayed in a graphical place map for place selectionn.
-        If selected place preferences of the customer are provided they are checked for availability and the in combination available preferences are returned.
+        Provide the availability per place to be displayed in a graphical place map for place selection.
+        If selected place preferences of the customer are provided they are checked for availability and the in 
+        combination available preferences are returned.
       operationId: provideReservationSeatMap
       parameters:
         - $ref: "#/components/parameters/accessToken"
@@ -1122,14 +1121,12 @@ paths:
   '/offers/{offerId}/fares/{fareId}/available-preferences':             
     get:
       tags:
-        - Reservation
-        - Offer Parts
-        - Place Selection
-        - Availability
+        - Fares
       summary: Allows validating reservation selection parameters.
       description: >-
-        The selected place preferences of the customer are checked for availability and the in combination available preferences are returned.
-        This service provides the alvailability service to be compliant with existing 90918-1 services (as-if-reservation)
+        The selected place preferences of the customer are checked for availability and the in combination
+        available preferences are returned. This service provides the availability service to be compliant 
+        with existing 90918-1 services (as-if-reservation)
       operationId: validateFareReservationPreferencesId
       parameters:
         - $ref: "#/components/parameters/accessToken"
@@ -1213,16 +1210,14 @@ paths:
   '/offers/{offerId}/fares/{fareId}/nearby':             
     get:
       tags:
-        - Reservation
-        - Offer Parts
-        - Place Selection
-        - Availability
+        - Fares
       summary: >-
         Allows validating reservation selection parameters near to a reference place.
       description: >-
-        Check whether the fare reservation can be located near the provided reference place (given by coach number and place number)
-        If selected place preferences of the customer are provided they are checked for availability and the in combination available preferences are returned.
-        This service provides the alvailability service to be compliant with existing 90918-1 services (as-if-reservation)
+        Check whether the fare reservation can be located near the provided reference place (given by
+        coach number and place number). If selected place preferences of the customer are provided they
+        are checked for availability and the in combination available preferences are returned.
+        This service provides the availability service to be compliant with existing 90918-1 services (as-if-reservation).
       operationId: validateFareReservationNearbyId
       parameters:
         - $ref: "#/components/parameters/accessToken"
@@ -1316,14 +1311,12 @@ paths:
   '/offers/{offerId}/fares/{fareId}/place-map':             
     get:
       tags:
-        - Reservation
-        - Offer Parts
-        - Place Selection
-        - Availability
+        - Fares
       summary: Provides available places for place selection
       description: >-
-        Provide the availability per place to be displayed in a graphical place map for place selectionn.
-        If selected place preferences of the customer are provided they are checked for availability and the in combination available preferences are returned.
+        Provide the availability per place to be displayed in a graphical place map for place selection.
+        If selected place preferences of the customer are provided they are checked for availability and the in
+        combination available preferences are returned.
       operationId: provideFareReservationPlaceMap
       parameters:
         - $ref: "#/components/parameters/accessToken"
@@ -4190,7 +4183,8 @@ components:
     FulfillmentDocument:
       type: object
       description: >-
-        Document created for fulfillment. Either downloadLink + downloadExpiry or content + format must be provided.
+        Document created for fulfillment. Either downloadLink + downloadExpiry or content + format must
+        be provided.
       properties:
         medium: 
           $ref: '#/components/schemas/FulfillmentMediaType'
@@ -4208,7 +4202,9 @@ components:
         downloadExpiry:
           type: string
           format: date-time
-          description: Expiration time of the donwloadLink, the document will not be available at the given URI after this time
+          description: >- 
+            Expiration time of the download link, the document will not be available at the given URI 
+            after this time.
         content:
           type: string
           format: base64
@@ -4217,7 +4213,8 @@ components:
           type: string
           example: "application/pdf"
           description: >-
-            Physical format of the document provided in the content field in Mime-Type format, e.g. application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
+            Physical format of the document provided in the content field in Mime-Type format, e.g. 
+            application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
     
     FulfillmentItem:
       type: object
