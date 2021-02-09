@@ -35,7 +35,7 @@ A specification as a **product** which is managed as follows:
   than seven items. The working group takes special care not to break existing
   implementations, thus **securing investments** made by all the parties.
 
-- The **PES** endorse the functional & technical specifications prepared by the
+- The **PES** endorses the functional & technical specifications prepared by the
   OSDM Technical WG, preparing the agenda of the OSDM executive committee. Similarly,
   **ETT** endorses the improvements prepared.
 
