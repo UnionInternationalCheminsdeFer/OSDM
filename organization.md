@@ -18,24 +18,28 @@ A specification as a **product** which is managed as follows:
 
 - An improvement addresses a need and solves a problem, thus producing **value**.
 
-- The **SPG Working group (NRT/IRT/NT groups)** identifies the business needs on behave
-  of the railway undertakings. The business representatives prepare the new requirements
-  with Chairs of OSDM technical Working group. The output is a functional specification
-  document to be examined by the PES (input). On the side the distributors' side, the
-  business needs are identified by **Eu Travel Tech (ETT)** representatives.
+- The **Sales Progress Group (SPG) Working group (NRT/IRT/NT groups)** identifies
+  the business needs on behalf of the railway undertakings. The business representatives
+  prepare the new requirements with Chairs of OSDM technical Working group. The output
+  is a functional specification document to be examined by the **Personal Expert Subgroup
+  (PES)** (input). On the side the distributors' side, the business needs are identified
+  by **Eu Travel Tech (ETT)** representatives.
 
-- The **OSDM executive committee** (Chair: [Marc Guigon](https://www.linkedin.com/in/marcguigon/) & [Vittorio Carta](https://www.linkedin.com/in/vittorio-carta-mba-0b90b728/)) prioritizes the backlog based on the value
-  for the **railway customer** and the **railway sector** as a whole. The committee is a
-  **fair representation** of the parties involved, thus railways and distributors and others.
+- The **OSDM executive committee** (Chair: [Marc Guigon](https://www.linkedin.com/in/marcguigon/) &
+  [Vittorio Carta](https://www.linkedin.com/in/vittorio-carta-mba-0b90b728/)) prioritizes the
+  backlog based on the value for the **railway customer** and the **railway sector** as a whole.
+  The committee is a **fair representation** of the parties involved, thus railways and
+  distributors and others.
 
-- The **OSDM technical working group** (Chair: [Clemens Gantert](https://www.linkedin.com/in/clemens-g-88783725/) & [Andreas Schlapbach](https://www.linkedin.com/in/andreas-schlapbach-09b095ab/)) designs and
+- The **OSDM technical working group** (Chair: [Clemens Gantert](https://www.linkedin.com/in/clemens-g-88783725/) &
+  [Andreas Schlapbach](https://www.linkedin.com/in/andreas-schlapbach-09b095ab/)) designs and
   implements improvements to the standard. Thus, it is responsible to translate the
   functional specification identified by the SPG/PES and ETT into a document of
   technical specification. To stay focused, the work in progress should not be larger
   than seven items. The working group takes special care not to break existing
   implementations, thus **securing investments** made by all the parties.
 
-- The **PES** endorses the functional & technical specifications prepared by the
+- The **PES** endorses the functional and technical specifications prepared by the
   OSDM Technical WG, preparing the agenda of the OSDM executive committee. Similarly,
   **ETT** endorses the improvements prepared.
 
