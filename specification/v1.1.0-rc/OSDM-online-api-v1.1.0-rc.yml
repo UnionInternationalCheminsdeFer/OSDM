@@ -2868,7 +2868,9 @@ components:
       properties:
         id:
           type: string
-          description: unique id of this trip on this server.
+          description: >-
+            Unique id of this trip on this server. The id can also be a hash
+            that encodes the trip in a compact way.
         title:
           type: string
           example: Bruxelles-Midi - Paris-Nord, 2020-07-01 10:05 CET
@@ -5481,8 +5483,9 @@ components:
         - amount
 
     Currency:
-      description: ISO4217 currency codes
-      type: string  
+      description: ISO 4217 currency codes
+      type: string
+      example: CHF
 
     VatDetail:
       type: object
@@ -5490,10 +5493,12 @@ components:
         country:
           description: ISO 3166 2A codes
           type: string
+          example: CH
         amount:
           description: amount in cents
           type: integer
           format: int32
+          example: 5
         scale: 
           description: scale of the amount - the number of positions after the comma
           type: integer
@@ -5504,7 +5509,7 @@ components:
         taxId:
           type: string
         scope:
-           $ref: '#/components/schemas/VatScope'
+          $ref: '#/components/schemas/VatScope'
       required:
         - country
         - amount
@@ -5531,6 +5536,7 @@ components:
         (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
       type: integer
       format: int32
+      example: TGV
 
     ServiceClass:
       type: object
@@ -6006,7 +6012,7 @@ components:
               - number
               - layoutId    
         preSelection:
-          description: suggested preselection of places
+          description: suggested pre-selection of places
           type: array
           items:
             type: object
