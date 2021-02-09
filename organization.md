@@ -15,17 +15,29 @@ an **agile manner**.
 A specification as a **product** which is managed as follows:
 
 - We have a backlog of improvements where everybody can contribute.
+
 - An improvement addresses a need and solves a problem, thus producing **value**.
+
+- The **SPG Working group (NRT/IRT/NT groups)** identifies the business needs on behave
+  of the railway undertakings. The business representatives prepare the new requirements
+  with Chairs of OSDM technical Working group. The output is a functional specification
+  document to be examined by the PES (input). On the side the distributors' side, the
+  business needs are identified by **Eu Travel Tech (ETT)** representatives.
+
 - The **OSDM executive committee** (Chair: [Marc Guigon](https://www.linkedin.com/in/marcguigon/) & [Vittorio Carta](https://www.linkedin.com/in/vittorio-carta-mba-0b90b728/)) prioritizes the backlog based on the value
-  for the **railway customer** and the **railway sector** as a whole.
-- The **OSDM executive committee** is a **fair representation** of the parties
-  involved, thus railways and distributors and others.
-- The **OSDM technical working group** (Chair: [Clemens Gantert](https://www.linkedin.com/in/clemens-g-88783725/) & [Andreas Schlapbach](https://www.linkedin.com/in/andreas-schlapbach-09b095ab/)) designs and implements improvements to
-  the standard. To stay focused, the work in progress should not be larger than
-  five items.
-- The **OSDM technical working group** takes special care not to break
-  existing implementations, thus **securing investments** made by all the
-  parties.
+  for the **railway customer** and the **railway sector** as a whole. The committee is a
+  **fair representation** of the parties involved, thus railways and distributors and others.
+
+- The **OSDM technical working group** (Chair: [Clemens Gantert](https://www.linkedin.com/in/clemens-g-88783725/) & [Andreas Schlapbach](https://www.linkedin.com/in/andreas-schlapbach-09b095ab/)) designs and
+  implements improvements to the standard. Thus, it is responsible to translate the
+  functional specification identified by the SPG/PES and ETT into a document of
+  technical specification. To stay focused, the work in progress should not be larger
+  than seven items. The working group takes special care not to break existing
+  implementations, thus **securing investments** made by all the parties.
+
+- The **PES** endorse the functional & technical specifications prepared by the
+  OSDM Technical WG, preparing the agenda of the OSDM executive committee. Similarly,
+  **ETT** endorses the improvements prepared.
 
 Illustration of the concepts:
 
@@ -54,10 +66,11 @@ in the [SAFe](https://www.scaledagileframework.com/) framework as follows:
 - **Leading Indicators**: The early measures that will help predict the business outcome
   hypothesis.
 
-- **Non-functional Requirements**: If a business requirement has critical non-functional constraints they should be noted here.
+- **Non-functional Requirements**: If a business requirement has critical non-functional
+  constraints they should be noted here.
 
-- **Specification Effort**: An assessment of the effort to specify the improvement (*EXTRA_SMALL*, *SMALL*, *MEDIUM*, *LARGE*).
-
+- **Specification Effort**: An assessment of the effort to specify the improvement
+  (*EXTRA_SMALL*, *SMALL*, *MEDIUM*, *LARGE*, *EXTRA_LARGE*).
 
 ### State of an Improvement
 
@@ -95,9 +108,9 @@ in the [SAFe](https://www.scaledagileframework.com/) framework.
 
 The following increments are planned:
 
-| Product Increment | End Date   | Improvements in Scope |
-|------|:----------:|------------|
-| `PI-0` | 17.12.2020 | Reduce the complexity of the online model (I-0), Add support for round trips (I-11), Add support for Universal Rail Ticket (I-12), Let the customer choose offers per segments independently (I-14), & Add support for stock control numbers (I-15) |
-| `PI-1` | 11.02.2021 | Support for stateless offers/booking processes (I-2), Add support for a fee (I-5), Enable combination rules between offers (I-1), Add binary in fulfillment messages (I-9) |
-| `PI-2` | 24.06.2021 |
+| Product Increment | End Date | State |
+|--------|:----------:|------------|
+| `PI-0` | 17.12.2020 | *delivered in version 1.0*|
+| `PI-1` | 11.02.2021 | *to be delivered in version 1.1* |
+| `PI-2` | 24.06.2021 | *scoping in progress*|
 | `PI-3` | 28.10.2021 |
