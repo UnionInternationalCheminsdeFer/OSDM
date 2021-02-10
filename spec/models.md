@@ -18,13 +18,13 @@ concepts.
 
 ### Legend
 
-![Legend](../images/models/legend.svg)
+![Legend](../images/models/legend.png)
 
 ## Trips and Locations
 
 ### Trips and Locations Data Model
 
-![Trips and Locations Data Model](../images/models/trips-locations.svg)
+![Trips and Locations Data Model](../images/models/trips-locations.png)
 
 ## Main Resources
 
@@ -79,7 +79,7 @@ way between departure and arrival of each segment
 
 ### Offers Data Model
 
-![Offers Data Model](../images/models/offers-data-model.svg)
+![Offers Data Model](../images/models/offers-data-model.png)
 
 ## Main Resources
 
@@ -150,11 +150,11 @@ under specific conditions:
 
 *Example with no overlap*
 
-![Clusters-no-overlap](../images/models/clusters1.svg)
+![Clusters-no-overlap](../images/models/clusters1.png)
 
 *Example with no gap*
 
-![Clusters-no-gap](../images/models/clusters2.svg)
+![Clusters-no-gap](../images/models/clusters2.png)
 
 ### OfferParts
 
@@ -385,7 +385,7 @@ offer modellings for pure-OSDM offers.
 
 ### Booking Data Model
 
-![Bookings Data Model](../images/models/bookings-data-model.svg)
+![Bookings Data Model](../images/models/bookings-data-model.png)
 
 ### Main Resources
 
@@ -456,12 +456,12 @@ the tripOffers, but it is worth mentioning it separately here as
 
 ### Booking State Model
 
-![Booking State Model](../images/models/booking-state-model.svg)
+![Booking State Model](../images/models/booking-state-model.png)
 
 ### Fulfillment State Model
 
-![Fulfillment State Model](../images/models/fulfillment-state-model.svg)
+![Fulfillment State Model](../images/models/fulfillment-state-model.png)
 
 ### Refund State Model
 
-![Refund State Data Model](../images/models/refund-state-model.svg)
+![Refund State Data Model](../images/models/refund-state-model.png)
