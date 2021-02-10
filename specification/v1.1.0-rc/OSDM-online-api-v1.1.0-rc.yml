@@ -4153,103 +4153,7 @@ components:
           description: id of the refund offer
       required:
         - confirmRefundOfferId 
-
-    ExchangeOfferRequest:
-      type: object
-      description: >-
-        Request for an exchange offer. 
-        Fulfillments can be provided in case the booking contains multiple individual fulfillments.
-      properties:
-        fulfillmentIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-            description: id of the fulfillment to refund
-        tripSearch:
-          type: object      
-          description: >-  
-            one of trips or searchCriteria
-          properties:
-            trips:
-              type: array
-              items:
-                type: object
-                properties:
-                  trip:
-                    $ref: '#/components/schemas/Trip'
-                  requestedSection:
-                    type: object
-                    properties:
-                      start:
-                        $ref: '#/components/schemas/Location'
-                      end:
-                        $ref: '#/components/schemas/Location'
-                required:
-                  - trip
-            searchCriteria:      
-              $ref: '#/components/schemas/TripSearchCriteria'
-        returnSearchParameters:
-          type: object
-          description: >-
-            This property can be used in case a return trip is being requested. 
-            This will allow to benefit from return-specific fares or product.
-          properties:
-            inwardReturnDate:
-              type: string
-              format: date-time
-              description: >-
-                Needs to be provided when creating the collection of outward travels so that the
-                provider knows when a return travel can be expected and propose appropriate.
-                product and fares.
-            outwardTripOfferCollectionId: 
-               type: string
-               format: uuid
-               description: >-
-                 Needs to be provided when creating the collection of inward travels so that the provider
-                 can relate the inward travels to the outward travels context.
-            outwardSelectedOfferId:
-               type: string
-               format: uuid
-               description: >-
-                 Needs to be provided when creating the collection of inward travels so that the provider
-                 knows what the outward offer is and and propose compatible offers only if desired or
-                 mandatory.
-        requestedFulfillmentOptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentOption'
-        passengers:
-          description: >-
-            A Passenger can be reused from the existing booking if id or reference is set. Otherwise,
-            if any attribute needs to be changed, all the attributes have to be set anew.
-          type: array
-          items:
-            $ref: '#/components/schemas/Passenger'
-        offerSearchCriteria:
-          $ref: '#/components/schemas/OfferSearchCriteria'
-        overruleCode:
-          $ref: '#/components/schemas/OverruleCode'
-        embed:
-          description: >-
-            Influences whether referenced resources are returned in full or as references only.
-          type: array
-          items:
-            type: string
-            enum:
-              - ALL
-              - TRIPOFFERS
-              - TRIPOFFERS.TRIP
-              - TRIPOFFERS.TRIP.LOCATIONS
-              - TRIPOFFERS.OFFERS
-              - TRIPOFFERS.OFFERS.OFFERPARTS
-              - TRIPOFFERS.PASSENGERS
-              - NONE
-            default: ALL
-      required:
-        - fulfillmentIds
-        - tripOfferRequest
-       
+      
     OverruleCode: 
       type: string
       description: >-
@@ -4258,12 +4162,7 @@ components:
         - PAYMENT_FAILURE
         - SALES_STAFF_ERROR
         - STRIKE
-
-    ExchangeOffersCollection:
-      type: array
-      items:
-        $ref: '#/components/schemas/ExchangeOffer'
-                 
+                
     ExchangeTripOfferRequest:
       type: object      
       description: >-
