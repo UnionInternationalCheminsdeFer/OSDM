@@ -288,7 +288,6 @@ paths:
           name: tripsCollectionId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the trip to get.
         - name: scrollContext
@@ -467,7 +466,6 @@ paths:
           name: tripOffersCollectionId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the trip to get.
         - name: scrollContext
@@ -645,7 +643,6 @@ paths:
           name: tripOfferId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the trip to get.
         - in: query
@@ -3133,7 +3130,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         title:
           type: string
           example: Bruxelles-Midi 2020-07-01 10:05 CET
