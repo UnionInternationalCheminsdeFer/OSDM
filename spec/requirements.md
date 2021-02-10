@@ -178,8 +178,6 @@ Whether a fee is refundable is defined by the tariff.
 
 The state of a fee depends on the state of the associated product.
 
-Fees are defined from Version 1.1 of the standard onwards.
-
 ### Requirements on Offer Combination
 
 If offers have no combination restrictions they can be combined freely.
@@ -302,8 +300,6 @@ disembark passengers.
 A fare reference station is a list of stations where the fare is valid
 with a common name.
 
-*Implementation:* **FareReferenceStationSet**
-
 #### Route
 
 A route is defined as an ordered list of stations or “fare reference
@@ -379,8 +375,6 @@ As on both sides of a connection multiple small stations could be
 connected and not all of them might be in the timetable of a train the
 connection point should allow to connect sets of stations.
 
-*Implementation:* **ConnectionPoint**
-
 ### Requirements on Allowed Service
 
 #### Allowed Services
@@ -393,8 +387,6 @@ services in an offer should be defined based on the service brand code
 in the timetable data.
 
 Carriers and service brands can be included or excluded.
-
-*Implementation:* **CarrierConstraint**, **ServiceConstraint**
 
 #### Class of Service
 
@@ -411,16 +403,12 @@ Service class is optional for transportables
 - Luggage (might depend on the class of the ticket)
 - Oversize Luggage (might depend on the class of the ticket)
 
-*Implementation:* **ServiceConstraint**, **ServiceClass**
-
 IRT fares don’t use classes but service levels (defined in IRS 90918-1)
 to cover the more detailed products available via reservation.
 
 In case NRT and Reservation needs to be combined, rules are needed which
 service levels of the reservation are allowed in combination with a
 fare.
-
-*Implementation:* **SalesAvailability**
 
 **SalesAvailability**  defines the constraints on the
 time when a sale of a fare can start or end. The sales availability is
@@ -486,8 +474,6 @@ The following rules can be defined (and combined):
 
 - A specific range of days in the time zone of the sales location
 
-*Implementation:* **SalesAvailability,**
-
 ### Requirements on validity for usage
 
 The validity of usage defines the time when the passenger is allowed to
@@ -541,8 +527,6 @@ use a fare. To define this time there is a need to:
   - Valid Saturday – Sunday and public holidays from 00:00 until 03:00 the
     following day
 
-*Implementation:* **TravelValidityConstraint**
-
 ### Requirements on validity for passengers / transportables
 
 Transportables can be different types of passengers, animals or other
@@ -557,14 +541,10 @@ items carried by a passenger.
 - A number of passengers might be entitled to carry a number of passengers of
   another type for free (1 Adult + 1 accompanying person for PRM).
 
-*Implementation:* **PassengerTypes**
-
 A fare might be available with a specific number of passengers only
 (group fares):
 
 The passenger weight of each passenger type needs to be considered.
-
-*Implementation:* **PassengerConstraint**
 
 ### Requirements on validity for reductions
 
@@ -588,8 +568,6 @@ reductions to a fare.
   a reduction of 100% within the area and an indication that it is valid only
   together with the card. Pricing data are needed for the free travel area to 
   get the route description.
-
-*Implementation:* **ReductionCard**
 
 ### Requirements on prices
 
@@ -626,15 +604,11 @@ Possible Price formats are:
 or kilometers. No calculation is needed at the receiver side of the
 data.
 
-*Implementation:* **Price**
-
 ### Requirements on the basic fare structure
 
 The basic fare element links the constraints and the price.
 
 A name of the fare needs to be provided.
-
-*Implementation:* **Fare**
 
 ### Requirements on the after sales conditions
 
@@ -664,8 +638,6 @@ refund unless ticket control data have been received, …).
 
 The refund fee can be claimed by the carrier.
 
-*Implementation:* **AfterSalesRules**
-
 ### Requirements on conditions on fulfillment
 
 The fulfillment defines the required types of creating a ticket for the
@@ -679,8 +651,6 @@ The fulfillment might be restricted depending on:
 - Required control data exchange
 - Individual ticketing
 
-*Implementation:* **FulfillmentConstraint**
-
 The Required personal data might depend on the fulfillment:
 
 - Required personal data to be provided from the allocator to the carrier depending on type of fulfillment
@@ -688,8 +658,6 @@ The Required personal data might depend on the fulfillment:
 - Depending on border crossing and train types (Belgium border crossing of high-speed trains requires personal data)
 
 - Data might be required for ticket holders only or for all passengers
-
-*Implementation*: **PersonalDataConstraint**
 
 ### Requirements on dynamic fares and train linked tickets
 
@@ -704,8 +672,6 @@ The allocator needs to find where he can request offers online.
 - Solution 3: publish for which carriers and service brands (and optionally trains) offers can be requested
 
 *Decision*: The solution should be independent from the timetable.
-
-*Implementation:* **FareResourceLocation**
 
 #### Indication of train links on the ticket
 
@@ -740,8 +706,6 @@ Train link should include:
 - The part where the offer should be built must be provided
 
   - the station/connection point from and to where the offer is needed
-
-*Implementation:* **Fares**
 
 ### Requirements on combining fares
 
@@ -939,8 +903,6 @@ Relevant attributes:
 - AfterSalesCondition.afterSalesRules.fee
 - AfterSalesCondition.afterSalesRules.applicationTime
 ```
-
-*Implementation:* **FareCombinationConstraint**
 
 ### Requirements on Reservation
 
