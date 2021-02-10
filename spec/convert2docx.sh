@@ -11,8 +11,9 @@ pandoc -s \
 -o OSDM-specification-V1.1.0-rc.docx \
 foreword.md \
 requirements.md \
-specification-structure.md \
+business-capabilities.md \
 common-data-structures.md \
+relationship-offer-offerpart-product-and-fare.md \
 technical-principles.md \
 offline-model.md \
 models.md \
