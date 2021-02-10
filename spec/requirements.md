@@ -5,8 +5,6 @@ hide_hero: true
 permalink: /spec/requirements/
 ---
 
-*Note: to be released with version 1.1*
-
 ## Common Functional Requirements
 
 ### Requirements on Product Range
@@ -17,7 +15,8 @@ fare as well as on an offer basis. Existing products include admissions
 
 ### Requirements on Price
 
-A price has a currency, an amount and a scale.
+A price has a currency, an amount and a scale. Per default the scale is
+set to two.
 
 A price has a set of value added taxes. A tax is valid for a country and
 has amount.
@@ -25,7 +24,8 @@ has amount.
 ### Requirements on Personal Data
 
 The needed personal data must be indicated. Only personal data needed
-can be transferred between the involved parties.
+for the given business process can be transferred between the parties
+involved.
 
 ## Functional Requirements Distribution
 
@@ -39,8 +39,8 @@ passenger can own reductions, most often in the form of cards.
 
 A reduction has a type, a name and an issuer.
 
-Passenger information must be collected as sparsely and only if needed
-for a dedicated process step. Passenger details providing personal information 
+Passenger information must be collected sparsely and only if needed
+for a dedicated process step. Passenger details providing personal information
 shall only be used to meet the requirements of the offer. It is not allowed to
 send personal information not required in the offer reply. It is not
 allowed to send these personal data already in the offer request.
@@ -62,7 +62,7 @@ trailers if this is supported by the transport vehicle.
 A location uniquely identifies a place in space. A location can be of
 type station, point-of-interest, address or geo-coordinate.
 
-For railway stations the UIC code station code most be supported.
+For railway stations the UIC code station codes most be supported.
 
 To support other means of transportation the types can potentially be
 extended.
@@ -119,8 +119,9 @@ An admission is linked to one or more passengers.
 An admission is in state **CONFIRMED, FULFILLED, USED, REFUNDED.**
 
 In general, there’s a one-to-one relationship between offer and product.
-Only for some combinations of TGV and TER in France an offer most
-support referencing two products.
+Only for some combinations of TGV and TER in France an offer must
+support referencing two products. Additionally, an included reservation
+does not reference a product.
 
 An admission might be linked mandatorily or optional to one or more
 reservations
@@ -140,7 +141,7 @@ A reservation is linked to one or more passengers.
 
 A reservation is in state **CONFIRMED, FULFILLED, USED, REFUNDED.**
 
-A reservation has a 1-to-1 relationship to a product.
+A reservation has a one-to-one relationship to a product.
 
 An integrated reservation shall be modelled as an admission with an
 included reservation.
@@ -158,7 +159,7 @@ An ancillary is linked to one or more passengers.
 
 An ancillary is in state **CONFIRMED, FULFILLED, USED, REFUNDED.**
 
-An ancillary has a 1-to-1 relationship to a product.
+An ancillary has a one-to-one relationship to a product.
 
 #### Requirements on Fees
 
@@ -170,7 +171,7 @@ A fee has a value.
 
 A fee applies to one or more offer parts, and to one or more passengers.
 
-A fee is automatically added to a booking if the relevant offer parts are included, e.g. 
+A fee is automatically added to a booking if the relevant offer parts are included, e.g.
 a reservation fee is automatically added when any reservation has been selected.
 
 Whether a fee is refundable is defined by the tariff.
@@ -179,23 +180,22 @@ The state of a fee depends on the state of the associated product.
 
 Fees are defined from Version 1.1 of the standard onwards.
 
+### Requirements on Offer Combination
+
+If offers have no combination restrictions they can be combined freely.
+However if business rule require, it must be to express combination constraints to
+secure the tariff validity.
+
+The combination logic needs to be fast (<20ms).
+
+The combination tags most be unique across all partners involved on a given trip.
+
 ### Requirements on Round Trips
 
 Round trip offers should be possible considering both trips when making
 the offer.
 
-Requirements on round trip will be treated in more detail in the next
-version.
-
-### Requirements on Pre-booking
-
-A pre-booking is an offer in the state **BOOKED.**
-
-After a given time a pre-booking becomes invalid. At this point the
-allocator is required to free all resources allocated by other
-allocators or fare providers.
-
-The pre-booking process must be supported by all parties.
+Support for round trips consisting of one or two products need to be supported.
 
 ### Requirements on Booking
 
@@ -210,11 +210,16 @@ It must be possible to search for bookings:
 - Travel date or end
 - Origin or destination
 
+To support stateless booking a explicit pre-booking step is *not* supported
+by design.
+
+Booking must be supported by all parties.
+
 ### Requirements on Products
 
 A product must contain the following information:
 
-- `id`: an id uniquely identifying the product, e.g. Sparschiene
+- `id`: an id uniquely identifying the product, e.g. "Sparschiene"
 - `description`: A textual description of the product
 - `conditions`: A structured description of the sales or after-sales conditions which can be machine interpreted.
 - `refundable`: Indicates whether a product is refundable, refundable with conditions or not refundable
@@ -227,13 +232,13 @@ product as well as text defining service or carrier constraint.
 ### Requirements on fulfillment
 
 A fulfillment must be in a well-defined state (**CONFIRMED, FULFILLED,
-CHECKEDIN, REFUNDED**) and have a unique control number. The fulfillment
+CHECKED_IN, REFUNDED**) and have a unique control number. The fulfillment
 must reference the offer parts covered by the fulfillment.
 
 A fulfillment must reference fulfillment documents (aka. tickets).
 Fulfillment documents in form of a UIC PDF ticket most be supported by
-all parties. Other media types such as **RCT2, RCCST, UIC\_PDF, PDF\_A4,
-PKPASS, TICKETLESS, ALLOCATOR\_APP, SOCIAL\_MEDIA\_ACCOUNTS** can be
+all parties. Other media types such as **RCT2, RCCST, UIC_PDF, PDF_A4,
+PKPASS, TICKETLESS, ALLOCATOR_APP, SOCIAL_MEDIA_ACCOUNTS** can be
 supported. Especially the support ticketless is encouraged to be
 supported by all parties.
 
@@ -250,8 +255,9 @@ A refund can have a fee.
 Cancellation (a.k.a. revoke) is a special kind of refund where no
 fees apply, and the complete amount is returned.
 
-Cancellation must be supported by all parties. Total refund must be
-supported by all parties.
+Cancellation must be supported by all parties.
+
+Total refund must be supported by all parties.
 
 ### Requirements on partial refund or exchange
 

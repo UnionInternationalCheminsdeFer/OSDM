@@ -5,8 +5,6 @@ layout: page
 permalink: /spec/relationship-offer-offerpart-product-and-fare/
 ---
 
-*Note: to be released with version 1.1*
-
 The entities `offer`, `offerpart`, `product` and `fare` represent different concepts.
 
 An `offer` spans the trip consisting of segments. An `offerpart` spans a
@@ -24,7 +22,7 @@ This border points are thus called `virtual border points` which can be modelled
 
 *Note*: This example assumes that the complete trip can be priced.
 
-## Ways to Access Fare
+## Ways to Access Fares
 
 There are three ways for an allocator to access fares.
 
@@ -164,21 +162,17 @@ Relevant fare attributes for the offer creation step are:
   An allocator has to create an offer that covers the whole trip from start location to
   end location.
 
-### Pre-Booking Step
+### Booking Step
 
-Relevant fare attributes for the pre-booking process step are:
+Relevant fare attributes for the booking process step are:
+
+- `price`
 
 - `reservationDetails`
 
   Example: Wagon 19, Seat 44
 
   The reservation details need to be communicated at the pre-booking step to the customer.
-
-### Booking Step
-
-Relevant fare attributes for the booking process step are:
-
-- `price`
 
 - `legacyAccountingIdentifier`
 
