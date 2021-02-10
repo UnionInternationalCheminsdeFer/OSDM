@@ -5,6 +5,8 @@ layout: page
 permalink: /spec/relationship-offer-offerpart-product-and-fare/
 ---
 
+# Relationships between Offers, OfferParts, Products and Fares
+
 The entities `offer`, `offerpart`, `product` and `fare` represent different concepts.
 
 An `offer` spans the trip consisting of segments. An `offerpart` spans a
@@ -18,7 +20,7 @@ worlds. A `fare` often starts or ends at country borders where no train station 
 This border points are thus called `virtual border points` which can be modelled by
 `ConnectionPoints`. Fares are combined following a `fare combination model` to an offer.
 
-![Relationship Offer, OfferPart, Product and Fare](../images/models/relationship-offer-offerpart-product-fare.svg)
+![Relationships between Offers, OfferParts, Products and Fares](../images/models/relationship-offer-offerpart-product-fare.svg)
 
 *Note*: This example assumes that the complete trip can be priced.
 
