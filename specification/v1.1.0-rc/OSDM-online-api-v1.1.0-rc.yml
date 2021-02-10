@@ -5021,35 +5021,6 @@ components:
       required:
         - model
 
-    RelativeTime:
-      type: object
-      properties:
-        timeUnit:
-          description: >-
-            Time unit in days, hours or minutes.
-          type: string
-          enum:
-            - DAYS
-            - HOURS
-            - MINUTES
-        timeValue:
-          type: integer
-          format: int32
-        timeReference:
-          description: >-
-            Time reference.
-          type: string
-          x-extensible-enum:
-            - BEFORE_DEPARTURE
-            - AFTER_DEPARTURE
-            - AFTER_SALE
-            - BEFORE_START_VALIDITY
-            - AFTER_END_VALIDITY
-      required:
-        - timeUnit
-        - timeValue
-        - timeReference
-
     RegionalValidity:
       type: array
       items:
@@ -5210,23 +5181,6 @@ components:
           type: string
       required:
         - carrier
-
-    CrossBorderCondition:
-      type: object
-      properties:
-        fromCountry:
-          description: ISO 3166 2A codes
-          type: string
-        toCountry:
-          description: ISO 3166 2A codes
-          type: string
-        affectedServiceBrands:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceBrandCode'
-      required:
-        - fromCountry
-        - toCountry
       
     ControlSecurityType:
       description: >-
