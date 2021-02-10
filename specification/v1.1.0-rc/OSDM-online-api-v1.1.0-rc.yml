@@ -2868,7 +2868,9 @@ components:
       properties:
         id:
           type: string
-          description: unique id of this trip on this server.
+          description: >-
+            Unique id of this trip on this server. The id can also be a hash
+            that encodes the trip in a compact way.
         title:
           type: string
           example: Bruxelles-Midi - Paris-Nord, 2020-07-01 10:05 CET
@@ -4151,103 +4153,7 @@ components:
           description: id of the refund offer
       required:
         - confirmRefundOfferId 
-
-    ExchangeOfferRequest:
-      type: object
-      description: >-
-        Request for an exchange offer. 
-        Fulfillments can be provided in case the booking contains multiple individual fulfillments.
-      properties:
-        fulfillmentIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-            description: id of the fulfillment to refund
-        tripSearch:
-          type: object      
-          description: >-  
-            one of trips or searchCriteria
-          properties:
-            trips:
-              type: array
-              items:
-                type: object
-                properties:
-                  trip:
-                    $ref: '#/components/schemas/Trip'
-                  requestedSection:
-                    type: object
-                    properties:
-                      start:
-                        $ref: '#/components/schemas/Location'
-                      end:
-                        $ref: '#/components/schemas/Location'
-                required:
-                  - trip
-            searchCriteria:      
-              $ref: '#/components/schemas/TripSearchCriteria'
-        returnSearchParameters:
-          type: object
-          description: >-
-            This property can be used in case a return trip is being requested. 
-            This will allow to benefit from return-specific fares or product.
-          properties:
-            inwardReturnDate:
-              type: string
-              format: date-time
-              description: >-
-                Needs to be provided when creating the collection of outward travels so that the
-                provider knows when a return travel can be expected and propose appropriate.
-                product and fares.
-            outwardTripOfferCollectionId: 
-               type: string
-               format: uuid
-               description: >-
-                 Needs to be provided when creating the collection of inward travels so that the provider
-                 can relate the inward travels to the outward travels context.
-            outwardSelectedOfferId:
-               type: string
-               format: uuid
-               description: >-
-                 Needs to be provided when creating the collection of inward travels so that the provider
-                 knows what the outward offer is and and propose compatible offers only if desired or
-                 mandatory.
-        requestedFulfillmentOptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentOption'
-        passengers:
-          description: >-
-            A Passenger can be reused from the existing booking if id or reference is set. Otherwise,
-            if any attribute needs to be changed, all the attributes have to be set anew.
-          type: array
-          items:
-            $ref: '#/components/schemas/Passenger'
-        offerSearchCriteria:
-          $ref: '#/components/schemas/OfferSearchCriteria'
-        overruleCode:
-          $ref: '#/components/schemas/OverruleCode'
-        embed:
-          description: >-
-            Influences whether referenced resources are returned in full or as references only.
-          type: array
-          items:
-            type: string
-            enum:
-              - ALL
-              - TRIPOFFERS
-              - TRIPOFFERS.TRIP
-              - TRIPOFFERS.TRIP.LOCATIONS
-              - TRIPOFFERS.OFFERS
-              - TRIPOFFERS.OFFERS.OFFERPARTS
-              - TRIPOFFERS.PASSENGERS
-              - NONE
-            default: ALL
-      required:
-        - fulfillmentIds
-        - tripOfferRequest
-       
+      
     OverruleCode: 
       type: string
       description: >-
@@ -4256,12 +4162,7 @@ components:
         - PAYMENT_FAILURE
         - SALES_STAFF_ERROR
         - STRIKE
-
-    ExchangeOffersCollection:
-      type: array
-      items:
-        $ref: '#/components/schemas/ExchangeOffer'
-                 
+                
     ExchangeTripOfferRequest:
       type: object      
       description: >-
@@ -5120,35 +5021,6 @@ components:
       required:
         - model
 
-    RelativeTime:
-      type: object
-      properties:
-        timeUnit:
-          description: >-
-            Time unit in days, hours or minutes.
-          type: string
-          enum:
-            - DAYS
-            - HOURS
-            - MINUTES
-        timeValue:
-          type: integer
-          format: int32
-        timeReference:
-          description: >-
-            Time reference.
-          type: string
-          x-extensible-enum:
-            - BEFORE_DEPARTURE
-            - AFTER_DEPARTURE
-            - AFTER_SALE
-            - BEFORE_START_VALIDITY
-            - AFTER_END_VALIDITY
-      required:
-        - timeUnit
-        - timeValue
-        - timeReference
-
     RegionalValidity:
       type: array
       items:
@@ -5309,23 +5181,6 @@ components:
           type: string
       required:
         - carrier
-
-    CrossBorderCondition:
-      type: object
-      properties:
-        fromCountry:
-          description: ISO 3166 2A codes
-          type: string
-        toCountry:
-          description: ISO 3166 2A codes
-          type: string
-        affectedServiceBrands:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceBrandCode'
-      required:
-        - fromCountry
-        - toCountry
       
     ControlSecurityType:
       description: >-
@@ -5481,8 +5336,9 @@ components:
         - amount
 
     Currency:
-      description: ISO4217 currency codes
-      type: string  
+      description: ISO 4217 currency codes
+      type: string
+      example: CHF
 
     VatDetail:
       type: object
@@ -5490,10 +5346,12 @@ components:
         country:
           description: ISO 3166 2A codes
           type: string
+          example: CH
         amount:
           description: amount in cents
           type: integer
           format: int32
+          example: 5
         scale: 
           description: scale of the amount - the number of positions after the comma
           type: integer
@@ -5504,7 +5362,7 @@ components:
         taxId:
           type: string
         scope:
-           $ref: '#/components/schemas/VatScope'
+          $ref: '#/components/schemas/VatScope'
       required:
         - country
         - amount
@@ -5531,6 +5389,7 @@ components:
         (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
       type: integer
       format: int32
+      example: TGV
 
     ServiceClass:
       type: object
@@ -6006,7 +5865,7 @@ components:
               - number
               - layoutId    
         preSelection:
-          description: suggested preselection of places
+          description: suggested pre-selection of places
           type: array
           items:
             type: object
