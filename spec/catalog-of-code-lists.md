@@ -127,6 +127,118 @@ Legacy reservation code defined in UIC 90918-1.
 | `FEMALE` | Female |
 | `X` | Diverse |
 
+## Graphics Items
+
+| icon | description | icon code | orientation used | mounting used | 
+|------|-------------|-----------|------------------|---------------| 
+|![](../images/catalog-of-code-lists/graphics-icons/image001.png)|seat|1|to right|- |
+|![](../images/catalog-of-code-lists/graphics-icons/image002.png)|seat|1|to left|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image003.png)|seat|1|up|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image004.png)|seat|1|bottom|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image005.png)|berth|2|to left|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image006.png)|berth|2|to right|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image007.png)|couchette|3|to right|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image009.jpg)|couchette|3|to left|- | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image010.png)|small table|20|-|top | |
+|![](../images/catalog-of-code-lists/graphics-icons/image011.png)|small table|20|-|bottom | |
+|![](../images/catalog-of-code-lists/graphics-icons/image012.png)|big table|21|-|top | |
+|![](../images/catalog-of-code-lists/graphics-icons/image013.png)|big table|21|-|bottom | |
+|![](../images/catalog-of-code-lists/graphics-icons/image014.png)|wall with angle to left, height covers three places|24|-|bottom | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image015.png)|wall with angle to right, height covers three places|25|-|bottom | |
+|![](../images/catalog-of-code-lists/graphics-icons/image016.png)|wall with angle to left, height covers three places|24|-|top | |
+|![](../images/catalog-of-code-lists/graphics-icons/image017.png)|wall with angle to right, height covers three places|25|-|top | |
+|![](../images/catalog-of-code-lists/graphics-icons/image018.png)|small wall with angle to left, height covers two places|27|-|bottom | |
+|![](../images/catalog-of-code-lists/graphics-icons/image019.png)|small wall with angle to right, height covers two places|28|-|bottom | |
+|![](../images/catalog-of-code-lists/graphics-icons/image020.png)|small wall with angle to left, height covers two places|27|-|top | |
+|![](../images/catalog-of-code-lists/graphics-icons/image021.png)|small wall with angle to right, height covers two places|28|-|top | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image022.png)|wall between two compartments, height covers three places|23|-|bottom | |
+|![](../images/catalog-of-code-lists/graphics-icons/image023.png)|wall between two compartments, height covers three places|23|-|top | |
+|![](../images/catalog-of-code-lists/graphics-icons/image024.png)|small wall between two compartments, height covers two places|26|-|bottom | |
+|![](../images/catalog-of-code-lists/graphics-icons/image025.png)|small wall between two compartments, height covers two places|26|-|top | |
+|![](../images/catalog-of-code-lists/graphics-icons/image026.png)|small wall between two compartments, height covers two places|29|-|bottom | |
+|![](../images/catalog-of-code-lists/graphics-icons/image026.png)|small wall between two compartments,height covers two places|29|-|top | |
+|![](../images/catalog-of-code-lists/graphics-icons/image027.png)|very small wall between two compartments, height covers one places|32|-|bottom | |
+|![](../images/catalog-of-code-lists/graphics-icons/image028.png)|Very small wall between two compartments, height covers one places|32|-|top | |
+|![](../images/catalog-of-code-lists/graphics-icons/image029.png)|end-to-end wall|30|-|top-to-bottom | |
+|![](../images/catalog-of-code-lists/graphics-icons/image031.jpg)|Mobile wall between sleeping compartments, height covers three places|31|-|
+|![](../images/catalog-of-code-lists/graphics-icons/image032.png)|arrow indicating upper level|51|-|top-to-bottom | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image033.png)|arrow indicating lower level|52|-|top-to-bottom | |
+|![](../images/catalog-of-code-lists/graphics-icons/image034.png)|arrow indicating upper level|53|-|top-to-bottom | |
+|![](../images/catalog-of-code-lists/graphics-icons/image035.png)|arrow indicating lower level|54|-|top-to-bottom | |
+|![](../images/catalog-of-code-lists/graphics-icons/image036.png)|1st class area|101|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image037.png)|2nd class area |100|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image038.png)|mobile phone area|103|-|- | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image039.png)|mobile phone forbidden area|104|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image040.png)|silence area |116|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image041.png)|bar area|102|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image042.png)|dining area|107|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image043.png)|bicycle area|108|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image044.png)|luggage area|109|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image045.png)|luggage locker|110|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image046.png)|conference compartment|111|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image047.png)|wardrobe|113|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image048.png)|dust bin|114|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image049.png)|children play area|117|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image050.png)|Space for prams|112|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image051.png)|family area|106|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image052.png)|PRM area|105|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image053.png)|Priority Seats|120|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image054.png)|Non-smoker area|118|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image055.png)|WC|115|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image056.png)|power socket|119|-|- | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image058.jpg)|WiFi area|130|-|- | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image060.jpg)|PRM toilet|131|-|- | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image062.jpg)|Air condition|132|-|- | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image064.jpg)|USB ports for charging|133|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image066.png)|Reclining seat|134|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image067.png)|Window|135|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image069.jpg)|stairs upwards</span><span|136|-|- | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image070.jpg)|stairs downwards|137|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image072.jpg)|Working compartment|144|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image074.jpg)|Cabin for allergic passengers|145|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image076.jpg)|Meeting lounge for 7 persons (Pendolino)|150|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image078.jpg)|Meeting lounge for 12 persons|151|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image080.jpg)|Space for skis|154|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image082.jpg)|Conductor working compartment|155|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image084.jpg)|Mobile phone booth|156|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image086.jpg)|T-loop (audio induction loop)|158|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image088.jpg)|Pets compartment|160|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image090.jpg)|Sleeping cabin with toilet and shower|161|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image092.jpg)|interconnectible sleeping compartments|162|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image094.jpg)|Shower|163|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image096.jpg)|Baby-care table|168|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image098.jpg)|push-button operated wheelchair ramp|170|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image099.png)|Sink / washbasin|171|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image101.jpg)|Ladies compartment|172|-|- | |
+|||||||
+|||||||
+|icons concerning the entire coach||||||
+|![](../images/catalog-of-code-lists/graphics-icons/image102.png)|1st class coach|121|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image103.png)|2nd class coach|122|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image104.png)|mobile phone coach|127|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image105.png)|mobile phone forbidden in the entire coach|128|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image106.png)|1silence coach|126|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image107.png)|coffee bar|123|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image108.png)|dining car|124|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image109.png)|bicycle coach|125|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image110.png)|mixed group/individual coach|129|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image112.jpg)|WiFi area|139|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image114.jpg)|Air condition |140|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image116.jpg)|USB ports for charging|141|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image118.jpg)|business class|142|-|- | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image119.png)|panorama coach|143|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image121.jpg)|luggage coach|173|-|- | |
+|![](../images/catalog-of-code-lists/graphics-icons/image123.jpg)|sleeping car|174|-|- | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image125.jpg)|car-carrier|175|-|- |
+
+## Interface Type
+
+| Code | Description   |
+|------|-------------------------------|
+|`IRS90918_1_RESERVATION_BINARY` | Reservation interface according to IRS90918-1 binary message format |
+|`IRS90918_1_RESERVATION_XML` | Reservation interface according to IRS90918-1 XML message format |
+|`OSDM` | OSDM API |
+
 ## Language
 
 Language codes used in OSDM are based on the [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) standard.
@@ -154,6 +266,57 @@ Refund because of breakage of a vehicle is handled in a separate process.
 | `DIPLOMATIC_PASSPORT` |  |
 | `REFUGEE_TRAVEL_DOCUMENT` |  |
 | `DRIVING_LICENCE` |  |
+
+## Personal data items
+
+Codes for personal data items that might be transferred to the carrier if required.
+
+| Code | Description   |
+|------|---------------|
+|`DATE_OF_BIRTH` |	Date of birth|
+|`E_MAIL`	|e-mail |
+|`PHONE`|	Phone number |
+|`FULL_NAME`|	Full name (first and last name)|
+|`LAST_NAME`|	Last name |
+|`SOCIAL_MEDIA_ACCOUNT`	|A social media account|
+|`LANGUAGE`|	Languages of the passenger|
+|`TITLE`	|Title of the passenger|
+|`DOC_TYPE`|	Type of the document if passport or id card are possible|
+|`DOC_ID`	|ID of the document|
+|`DOC_NAME`|	Name of the passenger as written on the document|
+|`DOC_CITY_OF_RESIDENCE`	|City of residence as written in the document|
+|`DOC_COUNTRY_OF_BIRTH`	||
+|`DOC_COUNTRY_OF_ISSUE`||
+|`DOC_COUNTRY_OF_RESDENCE`||
+|`DOC_DATE_OF_ISSUE	`||
+|`DOC_GENDER`|	Gender as written in the document|
+|`GENDER`	|Gender to be used for special bookings |
+|`DOC_NATIONALITY`	|Nationality as given in the documen|
+|`DOC_LIMIT_OF_VALIDITY	`|Limit of validity as written on the document|
+|`DOC_CITY_OF_ISSUE`	||
+|`DOC_CITY_OF_BIRTH`	||
+|`DOC_TYPE_PASSPORT`	|Document provided must be a passport|
+|`CARD_ISSUER`	|Card issuer|
+|`CARD_NUMBER`	|Card identifier|
+
+## Personal data transfer types
+
+| Code | Description   |
+|------|---------------|
+|`BOOKING`	|The data will be transfered via the booking services|
+|`PRE_BOOOKING`	|The data will be transfered via the pre-booking (offer) services|
+|`SIS_CONTROL`	|The data will be transfered via security in system control data exchange (IRS 90918-4)|
+|`SID`	|The data will be transfered via  a barcode|
+
+## Personal data change reasons
+
+| Code | Description   |
+|------|---------------|
+|`IN_GENERAL`	|No specific reason|
+|`MARRIAGE`	||
+|`DOCUMENT_CHANGE`|	E.g. passport was lost and replaced|
+|`AGENT_ERROR`	|Personal data were enterd wronlgy by the sales agent|
+
 
 ## Place Property
 
@@ -231,23 +394,41 @@ Additional code lists can be defined by implementers. The code list name should 
 
 POICode: Values are depending on code list and set is too large to be reproduced
 
-## Reduction Cards
+## Reduction cards
 
-UIC code list:
+The following code lists defines the commonly used cards which are not provided by a specific carrier:
 
-| Card-Id | Issuer | Description | Type |
-|---------|--------|-------------|------|
-| `UIC_EURAIL` | Eurail | Eurail Pass | `PASS` |
-| `UIC_INTERRAIL` | Eurail | Interrail Pass | `PASS` |
-| `UIC_FIP_LEASURE_RED` |  FIP |  FIP reduction (50%) | `REDUCTION_CARD` |
-| `UIC_FIP_DUTY` |  FIP |  FIP duty | `PASS`|
-| `UIC_FIP_LEASURE_FREE` |  FIP |  FIP free personal use | `PASS` |
-| `UIC_RAILPLUS` | *  | A pure rail plus card | `REDUCTION_CARD` |
-| `UIC_RIT_1` | * | RIT reduction for RIT 1 members | `REDUCTION_CARD` |
-| `UIC_RIT_2` | * | RIT reduction for RIT 2 members | `REDUCTION_CARD` |
-| `UIC_RIT_3` | * | RIT reduction for RIT 3 members | `REDUCTION_CARD` |
+|Predefined Card-Ids	|Issuer	| Description	| Type |
+|-----------------------|-------|---------------|------|
+|`UIC_EURAIL`	|Eurail	|Eurail Pass	|PASS|
+|`UIC_INTERRAIL`	|Eurail	|Interrail Pass	|PASS|
+|`UIC_FIP_LEASURE_RED`	|FIP|FIP reduction (50%)	|REDUCTION_CARD|
+|`UIC_FIP_DUTY`	|FIP	|FIP duty	|PASS|
+|`UIC_FIP_LEASURE_FREE`	|FIP|FIP free personal use	|PASS|
+|`UIC_RAILPLUS`	|*	|A pure rail plus card	|REDUCTION_CARD|
+|`UIC_RIT_1`	|*	|RIT reduction for RIT 1 members	|REDUCTION_CARD|
+|`UIC_RIT_2`	|*	|RIT reduction for RIT 2 members	|REDUCTION_CARD|
+|`UIC_RIT_3`	|*	|RIT reduction for RIT 3 members	|REDUCTION_CARD|
+|`UIC_EURAIL_1`	|Eurail	|Eurail Pass First Class	|PASS|
+|`UIC_INTERRAIL_1`|Eurail|Interrail Pass First Class	|PASS|
+|`UIC_FIP_LEASURE_RED_1`	|FIP|	FIP reduction (50%) First Class	|REDUCTION_CARD|
+|`UIC_FIP_DUTY_1`	|FIP	|FIP duty First Class	|PASS|
+|`UIC_FIP_LEASURE_FREE_1`	|FIP|	FIP free personal use First Class	|PASS|
+|`UIC_RAILPLUS_1`	|*	|A pure rail plus card First Class	|REDUCTION_CARD|
+|`UIC_RIT_1_1`|*	|RIT reduction for RIT 1 First Class members|REDUCTION_CARD|
+|`UIC_RIT_2_1`|*	|RIT reduction for RIT 2 First Class members|REDUCTION_CARD|
+|`UIC_RIT_3_1	`|*	|RIT reduction for RIT 3 First Class members|REDUCTION_CARD|
+|`UIC_EURAIL_2`|Eurail	|Eurail Pass Second Class|PASS|
+|`UIC_INTERRAIL_2`|Eurail |Interrail Pass Second Class|PASS|
+|`UIC_FIP_LEASURE_RED_2`|FIP	FIP reduction (50%) Second Class|REDUCTION_CARD|
+|`UIC_FIP_DUTY_2`|FIP	|FIP duty Second Class|PASS|
+|`UIC_FIP_LEASURE_FREE_2`|FIP|FIP free personal use Second Class|PASS|
+|`UIC_RAILPLUS_2`|*	|A pure rail plus card Second Class|REDUCTION_CARD|
+|`UIC_RIT_1_2`|*	|RIT reduction for RIT 1  members Second Class|REDUCTION_CARD|
+|`UIC_RIT_2_2`|*	|RIT reduction for RIT 2 members Second Class|REDUCTION_CARD|
+|`UIC_RIT_3_2`|*	|RIT reduction for RIT 3 members Second Class|REDUCTION_CARD|
 
-Other parties are allowed to accept additional reduction cards.
+Other cards should start with the RICS code of the issuer.
 
 ## Refund Overrule Codes
 
@@ -303,6 +484,8 @@ Other parties are allowed to accept additional reduction cards.
 | `PLACE_LOCATION` | Place location (Aisle, Window)|
 | `USAGE` | Different usage types for different coach areas|
 | `VEHICLE`|  Different types of vehicles|
+
+
 
 ## Service Brands
 
@@ -466,6 +649,31 @@ Additional codelists can be defined by implementers. The codelist name should th
 
 *StationCode*: Values are depending on codelist and set is too large to be reproduced.
 
+## Supported Online Services	
+
+|Code |Description	| 
+|-----|-----------------|
+|`OFFER`|	Offer service (without after sales offers)|
+|`BOOKING`|	Preliminary booking, confirm booking and cancellation|
+|`RESERVATION_LEGACY_918_1`|	Services according to the 90918-1 XML or binary specification|
+|`RESERVATION_PREF`|	Place allocation using preferences|
+|`RESERVATION_GRAPH`|	Place allocation using graphical place display|
+|`UPGRADE`|	Upgrade to an existing booking|
+|`INCREASE`|	Exchange with an increase of the number of passengers|
+|`DECREASE`|	Exchange with an decrease of the number of passengers|
+|`EXCHANGE`|	Exchange with the same number of passengers|
+|`FULFILLMENT`|	providing an entire tickets|
+|`FULFILLMENT_ITEMS`|	Providing security items for a ticket (e.g. additional bar codes)|
+
+## TaxScope
+
+|Code |Description	| 
+|-----|-----------------|
+|`INTERNATIONAL`|VAT applies in international tickets only. This needs to be applied in case the fare is integrated into an international ticket|
+|`NATIONAL`|VAT applies in national tickets only|
+|`SHORT_DISTANCE`|VAT applies in short distance tickets only|
+|`LONG_DISTANCE`|VAT applies in long distance tickets only. This needs to be applied in case the fare is integrated in a longer journey. |
+
 ## Transfer Type
 
 | Code | Description |
@@ -496,6 +704,37 @@ Corresponding to numerical codes in TAP-TSI / MERITS
 | `COACH_GROUP` | Group of coaches included in multiple trains (through coaches) |
 | `SHIP` | |
 | `BUS` | |
+
+## TimeReference
+
+|Code |Description	| 
+|-----|-----------------|
+|`BEFORE_DEPARTURE`|	Time value calculated relative to the departure (subtract from departure). The time zone of the departure station applies.|
+|`AFTER_DEPARTURE`|	Time value calculated relative to the departure (add to depature). The time zone of the departure station applies.|
+|`AFTER_SALE`|	Time value calculated relative to the sates time (add to sales time). The time zone of the sale applies.|
+|`BEFORE_START_VALIDITY`|	before the start of the validity. The time zone of the departure station applies.|
+|`AFTER_END_VALIDITY`|	after the start of the validity. The time zone of the departure station applies.|
+
+
+## TimeUnit
+|Code |Description	| 
+|-----|-----------------|
+|`DAY	`||
+|`MINUTE`|	|
+|`HOURE	`||
+
+## TransactionType
+
+Transaction type used in after sales rules for fares.
+
+|Code |Description	
+|-----|-----------------|
+|`REFUND`||
+|`EXCHANGE`|	|
+|`CARRIER_CHANGE`|	Exchange with a new fare of another carrier|
+|`EXCHANGE`|	Exchange with a new fare of the same carrier|
+|`UPGRADE`|	|
+
 
 ## TravelerType
 

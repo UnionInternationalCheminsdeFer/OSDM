@@ -39,15 +39,14 @@ The following services/features are mandatory/optional to implement:
 | Resources | Description | Need to Support |
 | --- | --- | --- |
 | `/locations` and `/trips` | Resources to search for trip and locations | **Mandatory** for train stations UIC code need to be supported. |
-| `/trip-offers-collection` and `/trip-offers` and `/offers` | Resources to get bookable offers | **Mandatory** is to provide at least admission offers. |
-| `/offers/{offerId}/admissions` and `/offers/{offerId}/reservations` and `/offers/{offerId}/ancillaries` and `/offers/{offerId}/fares` | Resources to manipulate parts of an offer consisting of, e.g., admissions, reservations or ancillaries; | **Mandatory** |
-| `/offers/{offerId}/fares/{fareId}` and `/offers/{offerId}/reservations/{reservationId}` | Resources to manipulate seat assignment | *Conditional*; mandatory to be supported in case seat assignment is provided. |
+| `/trip-offers-collection`, `/trip-offers` and `/offers` | Resources to get bookable offers | **Mandatory** is to provide at least admission offers. |
+| `/offers-collection` | Resources to get offers which are not trip based, e.g. day passes | *Optional* |
 | `/bookings` | Resources to manipulate bookings | **Mandatory** |
 | `/offers/{offerId}/passengers` and `/bookings/{bookingId}/passengers` | Resources to manipulate passenger information at every stage of the flow | **Mandatory** |
 | `/products` | Resources to retrieve products information on one or more products | **Mandatory** |
 | `/bookings/{bookingId}/fulfillments` and `/fulfillments` | Resources to retrieve fulfillments, e.g. tickets | **Mandatory** is to support A4 PDF tickets. |
 | `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer | **Mandatory** is to support full refund. |
-| `/bookings/{bookingId}/exchangeOffers` | Resources to get and accept an exchange offer | *Optional* |
+| `/bookings/{bookingId}/exchangeOperations`, `exchange-trip-offers-collection` and `exchange-trip-offers` | Resources to get and accept an exchange offer | *Optional* |
 | `/coachLayouts` | Resources to get layouts of coaches | *Optional* |
 
 All non-functional requirements defined in the services must be fulfilled.
@@ -64,15 +63,14 @@ The following services/features are mandatory/optional to implement:
 | Resources | Description | Need to Support |
 | --- | --- | --- |
 | `/locations` and `/trips` | Resources to search for trip and locations | *Optional* |
-| `/trip-offers-collection` and `/trip-offers` and `/offers` | Resources to get bookable offers | **Mandatory** is to provide fare offers on a `/trip-offers-collection`. *Optional*: `/offers` for non trip based offers. |
-| `/offers/{offerId}/admissions`and `/offers/{offerId}/reservations` and `/offers/{offerId}/ancillaries` and `/offers/{offerId}/fares` | Resources to manipulate parts of an offer consisting of, e.g., admissions, reservations or ancillaries; if permitted, also fares are offered. | **Mandatory** is to support pre-booking and booking of fares. |
+| `/trip-offers-collection`, `/trip-offers` and `/offers` | Resources to get bookable offers | **Mandatory** is to provide fare offers on a `/trip-offers-collection`. *Optional*: `/offers` for non trip based offers. |
 | `/bookings` | Resources to manipulate bookings | **Mandatory** is to support bookings consisting of fares except in the special case of direct sale fare offers |
 | `/offers/{offerId}/passengers` and `/bookings/{bookingId}/passengers` | Resources to manipulate  passenger information at every stage of the flow | *Conditional*, mandatory to be supported in case personal data are required by the fare provider |
+| `/offers-collection` | Resources to get offers which are not trip based, e.g. day passes | *Optional* |
 | `/products` | Resources to retrieve products information on one or more products | **Mandatory** |
-| `/offers/{offerId}/fares/{fareId}` and `/offers/{offerId}/reservations/{reservationId}` | Resources to manipulate seat assignment | *Conditional*, to be supported in case seat assignment is provided. |
 | `/bookings/{bookingid}/fulfillments` and `fulfillments` | Resources to retrieve fulfillments, e.g. tickets | *Conditional*, mandatory to be supported in case fulfillment items need to be provided |
 | `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer | **Mandatory** is to support for full refund, partial refund is optional. Not required in the special case of direct sale offers |
-| `/bookings/{bookingId}/exchangeOffers` | Resources to get and accept an exchange offer | *Optional* |
+| `/bookings/{bookingId}/exchangeOperations`, `exchange-trip-offers-collection` and `exchange-trip-offers`  | Resources to get and accept an exchange offer | *Optional* |
 | `/coachLayouts` and `/coachLayouts/{layoutId}` | Resources to get layouts of coaches | *Optional* |
 
 All non-functional requirements defined in the services must be fulfilled.

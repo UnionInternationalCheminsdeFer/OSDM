@@ -25,11 +25,7 @@ are not represented or simplified in the data models.
 | `/trip-offers-collection` | Resources to get bookable offers
 | `/trip-offers/{tripOfferId}` | *dito*
 | `/offers/{offerId}` | *dito*
-| `/offers/{offerId}/admissions/{admissionId}` | Resources to manipulate parts of an offer consisting of, e.g., admissions, ..  
-| `/offers/{offerId}/reservations/{reservationId}` | .. reservations,..
-| `/offers/{offerId}/ancillaries/{ancillaryId}` | .. ancillaries,..
-| `/offers/{offerId}/fares/{fareId}` | .. or if permitted also fares.
-  `/offer-collections` | Offers non-journey based products
+  `/offer-collections` | Resources to get offers for non-journey based products
 | `/bookings` | Resources to manipulate bookings
 | `/offers/{id}/passengers` | Resources to manipulate a passenger's information at every stage of the flow
 | `/bookings/{bookingId}/passengers/{passengerId}` | *dito*
@@ -38,8 +34,9 @@ are not represented or simplified in the data models.
 | `/fulfillments` | *dito*
 | `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer
 | `/bookings/{bookingId}/refundOffers/{refundOfferId}` | *dito*
-| `/bookings/{bookingId}/exchangeOffers` | Resources to get and accept a exchange offer
-| `/bookings/{bookingId}/exchangeOffers/{exchangeOfferId}` | *dito*
+| `/bookings/{bookingId}/exchangeOperations/{exchangerOperationId}` | Resources to get and accept a exchange offer
+| `/bookings/{bookingId}/exchange-trip-offers-collection` | *dito*
+| `/bookings/{bookingId}/exchange-trip-offers` | *dito*
 | `/coachLayouts` | Returns all coach layouts.
 | `/coachLayouts/{layoutId}` | Returns a coach layout for layout id
 

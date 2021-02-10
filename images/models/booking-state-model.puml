@@ -1,12 +1,14 @@
+@startuml
 [*] --> prebooked : POST /Bookings with OfferIds, Optional AccoIds, Optional ancillaries
 
 prebooked --> confirmed: POST /Bookings/id/fulfillments \n where at least 1 fulfillment is confirmed
 prebooked --> [*]: DELETE /Bookings/id
-prebooked --> cancelled: ticket-time-limit reached
+prebooked --> [*]: ticket-time-limit reached
 prebooked --> error: unrecoverable error \nat confirmation/fulfillment
 prebooked --> fulfilled: POST /Bookings/id/fulfillments \n where all fulfillments are fulfilled
-cancelled --> [*]: grace period expired
 confirmed --> fulfilled: PATCH /bookings/id/fulfillments \n <all fulfillments are now fulfilled>
 confirmed --> error: unrecoverable error at fulfillment \n <of a confirmed booking>
 fulfilled --> [*] : archiving
 error --> [*] : DELETE /booking \nin a cleanup context
+error --> [*] : archiving
+@enduml

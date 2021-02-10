@@ -1,0 +1,31 @@
+@startuml
+hide footbox
+
+actor API_Consumer 
+
+== Requesting an exchange for the 2 known passengers ==
+API_Consumer -> OSDM_Provider: POST /Exchange-Trips-offers-collection <MUNCHEN-PARIS, 25/10/2021, pax1, pax2, fulfilment1, fulfilment2, ...>
+OSDM_Provider --> API_Consumer: <Exchange-Trips-offers-Collection with list of references to ExchangetripOffers and scrolling tokens>
+
+== Retrieving a specific exchange Offer ==
+API_Consumer -> OSDM_Provider: GET /Exchange-Trips-offers/5678?embed="OFFERS, OFFERS.PASSENGERS "
+OSDM_Provider --> API_Consumer: <Exchange-Trip-offer 5678 with its offers and passengers>
+API_Consumer -> OSDM_Provider: GET /offers/4321?embed="OFFERS.OFFERPARTS"
+OSDM_Provider --> API_Consumer: <offer 4321 with its offerparts>
+
+==checking for additional required passenger information==
+API_Consumer -> API_Consumer: check offer RequestedInformation 
+
+== provisional exchange  including seat selection options and required additional pax info ==
+API_Consumer -> OSDM_Provider: PATCH /bookings/ <exchangeOfferId= 4321, pax1 <loyaltyCard>, res1 <window>, embed = "EXCHANGEOPERATIONS, PASSENGERS >
+OSDM_Provider -> OSDM_Provider : create \nexchangeOperation 1 \nin booking 5678
+OSDM_Provider --> API_Consumer: <Updated Booking 5678, now with a prebooked exchangeOperation 89, and updated passengers>
+
+== setting fulfillment type for the exchange ==
+API_Consumer -> OSDM_Provider: PATCH /Bookings/5678/ExchangeOperations/89 <setting the fulfillmentOptions>
+OSDM_Provider --> API_Consumer: <ExchangeOperation 89 resource with updated fulfillmentOptions>
+
+== confirming the exchange & triggering fulfillment ==
+API_Consumer -> OSDM_Provider: POST /Bookings/5678/Fulfillments
+OSDM_Provider --> API_Consumer: <Fulfillments created in the booking 5678>
+@enduml

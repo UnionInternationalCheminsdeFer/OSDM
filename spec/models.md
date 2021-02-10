@@ -437,11 +437,6 @@ Links to the documents or other security features that can be used to
 represent and control fulfillment status. In most case it is a PDF document
 and/or a barcode.  These are all provided in the fulfillment sub resource.
 
-### RefundOffers
-
-Refund offers represent a provisional refund request that is made on all or a
-subset of the fulfillments contained in a booking.
-
 ### Passengers
 
 The passengers sub-resource in the booking is actually the same as the one in
@@ -451,6 +446,19 @@ the tripOffers, but it is worth mentioning it separately here as
 - as mentioned in the section about offers, the passengers in the `TripOffers`
   will disappear with the booking or the time-to-live expiry of the offers, and
   the passengers created in the booking will have a different id.
+
+### RefundOffers
+
+Refund offers represent a provisional refund request that is made on all or a
+subset of the fulfillments contained in a booking.
+
+### ExchangeOperations
+An exchange operations represent an ongoing exchange process, either in provisional state of in confirmed state (depending on its status)
+Much like a provisional booking, a provisional exchange contains the provisionally selected (new) Exchange Offer, a status and a ticket-time-limit. In addition, it also contains a reference to the fulfillments that are involved in the exchange, and will be cancelled as a result of its confirmation. 
+Confirmed exchange operations are very similar, except for their status that will change, obviously, and the fact that the exchangeOffer is then transformed into a booked Offer in the booking and only referenced in the exchangeOperation
+
+## Exchange Offers
+The exchange offers (and related models such as exchangeTripOffers) are totally similar to their offer counterpart, with the difference that ExchangeOffers also have a link to the fulfillments involved in the exchange operation, and also have 2 additional attributes for the exchange fee and exchange balance (= the difference between the value that can be returned form the fulfillment and the value of the current offers + the exchange fees =  the total amount to be paid or refunded if/when confirming the exchange)
 
 ## State Models
 
@@ -464,4 +472,8 @@ the tripOffers, but it is worth mentioning it separately here as
 
 ### Refund State Model
 
-![Refund State Data Model](../images/models/refund-state-model.png)
+![Refund State Data Model](../images/models/refund-state-model.svg)
+
+### Exchange State Model
+Values are a subset of the booking status values
+![Exchange State Data Model](../images/models/exchangeOperation-state-model.svg)
