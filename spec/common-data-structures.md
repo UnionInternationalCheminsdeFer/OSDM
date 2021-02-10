@@ -242,12 +242,6 @@ carrier in the fare data.
 
 The allocator must ensure that it is clear for the customer that no common contract was established.
 
-##### SEPARATE_TICKET Model
-
-This `SEPARATE_TICKET` model is the model for not combining the fares in one ticket, so the rules applied
-for this ticket are exactly the rules defined by the carrier in the fare data. The allocator can form a
-common contract for the whole journey.
-
 ##### CLUSTERING Model
 
 The `CLUSTERING` model tries to simplify conditions and fares for the customer but sacrifices a part of
