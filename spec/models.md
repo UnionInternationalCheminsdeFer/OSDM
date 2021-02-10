@@ -472,8 +472,8 @@ The exchange offers (and related models such as exchangeTripOffers) are totally 
 
 ### Refund State Model
 
-![Refund State Data Model](../images/models/refund-state-model.svg)
+![Refund State Data Model](../images/models/refund-state-model.png)
 
 ### Exchange State Model
 Values are a subset of the booking status values
-![Exchange State Data Model](../images/models/exchangeOperation-state-model.svg)
+![Exchange State Data Model](../images/models/exchangeOperation-state-model.png)
