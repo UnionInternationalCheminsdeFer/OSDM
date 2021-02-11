@@ -42,4 +42,4 @@ implemented as lined out in the [Compliance](./compliance/) section.
 
 ## Availability as UIC Leaflet
 
-The specification is also available as [IRS-90918-10 Leaflet](https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v1.0.0/IRS-90918-10-v1.1.0.pdf).
+The specification is also available as [IRS-90918-10 Leaflet](https://github.com/UnionInternationalCheminsdeFer/OSDM/blob/master/specification/v1.1.0/IRS-90918-10-v1.1.0.pdf).
