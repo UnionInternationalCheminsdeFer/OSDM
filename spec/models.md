@@ -406,6 +406,30 @@ confirmation for the price and possible reservations assigned at provisional
 booking time. Basically, it is the time given to the API consumer to perform
 all updates needed to confirm the booking, and trigger that confirmation.
 
+At the root of the booking structure, Two balance elements are provided, in
+order to clarify the state of the financial exchange between an API consumer or
+booker and the OSDM:Distributor:
+
+- conditional balance is the balance of the booking that is not confirmed. It
+  is the amount that will be due to the provider if the booking is further
+  confirmed.
+
+- confirmed balance: is the balance of the booking that is confirmed. Unless
+  after sales takes place on one or more fulfillments in the booking, this
+  amount now must be paid to the provider.
+
+Also located at the root of the booking structure is the ticket time limit.
+This is the time for which the provider will hold a booking in pre-booked
+state, waiting for the confirmation while guaranteeing the booking for the
+given products, spaces at the announced price. Obviously, this value only has a
+meaning for a booking in pre-booked state. A commonly accepted value would be
+around 30 minutes, which is normally sufficient to allow finalizing the
+booking,while not monopolizing resources too long in case the booking is
+abandoned without properly cancelling it. However, some systems may decide a
+longer time. Obviously, the value for the booking ticket-time limit can never
+exceed the earliest ticket time limit of any of its offer parts.
+
+
 `FulfillmentOptions` allows the API consumer to specify the format desired for
 the fulfillment. Only electronic fulfillment is considered in the MVP scope.
 
