@@ -112,15 +112,14 @@ whether complete trips should be returned or only a title and a link. A GET
 verb without any scrolling-token will simply return the last set of trips
 return.
 
-It is important that once a trip has been generated, its time to live has a
-sufficient duration to allow the possible subsequent uses:
-
-- A trip or a trip id could be used in subsequent offer operations (see
-  further)
+It is important to ensure that once a trip has been generated, its id can 
+be re-used in possible subsequent operations within a reasonable time-frame:
 - When scrolling back and forth over time, a same trip should maintain the
   same id, so the API consume can, if desired, expand the set of trips in its
 own context and have the guarantee that one same trip (in terms of content)
 will remain with the same id (in terms of resource id.
+- It could be used in a subsequent offer request, so that offers are now built 
+  for that specific trip
 
 #### Error Handling
 
@@ -151,7 +150,7 @@ submits search criteria, and a collection of "trip offers" is returned. This
 collection can be browsed to earlier and later trips the same way as the trips
 collections.
 
-The search criteria for offers extend the search criteria available for trips
+The search criterias for offers extend the search criteria available for trips
 with additional criteria applicable to the fares and products that can be
 returned such as the fare flexibility, the service class or the currency the
 offers should be proposed in.
@@ -165,29 +164,31 @@ be larger than the part for which fares are requested. For this reason, the
 requested section must then be provided so that the provider knows which
 portion to work on.
 
-An offer request to an **Allocator** can lead to offers with multiple
-`OfferParts`, potentially coming from different sub-providers (OSDM compliant or
-not). However, in preparing offers with multiple offer parts for the API
-consumer, the **Distributors** must follow the following rules :
+An offer request to an **Allocator**, **provider** or **fare provider** can lead to 
+offers with multiple `OfferParts`, potentially coming from different sub-providers 
+(OSDM compliant or not). However, in preparing offers with multiple offer parts 
+for the API consumer, the **Distributors** must follow the following rules :
 
 - The POST `/trip-offers-collection` only generates complete offers covering the
   complete trip (or complete section) requested.
 - While the combination logic is left to the **Distributor**, it is recommended to
   only build and retain offers that are *homogeneous* (as much as possible) in
   terms of flexibility and comfort.
-- Each offer request should create a new offer context with a dedicated
-  `/trip-offers-collection` resource and dedicated sub-resources, since it is
-  possible, and may even be required to patch offers with data that is specific
-  to the booking dialog at hand in order to perform the booking.
+- As with the trips, it must remain possible to scroll forward or backwards over 
+  tripOffers based on their id and the scrollToken. 
 
-The resources used at offer steps offer various *levels of embedding* and
-multiple granularity for the retrieval of information, so each implementing
-party can fine-tune the queries in order to get all the information needed for
-the processing at hand, and only that information.
+As described further on, any additional information required for 
+the provisional booking can be provided in the booking operation itself
+
+The resources used at offer steps optionally offer various *levels of embedding* 
+(returning complete structure is the only mechanism made mandatory by 
+the working group at the moment) and multiple granularity for the retrieval of 
+information, so each implementing party can fine-tune the queries in order to get 
+all the information needed for the processing at hand, and only that information.
 
 #### Offer Messages
 
-During the offer construction, the **Allocator** can encounter events
+During the offer construction, the **Allocator** or **provider** can encounter events
 that, while not halting the process or constituting an error, may be relevant
 for handling of the response by the API consumer. These events can then be
 passed on using the offer `Message` element. The following events are identified
@@ -211,38 +212,37 @@ the `returnSearchParameters` are used:
 
 When requesting offers for the outward travel, the API consumer has to
 provide a return date. The response will contain a set of offers. Each of these
-offers will have a `offerHash`. Usage of it is described further below.
+offers will have a `offerTag`. Usage of it is described further below.
 
 To get offer for the inward travel, the API consumer will have to provide
 
 - The id of the outward `tripCollectionID` (allows knowing the context in which
   the outward offers are made)
 
-- Depending on the targeted fare provider, the `offerHash` for the selected
-  outward offer, or the set of potential offers (as the `offerHash` does not
-  have to be unique. E.g. all offers for a given date might have the same
-  offerHash if the constraint is only on date) can or must be provided.
-  Whether the offerHash is mandatory in the inward offer request is indicated by
+- Depending on the targeted fare provider, the `offerTag` for the selected
+  outward offer, or the set of potential offers (as the `offerTag` does not
+  have to be unique. E.g. all offers for a given date might have the same 
+  if the constraint is only on date) can or must be provided.
+  Whether the `offerTag` is mandatory in the inward offer request is indicated by
   the "mandatory flag" that is provided in the outward offer response next to each
-  offerHash. If the offerHash is provided in the inward offer request, the
+  offerHash. If the `offerTag` is provided in the inward offer request, the
   provider should then only return offers that are compatible with the indicated
   (set of) outward offers.  
-  Note that depending on whether the offerHash is mandatory or not and whether it
+  Note that depending on whether the `offerTag` is mandatory or not and whether it
   is unique per outward offer, it may or may not be mandatory to select the outward
   offer before th inward offer request can be constructed.
 
-#### Using combinationHashes
+#### Using returnTags
 
-Besides the offerHash discussed above, some offers may have one or more
-`combinationHashes` as well. As the name suggests, these can be used in order to
-determine how to combine offers. For round trips constructions, we are
-specifically interested in combination types of the type "return".
+Besides the `offerTag` discussed above, some offers may have one or more
+`returnTag(s)` as well. As the name suggests, these can be used in order to
+determine how to combine offers in a return trip.
 
 The idea is actually fairly simple: in case no filtering is applied on the
-inward offers using the `offerHash` filter mentioned above, the returned inward
+inward offers using the `offerTag` filter mentioned above, the returned inward
 offers may not all be compatible with all outward offers. Identifying
 compatible pairs are simply identified by the fact that they have the same (set
-of) return combinationHash(es). Offers with no return combinationHashes have
+of) `returnTag(s)`. Offers with no return `returnTag` have
 no constraints.
 
 Hereunder an example illustrating this concept:
@@ -263,7 +263,7 @@ Hereunder an example illustrating this concept:
 
 ##### Valid Combinations
 
-- Offer1 + Offer5 (no constraint on hashes)
+- Offer1 + Offer5 (no constraint on Tags)
 - Offer4 + Offer5
 - Offer2 + Offer6
 - Offer3 + Offer8
@@ -293,7 +293,7 @@ the return.
 
 #### Error Handling
 
-- the referenced trip cannot be found as it might have expired
+- the referenced trip cannot be found
 - A search criteria value contains invalid value or invalid characters
 - A search criteria lies outside accepted boundaries: it could be the date in
   the past, or too far in the future, or value outside bounds for the max
@@ -343,85 +343,14 @@ Proposed trip by timetable system:
 | | | Frankfurt → Wien Hbf (reservation) | Fare ÖBB |
 | Wien Hbf → Wien Stephansplatz|  Metro | Fare ÖBB |
 
-### Completing Offers for Provisional Booking
-
-![Completing Offers for Provisional Booking](../images/processes/seq-completing-offers-for-provisional-booking.png)
-
-Once an offer has been selected some additional steps can be taken to complete
-the information:
-
-- Adding passenger information
-- Adding accommodation preferences regarding the accommodation (most of the
-  times a seat, but could be sleeping accommodation for night trains), either
-for the type of accommodation space, or its exact location.
-
-While selecting accommodation preferences will be optionally most of the time,
-some information (usually on passengers) may be mandatory in order to proceed
-with the booking. The `RequestedInformation` property will provide the details of
-what needs to be specified in order to book a given offer. These details are
-provided under the form of a boolean expression, referring to the passenger
-model elements using dot notation (with the `TripOffer` as the root). For
-example, if it is required that name and first name are set to proceed
-`RequestedInformation` would be :
-
-`passenger[<uuid>].details.firstName AND passenger[<uuid>].details.name`
-
-Another example, if on top of first and last names, at least one email or one
-phone number is needed:
-
-`(passenger[0].details.firstName AND passenger[0].details.name AND
-(passenger[0].details.eMail OR passenger[0].details.phone))`
-
-By parsing this structure, the API consumer is able to identify the elements
-that need to be filled-in to proceed. An initial version the [grammar for required
-information](../requested-information-grammar.html) is available for review.
-
-The two types of updates (accommodation preferences and passenger data updates)
-are applied using a `PATCH` verb on the related resources. While the resource in
-its whole is presented, only property explicitly listed as updatable can be
-provided with a value. Attempting to modify another property must result in an
-error.
-
-For accommodation preferences, the following properties can be updated:
-
-- Reservation:
-  - `reservation.placeSelection.selectedOptions`
-  - `reservation.placeSelection.selectedPlaces`
-
-- Fare
-  - `fare.placeSelection.selectedOptions`
-  - `fare.placeSelection.selectedPlaces`
-
-For passengers, all properties are updatable except
-
-- `id`
-- `reference`
-- `type`
-
-Note however that updating a property that could have influenced the product in
-the offer (such as date of birth or reduction cards) will not influence the
-offer content anymore: the booked offer will be the offer initially generated,
-even though the products booked may be inconsistent with the new values of the
-passenger properties.
-
-Reminder: the accommodation preferences can be found in the reservationOptions
-elements `(offer.fare|integratedReservation|reservation.placeSelection.reservationOptions)`
-
-#### Error handling
-
-- The requested reservation Option is not available on this transport
-- An invalid value is provided for a passenger property
-- Attempted to modify a read-only property
-
 ## Booking Processes
 
 ### Creating a Booking Based on Offers
 
 ![Creating a Booking Based on Offers](../images/processes/seq-creating-a-booking-based-on-offers.png)
 
-Once the offer selected has been completed and all requested information
-provided, the API consumer can continue to the booking of that offer. Along
-with the offer, optional or mandatory reservations or ancillaries could be
+Once the offer has been selected, the API consumer can proceed to the booking of that offer. 
+Along with the offer, optional or mandatory reservations, or ancillaries could be
 booked as well. those optional offer parts can be identified easily in the
 offers as they will always be linked with an admission product (in
 admission.reservations or admission.ancillaries). The link contains the
@@ -448,35 +377,68 @@ reservations and fares, the reservedPlaces element will now be populated
 with the places that have actually be assigned to the passengers for
 this offer part.
 
+### Provisionally booking one or more offers
+
+In some cases, additional information must be provided before or at the provisional booking time
+in order to be taken into account, such as:
+- Additional passenger identity information
+- Additional accommodation preferences regarding the accommodation, or its exact location.
+
+While providing accommodation preferences is often optional, some information (usually on passengers) may be mandatory in order to proceed
+with the booking. The `RequestedInformation` property will provide the details of
+what needs to be specified in order to book a given offer. These details are
+provided under the form of a boolean expression, referring to the passenger
+model elements using dot notation (with the `TripOffer` as the root). For
+example, if it is required that name and first name are set to proceed
+`RequestedInformation` would be :
+
+`passenger[<uuid>].details.firstName AND passenger[<uuid>].details.name`
+
+Another example, if on top of first and last names, at least one email or one
+phone number is needed:
+
+`(passenger[0].details.firstName AND passenger[0].details.name AND
+(passenger[0].details.eMail OR passenger[0].details.phone))`
+
+By parsing this structure, the API consumer is able to identify the elements
+that need to be filled-in to proceed. An initial version the [grammar for required
+information](../requested-information-grammar.html) is available for review.
+
+The two types of information (accommodation preferences and passenger data updates) are both to be added in the POST /booking body:
+- passenger information can be specified in the passengers array: `bookingRequest.selectedOffers[].passengers`
+- seating preferences can be provided in `bookingRequest.selectedOffers[].placeSelections`
+
+For passengers, all properties are updatable except
+- `id`
+- `reference`
+- `type`
+
+Note however that updating a property that could have influenced the product in
+the offer (such as date of birth or reduction cards) will not influence the
+offer content anymore: the booked offer will be the offer initially generated,
+even though the products booked may be inconsistent with the new values of the
+passenger properties.
+
+Reminder: the accommodation preferences can be found in the reservationOptions
+elements `(offer.fare|integratedReservation|reservation.placeSelection.reservationOptions)`
+
 The passengers in the booking resources are also the same type of resources as
-the ones manipulated in offers. However, they have to be different resources
+the ones present in offers. However, they could be different resources,
 with different ids (the passengers references do remain unchanged).
 
 Initially, a booking will have the status `PREBOOKED` (see also the booking
 status model).
 
-At the root of the booking structure, Two balance elements are provided, in
-order to clarify the state of the financial exchange between an API consumer or
-booker and the OSDM:Distributor:
-
-- conditional balance is the balance of the booking that is not confirmed. It
-  is the amount that will be due to the provider if the booking is further
-  confirmed.
-
-- confirmed balance: is the balance of the booking that is confirmed. Unless
-  after sales takes place on one or more fulfillments in the booking, this
-  amount now must be paid to the provider.
-
-At the root of the booking structure is also located the ticket time limit.
-This is the time for which the provider will hold a booking in pre-booked
-state, waiting for the confirmation while guaranteeing the booking for the
-given products, spaces at the announced price. Obviously, this value only has a
-meaning for a booking in pre-booked state. A commonly accepted value would be
-around 30 minutes, which is normally sufficient to allow finalizing the
-booking,while not monopolizing resources too long in case the booking is
-abandoned without properly cancelling it. However, some systems may decide a
-longer time. Obviously, the value for the booking ticket-time limit can never
-exceed the earliest ticket time limit of any of its offer parts.
+#### Error Handling
+- The requested reservation Option is not available on this transport
+- An invalid value is provided for a passenger property
+- Referenced Offer or offer part not found (offer expired ?)
+- No rights to access referenced offer
+- Incompatible offer part with the offer
+- Missing information
+- Reservation to sub-system failed for one or more offer parts
+- Insufficient availability for one of the requested products
+- Requested place not available
 
 #### Provisionally Booking a Return Trip
 
@@ -527,16 +489,6 @@ events and situations can be communicated through the `Warning` messages:
   modified between the offer generation and its actual booking
 - Overbooking
 
-#### Error Handling
-
-- Referenced Offer or offer part not found (offer expired ?)
-- No rights to access referenced offer
-- Incompatible offer part with the offer
-- Missing information
-- Reservation to sub-system failed for one or more offer parts
-- Insufficient availability for one of the requested products
-- Requested place not available
-
 #### Notes
 
 - Booking an offer will not book the reservations in the offer unless they
@@ -550,7 +502,6 @@ Consumer should not rely on this possibility.
 - In case the passengers details are different in the different offers added
   together in a booking, the passenger information of the first offer will be
 copied in the booking, and those of the following offers will be ignored.
-- When the booking ???
 
 ### Completing Booking for Confirmation and Fulfillment
 
@@ -578,7 +529,7 @@ modified (both on the provider and on the consumer side).
 
 #### Notes
 
-As in the offer, the modifications on the passenger's properties will never
+The modifications on the passenger's properties will never
 impact the products in the offer (thus also not the price), even if this leads
 to an inconsistency between the offered product and the updated passenger
 property.
