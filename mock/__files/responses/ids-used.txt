@@ -1,0 +1,160 @@
+1-{
+2:  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+3-  "tripOffers": [
+4-    {
+5:      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+6-      "title": "Basel SBB - Davos Platz",
+7-      "trip": {
+8:        "id": "string",
+9-        "title": "Basel SBB - Davos Platz, 2021-03-22 10:05 CET",
+10-        "segments": [
+--
+13-            "origin": {
+14-              "station": {
+15:                "id": "string",
+16-                "title": "Basel SBB",
+17-                "station": {
+--
+46-            "destination": {
+47-              "station": {
+48:                "id": "string",
+49-                "title": "Davos Platz",
+50-                "station": {
+--
+93-              {
+94-                "station": {
+95:                  "id": "string",
+96-                  "title": "Basel SBB",
+97-                  "station": {
+--
+129-        "origin": {
+130-          "station": {
+131:            "id": "string",
+132-            "title": "Basel SBB",
+133-            "station": {
+--
+161-          "destination": {
+162-            "station": {
+163:              "id": "string",
+164-              "title": "Davos Platz",
+165-              "station": {
+--
+198-        "offers": [
+199-          {
+200:            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+201-            "title": "Basel SBB - Davos Platz 2021-03-22 10:05 CET, Normal Fare, 50 EUR",
+202-            "offerSummary": {
+--
+217-              },
+218-              "overallServiceClass": {
+219:                "id": "string",
+220-                "carrierName": "string"
+221-              },
+--
+244-            ],
+245-            "trip": {
+246:              "id": "string",
+247-              "title": "Basel SBB - Davos Platz, 2021-03-22 10:05 CET",
+248-              "segments": [
+--
+251-                  "origin": {
+252-                    "station": {
+253:                      "id": "string",
+254-                      "title": "Basel SBB",
+255-                      "station": {
+--
+284-                  "destination": {
+285-                    "station": {
+286:                      "id": "string",
+287-                      "title": "Davos Platz",
+288-                      "station": {
+--
+331-                    {
+332-                      "station": {
+333:                        "id": "string",
+334-                        "title": "Basel SBB",
+335-                        "station": {
+--
+367-              "origin": {
+368-                "station": {
+369:                  "id": "string",
+370-                  "title": "Basel SBB",
+371-                  "station": {
+--
+400-              "destination": {
+401-                "station": {
+402:                  "id": "string",
+403-                  "title": "Davos Platz",
+404-                  "station": {
+--
+438-            "admissions": [
+439-              {
+440:                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+441-                "commonOfferPartAttributes": {
+442-                  "price": {
+--
+459-                  "passengers": [
+460-                    {
+461:                      "id": "Passenger_001",
+462-                      "abstract": "Andreas Schlapbach",
+463-                      "dateOfBirth": "1974-09-14",
+--
+482-                    {
+483-                      "product": {
+484:                        "id": "string",
+485-                        "title": "TGV Lyria Loisir 2",
+486-                        "code": "PT00AD",
+--
+513-                        ],
+514-                        "serviceClass": {
+515:                          "id": "string",
+516-                          "carrierName": "string"
+517-                        },
+--
+545-                "reservations": [
+546-                  {
+547:                    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+548-                    "parts": "http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'",
+549-                    "title": "ICE Wifi on Board 2020-07-11"
+--
+554-            "reservations": [
+555-              {
+556:                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+557-                "commonOfferPartAttributes": {
+558-                  "price": {
+--
+575-                  "passengers": [
+576-                    {
+577:                      "id": "Passenger_001",
+578-                      "abstract": "Andreas Schlapbach",
+579-                      "dateOfBirth": "1974-09-14",
+--
+598-                    {
+599-                      "product": {
+600:                        "id": "string",
+601-                        "title": "TGV Lyria Loisir 2",
+602-                        "code": "PT00AD",
+--
+629-                        ],
+630-                        "serviceClass": {
+631:                          "id": "string",
+632-                          "carrierName": "string"
+633-                        },
+--
+663-                  "reservedPlaces": [
+664-                    {
+665:                      "id": "string",
+666-                      "passengerReferences": "string",
+667-                      "vehicle": "string",
+--
+702-                      "passengers": [
+703-                        {
+704:                          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+705-                          "abstract": "Andreas Schlapbach",
+706-                          "dateOfBirth": "1974-09-14",
+--
+734-        "passengers": [
+735-          {
+736:            "id": "Passenger_001",
+737-            "abstract": "Andreas Schlapbach",
+738-            "dateOfBirth": "1974-09-01",

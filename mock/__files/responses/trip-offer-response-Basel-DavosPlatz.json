@@ -1,22 +1,102 @@
 {
-    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "tripOffers": [
-      {
-        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "title": "Basel SBB - Davos Platz",
-        "trip": {
-          "id": "string",
-          "title": "Basel SBB - Davos Platz, 2020-07-01 10:05 CET",
-          "segments": [
-            {
-              "index": 0,
-              "origin": {
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "tripOffers": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "title": "Basel SBB - Davos Platz",
+      "trip": {
+        "id": "string",
+        "title": "Basel SBB - Davos Platz, 2021-03-22 10:05 CET",
+        "segments": [
+          {
+            "index": 0,
+            "origin": {
+              "station": {
+                "id": "string",
+                "title": "Basel SBB",
+                "station": {
+                  "localCode": "string",
+                  "country": "CH",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "string"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WGS84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.948825,
+                    "longitude": 7.439122
+                  },
+                  "names": [
+                    {
+                      "language": "de",
+                      "text": "string"
+                    }
+                  ]
+                }
+              },
+              "departureDateTime": "2021-02-15T16:52:29.170Z",
+              "arrivalDateTime": "2021-02-15T16:52:29.170Z",
+              "index": 5,
+              "departureTrack": "13A",
+              "arrivalTrack": "13B"
+            },
+            "destination": {
+              "station": {
+                "id": "string",
+                "title": "Davos Platz",
+                "station": {
+                  "localCode": "string",
+                  "country": "CH",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "string"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WGS84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.948825,
+                    "longitude": 7.439122
+                  },
+                  "names": [
+                    {
+                      "language": "de",
+                      "text": "string"
+                    }
+                  ]
+                }
+              },
+              "departureDateTime": "2021-02-15T16:52:29.170Z",
+              "arrivalDateTime": "2021-02-15T16:52:29.170Z",
+              "index": 5,
+              "departureTrack": "13A",
+              "arrivalTrack": "13B"
+            },
+            "duration": "P2DT3H4M",
+            "transfer": {
+              "duration": "P2DT3H4M",
+              "transferType": "string"
+            },
+            "vehicle": {
+              "numbers": [
+                "string"
+              ],
+              "line": "string",
+              "serviceBrand": "TGV",
+              "transportMode": "string"
+            },
+            "stops": [
+              {
                 "station": {
                   "id": "string",
                   "title": "Basel SBB",
                   "station": {
                     "localCode": "string",
-                    "country": "string",
+                    "country": "CH",
                     "codes": [
                       {
                         "codeList": "UIC",
@@ -31,130 +111,46 @@
                     },
                     "names": [
                       {
-                        "language": "string",
-                        "text": "string",
-                        "shortText": "string"
+                        "language": "de",
+                        "text": "string"
                       }
                     ]
                   }
                 },
-                "departureDateTime": "2021-02-15T16:52:29.170Z",
-                "arrivalDateTime": "2021-02-15T16:52:29.170Z",
+                "departureDateTime": "2021-02-15T16:52:29.172Z",
+                "arrivalDateTime": "2021-02-15T16:52:29.172Z",
                 "index": 5,
                 "departureTrack": "13A",
                 "arrivalTrack": "13B"
-              },
-              "destination": {
-                "station": {
-                  "id": "string",
-                  "title": "Davos Platz",
-                  "station": {
-                    "localCode": "string",
-                    "country": "string",
-                    "codes": [
-                      {
-                        "codeList": "UIC",
-                        "code": "string"
-                      }
-                    ],
-                    "geoCoordinate": {
-                      "system": "WGS84",
-                      "accuracy": 0.00002,
-                      "latitude": 46.948825,
-                      "longitude": 7.439122
-                    },
-                    "names": [
-                      {
-                        "language": "string",
-                        "text": "string",
-                        "shortText": "string"
-                      }
-                    ]
-                  }
-                },
-                "departureDateTime": "2021-02-15T16:52:29.170Z",
-                "arrivalDateTime": "2021-02-15T16:52:29.170Z",
-                "index": 5,
-                "departureTrack": "13A",
-                "arrivalTrack": "13B"
-              },
-              "duration": "P2DT3H4M",
-              "transfer": {
-                "duration": "P2DT3H4M",
-                "transferType": "string"
-              },
-              "vehicle": {
-                "numbers": [
-                  "string"
-                ],
-                "line": "string",
-                "serviceBrand": "TGV",
-                "transportMode": "string"
-              },
-              "stops": [
+              }
+            ]
+          }
+        ],
+        "origin": {
+          "station": {
+            "id": "string",
+            "title": "Basel SBB",
+            "station": {
+              "localCode": "string",
+              "country": "CH",
+              "codes": [
                 {
-                  "station": {
-                    "id": "string",
-                    "title": "Basel SBB",
-                    "station": {
-                      "localCode": "string",
-                      "country": "string",
-                      "codes": [
-                        {
-                          "codeList": "UIC",
-                          "code": "string"
-                        }
-                      ],
-                      "geoCoordinate": {
-                        "system": "WGS84",
-                        "accuracy": 0.00002,
-                        "latitude": 46.948825,
-                        "longitude": 7.439122
-                      },
-                      "names": [
-                        {
-                          "language": "string",
-                          "text": "string",
-                          "shortText": "string"
-                        }
-                      ]
-                    }
-                  },
-                  "departureDateTime": "2021-02-15T16:52:29.172Z",
-                  "arrivalDateTime": "2021-02-15T16:52:29.172Z",
-                  "index": 5,
-                  "departureTrack": "13A",
-                  "arrivalTrack": "13B"
+                  "codeList": "UIC",
+                  "code": "string"
+                }
+              ],
+              "geoCoordinate": {
+                "system": "WGS84",
+                "accuracy": 0.00002,
+                "latitude": 46.948825,
+                "longitude": 7.439122
+              },
+              "names": [
+                {
+                  "language": "de",
+                  "text": "string"
                 }
               ]
-            }
-          ],
-          "origin": {
-            "station": {
-              "id": "string",
-              "title": "Basel SBB",
-              "station": {
-                "localCode": "string",
-                "country": "string",
-                "codes": [
-                  {
-                    "codeList": "UIC",
-                    "code": "string"
-                  }
-                ],
-                "geoCoordinate": {
-                  "system": "WGS84",
-                  "accuracy": 0.00002,
-                  "latitude": 46.948825,
-                  "longitude": 7.439122
-                },
-                "names": [
-                  {
-                    "language": "string",
-                    "text": "string",
-                    "shortText": "string"
-                  }
-                ]
             },
             "departureDateTime": "2021-02-15T16:52:29.172Z",
             "arrivalDateTime": "2021-02-15T16:52:29.172Z",
@@ -168,7 +164,7 @@
               "title": "Davos Platz",
               "station": {
                 "localCode": "string",
-                "country": "string",
+                "country": "CH",
                 "codes": [
                   {
                     "codeList": "UIC",
@@ -183,9 +179,8 @@
                 },
                 "names": [
                   {
-                    "language": "string",
-                    "text": "string",
-                    "shortText": "string"
+                    "language": "de",
+                    "text": "string"
                   }
                 ]
               }
@@ -203,7 +198,7 @@
         "offers": [
           {
             "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "title": "Basel SBB - Davos Platz 2020-07-01 10:05 CET, Normal Fare, 50 EUR",
+            "title": "Basel SBB - Davos Platz 2021-03-22 10:05 CET, Normal Fare, 50 EUR",
             "offerSummary": {
               "minimalPrice": {
                 "currency": "CHF",
@@ -249,7 +244,7 @@
             ],
             "trip": {
               "id": "string",
-              "title": "Basel SBB - Davos Platz, 2020-07-01 10:05 CET",
+              "title": "Basel SBB - Davos Platz, 2021-03-22 10:05 CET",
               "segments": [
                 {
                   "index": 0,
@@ -259,7 +254,7 @@
                       "title": "Basel SBB",
                       "station": {
                         "localCode": "string",
-                        "country": "string",
+                        "country": "CH",
                         "codes": [
                           {
                             "codeList": "UIC",
@@ -274,9 +269,8 @@
                         },
                         "names": [
                           {
-                            "language": "string",
-                            "text": "string",
-                            "shortText": "string"
+                            "language": "de",
+                            "text": "string"
                           }
                         ]
                       }
@@ -293,7 +287,7 @@
                       "title": "Davos Platz",
                       "station": {
                         "localCode": "string",
-                        "country": "string",
+                        "country": "CH",
                         "codes": [
                           {
                             "codeList": "UIC",
@@ -308,9 +302,8 @@
                         },
                         "names": [
                           {
-                            "language": "string",
-                            "text": "string",
-                            "shortText": "string"
+                            "language": "de",
+                            "text": "string"
                           }
                         ]
                       }
@@ -341,7 +334,7 @@
                         "title": "Basel SBB",
                         "station": {
                           "localCode": "string",
-                          "country": "string",
+                          "country": "CH",
                           "codes": [
                             {
                               "codeList": "UIC",
@@ -356,9 +349,8 @@
                           },
                           "names": [
                             {
-                              "language": "string",
-                              "text": "string",
-                              "shortText": "string"
+                              "language": "de",
+                              "text": "string"
                             }
                           ]
                         }
@@ -378,7 +370,7 @@
                   "title": "Basel SBB",
                   "station": {
                     "localCode": "string",
-                    "country": "string",
+                    "country": "CH",
                     "codes": [
                       {
                         "codeList": "UIC",
@@ -393,9 +385,8 @@
                     },
                     "names": [
                       {
-                        "language": "string",
-                        "text": "string",
-                        "shortText": "string"
+                        "language": "de",
+                        "text": "string"
                       }
                     ]
                   }
@@ -412,7 +403,7 @@
                   "title": "Davos Platz",
                   "station": {
                     "localCode": "string",
-                    "country": "string",
+                    "country": "CH",
                     "codes": [
                       {
                         "codeList": "UIC",
@@ -427,9 +418,8 @@
                     },
                     "names": [
                       {
-                        "language": "string",
-                        "text": "string",
-                        "shortText": "string"
+                        "language": "de",
+                        "text": "string"
                       }
                     ]
                   }
@@ -465,40 +455,13 @@
                     ]
                   },
                   "pricingMode": "COLLECTIVE",
-                  "reductionsApplied": [
-                    {
-                      "type": "REDUCTION",
-                      "code": "string",
-                      "codeList": "string",
-                      "name": "string",
-                      "number": "string",
-                      "issuer": "string"
-                    }
-                  ],
+                  "reductionsApplied": [ ],
                   "passengers": [
                     {
-                      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                      "id": "Passenger_001",
                       "abstract": "Andreas Schlapbach",
-                      "reference": "string",
-                      "dateOfBirth": "2021-02-15",
-                      "cards": [
-                        {
-                          "type": "REDUCTION",
-                          "code": "string",
-                          "codeList": "string",
-                          "name": "string",
-                          "number": "string",
-                          "issuer": "string"
-                        }
-                      ],
-                      "details": {
-                        "preferredLanguage": "string",
-                        "title": "string",
-                        "firstName": "string",
-                        "lastName": "string",
-                        "eMail": "string",
-                        "phoneNumber": "string"
-                      }
+                      "dateOfBirth": "1974-09-14",
+                      "cards": []
                     }
                   ],
                   "providerBookingReference": "string",
@@ -608,40 +571,13 @@
                     ]
                   },
                   "pricingMode": "COLLECTIVE",
-                  "reductionsApplied": [
-                    {
-                      "type": "REDUCTION",
-                      "code": "string",
-                      "codeList": "string",
-                      "name": "string",
-                      "number": "string",
-                      "issuer": "string"
-                    }
-                  ],
+                  "reductionsApplied": [ ],
                   "passengers": [
                     {
-                      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                      "id": "Passenger_001",
                       "abstract": "Andreas Schlapbach",
-                      "reference": "string",
-                      "dateOfBirth": "2021-02-15",
-                      "cards": [
-                        {
-                          "type": "REDUCTION",
-                          "code": "string",
-                          "codeList": "string",
-                          "name": "string",
-                          "number": "string",
-                          "issuer": "string"
-                        }
-                      ],
-                      "details": {
-                        "preferredLanguage": "string",
-                        "title": "string",
-                        "firstName": "string",
-                        "lastName": "string",
-                        "eMail": "string",
-                        "phoneNumber": "string"
-                      }
+                      "dateOfBirth": "1974-09-14",
+                      "cards": []
                     }
                   ],
                   "providerBookingReference": "string",
@@ -767,26 +703,8 @@
                         {
                           "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
                           "abstract": "Andreas Schlapbach",
-                          "reference": "string",
-                          "dateOfBirth": "2021-02-15",
-                          "cards": [
-                            {
-                              "type": "REDUCTION",
-                              "code": "string",
-                              "codeList": "string",
-                              "name": "string",
-                              "number": "string",
-                              "issuer": "string"
-                            }
-                          ],
-                          "details": {
-                            "preferredLanguage": "string",
-                            "title": "string",
-                            "firstName": "string",
-                            "lastName": "string",
-                            "eMail": "string",
-                            "phoneNumber": "string"
-                          }
+                          "dateOfBirth": "1974-09-14",
+                          "cards": []
                         }
                       ],
                       "selectedPlaceProperties": [
@@ -818,19 +736,10 @@
             "id": "Passenger_001",
             "abstract": "Andreas Schlapbach",
             "dateOfBirth": "1974-09-01",
-            "cards": [
-            ],
-            "details": {
-              "preferredLanguage": "DE",
-              "title": "Mr",
-              "firstName": "Andreas",
-              "lastName": "Schlapbach",
-              "eMail": "andreas.schlapbach@sbb.ch",
-              "phoneNumber": "0797999797"
-            }
+            "cards": []
           }
         ]
       }
     }
-]
-  }
+  ]
+}

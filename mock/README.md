@@ -8,20 +8,25 @@ Mocked resources:
 - POST `/bookings`
 - POST `/bookings/{bookingId}/fulfillments`
 
-The [WireMock](https://wiremock.org) is used to build the Mock which is configured
+The [WireMock](https://wiremock.org) is used to build the mock which is configured
 by [WireMock Mappings](./mappings/sale-core-mappings.json).
 
 Use `./startMock.sh` to run mock.
 
 ## Used Ids
 
-- `offerId`:  `Offer_001`
-- `admission`: `Admission_Basel-DavosPlatz`
-- `reservations`: `Reservation_Basel-Landquart`, `Reservation_Landquart-DavosPlatz`
-- `passengerId`: `Passenger_001`
-- `fulfillmentId`: `Fulfillment_001`
+Ids used for this scenario £(`grep -C 2 -n '"id' trip-offer-response-Basel-DavosPlatz.json`):
+
+- trip offer id:  `TripOffer_001`
+- admission id: `Admission_BaselSBB-DavosPlatz`
+- reservation ids: `Reservation_BaselSBB-Landquart`, `Reservation_Landquart-DavosPlatz`
+- product ids: `125`, `10125`
+- passenger id: `Passenger_001`
+- fulfillment Id: `Fulfillment_001`
 
 ### Station Information
+
+From SBB B2P:
 
 ```json
     "id": 8500010,
@@ -75,6 +80,8 @@ Use `./startMock.sh` to run mock.
 ```
 
 ## Trip Information
+
+From SBB B2P:
 
 ```json
  "tripId": "ogvwSQoCV",

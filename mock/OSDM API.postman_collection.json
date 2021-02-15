@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ca661c99-a218-4cd2-8971-7ec0033b6187",
+		"_postman_id": "1854a7a6-8ba3-4dde-9003-d9f588a7fd80",
 		"name": "OSDM API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,7 +9,7 @@
 			"name": "offers",
 			"item": [
 				{
-					"name": "/trip-offers-collection Zürich - Davos Platz",
+					"name": "/trip-offers-collection Basel SBB - Davos Platz",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -40,7 +40,7 @@
 			"name": "bookings",
 			"item": [
 				{
-					"name": "/bookings Zürich - Davos Platz",
+					"name": "/bookings Basel SBB - Davos Platz",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -71,7 +71,7 @@
 			"name": "fulfillments",
 			"item": [
 				{
-					"name": "/bookings/{id}/fulfillments Zürich - Davos Platz",
+					"name": "/bookings/{id}/fulfillments Basel SBB - Davos Platz",
 					"request": {
 						"method": "POST",
 						"header": [],
