@@ -1,0 +1,73 @@
+{
+    "selectedOffers": [
+      {
+        "selectedOfferId": "Offer_001",
+        "selectedOptionalReservationsIds": [
+          "Reservation_Basel_Landquart",
+          "Reservation_Lanquart_DavosPlatz"
+        ],
+        "selectedOptionalAncillaries": [
+        ],
+        "passengers": [
+          {
+            "abstract": "Andreas Schlapbach",
+            "dateOfBirth": "2021-02-15",
+            "details": {
+              "preferredLanguage": "DE",
+              "title": "Mr",
+              "firstName": "Andreas",
+              "lastName": "Schlapbach",
+              "eMail": "andreas.schlapbach@sbb.ch",
+              "phoneNumber": "string"
+            }
+          }
+        ],
+        "placeSelections": {
+          "reservationId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "placeSelection": {
+            "referencePlace": {
+              "placeNumber": "05",
+              "coachNumber": "10"
+            },
+            "selectedOptions": [
+              {
+                "passengers": [
+                  {
+                    "abstract": "Andreas Schlapbach",
+                    "dateOfBirth": "2021-02-15",
+                    "details": {
+                      "preferredLanguage": "DE",
+                      "title": "Mr",
+                      "firstName": "Andreas",
+                      "lastName": "Schlapbach",
+                      "eMail": "andreas.schlapbach@sbb.ch",
+                      "phoneNumber": "string"
+                    }
+                  }
+                ],
+                "selectedPlaceProperties": [
+                  "string"
+                ]
+              }
+            ],
+            "selectedCoach": {
+              "selectedCoaches": [
+                {
+                  "coachNumber": "05",
+                  "selectedPlaces": [
+                    {
+                      "passengerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                      "place": "10"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "embed": [
+      "ALL"
+    ]
+  }

@@ -1,0 +1,49 @@
+{
+    "mappings": [
+        {
+            "request": {
+                "method": "POST",
+                "url": "/trip-offers-collection"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-type": "application/json"
+                },
+                "bodyFileName": "responses/trip-offer-response-Basel-DavosPlatz.json"
+            }
+        },
+        {
+            "request": {
+                "method": "POST",
+                "url": "/bookings"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-type": "application/json"
+                },
+                "jsonBody": {
+                    "id": 1,
+                    "abstract": "Bookings Zürich-Davos"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "POST",
+                "url": "/bookings/1/fulfillments"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-type": "application/json"
+                },
+                "jsonBody": {
+                    "id": 1,
+                    "abstract": "Fulfillments Zürich-Davos created"
+                }
+            }
+        }
+    ]
+}

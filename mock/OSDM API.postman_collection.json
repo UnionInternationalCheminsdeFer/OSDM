@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "ca661c99-a218-4cd2-8971-7ec0033b6187",
+		"name": "OSDM API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "offers",
+			"item": [
+				{
+					"name": "/trip-offers-collection Zürich - Davos Platz",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tripSearchCriteria\": {\r\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\r\n        \"origin\": {\r\n            \"codeList\": \"UIC\",\r\n            \"code\": \"8500010\"\r\n        },\r\n        \"destination\": {\r\n            \"codeList\": \"UIC\",\r\n            \"code\": \"8509073\"\r\n        },\r\n        \"requestedSection\": {\r\n            \"start\": {\r\n                \"station\": {\r\n                    \"codeList\": \"UIC\",\r\n                    \"code\": \"8500010\"\r\n                }\r\n            },\r\n            \"end\": {\r\n                \"station\": {\r\n                    \"codeList\": \"UIC\",\r\n                    \"code\": \"8509073\"\r\n                }\r\n            }\r\n        },\r\n        \"travelDateTime\": {\r\n            \"dateTime\": \"2021-03-22T13:00:00.053Z\",\r\n            \"isArrival\": false\r\n        }\r\n    },\r\n    \"passengers\": [\r\n        {\r\n            \"dateOfBirth\": \"1974-09-00\",\r\n            \"cards\": []\r\n        }\r\n    ],\r\n    \"offerSearchCriteria\": {\r\n        \"flexibilities\": [\r\n            \"string\"\r\n        ],\r\n        \"comfortClasses\": [\r\n            \"string\"\r\n        ],\r\n        \"serviceClassIds\": [\r\n            \"string\"\r\n        ],\r\n        \"reservationOffersOnly\": true,\r\n        \"currency\": \"CHF\"\r\n    },\r\n    \"embed\": [\r\n        \"ALL\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers-collection",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bookings",
+			"item": [
+				{
+					"name": "/bookings Zürich - Davos Platz",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"selectedOffers\": [\r\n        {\r\n            \"selectedOfferId\": \"Offer_001\",\r\n            \"selectedOptionalReservationsIds\": [\r\n                \"Reservation_Basel_Landquart\",\r\n                \"Reservation_Lanquart_DavosPlatz\"\r\n            ],\r\n            \"selectedOptionalAncillaries\": [],\r\n            \"passengers\": [\r\n                {\r\n                    \"abstract\": \"Andreas Schlapbach\",\r\n                    \"dateOfBirth\": \"2021-02-15\",\r\n                    \"details\": {\r\n                        \"preferredLanguage\": \"DE\",\r\n                        \"title\": \"Mr\",\r\n                        \"firstName\": \"Andreas\",\r\n                        \"lastName\": \"Schlapbach\",\r\n                        \"eMail\": \"andreas.schlapbach@sbb.ch\",\r\n                        \"phoneNumber\": \"string\"\r\n                    }\r\n                }\r\n            ],\r\n            \"placeSelections\": {\r\n                \"reservationId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n                \"placeSelection\": {\r\n                    \"referencePlace\": {\r\n                        \"placeNumber\": \"05\",\r\n                        \"coachNumber\": \"10\"\r\n                    },\r\n                    \"selectedOptions\": [\r\n                        {\r\n                            \"passengers\": [\r\n                                {\r\n                                    \"abstract\": \"Andreas Schlapbach\",\r\n                                    \"dateOfBirth\": \"2021-02-15\",\r\n                                    \"details\": {\r\n                                        \"preferredLanguage\": \"DE\",\r\n                                        \"title\": \"Mr\",\r\n                                        \"firstName\": \"Andreas\",\r\n                                        \"lastName\": \"Schlapbach\",\r\n                                        \"eMail\": \"andreas.schlapbach@sbb.ch\",\r\n                                        \"phoneNumber\": \"string\"\r\n                                    }\r\n                                }\r\n                            ],\r\n                            \"selectedPlaceProperties\": [\r\n                                \"string\"\r\n                            ]\r\n                        }\r\n                    ],\r\n                    \"selectedCoach\": {\r\n                        \"selectedCoaches\": [\r\n                            {\r\n                                \"coachNumber\": \"05\",\r\n                                \"selectedPlaces\": [\r\n                                    {\r\n                                        \"passengerId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n                                        \"place\": \"10\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    ],\r\n    \"embed\": [\r\n        \"ALL\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "fulfillments",
+			"item": [
+				{
+					"name": "/bookings/{id}/fulfillments Zürich - Davos Platz",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fulfillments\": [\r\n        {\r\n            \"id\": \"FulFillment_00l\",\r\n            \"status\": \"CONFIRMED\",\r\n            \"offerParts\": [\r\n                {\r\n                    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n                    \"parts\": \"http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'\"\r\n                }\r\n            ],\r\n            \"fulfillmentItems\": [\r\n                {\r\n                    \"fulfillmentMedia\": [\r\n                        \"string\"\r\n                    ],\r\n                    \"travelerReference\": \"Passenger_001\",\r\n                    \"controlId\": \"string\",\r\n                    \"securityFeatures\": [\r\n                        {\r\n                            \"type\": {\r\n                                \"type\": \"VISUAL_ELEMENT\",\r\n                                \"format\": \"PNG\"\r\n                            },\r\n                            \"data\": \"string\"\r\n                        }\r\n                    ],\r\n                    \"isMandatory\": false,\r\n                    \"securePaperOnly\": false\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/1/fulfillments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"1",
+								"fulfillments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

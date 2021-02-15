@@ -1,0 +1,35 @@
+{
+    "fulfillments": [
+      {
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "status": "CONFIRMED",
+        "controlNumber": "string",
+        "offerParts": [
+          {
+            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "parts": "http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'",
+          }
+        ],
+        "fulfillmentItems": [
+          {
+            "fulfillmentMedia": [
+              "string"
+            ],
+            "travelerReference": "Passenger_001",
+            "controlId": "string",
+            "securityFeatures": [
+              {
+                "type": {
+                  "type": "VISUAL_ELEMENT",
+                  "format": "PNG"
+                },
+                "data": "string"
+              }
+            ],
+            "isMandatory": false,
+            "securePaperOnly": false
+          }
+        ]
+      }
+    ]
+  }
