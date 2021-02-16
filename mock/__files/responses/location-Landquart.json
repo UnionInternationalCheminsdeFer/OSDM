@@ -1,0 +1,30 @@
+{
+    "locations": [
+      {
+        "id": "string",
+        "title": "Landquart",
+        "station": {
+          "localCode": "8509002",
+          "country": "ch",
+          "codes": [
+            {
+              "codeList": "UIC",
+              "code": "8509002"
+            }
+          ],
+          "geoCoordinate": {
+            "system": "WSG84",
+            "accuracy": 0.00002,
+            "latitude": 46.967442,
+            "longitude": 9.554032
+          },
+          "names": [
+            {
+              "language": "de",
+              "text": "Landquart"
+            }
+          ]
+        }
+      }
+    ]
+  }

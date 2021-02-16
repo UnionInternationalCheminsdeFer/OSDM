@@ -1,0 +1,34 @@
+{
+    "locations": [
+      {
+        "id": "string",
+        "title": "Basel SBB",
+        "station": {
+          "localCode": "8500010",
+          "country": "ch",
+          "codes": [
+            {
+              "codeList": "UIC",
+              "code": "8500010"
+            }
+          ],
+          "geoCoordinate": {
+            "system": "string",
+            "accuracy": 0.00002,
+            "latitude": 47.547408,
+            "longitude": 7.589548
+          },
+          "names": [
+            {
+              "language": "de",
+              "text": "Basel SBB"
+            },
+            {
+              "language": "fr",
+              "text": "Bâle SBB"
+            }
+          ]
+        }
+      }
+    ]
+  }

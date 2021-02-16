@@ -1,0 +1,30 @@
+{
+    "locations": [
+      {
+        "id": "string",
+        "title": "Davos Platz",
+        "station": {
+          "localCode": "8509073",
+          "country": "ch",
+          "codes": [
+            {
+              "codeList": "UIC",
+              "code": "8509073"
+            }
+          ],
+          "geoCoordinate": {
+            "system": "WSG84",
+            "accuracy": 0.00002,
+            "latitude": 46.791469,
+            "longitude": 9.820733
+          },
+          "names": [
+            {
+              "language": "de",
+              "text": "Davos Platz"
+            }
+          ]
+        }
+      }
+    ]
+  }

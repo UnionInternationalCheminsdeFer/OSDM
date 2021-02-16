@@ -2,6 +2,63 @@
     "mappings": [
         {
             "request": {
+                "method": "GET",
+                "url": "/locations",
+                "queryParameters": {
+                    "matchValue": {
+                        "contains": "Basel"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-BaselSBB.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/locations",
+                "queryParameters": {
+                    "matchValue": {
+                        "contains": "Davos"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-DavosPlatz.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/locations",
+                "queryParameters": {
+                    "matchValue": {
+                        "contains": "Landquart"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-Landquart.json"
+            }
+        },
+        {
+            "request": {
                 "method": "POST",
                 "url": "/trip-offers-collection"
             },
