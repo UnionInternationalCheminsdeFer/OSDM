@@ -6,6 +6,38 @@
 	},
 	"item": [
 		{
+			"name": "locations",
+			"item": [
+				{
+					"name": "Basel SBB",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Landquart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Davos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "offers",
 			"item": [
 				{

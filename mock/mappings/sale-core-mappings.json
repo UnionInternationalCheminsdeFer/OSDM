@@ -3,7 +3,7 @@
         {
             "request": {
                 "method": "GET",
-                "url": "/locations",
+                "urlPath": "/locations",
                 "queryParameters": {
                     "matchValue": {
                         "contains": "Basel"
@@ -22,7 +22,7 @@
         {
             "request": {
                 "method": "GET",
-                "url": "/locations",
+                "urlPath": "/locations",
                 "queryParameters": {
                     "matchValue": {
                         "contains": "Davos"
@@ -41,7 +41,7 @@
         {
             "request": {
                 "method": "GET",
-                "url": "/locations",
+                "urlPath": "/locations",
                 "queryParameters": {
                     "matchValue": {
                         "contains": "Landquart"
