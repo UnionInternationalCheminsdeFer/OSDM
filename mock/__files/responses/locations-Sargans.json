@@ -1,31 +1,27 @@
 {
     "locations": [
       {
-        "id": "8500010",
-        "title": "Basel SBB",
+        "id": "8509411",
+        "title": "Sargans",
         "station": {
-          "localCode": "8500010",
+          "localCode": "8509411",
           "country": "ch",
           "codes": [
             {
               "codeList": "UIC",
-              "code": "8500010"
+              "code": "8509411"
             }
           ],
           "geoCoordinate": {
             "system": "WSG84",
             "accuracy": 0.00002,
-            "latitude": 47.547408,
-            "longitude": 7.589548
+            "latitude": 47.045361,
+            "longitude": 9.445398
           },
           "names": [
             {
               "language": "de",
-              "text": "Basel SBB"
-            },
-            {
-              "language": "fr",
-              "text": "Bâle SBB"
+              "text": "Sargans"
             }
           ]
         }

@@ -1,31 +1,35 @@
 {
     "locations": [
       {
-        "id": "8500010",
-        "title": "Basel SBB",
+        "id": "8503000",
+        "title": "Zürich HB",
         "station": {
-          "localCode": "8500010",
+          "localCode": "8503000",
           "country": "ch",
           "codes": [
             {
               "codeList": "UIC",
-              "code": "8500010"
+              "code": "8503000"
             }
           ],
           "geoCoordinate": {
             "system": "WSG84",
             "accuracy": 0.00002,
-            "latitude": 47.547408,
-            "longitude": 7.589548
+            "latitude": 47.378177,
+            "longitude": 8.540193
           },
           "names": [
             {
               "language": "de",
-              "text": "Basel SBB"
+              "text": "Zürich SBB"
             },
             {
               "language": "fr",
-              "text": "Bâle SBB"
+              "text": "Zurich SBB"
+            },
+            {
+              "language": "it",
+              "text": "Zurigo SBB"
             }
           ]
         }

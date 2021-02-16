@@ -55,7 +55,78 @@
                     "Content-Language": "en"
                 },
                 "bodyFileName": "responses/locations-Landquart.json"
+            }           
+        },
+        {
+            "request": {
+                "method": "GET",
+                "urlPath": "/locations",
+                "queryParameters": {
+                    "matchValue": {
+                        "contains": "Sargans"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-Sargans.json"
             }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "urlPath": "/trips",
+                "queryParameters": {
+                    "matchValue": {
+                        "contains": "Sargans"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-Sargans.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "urlPath": "/locations",
+                "queryParameters": {
+                    "matchValue": {
+                        "contains": "Zürich"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-ZürichHB.json"
+            }
+        },
+        {
+            "request": {
+                "method": "POST",
+                "url": "/trips-collection"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trips-BaselSBB-Landquart.json"
+            }                    
         },
         {
             "request": {
