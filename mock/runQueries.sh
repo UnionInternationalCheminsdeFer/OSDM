@@ -23,6 +23,6 @@ echo -e "\n\nCreating fulfillments\n"
 
 curl -X POST \
     -H "application/json" \
-    http://localhost:8080/bookings/1/fulfillments   
+    http://localhost:8080/bookings/booking_001/fulfillments   
 
 echo -e "\n\ndone.\n"
