@@ -64,6 +64,15 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "/bookings/booking_001/passengers/passenger_001",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
 				}
 			]
 		},
@@ -71,7 +80,7 @@
 			"name": "fulfillments",
 			"item": [
 				{
-					"name": "/bookings/{id}/fulfillments Basel SBB - Davos Platz",
+					"name": "/bookings/Booking_001/fulfillments Basel SBB - Davos Platz",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -93,6 +102,101 @@
 								"bookings",
 								"1",
 								"fulfillments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/fulfillments/fulfillment_001",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/fulfillments/fulfillment_001",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fulfillments",
+								"fulfillment_001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/fulfillments/fulfillment_002",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/fulfillments/fulfillment_002",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fulfillments",
+								"fulfillment_002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/fulfillments/fulfillment_003",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/fulfillments/fulfillment_003",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fulfillments",
+								"fulfillment_003"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "/product CH:Sitzplatzreservierung",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/CH10125",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"CH10125"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/product CH:DV-Normalpreis",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/CH00125FIRST",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"CH00125FIRST"
 							]
 						}
 					},
