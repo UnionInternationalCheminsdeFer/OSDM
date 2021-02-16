@@ -9,7 +9,7 @@ Mocked resources:
 - GET `/locations/?matchValue=Landquart`
 - GET `/locations/?matchValue=Sargans`
 - GET `/locations/?matchValue=Zürich`
-- GET `/trips/
+- POST `/trips-collection`
 - POST `/trip-offers-collection`
 - POST `/bookings`
 - POST `/bookings/{bookingId}/fulfillments`
@@ -46,7 +46,7 @@ Ids used for this scenario (`grep -C 2 -n '"id' trip-offer-response-Basel-DavosP
 
 ## Journeys to Add Next
 
-- Sargans - Wien (öBB)
+- Zürich Hb - Wien (öBB)
 - Basel SBB - Frankfurt (DB)
 - Basel SBB - Paris (SNCF)
 - Zürich HB - Milano (Trenitalia)
