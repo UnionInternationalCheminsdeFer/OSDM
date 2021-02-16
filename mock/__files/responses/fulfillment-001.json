@@ -1,0 +1,35 @@
+{
+    "fulfillment": {
+        "id": "94a4c484-702f-11eb-9439-0242ac130002",
+        "status": "CONFIRMED",
+        "price": {
+            "currency": "CHF",
+            "amount": 5600,
+            "scale": 2,
+            "vatDetails": [
+                {
+                    "country": "CH",
+                    "scale": 2,
+                    "percentage": 7.9,
+                    "taxId": "TV SC 0103.9",
+                    "scope": "NATIONAL"
+                }
+            ]
+        },
+        "offerParts": [
+            {
+                "id": "94a4c484-702f-11eb-9439-0242ac130002",
+                "parts": "http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'",
+                "title": "Admission Basel SBB - Davos Platz"
+            }
+        ],
+        "documents": [
+            {
+                "medium": "A4_PDF",
+                "type": "TICKET",
+                "content": "BASE64EncodedTicket",
+                "format": "application/pdf"
+            }
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "id": "ca622d56-7033-11eb-9439-0242ac130002",
+    "abstract": "Andreas Schlapbach (1974-09-14)",
+    "reference": "swisspass_id_001",
+    "dateOfBirth": "1974-09-14",
+    "cards": [],
+    "details": {
+        "preferredLanguage": "DE",
+        "title": "Dr",
+        "firstName": "Andreas",
+        "lastName": "Schlapbach",
+        "eMail": "andreas.schlapbach@sbb.ch",
+        "phoneNumber": "+41795991274"
+    }
+}

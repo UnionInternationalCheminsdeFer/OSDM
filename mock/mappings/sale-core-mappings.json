@@ -8,7 +8,8 @@
             "response": {
                 "status": 200,
                 "headers": {
-                    "Content-type": "application/json"
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
                 },
                 "bodyFileName": "responses/trip-offer-response-Basel-DavosPlatz.json"
             }
@@ -21,10 +22,10 @@
             "response": {
                 "status": 200,
                 "headers": {
-                    "Content-type": "application/json"
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
                 },
                 "jsonBody": {
-                    "id": 1,
                     "abstract": "Bookings Zürich-Davos"
                 }
             }
@@ -32,17 +33,103 @@
         {
             "request": {
                 "method": "POST",
-                "url": "/bookings/1/fulfillments"
+                "url": "/bookings/booking_001/fulfillments"
             },
             "response": {
                 "status": 200,
                 "headers": {
-                    "Content-type": "application/json"
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
                 },
                 "jsonBody": {
-                    "id": 1,
                     "abstract": "Fulfillments Zürich-Davos created"
                 }
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/bookings/booking_001/passengers/ca622d56-7033-11eb-9439-0242ac130002"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/passenger-001.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/fulfillments/94a4c484-702f-11eb-9439-0242ac130002"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/fulfillment-001.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/fulfillments/3730e668-7032-11eb-9439-0242ac130002"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/fulfillment-002.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/fulfillments/406e9432-7032-11eb-9439-0242ac130002"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/fulfillment-003.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/products/CH00125FIRST"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "max-age=86400",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/products-CH00125FIRST.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/products/CH10125FIRST"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "max-age=86400",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/products-CH10125FIRST.json"
             }
         }
     ]
