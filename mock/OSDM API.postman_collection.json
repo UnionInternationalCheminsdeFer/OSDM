@@ -13,16 +13,21 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
-					},
-					"response": []
-				},
-				{
-					"name": "Landquart",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": null
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=Basel",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "Basel"
+								}
+							]
+						}
 					},
 					"response": []
 				},
@@ -31,7 +36,112 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=Davos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "Davos"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Landquart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=Landquart",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "Landquart"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sargans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=Sargans",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "Sargans"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Zürich HB",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=Sargans",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "Sargans"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "trips",
+			"item": [
+				{
+					"name": "Trip Basel SBB - Landquart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trips-collection",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trips-collection"
+							]
+						}
 					},
 					"response": []
 				}
