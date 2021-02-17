@@ -11,7 +11,9 @@ Mocked resources:
 - GET `/locations/?matchValue=Sargans`
 - GET `/locations/?matchValue=Schiers`
 - GET `/locations/?matchValue=Zürich`
-- GET `/trips/
+- GET `/trips/50898cd4-0d1e-4456-92bd-c119d419728e`
+- GET `6db18e19-d87f-442b-b80c-90e3b7007f20`
+- 
 - POST `/trips-collection` with body  
 - POST `/trip-offers-collection`
 - POST `/bookings`
