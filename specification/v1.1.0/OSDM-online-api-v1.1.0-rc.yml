@@ -3031,13 +3031,13 @@ components:
           format: int32
         extendedChangeTime:
           description: >-
-            OOS MVP Indicates additional transfer time required where a transfer
+            Indicates additional transfer time required where a transfer
             is present in the resulting trip. Expressed in minutes.
           type: integer
           format: int32
         needsPRMAssistance:
           description: >-
-            OOS MVP indicates a need for an itinerary where end-to-end PMR
+            Indicates a need for an itinerary where end-to-end PMR
             assistance and accessibility is possible.
           type: boolean
           default: false
