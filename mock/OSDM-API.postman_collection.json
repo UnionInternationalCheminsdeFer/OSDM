@@ -175,10 +175,19 @@
 			"name": "trips",
 			"item": [
 				{
-					"name": "Trip Basel SBB - Landquart",
+					"name": "Trip Basel SBB - Klosters Platz",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"code\": \"8500010\" \r\n    },\r\n    \"destination\": {\r\n      \"code\": \"8509068\" \r\n    },\r\n    \"travelDataTime\": \"2021-03-22T13:06:37.489Z\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{baseUrl}}/trips-collection",
 							"host": [
