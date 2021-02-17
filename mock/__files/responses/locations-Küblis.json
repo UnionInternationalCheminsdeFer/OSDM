@@ -1,27 +1,27 @@
 {
     "locations": [
       {
-        "id": "string",
-        "title": "Davos Platz",
+        "id": "8509064",
+        "title": "Küblis",
         "station": {
-          "localCode": "8509073",
+          "localCode": "8509064",
           "country": "ch",
           "codes": [
             {
               "codeList": "UIC",
-              "code": "8509073"
+              "code": "8509064"
             }
           ],
           "geoCoordinate": {
             "system": "WSG84",
             "accuracy": 0.00002,
-            "latitude": 46.791469,
-            "longitude": 9.820733
+            "latitude": 46.91428,
+            "longitude": 9.771841
           },
           "names": [
             {
               "language": "de",
-              "text": "Davos Platz"
+              "text": "Küblis"
             }
           ]
         }

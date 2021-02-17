@@ -1,0 +1,30 @@
+{
+    "locations": [
+      {
+        "id": "8509060",
+        "title": "Schiers",
+        "station": {
+          "localCode": "8509060",
+          "country": "ch",
+          "codes": [
+            {
+              "codeList": "UIC",
+              "code": "8509060"
+            }
+          ],
+          "geoCoordinate": {
+            "system": "WSG84",
+            "accuracy": 0.00002,
+            "latitude": 46.96799,
+            "longitude": 9.688358
+          },
+          "names": [
+            {
+              "language": "de",
+              "text": "Schiers"
+            }
+          ]
+        }
+      }
+    ]
+  }

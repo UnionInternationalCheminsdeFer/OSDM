@@ -5,11 +5,16 @@
 Mocked resources:
 
 - GET `/locations/?matchValue=Basel`
-- GET `/locations/?matchValue=Davos`
+- GET `/locations/?matchValue=Klosters`
+- GET `/locations/?matchValue=Küblis`
 - GET `/locations/?matchValue=Landquart`
 - GET `/locations/?matchValue=Sargans`
+- GET `/locations/?matchValue=Schiers`
 - GET `/locations/?matchValue=Zürich`
-- POST `/trips-collection`
+- GET `/trips/
+- POST `/trips-collection`:
+  - `tripSearch.origin.code=` and `tripSearch.destination.code=`
+  - `tripSearch.origin.code=` and `tripSearch.destination.code=`
 - POST `/trip-offers-collection`
 - POST `/bookings`
 - POST `/bookings/{bookingId}/fulfillments`
@@ -23,18 +28,25 @@ Mocked resources:
 The [WireMock](https://wiremock.org) is used to build the mock which is configured
 by [WireMock Mappings](./mappings/sale-core-mappings.json).
 
-Use `./startMock.sh` to run mock.
+Use `./startMock.sh` to run mock which will run on [https://localhost:8080](https://localhost:8080).
 
-## Used Ids
+To query the mocked interface a [Postman Collection](OSDM-API.postman_collection.json) is
+provided. Additionally, [Postman Environnement](OSDM-API.postman_collection.json) is used to
+configure the [Postman](https://www.postman.com) environnement.
 
-Ids used for this scenario (`grep -C 2 -n '"id' trip-offer-response-Basel-DavosPlatz.json`):
+## Ids Used
 
-- stops: Basel SBB, Davos Platz, Landquart, Sargans, Zürich HB
+Ids used for this scenario (`grep -C 2 -n '"id' trip-offer-response-Basel-Klosters.json`):
+
+- stops: Basel SBB, Klosters Platz, Küblis, Landquart, Sargans, Schiers, Zürich HB.
+- trips:
+  - `50898cd4-0d1e-4456-92bd-c119d419728e` (Trip Basel SBB - Landquart)
+  - `6db18e19-d87f-442b-b80c-90e3b7007f20` (Trip Landquart - Klosters)
 - trip offer id:  `tripOffer_001`
-- admission id: `admission_BaselSBB-DavosPlatz`
+- admission id: `admission_BaselSBB-Klosters`
 - reservation ids:
   - `reservation_BaselSBB-Landquart`
-  - `reservation_Landquart-DavosPlatz`
+  - `reservation_Landquart-Klosters`
 - product ids:
   - `CH00125FIRST`
   - `CH10125FIRST`
@@ -51,6 +63,9 @@ Ids used for this scenario (`grep -C 2 -n '"id' trip-offer-response-Basel-DavosP
 - Basel SBB - Paris (SNCF)
 - Zürich HB - Milano (Trenitalia)
 - Paris - London (Sqills)
+- London - Edinburgh (Silverrail)
 - Paris - Brüssels (BENE)
 - Paris - Bordeaux (Amadeus)
+- Bordeaux - Barcelona (Trainline)
+- Barcelona - Madrid (Renfe)
 - ...

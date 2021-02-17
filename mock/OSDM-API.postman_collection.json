@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "1854a7a6-8ba3-4dde-9003-d9f588a7fd80",
-		"name": "OSDM API",
+		"name": "OSDM-API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -32,12 +32,12 @@
 					"response": []
 				},
 				{
-					"name": "Davos",
+					"name": "Klosters Platz",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/locations?matchValue=Davos",
+							"raw": "{{baseUrl}}/locations?matchValue=Klosters",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -47,7 +47,30 @@
 							"query": [
 								{
 									"key": "matchValue",
-									"value": "Davos"
+									"value": "Klosters"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Küblis",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=Küblis",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "Küblis"
 								}
 							]
 						}
@@ -101,6 +124,29 @@
 					"response": []
 				},
 				{
+					"name": "Schiers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=Davos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "Davos"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Zürich HB",
 					"request": {
 						"method": "GET",
@@ -140,6 +186,42 @@
 							],
 							"path": [
 								"trips-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip Basel SBB - Landquart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trips/50898cd4-0d1e-4456-92bd-c119d419728e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trips",
+								"50898cd4-0d1e-4456-92bd-c119d419728e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip Landquart - Klosters Platz",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trips/6db18e19-d87f-442b-b80c-90e3b7007f20",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trips",
+								"6db18e19-d87f-442b-b80c-90e3b7007f20"
 							]
 						}
 					},

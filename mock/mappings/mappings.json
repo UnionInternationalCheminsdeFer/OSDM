@@ -25,7 +25,7 @@
                 "urlPath": "/locations",
                 "queryParameters": {
                     "matchValue": {
-                        "contains": "Davos"
+                        "contains": "Klosters"
                     }
                 }
             },
@@ -35,7 +35,26 @@
                     "Content-Type": "application/json",
                     "Content-Language": "en"
                 },
-                "bodyFileName": "responses/locations-DavosPlatz.json"
+                "bodyFileName": "responses/locations-KlostersPlatz.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "urlPath": "/locations",
+                "queryParameters": {
+                    "matchValue": {
+                        "contains": "Küblis"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-Küblis.json"
             }
         },
         {
@@ -79,7 +98,7 @@
         {
             "request": {
                 "method": "GET",
-                "urlPath": "/trips",
+                "urlPath": "/locations",
                 "queryParameters": {
                     "matchValue": {
                         "contains": "Sargans"
@@ -101,6 +120,25 @@
                 "urlPath": "/locations",
                 "queryParameters": {
                     "matchValue": {
+                        "contains": "Schiers"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-Schiers.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "urlPath": "/locations",
+                "queryParameters": {
+                    "matchValue": {
                         "contains": "Zürich"
                     }
                 }
@@ -114,6 +152,34 @@
                 "bodyFileName": "responses/locations-ZürichHB.json"
             }
         },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/trips/50898cd4-0d1e-4456-92bd-c119d419728e"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trips-BaselSBB-Landquart.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/trips/6db18e19-d87f-442b-b80c-90e3b7007f20"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trips-Landquart-KlostersPlatz.json"
+            }
+        },      
         {
             "request": {
                 "method": "POST",
