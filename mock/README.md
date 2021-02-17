@@ -1,6 +1,6 @@
 # Mocking the OSDM Interface
 
-## Scenario 1: Basel SBB - Davos Platz
+## Scenario 1: Basel SBB - Landquart
 
 Mocked resources:
 
