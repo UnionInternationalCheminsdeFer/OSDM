@@ -446,6 +446,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -625,6 +627,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -794,6 +798,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1404,6 +1410,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1515,6 +1523,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1561,6 +1571,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1670,12 +1682,7 @@ paths:
         '404':
           description: Not Found
         '409':
-          description: >-
-             Conflict - the state of the server or resource does not allow the action (e.g. the booking was already confirmed)
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'          
+          $ref: '#/components/responses/ConflictResponse'        
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1720,6 +1727,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1775,12 +1784,7 @@ paths:
         '404':
           description: Not Found
         '409':
-          description: >-
-             Conflict - the state of the server or resource does not allow the action (e.g. the booking was not confirmed)
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'            
+          $ref: '#/components/responses/ConflictResponse'            
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1839,12 +1843,7 @@ paths:
         '404':
           description: Not Found
         '409':
-          description: >-
-             Conflict - the state of the server or resource does not allow the action (e.g. the booking was not confirmed)
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'            
+          $ref: '#/components/responses/ConflictResponse'        
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1942,12 +1941,7 @@ paths:
         '404':
           description: Not Found
         '409':
-          description: >-
-             Conflict - the state of the server or resource does not allow the action (e.g. the booking was not confirmed)
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'            
+          $ref: '#/components/responses/ConflictResponse'       
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2059,6 +2053,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2112,6 +2108,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2242,6 +2240,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2292,6 +2292,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2361,6 +2363,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2696,14 +2700,21 @@ components:
 
   responses:
     BadRequestResponse:
-      description: Bad request
+      description: Bad Request (400)
+      content:
+        "application/problem+json":
+          schema:
+            $ref: '#/components/schemas/Problem'
+
+    ConflictResponse:
+      description: Conflict (409)
       content:
         "application/problem+json":
           schema:
             $ref: '#/components/schemas/Problem'    
 
     InternalServerErrorResponse:
-      description: Internal server error
+      description: Internal Server Error (500)
       content:
         "application/problem+json":
           schema:
