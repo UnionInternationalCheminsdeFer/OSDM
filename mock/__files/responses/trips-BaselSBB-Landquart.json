@@ -131,7 +131,7 @@
                         },
                         "departureDateTime": "2021-03-22T14:00:37.490Z",
                         "arrivalDateTime": "2021-03-22T14:07:37.490Z",
-                        "index": 1,
+                        "index": 0,
                         "departureTrack": "10",
                         "arrivalTrack": "10"
                     },

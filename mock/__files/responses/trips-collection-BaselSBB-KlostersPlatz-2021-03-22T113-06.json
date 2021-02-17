@@ -1,0 +1,533 @@
+{
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "tripsCollection": [
+        {
+            "trip": {
+                "id": "50898cd4-0d1e-4456-92bd-c119d419728e",
+                "title": "Basel SBB - Landquart, 2021-03-22, 13:06 - 15:12 CET",
+                "segments": [
+                    {
+                        "index": 0,
+                        "origin": {
+                            "station": {
+                                "id": "8500010",
+                                "title": "Basel SBB",
+                                "station": {
+                                    "localCode": "8500010",
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8500010"
+                                        }
+                                    ]
+                                },
+                                "departureDateTime": "2021-03-22T13:06:37.489Z",
+                                "index": 0,
+                                "departureTrack": "5"
+                            }
+                        },
+                        "destination": {
+                            "station": {
+                                "id": "8509002",
+                                "title": "Landquart",
+                                "station": {
+                                    "localCode": "8509002",
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509002"
+                                        }
+                                    ],
+                                    "geoCoordinate": {
+                                        "system": "WSG84",
+                                        "accuracy": 0.00002,
+                                        "latitude": 46.967442,
+                                        "longitude": 9.554032
+                                    }
+                                },
+                                "arrivalDateTime": "2021-03-22T15:12:37.490Z",
+                                "index": 1,
+                                "arrivalTrack": "2"
+                            }
+                        },
+                        "duration": "P2DT3H4M",
+                        "vehicle": {
+                            "numbers": [
+                                "71"
+                            ],
+                            "line": "71",
+                            "serviceBrand": "ICE",
+                            "transportMode": "INTERCITY"
+                        },
+                        "stops": [
+                            {
+                                "station": {
+                                    "id": "8500010",
+                                    "title": "Basel SBB",
+                                    "station": {
+                                        "localCode": "8500010",
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8500010"
+                                            }
+                                        ],
+                                        "geoCoordinate": {
+                                            "system": "WSG84",
+                                            "accuracy": 0.00002,
+                                            "latitude": 47.547408,
+                                            "longitude": 7.589548
+                                        },
+                                        "names": [
+                                            {
+                                                "language": "de",
+                                                "text": "Basel SBB"
+                                            },
+                                            {
+                                                "language": "fr",
+                                                "text": "Bâle SBB"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "departureDateTime": "2021-03-22T13:06:37.490Z",
+                                "index": 0,
+                                "departureTrack": "5"
+                            },
+                            {
+                                "station": {
+                                    "id": "8503000",
+                                    "title": "Zürich SBB",
+                                    "station": {
+                                        "localCode": "8503000",
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8503000"
+                                            }
+                                        ],
+                                        "geoCoordinate": {
+                                            "system": "WSG84",
+                                            "accuracy": 0.00002,
+                                            "latitude": 47.378177,
+                                            "longitude": 8.540193
+                                        },
+                                        "names": [
+                                            {
+                                                "language": "de",
+                                                "text": "Zürich SBB"
+                                            },
+                                            {
+                                                "language": "fr",
+                                                "text": "Zurich SBB"
+                                            },
+                                            {
+                                                "language": "it",
+                                                "text": "Zurigo SBB"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "departureDateTime": "2021-03-22T14:00:37.490Z",
+                                "arrivalDateTime": "2021-03-22T14:07:37.490Z",
+                                "index": 1,
+                                "departureTrack": "10",
+                                "arrivalTrack": "10"
+                            },
+                            {
+                                "station": {
+                                    "id": "8509411",
+                                    "title": "Sargans",
+                                    "station": {
+                                        "localCode": "8509411",
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8509411"
+                                            }
+                                        ],
+                                        "geoCoordinate": {
+                                            "system": "WSG84",
+                                            "accuracy": 0.00002,
+                                            "latitude": 47.045361,
+                                            "longitude": 9.445398
+                                        },
+                                        "names": [
+                                            {
+                                                "language": "de",
+                                                "text": "Sargans"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "departureDateTime": "2021-03-22T15:03:37.490Z",
+                                "arrivalDateTime": "2021-03-22T15:04:37.490Z",
+                                "index": 2,
+                                "departureTrack": "2",
+                                "arrivalTrack": "2"
+                            },
+                            {
+                                "station": {
+                                    "id": "8509002",
+                                    "title": "Landquart",
+                                    "station": {
+                                        "localCode": "8509002",
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8509002"
+                                            }
+                                        ],
+                                        "geoCoordinate": {
+                                            "system": "WSG84",
+                                            "accuracy": 0.00002,
+                                            "latitude": 46.967442,
+                                            "longitude": 9.554032
+                                        },
+                                        "names": [
+                                            {
+                                                "language": "de",
+                                                "text": "Landquart"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "arrivalDateTime": "2021-03-22T15:12:37.490Z",
+                                "index": 3,
+                                "arrivalTrack": "2"
+                            }
+                        ]
+                    }
+                ],
+                "origin": {
+                    "station": {
+                        "id": "8500010",
+                        "title": "Basel SBB",
+                        "station": {
+                            "localCode": "8500010",
+                            "country": "ch",
+                            "codes": [
+                                {
+                                    "codeList": "UIC",
+                                    "code": "8500010"
+                                }
+                            ],
+                            "geoCoordinate": {
+                                "system": "WSG84",
+                                "accuracy": 0.00002,
+                                "latitude": 47.547408,
+                                "longitude": 7.589548
+                            },
+                            "names": [
+                                {
+                                    "language": "de",
+                                    "text": "Basel SBB"
+                                }
+                            ]
+                        }
+                    },
+                    "departureDateTime": "2021-03-22T13:06:37.490Z",
+                    "index": 0,
+                    "departureTrack": "5"
+                },
+                "destination": {
+                    "station": {
+                        "id": "8509002",
+                        "title": "Landquart",
+                        "station": {
+                            "localCode": "8509002",
+                            "country": "ch",
+                            "codes": [
+                                {
+                                    "codeList": "UIC",
+                                    "code": "8509002"
+                                }
+                            ],
+                            "geoCoordinate": {
+                                "system": "WSG84",
+                                "accuracy": 0.00002,
+                                "latitude": 46.967442,
+                                "longitude": 9.554032
+                            },
+                            "names": [
+                                {
+                                    "language": "de",
+                                    "text": "Landquart"
+                                }
+                            ]
+                        }
+                    },
+                    "arrivalDateTime": "2021-03-22T15:12:37.491Z",
+                    "index": 0,
+                    "arrivalTrack": "2"
+                },
+                "duration": "P2DT3H4M",
+                "direction": "UNSPECIFIED"
+            }
+        },
+        {
+            "trip": {
+                "id": "6db18e19-d87f-442b-b80c-90e3b7007f20",
+                "title": "Landquart - Klosters Platz, 2021-03-22, 15:20 - 15:59 CET",
+                "segments": [
+                    {
+                        "index": 0,
+                        "origin": {
+                            "station": {
+                                "id": "8509002",
+                                "title": "Landquart",
+                                "station": {
+                                    "localCode": "8509002",
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509002"
+                                        }
+                                    ]
+                                },
+                                "departureDateTime": "2021-03-22T15:20:37.489Z",
+                                "index": 0,
+                                "departureTrack": "5"
+                            }
+                        },
+                        "destination": {
+                            "station": {
+                                "id": "8509068",
+                                "title": "Klosters Platz",
+                                "station": {
+                                    "localCode": "8509068",
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509068"
+                                        }
+                                    ],
+                                    "geoCoordinate": {
+                                        "system": "WSG84",
+                                        "accuracy": 0.00002,
+                                        "latitude": 46.967442,
+                                        "longitude": 9.554032
+                                    }
+                                },
+                                "arrivalDateTime": "2021-03-22T15:59:37.490Z",
+                                "index": 1,
+                                "arrivalTrack": "1"
+                            }
+                        },
+                        "duration": "P2DT3H4M",
+                        "vehicle": {
+                            "numbers": [
+                                "1351"
+                            ],
+                            "line": "1351",
+                            "serviceBrand": "RE",
+                            "transportMode": "REGIONAL"
+                        },
+                        "stops": [
+                            {
+                                "station": {
+                                    "id": "8509002",
+                                    "title": "Landquart",
+                                    "station": {
+                                        "localCode": "8509002",
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8509002"
+                                            }
+                                        ],
+                                        "geoCoordinate": {
+                                            "system": "WSG84",
+                                            "accuracy": 0.00002,
+                                            "latitude": 46.967442,
+                                            "longitude": 9.554032
+                                        },
+                                        "names": [
+                                            {
+                                                "language": "de",
+                                                "text": "Landquart"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "departureDateTime": "2021-03-22T15:20:37.490Z",
+                                "index": 0,
+                                "departureTrack": "5"
+                            },
+                            {
+                                "station": {
+                                    "id": "8509060",
+                                    "title": "Schiers",
+                                    "station": {
+                                        "localCode": "8509060",
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8509060"
+                                            }
+                                        ],
+                                        "geoCoordinate": {
+                                            "system": "WSG84",
+                                            "accuracy": 0.00002,
+                                            "latitude": 46.96799,
+                                            "longitude": 9.688358
+                                        },
+                                        "names": [
+                                            {
+                                                "language": "de",
+                                                "text": "Schiers"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "departureDateTime": "2021-03-22T15:30:37.490Z",
+                                "arrivalDateTime": "2021-03-22T15:33:37.490Z",
+                                "index": 1,
+                                "departureTrack": "1",
+                                "arrivalTrack": "1"
+                            },
+                            {
+                                "station": {
+                                    "id": "8509064",
+                                    "title": "Küblis",
+                                    "station": {
+                                        "localCode": "8509064",
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8509064"
+                                            }
+                                        ],
+                                        "geoCoordinate": {
+                                            "system": "WSG84",
+                                            "accuracy": 0.00002,
+                                            "latitude": 46.91428,
+                                            "longitude": 9.771841
+                                        },
+                                        "names": [
+                                            {
+                                                "language": "de",
+                                                "text": "Küblis"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "departureDateTime": "2021-03-22T15:41:37.490Z",
+                                "arrivalDateTime": "2021-03-22T15:44:37.490Z",
+                                "index": 2,
+                                "departureTrack": "1",
+                                "arrivalTrack": "1"
+                            },
+                            {
+                                "station": {
+                                    "id": "8509064",
+                                    "title": "Klosters Platz",
+                                    "station": {
+                                        "localCode": "8509064",
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8509064"
+                                            }
+                                        ],
+                                        "geoCoordinate": {
+                                            "system": "WSG84",
+                                            "accuracy": 0.00002,
+                                            "latitude": 46.869208,
+                                            "longitude": 9.880943
+                                        },
+                                        "names": [
+                                            {
+                                                "language": "de",
+                                                "text": "Klosters Platz"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "arrivalDateTime": "2021-03-22T15:59:37.490Z",
+                                "index": 3,
+                                "arrivalTrack": "1"
+                            }
+                        ]
+                    }
+                ],
+                "origin": {
+                    "station": {
+                        "id": "8509002",
+                        "title": "Landquart",
+                        "station": {
+                            "localCode": "8509002",
+                            "country": "ch",
+                            "codes": [
+                                {
+                                    "codeList": "UIC",
+                                    "code": "8509002"
+                                }
+                            ],
+                            "geoCoordinate": {
+                                "system": "WSG84",
+                                "accuracy": 0.00002,
+                                "latitude": 47.547408,
+                                "longitude": 7.589548
+                            },
+                            "names": [
+                                {
+                                    "language": "de",
+                                    "text": "Landquart"
+                                }
+                            ]
+                        }
+                    },
+                    "departureDateTime": "2021-03-22T15:20:37.490Z",
+                    "index": 0,
+                    "departureTrack": "5"
+                },
+                "destination": {
+                    "station": {
+                        "id": "8509068",
+                        "title": "Klosters Platz",
+                        "station": {
+                            "localCode": "8509068",
+                            "country": "ch",
+                            "codes": [
+                                {
+                                    "codeList": "UIC",
+                                    "code": "8509068"
+                                }
+                            ],
+                            "geoCoordinate": {
+                                "system": "WSG84",
+                                "accuracy": 0.00002,
+                                "latitude": 46.869208,
+                                "longitude": 9.880943
+                            },
+                            "names": [
+                                {
+                                    "language": "de",
+                                    "text": "Klosters Platz"
+                                }
+                            ]
+                        }
+                    },
+                    "arrivalDateTime": "2021-03-22T15:59:37.491Z",
+                    "index": 0,
+                    "arrivalTrack": "2"
+                },
+                "duration": "P2DT3H4M",
+                "direction": "UNSPECIFIED"
+            }
+        }
+    ]
+}

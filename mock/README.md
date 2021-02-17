@@ -34,14 +34,15 @@ To query the mocked interface a [Postman Collection](OSDM-API.postman_collection
 provided. Additionally, [Postman Environnement](OSDM-API.postman_collection.json) is used to
 configure the [Postman](https://www.postman.com) environnement.
 
-## Ids Used
+## Ids Used for Scenario 1
 
 Ids used for this scenario (`grep -C 2 -n '"id' trip-offer-response-Basel-Klosters.json`):
 
 - stops: Basel SBB, Klosters Platz, Küblis, Landquart, Sargans, Schiers, Zürich HB.
 - trips:
-  - `50898cd4-0d1e-4456-92bd-c119d419728e` (Trip Basel SBB - Landquart)
-  - `6db18e19-d87f-442b-b80c-90e3b7007f20` (Trip Landquart - Klosters)
+  - `50898cd4-0d1e-4456-92bd-c119d419728e` (Trip Basel SBB - Landquart, 2021-03-22 13:08)
+  - `6db18e19-d87f-442b-b80c-90e3b7007f20` (Trip Landquart - Klosters, 2021-03-22 15:20)
+  - `3fa85f64-5717-4562-b3fc-2c963f66afa6` (Trips Collection - Basel SBB - Klosters Platz, 2021-03-22 13:08)
 - trip offer id:  `tripOffer_001`
 - admission id: `admission_BaselSBB-Klosters`
 - reservation ids:

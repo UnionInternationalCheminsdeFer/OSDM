@@ -184,6 +184,11 @@
             "request": {
                 "method": "POST",
                 "url": "/trips-collection"
+                // "bodyPatterns" : [
+                //     {
+                //         "matchesJsonPath" : "$tripSearchCriteria.origin[?(@.code == '8500010')]"
+                //     }
+                // ]
             },
             "response": {
                 "status": 200,
@@ -191,7 +196,7 @@
                     "Content-Type": "application/json",
                     "Content-Language": "en"
                 },
-                "bodyFileName": "responses/trips-BaselSBB-Landquart.json"
+                "bodyFileName": "responses/trips-collection-BaselSBB-KlostersPlatz-2021-03-22T113-06.json"
             }                    
         },
         {
