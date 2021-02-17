@@ -2868,7 +2868,7 @@ components:
           description: >-
             Unique id of this trip on this server. The id can also be a hash
             that encodes the trip in a compact way.
-        title:
+        abstract:
           type: string
           example: Bruxelles-Midi - Paris-Nord, 2020-07-01 10:05 CET
         segments:
@@ -2900,8 +2900,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
       required:
-        - id  
-        - title
+        - id
 
     TripRequest:
       type: object
@@ -3130,7 +3129,7 @@ components:
       properties:
         id:
           type: string
-        title:
+        abstract:
           type: string
           example: Bruxelles-Midi 2020-07-01 10:05 CET
         trip:
@@ -3191,7 +3190,7 @@ components:
         id:
           type: string
           format: uuid
-        title:
+        abstract:
           type: string
           example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
         offerSummary:
@@ -3383,7 +3382,7 @@ components:
         id:
           type: string
           description: unique id of this product on this server.
-        title:
+        abstract:
           type: string
           example: TGV Lyria Loisir 2
         code:
@@ -3594,7 +3593,7 @@ components:
         id:
           type: string
           format: uuid
-        title:
+        abstract:
           type: string
           example: Reservierungsentgelt
         price:
@@ -3644,14 +3643,14 @@ components:
         id:
           type: string
           format: uuid
+        abstract:
+          type: string
+          example: ICE Wifi on Board 2020-07-11
         parts:
           type: string
           format: url
           example: >-
             http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'
-        title:
-          type: string
-          example: ICE Wifi on Board 2020-07-11
         links:
           type: array
           items:
@@ -3746,7 +3745,7 @@ components:
         id:
           type: string
           format: uuid
-        title:
+        abstract:
           type: string
           example: booking 2345
         reference:
@@ -4079,7 +4078,7 @@ components:
           type: string
           format: uuid
           description: id of the refund offer
-        title:
+        abstract:
           type: string
           example: Refund Paris-Barcelona Andre Dupont 2020-07-23
         validUntil:
@@ -4186,7 +4185,7 @@ components:
         id:
           type: string
           format: uuid
-        title:
+        abstract:
           type: string
           example: Bruxelles-Midi 2020-07-01 10:05 CET
         trip:
@@ -4218,7 +4217,7 @@ components:
         id:
           type: string
           format: uuid
-        title:
+        abstract:
           type: string
           example: booking 2345
         status:
@@ -4377,7 +4376,7 @@ components:
         id:
           type: string
           description: unique id of this coachLayout on this server
-        title:
+        abstract:
           type: string
           example: coach 3 train T122
         places:
@@ -5453,7 +5452,7 @@ components:
         id:
           type: string
           description: unique id of this location on this server.
-        title:
+        abstract:
           type: string
           example: Bruxelles-Midi
         station:
@@ -5473,7 +5472,6 @@ components:
             $ref: '#/components/schemas/Link'
       required:
         - id
-        - title
 
     StationDetail:
       type: object
@@ -5979,7 +5977,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
       required:
-        - title
+        - abstract
         - links
 
     PassengerDetail:
@@ -5994,7 +5992,7 @@ components:
         preferredLanguage:
           type: string
           description: Languages spoken by the traveler (ISO Language code)
-        title:
+        abstract:
           type: string
         firstName:
           type: string
