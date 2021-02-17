@@ -2831,8 +2831,12 @@ components:
           items:
             $ref: '#/components/schemas/Stop'
       required:
-        - seqId
+        - index
+        - origin
+        - destination
+        - duration
         - vehicle
+
     Stop:
       type: object
       properties:
@@ -2912,6 +2916,10 @@ components:
             $ref: '#/components/schemas/Link'
       required:
         - id
+        - segments
+        - origin
+        - destination
+        - duration
 
     TripRequest:
       type: object
