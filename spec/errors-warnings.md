@@ -17,7 +17,7 @@ The following standard HTTP error codes are used in the specification:
 | `401` | Unauthorized |
 | `403` | Forbidden |
 | `404` | Not found |
-| `409` | Conflict (TODO) |
+| `409` | Conflict |
 | `500` | Internal server error |
 | `501` | Not implemented |
 
@@ -39,19 +39,16 @@ situation in the absolute URI in the type property as well
 |---------------------|--------------|-------------------------------|
 | Locations  | `OSDM_L_INV`   | Invalid characters in the search string |
 | Locations  | `OSDM_L_NORES` | The search did not return any result|
-| Locations  | `OSDM_L_U`     | Unknown error on server side |
 | Trips      | `OSDM_TR_INV`  | A search criteria value contains invalid value or invalid characters |
 | Trips      | `OSDM_TR_OAB`  | A search criteria lies outside accepted boundaries |
 | Trips      | `OSDM_TR_UL`   | A provided location is not known |
 | Trips      | `OSDM_TR_NORES`| The search did not return any result |
-| Trips      | `OSDM_TR_U`    | unknown error on server side |
 | Offers     | `OSDM_O_TRMIS` | The referenced trip cannot be found (expired ?) |
 | Offers     | `OSDM_O_INV`   | A search criteria value contains invalid value or invalid characters |
-| Offers     | `OSDM_O_OOB`   |  A search criteria lies outside accepted boundaries |
+| Offers     | `OSDM_O_OOB`   | A search criteria lies outside accepted boundaries |
 | Offers     | `OSDM_O_UL`    | A provided location is not known |
 | Offers     | `OSDM_O_NOTR`  | The trip search did not return any result |
 | Offers     | `OSDM_O_NOOF`  | No offer could be built for any of the discovered trips |
-| Offers     | `OSDM_O_U`     | Unknown error on server side |
 | Offers     | `OSDM_O_SMM`   | Schedule mismatch between systems |
 | Offers     | `OSDM_O_RONA`  | The requested reservation option is not available on this transport |
 | Offers     | `OSDM_O_PINV`  | An invalid value is provided for a passenger property |
@@ -64,11 +61,10 @@ situation in the absolute URI in the type property as well
 | Booking    | `OSDM_B_SSU`   | Unknown error while pre-booking to sub-system |
 | Booking    | `OSDM_B_AV`    | Insufficient availability for one of the requested products |
 | Booking    | `OSDM_B_PAV`   | The requested place is not available |
-| Booking    | `OSDM_B_U`     | unknown error on server side |
 | Booking    | `OSDM_B_`      | An invalid value is provided for a passenger property |
 | Booking    | `OSDM_B_ROP`   | Attempted to modify a read-only property |
-| Booking    | `OSDM_B_BCO`   | the booking is already confirmed |
-| Booking    | `OSDM_B_BCA`   | the booking is already cancelled |
+| Booking    | `OSDM_B_BCO`   | The booking is already confirmed |
+| Booking    | `OSDM_B_BCA`   | The booking is already cancelled |
 | Booking    | `OSDM_B_NMOD`  | The booking  and does not allow  modifications |
 | Confirm    | `OSDM_C_PS`    | Partial success |
 | Confirm    | `OSDM_C_NOSUP` | Operation not supported on one of the offer parts |

@@ -4,7 +4,7 @@ title: Validation & Verification
 permalink: /validation-verification/
 ---
 
-*Note: to be released with version 1.1*
+*Note: to be released with version 1.2*
 
 ## Vision
 
@@ -25,7 +25,7 @@ In a first estimation, a test set containing more than 100 test sets will be nee
 ## Process
 
 1. An implementing party tests the implementation with the consumer driven contracts.
-2. To acquire the statement of compliance the implementing party provides its implementations to an independent entity 
+2. To acquire the statement of compliance the implementing party provides its implementations to an independent entity
    for verification.
 3. The independent entity tests the implementation and verifies the compliance to the implementing party.
 
@@ -37,7 +37,7 @@ This entity is in charge to **maintain the test sets** needed for a party to tes
 
 This entity is also authorized to issue a **statement of compliance**.
 
-## Todo
+## Open tasks
 
 - Assign entity with the correct skills.
 - Order the entity to set up test sets and test automation. This will also imply having mocks.
