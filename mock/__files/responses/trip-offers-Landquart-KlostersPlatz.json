@@ -634,9 +634,7 @@
                         "optionality": "string",
                         "fees": []
                     }
-                ],
-                "ancillaries": [],
-                "fees": []
+                ]
             }
         ],
         "passengers": [

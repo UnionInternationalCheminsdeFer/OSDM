@@ -1,8 +1,8 @@
 {
   "id": "CH00125",
-  "abstract": "Point-to-point Ticket DV Schweiz",
+  "abstract": "Point-to-point Ticket",
   "code": "CH00125",
-  "description": "One-way, return or round-trip ticket (ticket machines/ticket counter) in Switzerland in 1st or 2nd class",
+  "description": "One-way, return or round-trip ticket in Switzerland in 1st or 2nd class",
   "conditions": [
     {
       "type": "REFUND",

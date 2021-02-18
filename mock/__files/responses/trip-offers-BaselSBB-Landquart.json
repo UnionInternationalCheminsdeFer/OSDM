@@ -146,9 +146,8 @@
                         "vatDetails": [
                             {
                                 "country": "CH",
-                                "amount": 5,
                                 "scale": 2,
-                                "percentage": 0,
+                                "percentage": 7.9,
                                 "taxId": "string",
                                 "scope": "string"
                             }
@@ -319,9 +318,8 @@
                                 "vatDetails": [
                                     {
                                         "country": "CH",
-                                        "amount": 5,
                                         "scale": 2,
-                                        "percentage": 0,
+                                        "percentage": 7.9,
                                         "taxId": "string",
                                         "scope": "string"
                                     }
@@ -382,9 +380,8 @@
                                                         "vatDetails": [
                                                             {
                                                                 "country": "CH",
-                                                                "amount": 5,
                                                                 "scale": 2,
-                                                                "percentage": 0,
+                                                                "percentage": 7.9,
                                                                 "taxId": "string",
                                                                 "scope": "string"
                                                             }
@@ -432,8 +429,7 @@
                                 "abstract": "ICE Wifi on Board 2020-07-11"
                             }
                         ],
-                        "ancillaries": [],
-                        "fees": []
+                        "ancillaries": []
                     }
                 ],
                 "reservations": [
@@ -447,9 +443,8 @@
                                 "vatDetails": [
                                     {
                                         "country": "CH",
-                                        "amount": 5,
                                         "scale": 2,
-                                        "percentage": 0,
+                                        "percentage": 7.9,
                                         "taxId": "string",
                                         "scope": "string"
                                     }
@@ -510,9 +505,8 @@
                                                         "vatDetails": [
                                                             {
                                                                 "country": "CH",
-                                                                "amount": 5,
                                                                 "scale": 2,
-                                                                "percentage": 0,
+                                                                "percentage": 7.9,
                                                                 "taxId": "string",
                                                                 "scope": "string"
                                                             }
@@ -634,9 +628,7 @@
                         "optionality": "string",
                         "fees": []
                     }
-                ],
-                "ancillaries": [],
-                "fees": []
+                ]
             }
         ],
         "passengers": [
