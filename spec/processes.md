@@ -377,7 +377,7 @@ reservations and fares, the reservedPlaces element will now be populated
 with the places that have actually be assigned to the passengers for
 this offer part.
 
-### Provisionally booking one or more offers
+### Additional information in provisional booking step
 
 In some cases, additional information must be provided before or at the provisional booking time
 in order to be taken into account, such as:
@@ -729,7 +729,9 @@ These are the required information needed per process step for major parties
 
 ## After Sales Processes
 
-### Request a Refund Offer
+### Refund
+
+#### Request a Refund Offer
 
 ![Request a Refund Offer](../images/processes/seq-request-a-refund-offer.png)
 
@@ -747,14 +749,20 @@ is relevant to the refund operation at the moment the refund offer was created.
 This includes information such as the amount that will be refunded, any
 potential refund fee, etc (see the model for more details).
 
-### Cancel a Refund Offer
+#### Cancel a Refund Offer
 
 ![Cancel a Refund Offer](../images/processes/seq-cancel-a-refund-offer.png)
 
-### Confirm a Refund Offer
+#### Confirm a Refund Offer
 
 ![Confirm a Refund Offer](../images/processes/seq-fulfillment-process.png)
 
 ## Example End-to-end Interaction
 
 ![Example End to End Interaction](../images/processes/seq-end-to-end-interaction.png)
+
+### Exchange
+
+#### Requesting an exchange offer
+
+Requesting an exchange ffer is almost identical to requesting a standard offer. The only difference in the request is that the fulfillment that the API consumer wants to exchange, and an overrule code if relevant,  are also provided.
