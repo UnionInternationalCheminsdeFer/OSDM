@@ -1,16 +1,15 @@
 {
     "trip": {
         "id": "6db18e19-d87f-442b-b80c-90e3b7007f20",
-        "title": "Landquart - Klosters Platz, 2021-03-22, 15:20 - 15:59 CET",
+        "abstract": "Landquart - Klosters Platz, 2021-03-22, 15:20 - 15:59 CET",
         "segments": [
             {
                 "index": 0,
                 "origin": {
                     "station": {
                         "id": "8509002",
-                        "title": "Landquart",
+                        "abstract": "Landquart",
                         "station": {
-                            "localCode": "8509002",
                             "country": "ch",
                             "codes": [
                                 {
@@ -27,9 +26,8 @@
                 "destination": {
                     "station": {
                         "id": "8509068",
-                        "title": "Klosters Platz",
+                        "abstract": "Klosters Platz",
                         "station": {
-                            "localCode": "8509068",
                             "country": "ch",
                             "codes": [
                                 {
@@ -62,9 +60,8 @@
                     {
                         "station": {
                             "id": "8509002",
-                            "title": "Landquart",
+                            "abstract": "Landquart",
                             "station": {
-                                "localCode": "8509002",
                                 "country": "ch",
                                 "codes": [
                                     {
@@ -93,9 +90,8 @@
                     {
                         "station": {
                             "id": "8509060",
-                            "title": "Schiers",
+                            "abstract": "Schiers",
                             "station": {
-                                "localCode": "8509060",
                                 "country": "ch",
                                 "codes": [
                                     {
@@ -126,9 +122,8 @@
                     {
                         "station": {
                             "id": "8509064",
-                            "title": "Küblis",
+                            "abstract": "Küblis",
                             "station": {
-                                "localCode": "8509064",
                                 "country": "ch",
                                 "codes": [
                                     {
@@ -159,9 +154,8 @@
                     {
                         "station": {
                             "id": "8509064",
-                            "title": "Klosters Platz",
+                            "abstract": "Klosters Platz",
                             "station": {
-                                "localCode": "8509064",
                                 "country": "ch",
                                 "codes": [
                                     {
@@ -193,9 +187,8 @@
         "origin": {
             "station": {
                 "id": "8509002",
-                "title": "Landquart",
+                "abstract": "Landquart",
                 "station": {
-                    "localCode": "8509002",
                     "country": "ch",
                     "codes": [
                         {
@@ -224,9 +217,8 @@
         "destination": {
             "station": {
                 "id": "8509068",
-                "title": "Klosters Platz",
+                "abstract": "Klosters Platz",
                 "station": {
-                    "localCode": "8509068",
                     "country": "ch",
                     "codes": [
                         {

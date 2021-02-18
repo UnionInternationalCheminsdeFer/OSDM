@@ -1,0 +1,984 @@
+{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "tripOffers": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "abstract": "Basel SBB 2021-03-22 13:06 CET",
+      "trip": {
+        "id": "50898cd4-0d1e-4456-92bd-c119d419728e",
+        "abstract": "Basel SBB - Landquart, 2021-03-22, 13:06 - 15:12 CET",
+        "segments": [
+          {
+            "index": 0,
+            "origin": {
+              "station": {
+                "id": "8500010",
+                "abstract": "Basel SBB",
+                "station": {
+                  "country": "ch",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "8500010"
+                    }
+                  ]
+                },
+                "departureDateTime": "2021-03-22T13:06:37.489Z",
+                "index": 0,
+                "departureTrack": "5"
+              }
+            },
+            "destination": {
+              "station": {
+                "id": "8509002",
+                "abstract": "Landquart",
+                "station": {
+                  "country": "ch",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "8509002"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WSG84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.967442,
+                    "longitude": 9.554032
+                  }
+                },
+                "arrivalDateTime": "2021-03-22T15:12:37.490Z",
+                "index": 1,
+                "arrivalTrack": "2"
+              }
+            },
+            "duration": "P2DT3H4M",
+            "vehicle": {
+              "numbers": [
+                "71"
+              ],
+              "line": "71",
+              "serviceBrand": "ICE",
+              "transportMode": "INTERCITY"
+            },
+            "stops": [
+              {
+                "station": {
+                  "id": "8500010",
+                  "abstract": "Basel SBB",
+                  "station": {
+                    "country": "ch",
+                    "codes": [
+                      {
+                        "codeList": "UIC",
+                        "code": "8500010"
+                      }
+                    ],
+                    "geoCoordinate": {
+                      "system": "WSG84",
+                      "accuracy": 0.00002,
+                      "latitude": 47.547408,
+                      "longitude": 7.589548
+                    }
+                  }
+                },
+                "departureDateTime": "2021-03-22T13:06:37.490Z",
+                "index": 0,
+                "departureTrack": "5"
+              },
+              {
+                "station": {
+                  "id": "8503000",
+                  "abstract": "Zürich SBB",
+                  "station": {
+                    "country": "ch",
+                    "codes": [
+                      {
+                        "codeList": "UIC",
+                        "code": "8503000"
+                      }
+                    ],
+                    "geoCoordinate": {
+                      "system": "WSG84",
+                      "accuracy": 0.00002,
+                      "latitude": 47.378177,
+                      "longitude": 8.540193
+                    }
+                  }
+                },
+                "departureDateTime": "2021-03-22T14:00:37.490Z",
+                "arrivalDateTime": "2021-03-22T14:07:37.490Z",
+                "index": 0,
+                "departureTrack": "10",
+                "arrivalTrack": "10"
+              },
+              {
+                "station": {
+                  "id": "8509411",
+                  "abstract": "Sargans",
+                  "station": {
+                    "country": "ch",
+                    "codes": [
+                      {
+                        "codeList": "UIC",
+                        "code": "8509411"
+                      }
+                    ],
+                    "geoCoordinate": {
+                      "system": "WSG84",
+                      "accuracy": 0.00002,
+                      "latitude": 47.045361,
+                      "longitude": 9.445398
+                    }
+                  }
+                },
+                "departureDateTime": "2021-03-22T15:03:37.490Z",
+                "arrivalDateTime": "2021-03-22T15:04:37.490Z",
+                "index": 2,
+                "departureTrack": "2",
+                "arrivalTrack": "2"
+              },
+              {
+                "station": {
+                  "id": "8509002",
+                  "abstract": "Landquart",
+                  "station": {
+                    "country": "ch",
+                    "codes": [
+                      {
+                        "codeList": "UIC",
+                        "code": "8509002"
+                      }
+                    ],
+                    "geoCoordinate": {
+                      "system": "WSG84",
+                      "accuracy": 0.00002,
+                      "latitude": 46.967442,
+                      "longitude": 9.554032
+                    }
+                  }
+                },
+                "arrivalDateTime": "2021-03-22T15:12:37.490Z",
+                "index": 3,
+                "arrivalTrack": "2"
+              }
+            ]
+          }
+        ],
+        "origin": {
+          "station": {
+            "id": "8500010",
+            "abstract": "Basel SBB",
+            "station": {
+              "country": "ch",
+              "codes": [
+                {
+                  "codeList": "UIC",
+                  "code": "8500010"
+                }
+              ],
+              "geoCoordinate": {
+                "system": "WSG84",
+                "accuracy": 0.00002,
+                "latitude": 47.547408,
+                "longitude": 7.589548
+              }
+            }
+          },
+          "departureDateTime": "2021-03-22T13:06:37.490Z",
+          "index": 0,
+          "departureTrack": "5"
+        },
+        "destination": {
+          "station": {
+            "id": "8509002",
+            "abstract": "Landquart",
+            "station": {
+              "country": "ch",
+              "codes": [
+                {
+                  "codeList": "UIC",
+                  "code": "8509002"
+                }
+              ],
+              "geoCoordinate": {
+                "system": "WSG84",
+                "accuracy": 0.00002,
+                "latitude": 46.967442,
+                "longitude": 9.554032
+              }
+            }
+          },
+          "arrivalDateTime": "2021-03-22T15:12:37.491Z",
+          "index": 0,
+          "arrivalTrack": "2"
+        },
+        "duration": "P2DT3H4M",
+        "direction": "UNSPECIFIED"
+      },
+      "offers": [
+        {
+          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "abstract": "Basel SBB - Klosters Platz 2021-03-22, 13:06 CET, BEST, 63 CHF",
+          "offerSummary": {
+            "minimalPrice": {
+              "currency": "CHF",
+              "amount": 6300,
+              "scale": 2,
+              "vatDetails": [
+                {
+                  "country": "CH",
+                  "scale": 2,
+                  "percentage": 7.9,
+                  "taxId": "TV SC 0103.9",
+                  "scope": "NATIONAL"
+                }
+              ]
+            },
+            "overallServiceClass": {
+              "id": "BEST"
+            },
+            "overallComfortClass": "FIRST",
+            "overallFlexibility": "FLEX"
+          },
+          "isReusable": true,
+          "coveredSegmentIndexes": [
+            0, 1
+          ],
+          "requestedInformation": "passenger[0].details.firstName AND passenger[0].details.name",
+          "availableFulfillmentTypes": [
+            "E-TICKET",
+            "CIT_PAPER"
+          ],
+          "trip": {
+            "id": "50898cd4-0d1e-4456-92bd-c119d419728e",
+            "abstract": "Basel SBB - Landquart, 2021-03-22, 13:06 - 15:12 CET",
+            "segments": [
+              {
+                "index": 0,
+                "origin": {
+                  "station": {
+                    "id": "8500010",
+                    "abstract": "Basel SBB",
+                    "station": {
+                      "country": "ch",
+                      "codes": [
+                        {
+                          "codeList": "UIC",
+                          "code": "8500010"
+                        }
+                      ]
+                    },
+                    "departureDateTime": "2021-03-22T13:06:37.489Z",
+                    "index": 0,
+                    "departureTrack": "5"
+                  }
+                },
+                "destination": {
+                  "station": {
+                    "id": "8509002",
+                    "abstract": "Landquart",
+                    "station": {
+                      "country": "ch",
+                      "codes": [
+                        {
+                          "codeList": "UIC",
+                          "code": "8509002"
+                        }
+                      ],
+                      "geoCoordinate": {
+                        "system": "WSG84",
+                        "accuracy": 0.00002,
+                        "latitude": 46.967442,
+                        "longitude": 9.554032
+                      }
+                    },
+                    "arrivalDateTime": "2021-03-22T15:12:37.490Z",
+                    "index": 1,
+                    "arrivalTrack": "2"
+                  }
+                },
+                "duration": "P2DT3H4M",
+                "vehicle": {
+                  "numbers": [
+                    "71"
+                  ],
+                  "line": "71",
+                  "serviceBrand": "ICE",
+                  "transportMode": "INTERCITY"
+                },
+                "stops": [
+                  {
+                    "station": {
+                      "id": "8500010",
+                      "abstract": "Basel SBB",
+                      "station": {
+                        "country": "ch",
+                        "codes": [
+                          {
+                            "codeList": "UIC",
+                            "code": "8500010"
+                          }
+                        ],
+                        "geoCoordinate": {
+                          "system": "WSG84",
+                          "accuracy": 0.00002,
+                          "latitude": 47.547408,
+                          "longitude": 7.589548
+                        }
+                      }
+                    },
+                    "departureDateTime": "2021-03-22T13:06:37.490Z",
+                    "index": 0,
+                    "departureTrack": "5"
+                  },
+                  {
+                    "station": {
+                      "id": "8503000",
+                      "abstract": "Zürich SBB",
+                      "station": {
+                        "country": "ch",
+                        "codes": [
+                          {
+                            "codeList": "UIC",
+                            "code": "8503000"
+                          }
+                        ],
+                        "geoCoordinate": {
+                          "system": "WSG84",
+                          "accuracy": 0.00002,
+                          "latitude": 47.378177,
+                          "longitude": 8.540193
+                        }
+                      }
+                    },
+                    "departureDateTime": "2021-03-22T14:00:37.490Z",
+                    "arrivalDateTime": "2021-03-22T14:07:37.490Z",
+                    "index": 0,
+                    "departureTrack": "10",
+                    "arrivalTrack": "10"
+                  },
+                  {
+                    "station": {
+                      "id": "8509411",
+                      "abstract": "Sargans",
+                      "station": {
+                        "country": "ch",
+                        "codes": [
+                          {
+                            "codeList": "UIC",
+                            "code": "8509411"
+                          }
+                        ],
+                        "geoCoordinate": {
+                          "system": "WSG84",
+                          "accuracy": 0.00002,
+                          "latitude": 47.045361,
+                          "longitude": 9.445398
+                        }
+                      }
+                    },
+                    "departureDateTime": "2021-03-22T15:03:37.490Z",
+                    "arrivalDateTime": "2021-03-22T15:04:37.490Z",
+                    "index": 2,
+                    "departureTrack": "2",
+                    "arrivalTrack": "2"
+                  },
+                  {
+                    "station": {
+                      "id": "8509002",
+                      "abstract": "Landquart",
+                      "station": {
+                        "country": "ch",
+                        "codes": [
+                          {
+                            "codeList": "UIC",
+                            "code": "8509002"
+                          }
+                        ],
+                        "geoCoordinate": {
+                          "system": "WSG84",
+                          "accuracy": 0.00002,
+                          "latitude": 46.967442,
+                          "longitude": 9.554032
+                        }
+                      }
+                    },
+                    "arrivalDateTime": "2021-03-22T15:12:37.490Z",
+                    "index": 3,
+                    "arrivalTrack": "2"
+                  }
+                ]
+              },
+              {
+                "index": 0,
+                "origin": {
+                  "station": {
+                    "id": "8509002",
+                    "abstract": "Landquart",
+                    "station": {
+                      "country": "ch",
+                      "codes": [
+                        {
+                          "codeList": "UIC",
+                          "code": "8509002"
+                        }
+                      ]
+                    },
+                    "departureDateTime": "2021-03-22T15:20:37.489Z",
+                    "index": 0,
+                    "departureTrack": "5"
+                  }
+                },
+                "destination": {
+                  "station": {
+                    "id": "8509068",
+                    "abstract": "Klosters Platz",
+                    "station": {
+                      "country": "ch",
+                      "codes": [
+                        {
+                          "codeList": "UIC",
+                          "code": "8509068"
+                        }
+                      ],
+                      "geoCoordinate": {
+                        "system": "WSG84",
+                        "accuracy": 0.00002,
+                        "latitude": 46.967442,
+                        "longitude": 9.554032
+                      }
+                    },
+                    "arrivalDateTime": "2021-03-22T15:59:37.490Z",
+                    "index": 0,
+                    "arrivalTrack": "1"
+                  }
+                },
+                "duration": "P2DT3H4M",
+                "vehicle": {
+                  "numbers": [
+                    "1351"
+                  ],
+                  "line": "1351",
+                  "serviceBrand": "RE",
+                  "transportMode": "REGIONAL"
+                },
+                "stops": [
+                  {
+                    "station": {
+                      "id": "8509002",
+                      "abstract": "Landquart",
+                      "station": {
+                        "country": "ch",
+                        "codes": [
+                          {
+                            "codeList": "UIC",
+                            "code": "8509002"
+                          }
+                        ],
+                        "geoCoordinate": {
+                          "system": "WSG84",
+                          "accuracy": 0.00002,
+                          "latitude": 46.967442,
+                          "longitude": 9.554032
+                        }
+                      }
+                    },
+                    "departureDateTime": "2021-03-22T15:20:37.490Z",
+                    "index": 0,
+                    "departureTrack": "5"
+                  },
+                  {
+                    "station": {
+                      "id": "8509060",
+                      "abstract": "Schiers",
+                      "station": {
+                        "country": "ch",
+                        "codes": [
+                          {
+                            "codeList": "UIC",
+                            "code": "8509060"
+                          }
+                        ],
+                        "geoCoordinate": {
+                          "system": "WSG84",
+                          "accuracy": 0.00002,
+                          "latitude": 46.96799,
+                          "longitude": 9.688358
+                        }
+                      }
+                    },
+                    "departureDateTime": "2021-03-22T15:30:37.490Z",
+                    "arrivalDateTime": "2021-03-22T15:33:37.490Z",
+                    "index": 1,
+                    "departureTrack": "1",
+                    "arrivalTrack": "1"
+                  },
+                  {
+                    "station": {
+                      "id": "8509064",
+                      "abstract": "Küblis",
+                      "station": {
+                        "country": "ch",
+                        "codes": [
+                          {
+                            "codeList": "UIC",
+                            "code": "8509064"
+                          }
+                        ],
+                        "geoCoordinate": {
+                          "system": "WSG84",
+                          "accuracy": 0.00002,
+                          "latitude": 46.91428,
+                          "longitude": 9.771841
+                        }
+                      }
+                    },
+                    "departureDateTime": "2021-03-22T15:41:37.490Z",
+                    "arrivalDateTime": "2021-03-22T15:44:37.490Z",
+                    "index": 2,
+                    "departureTrack": "1",
+                    "arrivalTrack": "1"
+                  },
+                  {
+                    "station": {
+                      "id": "8509064",
+                      "abstract": "Klosters Platz",
+                      "station": {
+                        "country": "ch",
+                        "codes": [
+                          {
+                            "codeList": "UIC",
+                            "code": "8509064"
+                          }
+                        ],
+                        "geoCoordinate": {
+                          "system": "WSG84",
+                          "accuracy": 0.00002,
+                          "latitude": 46.869208,
+                          "longitude": 9.880943
+                        }
+                      }
+                    },
+                    "arrivalDateTime": "2021-03-22T15:59:37.490Z",
+                    "index": 3,
+                    "arrivalTrack": "1"
+                  }
+                ]
+              }
+            ],
+            "origin": {
+              "station": {
+                "id": "8500010",
+                "abstract": "Basel SBB",
+                "station": {
+                  "country": "ch",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "8500010"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WSG84",
+                    "accuracy": 0.00002,
+                    "latitude": 47.547408,
+                    "longitude": 7.589548
+                  }
+                }
+              },
+              "departureDateTime": "2021-03-22T13:06:37.490Z",
+              "index": 0,
+              "departureTrack": "5"
+            },
+            "destination": {
+              "station": {
+                "id": "8509068",
+                "abstract": "Klosters Platz",
+                "station": {
+                  "country": "ch",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "8509068"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WSG84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.869208,
+                    "longitude": 9.880943
+                  }
+                }
+              },
+              "arrivalDateTime": "2021-03-22T15:12:37.491Z",
+              "index": 0,
+              "arrivalTrack": "2"
+            },
+            "duration": "P2DT3H4M",
+            "direction": "UNSPECIFIED"
+          },
+          "validFrom": "2021-03-22T13:06:11.952Z",
+          "validUntil": "2021-04-22T13:06:11.952Z",
+          "admissions": [
+            {
+              "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+              "commonOfferPartAttributes": {
+                "price": {
+                  "currency": "CHF",
+                  "amount": 6300,
+                  "scale": 2,
+                  "vatDetails": [
+                    {
+                      "country": "CH",
+                      "scale": 2,
+                      "percentage": 7.9,
+                      "taxId": "TV SC 0103.9",
+                      "scope": "NATIONAL"
+                    }
+                  ]
+                },
+                "pricingMode": "INDIVIDUAL",
+                "reductionsApplied": [],
+                "passengers": [
+                  {
+                    "id": "0",
+                    "abstract": "Passenger 0",
+                    "dateOfBirth": "1974-09-14",
+                    "cards": []
+                  }
+                ],
+                "providerBookingReference": "nova_id-001",
+                "availableFulfillmentOptions": [
+                  {
+                    "fulfillmentType": "ETICKET",
+                    "media": [
+                      "PDF_A4"
+                    ]
+                  },
+                  {
+                    "fulfillmentType": "CIT_PAPER",
+                    "media": [
+                      "RCT2"
+                    ]
+                  }
+                ],
+                "validFrom": "2021-03-22T13:06:11.952Z",
+                "validUntil": "2021-04-22T13:06:11.952Z",
+                "refundable": "YES",
+                "exchangeable": "YES",
+                "products": [
+                  {
+                    "product": {
+                      "id": "CH00125",
+                      "abstract": "Point-to-point Ticket DV Schweiz",
+                      "code": "CH00125",
+                      "description": "One-way, return or round-trip ticket (ticket machines/ticket counter) in Switzerland in 1st or 2nd class",
+                      "conditions": [
+                        {
+                          "type": "REFUND",
+                          "description": "Erstattungskondition",
+                          "validFrom": "2021-03-24T06:43:41.696Z",
+                          "validUntil": "2021-04-24T06:43:41.696Z",
+                          "afterSalesFee": {
+                            "feeAmount": {
+                              "currency": "CHF",
+                              "amount": 0,
+                              "scale": 2,
+                              "vatDetails": [
+                                {
+                                  "country": "CH",
+                                  "scale": 2,
+                                  "percentage": 7.9,
+                                  "taxId": "TV SC 0103.9",
+                                  "scope": "NATIONAL"
+                                }
+                              ]
+                            },
+                            "isCarrierFee": true
+                          }
+                        }
+                      ],
+                      "serviceClass": {
+                        "id": "BEST",
+                        "carrierName": "SBB"
+                      },
+                      "comfortClass": "FIRST",
+                      "isTrainBound": false,
+                      "isReturnProduct": false,
+                      "fulfillmentOptions": [
+                        {
+                          "fulfillmentType": "ETICKET",
+                          "media": [
+                            "PDF_A4"
+                          ]
+                        },
+                        {
+                          "fulfillmentType": "CIT_PAPER",
+                          "media": [
+                            "RCT2"
+                          ]
+                        }
+                      ],
+                      "combinationTags": [
+                        {
+                          "sellableStandalone": true
+                        }
+                      ]
+                    },
+                    "segmentIndices": [
+                      0
+                    ]
+                  }
+                ]
+              },
+              "isReservationRequired": true,
+              "reservations": [
+                {
+                  "id": "reservation_BaselSBB-Landquart",
+                  "parts": "http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'",
+                  "abstract": "Reservation Basel SBB - Landquart, 5 CHF"
+                },
+                {
+                  "id": "reservation_Landquart-KlostersPlatz",
+                  "parts": "http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'",
+                  "abstract": "Reservation Landquart - Klosters Platz, 5 CHF"
+                }
+              ]
+            }
+          ],
+          "reservations": [
+            {
+              "id": "reservation_BaselSBB-Landquart",
+              "commonOfferPartAttributes": {
+                "price": {
+                  "currency": "CHF",
+                  "amount": 500,
+                  "scale": 2,
+                  "vatDetails": [
+                    {
+                      "country": "CH",
+                      "scale": 2,
+                      "percentage": 7.9,
+                      "taxId": "TV SC 0103.9",
+                      "scope": "NATIONAL"
+                    }
+                  ]
+                },
+                "pricingMode": "INDIVIDUAL",
+                "reductionsApplied": [],
+                "passengers": [
+                  {
+                    "id": "0",
+                    "abstract": "Passenger 0",
+                    "dateOfBirth": "1974-09-14",
+                    "cards": []
+                  }
+                ],
+                "providerBookingReference": "nova-id-002",
+                "availableFulfillmentOptions": [
+                  {
+                    "fulfillmentType": "ETICKET",
+                    "media": [
+                      "PDF_A4"
+                    ]
+                  },
+                  {
+                    "fulfillmentType": "CIT_PAPER",
+                    "media": [
+                      "RCT2"
+                    ]
+                  }
+                ],
+                "validFrom": "2021-03-22T15:06:11.966Z",
+                "validUntil": "2021-04-12T15:06:11.966Z",
+                "refundable": "YES",
+                "exchangeable": "YES",
+                "products": [
+                  {
+                    "product": {
+                      "id": "CH10125",
+                      "abstract": "Seat Place Reservation",
+                      "code": "CH10125",
+                      "description": "Seat Place Reservation",
+                      "conditions": [
+                        {
+                          "type": "REFUND",
+                          "description": "Erstattungskondition",
+                          "validFrom": "2021-03-24T06:43:41.696Z",
+                          "validUntil": "2021-04-24T06:43:41.696Z",
+                          "afterSalesFee": {
+                            "feeAmount": {
+                              "currency": "CHF",
+                              "amount": 0,
+                              "scale": 2,
+                              "vatDetails": [
+                                {
+                                  "country": "CH",
+                                  "scale": 2,
+                                  "percentage": 7.9,
+                                  "taxId": "TV SC 0103.9",
+                                  "scope": "NATIONAL"
+                                }
+                              ]
+                            },
+                            "isCarrierFee": true
+                          }
+                        }
+                      ],
+                      "serviceClass": {
+                        "id": "BEST",
+                        "carrierName": "SBB"
+                      },
+                      "comfortClass": "FIRST",
+                      "isTrainBound": false,
+                      "isReturnProduct": false,
+                      "fulfillmentOptions": [
+                        {
+                          "fulfillmentType": "ETICKET",
+                          "media": [
+                            "PDF_A4"
+                          ]
+                        },
+                        {
+                          "fulfillmentType": "CIT_PAPER",
+                          "media": [
+                            "RCT2"
+                          ]
+                        }
+                      ],
+                      "combinationTags": [
+                        {
+                          "sellableStandalone": true
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "optionality": "OPTIONAL"
+            },
+            {
+              "id": "reservation_Landquart-KlostersPlatz",
+              "commonOfferPartAttributes": {
+                "price": {
+                  "currency": "CHF",
+                  "amount": 500,
+                  "scale": 2,
+                  "vatDetails": [
+                    {
+                      "country": "CH",
+                      "scale": 2,
+                      "percentage": 7.9,
+                      "taxId": "TV SC 0103.9",
+                      "scope": "NATIONAL"
+                    }
+                  ]
+                },
+                "pricingMode": "INDIVIDUAL",
+                "reductionsApplied": [],
+                "passengers": [
+                  {
+                    "id": "0",
+                    "abstract": "Passenger 0",
+                    "dateOfBirth": "1974-09-14",
+                    "cards": []
+                  }
+                ],
+                "providerBookingReference": "nova-id-003",
+                "availableFulfillmentOptions": [
+                  {
+                    "fulfillmentType": "ETICKET",
+                    "media": [
+                      "PDF_A4"
+                    ]
+                  },
+                  {
+                    "fulfillmentType": "CIT_PAPER",
+                    "media": [
+                      "RCT2"
+                    ]
+                  }
+                ],
+                "validFrom": "2021-03-22T15:06:11.966Z",
+                "validUntil": "2021-04-12T15:06:11.966Z",
+                "refundable": "YES",
+                "exchangeable": "YES",
+                "products": [
+                  {
+                    "product": {
+                      "id": "CH10125",
+                      "abstract": "Seat Place Reservation",
+                      "code": "CH10125",
+                      "description": "Seat Place Reservation",
+                      "conditions": [
+                        {
+                          "type": "REFUND",
+                          "description": "Erstattungskondition",
+                          "validFrom": "2021-03-24T06:43:41.696Z",
+                          "validUntil": "2021-04-24T06:43:41.696Z",
+                          "afterSalesFee": {
+                            "feeAmount": {
+                              "currency": "CHF",
+                              "amount": 0,
+                              "scale": 2,
+                              "vatDetails": [
+                                {
+                                  "country": "CH",
+                                  "scale": 2,
+                                  "percentage": 7.9,
+                                  "taxId": "TV SC 0103.9",
+                                  "scope": "NATIONAL"
+                                }
+                              ]
+                            },
+                            "isCarrierFee": true
+                          }
+                        }
+                      ],
+                      "serviceClass": {
+                        "id": "BEST",
+                        "carrierName": "SBB"
+                      },
+                      "comfortClass": "FIRST",
+                      "isTrainBound": false,
+                      "isReturnProduct": false,
+                      "fulfillmentOptions": [
+                        {
+                          "fulfillmentType": "ETICKET",
+                          "media": [
+                            "PDF_A4"
+                          ]
+                        },
+                        {
+                          "fulfillmentType": "CIT_PAPER",
+                          "media": [
+                            "RCT2"
+                          ]
+                        }
+                      ],
+                      "combinationTags": [
+                        {
+                          "sellableStandalone": true
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "optionality": "OPTIONAL"
+            }
+          ]
+        }
+      ],
+      "passengers": [
+        {
+          "id": "0",
+          "abstract": "Passenger 0",
+          "dateOfBirth": "1974-03-22",
+          "cards": []
+        }
+      ]
+    }
+  ]
+}

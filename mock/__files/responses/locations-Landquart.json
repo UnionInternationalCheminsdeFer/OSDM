@@ -2,9 +2,8 @@
     "locations": [
       {
         "id": "8509002",
-        "title": "Landquart",
+        "abstract": "Landquart",
         "station": {
-          "localCode": "8509002",
           "country": "ch",
           "codes": [
             {

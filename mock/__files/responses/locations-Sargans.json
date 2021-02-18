@@ -2,9 +2,8 @@
     "locations": [
       {
         "id": "8509411",
-        "title": "Sargans",
+        "abstract": "Sargans",
         "station": {
-          "localCode": "8509411",
           "country": "ch",
           "codes": [
             {

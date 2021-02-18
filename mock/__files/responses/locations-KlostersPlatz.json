@@ -2,9 +2,8 @@
     "locations": [
       {
         "id": "8509068",
-        "title": "Klosters Platz",
+        "abstract": "Klosters Platz",
         "station": {
-          "localCode": "8509068",
           "country": "ch",
           "codes": [
             {

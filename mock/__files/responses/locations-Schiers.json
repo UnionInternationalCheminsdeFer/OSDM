@@ -2,9 +2,8 @@
     "locations": [
       {
         "id": "8509060",
-        "title": "Schiers",
+        "abstract": "Schiers",
         "station": {
-          "localCode": "8509060",
           "country": "ch",
           "codes": [
             {

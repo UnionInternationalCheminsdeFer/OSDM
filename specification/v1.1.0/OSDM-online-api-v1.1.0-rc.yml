@@ -446,6 +446,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -625,6 +627,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -794,6 +798,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1404,6 +1410,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1515,6 +1523,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1561,6 +1571,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1670,12 +1682,7 @@ paths:
         '404':
           description: Not Found
         '409':
-          description: >-
-             Conflict - the state of the server or resource does not allow the action (e.g. the booking was already confirmed)
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'          
+          $ref: '#/components/responses/ConflictResponse'        
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1720,6 +1727,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1775,12 +1784,7 @@ paths:
         '404':
           description: Not Found
         '409':
-          description: >-
-             Conflict - the state of the server or resource does not allow the action (e.g. the booking was not confirmed)
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'            
+          $ref: '#/components/responses/ConflictResponse'            
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1839,12 +1843,7 @@ paths:
         '404':
           description: Not Found
         '409':
-          description: >-
-             Conflict - the state of the server or resource does not allow the action (e.g. the booking was not confirmed)
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'            
+          $ref: '#/components/responses/ConflictResponse'        
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -1942,12 +1941,7 @@ paths:
         '404':
           description: Not Found
         '409':
-          description: >-
-             Conflict - the state of the server or resource does not allow the action (e.g. the booking was not confirmed)
-          content:
-            "application/problem+json":
-              schema:
-                $ref: '#/components/schemas/Problem'            
+          $ref: '#/components/responses/ConflictResponse'       
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2059,6 +2053,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2112,6 +2108,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2242,6 +2240,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2292,6 +2292,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2361,6 +2363,8 @@ paths:
           description: Forbidden
         '404':
           description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
@@ -2696,14 +2700,21 @@ components:
 
   responses:
     BadRequestResponse:
-      description: Bad request
+      description: Bad Request (400)
+      content:
+        "application/problem+json":
+          schema:
+            $ref: '#/components/schemas/Problem'
+
+    ConflictResponse:
+      description: Conflict (409)
       content:
         "application/problem+json":
           schema:
             $ref: '#/components/schemas/Problem'    
 
     InternalServerErrorResponse:
-      description: Internal server error
+      description: Internal Server Error (500)
       content:
         "application/problem+json":
           schema:
@@ -2820,8 +2831,12 @@ components:
           items:
             $ref: '#/components/schemas/Stop'
       required:
-        - seqId
+        - index
+        - origin
+        - destination
+        - duration
         - vehicle
+
     Stop:
       type: object
       properties:
@@ -2868,7 +2883,7 @@ components:
           description: >-
             Unique id of this trip on this server. The id can also be a hash
             that encodes the trip in a compact way.
-        title:
+        abstract:
           type: string
           example: Bruxelles-Midi - Paris-Nord, 2020-07-01 10:05 CET
         segments:
@@ -2900,8 +2915,11 @@ components:
           items:
             $ref: '#/components/schemas/Link'
       required:
-        - id  
-        - title
+        - id
+        - segments
+        - origin
+        - destination
+        - duration
 
     TripRequest:
       type: object
@@ -3021,13 +3039,13 @@ components:
           format: int32
         extendedChangeTime:
           description: >-
-            OOS MVP Indicates additional transfer time required where a transfer
+            Indicates additional transfer time required where a transfer
             is present in the resulting trip. Expressed in minutes.
           type: integer
           format: int32
         needsPRMAssistance:
           description: >-
-            OOS MVP indicates a need for an itinerary where end-to-end PMR
+            Indicates a need for an itinerary where end-to-end PMR
             assistance and accessibility is possible.
           type: boolean
           default: false
@@ -3130,7 +3148,7 @@ components:
       properties:
         id:
           type: string
-        title:
+        abstract:
           type: string
           example: Bruxelles-Midi 2020-07-01 10:05 CET
         trip:
@@ -3191,7 +3209,7 @@ components:
         id:
           type: string
           format: uuid
-        title:
+        abstract:
           type: string
           example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
         offerSummary:
@@ -3383,7 +3401,7 @@ components:
         id:
           type: string
           description: unique id of this product on this server.
-        title:
+        abstract:
           type: string
           example: TGV Lyria Loisir 2
         code:
@@ -3594,7 +3612,7 @@ components:
         id:
           type: string
           format: uuid
-        title:
+        abstract:
           type: string
           example: Reservierungsentgelt
         price:
@@ -3644,14 +3662,14 @@ components:
         id:
           type: string
           format: uuid
+        abstract:
+          type: string
+          example: ICE Wifi on Board 2020-07-11
         parts:
           type: string
           format: url
           example: >-
             http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'
-        title:
-          type: string
-          example: ICE Wifi on Board 2020-07-11
         links:
           type: array
           items:
@@ -3746,7 +3764,7 @@ components:
         id:
           type: string
           format: uuid
-        title:
+        abstract:
           type: string
           example: booking 2345
         reference:
@@ -4079,7 +4097,7 @@ components:
           type: string
           format: uuid
           description: id of the refund offer
-        title:
+        abstract:
           type: string
           example: Refund Paris-Barcelona Andre Dupont 2020-07-23
         validUntil:
@@ -4186,7 +4204,7 @@ components:
         id:
           type: string
           format: uuid
-        title:
+        abstract:
           type: string
           example: Bruxelles-Midi 2020-07-01 10:05 CET
         trip:
@@ -4218,7 +4236,7 @@ components:
         id:
           type: string
           format: uuid
-        title:
+        abstract:
           type: string
           example: booking 2345
         status:
@@ -4377,7 +4395,7 @@ components:
         id:
           type: string
           description: unique id of this coachLayout on this server
-        title:
+        abstract:
           type: string
           example: coach 3 train T122
         places:
@@ -5453,7 +5471,7 @@ components:
         id:
           type: string
           description: unique id of this location on this server.
-        title:
+        abstract:
           type: string
           example: Bruxelles-Midi
         station:
@@ -5473,7 +5491,6 @@ components:
             $ref: '#/components/schemas/Link'
       required:
         - id
-        - title
 
     StationDetail:
       type: object
@@ -5979,7 +5996,7 @@ components:
           items:
             $ref: '#/components/schemas/Link'
       required:
-        - title
+        - abstract
         - links
 
     PassengerDetail:
@@ -5994,7 +6011,7 @@ components:
         preferredLanguage:
           type: string
           description: Languages spoken by the traveler (ISO Language code)
-        title:
+        abstract:
           type: string
         firstName:
           type: string

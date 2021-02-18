@@ -1,16 +1,15 @@
 {
     "trip": {
         "id": "50898cd4-0d1e-4456-92bd-c119d419728e",
-        "title": "Basel SBB - Landquart, 2021-03-22, 13:06 - 15:12 CET",
+        "abstract": "Basel SBB - Landquart, 2021-03-22, 13:06 - 15:12 CET",
         "segments": [
             {
                 "index": 0,
                 "origin": {
                     "station": {
                         "id": "8500010",
-                        "title": "Basel SBB",
+                        "abstract": "Basel SBB",
                         "station": {
-                            "localCode": "8500010",
                             "country": "ch",
                             "codes": [
                                 {
@@ -27,9 +26,8 @@
                 "destination": {
                     "station": {
                         "id": "8509002",
-                        "title": "Landquart",
+                        "abstract": "Landquart",
                         "station": {
-                            "localCode": "8509002",
                             "country": "ch",
                             "codes": [
                                 {
@@ -62,9 +60,8 @@
                     {
                         "station": {
                             "id": "8500010",
-                            "title": "Basel SBB",
+                            "abstract": "Basel SBB",
                             "station": {
-                                "localCode": "8500010",
                                 "country": "ch",
                                 "codes": [
                                     {
@@ -97,9 +94,8 @@
                     {
                         "station": {
                             "id": "8503000",
-                            "title": "Zürich SBB",
+                            "abstract": "Zürich SBB",
                             "station": {
-                                "localCode": "8503000",
                                 "country": "ch",
                                 "codes": [
                                     {
@@ -138,9 +134,8 @@
                     {
                         "station": {
                             "id": "8509411",
-                            "title": "Sargans",
+                            "abstract": "Sargans",
                             "station": {
-                                "localCode": "8509411",
                                 "country": "ch",
                                 "codes": [
                                     {
@@ -171,9 +166,8 @@
                     {
                         "station": {
                             "id": "8509002",
-                            "title": "Landquart",
+                            "abstract": "Landquart",
                             "station": {
-                                "localCode": "8509002",
                                 "country": "ch",
                                 "codes": [
                                     {
@@ -205,9 +199,8 @@
         "origin": {
             "station": {
                 "id": "8500010",
-                "title": "Basel SBB",
+                "abstract": "Basel SBB",
                 "station": {
-                    "localCode": "8500010",
                     "country": "ch",
                     "codes": [
                         {
@@ -236,9 +229,8 @@
         "destination": {
             "station": {
                 "id": "8509002",
-                "title": "Landquart",
+                "abstract": "Landquart",
                 "station": {
-                    "localCode": "8509002",
                     "country": "ch",
                     "codes": [
                         {

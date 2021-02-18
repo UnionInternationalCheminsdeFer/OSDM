@@ -20,7 +20,7 @@
             {
                 "id": "reservation_BaselSBB-Landquart",
                 "parts": "http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'",
-                "title": "Reservation Basel SBB - Landquart"
+                "abstract": "Reservation Basel SBB - Landquart"
             }
         ],
         "documents": [
