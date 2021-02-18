@@ -2,9 +2,8 @@
     "locations": [
       {
         "id": "8503000",
-        "title": "Zürich HB",
+        "abstract": "Zürich HB",
         "station": {
-          "localCode": "8503000",
           "country": "ch",
           "codes": [
             {

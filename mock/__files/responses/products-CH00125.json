@@ -1,0 +1,57 @@
+{
+  "id": "CH00125",
+  "abstract": "Point-to-point Ticket DV Schweiz",
+  "code": "CH00125",
+  "description": "One-way, return or round-trip ticket (ticket machines/ticket counter) in Switzerland in 1st or 2nd class",
+  "conditions": [
+    {
+      "type": "REFUND",
+      "description": "Erstattungskondition",
+      "validFrom": "2021-03-24T06:43:41.696Z",
+      "validUntil": "2021-04-24T06:43:41.696Z",
+      "afterSalesFee": {
+        "feeAmount": {
+          "currency": "CHF",
+          "amount": 0,
+          "scale": 2,
+          "vatDetails": [
+            {
+              "country": "CH",
+              "scale": 2,
+              "percentage": 7.9,
+              "taxId": "TV SC 0103.9",
+              "scope": "NATIONAL"
+            }
+          ]
+        },
+        "isCarrierFee": true
+      }
+    }
+  ],
+  "serviceClass": {
+    "id": "BEST",
+    "carrierName": "SBB"
+  },
+  "comfortClass": "FIRST",
+  "isTrainBound": false,
+  "isReturnProduct": false,
+  "fulfillmentOptions": [
+    {
+      "fulfillmentType": "ETICKET",
+      "media": [
+        "PDF_A4"
+      ]
+    },
+    {
+      "fulfillmentType": "CIT_PAPER",
+      "media": [
+        "RCT2"
+      ]
+    }
+  ],
+  "combinationTags": [
+    {
+      "sellableStandalone": true
+    }
+  ]
+}

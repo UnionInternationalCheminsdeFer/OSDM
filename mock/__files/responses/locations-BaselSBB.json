@@ -2,9 +2,8 @@
     "locations": [
       {
         "id": "8500010",
-        "title": "Basel SBB",
+        "abstract": "Basel SBB",
         "station": {
-          "localCode": "8500010",
           "country": "ch",
           "codes": [
             {

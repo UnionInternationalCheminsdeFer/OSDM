@@ -2,9 +2,8 @@
     "locations": [
       {
         "id": "8509064",
-        "title": "Küblis",
+        "abstract": "Küblis",
         "station": {
-          "localCode": "8509064",
           "country": "ch",
           "codes": [
             {

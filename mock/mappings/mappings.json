@@ -74,7 +74,7 @@
                     "Content-Language": "en"
                 },
                 "bodyFileName": "responses/locations-Landquart.json"
-            }           
+            }
         },
         {
             "request": {
@@ -179,7 +179,7 @@
                 },
                 "bodyFileName": "responses/trips-Landquart-KlostersPlatz.json"
             }
-        },      
+        },
         {
             "request": {
                 "method": "POST",
@@ -197,7 +197,7 @@
                     "Content-Language": "en"
                 },
                 "bodyFileName": "responses/trips-collection-BaselSBB-KlostersPlatz-2021-03-22T113-06.json"
-            }                    
+            }
         },
         {
             "request": {
@@ -213,6 +213,34 @@
                 "bodyFileName": "responses/trip-offer-response-Basel-DavosPlatz.json"
             }
         },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/trip-offers/trip-offer-001"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trip-offers-BaselSBB-Landquart.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/trip-offers/trip-offer-002"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trip-offers-Landquart-KlostersPlatz.json"
+            }
+        },       
         {
             "request": {
                 "method": "POST",
@@ -304,7 +332,7 @@
         {
             "request": {
                 "method": "GET",
-                "url": "/products/CH00125FIRST"
+                "url": "/products/CH00125"
             },
             "response": {
                 "status": 200,
@@ -313,13 +341,13 @@
                     "Cache-Control": "max-age=86400",
                     "Content-Language": "en"
                 },
-                "bodyFileName": "responses/products-CH00125FIRST.json"
+                "bodyFileName": "responses/products-CH00125.json"
             }
         },
         {
             "request": {
                 "method": "GET",
-                "url": "/products/CH10125FIRST"
+                "url": "/products/CH04004"
             },
             "response": {
                 "status": 200,
@@ -328,7 +356,37 @@
                     "Cache-Control": "max-age=86400",
                     "Content-Language": "en"
                 },
-                "bodyFileName": "responses/products-CH10125FIRST.json"
+                "bodyFileName": "responses/products-CH04004.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/products/CH10125"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "max-age=86400",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/products-CH10125.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/products/CH80040"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "max-age=86400",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/products-CH80040.json"
             }
         }
     ]
