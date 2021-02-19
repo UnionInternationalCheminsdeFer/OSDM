@@ -1,9 +1,10 @@
 {
-	"$schema": "http://json-schema.org/draft-04/schema#",
-	"$id": "http://uic.org//schemas/passenger/eticket/v2/offlineOSDM.json",
-	"title": "OSDM Offline Fare Delivery",
-	"description": "OSDM extract of offline fare delivery",
-	"definitions": {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "http://uic.org//schemas/passenger/eticket/v2/offlineOSDM.json",
+  "title": "OSDM Offline Fare Delivery",
+  "description": "OSDM extract of offline fare delivery",
+  "components": {
+    "schemas": {
 		"StationDetailsDef": {
 			"description": "Details of a station. Station names are not translated but provided in some cases in multiple character sets in case stations are named in local characters and additionally in latin characters. In some countries stations have multiple names depending on the countries local languages.",
 			"type": "object",
@@ -13,7 +14,7 @@
 					"type": "string"
 				},
 				"country": {
-					"$ref": "#/definitions/CountryDef"
+					"$ref": "#/components/schemas/CountryDef"
 				},
 				"codes": {
 					"description": "The codes that can be used to represent the given station on the system. There can be several codes, in which case  it is relevant to have a list of couples.",
@@ -22,7 +23,7 @@
 						"type": "object",
 						"properties": {
 							"codeList": {
-								"$ref": "#/definitions/StationCodeListDef"
+								"$ref": "#/components/schemas/StationCodeListDef"
 							},
 							"stationCode": {
 								"description": "the code representing the station in the specified code-list",
@@ -32,10 +33,10 @@
 					}
 				},
 				"geoCoordinate": {
-					"$ref": "#/definitions/GeoCoordinate"
+					"$ref": "#/components/schemas/GeoCoordinate"
 				},
 				"name": {
-					"$ref": "#/definitions/TextDef"
+					"$ref": "#/components/schemas/TextDef"
 				}
 			},
 			"additionalProperties": false
@@ -45,20 +46,20 @@
 			"type": "object",
 			"properties": {
 				"codeList": {
-					"$ref": "#/definitions/StationCodeListDef"
+					"$ref": "#/components/schemas/StationCodeListDef"
 				},
 				"code": {
 					"description": "the code representing the station in the specified code-list",
 					"type": "string"
 				},
 				"country": {
-					"$ref": "#/definitions/CountryDef"
+					"$ref": "#/components/schemas/CountryDef"
 				},
 				"name": {
-					"$ref": "#/definitions/TextDef"
+					"$ref": "#/components/schemas/TextDef"
 				},
 				"geoCoordinate": {
-					"$ref": "#/definitions/GeoCoordinate"
+					"$ref": "#/components/schemas/GeoCoordinate"
 				}
 			},
 			"required": [
@@ -123,7 +124,7 @@
 			"minProperties": 1,
 			"properties": {
 				"currency": {
-					"$ref": "#/definitions/CurrencyDef"
+					"$ref": "#/components/schemas/CurrencyDef"
 				},
 				"amount": {
 					"description": "by default of the scale the amount in cents",
@@ -139,7 +140,7 @@
 				"vatDetails": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/VatDetailDef"
+						"$ref": "#/components/schemas/VatDetailDef"
 					}
 				}
 			},
@@ -153,7 +154,7 @@
 			"type": "object",
 			"properties": {
 				"country": {
-					"$ref": "#/definitions/CountryDef",
+					"$ref": "#/components/schemas/CountryDef",
 					"description": "by default of the scale the amount in cents",
 					"type": "integer",
 					"format": "int32"
@@ -177,7 +178,7 @@
 					"type": "string"
 				},
 				"scope": {
-					"$ref": "#/definitions/VatScopeDef"
+					"$ref": "#/components/schemas/VatScopeDef"
 				}
 			},
 			"required": [
@@ -226,17 +227,17 @@
 			"type": "object",
 			"properties": {
 				"id": {
-					"$ref": "#/definitions/ServiceClassIdDef"
+					"$ref": "#/components/schemas/ServiceClassIdDef"
 				},
 				"textRef": {
 					"description": "id of the text describing the class within the offline data text list",
 					"type": "string"
 				},
 				"text": {
-					"$ref": "#/definitions/TextDef"
+					"$ref": "#/components/schemas/TextDef"
 				},
 				"comfortClass": {
-					"$ref": "#/definitions/ComfortClassDef"
+					"$ref": "#/components/schemas/ComfortClassDef"
 				}
 			},
 			"required": [
@@ -280,7 +281,7 @@
 				"media": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/FulfillmentMediaTypeDef"
+						"$ref": "#/components/schemas/FulfillmentMediaTypeDef"
 					}
 				}
 			}
@@ -372,13 +373,13 @@
 					"type": "string"
 				},
 				"validTravelDates": {
-					"$ref": "#/definitions/CalendarDef"
+					"$ref": "#/components/schemas/CalendarDef"
 				},
 				"validityRange": {
 					"type": "object",
 					"properties": {
 						"timeUnit": {
-							"$ref": "#/definitions/TimeUnitDef"
+							"$ref": "#/components/schemas/TimeUnitDef"
 						},
 						"value": {
 							"type": "number"
@@ -478,7 +479,7 @@
 					"description": "One of the listed cards is required to be valid at the time of travel.",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ReductionCardReferenceDef"
+						"$ref": "#/components/schemas/ReductionCardReferenceDef"
 					}
 				}
 			},
@@ -495,14 +496,14 @@
 			"type": "object",
 			"properties": {
 				"model": {
-					"description": "Possible models are SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING.  The models need to be supported by the allocator.",
+					"description": "Possible models are SEPARATE_CONTRACT, CLUSTERING, COMBINING.  The models need to be supported by the allocator.",
 					"type": "string"
 				},
 				"combinableCarrier": {
 					"description": "List of all carriers where the model can be applied, in case the list is empty all combinations are allowed.",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/CompanyDef"
+						"$ref": "#/components/schemas/CompanyDef"
 					}
 				},
 				"onlyWhenCombined": {
@@ -525,14 +526,14 @@
 					"description": "List of allowed allocators. If the list is empty all allocators with a sales contract are permitted.",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/CompanyDef"
+						"$ref": "#/components/schemas/CompanyDef"
 					}
 				},
 				"allowedCommonContracts": {
 					"description": "List of carriers where a common contract with separate fulfillments are allowed.",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/CompanyDef"
+						"$ref": "#/components/schemas/CompanyDef"
 					}
 				}
 			},
@@ -551,7 +552,7 @@
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"$ref": "#/definitions/FareCombinationModelDef"
+						"$ref": "#/components/schemas/FareCombinationModelDef"
 					}
 				}
 			},
@@ -571,7 +572,7 @@
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"$ref": "#/definitions/AfterSalesRuleDef"
+						"$ref": "#/components/schemas/AfterSalesRuleDef"
 					}
 				}
 			},
@@ -591,7 +592,7 @@
 				"price": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/CurrencyPriceDef"
+						"$ref": "#/components/schemas/CurrencyPriceDef"
 					}
 				}
 			},
@@ -647,20 +648,20 @@
 					"type": "string"
 				},
 				"fee": {
-					"$ref": "#/definitions/PriceDef"
+					"$ref": "#/components/schemas/PriceDef"
 				},
 				"applicationTime": {
-					"$ref": "#/definitions/RelativeTimeDef"
+					"$ref": "#/components/schemas/RelativeTimeDef"
 				},
 				"applicationTimeStamp": {
 					"description": "absolute application time (UTC) in case of online services",
 					"type": "string",
 					"format": "date-time"
 				},
-				"carrierFee": {
-					"description": "indicates that the fee belongs to the carrier",
+				"isAllocatorFee": {
+					"description": "indicates that the fee belongs to the allocator",
 					"type": "boolean",
-					"default": true
+					"default": false
 				},
 				"individualContracts": {
 					"description": "indicates that the after sales of this fare can be treated independently per person.",
@@ -685,19 +686,19 @@
 						"format": "int32"
 					},
 					"zone": {
-						"$ref": "#/definitions/ZoneDef"
+						"$ref": "#/components/schemas/ZoneDef"
 					},
 					"viaStations": {
-						"$ref": "#/definitions/ViaStationsDef"
+						"$ref": "#/components/schemas/ViaStationsDef"
 					},
 					"trainLink": {
-						"$ref": "#/definitions/TrainLinkDef"
+						"$ref": "#/components/schemas/TrainLinkDef"
 					},
 					"line": {
-						"$ref": "#/definitions/LineDef"
+						"$ref": "#/components/schemas/LineDef"
 					},
 					"polygon": {
-						"$ref": "#/definitions/PolygonDef"
+						"$ref": "#/components/schemas/PolygonDef"
 					}
 				},
 				"additionalProperties": false
@@ -712,14 +713,14 @@
 					"type": "string"
 				},
 				"carrier": {
-					"$ref": "#/definitions/CompanyDef"
+					"$ref": "#/components/schemas/CompanyDef"
 				},
 				"city": {
 					"type": "integer",
 					"format": "int32"
 				},
 				"entryStation": {
-					"$ref": "#/definitions/StationDef"
+					"$ref": "#/components/schemas/StationDef"
 				},
 				"lineId": {
 					"type": "array",
@@ -728,7 +729,7 @@
 					}
 				},
 				"terminalStation": {
-					"$ref": "#/definitions/StationDef"
+					"$ref": "#/components/schemas/StationDef"
 				},
 				"nutsCode": {
 					"description": "Nomenclature des units territoriales statistiques  \n COMMISSION REGULATION (EU) No 31/2011",
@@ -744,10 +745,10 @@
 			"type": "object",
 			"properties": {
 				"fromStation": {
-					"$ref": "#/definitions/StationDef"
+					"$ref": "#/components/schemas/StationDef"
 				},
 				"toStation": {
-					"$ref": "#/definitions/StationDef"
+					"$ref": "#/components/schemas/StationDef"
 				},
 				"train": {
 					"type": "string"
@@ -773,7 +774,7 @@
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"$ref": "#/definitions/GeoCoordinate"
+						"$ref": "#/components/schemas/GeoCoordinate"
 					}
 				}
 			},
@@ -797,16 +798,16 @@
 				"alternativeRoute": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ViaStationsDef"
+						"$ref": "#/components/schemas/ViaStationsDef"
 					}
 				},
 				"carrier": {
-					"$ref": "#/definitions/CompanyDef"
+					"$ref": "#/components/schemas/CompanyDef"
 				},
 				"route": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ViaStationsDef"
+						"$ref": "#/components/schemas/ViaStationsDef"
 					}
 				},
 				"serviceBrand": {
@@ -814,14 +815,14 @@
 					"type": "string"
 				},
 				"station": {
-					"$ref": "#/definitions/StationDef"
+					"$ref": "#/components/schemas/StationDef"
 				},
 				"fareReferenceStationSet": {
 					"description": "reference to a list of stations included in the fare",
 					"type": "object",
 					"properties": {
 						"carrier": {
-							"$ref": "#/definitions/CompanyDef"
+							"$ref": "#/components/schemas/CompanyDef"
 						},
 						"code": {
 							"type": "string"
@@ -852,17 +853,17 @@
 					"format": "base64"
 				},
 				"carrier": {
-					"$ref": "#/definitions/CompanyDef"
+					"$ref": "#/components/schemas/CompanyDef"
 				},
 				"city": {
 					"type": "integer",
 					"format": "int32"
 				},
 				"entryStation": {
-					"$ref": "#/definitions/StationDef"
+					"$ref": "#/components/schemas/StationDef"
 				},
 				"terminalStation": {
-					"$ref": "#/definitions/StationDef"
+					"$ref": "#/components/schemas/StationDef"
 				},
 				"zoneIds": {
 					"description": "to be used in bar codes",
@@ -892,21 +893,21 @@
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"$ref": "#/definitions/ControlSecurityTypeDef"
+						"$ref": "#/components/schemas/ControlSecurityTypeDef"
 					}
 				},
 				"acceptedBarCodes": {
 					"description": "for SiD fulfillment one of the listed bar codes is required",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/BarCodeTypesDef"
+						"$ref": "#/components/schemas/BarCodeTypesDef"
 					}
 				},
 				"requiredBarCodes": {
 					"description": "One of the listed bar codes must be provided.",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/BarCodeTypesDef"
+						"$ref": "#/components/schemas/BarCodeTypesDef"
 					}
 				},
 				"requiredSiS": {
@@ -924,11 +925,16 @@
 				"individualTicketingPermitted": {
 					"description": "a separate fulfillment per traveler is permitted",
 					"type": "boolean"
+					"default": "false"
 				}
+			        "separateFulfillmentRequired": {
+             				"description": "a separate fulfillment for the regional constraint is required",
+            				"type": "boolean",
+             				"default": false
+				}				
 			},
 			"required": [
 				"id",
-				"individualTicketingPermitted",
 				"acceptedFulfillmentTypes"
 			],
 			"additionalProperties": false
@@ -979,14 +985,14 @@
 								"description": "the data are required only in case one of the cross border conditions apply",
 								"type": "array",
 								"items": {
-									"$ref": "#/definitions/CrossBorderConditionDef"
+									"$ref": "#/components/schemas/CrossBorderConditionDef"
 								}
 							},
 							"fulfillmentType": {
 								"description": "type of fulfillment in case the personal data are required for that type only",
 								"type": "array",
 								"items": {
-									"$ref": "#/definitions/ControlSecurityTypeDef"
+									"$ref": "#/components/schemas/ControlSecurityTypeDef"
 								}
 							}
 						},
@@ -1030,15 +1036,15 @@
 			"type": "object",
 			"properties": {
 				"fromCountry": {
-					"$ref": "#/definitions/CountryDef"
+					"$ref": "#/components/schemas/CountryDef"
 				},
 				"toCountry": {
-					"$ref": "#/definitions/CountryDef"
+					"$ref": "#/components/schemas/CountryDef"
 				},
 				"affectedServiceBrands": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ServiceBrandCodeDef"
+						"$ref": "#/components/schemas/ServiceBrandCodeDef"
 					}
 				}
 			},
@@ -1155,13 +1161,13 @@
 			"type": "object",
 			"properties": {
 				"id": {
-					"$ref": "#/definitions/ServiceLevelIdDef"
+					"$ref": "#/components/schemas/ServiceLevelIdDef"
 				},
 				"combiningServiceClassIds": {
 					"description": "list of service class ids that can be combined with these service levels",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ServiceClassIdDef"
+						"$ref": "#/components/schemas/ServiceClassIdDef"
 					}
 				},
 				"textRef": {
@@ -1169,12 +1175,12 @@
 					"type": "string"
 				},
 				"text": {
-					"$ref": "#/definitions/TextDef"
+					"$ref": "#/components/schemas/TextDef"
 				},
-				"includesClassName": {
+				"doesIncludelassName": {
 					"description": "indicates that the class name is included",
 					"type": "boolean",
-					"default": true
+					"default": false
 				},
 				"reservationParameterId": {
 					"type": "string"
@@ -1200,13 +1206,13 @@
 				"includedServiceBrands": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ServiceBrandCodeDef"
+						"$ref": "#/components/schemas/ServiceBrandCodeDef"
 					}
 				},
 				"excludedServiceBrands": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ServiceBrandCodeDef"
+						"$ref": "#/components/schemas/ServiceBrandCodeDef"
 					}
 				}
 			},
@@ -1237,17 +1243,17 @@
 					"type": "string"
 				},
 				"entryConnectionPoint": {
-					"$ref": "#/definitions/ConnectionPointDef"
+					"$ref": "#/components/schemas/ConnectionPointDef"
 				},
 				"exitConnectionPointId": {
 					"description": "connection point connecting two fare regimes",
 					"type": "string"
 				},
 				"exitConnectionPoint": {
-					"$ref": "#/definitions/ConnectionPointDef"
+					"$ref": "#/components/schemas/ConnectionPointDef"
 				},
 				"regionalValidity": {
-					"$ref": "#/definitions/RegionalValidityDef"
+					"$ref": "#/components/schemas/RegionalValidityDef"
 				},
 				"distance": {
 					"description": "distance in km for statistics ",
@@ -1301,7 +1307,7 @@
 				"translations": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/TranslationDef"
+						"$ref": "#/components/schemas/TranslationDef"
 					}
 				},
 				"text": {
@@ -1341,7 +1347,7 @@
 					"items": {
 						"type": "array",
 						"items": {
-							"$ref": "#/definitions/StationDef"
+							"$ref": "#/components/schemas/StationDef"
 						}
 					}
 				}
@@ -1356,10 +1362,10 @@
 			"type": "object",
 			"properties": {
 				"delivery": {
-					"$ref": "#/definitions/FareDeliveryDetailsDef"
+					"$ref": "#/components/schemas/FareDeliveryDetailsDef"
 				},
 				"fareStructure": {
-					"$ref": "#/definitions/FareDataDef"
+					"$ref": "#/components/schemas/FareDataDef"
 				}
 			},
 			"required": [
@@ -1374,85 +1380,85 @@
 				"calendars": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/CalendarDef"
+						"$ref": "#/components/schemas/CalendarDef"
 					}
 				},
 				"serviceClassDefinitions": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ServiceClassDefinitionDef"
+						"$ref": "#/components/schemas/ServiceClassDefinitionDef"
 					}
 				},
 				"serviceLevelDefinitions": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ServiceLevelDef"
+						"$ref": "#/components/schemas/ServiceLevelDef"
 					}
 				},
 				"texts": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/TextDef"
+						"$ref": "#/components/schemas/TextDef"
 					}
 				},
 				"fareResourceLocation": {
-					"$ref": "#/definitions/FareResourceLocationDef"
+					"$ref": "#/components/schemas/FareResourceLocationDef"
 				},
 				"prices": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/PriceDef"
+						"$ref": "#/components/schemas/PriceDef"
 					}
 				},
 				"regionalConstraints": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/RegionalConstraintDef"
+						"$ref": "#/components/schemas/RegionalConstraintDef"
 					}
 				},
 				"serviceConstraints": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ServiceConstraintDef"
+						"$ref": "#/components/schemas/ServiceConstraintDef"
 					}
 				},
 				"carrierConstraints": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/CarrierConstraintDef"
+						"$ref": "#/components/schemas/CarrierConstraintDef"
 					}
 				},
 				"passengerConstraints": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/PassengerConstraintDef"
+						"$ref": "#/components/schemas/PassengerConstraintDef"
 					}
 				},
 				"fareConstraintBundles": {
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"$ref": "#/definitions/FareConstraintBundle"
+						"$ref": "#/components/schemas/FareConstraintBundle"
 					}
 				},
 				"passengerCombinationConstraints": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/PassengerCombinationConstraintDef"
+						"$ref": "#/components/schemas/PassengerCombinationConstraintDef"
 					}
 				},
 				"fares": {
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"$ref": "#/definitions/FareDef"
+						"$ref": "#/components/schemas/FareDef"
 					}
 				},
 				"afterSalesConditions": {
 					"description": "list of allowed after sales transactions and conditions",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/AfterSalesConditionDef"
+						"$ref": "#/components/schemas/AfterSalesConditionDef"
 					}
 				},
 				"supportedOnlineServices": {
@@ -1465,80 +1471,80 @@
 				"salesAvailabilityConstraint": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/SalesAvailabilityConstraintDef"
+						"$ref": "#/components/schemas/SalesAvailabilityConstraintDef"
 					}
 				},
 				"travelValidityConstraints": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/TravelValidityConstraintDef"
+						"$ref": "#/components/schemas/TravelValidityConstraintDef"
 					}
 				},
 				"combinationConstraints": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/FareCombinationConstraintDef"
+						"$ref": "#/components/schemas/FareCombinationConstraintDef"
 					}
 				},
 				"fullfillmentConstraints": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/FulfillmentConstraintDef"
+						"$ref": "#/components/schemas/FulfillmentConstraintDef"
 					}
 				},
 				"reductionConstraints": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ReductionConstraintDef"
+						"$ref": "#/components/schemas/ReductionConstraintDef"
 					}
 				},
 				"reductionCards": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ReductionCardDef"
+						"$ref": "#/components/schemas/ReductionCardDef"
 					}
 				},
 				"personalDataConstraints": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/PersonalDataConstraintDef"
+						"$ref": "#/components/schemas/PersonalDataConstraintDef"
 					}
 				},
 				"reservationParameters": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ReservationParameterDef"
+						"$ref": "#/components/schemas/ReservationParameterDef"
 					}
 				},
 				"connectionPoints": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ConnectionPointDef"
+						"$ref": "#/components/schemas/ConnectionPointDef"
 					}
 				},
 				"StationNames": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/StationNamesDef"
+						"$ref": "#/components/schemas/StationNamesDef"
 					}
 				},
 				"fareReferenceStationSetDefinitions": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/FareReferenceStationSetDef"
+						"$ref": "#/components/schemas/FareReferenceStationSetDef"
 					}
 				},
 				"stations": {
 					"description": "temporary option to include station details as long as MERITS can not provide them. Station codes must be those of merits",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/StationDetailsDef"
+						"$ref": "#/components/schemas/StationDetailsDef"
 					}
 				},
 				"zoneDefinitions": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ZoneDefinitionDef"
+						"$ref": "#/components/schemas/ZoneDefinitionDef"
 					}
 				}
 			},
@@ -1558,7 +1564,7 @@
 			"type": "object",
 			"properties": {
 				"fareProvider": {
-					"$ref": "#/definitions/CompanyDef"
+					"$ref": "#/components/schemas/CompanyDef"
 				},
 				"deliveryId": {
 					"description": "unique id of this data delivery",
@@ -1667,7 +1673,7 @@
 								"default": 999
 							},
 							"passengerTypeRef": {
-								"$ref": "#/definitions/TravelerTypeDef"
+								"$ref": "#/components/schemas/TravelerTypeDef"
 							}
 						},
 						"required": [
@@ -1687,7 +1693,7 @@
 								"format": "int32"
 							},
 							"passengerTypeRef": {
-								"$ref": "#/definitions/TravelerTypeDef"
+								"$ref": "#/components/schemas/TravelerTypeDef"
 							}
 						},
 						"additionalProperties": false
@@ -1717,10 +1723,10 @@
 						"type": "object",
 						"properties": {
 							"startOfSale": {
-								"$ref": "#/definitions/RelativeTimeDef"
+								"$ref": "#/components/schemas/RelativeTimeDef"
 							},
 							"endOfSale": {
-								"$ref": "#/definitions/RelativeTimeDef"
+								"$ref": "#/components/schemas/RelativeTimeDef"
 							},
 							"salesDatesRef": {
 								"description": "reference to the calendar woith valid sales dates",
@@ -1748,7 +1754,7 @@
 					"default": false
 				},
 				"reservationParams918-1": {
-					"$ref": "#/definitions/LegacyReservationParameterDef"
+					"$ref": "#/components/schemas/LegacyReservationParameterDef"
 				},
 				"reservationOptions": {
 					"description": "options for reservations, Note: full details might be provided in the online version only",
@@ -1758,7 +1764,7 @@
 							"description": "possible preferences to be requested in reservation without changing the fare",
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/ReservationOptionGroupDef"
+								"$ref": "#/components/schemas/ReservationOptionGroupDef"
 							}
 						},
 						"graficalReservation": {
@@ -1769,7 +1775,7 @@
 							"description": "service brands where the options apply",
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/ServiceBrandCodeDef"
+								"$ref": "#/components/schemas/ServiceBrandCodeDef"
 							}
 						}
 					},
@@ -1799,15 +1805,15 @@
 			"type": "object",
 			"properties": {
 				"carrier": {
-					"$ref": "#/definitions/CompanyDef"
+					"$ref": "#/components/schemas/CompanyDef"
 				},
 				"serviceBrandCode": {
-					"$ref": "#/definitions/ServiceBrandCodeDef"
+					"$ref": "#/components/schemas/ServiceBrandCodeDef"
 				},
 				"onlineResource": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/OnlineResourceDef"
+						"$ref": "#/components/schemas/OnlineResourceDef"
 					}
 				}
 			},
@@ -1821,14 +1827,14 @@
 			"type": "object",
 			"properties": {
 				"issuer": {
-					"$ref": "#/definitions/CompanyDef"
+					"$ref": "#/components/schemas/CompanyDef"
 				},
 				"id": {
 					"description": "id of the card type within the issuer",
 					"type": "string"
 				},
 				"name": {
-					"$ref": "#/definitions/TextDef"
+					"$ref": "#/components/schemas/TextDef"
 				},
 				"nameRef": {
 					"description": "referenced text in bulk data",
@@ -1838,14 +1844,14 @@
 					"description": "This card includes the listed cards",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ReductionCardReferenceDef"
+						"$ref": "#/components/schemas/ReductionCardReferenceDef"
 					}
 				},
 				"serviceClasses": {
 					"description": "list of service classes in case this class is available for different classes",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ServiceClassIdDef"
+						"$ref": "#/components/schemas/ServiceClassIdDef"
 					}
 				},
 				"type": {
@@ -1877,7 +1883,7 @@
 					"type": "string"
 				},
 				"fareType": {
-					"$ref": "#/definitions/FareTypeDef"
+					"$ref": "#/components/schemas/FareTypeDef"
 				},
 				"nameRef": {
 					"description": "reference to the fare name",
@@ -1898,7 +1904,7 @@
 					"type": "string"
 				},
 				"regulatoryConditions": {
-					"$ref": "#/definitions/RegulatoryConditionsDef"
+					"$ref": "#/components/schemas/RegulatoryConditionsDef"
 				},
 				"serviceClassRef": {
 					"type": "string"
@@ -1919,7 +1925,7 @@
 					"type": "string"
 				},
 				"legacyAccountingIdentifier": {
-					"$ref": "#/definitions/LegacyAccountingIdentifierDef"
+					"$ref": "#/components/schemas/LegacyAccountingIdentifierDef"
 				},
 				"fareDetailDescriptionRef": {
 					"description": "reference to a text with the details of the fare",
@@ -1948,7 +1954,7 @@
 			"type": "object",
 			"properties": {
 				"fareProvider": {
-					"$ref": "#/definitions/CompanyDef"
+					"$ref": "#/components/schemas/CompanyDef"
 				},
 				"code": {
 					"description": "code of the fare reference station set used in regional validity. Unique within the fare provider.",
@@ -1959,7 +1965,7 @@
 					"minItems": 2,
 					"uniqueItems": true,
 					"items": {
-						"$ref": "#/definitions/StationDef"
+						"$ref": "#/components/schemas/StationDef"
 					}
 				},
 				"legacyCode": {
@@ -1990,20 +1996,20 @@
 					"description": "locating the online resource via the carrier provided in the time table",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/CarrierResourceLocationDef"
+						"$ref": "#/components/schemas/CarrierResourceLocationDef"
 					}
 				},
 				"TrainLocations": {
 					"description": "locating the online resource via the train from the time table",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/TrainResourceLocationDef"
+						"$ref": "#/components/schemas/TrainResourceLocationDef"
 					}
 				},
 				"StationLocations": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/StationResourceLocationDef"
+						"$ref": "#/components/schemas/StationResourceLocationDef"
 					}
 				}
 			},
@@ -2073,13 +2079,13 @@
 				"onlineResource": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/OnlineResourceDef"
+						"$ref": "#/components/schemas/OnlineResourceDef"
 					}
 				},
 				"stations": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/StationDef"
+						"$ref": "#/components/schemas/StationDef"
 					}
 				},
 				"connectionPointIds": {
@@ -2098,7 +2104,7 @@
 			"type": "object",
 			"properties": {
 				"carrier": {
-					"$ref": "#/definitions/CompanyDef"
+					"$ref": "#/components/schemas/CompanyDef"
 				},
 				"trainId": {
 					"description": "ztrain number (without service brand abbreviation)",
@@ -2107,7 +2113,7 @@
 				"onlineResource": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/OnlineResourceDef"
+						"$ref": "#/components/schemas/OnlineResourceDef"
 					}
 				}
 			},
@@ -2123,7 +2129,7 @@
 			"type": "object",
 			"properties": {
 				"carrier": {
-					"$ref": "#/definitions/CompanyDef"
+					"$ref": "#/components/schemas/CompanyDef"
 				},
 				"zoneId": {
 					"type": "string"
@@ -2135,12 +2141,12 @@
 					"type": "string"
 				},
 				"ploygon": {
-					"$ref": "#/definitions/PolygonDef"
+					"$ref": "#/components/schemas/PolygonDef"
 				},
 				"stationList": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/StationDef"
+						"$ref": "#/components/schemas/StationDef"
 					}
 				},
 				"nutsCodes": {
@@ -2181,14 +2187,14 @@
 					"type": "string"
 				},
 				"defaultFareType": {
-					"$ref": "#/definitions/FareTypeDef"
+					"$ref": "#/components/schemas/FareTypeDef"
 				},
 				"defaultCarrierConstraintRef": {
 					"description": "CarrierConstraint",
 					"type": "string"
 				},
 				"defaultRegulatoryConditions": {
-					"$ref": "#/definitions/RegulatoryConditionsDef"
+					"$ref": "#/components/schemas/RegulatoryConditionsDef"
 				}
 			},
 			"required": [
