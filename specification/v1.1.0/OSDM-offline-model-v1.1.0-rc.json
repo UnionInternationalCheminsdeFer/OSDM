@@ -17,6 +17,7 @@
             "$ref": "#/components/schemas/CountryDef"
           },
           "codes": {
+            "description": "The codes that can be used to represent the given station on the system. There can be several codes, in which case  it is relevant to have a list of couples.",
             "type": "array",
             "items": {
               "type": "object",
@@ -25,12 +26,11 @@
                   "$ref": "#/components/schemas/StationCodeListDef"
                 },
                 "stationCode": {
-                  "type": "string",
-                  "description": "the code representing the station in the specified code-list"
+                  "description": "the code representing the station in the specified code-list",
+                  "type": "string"
                 }
               }
-            },
-            "description": "The codes that can be used to represent the given station on the system. There can be several codes, in which case  it is relevant to have a list of couples."
+            }
           },
           "geoCoordinate": {
             "$ref": "#/components/schemas/GeoCoordinate"
@@ -49,8 +49,8 @@
             "$ref": "#/components/schemas/StationCodeListDef"
           },
           "code": {
-            "type": "string",
-            "description": "the code representing the station in the specified code-list"
+            "description": "the code representing the station in the specified code-list",
+            "type": "string"
           },
           "country": {
             "$ref": "#/components/schemas/CountryDef"
@@ -63,8 +63,8 @@
           }
         },
         "required": [
-          "country",
-          "code"
+          "code",
+          "country"
         ],
         "additionalProperties": false
       },
@@ -134,7 +134,7 @@
           "scale": {
             "description": "scale of the amount - the number of positions after the comma",
             "type": "integer",
-            "format": "int32",            
+            "format": "int32",
             "default": 2
           },
           "vatDetails": {
@@ -163,7 +163,7 @@
             "description": "by default of the scale the amount in cents",
             "type": "integer",
             "format": "int32"
-          },          
+          },
           "scale": {
             "description": "scale of the amount - the number of positions after the comma",
             "type": "integer",
@@ -213,8 +213,8 @@
             "type": "string"
           },
           "issuer": {
-            "type": "string",
-            "description": "RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x."
+            "description": "RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the codes must have at least 5 positions and start with x.",
+            "type": "string"
           }
         },
         "required": [
@@ -287,7 +287,7 @@
         }
       },
       "RegulatoryConditionsDef": {
-        "description": "general conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and conditions in the conditions of combined offers and indicate them to the customer where required. Which indications are mandatory to be shown to the customer will be defined in the SCICs CIV: terms and conditions according to COTIV regulation MD:  terms and conditions according to SMPS regulation EU-PRR: terms and conditions according to EU-PRR regulation",
+        "description": "regulatory condition",
         "type": "array",
         "items": {
           "type": "string",
@@ -326,39 +326,37 @@
         },
         "additionalProperties": false
       },
-      
-	  "CalendarDef": {
-	    "description": "calendar",
-	    "type": "object",
-	    "properties": {
-		      "id": {
-		        "description": "\\*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange",
-		        "type": "string"
-		      },
-		      "fromDate": {
-		        "type": "string",
-		        "format": "date-time"
-		      },
-		      "untilDate": {
-		        "type": "string",
-		        "format": "date-time"
-		      },
-		      "dates": {
-		        "description": "dates included in the calendar. In case no dates are provided the range is assumed to be valid",
-		        "type": "array",
-		        "items": {
-		          "type": "string",
-		          "format": "date-time"
-		        }
-		      },
-		      "utcOffset": {
-		        "description": "offset to UTC in minutes (number of minutes to be added to get UTC dates)",
-		        "type": "integer",
-		        "format": "int32"
-		      }
-		}
-	  },
-	  
+      "CalendarDef": {
+        "description": "calendar",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "\\*** BULK-ONLY *** identification within the bulk data mandatory in bulk data exchange",
+            "type": "string"
+          },
+          "fromDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "untilDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dates": {
+            "description": "dates included in the calendar. In case no dates are provided the range is assumed to be valid",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "utcOffset": {
+            "description": "offset to UTC in minutes (number of minutes to be added to get UTC dates)",
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
       "TimeUnitDef": {
         "type": "string",
         "enum": [
@@ -660,10 +658,10 @@
             "type": "string",
             "format": "date-time"
           },
-          "carrierFee": {
-            "description": "indicates that the fee belongs to the carrier",
+          "isAllocatorFee": {
+            "description": "indicates that the fee belongs to the allocator",
             "type": "boolean",
-            "default": true
+            "default": false
           },
           "individualContracts": {
             "description": "indicates that the after sales of this fare can be treated independently per person.",
@@ -707,12 +705,12 @@
         }
       },
       "LineDef": {
-        "type": "object",
         "description": "terminalStation - in case the product requires a destination within the zone (e.g. local ticket  to go to the main rail station).  entryStation - Station to enter the zone in case the product requires to enter the zone via a  specific station (e.g. local zone ticket to start from the main rail station).",
+        "type": "object",
         "properties": {
           "binaryLineId": {
-            "type": "string",
-            "description": "Id to support local traffic standards (e.g. VDV,...)."
+            "description": "Id to support local traffic standards (e.g. VDV,...).",
+            "type": "string"
           },
           "carrier": {
             "$ref": "#/components/schemas/CompanyDef"
@@ -756,9 +754,9 @@
             "type": "string"
           },
           "travelDate": {
+            "description": "date and time of the departure where the train link starts",
             "type": "string",
-            "format": "date-time",
-            "description": "date and time of the departure where the train link starts"
+            "format": "date-time"
           }
         },
         "required": [
@@ -846,13 +844,13 @@
         "additionalProperties": false
       },
       "ZoneDef": {
-        "type": "object",
         "description": "carrier - carrier responsible for the transport. entryStation - Station to enter the zone in case the product requires to enter the zone via a specific station (e.g. local zone ticket to start from the main rail station). terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket to go to the main rail station).",
+        "type": "object",
         "properties": {
           "binaryZoneId": {
+            "description": "Id to support local traffic standards (e.g. VDV,...)",
             "type": "string",
-            "format": "base64",
-            "description": "Id to support local traffic standards (e.g. VDV,...)"
+            "format": "base64"
           },
           "carrier": {
             "$ref": "#/components/schemas/CompanyDef"
@@ -925,34 +923,31 @@
             }
           },
           "individualTicketingPermitted": {
-            "description": "a separate fulfillment per traveler is permitted. Individual fulfillment might not be permitted due to collective pricing of to reduce costs e.g. for ticket checks on board.",
+            "description": "a separate fulfillment per traveler is permitted",
             "type": "boolean",
-            "default": false
+            "default": "false"
           },
           "separateFulfillmentRequired": {
             "description": "a separate fulfillment for the regional constraint is required",
             "type": "boolean",
             "default": false
-          }          
+          }
         },
         "required": [
           "id",
-          "acceptedFulfillmentTypes",
-          "individualTicketingPermitted"
+          "acceptedFulfillmentTypes"
         ],
         "additionalProperties": false
       },
-      
       "BarCodeTypesDef": {
-         "description": "Item according to IRS 90918-9: FCB, TLB, SSB",
-         "type": "string",
-         "enum": [
-                "FCB",
-                "TLB",
-                "SSB"
-         ]     
+        "description": "Item according to IRS 90918-9: FCB, TLB, SSB",
+        "type": "string",
+        "enum": [
+          "FCB",
+          "TLB",
+          "SSB"
+        ]
       },
-      
       "PersonalDataConstraintDef": {
         "type": "object",
         "properties": {
@@ -1073,8 +1068,8 @@
         ]
       },
       "LegacyReservationParameterDef": {
-        "type": "object",
         "description": "reservation parameter to support the UIC 90918-1 interface for booking",
+        "type": "object",
         "properties": {
           "travelClass": {
             "description": "90918-1 class code in reservation",
@@ -1131,8 +1126,8 @@
         "additionalProperties": false
       },
       "CarrierConstraintDef": {
-        "type": "object",
         "description": "Either excluded or included carriers can be set.",
+        "type": "object",
         "properties": {
           "id": {
             "type": "string"
@@ -1182,10 +1177,10 @@
           "text": {
             "$ref": "#/components/schemas/TextDef"
           },
-          "includesClassName": {
+          "doesIncludelassName": {
             "description": "indicates that the class name is included",
             "type": "boolean",
-            "default": true
+            "default": false
           },
           "reservationParameterId": {
             "type": "string"
@@ -1227,7 +1222,7 @@
         "additionalProperties": false
       },
       "FareTypeDef": {
-        "description": "Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.",
+        "description": "UIC fare types",
         "type": "string",
         "enum": [
           "ADMISSION",
@@ -1237,8 +1232,8 @@
         ]
       },
       "RegionalConstraintDef": {
-        "type": "object",
         "description": "regional constraint of the fare-offline bulk data use the id of connection points whereas in an online environment the connection point is included",
+        "type": "object",
         "properties": {
           "id": {
             "type": "string"
@@ -1439,8 +1434,22 @@
               "$ref": "#/components/schemas/PassengerConstraintDef"
             }
           },
+          "fareConstraintBundles": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/FareConstraintBundle"
+            }
+          },
+          "passengerCombinationConstraints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PassengerCombinationConstraintDef"
+            }
+          },
           "fares": {
             "type": "array",
+            "minItems": 1,
             "items": {
               "$ref": "#/components/schemas/FareDef"
             }
@@ -1459,12 +1468,6 @@
               "type": "string"
             }
           },
-          "combinationConstraints": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FareCombinationConstraintDef"
-            }
-          },
           "salesAvailabilityConstraint": {
             "type": "array",
             "items": {
@@ -1475,6 +1478,12 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TravelValidityConstraintDef"
+            }
+          },
+          "combinationConstraints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FareCombinationConstraintDef"
             }
           },
           "fullfillmentConstraints": {
@@ -1543,10 +1552,11 @@
           "calendars",
           "serviceClassDefinitions",
           "regionalConstraints",
+          "fareConstraintBundles",
           "fares",
           "afterSalesConditions",
-          "combinationConstraints",
-          "salesAvailabilityConstraint"
+          "salesAvailabilityConstraint",
+          "combinationConstraints"
         ],
         "additionalProperties": false
       },
@@ -1586,6 +1596,28 @@
           "deliveryId",
           "version",
           "acceptedVersion"
+        ],
+        "additionalProperties": false
+      },
+      "PassengerCombinationConstraintDef": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "maxWeightedPassengers": {
+            "description": "The total weighted number of passengers on the offer is restricted to be equal or smaller than this maximum",
+            "type": "number",
+            "default": 999
+          },
+          "minWeightedPassengers": {
+            "description": "The total weighted number of passengers on the offer is restricted to equal or larger than this minimum",
+            "type": "number",
+            "default": 0
+          }
+        },
+        "required": [
+          "id"
         ],
         "additionalProperties": false
       },
@@ -1631,13 +1663,15 @@
                 "maxNumber": {
                   "description": "number of passengers allowed per accompanying passenger",
                   "type": "integer",
-                  "format": "int32"
+                  "format": "int32",
+                  "default": 999
                 },
                 "minNumber": {
                   "description": "number of passengers required as accompanying passenger",
                   "type": "integer",
-                  "format": "int32"
-                },                
+                  "format": "int32",
+                  "default": 999
+                },
                 "passengerTypeRef": {
                   "$ref": "#/components/schemas/TravelerTypeDef"
                 }
@@ -1666,14 +1700,6 @@
             }
           },
           "passengerWeight": {
-            "type": "number"
-          },
-          "maxWeightedPassengers": {
-            "description": "The total weighted number of passengers on the offer is restricted to be equal or smaller than this maximum",
-            "type": "number"
-          },
-          "minWeightedPassengers": {
-            "description": "The total weighted number of passengers on the offer is restricted to equal or larger than this minimum",
             "type": "number"
           }
         },
@@ -1820,7 +1846,7 @@
             "items": {
               "$ref": "#/components/schemas/ReductionCardReferenceDef"
             }
-          },     
+          },
           "serviceClasses": {
             "description": "list of service classes in case this class is available for different classes",
             "type": "array",
@@ -1840,8 +1866,8 @@
         },
         "required": [
           "issuer",
-          "Id",
-          "name"
+          "name",
+          "Id"
         ],
         "additionalProperties": false
       },
@@ -1853,11 +1879,14 @@
             "description": "unique id of the fare item to be included in accountings",
             "type": "string"
           },
+          "bundleRef": {
+            "type": "string"
+          },
           "fareType": {
             "$ref": "#/components/schemas/FareTypeDef"
           },
           "nameRef": {
-            "description": "reference to the offer name",
+            "description": "reference to the fare name",
             "type": "string"
           },
           "priceRef": {
@@ -1889,19 +1918,10 @@
           "afterSalesRulesRef": {
             "type": "string"
           },
-          "combinationConstraintRef": {
-            "type": "string"
-          },
-          "fullfillmentConstraintRef": {
-            "type": "string"
-          },
           "reductionConstraintRef": {
             "type": "string"
           },
           "reservationParameterRef": {
-            "type": "string"
-          },
-          "personalDataConstraintRef": {
             "type": "string"
           },
           "legacyAccountingIdentifier": {
@@ -1909,12 +1929,6 @@
           },
           "fareDetailDescriptionRef": {
             "description": "reference to a text with the details of the fare",
-            "type": "string"
-          },
-          "salesAvailabilityConstraintRef": {
-            "type": "string"
-          },
-          "travelValidityConstraintRef": {
             "type": "string"
           },
           "legacyConversion": {
@@ -1929,6 +1943,8 @@
           }
         },
         "required": [
+          "id",
+          "bundleRef",
           "fareType"
         ],
         "additionalProperties": false
@@ -2050,7 +2066,7 @@
           "shortNameUtf8": {
             "description": "station name with upper and lower case letters in UTF8",
             "type": "string"
-          },          
+          },
           "legacyBorderPointCode": {
             "type": "integer"
           }
@@ -2108,7 +2124,6 @@
         ],
         "additionalProperties": false
       },
-
       "ZoneDefinitionDef": {
         "description": "definition of a zone used to define regional validity. The area of the zone can be defined via a geo-poligone, a complte list of all contained stations or area codes from the NUTS code list. The carrier is eigther the carrier or transport authority responsible for the definition.",
         "type": "object",
@@ -2144,6 +2159,50 @@
         "required": [
           "carrier",
           "zoneId"
+        ],
+        "additionalProperties": false
+      },
+      "FareConstraintBundle": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "combinationConstraintRef": {
+            "type": "string"
+          },
+          "salesAvailabilityConstraintRef": {
+            "type": "string"
+          },
+          "travelValidityConstraintRef": {
+            "type": "string"
+          },
+          "fullfillmentConstraintRef": {
+            "type": "string"
+          },
+          "personalDataConstraintRef": {
+            "type": "string"
+          },
+          "passengerCombinationRef": {
+            "type": "string"
+          },
+          "defaultFareType": {
+            "$ref": "#/components/schemas/FareTypeDef"
+          },
+          "defaultCarrierConstraintRef": {
+            "description": "CarrierConstraint",
+            "type": "string"
+          },
+          "defaultRegulatoryConditions": {
+            "$ref": "#/components/schemas/RegulatoryConditionsDef"
+          }
+        },
+        "required": [
+          "id",
+          "combinationConstraintRef",
+          "salesAvailabilityConstraintRef",
+          "travelValidityConstraintRef",
+          "defaultFareType"
         ],
         "additionalProperties": false
       }
