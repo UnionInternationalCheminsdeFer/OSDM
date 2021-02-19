@@ -134,6 +134,7 @@ Reservation *-- "1" CommonOfferPartAttributes
 Reservation *-- "1" ReservationDetail
 Reservation *-- "0..1" PlaceSelection
 Reservation .>"0..n" Fee
+Reservation .>"0..n" Ancillary:optional/\nincluded/\nmandatory
 
 class ReservationDetail<<D,green>> {
 accommodationType: string
