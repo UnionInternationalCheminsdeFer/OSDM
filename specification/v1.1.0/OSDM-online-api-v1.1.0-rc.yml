@@ -3515,11 +3515,7 @@ components:
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/OfferPartReference'  
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+            $ref: '#/components/schemas/OfferPartReference'
       required:
         - id
         - commonOfferPartAttributes
@@ -3576,11 +3572,7 @@ components:
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/OfferPartReference'  
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+            $ref: '#/components/schemas/OfferPartReference'
       required:
         - id
         - commonOfferPartAttributes
@@ -3607,11 +3599,7 @@ components:
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/OfferPartReference' 
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+            $ref: '#/components/schemas/OfferPartReference'
       required :
         - id
         - commonOfferPartAttributes
@@ -3655,10 +3643,6 @@ components:
             The product code expressed in the provider system (could be a
             mapping from an even lower-level provider).
           example: Reservierungsentgelt
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
       required :
         - id
         - price
