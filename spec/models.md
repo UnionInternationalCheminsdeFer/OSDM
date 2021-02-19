@@ -142,8 +142,7 @@ under specific conditions:
 
 - the segments covered by a given offer are indicated through the `coveredSegmentIndexes`
   property
-- all offers covering the same set of segments belong to the same  `offerCluster`. As such,
-  their `offerCluster` identifier must be filled-in and identical
+- all offers covering the same set of segments belong to the same  `offerCluster`. All offers related to the same `offerCluster` therefore have an identical set of `coveredSegmentIndexes`
 - a `segment` can only be covered in one `offerCluster` within a `tripOffer` (no overlap)
 - each `segment` of the `trip` must be covered by at least one `offer` in each `TripOffer`
   (no gap)
