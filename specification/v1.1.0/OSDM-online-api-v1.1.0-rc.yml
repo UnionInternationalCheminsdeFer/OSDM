@@ -3212,7 +3212,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         abstract:
           type: string
           example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
@@ -3491,7 +3490,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         isReservationRequired:
@@ -3552,7 +3550,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         reservationDetails:
@@ -3595,7 +3592,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         optionality:
@@ -3621,7 +3617,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         abstract:
           type: string
           example: Reservierungsentgelt
@@ -4099,7 +4094,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
           description: id of the refund offer
         abstract:
           type: string
@@ -4207,7 +4201,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         abstract:
           type: string
           example: Bruxelles-Midi 2020-07-01 10:05 CET
@@ -4232,7 +4225,6 @@ components:
       required: 
         - id
         - trip
-        - links
 
     ExchangeOperation:
       type: object
@@ -4356,8 +4348,13 @@ components:
     NonTripOffer:
       type: object
       description: >-
-        Non trip offers do not reference a trip, thus no reservations can be offered by definition.
+        Non trip offers do not reference a trip, thus no reservations can be offered by definition.     
       properties:
+        id:
+          type: string
+        abstract:
+          type: string
+          example: Super Saver One Day Pass
         offerSummary:
           $ref: '#/components/schemas/OfferSummary'
         requestedInformation:
@@ -4388,6 +4385,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      required:
+        - id
 
     CoachLayout:
       type: object
