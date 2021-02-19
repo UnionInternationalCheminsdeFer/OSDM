@@ -924,9 +924,9 @@
 				},
 				"individualTicketingPermitted": {
 					"description": "a separate fulfillment per traveler is permitted",
-					"type": "boolean"
+					"type": "boolean",
 					"default": "false"
-				}
+				},
 			        "separateFulfillmentRequired": {
              				"description": "a separate fulfillment for the regional constraint is required",
             				"type": "boolean",
