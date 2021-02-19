@@ -3569,6 +3569,18 @@ components:
             - INCLUDED
             - MANDATORY
             - OPTIONAL
+        ancillaries:
+          type: array
+          items:
+            type: object
+            properties:
+              relationType:
+                type: string
+                x-extensible-enum:
+                  - OPTIONAL
+                  - INCLUDED
+              ancillary:
+                $ref: '#/components/schemas/OfferPartReference'
         fees:
           type: array
           items:
