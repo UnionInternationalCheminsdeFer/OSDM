@@ -19,7 +19,6 @@
         "offerParts": [
             {
                 "id": "reservation_BaselSBB-Landquart",
-                "parts": "http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'",
                 "abstract": "Reservation Basel SBB - Landquart"
             }
         ],

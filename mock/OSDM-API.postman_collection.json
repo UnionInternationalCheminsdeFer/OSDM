@@ -129,7 +129,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/locations?matchValue=Davos",
+							"raw": "{{baseUrl}}/locations?matchValue=Schiers",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -139,7 +139,7 @@
 							"query": [
 								{
 									"key": "matchValue",
-									"value": "Davos"
+									"value": "Schiers"
 								}
 							]
 						}
@@ -152,7 +152,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/locations?matchValue=Sargans",
+							"raw": "{{baseUrl}}/locations?matchValue=Zürich",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -162,7 +162,7 @@
 							"query": [
 								{
 									"key": "matchValue",
-									"value": "Sargans"
+									"value": "Zürich"
 								}
 							]
 						}
@@ -242,7 +242,7 @@
 			"name": "offers",
 			"item": [
 				{
-					"name": "/trip-offers-collection Basel SBB - Davos Platz",
+					"name": "/trip-offers-collection Basel SBB - Klosters Platz",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -262,6 +262,60 @@
 							],
 							"path": [
 								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/trip-offers-collection Basel SBB - Klosters Platz",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers-collection/trip-offers-collection-001",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers-collection",
+								"trip-offers-collection-001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/trip-offers Basel SBB - Landquart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers/trip-offer-001",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers",
+								"trip-offer-001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/trip-offers  Landquart - Klosters Platz",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers/trip-offer-002",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers",
+								"trip-offer-002"
 							]
 						}
 					},
@@ -303,7 +357,18 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "{{baseUrl}}/bookings/booking_001/passengers/ca622d56-7033-11eb-9439-0242ac130002",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"booking_001",
+								"passengers",
+								"ca622d56-7033-11eb-9439-0242ac130002"
+							]
+						}
 					},
 					"response": []
 				}
@@ -327,13 +392,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/bookings/1/fulfillments",
+							"raw": "{{baseUrl}}/bookings/booking_001/fulfillments",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"bookings",
-								"1",
+								"booking_001",
 								"fulfillments"
 							]
 						}
@@ -346,13 +411,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/fulfillments/fulfillment_001",
+							"raw": "{{baseUrl}}/fulfillments/94a4c484-702f-11eb-9439-0242ac130002",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"fulfillments",
-								"fulfillment_001"
+								"94a4c484-702f-11eb-9439-0242ac130002"
 							]
 						}
 					},
@@ -364,13 +429,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/fulfillments/fulfillment_002",
+							"raw": "{{baseUrl}}/fulfillments/3730e668-7032-11eb-9439-0242ac130002",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"fulfillments",
-								"fulfillment_002"
+								"3730e668-7032-11eb-9439-0242ac130002"
 							]
 						}
 					},
@@ -382,13 +447,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/fulfillments/fulfillment_003",
+							"raw": "{{baseUrl}}/fulfillments/406e9432-7032-11eb-9439-0242ac130002",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"fulfillments",
-								"fulfillment_003"
+								"406e9432-7032-11eb-9439-0242ac130002"
 							]
 						}
 					},
@@ -418,18 +483,54 @@
 					"response": []
 				},
 				{
-					"name": "/product CH:DV-Normalpreis",
+					"name": "/product CH:DV-Point-2-Point",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/products/CH00125FIRST",
+							"raw": "{{baseUrl}}/products/CH00125",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"products",
-								"CH00125FIRST"
+								"CH00125"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/product CH:DV-SuperSafer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/CH10125",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"CH10125"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/product CH:DV-SuperSafer Pass",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/CH80040",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"CH80040"
 							]
 						}
 					},
