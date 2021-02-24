@@ -5,13 +5,6 @@
   "description": "OSDM extract of offline fare delivery",
   "components": {
     "schemas": {
-      "StationDetailsDef": {{
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "$id": "http://uic.org//schemas/passenger/eticket/v2/offlineOSDM.json",
-  "title": "OSDM Offline Fare Delivery",
-  "description": "OSDM extract of offline fare delivery",
-  "components": {
-    "schemas": {
       "StationDetailsDef": {
         "description": "Details of a station. Station names are not translated but provided in some cases in multiple character sets in case stations are named in local characters and additionally in latin characters. In some countries stations have multiple names depending on the countries local languages.",
         "type": "object",
