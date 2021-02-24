@@ -913,19 +913,21 @@ paths:
           required: true
           description: ID of the reservation where to validate the place availability
         - in: query
-          name: coach
+          name: coachNumber
           description: coach of the referenced place
           schema:
             type: string
+          required: true
         - in: query
-          name: place
+          name: placeNumber
           description: place number of the referenced place
           schema:
-            type: string          
+            type: string
+          required: true          
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list PLacePreferences) the customer wants to have 
+            Place preferences (see code list Reservation Preferences) the customer wants to have 
           schema:
             type: array
             items:
@@ -943,7 +945,7 @@ paths:
                   type: string
                 preferences:
                  description: >-
-                    Place preferences (see code list PlacePreferences) the customer wants to have 
+                    Place preferences (see code list Reservation Preferences) the customer wants to have 
                  type: array
                  items:
                    type: string
@@ -1168,19 +1170,21 @@ paths:
           required: true
           description: ID of the fare where to validate the place availability
         - in: query
-          name: coach
+          name: coachNumber
           description: coach of the referenced place
           schema:
             type: string
+          required: true
         - in: query
-          name: place
+          name: placeNumber
           description: place number of the referenced place
           schema:
-            type: string          
+            type: string   
+          required: true
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list PLacePreferences) the customer wants to have 
+            Place preferences (see code list Reservation Preferences) the customer wants to have 
           schema:
             type: array
             items:
@@ -1198,7 +1202,7 @@ paths:
                   type: string
                 preferences:
                  description: >-
-                    Place preferences (see code list PlacePreferences) the customer wants to have 
+                    Place preferences (see code list Reservation Preferences) the customer wants to have 
                  type: array
                  items:
                    type: string
@@ -3074,7 +3078,7 @@ components:
             $ref: '#/components/schemas/ServiceClassId'
           description: >-
             The classes returned might be different from the requested classes.
-        reservationOffersOnly:
+        isReservationOffer:
           type: boolean
           default: false
         currency:
@@ -3208,7 +3212,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         abstract:
           type: string
           example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
@@ -3216,6 +3219,7 @@ components:
           $ref: '#/components/schemas/OfferSummary'
         isReusable:
           type: boolean
+          default: false
           description: >-
             Indicates whether the offerId can be used in more than one booking.
         offerTag:
@@ -3330,6 +3334,7 @@ components:
           enum:
             - COLLECTIVE
             - INDIVIDUAL 
+          default: INDIVIDUAL
         reductionsApplied:
           type: array
           items:
@@ -3426,6 +3431,7 @@ components:
           $ref: '#/components/schemas/ComfortClass'
         isTrainBound:
           type: boolean
+          default: false
         isReturnProduct:
           type: boolean
           default: false
@@ -3439,19 +3445,22 @@ components:
           type: string
         combinationTags:
           description: >-
-            Tags to indicate that some products from a provider can be sold only when in conjunction with product(s) from another provider using the same tag.
-            At least one, not all, combinationTags must be in common to allow combination. No combinationTags indicate that there are no combination constraints on the product.        
+            Tags to indicate that some products from a provider can be sold only when in conjunction with product(s) 
+            from another provider using the same tag. At least one, not all, combinationTags must be in common to allow 
+            combination. No combinationTags indicate that there are no combination constraints on the product.        
           type: array
           items:
             type: object
             properties:
               combinationTag:
                 type: string
-              sellableStandalone:
+              needsToBeCombined:
                 description: >-
-                  When true it means that this product can be sold also when not in conjunction with a product with the same tag. This is needed to propose specific products from one provider (sellableStandalone=false) that depend on public ones of another (sellableStandalone=true).
+                  If false it means that this product can only be sold also when not in conjunction with a product with
+                  the same tag. This is needed to propose specific products from one provider that depend on public ones of 
+                  another.
                 type: boolean
-                default: true
+                default: false
         links:
           type: array
           items:
@@ -3481,7 +3490,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         isReservationRequired:
@@ -3489,7 +3497,7 @@ components:
         reservations:
           type: array
           items:
-            $ref: '#/components/schemas/OfferPart'
+            $ref: '#/components/schemas/OfferPartReference'
         ancillaries:
           type: array
           items:
@@ -3501,15 +3509,11 @@ components:
                   - OPTIONAL
                   - INCLUDED
               ancillary:
-                $ref: '#/components/schemas/OfferPart'
+                $ref: '#/components/schemas/OfferPartReference'
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/OfferPart'  
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+            $ref: '#/components/schemas/OfferPartReference'
       required:
         - id
         - commonOfferPartAttributes
@@ -3546,7 +3550,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         reservationDetails:
@@ -3563,14 +3566,22 @@ components:
             - INCLUDED
             - MANDATORY
             - OPTIONAL
+        ancillaries:
+          type: array
+          items:
+            type: object
+            properties:
+              relationType:
+                type: string
+                x-extensible-enum:
+                  - OPTIONAL
+                  - INCLUDED
+              ancillary:
+                $ref: '#/components/schemas/OfferPartReference'
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/OfferPart'  
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+            $ref: '#/components/schemas/OfferPartReference'
       required:
         - id
         - commonOfferPartAttributes
@@ -3581,7 +3592,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
         optionality:
@@ -3597,11 +3607,7 @@ components:
         fees:
           type: array
           items:
-            $ref: '#/components/schemas/OfferPart' 
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+            $ref: '#/components/schemas/OfferPartReference'
       required :
         - id
         - commonOfferPartAttributes
@@ -3611,7 +3617,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         abstract:
           type: string
           example: Reservierungsentgelt
@@ -3645,19 +3650,15 @@ components:
             The product code expressed in the provider system (could be a
             mapping from an even lower-level provider).
           example: Reservierungsentgelt
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
       required :
         - id
         - price
           
-    OfferPart:
+    OfferPartReference:
       type: object
       description: >-
         References all the offer part elements in an uniform format.
-        In its part, an OfferPart can refer to reservation, admission, ancillary or fee.
+        In its part, an OfferPartReference can refer to reservation, admission, ancillary or fee.
       properties:
         id:
           type: string
@@ -3665,11 +3666,6 @@ components:
         abstract:
           type: string
           example: ICE Wifi on Board 2020-07-11
-        parts:
-          type: string
-          format: url
-          example: >-
-            http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'
         links:
           type: array
           items:
@@ -3686,7 +3682,10 @@ components:
           description: id of the selected offer or exchangeOffer
         afterSaleByDistributorOnly:
           description: >-
-            in case the distributor has proposed this offer in conjunction with an offer of another provider constrained by a combinationTag, this flag must be set to true to indicate to the provider that aftersale must be done on the totality of the distributor's booking. Only aftersale requests triggered by the distributor can be safely processed on this offer. When the flag is not set, standard provider logic applies.
+            in case the distributor has proposed this offer in conjunction with an offer of another provider constrained
+            by a combinationTag, this flag must be set to true to indicate to the provider that after-sale must be done 
+            on the totality of the distributor's booking. Only after-sale requests triggered by the distributor can be 
+            safely processed on this offer. When the flag is not set, standard provider logic applies.
           type: boolean
           default: false
         selectedOptionalReservationsIds:
@@ -3959,7 +3958,7 @@ components:
         offerParts:
           type: array
           items:
-            $ref: '#/components/schemas/OfferPart'
+            $ref: '#/components/schemas/OfferPartReference'
         documents:
           description: >-
             complete document created for fulfillment
@@ -4095,7 +4094,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
           description: id of the refund offer
         abstract:
           type: string
@@ -4203,7 +4201,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         abstract:
           type: string
           example: Bruxelles-Midi 2020-07-01 10:05 CET
@@ -4228,7 +4225,6 @@ components:
       required: 
         - id
         - trip
-        - links
 
     ExchangeOperation:
       type: object
@@ -4352,8 +4348,13 @@ components:
     NonTripOffer:
       type: object
       description: >-
-        Non trip offers do not reference a trip, thus no reservations can be offered by definition.
+        Non trip offers do not reference a trip, thus no reservations can be offered by definition.     
       properties:
+        id:
+          type: string
+        abstract:
+          type: string
+          example: Super Saver One Day Pass
         offerSummary:
           $ref: '#/components/schemas/OfferSummary'
         requestedInformation:
@@ -4384,6 +4385,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      required:
+        - id
 
     CoachLayout:
       type: object
@@ -4700,10 +4703,10 @@ components:
                 $ref: '#/components/schemas/AccommodationSubType'              
             text:
               $ref: '#/components/schemas/Text'
-            includesClassName:
+            isClassNameExcluded:
               description: indicates that the class name is included
               type: boolean
-              default: true
+              default: false
             reservationParameterId:
               type: string
           required:
@@ -4719,7 +4722,7 @@ components:
                 $ref: '#/components/schemas/Condition'
               description: >-
                 Structured description of the sales or after-sales conditions.
-            supportsIndividualContracts:
+            isSupportingIndividualContracts:
               description: Indicates that the after sales of this fare can be treated independently per person.
               type: boolean
               default: false
@@ -4771,12 +4774,12 @@ components:
                 x-extensible-enum:
                   - REGISTRY
                   - PEER_TO_PEER
-            individualTicketingPermitted:
-              description: a separate fulfillment per traveler is permitted
+            isIndividualTicketingForbidden:
+              description: a separate fulfillment per traveler is forbidden
               type: boolean
+              default: false
           required:
             - acceptedFulfillmentTypes
-            - individualTicketingPermitted
         reductionConstraint:
           type: object
           properties:
@@ -5452,12 +5455,12 @@ components:
         afterSalesFee:
           type: object
           properties:
-            feeAmount:
+            feePrice:
               $ref: '#/components/schemas/CurrencyPrice'
-            isCarrierFee:
-              description: indicates that the fee belongs to the carrier
+            isAllocatorFee:
+              description: indicates whether the fee belongs to the allocator
               type: boolean
-              default: true
+              default: false
       required:
         - type
         - description
@@ -5898,12 +5901,12 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/AvailabilityStatus'
-        isSelectable:
+        isNotSelectable:
           description: >-
             Flag to indicate individual places as non-selectable in
-            case complete compartments must be selected
+            case complete compartments must be selected.
           type: boolean
-          default: true
+          default: false
       required:
         - number
         - status
@@ -6098,7 +6101,7 @@ components:
     MotorCycle:    
       type: object
       properties:
-        includingSideCar:
+        isSideCarIncluded:
           type: boolean
           default: false
         plate:
