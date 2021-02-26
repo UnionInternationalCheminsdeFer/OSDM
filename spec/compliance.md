@@ -42,7 +42,7 @@ The following services/features are mandatory/optional to implement:
 | `/trip-offers-collection`, `/trip-offers` and `/offers` | Resources to get bookable offers | **Mandatory** is to provide at least admission offers. |
 | `/offers-collection` | Resources to get offers which are not trip based, e.g. day passes | *Optional* |
 | `/bookings` | Resources to manipulate bookings | **Mandatory** |
-| `/offers/{offerId}/passengers` and `/bookings/{bookingId}/passengers` | Resources to manipulate passenger information at every stage of the flow | **Mandatory** |
+| `/offers/{offerId}/passengers` | Resources to manipulate passenger information | **Mandatory** |
 | `/products` | Resources to retrieve products information on one or more products | **Mandatory** |
 | `/bookings/{bookingId}/fulfillments` and `/fulfillments` | Resources to retrieve fulfillments, e.g. tickets | **Mandatory** is to support A4 PDF tickets. |
 | `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer | **Mandatory** is to support full refund. |
@@ -51,8 +51,9 @@ The following services/features are mandatory/optional to implement:
 
 All non-functional requirements defined in the services must be fulfilled.
 
-Especially all implementations most support the Tolerant Reader pattern. This
-integration pattern helps creating robust communication systems. The idea is to
+Especially all implementations most support the [Tolerant Reader
+pattern](https://martinfowler.com/bliki/TolerantReader.html).
+This integration pattern helps creating robust communication systems. The idea is to
 be as tolerant as possible when reading data from another service. This way,
 when the communication schema changes, the readers must not break.
 
@@ -65,7 +66,7 @@ The following services/features are mandatory/optional to implement:
 | `/locations` and `/trips` | Resources to search for trip and locations | *Optional* |
 | `/trip-offers-collection`, `/trip-offers` and `/offers` | Resources to get bookable offers | **Mandatory** is to provide fare offers on a `/trip-offers-collection`. *Optional*: `/offers` for non trip based offers. |
 | `/bookings` | Resources to manipulate bookings | **Mandatory** is to support bookings consisting of fares except in the special case of direct sale fare offers |
-| `/offers/{offerId}/passengers` and `/bookings/{bookingId}/passengers` | Resources to manipulate  passenger information at every stage of the flow | *Conditional*, mandatory to be supported in case personal data are required by the fare provider |
+| `/offers/{offerId}/passengers` | Resources to manipulate  passenger information | *Conditional*, mandatory to be supported in case personal data are required by the fare provider |
 | `/offers-collection` | Resources to get offers which are not trip based, e.g. day passes | *Optional* |
 | `/products` | Resources to retrieve products information on one or more products | **Mandatory** |
 | `/bookings/{bookingid}/fulfillments` and `fulfillments` | Resources to retrieve fulfillments, e.g. tickets | *Conditional*, mandatory to be supported in case fulfillment items need to be provided |
@@ -94,4 +95,3 @@ Or
 A system receiving data for a fare must be able to understand all features and
 rules of the fare defined in the data and obey these features and rules or must
 not sell such a fare.
-
