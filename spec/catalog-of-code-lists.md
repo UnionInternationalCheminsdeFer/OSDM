@@ -247,6 +247,18 @@ Language codes used in OSDM are based on the [ISO 639-1](https://en.wikipedia.or
 
 Language codes used in OSDM are based on the [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639) standard.
 
+## NUTS codes
+
+The common classification of territorial units in the EU (COMMISSION REGULATION (EU) 2016/2066) 
+provides codes for different levels of geographical/political units. E.g.: 
+
+| Code | Description |
+|------|------|
+|`BE` | BELGIUM |
+|`BE2` | VLAAMS GEWEST |
+|`BE21` | Prov. (2) Antwerpen |
+|`BE211` | Arr. Antwerpen 
+
 ## OverRule Code
 
 | Code | Description |
