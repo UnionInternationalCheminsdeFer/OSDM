@@ -759,7 +759,7 @@ paths:
         '501':
           description: Not implemented
 
-  /offers-collection:
+  /non-trip-offers-collection:
     post:
       tags:
         - Offers 
@@ -777,7 +777,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OfferSearch'
+              $ref: '#/components/schemas/NonTripOfferSearch'
       responses:
         '200':
           description: offer collection
@@ -3086,6 +3086,37 @@ components:
           description:
             The currency returned might be different from the one requested.
 
+    NonTripOfferSearchCriteria:
+      type: object
+      properties:
+        freeText:
+          type: string
+          description: >- 
+            Allows the API consumer to provide a free-text based search. Usage of the provided tewt in the search process is left to the OSDM provider but should be documented
+        flexibilities:
+          description: >-
+            Defines the flexibility levels desired of the fares returned.
+            This refers to the after sales flexibility levels as defined in IRS-90918-10
+          type: array
+          items:
+            $ref: '#/components/schemas/Flexibility'
+        comfortClasses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ComfortClass'
+          description: >-
+            The classes returned might be different from the requested classes.
+        serviceClassIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceClassId'
+          description: >-
+            The classes returned might be different from the requested classes.
+        currency:
+          $ref: '#/components/schemas/Currency'
+          description:
+            The currency returned might be different from the one requested.
+
     TripOfferRequest:
       type: object      
       description: >-
@@ -3827,6 +3858,8 @@ components:
       x-extensible-enum:
           - ETICKET
           - CIT_PAPER
+          - PASS_CHIP
+          - PASS_REFERENCE
 
     BookingPatchRequest:
       type: object
@@ -4151,6 +4184,11 @@ components:
             description: id of the fulfillment to refund
         overruleCode: 
           $ref: '#/components/schemas/OverruleCode'
+        refundDate:
+          type: string
+          format: date-time
+          description: >-
+            For passes -  indicates the date taken as reference to compute possible partial refund. Itis also the date taken as reference to invalidate the pass paritally refunded
       required:
         - fulfillmentIds
 
@@ -4294,7 +4332,7 @@ components:
         exchangeBalance:
           $ref: '#/components/schemas/CurrencyPrice'    
 
-    OfferSearch:
+    NonTripOfferSearch:
       type: object
       description: >-
         Search parameter for an offer search on offers not based on a trip (e.g. passes).
@@ -4326,8 +4364,8 @@ components:
           type: array
           items:
             $ref:  '#/components/schemas/FulfillmentOption' 
-        offerSearchCriteria:
-            $ref:  '#/components/schemas/OfferSearchCriteria'
+        nonTripOfferSearchCriteria:
+            $ref:  '#/components/schemas/NonTripOfferSearchCriteria'
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only. 
@@ -5587,7 +5625,7 @@ components:
       type: object
       description: used to encode an address using the standard street address attributes
       properties:
-        street_nr:
+        street:
           type: string
           description: the street name and house number (if applicable)
           example: Segantinistrasse 23
@@ -6025,6 +6063,9 @@ components:
         phoneNumber:
           description: Preferably a mobile phone number
           type: string
+        address:
+          description: address of the traveller. Can be relevant for some pass holders
+          $ref: '#/components/schemas/Address'
 
     Gender:
       description: >- 
@@ -6194,12 +6235,14 @@ components:
       type: object
       properties:
         type:
-          description: Type of card, can be a reduction or loyalty card.
-          type: string
-          enum:
-            - REDUCTION
-            - LOYALTY
-            - BOTH
+          description: Types of card. One card can have multiple roles, such as loyalty and reduction
+          type: array
+          items:
+            type: string
+            enum:
+              - REDUCTION
+              - LOYALTY
+              - CHIP_CARD
         code:
           description: Code of the card type according to code list.
           type: string
