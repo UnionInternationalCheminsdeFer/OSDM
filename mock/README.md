@@ -63,7 +63,7 @@ Ids used for this scenario (`grep -C 2 -n '"id' trip-offer-response-Basel-Kloste
 
 ## Journeys to Add Next
 
-- Zürich Hb - Wien (öBB)
+- Zürich HB - Wien (öBB)
 - Basel SBB - Frankfurt (DB)
 - Basel SBB - Paris (SNCF)
 - Zürich HB - Milano (Trenitalia)
