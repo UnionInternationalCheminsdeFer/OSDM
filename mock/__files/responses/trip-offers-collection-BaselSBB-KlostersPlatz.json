@@ -3,10 +3,10 @@
   "tripOffers": [
     {
       "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "abstract": "Basel SBB 2021-03-22 13:06 CET",
+      "abstract": "Offers for Basel SBB - Klosters Platz, 2021-05-22 13:06 CET",
       "trip": {
         "id": "50898cd4-0d1e-4456-92bd-c119d419728e",
-        "abstract": "Basel SBB - Landquart, 2021-03-22, 13:06 - 15:12 CET",
+        "abstract": "Basel SBB - Klosters Platz, 2021-05-22, 13:06 - 15:12 CET",
         "segments": [
           {
             "index": 0,
@@ -23,7 +23,7 @@
                     }
                   ]
                 },
-                "departureDateTime": "2021-03-22T13:06:37.489Z",
+                "departureDateTime": "2021-05-22T13:06:37.489Z",
                 "index": 0,
                 "departureTrack": "5"
               }
@@ -47,7 +47,7 @@
                     "longitude": 9.554032
                   }
                 },
-                "arrivalDateTime": "2021-03-22T15:12:37.490Z",
+                "arrivalDateTime": "2021-05-22T15:12:37.490Z",
                 "index": 1,
                 "arrivalTrack": "2"
               }
@@ -82,7 +82,7 @@
                     }
                   }
                 },
-                "departureDateTime": "2021-03-22T13:06:37.490Z",
+                "departureDateTime": "2021-05-22T13:06:37.490Z",
                 "index": 0,
                 "departureTrack": "5"
               },
@@ -106,8 +106,8 @@
                     }
                   }
                 },
-                "departureDateTime": "2021-03-22T14:00:37.490Z",
-                "arrivalDateTime": "2021-03-22T14:07:37.490Z",
+                "departureDateTime": "2021-05-22T14:00:37.490Z",
+                "arrivalDateTime": "2021-05-22T14:07:37.490Z",
                 "index": 0,
                 "departureTrack": "10",
                 "arrivalTrack": "10"
@@ -132,8 +132,8 @@
                     }
                   }
                 },
-                "departureDateTime": "2021-03-22T15:03:37.490Z",
-                "arrivalDateTime": "2021-03-22T15:04:37.490Z",
+                "departureDateTime": "2021-05-22T15:03:37.490Z",
+                "arrivalDateTime": "2021-05-22T15:04:37.490Z",
                 "index": 2,
                 "departureTrack": "2",
                 "arrivalTrack": "2"
@@ -158,7 +158,7 @@
                     }
                   }
                 },
-                "arrivalDateTime": "2021-03-22T15:12:37.490Z",
+                "arrivalDateTime": "2021-05-22T15:12:37.490Z",
                 "index": 3,
                 "arrivalTrack": "2"
               }
@@ -185,7 +185,7 @@
               }
             }
           },
-          "departureDateTime": "2021-03-22T13:06:37.490Z",
+          "departureDateTime": "2021-05-22T13:06:37.490Z",
           "index": 0,
           "departureTrack": "5"
         },
@@ -209,7 +209,7 @@
               }
             }
           },
-          "arrivalDateTime": "2021-03-22T15:12:37.491Z",
+          "arrivalDateTime": "2021-05-22T15:12:37.491Z",
           "index": 0,
           "arrivalTrack": "2"
         },
@@ -219,7 +219,7 @@
       "offers": [
         {
           "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "abstract": "Basel SBB - Klosters Platz 2021-03-22, 13:06 CET, BEST, 63 CHF",
+          "abstract": "Basel SBB - Klosters Platz 2021-05-22, 13:06 CET, BEST, 63 CHF",
           "offerSummary": {
             "minimalPrice": {
               "currency": "CHF",
@@ -252,7 +252,7 @@
           ],
           "trip": {
             "id": "50898cd4-0d1e-4456-92bd-c119d419728e",
-            "abstract": "Basel SBB - Landquart, 2021-03-22, 13:06 - 15:12 CET",
+            "abstract": "Basel SBB - Landquart, 2021-05-22, 13:06 - 15:12 CET",
             "segments": [
               {
                 "index": 0,
@@ -269,7 +269,7 @@
                         }
                       ]
                     },
-                    "departureDateTime": "2021-03-22T13:06:37.489Z",
+                    "departureDateTime": "2021-05-22T13:06:37.489Z",
                     "index": 0,
                     "departureTrack": "5"
                   }
@@ -293,7 +293,7 @@
                         "longitude": 9.554032
                       }
                     },
-                    "arrivalDateTime": "2021-03-22T15:12:37.490Z",
+                    "arrivalDateTime": "2021-05-22T15:12:37.490Z",
                     "index": 1,
                     "arrivalTrack": "2"
                   }
@@ -328,7 +328,7 @@
                         }
                       }
                     },
-                    "departureDateTime": "2021-03-22T13:06:37.490Z",
+                    "departureDateTime": "2021-05-22T13:06:37.490Z",
                     "index": 0,
                     "departureTrack": "5"
                   },
@@ -352,8 +352,8 @@
                         }
                       }
                     },
-                    "departureDateTime": "2021-03-22T14:00:37.490Z",
-                    "arrivalDateTime": "2021-03-22T14:07:37.490Z",
+                    "departureDateTime": "2021-05-22T14:00:37.490Z",
+                    "arrivalDateTime": "2021-05-22T14:07:37.490Z",
                     "index": 0,
                     "departureTrack": "10",
                     "arrivalTrack": "10"
@@ -378,8 +378,8 @@
                         }
                       }
                     },
-                    "departureDateTime": "2021-03-22T15:03:37.490Z",
-                    "arrivalDateTime": "2021-03-22T15:04:37.490Z",
+                    "departureDateTime": "2021-05-22T15:03:37.490Z",
+                    "arrivalDateTime": "2021-05-22T15:04:37.490Z",
                     "index": 2,
                     "departureTrack": "2",
                     "arrivalTrack": "2"
@@ -404,7 +404,7 @@
                         }
                       }
                     },
-                    "arrivalDateTime": "2021-03-22T15:12:37.490Z",
+                    "arrivalDateTime": "2021-05-22T15:12:37.490Z",
                     "index": 3,
                     "arrivalTrack": "2"
                   }
@@ -425,7 +425,7 @@
                         }
                       ]
                     },
-                    "departureDateTime": "2021-03-22T15:20:37.489Z",
+                    "departureDateTime": "2021-05-22T15:20:37.489Z",
                     "index": 0,
                     "departureTrack": "5"
                   }
@@ -449,7 +449,7 @@
                         "longitude": 9.554032
                       }
                     },
-                    "arrivalDateTime": "2021-03-22T15:59:37.490Z",
+                    "arrivalDateTime": "2021-05-22T15:59:37.490Z",
                     "index": 0,
                     "arrivalTrack": "1"
                   }
@@ -484,7 +484,7 @@
                         }
                       }
                     },
-                    "departureDateTime": "2021-03-22T15:20:37.490Z",
+                    "departureDateTime": "2021-05-22T15:20:37.490Z",
                     "index": 0,
                     "departureTrack": "5"
                   },
@@ -508,8 +508,8 @@
                         }
                       }
                     },
-                    "departureDateTime": "2021-03-22T15:30:37.490Z",
-                    "arrivalDateTime": "2021-03-22T15:33:37.490Z",
+                    "departureDateTime": "2021-05-22T15:30:37.490Z",
+                    "arrivalDateTime": "2021-05-22T15:33:37.490Z",
                     "index": 1,
                     "departureTrack": "1",
                     "arrivalTrack": "1"
@@ -534,8 +534,8 @@
                         }
                       }
                     },
-                    "departureDateTime": "2021-03-22T15:41:37.490Z",
-                    "arrivalDateTime": "2021-03-22T15:44:37.490Z",
+                    "departureDateTime": "2021-05-22T15:41:37.490Z",
+                    "arrivalDateTime": "2021-05-22T15:44:37.490Z",
                     "index": 2,
                     "departureTrack": "1",
                     "arrivalTrack": "1"
@@ -560,7 +560,7 @@
                         }
                       }
                     },
-                    "arrivalDateTime": "2021-03-22T15:59:37.490Z",
+                    "arrivalDateTime": "2021-05-22T15:59:37.490Z",
                     "index": 3,
                     "arrivalTrack": "1"
                   }
@@ -587,7 +587,7 @@
                   }
                 }
               },
-              "departureDateTime": "2021-03-22T13:06:37.490Z",
+              "departureDateTime": "2021-05-22T13:06:37.490Z",
               "index": 0,
               "departureTrack": "5"
             },
@@ -611,14 +611,14 @@
                   }
                 }
               },
-              "arrivalDateTime": "2021-03-22T15:12:37.491Z",
+              "arrivalDateTime": "2021-05-22T15:12:37.491Z",
               "index": 0,
               "arrivalTrack": "2"
             },
             "duration": "P2DT3H4M",
             "direction": "UNSPECIFIED"
           },
-          "validFrom": "2021-03-22T13:06:11.952Z",
+          "validFrom": "2021-05-22T13:06:11.952Z",
           "validUntil": "2021-04-22T13:06:11.952Z",
           "admissions": [
             {
@@ -663,7 +663,7 @@
                     ]
                   }
                 ],
-                "validFrom": "2021-03-22T13:06:11.952Z",
+                "validFrom": "2021-05-22T13:06:11.952Z",
                 "validUntil": "2021-04-22T13:06:11.952Z",
                 "refundable": "YES",
                 "exchangeable": "YES",
@@ -790,7 +790,7 @@
                     ]
                   }
                 ],
-                "validFrom": "2021-03-22T15:06:11.966Z",
+                "validFrom": "2021-05-22T15:06:11.966Z",
                 "validUntil": "2021-04-12T15:06:11.966Z",
                 "refundable": "YES",
                 "exchangeable": "YES",
@@ -900,7 +900,7 @@
                     ]
                   }
                 ],
-                "validFrom": "2021-03-22T15:06:11.966Z",
+                "validFrom": "2021-05-22T15:06:11.966Z",
                 "validUntil": "2021-04-12T15:06:11.966Z",
                 "refundable": "YES",
                 "exchangeable": "YES",

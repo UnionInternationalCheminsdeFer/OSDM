@@ -1,0 +1,29 @@
+{
+    "locations": [
+      {
+        "id": "8509000",
+        "abstract": "Chur",
+        "station": {
+          "country": "ch",
+          "codes": [
+            {
+              "codeList": "UIC",
+              "code": "8509000"
+            }
+          ],
+          "geoCoordinate": {
+            "system": "WSG84",
+            "accuracy": 0.00002,
+            "latitude": 46.853081,
+            "longitude": 9.528925
+          },
+          "names": [
+            {
+              "language": "de",
+              "text": "Chur"
+            }
+          ]
+        }
+      }
+    ]
+  }

@@ -1,0 +1,29 @@
+{
+    "locations": [
+      {
+        "id": "8501609",
+        "abstract": "Brig",
+        "station": {
+          "country": "ch",
+          "codes": [
+            {
+              "codeList": "UIC",
+              "code": "8501609"
+            }
+          ],
+          "geoCoordinate": {
+            "system": "WSG84",
+            "accuracy": 0.00002,
+            "latitude": 46.319419,
+            "longitude": 7.988093
+          },
+          "names": [
+            {
+              "language": "de",
+              "text": "Brig"
+            }
+          ]
+        }
+      }
+    ]
+  }

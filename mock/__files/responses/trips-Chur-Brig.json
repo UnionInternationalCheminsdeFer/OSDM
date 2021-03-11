@@ -1,42 +1,42 @@
 {
     "trip": {
         "id": "6db18e19-d87f-442b-b80c-90e3b7007f20",
-        "abstract": "Landquart - Klosters Platz, 2021-05-22, 15:20 - 15:59 CET",
+        "abstract": "Chur - Brig, 2021-05-24, 12:14 - 16:40 CET",
         "segments": [
             {
                 "index": 0,
                 "origin": {
                     "station": {
-                        "id": "8509002",
-                        "abstract": "Landquart",
+                        "id": "8509000",
+                        "abstract": "Chur",
                         "station": {
                             "country": "ch",
                             "codes": [
                                 {
                                     "codeList": "UIC",
-                                    "code": "8509002"
+                                    "code": "8509000"
                                 }
                             ]
                         },
-                        "departureDateTime": "2021-05-22T15:20:37.489Z",
+                        "departureDateTime": "2021-05-24T15:20:37.489Z",
                         "index": 0,
                         "departureTrack": "5"
                     }
                 },
                 "destination": {
                     "station": {
-                        "id": "8509068",
-                        "abstract": "Klosters Platz",
+                        "id": "8501609",
+                        "abstract": "Brig",
                         "station": {
                             "country": "ch",
                             "codes": [
                                 {
                                     "codeList": "UIC",
-                                    "code": "8509068"
+                                    "code": "8501609"
                                 }
                             ]
                         },
-                        "arrivalDateTime": "2021-05-22T15:59:37.490Z",
+                        "arrivalDateTime": "2021-05-24T15:59:37.490Z",
                         "index": 0,
                         "arrivalTrack": "1"
                     }
@@ -47,107 +47,107 @@
                         "1351"
                     ],
                     "line": "1351",
-                    "serviceBrand": "RE",
-                    "transportMode": "REGIONAL"
+                    "serviceBrand": "PE",
+                    "transportMode": "MOUNTAIN_TRAIN"
                 },
                 "stops": [
                     {
                         "station": {
-                            "id": "8509002",
-                            "abstract": "Landquart",
+                            "id": "8509000",
+                            "abstract": "Chur",
                             "station": {
                                 "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "8509002"
+                                        "code": "8509000"
                                     }
                                 ],
                                 "names": [
                                     {
                                         "language": "de",
-                                        "text": "Landquart"
+                                        "text": "Chur"
                                     }
                                 ]
                             }
                         },
-                        "departureDateTime": "2021-05-22T15:20:37.490Z",
+                        "departureDateTime": "2021-05-24T15:20:37.490Z",
                         "index": 0,
                         "departureTrack": "5"
                     },
                     {
                         "station": {
-                            "id": "8509060",
-                            "abstract": "Schiers",
+                            "id": "8509179",
+                            "abstract": "Disentis/Mustér",
                             "station": {
                                 "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "8509060"
+                                        "code": "8509179"
                                     }
                                 ],
                                 "names": [
                                     {
                                         "language": "de",
-                                        "text": "Schiers"
+                                        "text": "Disentis/Mustér"
                                     }
                                 ]
                             }
                         },
-                        "departureDateTime": "2021-05-22T15:30:37.490Z",
-                        "arrivalDateTime": "2021-05-22T15:33:37.490Z",
+                        "departureDateTime": "2021-05-24T15:30:37.490Z",
+                        "arrivalDateTime": "2021-05-24T15:33:37.490Z",
                         "index": 1,
                         "departureTrack": "1",
                         "arrivalTrack": "1"
                     },
                     {
                         "station": {
-                            "id": "8509064",
-                            "abstract": "Küblis",
+                            "id": "8505165",
+                            "abstract": "Andermatt",
                             "station": {
                                 "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "8509064"
+                                        "code": "8505165"
                                     }
                                 ],
                                 "names": [
                                     {
                                         "language": "de",
-                                        "text": "Küblis"
+                                        "text": "Andermatt"
                                     }
                                 ]
                             }
                         },
-                        "departureDateTime": "2021-05-22T15:41:37.490Z",
-                        "arrivalDateTime": "2021-05-22T15:44:37.490Z",
+                        "departureDateTime": "2021-05-24T15:41:37.490Z",
+                        "arrivalDateTime": "2021-05-24T15:44:37.490Z",
                         "index": 2,
                         "departureTrack": "1",
                         "arrivalTrack": "1"
                     },
                     {
                         "station": {
-                            "id": "8509064",
-                            "abstract": "Klosters Platz",
+                            "id": "8501609",
+                            "abstract": "Brig",
                             "station": {
                                 "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "8509064"
+                                        "code": "8501609"
                                     }
                                 ],
                                 "names": [
                                     {
                                         "language": "de",
-                                        "text": "Klosters Platz"
+                                        "text": "Brig"
                                     }
                                 ]
                             }
                         },
-                        "arrivalDateTime": "2021-05-22T15:59:37.490Z",
+                        "arrivalDateTime": "2021-05-24T15:59:37.490Z",
                         "index": 3,
                         "arrivalTrack": "1"
                     }
@@ -156,49 +156,49 @@
         ],
         "origin": {
             "station": {
-                "id": "8509002",
-                "abstract": "Landquart",
+                "id": "8509000",
+                "abstract": "Chur",
                 "station": {
                     "country": "ch",
                     "codes": [
                         {
                             "codeList": "UIC",
-                            "code": "8509002"
+                            "code": "8509000"
                         }
                     ],
                     "names": [
                         {
                             "language": "de",
-                            "text": "Landquart"
+                            "text": "Chur"
                         }
                     ]
                 }
             },
-            "departureDateTime": "2021-05-22T15:20:37.490Z",
+            "departureDateTime": "2021-05-24T15:20:37.490Z",
             "index": 0,
             "departureTrack": "5"
         },
         "destination": {
             "station": {
-                "id": "8509068",
-                "abstract": "Klosters Platz",
+                "id": "8501609",
+                "abstract": "Brig",
                 "station": {
                     "country": "ch",
                     "codes": [
                         {
                             "codeList": "UIC",
-                            "code": "8509068"
+                            "code": "8501609"
                         }
                     ],
                     "names": [
                         {
                             "language": "de",
-                            "text": "Klosters Platz"
+                            "text": "Brig"
                         }
                     ]
                 }
             },
-            "arrivalDateTime": "2021-05-22T15:59:37.491Z",
+            "arrivalDateTime": "2021-05-24T15:59:37.491Z",
             "index": 0,
             "arrivalTrack": "2"
         },

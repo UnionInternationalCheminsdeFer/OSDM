@@ -1,0 +1,29 @@
+{
+    "locations": [
+      {
+        "id": "8505165",
+        "abstract": "Andermatt",
+        "station": {
+          "country": "ch",
+          "codes": [
+            {
+              "codeList": "UIC",
+              "code": "8505165"
+            }
+          ],
+          "geoCoordinate": {
+            "system": "WSG84",
+            "accuracy": 0.00002,
+            "latitude": 46.636891,
+            "longitude": 8.593265
+          },
+          "names": [
+            {
+              "language": "de",
+              "text": "Andermatt"
+            }
+          ]
+        }
+      }
+    ]
+  }

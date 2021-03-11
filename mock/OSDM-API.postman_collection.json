@@ -9,6 +9,29 @@
 			"name": "locations",
 			"item": [
 				{
+					"name": "Andermatt",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=Andermatt",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "Andermatt"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Basel SBB",
 					"request": {
 						"method": "GET",
@@ -25,6 +48,75 @@
 								{
 									"key": "matchValue",
 									"value": "Basel"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Brig",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=Brig",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "Brig"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chur",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=Chur",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "Chur"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disentis",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=Disentis",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "Disentis"
 								}
 							]
 						}
@@ -129,7 +221,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/locations?matchValue=Davos",
+							"raw": "{{baseUrl}}/locations?matchValue=Schiers",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -139,7 +231,7 @@
 							"query": [
 								{
 									"key": "matchValue",
-									"value": "Davos"
+									"value": "Schiers"
 								}
 							]
 						}
@@ -152,7 +244,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/locations?matchValue=Sargans",
+							"raw": "{{baseUrl}}/locations?matchValue=Zürich",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -162,7 +254,7 @@
 							"query": [
 								{
 									"key": "matchValue",
-									"value": "Sargans"
+									"value": "Zürich"
 								}
 							]
 						}
@@ -201,6 +293,32 @@
 					"response": []
 				},
 				{
+					"name": "Trip Basel SBB - Brig",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"code\": \"8500010\" \r\n    },\r\n    \"destination\": {\r\n      \"code\": \"8501609\" \r\n    },\r\n    \"travelDataTime\": \"2021-03-22T13:06:37.489Z\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trips-collection",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trips-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Trip Basel SBB - Landquart",
 					"request": {
 						"method": "GET",
@@ -213,6 +331,24 @@
 							"path": [
 								"trips",
 								"50898cd4-0d1e-4456-92bd-c119d419728e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip Basel SBB - Chur",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trips/cb8f7aa5-17f9-482f-95d4-9012b7b2442b",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trips",
+								"cb8f7aa5-17f9-482f-95d4-9012b7b2442b"
 							]
 						}
 					},
@@ -235,6 +371,24 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Trip Chur - Brig",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trips/48e65adb-25b5-4786-a4c8-c153cb5e623e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trips",
+								"48e65adb-25b5-4786-a4c8-c153cb5e623e"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -242,7 +396,7 @@
 			"name": "offers",
 			"item": [
 				{
-					"name": "/trip-offers-collection Basel SBB - Davos Platz",
+					"name": "/trip-offers-collection Basel SBB - Klosters Platz",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -262,6 +416,60 @@
 							],
 							"path": [
 								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/trip-offers-collection Basel SBB - Klosters Platz",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers-collection/trip-offers-collection-001",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers-collection",
+								"trip-offers-collection-001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/trip-offers Basel SBB - Landquart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers/trip-offer-001",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers",
+								"trip-offer-001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/trip-offers  Landquart - Klosters Platz",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers/trip-offer-002",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers",
+								"trip-offer-002"
 							]
 						}
 					},
@@ -303,7 +511,18 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "{{baseUrl}}/bookings/booking_001/passengers/ca622d56-7033-11eb-9439-0242ac130002",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"booking_001",
+								"passengers",
+								"ca622d56-7033-11eb-9439-0242ac130002"
+							]
+						}
 					},
 					"response": []
 				}
@@ -327,13 +546,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/bookings/1/fulfillments",
+							"raw": "{{baseUrl}}/bookings/booking_001/fulfillments",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"bookings",
-								"1",
+								"booking_001",
 								"fulfillments"
 							]
 						}
@@ -346,13 +565,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/fulfillments/fulfillment_001",
+							"raw": "{{baseUrl}}/fulfillments/94a4c484-702f-11eb-9439-0242ac130002",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"fulfillments",
-								"fulfillment_001"
+								"94a4c484-702f-11eb-9439-0242ac130002"
 							]
 						}
 					},
@@ -364,13 +583,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/fulfillments/fulfillment_002",
+							"raw": "{{baseUrl}}/fulfillments/3730e668-7032-11eb-9439-0242ac130002",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"fulfillments",
-								"fulfillment_002"
+								"3730e668-7032-11eb-9439-0242ac130002"
 							]
 						}
 					},
@@ -382,13 +601,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/fulfillments/fulfillment_003",
+							"raw": "{{baseUrl}}/fulfillments/406e9432-7032-11eb-9439-0242ac130002",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"fulfillments",
-								"fulfillment_003"
+								"406e9432-7032-11eb-9439-0242ac130002"
 							]
 						}
 					},
@@ -400,7 +619,7 @@
 			"name": "products",
 			"item": [
 				{
-					"name": "/product CH:Sitzplatzreservierung",
+					"name": "/product CH:Seat-Reservation",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -418,18 +637,54 @@
 					"response": []
 				},
 				{
-					"name": "/product CH:DV-Normalpreis",
+					"name": "/product CH:DV-Point-2-Point",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/products/CH00125FIRST",
+							"raw": "{{baseUrl}}/products/CH00125",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"products",
-								"CH00125FIRST"
+								"CH00125"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/product CH:DV-SuperSafer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/CH10125",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"CH10125"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/product CH:DV-SuperSafer Pass",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/CH80040",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"CH80040"
 							]
 						}
 					},

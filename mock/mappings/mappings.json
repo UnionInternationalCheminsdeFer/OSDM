@@ -6,6 +6,25 @@
                 "urlPath": "/locations",
                 "queryParameters": {
                     "matchValue": {
+                        "contains": "Andermatt"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-Andermatt.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "urlPath": "/locations",
+                "queryParameters": {
+                    "matchValue": {
                         "contains": "Basel"
                     }
                 }
@@ -17,6 +36,63 @@
                     "Content-Language": "en"
                 },
                 "bodyFileName": "responses/locations-BaselSBB.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "urlPath": "/locations",
+                "queryParameters": {
+                    "matchValue": {
+                        "contains": "Brig"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-Brig.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "urlPath": "/locations",
+                "queryParameters": {
+                    "matchValue": {
+                        "contains": "Chur"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-Chur.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "urlPath": "/locations",
+                "queryParameters": {
+                    "matchValue": {
+                        "contains": "Disentis"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-Disentis-Mustér.json"
             }
         },
         {
@@ -74,25 +150,6 @@
                     "Content-Language": "en"
                 },
                 "bodyFileName": "responses/locations-Landquart.json"
-            }
-        },
-        {
-            "request": {
-                "method": "GET",
-                "urlPath": "/locations",
-                "queryParameters": {
-                    "matchValue": {
-                        "contains": "Sargans"
-                    }
-                }
-            },
-            "response": {
-                "status": 200,
-                "headers": {
-                    "Content-Type": "application/json",
-                    "Content-Language": "en"
-                },
-                "bodyFileName": "responses/locations-Sargans.json"
             }
         },
         {
@@ -182,6 +239,48 @@
         },
         {
             "request": {
+                "method": "GET",
+                "url": "/trips/cb8f7aa5-17f9-482f-95d4-9012b7b2442b"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trips-BaselSBB-Chur.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/trips/48e65adb-25b5-4786-a4c8-c153cb5e623e"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trips-Chur-Brig.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/trips/6c73265d-7ed8-425e-ac31-3ceb74b40cb1"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trips-BaselSBB-Brig.json"
+            }
+        },
+        {
+            "request": {
                 "method": "POST",
                 "url": "/trips-collection"
                 // "bodyPatterns" : [
@@ -196,7 +295,26 @@
                     "Content-Type": "application/json",
                     "Content-Language": "en"
                 },
-                "bodyFileName": "responses/trips-collection-BaselSBB-KlostersPlatz-2021-03-22T113-06.json"
+                "bodyFileName": "responses/trips-collection-BaselSBB-Brig-2021-05-24T09-33.json"
+            }
+        },
+        {
+            "request": {
+                "method": "POST",
+                "url": "/trips-collection"
+                // "bodyPatterns" : [
+                //     {
+                //         "matchesJsonPath" : "$tripSearchCriteria.origin[?(@.code == '8500010')]"
+                //     }
+                // ]
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trips-collection-BaselSBB-KlostersPlatz-2021-05-22T13-06.json"
             }
         },
         {

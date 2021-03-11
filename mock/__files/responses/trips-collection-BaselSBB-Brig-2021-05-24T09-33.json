@@ -1,0 +1,369 @@
+{
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "tripsCollection": [
+        {
+            "trip": {
+                "id": "50898cd4-0d1e-4456-92bd-c119d419728e",
+                "abstract": "Basel SBB - Brig, 2021-05-22, 13:06 - 15:12 CET",
+                "segments": [
+                    {
+                        "index": 0,
+                        "origin": {
+                            "station": {
+                                "id": "8500010",
+                                "abstract": "Basel SBB",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8500010"
+                                        }
+                                    ]
+                                },
+                                "departureDateTime": "2021-05-22T13:06:37.489Z",
+                                "index": 0,
+                                "departureTrack": "5"
+                            }
+                        },
+                        "destination": {
+                            "station": {
+                                "id": "8509000",
+                                "abstract": "Chur",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509000"
+                                        }
+                                    ]
+                                },
+                                "arrivalDateTime": "2021-05-22T15:12:37.490Z",
+                                "index": 1,
+                                "arrivalTrack": "2"
+                            }
+                        },
+                        "duration": "P2DT3H4M",
+                        "vehicle": {
+                            "numbers": [
+                                "565"
+                            ],
+                            "line": "3",
+                            "serviceBrand": "ICE",
+                            "transportMode": "INTERCITY"
+                        },
+                        "stops": [
+                            {
+                                "station": {
+                                    "id": "8500010",
+                                    "abstract": "Basel SBB",
+                                    "station": {
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8500010"
+                                            }
+                                        ],
+                                        "names": [
+                                            {
+                                                "language": "de",
+                                                "text": "Basel SBB"
+                                            },
+                                            {
+                                                "language": "fr",
+                                                "text": "Bâle SBB"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "departureDateTime": "2021-05-22T13:06:37.490Z",
+                                "index": 0,
+                                "departureTrack": "5"
+                            },
+                            {
+                                "station": {
+                                    "id": "8503000",
+                                    "abstract": "Zürich SBB",
+                                    "station": {
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8503000"
+                                            }
+                                        ],
+                                        "names": [
+                                            {
+                                                "language": "de",
+                                                "text": "Zürich SBB"
+                                            },
+                                            {
+                                                "language": "fr",
+                                                "text": "Zurich SBB"
+                                            },
+                                            {
+                                                "language": "it",
+                                                "text": "Zurigo SBB"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "departureDateTime": "2021-05-22T14:00:37.490Z",
+                                "arrivalDateTime": "2021-05-22T14:07:37.490Z",
+                                "index": 1,
+                                "departureTrack": "10",
+                                "arrivalTrack": "10"
+                            },
+                            {
+                                "station": {
+                                    "id": "8509411",
+                                    "abstract": "Sargans",
+                                    "station": {
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8509411"
+                                            }
+                                        ],
+                                        "names": [
+                                            {
+                                                "language": "de",
+                                                "text": "Sargans"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "departureDateTime": "2021-05-22T15:03:37.490Z",
+                                "arrivalDateTime": "2021-05-22T15:04:37.490Z",
+                                "index": 2,
+                                "departureTrack": "2",
+                                "arrivalTrack": "2"
+                            },
+                            {
+                                "station": {
+                                    "id": "8509002",
+                                    "abstract": "Landquart",
+                                    "station": {
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8509002"
+                                            }
+                                        ],
+                                        "names": [
+                                            {
+                                                "language": "de",
+                                                "text": "Landquart"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "arrivalDateTime": "2021-05-22T15:12:37.490Z",
+                                "index": 3,
+                                "arrivalTrack": "2"
+                            },
+                            {
+                                "station": {
+                                    "id": "8509002",
+                                    "abstract": "Chur",
+                                    "station": {
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8509002"
+                                            }
+                                        ],
+                                        "names": [
+                                            {
+                                                "language": "de",
+                                                "text": "Chur"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "arrivalDateTime": "2021-05-22T15:12:37.490Z",
+                                "index": 3,
+                                "arrivalTrack": "2"
+                            }
+                        ]
+                    },
+                    {
+                        "index": 1,
+                        "origin" : {
+                            "station": {
+                                "id": "8509000",
+                                "abstract": "Chur",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509000"
+                                        }
+                                    ]
+                                },
+                                "arrivalDateTime": "2021-05-22T15:12:37.490Z",
+                                "index": 1,
+                                "arrivalTrack": "2"
+                            }
+                        },
+                        "destination": {
+                            "station": {
+                                "id": "8501609",
+                                "abstract": "Brig",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "Brig",
+                                            "code": "8501609"
+                                        }
+                                    ]
+                                },
+                                "arrivalDateTime": "2021-05-22T15:12:37.490Z",
+                                "index": 1,
+                                "arrivalTrack": "2"
+                            }
+                        },
+                        "duration": "P2DT3H4M",
+                        "vehicle": {
+                            "numbers": [
+                                "905"
+                            ],
+                            "line": "3",
+                            "serviceBrand": "PE",
+                            "transportMode": "MOUNTAIN_TRAIN"
+                        },
+                        "stops": [
+                            {
+                                "id": "8509000",
+                                "abstract": "Chur",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509000"
+                                        }
+                                    ]
+                                },
+                                "arrivalDateTime": "2021-05-22T15:12:37.490Z",
+                                "index": 1,
+                                "arrivalTrack": "2" 
+                            },
+                            {
+                                "station": {
+                                    "id": "8509179",
+                                    "abstract": "Disentis/Mustér",
+                                    "station": {
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8509179"
+                                            }
+                                        ]
+                                    },
+                                    "arrivalDateTime": "2021-05-22T15:12:37.490Z",
+                                    "index": 1,
+                                    "arrivalTrack": "2" 
+                                }
+                            },
+                            {
+                                "station": {
+                                    "id": "8505165",
+                                    "abstract": "Andermatt",
+                                    "station": {
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "8505165"
+                                            }
+                                        ]
+                                    },
+                                    "arrivalDateTime": "2021-05-22T15:12:37.490Z",
+                                    "index": 1,
+                                    "arrivalTrack": "2" 
+                                }
+                            },                           
+                            {
+                                "station": {
+                                    "id": "8501609",
+                                    "abstract": "Brig",
+                                    "station": {
+                                        "country": "ch",
+                                        "codes": [
+                                            {
+                                                "codeList": "Brig",
+                                                "code": "8501609"
+                                            }
+                                        ]
+                                    },
+                                    "arrivalDateTime": "2021-05-22T15:12:37.490Z",
+                                    "index": 1,
+                                    "arrivalTrack": "2"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "origin": {
+                    "station": {
+                        "id": "8500010",
+                        "abstract": "Basel SBB",
+                        "station": {
+                            "country": "ch",
+                            "codes": [
+                                {
+                                    "codeList": "UIC",
+                                    "code": "8500010"
+                                }
+                            ],
+                            "names": [
+                                {
+                                    "language": "de",
+                                    "text": "Basel SBB"
+                                }
+                            ]
+                        }
+                    },
+                    "departureDateTime": "2021-05-22T13:06:37.490Z",
+                    "index": 0,
+                    "departureTrack": "5"
+                },
+                "destination": {
+                    "station": {
+                        "id": "8501609",
+                        "abstract": "Brig",
+                        "station": {
+                            "country": "ch",
+                            "codes": [
+                                {
+                                    "codeList": "UIC",
+                                    "code": "8501609"
+                                }
+                            ],
+                            "names": [
+                                {
+                                    "language": "de",
+                                    "text": "Brig"
+                                }
+                            ]
+                        }
+                    },
+                    "arrivalDateTime": "2021-05-22T15:12:37.491Z",
+                    "index": 0,
+                    "arrivalTrack": "2"
+                },
+                "duration": "P2DT3H4M",
+                "direction": "UNSPECIFIED"
+            }
+        }
+    ]
+}

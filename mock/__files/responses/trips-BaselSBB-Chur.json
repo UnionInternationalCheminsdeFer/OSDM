@@ -1,7 +1,7 @@
 {
     "trip": {
         "id": "50898cd4-0d1e-4456-92bd-c119d419728e",
-        "abstract": "Basel SBB - Landquart, 2021-05-22, 13:06 - 15:12 CET",
+        "abstract": "Basel SBB - Chur, 2021-05-24, 09:33 - 16:40 CET",
         "segments": [
             {
                 "index": 0,
@@ -18,33 +18,27 @@
                                 }
                             ]
                         },
-                        "departureDateTime": "2021-05-22T13:06:37.489Z",
+                        "departureDateTime": "2021-05-24T09:33:37.489Z",
                         "index": 0,
-                        "departureTrack": "5"
+                        "departureTrack": "8"
                     }
                 },
                 "destination": {
                     "station": {
-                        "id": "8509002",
-                        "abstract": "Landquart",
+                        "id": "8509000",
+                        "abstract": "Chur",
                         "station": {
                             "country": "ch",
                             "codes": [
                                 {
                                     "codeList": "UIC",
-                                    "code": "8509002"
+                                    "code": "8509000"
                                 }
-                            ],
-                            "geoCoordinate": {
-                                "system": "WSG84",
-                                "accuracy": 0.00002,
-                                "latitude": 46.967442,
-                                "longitude": 9.554032
-                            }
+                            ]
                         },
-                        "arrivalDateTime": "2021-05-22T15:12:37.490Z",
+                        "arrivalDateTime": "2021-05-24T11:52:37.490Z",
                         "index": 1,
-                        "arrivalTrack": "2"
+                        "arrivalTrack": "9"
                     }
                 },
                 "duration": "P2DT3H4M",
@@ -87,7 +81,7 @@
                                 ]
                             }
                         },
-                        "departureDateTime": "2021-05-22T13:06:37.490Z",
+                        "departureDateTime": "2021-05-24T09:33:37.490Z",
                         "index": 0,
                         "departureTrack": "5"
                     },
@@ -125,8 +119,8 @@
                                 ]
                             }
                         },
-                        "departureDateTime": "2021-05-22T14:00:37.490Z",
-                        "arrivalDateTime": "2021-05-22T14:07:37.490Z",
+                        "departureDateTime": "2021-05-24T14:00:37.490Z",
+                        "arrivalDateTime": "2021-05-24T14:07:37.490Z",
                         "index": 0,
                         "departureTrack": "10",
                         "arrivalTrack": "10"
@@ -157,8 +151,8 @@
                                 ]
                             }
                         },
-                        "departureDateTime": "2021-05-22T15:03:37.490Z",
-                        "arrivalDateTime": "2021-05-22T15:04:37.490Z",
+                        "departureDateTime": "2021-05-24T15:03:37.490Z",
+                        "arrivalDateTime": "2021-05-24T15:04:37.490Z",
                         "index": 2,
                         "departureTrack": "2",
                         "arrivalTrack": "2"
@@ -189,7 +183,37 @@
                                 ]
                             }
                         },
-                        "arrivalDateTime": "2021-05-22T15:12:37.490Z",
+                        "arrivalDateTime": "2021-05-24T15:12:37.490Z",
+                        "index": 3,
+                        "arrivalTrack": "2"
+                    },
+                    {
+                        "station": {
+                            "id": "8509000",
+                            "abstract": "Chur",
+                            "station": {
+                                "country": "ch",
+                                "codes": [
+                                    {
+                                        "codeList": "UIC",
+                                        "code": "8509000"
+                                    }
+                                ],
+                                "geoCoordinate": {
+                                    "system": "WSG84",
+                                    "accuracy": 0.00002,
+                                    "latitude": 46.853081,
+                                    "longitude": 9.528925
+                                },
+                                "names": [
+                                    {
+                                        "language": "de",
+                                        "text": "Chur"
+                                    }
+                                ]
+                            }
+                        },
+                        "arrivalDateTime": "2021-05-24T15:12:37.490Z",
                         "index": 3,
                         "arrivalTrack": "2"
                     }
@@ -222,37 +246,37 @@
                     ]
                 }
             },
-            "departureDateTime": "2021-05-22T13:06:37.490Z",
+            "departureDateTime": "2021-05-24T13:06:37.490Z",
             "index": 0,
             "departureTrack": "5"
         },
         "destination": {
             "station": {
-                "id": "8509002",
-                "abstract": "Landquart",
+                "id": "8509000",
+                "abstract": "Chur",
                 "station": {
                     "country": "ch",
                     "codes": [
                         {
                             "codeList": "UIC",
-                            "code": "8509002"
+                            "code": "8509000"
                         }
                     ],
                     "geoCoordinate": {
                         "system": "WSG84",
                         "accuracy": 0.00002,
-                        "latitude": 46.967442,
-                        "longitude": 9.554032
+                        "latitude": 46.853081,
+                        "longitude": 9.528925
                     },
                     "names": [
                         {
                             "language": "de",
-                            "text": "Landquart"
+                            "text": "Chur"
                         }
                     ]
                 }
             },
-            "arrivalDateTime": "2021-05-22T15:12:37.491Z",
+            "arrivalDateTime": "2021-05-24T15:12:37.491Z",
             "index": 0,
             "arrivalTrack": "2"
         },

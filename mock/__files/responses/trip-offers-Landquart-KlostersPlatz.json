@@ -1,7 +1,7 @@
 {
     "tripOffer": {
         "id": "trip-offer-002",
-        "abstract": "Landquart - Klosters Platz, 2021-03-22 15:20 CET",
+        "abstract": "Landquart - Klosters Platz, 2021-05-22 15:20 CET",
         "trip": {
             "id": "string",
             "abstract": "Basel SBB - Landquart, 2020-07-01 10:05 CET",
@@ -137,7 +137,7 @@
         "offers": [
             {
                 "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                "abstract": "Landquart - Klosters Platz, 2021-03-22 15:20 CET, Normal Fare, 50 EUR",
+                "abstract": "Landquart - Klosters Platz, 2021-05-22 15:20 CET, Normal Fare, 50 EUR",
                 "offerSummary": {
                     "minimalPrice": {
                         "currency": "CHF",

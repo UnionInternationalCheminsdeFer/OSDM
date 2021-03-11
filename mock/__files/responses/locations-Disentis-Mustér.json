@@ -1,0 +1,29 @@
+{
+    "locations": [
+      {
+        "id": "8509179",
+        "abstract": "Disentis/Mustér",
+        "station": {
+          "country": "ch",
+          "codes": [
+            {
+              "codeList": "UIC",
+              "code": "8509179"
+            }
+          ],
+          "geoCoordinate": {
+            "system": "WSG84",
+            "accuracy": 0.00002,
+            "latitude": 46.704975,
+            "longitude": 8.855022
+          },
+          "names": [
+            {
+              "language": "de",
+              "text": "Disentis/Mustér"
+            }
+          ]
+        }
+      }
+    ]
+  }
