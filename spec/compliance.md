@@ -38,7 +38,8 @@ The following services/features are mandatory/optional to implement:
 
 | Resources | Description | Need to Support |
 | --- | --- | --- |
-| `/locations` and `/trips` | Resources to search for trip and locations | **Mandatory** for train stations by UIC code need to be supported. |
+| `/locations` | Resources to search for trip and locations | **Mandatory** for train stations by UIC code need to be supported. |
+| `/trips` | Resources to search for trip and locations | *Optional* for train stations by UIC code need to be supported. |
 | `/trip-offers-collection`, `/trip-offers` and `/offers` | Resources to get bookable offers | **Mandatory** is to provide at least admission offers. |
 | `/offers-collection` | Resources to get offers which are not trip based, e.g. day passes | *Optional* |
 | `/bookings` and `/bookings/{bookingId}` | Resources to retrieve or manipulate bookings | **Mandatory** |
@@ -63,7 +64,8 @@ The following services/features are mandatory/optional to implement:
 
 | Resources | Description | Need to Support |
 | --- | --- | --- |
-| `/locations` and `/trips` | Resources to search for trip and locations | *Optional* |
+| `/locations` | Resources to search for trip and locations | **Mandatory** for train stations |
+| `/trips` | Resources to search for trip and locations | *Optional* for train stations by UIC code need to be supported. |
 | `/trip-offers-collection`, `/trip-offers` and `/offers` | Resources to get bookable offers | **Mandatory** is to provide fare offers on a `/trip-offers-collection`. *Optional*: `/offers` for non trip based offers. |
 | `/bookings` and `/bookings/{bookingId}` | Resources to retrieve or manipulate bookings | **Mandatory** is to support bookings consisting of fares except in the special case of direct sale fare offers |
 | `/offers-collection` | Resources to get offers which are not trip based, e.g. day passes | *Optional* |
