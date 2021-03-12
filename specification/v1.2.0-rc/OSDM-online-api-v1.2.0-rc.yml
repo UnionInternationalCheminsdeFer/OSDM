@@ -3078,13 +3078,28 @@ components:
             $ref: '#/components/schemas/ServiceClassId'
           description: >-
             The classes returned might be different from the requested classes.
-        isReservationOffer:
-          type: boolean
-          default: false
+        requestedOfferParts:
+          type: array
+          items: 
+            $ref: '#/components/schemas/OfferPartType'
         currency:
           $ref: '#/components/schemas/Currency'
           description:
             The currency returned might be different from the one requested.
+
+    OfferPartType:
+      type: string
+      enum:
+        - ADMISSION
+        - RESERVATION
+        - ANCILLARY
+        - ALL
+      default:
+        - ALL
+      description: >-
+        Allows to request offerparts of a certain type. 
+        To support H/H use ["RESERVATION", "ANCILLARY"].
+        Default is to get search for offers of all types.
 
     NonTripOfferSearchCriteria:
       type: object
