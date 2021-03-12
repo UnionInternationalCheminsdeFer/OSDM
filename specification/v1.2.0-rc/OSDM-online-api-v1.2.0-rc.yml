@@ -3396,7 +3396,13 @@ components:
           type: string
           format: date-time
           description: >-
-            Validity of offer towards passenger 
+            Validity of offer towards passenger
+        numericAvailability:
+          type: integer
+          format: int32
+          description: >-
+            If supported by the allocator system, this returns the number of remaining available
+            offerparts, i.e. admissions, reservation or ancillaries.  
         refundable:
           type: string
           enum:
