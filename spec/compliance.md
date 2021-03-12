@@ -42,7 +42,7 @@ The following services/features are mandatory/optional to implement:
 | `/trip-offers-collection`, `/trip-offers` and `/offers` | Resources to get bookable offers | **Mandatory** is to provide at least admission offers. |
 | `/offers-collection` | Resources to get offers which are not trip based, e.g. day passes | *Optional* |
 | `/bookings` and `/bookings/{bookingId}` | Resources to retrieve or manipulate bookings | **Mandatory** |
-| `/products/{productId}` | Resources to retrieve a product's information | **Mandatory** |
+| `/products/{productId}` | Resources to retrieve a product's information | *Optional* |
 | `/bookings/{bookingId}/passengers/{passengerId}` | Resources to retrieve or to manipulate passenger information | **Mandatory** |
 | `/bookings/{bookingId}/fulfillments` and `/fulfillments` | Resources to retrieve fulfillments, e.g. tickets | **Mandatory** is to support A4 PDF tickets. |
 | `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer | **Mandatory** is to support full refund. |
@@ -67,7 +67,7 @@ The following services/features are mandatory/optional to implement:
 | `/trip-offers-collection`, `/trip-offers` and `/offers` | Resources to get bookable offers | **Mandatory** is to provide fare offers on a `/trip-offers-collection`. *Optional*: `/offers` for non trip based offers. |
 | `/bookings` and `/bookings/{bookingId}` | Resources to retrieve or manipulate bookings | **Mandatory** is to support bookings consisting of fares except in the special case of direct sale fare offers |
 | `/offers-collection` | Resources to get offers which are not trip based, e.g. day passes | *Optional* |
-| `/products/{productId}` | Resources to retrieve a product's information | **Mandatory** |
+| `/products/{productId}` | Resources to retrieve a product's information | *Optional* |
 | `/bookings/{bookingId}/passengers/{passengerId}` | Resources to retrieve or to manipulate passenger information | *Conditional*, mandatory to be supported in case personal data are required by the fare provider |
 | `/bookings/{bookingid}/fulfillments` and `fulfillments` | Resources to retrieve fulfillments, e.g. tickets | *Conditional*, mandatory to be supported in case fulfillment items need to be provided |
 | `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer | **Mandatory** is to support for full refund, partial refund is optional. Not required in the special case of direct sale offers |
