@@ -6259,11 +6259,8 @@ components:
           description: Types of card. One card can have multiple roles, such as loyalty and reduction
           type: array
           items:
-            type: string
-            enum:
-              - REDUCTION
-              - LOYALTY
-              - CHIP_CARD
+            $ref: '#/components/schemas/CardType'
+
         code:
           description: Code of the card type according to code list.
           type: string
@@ -6282,5 +6279,12 @@ components:
         - type
         - codeList
         - code
+     
+    CardType:
+      type: string
+      enum:
+        - REDUCTION
+        - LOYALTY
+        - CHIP_CARD
 
     #### Common elements end
