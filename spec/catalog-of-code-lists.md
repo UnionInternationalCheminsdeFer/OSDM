@@ -11,7 +11,7 @@ provided within the schema or within the IRS90918-10 specification.
 ## Accommodation Type
 
 | Code | Description |
-|------|---|
+|------|-------------|
 | `SEAT` |  |
 | `COUCHETTE` | Night trains only |
 | `BERTH` | Night trains only  |
@@ -19,12 +19,10 @@ provided within the schema or within the IRS90918-10 specification.
 
 ## Accommodation Sub Type
 
-RS 90918-1 (Service Level).
-
-(to be updated if/when further changes are applied to 
+IRS 90918-1 (Service Level).
 
 | Code | Description |
-|------|---|
+|------|-------------|
 |`AC`| Seat near children's play area |
 |`AH`| Seat in historic coach |
 |`AM`| Seat in separate Compartment |
@@ -69,15 +67,15 @@ RS 90918-1 (Service Level).
 |------|-------------|
 | `FCB` | Flexible Content Barcode - See IRS 90918-9 |
 | `TLB` | Ticket Layout Barcode - See IRS 90918-9 |
-| `SBB` | Small Structured Barcode -See IRS 90918-9 |
+| `SBB` | Small Structured Barcode - See IRS 90918-9 |
 
 ## CardType
 
 | Code | Description |
 |------|-------------|
-| `LOYALTY_CARD` | Loyalty card |
-| `REDUCTION_CARD` | Card providing reduction |
-| `PASS` | Pass for travelling |
+| `LOYALTY` | Loyalty card |
+| `REDUCTION` | Card providing reduction |
+| `CHIP_CARD` | Chip card to load bookings/references onto it |
 
 ## Carrier
 
@@ -118,6 +116,15 @@ Legacy reservation code defined in UIC 90918-1.
 ## Fare CompartementTypeCode
 
 Legacy reservation code defined in UIC 90918-1.
+
+## FulfillmentType
+
+| Code | Description |
+|------|-------------|
+| `ETICKET`     | Electronic ticket |
+| `CIT_PAPER`   | Value paper |
+| `PASS_CHIP`   | Fulfillment loaded on pass |
+| `PASS_REFERENCE` | Reference to booking loaded on pass |
 
 ## Gender
 
@@ -249,20 +256,20 @@ Language codes used in OSDM are based on the [ISO 639-1](https://en.wikipedia.or
 
 ## NUTS codes
 
-The common classification of territorial units in the EU (COMMISSION REGULATION (EU) 2016/2066) 
-provides codes for different levels of geographical/political units. E.g.: 
+The common classification of territorial units in the EU (COMMISSION REGULATION (EU) 2016/2066)
+provides codes for different levels of geographical/political units. E.g.:
 
 | Code | Description |
-|------|------|
-|`BE` | BELGIUM |
-|`BE2` | VLAAMS GEWEST |
-|`BE21` | Prov. (2) Antwerpen |
-|`BE211` | Arr. Antwerpen 
+|------|-------------|
+| `BE` | BELGIUM |
+| `BE2` | VLAAMS GEWEST |
+| `BE21` | Prov. (2) Antwerpen |
+| `BE211` | Arr. Antwerpen
 
 ## OverRule Code
 
 | Code | Description |
-|------|------|
+|------|-------------|
 | `SALES_STAFF_ERROR` |  |
 | `PAYMENT_ERROR` |  |
 | `STRIKE` |  |
@@ -272,7 +279,7 @@ Refund because of breakage of a vehicle is handled in a separate process.
 ## Passport
 
 | Code | Description |
-|------|------|
+|------|-------------|
 | `ID_CARD` |  |
 | `PASSPORT` |  |
 | `DIPLOMATIC_PASSPORT` |  |
@@ -283,57 +290,56 @@ Refund because of breakage of a vehicle is handled in a separate process.
 
 Codes for personal data items that might be transferred to the carrier if required.
 
-| Code | Description   |
-|------|---------------|
-|`DATE_OF_BIRTH` |	Date of birth|
-|`E_MAIL`	|e-mail |
-|`PHONE`|	Phone number |
-|`FULL_NAME`|	Full name (first and last name)|
-|`LAST_NAME`|	Last name |
-|`SOCIAL_MEDIA_ACCOUNT`	|A social media account|
-|`LANGUAGE`|	Languages of the passenger|
-|`TITLE`	|Title of the passenger|
-|`DOC_TYPE`|	Type of the document if passport or id card are possible|
-|`DOC_ID`	|ID of the document|
-|`DOC_NAME`|	Name of the passenger as written on the document|
-|`DOC_CITY_OF_RESIDENCE`	|City of residence as written in the document|
-|`DOC_COUNTRY_OF_BIRTH`	||
+| Code | Description |
+|------|-------------|
+|`DATE_OF_BIRTH` | Date of birth|
+|`E_MAIL` | e-mail |
+|`PHONE`| Phone number |
+|`FULL_NAME`| Full name (first and last name)|
+|`LAST_NAME`| Last name |
+|`SOCIAL_MEDIA_ACCOUNT` |A social media account|
+|`LANGUAGE`| Languages of the passenger|
+|`TITLE` |Title of the passenger|
+|`DOC_TYPE`| Type of the document if passport or id card are possible|
+|`DOC_ID` | ID of the document|
+|`DOC_NAME`| Name of the passenger as written on the document|
+|`DOC_CITY_OF_RESIDENCE` | City of residence as written in the document|
+|`DOC_COUNTRY_OF_BIRTH` ||
 |`DOC_COUNTRY_OF_ISSUE`||
-|`DOC_COUNTRY_OF_RESDENCE`||
-|`DOC_DATE_OF_ISSUE	`||
-|`DOC_GENDER`|	Gender as written in the document|
-|`GENDER`	|Gender to be used for special bookings |
-|`DOC_NATIONALITY`	|Nationality as given in the documen|
-|`DOC_LIMIT_OF_VALIDITY	`|Limit of validity as written on the document|
-|`DOC_CITY_OF_ISSUE`	||
-|`DOC_CITY_OF_BIRTH`	||
-|`DOC_TYPE_PASSPORT`	|Document provided must be a passport|
-|`CARD_ISSUER`	|Card issuer|
-|`CARD_NUMBER`	|Card identifier|
+|`DOC_COUNTRY_OF_RESIDENCE`||
+|`DOC_DATE_OF_ISSUE` ||
+|`DOC_GENDER`| Gender as written in the document|
+|`GENDER` | Gender to be used for special bookings |
+|`DOC_NATIONALITY` | Nationality as given in the documen|
+|`DOC_LIMIT_OF_VALIDITY` | Limit of validity as written on the document|
+|`DOC_CITY_OF_ISSUE` ||
+|`DOC_CITY_OF_BIRTH` ||
+|`DOC_TYPE_PASSPORT` | Document provided must be a passport|
+|`CARD_ISSUER` | Card issuer|
+|`CARD_NUMBER` | Card identifier|
 
 ## Personal data transfer types
 
-| Code | Description   |
-|------|---------------|
-|`BOOKING`	|The data will be transfered via the booking services|
-|`PRE_BOOOKING`	|The data will be transfered via the pre-booking (offer) services|
-|`SIS_CONTROL`	|The data will be transfered via security in system control data exchange (IRS 90918-4)|
-|`SID`	|The data will be transfered via  a barcode|
+| Code | Description |
+|------|-------------|
+| `BOOKING` |The data will be transfered via the booking services|
+| `PRE_BOOOKING` | The data will be transfered via the pre-booking (offer) services|
+| `SIS_CONTROL` | The data will be transfered via security in system control data exchange (IRS 90918-4)|
+| `SID` | The data will be transfered via  a barcode|
 
 ## Personal data change reasons
 
-| Code | Description   |
-|------|---------------|
-|`IN_GENERAL`	|No specific reason|
-|`MARRIAGE`	||
-|`DOCUMENT_CHANGE`|	E.g. passport was lost and replaced|
-|`AGENT_ERROR`	|Personal data were enterd wronlgy by the sales agent|
-
+| Code | Description |
+|------|-------------|
+| `IN_GENERAL` | No specific reason|
+| `MARRIAGE` ||
+| `DOCUMENT_CHANGE` | E.g. passport was lost and replaced|
+| `AGENT_ERROR` | Personal data were enterd wronlgy by the sales agent|
 
 ## Place Property
 
 | Code | Description |
-|------|------|
+|------|-------------|
 | `ACC_BICYCLE` | Place with bicycle|
 | `ACC_PRAM` | Place with space for a pram|
 | `ACC_TANDEM`| Place with tandem bicycle|
@@ -402,7 +408,8 @@ Codes for personal data items that might be transferred to the carrier if requir
 
 POICodeList: By default the code list is set to UIC.
 
-Additional code lists can be defined by implementers. The code list name should then be prefixed by "X_<3 letters code for the provider>". Example: "X_PAO_POIS"
+Additional code lists can be defined by implementers. The code list name should then be prefixed
+by "X_<3 letters code for the provider>". Example: "X_PAO_POIS"
 
 POICode: Values are depending on code list and set is too large to be reproduced
 
@@ -410,35 +417,35 @@ POICode: Values are depending on code list and set is too large to be reproduced
 
 The following code lists defines the commonly used cards which are not provided by a specific carrier:
 
-|Predefined Card-Ids	|Issuer	| Description	| Type |
-|-----------------------|-------|---------------|------|
-|`UIC_EURAIL`	|Eurail	|Eurail Pass	|PASS|
-|`UIC_INTERRAIL`	|Eurail	|Interrail Pass	|PASS|
-|`UIC_FIP_LEASURE_RED`	|FIP|FIP reduction (50%)	|REDUCTION_CARD|
-|`UIC_FIP_DUTY`	|FIP	|FIP duty	|PASS|
-|`UIC_FIP_LEASURE_FREE`	|FIP|FIP free personal use	|PASS|
-|`UIC_RAILPLUS`	|*	|A pure rail plus card	|REDUCTION_CARD|
-|`UIC_RIT_1`	|*	|RIT reduction for RIT 1 members	|REDUCTION_CARD|
-|`UIC_RIT_2`	|*	|RIT reduction for RIT 2 members	|REDUCTION_CARD|
-|`UIC_RIT_3`	|*	|RIT reduction for RIT 3 members	|REDUCTION_CARD|
-|`UIC_EURAIL_1`	|Eurail	|Eurail Pass First Class	|PASS|
-|`UIC_INTERRAIL_1`|Eurail|Interrail Pass First Class	|PASS|
-|`UIC_FIP_LEASURE_RED_1`	|FIP|	FIP reduction (50%) First Class	|REDUCTION_CARD|
-|`UIC_FIP_DUTY_1`	|FIP	|FIP duty First Class	|PASS|
-|`UIC_FIP_LEASURE_FREE_1`	|FIP|	FIP free personal use First Class	|PASS|
-|`UIC_RAILPLUS_1`	|*	|A pure rail plus card First Class	|REDUCTION_CARD|
-|`UIC_RIT_1_1`|*	|RIT reduction for RIT 1 First Class members|REDUCTION_CARD|
-|`UIC_RIT_2_1`|*	|RIT reduction for RIT 2 First Class members|REDUCTION_CARD|
-|`UIC_RIT_3_1	`|*	|RIT reduction for RIT 3 First Class members|REDUCTION_CARD|
-|`UIC_EURAIL_2`|Eurail	|Eurail Pass Second Class|PASS|
-|`UIC_INTERRAIL_2`|Eurail |Interrail Pass Second Class|PASS|
-|`UIC_FIP_LEASURE_RED_2`|FIP	FIP reduction (50%) Second Class|REDUCTION_CARD|
-|`UIC_FIP_DUTY_2`|FIP	|FIP duty Second Class|PASS|
-|`UIC_FIP_LEASURE_FREE_2`|FIP|FIP free personal use Second Class|PASS|
-|`UIC_RAILPLUS_2`|*	|A pure rail plus card Second Class|REDUCTION_CARD|
-|`UIC_RIT_1_2`|*	|RIT reduction for RIT 1  members Second Class|REDUCTION_CARD|
-|`UIC_RIT_2_2`|*	|RIT reduction for RIT 2 members Second Class|REDUCTION_CARD|
-|`UIC_RIT_3_2`|*	|RIT reduction for RIT 3 members Second Class|REDUCTION_CARD|
+| Predefined Card-Ids | Issuer | Description | Type |
+|---------------------|--------|-------------|------|
+|`UIC_EURAIL` | Eurail |Eurail Pass |PASS|
+|`UIC_INTERRAIL` | Eurail |Interrail Pass |PASS|
+|`UIC_FIP_LEASURE_RED` |FIP|FIP reduction (50%) |REDUCTION_CARD|
+|`UIC_FIP_DUTY` | FIP  |FIP duty| PASS|
+|`UIC_FIP_LEASURE_FREE` |FIP|FIP free personal use | PASS|
+|`UIC_RAILPLUS` | * |A pure rail plus card | REDUCTION_CARD|
+|`UIC_RIT_1` | * | RIT reduction for RIT 1 members | REDUCTION_CARD|
+|`UIC_RIT_2` | * | RIT reduction for RIT 2 members | REDUCTION_CARD|
+|`UIC_RIT_3` | * | RIT reduction for RIT 3 members | REDUCTION_CARD|
+|`UIC_EURAIL_1` | Eurail |Eurail Pass First Class | PASS|
+|`UIC_INTERRAIL_1`|Eurail|Interrail Pass First Class |PASS|
+|`UIC_FIP_LEASURE_RED_1` |FIP| FIP reduction (50%) First Class |REDUCTION_CARD|
+|`UIC_FIP_DUTY_1` | FIP |FIP duty First Class |PASS|
+|`UIC_FIP_LEASURE_FREE_1` | FIP | FIP free personal use First Class |PASS|
+|`UIC_RAILPLUS_1` | * |A pure rail plus card First Class |REDUCTION_CARD|
+|`UIC_RIT_1_1` | * |RIT reduction for RIT 1 First Class members | REDUCTION_CARD|
+|`UIC_RIT_2_1` | * |RIT reduction for RIT 2 First Class members | REDUCTION_CARD|
+|`UIC_RIT_3_1` | * |RIT reduction for RIT 3 First Class members | REDUCTION_CARD|
+|`UIC_EURAIL_2` | Eurail |Eurail Pass Second Class|PASS|
+|`UIC_INTERRAIL_2`| Eurail | Interrail Pass Second Class|PASS|
+|`UIC_FIP_LEASURE_RED_2`| FIP | FIP reduction (50%) Second Class|REDUCTION_CARD|
+|`UIC_FIP_DUTY_2`| FIP | FIP duty Second Class|PASS|
+|`UIC_FIP_LEASURE_FREE_2`| FIP | FIP free personal use Second Class|PASS|
+|`UIC_RAILPLUS_2` | * |A pure rail plus card Second Class|REDUCTION_CARD|
+|`UIC_RIT_1_2`| * | RIT reduction for RIT 1  members Second Class|REDUCTION_CARD|
+|`UIC_RIT_2_2`| * | RIT reduction for RIT 2 members Second Class|REDUCTION_CARD|
+|`UIC_RIT_3_2`| * | RIT reduction for RIT 3 members Second Class|REDUCTION_CARD|
 
 Other cards should start with the RICS code of the issuer.
 
@@ -497,11 +504,7 @@ Other cards should start with the RICS code of the issuer.
 | `USAGE` | Different usage types for different coach areas|
 | `VEHICLE`|  Different types of vehicles|
 
-
-
 ## Service Brands
-
-https://uic.org/spip.php?action=telecharger&arg=3007
 
 | Service Brand Code | Abbreviation | Reservation Ticket Text | MERITS Description |
 |--------------------|--------------|-------------------------|--------------------|
@@ -661,25 +664,25 @@ Additional codelists can be defined by implementers. The codelist name should th
 
 *StationCode*: Values are depending on codelist and set is too large to be reproduced.
 
-## Supported Online Services	
+## Supported Online Services
 
-|Code |Description	| 
+| Code |Description |
 |-----|-----------------|
-|`OFFER`|	Offer service (without after sales offers)|
-|`BOOKING`|	Preliminary booking, confirm booking and cancellation|
-|`RESERVATION_LEGACY_918_1`|	Services according to the 90918-1 XML or binary specification|
-|`RESERVATION_PREF`|	Place allocation using preferences|
-|`RESERVATION_GRAPH`|	Place allocation using graphical place display|
-|`UPGRADE`|	Upgrade to an existing booking|
-|`INCREASE`|	Exchange with an increase of the number of passengers|
-|`DECREASE`|	Exchange with an decrease of the number of passengers|
-|`EXCHANGE`|	Exchange with the same number of passengers|
-|`FULFILLMENT`|	providing an entire tickets|
-|`FULFILLMENT_ITEMS`|	Providing security items for a ticket (e.g. additional bar codes)|
+|`OFFER` | Offer service (without after sales offers)|
+|`BOOKING` | Preliminary booking, confirm booking and cancellation|
+|`RESERVATION_LEGACY_918_1` | Services according to the 90918-1 XML or binary specification|
+|`RESERVATION_PREF`| Place allocation using preferences|
+|`RESERVATION_GRAPH`| Place allocation using graphical place display|
+|`UPGRADE` | Upgrade to an existing booking|
+|`INCREASE`| Exchange with an increase of the number of passengers|
+|`DECREASE`| Exchange with an decrease of the number of passengers|
+|`EXCHANGE`| Exchange with the same number of passengers|
+|`FULFILLMENT`| Provides an entire tickets|
+|`FULFILLMENT_ITEMS` | Providing security items for a ticket (e.g. additional bar codes)|
 
 ## TaxScope
 
-|Code |Description	| 
+|Code |Description |
 |-----|-----------------|
 |`INTERNATIONAL`|VAT applies in international tickets only. This needs to be applied in case the fare is integrated into an international ticket|
 |`NATIONAL`|VAT applies in national tickets only|
@@ -719,34 +722,33 @@ Corresponding to numerical codes in TAP-TSI / MERITS
 
 ## TimeReference
 
-|Code |Description	| 
+| Code | Description |
 |-----|-----------------|
-|`BEFORE_DEPARTURE`|	Time value calculated relative to the departure (subtract from departure). The time zone of the departure station applies.|
-|`AFTER_DEPARTURE`|	Time value calculated relative to the departure (add to depature). The time zone of the departure station applies.|
-|`AFTER_SALE`|	Time value calculated relative to the sates time (add to sales time). The time zone of the sale applies.|
-|`BEFORE_START_VALIDITY`|	before the start of the validity. The time zone of the departure station applies.|
-|`AFTER_END_VALIDITY`|	after the start of the validity. The time zone of the departure station applies.|
-
+| `BEFORE_DEPARTURE` | Time value calculated relative to the departure (subtract from departure). The time zone of the departure station applies.|
+| `AFTER_DEPARTURE` | Time value calculated relative to the departure (add to depature). The time zone of the departure station applies.|
+| `AFTER_SALE` | Time value calculated relative to the sates time (add to sales time). The time zone of the sale applies.|
+| `BEFORE_START_VALIDITY` |Before the start of the validity. The time zone of the departure station applies.|
+| `AFTER_END_VALIDITY` | After the start of the validity. The time zone of the departure station applies.|
 
 ## TimeUnit
-|Code |Description	| 
+
+| Code |Description |
 |-----|-----------------|
-|`DAY	`||
-|`MINUTE`|	|
-|`HOURE	`||
+| `DAY` ||
+| `MINUTE`||
+| `HOUR` ||
 
 ## TransactionType
 
 Transaction type used in after sales rules for fares.
 
-|Code |Description	
-|-----|-----------------|
-|`REFUND`||
-|`EXCHANGE`|	|
-|`CARRIER_CHANGE`|	Exchange with a new fare of another carrier|
-|`EXCHANGE`|	Exchange with a new fare of the same carrier|
-|`UPGRADE`|	|
-
+| Code |Description |
+|------|-----------------|
+|`REFUND` ||
+|`EXCHANGE` ||
+|`CARRIER_CHANGE` | Exchange with a new fare of another carrier|
+|`EXCHANGE` | Exchange with a new fare of the same carrier|
+|`UPGRADE` ||
 
 ## TravelerType
 
