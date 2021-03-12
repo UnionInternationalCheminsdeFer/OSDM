@@ -50,6 +50,9 @@ The following services/features are mandatory/optional to implement:
 | `/bookings/{bookingId}/exchangeOperations`, `/exchange-trip-offers-collection` and `/exchange-trip-offers` | Resources to get and accept an exchange offer | *Optional* |
 | `/coachLayouts` | Resources to get layouts of coaches | *Optional* |
 
+If you only sell passes like e.g. Eurail/Interrail supporting `/trip-offers-collection`
+and `/trip-offers` are optional, instead support for `/offers-collection` is mandatory.
+
 All non-functional requirements defined in the services must be fulfilled.
 
 Especially all implementations most support the [Tolerant Reader
@@ -75,6 +78,9 @@ The following services/features are mandatory/optional to implement:
 | `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer | **Mandatory** is to support for full refund, partial refund is optional. Not required in the special case of direct sale offers |
 | `/bookings/{bookingId}/exchangeOperations`, `/exchange-trip-offers-collection` and `/exchange-trip-offers`  | Resources to get and accept an exchange offer | *Optional* |
 | `/coachLayouts` and `/coachLayouts/{layoutId}` | Resources to get layouts of coaches | *Optional* |
+
+If you only sell passes like e.g. Eurail/Interrail supporting `/trip-offers-collection`
+and `/trip-offers` are optional, instead support for `/offers-collection` is mandatory.
 
 All non-functional requirements defined in the services must be fulfilled.
 
