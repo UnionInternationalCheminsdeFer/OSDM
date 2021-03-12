@@ -3,132 +3,207 @@
         "id": "trip-offer-002",
         "abstract": "Landquart - Klosters Platz, 2021-05-22 15:20 CET",
         "trip": {
-            "id": "string",
-            "abstract": "Basel SBB - Landquart, 2020-07-01 10:05 CET",
+            "id": "6db18e19-d87f-442b-b80c-90e3b7007f20",
+            "abstract": "Landquart - Klosters Platz, 2021-05-22, 15:20 - 15:59 CET",
             "segments": [
                 {
                     "index": 0,
                     "origin": {
                         "station": {
-                            "id": "string",
-                            "abstract": "Bruxelles-Midi",
+                            "id": "8509002",
+                            "abstract": "Landquart",
                             "station": {
-                                "localCode": "string",
-                                "country": "string",
+                                "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "string"
+                                        "code": "8509002"
                                     }
                                 ]
-                            }
-                        },
-                        "departureDateTime": "2021-02-18T07:47:46.643Z",
-                        "arrivalDateTime": "2021-02-18T07:47:46.643Z",
-                        "index": 5,
-                        "departureTrack": "13A",
-                        "arrivalTrack": "13B"
+                            },
+                            "departureDateTime": "2021-05-22T15:20:37.489Z",
+                            "index": 0,
+                            "departureTrack": "5"
+                        }
                     },
                     "destination": {
                         "station": {
-                            "id": "string",
-                            "abstract": "Bruxelles-Midi",
+                            "id": "8509068",
+                            "abstract": "Klosters Platz",
                             "station": {
-                                "localCode": "string",
-                                "country": "string",
+                                "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "string"
+                                        "code": "8509068"
                                     }
                                 ]
-                            }
-                        },
-                        "departureDateTime": "2021-02-18T07:47:46.644Z",
-                        "arrivalDateTime": "2021-02-18T07:47:46.644Z",
-                        "index": 5,
-                        "departureTrack": "13A",
-                        "arrivalTrack": "13B"
+                            },
+                            "arrivalDateTime": "2021-05-22T15:59:37.490Z",
+                            "index": 0,
+                            "arrivalTrack": "1"
+                        }
                     },
                     "duration": "P2DT3H4M",
-                    "transfer": {
-                        "duration": "P2DT3H4M",
-                        "transferType": "string"
-                    },
                     "vehicle": {
                         "numbers": [
-                            "string"
+                            "1351"
                         ],
-                        "line": "string",
-                        "serviceBrand": "TGV",
-                        "transportMode": "string"
+                        "line": "1351",
+                        "serviceBrand": "RE",
+                        "transportMode": "REGIONAL"
                     },
                     "stops": [
                         {
                             "station": {
-                                "id": "string",
-                                "abstract": "Bruxelles-Midi",
+                                "id": "8509002",
+                                "abstract": "Landquart",
                                 "station": {
-                                    "localCode": "string",
-                                    "country": "string",
+                                    "country": "ch",
                                     "codes": [
                                         {
                                             "codeList": "UIC",
-                                            "code": "string"
+                                            "code": "8509002"
+                                        }
+                                    ],
+                                    "names": [
+                                        {
+                                            "language": "de",
+                                            "text": "Landquart"
                                         }
                                     ]
                                 }
                             },
-                            "departureDateTime": "2021-02-18T07:47:46.645Z",
-                            "arrivalDateTime": "2021-02-18T07:47:46.645Z",
-                            "index": 5,
-                            "departureTrack": "13A",
-                            "arrivalTrack": "13B"
+                            "departureDateTime": "2021-05-22T15:20:37.490Z",
+                            "index": 0,
+                            "departureTrack": "5"
+                        },
+                        {
+                            "station": {
+                                "id": "8509060",
+                                "abstract": "Schiers",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509060"
+                                        }
+                                    ],
+                                    "names": [
+                                        {
+                                            "language": "de",
+                                            "text": "Schiers"
+                                        }
+                                    ]
+                                }
+                            },
+                            "departureDateTime": "2021-05-22T15:30:37.490Z",
+                            "arrivalDateTime": "2021-05-22T15:33:37.490Z",
+                            "index": 1,
+                            "departureTrack": "1",
+                            "arrivalTrack": "1"
+                        },
+                        {
+                            "station": {
+                                "id": "8509064",
+                                "abstract": "Küblis",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509064"
+                                        }
+                                    ],
+                                    "names": [
+                                        {
+                                            "language": "de",
+                                            "text": "Küblis"
+                                        }
+                                    ]
+                                }
+                            },
+                            "departureDateTime": "2021-05-22T15:41:37.490Z",
+                            "arrivalDateTime": "2021-05-22T15:44:37.490Z",
+                            "index": 2,
+                            "departureTrack": "1",
+                            "arrivalTrack": "1"
+                        },
+                        {
+                            "station": {
+                                "id": "8509064",
+                                "abstract": "Klosters Platz",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509064"
+                                        }
+                                    ],
+                                    "names": [
+                                        {
+                                            "language": "de",
+                                            "text": "Klosters Platz"
+                                        }
+                                    ]
+                                }
+                            },
+                            "arrivalDateTime": "2021-05-22T15:59:37.490Z",
+                            "index": 3,
+                            "arrivalTrack": "1"
                         }
                     ]
                 }
             ],
             "origin": {
                 "station": {
-                    "id": "string",
-                    "abstract": "Bruxelles-Midi",
+                    "id": "8509002",
+                    "abstract": "Landquart",
                     "station": {
-                        "localCode": "string",
-                        "country": "string",
+                        "country": "ch",
                         "codes": [
                             {
                                 "codeList": "UIC",
-                                "code": "string"
+                                "code": "8509002"
+                            }
+                        ],
+                        "names": [
+                            {
+                                "language": "de",
+                                "text": "Landquart"
                             }
                         ]
                     }
                 },
-                "departureDateTime": "2021-02-18T07:47:46.645Z",
-                "arrivalDateTime": "2021-02-18T07:47:46.645Z",
-                "index": 5,
-                "departureTrack": "13A",
-                "arrivalTrack": "13B"
+                "departureDateTime": "2021-05-22T15:20:37.490Z",
+                "index": 0,
+                "departureTrack": "5"
             },
             "destination": {
                 "station": {
-                    "id": "string",
-                    "abstract": "Bruxelles-Midi",
+                    "id": "8509068",
+                    "abstract": "Klosters Platz",
                     "station": {
-                        "localCode": "string",
-                        "country": "string",
+                        "country": "ch",
                         "codes": [
                             {
                                 "codeList": "UIC",
-                                "code": "string"
+                                "code": "8509068"
+                            }
+                        ],
+                        "names": [
+                            {
+                                "language": "de",
+                                "text": "Klosters Platz"
                             }
                         ]
                     }
                 },
-                "departureDateTime": "2021-02-18T07:47:46.646Z",
-                "arrivalDateTime": "2021-02-18T07:47:46.646Z",
-                "index": 5,
-                "departureTrack": "13A",
-                "arrivalTrack": "13B"
+                "arrivalDateTime": "2021-05-22T15:59:37.491Z",
+                "index": 0,
+                "arrivalTrack": "2"
             },
             "duration": "P2DT3H4M",
             "direction": "UNSPECIFIED"
@@ -177,7 +252,7 @@
                 ],
                 "trip": {
                     "id": "string",
-                    "abstract": "Bruxelles-Midi - Paris-Nord, 2020-07-01 10:05 CET",
+                    "abstract": "Landquart - Klosters Platz, 2021-05-22 10:05 CET",
                     "segments": [
                         {
                             "index": 0,
@@ -428,7 +503,6 @@
                         "reservations": [
                             {
                                 "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                                "parts": "http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'",
                                 "abstract": "ICE Wifi on Board 2020-07-11"
                             }
                         ],
@@ -643,15 +717,7 @@
                 "abstract": "Andreas Schlapbach",
                 "reference": "string",
                 "dateOfBirth": "1974-09-14",
-                "cards": [],
-                "details": {
-                    "preferredLanguage": "de",
-                    "abstract": "Dr",
-                    "firstName": "Andreas",
-                    "lastName": "Schlapbach",
-                    "eMail": "andreas.schlapbach@sbb.ch",
-                    "phoneNumber": "+41 79 599 12 74"
-                }
+                "cards": []
             }
         ]
     }

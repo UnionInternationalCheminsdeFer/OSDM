@@ -328,7 +328,21 @@
                     "Content-Type": "application/json",
                     "Content-Language": "en"
                 },
-                "bodyFileName": "responses/trip-offer-response-Basel-DavosPlatz.json"
+                "bodyFileName": "responses/trip-offers-collection-BaselSBB-KlostersPlatz.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/trip-offers-collection/trip-offers-collection-001"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trip-offers-collection-BaselSBB-KlostersPlatz.json"
             }
         },
         {

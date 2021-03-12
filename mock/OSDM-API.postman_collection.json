@@ -273,7 +273,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"code\": \"8500010\" \r\n    },\r\n    \"destination\": {\r\n      \"code\": \"8509068\" \r\n    },\r\n    \"travelDataTime\": \"2021-03-22T13:06:37.489Z\"\r\n  }\r\n}",
+							"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"code\": \"8500010\" \r\n    },\r\n    \"destination\": {\r\n      \"code\": \"8509068\" \r\n    },\r\n    \"travelDataTime\": \"2021-05-22T13:06:37.489Z\"\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -299,7 +299,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"code\": \"8500010\" \r\n    },\r\n    \"destination\": {\r\n      \"code\": \"8501609\" \r\n    },\r\n    \"travelDataTime\": \"2021-03-22T13:06:37.489Z\"\r\n  }\r\n}",
+							"raw": "{\r\n  \"tripSearchCriteria\": {\r\n    \"origin\": {\r\n      \"code\": \"8500010\" \r\n    },\r\n    \"destination\": {\r\n      \"code\": \"8501609\" \r\n    },\r\n    \"travelDataTime\": \"2021-05-24T09:30:37.489Z\"\r\n  }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -538,7 +538,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fulfillments\": [\r\n        {\r\n            \"id\": \"FulFillment_00l\",\r\n            \"status\": \"CONFIRMED\",\r\n            \"offerParts\": [\r\n                {\r\n                    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n                    \"parts\": \"http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'\"\r\n                }\r\n            ],\r\n            \"fulfillmentItems\": [\r\n                {\r\n                    \"fulfillmentMedia\": [\r\n                        \"string\"\r\n                    ],\r\n                    \"travelerReference\": \"Passenger_001\",\r\n                    \"controlId\": \"string\",\r\n                    \"securityFeatures\": [\r\n                        {\r\n                            \"type\": {\r\n                                \"type\": \"VISUAL_ELEMENT\",\r\n                                \"format\": \"PNG\"\r\n                            },\r\n                            \"data\": \"string\"\r\n                        }\r\n                    ],\r\n                    \"isMandatory\": false,\r\n                    \"securePaperOnly\": false\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"fulfillments\": [\r\n        {\r\n            \"id\": \"FulFillment_00l\",\r\n            \"status\": \"CONFIRMED\",\r\n            \"offerParts\": [\r\n                {\r\n                    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\r\n                }\r\n            ],\r\n            \"fulfillmentItems\": [\r\n                {\r\n                    \"fulfillmentMedia\": [\r\n                        \"string\"\r\n                    ],\r\n                    \"travelerReference\": \"Passenger_001\",\r\n                    \"controlId\": \"string\",\r\n                    \"securityFeatures\": [\r\n                        {\r\n                            \"type\": {\r\n                                \"type\": \"VISUAL_ELEMENT\",\r\n                                \"format\": \"PNG\"\r\n                            },\r\n                            \"data\": \"string\"\r\n                        }\r\n                    ],\r\n                    \"isMandatory\": false,\r\n                    \"securePaperOnly\": false\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

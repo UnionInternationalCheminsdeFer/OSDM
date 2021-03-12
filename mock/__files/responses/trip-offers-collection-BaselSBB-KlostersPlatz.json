@@ -39,13 +39,7 @@
                       "codeList": "UIC",
                       "code": "8509002"
                     }
-                  ],
-                  "geoCoordinate": {
-                    "system": "WSG84",
-                    "accuracy": 0.00002,
-                    "latitude": 46.967442,
-                    "longitude": 9.554032
-                  }
+                  ]
                 },
                 "arrivalDateTime": "2021-05-22T15:12:37.490Z",
                 "index": 1,
@@ -73,13 +67,7 @@
                         "codeList": "UIC",
                         "code": "8500010"
                       }
-                    ],
-                    "geoCoordinate": {
-                      "system": "WSG84",
-                      "accuracy": 0.00002,
-                      "latitude": 47.547408,
-                      "longitude": 7.589548
-                    }
+                    ]
                   }
                 },
                 "departureDateTime": "2021-05-22T13:06:37.490Z",
@@ -97,13 +85,7 @@
                         "codeList": "UIC",
                         "code": "8503000"
                       }
-                    ],
-                    "geoCoordinate": {
-                      "system": "WSG84",
-                      "accuracy": 0.00002,
-                      "latitude": 47.378177,
-                      "longitude": 8.540193
-                    }
+                    ]
                   }
                 },
                 "departureDateTime": "2021-05-22T14:00:37.490Z",
@@ -123,13 +105,7 @@
                         "codeList": "UIC",
                         "code": "8509411"
                       }
-                    ],
-                    "geoCoordinate": {
-                      "system": "WSG84",
-                      "accuracy": 0.00002,
-                      "latitude": 47.045361,
-                      "longitude": 9.445398
-                    }
+                    ]
                   }
                 },
                 "departureDateTime": "2021-05-22T15:03:37.490Z",
@@ -149,13 +125,7 @@
                         "codeList": "UIC",
                         "code": "8509002"
                       }
-                    ],
-                    "geoCoordinate": {
-                      "system": "WSG84",
-                      "accuracy": 0.00002,
-                      "latitude": 46.967442,
-                      "longitude": 9.554032
-                    }
+                    ]
                   }
                 },
                 "arrivalDateTime": "2021-05-22T15:12:37.490Z",
@@ -176,13 +146,7 @@
                   "codeList": "UIC",
                   "code": "8500010"
                 }
-              ],
-              "geoCoordinate": {
-                "system": "WSG84",
-                "accuracy": 0.00002,
-                "latitude": 47.547408,
-                "longitude": 7.589548
-              }
+              ]
             }
           },
           "departureDateTime": "2021-05-22T13:06:37.490Z",
@@ -200,13 +164,7 @@
                   "codeList": "UIC",
                   "code": "8509002"
                 }
-              ],
-              "geoCoordinate": {
-                "system": "WSG84",
-                "accuracy": 0.00002,
-                "latitude": 46.967442,
-                "longitude": 9.554032
-              }
+              ]
             }
           },
           "arrivalDateTime": "2021-05-22T15:12:37.491Z",
@@ -285,13 +243,7 @@
                           "codeList": "UIC",
                           "code": "8509002"
                         }
-                      ],
-                      "geoCoordinate": {
-                        "system": "WSG84",
-                        "accuracy": 0.00002,
-                        "latitude": 46.967442,
-                        "longitude": 9.554032
-                      }
+                      ]
                     },
                     "arrivalDateTime": "2021-05-22T15:12:37.490Z",
                     "index": 1,
@@ -319,13 +271,7 @@
                             "codeList": "UIC",
                             "code": "8500010"
                           }
-                        ],
-                        "geoCoordinate": {
-                          "system": "WSG84",
-                          "accuracy": 0.00002,
-                          "latitude": 47.547408,
-                          "longitude": 7.589548
-                        }
+                        ]
                       }
                     },
                     "departureDateTime": "2021-05-22T13:06:37.490Z",
@@ -369,13 +315,7 @@
                             "codeList": "UIC",
                             "code": "8509411"
                           }
-                        ],
-                        "geoCoordinate": {
-                          "system": "WSG84",
-                          "accuracy": 0.00002,
-                          "latitude": 47.045361,
-                          "longitude": 9.445398
-                        }
+                        ]
                       }
                     },
                     "departureDateTime": "2021-05-22T15:03:37.490Z",
@@ -395,13 +335,7 @@
                             "codeList": "UIC",
                             "code": "8509002"
                           }
-                        ],
-                        "geoCoordinate": {
-                          "system": "WSG84",
-                          "accuracy": 0.00002,
-                          "latitude": 46.967442,
-                          "longitude": 9.554032
-                        }
+                        ]
                       }
                     },
                     "arrivalDateTime": "2021-05-22T15:12:37.490Z",
@@ -441,13 +375,7 @@
                           "codeList": "UIC",
                           "code": "8509068"
                         }
-                      ],
-                      "geoCoordinate": {
-                        "system": "WSG84",
-                        "accuracy": 0.00002,
-                        "latitude": 46.967442,
-                        "longitude": 9.554032
-                      }
+                      ]
                     },
                     "arrivalDateTime": "2021-05-22T15:59:37.490Z",
                     "index": 0,
@@ -475,13 +403,7 @@
                             "codeList": "UIC",
                             "code": "8509002"
                           }
-                        ],
-                        "geoCoordinate": {
-                          "system": "WSG84",
-                          "accuracy": 0.00002,
-                          "latitude": 46.967442,
-                          "longitude": 9.554032
-                        }
+                        ]
                       }
                     },
                     "departureDateTime": "2021-05-22T15:20:37.490Z",
@@ -499,13 +421,7 @@
                             "codeList": "UIC",
                             "code": "8509060"
                           }
-                        ],
-                        "geoCoordinate": {
-                          "system": "WSG84",
-                          "accuracy": 0.00002,
-                          "latitude": 46.96799,
-                          "longitude": 9.688358
-                        }
+                        ]
                       }
                     },
                     "departureDateTime": "2021-05-22T15:30:37.490Z",
@@ -525,13 +441,7 @@
                             "codeList": "UIC",
                             "code": "8509064"
                           }
-                        ],
-                        "geoCoordinate": {
-                          "system": "WSG84",
-                          "accuracy": 0.00002,
-                          "latitude": 46.91428,
-                          "longitude": 9.771841
-                        }
+                        ]
                       }
                     },
                     "departureDateTime": "2021-05-22T15:41:37.490Z",
@@ -551,13 +461,7 @@
                             "codeList": "UIC",
                             "code": "8509064"
                           }
-                        ],
-                        "geoCoordinate": {
-                          "system": "WSG84",
-                          "accuracy": 0.00002,
-                          "latitude": 46.869208,
-                          "longitude": 9.880943
-                        }
+                        ]
                       }
                     },
                     "arrivalDateTime": "2021-05-22T15:59:37.490Z",
@@ -578,13 +482,7 @@
                       "codeList": "UIC",
                       "code": "8500010"
                     }
-                  ],
-                  "geoCoordinate": {
-                    "system": "WSG84",
-                    "accuracy": 0.00002,
-                    "latitude": 47.547408,
-                    "longitude": 7.589548
-                  }
+                  ]
                 }
               },
               "departureDateTime": "2021-05-22T13:06:37.490Z",
@@ -602,13 +500,7 @@
                       "codeList": "UIC",
                       "code": "8509068"
                     }
-                  ],
-                  "geoCoordinate": {
-                    "system": "WSG84",
-                    "accuracy": 0.00002,
-                    "latitude": 46.869208,
-                    "longitude": 9.880943
-                  }
+                  ]
                 }
               },
               "arrivalDateTime": "2021-05-22T15:12:37.491Z",
@@ -736,12 +628,10 @@
               "reservations": [
                 {
                   "id": "reservation_BaselSBB-Landquart",
-                  "parts": "http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'",
                   "abstract": "Reservation Basel SBB - Landquart, 5 CHF"
                 },
                 {
                   "id": "reservation_Landquart-KlostersPlatz",
-                  "parts": "http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'",
                   "abstract": "Reservation Landquart - Klosters Platz, 5 CHF"
                 }
               ]

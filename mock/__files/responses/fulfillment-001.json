@@ -19,7 +19,6 @@
         "offerParts": [
             {
                 "id": "94a4c484-702f-11eb-9439-0242ac130002",
-                "parts": "http://some.provider/ancillary/2345 or http://some.provider/reservation/2345'",
                 "abstract": "Admission Basel SBB - Davos Platz"
             }
         ],
