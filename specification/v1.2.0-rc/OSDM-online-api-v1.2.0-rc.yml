@@ -4203,16 +4203,19 @@ components:
           description: id of the refund offer
       required:
         - confirmRefundOfferId 
-      
+ 
     OverruleCode: 
       type: string
       description: >-
         Reason for and type of an after sale, code list in IRS 90918-10.
+        The PRM_SUPPORT_UNAVAILABLE overrule code shall only be used by
+        the UIC PRM ABT tool.
       x-extensible-enum:
         - PAYMENT_FAILURE
+        - PRM_SUPPORT_UNAVAILABLE
         - SALES_STAFF_ERROR
         - STRIKE
-                
+
     ExchangeTripOfferRequest:
       type: object      
       description: >-
@@ -6026,12 +6029,9 @@ components:
         transportableDetails:
           $ref: '#/components/schemas/Transportable'          
         prmNeeds:
-          type: string
-          x-extensible-enum:
-            - WHEELCHAIR
-            - ACCOMPDOG
-            - COMPANIONSEAT
-            - COMPANION
+          type: array
+          items:
+            $ref: '#/components/schemas/PRMNeedType'
         links:
           type: array
           items:
@@ -6039,6 +6039,15 @@ components:
       required:
         - abstract
         - links
+
+    PRMNeedType:
+      type: string
+      x-extensible-enum:
+        - NEED_PRM_SUPPORT
+        - WHEELCHAIR
+        - ACCOMPANYING_DOG
+        - COMPANION_SEAT
+        - COMPANION
 
     PassengerDetail:
       type: object
