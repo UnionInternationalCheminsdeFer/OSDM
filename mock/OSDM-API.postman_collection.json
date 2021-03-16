@@ -37,12 +37,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/locations?matchValue=Basel",
+							"raw": "{{baseUrl}}/locations/?matchValue=Basel",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"locations"
+								"locations",
+								""
 							],
 							"query": [
 								{
@@ -60,12 +61,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/locations?matchValue=Brig",
+							"raw": "{{baseUrl}}/locations/?matchValue=Brig",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"locations"
+								"locations",
+								""
 							],
 							"query": [
 								{
