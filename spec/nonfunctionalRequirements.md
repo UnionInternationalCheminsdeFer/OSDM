@@ -15,7 +15,6 @@ permalink: /spec/nonfunctional/
 |`/trip-offers-collection` | 1000:1 | 800 | | 
 |`/offers` | 100:1 |  800 ||
 |`/offers/{offerId}/...` | 5:1 | 600 ||
-|`/offers/{offerId}/fares/{fareId}` |    5:1|  400 || 
 |`/bookings |  1:1 | 400 | Retry of the booking request followed by a delete booking/{bookingId} in case the booking is not needed any more. The error handling must be repeated for 3 days but no further than the train departure or until an appropriate reply was received indicating that the booking was not made.|
 |`/bookings/{id}/passengers` |   0,01:1|   400 | retry| 
 |`/bookings/{id}/fulfillements` |    1:1 |  600 | |  
@@ -43,6 +42,7 @@ Deviating service level requirements can be defined bilaterally.
 |`/locations` | TODO | TODO | |
 |`/trip-offers-collection` | 1000:1 | 400 | | 
 |`/offers` | 100:1 |  400 ||
+|`/offers/{offerId}/...` | 5:1 | 400 ||
 |`/offers/{offerId}/fares/{fareId}` |    5:1|  300 || 
 |`/bookings |  1:1 | 200 | Retry of the booking request followed by a delete booking/{bookingId} in case the booking is not needed any more. The error handling must be repeated for 3 days but no further than the train departure or until an appropriate reply was received indicating that the booking was not made.|
 |`/bookings/{id}/passengers` |   0,01:1|   200 | retry| 
