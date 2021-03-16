@@ -50,7 +50,7 @@ The following services/features are mandatory/optional to implement:
 | `/bookings/{bookingId}/exchangeOffers` | Resources to get and accept an exchange offer | *Optional* |
 | `/coachLayouts` | Resources to get layouts of coaches | *Optional* |
 
-All non-functional requirements defined in the services must be fulfilled.
+All [non-functional requirements](./nonFunctionalRequirements) defined in the services must be fulfilled.
 
 Especially all implementations most support the Tolerant Reader pattern. This
 integration pattern helps creating robust communication systems. The idea is to
@@ -75,7 +75,7 @@ The following services/features are mandatory/optional to implement:
 | `/bookings/{bookingId}/exchangeOffers` | Resources to get and accept an exchange offer | *Optional* |
 | `/coachLayouts` and `/coachLayouts/{layoutId}` | Resources to get layouts of coaches | *Optional* |
 
-All non-functional requirements defined in the services must be fulfilled.
+All [non-functional requirements](./nonFunctionalRequirements) defined in the services must be fulfilled.
 
 On a technical level the implementation must support the Tolerant Reader
 pattern. This integration pattern helps creating robust communication systems.

@@ -20,7 +20,7 @@
     - name: Catalog of Code Lists
       link: spec/catalog-of-code-lists/
     - name: Non-Functional Requirements
-      link: spec/nonfunctionalRequirements/  
+      link: spec/nonFunctionalRequirements/  
     - name: Compliance
       link: spec/compliance/
 - name: Tools
