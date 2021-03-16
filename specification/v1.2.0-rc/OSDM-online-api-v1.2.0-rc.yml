@@ -3093,6 +3093,9 @@ components:
         - ADMISSION
         - RESERVATION
         - ANCILLARY
+        - FARE_ADMISSION
+        - FARE_RESERVATION
+        - FARE_ANCILLARY
         - ALL
       default:
         - ALL
@@ -6286,5 +6289,6 @@ components:
         - REDUCTION
         - LOYALTY
         - CHIP_CARD
+      default: REDUCTION
 
     #### Common elements end
