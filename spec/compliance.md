@@ -40,7 +40,7 @@ The following services/features are mandatory/optional to implement:
 | --- | --- | --- |
 | `/locations` and `/trips` | Resources to search for trip and locations | **Mandatory** for train stations UIC code need to be supported. |
 | `/trip-offers-collection` and `/trip-offers` and `/offers` | Resources to get bookable offers | **Mandatory** is to provide at least admission offers. |
-| `/offers/{offerId}/admissions` and `/offers/{offerId}/reservations` and `/offers/{offerId}/ancillaries` and `/offers/{offerId}/fares` | Resources to manipulate parts of an offer consisting of, e.g., admissions, reservations or ancillaries; | **Mandatory** |
+| `/offers/{offerId}/admissions` and `/offers/{offerId}/reservations` and `/offers/{offerId}/ancillaries` | Resources to manipulate parts of an offer consisting of, e.g., admissions, reservations or ancillaries; | **Mandatory** |
 | `/offers/{offerId}/reservations/{reservationId}` | Resources to manipulate seat assignment | *Conditional*; mandatory to be supported in case seat assignment is provided. |
 | `/bookings` | Resources to manipulate bookings | **Mandatory** |
 | `/bookings/{bookingId}/passengers` | Resources to manipulate passenger information at every stage of the flow | **Mandatory** |
