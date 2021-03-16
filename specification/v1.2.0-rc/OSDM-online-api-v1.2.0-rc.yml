@@ -3078,13 +3078,31 @@ components:
             $ref: '#/components/schemas/ServiceClassId'
           description: >-
             The classes returned might be different from the requested classes.
-        isReservationOffer:
-          type: boolean
-          default: false
+        requestedOfferParts:
+          type: array
+          items: 
+            $ref: '#/components/schemas/OfferPartType'
         currency:
           $ref: '#/components/schemas/Currency'
           description:
             The currency returned might be different from the one requested.
+
+    OfferPartType:
+      type: string
+      enum:
+        - ADMISSION
+        - RESERVATION
+        - ANCILLARY
+        - FARE_ADMISSION
+        - FARE_RESERVATION
+        - FARE_ANCILLARY
+        - ALL
+      default:
+        - ALL
+      description: >-
+        Allows to request offerparts of a certain type. 
+        To support H/H use ["RESERVATION", "ANCILLARY"].
+        Default is to get search for offers of all types.
 
     NonTripOfferSearchCriteria:
       type: object
@@ -3396,7 +3414,13 @@ components:
           type: string
           format: date-time
           description: >-
-            Validity of offer towards passenger 
+            Validity of offer towards passenger
+        numericAvailability:
+          type: integer
+          format: int32
+          description: >-
+            If supported by the allocator system, this returns the number of remaining available
+            offerparts, i.e. admissions, reservation or ancillaries.  
         refundable:
           type: string
           enum:
@@ -6247,11 +6271,8 @@ components:
           description: Types of card. One card can have multiple roles, such as loyalty and reduction
           type: array
           items:
-            type: string
-            enum:
-              - REDUCTION
-              - LOYALTY
-              - CHIP_CARD
+            $ref: '#/components/schemas/CardType'
+
         code:
           description: Code of the card type according to code list.
           type: string
@@ -6270,5 +6291,13 @@ components:
         - type
         - codeList
         - code
+     
+    CardType:
+      type: string
+      enum:
+        - REDUCTION
+        - LOYALTY
+        - CHIP_CARD
+      default: REDUCTION
 
     #### Common elements end
