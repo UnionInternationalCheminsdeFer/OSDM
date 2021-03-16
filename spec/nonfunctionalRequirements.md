@@ -2,7 +2,7 @@
 layout: page
 title: Non-Functional Requirements
 hide_hero: true
-permalink: /spec/nonfunctional/
+permalink: /spec/nonfunctionalRequirements/
 ---
 
 ## Non-Functional Requirements
