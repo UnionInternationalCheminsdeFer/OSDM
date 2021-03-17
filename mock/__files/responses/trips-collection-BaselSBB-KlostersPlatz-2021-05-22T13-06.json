@@ -1,5 +1,5 @@
 {
-    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "id": "1a795f7a-8072-4ede-9739-e0eef55a62b0",
     "tripsCollection": [
         {
             "trip": {
@@ -167,67 +167,9 @@
                                 "arrivalTrack": "2"
                             }
                         ]
-                    }
-                ],
-                "origin": {
-                    "station": {
-                        "id": "8500010",
-                        "abstract": "Basel SBB",
-                        "station": {
-                            "country": "ch",
-                            "codes": [
-                                {
-                                    "codeList": "UIC",
-                                    "code": "8500010"
-                                }
-                            ],
-                            "names": [
-                                {
-                                    "language": "de",
-                                    "text": "Basel SBB"
-                                }
-                            ]
-                        }
                     },
-                    "departureDateTime": "2021-05-22T13:06:37.490Z",
-                    "index": 0,
-                    "departureTrack": "5"
-                },
-                "destination": {
-                    "station": {
-                        "id": "8509002",
-                        "abstract": "Landquart",
-                        "station": {
-                            "country": "ch",
-                            "codes": [
-                                {
-                                    "codeList": "UIC",
-                                    "code": "8509002"
-                                }
-                            ],
-                            "names": [
-                                {
-                                    "language": "de",
-                                    "text": "Landquart"
-                                }
-                            ]
-                        }
-                    },
-                    "arrivalDateTime": "2021-05-22T15:12:37.491Z",
-                    "index": 0,
-                    "arrivalTrack": "2"
-                },
-                "duration": "P2DT3H4M",
-                "direction": "UNSPECIFIED"
-            }
-        },
-        {
-            "trip": {
-                "id": "6db18e19-d87f-442b-b80c-90e3b7007f20",
-                "abstract": "Landquart - Klosters Platz, 2021-05-22, 15:20 - 15:59 CET",
-                "segments": [
                     {
-                        "index": 0,
+                        "index": 1,
                         "origin": {
                             "station": {
                                 "id": "8509002",
@@ -379,6 +321,30 @@
                 ],
                 "origin": {
                     "station": {
+                        "id": "8500010",
+                        "abstract": "Basel SBB",
+                        "station": {
+                            "country": "ch",
+                            "codes": [
+                                {
+                                    "codeList": "UIC",
+                                    "code": "8500010"
+                                }
+                            ],
+                            "names": [
+                                {
+                                    "language": "de",
+                                    "text": "Basel SBB"
+                                }
+                            ]
+                        }
+                    },
+                    "departureDateTime": "2021-05-22T13:06:37.490Z",
+                    "index": 0,
+                    "departureTrack": "5"
+                },
+                "destination": {
+                    "station": {
                         "id": "8509002",
                         "abstract": "Landquart",
                         "station": {
@@ -397,31 +363,7 @@
                             ]
                         }
                     },
-                    "departureDateTime": "2021-05-22T15:20:37.490Z",
-                    "index": 0,
-                    "departureTrack": "5"
-                },
-                "destination": {
-                    "station": {
-                        "id": "8509068",
-                        "abstract": "Klosters Platz",
-                        "station": {
-                            "country": "ch",
-                            "codes": [
-                                {
-                                    "codeList": "UIC",
-                                    "code": "8509068"
-                                }
-                            ],
-                            "names": [
-                                {
-                                    "language": "de",
-                                    "text": "Klosters Platz"
-                                }
-                            ]
-                        }
-                    },
-                    "arrivalDateTime": "2021-05-22T15:59:37.491Z",
+                    "arrivalDateTime": "2021-05-22T15:12:37.491Z",
                     "index": 0,
                     "arrivalTrack": "2"
                 },

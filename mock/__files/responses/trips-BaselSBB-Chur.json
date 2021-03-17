@@ -1,6 +1,6 @@
 {
     "trip": {
-        "id": "50898cd4-0d1e-4456-92bd-c119d419728e",
+        "id": "cb8f7aa5-17f9-482f-95d4-9012b7b2442b",
         "abstract": "Basel SBB - Chur, 2021-05-24, 09:33 - 16:40 CET",
         "segments": [
             {
@@ -96,26 +96,6 @@
                                         "codeList": "UIC",
                                         "code": "8503000"
                                     }
-                                ],
-                                "geoCoordinate": {
-                                    "system": "WSG84",
-                                    "accuracy": 0.00002,
-                                    "latitude": 47.378177,
-                                    "longitude": 8.540193
-                                },
-                                "names": [
-                                    {
-                                        "language": "de",
-                                        "text": "Zürich SBB"
-                                    },
-                                    {
-                                        "language": "fr",
-                                        "text": "Zurich SBB"
-                                    },
-                                    {
-                                        "language": "it",
-                                        "text": "Zurigo SBB"
-                                    }
                                 ]
                             }
                         },
@@ -135,18 +115,6 @@
                                     {
                                         "codeList": "UIC",
                                         "code": "8509411"
-                                    }
-                                ],
-                                "geoCoordinate": {
-                                    "system": "WSG84",
-                                    "accuracy": 0.00002,
-                                    "latitude": 47.045361,
-                                    "longitude": 9.445398
-                                },
-                                "names": [
-                                    {
-                                        "language": "de",
-                                        "text": "Sargans"
                                     }
                                 ]
                             }
@@ -168,18 +136,6 @@
                                         "codeList": "UIC",
                                         "code": "8509002"
                                     }
-                                ],
-                                "geoCoordinate": {
-                                    "system": "WSG84",
-                                    "accuracy": 0.00002,
-                                    "latitude": 46.967442,
-                                    "longitude": 9.554032
-                                },
-                                "names": [
-                                    {
-                                        "language": "de",
-                                        "text": "Landquart"
-                                    }
                                 ]
                             }
                         },
@@ -197,18 +153,6 @@
                                     {
                                         "codeList": "UIC",
                                         "code": "8509000"
-                                    }
-                                ],
-                                "geoCoordinate": {
-                                    "system": "WSG84",
-                                    "accuracy": 0.00002,
-                                    "latitude": 46.853081,
-                                    "longitude": 9.528925
-                                },
-                                "names": [
-                                    {
-                                        "language": "de",
-                                        "text": "Chur"
                                     }
                                 ]
                             }
@@ -231,18 +175,6 @@
                             "codeList": "UIC",
                             "code": "8500010"
                         }
-                    ],
-                    "geoCoordinate": {
-                        "system": "WSG84",
-                        "accuracy": 0.00002,
-                        "latitude": 47.547408,
-                        "longitude": 7.589548
-                    },
-                    "names": [
-                        {
-                            "language": "de",
-                            "text": "Basel SBB"
-                        }
                     ]
                 }
             },
@@ -260,18 +192,6 @@
                         {
                             "codeList": "UIC",
                             "code": "8509000"
-                        }
-                    ],
-                    "geoCoordinate": {
-                        "system": "WSG84",
-                        "accuracy": 0.00002,
-                        "latitude": 46.853081,
-                        "longitude": 9.528925
-                    },
-                    "names": [
-                        {
-                            "language": "de",
-                            "text": "Chur"
                         }
                     ]
                 }

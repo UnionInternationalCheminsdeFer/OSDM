@@ -46,7 +46,9 @@ Ids used for this scenario (`grep -C 2 -n '"id' trip-offer-response-Basel-Kloste
   - `50898cd4-0d1e-4456-92bd-c119d419728e` (Trip Basel SBB - Landquart, 2021-05-22 13:08)
   - `6db18e19-d87f-442b-b80c-90e3b7007f20` (Trip Landquart - Klosters Platz, 2021-05-22 15:20)
   - `3fa85f64-5717-4562-b3fc-2c963f66afa6` (Trip Basel SBB - Klosters Platz, 2021-05-22 13:08)
-- trip offer ids: 
+- tripsCollection:
+  - `1a795f7a-8072-4ede-9739-e0eef55a62b0` (trip 0)
+- trip offer ids:
   - `trip-offer-001` (Trip Basel SBB - Landquart)
   - `trip-offer-002` (Trip Landquart - Klosters Platz)
 - admission id: `admission_BaselSBB-Klosters`
@@ -87,6 +89,8 @@ Ids used for this scenario (`grep -C 2 -n '"id' trip-offer-response-Basel-Kloste
   - `cb8f7aa5-17f9-482f-95d4-9012b7b2442b` (Trip Basel SBB - Chur, 2021-05-24 09:33)
   - `48e65adb-25b5-4786-a4c8-c153cb5e623e` (Trip Chur - Brig, 2021-05-24 12:14)
   - `6c73265d-7ed8-425e-ac31-3ceb74b40cb1` (Trips Basel SBB - Brig, 2021-05-24 09:33)
+- tripsCollection:
+  - `e0d3406c-41b2-46fc-96ba-3d5a4e43ed56` (trip 0)
 
 ## Journeys to Add Next
 
