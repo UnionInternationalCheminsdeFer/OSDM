@@ -23,7 +23,6 @@ permalink: /spec/nonFunctionalRequirements/
 |`/bookings/{id}/exchangeOffers` | 0.01:1 | 800 | |
 |`/coachLayouts` | Once per day | 10000 | |
 |`/coachLayouts/{layoutId}` | 2:1 | 300 | |
-|`/coachLayouts/offerId=1234567890` | 2:1 | 300 | |
 
 ### Non-Functional Requirements for Fare Provider Services
 
@@ -51,4 +50,3 @@ Deviating service level requirements can be defined bilaterally.
 |`/bookings/{id}/exchangeOffers` | 0.01:1 | 400 | |
 |`/coachLayouts` | Once per day | 10000 | |
 |`/coachLayouts/{layoutId}` | 2:1 | 200 | |
-|`/coachLayouts/offerId=1234567890` | 2:1 | 200 | |
