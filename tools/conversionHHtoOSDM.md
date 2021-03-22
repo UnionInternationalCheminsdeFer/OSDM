@@ -33,8 +33,9 @@ The initial analysis has focused on proving the feasibility of the approach.
 
 ### Conversion OSDM to Hermes Hosa
 
-  This conversion is more complex, especially mapping the `/trips-offers/` call to
-  `BookingRequest`. If some restrictions on possible reservations are taken however
-  the converter can be realized.
+  This conversion is more complex, especially mapping the `/trips-offers/` calls to
+  `BookingRequest` efficiently. If some restrictions on possible reservations are
+  taken however the converter can be realized.
   
-  The business need for this form of conversion still needs to be discussed.
+  The conceptual work for the conversion is ongoing. In parallel, the business need
+  for this form of conversion is being evaluated.
