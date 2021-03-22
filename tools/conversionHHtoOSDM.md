@@ -1,12 +1,10 @@
 ---
 layout: page
-title: Hermes Hosa To OSDM and Back
-permalink: /tools/conversionHHtoOSDM
+title: Conversion Hermes Hosa To OSDM and Back
+permalink: /tools/conversionHHtoOSDM/
 ---
 
-## Conversion Hermes Hosa to OSDM and Back
-
-### Aim
+## Aim
 
 The aim of this conversion is to build a migration path from the Hermes/Hosa protocol
 to OSDM. Thus if a railway does not support OSDM yet the **Hermes Hosa to OSDM (H2O)
@@ -14,11 +12,11 @@ Converter** ensures that it can connect to railways supporting OSDM. Conversely,
 a railway only supports OSDM it guarantees that it can connect to railways supporting
 Hermes Hosa only.
 
-### Initial Analysis
+## Initial Analysis
 
 The initial analysis has focused on proving the feasibility of the approach.
 
-#### Conversion Hermes Hosa to OSDM
+### Conversion Hermes Hosa to OSDM
 
   This conversion is simple as can be seen in the following table
 
@@ -33,7 +31,7 @@ The initial analysis has focused on proving the feasibility of the approach.
   SBB has the business need to support this conversion process and is working with
   [Hitrail](https://www.hitrail.com/) to build such a converter.
 
-#### Conversion OSDM to Hermes Hosa
+### Conversion OSDM to Hermes Hosa
 
   This conversion is more complex, especially mapping the `/trips-offers/` call to
   `BookingRequest`. If some restrictions on possible reservations are taken however
