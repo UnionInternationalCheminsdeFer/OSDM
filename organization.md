@@ -114,7 +114,7 @@ The following increments are planned:
 
 | Product Increment | End Date | State |
 |--------|:----------:|------------|
-| `PI-0` | 17.12.2020 | *delivered in version 1.0*|
-| `PI-1` | 11.02.2021 | *to be delivered in version 1.1* |
-| `PI-2` | 24.06.2021 | *scoping in progress*|
+| `PI-0` | 17.12.2020 | *delivered with ODSM v.1.0*  |
+| `PI-1` | 11.02.2021 | *delivered with OSDM v.1.1*  |
+| `PI-2` | 24.06.2021 | *specification work ongoing* |
 | `PI-3` | 28.10.2021 |
