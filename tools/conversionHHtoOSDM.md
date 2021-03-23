@@ -6,11 +6,11 @@ permalink: /tools/conversionHHtoOSDM/
 
 ## Aim
 
-The aim of this conversion is to build a migration path from the Hermes/Hosa protocol
-to OSDM. Thus if a railway does not support OSDM yet the **Hermes Hosa to OSDM (H2O)
-Converter** ensures that it can connect to railways supporting OSDM. Conversely, if
-a railway only supports OSDM it guarantees that it can connect to railways supporting
-Hermes Hosa only.
+The aim of this online converter is to build a migration path from the Hermes/Hosa
+protocol to OSDM. Thus if a railway does not support OSDM yet the **Hermes Hosa to
+OSDM (H2O) Converter** ensures that it can connect to railways supporting OSDM.
+Conversely, if a railway only supports OSDM it guarantees that it can connect to
+railways supporting Hermes Hosa only.
 
 ## Initial Analysis
 
