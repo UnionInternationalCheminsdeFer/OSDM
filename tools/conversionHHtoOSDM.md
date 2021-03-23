@@ -26,7 +26,7 @@ The initial analysis has focused on proving the feasibility of the approach.
   | book offer              | `BookingRequest` | `POST /bookings` followed by `POST /booking/{bookingId}/fulfillments` |
   | cancel booking          | `CancelRequest` with `reason code` | `POST /bookings/{booking}/refundOffers` |
   | refund booking          | `CancelRequest`  | `POST /bookings/{booking}/refundOffers` |
-  | (exchange booking)      | *out of scope* | *out of scope*  |
+  | (exchange booking)      | *out of scope of MVP* | *out of scope of MVP*  |
 
   SBB has the business need to support this conversion process and is working with
   [Hitrail](https://www.hitrail.com/) to build such a converter.
