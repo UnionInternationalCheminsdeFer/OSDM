@@ -2663,7 +2663,7 @@ paths:
                 properties:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
-                  CoachLayout: 
+                  coachLayout: 
                     $ref: '#/components/schemas/CoachLayout'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -4279,7 +4279,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
-        Fulfillments:
+        fulfillments:
           type: array
           items:
             $ref: '#/components/schemas/Fulfillment'
