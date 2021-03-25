@@ -1,7 +1,9 @@
 openapi: 3.0.3
 servers:
-  - description: dummy server
-    url: 'https://virtserver.swaggerhub.com/Real-IT/dummy/1.0.0'
+  - description: Localhost on port 8080
+    url: http://localhost:8080
+  - description: OSDM Mock on Mocklab
+    url: http://osdm.mocklab.io
 info:
   title: UIC 90918-10 - OSDM
   version: 1.2.0-rc1
