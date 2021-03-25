@@ -410,16 +410,7 @@
                                     "abstract": "Andreas Schlapbach",
                                     "reference": "string",
                                     "dateOfBirth": "2021-02-18",
-                                    "cards": [],
-                                    "gender": "MALE",
-                                    "details": {
-                                        "preferredLanguage": "string",
-                                        "abstract": "string",
-                                        "firstName": "string",
-                                        "lastName": "string",
-                                        "eMail": "string",
-                                        "phoneNumber": "string"
-                                    }
+                                    "cards": []
                                 }
                             ],
                             "providerBookingReference": "string",
