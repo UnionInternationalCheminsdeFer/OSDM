@@ -3240,7 +3240,7 @@ components:
         of the whole offer. 
       properties:
         minimalPrice:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/Price'
         overallServiceClass:
           $ref: '#/components/schemas/ServiceClass'
         overallComfortClass:
@@ -3377,7 +3377,7 @@ components:
       type: object
       properties:
         price:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/Price'
         pricingMode:
           type: string
           enum:
@@ -3676,7 +3676,7 @@ components:
           type: string
           example: Reservierungsentgelt
         price:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/Price'
         applicability:
           type: string
           x-extensible-enum:
@@ -3836,9 +3836,9 @@ components:
             - EXCHANGE_ONGOING
             - ERROR
         provisionalBalance: 
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/Price'
         confirmedBalance: 
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/Price'
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         ticketTimeLimit:
@@ -4003,7 +4003,7 @@ components:
             - CHECKEDIN
             - REFUNDED
         price:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/Price'
           description: >-
             Note the price is present here as an optional element as future evolution indicate a possible
             separation between fulfillment info and financial information. 
@@ -4184,9 +4184,9 @@ components:
           items: 
             $ref: '#/components/schemas/Fulfillment'
         refundFee:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/Price'
         refundableAmount:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/Price'
         links:
           type: array
           items:
@@ -4355,9 +4355,9 @@ components:
         offer:
           $ref: '#/components/schemas/Offer'
         exchangeFee:
-          $ref: '#/components/schemas/CurrencyPrice'
+          $ref: '#/components/schemas/Price'
         exchangeBalance:
-          $ref: '#/components/schemas/CurrencyPrice'    
+          $ref: '#/components/schemas/Price'    
 
     NonTripOfferSearch:
       type: object
@@ -4693,7 +4693,7 @@ components:
           $ref: '#/components/schemas/FareType'
         name:
           $ref: '#/components/schemas/Text'
-        fareDetailDescription:
+        description:
           $ref: '#/components/schemas/Text'
         price:
           type: object
@@ -4703,7 +4703,7 @@ components:
               type: array
               minItems: 1
               items:
-                $ref: '#/components/schemas/CurrencyPrice'
+                $ref: '#/components/schemas/Price'
         regionalConstraint:
           type: object
           description: >-
@@ -4759,7 +4759,7 @@ components:
           $ref: '#/components/schemas/ServiceClass'
         comfortClass:
           $ref: '#/components/schemas/ComfortClass'
-        accommodationDetails:
+        accommodationDetail:
           type: object
           properties:
             accommodationType:
@@ -4960,7 +4960,7 @@ components:
           $ref: '#/components/schemas/ReservationDetail'     
         placeSelection:
           $ref: '#/components/schemas/PlaceSelection'
-        reservationLegacyParameter:
+        legacyReservationParameter:
           type: object
           description: reservation parameter to support the UIC 90918-1 interface for booking
           properties:
@@ -5395,7 +5395,7 @@ components:
         - id
         - text
 
-    CurrencyPrice:
+    Price:
       type: object
       minProperties: 1
       properties:
@@ -5412,7 +5412,7 @@ components:
         vatDetails:
           type: array
           items:
-            $ref: '#/components/schemas/VatDetail'
+            $ref: '#/components/schemas/VAT'
       required:
         - currency
         - amount
@@ -5422,7 +5422,7 @@ components:
       type: string
       example: CHF
 
-    VatDetail:
+    VAT:
       type: object
       properties:
         country:
@@ -5521,7 +5521,7 @@ components:
           type: object
           properties:
             feePrice:
-              $ref: '#/components/schemas/CurrencyPrice'
+              $ref: '#/components/schemas/Price'
             isAllocatorFee:
               description: indicates whether the fee belongs to the allocator
               type: boolean
