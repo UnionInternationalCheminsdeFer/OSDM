@@ -699,6 +699,9 @@
             },
             "polygon": {
               "$ref": "#/components/schemas/PolygonDef"
+            },
+            "serviceConstraintRef": {
+               "type": "string"
             }
           },
           "additionalProperties": false
@@ -836,11 +839,11 @@
               "code"
             ],
             "additionalProperties": false
+          },
+          "serviceConstraintRef": {
+             "type": "string"
           }
         },
-        "required": [
-          "station"
-        ],
         "additionalProperties": false
       },
       "ZoneDef": {
@@ -1214,7 +1217,11 @@
             "items": {
               "$ref": "#/components/schemas/ServiceBrandCodeDef"
             }
-          }
+          },
+          "legacyCode": {
+            "description": "id used in 108 as fake local station code ",
+            "type": "integer"
+          }       
         },
         "required": [
           "id"
