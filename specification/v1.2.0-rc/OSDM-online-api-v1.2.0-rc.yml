@@ -3126,10 +3126,10 @@ components:
             $ref: '#/components/schemas/ComfortClass'
           description: >-
             The classes returned might be different from the requested classes.
-        serviceClassIds:
+        serviceClassTypes:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceClassId'
+            $ref: '#/components/schemas/ServiceClassType'
           description: >-
             The classes returned might be different from the requested classes.
         currency:
@@ -3536,8 +3536,6 @@ components:
          - PDF_A4
          - PKPASS
          - TICKETLESS
-         - ALLOCATOR_APP
-         - SOCIAL_MEDIA_ACCOUNTS
     
     Admission:
       type: object
@@ -3837,9 +3835,9 @@ components:
             - REFUNDED
             - EXCHANGE_ONGOING
             - ERROR
-        provisionalBalance: 
+        provisionalPrice: 
           $ref: '#/components/schemas/Price'
-        confirmedBalance: 
+        confirmedPrice: 
           $ref: '#/components/schemas/Price'
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
@@ -3964,7 +3962,7 @@ components:
       description: >-
         CIT paper implies printing on value paper which is stock controlled.
       properties:
-        fulfillmentType:
+        type:
           $ref: '#/components/schemas/FulfillmentType'
         media: 
           type: array
@@ -4358,7 +4356,7 @@ components:
           $ref: '#/components/schemas/Offer'
         exchangeFee:
           $ref: '#/components/schemas/Price'
-        exchangeBalance:
+        exchangePrice:
           $ref: '#/components/schemas/Price'    
 
     NonTripOfferSearch:
@@ -5477,9 +5475,11 @@ components:
 
     ServiceClass:
       type: object
+      description: >-
+        Class of service.
       properties:
-        id:
-          $ref: '#/components/schemas/ServiceClassId'
+        type:
+          $ref: '#/components/schemas/ServiceClassType'
         carrierName:
           type: string
           description: >-
@@ -5487,10 +5487,10 @@ components:
       required:
         - id
       
-    ServiceClassId:
-      description: >-
-       Level of quality, finer grained than the comfort class.
+    ServiceClassType:
       type: string
+      description: >-
+        Type of quality level, finer grained than the comfort class.
       x-extensible-enum:
         - BEST
         - HIGH
