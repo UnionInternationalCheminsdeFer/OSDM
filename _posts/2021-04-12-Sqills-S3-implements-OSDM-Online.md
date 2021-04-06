@@ -1,14 +1,13 @@
 ---
 layout: post
-title: "Sqills first to implement OSDM Online"
+title: "Sqills is First to Implement OSDM Online"
 author: Andreas Schlapbach
-date: 2021-04-07 16:20:33 +0100
+date: 2021-04-12 16:20:33 +0100
 categories: osdm update
 ---
 
-**Press release: Sqills S3 Passenger first inventory management system to implement
-the online part of the Open Sales and Distribution Model (OSDM) managed by UIC 
-and the FSM-Initiative**
+Sqills S3 Passenger is the first inventory management system to implement
+the online part of the OSDM managed by UIC and the FSM-Initiative.
 
 [Sqills](https://www.sqills.com)’ inventory management, sales and distribution SaaS platform
 S3 Passenger, is the first IT platform with a working OSDM-online implementation based on
