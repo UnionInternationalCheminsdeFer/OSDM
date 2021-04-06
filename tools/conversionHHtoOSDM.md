@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Conversion Hermes Hosa To OSDM and Back
+hide_hero: true
 permalink: /tools/conversionHHtoOSDM/
 ---
 

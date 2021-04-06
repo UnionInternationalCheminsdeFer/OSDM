@@ -17,8 +17,8 @@ The aims of the **Open Sales and Distribution Model (OSDM)** are twofold:
    carriers.
 
 OSDM **strengthens rail and public transport** as a convenient and ecological means of
-transportation by simplifying distribution. Finally, it lays a **solid fundament** which can be
-extended to the distribution of other means of transportation.
+transportation by simplifying distribution. Finally, it lays a **solid fundament** which 
+can be extended to the distribution of other means of transportation.
 
 The OSDM Online API and specification essentially consists of two parts: **Offline
 Model** and **Online API**. The Online API works in two modes: **Distributor Mode**
@@ -27,7 +27,7 @@ Mode only in that additionally to **Admissions (aka. tickets)**, **Reservations*
 **Integrated reservations**, or **Ancillaries** also **Fares (priced segments)**
 are offered and can be booked.
 
-The OSDM Model and documents are **Open Source** and freely available to all
+The OSDM API and documents are **Open Source** and freely available to all
 parties interested. The OSDM-Online API is modelled in `YAML`, fully supporting the
 `REST paradigm`.
 
@@ -98,12 +98,12 @@ Analogously, the after-sale process is modelled in the following steps:
 To address the second goal, we studied the existing commercial products and
 online distribution/carrier systems of [BENE](https://www.benerail.com), [CD](https://www.cd.cz/),
 [DB](https://www.bahn.de/), [DSB](https://www.dsb.dk/en/), [öBB](https://www.oebb.at/),
-[PKP IC](https://www.intercity.pl/), [RENFE](https://www.renfe.com/), 
+[PKP IC](https://www.intercity.pl/), [RENFE](https://www.renfe.com/),
 [Rail Delivery Group](https://www.raildeliverygroup.com), [SBB](https://www.sbb.ch),
 [SJ](https://www.sj.se/), [SNCF](https://www.sncf.fr),
 [Trenitalia](https://www.trenitalia.com/) and other
 **UIC Railways** as well as distribution solutions provided by [Amadeus](https://amadeus.com/),
-[Sabre](https://www.sabre.com/), [Silverrail](https://www.silverrailtech.com/), 
+[Sabre](https://www.sabre.com/), [Silverrail](https://www.silverrailtech.com/),
 [Sqills](https://sqills.com/), [Trainline](https://www.thetrainline.com/),
 [Travelport](https://www.travelport.com/) and others. Furthermore, the
 [Hermes ecosystem](https://www.hitrail.com/hermes-ecosystem) for reservations
@@ -114,7 +114,7 @@ Advisors from **CER**, **CIT**, **ECTAA**, **EU Traveltech** and sounding boards
 the **European Commission** as well as the **European Rail Agency** were involved from
 the start and guided the effort.
 
-By involving the experts of the parties, we are confident that the OSDM
+By involving the [experts](./team) of all the parties, we are confident that the OSDM
 Model is powerful enough to support the distribution of existing or upcoming
 commercial products and can be implemented and supported at reasonable cost.
 
