@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "OSDM V.1.1 Released"
+title: "Sqills first to implement OSDM Online"
 author: Andreas Schlapbach
 date: 2021-04-07 16:20:33 +0100
 categories: osdm update
@@ -10,7 +10,7 @@ categories: osdm update
 the online part of the Open Sales and Distribution Model (OSDM) managed by UIC 
 and the FSM-Initiative**
 
-[Sqills](https://www.osdm.com)’ inventory management, sales and distribution SaaS platform
+[Sqills](https://www.sqills.com)’ inventory management, sales and distribution SaaS platform
 S3 Passenger, is the first IT platform with a working OSDM-online implementation based on
 the recently completed specification designed by railway carriers and ticket distributors.
 After joining the initiative late 2020, Sqills has committed to contributing to the technical
