@@ -1,7 +1,6 @@
 ---
 layout: page
 title: OSDM Sandbox
-hide_hero: true
 permalink: /tools/sandbox/
 ---
 
