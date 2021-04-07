@@ -911,6 +911,29 @@ It should be possible to book reservations within the same technology.
 The existing reservation services in IRS 90918-1 should also be
 supported.
 
+### Requirements on Fare Exchange
+
+*Will be released as part of version 1.2*
+
+Fares-in OSDM are expressed in Euro.
+
+Fares must be delivered by fare providers twice a year: **October 1st** each
+year for *winter timetable change (mid of December)* and **April 1st** each year
+for *summer timetable change (mid of June)*. The data for these mandatory
+data exchanges must be delivered by all fare providers to the OSDM-Offline
+platform.
+
+Fare-prices shall remain unchanged unless optional deliveries in between these
+dates (October 1st and April 1st each year) are agreed on bi-/multilateral basis.
+These optional data are also delivered to the OSDM-Offline platform.
+
+In principle prices for customers are created by addition of prices per
+fare provider. Nevertheless, bi-multilateral agreements may include other
+regulations.
+
+Conversion from Euro into a national currency (if necessary, vice versa) is
+subject to national distribution systems of the carrier/distributor concerned.
+
 ## Architectural Requirements
 
 ### Requirements on aligned processes end to end
