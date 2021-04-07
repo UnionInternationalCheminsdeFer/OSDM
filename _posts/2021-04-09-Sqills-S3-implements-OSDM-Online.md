@@ -19,7 +19,7 @@ interoperability. This effort has now resulted in the first actually working
 implementation which can soon be made available in production for operators
 running S3 Passenger.
 
-Marc Guigon and Vittorio Carta, chair and vice-chair of OSDM, say:
+Marc Guigon and Vittorio Carta, chair & vice-chair of OSDM, say:
 
 *“For OSDM, 2020 was the year of specifying the standard, and we now prove that
 2021 can be the year of its implementation. We are excited and also proud about
@@ -27,10 +27,10 @@ the example that Sqills has set for contributing carriers of how quick and
 relatively easy the OSDM-online standard could be implemented, and look forward
 to see partners follow soon. It proves that for a capable back-end system, the
 OSDM-online interface covers all relevant principles well. The ticket
-distributors in the OSDM workgroup can now prepare to actually integrate the
+distributors in the OSDM working group can now prepare to actually integrate the
 API based on this first implementation. A big step forward in the **European Year
 of Rail** and public transportation in general, as OSDM has been designed to
-accomplish multi-modal mobility solutions.”*
+accomplish multi-modal mobility solutions as well.”*
 
 Johan Nieuwerth, Sqills Founder & S3 Product Owner, said:
 
