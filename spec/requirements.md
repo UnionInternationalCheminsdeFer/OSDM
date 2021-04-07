@@ -920,8 +920,10 @@ Fares-in OSDM are expressed in Euro.
 Fares must be delivered by fare providers twice a year: **October 1st** each
 year for *winter timetable change (mid of December)* and **April 1st** each year
 for *summer timetable change (mid of June)*. The data for these mandatory
-data exchanges must be delivered by all fare providers to the OSDM-Offline
-platform.
+data exchange must be delivered by all fare providers to the OSDM-Offline
+platform. Additionally, all allocators must import relevant fares from the
+the OSDM-Offline platform to guarantee that up-to-date fare data is used for
+price calculation.
 
 Fare-prices shall remain unchanged unless optional deliveries in between these
 dates (October 1st and April 1st each year) are agreed on bi-/multilateral basis.
