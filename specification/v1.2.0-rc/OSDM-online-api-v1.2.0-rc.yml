@@ -3280,6 +3280,9 @@ components:
               default: false
             offerTag:
               type: string
+            allowsContractGrouping: 
+              type: boolean
+              default: false
           description: >-
             The offerTag can/must (depending on the mandatory flag) be used in some cases to restrict the set of
             offers returned in a subsequent and related offer search to only compatible ones.
@@ -3742,6 +3745,12 @@ components:
             safely processed on this offer. When the flag is not set, standard provider logic applies.
           type: boolean
           default: false
+        groupedCarriageContracts:
+          description: >-
+            in case the carriage contracts represented by this offer have been grouped with carriage contracts from other
+            providers by the distributor.
+          type: boolean
+          default: false
         selectedOptionalReservationsIds:
           type: array
           items:
@@ -3824,6 +3833,12 @@ components:
           type: string
           description: >-
             The unique booking reference in the provider system. Usually refers to an order number or PNR.
+        groupedCarriageContracts:
+          description: >-
+            When true, the booking represents carriage contracts that have been grouped with other carriage contracts
+            from other providers by the booker.
+          type: boolean
+          default: false
         status:
           type: string
           enum:
