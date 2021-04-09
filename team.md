@@ -10,6 +10,7 @@ The [OSDM specification](../spec) effort has been driven by
 
 - [Eder Sabine](https://www.linkedin.com/in/sabine-eder-949337203/) (ÖBB)
 - [Gantert Clemens](https://www.linkedin.com/in/clemens-g-88783725) (DB)
+- [Johan Nieuwerth](https://www.linkedin.com/in/johannieuwerth/) (Sqills)
 - [Olsson Anders](https://www.linkedin.com/in/anders-olsson-5712a32a/) (SilverRail)
 - [Parmigiani Elisa](https://www.linkedin.com/in/elisa-parmigiani-186b5745/) (Amadeus)
 - [Schlapbach Andreas](https://www.linkedin.com/in/andreas-schlapbach-09b095ab/) (SBB)
