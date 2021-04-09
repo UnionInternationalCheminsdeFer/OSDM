@@ -45,3 +45,7 @@ community that wish to connect bilaterally with other inventories as well.
 Sqills will make a so-called powered by S3 Passenger available to the OSDM
 community partners, so that this first step will hopefully actually help
 increase the speed of adoption of the standard.”*
+
+Congratulations for [Johan Nieuwerth](https://www.linkedin.com/in/johannieuwerth/)
+and [Roland Klapwijk](https://www.linkedin.com/in/rolandklapwijk/) for making this
+happen!
