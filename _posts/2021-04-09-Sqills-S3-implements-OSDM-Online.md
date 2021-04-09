@@ -6,7 +6,7 @@ date: 2021-04-09 09:00:33 +0100
 categories: osdm implementation
 ---
 
-[Sqills](https://sqills.com) S3 Passenger is the first inventory management
+[Sqills S3 Passenger](https://sqills.com) is the first inventory management
 system to implement the online part of the OSDM managed by UIC and the
 FSM-Initiative.
 
@@ -46,6 +46,6 @@ Sqills will make a so-called powered by S3 Passenger available to the OSDM
 community partners, so that this first step will hopefully actually help
 increase the speed of adoption of the standard.”*
 
-Congratulations for [Johan Nieuwerth](https://www.linkedin.com/in/johannieuwerth/)
+Congratulations to [Johan Nieuwerth](https://www.linkedin.com/in/johannieuwerth/)
 and [Roland Klapwijk](https://www.linkedin.com/in/rolandklapwijk/) for making this
 happen!
