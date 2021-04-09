@@ -3307,6 +3307,13 @@ components:
             List of tags (and their type) that allow identifying sets of compatible offers when trying to combine multiple offers covering one single trip. 
             At least one (not all) tripTags must be in common to allow combination
             If no tag is provided, there is no trip constraint on this specific offer.
+        appliedThroughTicketTags:
+          type: array
+          items:
+            type: string
+          description: >-
+            the list of all throughticket tags that were effectively used in building or booking the offer.
+            Cross-checking this list with the products, the actual groupings applied can be identified.
         requestedInformation:
           $ref: '#/components/schemas/RequestedInformation'
         availableFulfillmentTypes:
@@ -3499,6 +3506,12 @@ components:
           type: string
         carrierConstraintText:
           type: string
+        throughTicketTags:
+          type: array
+          items:
+            type: string
+          description: >-
+            List of tags (and their type) that allow identifying sets of offers for which related contracts can be grouped into one through ticket
         combinationTags:
           description: >-
             Tags to indicate that some products from a provider can be sold only when in conjunction with product(s) 
@@ -3741,6 +3754,12 @@ components:
             on the totality of the distributor's booking. Only after-sale requests triggered by the distributor can be 
             safely processed on this offer. When the flag is not set, standard provider logic applies.
           type: boolean
+          default: false
+        throughTicketTag:
+          description: >-
+            in case the carriage contracts represented by this offer have been grouped with carriage contracts from other
+            providers by the distributor. The same trhoughticket tag that was used to perform the grouping can be specified here.
+          type: string
           default: false
         selectedOptionalReservationsIds:
           type: array
