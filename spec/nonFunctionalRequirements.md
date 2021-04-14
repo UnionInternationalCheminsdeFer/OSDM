@@ -9,19 +9,18 @@ permalink: /spec/nonFunctionalRequirements/
 
 ## Non-Functional Requirements
 
-If a customer wants to book a trip he or she expects a seamless user experience. Fundamental to
-achieving this goal is a fast response of all requests triggered by the customer.
+From a customer point of view, to book a trip he or she expects a seamless and fluid user experience.
+Fundamental to achieving this goal are fast responses for all requests triggered by the customer.
 
-From a business point of view, the [response time of a site directly correlates with conversion rate](https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-conversion-data/).
+From a business point of view, the [response time of a site directly correlates with the conversion rate](https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-conversion-data/).
 
-In order to achieve a seamless and swift user experience, all parties involved most play their part.
-The overall response perceived by a customer can be calculated as follows
+In order to achieve a seamless and swift user experience, all parties involved most play their part and
+provide fast adn predictable response times.Formally, by `Avg. Response Time` we mean the mean response
+time for 95% of all request. By `Max Response Time` we mean the maximum time a response can take before
+a time out must be expected.
 
-Formally, by `Avg. Response Time` we mean the mean response time for 95% of all request. By
-`Max Response Time` we mean the maximum time a response can take before a time out can be triggered.
-
-Next we need to define some  response time crucial for the customer experience. We assume the fare
-providers and pricing engines can be called in parallel:
+For achhieve a good customer experience, we need to define some response time for a each parties and we
+assume the fare providers and pricing engines can be called in parallel.
 
 *ToDo*: Clarify Naming
 
@@ -33,7 +32,7 @@ providers and pricing engines can be called in parallel:
 | Pricing Engine Response Time | `Allocator Time + max(Fare Provider Times 1..m) + Communication Time 1` |
 | Channel Response Time        | `Distributor Time + max(Pricing Engine 1..n) + Communication Time 2` |
 
-The following illustration highlights the different response time:
+The following illustration highlights the different response times:
 
 ![Response Times](../images/non-functional-requirements/responseTimes.png)
 
@@ -44,7 +43,7 @@ times are crucial.
 2. The longest response of any pricing engine involved.
 3. The time it takes the distributor to render the content.
 
-This observation leeds to the following non-requirements for a given role.
+This observation leeds to the following non-functional requirements for a given role.
 
 ### Non-Functional Requirements for a "Channel"
 
