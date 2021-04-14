@@ -29,8 +29,8 @@ assume the fare providers and pricing engines can be called in parallel.
 | Fare Provider Response Time  | Time to calculate/fares
 | Allocator Response Time      | Time to calculate an offer from (remote) fare provider(s) |
 | Distributor Response Time    | Time to combine offers from  |
-| Pricing Engine Response Time | `Allocator Time + max(Fare Provider Times 1..m) + Communication Time 1` |
-| Channel Response Time        | `Distributor Time + max(Pricing Engine 1..n) + Communication Time 2` |
+| Pricing Engine Response Time | `Allocator Response Time + max(Fare Provider Response Times 1..m) + Communication Time 1` |
+| Channel Response Time        | `Distributor Response Time + max(Pricing Engine Response Time 1..n) + Communication Time 2` |
 
 The following illustration highlights the different response times:
 
