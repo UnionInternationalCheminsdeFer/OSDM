@@ -25,13 +25,13 @@ providers and pricing engines can be called in parallel:
 
 *ToDo*: Clarify Naming
 
-| Response time       | Description |
-|---------------------|-------------|
+| Response time | Description |
+|---------------|-------------|
 | Fare Provider Response Time  | Time to calculate/fares
 | Allocator Response Time      | Time to calculate an offer from (remote) fare provider(s) |
 | Distributor Response Time    | Time to combine offers from  |
 | Pricing Engine Response Time | `Allocator Time + max(Fare Provider Times 1..m) + Communication Time 1` |
-| Channel Time Response        | `Distributor Time + max(Pricing Engine 1..n) + Communication Time 2` |
+| Channel Response Time        | `Distributor Time + max(Pricing Engine 1..n) + Communication Time 2` |
 
 The following illustration highlights the different response time:
 
@@ -46,9 +46,9 @@ times are crucial.
 
 This observation leeds to the following non-requirements for a given role.
 
-### Non-Functional Requirements for the role "Channel"
+### Non-Functional Requirements for a "Channel"
 
-Mandatory service level requirements to be fulfilled by a distributor.
+Mandatory service level requirements to be fulfilled by a channel.
 
 The Look-2-Book rate relates to the number of bookings created by the type of offer request.
 The expected average response time in milliseconds that a service must provide includes the
@@ -57,8 +57,8 @@ application) but not the network in-between the sender and receiver.
 
 | Resources | Look to Book Rate | Avg. Response Times (msec) | Max. Response Time (msec) | Required Error Handling |
 |-----------|----|----|----|----|
-|`/locations` | - | 60 | 80 | TODO |
-|`/trips` | - | 400 | 600 | TODO |
+|`/locations` | - | 60 | 80 |  |
+|`/trips` | - | 400 | 600 |  |
 |`/trip-offers-collection` | 1000:1 | 1000 | 2000 | |
 |`/offers` | 100:1 | 1000 | 2000 | |
 |`/offers/{offerId}/...` | 5:1 | 800 | 1600 | |
@@ -69,7 +69,7 @@ application) but not the network in-between the sender and receiver.
 |`/bookings/{id}/refundOffers` | 0,5:1 | 1000 | 2000 | |
 |`/bookings/{id}/exchangeOffers` | 0.01:1 | 1000 | 2000 | |
 
-### Non-Functional Requirements for the role "Pricing Engine"
+### Non-Functional Requirements for a "Pricing Engine"
 
 Mandatory service level requirements to be fulfilled by a pricing engine.
 
@@ -80,8 +80,8 @@ application) but not the network in-between the sender and receiver.
 
 | Resources | Look to Book Rate | Avg. Response Times (msec) | Max. Response Time (msec) | Required Error Handling |
 |-----------|----|----|----|----|
-|`/locations` | - | 50 | 75 | TODO |
-|`/trips` | - | 300 | 500 | TODO |
+|`/locations` | - | 50 | 75 |  |
+|`/trips` | - | 300 | 500 |  |
 |`/trip-offers-collection` | 1000:1 | 800 | 1600 | |
 |`/offers` | 100:1 | 800 | 1600 | |
 |`/offers/{offerId}/...` | 5:1 | 600 | 1200 | |
