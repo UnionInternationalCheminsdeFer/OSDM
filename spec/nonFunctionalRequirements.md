@@ -19,7 +19,7 @@ provide fast adn predictable response times.Formally, by `Avg. Response Time` we
 time for 95% of all request. By `Max Response Time` we mean the maximum time a response can take before
 a time out must be expected.
 
-For achhieve a good customer experience, we need to define some response time for a each parties and we
+For achieve a good customer experience, we need to define some response time for a each parties and we
 assume the fare providers and pricing engines can be called in parallel.
 
 *ToDo*: Clarify Naming
