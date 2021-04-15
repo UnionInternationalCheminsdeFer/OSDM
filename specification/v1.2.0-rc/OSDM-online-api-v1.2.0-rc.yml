@@ -3428,7 +3428,13 @@ components:
           format: int32
           description: >-
             If supported by the allocator system, this returns the number of remaining available
-            offerparts, i.e. admissions, reservation or ancillaries.  
+            offerparts, i.e. admissions, reservation or ancillaries.
+        totalAvailability:
+          type: integer
+          format: int32
+          description: >-
+            If supported by the allocator system, this returns the number of potential available
+            offerparts, i.e. admissions, reservation or ancillaries for an empty vehicle. 
         refundable:
           type: string
           enum:
@@ -3844,15 +3850,7 @@ components:
           description: >-
             The unique booking reference in the provider system. Usually refers to an order number or PNR.
         status:
-          type: string
-          enum:
-            - PREBOOKED
-            - CONFIRMED
-            - FULFILLED
-            - CANCELLED
-            - REFUNDED
-            - EXCHANGE_ONGOING
-            - ERROR
+          $ref: '#/components/schemas/BookingStatus'
         provisionalPrice: 
           $ref: '#/components/schemas/Price'
         confirmedPrice: 
@@ -3894,6 +3892,17 @@ components:
       required:
         - id
         - type
+
+    BookingStatus:
+      type: string
+      enum:
+        - PREBOOKED
+        - CONFIRMED
+        - FULFILLED
+        - CANCELLED
+        - REFUNDED
+        - EXCHANGE_ONGOING
+        - ERROR
 
     FulfillmentType:
       type: string      
@@ -4014,12 +4023,7 @@ components:
           type: string
           format: uuid
         status: 
-          type: string
-          enum: 
-            - CONFIRMED
-            - FULFILLED
-            - CHECKEDIN
-            - REFUNDED
+          $ref: '#/components/schemas/FulfillmentStatus'
         price:
           $ref: '#/components/schemas/Price'
           description: >-
@@ -4053,6 +4057,14 @@ components:
       required:
        - id
     
+    FulfillmentStatus:
+      type: string
+      enum: 
+        - CONFIRMED
+        - FULFILLED
+        - CHECKEDIN
+        - REFUNDED
+
     FulfillmentDocument:
       type: object
       description: >-
@@ -4062,8 +4074,8 @@ components:
         medium: 
           $ref: '#/components/schemas/FulfillmentMediaType'
         type:
-         type: string
-         x-extensible-enum:
+          type: string
+          x-extensible-enum:
             - BOOKING_RECEIPT
             - TICKET
             - BOARDING_PASS
