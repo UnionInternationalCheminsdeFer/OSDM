@@ -3429,12 +3429,6 @@ components:
           description: >-
             If supported by the allocator system, this returns the number of remaining available
             offerparts, i.e. admissions, reservation or ancillaries.
-        totalAvailability:
-          type: integer
-          format: int32
-          description: >-
-            If supported by the allocator system, this returns the number of potential available
-            offerparts, i.e. admissions, reservation or ancillaries for an empty vehicle. 
         refundable:
           type: string
           enum:
