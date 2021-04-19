@@ -1996,24 +1996,25 @@
         "additionalProperties": false
       },
       "FareResourceLocationDef": {
-        "description": "locate the online services ",
+        "description": "Locate the online services",
         "type": "object",
         "properties": {
-          "CarrierLocations": {
-            "description": "locating the online resource via the carrier provided in the time table",
+          "carrierLocations": {
+            "description": "Locating the online resource via the carrier provided in the time table.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CarrierResourceLocationDef"
             }
           },
-          "TrainLocations": {
-            "description": "locating the online resource via the train from the time table",
+          "trainLocations": {
+            "description": "Locating the online resource via the train from the time table.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TrainResourceLocationDef"
             }
           },
-          "StationLocations": {
+          "stationLocations": {
+			"description": "Locating the online resource via stations or connection points.	The link is valid if start and end station (or connection points) provide the link.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StationResourceLocationDef"
