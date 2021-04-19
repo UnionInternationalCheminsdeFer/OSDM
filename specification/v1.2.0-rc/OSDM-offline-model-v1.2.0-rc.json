@@ -1493,7 +1493,7 @@
               "$ref": "#/components/schemas/FareCombinationConstraintDef"
             }
           },
-          "fullfillmentConstraints": {
+          "fulfillmentConstraints": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FulfillmentConstraintDef"
@@ -1662,7 +1662,7 @@
             "default": false
           },
           "combinationConstraint": {
-            "description": "constraints on accompagning passengers",
+            "description": "constraints on accompanying passengers",
             "type": "array",
             "items": {
               "type": "object",
@@ -1736,7 +1736,7 @@
                   "$ref": "#/components/schemas/RelativeTimeDef"
                 },
                 "salesDatesRef": {
-                  "description": "reference to the calendar woith valid sales dates",
+                  "description": "reference to the calendar with valid sales dates",
                   "type": "string"
                 }
               },
@@ -1774,8 +1774,8 @@
                   "$ref": "#/components/schemas/ReservationOptionGroupDef"
                 }
               },
-              "graficalReservation": {
-                "description": "grafical reservation is supported, interface type \"NO\",\"UIC_918\",..",
+              "graphicalReservation": {
+                "description": "graphical reservation is supported, interface type \"NO\",\"UIC_918\",..",
                 "type": "string"
               },
               "serviceBrands": {
@@ -1883,7 +1883,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "unique id of the fare item to be included in accountings",
+            "description": "unique id of the fare item to be included in accounting",
             "type": "string"
           },
           "bundleRef": {
@@ -1957,7 +1957,7 @@
         "additionalProperties": false
       },
       "FareReferenceStationSetDef": {
-        "description": "set of stations used in the fare equivalentely. E.g. Brussels-Region). The set is identified by the fare provicer and a code unique within the fare provider.",
+        "description": "set of stations used in the fare equivalently. E.g. Brussels-Region). The set is identified by the fare provider and a code unique within the fare provider.",
         "type": "object",
         "properties": {
           "fareProvider": {
@@ -2026,7 +2026,7 @@
         "type": "object",
         "properties": {
           "offerType": {
-            "description": "The resource provides offers bases on trains or based on areas. Train based offers must start and end at a real station and are not splitted inbetween a train run . Values TRAIN, AREA",
+            "description": "The resource provides offers bases on trains or based on areas. Train based offers must start and end at a real station and are not split between a train run. Values TRAIN, AREA",
             "type": "string"
           },
           "interfaceType": {
@@ -2114,7 +2114,7 @@
             "$ref": "#/components/schemas/CompanyDef"
           },
           "trainId": {
-            "description": "ztrain number (without service brand abbreviation)",
+            "description": "train number (without service brand abbreviation)",
             "type": "string"
           },
           "onlineResource": {
@@ -2132,7 +2132,7 @@
         "additionalProperties": false
       },
       "ZoneDefinitionDef": {
-        "description": "definition of a zone used to define regional validity. The area of the zone can be defined via a geo-poligone, a complte list of all contained stations or area codes from the NUTS code list. The carrier is eigther the carrier or transport authority responsible for the definition.",
+        "description": "definition of a zone used to define regional validity. The area of the zone can be defined via a geo-polygon, a complete list of all contained stations or area codes from the NUTS code list. The carrier is either the carrier or transport authority responsible for the definition.",
         "type": "object",
         "properties": {
           "carrier": {
@@ -2147,7 +2147,7 @@
           "nameUTF8": {
             "type": "string"
           },
-          "ploygon": {
+          "polygon": {
             "$ref": "#/components/schemas/PolygonDef"
           },
           "stationList": {
@@ -2184,7 +2184,7 @@
           "travelValidityConstraintRef": {
             "type": "string"
           },
-          "fullfillmentConstraintRef": {
+          "fulfillmentConstraintRef": {
             "type": "string"
           },
           "personalDataConstraintRef": {
