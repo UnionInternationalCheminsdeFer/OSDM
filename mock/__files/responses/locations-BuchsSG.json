@@ -1,0 +1,29 @@
+{
+    "locations": [
+      {
+        "id": "8509404",
+        "abstract": "Buchs SG",
+        "station": {
+          "country": "ch",
+          "codes": [
+            {
+              "codeList": "UIC",
+              "code": "8509404"
+            }
+          ],
+          "geoCoordinate": {
+            "system": "WSG84",
+            "accuracy": 0.00002,
+            "latitude": 47.168405,
+            "longitude": 9.478631
+          },
+          "names": [
+            {
+              "language": "de",
+              "text": "Buchs SG"
+            }
+          ]
+        }
+      }
+    ]
+  }

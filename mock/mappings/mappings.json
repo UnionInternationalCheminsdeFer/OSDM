@@ -63,6 +63,25 @@
                 "urlPath": "/locations",
                 "queryParameters": {
                     "matchValue": {
+                        "contains": "Buchs"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-BuchsSG.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "urlPath": "/locations",
+                "queryParameters": {
+                    "matchValue": {
                         "contains": "Chur"
                     }
                 }

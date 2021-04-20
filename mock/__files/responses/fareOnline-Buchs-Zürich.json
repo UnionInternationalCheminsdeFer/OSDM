@@ -1,0 +1,847 @@
+    "fares": [
+      {
+        "id": "string",
+        "type": "ADMISSION",
+        "name": {
+          "id": "string",
+          "translations": [
+            {
+              "language": "string",
+              "text": "string",
+              "shortText": "string"
+            }
+          ],
+          "text": "Buchs - Zürich",
+          "shortText": "string"
+        },
+        "description": {
+          "id": "string",
+          "translations": [
+            {
+              "language": "string",
+              "text": "string",
+              "shortText": "string"
+            }
+          ],
+          "text": "string",
+          "shortText": "string"
+        },
+        "price": {
+          "price": [
+            {
+              "currency": "EUR",
+              "amount": 3140,
+              "scale": 2,
+              "vatDetails": [
+                {
+                  "country": "CH",
+                  "amount": 5,
+                  "scale": 2,
+                  "percentage": 0,
+                  "taxId": "string",
+                  "scope": "INTERNATIONAL"
+                }
+              ]
+            }
+          ]
+        },
+        "regionalConstraint": {
+          "entryConnectionPointId": "8509404",
+          "entryConnectionPoint": {
+            "id": "string",
+            "name": "string",
+            "stationSets": [
+              [
+                {
+                  "localCode": "string",
+                  "country": "string",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "string"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WGS84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.948825,
+                    "longitude": 7.439122
+                  },
+                  "names": [
+                    {
+                      "language": "string",
+                      "text": "string",
+                      "shortText": "string"
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          "exitConnectionPointId": "8503000",
+          "exitConnectionPoint": {
+            "id": "string",
+            "name": "string",
+            "stationSets": [
+              [
+                {
+                  "localCode": "string",
+                  "country": "string",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "string"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WGS84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.948825,
+                    "longitude": 7.439122
+                  },
+                  "names": [
+                    {
+                      "language": "string",
+                      "text": "string",
+                      "shortText": "string"
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          "regionalValidity": [
+            {
+              "seqNb": 0,
+              "zone": {
+                "binaryZoneId": "string",
+                "carrier": "string",
+                "city": 0,
+                "entryStation": {
+                  "localCode": "string",
+                  "country": "string",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "string"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WGS84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.948825,
+                    "longitude": 7.439122
+                  },
+                  "names": [
+                    {
+                      "language": "string",
+                      "text": "string",
+                      "shortText": "string"
+                    }
+                  ]
+                },
+                "terminalStation": {
+                  "localCode": "string",
+                  "country": "string",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "string"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WGS84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.948825,
+                    "longitude": 7.439122
+                  },
+                  "names": [
+                    {
+                      "language": "string",
+                      "text": "string",
+                      "shortText": "string"
+                    }
+                  ]
+                },
+                "zoneIds": [
+                  0
+                ],
+                "nutsCode": "string"
+              },
+              "viaStations": {
+                "isBorder": false,
+                "routeId": 0,
+                "seriesId": 0,
+                "alternativeRoute": [
+                  null
+                ],
+                "carrier": "string",
+                "route": [
+                  null
+                ],
+                "serviceBrand": "TGV",
+                "station": {
+                  "localCode": "string",
+                  "country": "string",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "string"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WGS84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.948825,
+                    "longitude": 7.439122
+                  },
+                  "names": [
+                    {
+                      "language": "string",
+                      "text": "string",
+                      "shortText": "string"
+                    }
+                  ]
+                },
+                "fareReferenceStationSet": {
+                  "carrier": "string",
+                  "code": "string",
+                  "name": "string"
+                },
+                "serviceConstraint": {
+                  "restrictedToServiceBrands": [
+                    "TGV"
+                  ],
+                  "excludedServiceBrands": [
+                    "TGV"
+                  ]
+                }
+              },
+              "trainLink": {
+                "fromStation": {
+                  "localCode": "string",
+                  "country": "string",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "string"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WGS84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.948825,
+                    "longitude": 7.439122
+                  },
+                  "names": [
+                    {
+                      "language": "string",
+                      "text": "string",
+                      "shortText": "string"
+                    }
+                  ]
+                },
+                "toStation": {
+                  "localCode": "string",
+                  "country": "string",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "string"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WGS84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.948825,
+                    "longitude": 7.439122
+                  },
+                  "names": [
+                    {
+                      "language": "string",
+                      "text": "string",
+                      "shortText": "string"
+                    }
+                  ]
+                },
+                "train": "string",
+                "travelDate": "2021-04-15T09:58:58.312Z"
+              },
+              "line": {
+                "binaryLineId": "string",
+                "carrier": "string",
+                "city": 0,
+                "entryStation": {
+                  "localCode": "string",
+                  "country": "string",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "string"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WGS84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.948825,
+                    "longitude": 7.439122
+                  },
+                  "names": [
+                    {
+                      "language": "string",
+                      "text": "string",
+                      "shortText": "string"
+                    }
+                  ]
+                },
+                "lineId": [
+                  "string"
+                ],
+                "terminalStation": {
+                  "localCode": "string",
+                  "country": "string",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "string"
+                    }
+                  ],
+                  "geoCoordinate": {
+                    "system": "WGS84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.948825,
+                    "longitude": 7.439122
+                  },
+                  "names": [
+                    {
+                      "language": "string",
+                      "text": "string",
+                      "shortText": "string"
+                    }
+                  ]
+                },
+                "nutsCode": "string"
+              },
+              "polygon": {
+                "edge": [
+                  {
+                    "system": "WGS84",
+                    "accuracy": 0.00002,
+                    "latitude": 46.948825,
+                    "longitude": 7.439122
+                  }
+                ]
+              },
+              "serviceConstraint": {
+                "restrictedToServiceBrands": [
+                  "TGV"
+                ],
+                "excludedServiceBrands": [
+                  "TGV"
+                ]
+              }
+            }
+          ],
+          "distance": 0
+        },
+        "serviceConstraint": {
+          "restrictedToServiceBrands": [
+            "TGV"
+          ],
+          "excludedServiceBrands": [
+            "TGV"
+          ]
+        },
+        "carrierConstraint": {
+          "restrictedToCarrier": [
+            "string"
+          ],
+          "excludedCarrier": [
+            "string"
+          ]
+        },
+        "regulatoryConditions": [
+          "CIV"
+        ],
+        "serviceClass": {
+          "type": "string",
+          "carrierName": "string"
+        },
+        "comfortClass": "string",
+        "accommodationDetail": {
+          "accommodationType": "string",
+          "accommodationSubType": "string",
+          "text": {
+            "id": "string",
+            "translations": [
+              {
+                "language": "string",
+                "text": "string",
+                "shortText": "string"
+              }
+            ],
+            "text": "string",
+            "shortText": "string"
+          },
+          "isClassNameExcluded": false,
+          "reservationParameterId": "string"
+        },
+        "afterSalesCondition": {
+          "conditions": [
+            {
+              "type": "string",
+              "description": "string",
+              "validFrom": "2021-04-15T09:58:58.313Z",
+              "validUntil": "2021-04-15T09:58:58.313Z",
+              "afterSalesFee": {
+                "feePrice": {
+                  "currency": "CHF",
+                  "amount": 0,
+                  "scale": 2,
+                  "vatDetails": [
+                    {
+                      "country": "CH",
+                      "amount": 5,
+                      "scale": 2,
+                      "percentage": 0,
+                      "taxId": "string",
+                      "scope": "string"
+                    }
+                  ]
+                },
+                "isAllocatorFee": false
+              }
+            }
+          ],
+          "isSupportingIndividualContracts": false
+        },
+        "combinationConstraint": {
+          "combinationModels": [
+            {
+              "model": "string",
+              "combinableCarrier": [
+                "string"
+              ],
+              "isValidOnlyWhenCombined": false,
+              "referenceCluster": "string",
+              "allowedClusters": [
+                "string"
+              ],
+              "allowedCommonContracts": [
+                "string"
+              ]
+            }
+          ]
+        },
+        "fulfillmentConstraint": {
+          "acceptedControlSecurityTypes": [
+            "string"
+          ],
+          "acceptedBarCodes": [
+            "string"
+          ],
+          "requiredBarCodes": [
+            "string"
+          ],
+          "requiredSiS": [
+            "string"
+          ],
+          "isIndividualTicketingForbidden": false
+        },
+        "reductionConstraint": {
+          "requiredCards": [
+            {
+              "type": [
+                "REDUCTION"
+              ],
+              "code": "string",
+              "codeList": "string",
+              "name": "string",
+              "number": "string",
+              "issuer": "string"
+            }
+          ]
+        },
+        "legacyAccountingIdentifier": {
+          "serialId": 99999,
+          "addId": 99,
+          "tariffId": 9999
+        },
+        "travelValidityConstraint": {
+          "validTravelDates": {
+            "fromDate": "2021-04-15T09:58:58.314Z",
+            "untilDate": "2021-04-15T09:58:58.314Z",
+            "dates": [
+              "2021-04-15T09:58:58.314Z"
+            ],
+            "utcOffset": 0
+          },
+          "validityRange": {
+            "timeUnit": "DAYS",
+            "value": 0,
+            "hoursAfterMidnight": 0
+          },
+          "excludedTimeRange": [
+            {
+              "from": 0,
+              "until": 0,
+              "scope": "START_OF_TRAVEL"
+            }
+          ],
+          "numberOfTravelDays": 0,
+          "returnConstraint": {
+            "latestReturn": 0,
+            "earliestReturn": 0,
+            "excludedWeekdays": [
+              0
+            ]
+          }
+        },
+        "reservationDetails": {
+          "accommodationType": "string",
+          "accommodationSubType": "string",
+          "reservedPlaces": [
+            {
+              "id": "string",
+              "passengerReferences": "string",
+              "vehicle": "string",
+              "coach": "string",
+              "places": "string",
+              "placeIds": [
+                "string"
+              ],
+              "placeProperties": [
+                {
+                  "placeProperty": "string",
+                  "number": 0,
+                  "priority": 0
+                }
+              ]
+            }
+          ]
+        },
+        "placeSelection": {
+          "reservationOptions": {
+            "preferences": [
+              {
+                "preferenceGroup": "SEAT_DIRECTION",
+                "preferences": [
+                  "FORWARD_FACING"
+                ]
+              }
+            ],
+            "graphicalReservation": "string"
+          },
+          "vehicle": "string",
+          "referencePlace": {
+            "placeNumber": "string",
+            "coachNumber": "string"
+          },
+          "selectedOptions": [
+            {
+              "passengers": [
+                {
+                  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                  "abstract": "Andreas Schlapbach",
+                  "reference": "string",
+                  "dateOfBirth": "2021-04-15",
+                  "cards": [
+                    {
+                      "type": [
+                        "REDUCTION"
+                      ],
+                      "code": "string",
+                      "codeList": "string",
+                      "name": "string",
+                      "number": "string",
+                      "issuer": "string"
+                    }
+                  ],
+                  "gender": "MALE",
+                  "details": {
+                    "preferredLanguage": "string",
+                    "abstract": "string",
+                    "firstName": "string",
+                    "lastName": "string",
+                    "eMail": "string",
+                    "phoneNumber": "string",
+                    "address": {
+                      "street": "Segantinistrasse 23",
+                      "city": "Bern",
+                      "postalCode": "3006",
+                      "country": "string",
+                      "geoCoordinate": {
+                        "system": "WGS84",
+                        "accuracy": 0.00002,
+                        "latitude": 46.948825,
+                        "longitude": 7.439122
+                      }
+                    }
+                  },
+                  "passport": {
+                    "id": "string",
+                    "type": "string",
+                    "name": "string",
+                    "nationality": "string",
+                    "cityOfBirth": "string",
+                    "cityOfIssue": "string",
+                    "cityOfResidence": "string",
+                    "countryOfBirth": "string",
+                    "countryOfIssue": "string",
+                    "countryOfResidence": "string",
+                    "dateOfIssue": "2021-04-15T09:58:58.314Z",
+                    "gender": "MALE",
+                    "limitOfValidity": "2021-04-15T09:58:58.314Z"
+                  },
+                  "transportableDetails": {
+                    "type": "string",
+                    "car": {
+                      "weight": 0,
+                      "length": 0,
+                      "width": 0,
+                      "height": 0,
+                      "model": "string",
+                      "attachedItems": [
+                        "string"
+                      ],
+                      "plate": "string"
+                    },
+                    "motorCycle": {
+                      "isSideCarIncluded": false,
+                      "plate": "string"
+                    },
+                    "trailer": {
+                      "weight": 0,
+                      "length": 0,
+                      "width": 0,
+                      "height": 0,
+                      "plate": "string"
+                    }
+                  },
+                  "prmNeeds": [
+                    "string"
+                  ],
+                  "links": [
+                    {
+                      "contentTypes": [
+                        "application/json",
+                        "application/pdf"
+                      ],
+                      "href": "https://www.brussels.info/train-stations/",
+                      "method": "GET",
+                      "relation": "Get Map",
+                      "version": 1
+                    }
+                  ]
+                }
+              ],
+              "selectedPlaceProperties": [
+                "string"
+              ]
+            }
+          ],
+          "selectedCoach": {
+            "selectedCoaches": [
+              {
+                "coachNumber": "string",
+                "selectedPlaces": [
+                  {
+                    "passengerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "place": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "legacyReservationParameter": {
+          "travelClass": "string",
+          "serviceLevelCode": "string",
+          "serviceCode": "string",
+          "berthType": "string",
+          "coachTypeCode": "string",
+          "compartmentTypeCode": "string",
+          "tariff": [
+            {
+              "number": 0,
+              "code": 0
+            }
+          ]
+        },
+        "coveredSection": {
+          "start": {
+            "id": "string",
+            "abstract": "Bruxelles-Midi",
+            "station": {
+              "localCode": "string",
+              "country": "string",
+              "codes": [
+                {
+                  "codeList": "UIC",
+                  "code": "string"
+                }
+              ],
+              "geoCoordinate": {
+                "system": "WGS84",
+                "accuracy": 0.00002,
+                "latitude": 46.948825,
+                "longitude": 7.439122
+              },
+              "names": [
+                {
+                  "language": "string",
+                  "text": "string",
+                  "shortText": "string"
+                }
+              ]
+            },
+            "poi": {
+              "codes": [
+                {
+                  "codeList": "UIC",
+                  "code": "string"
+                }
+              ],
+              "country": "string",
+              "names": "Bern Baerengraben (Denkmal)",
+              "geoCoordinate": {
+                "system": "WGS84",
+                "accuracy": 0.00002,
+                "latitude": 46.948825,
+                "longitude": 7.439122
+              }
+            },
+            "address": {
+              "street": "Segantinistrasse 23",
+              "city": "Bern",
+              "postalCode": "3006",
+              "country": "string",
+              "geoCoordinate": {
+                "system": "WGS84",
+                "accuracy": 0.00002,
+                "latitude": 46.948825,
+                "longitude": 7.439122
+              }
+            },
+            "geoCoordinate": {
+              "system": "WGS84",
+              "accuracy": 0.00002,
+              "latitude": 46.948825,
+              "longitude": 7.439122
+            },
+            "connectionPoint": {
+              "stations": [
+                [
+                  {
+                    "codeList": "UIC",
+                    "code": "string"
+                  }
+                ]
+              ]
+            },
+            "links": [
+              {
+                "contentTypes": [
+                  "application/json",
+                  "application/pdf"
+                ],
+                "href": "https://www.brussels.info/train-stations/",
+                "method": "GET",
+                "relation": "Get Map",
+                "version": 1
+              }
+            ]
+          },
+          "end": {
+            "id": "string",
+            "abstract": "Bruxelles-Midi",
+            "station": {
+              "localCode": "string",
+              "country": "string",
+              "codes": [
+                {
+                  "codeList": "UIC",
+                  "code": "string"
+                }
+              ],
+              "geoCoordinate": {
+                "system": "WGS84",
+                "accuracy": 0.00002,
+                "latitude": 46.948825,
+                "longitude": 7.439122
+              },
+              "names": [
+                {
+                  "language": "string",
+                  "text": "string",
+                  "shortText": "string"
+                }
+              ]
+            },
+            "poi": {
+              "codes": [
+                {
+                  "codeList": "UIC",
+                  "code": "string"
+                }
+              ],
+              "country": "string",
+              "names": "Bern Baerengraben (Denkmal)",
+              "geoCoordinate": {
+                "system": "WGS84",
+                "accuracy": 0.00002,
+                "latitude": 46.948825,
+                "longitude": 7.439122
+              }
+            },
+            "address": {
+              "street": "Segantinistrasse 23",
+              "city": "Bern",
+              "postalCode": "3006",
+              "country": "string",
+              "geoCoordinate": {
+                "system": "WGS84",
+                "accuracy": 0.00002,
+                "latitude": 46.948825,
+                "longitude": 7.439122
+              }
+            },
+            "geoCoordinate": {
+              "system": "WGS84",
+              "accuracy": 0.00002,
+              "latitude": 46.948825,
+              "longitude": 7.439122
+            },
+            "connectionPoint": {
+              "stations": [
+                [
+                  {
+                    "codeList": "UIC",
+                    "code": "string"
+                  }
+                ]
+              ]
+            },
+            "links": [
+              {
+                "contentTypes": [
+                  "application/json",
+                  "application/pdf"
+                ],
+                "href": "https://www.brussels.info/train-stations/",
+                "method": "GET",
+                "relation": "Get Map",
+                "version": 1
+              }
+            ]
+          }
+        },
+        "passengerConstraint": [
+          {
+            "number": 0,
+            "upperAgeLimit": 0,
+            "lowerAgeLimit": 0
+          }
+        ]
+      }
+    ]
