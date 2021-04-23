@@ -5631,11 +5631,13 @@ components:
               - UIC: UIC codes as used by merits (UIC country code + local code)
               - UIC-R: UIC codes for reservation (UIC country code + local code reservation) 
               - ERA: future ERA station code
+              - EVA: station codes as used by HAFAS
           type: string
           x-extensible-enum:
             - UIC
             - UIC-R
             - ERA
+            - EVA
           default: UIC
         code:
           type: string
