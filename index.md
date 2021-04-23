@@ -11,13 +11,13 @@ hero_link_text: Download Specification
 
 The aims of the **Open Sales and Distribution Model (OSDM)** are twofold:
 
-1. to substantially **simplify the booking process for customers** of public
+1. to substantially **simplify and improve the booking process for customers** of public
    transport trips and,
 2. to **lower complexity and distribution costs** for distributors and
    carriers.
 
 OSDM **strengthens rail and public transport** as a convenient and ecological means of
-transportation by simplifying distribution. Finally, it lays a **solid fundament** which 
+transportation by simplifying distribution. Finally, it lays a **solid fundament** which
 can be extended to the distribution of other means of transportation.
 
 The OSDM Online API and specification essentially consists of two parts: **Offline
