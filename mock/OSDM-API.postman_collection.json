@@ -61,18 +61,40 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/locations/?matchValue=Brig",
+							"raw": "{{baseUrl}}/locations?matchValue=Brig",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"locations",
-								""
+								"locations"
 							],
 							"query": [
 								{
 									"key": "matchValue",
 									"value": "Brig"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buchs SG",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=Buchs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "Buchs"
 								}
 							]
 						}

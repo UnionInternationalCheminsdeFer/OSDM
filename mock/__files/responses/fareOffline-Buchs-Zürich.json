@@ -1,0 +1,157 @@
+"FareDeliveryDef": {
+    "delivery": {
+        "fareProvider": "1185",
+        "deliveryId": "1",
+        "optionalDelivery": false,
+        "version": "2.1",
+        "acceptedVersion": "2.0"
+    },
+    "fareStructure": {
+        "calendars": 
+            [
+                {
+                    "id": "calendar-1",
+                    "fromDate": "2020-09-12",
+                    "untilDate": "2021-09-12",
+                }
+            ],
+        "serviceClassDefinitions": 
+            [
+                {
+                    "id": "serviceClass-1",
+                    "textRef": "",
+                    "text": "Erste Klasse",
+                    "comfortClass": "FIRST"
+                },
+                {
+                    "id": "serviceClass-2",
+                    "textRef": "",
+                    "text": "Zweite Klasse",
+                    "comfortClass": "SECOND"
+                }
+            ],
+        "fareResourceLocation": 
+            {
+                "carrierLocations":
+                    [
+                        {
+                            "carrier": "1185",
+                            "onlineResource":
+                                [
+                                    {
+                                        "offerType": "TRAIN", 
+                                        "interfaceType": "???",
+                                        "version": "0.1",
+                                        "system": "???"
+                                    }
+                                ]
+                        }
+                    ],
+            },
+        "prices": 
+            [
+                {
+                    "id": "price-1",
+                    "price": 
+                        [
+                            {
+                                "currency": "EURO", 
+                                "amount": 3140, 
+                                "scale": 2,
+                                "vatDetails": 
+                                    {
+                                        "country": "ch",
+                                        "amount": 0,
+                                        "scale": 2,
+                                        "percentage": 0,
+                                        "taxId": "MWST-Nummer",
+                                        "scope": "INTERNATIONAL"
+                                    }
+                            }
+                        ]
+                }
+            ],
+        "regionalConstraints":
+            [
+                {
+                    "id": "regionalConstraint-1",
+                    "entryConnectionPointId": "8509404",
+                    "entryConnectionPoint": 
+                        {
+                            "id": "xyz",
+                            "legacyBorderPointCode": "271",
+                            "name": "Buchs SG",
+                            "stationsSets": [
+                                "1185": "8509404",
+                                "1181": "8101244"
+                            ]
+                        },
+                    "exitConnectionPointId": "8503000",
+                    "exitConnectionPoint":
+                        {
+                            "id": "xyz",
+                            "name": "Zürich HB",
+                            "stationsSets": [
+                                "1185": "8503000"
+                            ]
+                        },
+                    "regionalValidity":
+                        {
+                            "viaStations": 
+                                {
+                                    "carrier": 85,
+                                    "station": 
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509411",
+                                            "country": "CH",
+                                            "name": "Sargans"
+                                        }
+                                }
+                        },
+                    "distance": 113
+                }
+            ],
+        "passengerConstraints":
+            [
+                {
+                    "id": "passengerConstraint-1",
+                    "passengerType": "ADULT SINGLE",
+                    "nameRef": "Erwachsener",
+                    "lowerAgeLimit": "16",
+                    "upperAgeLimit" "999"
+                }
+            ],
+        "fareConstraintBundles": 
+            [
+                "FareConstraintBundle"
+            ],
+        "fares": 
+            [
+                {
+                    "id": "00000-03914",   //FareId
+                    "bundleRef": "firstBundle",
+                    "fareType": "NRT",
+                    "nameRef": "Normalpreis",
+                    "priceRef": "price-1",
+                    "regionalConstraintRef": "regionalConstraint-1",
+                    "serviceClassRef": "serviceClass-1",
+                    "passengerConstraintRef": "passengerConstrain-1",
+                    "legacyAccountingIdentifier":
+                        {
+                            "serialId": 03914,
+                            "addId": 000,  // todo
+                            "tariffId": 000,  // todo
+                        }
+                    ,
+                }
+            ],
+        "afterSalesCondition": 
+            [
+                "AfterSalesConditionDef"
+            ], 
+        "salesAvailabilityConstraint": "todo",
+        "combinationConstraints": "todo"
+    }
+}
+

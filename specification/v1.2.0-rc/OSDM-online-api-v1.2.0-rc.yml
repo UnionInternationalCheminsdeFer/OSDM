@@ -120,7 +120,7 @@ paths:
               enum:
                 - ALL
                 - NONE
-            default: ALL
+            default: [ALL]
       responses:
         '200':
           description: the set of stations matching the provided input
@@ -241,7 +241,7 @@ paths:
               enum:
                 - ALL
                 - NONE
-            default: ALL
+            default: [ALL]
       responses:
         '200':
           description: the requested trip
@@ -329,7 +329,7 @@ paths:
                 - TRIPS
                 - TRIPS.LOCATIONS
                 - NONE
-            default: ALL
+            default: [ALL]
       responses:
         '200':
           description: Trip(s) found   
@@ -667,7 +667,7 @@ paths:
                 - OFFERS.OFFERPARTS
                 - PASSENGERS
                 - NONE
-              default: ALL
+            default: [ALL]
       responses:
         '200':
           description: Trip offer found
@@ -729,7 +729,7 @@ paths:
                 - TRIP
                 - TRIP.LOCATIONS
                 - NONE
-              default: ALL
+            default: [ALL]
       responses:
         '200':
           description: Offer found
@@ -1503,7 +1503,7 @@ paths:
                 - BOOKINGS.PASSENGERS
                 - BOOKINGS.TICKETS  
                 - NONE
-              default: ALL
+            default: [ALL]
       requestBody:
         content:
           application/json:
@@ -1618,7 +1618,7 @@ paths:
                 - TICKETS
                 - REFUND_PROPOSITIONS
                 - NONE
-              default: ALL
+            default: [ALL]
       responses:
         '200':
           description: booking found
@@ -2161,7 +2161,7 @@ paths:
                 - OFFERS.OFFERPARTS
                 - OFFERS.OFFERPARTS.PRODUCTS
                 - PASSENGERS
-              default: ALL      
+            default: [ALL]
       responses:
         '200':
           description: ExchangeOperation found
@@ -2531,7 +2531,7 @@ paths:
                 - OFFERS.OFFERPARTS.PRODUCTS
                 - PASSENGERS
                 - NONE
-              default: ALL
+            default: [ALL]
       responses:
         '200':
           description: Trip offer found
@@ -2608,7 +2608,7 @@ paths:
                 - ALL
                 - LAYOUT
                 - NONE
-              default: ALL          
+            default: [ALL]
       responses:
         '200':
           description: coach layouts
@@ -2943,7 +2943,7 @@ components:
               - TRIPS.LOCATIONS
               - NONE
               - ALL
-            default: ALL
+          default: [ALL]
             
     TripSearchCriteria:
       description: >-
@@ -3192,7 +3192,7 @@ components:
               - TRIPOFFERS.OFFERS.OFFERPARTS
               - TRIPOFFERS.PASSENGERS
               - NONE
-            default: ALL
+          default: [ALL]
       required:
         - tripSearch
         - passengers
@@ -3826,7 +3826,7 @@ components:
               - PASSENGERS
               - REFUND_PROPOSITIONS
               - NONE
-            default: ALL
+          default: [ALL]
       required:
         - selectedOffers
       
@@ -4427,7 +4427,7 @@ components:
               - OFFERPARTS
               - NONE
               - ALL
-            default: ALL
+          default: [ALL]
               
     NonTripOfferCollection:
       type: array
@@ -5631,11 +5631,13 @@ components:
               - UIC: UIC codes as used by merits (UIC country code + local code)
               - UIC-R: UIC codes for reservation (UIC country code + local code reservation) 
               - ERA: future ERA station code
+              - EVA: station codes as used by HAFAS
           type: string
           x-extensible-enum:
             - UIC
             - UIC-R
             - ERA
+            - EVA
           default: UIC
         code:
           type: string
