@@ -5129,6 +5129,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ServiceBrandCode'          
+        description:
+          $ref: '#/components/schemas/Text'
 
     RegionalValidity:
       type: array

@@ -1221,7 +1221,11 @@
           "legacyCode": {
             "description": "id used in 108 as fake local station code ",
             "type": "integer"
-          }       
+          },
+			  	"textRef": {
+				  	"description": "id of the text describing the service constraint for the traveler",
+					  "type": "string"
+				  }
         },
         "required": [
           "id"
