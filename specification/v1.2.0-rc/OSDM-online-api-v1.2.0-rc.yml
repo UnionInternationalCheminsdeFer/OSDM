@@ -2814,8 +2814,7 @@ components:
           properties:
             numbers:
               description: >-
-                Id of the vehicle, In case of two train s running in parallel
-                there might be two train numbers.
+                In case of two trains running in parallel there might be two train numbers.
               type: array
               items:
                 type: string
@@ -2846,7 +2845,7 @@ components:
     Stop:
       type: object
       properties:
-        station:
+        location:
           $ref: '#/components/schemas/Location'
         departureDateTime:
           description: date and time in the time zone of the station
@@ -3088,6 +3087,7 @@ components:
           $ref: '#/components/schemas/Currency'
           description:
             The currency returned might be different from the one requested.
+
     OfferPartType:
       type: string
       enum:
@@ -5916,70 +5916,8 @@ components:
       description: >-
         Availability of places on coaches.
       properties:
-        coaches:
-          description: >-
-            List of the coaches in a train run ordered according to the physical
-            ordering of the train.
-          type: array
-          items:
-            type: object
-            properties:
-              compartments:
-                description: >-
-                  Areas within a coach that holds places. Areas might be selectable
-                  as a whole. Usual areas would be classic compartments.
-                type: array
-                items:
-                  type: object
-                  properties:
-                    places:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Place'
-                    status:
-                      type: string
-                    isSelectable:
-                      description: to indicate compartments selectable as a whole only
-                      type: boolean
-                      default: false
-              number:
-                description: coach number
-                type: string
-              status:
-                $ref: '#/components/schemas/AvailabilityStatus'
-              layoutId:
-                description: id to identify the coach layout
-                type: string
-              layoutIdUpperDeck:
-                description: id to identify a layout for the upper deck in a double deck coach
-                type: string
-              layoutIdLowerDeck:
-                description: id to identify a layout for the lower deck in a double deck coach
-                type: string
-              direction:
-                description: >-
-                  indication of the direction of travel standard direction is left
-                  to right with ascending coordinates in the layout values.
-                type: string
-                x-extensible-enum:
-                 - UNSPECIFIED
-                 - IN_DIRECTION
-                 - OPPOSITE_DIRECTION
-                 - CHANGING
-                 - STARING_IN_DIRECTION
-              coachOwner:
-                $ref: '#/components/schemas/Company'
-              specialCoach:
-                type: string
-                description: indication of special coach 
-                x-extensible-enum: 
-                  - RESTAURANT_COACH
-                  - BICYCLE_COACH
-                  - LUGGAGE_COACH
-                  - TRAIN_HEAD                
-            required:
-              - number
-              - layoutId    
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
         preSelection:
           description: suggested pre-selection of places
           type: array
@@ -5990,6 +5928,77 @@ components:
                 type: string
               place:
                 type: string
+
+    Vehicle:
+      description: >-
+        List of the coaches in a vehicle run ordered according to the physical
+        ordering of the vehicle.
+      type: array
+      items:
+        $ref: '#/components/schemas/Coach'
+
+    Coach:
+      type: object
+      properties:
+        compartments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Compartment'
+        number:
+          description: coach number
+          type: string
+        status:
+          $ref: '#/components/schemas/AvailabilityStatus'
+        layoutId:
+          description: id to identify the coach layout
+          type: string
+        layoutIdUpperDeck:
+          description: id to identify a layout for the upper deck in a double deck coach
+          type: string
+        layoutIdLowerDeck:
+          description: id to identify a layout for the lower deck in a double deck coach
+          type: string
+        direction:
+          description: >-
+            indication of the direction of travel standard direction is left
+            to right with ascending coordinates in the layout values.
+          type: string
+          x-extensible-enum:
+            - UNSPECIFIED
+            - IN_DIRECTION
+            - OPPOSITE_DIRECTION
+            - CHANGING
+            - STARING_IN_DIRECTION
+        owner:
+          $ref: '#/components/schemas/Company'
+        specialCoach:
+          type: string
+          description: indication of special coach 
+          x-extensible-enum: 
+            - RESTAURANT_COACH
+            - BICYCLE_COACH
+            - LUGGAGE_COACH
+            - TRAIN_HEAD                
+      required:
+        - number
+        - layoutId
+
+    Compartment:
+      description: >-
+        Areas within a coach that holds places. Areas might be selectable
+        as a whole. Usual areas would be classic compartments.
+      type: object
+      properties:
+        places:
+          type: array
+          items:
+            $ref: '#/components/schemas/Place'
+        status:
+          type: string
+        isSelectable:
+          description: to indicate compartments selectable as a whole only
+          type: boolean
+          default: false
 
     Place:
       description: description of a place
@@ -6065,7 +6074,7 @@ components:
         abstract:
           type: string
           example: Andreas Schlapbach
-        reference:
+        externalReference:
           description: >-
             stable reference to passengers from other elements, or from caller
             system.
