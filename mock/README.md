@@ -39,8 +39,6 @@ configure the [Postman](https://www.postman.com) environnement.
 
 ### Ids Used for Scenario 1
 
-Ids used for this scenario (`grep -C 2 -n '"id' trip-offer-response-Basel-Klosters.json`):
-
 - stops: Basel SBB, Klosters Platz, Küblis, Landquart, Sargans, Schiers, Zürich HB.
 - trips:
   - `50898cd4-0d1e-4456-92bd-c119d419728e` (Trip Basel SBB - Landquart, 2021-05-22 13:08)
@@ -82,8 +80,6 @@ Mocked resources:
 
 ### Ids Used for Scenario 2
 
-Ids used for this scenario (`grep -C 2 -n '"id' trip-offer-response-Basel-Klosters.json`):
-
 - stops: Basel SBB, Zürich HB, Sargans, Landquart, Chur, Disentis, Andermatt, Brig.
 - trips:
   - `cb8f7aa5-17f9-482f-95d4-9012b7b2442b` (Trip Basel SBB - Chur, 2021-05-24 09:33)
@@ -91,6 +87,17 @@ Ids used for this scenario (`grep -C 2 -n '"id' trip-offer-response-Basel-Kloste
   - `6c73265d-7ed8-425e-ac31-3ceb74b40cb1` (Trips Basel SBB - Brig, 2021-05-24 09:33)
 - tripsCollection:
   - `e0d3406c-41b2-46fc-96ba-3d5a4e43ed56` (trip 0)
+
+## Scenario 3: Basel SBB - Buchs
+
+Mocked resources:
+
+- GET `/locations/?matchValue=Zürich`
+- GET `/locations/?matchValue=Sargans`
+- GET `/locations/?matchValue=Buchs`
+- GET `/locations/?matchValue=Wien`
+
+### Ids Used for Scenario 3
 
 ## Journeys to Add Next
 

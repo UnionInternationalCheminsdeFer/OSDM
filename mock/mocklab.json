@@ -1,0 +1,22 @@
+{
+    "mockApis": [
+        {
+            "id": "qvm87",
+            "name": "osdm-mock",
+            "ownerId": "xkmvg",
+            "ownerType": "USER",
+            "state": "RUNNING",
+            "adminSecurityEnabled": true,
+            "domains": [
+                "qvm87.mocklab.io",
+                "osdm.mocklab.io"
+            ],
+            "links": {
+                "requests": "/proxy/mock-api/qvm87.mocklab.io/__admin/requests",
+                "mappings": "/proxy/mock-api/qvm87.mocklab.io/__admin/mappings",
+                "scenarios": "/proxy/mock-api/qvm87.mocklab.io/__admin/mocklab/scenarios",
+                "collaborators": "/v1/mock-apis/qvm87/collaborators"
+            }
+        }
+    ]
+}

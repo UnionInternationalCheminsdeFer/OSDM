@@ -1,0 +1,182 @@
+{
+    "trip": {
+        "id": "4efc5c72-bdfe-4e58-aa60-da0ef24c4c47",
+        "abstract": "Buchs SG - Zürich , 2021-06-04, 16:12 - 17:20 CET",
+        "segments": [
+            {
+                "index": 0,
+                "origin": {
+                    "station": {
+                        "id": "8509404",
+                        "abstract": "Buchs SG",
+                        "station": {
+                            "country": "ch",
+                            "codes": [
+                                {
+                                    "codeList": "UIC",
+                                    "code": "8509404"
+                                }
+                            ]
+                        },
+                        "departureDateTime": "2021-06-04T16:12:37.489Z",
+                        "index": 0,
+                        "departureTrack": "4"
+                    }
+                },
+                "destination": {
+                    "station": {
+                        "id": "8503000",
+                        "abstract": "Zürich HB",
+                        "station": {
+                            "country": "ch",
+                            "codes": [
+                                {
+                                    "codeList": "UIC",
+                                    "code": "8503000"
+                                }
+                            ]
+                        },
+                        "arrivalDateTime": "2021-06-04T17:20:37.490Z",
+                        "index": 0,
+                        "arrivalTrack": "7"
+                    }
+                },
+                "duration": "P2DT3H4M",
+                "vehicle": {
+                    "numbers": [
+                        "162"
+                    ],
+                    "line": "162",
+                    "serviceBrand": "RJX",
+                    "transportMode": "HIGH_SPEED_TRAIN"
+                },
+                "stops": [
+                    {
+                        "station": {
+                            "id": "8509404",
+                            "abstract": "Buchs SG",
+                            "station": {
+                                "country": "ch",
+                                "codes": [
+                                    {
+                                        "codeList": "UIC",
+                                        "code": "8509404"
+                                    }
+                                ],
+                                "names": [
+                                    {
+                                        "language": "de",
+                                        "text": "Buchs SG"
+                                    }
+                                ]
+                            }
+                        },
+                        "departureDateTime": "2021-05-24T16:12:37.490Z",
+                        "index": 0,
+                        "departureTrack": "4"
+                    },
+                    {
+                        "station": {
+                            "id": "8509411",
+                            "abstract": "Sargans",
+                            "station": {
+                                "country": "ch",
+                                "codes": [
+                                    {
+                                        "codeList": "UIC",
+                                        "code": "8509411"
+                                    }
+                                ],
+                                "names": [
+                                    {
+                                        "language": "de",
+                                        "text": "Sargans"
+                                    }
+                                ]
+                            }
+                        },
+                        "departureDateTime": "2021-05-24T16:23:00.490Z",
+                        "arrivalDateTime": "2021-05-24T16:23:59.490Z",
+                        "index": 1,
+                        "departureTrack": "4",
+                        "arrivalTrack": "4"
+                    },
+                    {
+                        "station": {
+                            "id": "8503000",
+                            "abstract": "Zürich HB",
+                            "station": {
+                                "country": "ch",
+                                "codes": [
+                                    {
+                                        "codeList": "UIC",
+                                        "code": "8503000"
+                                    }
+                                ],
+                                "names": [
+                                    {
+                                        "language": "de",
+                                        "text": "Zürich HB"
+                                    }
+                                ]
+                            }
+                        },
+                        "arrivalDateTime": "2021-06-04T17:20:37.491Z",
+                        "index": 2,
+                        "arrivalTrack": "7"
+                    }
+                ]
+            }
+        ],
+        "origin": {
+            "station": {
+                "id": "8509404",
+                "abstract": "Buchs SG",
+                "station": {
+                    "country": "ch",
+                    "codes": [
+                        {
+                            "codeList": "UIC",
+                            "code": "8509404"
+                        }
+                    ],
+                    "names": [
+                        {
+                            "language": "de",
+                            "text": "Buchs SG"
+                        }
+                    ]
+                }
+            },
+            "departureDateTime": "2021-06-04T16:12:37.490Z",
+            "index": 0,
+            "departureTrack": "4"
+        },
+        "destination": {
+            "station": {
+                "id": "8503000",
+                "abstract": "Zürich HB",
+                "station": {
+                    "country": "ch",
+                    "codes": [
+                        {
+                            "codeList": "UIC",
+                            "code": "8503000"
+                        }
+                    ],
+                    "names": [
+                        {
+                            "language": "de",
+                            "text": "Zürich HB"
+                        }
+                    ]
+                }
+            },
+            "arrivalDateTime": "2021-06-04T17:20:37.491Z",
+            "index": 0,
+            "arrivalTrack": "7"
+        },
+        "duration": "P2DT3H4M",
+        "direction": "UNSPECIFIED"
+    }
+}

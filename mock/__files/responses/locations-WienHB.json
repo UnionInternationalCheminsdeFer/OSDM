@@ -1,0 +1,37 @@
+{
+    "locations": [
+      {
+        "id": "8101003",
+        "abstract": "Wien Hbf",
+        "station": {
+          "country": "ch",
+          "codes": [
+            {
+              "codeList": "UIC",
+              "code": "8101003"
+            }
+          ],
+          "geoCoordinate": {
+            "system": "WSG84",
+            "accuracy": 0.00002,
+            "latitude": 48.184923,
+            "longitude": 16.375865
+          },
+          "names": [
+            {
+              "language": "de",
+              "text": "Wien"
+            },
+            {
+              "language": "fr",
+              "text": "Vienne"
+            },
+            {
+              "language": "en",
+              "text": "Vienna"
+            }
+          ]
+        }
+      }
+    ]
+  }

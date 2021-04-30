@@ -231,6 +231,25 @@
         {
             "request": {
                 "method": "GET",
+                "urlPath": "/locations",
+                "queryParameters": {
+                    "matchValue": {
+                        "contains": "Wien"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-WienHB.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
                 "url": "/trips/50898cd4-0d1e-4456-92bd-c119d419728e"
             },
             "response": {
