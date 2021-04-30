@@ -700,25 +700,25 @@ Additional codelists can be defined by implementers. The codelist name should th
 
 Corresponding to numerical codes in TAP-TSI / MERITS
 
-| Code | Description |
-|------|-------------|
-| `HIGH_SPEED_TRAIN` | |
-| `HISTORIC_TRAIN` | |
-| `INTERCITY` | |
-| `REGIONAL` | |
-| `INTERREGIONAL` | |
-| `TRAIN` | |
-| `URBAN` | |
-| `TRAM` | |
-| `UNDERGROUND` | |
-| `NIGHT_TRAIN` | |
-| `SHARED_TAXI` | |
-| `MOTOR_RAIL` | Car carriage trains |
-| `MOUNTAIN_TRAIN` | |
-| `PLANE` | |
-| `COACH_GROUP` | Group of coaches included in multiple trains (through coaches) |
-| `SHIP` | |
-| `BUS` | |
+| Code | Description | TAP-TSI Code B.2.3 (MERITS) |
+|------|-------------| --------------------------- |
+| `HIGH_SPEED_TRAIN` | | 8 |
+| `HISTORIC_TRAIN` | | 16 |
+| `INTERCITY` | | 9 |
+| `REGIONAL` | | 11 |
+| `INTERREGIONAL` | | 10 |
+| `TRAIN` | | 37 |
+| `URBAN` | | 12 |
+| `TRAM` | | 35 |
+| `UNDERGROUND` | | 36 |
+| `NIGHT_TRAIN` | | 13 |
+| `SHARED_TAXI` | | 34 |
+| `MOTOR_RAIL` | Car carriage trains | 13 |
+| `MOUNTAIN_TRAIN` | | 15 |
+| `PLANE` | | 3 |
+| `COACH_GROUP` | Group of coaches included in multiple trains (through coaches) | 31 |
+| `SHIP` | | 33 |
+| `BUS` | | 32 |
 
 ## TimeReference
 
