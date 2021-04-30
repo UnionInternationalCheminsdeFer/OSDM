@@ -506,7 +506,7 @@ Other cards should start with the RICS code of the issuer.
 
 ## Service Brands
 
-Snappshot, for the actual code list see https://uic.org/passenger/passenger-services-group/article/service-brand-code-list?recherche=service%20brands
+Snappshot, for the actual code list see https://uic.org/passenger/passenger-services-group/article/service-brand-code-list
 
 | Service Brand Code | Abbreviation | Reservation Ticket Text | MERITS Description |
 |--------------------|--------------|-------------------------|--------------------|
