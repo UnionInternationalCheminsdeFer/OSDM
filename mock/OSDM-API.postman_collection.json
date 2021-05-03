@@ -697,6 +697,42 @@
 					"response": []
 				},
 				{
+					"name": "/product CH:DV-Point-2-Point",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/CH00125",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"CH00125"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/product CH:DV-SuperSafer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/CH10125",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"CH10125"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/product CH:DV-SuperSafer Pass",
 					"request": {
 						"method": "GET",
