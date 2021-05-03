@@ -99,6 +99,8 @@ Mocked resources:
 
 ### Ids Used for Scenario 3
 
+- stops: Zürich HB, Sargans, Buchs and Wien (to express the section covered)
+
 ## Journeys to Add Next
 
 - Zürich HB - Wien (öBB)
