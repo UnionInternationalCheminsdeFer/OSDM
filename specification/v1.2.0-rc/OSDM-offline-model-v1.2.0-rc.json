@@ -5,42 +5,6 @@
   "description": "OSDM extract of offline fare delivery",
   "components": {
     "schemas": {
-      "StationDetailsDef": {
-        "description": "Details of a station. Station names are not translated but provided in some cases in multiple character sets in case stations are named in local characters and additionally in latin characters. In some countries stations have multiple names depending on the countries local languages.",
-        "type": "object",
-        "properties": {
-          "localCode": {
-            "description": "code unique with in the country only",
-            "type": "string"
-          },
-          "country": {
-            "$ref": "#/components/schemas/CountryDef"
-          },
-          "codes": {
-            "description": "The codes that can be used to represent the given station on the system. There can be several codes, in which case  it is relevant to have a list of couples.",
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "codeList": {
-                  "$ref": "#/components/schemas/StationCodeListDef"
-                },
-                "stationCode": {
-                  "description": "the code representing the station in the specified code-list",
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "geoCoordinate": {
-            "$ref": "#/components/schemas/GeoCoordinate"
-          },
-          "name": {
-            "$ref": "#/components/schemas/TextDef"
-          }
-        },
-        "additionalProperties": false
-      },
       "StationDef": {
         "description": "Used to represent a station location. This is a location that can be used as origin and destination for a train journey",
         "type": "object",
@@ -1534,6 +1498,7 @@
             }
           },
           "stationNames": {
+            "description": "temporary option to include station details as long as MERITS can not provide them. Station codes must be those of merits",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StationNamesDef"
@@ -1543,13 +1508,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FareReferenceStationSetDef"
-            }
-          },
-          "stations": {
-            "description": "temporary option to include station details as long as MERITS can not provide them. Station codes must be those of merits",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StationDetailsDef"
             }
           },
           "zoneDefinitions": {
