@@ -1,0 +1,1995 @@
+{
+	"info": {
+		"_postman_id": "a148a2c1-b431-4971-8db1-755c381b9e63",
+		"name": "Sqills - OSDM sandbox",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Reload existing trips collection",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trips-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(12).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip collection is returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.id).not.to.be.undefined;",
+									"",
+									"    pm.environment.set('trip_collection_id', response.tripsCollection[0].id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/trips-collection",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"trips-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trips-collection/{id}",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(12).format('{yyyy}-{MM}-{dd}T07:00:00Z'));",
+									"pm.environment.set('return_timestamp', new Date().addDays(8).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"7015400\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"viaValues\": [\n            {\n                \"codeList\": \"UIC\",\n                \"code\": \"\"\n            }\n        ],\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/trips-collection/{{trip_collection_id}}",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"trips-collection",
+								"{{trip_collection_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get station info",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Locations",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Locations are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.locations).not.to.be.undefined;",
+									"",
+									"    pm.environment.set('location_id', response.locations[0].id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/locations?matchValue=8727100&matchType=CODE_LIST&codeListForMatch=UIC&limit=10&embed[]=NONE",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "8727100"
+								},
+								{
+									"key": "matchType",
+									"value": "CODE_LIST"
+								},
+								{
+									"key": "codeListForMatch",
+									"value": "UIC"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "embed[]",
+									"value": "NONE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Locations/{id}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/locations/{{location_id}}",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"locations",
+								"{{location_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get travel offers - with admission",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"flexibilities\": [\n            \"FLEXI\",\n            \"SEMIFLEXI\",\n            \"NONFLEX\"\n        ],\n        \"comfortClasses\": [\n            \"FIRST\",\n            \"SECOND\"\n        ],\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get travel offers - with fare with reservation",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get travel offers - with one adult",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get travel offers - for top comfort class",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"comfortClasses\": [\n            \"FIRST\"\n        ],\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get travel offers - with sub-comfort class",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"comfortClasses\": [\n            \"FIRST\"\n        ],\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get travel offers - with several adults",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        },\n        {\n            \"abstract\": \"Jane Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1980-01-01\",\n            \"gender\": \"FEMALE\"\n        },\n        {\n            \"abstract\": \"Mary Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"2000-01-01\",\n            \"gender\": \"FEMALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get travel offers - with a mix of passengers",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        },\n        {\n            \"abstract\": \"Jane Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1980-01-01\",\n            \"gender\": \"FEMALE\"\n        },\n        {\n            \"abstract\": \"Mary Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"2015-01-01\",\n            \"gender\": \"FEMALE\"\n        },\n        {\n            \"abstract\": \"Mike Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"2018-01-01\",\n            \"gender\": \"FEMALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get a non-trip offer - regional",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Non-trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(12).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"travelPeriod\": [\n        \"{{departure_timestamp}}\"\n    ],\n    \"passengers\": [\n        {\n            \"abstract\": \"Roland Klapwijk\",\n            \"reference\": \"abcdef\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"nonTripOfferSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/non-trip-offers-collection",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"non-trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Successful booking - with optional ancillaries",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});",
+									"",
+									"// Get the first offer returned",
+									"pm.response.json().tripOffers.some(function(tripOffer) {",
+									"    if (tripOffer.offers.length > 1) {",
+									"        let offer = tripOffer.offers[0];",
+									"        pm.environment.set('selected_offer_id', offer.id);",
+									"",
+									"        // Add the ancillaries",
+									"        let ancillaries = [];",
+									"        offer.ancillaries.some(function(ancillary) {",
+									"",
+									"            let ancillaryPassengers = [];",
+									"            ancillary.commonOfferPartAttributes.passengers.forEach(function(passenger) {",
+									"                ancillaryPassengers.push('\"' + passenger.id + '\"');",
+									"            });",
+									"",
+									"            ancillaries.push(`{",
+									"                \"ancillaryId\": \"` + ancillary.id + `\",",
+									"                \"passengerIds\": [",
+									"                    ` + ancillaryPassengers + `",
+									"                ]",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('selected_ancillaries', ancillaries);",
+									"",
+									"        // Add the passengers",
+									"        let passengers = [];",
+									"        tripOffer.passengers.forEach(function(passenger) {",
+									"            passengers.push(`{",
+									"                \"id\": \"` + passenger.id + `\",",
+									"                \"abstract\": \"` + passenger.abstract + `\",",
+									"                \"reference\": \"external_reference\",",
+									"                \"dateOfBirth\": \"` + passenger.dateOfBirth + `\"",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('passengers', passengers);",
+									"",
+									"        return;",
+									"    }",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set('booking_id', pm.response.json().booking.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"selectedOffers\": [\n        {\n            \"selectedOfferId\": \"{{selected_offer_id}}\",\n            \"selectedOptionalAncillaries\": [\n                {{selected_ancillaries}}\n            ],\n            \"passengers\": [\n                {{passengers}}\n            ]\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/bookings",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}/fulfillments Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/bookings/{{booking_id}}/fulfillments",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"fulfillments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Successful booking - with all passenger details",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});",
+									"",
+									"// Get the first offer returned",
+									"pm.response.json().tripOffers.some(function(tripOffer) {",
+									"    if (tripOffer.offers.length > 1) {",
+									"        let offer = tripOffer.offers[0];",
+									"        pm.environment.set('selected_offer_id', offer.id);",
+									"",
+									"        // Add the ancillaries",
+									"        let ancillaries = [];",
+									"        offer.ancillaries.some(function(ancillary) {",
+									"",
+									"            let ancillaryPassengers = [];",
+									"            ancillary.commonOfferPartAttributes.passengers.forEach(function(passenger) {",
+									"                ancillaryPassengers.push('\"' + passenger.id + '\"');",
+									"            });",
+									"",
+									"            ancillaries.push(`{",
+									"                \"ancillaryId\": \"` + ancillary.id + `\",",
+									"                \"passengerIds\": [",
+									"                    ` + ancillaryPassengers + `",
+									"                ]",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('selected_ancillaries', ancillaries);",
+									"",
+									"        // Add the passengers",
+									"        let passengers = [];",
+									"        tripOffer.passengers.forEach(function(passenger) {",
+									"            passengers.push(`{",
+									"                \"id\": \"` + passenger.id + `\",",
+									"                \"abstract\": \"` + passenger.abstract + `\",",
+									"                \"reference\": \"external_reference\",",
+									"                \"dateOfBirth\": \"` + passenger.dateOfBirth + `\"",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('passengers', passengers);",
+									"",
+									"        return;",
+									"    }",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Booking is created\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.booking).not.to.be.empty;",
+									"",
+									"    pm.environment.set('booking_id', pm.response.json().booking.id);",
+									"});",
+									"",
+									"pm.environment.set('passenger_id', pm.response.json().booking.passengers[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"selectedOffers\": [\n        {\n            \"selectedOfferId\": \"{{selected_offer_id}}\",\n            \"selectedOptionalAncillaries\": [\n                {{selected_ancillaries}}\n            ],\n            \"passengers\": [\n                {{passengers}}\n            ]\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/bookings",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}/passenger/{id} Copy",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"{{passenger_id}}\",\n    \"abstract\": \"Doe, Jane\",\n    \"reference\": \"ext_reference_id\",\n    \"dateOfBirth\": \"1980-03-18\",\n    \"gender\": \"FEMALE\",\n    \"details\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"eMail\": \"jane.doe@example.com\",\n        \"phoneNumber\": \"+31123456789\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/bookings/{{booking_id}}/passengers/{{passenger_id}}",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"passengers",
+								"{{passenger_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}/fulfillments Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s3p-osdm.cloud.sqills.com/bookings/{{booking_id}}/fulfillments",
+							"protocol": "https",
+							"host": [
+								"s3p-osdm",
+								"cloud",
+								"sqills",
+								"com"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"fulfillments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
