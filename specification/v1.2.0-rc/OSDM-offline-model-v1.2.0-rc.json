@@ -1533,7 +1533,7 @@
               "$ref": "#/components/schemas/ConnectionPointDef"
             }
           },
-          "StationNames": {
+          "stationNames": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StationNamesDef"
@@ -2018,7 +2018,7 @@
             }
           },
           "stationLocations": {
-			"description": "Locating the online resource via stations or connection points.	The link is valid if start and end station (or connection points) provide the link.",
+		      	"description": "Locating the online resource via stations or connection points. The link is valid if start and end station (or connection points) provide the link.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StationResourceLocationDef"
