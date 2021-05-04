@@ -60,10 +60,7 @@
 							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"oauth"
@@ -125,10 +122,7 @@
 							"raw": "https://{{baseurl}}/trips-collection",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"trips-collection"
@@ -176,10 +170,7 @@
 							"raw": "https://{{baseurl}}/trips-collection/{{trip_collection_id}}",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"trips-collection",
@@ -246,10 +237,7 @@
 							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"oauth"
@@ -302,10 +290,7 @@
 							"raw": "https://{{baseurl}}/locations?matchValue=8727100&matchType=CODE_LIST&codeListForMatch=UIC&limit=10&embed[]=NONE",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"locations"
@@ -351,10 +336,7 @@
 							"raw": "https://{{baseurl}}/locations/{{location_id}}",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"locations",
@@ -421,10 +403,7 @@
 							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"oauth"
@@ -484,10 +463,7 @@
 							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -553,10 +529,7 @@
 							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"oauth"
@@ -616,10 +589,7 @@
 							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -685,10 +655,7 @@
 							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"oauth"
@@ -748,10 +715,7 @@
 							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -817,10 +781,7 @@
 							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"oauth"
@@ -880,10 +841,7 @@
 							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -949,10 +907,7 @@
 							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"oauth"
@@ -1012,10 +967,7 @@
 							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -1081,10 +1033,7 @@
 							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"oauth"
@@ -1144,10 +1093,7 @@
 							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -1213,10 +1159,7 @@
 							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"oauth"
@@ -1276,10 +1219,7 @@
 							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -1345,10 +1285,7 @@
 							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"oauth"
@@ -1392,10 +1329,7 @@
 							"raw": "https://{{baseurl}}/non-trip-offers-collection",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"non-trip-offers-collection"
@@ -1461,10 +1395,7 @@
 							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"oauth"
@@ -1565,10 +1496,7 @@
 							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -1621,10 +1549,7 @@
 							"raw": "https://{{baseurl}}/bookings",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"bookings"
@@ -1657,10 +1582,7 @@
 							"raw": "https://{{baseurl}}/bookings/{{booking_id}}/fulfillments",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"bookings",
@@ -1728,10 +1650,7 @@
 							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"oauth"
@@ -1832,10 +1751,7 @@
 							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -1900,10 +1816,7 @@
 							"raw": "https://{{baseurl}}/bookings",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"bookings"
@@ -1936,10 +1849,7 @@
 							"raw": "https://{{baseurl}}/bookings/{{booking_id}}/passengers/{{passenger_id}}",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"bookings",
@@ -1975,10 +1885,7 @@
 							"raw": "https://{{baseurl}}/bookings/{{booking_id}}/fulfillments",
 							"protocol": "https",
 							"host": [
-								"s3p-osdm",
-								"cloud",
-								"sqills",
-								"com"
+								"{{baseurl}}"
 							],
 							"path": [
 								"bookings",
