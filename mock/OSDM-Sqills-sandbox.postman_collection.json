@@ -57,7 +57,7 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -122,7 +122,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/trips-collection",
+							"raw": "https://{{baseurl}}/trips-collection",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -173,7 +173,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/trips-collection/{{trip_collection_id}}",
+							"raw": "https://{{baseurl}}/trips-collection/{{trip_collection_id}}",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -243,7 +243,7 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -299,7 +299,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/locations?matchValue=8727100&matchType=CODE_LIST&codeListForMatch=UIC&limit=10&embed[]=NONE",
+							"raw": "https://{{baseurl}}/locations?matchValue=8727100&matchType=CODE_LIST&codeListForMatch=UIC&limit=10&embed[]=NONE",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -348,7 +348,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/locations/{{location_id}}",
+							"raw": "https://{{baseurl}}/locations/{{location_id}}",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -418,7 +418,7 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -481,7 +481,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -550,7 +550,7 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -613,7 +613,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -682,7 +682,7 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -745,7 +745,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -814,7 +814,7 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -877,7 +877,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -946,7 +946,7 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1009,7 +1009,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1078,7 +1078,7 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1141,7 +1141,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1210,7 +1210,7 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1273,7 +1273,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1342,7 +1342,7 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1389,7 +1389,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/non-trip-offers-collection",
+							"raw": "https://{{baseurl}}/non-trip-offers-collection",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1458,7 +1458,7 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1562,7 +1562,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1618,7 +1618,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/bookings",
+							"raw": "https://{{baseurl}}/bookings",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1654,7 +1654,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/bookings/{{booking_id}}/fulfillments",
+							"raw": "https://{{baseurl}}/bookings/{{booking_id}}/fulfillments",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1725,7 +1725,7 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/oauth",
+							"raw": "https://{{baseurl}}/oauth",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1829,7 +1829,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/trip-offers-collection",
+							"raw": "https://{{baseurl}}/trip-offers-collection",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1897,7 +1897,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/bookings",
+							"raw": "https://{{baseurl}}/bookings",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1933,7 +1933,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/bookings/{{booking_id}}/passengers/{{passenger_id}}",
+							"raw": "https://{{baseurl}}/bookings/{{booking_id}}/passengers/{{passenger_id}}",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
@@ -1972,7 +1972,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://s3p-osdm.cloud.sqills.com/bookings/{{booking_id}}/fulfillments",
+							"raw": "https://{{baseurl}}/bookings/{{booking_id}}/fulfillments",
 							"protocol": "https",
 							"host": [
 								"s3p-osdm",
