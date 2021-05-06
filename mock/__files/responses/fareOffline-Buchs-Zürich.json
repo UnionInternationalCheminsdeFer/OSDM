@@ -89,30 +89,20 @@
             {
                 "id": "regionalConstraint-1",
                 "entryConnectionPointId": "8509404",
-                "entryConnectionPoint": {
-                    "id": "xyz",
-                    "legacyBorderPointCode": "271",
-                    "name": "Buchs SG",
-                    "stationsSets": [
-                        [
-                            "8509404"
-                        ],
-                        [
-                            "8101244"
-                        ]
-                    ]
-                },
                 "exitConnectionPointId": "8503000",
                 "regionalValidity": {
                     "seqNb": 1,
                     "viaStations": {
                         "carrier": 1185,
-                        "station": {
-                            "codeList": "UIC",
-                            "code": "8509411",
-                            "country": "CH",
-                            "name": "Sargans"
-                        }
+                        "route": [
+                            {
+                                "fareReferenceStationSet": {
+                                    "carrier": "1185",
+                                    "code": "8509411",
+                                    "name": "Sargans"
+                                }
+                            }
+                        ]
                     }
                 },
                 "distance": 113
@@ -120,21 +110,55 @@
         ],
         "serviceConstraints": [
             {
-                "id": "serviceConstraint-1"
+                "id": "serviceConstraint-1",
+                "includedServiceBrands": [
+                    51
+                ]
             }
         ],
         "carrierConstraints": [
             {
-                "id": "carrierConstraint-1"
+                "id": "carrierConstraint-1",
+                "includedCarrier": [
+                    "1185"
+                ]
             }
         ],
         "passengerConstraints": [
             {
                 "id": "passengerConstraint-1",
-                "passengerType": "ADULT SINGLE",
+                "passengerType": "ADULT",
                 "nameRef": "Erwachsener",
-                "lowerAgeLimit": "16",
-                "upperAgeLimit": "999"
+                "lowerAgeLimit": "6",
+                "upperAgeLimit": "15.99",
+                "ageLimitToTravelAlone": 0,
+                "ageLimitForReservation": 0,
+                "combinationConstraint": [
+                    {
+                        "maxNumber": 10,
+                        "minNumber": 0,
+                        "passengerTypeRef": "DOG"
+                    }
+                ],
+                "includedFreePassenger": [
+                    {
+                        "number": 4,
+                        "passengerTypeRef": "FAMILY_CHILD"
+                    },
+                    {
+                        "number": 10,
+                        "passengerTypeRef": "YOUNG_CHILD"
+                    },
+                    {
+                        "number": 1,
+                        "passengerTypeRef": "ACCOMP_DOG"
+                    },
+                    {
+                        "number": 1,
+                        "passengerTypeRef": "ACCOMP_PRM"
+                    }
+                ],
+                "passengerWeight": 1
             }
         ],
         "fareConstraintBundles": [
@@ -294,7 +318,7 @@
                 "id": "reductionConstraint-1",
                 "requiredCards": [
                     {
-                        "cardValue": "reductionConstraint-2",
+                        "cardValue": "reductionCard-2",
                         "cardName": "Halbtax 2. Klasse",
                         "issuer": "1185"
                     }
@@ -314,7 +338,32 @@
             {
                 "id": "reductionCard-2",
                 "issuer": "1185",
-                "nameRef": "GA",
+                "nameRef": "GA 2.Klasse",
+                "serviceClasses": [
+                    "BASIC"
+                ]
+            },
+            {       
+                "id": "reductionCard-3",
+                "issuer": "1185",
+                "nameRef": "GA 1.Klasse",
+                "serviceClasses": [
+                    "HIGH"
+                ]
+            },
+            {
+                "id": "reductionCard-4",
+                "issuer": "1185",
+                "nameRef": "FIP",
+                "serviceClasses": [
+                    "HIGH",
+                    "BASIC"
+                ]
+            },
+            {
+                "id": "reductionCard-5",
+                "issuer": "1185",
+                "nameRef": "RailPlus",
                 "serviceClasses": [
                     "HIGH",
                     "BASIC"
