@@ -115,11 +115,6 @@
             ]
           },
           "nutsCode": "string"
-        },
-        "serviceConstraint": {
-          "restrictedToServiceBrands": [
-            "RAILJET"
-          ],
         }
       }
     ],

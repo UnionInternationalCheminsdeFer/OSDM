@@ -3,15 +3,16 @@
         "fareProvider": "1185",
         "deliveryId": "1",
         "optionalDelivery": false,
-        "version": "V_1_0",
-        "acceptedVersion": "V_1_0"
+        "version": "V_1_2",
+        "acceptedVersion": "V_1_2"
     },
     "fareStructure": {
         "calendars": [
             {
                 "id": "calendar-1",
-                "fromDate": "2020-09-12",
-                "untilDate": "2021-09-12"
+                "fromDate": "2020-09-12 23:00:00 +0000",
+                "untilDate": "2021-09-12 23:00:00 +0000",
+                "utcOffset": 120
             }
         ],
         "serviceClassDefinitions": [
@@ -32,10 +33,31 @@
         "texts": [
             {
                 "id": "text-1",
-                "textUtf8": "Halbtax",
-                "text": "Halbtax",
-                "shortTextUtf": "Halbtax",
-                "shortText": "Halbtax"
+                "textUTF8": "1. Klasse",
+                "text": "1. Klasse",
+                "shortTextUtf8": "1. Klasse",
+                "shortText": "1. Klasse"
+            },
+            {
+                "id": "text-2",
+                "textUTF8": "2. Klasse",
+                "text": "2. Klasse",
+                "shortTextUtf8": "2. Klasse",
+                "shortText": "2. Klasse"
+            },
+            {
+                "id": "text-3",
+                "textUtf8": "Halbtax 1. Klasse",
+                "text": "Halbtax 1. Klasse",
+                "shortTextUtf": "Halbtax 1. Klasse",
+                "shortText": "Halbtax 1. Klasse"
+            },
+            {
+                "id": "text-4",
+                "textUtf8": "Halbtax 2. Klasse",
+                "text": "Halbtax 2. Klasse",
+                "shortTextUtf": "Halbtax 2. Klasse",
+                "shortText": "Halbtax 2. Klasse"
             }
         ],
         "fareResourceLocation": {
@@ -48,17 +70,17 @@
                 "id": "price-1",
                 "price": [
                     {
-                        "currency": "EURO",
-                        "amount": 3140,
-                        "scale": 2,
-                        "vatDetails": {
-                            "country": "ch",
-                            "amount": 0,
-                            "scale": 2,
-                            "percentage": 0,
-                            "taxId": "MWST-Nummer",
-                            "scope": "INTERNATIONAL"
-                        }
+                        "currency": "EUR",
+                        "amount": 3140
+                    }
+                ]
+            },
+            {
+                "id": "price-2",
+                "price": [
+                    {
+                        "currency": "EUR",
+                        "amount": 6280
                     }
                 ]
             }
@@ -81,18 +103,10 @@
                     ]
                 },
                 "exitConnectionPointId": "8503000",
-                "exitConnectionPoint": {
-                    "id": "xyz",
-                    "name": "Zürich HB",
-                    "stationsSets": [
-                        [
-                            "8503000"
-                        ]
-                    ]
-                },
                 "regionalValidity": {
+                    "seqNb": 1,
                     "viaStations": {
-                        "carrier": 85,
+                        "carrier": 1185,
                         "station": {
                             "codeList": "UIC",
                             "code": "8509411",
@@ -125,24 +139,92 @@
         ],
         "fareConstraintBundles": [
             {
-                "id": "fareConstraintBundle-1"
+                "id": "fareConstraintBundle-1",
+                "combinationConstraintRef": "combinationConstraint-1",
+                "salesAvailabilityConstraintRef": "salesAvailabilityConstraint-1",
+                "travelValidityConstraintRef": "travelValidityConstraint-1",
+                "fullfillmentConstraintRef": "fulfillmentConstraint-1",
+                "passengerCombinationRef": "passengerCombinationConstraint-1"
             }
         ],
         "passengerCombinationConstraints": [
             {
-                "id": "passengerCombinationConstraint-1"
+                "id": "passengerCombinationConstraint-1",
+                "maxWeightedPassengers": 5,
+                "minWeightedPassengers": 1
             }
         ],
         "fares": [
             {
                 "id": "00000-03914",
-                "bundleRef": "firstBundle",
+                "bundleRef": "fareConstraintBundle-1",
                 "fareType": "ADMISSION",
                 "nameRef": "Normalpreis",
                 "priceRef": "price-1",
                 "regionalConstraintRef": "regionalConstraint-1",
+                "carrierConstraintRef": "carrierConstraint-1",
+                "regulatoryConditions": [
+                    "CIV"
+                ],
                 "serviceClassRef": "serviceClass-1",
                 "passengerConstraintRef": "passengerConstraint-1",
+                "legacyAccountingIdentifier": {
+                    "serialId": 1,
+                    "addId": 1,
+                    "tariffId": 0
+                }
+            },
+            {
+                "id": "00001-03914",
+                "bundleRef": "fareConstraintBundle-1",
+                "fareType": "ADMISSION",
+                "nameRef": "Normalpreis",
+                "priceRef": "price-2",
+                "regionalConstraintRef": "regionalConstraint-1",
+                "carrierConstraintRef": "carrierConstraint-1",
+                "regulatoryConditions": [
+                    "CIV"
+                ],
+                "serviceClassRef": "serviceClass-2",
+                "passengerConstraintRef": "passengerConstraint-1",
+                "legacyAccountingIdentifier": {
+                    "serialId": 1,
+                    "addId": 1,
+                    "tariffId": 0
+                }
+            },
+            {
+                "id": "00002-03914",
+                "bundleRef": "fareConstraintBundle-1",
+                "fareType": "ADMISSION",
+                "nameRef": "Normalpreis",
+                "priceRef": "price-1",
+                "regionalConstraintRef": "regionalConstraint-1",
+                "carrierConstraintRef": "carrierConstraint-1",
+                "regulatoryConditions": [
+                    "CIV"
+                ],
+                "serviceClassRef": "serviceClass-1",
+                "passengerConstraintRef": "passengerConstraint-2",
+                "legacyAccountingIdentifier": {
+                    "serialId": 1,
+                    "addId": 1,
+                    "tariffId": 0
+                }
+            },
+            {
+                "id": "00003-03914",
+                "bundleRef": "fareConstraintBundle-1",
+                "fareType": "ADMISSION",
+                "nameRef": "Normalpreis",
+                "priceRef": "price-2",
+                "regionalConstraintRef": "regionalConstraint-1",
+                "carrierConstraintRef": "carrierConstraint-1",
+                "regulatoryConditions": [
+                    "CIV"
+                ],
+                "serviceClassRef": "serviceClass-2",
+                "passengerConstraintRef": "passengerConstraint-2",
                 "legacyAccountingIdentifier": {
                     "serialId": 1,
                     "addId": 1,
@@ -151,7 +233,118 @@
             }
         ],
         "afterSalesCondition": "todo",
-        "salesAvailabilityConstraint": "todo",
-        "combinationConstraints": "todo"
+        "salesAvailabilityConstraint": [
+            {
+                "id": "salesAvailabilityConstraint-1",
+                "salesRestrictions": [
+                    {
+                        "salesDatesRef": "calendar-1"
+                    }
+                ]
+            }
+        ],
+        "travelValidityConstraints": [
+            {
+                "id": "travelValidityConstraint-1",
+                "validityRange": {
+                    "timeUnit": "DAYS",
+                    "value": 2,
+                    "hoursAfterMidnight": 3
+                },
+                "numberOfTravelDays": 0
+            }
+        ],
+        "combinationConstraints": [
+            {
+                "id": "combinationConstraint-1",
+                "combinationModels": [
+                    {
+                        "model": "CLUSTERING",
+                        "combinableCarrier": null,
+                        "referenceCluster": "FULLFLEX",
+                        "allowedClusters": [
+                            "PROMO",
+                            "NONFLEX",
+                            "SEMIFLEX",
+                            "FULLFLEX",
+                            "BUSINESS"
+                        ],
+                        "allowedAllocators": null,
+                        "allowedCommonContracts": null
+                    }
+                ]
+            }
+        ],
+        "fullfillmentConstraints": [
+            {
+                "id": "fulfillmentConstraint-1",
+                "acceptedControlSecurityTypes": [
+                    "SID",
+                    "SIP",
+                    "SIS"
+                ],
+                "acceptedBarCodes": null,
+                "requiredBarCodes": null,
+                "requiredSiS": null,
+                "individualTicketingPermitted": true
+            }
+        ],
+        "reductionConstraints": [
+            {
+                "id": "reductionConstraint-1",
+                "requiredCards": [
+                    {
+                        "cardValue": "reductionConstraint-2",
+                        "cardName": "Halbtax 2. Klasse",
+                        "issuer": "1185"
+                    }
+                ]
+            }
+        ],
+        "reductionCards": [
+            {
+                "id": "reductionCard-1",
+                "issuer": "1185",
+                "nameRef": "Halbtax",
+                "serviceClasses": [
+                    "HIGH",
+                    "BASIC"
+                ]
+            },
+            {
+                "id": "reductionCard-2",
+                "issuer": "1185",
+                "nameRef": "GA",
+                "serviceClasses": [
+                    "HIGH",
+                    "BASIC"
+                ]
+            }
+        ],
+        "personalDataConstraints": null,
+        "reservationParameters": null,
+        "connectionPoints": [
+            {
+                "id": "connectionPoint-1",
+                "legacyBorderPointCode": "271",
+                "stationSets": [
+                    [
+                        {
+                            "code": "8509404",
+                            "country": "CH"
+                        }
+                    ],
+                    [
+                        {
+                            "code": "8101244",
+                            "country": "DE"
+                        }
+                    ]
+                ]
+            }
+        ],
+        "stationNames": null,
+        "fareReferenceStationSetDefinitions": null,
+        "zoneDefinitions": null
     }
 }
