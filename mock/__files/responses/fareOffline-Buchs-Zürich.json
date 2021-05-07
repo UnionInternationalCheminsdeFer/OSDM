@@ -58,7 +58,7 @@
                 "text": "RailPlus",
                 "shortTextUtf": "RailPlus",
                 "shortText": "RailPlus"
-            },           
+            },
             {
                 "id": "text-6",
                 "textUtf8": "FIP",
@@ -140,7 +140,8 @@
             {
                 "id": "serviceConstraint-1",
                 "includedServiceBrands": [
-                    51
+                    51,
+                    246
                 ]
             }
         ],
@@ -196,7 +197,7 @@
                 "salesAvailabilityConstraintRef": "salesAvailabilityConstraint-1",
                 "travelValidityConstraintRef": "travelValidityConstraint-1",
                 "fullfillmentConstraintRef": "fulfillmentConstraint-1",
-                "passengerCombinationRef": "passengerCombinationConstraint-1"
+                "passengerCombinationConstraintRef": "passengerCombinationConstraint-1"
             }
         ],
         "passengerCombinationConstraints": [
@@ -284,7 +285,7 @@
                 }
             }
         ],
-        "afterSalesCondition": "todo",
+        "afterSalesCondition": null,
         "salesAvailabilityConstraint": [
             {
                 "id": "salesAvailabilityConstraint-1",
@@ -347,7 +348,12 @@
                 "requiredCards": [
                     {
                         "cardValue": "reductionCard-2",
-                        "cardName": "Halbtax 2. Klasse",
+                        "cardName": "Halbtax",
+                        "issuer": "1185"
+                    },
+                    {
+                        "cardValue": "reductionCard-3",
+                        "cardName": "GA 2.Klasse",
                         "issuer": "1185"
                     }
                 ]
@@ -371,7 +377,7 @@
                     "BASIC"
                 ]
             },
-            {       
+            {
                 "id": "reductionCard-3",
                 "issuer": "1185",
                 "nameRef": "text-3",
@@ -409,9 +415,7 @@
                         {
                             "code": "8509404",
                             "country": "CH"
-                        }
-                    ],
-                    [
+                        },
                         {
                             "code": "8101244",
                             "country": "DE"
@@ -420,7 +424,35 @@
                 ]
             }
         ],
-        "stationNames": null,
+        "stationNames": [
+            {
+                "country": 85,
+                "localCode": 9404,
+                "name": "Buchs SG",
+                "nameUtf8": "Buchs SG",
+                "shortName": "Buchs",
+                "shortNameUtf8": "Buchs",
+                "legacyBorderPointCode": 271
+            },
+            {
+                "country": 85,
+                "localCode": 9411,
+                "name": "Sargans",
+                "nameUtf8": "Sargans",
+                "shortName": "Sargans",
+                "shortNameUtf8": "Sargans",
+                "legacyBorderPointCode": 0
+            },
+            {
+                "country": 85,
+                "localCode": 3000,
+                "name": "Zürich Hbf",
+                "nameUtf8": "Zürich Hbf",
+                "shortName": "Zürich",
+                "shortNameUtf8": "Zürich",
+                "legacyBorderPointCode": 0
+            }
+        ],
         "fareReferenceStationSetDefinitions": null,
         "zoneDefinitions": null
     }
