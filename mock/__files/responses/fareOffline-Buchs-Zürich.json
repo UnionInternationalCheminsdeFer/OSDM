@@ -3,8 +3,8 @@
         "fareProvider": "1185",
         "deliveryId": "1",
         "optionalDelivery": false,
-        "version": "V_1_2",
-        "acceptedVersion": "V_1_2"
+        "version": "1.2",
+        "acceptedVersion": "1.2"
     },
     "fareStructure": {
         "calendars": [
@@ -33,31 +33,59 @@
         "texts": [
             {
                 "id": "text-1",
-                "textUTF8": "1. Klasse",
-                "text": "1. Klasse",
-                "shortTextUtf8": "1. Klasse",
-                "shortText": "1. Klasse"
+                "textUTF8": "Halbtax",
+                "text": "Halbtax",
+                "shortTextUtf8": "Halbtax",
+                "shortText": "Halbtax"
             },
             {
                 "id": "text-2",
-                "textUTF8": "2. Klasse",
-                "text": "2. Klasse",
-                "shortTextUtf8": "2. Klasse",
-                "shortText": "2. Klasse"
+                "textUTF8": "Generalabo 2. Klasse",
+                "text": "Generalabo 2. Klasse",
+                "shortTextUtf8": "GA 2.Klasse",
+                "shortText": "GA 2.Klasse"
             },
             {
                 "id": "text-3",
-                "textUtf8": "Halbtax 1. Klasse",
-                "text": "Halbtax 1. Klasse",
-                "shortTextUtf": "Halbtax 1. Klasse",
-                "shortText": "Halbtax 1. Klasse"
+                "textUTF8": "Generalabo 1. Klasse",
+                "text": "Generalabo 1. Klasse",
+                "shortTextUtf8": "GA 1.Klasse",
+                "shortText": "GA 1.Klasse"
             },
             {
-                "id": "text-4",
-                "textUtf8": "Halbtax 2. Klasse",
-                "text": "Halbtax 2. Klasse",
-                "shortTextUtf": "Halbtax 2. Klasse",
-                "shortText": "Halbtax 2. Klasse"
+                "id": "text-5",
+                "textUtf8": "RailPlus",
+                "text": "RailPlus",
+                "shortTextUtf": "RailPlus",
+                "shortText": "RailPlus"
+            },           
+            {
+                "id": "text-6",
+                "textUtf8": "FIP",
+                "text": "FIP",
+                "shortTextUtf": "FIP",
+                "shortText": "FIP"
+            },
+            {
+                "id": "text-10",
+                "textUtf8": "Erwachsener",
+                "text": "Erwachsener",
+                "shortTextUtf": "Erwachsener",
+                "shortText": "Erwachsener"
+            },
+            {
+                "id": "text-11",
+                "textUtf8": "Kind",
+                "text": "Kind",
+                "shortTextUtf": "Kind",
+                "shortText": "Kind"
+            },
+            {
+                "id": "text-20",
+                "textUtf8": "Normalpreis",
+                "text": "Normalpreis",
+                "shortTextUtf": "Normalpreis",
+                "shortText": "Normalpreis"
             }
         ],
         "fareResourceLocation": {
@@ -128,7 +156,7 @@
             {
                 "id": "passengerConstraint-1",
                 "passengerType": "ADULT",
-                "nameRef": "Erwachsener",
+                "nameRef": "text-5",
                 "lowerAgeLimit": "6",
                 "upperAgeLimit": "15.99",
                 "ageLimitToTravelAlone": 0,
@@ -183,7 +211,7 @@
                 "id": "00000-03914",
                 "bundleRef": "fareConstraintBundle-1",
                 "fareType": "ADMISSION",
-                "nameRef": "Normalpreis",
+                "nameRef": "text-20",
                 "priceRef": "price-1",
                 "regionalConstraintRef": "regionalConstraint-1",
                 "carrierConstraintRef": "carrierConstraint-1",
@@ -202,7 +230,7 @@
                 "id": "00001-03914",
                 "bundleRef": "fareConstraintBundle-1",
                 "fareType": "ADMISSION",
-                "nameRef": "Normalpreis",
+                "nameRef": "text-20",
                 "priceRef": "price-2",
                 "regionalConstraintRef": "regionalConstraint-1",
                 "carrierConstraintRef": "carrierConstraint-1",
@@ -221,7 +249,7 @@
                 "id": "00002-03914",
                 "bundleRef": "fareConstraintBundle-1",
                 "fareType": "ADMISSION",
-                "nameRef": "Normalpreis",
+                "nameRef": "text-20",
                 "priceRef": "price-1",
                 "regionalConstraintRef": "regionalConstraint-1",
                 "carrierConstraintRef": "carrierConstraint-1",
@@ -240,7 +268,7 @@
                 "id": "00003-03914",
                 "bundleRef": "fareConstraintBundle-1",
                 "fareType": "ADMISSION",
-                "nameRef": "Normalpreis",
+                "nameRef": "text-20",
                 "priceRef": "price-2",
                 "regionalConstraintRef": "regionalConstraint-1",
                 "carrierConstraintRef": "carrierConstraint-1",
@@ -329,7 +357,7 @@
             {
                 "id": "reductionCard-1",
                 "issuer": "1185",
-                "nameRef": "Halbtax",
+                "nameRef": "text-1",
                 "serviceClasses": [
                     "HIGH",
                     "BASIC"
@@ -338,7 +366,7 @@
             {
                 "id": "reductionCard-2",
                 "issuer": "1185",
-                "nameRef": "GA 2.Klasse",
+                "nameRef": "text-2",
                 "serviceClasses": [
                     "BASIC"
                 ]
@@ -346,7 +374,7 @@
             {       
                 "id": "reductionCard-3",
                 "issuer": "1185",
-                "nameRef": "GA 1.Klasse",
+                "nameRef": "text-3",
                 "serviceClasses": [
                     "HIGH"
                 ]
@@ -354,7 +382,7 @@
             {
                 "id": "reductionCard-4",
                 "issuer": "1185",
-                "nameRef": "FIP",
+                "nameRef": "text-5",
                 "serviceClasses": [
                     "HIGH",
                     "BASIC"
@@ -363,7 +391,7 @@
             {
                 "id": "reductionCard-5",
                 "issuer": "1185",
-                "nameRef": "RailPlus",
+                "nameRef": "text-6",
                 "serviceClasses": [
                     "HIGH",
                     "BASIC"
