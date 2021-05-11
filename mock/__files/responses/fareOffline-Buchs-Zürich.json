@@ -79,6 +79,13 @@
                 "text": "Kind",
                 "shortTextUtf": "Kind",
                 "shortText": "Kind"
+            },   
+            {
+                "id": "text-12",
+                "textUtf8": "Hund",
+                "text": "Hund",
+                "shortTextUtf": "Hund",
+                "shortText": "Hund"
             },
             {
                 "id": "text-20",
