@@ -52,7 +52,7 @@
                 "shortTextUtf8": "GA 1.Klasse",
                 "shortText": "GA 1.Klasse"
             },
-                {
+            {
                 "id": "text-4",
                 "textUTF8": "PRM",
                 "text": "PRM",
@@ -86,7 +86,7 @@
                 "text": "Kind",
                 "shortTextUtf": "Kind",
                 "shortText": "Kind"
-            },   
+            },
             {
                 "id": "text-12",
                 "textUtf8": "Hund",
@@ -94,35 +94,35 @@
                 "shortTextUtf": "Hund",
                 "shortText": "Hund"
             },
-             {
+            {
                 "id": "text-13",
                 "textUtf8": "Junior-Karte",
                 "text": "Junior-Karte",
                 "shortTextUtf": "Junior-Karte",
                 "shortText": "Junior-Karte"
             },
-               {
+            {
                 "id": "text-14",
                 "textUtf8": "Kindermitfahr-Karte",
                 "text": "Kindermitfahr-Karte",
                 "shortTextUtf": "Kindermitfahr-Karte",
                 "shortText": "Kindermitfahr-Karte"
             },
-               {
+            {
                 "id": "text-15",
                 "textUtf8": "Gruppe",
                 "text": "Gruppe",
                 "shortTextUtf": "Gruppe",
                 "shortText": "Gruppe"
             },
-                {
+            {
                 "id": "text-16",
                 "textUtf8": "PRM",
                 "text": "PRM",
                 "shortTextUtf": "PRM",
                 "shortText": "PRM"
-            },
-             ],
+            }
+        ],
         "fareResourceLocation": {
             "carrierLocations": null,
             "trainLocations": null,
@@ -302,7 +302,6 @@
                     }
                 ],
                 "includedFreePassenger": [
-                    },
                     {
                         "number": 10,
                         "passengerTypeRef": "YOUNG_CHILD"
@@ -332,7 +331,7 @@
                         "minNumber": 1,
                         "passengerTypeRef": "DOG"
                     }
-                 ],
+                ],
                 "passengerWeight": 1
             },
             {
@@ -378,7 +377,7 @@
                     }
                 ],
                 "passengerWeight": 1
-            },
+            }
         ],
         "fareConstraintBundles": [
             {
@@ -396,7 +395,7 @@
                 "maxWeightedPassengers": 5,
                 "minWeightedPassengers": 1
             },
-             {
+            {
                 "id": "passengerCombinationConstraint-2",
                 "maxWeightedPassengers": 999,
                 "minWeightedPassengers": 6
@@ -575,7 +574,7 @@
                         "cardValue": "reductionCard-8",
                         "cardName": "RailPlus",
                         "issuer": "UIC"
-                    },
+                    }
                 ]
             }
         ],
