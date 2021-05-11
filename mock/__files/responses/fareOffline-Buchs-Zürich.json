@@ -80,14 +80,35 @@
                 "shortTextUtf": "Kind",
                 "shortText": "Kind"
             },
-            {
-                "id": "text-20",
-                "textUtf8": "Normalpreis",
-                "text": "Normalpreis",
-                "shortTextUtf": "Normalpreis",
-                "shortText": "Normalpreis"
-            }
-        ],
+             {
+                "id": "text-13",
+                "textUtf8": "Junior-Karte",
+                "text": "Junior-Karte",
+                "shortTextUtf": "Junior-Karte",
+                "shortText": "Junior-Karte"
+            },
+               {
+                "id": "text-14",
+                "textUtf8": "Kindermitfahr-Karte",
+                "text": "Kindermitfahr-Karte",
+                "shortTextUtf": "Kindermitfahr-Karte",
+                "shortText": "Kindermitfahr-Karte"
+            },
+               {
+                "id": "text-15",
+                "textUtf8": "Gruppe",
+                "text": "Gruppe",
+                "shortTextUtf": "Gruppe",
+                "shortText": "Gruppe"
+            },
+                {
+                "id": "text-16",
+                "textUtf8": "PRM",
+                "text": "PRM",
+                "shortTextUtf": "PRM",
+                "shortText": "PRM"
+            },
+             ],
         "fareResourceLocation": {
             "carrierLocations": null,
             "trainLocations": null,
