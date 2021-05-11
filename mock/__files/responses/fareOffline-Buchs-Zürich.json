@@ -205,6 +205,11 @@
                 "id": "passengerCombinationConstraint-1",
                 "maxWeightedPassengers": 5,
                 "minWeightedPassengers": 1
+            },
+             {
+                "id": "passengerCombinationConstraint-2",
+                "maxWeightedPassengers": 999,
+                "minWeightedPassengers": 6
             }
         ],
         "fares": [
