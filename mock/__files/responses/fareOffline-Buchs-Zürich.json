@@ -355,7 +355,32 @@
                         "cardValue": "reductionCard-3",
                         "cardName": "GA 2.Klasse",
                         "issuer": "1185"
-                    }
+                    },
+                    {
+                        "cardValue": "reductionCard-4",
+                        "cardName": "GA 1.Klasse",
+                        "issuer": "1185"
+                    },
+                    {
+                        "cardValue": "reductionCard-5",
+                        "cardName": "Junior-Karte",
+                        "issuer": "1185"
+                    },
+                    {
+                        "cardValue": "reductionCard-6",
+                        "cardName": "Kindermitfahr-Karte",
+                        "issuer": "1185"
+                    },
+                    {
+                        "cardValue": "reductionCard-7",
+                        "cardName": "FIP",
+                        "issuer": "UIC"
+                    },
+                    {
+                        "cardValue": "reductionCard-8",
+                        "cardName": "RailPlus",
+                        "issuer": "UIC"
+                    },
                 ]
             }
         ],
