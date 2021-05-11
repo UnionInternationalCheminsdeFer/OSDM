@@ -3,6 +3,13 @@
 	"$id": "http://uic.org//schemas/passenger/eticket/v2/offlineOSDM.json",
 	"title": "OSDM Offline Fare Delivery",
 	"description": "OSDM extract of offline fare delivery",
+	"type": "object",
+	"properties": {
+		"fareDelivery": {
+			"$ref": "#/definitions/FareDeliveryDef"
+		}
+	},
+	"additionalProperties": false,
 	"definitions": {
 		"StationDef": {
 			"description": "Used to represent a station location. This is a location that can be used as origin and destination for a train journey",
@@ -901,7 +908,7 @@
 			},
 			"required": [
 				"id",
-				"acceptedFulfillmentTypes"
+				"acceptedControlSecurityTypes"
 			],
 			"additionalProperties": false
 		},
@@ -1835,7 +1842,7 @@
 			"required": [
 				"issuer",
 				"name",
-				"Id"
+				"id"
 			],
 			"additionalProperties": false
 		},
