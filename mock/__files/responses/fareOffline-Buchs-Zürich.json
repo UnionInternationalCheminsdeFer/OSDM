@@ -52,6 +52,13 @@
                 "shortTextUtf8": "GA 1.Klasse",
                 "shortText": "GA 1.Klasse"
             },
+                {
+                "id": "text-4",
+                "textUTF8": "PRM",
+                "text": "PRM",
+                "shortTextUtf8": "PRM",
+                "shortText": "PRM"
+            },
             {
                 "id": "text-5",
                 "textUtf8": "RailPlus",
@@ -157,16 +164,16 @@
             {
                 "id": "passengerConstraint-1",
                 "passengerType": "ADULT",
-                "nameRef": "text-5",
-                "lowerAgeLimit": "6",
-                "upperAgeLimit": "15.99",
+                "nameRef": "text-10",
+                "lowerAgeLimit": "16",
+                "upperAgeLimit": "150",
                 "ageLimitToTravelAlone": 0,
                 "ageLimitForReservation": 0,
                 "combinationConstraint": [
                     {
-                        "maxNumber": 10,
-                        "minNumber": 0,
-                        "passengerTypeRef": "DOG"
+                        "maxNumber": 5,
+                        "minNumber": 1,
+                        "passengerTypeRef": "ADULT"
                     }
                 ],
                 "includedFreePassenger": [
@@ -188,7 +195,162 @@
                     }
                 ],
                 "passengerWeight": 1
-            }
+            },
+            {
+                "id": "passengerConstraint-2",
+                "passengerType": "ADULT Group",
+                "nameRef": "text-10",
+                "lowerAgeLimit": "16",
+                "upperAgeLimit": "150",
+                "ageLimitToTravelAlone": 0,
+                "ageLimitForReservation": 0,
+                "combinationConstraint": [
+                    {
+                        "maxNumber": 999,
+                        "minNumber": 6,
+                        "passengerTypeRef": "ADULT Group"
+                    }
+                ],
+                "includedFreePassenger": [
+                    {
+                        "number": 10,
+                        "passengerTypeRef": "YOUNG_CHILD"
+                    },
+                    {
+                        "number": 1,
+                        "passengerTypeRef": "ACCOMP_DOG"
+                    },
+                    {
+                        "number": 1,
+                        "passengerTypeRef": "ACCOMP_PRM"
+                    }
+                ],
+                "passengerWeight": 1
+            },
+            {
+                "id": "passengerConstraint-3",
+                "passengerType": "CHILD",
+                "nameRef": "text-11",
+                "lowerAgeLimit": "6",
+                "upperAgeLimit": "15.99",
+                "ageLimitToTravelAlone": 0,
+                "ageLimitForReservation": 0,
+                "combinationConstraint": [
+                    {
+                        "maxNumber": 5,
+                        "minNumber": 1,
+                        "passengerTypeRef": "CHILD"
+                    }
+                ],
+                "includedFreePassenger": [
+                    {
+                        "number": 0,
+                        "passengerTypeRef": "YOUNG_CHILD"
+                    },
+                    {
+                        "number": 1,
+                        "passengerTypeRef": "ACCOMP_DOG"
+                    },
+                    {
+                        "number": 1,
+                        "passengerTypeRef": "ACCOMP_PRM"
+                    }
+                ],
+                "passengerWeight": 1
+            },
+            {
+                "id": "passengerConstraint-4",
+                "passengerType": "CHILD Group",
+                "nameRef": "text-10",
+                "lowerAgeLimit": "6",
+                "upperAgeLimit": "15.99",
+                "ageLimitToTravelAlone": 0,
+                "ageLimitForReservation": 0,
+                "combinationConstraint": [
+                    {
+                        "maxNumber": 999,
+                        "minNumber": 6,
+                        "passengerTypeRef": "CHILD Group"
+                    }
+                ],
+                "includedFreePassenger": [
+                    },
+                    {
+                        "number": 10,
+                        "passengerTypeRef": "YOUNG_CHILD"
+                    },
+                    {
+                        "number": 1,
+                        "passengerTypeRef": "ACCOMP_DOG"
+                    },
+                    {
+                        "number": 1,
+                        "passengerTypeRef": "ACCOMP_PRM"
+                    }
+                ],
+                "passengerWeight": 1
+            },
+            {
+                "id": "passengerConstraint-5",
+                "passengerType": "DOG",
+                "nameRef": "text-12",
+                "lowerAgeLimit": "0",
+                "upperAgeLimit": "150",
+                "ageLimitToTravelAlone": 0,
+                "ageLimitForReservation": 0,
+                "combinationConstraint": [
+                    {
+                        "maxNumber": 5,
+                        "minNumber": 1,
+                        "passengerTypeRef": "DOG"
+                    }
+                 ],
+                "passengerWeight": 1
+            },
+            {
+                "id": "passengerConstraint-6",
+                "passengerType": "DOG Group",
+                "nameRef": "text-12",
+                "lowerAgeLimit": "0",
+                "upperAgeLimit": "150",
+                "ageLimitToTravelAlone": 0,
+                "ageLimitForReservation": 0,
+                "combinationConstraint": [
+                    {
+                        "maxNumber": 999,
+                        "minNumber": 6,
+                        "passengerTypeRef": "DOG Group"
+                    }
+                ],
+                "passengerWeight": 1
+            },
+            {
+                "id": "passengerConstraint-7",
+                "passengerType": "PRM",
+                "nameRef": "text-4",
+                "lowerAgeLimit": "5",
+                "upperAgeLimit": "150",
+                "ageLimitToTravelAlone": 0,
+                "ageLimitForReservation": 0,
+                "combinationConstraint": [
+                    {
+                        "maxNumber": 5,
+                        "minNumber": 1,
+                        "passengerTypeRef": "PRM"
+                    }
+                ],
+                "includedFreePassenger": [
+                    {
+                        "number": 1,
+                        "passengerTypeRef": "ACCOMP_DOG"
+                    },
+                    {
+                        "number": 1,
+                        "passengerTypeRef": "ACCOMP_PRM"
+                    }
+                ],
+                "passengerWeight": 1
+            },
         ],
         "fareConstraintBundles": [
             {
