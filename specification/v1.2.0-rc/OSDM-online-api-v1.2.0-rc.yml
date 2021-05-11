@@ -4,6 +4,8 @@ servers:
     url: http://localhost:8080
   - description: OSDM Mock on Mocklab
     url: http://osdm.mocklab.io
+  - description: OEBB OSDM Simulator
+    url: https://tickets-otest.oebb.at/osdm-sim/api
 info:
   title: UIC 90918-10 - OSDM
   version: 1.2.0-rc1
