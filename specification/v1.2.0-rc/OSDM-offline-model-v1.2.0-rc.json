@@ -189,7 +189,7 @@
 			},
 			"required": [
 				"cardValue",
-				"cardValueType"
+				"cardName"
 			],
 			"additionalProperties": false
 		},
@@ -1834,7 +1834,7 @@
 			},
 			"required": [
 				"issuer",
-				"name",
+				"nameRef",
 				"id"
 			],
 			"additionalProperties": false
