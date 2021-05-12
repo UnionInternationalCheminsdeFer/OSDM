@@ -5412,7 +5412,9 @@ components:
     
     Text:
       type: object
-      description: directly included text in case of online services
+      description: >-
+        Directly included text in case of online services. Text must be encrypted in
+        UTF-8 format.
       properties:
         id:
           type: string

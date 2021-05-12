@@ -1,678 +1,730 @@
 {
-    "delivery": {
-        "fareProvider": "1185",
-        "deliveryId": "1",
-        "optionalDelivery": false,
-        "version": "1.2",
-        "acceptedVersion": "1.2"
-    },
-    "fareStructure": {
-        "calendars": [
-            {
-                "id": "calendar-1",
-                "fromDate": "2020-09-12 23:00:00 +0000",
-                "untilDate": "2021-09-12 23:00:00 +0000",
-                "utcOffset": 120
-            }
-        ],
-        "serviceClassDefinitions": [
-            {
-                "id": "serviceClass-1",
-                "textRef": "",
-                "text": "Erste Klasse",
-                "comfortClass": "FIRST"
-            },
-            {
-                "id": "serviceClass-2",
-                "textRef": "",
-                "text": "Zweite Klasse",
-                "comfortClass": "SECOND"
-            }
-        ],
-        "serviceLevelDefinition": null,
-        "texts": [
-            {
-                "id": "text-1",
-                "textUTF8": "Halbtax",
-                "text": "Halbtax",
-                "shortTextUtf8": "Halbtax",
-                "shortText": "Halbtax"
-            },
-            {
-                "id": "text-2",
-                "textUTF8": "Generalabo 2. Klasse",
-                "text": "Generalabo 2. Klasse",
-                "shortTextUtf8": "GA 2.Klasse",
-                "shortText": "GA 2.Klasse"
-            },
-            {
-                "id": "text-3",
-                "textUTF8": "Generalabo 1. Klasse",
-                "text": "Generalabo 1. Klasse",
-                "shortTextUtf8": "GA 1.Klasse",
-                "shortText": "GA 1.Klasse"
-            },
-            {
-                "id": "text-4",
-                "textUTF8": "PRM",
-                "text": "PRM",
-                "shortTextUtf8": "PRM",
-                "shortText": "PRM"
-            },
-            {
-                "id": "text-5",
-                "textUtf8": "RailPlus",
-                "text": "RailPlus",
-                "shortTextUtf": "RailPlus",
-                "shortText": "RailPlus"
-            },
-            {
-                "id": "text-6",
-                "textUtf8": "FIP",
-                "text": "FIP",
-                "shortTextUtf": "FIP",
-                "shortText": "FIP"
-            },
-            {
-                "id": "text-10",
-                "textUtf8": "Erwachsener",
-                "text": "Erwachsener",
-                "shortTextUtf": "Erwachsener",
-                "shortText": "Erwachsener"
-            },
-            {
-                "id": "text-11",
-                "textUtf8": "Kind",
-                "text": "Kind",
-                "shortTextUtf": "Kind",
-                "shortText": "Kind"
-            },
-            {
-                "id": "text-12",
-                "textUtf8": "Hund",
-                "text": "Hund",
-                "shortTextUtf": "Hund",
-                "shortText": "Hund"
-            },
-            {
-                "id": "text-13",
-                "textUtf8": "Junior-Karte",
-                "text": "Junior-Karte",
-                "shortTextUtf": "Junior-Karte",
-                "shortText": "Junior-Karte"
-            },
-            {
-                "id": "text-14",
-                "textUtf8": "Kindermitfahr-Karte",
-                "text": "Kindermitfahr-Karte",
-                "shortTextUtf": "Kindermitfahr-Karte",
-                "shortText": "Kindermitfahr-Karte"
-            },
-            {
-                "id": "text-15",
-                "textUtf8": "Gruppe",
-                "text": "Gruppe",
-                "shortTextUtf": "Gruppe",
-                "shortText": "Gruppe"
-            },
-            {
-                "id": "text-16",
-                "textUtf8": "PRM",
-                "text": "PRM",
-                "shortTextUtf": "PRM",
-                "shortText": "PRM"
-            }
-        ],
-        "fareResourceLocation": {
-            "carrierLocations": null,
-            "trainLocations": null,
-            "stationLocations": null
+    "fareDelivery": {
+        "delivery": {
+            "fareProvider": "1185",
+            "deliveryId": "1",
+            "optionalDelivery": false,
+            "version": "1.2",
+            "acceptedVersion": "1.2"
         },
-        "prices": [
-            {
-                "id": "price-1",
-                "price": [
-                    {
-                        "currency": "EUR",
-                        "amount": 3140
-                    }
-                ]
-            },
-            {
-                "id": "price-2",
-                "price": [
-                    {
-                        "currency": "EUR",
-                        "amount": 6280
-                    }
-                ]
-            }
-        ],
-        "regionalConstraints": [
-            {
-                "id": "regionalConstraint-1",
-                "entryConnectionPointId": "8509404",
-                "exitConnectionPointId": "8503000",
-                "regionalValidity": {
-                    "seqNb": 1,
-                    "viaStations": {
-                        "carrier": 1185,
-                        "route": [
-                            {
-                                "fareReferenceStationSet": {
-                                    "carrier": "1185",
-                                    "code": "8509411",
-                                    "name": "Sargans"
-                                }
-                            }
-                        ]
-                    }
+        "fareStructure": {
+            "calendars": [
+                {
+                    "id": "calendar-1",
+                    "fromDate": "2020-09-12T23:00:00+0000",
+                    "untilDate": "2021-09-12T23:00:00+0000",
+                    "utcOffset": 120
+                }
+            ],
+            "serviceClassDefinitions": [
+                {
+                    "id": "HIGH",
+                    "textRef": "text-20",
+                    "comfortClass": "FIRST"
                 },
-                "distance": 113
-            }
-        ],
-        "serviceConstraints": [
-            {
-                "id": "serviceConstraint-1",
-                "includedServiceBrands": [
-                    51,
-                    246
-                ]
-            }
-        ],
-        "carrierConstraints": [
-            {
-                "id": "carrierConstraint-1",
-                "includedCarrier": [
-                    "1185"
-                ]
-            }
-        ],
-        "passengerConstraints": [
-            {
-                "id": "passengerConstraint-1",
-                "passengerType": "ADULT",
-                "nameRef": "text-10",
-                "lowerAgeLimit": "16",
-                "upperAgeLimit": "150",
-                "ageLimitToTravelAlone": 0,
-                "ageLimitForReservation": 0,
-                "combinationConstraint": [
-                    {
-                        "maxNumber": 5,
-                        "minNumber": 1,
-                        "passengerTypeRef": "ADULT"
-                    }
-                ],
-                "includedFreePassenger": [
-                    {
-                        "number": 4,
-                        "passengerTypeRef": "FAMILY_CHILD"
-                    },
-                    {
-                        "number": 10,
-                        "passengerTypeRef": "YOUNG_CHILD"
-                    },
-                    {
-                        "number": 1,
-                        "passengerTypeRef": "ACCOMP_DOG"
-                    },
-                    {
-                        "number": 1,
-                        "passengerTypeRef": "ACCOMP_PRM"
-                    }
-                ],
-                "passengerWeight": 1
-            },
-            {
-                "id": "passengerConstraint-2",
-                "passengerType": "ADULT Group",
-                "nameRef": "text-10",
-                "lowerAgeLimit": "16",
-                "upperAgeLimit": "150",
-                "ageLimitToTravelAlone": 0,
-                "ageLimitForReservation": 0,
-                "combinationConstraint": [
-                    {
-                        "maxNumber": 999,
-                        "minNumber": 6,
-                        "passengerTypeRef": "ADULT Group"
-                    }
-                ],
-                "includedFreePassenger": [
-                    {
-                        "number": 10,
-                        "passengerTypeRef": "YOUNG_CHILD"
-                    },
-                    {
-                        "number": 1,
-                        "passengerTypeRef": "ACCOMP_DOG"
-                    },
-                    {
-                        "number": 1,
-                        "passengerTypeRef": "ACCOMP_PRM"
-                    }
-                ],
-                "passengerWeight": 1
-            },
-            {
-                "id": "passengerConstraint-3",
-                "passengerType": "CHILD",
-                "nameRef": "text-11",
-                "lowerAgeLimit": "6",
-                "upperAgeLimit": "15.99",
-                "ageLimitToTravelAlone": 0,
-                "ageLimitForReservation": 0,
-                "combinationConstraint": [
-                    {
-                        "maxNumber": 5,
-                        "minNumber": 1,
-                        "passengerTypeRef": "CHILD"
-                    }
-                ],
-                "includedFreePassenger": [
-                    {
-                        "number": 0,
-                        "passengerTypeRef": "YOUNG_CHILD"
-                    },
-                    {
-                        "number": 1,
-                        "passengerTypeRef": "ACCOMP_DOG"
-                    },
-                    {
-                        "number": 1,
-                        "passengerTypeRef": "ACCOMP_PRM"
-                    }
-                ],
-                "passengerWeight": 1
-            },
-            {
-                "id": "passengerConstraint-4",
-                "passengerType": "CHILD Group",
-                "nameRef": "text-10",
-                "lowerAgeLimit": "6",
-                "upperAgeLimit": "15.99",
-                "ageLimitToTravelAlone": 0,
-                "ageLimitForReservation": 0,
-                "combinationConstraint": [
-                    {
-                        "maxNumber": 999,
-                        "minNumber": 6,
-                        "passengerTypeRef": "CHILD Group"
-                    }
-                ],
-                "includedFreePassenger": [
-                    {
-                        "number": 10,
-                        "passengerTypeRef": "YOUNG_CHILD"
-                    },
-                    {
-                        "number": 1,
-                        "passengerTypeRef": "ACCOMP_DOG"
-                    },
-                    {
-                        "number": 1,
-                        "passengerTypeRef": "ACCOMP_PRM"
-                    }
-                ],
-                "passengerWeight": 1
-            },
-            {
-                "id": "passengerConstraint-5",
-                "passengerType": "DOG",
-                "nameRef": "text-12",
-                "lowerAgeLimit": "0",
-                "upperAgeLimit": "150",
-                "ageLimitToTravelAlone": 0,
-                "ageLimitForReservation": 0,
-                "combinationConstraint": [
-                    {
-                        "maxNumber": 5,
-                        "minNumber": 1,
-                        "passengerTypeRef": "DOG"
-                    }
-                ],
-                "passengerWeight": 1
-            },
-            {
-                "id": "passengerConstraint-6",
-                "passengerType": "DOG Group",
-                "nameRef": "text-12",
-                "lowerAgeLimit": "0",
-                "upperAgeLimit": "150",
-                "ageLimitToTravelAlone": 0,
-                "ageLimitForReservation": 0,
-                "combinationConstraint": [
-                    {
-                        "maxNumber": 999,
-                        "minNumber": 6,
-                        "passengerTypeRef": "DOG Group"
-                    }
-                ],
-                "passengerWeight": 1
-            },
-            {
-                "id": "passengerConstraint-7",
-                "passengerType": "PRM",
-                "nameRef": "text-4",
-                "lowerAgeLimit": "5",
-                "upperAgeLimit": "150",
-                "ageLimitToTravelAlone": 0,
-                "ageLimitForReservation": 0,
-                "combinationConstraint": [
-                    {
-                        "maxNumber": 5,
-                        "minNumber": 1,
-                        "passengerTypeRef": "PRM"
-                    }
-                ],
-                "includedFreePassenger": [
-                    {
-                        "number": 1,
-                        "passengerTypeRef": "ACCOMP_DOG"
-                    },
-                    {
-                        "number": 1,
-                        "passengerTypeRef": "ACCOMP_PRM"
-                    }
-                ],
-                "passengerWeight": 1
-            }
-        ],
-        "fareConstraintBundles": [
-            {
-                "id": "fareConstraintBundle-1",
-                "combinationConstraintRef": "combinationConstraint-1",
-                "salesAvailabilityConstraintRef": "salesAvailabilityConstraint-1",
-                "travelValidityConstraintRef": "travelValidityConstraint-1",
-                "fullfillmentConstraintRef": "fulfillmentConstraint-1",
-                "passengerCombinationConstraintRef": "passengerCombinationConstraint-1"
-            }
-        ],
-        "passengerCombinationConstraints": [
-            {
-                "id": "passengerCombinationConstraint-1",
-                "maxWeightedPassengers": 5,
-                "minWeightedPassengers": 1
-            },
-            {
-                "id": "passengerCombinationConstraint-2",
-                "maxWeightedPassengers": 999,
-                "minWeightedPassengers": 6
-            }
-        ],
-        "fares": [
-            {
-                "id": "00000-03914",
-                "bundleRef": "fareConstraintBundle-1",
-                "fareType": "ADMISSION",
-                "nameRef": "text-20",
-                "priceRef": "price-1",
-                "regionalConstraintRef": "regionalConstraint-1",
-                "carrierConstraintRef": "carrierConstraint-1",
-                "regulatoryConditions": [
-                    "CIV"
-                ],
-                "serviceClassRef": "serviceClass-1",
-                "passengerConstraintRef": "passengerConstraint-1",
-                "legacyAccountingIdentifier": {
-                    "serialId": 1,
-                    "addId": 1,
-                    "tariffId": 0
+                {
+                    "id": "BASIC",
+                    "textRef": "text-21",
+                    "comfortClass": "SECOND"
                 }
-            },
-            {
-                "id": "00001-03914",
-                "bundleRef": "fareConstraintBundle-1",
-                "fareType": "ADMISSION",
-                "nameRef": "text-20",
-                "priceRef": "price-2",
-                "regionalConstraintRef": "regionalConstraint-1",
-                "carrierConstraintRef": "carrierConstraint-1",
-                "regulatoryConditions": [
-                    "CIV"
-                ],
-                "serviceClassRef": "serviceClass-2",
-                "passengerConstraintRef": "passengerConstraint-1",
-                "legacyAccountingIdentifier": {
-                    "serialId": 1,
-                    "addId": 1,
-                    "tariffId": 0
-                }
-            },
-            {
-                "id": "00002-03914",
-                "bundleRef": "fareConstraintBundle-1",
-                "fareType": "ADMISSION",
-                "nameRef": "text-20",
-                "priceRef": "price-1",
-                "regionalConstraintRef": "regionalConstraint-1",
-                "carrierConstraintRef": "carrierConstraint-1",
-                "regulatoryConditions": [
-                    "CIV"
-                ],
-                "serviceClassRef": "serviceClass-1",
-                "passengerConstraintRef": "passengerConstraint-2",
-                "legacyAccountingIdentifier": {
-                    "serialId": 1,
-                    "addId": 1,
-                    "tariffId": 0
-                }
-            },
-            {
-                "id": "00003-03914",
-                "bundleRef": "fareConstraintBundle-1",
-                "fareType": "ADMISSION",
-                "nameRef": "text-20",
-                "priceRef": "price-2",
-                "regionalConstraintRef": "regionalConstraint-1",
-                "carrierConstraintRef": "carrierConstraint-1",
-                "regulatoryConditions": [
-                    "CIV"
-                ],
-                "serviceClassRef": "serviceClass-2",
-                "passengerConstraintRef": "passengerConstraint-2",
-                "legacyAccountingIdentifier": {
-                    "serialId": 1,
-                    "addId": 1,
-                    "tariffId": 0
-                }
-            }
-        ],
-        "afterSalesCondition": null,
-        "salesAvailabilityConstraint": [
-            {
-                "id": "salesAvailabilityConstraint-1",
-                "salesRestrictions": [
-                    {
-                        "salesDatesRef": "calendar-1"
-                    }
-                ]
-            }
-        ],
-        "travelValidityConstraints": [
-            {
-                "id": "travelValidityConstraint-1",
-                "validityRange": {
-                    "timeUnit": "DAYS",
-                    "value": 2,
-                    "hoursAfterMidnight": 3
+            ],
+            "texts": [
+                {
+                    "id": "text-1",
+                    "textUtf8": "Halbtax",
+                    "text": "Halbtax",
+                    "shortTextUtf8": "Halbtax",
+                    "shortText": "Halbtax"
                 },
-                "numberOfTravelDays": 0
-            }
-        ],
-        "combinationConstraints": [
-            {
-                "id": "combinationConstraint-1",
-                "combinationModels": [
-                    {
-                        "model": "CLUSTERING",
-                        "combinableCarrier": null,
-                        "referenceCluster": "FULLFLEX",
-                        "allowedClusters": [
-                            "PROMO",
-                            "NONFLEX",
-                            "SEMIFLEX",
-                            "FULLFLEX",
-                            "BUSINESS"
-                        ],
-                        "allowedAllocators": null,
-                        "allowedCommonContracts": null
-                    }
-                ]
-            }
-        ],
-        "fullfillmentConstraints": [
-            {
-                "id": "fulfillmentConstraint-1",
-                "acceptedControlSecurityTypes": [
-                    "SID",
-                    "SIP",
-                    "SIS"
-                ],
-                "acceptedBarCodes": null,
-                "requiredBarCodes": null,
-                "requiredSiS": null,
-                "individualTicketingPermitted": true
-            }
-        ],
-        "reductionConstraints": [
-            {
-                "id": "reductionConstraint-1",
-                "requiredCards": [
-                    {
-                        "cardValue": "reductionCard-2",
-                        "cardName": "Halbtax",
-                        "issuer": "1185"
-                    },
-                    {
-                        "cardValue": "reductionCard-3",
-                        "cardName": "GA 2.Klasse",
-                        "issuer": "1185"
-                    },
-                    {
-                        "cardValue": "reductionCard-4",
-                        "cardName": "GA 1.Klasse",
-                        "issuer": "1185"
-                    },
-                    {
-                        "cardValue": "reductionCard-5",
-                        "cardName": "Junior-Karte",
-                        "issuer": "1185"
-                    },
-                    {
-                        "cardValue": "reductionCard-6",
-                        "cardName": "Kindermitfahr-Karte",
-                        "issuer": "1185"
-                    },
-                    {
-                        "cardValue": "reductionCard-7",
-                        "cardName": "FIP",
-                        "issuer": "UIC"
-                    },
-                    {
-                        "cardValue": "reductionCard-8",
-                        "cardName": "RailPlus",
-                        "issuer": "UIC"
-                    }
-                ]
-            }
-        ],
-        "reductionCards": [
-            {
-                "id": "reductionCard-1",
-                "issuer": "1185",
-                "nameRef": "text-1",
-                "serviceClasses": [
-                    "HIGH",
-                    "BASIC"
-                ]
-            },
-            {
-                "id": "reductionCard-2",
-                "issuer": "1185",
-                "nameRef": "text-2",
-                "serviceClasses": [
-                    "BASIC"
-                ]
-            },
-            {
-                "id": "reductionCard-3",
-                "issuer": "1185",
-                "nameRef": "text-3",
-                "serviceClasses": [
-                    "HIGH"
-                ]
-            },
-            {
-                "id": "reductionCard-4",
-                "issuer": "1185",
-                "nameRef": "text-5",
-                "serviceClasses": [
-                    "HIGH",
-                    "BASIC"
-                ]
-            },
-            {
-                "id": "reductionCard-5",
-                "issuer": "1185",
-                "nameRef": "text-6",
-                "serviceClasses": [
-                    "HIGH",
-                    "BASIC"
-                ]
-            }
-        ],
-        "personalDataConstraints": null,
-        "reservationParameters": null,
-        "connectionPoints": [
-            {
-                "id": "connectionPoint-1",
-                "legacyBorderPointCode": "271",
-                "stationSets": [
-                    [
+                {
+                    "id": "text-2",
+                    "textUtf8": "Generalabo 2. Klasse",
+                    "text": "Generalabo 2. Klasse",
+                    "shortTextUtf8": "GA 2.Klasse",
+                    "shortText": "GA 2.Klasse"
+                },
+                {
+                    "id": "text-3",
+                    "textUtf8": "Generalabo 1. Klasse",
+                    "text": "Generalabo 1. Klasse",
+                    "shortTextUtf8": "GA 1.Klasse",
+                    "shortText": "GA 1.Klasse"
+                },
+                {
+                    "id": "text-4",
+                    "textUtf8": "PRM",
+                    "text": "PRM",
+                    "shortTextUtf8": "PRM",
+                    "shortText": "PRM"
+                },
+                {
+                    "id": "text-5",
+                    "textUtf8": "RailPlus",
+                    "text": "RailPlus",
+                    "shortTextUtf8": "RailPlus",
+                    "shortText": "RailPlus"
+                },
+                {
+                    "id": "text-6",
+                    "textUtf8": "FIP",
+                    "text": "FIP",
+                    "shortTextUtf8": "FIP",
+                    "shortText": "FIP"
+                },
+                {
+                    "id": "text-10",
+                    "textUtf8": "Erwachsener",
+                    "text": "Erwachsener",
+                    "shortTextUtf8": "Erwachsener",
+                    "shortText": "Erwachsener"
+                },
+                {
+                    "id": "text-11",
+                    "textUtf8": "Kind",
+                    "text": "Kind",
+                    "shortTextUtf8": "Kind",
+                    "shortText": "Kind"
+                },
+                {
+                    "id": "text-12",
+                    "textUtf8": "Hund",
+                    "text": "Hund",
+                    "shortTextUtf8": "Hund",
+                    "shortText": "Hund"
+                },
+                {
+                    "id": "text-13",
+                    "textUtf8": "Junior-Karte",
+                    "text": "Junior-Karte",
+                    "shortTextUtf8": "Junior-Karte",
+                    "shortText": "Junior-Karte"
+                },
+                {
+                    "id": "text-14",
+                    "textUtf8": "Kindermitfahr-Karte",
+                    "text": "Kindermitfahr-Karte",
+                    "shortTextUtf8": "Kindermitfahr-Karte",
+                    "shortText": "Kindermitfahr-Karte"
+                },
+                {
+                    "id": "text-15",
+                    "textUtf8": "Gruppe",
+                    "text": "Gruppe",
+                    "shortTextUtf8": "Gruppe",
+                    "shortText": "Gruppe"
+                },
+                {
+                    "id": "text-16",
+                    "textUtf8": "PRM",
+                    "text": "PRM",
+                    "shortTextUtf8": "PRM",
+                    "shortText": "PRM"
+                },
+                {
+                    "id": "text-20",
+                    "textUtf8": "Erste Klasse",
+                    "text": "Erste Klasse",
+                    "shortTextUtf8": "1. Klasse",
+                    "shortText": "1. Klasse"
+                },
+                {
+                    "id": "text-21",
+                    "textUtf8": "Zweite Klasse",
+                    "text": "Zweite Klasse",
+                    "shortTextUtf8": "2. Klasse",
+                    "shortText": "2. Klasse"
+                }
+            ],
+            "fareResourceLocation": {},
+            "prices": [
+                {
+                    "id": "price-1",
+                    "price": [
                         {
-                            "code": "8509404",
-                            "country": "CH"
-                        },
-                        {
-                            "code": "8101244",
-                            "country": "DE"
+                            "currency": "EUR",
+                            "amount": 3140,
+                            "scale": 2,
+                            "vatDetails": []
                         }
                     ]
-                ]
-            }
-        ],
-        "stationNames": [
-            {
-                "country": 85,
-                "localCode": 9404,
-                "name": "Buchs SG",
-                "nameUtf8": "Buchs SG",
-                "shortName": "Buchs",
-                "shortNameUtf8": "Buchs",
-                "legacyBorderPointCode": 271
-            },
-            {
-                "country": 85,
-                "localCode": 9411,
-                "name": "Sargans",
-                "nameUtf8": "Sargans",
-                "shortName": "Sargans",
-                "shortNameUtf8": "Sargans",
-                "legacyBorderPointCode": 0
-            },
-            {
-                "country": 85,
-                "localCode": 3000,
-                "name": "Zürich Hbf",
-                "nameUtf8": "Zürich Hbf",
-                "shortName": "Zürich",
-                "shortNameUtf8": "Zürich",
-                "legacyBorderPointCode": 0
-            }
-        ],
-        "fareReferenceStationSetDefinitions": null,
-        "zoneDefinitions": null
+                },
+                {
+                    "id": "price-2",
+                    "price": [
+                        {
+                            "currency": "EUR",
+                            "amount": 6280,
+                            "scale": 2,
+                            "vatDetails": []
+                        }
+                    ]
+                }
+            ],
+            "regionalConstraints": [
+                {
+                    "id": "regionalConstraint-1",
+                    "entryConnectionPointId": "8509404",
+                    "exitConnectionPointId": "8503000",
+                    "regionalValidity": [
+                        {
+                            "seqNb": 1,
+                            "viaStations": {
+                                "isBorder": false,
+                                "alternativeRoute": [],
+                                "carrier": "1185",
+                                "route": [
+                                    {
+                                        "isBorder": false,
+                                        "alternativeRoute": [],
+                                        "route": [],
+                                        "station": {
+                                            "codeList": "UIC",
+                                            "code": "8509404",
+                                            "country": "CH"
+                                        }
+                                    },
+                                    {
+                                        "isBorder": false,
+                                        "alternativeRoute": [],
+                                        "route": [],
+                                        "station": {
+                                            "codeList": "UIC",
+                                            "code": "8509411",
+                                            "country": "CH"
+                                        }
+                                    },
+                                    {
+                                        "isBorder": false,
+                                        "alternativeRoute": [],
+                                        "route": [],
+                                        "station": {
+                                            "codeList": "UIC",
+                                            "code": "8503000",
+                                            "country": "CH"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "distance": 113
+                }
+            ],
+            "serviceConstraints": [
+                {
+                    "id": "serviceConstraint-1",
+                    "includedServiceBrands": [
+                        51,
+                        246
+                    ]
+                }
+            ],
+            "carrierConstraints": [
+                {
+                    "id": "carrierConstraint-1",
+                    "includedCarrier": [
+                        "1185"
+                    ]
+                }
+            ],
+            "passengerConstraints": [
+                {
+                    "id": "passengerConstraint-1",
+                    "passengerType": "ADULT",
+                    "nameRef": "text-10",
+                    "lowerAgeLimit": 16,
+                    "upperAgeLimit": 150,
+                    "ageLimitToTravelAlone": 0,
+                    "ageLimitForReservation": 0,
+                    "combinationConstraint": [
+                        {
+                            "maxNumber": 5,
+                            "minNumber": 1,
+                            "passengerTypeRef": "ADULT"
+                        }
+                    ],
+                    "includedFreePassenger": [
+                        {
+                            "number": 4,
+                            "passengerTypeRef": "FAMILY_CHILD"
+                        },
+                        {
+                            "number": 10,
+                            "passengerTypeRef": "YOUNG_CHILD"
+                        },
+                        {
+                            "number": 1,
+                            "passengerTypeRef": "ACCOMP_DOG"
+                        },
+                        {
+                            "number": 1,
+                            "passengerTypeRef": "ACCOMP_PRM"
+                        }
+                    ],
+                    "passengerWeight": 1
+                },
+                {
+                    "id": "passengerConstraint-2",
+                    "passengerType": "ADULT Group",
+                    "nameRef": "text-10",
+                    "lowerAgeLimit": 16,
+                    "upperAgeLimit": 150,
+                    "ageLimitToTravelAlone": 0,
+                    "ageLimitForReservation": 0,
+                    "combinationConstraint": [
+                        {
+                            "maxNumber": 999,
+                            "minNumber": 6,
+                            "passengerTypeRef": "ADULT Group"
+                        }
+                    ],
+                    "includedFreePassenger": [
+                        {
+                            "number": 10,
+                            "passengerTypeRef": "YOUNG_CHILD"
+                        },
+                        {
+                            "number": 1,
+                            "passengerTypeRef": "ACCOMP_DOG"
+                        },
+                        {
+                            "number": 1,
+                            "passengerTypeRef": "ACCOMP_PRM"
+                        }
+                    ],
+                    "passengerWeight": 1
+                },
+                {
+                    "id": "passengerConstraint-3",
+                    "passengerType": "CHILD",
+                    "nameRef": "text-11",
+                    "lowerAgeLimit": 6,
+                    "upperAgeLimit": 15,
+                    "ageLimitToTravelAlone": 0,
+                    "ageLimitForReservation": 0,
+                    "combinationConstraint": [
+                        {
+                            "maxNumber": 5,
+                            "minNumber": 1,
+                            "passengerTypeRef": "CHILD"
+                        }
+                    ],
+                    "includedFreePassenger": [
+                        {
+                            "number": 0,
+                            "passengerTypeRef": "YOUNG_CHILD"
+                        },
+                        {
+                            "number": 1,
+                            "passengerTypeRef": "ACCOMP_DOG"
+                        },
+                        {
+                            "number": 1,
+                            "passengerTypeRef": "ACCOMP_PRM"
+                        }
+                    ],
+                    "passengerWeight": 1
+                },
+                {
+                    "id": "passengerConstraint-4",
+                    "passengerType": "CHILD Group",
+                    "nameRef": "text-10",
+                    "lowerAgeLimit": 6,
+                    "upperAgeLimit": 15,
+                    "ageLimitToTravelAlone": 0,
+                    "ageLimitForReservation": 0,
+                    "combinationConstraint": [
+                        {
+                            "maxNumber": 999,
+                            "minNumber": 6,
+                            "passengerTypeRef": "CHILD Group"
+                        }
+                    ],
+                    "includedFreePassenger": [
+                        {
+                            "number": 10,
+                            "passengerTypeRef": "YOUNG_CHILD"
+                        },
+                        {
+                            "number": 1,
+                            "passengerTypeRef": "ACCOMP_DOG"
+                        },
+                        {
+                            "number": 1,
+                            "passengerTypeRef": "ACCOMP_PRM"
+                        }
+                    ],
+                    "passengerWeight": 1
+                },
+                {
+                    "id": "passengerConstraint-5",
+                    "passengerType": "DOG",
+                    "nameRef": "text-12",
+                    "lowerAgeLimit": 0,
+                    "upperAgeLimit": 150,
+                    "ageLimitToTravelAlone": 0,
+                    "ageLimitForReservation": 0,
+                    "combinationConstraint": [
+                        {
+                            "maxNumber": 5,
+                            "minNumber": 1,
+                            "passengerTypeRef": "DOG"
+                        }
+                    ],
+                    "passengerWeight": 1
+                },
+                {
+                    "id": "passengerConstraint-6",
+                    "passengerType": "DOG Group",
+                    "nameRef": "text-12",
+                    "lowerAgeLimit": 0,
+                    "upperAgeLimit": 150,
+                    "ageLimitToTravelAlone": 0,
+                    "ageLimitForReservation": 0,
+                    "combinationConstraint": [
+                        {
+                            "maxNumber": 999,
+                            "minNumber": 6,
+                            "passengerTypeRef": "DOG Group"
+                        }
+                    ],
+                    "passengerWeight": 1
+                },
+                {
+                    "id": "passengerConstraint-7",
+                    "passengerType": "PRM",
+                    "nameRef": "text-4",
+                    "lowerAgeLimit": 5,
+                    "upperAgeLimit": 150,
+                    "ageLimitToTravelAlone": 0,
+                    "ageLimitForReservation": 0,
+                    "combinationConstraint": [
+                        {
+                            "maxNumber": 5,
+                            "minNumber": 1,
+                            "passengerTypeRef": "PRM"
+                        }
+                    ],
+                    "includedFreePassenger": [
+                        {
+                            "number": 1,
+                            "passengerTypeRef": "ACCOMP_DOG"
+                        },
+                        {
+                            "number": 1,
+                            "passengerTypeRef": "ACCOMP_PRM"
+                        }
+                    ],
+                    "passengerWeight": 1
+                }
+            ],
+            "fareConstraintBundles": [
+                {
+                    "id": "fareConstraintBundle-1",
+                    "combinationConstraintRef": "combinationConstraint-1",
+                    "salesAvailabilityConstraintRef": "salesAvailabilityConstraint-1",
+                    "travelValidityConstraintRef": "travelValidityConstraint-1",
+                    "fulfillmentConstraintRef": "fulfillmentConstraint-1",
+                    "passengerCombinationConstraintRef": "passengerCombinationConstraint-1",
+                    "defaultFareType": "ADMISSION"
+                }
+            ],
+            "passengerCombinationConstraints": [
+                {
+                    "id": "passengerCombinationConstraint-1",
+                    "maxWeightedPassengers": 5,
+                    "minWeightedPassengers": 1
+                },
+                {
+                    "id": "passengerCombinationConstraint-2",
+                    "maxWeightedPassengers": 999,
+                    "minWeightedPassengers": 6
+                }
+            ],
+            "fares": [
+                {
+                    "id": "00000-03914",
+                    "bundleRef": "fareConstraintBundle-1",
+                    "fareType": "ADMISSION",
+                    "nameRef": "text-20",
+                    "priceRef": "price-1",
+                    "regionalConstraintRef": "regionalConstraint-1",
+                    "carrierConstraintRef": "carrierConstraint-1",
+                    "regulatoryConditions": [
+                        "CIV"
+                    ],
+                    "serviceClassRef": "serviceClass-1",
+                    "passengerConstraintRef": "passengerConstraint-1",
+                    "legacyAccountingIdentifier": {
+                        "serialId": 1,
+                        "addId": 1,
+                        "tariffId": 0
+                    }
+                },
+                {
+                    "id": "00001-03914",
+                    "bundleRef": "fareConstraintBundle-1",
+                    "fareType": "ADMISSION",
+                    "nameRef": "text-20",
+                    "priceRef": "price-2",
+                    "regionalConstraintRef": "regionalConstraint-1",
+                    "carrierConstraintRef": "carrierConstraint-1",
+                    "regulatoryConditions": [
+                        "CIV"
+                    ],
+                    "serviceClassRef": "serviceClass-2",
+                    "passengerConstraintRef": "passengerConstraint-1",
+                    "legacyAccountingIdentifier": {
+                        "serialId": 1,
+                        "addId": 1,
+                        "tariffId": 0
+                    }
+                },
+                {
+                    "id": "00002-03914",
+                    "bundleRef": "fareConstraintBundle-1",
+                    "fareType": "ADMISSION",
+                    "nameRef": "text-20",
+                    "priceRef": "price-1",
+                    "regionalConstraintRef": "regionalConstraint-1",
+                    "carrierConstraintRef": "carrierConstraint-1",
+                    "regulatoryConditions": [
+                        "CIV"
+                    ],
+                    "serviceClassRef": "serviceClass-1",
+                    "passengerConstraintRef": "passengerConstraint-2",
+                    "legacyAccountingIdentifier": {
+                        "serialId": 1,
+                        "addId": 1,
+                        "tariffId": 0
+                    }
+                },
+                {
+                    "id": "00003-03914",
+                    "bundleRef": "fareConstraintBundle-1",
+                    "fareType": "ADMISSION",
+                    "nameRef": "text-20",
+                    "priceRef": "price-2",
+                    "regionalConstraintRef": "regionalConstraint-1",
+                    "carrierConstraintRef": "carrierConstraint-1",
+                    "regulatoryConditions": [
+                        "CIV"
+                    ],
+                    "serviceClassRef": "serviceClass-2",
+                    "passengerConstraintRef": "passengerConstraint-2",
+                    "legacyAccountingIdentifier": {
+                        "serialId": 1,
+                        "addId": 1,
+                        "tariffId": 0
+                    }
+                }
+            ],
+            "salesAvailabilityConstraint": [
+                {
+                    "id": "salesAvailabilityConstraint-1",
+                    "salesRestrictions": [
+                        {
+                            "salesDatesRef": "calendar-1"
+                        }
+                    ]
+                }
+            ],
+            "travelValidityConstraints": [
+                {
+                    "id": "travelValidityConstraint-1",
+                    "validityRange": {
+                        "timeUnit": "DAYS",
+                        "value": 2,
+                        "hoursAfterMidnight": 3
+                    },
+                    "numberOfTravelDays": 0
+                }
+            ],
+            "combinationConstraints": [
+                {
+                    "id": "combinationConstraint-1",
+                    "combinationModels": [
+                        {
+                            "model": "CLUSTERING",
+                            "onlyWhenCombined": false,
+                            "referenceCluster": "FULLFLEX",
+                            "allowedClusters": [
+                                "PROMO",
+                                "NONFLEX",
+                                "SEMIFLEX",
+                                "FULLFLEX",
+                                "BUSINESS"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "fulfillmentConstraints": [
+                {
+                    "id": "fulfillmentConstraint-1",
+                    "acceptedControlSecurityTypes": [
+                        "SID",
+                        "SIP",
+                        "SIS"
+                    ],
+                    "individualTicketingPermitted": true
+                }
+            ],
+            "reductionConstraints": [
+                {
+                    "id": "reductionConstraint-1",
+                    "requiredCards": [
+                        {
+                            "cardValue": "reductionCard-2",
+                            "cardName": "Halbtax",
+                            "issuer": "1185"
+                        },
+                        {
+                            "cardValue": "reductionCard-3",
+                            "cardName": "GA 2.Klasse",
+                            "issuer": "1185"
+                        },
+                        {
+                            "cardValue": "reductionCard-4",
+                            "cardName": "GA 1.Klasse",
+                            "issuer": "1185"
+                        },
+                        {
+                            "cardValue": "reductionCard-5",
+                            "cardName": "Junior-Karte",
+                            "issuer": "1185"
+                        },
+                        {
+                            "cardValue": "reductionCard-6",
+                            "cardName": "Kindermitfahr-Karte",
+                            "issuer": "1185"
+                        },
+                        {
+                            "cardValue": "reductionCard-7",
+                            "cardName": "FIP",
+                            "issuer": "UIC"
+                        },
+                        {
+                            "cardValue": "reductionCard-8",
+                            "cardName": "RailPlus",
+                            "issuer": "UIC"
+                        }
+                    ]
+                }
+            ],
+            "reductionCards": [
+                {
+                    "id": "reductionCard-1",
+                    "issuer": "1185",
+                    "nameRef": "text-1",
+                    "serviceClasses": [
+                        "HIGH",
+                        "BASIC"
+                    ],
+                    "cardIdRequired": false
+                },
+                {
+                    "id": "reductionCard-2",
+                    "issuer": "1185",
+                    "nameRef": "text-2",
+                    "serviceClasses": [
+                        "BASIC"
+                    ],
+                    "cardIdRequired": false
+                },
+                {
+                    "id": "reductionCard-3",
+                    "issuer": "1185",
+                    "nameRef": "text-3",
+                    "serviceClasses": [
+                        "HIGH"
+                    ],
+                    "cardIdRequired": false
+                },
+                {
+                    "id": "reductionCard-4",
+                    "issuer": "1185",
+                    "nameRef": "text-5",
+                    "serviceClasses": [
+                        "HIGH",
+                        "BASIC"
+                    ],
+                    "cardIdRequired": false
+                },
+                {
+                    "id": "reductionCard-5",
+                    "issuer": "1185",
+                    "nameRef": "text-6",
+                    "serviceClasses": [
+                        "HIGH",
+                        "BASIC"
+                    ],
+                    "cardIdRequired": false
+                }
+            ],
+            "connectionPoints": [
+                {
+                    "id": "connectionPoint-1",
+                    "legacyBorderPointCode": "271",
+                    "stationSets": [
+                        [
+                            {
+                                "codeList": "UIC",
+                                "code": "8509404",
+                                "country": "CH"
+                            }
+                        ],
+                        [
+                            {
+                                "codeList": "UIC",
+                                "code": "8101244",
+                                "country": "AT"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "connectionPoint-2",
+                    "legacyBorderPointCode": "0",
+                    "stationSets": [
+                        [
+                            {
+                                "code": "8503000",
+                                "country": "CH"
+                            }
+                        ]
+                    ]
+                }
+            ],
+            "stationNames": [
+                {
+                    "country": 85,
+                    "localCode": 9404,
+                    "name": "Buchs(SG)",
+                    "nameUtf8": "Buchs SG",
+                    "shortName": "Buchs(SG)",
+                    "shortNameUtf8": "Buchs",
+                    "legacyBorderPointCode": 271
+                },
+                {
+                    "country": 85,
+                    "localCode": 9411,
+                    "name": "Sargans",
+                    "nameUtf8": "Sargans",
+                    "shortName": "Sargans",
+                    "shortNameUtf8": "Sargans",
+                    "legacyBorderPointCode": 0
+                },
+                {
+                    "country": 85,
+                    "localCode": 3000,
+                    "name": "Zürich HB",
+                    "nameUtf8": "ZÃ¼rich HB",
+                    "shortName": "Zürich",
+                    "shortNameUtf8": "Zürich",
+                    "legacyBorderPointCode": 0
+                }
+            ]
+        }
     }
 }
