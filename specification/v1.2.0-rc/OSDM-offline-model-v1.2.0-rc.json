@@ -203,9 +203,6 @@
 					"description": "id of the text describing the class within the offline data text list",
 					"type": "string"
 				},
-				"text": {
-					"$ref": "#/definitions/TextDef"
-				},
 				"comfortClass": {
 					"$ref": "#/definitions/ComfortClassDef"
 				}
@@ -1147,9 +1144,6 @@
 					"description": "id of the text describing the service level",
 					"type": "string"
 				},
-				"text": {
-					"$ref": "#/definitions/TextDef"
-				},
 				"doesNotIncludeClassName": {
 					"description": "indicates that the class name is not included",
 					"type": "boolean",
@@ -1161,7 +1155,7 @@
 			},
 			"required": [
 				"id",
-				"text"
+				"textRef"
 			],
 			"additionalProperties": false
 		},
