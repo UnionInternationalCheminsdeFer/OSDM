@@ -1253,7 +1253,7 @@
 				"language": {
 					"type": "string"
 				},
-				"textUTF8": {
+				"textUtf8": {
 					"type": "string"
 				},
 				"text": {
@@ -1270,7 +1270,7 @@
 			},
 			"required": [
 				"language",
-				"textUTF8",
+				"textUtf8",
 				"text"
 			],
 			"additionalProperties": false
@@ -1282,7 +1282,7 @@
 				"id": {
 					"type": "string"
 				},
-				"textUTF8": {
+				"textUtf8": {
 					"type": "string"
 				},
 				"translations": {
@@ -1305,7 +1305,7 @@
 			},
 			"required": [
 				"id",
-				"textUTF8",
+				"textUtf8",
 				"text"
 			],
 			"additionalProperties": false
@@ -1950,7 +1950,7 @@
 					"description": "name to be used in route descriptions",
 					"type": "string"
 				},
-				"nameUTF8": {
+				"nameUtf8": {
 					"type": "string"
 				}
 			},
@@ -2112,7 +2112,7 @@
 				"name": {
 					"type": "string"
 				},
-				"nameUTF8": {
+				"nameUtf8": {
 					"type": "string"
 				},
 				"polygon": {
@@ -2158,7 +2158,7 @@
 				"personalDataConstraintRef": {
 					"type": "string"
 				},
-				"passengerCombinationRef": {
+				"passengerCombinationConstraintRef": {
 					"type": "string"
 				},
 				"defaultFareType": {
