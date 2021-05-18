@@ -50,6 +50,7 @@ IRS 90918-1 (Service Level).
 |`OB`| Bicycle |
 |`OT`| Tandem Bicycle|
 |`P`| T2|
+|`P4`| Private compartment four couchettes |
 |`PD`| Private compartment berth deluxe |
 |`PS`| Private compartment berth |
 |`Q`| T3 |
@@ -654,9 +655,9 @@ Snappshot, for the actual code list see https://uic.org/passenger/passenger-serv
 | Code | Description |
 |------|-------------|
 | `BEST` |  |
-| `HIGH` |  |
+| `HIGH` | Standard first class |
 | `STANDARD` |  |
-| `BASIC` |  |
+| `BASIC` | Standard second class |
 
 ## Stations
 
