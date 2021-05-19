@@ -163,8 +163,8 @@
             "regionalConstraints": [
                 {
                     "id": "regionalConstraint-1",
-                    "entryConnectionPointId": "8509404",
-                    "exitConnectionPointId": "8503000",
+                    "entryConnectionPointId": "connectionPoint-1",
+                    "exitConnectionPointId": "connectionPoint-2",
                     "regionalValidity": [
                         {
                             "seqNb": 1,
