@@ -820,7 +820,7 @@
 				"binaryZoneId": {
 					"description": "Id to support local traffic standards (e.g. VDV,...)",
 					"type": "string",
-					"format": "base64"
+					"contentEncoding": "base64"
 				},
 				"carrier": {
 					"$ref": "#/definitions/CompanyDef"
