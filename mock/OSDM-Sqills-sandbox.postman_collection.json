@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "a148a2c1-b431-4971-8db1-755c381b9e63",
-		"name": "Sqills - OSDM sandbox",
+		"name": "OSDM - Sqills sandbox",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -57,10 +57,9 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/oauth",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/oauth",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"oauth"
@@ -119,10 +118,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/trips-collection",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/trips-collection",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"trips-collection"
@@ -140,6 +138,17 @@
 								"exec": [
 									"pm.environment.set('departure_timestamp', new Date().addDays(12).format('{yyyy}-{MM}-{dd}T07:00:00Z'));",
 									"pm.environment.set('return_timestamp', new Date().addDays(8).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -167,10 +176,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/trips-collection/{{trip_collection_id}}",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/trips-collection/{{trip_collection_id}}",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"trips-collection",
@@ -234,10 +242,9 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/oauth",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/oauth",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"oauth"
@@ -287,10 +294,9 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{baseurl}}/locations?matchValue=8727100&matchType=CODE_LIST&codeListForMatch=UIC&limit=10&embed[]=NONE",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/locations?matchValue=8727100&matchType=CODE_LIST&codeListForMatch=UIC&limit=10&embed[]=NONE",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"locations"
@@ -333,10 +339,9 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{baseurl}}/locations/{{location_id}}",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/locations/{{location_id}}",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"locations",
@@ -400,10 +405,9 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/oauth",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/oauth",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"oauth"
@@ -452,7 +456,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"flexibilities\": [\n            \"FLEXI\",\n            \"SEMIFLEXI\",\n            \"NONFLEX\"\n        ],\n        \"comfortClasses\": [\n            \"FIRST\",\n            \"SECOND\"\n        ],\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"flexibilities\": [\n            \"FLEXI\",\n            \"SEMIFLEXI\",\n            \"NONFLEX\"\n        ],\n        \"comfortClasses\": [\n            \"FIRST\",\n            \"SECOND\"\n        ],\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -460,10 +464,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/trip-offers-collection",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/trip-offers-collection",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -526,10 +529,9 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/oauth",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/oauth",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"oauth"
@@ -578,7 +580,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -586,10 +588,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/trip-offers-collection",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/trip-offers-collection",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -652,10 +653,9 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/oauth",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/oauth",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"oauth"
@@ -704,7 +704,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -712,10 +712,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/trip-offers-collection",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/trip-offers-collection",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -778,10 +777,9 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/oauth",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/oauth",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"oauth"
@@ -830,7 +828,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"comfortClasses\": [\n            \"FIRST\"\n        ],\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"comfortClasses\": [\n            \"FIRST\"\n        ],\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -838,10 +836,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/trip-offers-collection",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/trip-offers-collection",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -904,10 +901,9 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/oauth",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/oauth",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"oauth"
@@ -956,7 +952,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"comfortClasses\": [\n            \"FIRST\"\n        ],\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"comfortClasses\": [\n            \"FIRST\"\n        ],\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -964,10 +960,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/trip-offers-collection",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/trip-offers-collection",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -1030,10 +1025,9 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/oauth",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/oauth",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"oauth"
@@ -1082,7 +1076,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        },\n        {\n            \"abstract\": \"Jane Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1980-01-01\",\n            \"gender\": \"FEMALE\"\n        },\n        {\n            \"abstract\": \"Mary Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"2000-01-01\",\n            \"gender\": \"FEMALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        },\n        {\n            \"abstract\": \"Jane Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"1980-01-01\",\n            \"gender\": \"FEMALE\"\n        },\n        {\n            \"abstract\": \"Mary Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"2000-01-01\",\n            \"gender\": \"FEMALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1090,10 +1084,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/trip-offers-collection",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/trip-offers-collection",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -1156,10 +1149,9 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/oauth",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/oauth",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"oauth"
@@ -1208,7 +1200,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        },\n        {\n            \"abstract\": \"Jane Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1980-01-01\",\n            \"gender\": \"FEMALE\"\n        },\n        {\n            \"abstract\": \"Mary Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"2015-01-01\",\n            \"gender\": \"FEMALE\"\n        },\n        {\n            \"abstract\": \"Mike Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"2018-01-01\",\n            \"gender\": \"FEMALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ],\n        \"maxChanges\": 0,\n        \"extendedChangeTime\": 0,\n        \"needsPRMAssistance\": false\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        },\n        {\n            \"abstract\": \"Jane Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"1980-01-01\",\n            \"gender\": \"FEMALE\"\n        },\n        {\n            \"abstract\": \"Mary Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"2015-01-01\",\n            \"gender\": \"FEMALE\"\n        },\n        {\n            \"abstract\": \"Mike Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"2018-01-01\",\n            \"gender\": \"FEMALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1216,10 +1208,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/trip-offers-collection",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/trip-offers-collection",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -1282,10 +1273,9 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/oauth",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/oauth",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"oauth"
@@ -1305,6 +1295,18 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -1318,7 +1320,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"travelPeriod\": [\n        \"{{departure_timestamp}}\"\n    ],\n    \"passengers\": [\n        {\n            \"abstract\": \"Roland Klapwijk\",\n            \"reference\": \"abcdef\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"nonTripOfferSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"raw": "{\n    \"travelPeriod\": [\n        \"{{departure_timestamp}}\"\n    ],\n    \"passengers\": [\n        {\n            \"abstract\": \"Roland Klapwijk\",\n            \"externalReference\": \"abcdef\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"nonTripOfferSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1326,10 +1328,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/non-trip-offers-collection",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/non-trip-offers-collection",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"non-trip-offers-collection"
@@ -1392,10 +1393,9 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/oauth",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/oauth",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"oauth"
@@ -1459,7 +1459,7 @@
 									"            passengers.push(`{",
 									"                \"id\": \"` + passenger.id + `\",",
 									"                \"abstract\": \"` + passenger.abstract + `\",",
-									"                \"reference\": \"external_reference\",",
+									"                \"externalReference\": \"external_reference\",",
 									"                \"dateOfBirth\": \"` + passenger.dateOfBirth + `\"",
 									"            }`);",
 									"        });",
@@ -1485,7 +1485,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1493,10 +1493,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/trip-offers-collection",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/trip-offers-collection",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -1521,7 +1520,12 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.environment.set('booking_id', pm.response.json().booking.id);"
+									"pm.environment.set('booking_id', pm.response.json().booking.id);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1546,10 +1550,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/bookings",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/bookings",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"bookings"
@@ -1559,7 +1562,21 @@
 					"response": []
 				},
 				{
-					"name": "Bookings/{id}/fulfillments Copy",
+					"name": "Bookings/{id}/fulfillments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1579,10 +1596,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/bookings/{{booking_id}}/fulfillments",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/fulfillments",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"bookings",
@@ -1647,10 +1663,9 @@
 							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/oauth",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/oauth",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"oauth"
@@ -1714,7 +1729,8 @@
 									"            passengers.push(`{",
 									"                \"id\": \"` + passenger.id + `\",",
 									"                \"abstract\": \"` + passenger.abstract + `\",",
-									"                \"reference\": \"external_reference\",",
+									"                \"externalReference\": \"external_reference\",",
+									"                \"gender\": \"FEMALE\",",
 									"                \"dateOfBirth\": \"` + passenger.dateOfBirth + `\"",
 									"            }`);",
 									"        });",
@@ -1748,10 +1764,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/trip-offers-collection",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/trip-offers-collection",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"trip-offers-collection"
@@ -1813,10 +1828,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/bookings",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/bookings",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"bookings"
@@ -1826,7 +1840,21 @@
 					"response": []
 				},
 				{
-					"name": "Bookings/{id}/passenger/{id} Copy",
+					"name": "Bookings/{id}/passenger/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PATCH",
 						"header": [
@@ -1838,7 +1866,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"{{passenger_id}}\",\n    \"abstract\": \"Doe, Jane\",\n    \"reference\": \"ext_reference_id\",\n    \"dateOfBirth\": \"1980-03-18\",\n    \"gender\": \"FEMALE\",\n    \"details\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"eMail\": \"jane.doe@example.com\",\n        \"phoneNumber\": \"+31123456789\"\n    }\n}",
+							"raw": "{\n    \"id\": \"{{passenger_id}}\",\n    \"abstract\": \"Doe, Jane\",\n    \"externalReference\": \"ext_reference_id\",\n    \"dateOfBirth\": \"1980-03-18\",\n    \"gender\": \"FEMALE\",\n    \"details\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"eMail\": \"jane.doe@example.com\",\n        \"phoneNumber\": \"+31123456789\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1846,10 +1874,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/bookings/{{booking_id}}/passengers/{{passenger_id}}",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/passengers/{{passenger_id}}",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"bookings",
@@ -1862,7 +1889,21 @@
 					"response": []
 				},
 				{
-					"name": "Bookings/{id}/fulfillments Copy",
+					"name": "Bookings/{id}/fulfillments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1882,15 +1923,2442 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{baseurl}}/bookings/{{booking_id}}/fulfillments",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/fulfillments",
 							"host": [
-								"{{baseurl}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"bookings",
 								"{{booking_id}}",
 								"fulfillments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Unsuccessful booking - bad passenger structure",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/oauth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});",
+									"",
+									"// Get the first offer returned",
+									"pm.response.json().tripOffers.some(function(tripOffer) {",
+									"    if (tripOffer.offers.length > 1) {",
+									"        let offer = tripOffer.offers[0];",
+									"        pm.environment.set('selected_offer_id', offer.id);",
+									"",
+									"        // Add the ancillaries",
+									"        let ancillaries = [];",
+									"        offer.ancillaries.some(function(ancillary) {",
+									"",
+									"            let ancillaryPassengers = [];",
+									"            ancillary.commonOfferPartAttributes.passengers.forEach(function(passenger) {",
+									"                ancillaryPassengers.push('\"' + passenger.id + '\"');",
+									"            });",
+									"",
+									"            ancillaries.push(`{",
+									"                \"ancillaryId\": \"` + ancillary.id + `\",",
+									"                \"passengerIds\": [",
+									"                    ` + ancillaryPassengers + `",
+									"                ]",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('selected_ancillaries', ancillaries);",
+									"",
+									"        // Add the passengers",
+									"        let passengers = [];",
+									"        tripOffer.passengers.forEach(function(passenger) {",
+									"            passengers.push(`{",
+									"                \"id\": \"` + passenger.id + `\",",
+									"                \"externalReference\": \"external_reference\",",
+									"                \"gender\": \"invalid\",",
+									"                \"Invalid-dateOfBirth\": \"` + passenger.dateOfBirth + `\"",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('passengers', passengers);",
+									"",
+									"        return;",
+									"    }",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers-collection",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"selectedOffers\": [\n        {\n            \"selectedOfferId\": \"{{selected_offer_id}}\",\n            \"selectedOptionalAncillaries\": [\n                {{selected_ancillaries}}\n            ],\n            \"passengers\": [\n                {{passengers}}\n            ]\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Unsuccessful booking - offer not available anymore",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/oauth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});",
+									"",
+									"// Get the first offer returned",
+									"pm.response.json().tripOffers.some(function(tripOffer) {",
+									"    if (tripOffer.offers.length > 1) {",
+									"        let offer = tripOffer.offers[0];",
+									"",
+									"        // Add the ancillaries",
+									"        let ancillaries = [];",
+									"        offer.ancillaries.some(function(ancillary) {",
+									"",
+									"            let ancillaryPassengers = [];",
+									"            ancillary.commonOfferPartAttributes.passengers.forEach(function(passenger) {",
+									"                ancillaryPassengers.push('\"' + passenger.id + '\"');",
+									"            });",
+									"",
+									"            ancillaries.push(`{",
+									"                \"ancillaryId\": \"` + ancillary.id + `\",",
+									"                \"passengerIds\": [",
+									"                    ` + ancillaryPassengers + `",
+									"                ]",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('selected_ancillaries', ancillaries);",
+									"",
+									"        // Add the passengers",
+									"        let passengers = [];",
+									"        tripOffer.passengers.forEach(function(passenger) {",
+									"            passengers.push(`{",
+									"                \"id\": \"` + passenger.id + `\",",
+									"                \"externalReference\": \"external_reference\",",
+									"                \"gender\": \"X\",",
+									"                \"dateOfBirth\": \"` + passenger.dateOfBirth + `\"",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('passengers', passengers);",
+									"",
+									"        return;",
+									"    }",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers-collection",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"selectedOffers\": [\n        {\n            \"selectedOfferId\": \"O_eyJvaWQiOiJUX09EUXdNREExT0h3NE56STNNVEF3ZkRJd01qRXdOVEUzTURjd01EQXdmSHhQVTBSTmZERTVOekF3TVRBeFFIeEZWVko4ZkU5VFJFMWZNVEV6ZkE9PSIsImJpZCI6IjJNRUR8ODAiLCJiaCI6W3siYiI6Im91dGJvdW5kIiwibyI6Ijg0MDAwNTgiLCJkIjoiODcyNzEwMCIsImR0IjoiMjAyMTA1MTcxOTAwMDAiLCJzbiI6Ik9TRE1fMTEzIiwic2kiOiIwOlJ8T1NETV8xMTN8T1NETV9IU3wyMDIxLTA1LTE3IiwiaSI6W3sidGMiOiJBQkNEIiwicGkiOiJwYXNzZW5nZXJfMSJ9XSwiY3UiOiJFVVIifV19\",\n            \"passengers\": [\n                {{passengers}}\n            ]\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}/fulfillments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/fulfillments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"fulfillments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Unsuccessful booking - offer not available anymore Copy",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/oauth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});",
+									"",
+									"// Get the first offer returned",
+									"pm.response.json().tripOffers.some(function(tripOffer) {",
+									"    if (tripOffer.offers.length > 1) {",
+									"        let offer = tripOffer.offers[0];",
+									"",
+									"        // Add the ancillaries",
+									"        let ancillaries = [];",
+									"        offer.ancillaries.some(function(ancillary) {",
+									"",
+									"            let ancillaryPassengers = [];",
+									"            ancillary.commonOfferPartAttributes.passengers.forEach(function(passenger) {",
+									"                ancillaryPassengers.push('\"' + passenger.id + '\"');",
+									"            });",
+									"",
+									"            ancillaries.push(`{",
+									"                \"ancillaryId\": \"` + ancillary.id + `\",",
+									"                \"passengerIds\": [",
+									"                    ` + ancillaryPassengers + `",
+									"                ]",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('selected_ancillaries', ancillaries);",
+									"",
+									"        // Add the passengers",
+									"        let passengers = [];",
+									"        tripOffer.passengers.forEach(function(passenger) {",
+									"            passengers.push(`{",
+									"                \"id\": \"` + passenger.id + `\",",
+									"                \"externalReference\": \"external_reference\",",
+									"                \"gender\": \"X\",",
+									"                \"dateOfBirth\": \"` + passenger.dateOfBirth + `\"",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('passengers', passengers);",
+									"",
+									"        return;",
+									"    }",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers-collection",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"selectedOffers\": [\n        {\n            \"selectedOfferId\": \"O_eyJvaWQiOiJUX09EUXdNREExT0h3NE56STNNVEF3ZkRJd01qRXdOVEUzTURjd01EQXdmSHhQVTBSTmZERTVOekF3TVRBeFFIeEZWVko4ZkU5VFJFMWZNVEV6ZkE9PSIsImJpZCI6IjJNRUR8ODAiLCJiaCI6W3siYiI6Im91dGJvdW5kIiwibyI6Ijg0MDAwNTgiLCJkIjoiODcyNzEwMCIsImR0IjoiMjAyMTA1MTcxOTAwMDAiLCJzbiI6Ik9TRE1fMTEzIiwic2kiOiIwOlJ8T1NETV8xMTN8T1NETV9IU3wyMDIxLTA1LTE3IiwiaSI6W3sidGMiOiJBQkNEIiwicGkiOiJwYXNzZW5nZXJfMSJ9XSwiY3UiOiJFVVIifV19\",\n            \"passengers\": [\n                {{passengers}}\n            ]\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Retreive existing booking - in full + granular",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/oauth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});",
+									"",
+									"// Get the first offer returned",
+									"pm.response.json().tripOffers.some(function(tripOffer) {",
+									"    if (tripOffer.offers.length > 1) {",
+									"        let offer = tripOffer.offers[0];",
+									"        pm.environment.set('selected_offer_id', offer.id);",
+									"",
+									"        // Add the ancillaries",
+									"        let ancillaries = [];",
+									"        offer.ancillaries.some(function(ancillary) {",
+									"",
+									"            let ancillaryPassengers = [];",
+									"            ancillary.commonOfferPartAttributes.passengers.forEach(function(passenger) {",
+									"                ancillaryPassengers.push('\"' + passenger.id + '\"');",
+									"            });",
+									"",
+									"            ancillaries.push(`{",
+									"                \"ancillaryId\": \"` + ancillary.id + `\",",
+									"                \"passengerIds\": [",
+									"                    ` + ancillaryPassengers + `",
+									"                ]",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('selected_ancillaries', ancillaries);",
+									"",
+									"        // Add the passengers",
+									"        let passengers = [];",
+									"        tripOffer.passengers.forEach(function(passenger) {",
+									"            passengers.push(`{",
+									"                \"id\": \"` + passenger.id + `\",",
+									"                \"abstract\": \"` + passenger.abstract + `\",",
+									"                \"externalReference\": \"external_reference\",",
+									"                \"gender\": \"FEMALE\",",
+									"                \"dateOfBirth\": \"` + passenger.dateOfBirth + `\"",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('passengers', passengers);",
+									"",
+									"        return;",
+									"    }",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers-collection",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Booking is created\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.booking).not.to.be.empty;",
+									"",
+									"    pm.environment.set('booking_id', pm.response.json().booking.id);",
+									"});",
+									"",
+									"pm.environment.set('passenger_id', pm.response.json().booking.passengers[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"selectedOffers\": [\n        {\n            \"selectedOfferId\": \"{{selected_offer_id}}\",\n            \"selectedOptionalAncillaries\": [\n                {{selected_ancillaries}}\n            ],\n            \"passengers\": [\n                {{passengers}}\n            ]\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}/fulfillments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/fulfillments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"fulfillments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}?embed[]=ALL",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}"
+							],
+							"query": [
+								{
+									"key": "embed[]",
+									"value": "NONE",
+									"disabled": true
+								},
+								{
+									"key": "embed[]",
+									"value": "BOOKEDOFFERS",
+									"disabled": true
+								},
+								{
+									"key": "embed[]",
+									"value": "PASSENGERS",
+									"disabled": true
+								},
+								{
+									"key": "embed[]",
+									"value": "BOOKEDOFFERS.OFFERPARTS",
+									"disabled": true
+								},
+								{
+									"key": "embed[]",
+									"value": "ALL"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get passenger details",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/oauth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});",
+									"",
+									"// Get the first offer returned",
+									"pm.response.json().tripOffers.some(function(tripOffer) {",
+									"    if (tripOffer.offers.length > 1) {",
+									"        let offer = tripOffer.offers[0];",
+									"        pm.environment.set('selected_offer_id', offer.id);",
+									"",
+									"        // Add the ancillaries",
+									"        let ancillaries = [];",
+									"        offer.ancillaries.some(function(ancillary) {",
+									"",
+									"            let ancillaryPassengers = [];",
+									"            ancillary.commonOfferPartAttributes.passengers.forEach(function(passenger) {",
+									"                ancillaryPassengers.push('\"' + passenger.id + '\"');",
+									"            });",
+									"",
+									"            ancillaries.push(`{",
+									"                \"ancillaryId\": \"` + ancillary.id + `\",",
+									"                \"passengerIds\": [",
+									"                    ` + ancillaryPassengers + `",
+									"                ]",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('selected_ancillaries', ancillaries);",
+									"",
+									"        // Add the passengers",
+									"        let passengers = [];",
+									"        tripOffer.passengers.forEach(function(passenger) {",
+									"            passengers.push(`{",
+									"                \"id\": \"` + passenger.id + `\",",
+									"                \"abstract\": \"` + passenger.abstract + `\",",
+									"                \"externalReference\": \"external_reference\",",
+									"                \"gender\": \"FEMALE\",",
+									"                \"dateOfBirth\": \"` + passenger.dateOfBirth + `\"",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('passengers', passengers);",
+									"",
+									"        return;",
+									"    }",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers-collection",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Booking is created\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.booking).not.to.be.empty;",
+									"",
+									"    pm.environment.set('booking_id', pm.response.json().booking.id);",
+									"});",
+									"",
+									"pm.environment.set('passenger_id', pm.response.json().booking.passengers[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"selectedOffers\": [\n        {\n            \"selectedOfferId\": \"{{selected_offer_id}}\",\n            \"selectedOptionalAncillaries\": [\n                {{selected_ancillaries}}\n            ],\n            \"passengers\": [\n                {{passengers}}\n            ]\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}/passenger/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/passengers/{{passenger_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"passengers",
+								"{{passenger_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update passengers - valid change",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/oauth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});",
+									"",
+									"// Get the first offer returned",
+									"pm.response.json().tripOffers.some(function(tripOffer) {",
+									"    if (tripOffer.offers.length > 1) {",
+									"        let offer = tripOffer.offers[0];",
+									"        pm.environment.set('selected_offer_id', offer.id);",
+									"",
+									"        // Add the ancillaries",
+									"        let ancillaries = [];",
+									"        offer.ancillaries.some(function(ancillary) {",
+									"",
+									"            let ancillaryPassengers = [];",
+									"            ancillary.commonOfferPartAttributes.passengers.forEach(function(passenger) {",
+									"                ancillaryPassengers.push('\"' + passenger.id + '\"');",
+									"            });",
+									"",
+									"            ancillaries.push(`{",
+									"                \"ancillaryId\": \"` + ancillary.id + `\",",
+									"                \"passengerIds\": [",
+									"                    ` + ancillaryPassengers + `",
+									"                ]",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('selected_ancillaries', ancillaries);",
+									"",
+									"        // Add the passengers",
+									"        let passengers = [];",
+									"        tripOffer.passengers.forEach(function(passenger) {",
+									"            passengers.push(`{",
+									"                \"id\": \"` + passenger.id + `\",",
+									"                \"abstract\": \"` + passenger.abstract + `\",",
+									"                \"externalReference\": \"external_reference\",",
+									"                \"gender\": \"FEMALE\",",
+									"                \"dateOfBirth\": \"` + passenger.dateOfBirth + `\"",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('passengers', passengers);",
+									"",
+									"        return;",
+									"    }",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers-collection",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Booking is created\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.booking).not.to.be.empty;",
+									"",
+									"    pm.environment.set('booking_id', pm.response.json().booking.id);",
+									"});",
+									"",
+									"pm.environment.set('passenger_id', pm.response.json().booking.passengers[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"selectedOffers\": [\n        {\n            \"selectedOfferId\": \"{{selected_offer_id}}\",\n            \"selectedOptionalAncillaries\": [\n                {{selected_ancillaries}}\n            ],\n            \"passengers\": [\n                {{passengers}}\n            ]\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}/passenger/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"{{passenger_id}}\",\n    \"abstract\": \"Doe, Jane\",\n    \"externalReference\": \"ext_reference_id\",\n    \"dateOfBirth\": \"1980-03-18\",\n    \"gender\": \"FEMALE\",\n    \"details\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"eMail\": \"jane.doe@example.com\",\n        \"phoneNumber\": \"+31123456789\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/passengers/{{passenger_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"passengers",
+								"{{passenger_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}/passenger/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/passengers/{{passenger_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"passengers",
+								"{{passenger_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update passengers - invalid update",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/oauth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});",
+									"",
+									"// Get the first offer returned",
+									"pm.response.json().tripOffers.some(function(tripOffer) {",
+									"    if (tripOffer.offers.length > 1) {",
+									"        let offer = tripOffer.offers[0];",
+									"        pm.environment.set('selected_offer_id', offer.id);",
+									"",
+									"        // Add the ancillaries",
+									"        let ancillaries = [];",
+									"        offer.ancillaries.some(function(ancillary) {",
+									"",
+									"            let ancillaryPassengers = [];",
+									"            ancillary.commonOfferPartAttributes.passengers.forEach(function(passenger) {",
+									"                ancillaryPassengers.push('\"' + passenger.id + '\"');",
+									"            });",
+									"",
+									"            ancillaries.push(`{",
+									"                \"ancillaryId\": \"` + ancillary.id + `\",",
+									"                \"passengerIds\": [",
+									"                    ` + ancillaryPassengers + `",
+									"                ]",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('selected_ancillaries', ancillaries);",
+									"",
+									"        // Add the passengers",
+									"        let passengers = [];",
+									"        tripOffer.passengers.forEach(function(passenger) {",
+									"            passengers.push(`{",
+									"                \"id\": \"` + passenger.id + `\",",
+									"                \"abstract\": \"` + passenger.abstract + `\",",
+									"                \"externalReference\": \"external_reference\",",
+									"                \"gender\": \"FEMALE\",",
+									"                \"dateOfBirth\": \"` + passenger.dateOfBirth + `\"",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('passengers', passengers);",
+									"",
+									"        return;",
+									"    }",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers-collection",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Booking is created\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.booking).not.to.be.empty;",
+									"",
+									"    pm.environment.set('booking_id', pm.response.json().booking.id);",
+									"});",
+									"",
+									"pm.environment.set('passenger_id', pm.response.json().booking.passengers[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"selectedOffers\": [\n        {\n            \"selectedOfferId\": \"{{selected_offer_id}}\",\n            \"selectedOptionalAncillaries\": [\n                {{selected_ancillaries}}\n            ],\n            \"passengers\": [\n                {{passengers}}\n            ]\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}/passenger/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"{{passenger_id}}\",\n    \"abstract\": \"Doe, Jane\",\n    \"dateOfBirth\": \"ZZZZ-01-01\",\n    \"gender\": \"MAN\",\n    \"details\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"eMail\": \"jane.doe@invalid@example.com\",\n        \"phoneNumber\": \"+31123456789\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/passengers/{{passenger_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"passengers",
+								"{{passenger_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}/passenger/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/passengers/{{passenger_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"passengers",
+								"{{passenger_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cancel booking",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/oauth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});",
+									"",
+									"// Get the first offer returned",
+									"pm.response.json().tripOffers.some(function(tripOffer) {",
+									"    if (tripOffer.offers.length > 1) {",
+									"        let offer = tripOffer.offers[0];",
+									"        pm.environment.set('selected_offer_id', offer.id);",
+									"",
+									"        // Add the ancillaries",
+									"        let ancillaries = [];",
+									"        offer.ancillaries.some(function(ancillary) {",
+									"",
+									"            let ancillaryPassengers = [];",
+									"            ancillary.commonOfferPartAttributes.passengers.forEach(function(passenger) {",
+									"                ancillaryPassengers.push('\"' + passenger.id + '\"');",
+									"            });",
+									"",
+									"            ancillaries.push(`{",
+									"                \"ancillaryId\": \"` + ancillary.id + `\",",
+									"                \"passengerIds\": [",
+									"                    ` + ancillaryPassengers + `",
+									"                ]",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('selected_ancillaries', ancillaries);",
+									"",
+									"        // Add the passengers",
+									"        let passengers = [];",
+									"        tripOffer.passengers.forEach(function(passenger) {",
+									"            passengers.push(`{",
+									"                \"id\": \"` + passenger.id + `\",",
+									"                \"abstract\": \"` + passenger.abstract + `\",",
+									"                \"externalReference\": \"external_reference\",",
+									"                \"gender\": \"FEMALE\",",
+									"                \"dateOfBirth\": \"` + passenger.dateOfBirth + `\"",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('passengers', passengers);",
+									"",
+									"        return;",
+									"    }",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8400058\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8727100\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"reference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    },\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers-collection",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Booking is created\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.booking).not.to.be.empty;",
+									"",
+									"    pm.environment.set('booking_id', pm.response.json().booking.id);",
+									"});",
+									"",
+									"pm.environment.set('passenger_id', pm.response.json().booking.passengers[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"selectedOffers\": [\n        {\n            \"selectedOfferId\": \"{{selected_offer_id}}\",\n            \"passengers\": [\n                {{passengers}}\n            ]\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}/fulfillments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Fulfillements are confirmed\", function () {",
+									"    let response = pm.response.json();",
+									"",
+									"    pm.expect(response.fulfillments).to.be.not.empty;",
+									"",
+									"    let fulfillments = [];",
+									"    response.fulfillments.forEach(function(fulfillment) {",
+									"        pm.expect(fulfillment.status).to.be.eq('FULFILLED');",
+									"",
+									"        fulfillments.push('\"' + fulfillment.id + '\"');",
+									"    });",
+									"    pm.environment.set('fulfillments', fulfillments);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/fulfillments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"fulfillments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RefundOffers",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('refund_timestamp', new Date().format('{yyyy}-{MM}-{dd}T{hh}:{mm}:{ss}Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has a refundOfferId\", function () {",
+									"    pm.expect(pm.response.json().refundOffersCollection.refundOffers).to.not.be.empty;",
+									"",
+									"    pm.environment.set('refund_id', pm.response.json().refundOffersCollection.refundOffers[0].id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fulfillmentIds\": [\n        {{fulfillments}}\n    ],\n    \"overruleCode\": \"PAYMENT_FAILURE\",\n    \"refundDate\": \"{{refund_timestamp}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/refundOffers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"refundOffers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RefundOffers",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"confirmedRefundOfferId\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/refundOffers/{{refund_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"refundOffers",
+								"{{refund_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}?embed[]=ALL",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}"
+							],
+							"query": [
+								{
+									"key": "embed[]",
+									"value": "NONE",
+									"disabled": true
+								},
+								{
+									"key": "embed[]",
+									"value": "BOOKEDOFFERS",
+									"disabled": true
+								},
+								{
+									"key": "embed[]",
+									"value": "PASSENGERS",
+									"disabled": true
+								},
+								{
+									"key": "embed[]",
+									"value": "BOOKEDOFFERS.OFFERPARTS",
+									"disabled": true
+								},
+								{
+									"key": "embed[]",
+									"value": "ALL"
+								}
 							]
 						}
 					},
