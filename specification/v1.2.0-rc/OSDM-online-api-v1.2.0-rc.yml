@@ -1,16 +1,4 @@
-openapi: 3.0.3
-servers:
-  - description: Localhost on port 8080
-    url: http://localhost:8080
-  - description: OSDM Mock on Mocklab
-    url: http://osdm.mocklab.io
-  - description: OEBB OSDM Simulator
-    url: https://tickets-otest.oebb.at/osdm-sim/api
-info:
-  title: UIC 90918-10 - OSDM
-  version: 1.2.0-rc1
-  description: |
-    Specifications for the OSDM API standard. The OSDM specification supports two
+for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
     both mode, except that in allocator mode the API also returns fare information.
     The OSDM specification combines the allocator and distributor modes into one aligned
@@ -3106,7 +3094,6 @@ components:
         Allows to request offerparts of a certain type. 
         To support H/H use ["RESERVATION", "ANCILLARY"].
         Default is to get search for offers of all types.
-
     NonTripOfferSearchCriteria:
       type: object
       properties:
@@ -5256,6 +5243,10 @@ components:
               type: string
             name:
               type: string
+            stations:
+              type: array
+              items:
+               $ref: '#/components/schemas/StationDetail'
           required:
             - carrier
             - code
