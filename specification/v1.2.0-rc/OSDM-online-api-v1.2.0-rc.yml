@@ -1,4 +1,16 @@
-for the OSDM API standard. The OSDM specification supports two
+penapi: 3.0.3
+servers:
+  - description: Localhost on port 8080
+    url: http://localhost:8080
+  - description: OSDM Mock on Mocklab
+    url: http://osdm.mocklab.io
+  - description: OEBB OSDM Simulator
+    url: https://tickets-otest.oebb.at/osdm-sim/api
+info:
+  title: UIC 90918-10 - OSDM
+  version: 1.2.0-rc1
+  description: |
+    Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
     both mode, except that in allocator mode the API also returns fare information.
     The OSDM specification combines the allocator and distributor modes into one aligned
@@ -4956,6 +4968,8 @@ components:
               required:
                 - latestReturn
                 - earliestReturn
+            trainValidity:
+                 $ref: '#/components/schemas/TrainValidity'                
           required:
             - validityRange
         reservationDetails:
@@ -5243,10 +5257,6 @@ components:
               type: string
             name:
               type: string
-            stations:
-              type: array
-              items:
-               $ref: '#/components/schemas/StationDetail'
           required:
             - carrier
             - code
@@ -5345,6 +5355,41 @@ components:
       required:
         - id
         - stationSets
+        
+    TrainValidity:
+      description: >-
+        validity depending on boarding / leaving of a train. The ticket is valid
+        from departure until the destination station in the train if departure or destination is within the from - until range. The validation can reference the departure or the destination time to decide the validity (e.g. Eurail/Interrail passes currently use the departure for the validity on night trains).
+      type: object
+      properties:
+        from:
+          type: string
+          format: date-time
+        until:
+          type: string
+          format: date-time
+        carrier:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/Company'
+        excludedServiceBrand:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceBrandCode'
+        includedServiceBrand:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceBrandCode'
+        scope:
+          type: string
+          enum:
+            - BOARDING
+            - ARRIVAL
+      required:
+        - from
+        - until
+      additionalProperties: false        
 
     ##### Fare-specific elements end
 
