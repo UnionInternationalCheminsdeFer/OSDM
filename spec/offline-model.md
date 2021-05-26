@@ -106,15 +106,19 @@ Tis covers the definition of reduction cards used in the fares. The name and som
 
 ### Connection points
 
-Connection points define the options to connect one fare with another fare a a point. In case the connectin point is a real station the connection point is defined by a set including just that station. In case the fares are connected inbetween two stations the connection point includes two sets each including the station on one side. There ight be cases where a connection is possible between more than two stations, in this rare case the set(s) might contain more than one station (e.g. Stations A and B for carrier 1 are connected to stations C and D of carrier 2 and 
+Connection points define the options to connect one fare with another fare a a point. In case the connectin point is a real station the connection point is defined by a set including just that station. In case the fares are connected inbetween two stations the connection point includes two sets each including the station on one side. There ight be cases where a connection is possible between more than two stations, in this rare case the set(s) might contain more than one station (e.g. Stations A and B for carrier 1 are connected to stations C and D of carrier 2 and allowed route go via A-C or B-D).
 
 ![Fare Structure](../images/fare-data-structure/connectionPoint.png)
 
 ### fare reference station set
 
+Fare reference station set defines a set of stations that can be used in a route. All station(s) of the set can be used by the traveler.
+
 ![Fare Structure](../images/fare-data-structure/referenceStationSet.png)
 
 ### Price
+
+The price of a fare of the refund fee on an aftersale. VAT details can be provided for the price. Default currency is EUR, but other currencies might be used based on bilateral agreements.
 
 ![Fare Structure](../images/fare-data-structure/price.png)
 
@@ -123,9 +127,13 @@ Connection points define the options to connect one fare with another fare a a p
 
 ### fare after sales constraint
 
+Definition of the after sales conditions to be applied. Depending on the farre combination mode the after sales constraint can be omitted in case the allocator is responsible for the after sales fees.
+
 ![Fare Structure](../images/fare-data-structure/fare-afterSalesCondition.png)
 
 ### fare carrier constraint
+
+The carrier constraint defines the carriers that can be used. Eigther a list of the allowed carriers can be provided or a list on excluded cariiers , IN the case of excluded carriers all carriers not listed can be used.
 
 ![Fare Structure](../images/fare-data-structure/fare-carrierConstraint.png)
 
@@ -153,23 +161,35 @@ Definition of the personal data required e.g. in a bar code of via online ticket
 
 ### fare regional constraint
 
+The regional constraint defines the options to combine the fare at the start and end point via connection points.
+
 ![Fare Structure](../images/fare-data-structure/regionalConstraint.png)
+
+The regional validity defnes the geographical validity of the fare. It is defined as an odereed list along the route. Options to define a part of the route include Zones (regional areas), Lines, route descriptions (viaStations) that can define sequences of stations, alternative routes and fare reference sets. Areas can also be defined by geo-coordinates.
 
 ![Fare Structure](../images/fare-data-structure/regionalValidity.png)
 
 ### fare sales availability constraint
 
+The sales availability defines the time range during whic the fare can be sold.
+
 ![Fare Structure](../images/fare-data-structure/salesAvailability.png)
 
 ### fare service constraint
+
+The service constraint defines restrictions to specific service brands. Eigther a list of service brands of a list of excluded service brands can be provided.
 
 ![Fare Structure](../images/fare-data-structure/serviceConstraint.png)
 
 ### fare travel validity constraint
 
+The travel validity defines the duration the traveler has to make his travel. Optioanlly time slots (e.g. peak hours) can be excluded.
+
 ![Fare Structure](../images/fare-data-structure/travelValidity.png)
  
 ## Data supporting online services
+
+Additional data to support the online sales services can be exchanged. 
 
 ### fare resource locations
 
