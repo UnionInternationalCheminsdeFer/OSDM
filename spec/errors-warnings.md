@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Errors and Warnings (Draft)
+title: Errors and Warnings
 hide_hero: true
 permalink: /spec/errors-warnings/
 ---
