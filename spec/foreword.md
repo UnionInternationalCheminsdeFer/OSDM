@@ -49,6 +49,9 @@ Structure of the International Railway Solution:
 
 - **IRS 90918-10: Open Sales and Distribution Model OSDM**
 
+Within the UIC context this IRS relates to sales and distribution of tickets for services in Europe and those linked with Europe.
+
+
 **GENERAL PART**
 
 # Foreword
