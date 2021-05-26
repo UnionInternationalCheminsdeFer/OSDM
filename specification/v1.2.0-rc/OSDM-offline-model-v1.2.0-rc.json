@@ -1105,13 +1105,13 @@
 				"includedCarrier": {
 					"type": "array",
 					"items": {
-						"type": "string"
+						"$ref": "#/definitions/CompanyDef"
 					}
 				},
 				"excludedCarrier": {
 					"type": "array",
 					"items": {
-						"type": "string"
+						"$ref": "#/definitions/CompanyDef"
 					}
 				}
 			},
