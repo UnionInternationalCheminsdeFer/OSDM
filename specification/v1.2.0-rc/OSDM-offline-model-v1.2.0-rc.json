@@ -614,9 +614,6 @@
 					"description": "Reference to a price data item defining the fee; optional in case there is no fee but the  after sales transaction is allowed. Online services include fee directly in the fee tag.",
 					"type": "string"
 				},
-				"fee": {
-					"$ref": "#/definitions/PriceDef"
-				},
 				"applicationTime": {
 					"$ref": "#/definitions/RelativeTimeDef"
 				},
