@@ -55,7 +55,7 @@ Queue authentication and encryption must use TLS version 1.2.
 
 ## Asynchronous Fare Data Delivery
 
-The fare structure delivery is the bulk data object collecting the fare data `fareStructure` of a delivery and the delivery meta data `delivery`.
+The fare structure delivery is the bulk data object collecting the fare data `fareStructure` of a delivery and the delivery meta data `delivery`. 
 
 
 ![Data Structure for Bulk Data](../images/fare-data-structure/data-structure-for-bulk-data.png)
@@ -81,22 +81,32 @@ included only once and are references within the data via their id.
 
 ### Calendar
 
+A data structure to define a calendar e.g. used in sales availability. 
+
 ![Fare Structure](../images/fare-data-structure/calendar.png)
 
 
 ### Text
 
+All texts provided wit the data use the text data structure providing short and long texts and translations in different languages. To support legacy implementations and the converstion to the 108.1 specification additional textxs without special characters can be defined. 
+
 ![Fare Structure](../images/fare-data-structure/text.png)
 
 ### Station names
+
+Station names have been included within the data exchange to support names including special characters and names of different length. If in the furture the station data exchange of MERITS is capable of providing these names they can be removed here. The station codes used must be codes as defined in MERITS / TAP-TSI. 
 
 ![Fare Structure](../images/fare-data-structure/stationNames.png)
 
 ### Reduction cards
 
+Tis covers the definition of reduction cards used in the fares. The name and some basic informations of the cards can be defined. The reduction itself (percentage) is not included as the fare price already provides the reduced price. Some provider specific cards are accepted by other carriers as a generic card. This can be expressed via the included cards feature. E.g. MyCard could be accepted as RailPlus card by others, so MyCard includes RailPlus.
+
 ![Fare Structure](../images/fare-data-structure/reductionCards.png)
 
 ### Connection points
+
+Connection points define the options to connect one fare with another fare a a point. In case the connectin point is a real station the connection point is defined by a set including just that station. In case the fares are connected inbetween two stations the connection point includes two sets each including the station on one side. There ight be cases where a connection is possible between more than two stations, in this rare case the set(s) might contain more than one station (e.g. Stations A and B for carrier 1 are connected to stations C and D of carrier 2 and 
 
 ![Fare Structure](../images/fare-data-structure/connectionPoint.png)
 
