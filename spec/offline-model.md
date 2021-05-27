@@ -167,7 +167,7 @@ The regional constraint defines the options to combine the fare at the start and
 
 Data model regional constraints:
 
-![Fare Structure](../images/fare-data-structure/OSDM model regional constraint.png)
+![Fare Structure](../images/fare-data-structure/OSDMmodelregionalconstraint.png)
 
 
 The regional validity defnes the geographical validity of the fare. It is defined as an odereed list along the route. Options to define a part of the route include Zones (regional areas), Lines, route descriptions (viaStations) that can define sequences of stations, alternative routes and fare reference sets. Areas can also be defined by geo-coordinates.
@@ -184,7 +184,7 @@ route example:
 
 Object model:
 
-![Fare Structure](../images/fare-data-structure/OSDM model viaStation object model.png)
+![Fare Structure](../images/fare-data-structure/OSDMmodelviaStationobjectmodel.png)
 
 
 ### fare sales availability constraint
