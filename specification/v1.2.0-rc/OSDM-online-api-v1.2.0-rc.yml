@@ -1,4 +1,4 @@
-penapi: 3.0.3
+openapi: 3.0.3
 servers:
   - description: Localhost on port 8080
     url: http://localhost:8080
