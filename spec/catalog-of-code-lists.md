@@ -447,8 +447,8 @@ The following code lists defines the commonly used cards which are not provided 
 |`UIC_RIT_1_2`| * | RIT reduction for RIT 1  members Second Class|REDUCTION_CARD||
 |`UIC_RIT_2_2`| * | RIT reduction for RIT 2 members Second Class|REDUCTION_CARD||
 |`UIC_RIT_3_2`| * | RIT reduction for RIT 3 members Second Class|REDUCTION_CARD||
-|`UIC_EU_DISABLED_CARD`| * | EU Disabled Card||
-|`UIC_INT_DISABLED_CARD`| * | International Disabled Card|REDUCTION_CARD|UIC_EU_DISABLED_CARD|
+|`UIC_EU_DISABILITY_CARD`| * | EU Disabled Card||
+|`UIC_INT_DISABILITY_CARD`| * | International Disabled Card|REDUCTION_CARD|UIC_EU_DISABILITY_CARD|
 
 
 Other cards should start with the RICS code of the issuer.
