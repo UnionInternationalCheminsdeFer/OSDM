@@ -626,17 +626,6 @@ in case it is defined for a station.
 <!-- Figure 38 structure Station detail data -->
 ![Station Detail](../images/common-data-structures/station-detail.png)
 
-### StationNames
-
-Station names provides multi language names in short and long form as currently no
-other data source can provide these names. Short names are used within the route
-descriptions whereas the long for is used for entry and exit stations.
-
-A legacy border point code can be provided during the migration to the OSDM data model.
-
-<!-- Figure 39 structure Station detail data (offline only) -->
-![Station Names](../images/common-data-structures/station-names.png)
-
 ### Text
 
 Used for all textual descriptions where translations might be needed.
@@ -647,28 +636,6 @@ Used for all textual descriptions where translations might be needed.
 <!-- Figure 41 structure Translation Data Structure -->
 ![Translation](../images/common-data-structures/translation.png)
 
-### SalesAvailability
-
-Sales availability defines the constraints on the time when a sale of a fare can
-start or end. The sales availability is used in the offline data exchange only. A
-constraint is provides as a list of `salesRestrictions` that have to be applied.
-
-Sales restrictions can define a start and end of the sale relative to the date of
-sale or the date of travel.
-
-A reference to a calendar can be provided to indicate all sales dates.
-
-<!-- Figure 42 structure Sales Availability -->
-![Sales Availability](../images/common-data-structures/sales-availability.png)
-
-<!-- Figure 43 structure Sales Availability -->
-![Sales Availability](../images/common-data-structures/sales-availability-calendar.png)
-
-#### Data Constraint on SalesAvailability
-
-| Code | Description |
-|---|---|
-| `startOfSale`, `endOfSale` | `startOfSale` < `endOfSale`|
 
 ### ServiceClass
 
