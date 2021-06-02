@@ -189,7 +189,11 @@ Object model:
 
 ### fare sales availability constraint
 
-The sales availability defines the time range during whic the fare can be sold.
+Sales availability defines the constraints on the time when a sale of a fare can start or end. The sales availability is used in the offline data exchange only. A constraint is provides as a list of salesRestrictions that have to be applied.
+
+Sales restrictions can define a start and end of the sale relative to the date of sale or the date of travel.
+
+A reference to a calendar can be provided to indicate all sales dates.
 
 ![Fare Structure](../images/fare-data-structure/salesAvailability.png)
 
