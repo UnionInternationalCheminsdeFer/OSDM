@@ -73,14 +73,12 @@ admissions, reservations or ancillaries. Reservations or ancillaries can
 be included, optional or mandatory.
 
 The overall offer should be “homogenous”, i.e. consisting of offers of
-the same service class. For the Italian market, non-homogenous offers
-need to be supported.
+the same service class if possible. For the Italian market, non-homogenous offers
+need to be supported. Some trains of the trip might not support all service classes.
 
-**Scope**: Only trip-based offer search is defined in this version of
-the specification.
+Searching for non-trip based offers is supported by a dedicated service. Search criteria can 
+be tags, regions, geo-coordiantes.
 
-**Scope:** The offer must span the complete trip in this version of the
-specification.
 
 ### Pre-book Offers
 
@@ -104,8 +102,8 @@ eligible to travel. Therefore, a service to fulfill a booking in given
 form, e.g. a ticket is needed. Internally, the state of the booking is
 changed to “fulfilled”.
 
-**Scope**: Only support for UIC PDF is mandatory in this version of the
-specification.
+Multiple formats and media are supported including pdf, pkpass. Parts to be included 
+in a fulfillment (visual security elements, separate bar code) can be used as well in case of fares.
 
 ### Get Booking
 
@@ -155,7 +153,8 @@ GDPR regulation.
 ### Retrieve Product Information
 
 A service to access the attributes of a product such as detailed sales
-and after-sales is optional. Product informatio n is part of the offer or booking and is included there by default.
+and after-sales is optional. Product informatio n is part of the offer or 
+booking and is included there by default.
 
 ### Retrieve Stored Personal Data
 
