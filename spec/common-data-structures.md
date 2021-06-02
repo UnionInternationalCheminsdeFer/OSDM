@@ -198,8 +198,8 @@ An elementary fare to create an offer linking all constraints to one price.
 | `travelValidityConstraint` | Rules on the validity for travel of this fare.
 | `legacyConversion` | Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules (`YES`, `NO`, `ONLY` (this fare is provided for conversion only)).
 
-<!-- Figure 9 Fare element data structure (offline) -->
-![Fare (Offline)](../images/common-data-structures/fare-offline.png)
+<!-- Figure 9 Fare element data structure (online) -->
+![Fare (Online)](../images/common-data-structures/fare-online.png)
 
 #### Data Constraints on Fare
 
