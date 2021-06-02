@@ -112,20 +112,20 @@ A Calendar defines a list of days between two dates. If the dates are not provid
 
 ### CarrierConstraint
 
-The carrier constraint can be referenced by a fare via the id.
-
 Carrier constraint limits an open fare - not linked to a train - to some carriers. The carriers can
-be specified either as exclusion list or alternatively as inclusion list.
+be specified either as exclusion list or alternatively as inclusion list. In case of admissions (train linked or non-train linked) 
+the included carriers specify the responsible carriers to be listed for the customer on an fulfillment.
 
 Carriers are specified by their Company code (RICS code).
+
+<!-- Figure 5 carrier constraint data structure (offline) -->
+![Carrier Constraint Type](../images/common-data-structures/carrier-constraint-type.png)
 
 The included / excluded carriers are also part of the FCB barcode (*IRS 90918-4*) content and the ticket
 control data (*IRS 90918-9*).
 
 The offline data structure includes an additional id to reference the constraint within a fare data delivery.
 
-<!-- Figure 5 carrier constraint data structure (offline) -->
-![Carrier Constraint Type](../images/common-data-structures/carrier-constraint-type.png)
 
 #### Data Constraints on CarrierConstraint
 
