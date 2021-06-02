@@ -96,6 +96,12 @@ All texts provided wit the data use the text data structure providing short and 
 
 Station names have been included within the data exchange to support names including special characters and names of different length. If in the furture the station data exchange of MERITS is capable of providing these names they can be removed here. The station codes used must be codes as defined in MERITS / TAP-TSI. 
 
+Station names provides multi language names in short and long form as currently no
+other data source can provide these names. Short names are used within the route
+descriptions whereas the long for is used for entry and exit stations.
+
+A legacy border point code can be provided during the migration to the OSDM data model.
+
 ![Fare Structure](../images/fare-data-structure/stationNames.png)
 
 ### Reduction cards
@@ -209,11 +215,25 @@ The service constraint defines restrictions to specific service brands. Eigther 
 
 ![Fare Structure](../images/fare-data-structure/serviceConstraint.png)
 
+#### Data Constraint on ServiceConstraint
+
+| Code | Description |
+|---|---|
+| `includedServiceBrands`, `excludedServiceBrands`| Only one of the lists can be used. Using both lists is forbidden. |
+
 ### fare travel validity constraint
 
 The travel validity defines the duration the traveler has to make his travel. Optioanlly time slots (e.g. peak hours) can be excluded.
 
 ![Fare Structure](../images/fare-data-structure/travelValidity.png)
+
+#### Data Constraint on TravelValidity
+
+| Code | Description |
+|---|---|
+| `excludedTimeRange` | `from` time < `until` time
+| `numberOfTravelDays` | A duration must be provided
+| `returnConstraint` | `earliestReturn` < `latestReturn`
  
 ## Data supporting online services
 
