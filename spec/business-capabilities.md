@@ -330,6 +330,7 @@ GDPR regulation.
 
 ### Retrieve stored personal data
 
-A customer can request information on the stored personal data. This
-includes also information on personal data passed on to fare providers /
-carriers. The booking data can be used to show the stored personal data.
+There is no specific service to retrieve stored personal data. The booking can be retrieved 
+to get the passenger references and then the passengers can be retireved. 
+This will provide all stored personal data.
+
