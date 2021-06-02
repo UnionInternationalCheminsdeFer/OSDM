@@ -450,7 +450,7 @@ Line defines the regional validity on a specific line. It might have additional 
 Passenger constraint defines restrictions of a fare concerning passengers. In online services the structure is reduced to constraints that need to be passed on for control to bar codes and control registries.
 
 <!-- Figure 20 PassengerConstraint data structure online -->
-![Passenger Constraint](../images/common-data-structures/passengerConstraint.png)
+![Passenger Constraint](../images/common-data-structures/passenger-constraint.png)
 
 #### Data Constraints on PassengerConstraint
 
