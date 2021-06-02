@@ -197,6 +197,12 @@ A reference to a calendar can be provided to indicate all sales dates.
 
 ![Fare Structure](../images/fare-data-structure/salesAvailability.png)
 
+#### Data Constraint on SalesAvailability
+
+| Code | Description |
+|---|---|
+| `startOfSale`, `endOfSale` | `startOfSale` < `endOfSale`|
+
 ### fare service constraint
 
 The service constraint defines restrictions to specific service brands. Eigther a list of service brands of a list of excluded service brands can be provided.
