@@ -141,6 +141,19 @@ Definition of the after sales conditions to be applied. Depending on the farre c
 
 The carrier constraint defines the carriers that can be used. Eigther a list of the allowed carriers can be provided or a list on excluded cariiers , IN the case of excluded carriers all carriers not listed can be used.
 
+The carrier constraint can be referenced by a fare via the id.
+
+Carrier constraint limits an open fare - not linked to a train - to some carriers. The carriers can
+be specified either as exclusion list or alternatively as inclusion list. 
+
+Carriers are specified by their Company code (RICS code).
+
+<!-- Figure 5 carrier constraint data structure (offline) -->
+![Carrier Constraint Type](../images/common-data-structures/carrier-constraint-type.png)
+
+The included / excluded carriers are also part of the FCB barcode (*IRS 90918-4*) content and the ticket
+control data (*IRS 90918-9*).
+
 ![Fare Structure](../images/fare-data-structure/fare-carrierConstraint.png)
 
 ### fare combination constraint
