@@ -161,7 +161,7 @@ As on both sides of a connection multiple small stations could be connected and 
 The online data structure does not include the id and the legacy code.
 
 <!-- Figure 8 ConnectionPoint data structure offline -->
-![Fare Connection Point](../images/common-data-structures/fare-connection-point.png)
+![Fare Connection Point](../images/common-data-structure/fare-connection-point.png)
 
 #### Data Constraints on ConnectionPoint
 
