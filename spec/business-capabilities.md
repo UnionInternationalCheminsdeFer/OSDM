@@ -155,7 +155,7 @@ GDPR regulation.
 ### Retrieve Product Information
 
 A service to access the attributes of a product such as detailed sales
-and after-sales is needed.
+and after-sales is optional. Product informatio n is part of the offer or booking and is included there by default.
 
 ### Retrieve Stored Personal Data
 
