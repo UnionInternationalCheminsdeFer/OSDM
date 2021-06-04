@@ -1261,8 +1261,7 @@
 			},
 			"required": [
 				"language",
-				"textUtf8",
-				"text"
+				"textUtf8"
 			],
 			"additionalProperties": false
 		},
