@@ -288,7 +288,7 @@
 					"type": "integer",
 					"format": "int32",
 					"minimum": 0,
-					"maximum": 9999
+					"maximum": 99999
 				}
 			},
 			"additionalProperties": false
