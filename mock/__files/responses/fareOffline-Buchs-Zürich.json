@@ -143,7 +143,6 @@
                         {
                             "currency": "EUR",
                             "amount": 3140,
-                            "scale": 2,
                             "vatDetails": []
                         }
                     ]
@@ -154,7 +153,6 @@
                         {
                             "currency": "EUR",
                             "amount": 6280,
-                            "scale": 2,
                             "vatDetails": []
                         }
                     ]
