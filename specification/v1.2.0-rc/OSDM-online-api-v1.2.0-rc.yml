@@ -705,7 +705,7 @@ paths:
     get:
       tags:
         - Offers
-      summary: Returns an offer fpr the id requested.
+      summary: Returns an offer for the id requested.
       operationId: getOffersId
       parameters:
         - $ref: "#/components/parameters/accessToken"
@@ -743,7 +743,11 @@ paths:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
                   offer:
-                    $ref: '#/components/schemas/Offer'
+                    description: >-
+                      Either an Offer or a NonTripOffer is returned.
+                    oneOf:
+                      - $ref: '#/components/schemas/Offer'
+                      - $ref: '#/components/schemas/NonTripOffer'
           headers:
             Content-Language:
               schema:
@@ -792,8 +796,20 @@ paths:
                 properties:
                   warnings:
                     $ref: '#/components/schemas/WarningMessageList'
-                  nonTripOfferCollection:
-                    $ref: '#/components/schemas/NonTripOfferCollection'
+                  id:
+                    type: string
+                    format: uuid
+                  nonTripOffers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NonTripOffer'
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+                required:
+                  - id
+                  - nonTripOffers
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -4429,12 +4445,7 @@ components:
               - NONE
               - ALL
           default: [ALL]
-              
-    NonTripOfferCollection:
-      type: array
-      items:
-        $ref: '#/components/schemas/NonTripOffer'
-    
+                 
     NonTripOffer:
       type: object
       description: >-
