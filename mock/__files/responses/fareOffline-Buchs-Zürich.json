@@ -454,7 +454,7 @@
                     "serviceClassRef": "serviceClass-1",
                     "passengerConstraintRef": "passengerConstraint-1",
                     "legacyAccountingIdentifier": {
-                        "serialId": 1,
+                        "serialId": 3913,
                         "addId": 1,
                         "tariffId": 0
                     }
@@ -473,7 +473,7 @@
                     "serviceClassRef": "serviceClass-2",
                     "passengerConstraintRef": "passengerConstraint-1",
                     "legacyAccountingIdentifier": {
-                        "serialId": 1,
+                        "serialId": 3913,
                         "addId": 1,
                         "tariffId": 0
                     }
@@ -492,7 +492,7 @@
                     "serviceClassRef": "serviceClass-1",
                     "passengerConstraintRef": "passengerConstraint-2",
                     "legacyAccountingIdentifier": {
-                        "serialId": 1,
+                        "serialId": 3913,
                         "addId": 1,
                         "tariffId": 0
                     }
@@ -511,7 +511,7 @@
                     "serviceClassRef": "serviceClass-2",
                     "passengerConstraintRef": "passengerConstraint-2",
                     "legacyAccountingIdentifier": {
-                        "serialId": 1,
+                        "serialId": 3913,
                         "addId": 1,
                         "tariffId": 0
                     }
