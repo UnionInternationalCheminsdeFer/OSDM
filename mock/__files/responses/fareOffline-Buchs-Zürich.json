@@ -652,7 +652,37 @@
                 {
                     "id": "reductionCard-5",
                     "issuer": "1185",
+                    "nameRef": "text-13",
+                    "serviceClasses": [
+                        "HIGH",
+                        "BASIC"
+                    ],
+                    "cardIdRequired": false
+                },
+                {
+                    "id": "reductionCard-6",
+                    "issuer": "1185",
+                    "nameRef": "text-14",
+                    "serviceClasses": [
+                        "HIGH",
+                        "BASIC"
+                    ],
+                    "cardIdRequired": false
+                },
+                {
+                    "id": "reductionCard-7",
+                    "issuer": "1185",
                     "nameRef": "text-6",
+                    "serviceClasses": [
+                        "HIGH",
+                        "BASIC"
+                    ],
+                    "cardIdRequired": false
+                },
+                {
+                    "id": "reductionCard-8",
+                    "issuer": "1185",
+                    "nameRef": "text-5",
                     "serviceClasses": [
                         "HIGH",
                         "BASIC"
