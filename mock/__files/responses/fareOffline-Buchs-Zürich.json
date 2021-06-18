@@ -18,12 +18,12 @@
             ],
             "serviceClassDefinitions": [
                 {
-                    "id": "serviceClass-1",
+                    "id": "HIGH",
                     "textRef": "text-20",
                     "comfortClass": "FIRST"
                 },
                 {
-                    "id": "serviceClass-1",
+                    "id": "BASIC",
                     "textRef": "text-21",
                     "comfortClass": "SECOND"
                 }
@@ -451,7 +451,7 @@
                     "regulatoryConditions": [
                         "CIV"
                     ],
-                    "serviceClassRef": "serviceClass-1",
+                    "serviceClassRef": "HIGH",
                     "passengerConstraintRef": "passengerConstraint-1",
                     "legacyAccountingIdentifier": {
                         "serialId": 3913,
@@ -470,7 +470,7 @@
                     "regulatoryConditions": [
                         "CIV"
                     ],
-                    "serviceClassRef": "serviceClass-2",
+                    "serviceClassRef": "BASIC",
                     "passengerConstraintRef": "passengerConstraint-1",
                     "legacyAccountingIdentifier": {
                         "serialId": 3913,
@@ -489,7 +489,7 @@
                     "regulatoryConditions": [
                         "CIV"
                     ],
-                    "serviceClassRef": "serviceClass-1",
+                    "serviceClassRef": "HIGH",
                     "passengerConstraintRef": "passengerConstraint-2",
                     "legacyAccountingIdentifier": {
                         "serialId": 3913,
@@ -508,7 +508,7 @@
                     "regulatoryConditions": [
                         "CIV"
                     ],
-                    "serviceClassRef": "serviceClass-2",
+                    "serviceClassRef": "BASIC",
                     "passengerConstraintRef": "passengerConstraint-2",
                     "legacyAccountingIdentifier": {
                         "serialId": 3913,
