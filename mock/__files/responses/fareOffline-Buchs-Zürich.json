@@ -18,12 +18,12 @@
             ],
             "serviceClassDefinitions": [
                 {
-                    "id": "HIGH",
+                    "id": "serviceClass-1",
                     "textRef": "text-20",
                     "comfortClass": "FIRST"
                 },
                 {
-                    "id": "BASIC",
+                    "id": "serviceClass-1",
                     "textRef": "text-21",
                     "comfortClass": "SECOND"
                 }
