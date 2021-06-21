@@ -8,8 +8,9 @@
 # done
  
 pandoc -s \
--o OSDM-specification-V1.1.0-rc.docx \
+-o OSDM-specification-V1.2.0-rc.docx \
 foreword.md \
+whats-new-in-version-V1.2.0 \
 requirements.md \
 business-capabilities.md \
 common-data-structures.md \

@@ -14,8 +14,10 @@ All members of the International Union of Railways
 
 ### Record of Updates
 
-- **2020 March** Version 1.0 Fares only
-- **2020 December** Version 1.0 OSDM
+- **2020 March** Version 1.0 Fares only released
+- **2020 December** Version 1.0 OSDM released
+- **2021 February** Version 1.1 OSDM released
+- **2021 June** Version 1.2 OSDM released
 
 ### Licencing
 

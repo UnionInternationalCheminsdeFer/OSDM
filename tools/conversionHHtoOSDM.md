@@ -18,24 +18,33 @@ The initial analysis has focused on proving the feasibility of the approach.
 
 ### Conversion Hermes Hosa to OSDM
 
-  This conversion is simple as can be seen in the following table
+This conversion is simple as can be seen in the following table
 
-  | Use Case | Hermes Hosa | OSDM     |
-  |----------|-------------|----------|
-  | get reservations offers | `BookingRequest` with `informationOnly=true` | `GET /trip-offers(searchCriteria)` |
-  | book offer              | `BookingRequest` | `POST /bookings` followed by `POST /booking/{bookingId}/fulfillments` |
-  | cancel booking          | `CancelRequest` with `reason code` | `POST /bookings/{booking}/refundOffers` |
-  | refund booking          | `CancelRequest`  | `POST /bookings/{booking}/refundOffers` |
-  | (exchange booking)      | *out of scope of MVP* | *out of scope of MVP*  |
+| Use Case | Hermes Hosa | OSDM     |
+|----------|-------------|----------|
+| get reservations offers | `BookingRequest` with `informationOnly=true` | `GET /trip-offers(searchCriteria)` |
+| book offer              | `BookingRequest` | `POST /bookings` followed by `POST /booking/{bookingId}/fulfillments` |
+| cancel booking          | `CancelRequest` with `reason code` | `POST /bookings/{booking}/refundOffers` |
+| refund booking          | `CancelRequest`  | `POST /bookings/{booking}/refundOffers` |
+| (exchange booking)      | *out of scope of MVP* | *out of scope of MVP*  |
 
-  SBB has the business need to support this conversion process and is working with
-  [Hitrail](https://www.hitrail.com/) to build such a converter.
+SBB has the business need to support this conversion process and is working with
+[Hitrail](https://www.hitrail.com/) to build such a converter.
+
+### Technical Uses Case
+
+*Use Case*: Replacement Proposal for trains in exterior inventories.
+
+Solution sketch: If OSDM is asked for a `TripOffer` where the train it returns an error
+message containing the inventory. The H2O converter then transform this to a 
+`ReplacementProposal`.
 
 ### Conversion OSDM to Hermes Hosa
 
-  This conversion is more complex, especially mapping the `/trips-offers/` calls to
-  `BookingRequest` efficiently. If some restrictions on possible reservations are
-  taken however the converter can be realized.
-  
-  The conceptual work for the conversion is ongoing. In parallel, the business need
-  for this form of conversion is being evaluated.
+This conversion is more complex, especially mapping the `/trips-offers/` calls to
+`BookingRequest` efficiently. If some restrictions on possible reservations are
+taken however the converter can be realized.
+
+A detailed specification will conceptual work for the conversion is ongoing.
+
+In parallel, the business need for this form of conversion is being evaluated.
