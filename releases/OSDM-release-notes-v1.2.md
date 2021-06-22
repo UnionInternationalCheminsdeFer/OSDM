@@ -2,7 +2,7 @@
 layout: page
 title: OSDM Release Version 1.2
 hide_hero: true
-permalink: /releases/release-notes-v1.2
+permalink: /releases/OSDM-release-notes-v1.2/
 ---
 
 ## What's New In OSDM Version 1.2
