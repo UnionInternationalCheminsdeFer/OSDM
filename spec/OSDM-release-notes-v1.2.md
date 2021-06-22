@@ -1,7 +1,7 @@
 ---
 layout: page
 title: OSDM Release Version 1.2
-hide_hero: true
+hide_hero: false
 permalink: /releases/OSDM-release-notes-v1.2/
 ---
 
