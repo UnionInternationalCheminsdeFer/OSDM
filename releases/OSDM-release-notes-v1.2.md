@@ -1,7 +1,7 @@
 ---
 layout: page
 title: OSDM Release Version 1.2
-hide_hero: true
+hide_hero: false
 permalink: /releases/OSDM-release-notes-v1.2/
 ---
 
@@ -51,7 +51,7 @@ The following features have been added with version 1.2 of OSDM.
   informs the *UIC's PRM ABT* about the travel wish such that he or she can be contacted by the
   experts. The impacts on OSDM are:
 
-  - If we have a PRM travelling from to *A* to **B* (via **C*) a system implementing OSDM
+  - If we have a PRM travelling from to *A* to *B* (via *C*) a system implementing OSDM
     must inform the UIC's PRM ABT tool about the assistance needs a these stops.
 
     Impact on specification: The `PRMNeedType` `NEED_PRM_SUPPORT` allows to indicate the need to
