@@ -2,7 +2,7 @@
 layout: page
 title: OSDM Release Version 1.2
 hide_hero: true
-permalink: /release-notes/OSDM-release-V1.2
+permalink: /releases/release-notes-v1.2
 ---
 
 ## What's New In OSDM Version 1.2
@@ -54,7 +54,7 @@ The following features have been added with version 1.2 of OSDM.
   - If we have a PRM travelling from to *A* to **B* (via **C*) a system implementing OSDM
     must inform the UIC's PRM ABT tool about the assistance needs a these stops.
 
-    Impact on specification: The PRMNeedType `NEED_PRM_SUPPORT` allows to indicate the need to
+    Impact on specification: The `PRMNeedType` `NEED_PRM_SUPPORT` allows to indicate the need to
     ask for support at a station. In this case the allocator needs to inform the UIC ABT Tool
     to contact the passenger. The allocator thus needs to transfer the passenger's contact
     address (mail or phone) and the booking id.
