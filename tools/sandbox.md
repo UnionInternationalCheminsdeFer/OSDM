@@ -18,11 +18,11 @@ Currently the **OSDM sandbox** supports the following virtual routes and service
 
 - First Route:  *Amsterdam* - *Paris*
 
-  The service simulated is a high speed IRT train where the products *admission with included reservation* as well as two *luggage* and *bike* ancillary services are available.
+  The service simulated is a high speed IRT train where the products *admission with included reservation* as well as the ancillary services *luggage* and *bike* are available.
 
 - Second Route:  *Amsterdam* - *Köln* - *Frankfurt (Main) Hbf* - *Basel* - *Thun*
 
-  The service simulated is a high speed train where the products *admission* as well as a *monthly pass* are available. Additionally a *bus ticket* is available.
+  The service simulated is a high speed train where the products *admission* as well as a *monthly pass* are available. Additionally a *bus ticket* to a commuting bus is available.
 
 If sensible, upon request Sqills will provide additional routes and services.
 
