@@ -32,10 +32,10 @@
       link: https://github.com/UnionInternationalCheminsdeFer/OSDM/wiki/
     - name: OSDM Sandbox
       link: tools/sandbox/
+    - name: OSDM H2O Converter
+      link: tools/H2O-converter/
     - name: OSDM Converter
       link: https://unioninternationalcheminsdefer.github.io/OSDM-Converter/
-    - name: OSDM H2O
-      link: tools/conversionHHtoOSDM/
 - name: Organization
   link: organization/
 - name: Team
