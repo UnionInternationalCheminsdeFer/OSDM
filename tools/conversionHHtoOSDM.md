@@ -48,3 +48,5 @@ taken however the converter can be realized.
 A detailed specification will conceptual work for the conversion is ongoing.
 
 In parallel, the business need for this form of conversion is being evaluated.
+
+![Hitrail](../images/logo/Hitrail-logo.png)

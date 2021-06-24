@@ -14,7 +14,7 @@ interested in implementing OSDM.
 
 ## Available Network and Services
 
-Currently the **OSDM sandbox** supports the following virtual routes and services:
+Currently the **OSDM sandbox** implemented with *S3 Passengers* supports the following virtual routes and services:
 
 - First Route:  *Amsterdam* - *Paris*
 
@@ -31,3 +31,5 @@ If sensible, upon request Sqills will provide additional routes and services.
 All API activity via the OSDM API takes place with a so-called “agent”. Upon request, an agent account can be set up for OSDM project partners and a welcome email message will distribute a username and password combination which is required to obtain a OAuth2 JWT token with which the actual OSDM calls can be performed on the API.
 
 To register an account, please send an email including your name, role, company and a brief explanation of your interest in OSDM to [sandbox-osdm@sqills.com](mailto:sandbox-osdm@sqills.com).
+
+![Sqills](../images/logo/Sqills-logo.png)
