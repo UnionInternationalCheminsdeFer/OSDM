@@ -2,21 +2,20 @@
 layout: page
 title: Non-Functional Requirements
 hide_hero: true
-permalink: /spec/nonFunctionalRequirements/
+permalink: /spec/non-functional-requirements/
 ---
 
-*To be released with Version 1.2*
-
-## Non-Functional Requirements
+## Best Practices for Non-Functional Requirements
 
 From a customer point of view, to book a trip he or she expects a seamless and fluid user experience.
 Fundamental to achieving this goal are fast responses for all requests triggered by the customer.
 
-From a business point of view, the [response time of a site directly correlates with the conversion rate](https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-conversion-data/).
+From a business point of view, the [response time of a site directly correlates with the conversion rate](https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-conversion-data/). This means if a
+site takes too long to load, the customer will leave the site with out actually buying a ticket.
 
 In order to achieve a seamless and swift user experience, all parties involved most play their part and
-provide fast adn predictable response times.Formally, by `Avg. Response Time` we mean the mean response
-time for 95% of all request. By `Max Response Time` we mean the maximum time a response can take before
+provide fast adn predictable response times. Formally, by `95% Response Time` we denote the response
+time for 95% of all request. By `Max Response Time` we denote the maximum time a response can take before
 a time out must be expected.
 
 For achieve a good customer experience, we need to define some response time for a each parties and we
@@ -50,11 +49,11 @@ This observation leeds to the following non-functional requirements for a given 
 Mandatory service level requirements to be fulfilled by a channel.
 
 The Look-2-Book rate relates to the number of bookings created by the type of offer request.
-The expected average response time in milliseconds that a service must provide includes the
+The expected response time in milliseconds that a service must provide includes the
 infrastructure of the provider of the server (firewalls, load balancer, circuit breaker and
 application) but not the network in-between the sender and receiver.
 
-| Resources | Look to Book Rate | Avg. Response Times (msec) | Max. Response Time (msec) | Required Error Handling |
+| Resources | Look to Book Rate | 95% Response Times (msec) | Max. Response Time (msec) | Required Error Handling |
 |-----------|----|----|----|----|
 |`/locations` | - | 60 | 80 |  |
 |`/trips` | - | 400 | 600 |  |
@@ -73,11 +72,11 @@ application) but not the network in-between the sender and receiver.
 Mandatory service level requirements to be fulfilled by a pricing engine.
 
 The Look-2-Book rate relates to the number of bookings created by the type of offer request.
-The expected average response time in milliseconds that a service must provide includes the
+The expected response time in milliseconds that a service must provide includes the
 infrastructure of the provider of the server (firewalls, load balancer, circuit breaker and
 application) but not the network in-between the sender and receiver.
 
-| Resources | Look to Book Rate | Avg. Response Times (msec) | Max. Response Time (msec) | Required Error Handling |
+| Resources | Look to Book Rate | 95% Response Times (msec) | Max. Response Time (msec) | Required Error Handling |
 |-----------|----|----|----|----|
 |`/locations` | - | 50 | 75 |  |
 |`/trips` | - | 300 | 500 |  |
@@ -98,11 +97,11 @@ application) but not the network in-between the sender and receiver.
 Mandatory service level requirements to be fulfilled by a fare provider / carrier.
 
 The Look-2-Book rate relates to the number of bookings created by the type of offer request.
-The expected average response time in milliseconds that a service must provide includes the
+The expected response time in milliseconds that a service must provide includes the
 infrastructure of the provider of the server (firewalls, load balancer, circuit breaker and
 application) but not the network in-between the sender and receiver.
 
-| Resources | Look to Book Rate | Avg. Response Times (msec) | Max. Response Time (msec) | Required Error Handling |
+| Resources | Look to Book Rate | 95% Response Times (msec) | Max. Response Time (msec) | Required Error Handling |
 |-----------|----|----|----|----|
 |`/locations` | - | 50 | 75 | |
 |`/trip-offers-collection` | 1000:1 | 400 | | |

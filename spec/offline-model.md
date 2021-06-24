@@ -120,7 +120,7 @@ Connection points define the options to connect one fare with another fare a a p
 
 Fare reference station set defines a set of stations that can be used in a route. All station(s) of the set can be used by the traveler.
 
-![Fare Structure](../images/fare-data-structure/referenceStationSet.png)
+![Fare Structure](../images/fare-data-structure/fare-referenceStationSet.png)
 
 ### Price
 

@@ -66,9 +66,10 @@ The following features have been added with version 1.2 of OSDM.
     be refunded or exchanged by the UIC PRM ABT tool even when the fare is
     non-refundable/exchangeable.
 
-Other work done was  
+Other work addressed includes:
 
 - Improving the API's description
 - Fixing minor inconsistencies
 - Incorporating feedback from the first implementors
 - Setting up a mock infrastructure as well as writing actual mocks
+- Best Practices concerning non-functional requirements

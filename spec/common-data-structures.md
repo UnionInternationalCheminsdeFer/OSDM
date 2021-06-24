@@ -161,7 +161,7 @@ As on both sides of a connection multiple small stations could be connected and 
 The online data structure does not include the id and the legacy code.
 
 <!-- Figure 8 ConnectionPoint data structure offline -->
-![Fare Connection Point](../images/common-data-structure/fare-connection-point.png)
+![Fare Connection Point](../images/common-data-structures/fare-connection-point.png)
 
 #### Data Constraints on ConnectionPoint
 
@@ -199,7 +199,7 @@ An elementary fare to create an offer linking all constraints to one price.
 | `legacyConversion` | Defines whether this fare is allowed to be converted to the old 108.1 data structure and used according to the old rules (`YES`, `NO`, `ONLY` (this fare is provided for conversion only)).
 
 <!-- Figure 9 Fare element data structure (online) -->
-![Fare (Online)](../images/fare-data-structures/fare-online.png)
+![Fare (Online)](../images/fare-data-structure/fare-online.png)
 
 #### Data Constraints on Fare
 
