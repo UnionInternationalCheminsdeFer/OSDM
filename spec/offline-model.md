@@ -85,16 +85,17 @@ A data structure to define a calendar e.g. used in sales availability.
 
 ![Fare Structure](../images/fare-data-structure/calendar.png)
 
-
 ### Text
 
-All texts provided wit the data use the text data structure providing short and long texts and translations in different languages. To support legacy implementations and the converstion to the 108.1 specification additional textxs without special characters can be defined. 
+All texts provided wit the data use the text data structure providing short and long texts and translations in different languages. To support legacy implementations and the conversation to the 108.1 specification additional texts without special characters can be defined.
 
 ![Fare Structure](../images/fare-data-structure/text.png)
 
-### Station names
+### Station Names
 
-Station names have been included within the data exchange to support names including special characters and names of different length. If in the furture the station data exchange of MERITS is capable of providing these names they can be removed here. The station codes used must be codes as defined in MERITS / TAP-TSI. 
+Station names have been included within the data exchange to support names including special characters and
+names of different length. If in the future the station data exchange of MERITS is capable of providing these
+names they can be removed here. The station codes used must be codes as defined in MERITS / TAP-TSI.
 
 Station names provides multi language names in short and long form as currently no
 other data source can provide these names. Short names are used within the route
@@ -104,47 +105,59 @@ A legacy border point code can be provided during the migration to the OSDM data
 
 ![Fare Structure](../images/fare-data-structure/stationNames.png)
 
-### Reduction cards
+### Reduction Cards
 
-Tis covers the definition of reduction cards used in the fares. The name and some basic informations of the cards can be defined. The reduction itself (percentage) is not included as the fare price already provides the reduced price. Some provider specific cards are accepted by other carriers as a generic card. This can be expressed via the included cards feature. E.g. MyCard could be accepted as RailPlus card by others, so MyCard includes RailPlus.
+Tis covers the definition of reduction cards used in the fares. The name and some basic information of the
+cards can be defined. The reduction itself (percentage) is not included as the fare price already provides the
+reduced price. Some provider specific cards are accepted by other carriers as a generic card. This can be
+expressed via the included cards feature. E.g. MyCard could be accepted as RailPlus card by others, so MyCard
+includes RailPlus.
 
 ![Fare Structure](../images/fare-data-structure/reductionCards.png)
 
-### Connection points
+### Connection Points
 
-Connection points define the options to connect one fare with another fare a a point. In case the connectin point is a real station the connection point is defined by a set including just that station. In case the fares are connected inbetween two stations the connection point includes two sets each including the station on one side. There ight be cases where a connection is possible between more than two stations, in this rare case the set(s) might contain more than one station (e.g. Stations A and B for carrier 1 are connected to stations C and D of carrier 2 and allowed route go via A-C or B-D).
+Connection points define the options to connect one fare with another fare a a point. In case the connecting
+point is a real station the connection point is defined by a set including just that station. In case the fares
+are connected between two stations the connection point includes two sets each including the station on one
+side. There light be cases where a connection is possible between more than two stations, in this rare case the
+set(s) might contain more than one station (e.g. Stations *A* and *B* for carrier 1 are connected to stations
+*C* and *D* of carrier 2 and allowed route go via *A-C* or *B-D*).
 
 ![Fare Structure](../images/fare-data-structure/connectionPoint.png)
 
 ### fare reference station set
 
-Fare reference station set defines a set of stations that can be used in a route. All station(s) of the set can be used by the traveler.
+Fare reference station set defines a set of stations that can be used in a route. All station(s) of the set can 
+be used by the traveler.
 
 ![Fare Structure](../images/fare-data-structure/fare-referenceStationSet.png)
 
 ### Price
 
-The price of a fare of the refund fee on an aftersale. VAT details can be provided for the price. Default currency is EUR, but other currencies might be used based on bilateral agreements.
+The price of a fare of the refund fee on an after-sale. VAT details can be provided for the price. The default
+currency is EUR, but other currencies might be used based on bilateral agreements.
 
 ![Fare Structure](../images/fare-data-structure/price.png)
 
+## Definitions of a Different Fare Constraints
 
-## Definitions of a different fare constraints
+### Fare After Sales Constraint
 
-### fare after sales constraint
-
-Definition of the after sales conditions to be applied. Depending on the farre combination mode the after sales constraint can be omitted in case the allocator is responsible for the after sales fees.
+Definition of the after sales conditions to be applied. Depending on the fare combination mode the after
+sales constraint can be omitted in case the allocator is responsible for the after sales fees.
 
 ![Fare Structure](../images/fare-data-structure/fare-afterSalesCondition.png)
 
-### fare carrier constraint
+### Fare Carrier Constraint
 
-The carrier constraint defines the carriers that can be used. Eigther a list of the allowed carriers can be provided or a list on excluded cariiers , IN the case of excluded carriers all carriers not listed can be used.
+The carrier constraint defines the carriers that can be used. Either a list of the allowed carriers can be 
+provided or a list on excluded carriers. In the case of excluded carriers all carriers not listed can be used.
 
 The carrier constraint can be referenced by a fare via the id.
 
 Carrier constraint limits an open fare - not linked to a train - to some carriers. The carriers can
-be specified either as exclusion list or alternatively as inclusion list. 
+be specified either as exclusion list or alternatively as inclusion list.
 
 Carriers are specified by their Company code (RICS code).
 
@@ -156,29 +169,29 @@ control data (*IRS 90918-9*).
 
 ![Fare Structure](../images/fare-data-structure/fare-carrierConstraint.png)
 
-### fare combination constraint
+### Fare Combination Constraint
 
 Constraints ruling the possible combinations with other fares of other providers.
 
 ![Fare Structure](../images/fare-data-structure/combinationConstraint.png)
 
-### fare passenger combination constraint
+### Fare Passenger Combination Constraint
 
 Constraints ruling the possible combinations of passengers for combination on a ticket.
 
 ![Fare Structure](../images/fare-data-structure/passengerCombinationConstraint.png)
 
-### fare personal data constraint
+### Fare Personal Data Constraint
 
 Definition of the personal data required e.g. in a bar code of via online ticket control.
 
 ![Fare Structure](../images/fare-data-structure/personalData.png)
 
-### fare reduction constraint
+### Fare Reduction Constraint
 
 ![Fare Structure](../images/fare-data-structure/reductionConstraint.png)
 
-### fare regional constraint
+### Fare Regional Constraint
 
 The regional constraint defines the options to combine the fare at the start and end point via connection points.
 
@@ -188,16 +201,16 @@ Data model regional constraints:
 
 ![Fare Structure](../images/fare-data-structure/OSDMmodelregionalconstraint.png)
 
-
-The regional validity defnes the geographical validity of the fare. It is defined as an odereed list along the route. Options to define a part of the route include Zones (regional areas), Lines, route descriptions (viaStations) that can define sequences of stations, alternative routes and fare reference sets. Areas can also be defined by geo-coordinates.
+The regional validity defines the geographical validity of the fare. It is defined as an ordered list along
+the route. Options to define a part of the route include Zones (regional areas), Lines, route descriptions
+(viaStations) that can define sequences of stations, alternative routes and fare reference sets. Areas can
+also be defined by geo-coordinates.
 
 ![Fare Structure](../images/fare-data-structure/regionalValidity.png)
 
+### Route Description example in the regional validity
 
-
-### route description example in the regional validity
-
-route example:
+Route example:
 
 ![Fare Structure](../images/fare-data-structure/viaExample.PNG)
 
@@ -205,10 +218,11 @@ Object model:
 
 ![Fare Structure](../images/fare-data-structure/OSDMmodelviaStationobjectmodel.png)
 
+### Fare Sales Availability Constraint
 
-### fare sales availability constraint
-
-Sales availability defines the constraints on the time when a sale of a fare can start or end. The sales availability is used in the offline data exchange only. A constraint is provides as a list of salesRestrictions that have to be applied.
+Sales availability defines the constraints on the time when a sale of a fare can start or end. The sales
+availability is used in the offline data exchange only. A constraint is provides as a list of
+`salesRestrictions` that have to be applied.
 
 Sales restrictions can define a start and end of the sale relative to the date of sale or the date of travel.
 
@@ -222,9 +236,9 @@ A reference to a calendar can be provided to indicate all sales dates.
 |---|---|
 | `startOfSale`, `endOfSale` | `startOfSale` < `endOfSale`|
 
-### fare service constraint
+### Fare Service Constraint
 
-The service constraint defines restrictions to specific service brands. Eigther a list of service brands of a list of excluded service brands can be provided.
+The service constraint defines restrictions to specific service brands. Either a list of service brands of a list of excluded service brands can be provided.
 
 ![Fare Structure](../images/fare-data-structure/serviceConstraint.png)
 
@@ -234,9 +248,9 @@ The service constraint defines restrictions to specific service brands. Eigther 
 |---|---|
 | `includedServiceBrands`, `excludedServiceBrands`| Only one of the lists can be used. Using both lists is forbidden. |
 
-### fare travel validity constraint
+### Fare Travel Validity Constraint
 
-The travel validity defines the duration the traveler has to make his travel. Optioanlly time slots (e.g. peak hours) can be excluded.
+The travel validity defines the duration the traveler has to make his travel. Optional time slots (e.g. peak hours) can be excluded.
 
 ![Fare Structure](../images/fare-data-structure/travelValidity.png)
 
@@ -247,41 +261,19 @@ The travel validity defines the duration the traveler has to make his travel. Op
 | `excludedTimeRange` | `from` time < `until` time
 | `numberOfTravelDays` | A duration must be provided
 | `returnConstraint` | `earliestReturn` < `latestReturn`
- 
-## Data supporting online services
 
-Additional data to support the online sales services can be exchanged. 
+## Data Supporting Online Services
 
-### fare resource locations
+Additional data to support the online sales services can be exchanged.
+
+### Fare Resource Locations
 
 Information on where to fine resources for online services of OSDM online or via 90918-1 APIs
 
 ![Fare Structure](../images/fare-data-structure/fare-resourceLocations.png)
 
-### fare reservation parameters
+### Fare Reservation Parameters
 
 Data to define reservation requirements related to a fare.
 
 ![Fare Structure](../images/fare-data-structure/reservationParameter.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
