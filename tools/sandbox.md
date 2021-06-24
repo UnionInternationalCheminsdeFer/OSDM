@@ -9,7 +9,7 @@ permalink: /tools/sandbox/
 The aim of the **OSDM sandbox** is to provide implementing or interesting parties
 access to a *working prototype* to study the behavior and semantics of the OSDM API.
 
-The sandbox is kindly provided by [Sqills](https://www.sqills.com) and open is to *any party*
+The sandbox is kindly provided by [Sqills](https://www.sqills.com) and is open to *any party*
 interested in implementing OSDM.
 
 ## Available Network and Services
