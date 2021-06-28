@@ -1,7 +1,7 @@
 {
     "trip": {
         "id": "cb8f7aa5-17f9-482f-95d4-9012b7b2442b",
-        "abstract": "Basel SBB - Chur, 2021-05-24, 09:33 - 16:40 CET",
+        "abstract": "Basel SBB - Chur, 2021-05-24, 08:33 - 10:52 CET",
         "segments": [
             {
                 "index": 0,
@@ -18,9 +18,9 @@
                                 }
                             ]
                         },
-                        "departureDateTime": "2021-05-24T09:33:37.489Z",
+                        "departureDateTime": "2021-05-24T08:33:00.123Z",
                         "index": 0,
-                        "departureTrack": "8"
+                        "departureTrack": "7"
                     }
                 },
                 "destination": {
@@ -36,18 +36,18 @@
                                 }
                             ]
                         },
-                        "arrivalDateTime": "2021-05-24T11:52:37.490Z",
+                        "arrivalDateTime": "2021-05-24T10:52:00.123Z",
                         "index": 1,
                         "arrivalTrack": "9"
                     }
                 },
-                "duration": "P2DT3H4M",
+                "duration": "P2DT2H19M",
                 "vehicle": {
                     "numbers": [
-                        "71"
+                        "563"
                     ],
-                    "line": "71",
-                    "serviceBrand": "ICE",
+                    "line": "3",
+                    "serviceBrand": "IC",
                     "transportMode": "INTERCITY"
                 },
                 "stops": [
@@ -81,9 +81,9 @@
                                 ]
                             }
                         },
-                        "departureDateTime": "2021-05-24T09:33:37.490Z",
+                        "departureDateTime": "2021-05-24T08:33:00.123Z",
                         "index": 0,
-                        "departureTrack": "5"
+                        "departureTrack": "7"
                     },
                     {
                         "station": {
@@ -99,11 +99,11 @@
                                 ]
                             }
                         },
-                        "departureDateTime": "2021-05-24T14:00:37.490Z",
-                        "arrivalDateTime": "2021-05-24T14:07:37.490Z",
-                        "index": 0,
-                        "departureTrack": "10",
-                        "arrivalTrack": "10"
+                        "departureDateTime": "2021-05-24T09:38:00.490Z",
+                        "arrivalDateTime": "2021-05-24T09:26:00.490Z",
+                        "index": 1,
+                        "departureTrack": "7",
+                        "arrivalTrack": "7"
                     },
                     {
                         "station": {
@@ -119,11 +119,11 @@
                                 ]
                             }
                         },
-                        "departureDateTime": "2021-05-24T15:03:37.490Z",
-                        "arrivalDateTime": "2021-05-24T15:04:37.490Z",
+                        "departureDateTime": "2021-05-24T10:34:00.490Z",
+                        "arrivalDateTime": "2021-05-24T10:33:00.490Z",
                         "index": 2,
-                        "departureTrack": "2",
-                        "arrivalTrack": "2"
+                        "departureTrack": "5",
+                        "arrivalTrack": "5"
                     },
                     {
                         "station": {
@@ -139,7 +139,8 @@
                                 ]
                             }
                         },
-                        "arrivalDateTime": "2021-05-24T15:12:37.490Z",
+                        "departureDateTime": "2021-05-24T10:43:00.490Z",
+                        "arrivalDateTime": "2021-05-24T10:42:00.490Z",
                         "index": 3,
                         "arrivalTrack": "2"
                     },
@@ -157,9 +158,9 @@
                                 ]
                             }
                         },
-                        "arrivalDateTime": "2021-05-24T15:12:37.490Z",
-                        "index": 3,
-                        "arrivalTrack": "2"
+                        "arrivalDateTime": "2021-05-24T10:52:00.490Z",
+                        "index": 4,
+                        "arrivalTrack": "9"
                     }
                 ]
             }
@@ -178,9 +179,9 @@
                     ]
                 }
             },
-            "departureDateTime": "2021-05-24T13:06:37.490Z",
+            "departureDateTime": "2021-05-24T08:33:00.490Z",
             "index": 0,
-            "departureTrack": "5"
+            "departureTrack": "7"
         },
         "destination": {
             "station": {
@@ -196,9 +197,9 @@
                     ]
                 }
             },
-            "arrivalDateTime": "2021-05-24T15:12:37.491Z",
+            "arrivalDateTime": "2021-05-24T10:52:00.491Z",
             "index": 0,
-            "arrivalTrack": "2"
+            "arrivalTrack": "9"
         },
         "duration": "P2DT3H4M",
         "direction": "UNSPECIFIED"
