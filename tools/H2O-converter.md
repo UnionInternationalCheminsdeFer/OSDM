@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Hermes/Hosa to OSDM (H2O) converter
-permalink: /tools/conversionHHtoOSDM/
+permalink: /tools/H2O-converter/
 ---
 
 ## Aim
