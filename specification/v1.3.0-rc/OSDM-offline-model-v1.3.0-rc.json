@@ -1553,6 +1553,13 @@
 				"acceptedVersion": {
 					"description": "minimal version required to use these data",
 					"type": "string"
+				},
+				"usage": {
+					"type": "string",
+					"enum": [
+						"PRODUCTION",
+						"TEST_ONLY"
+					]
 				}
 			},
 			"required": [

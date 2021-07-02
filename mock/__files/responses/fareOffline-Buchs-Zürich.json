@@ -598,14 +598,14 @@
                             "issuer": "1185"
                         },
                         {
-                            "cardValue": "reductionCard-7",
-                            "cardName": "FIP",
-                            "issuer": "UIC"
+                            "cardValue": "UIC_FIP_LEISURE_FREE_1",
+                            "cardName": "FIP Freizeit 1. Klasse",
+                            "issuer": "3011"
                         },
                         {
-                            "cardValue": "reductionCard-8",
-                            "cardName": "RailPlus",
-                            "issuer": "UIC"
+                            "cardValue": "UIC_RAILPLUS_1",
+                            "cardName": "RailPlus 1. Klasse",
+                            "issuer": "3011"
                         }
                     ]
                 }
@@ -670,22 +670,20 @@
                     "cardIdRequired": false
                 },
                 {
-                    "id": "reductionCard-7",
+                    "id": "UIC_FIP_LEISURE_FREE_1",
                     "issuer": "1185",
                     "nameRef": "text-6",
                     "serviceClasses": [
-                        "HIGH",
-                        "BASIC"
+                        "HIGH"
                     ],
                     "cardIdRequired": false
                 },
                 {
-                    "id": "reductionCard-8",
+                    "id": "UIC_RAILPLUS_1",
                     "issuer": "1185",
                     "nameRef": "text-5",
                     "serviceClasses": [
-                        "HIGH",
-                        "BASIC"
+                        "HIGH"
                     ],
                     "cardIdRequired": false
                 }
