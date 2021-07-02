@@ -3775,7 +3775,7 @@ components:
         throughTicketTag:
           description: >-
             in case the carriage contracts represented by this offer have been grouped with carriage contracts from other
-            providers by the distributor. The same trhoughticket tag that was used to perform the grouping can be specified here.
+            providers by the distributor. The same trhoughTicketTag that was used to perform the grouping can be specified here.
           type: string
           default: false
         selectedOptionalReservationsIds:
@@ -4253,7 +4253,8 @@ components:
           type: string
           format: date-time
           description: >-
-            For passes -  indicates the date taken as reference to compute possible partial refund. Itis also the date taken as reference to invalidate the pass paritally refunded
+            Indicates for passes the date taken as reference to compute possible partial refund. It is also the date taken
+            as reference to invalidate the pass partilly refunded.
       required:
         - fulfillmentIds
 
@@ -4698,7 +4699,7 @@ components:
                   format: int32
                 availablePlaceProperties:
                   description: >-
-                   Properties of the available places for the provided selection quer
+                   Properties of the available places for the provided selection query
                   type: array    
                   items:
                     type: object
@@ -5626,16 +5627,13 @@ components:
         abstract:
           type: string
           example: Bruxelles-Midi
-        station:
-          $ref: '#/components/schemas/StationDetail'
-        poi:
-          $ref: '#/components/schemas/Poi'
-        address:
-          $ref: '#/components/schemas/Address'
-        geoCoordinate:
-          $ref: '#/components/schemas/GeoCoordinate'
-        connectionPoint:
-          $ref: '#/components/schemas/ConnectionPoint'
+        location:
+          oneOf:
+          - $ref: '#/components/schemas/StationDetail'
+          - $ref: '#/components/schemas/Poi'
+          - $ref: '#/components/schemas/Address'
+          - $ref: '#/components/schemas/GeoCoordinate'
+          - $ref: '#/components/schemas/ConnectionPoint'
         links:
           type: array
           description: Context information required by the services.
