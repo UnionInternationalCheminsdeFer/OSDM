@@ -3775,7 +3775,7 @@ components:
         throughTicketTag:
           description: >-
             in case the carriage contracts represented by this offer have been grouped with carriage contracts from other
-            providers by the distributor. The same trhoughticket tag that was used to perform the grouping can be specified here.
+            providers by the distributor. The same throughTicketTag that was used to perform the grouping can be specified here.
           type: string
           default: false
         selectedOptionalReservationsIds:
@@ -4253,7 +4253,8 @@ components:
           type: string
           format: date-time
           description: >-
-            For passes -  indicates the date taken as reference to compute possible partial refund. Itis also the date taken as reference to invalidate the pass paritally refunded
+            Indicates for passes the date taken as reference to compute possible partial refund.
+            It's also the date taken as reference to invalidate the pass partially refunded
       required:
         - fulfillmentIds
 
