@@ -215,6 +215,25 @@
                 "urlPath": "/locations",
                 "queryParameters": {
                     "matchValue": {
+                        "contains": "Zermatt"
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/locations-Zermatt.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "urlPath": "/locations",
+                "queryParameters": {
+                    "matchValue": {
                         "contains": "Zürich"
                     }
                 }
@@ -273,6 +292,34 @@
                     "Content-Language": "en"
                 },
                 "bodyFileName": "responses/trips-Landquart-KlostersPlatz.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/trips/trip-id-basel-chur"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trips-BaselSBB-Chur.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/trips/trip-id-chur-zermatt"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trips-Chur-Zermatt.json"
             }
         },
         {

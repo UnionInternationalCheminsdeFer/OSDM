@@ -1,0 +1,715 @@
+{
+    "tripOffer": {
+        "id": "trip-offer-id-chur-zermatt",
+        "abstract": "Chur - Zermatt, 2021-05-24 11:06 CET",
+        "trip": {
+            "id": "trip-id-chur-zermatt",
+            "abstract": "Chur - Zermatt, 2021-05-24, 11:06 - 17:10 CET",
+            "segments": [
+                {
+                    "index": 0,
+                    "origin": {
+                        "station": {
+                            "id": "8509002",
+                            "abstract": "TODO Chur",
+                            "station": {
+                                "country": "ch",
+                                "codes": [
+                                    {
+                                        "codeList": "UIC",
+                                        "code": "8509002"
+                                    }
+                                ]
+                            },
+                            "departureDateTime": "2021-05-22T15:20:37.489Z",
+                            "index": 0,
+                            "departureTrack": "5"
+                        }
+                    },
+                    "destination": {
+                        "station": {
+                            "id": "8509068",
+                            "abstract": "Klosters Platz",
+                            "station": {
+                                "country": "ch",
+                                "codes": [
+                                    {
+                                        "codeList": "UIC",
+                                        "code": "8509068"
+                                    }
+                                ]
+                            },
+                            "arrivalDateTime": "2021-05-22T15:59:37.490Z",
+                            "index": 0,
+                            "arrivalTrack": "1"
+                        }
+                    },
+                    "duration": "P2DT3H4M",
+                    "vehicle": {
+                        "numbers": [
+                            "1351"
+                        ],
+                        "line": "1351",
+                        "serviceBrand": "RE",
+                        "transportMode": "REGIONAL"
+                    },
+                    "stops": [
+                        {
+                            "station": {
+                                "id": "8509002",
+                                "abstract": "Landquart",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509002"
+                                        }
+                                    ],
+                                    "names": [
+                                        {
+                                            "language": "de",
+                                            "text": "Landquart"
+                                        }
+                                    ]
+                                }
+                            },
+                            "departureDateTime": "2021-05-22T15:20:37.490Z",
+                            "index": 0,
+                            "departureTrack": "5"
+                        },
+                        {
+                            "station": {
+                                "id": "8509060",
+                                "abstract": "Schiers",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509060"
+                                        }
+                                    ],
+                                    "names": [
+                                        {
+                                            "language": "de",
+                                            "text": "Schiers"
+                                        }
+                                    ]
+                                }
+                            },
+                            "departureDateTime": "2021-05-22T15:30:37.490Z",
+                            "arrivalDateTime": "2021-05-22T15:33:37.490Z",
+                            "index": 1,
+                            "departureTrack": "1",
+                            "arrivalTrack": "1"
+                        },
+                        {
+                            "station": {
+                                "id": "8509064",
+                                "abstract": "Küblis",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509064"
+                                        }
+                                    ],
+                                    "names": [
+                                        {
+                                            "language": "de",
+                                            "text": "Küblis"
+                                        }
+                                    ]
+                                }
+                            },
+                            "departureDateTime": "2021-05-22T15:41:37.490Z",
+                            "arrivalDateTime": "2021-05-22T15:44:37.490Z",
+                            "index": 2,
+                            "departureTrack": "1",
+                            "arrivalTrack": "1"
+                        },
+                        {
+                            "station": {
+                                "id": "8509064",
+                                "abstract": "Klosters Platz",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509064"
+                                        }
+                                    ],
+                                    "names": [
+                                        {
+                                            "language": "de",
+                                            "text": "Klosters Platz"
+                                        }
+                                    ]
+                                }
+                            },
+                            "arrivalDateTime": "2021-05-22T15:59:37.490Z",
+                            "index": 3,
+                            "arrivalTrack": "1"
+                        }
+                    ]
+                }
+            ],
+            "origin": {
+                "station": {
+                    "id": "8509002",
+                    "abstract": "Landquart",
+                    "station": {
+                        "country": "ch",
+                        "codes": [
+                            {
+                                "codeList": "UIC",
+                                "code": "8509002"
+                            }
+                        ],
+                        "names": [
+                            {
+                                "language": "de",
+                                "text": "Landquart"
+                            }
+                        ]
+                    }
+                },
+                "departureDateTime": "2021-05-22T15:20:37.490Z",
+                "index": 0,
+                "departureTrack": "5"
+            },
+            "destination": {
+                "station": {
+                    "id": "8509068",
+                    "abstract": "Klosters Platz",
+                    "station": {
+                        "country": "ch",
+                        "codes": [
+                            {
+                                "codeList": "UIC",
+                                "code": "8509068"
+                            }
+                        ],
+                        "names": [
+                            {
+                                "language": "de",
+                                "text": "Klosters Platz"
+                            }
+                        ]
+                    }
+                },
+                "arrivalDateTime": "2021-05-22T15:59:37.491Z",
+                "index": 0,
+                "arrivalTrack": "2"
+            },
+            "duration": "P2DT3H4M",
+            "direction": "UNSPECIFIED"
+        },
+        "tripKey": "string",
+        "offers": [
+            {
+                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "abstract": "Landquart - Klosters Platz, 2021-05-22 15:20 CET, Normal Fare, 50 EUR",
+                "offerSummary": {
+                    "minimalPrice": {
+                        "currency": "CHF",
+                        "amount": 0,
+                        "scale": 2,
+                        "vatDetails": [
+                            {
+                                "country": "CH",
+                                "amount": 5,
+                                "scale": 2,
+                                "percentage": 0,
+                                "taxId": "string",
+                                "scope": "string"
+                            }
+                        ]
+                    },
+                    "overallServiceClass": {
+                        "id": "string",
+                        "carrierName": "string"
+                    },
+                    "overallComfortClass": "string",
+                    "overallAccommodationType": "string",
+                    "overallAccommodationSubType": "string",
+                    "overallFlexibility": "string"
+                },
+                "isReusable": true,
+                "offerTag": {
+                    "isMandatory": false,
+                    "offerTag": "string"
+                },
+                "coveredSegmentIndexes": [
+                    0
+                ],
+                "requestedInformation": "string",
+                "availableFulfillmentTypes": [
+                    "string"
+                ],
+                "trip": {
+                    "id": "string",
+                    "abstract": "Landquart - Klosters Platz, 2021-05-22 10:05 CET",
+                    "segments": [
+                        {
+                            "index": 0,
+                            "origin": {
+                                "station": {
+                                    "id": "string",
+                                    "abstract": "Bruxelles-Midi",
+                                    "station": {
+                                        "localCode": "string",
+                                        "country": "string",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "string"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "departureDateTime": "2021-02-18T07:47:46.647Z",
+                                "arrivalDateTime": "2021-02-18T07:47:46.647Z",
+                                "index": 5,
+                                "departureTrack": "13A",
+                                "arrivalTrack": "13B"
+                            },
+                            "destination": {
+                                "station": {
+                                    "id": "string",
+                                    "abstract": "Bruxelles-Midi",
+                                    "station": {
+                                        "localCode": "string",
+                                        "country": "string",
+                                        "codes": [
+                                            {
+                                                "codeList": "UIC",
+                                                "code": "string"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "departureDateTime": "2021-02-18T07:47:46.647Z",
+                                "arrivalDateTime": "2021-02-18T07:47:46.647Z",
+                                "index": 5,
+                                "departureTrack": "13A",
+                                "arrivalTrack": "13B"
+                            },
+                            "duration": "P2DT3H4M",
+                            "transfer": {
+                                "duration": "P2DT3H4M",
+                                "transferType": "string"
+                            },
+                            "vehicle": {
+                                "numbers": [
+                                    "string"
+                                ],
+                                "line": "string",
+                                "serviceBrand": "TGV",
+                                "transportMode": "string"
+                            },
+                            "stops": [
+                                {
+                                    "station": {
+                                        "id": "string",
+                                        "abstract": "Bruxelles-Midi",
+                                        "station": {
+                                            "localCode": "string",
+                                            "country": "string",
+                                            "codes": [
+                                                {
+                                                    "codeList": "UIC",
+                                                    "code": "string"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "departureDateTime": "2021-02-18T07:47:46.648Z",
+                                    "arrivalDateTime": "2021-02-18T07:47:46.648Z",
+                                    "index": 5,
+                                    "departureTrack": "13A",
+                                    "arrivalTrack": "13B"
+                                }
+                            ]
+                        }
+                    ],
+                    "origin": {
+                        "station": {
+                            "id": "string",
+                            "abstract": "Bruxelles-Midi",
+                            "station": {
+                                "localCode": "string",
+                                "country": "string",
+                                "codes": [
+                                    {
+                                        "codeList": "UIC",
+                                        "code": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "departureDateTime": "2021-02-18T07:47:46.648Z",
+                        "arrivalDateTime": "2021-02-18T07:47:46.648Z",
+                        "index": 5,
+                        "departureTrack": "13A",
+                        "arrivalTrack": "13B"
+                    },
+                    "destination": {
+                        "station": {
+                            "id": "string",
+                            "abstract": "Bruxelles-Midi",
+                            "station": {
+                                "localCode": "string",
+                                "country": "string",
+                                "codes": [
+                                    {
+                                        "codeList": "UIC",
+                                        "code": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "departureDateTime": "2021-02-18T07:47:46.649Z",
+                        "arrivalDateTime": "2021-02-18T07:47:46.649Z",
+                        "index": 5,
+                        "departureTrack": "13A",
+                        "arrivalTrack": "13B"
+                    },
+                    "duration": "P2DT3H4M",
+                    "direction": "UNSPECIFIED"
+                },
+                "validFrom": "2021-02-18T07:47:46.649Z",
+                "validUntil": "2021-02-18T07:47:46.649Z",
+                "admissions": [
+                    {
+                        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                        "commonOfferPartAttributes": {
+                            "price": {
+                                "currency": "CHF",
+                                "amount": 0,
+                                "scale": 2,
+                                "vatDetails": [
+                                    {
+                                        "country": "CH",
+                                        "amount": 5,
+                                        "scale": 2,
+                                        "percentage": 0,
+                                        "taxId": "string",
+                                        "scope": "string"
+                                    }
+                                ]
+                            },
+                            "pricingMode": "COLLECTIVE",
+                            "reductionsApplied": [],
+                            "passengers": [
+                                {
+                                    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                                    "abstract": "Andreas Schlapbach",
+                                    "reference": "string",
+                                    "dateOfBirth": "2021-02-18",
+                                    "cards": []
+                                }
+                            ],
+                            "providerBookingReference": "string",
+                            "finalProviderBookingReference": "string",
+                            "availableFulfillmentOptions": [
+                                {
+                                    "fulfillmentType": "string",
+                                    "media": [
+                                        "string"
+                                    ]
+                                }
+                            ],
+                            "validFrom": "2021-02-18T07:47:46.650Z",
+                            "validUntil": "2021-02-18T07:47:46.650Z",
+                            "refundable": "YES",
+                            "exchangeable": "YES",
+                            "products": [
+                                {
+                                    "product": {
+                                        "id": "string",
+                                        "abstract": "TGV Lyria Loisir 2",
+                                        "code": "PT00AD",
+                                        "description": "Loisir Non-flex Adult Fare",
+                                        "conditions": [
+                                            {
+                                                "type": "string",
+                                                "description": "string",
+                                                "validFrom": "2021-02-18T07:47:46.650Z",
+                                                "validUntil": "2021-02-18T07:47:46.650Z",
+                                                "afterSalesFee": {
+                                                    "feeAmount": {
+                                                        "currency": "CHF",
+                                                        "amount": 0,
+                                                        "scale": 2,
+                                                        "vatDetails": [
+                                                            {
+                                                                "country": "CH",
+                                                                "amount": 5,
+                                                                "scale": 2,
+                                                                "percentage": 0,
+                                                                "taxId": "string",
+                                                                "scope": "string"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "isCarrierFee": true
+                                                }
+                                            }
+                                        ],
+                                        "serviceClass": {
+                                            "id": "string",
+                                            "carrierName": "string"
+                                        },
+                                        "comfortClass": "string",
+                                        "isTrainBound": true,
+                                        "isReturnProduct": false,
+                                        "fulfillmentOptions": [
+                                            {
+                                                "fulfillmentType": "string",
+                                                "media": [
+                                                    "string"
+                                                ]
+                                            }
+                                        ],
+                                        "serviceConstraintText": "string",
+                                        "carrierConstraintText": "string",
+                                        "combinationTags": [
+                                            {
+                                                "combinationTag": "string",
+                                                "sellableStandalone": true
+                                            }
+                                        ]
+                                    },
+                                    "segmentIndices": [
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        "isReservationRequired": true,
+                        "reservations": [
+                            {
+                                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                                "abstract": "ICE Wifi on Board 2020-07-11"
+                            }
+                        ],
+                        "ancillaries": [],
+                        "fees": []
+                    }
+                ],
+                "reservations": [
+                    {
+                        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                        "commonOfferPartAttributes": {
+                            "price": {
+                                "currency": "CHF",
+                                "amount": 0,
+                                "scale": 2,
+                                "vatDetails": [
+                                    {
+                                        "country": "CH",
+                                        "amount": 5,
+                                        "scale": 2,
+                                        "percentage": 0,
+                                        "taxId": "string",
+                                        "scope": "string"
+                                    }
+                                ]
+                            },
+                            "pricingMode": "COLLECTIVE",
+                            "reductionsApplied": [],
+                            "passengers": [
+                                {
+                                    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                                    "abstract": "Andreas Schlapbach",
+                                    "reference": "string",
+                                    "dateOfBirth": "2021-02-18",
+                                    "cards": [],
+                                    "gender": "MALE",
+                                    "details": {
+                                        "preferredLanguage": "string",
+                                        "abstract": "string",
+                                        "firstName": "string",
+                                        "lastName": "string",
+                                        "eMail": "string",
+                                        "phoneNumber": "string"
+                                    }
+                                }
+                            ],
+                            "providerBookingReference": "string",
+                            "finalProviderBookingReference": "string",
+                            "availableFulfillmentOptions": [
+                                {
+                                    "fulfillmentType": "string",
+                                    "media": [
+                                        "string"
+                                    ]
+                                }
+                            ],
+                            "validFrom": "2021-02-18T07:47:46.653Z",
+                            "validUntil": "2021-02-18T07:47:46.653Z",
+                            "refundable": "YES",
+                            "exchangeable": "YES",
+                            "products": [
+                                {
+                                    "product": {
+                                        "id": "string",
+                                        "abstract": "TGV Lyria Loisir 2",
+                                        "code": "PT00AD",
+                                        "description": "Loisir Non-flex Adult Fare",
+                                        "conditions": [
+                                            {
+                                                "type": "string",
+                                                "description": "string",
+                                                "validFrom": "2021-02-18T07:47:46.653Z",
+                                                "validUntil": "2021-02-18T07:47:46.653Z",
+                                                "afterSalesFee": {
+                                                    "feeAmount": {
+                                                        "currency": "CHF",
+                                                        "amount": 0,
+                                                        "scale": 2,
+                                                        "vatDetails": [
+                                                            {
+                                                                "country": "CH",
+                                                                "amount": 5,
+                                                                "scale": 2,
+                                                                "percentage": 0,
+                                                                "taxId": "string",
+                                                                "scope": "string"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "isCarrierFee": true
+                                                }
+                                            }
+                                        ],
+                                        "serviceClass": {
+                                            "id": "string",
+                                            "carrierName": "string"
+                                        },
+                                        "comfortClass": "string",
+                                        "isTrainBound": true,
+                                        "isReturnProduct": false,
+                                        "fulfillmentOptions": [
+                                            {
+                                                "fulfillmentType": "string",
+                                                "media": [
+                                                    "string"
+                                                ]
+                                            }
+                                        ],
+                                        "serviceConstraintText": "string",
+                                        "carrierConstraintText": "string",
+                                        "combinationTags": [
+                                            {
+                                                "combinationTag": "string",
+                                                "sellableStandalone": true
+                                            }
+                                        ]
+                                    },
+                                    "segmentIndices": [
+                                        0
+                                    ]
+                                }
+                            ]
+                        },
+                        "reservationDetails": {
+                            "accommodationType": "string",
+                            "accommodationSubType": "string",
+                            "reservedPlaces": [
+                                {
+                                    "id": "string",
+                                    "passengerReferences": "string",
+                                    "vehicle": "string",
+                                    "coach": "string",
+                                    "places": "string",
+                                    "placeIds": [
+                                        "string"
+                                    ],
+                                    "placeProperties": [
+                                        {
+                                            "placeProperty": "string",
+                                            "number": 0,
+                                            "priority": 0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "placeSelection": {
+                            "reservationOptions": {
+                                "preferences": [
+                                    {
+                                        "preferenceGroup": "SEAT_DIRECTION",
+                                        "preferences": [
+                                            "FORWARD_FACING"
+                                        ]
+                                    }
+                                ],
+                                "graphicalReservation": "string"
+                            },
+                            "vehicle": "string",
+                            "referencePlace": {
+                                "placeNumber": "string",
+                                "coachNumber": "string"
+                            },
+                            "selectedOptions": [
+                                {
+                                    "passengers": [
+                                        {
+                                            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                                            "abstract": "Andreas Schlapbach",
+                                            "reference": "string",
+                                            "dateOfBirth": "2021-02-18",
+                                            "cards": [],
+                                            "gender": "MALE",
+                                            "details": {
+                                                "preferredLanguage": "string",
+                                                "abstract": "string",
+                                                "firstName": "string",
+                                                "lastName": "string",
+                                                "eMail": "string",
+                                                "phoneNumber": "string"
+                                            }
+                                        }
+                                    ],
+                                    "selectedPlaceProperties": [
+                                        "string"
+                                    ]
+                                }
+                            ],
+                            "selectedCoach": {
+                                "selectedCoaches": [
+                                    {
+                                        "coachNumber": "string",
+                                        "selectedPlaces": [
+                                            {
+                                                "passengerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                                                "place": "string"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        "optionality": "string",
+                        "fees": []
+                    }
+                ]
+            }
+        ],
+        "passengers": [
+            {
+                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "abstract": "Andreas Schlapbach",
+                "reference": "string",
+                "dateOfBirth": "1974-09-14",
+                "cards": []
+            }
+        ]
+    }
+}
