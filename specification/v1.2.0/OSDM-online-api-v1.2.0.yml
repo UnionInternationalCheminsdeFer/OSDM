@@ -2829,6 +2829,8 @@ components:
             - transferType
         vehicle:
           type: object
+          description: >-
+            One of 'line' or 'numbers' must be provided.
           properties:
             numbers:
               description: >-
@@ -2846,6 +2848,8 @@ components:
               description: >-
                 Transport mode (code list of MERITS).
               type: string
+          required:
+            - serviceBrand
         stops:
           description: >-
             The list of stops encountered between origin and destination. origin is the first stop mentioned and destination the last 
@@ -3253,9 +3257,12 @@ components:
     OfferSummary:
       type: object
       description: >-
-        The offer summary indicates the major service class, level or flexibility.
-        This does not imply that this service class or level applies to all parts 
-        of the whole offer. 
+        The offer summary indicates the most relevant service class, level, flexibility or accommodation that describe this offer, 
+        but this does not imply that these values exactly apply to all parts of the offer. 
+        let's consider, as a simplified example, a trip composed of two segments, one with both 1st and 2nd class, and one with only 2nd. 
+        On this trip, the railway is expected to propose one offer with overallServiceClass FIRST composed of one admission in 1st class on the first 
+        segment and one admission in 2nd class on the second one, plus a second offer with overallServiceClass SECOND composed of two second class admissions.
+        Likewise for all 'overall' attributes. The purpose of these attributes is to convey to the client system the service class, level, flexibility and accommodation that best represent this offer so to facilitate presentation to the final user.
       properties:
         minimalPrice:
           $ref: '#/components/schemas/Price'
@@ -3275,6 +3282,8 @@ components:
         - overallFlexibility
 
     Offer:
+      description: >-
+        offerSummary is meaningful at trip-offer-collection response time, no longer meaningful at booking time.
       type: object
       properties:
         id:
@@ -3413,10 +3422,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CardReference'
-        passengers:
+        passengerIds:
           type: array
           items:
-            $ref: '#/components/schemas/Passenger'
+            type: string
+            description: >-
+              Id of the passenger resource.
+            format: uuid
         providerBookingReference:
           type: string
           description: >-
@@ -3448,11 +3460,15 @@ components:
             offerparts, i.e. admissions, reservation or ancillaries.
         refundable:
           type: string
+          description: >-
+            This field should be set to YES when the offerpart is refundable without a fee before the day of departure. NO when not refundable or refundable with 100% fee, WITH_CONDITIONS in all other cases.
           enum:
             - YES
             - NO
             - WITH_CONDITIONS
         exchangeable:
+          description: >-
+            This field should be set to YES when the offerpart is exchangeable without a fee before the day of departure. NO when not exchangeable or exchangeable with 100% fee, WITH_CONDITIONS in all other cases.
           type: string
           enum:
             - YES
@@ -3473,7 +3489,7 @@ components:
                   format: int32
       required:
         - price
-        - passengers
+        - passengerIds
         - validFrom
         - refundable
         - exchangeable
@@ -3576,8 +3592,6 @@ components:
           type: string
         commonOfferPartAttributes:
           $ref: '#/components/schemas/CommonOfferPartAttributes'
-        isReservationRequired:
-          type: boolean
         reservations:
           type: array
           items:
@@ -5563,7 +5577,7 @@ components:
       properties:
         type:
           $ref: '#/components/schemas/ServiceClassType'
-        carrierName:
+        name:
           type: string
           description: >-
             the name the carrier itself uses to designate this specific service class
@@ -6129,7 +6143,7 @@ components:
         externalReference:
           description: >-
             stable reference to passengers from other elements, or from caller
-            system.
+            system. When received in input of a trip-offers-collection request, it must be echoed back in the response.
           type: string
         dateOfBirth:
           description: date of birth of the passenger
@@ -6156,9 +6170,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-      required:
-        - abstract
-        - links
 
     PRMNeedType:
       type: string
