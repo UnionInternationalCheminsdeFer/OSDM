@@ -60,6 +60,83 @@ tags:
     description: >-
       resources to get the layout of a coach
 paths:
+  /place-informations:
+    post:
+      tags:
+        - Place Information
+      summary: returns trips for a given place information request
+      description: >-
+        Returns place information for a given place information request based on the OJP specification.
+      operationId: postPlaceInformations
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/accessToken"
+      requestBody:
+        description: request for place information
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlaceInformationRequest"
+      responses:
+        "200":
+          description: place information found matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaceInformationResponse"
+        "400":
+          description: bad input parameter
+        "401":
+          description: unauthorized
+        "403":
+          description: forbidden
+        "404":
+          description: no place information found
+        "500":
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        "501":
+          description: not implemented
+        "503":
+          description: service unavailable
+
+  /place-informations/{placeInformationId}:
+    get:
+      tags: 
+        - Place Information
+      summary: return place-informations
+      description: >-
+        Returns trips for a given trip request based on the specification.
+      operationId: getPlaceInformations
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/accessToken"
+        - in: path
+          name: placeInformationId
+          schema:
+            type: string
+          required: true
+          description: ID of the place information to get.
+      responses:
+        "200":
+          description: place information found matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaceInformationResponse"
+        "400":
+          description: bad input parameter
+        "401":
+          description: unauthorized
+        "403":
+          description: forbidden
+        "404":
+          description: no place information found
+        "500":
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        "501":
+          description: not implemented
+        "503":
+          description: service unavailable
 
   /trips/{tripId}:
     get:
@@ -80,18 +157,6 @@ paths:
             description: unique (on this server) and opaque id of the trip
           required: true
           description: ID of the trip to get.
-        - in: query
-          name: stopBehavior
-          description: >-
-            Influences what stops are to be returned in response
-            (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
-            REAL_BOARDING_ALIGHTING returns all stops except virtual stops).
-          schema:
-            type: string
-            default: ORIGIN_DESTINATION_ONLY
-            enum:
-              - ORIGIN_DESTINATION_ONLY
-              - REAL_BOARDING_ALIGHTING
         - in: query
           name: embed
           description: >-
@@ -136,6 +201,49 @@ paths:
         '501':
           description: Not implemented
 
+  /trips:
+    post:
+      tags:
+        - Trips
+      summary: returns trips for a given OJP trip request
+      description: >-
+        Returns trips for a given trip request based on the OJP specification.
+      operationId: postTrips
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/accessToken"
+      requestBody:
+        description: request for trips
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TripRequest"
+      responses:
+        "200":
+          description: trips found matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TripResponse"
+        "400":
+          description: bad input parameter
+        "401":
+          description: unauthorized
+        "403":
+          description: forbidden
+        "404":
+          description: no trips found
+        "500":
+          description: internal server error
+          content:
+            "application/problem+json":
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "501":
+          description: not implemented
+        "503":
+          description: service unavailable
+
   /trips-collection/{tripsCollectionId}:
     get:
       tags:
@@ -166,18 +274,6 @@ paths:
           schema:
             type: string
           required: false
-        - in: query
-          name: stopBehavior
-          description: >-
-            Influences what stops are to be returned in response
-            (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
-            REAL_BOARDING_ALIGHTING returns all stops except virtual stops).
-          schema:
-            type: string
-            default: ORIGIN_DESTINATION_ONLY
-            enum:
-              - ORIGIN_DESTINATION_ONLY
-              - REAL_BOARDING_ALIGHTING
         - in: query
           name: embed
           description: >-
@@ -245,192 +341,6 @@ paths:
         '501':
           description: Not implemented
 
-  /place-informations:
-    post:
-      tags:
-        - Place Information
-      summary: returns trips for a given OJP place information request
-      description: >-
-        Returns place information for a given place information request based on the OJP specification.
-      operationId: postPlaceInformations
-      parameters:
-        - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/accessToken"
-        - name: ParentSpanId
-          in: header
-          description: >-
-            64-bit parent span ID lower-hex encoded into 16 characters
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-        - name: SpanId
-          in: header
-          description: >-
-            64-bit span ID lower-hex encoded into 16 characters
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-        - name: TraceId
-          in: header
-          description: >-
-            128 or 64-bit trace ID lower-hex encoded into 32 or 16 characters
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-
-      requestBody:
-        description: request for place information
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/PlaceInformationRequest"
-      responses:
-        "200":
-          description: place information found matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PlaceInformationResponse"
-        "400":
-          description: bad input parameter
-        "401":
-          description: unauthorized
-        "403":
-          description: forbidden
-        "404":
-          description: no place information found
-        "500":
-          description: internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: "#/components/schemas/Problem"
-        "501":
-          description: not implemented
-        "503":
-          description: service unavailable
-
-  /place-informations/{placeInformationId}:
-    get:
-      tags: 
-        - Place Information
-      summary: return place-informations
-      description: >-
-        Returns trips for a given trip request based on the OJP specification.
-      operationId: getPlaceInformations
-      parameters:
-        - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/accessToken"
-        - in: path
-          name: placeInformationId
-          schema:
-            type: string
-          required: true
-          description: ID of the trip to get.
-      responses:
-        "200":
-          description: place information found matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PlaceInformationResponse"
-        "400":
-          description: bad input parameter
-        "401":
-          description: unauthorized
-        "403":
-          description: forbidden
-        "404":
-          description: no place information found
-        "500":
-          description: internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: "#/components/schemas/Problem"
-        "501":
-          description: not implemented
-        "503":
-          description: service unavailable
-
-  /trips:
-    post:
-      tags:
-        - Trips
-      summary: returns trips for a given OJP trip request
-      description: >-
-        Returns trips for a given trip request based on the OJP specification.
-      operationId: postTrips
-      parameters:
-        - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/accessToken"
-        - name: ParentSpanId
-          in: header
-          description: >-
-            64-bit parent span ID lower-hex encoded into 16 characters
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-        - name: SpanId
-          in: header
-          description: >-
-            64-bit span ID lower-hex encoded into 16 characters
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-        - name: TraceId
-          in: header
-          description: >-
-            128 or 64-bit trace ID lower-hex encoded into 32 or 16 characters
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-
-      requestBody:
-        description: request for trips
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/TripRequest"
-      responses:
-        "200":
-          description: trips found matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TripResponse"
-        "400":
-          description: bad input parameter
-        "401":
-          description: unauthorized
-        "403":
-          description: forbidden
-        "404":
-          description: no trips found
-        "500":
-          description: internal server error
-          content:
-            "application/problem+json":
-              schema:
-                $ref: "#/components/schemas/Problem"
-        "501":
-          description: not implemented
-        "503":
-          description: service unavailable
-
-
   /trip-offers-collection/{tripOffersCollectionId}:
     get:
       tags:
@@ -459,19 +369,7 @@ paths:
             scrolling.
           schema:
             type: string
-          required: false
-        - in: query
-          name: stopBehavior
-          description: >-
-            Influences what stops are to be returned in response
-            (ORIGIN_DESTINATION_ONLY returns no intermediate stops within a segment;
-            ALL_STOPS returns additionally intermediate stops within segments).
-          schema:
-            type: string
-            default: ORIGIN_DESTINATION_ONLY
-            enum:
-              - ORIGIN_DESTINATION_ONLY
-              - ALL_STOPS                    
+          required: false                
         - in: query
           name: embed
           description: >-
@@ -2396,19 +2294,7 @@ paths:
             scrolling.
           schema:
             type: string
-          required: false
-        - in: query
-          name: stopBehavior
-          description: >-
-            Influences what stops are to be returned in response
-            (ORIGIN_DESTINATION_ONLY returns no intermediate stops within a segment;
-            ALL_STOPS returns additionally intermediate stops within segments).
-          schema:
-            type: string
-            default: ORIGIN_DESTINATION_ONLY
-            enum:
-              - ORIGIN_DESTINATION_ONLY
-              - ALL_STOPS                    
+          required: false                   
         - in: query
           name: embed
           description: >-
@@ -3481,15 +3367,6 @@ components:
         # situationFullRef:
         #   $ref: "#/components/schemas/SituationFullRef"
 
-    # ## CHECKED
-    # OperatingDayz:
-    #   allOf:
-    #     - $ref: "#/components/schemas/OperatingDays"
-    #     - type: object
-    #       properties:
-    #         operatingDaysDescription:
-    #           type: string
-
     OperatingDays:  ## OJP
       description: >-
          Day of public transport operation of which the characteristics are defined in a specific service
@@ -3515,7 +3392,8 @@ components:
           pattern: '^[01]+$'
           example: "101101"
         operatingDaysDescription:
-          description: Textual description of the operation days, e.g. "monday to friday" or "not on holidays".
+          description: >-
+            Textual description of the operation days, e.g. "monday to friday" or "not on holidays".
           type: string
       required:
         - from
@@ -3586,7 +3464,6 @@ components:
         code:
           description: Internal code of the attribute. Can be used for detection of double occurrences.
           type: string
-        # OOS: AllFacilityGroup
         mandatory:
           description: Defines whether the attribute has to be shown to the user.
           type: boolean
@@ -3906,8 +3783,7 @@ components:
           type: string
 
     ContinuousMode:  ## OJP
-      description: >-
-        Types of modes that run at any time without a timetable.
+      description: Types of modes that run at any time without a timetable.
       type: string
       enum:
         - WALK
@@ -4390,10 +4266,10 @@ components:
     PointOfInterestStructure:  ## OJP
       type: object
       properties:
-        address:
+        pointOfInterest:
           $ref: "#/components/schemas/PointOfInterest"
       required:
-        - address
+        - pointOfInterest
 
     PointOfInterest:  ## OJP
       description: >-
