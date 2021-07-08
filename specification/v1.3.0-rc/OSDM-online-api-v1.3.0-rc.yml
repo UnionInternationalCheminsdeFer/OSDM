@@ -6821,13 +6821,13 @@ components:
           type: integer
           format: int32
         entryStation:
-          $ref: '#/components/schemas/StopPointStructure'
+          $ref: '#/components/schemas/StopPoint'
         lineId:
           type: array
           items:
             type: string
         terminalStation:
-          $ref: '#/components/schemas/StopPointStructure'
+          $ref: '#/components/schemas/StopPoint'
         nutsCode:
           description: >-
             Nomenclature des units territoriales statistiques  
@@ -6840,9 +6840,9 @@ components:
       type: object
       properties:
         fromStation:
-          $ref: '#/components/schemas/StopPointStructure'
+          $ref: '#/components/schemas/StopPoint'
         toStation:
-          $ref: '#/components/schemas/StopPointStructure'
+          $ref: '#/components/schemas/StopPoint'
         train:
           type: string
         travelDate:
@@ -6890,7 +6890,7 @@ components:
         serviceBrand:
           $ref: '#/components/schemas/ServiceBrandCode'
         station:
-          $ref: '#/components/schemas/StopPointStructure'
+          $ref: '#/components/schemas/StopPoint'
         fareReferenceStationSet:
           type: object
           description: reference to a list of stations included in the fare
@@ -6927,9 +6927,9 @@ components:
           type: integer
           format: int32
         entryStation:
-          $ref: '#/components/schemas/StopPointStructure'
+          $ref: '#/components/schemas/StopPoint'
         terminalStation:
-          $ref: '#/components/schemas/StopPointStructure'
+          $ref: '#/components/schemas/StopPoint'
         zoneIds:
           description: to be used in bar codes
           type: array
@@ -7016,7 +7016,7 @@ components:
           type: array
           minItems: 1
           items:
-            $ref: '#/components/schemas/StopPointStructure'
+            $ref: '#/components/schemas/Company'
         excludedServiceBrand:
           type: array
           items:
@@ -7247,88 +7247,6 @@ components:
         - type
         - description
 
-    # Location:
-    #   type: object
-    #   description: >-
-    #     location includes one of station, poi, address, geoCoordinate, connectionPoint
-    #     The ConnectionPoint exists to define virtual border points between two stations.  
-    #   properties:
-    #     id:
-    #       type: string
-    #       description: unique id of this location on this server.
-    #     abstract:
-    #       type: string
-    #       example: Bruxelles-Midi
-    #     location:
-    #       oneOf:
-    #       - $ref: '#/components/schemas/StationDetail'
-    #       #- $ref: '#/components/schemas/Poi'
-    #       #- $ref: '#/components/schemas/Address'
-    #       #- $ref: '#/components/schemas/GeoCoordinate'
-    #       # - $ref: '#/components/schemas/ConnectionPoint'
-    #     links:
-    #       type: array
-    #       description: Context information required by the services.
-    #       items:
-    #         $ref: '#/components/schemas/Link'
-    #   required:
-    #     - id
-
-    # StationDetail:
-    #   type: object
-    #   description: >-
-    #     Details of a station. In some countries stations have
-    #     multiple names depending on the countries local languages.
-    #   properties:
-    #     localCode:
-    #       description: code unique with in the country only
-    #       type: string
-    #     country:
-    #       description: ISO 3166 2A codes
-    #       type: string
-    #     codes:
-    #       type: array
-    #       items:
-    #         $ref: '#/components/schemas/StationCode'
-    #       description: >-
-    #         The codes that can be used to represent the given station on the system.
-    #         There can be several codes, in which case  it is relevant to have a list
-    #         of couples.
-    #     geoCoordinate:
-    #       $ref: '#/components/schemas/GeoCoordinate'
-    #     names:
-    #       description: names of the station depending on language
-    #       type: array
-    #       items:
-    #         $ref: '#/components/schemas/Translation'
-    #   required:
-    #     - country
-    #     - codes
-
-    # StationCode:
-    #   type: object
-    #   properties:
-    #     codeList:
-    #       description: >-
-    #         Code list used for the station codes: 
-    #           - UIC: UIC codes as used by merits (UIC country code + local code)
-    #           - UIC-R: UIC codes for reservation (UIC country code + local code reservation) 
-    #           - ERA: future ERA station code
-    #           - EVA: station codes as used by HAFAS
-    #       type: string
-    #       x-extensible-enum:
-    #         - UIC
-    #         - UIC-R
-    #         - ERA
-    #         - EVA
-    #       default: UIC
-    #     code:
-    #       type: string
-    #       description: the code representing the station in the specified code-list     
-    #   required:
-    #     - code
-    #     - codeList
-
     GeoCoordinate:
       type: object
       description: >-
@@ -7376,7 +7294,7 @@ components:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/Place'
+              $ref: '#/components/schemas/StopPointRef'
       required:
         - stations
 
