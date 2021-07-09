@@ -2975,11 +2975,11 @@ components:
           type: boolean
           description: Whether the result should include accessibility information.
           default: false
-        IncludePlacesContext:
+        includePlacesContext:
           type: boolean
           description: Whether the place context is needed. If a requestor has that information already, the response can be made slimmer, when set to false.
           default: true
-        IncludeSituationsContext:
+        includeSituationsContext:
           type: boolean
           description: Whether the situation context is needed. If a requestor has that information by other means or can't process it, the response can be made slimmer, when set to false.
           default: true
