@@ -2668,10 +2668,41 @@ components:
       description: >-
         More parameters for restricting the request.
       allOf:
-#        - $ref: "#/components/schemas/PlaceDataFilter"   # Out of scope
+        - $ref: "#/components/schemas/PlaceDataFilter"
         - $ref: "#/components/schemas/PlacePolicy"
         
-    PlacePolicy: ## OJP
+    PlaceDataFilter: ## OJP
+      properties:
+        type: 
+          $ref: "#/components/schemas/PlaceType"
+        usage:
+          $ref: "#/components/schemas/PlaceUsage"
+        ptModes:
+          $ref: "#/components/schemas/PtModeFilter"
+        operatorFilter:
+          $ref: "#/components/schemas/OperatorFilter"
+        topographicPlaceRef:
+          $ref: "#/components/schemas/TopographicPlaceRef"
+        pointOfInterestFilter:
+          $ref: "#/components/schemas/PointOfInterestFilter"
+
+    PlaceType: ## OJP
+      type: string
+      enum:
+        - STOP
+        - ADDRESS
+        - POI
+        - GEO_COORDINATE
+        - TOPOGRAPHIC_PLACE
+    
+    PlaceUsage: ## OJP
+      type: string
+      enum:
+        - ORIGIN
+        - VIA
+        - DESTINATION
+
+    PlacePolicy:  ## OJP
       properties:
         #language:   # Not supported, language shall be set in header
         #  type: string
@@ -2688,7 +2719,7 @@ components:
         #includePtModes:    # Out of scope
         #  type: boolean
 
-    InitialPlaceInput: ## OJP
+    InitialPlaceInput:  ## OJP
       description: >-
         Initial input for the place information request. 
         This input defines what is originally looked for.
@@ -2991,10 +3022,10 @@ components:
           description: Whether the result should include intermediate stops (between the passenger's board and alight stops).
           type: boolean
           default: true
-        includeFare:
-          description: Whether the result should include fare information.
-          type: boolean
-          default: true
+        # includeFare:  # Out of scope
+        #   description: Whether the result should include fare information.
+        #  type: boolean
+        #  default: true
         includeOperatingDays:
           description: Whether the result should include operating day information - as encoded bit string and in natural language.
           type: boolean
@@ -3138,6 +3169,22 @@ components:
           type: array
           items:
             type: string
+
+    PointOfInterestFilter:  ## OJP
+      description: Filter POIs by category 
+      type: object
+      properties:
+        exclude:
+          description: Whether operators in list are to include or exclude from search.
+          type: boolean
+          default: True
+        pointOfInterestCategory:
+          description: >-
+            These POI categories can be used to filter POIs. If more than one is given the filtering
+            is by logical "OR" (when Exclude=FALSE) and logical "AND" (when Exclude=TRUE).
+          type: array
+          items:
+            $ref: "#/components/schemas/PointOfInterestCategory"
 
     PrivateModeFilter:  ## OJP
       description: List of private mobility offers to include or exclude.
@@ -3494,7 +3541,7 @@ components:
       description: >-
         Attributes that are not valid on the whole service, but only on section of a 
         trip made on a single mode without interchange between boarding and alighting (facilities 
-        available on a specified (part of a) leg of a vehicle jouney)
+        available on a specified (part of a) leg of a vehicle journey)
       type: object
       allOf:
         - $ref: "#/components/schemas/GeneralAttribute"
@@ -3851,17 +3898,6 @@ components:
         - LEAVE
         - ENTER
 
-    TypeOfFareClassEnumeration:  ## OJP
-      description: classes of travel available on a particular service which will affect the price to be paid
-      type: string
-      enum:
-        - ALL
-        - FIRST
-        - SECOND
-        - THIRD
-        - BUSINESS
-        - ECONOMY
-
     TransitionEnumeration:  ## OJP
       description: Transition types for interchanges.
       type: string
@@ -3882,16 +3918,6 @@ components:
         - ESCALATOR
         - RAMP
         - FOOTPATH
-
-    PassengerCategoryEnumeration:  ## OJP
-      description: classification of passengers by age or other factors that may determine the fare they will need to pay.
-      type: string
-      enum:
-        - ADULT
-        - CHILD
-        - SENIOR
-        - YOUTH
-        - DISABLED
 
     PrivateModesEnumeration:  ## OJP
       description: modes offered by private individuals
@@ -4084,7 +4110,7 @@ components:
 
     ServiceTime:  ## OJP
       description: >-
-        Contains at least scheduled time, but can contain real time and estimated times.
+        Contains at least scheduled time, but can contain real time and estimated times. 
       type: object
       required:
         - timetabledTime
@@ -4383,7 +4409,7 @@ components:
 
     StopAttributes:  ## OJP
       description: >-
-        A selection of attributes of accessibiity limitation related to a scheduled stop point extended by attributes
+        A selection of attributes of accessibility limitation related to a scheduled stop point extended by attributes
         referring to some equipment.
       type: object
       properties:
