@@ -4213,6 +4213,7 @@ components:
         - $ref: "#/components/schemas/StopPlaceStructure"
         - $ref: "#/components/schemas/StopPointStructure"
         - $ref: "#/components/schemas/TopographicPlaceStructure"
+        - $ref: "#/components/schemas/ConnectionPointStructure"  # OSDM extension for virtual border points
       - $ref: "#/components/schemas/GeoPositionStructure"
       - type: object
         properties:
@@ -4332,7 +4333,7 @@ components:
 
     PointOfInterestCategory:  ## OJP
       description: >-
-        A categorisation of POINTs OF INTEREST in respect of the activities undertaken at them (defined by key-value-pairs).
+        A categorisation of points of interest in respect of the activities undertaken at them (defined by key-value-pairs).
       oneOf:
         - type: object
           description: Open Street Map tag structure (key-value)
@@ -7185,7 +7186,7 @@ components:
         - latitude
         - longitude
 
-    ConnectionPoint:
+    ConnectionPointStructure:
       type: object
       description: >-
         Connection point connecting two fare regimes.
