@@ -39,6 +39,12 @@ A problem details object can have the following members:
 
 Consumers MUST use the `type` string as the primary identifier for the problem type; the `title` string is advisory and included only for users who are not aware of the semantics of the URI and do not have the ability to discover them (e.g., offline log analysis). Consumers SHOULD NOT automatically dereference the type URI.
 
+## Functional Errors and Error Codes
+
+In order that OSDM implementations  behave consistently in error situations,
+a list of [error codes and warnings](./errors-warning/) have been defined that
+must be supported in case of functional errors by all implementations.
+
 ## Authentication
 
 The following three design principles are binding for each implementor:
@@ -52,7 +58,7 @@ duration single-digit multiples)
 
 These principles can be implemented as follows:
 
-- A **registration service** allows a consumer to register the necessary data (like: organization, technical admin, commercial admin, support line, other non-functional requirements like throtteling limits) for approvement by the team providing access.
+- A **registration service** allows a consumer to register the necessary data (like: organization, technical admin, commercial admin, support line, other non-functional requirements like throttling limits) for approvement by the team providing access.
 any registered consumer will be approved or rejected if approved a unique, technical "ClientId" results and will be passed to the consumer
 
 - A **login service** allows to request a valid token (for e.g. OAauth2) by the registered ClientId and related secret per configuration the validity duration of the token may be set (for e.g. 10min.), after that the token must be renewed by the consumer optionally the token might be revoked (for e.g. if your devOps realizes the consumer does not behave as expected)

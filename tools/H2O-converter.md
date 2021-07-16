@@ -22,6 +22,7 @@ This conversion is simple as can be seen in the following table
 
 | Use Case | Hermes Hosa | OSDM     |
 |----------|-------------|----------|
+| get reservations offers | `AvailabilityRequest` | `GET /trip-offers(searchCriteria)` |
 | get reservations offers | `BookingRequest` with `informationOnly=true` | `GET /trip-offers(searchCriteria)` |
 | book offer              | `BookingRequest` | `POST /bookings` followed by `POST /booking/{bookingId}/fulfillments` |
 | cancel booking          | `CancelRequest` with `reason code` | `POST /bookings/{booking}/refundOffers` |

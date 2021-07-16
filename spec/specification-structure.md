@@ -33,7 +33,7 @@ and provides references to standards used.
 
 ## Business Requirements
 
-Business needs leading to this specification are captured in the [requirement](./requirements) and the [business capabilities](./business-capabilities) documents.
+Business needs leading to this specification are captured in the [requirement](./requirements/) and the [business capabilities](./business-capabilities/) documents.
 
 ## Compliance to the Specification
 

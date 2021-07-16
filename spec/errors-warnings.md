@@ -7,6 +7,8 @@ permalink: /spec/errors-warnings/
 
 # Errors and Warnings (Draft)
 
+*To be released in version 1.3*
+
 ## General HTTP error codes and generic situations
 
 The following standard HTTP error codes are used in the specification:
@@ -26,14 +28,17 @@ The following standard HTTP error codes are used in the specification:
 The OSDM API makes use of the JSON Problem structure to return
 information about functional errors in the handling of a request.
 
-The problem structure is based on the Problem Details for HTTP APIs RFC (RFC 7807),
-which  defines a \"problem detail\" as a way to carry machine-readable
-details of errors in a HTTP response to avoid the need to define new
-error response formats for HTTP APIs (See [RfC-7807](https://tools.ietf.org/html/rfc7807).
+The problem structure is based on the Problem Details for HTTP APIs RFC
+[RfC-7807](https://tools.ietf.org/html/rfc7807) which defines a
+\"problem detail\" as a way to carry machine-readable details of errors in a HTTP response to avoid the need to define new error response formats for HTTP APIs.
 
 For OSDM, the title property should begin with the code of the error
 type. This code should be the unique identifier for the functional
-situation in the absolute URI in the type property as well
+situation in the absolute URI in the type property as well.
+
+In order that OSDM implementations also behave consistently in error situations,
+the following error codes must be supported in case of functional errors by all 
+implementations:
 
 | **Functional area** | **Code**     | **Title**                     |
 |---------------------|--------------|-------------------------------|
@@ -78,8 +83,6 @@ situation in the absolute URI in the type property as well
 The list can be extended by an implementor but at least these errors must
 be captured and they must be presented with the codes listed here above.
 
-chained error messages
-
 ## Functional Warnings
 
 In addition to errors, a generic warnings mechanism is used to pass
@@ -96,4 +99,4 @@ A warning message is typically made of a code and a text. Texts are not
 translated and the expected language there should be english. It is up
 to the implementers to foresee a translation based on the code if
 relevant. Optionally, a warning message can contain reference to
-resources in the model
+resources in the model.
