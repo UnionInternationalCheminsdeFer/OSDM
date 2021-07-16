@@ -42,7 +42,7 @@ Consumers MUST use the `type` string as the primary identifier for the problem t
 ## Functional Errors and Error Codes
 
 In order that OSDM implementations  behave consistently in error situations,
-a list of [error codes and warnings](./errors-warning/) have been defined that
+a list of [error codes and warnings](../errors-warnings/) have been defined that
 must be supported in case of functional errors by all implementations.
 
 ## Authentication
