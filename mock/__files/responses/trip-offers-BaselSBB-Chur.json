@@ -3,87 +3,167 @@
         "id": "trip-offer-id-basel-chur",
         "abstract": "Basel SBB - Chur 2021-05-24 08:33 CET",
         "trip": {
-            "id": "string",
-            "abstract": "Basel SBB - Landquart, 2020-07-01 10:05 CET",
+            "id": "trip-id-basel-chur",
+            "abstract": "Basel SBB - Chur, 2021-05-24, 08:33 - 10:52 CET",
             "segments": [
                 {
                     "index": 0,
                     "origin": {
                         "station": {
-                            "id": "string",
-                            "abstract": "TODO Basel SBB",
+                            "id": "8500010",
+                            "abstract": "Basel SBB",
                             "station": {
-                                "localCode": "string",
-                                "country": "string",
+                                "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "string"
+                                        "code": "8500010"
                                     }
                                 ]
-                            }
-                        },
-                        "departureDateTime": "2021-02-18T07:47:46.643Z",
-                        "arrivalDateTime": "2021-02-18T07:47:46.643Z",
-                        "index": 5,
-                        "departureTrack": "13A",
-                        "arrivalTrack": "13B"
+                            },
+                            "departureDateTime": "2021-05-24T08:33:00.123Z",
+                            "index": 0,
+                            "departureTrack": "7"
+                        }
                     },
                     "destination": {
                         "station": {
-                            "id": "string",
-                            "abstract": "Bruxelles-Midi",
+                            "id": "8509000",
+                            "abstract": "Chur",
                             "station": {
-                                "localCode": "string",
-                                "country": "string",
+                                "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "string"
+                                        "code": "8509000"
                                     }
                                 ]
-                            }
-                        },
-                        "departureDateTime": "2021-02-18T07:47:46.644Z",
-                        "arrivalDateTime": "2021-02-18T07:47:46.644Z",
-                        "index": 5,
-                        "departureTrack": "13A",
-                        "arrivalTrack": "13B"
+                            },
+                            "arrivalDateTime": "2021-05-24T10:52:00.123Z",
+                            "index": 1,
+                            "arrivalTrack": "9"
+                        }
                     },
-                    "duration": "P2DT3H4M",
-                    "transfer": {
-                        "duration": "P2DT3H4M",
-                        "transferType": "string"
-                    },
+                    "duration": "P2DT2H19M",
                     "vehicle": {
                         "numbers": [
-                            "string"
+                            "563"
                         ],
-                        "line": "string",
-                        "serviceBrand": "TGV",
-                        "transportMode": "string"
+                        "line": "3",
+                        "serviceBrand": "IC",
+                        "transportMode": "INTERCITY"
                     },
                     "stops": [
                         {
                             "station": {
-                                "id": "string",
-                                "abstract": "Bruxelles-Midi",
+                                "id": "8500010",
+                                "abstract": "Basel SBB",
                                 "station": {
-                                    "localCode": "string",
-                                    "country": "string",
+                                    "country": "ch",
                                     "codes": [
                                         {
                                             "codeList": "UIC",
-                                            "code": "string"
+                                            "code": "8500010"
+                                        }
+                                    ],
+                                    "geoCoordinate": {
+                                        "system": "WSG84",
+                                        "accuracy": 0.00002,
+                                        "latitude": 47.547408,
+                                        "longitude": 7.589548
+                                    },
+                                    "names": [
+                                        {
+                                            "language": "de",
+                                            "text": "Basel SBB"
+                                        },
+                                        {
+                                            "language": "fr",
+                                            "text": "Bâle SBB"
                                         }
                                     ]
                                 }
                             },
-                            "departureDateTime": "2021-02-18T07:47:46.645Z",
-                            "arrivalDateTime": "2021-02-18T07:47:46.645Z",
-                            "index": 5,
-                            "departureTrack": "13A",
-                            "arrivalTrack": "13B"
+                            "departureDateTime": "2021-05-24T08:33:00.123Z",
+                            "index": 0,
+                            "departureTrack": "7"
+                        },
+                        {
+                            "station": {
+                                "id": "8503000",
+                                "abstract": "Zürich SBB",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8503000"
+                                        }
+                                    ]
+                                }
+                            },
+                            "departureDateTime": "2021-05-24T09:38:00.490Z",
+                            "arrivalDateTime": "2021-05-24T09:26:00.490Z",
+                            "index": 1,
+                            "departureTrack": "7",
+                            "arrivalTrack": "7"
+                        },
+                        {
+                            "station": {
+                                "id": "8509411",
+                                "abstract": "Sargans",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509411"
+                                        }
+                                    ]
+                                }
+                            },
+                            "departureDateTime": "2021-05-24T10:34:00.490Z",
+                            "arrivalDateTime": "2021-05-24T10:33:00.490Z",
+                            "index": 2,
+                            "departureTrack": "5",
+                            "arrivalTrack": "5"
+                        },
+                        {
+                            "station": {
+                                "id": "8509002",
+                                "abstract": "Landquart",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509002"
+                                        }
+                                    ]
+                                }
+                            },
+                            "departureDateTime": "2021-05-24T10:43:00.490Z",
+                            "arrivalDateTime": "2021-05-24T10:42:00.490Z",
+                            "index": 3,
+                            "arrivalTrack": "2"
+                        },
+                        {
+                            "station": {
+                                "id": "8509000",
+                                "abstract": "Chur",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8509000"
+                                        }
+                                    ]
+                                }
+                            },
+                            "arrivalDateTime": "2021-05-24T10:52:00.490Z",
+                            "index": 4,
+                            "arrivalTrack": "9"
                         }
                     ]
                 }
@@ -99,54 +179,30 @@
                                 "codeList": "UIC",
                                 "code": "8500010"
                             }
-                        ],
-                        "geoCoordinate": {
-                            "system": "WSG84",
-                            "accuracy": 0.00002,
-                            "latitude": 47.547408,
-                            "longitude": 7.589548
-                        },
-                        "names": [
-                            {
-                                "language": "de",
-                                "text": "Basel SBB"
-                            }
                         ]
                     }
                 },
-                "departureDateTime": "2021-05-22T13:06:37.490Z",
+                "departureDateTime": "2021-05-24T08:33:00.490Z",
                 "index": 0,
-                "departureTrack": "5"
+                "departureTrack": "7"
             },
             "destination": {
                 "station": {
-                    "id": "8509002",
-                    "abstract": "Landquart",
+                    "id": "8509000",
+                    "abstract": "Chur",
                     "station": {
                         "country": "ch",
                         "codes": [
                             {
                                 "codeList": "UIC",
-                                "code": "8509002"
-                            }
-                        ],
-                        "geoCoordinate": {
-                            "system": "WSG84",
-                            "accuracy": 0.00002,
-                            "latitude": 46.967442,
-                            "longitude": 9.554032
-                        },
-                        "names": [
-                            {
-                                "language": "de",
-                                "text": "Landquart"
+                                "code": "8509000"
                             }
                         ]
                     }
                 },
-                "arrivalDateTime": "2021-05-22T15:12:37.491Z",
+                "arrivalDateTime": "2021-05-24T10:52:00.491Z",
                 "index": 0,
-                "arrivalTrack": "2"
+                "arrivalTrack": "9"
             },
             "duration": "P2DT3H4M",
             "direction": "UNSPECIFIED"
@@ -154,12 +210,12 @@
         "tripKey": "string",
         "offers": [
             {
-                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                "abstract": "Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR",
+                "id": "offer-id-basel-chur",
+                "abstract": "Basel SBB - Chur, 2021-05-24, 08:33 - 10:52 CET, Normal Fare, 60 CHF",
                 "offerSummary": {
                     "minimalPrice": {
                         "currency": "CHF",
-                        "amount": 0,
+                        "amount": 60,
                         "scale": 2,
                         "vatDetails": [
                             {
@@ -173,7 +229,7 @@
                     },
                     "overallServiceClass": {
                         "id": "string",
-                        "carrierName": "string"
+                        "carrierName": "SBB"
                     },
                     "overallComfortClass": "string",
                     "overallAccommodationType": "string",
@@ -193,138 +249,212 @@
                     "string"
                 ],
                 "trip": {
-                    "id": "string",
-                    "abstract": "Bruxelles-Midi - Paris-Nord, 2020-07-01 10:05 CET",
+                    "id": "trip-id-basel-chur",
+                    "abstract": "Basel SBB - Chur, 2021-05-24, 08:33 - 10:52 CET",
                     "segments": [
                         {
                             "index": 0,
                             "origin": {
                                 "station": {
-                                    "id": "string",
-                                    "abstract": "Bruxelles-Midi",
+                                    "id": "8500010",
+                                    "abstract": "Basel SBB",
                                     "station": {
-                                        "localCode": "string",
-                                        "country": "string",
+                                        "country": "ch",
                                         "codes": [
                                             {
                                                 "codeList": "UIC",
-                                                "code": "string"
+                                                "code": "8500010"
                                             }
                                         ]
-                                    }
-                                },
-                                "departureDateTime": "2021-02-18T07:47:46.647Z",
-                                "arrivalDateTime": "2021-02-18T07:47:46.647Z",
-                                "index": 5,
-                                "departureTrack": "13A",
-                                "arrivalTrack": "13B"
+                                    },
+                                    "departureDateTime": "2021-05-24T08:33:00.123Z",
+                                    "index": 0,
+                                    "departureTrack": "7"
+                                }
                             },
                             "destination": {
                                 "station": {
-                                    "id": "string",
-                                    "abstract": "Bruxelles-Midi",
+                                    "id": "8509000",
+                                    "abstract": "Chur",
                                     "station": {
-                                        "localCode": "string",
-                                        "country": "string",
+                                        "country": "ch",
                                         "codes": [
                                             {
                                                 "codeList": "UIC",
-                                                "code": "string"
+                                                "code": "8509000"
                                             }
                                         ]
-                                    }
-                                },
-                                "departureDateTime": "2021-02-18T07:47:46.647Z",
-                                "arrivalDateTime": "2021-02-18T07:47:46.647Z",
-                                "index": 5,
-                                "departureTrack": "13A",
-                                "arrivalTrack": "13B"
+                                    },
+                                    "arrivalDateTime": "2021-05-24T10:52:00.123Z",
+                                    "index": 1,
+                                    "arrivalTrack": "9"
+                                }
                             },
-                            "duration": "P2DT3H4M",
-                            "transfer": {
-                                "duration": "P2DT3H4M",
-                                "transferType": "string"
-                            },
+                            "duration": "P2DT2H19M",
                             "vehicle": {
                                 "numbers": [
-                                    "string"
+                                    "563"
                                 ],
-                                "line": "string",
-                                "serviceBrand": "TGV",
-                                "transportMode": "string"
+                                "line": "3",
+                                "serviceBrand": "IC",
+                                "transportMode": "INTERCITY"
                             },
                             "stops": [
                                 {
                                     "station": {
-                                        "id": "string",
-                                        "abstract": "Bruxelles-Midi",
+                                        "id": "8500010",
+                                        "abstract": "Basel SBB",
                                         "station": {
-                                            "localCode": "string",
-                                            "country": "string",
+                                            "country": "ch",
                                             "codes": [
                                                 {
                                                     "codeList": "UIC",
-                                                    "code": "string"
+                                                    "code": "8500010"
+                                                }
+                                            ],
+                                            "geoCoordinate": {
+                                                "system": "WSG84",
+                                                "accuracy": 0.00002,
+                                                "latitude": 47.547408,
+                                                "longitude": 7.589548
+                                            },
+                                            "names": [
+                                                {
+                                                    "language": "de",
+                                                    "text": "Basel SBB"
+                                                },
+                                                {
+                                                    "language": "fr",
+                                                    "text": "Bâle SBB"
                                                 }
                                             ]
                                         }
                                     },
-                                    "departureDateTime": "2021-02-18T07:47:46.648Z",
-                                    "arrivalDateTime": "2021-02-18T07:47:46.648Z",
-                                    "index": 5,
-                                    "departureTrack": "13A",
-                                    "arrivalTrack": "13B"
+                                    "departureDateTime": "2021-05-24T08:33:00.123Z",
+                                    "index": 0,
+                                    "departureTrack": "7"
+                                },
+                                {
+                                    "station": {
+                                        "id": "8503000",
+                                        "abstract": "Zürich SBB",
+                                        "station": {
+                                            "country": "ch",
+                                            "codes": [
+                                                {
+                                                    "codeList": "UIC",
+                                                    "code": "8503000"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "departureDateTime": "2021-05-24T09:38:00.490Z",
+                                    "arrivalDateTime": "2021-05-24T09:26:00.490Z",
+                                    "index": 1,
+                                    "departureTrack": "7",
+                                    "arrivalTrack": "7"
+                                },
+                                {
+                                    "station": {
+                                        "id": "8509411",
+                                        "abstract": "Sargans",
+                                        "station": {
+                                            "country": "ch",
+                                            "codes": [
+                                                {
+                                                    "codeList": "UIC",
+                                                    "code": "8509411"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "departureDateTime": "2021-05-24T10:34:00.490Z",
+                                    "arrivalDateTime": "2021-05-24T10:33:00.490Z",
+                                    "index": 2,
+                                    "departureTrack": "5",
+                                    "arrivalTrack": "5"
+                                },
+                                {
+                                    "station": {
+                                        "id": "8509002",
+                                        "abstract": "Landquart",
+                                        "station": {
+                                            "country": "ch",
+                                            "codes": [
+                                                {
+                                                    "codeList": "UIC",
+                                                    "code": "8509002"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "departureDateTime": "2021-05-24T10:43:00.490Z",
+                                    "arrivalDateTime": "2021-05-24T10:42:00.490Z",
+                                    "index": 3,
+                                    "arrivalTrack": "2"
+                                },
+                                {
+                                    "station": {
+                                        "id": "8509000",
+                                        "abstract": "Chur",
+                                        "station": {
+                                            "country": "ch",
+                                            "codes": [
+                                                {
+                                                    "codeList": "UIC",
+                                                    "code": "8509000"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "arrivalDateTime": "2021-05-24T10:52:00.490Z",
+                                    "index": 4,
+                                    "arrivalTrack": "9"
                                 }
                             ]
                         }
                     ],
                     "origin": {
                         "station": {
-                            "id": "string",
-                            "abstract": "Bruxelles-Midi",
+                            "id": "8500010",
+                            "abstract": "Basel SBB",
                             "station": {
-                                "localCode": "string",
-                                "country": "string",
+                                "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "string"
+                                        "code": "8500010"
                                     }
                                 ]
                             }
                         },
-                        "departureDateTime": "2021-02-18T07:47:46.648Z",
-                        "arrivalDateTime": "2021-02-18T07:47:46.648Z",
-                        "index": 5,
-                        "departureTrack": "13A",
-                        "arrivalTrack": "13B"
+                        "departureDateTime": "2021-05-24T08:33:00.490Z",
+                        "index": 0,
+                        "departureTrack": "7"
                     },
                     "destination": {
                         "station": {
-                            "id": "string",
-                            "abstract": "Bruxelles-Midi",
+                            "id": "8509000",
+                            "abstract": "Chur",
                             "station": {
-                                "localCode": "string",
-                                "country": "string",
+                                "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "string"
+                                        "code": "8509000"
                                     }
                                 ]
                             }
                         },
-                        "departureDateTime": "2021-02-18T07:47:46.649Z",
-                        "arrivalDateTime": "2021-02-18T07:47:46.649Z",
-                        "index": 5,
-                        "departureTrack": "13A",
-                        "arrivalTrack": "13B"
+                        "arrivalDateTime": "2021-05-24T10:52:00.491Z",
+                        "index": 0,
+                        "arrivalTrack": "9"
                     },
                     "duration": "P2DT3H4M",
                     "direction": "UNSPECIFIED"
                 },
-                "validFrom": "2021-02-18T07:47:46.649Z",
-                "validUntil": "2021-02-18T07:47:46.649Z",
+                "validFrom": "2021-05-24T07:47:46.649Z",
+                "validUntil": "2021-05-25T07:47:46.649Z",
                 "admissions": [
                     {
                         "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",

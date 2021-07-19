@@ -433,6 +433,20 @@
         {
             "request": {
                 "method": "GET",
+                "url": "/trip-offers-collection/trip-offers-collection-id-basel-zermatt"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trip-offers-collection-BaselSBB-Zermatt.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
                 "url": "/trip-offers/trip-offer-001"
             },
             "response": {
@@ -457,7 +471,35 @@
                 },
                 "bodyFileName": "responses/trip-offers-Landquart-KlostersPlatz.json"
             }
-        },       
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/trip-offers/trip-offer-id-basel-chur"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trip-offers-BaselSBB-Chur.json"
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "url": "/trip-offers/trip-offer-id-chur-zermatt"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Content-Language": "en"
+                },
+                "bodyFileName": "responses/trip-offers-Chur-Zermatt.json"
+            }
+        },
         {
             "request": {
                 "method": "POST",

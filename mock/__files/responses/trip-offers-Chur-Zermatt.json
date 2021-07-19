@@ -10,213 +10,239 @@
                     "index": 0,
                     "origin": {
                         "station": {
-                            "id": "8509002",
-                            "abstract": "TODO Chur",
+                            "id": "8509000",
+                            "abstract": "Chur",
                             "station": {
                                 "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "8509002"
+                                        "code": "8509000"
                                     }
                                 ]
                             },
-                            "departureDateTime": "2021-05-22T15:20:37.489Z",
+                            "departureDateTime": "2021-05-24T11:06:00.489Z",
                             "index": 0,
-                            "departureTrack": "5"
+                            "departureTrack": "13"
                         }
                     },
                     "destination": {
                         "station": {
-                            "id": "8509068",
-                            "abstract": "Klosters Platz",
+                            "id": "8501689",
+                            "abstract": "Zermatt",
                             "station": {
                                 "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "8509068"
+                                        "code": "8501689"
                                     }
                                 ]
                             },
-                            "arrivalDateTime": "2021-05-22T15:59:37.490Z",
+                            "arrivalDateTime": "2021-05-24T17:10:00.490Z",
                             "index": 0,
-                            "arrivalTrack": "1"
+                            "arrivalTrack": "4"
                         }
                     },
-                    "duration": "P2DT3H4M",
+                    "duration": "P2DT6H4M",
                     "vehicle": {
                         "numbers": [
-                            "1351"
+                            "903"
                         ],
-                        "line": "1351",
-                        "serviceBrand": "RE",
-                        "transportMode": "REGIONAL"
+                        "line": "",
+                        "serviceBrand": "PE",
+                        "transportMode": "MOUNTAIN_TRAIN"
                     },
                     "stops": [
                         {
                             "station": {
-                                "id": "8509002",
-                                "abstract": "Landquart",
+                                "id": "8509000",
+                                "abstract": "Chur",
                                 "station": {
                                     "country": "ch",
                                     "codes": [
                                         {
                                             "codeList": "UIC",
-                                            "code": "8509002"
+                                            "code": "8509000"
                                         }
                                     ],
                                     "names": [
                                         {
                                             "language": "de",
-                                            "text": "Landquart"
+                                            "text": "Chur"
                                         }
                                     ]
                                 }
                             },
-                            "departureDateTime": "2021-05-22T15:20:37.490Z",
+                            "departureDateTime": "2021-05-24T11:06:00.490Z",
                             "index": 0,
-                            "departureTrack": "5"
+                            "departureTrack": "13"
                         },
                         {
                             "station": {
-                                "id": "8509060",
-                                "abstract": "Schiers",
+                                "id": "8509179",
+                                "abstract": "Disentis/Mustér",
                                 "station": {
                                     "country": "ch",
                                     "codes": [
                                         {
                                             "codeList": "UIC",
-                                            "code": "8509060"
+                                            "code": "8509179"
                                         }
                                     ],
                                     "names": [
                                         {
                                             "language": "de",
-                                            "text": "Schiers"
+                                            "text": "Disentis/Mustér"
                                         }
                                     ]
                                 }
                             },
-                            "departureDateTime": "2021-05-22T15:30:37.490Z",
-                            "arrivalDateTime": "2021-05-22T15:33:37.490Z",
+                            "departureDateTime": "2021-05-24T12:37:00.490Z",
+                            "arrivalDateTime": "2021-05-24T12:18:00.490Z",
                             "index": 1,
                             "departureTrack": "1",
                             "arrivalTrack": "1"
                         },
                         {
                             "station": {
-                                "id": "8509064",
-                                "abstract": "Küblis",
+                                "id": "8505165",
+                                "abstract": "Andermatt",
                                 "station": {
                                     "country": "ch",
                                     "codes": [
                                         {
                                             "codeList": "UIC",
-                                            "code": "8509064"
+                                            "code": "8505165"
                                         }
                                     ],
                                     "names": [
                                         {
                                             "language": "de",
-                                            "text": "Küblis"
+                                            "text": "Andermatt"
                                         }
                                     ]
                                 }
                             },
-                            "departureDateTime": "2021-05-22T15:41:37.490Z",
-                            "arrivalDateTime": "2021-05-22T15:44:37.490Z",
+                            "departureDateTime": "2021-05-24T14:08:00.490Z",
+                            "arrivalDateTime": "2021-05-24T13:52:00.490Z",
                             "index": 2,
-                            "departureTrack": "1",
-                            "arrivalTrack": "1"
+                            "departureTrack": "2",
+                            "arrivalTrack": "2"
                         },
                         {
                             "station": {
-                                "id": "8509064",
-                                "abstract": "Klosters Platz",
+                                "id": "8501609",
+                                "abstract": "Brig",
                                 "station": {
                                     "country": "ch",
                                     "codes": [
                                         {
                                             "codeList": "UIC",
-                                            "code": "8509064"
+                                            "code": "8501609"
                                         }
                                     ],
                                     "names": [
                                         {
                                             "language": "de",
-                                            "text": "Klosters Platz"
+                                            "text": "Brig"
                                         }
                                     ]
                                 }
                             },
-                            "arrivalDateTime": "2021-05-22T15:59:37.490Z",
+                            "departureDateTime": "2021-05-24T15:50:00.490Z",
+                            "arrivalDateTime": "2021-05-24T15:40:00.490Z",
                             "index": 3,
-                            "arrivalTrack": "1"
+                            "departureTrack": "12",
+                            "arrivalTrack": "12"
+                        },
+                        {
+                            "station": {
+                                "id": "8501689",
+                                "abstract": "Zermatt",
+                                "station": {
+                                    "country": "ch",
+                                    "codes": [
+                                        {
+                                            "codeList": "UIC",
+                                            "code": "8501689"
+                                        }
+                                    ],
+                                    "names": [
+                                        {
+                                            "language": "de",
+                                            "text": "Zermatt"
+                                        }
+                                    ]
+                                }
+                            },
+                            "arrivalDateTime": "2021-05-24T17:10:00.490Z",
+                            "index": 4,
+                            "arrivalTrack": "4"
                         }
                     ]
                 }
             ],
             "origin": {
                 "station": {
-                    "id": "8509002",
-                    "abstract": "Landquart",
+                    "id": "8509000",
+                    "abstract": "Chur",
                     "station": {
                         "country": "ch",
                         "codes": [
                             {
                                 "codeList": "UIC",
-                                "code": "8509002"
+                                "code": "8509000"
                             }
                         ],
                         "names": [
                             {
                                 "language": "de",
-                                "text": "Landquart"
+                                "text": "Chur"
                             }
                         ]
                     }
                 },
-                "departureDateTime": "2021-05-22T15:20:37.490Z",
+                "departureDateTime": "2021-05-24T11:06:00.490Z",
                 "index": 0,
-                "departureTrack": "5"
+                "departureTrack": "13"
             },
             "destination": {
                 "station": {
-                    "id": "8509068",
-                    "abstract": "Klosters Platz",
+                    "id": "8501689",
+                    "abstract": "Zermatt",
                     "station": {
                         "country": "ch",
                         "codes": [
                             {
                                 "codeList": "UIC",
-                                "code": "8509068"
+                                "code": "8501689"
                             }
                         ],
                         "names": [
                             {
                                 "language": "de",
-                                "text": "Klosters Platz"
+                                "text": "Zermatt"
                             }
                         ]
                     }
                 },
-                "arrivalDateTime": "2021-05-22T15:59:37.491Z",
+                "arrivalDateTime": "2021-05-24T17:10:00.491Z",
                 "index": 0,
-                "arrivalTrack": "2"
+                "arrivalTrack": "4"
             },
-            "duration": "P2DT3H4M",
+            "duration": "P2DT6H4M",
             "direction": "UNSPECIFIED"
         },
         "tripKey": "string",
         "offers": [
             {
-                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                "abstract": "Landquart - Klosters Platz, 2021-05-22 15:20 CET, Normal Fare, 50 EUR",
+                "id": "offer-id-chur-zermatt",
+                "abstract": "Chur - Zermatt, 2021-05-24, 11:06 - 17:10 CET, Normal Fare, 77 CHF",
                 "offerSummary": {
                     "minimalPrice": {
                         "currency": "CHF",
-                        "amount": 0,
+                        "amount": 77,
                         "scale": 2,
                         "vatDetails": [
                             {
@@ -251,138 +277,239 @@
                     "string"
                 ],
                 "trip": {
-                    "id": "string",
-                    "abstract": "Landquart - Klosters Platz, 2021-05-22 10:05 CET",
+                    "id": "trip-id-chur-zermatt",
+                    "abstract": "Chur - Zermatt, 2021-05-24, 11:06 - 17:10 CET",
                     "segments": [
                         {
                             "index": 0,
                             "origin": {
                                 "station": {
-                                    "id": "string",
-                                    "abstract": "Bruxelles-Midi",
+                                    "id": "8509000",
+                                    "abstract": "Chur",
                                     "station": {
-                                        "localCode": "string",
-                                        "country": "string",
+                                        "country": "ch",
                                         "codes": [
                                             {
                                                 "codeList": "UIC",
-                                                "code": "string"
+                                                "code": "8509000"
                                             }
                                         ]
-                                    }
-                                },
-                                "departureDateTime": "2021-02-18T07:47:46.647Z",
-                                "arrivalDateTime": "2021-02-18T07:47:46.647Z",
-                                "index": 5,
-                                "departureTrack": "13A",
-                                "arrivalTrack": "13B"
+                                    },
+                                    "departureDateTime": "2021-05-24T11:06:00.489Z",
+                                    "index": 0,
+                                    "departureTrack": "13"
+                                }
                             },
                             "destination": {
                                 "station": {
-                                    "id": "string",
-                                    "abstract": "Bruxelles-Midi",
+                                    "id": "8501689",
+                                    "abstract": "Zermatt",
                                     "station": {
-                                        "localCode": "string",
-                                        "country": "string",
+                                        "country": "ch",
                                         "codes": [
                                             {
                                                 "codeList": "UIC",
-                                                "code": "string"
+                                                "code": "8501689"
                                             }
                                         ]
-                                    }
-                                },
-                                "departureDateTime": "2021-02-18T07:47:46.647Z",
-                                "arrivalDateTime": "2021-02-18T07:47:46.647Z",
-                                "index": 5,
-                                "departureTrack": "13A",
-                                "arrivalTrack": "13B"
+                                    },
+                                    "arrivalDateTime": "2021-05-24T17:10:00.490Z",
+                                    "index": 0,
+                                    "arrivalTrack": "4"
+                                }
                             },
-                            "duration": "P2DT3H4M",
-                            "transfer": {
-                                "duration": "P2DT3H4M",
-                                "transferType": "string"
-                            },
+                            "duration": "P2DT6H4M",
                             "vehicle": {
                                 "numbers": [
-                                    "string"
+                                    "903"
                                 ],
-                                "line": "string",
-                                "serviceBrand": "TGV",
-                                "transportMode": "string"
+                                "line": "",
+                                "serviceBrand": "PE",
+                                "transportMode": "MOUNTAIN_TRAIN"
                             },
                             "stops": [
                                 {
                                     "station": {
-                                        "id": "string",
-                                        "abstract": "Bruxelles-Midi",
+                                        "id": "8509000",
+                                        "abstract": "Chur",
                                         "station": {
-                                            "localCode": "string",
-                                            "country": "string",
+                                            "country": "ch",
                                             "codes": [
                                                 {
                                                     "codeList": "UIC",
-                                                    "code": "string"
+                                                    "code": "8509000"
+                                                }
+                                            ],
+                                            "names": [
+                                                {
+                                                    "language": "de",
+                                                    "text": "Chur"
                                                 }
                                             ]
                                         }
                                     },
-                                    "departureDateTime": "2021-02-18T07:47:46.648Z",
-                                    "arrivalDateTime": "2021-02-18T07:47:46.648Z",
-                                    "index": 5,
-                                    "departureTrack": "13A",
-                                    "arrivalTrack": "13B"
+                                    "departureDateTime": "2021-05-24T11:06:00.490Z",
+                                    "index": 0,
+                                    "departureTrack": "13"
+                                },
+                                {
+                                    "station": {
+                                        "id": "8509179",
+                                        "abstract": "Disentis/Mustér",
+                                        "station": {
+                                            "country": "ch",
+                                            "codes": [
+                                                {
+                                                    "codeList": "UIC",
+                                                    "code": "8509179"
+                                                }
+                                            ],
+                                            "names": [
+                                                {
+                                                    "language": "de",
+                                                    "text": "Disentis/Mustér"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "departureDateTime": "2021-05-24T12:37:00.490Z",
+                                    "arrivalDateTime": "2021-05-24T12:18:00.490Z",
+                                    "index": 1,
+                                    "departureTrack": "1",
+                                    "arrivalTrack": "1"
+                                },
+                                {
+                                    "station": {
+                                        "id": "8505165",
+                                        "abstract": "Andermatt",
+                                        "station": {
+                                            "country": "ch",
+                                            "codes": [
+                                                {
+                                                    "codeList": "UIC",
+                                                    "code": "8505165"
+                                                }
+                                            ],
+                                            "names": [
+                                                {
+                                                    "language": "de",
+                                                    "text": "Andermatt"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "departureDateTime": "2021-05-24T14:08:00.490Z",
+                                    "arrivalDateTime": "2021-05-24T13:52:00.490Z",
+                                    "index": 2,
+                                    "departureTrack": "2",
+                                    "arrivalTrack": "2"
+                                },
+                                {
+                                    "station": {
+                                        "id": "8501609",
+                                        "abstract": "Brig",
+                                        "station": {
+                                            "country": "ch",
+                                            "codes": [
+                                                {
+                                                    "codeList": "UIC",
+                                                    "code": "8501609"
+                                                }
+                                            ],
+                                            "names": [
+                                                {
+                                                    "language": "de",
+                                                    "text": "Brig"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "departureDateTime": "2021-05-24T15:50:00.490Z",
+                                    "arrivalDateTime": "2021-05-24T15:40:00.490Z",
+                                    "index": 3,
+                                    "departureTrack": "12",
+                                    "arrivalTrack": "12"
+                                },
+                                {
+                                    "station": {
+                                        "id": "8501689",
+                                        "abstract": "Zermatt",
+                                        "station": {
+                                            "country": "ch",
+                                            "codes": [
+                                                {
+                                                    "codeList": "UIC",
+                                                    "code": "8501689"
+                                                }
+                                            ],
+                                            "names": [
+                                                {
+                                                    "language": "de",
+                                                    "text": "Zermatt"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "arrivalDateTime": "2021-05-24T17:10:00.490Z",
+                                    "index": 4,
+                                    "arrivalTrack": "4"
                                 }
                             ]
                         }
                     ],
                     "origin": {
                         "station": {
-                            "id": "string",
-                            "abstract": "Bruxelles-Midi",
+                            "id": "8509000",
+                            "abstract": "Chur",
                             "station": {
-                                "localCode": "string",
-                                "country": "string",
+                                "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "string"
+                                        "code": "8509000"
+                                    }
+                                ],
+                                "names": [
+                                    {
+                                        "language": "de",
+                                        "text": "Chur"
                                     }
                                 ]
                             }
                         },
-                        "departureDateTime": "2021-02-18T07:47:46.648Z",
-                        "arrivalDateTime": "2021-02-18T07:47:46.648Z",
-                        "index": 5,
-                        "departureTrack": "13A",
-                        "arrivalTrack": "13B"
+                        "departureDateTime": "2021-05-24T11:06:00.490Z",
+                        "index": 0,
+                        "departureTrack": "13"
                     },
                     "destination": {
                         "station": {
-                            "id": "string",
-                            "abstract": "Bruxelles-Midi",
+                            "id": "8501689",
+                            "abstract": "Zermatt",
                             "station": {
-                                "localCode": "string",
-                                "country": "string",
+                                "country": "ch",
                                 "codes": [
                                     {
                                         "codeList": "UIC",
-                                        "code": "string"
+                                        "code": "8501689"
+                                    }
+                                ],
+                                "names": [
+                                    {
+                                        "language": "de",
+                                        "text": "Zermatt"
                                     }
                                 ]
                             }
                         },
-                        "departureDateTime": "2021-02-18T07:47:46.649Z",
-                        "arrivalDateTime": "2021-02-18T07:47:46.649Z",
-                        "index": 5,
-                        "departureTrack": "13A",
-                        "arrivalTrack": "13B"
+                        "arrivalDateTime": "2021-05-24T17:10:00.491Z",
+                        "index": 0,
+                        "arrivalTrack": "4"
                     },
-                    "duration": "P2DT3H4M",
+                    "duration": "P2DT6H4M",
                     "direction": "UNSPECIFIED"
                 },
-                "validFrom": "2021-02-18T07:47:46.649Z",
-                "validUntil": "2021-02-18T07:47:46.649Z",
+                "validFrom": "2021-05-24T07:47:46.649Z",
+                "validUntil": "2021-05-25T07:47:46.649Z",
                 "admissions": [
                     {
                         "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",

@@ -2,7 +2,7 @@
   "id": "trip-offers-collection-id-basel-zermatt",
   "tripOffers": [
     {
-      "id": "trip-offers-collection-id-basel-zermatt",
+      "id": "trip-offer-id-basel-zermatt",
       "abstract": "Offers for Basel SBB - Zermatt, 2021-05-24 08:33 CET",
       "trip": {
         "id": "trip-id-basel-chur",
@@ -176,41 +176,47 @@
       },
       "offers": [
         {
-          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-          "abstract": "Basel SBB - Klosters Platz 2021-05-22, 13:06 CET, BEST, 63 CHF",
+          "id": "offer-id-basel-chur",
+          "abstract": "Basel SBB - Chur, 2021-05-24, 08:33 - 10:52 CET, Normal Fare, 60 CHF",
           "offerSummary": {
             "minimalPrice": {
               "currency": "CHF",
-              "amount": 6300,
+              "amount": 60,
               "scale": 2,
               "vatDetails": [
                 {
                   "country": "CH",
                   "scale": 2,
                   "percentage": 7.9,
-                  "taxId": "TV SC 0103.9",
-                  "scope": "NATIONAL"
+                  "taxId": "string",
+                  "scope": "string"
                 }
               ]
             },
             "overallServiceClass": {
-              "id": "BEST"
+              "id": "string",
+              "carrierName": "SBB"
             },
-            "overallComfortClass": "FIRST",
-            "overallFlexibility": "FLEX"
+            "overallComfortClass": "string",
+            "overallAccommodationType": "string",
+            "overallAccommodationSubType": "string",
+            "overallFlexibility": "string"
           },
           "isReusable": true,
+          "offerTag": {
+            "isMandatory": false,
+            "offerTag": "string"
+          },
           "coveredSegmentIndexes": [
-            0, 1
+            0
           ],
-          "requestedInformation": "passenger[0].details.firstName AND passenger[0].details.name",
+          "requestedInformation": "string",
           "availableFulfillmentTypes": [
-            "E-TICKET",
-            "CIT_PAPER"
+            "string"
           ],
           "trip": {
-            "id": "50898cd4-0d1e-4456-92bd-c119d419728e",
-            "abstract": "Basel SBB - Landquart, 2021-05-22, 13:06 - 15:12 CET",
+            "id": "trip-id-basel-chur",
+            "abstract": "Basel SBB - Chur, 2021-05-24, 08:33 - 10:52 CET",
             "segments": [
               {
                 "index": 0,
@@ -227,36 +233,36 @@
                         }
                       ]
                     },
-                    "departureDateTime": "2021-05-22T13:06:37.489Z",
+                    "departureDateTime": "2021-05-24T08:33:00.123Z",
                     "index": 0,
-                    "departureTrack": "5"
+                    "departureTrack": "7"
                   }
                 },
                 "destination": {
                   "station": {
-                    "id": "8509002",
-                    "abstract": "Landquart",
+                    "id": "8509000",
+                    "abstract": "Chur",
                     "station": {
                       "country": "ch",
                       "codes": [
                         {
                           "codeList": "UIC",
-                          "code": "8509002"
+                          "code": "8509000"
                         }
                       ]
                     },
-                    "arrivalDateTime": "2021-05-22T15:12:37.490Z",
+                    "arrivalDateTime": "2021-05-24T10:52:00.123Z",
                     "index": 1,
-                    "arrivalTrack": "2"
+                    "arrivalTrack": "9"
                   }
                 },
-                "duration": "P2DT3H4M",
+                "duration": "P2DT2H19M",
                 "vehicle": {
                   "numbers": [
-                    "71"
+                    "563"
                   ],
-                  "line": "71",
-                  "serviceBrand": "ICE",
+                  "line": "3",
+                  "serviceBrand": "IC",
                   "transportMode": "INTERCITY"
                 },
                 "stops": [
@@ -271,12 +277,28 @@
                             "codeList": "UIC",
                             "code": "8500010"
                           }
+                        ],
+                        "geoCoordinate": {
+                          "system": "WSG84",
+                          "accuracy": 0.00002,
+                          "latitude": 47.547408,
+                          "longitude": 7.589548
+                        },
+                        "names": [
+                          {
+                            "language": "de",
+                            "text": "Basel SBB"
+                          },
+                          {
+                            "language": "fr",
+                            "text": "Bâle SBB"
+                          }
                         ]
                       }
                     },
-                    "departureDateTime": "2021-05-22T13:06:37.490Z",
+                    "departureDateTime": "2021-05-24T08:33:00.123Z",
                     "index": 0,
-                    "departureTrack": "5"
+                    "departureTrack": "7"
                   },
                   {
                     "station": {
@@ -289,20 +311,14 @@
                             "codeList": "UIC",
                             "code": "8503000"
                           }
-                        ],
-                        "geoCoordinate": {
-                          "system": "WSG84",
-                          "accuracy": 0.00002,
-                          "latitude": 47.378177,
-                          "longitude": 8.540193
-                        }
+                        ]
                       }
                     },
-                    "departureDateTime": "2021-05-22T14:00:37.490Z",
-                    "arrivalDateTime": "2021-05-22T14:07:37.490Z",
-                    "index": 0,
-                    "departureTrack": "10",
-                    "arrivalTrack": "10"
+                    "departureDateTime": "2021-05-24T09:38:00.490Z",
+                    "arrivalDateTime": "2021-05-24T09:26:00.490Z",
+                    "index": 1,
+                    "departureTrack": "7",
+                    "arrivalTrack": "7"
                   },
                   {
                     "station": {
@@ -318,11 +334,11 @@
                         ]
                       }
                     },
-                    "departureDateTime": "2021-05-22T15:03:37.490Z",
-                    "arrivalDateTime": "2021-05-22T15:04:37.490Z",
+                    "departureDateTime": "2021-05-24T10:34:00.490Z",
+                    "arrivalDateTime": "2021-05-24T10:33:00.490Z",
                     "index": 2,
-                    "departureTrack": "2",
-                    "arrivalTrack": "2"
+                    "departureTrack": "5",
+                    "arrivalTrack": "5"
                   },
                   {
                     "station": {
@@ -338,135 +354,28 @@
                         ]
                       }
                     },
-                    "arrivalDateTime": "2021-05-22T15:12:37.490Z",
+                    "departureDateTime": "2021-05-24T10:43:00.490Z",
+                    "arrivalDateTime": "2021-05-24T10:42:00.490Z",
                     "index": 3,
                     "arrivalTrack": "2"
-                  }
-                ]
-              },
-              {
-                "index": 0,
-                "origin": {
-                  "station": {
-                    "id": "8509002",
-                    "abstract": "Landquart",
-                    "station": {
-                      "country": "ch",
-                      "codes": [
-                        {
-                          "codeList": "UIC",
-                          "code": "8509002"
-                        }
-                      ]
-                    },
-                    "departureDateTime": "2021-05-22T15:20:37.489Z",
-                    "index": 0,
-                    "departureTrack": "5"
-                  }
-                },
-                "destination": {
-                  "station": {
-                    "id": "8509068",
-                    "abstract": "Klosters Platz",
-                    "station": {
-                      "country": "ch",
-                      "codes": [
-                        {
-                          "codeList": "UIC",
-                          "code": "8509068"
-                        }
-                      ]
-                    },
-                    "arrivalDateTime": "2021-05-22T15:59:37.490Z",
-                    "index": 0,
-                    "arrivalTrack": "1"
-                  }
-                },
-                "duration": "P2DT3H4M",
-                "vehicle": {
-                  "numbers": [
-                    "1351"
-                  ],
-                  "line": "1351",
-                  "serviceBrand": "RE",
-                  "transportMode": "REGIONAL"
-                },
-                "stops": [
-                  {
-                    "station": {
-                      "id": "8509002",
-                      "abstract": "Landquart",
-                      "station": {
-                        "country": "ch",
-                        "codes": [
-                          {
-                            "codeList": "UIC",
-                            "code": "8509002"
-                          }
-                        ]
-                      }
-                    },
-                    "departureDateTime": "2021-05-22T15:20:37.490Z",
-                    "index": 0,
-                    "departureTrack": "5"
                   },
                   {
                     "station": {
-                      "id": "8509060",
-                      "abstract": "Schiers",
+                      "id": "8509000",
+                      "abstract": "Chur",
                       "station": {
                         "country": "ch",
                         "codes": [
                           {
                             "codeList": "UIC",
-                            "code": "8509060"
+                            "code": "8509000"
                           }
                         ]
                       }
                     },
-                    "departureDateTime": "2021-05-22T15:30:37.490Z",
-                    "arrivalDateTime": "2021-05-22T15:33:37.490Z",
-                    "index": 1,
-                    "departureTrack": "1",
-                    "arrivalTrack": "1"
-                  },
-                  {
-                    "station": {
-                      "id": "8509064",
-                      "abstract": "Küblis",
-                      "station": {
-                        "country": "ch",
-                        "codes": [
-                          {
-                            "codeList": "UIC",
-                            "code": "8509064"
-                          }
-                        ]
-                      }
-                    },
-                    "departureDateTime": "2021-05-22T15:41:37.490Z",
-                    "arrivalDateTime": "2021-05-22T15:44:37.490Z",
-                    "index": 2,
-                    "departureTrack": "1",
-                    "arrivalTrack": "1"
-                  },
-                  {
-                    "station": {
-                      "id": "8509064",
-                      "abstract": "Klosters Platz",
-                      "station": {
-                        "country": "ch",
-                        "codes": [
-                          {
-                            "codeList": "UIC",
-                            "code": "8509064"
-                          }
-                        ]
-                      }
-                    },
-                    "arrivalDateTime": "2021-05-22T15:59:37.490Z",
-                    "index": 3,
-                    "arrivalTrack": "1"
+                    "arrivalDateTime": "2021-05-24T10:52:00.490Z",
+                    "index": 4,
+                    "arrivalTrack": "9"
                   }
                 ]
               }
@@ -485,93 +394,98 @@
                   ]
                 }
               },
-              "departureDateTime": "2021-05-22T13:06:37.490Z",
+              "departureDateTime": "2021-05-24T08:33:00.490Z",
               "index": 0,
-              "departureTrack": "5"
+              "departureTrack": "7"
             },
             "destination": {
               "station": {
-                "id": "8509068",
-                "abstract": "Klosters Platz",
+                "id": "8509000",
+                "abstract": "Chur",
                 "station": {
                   "country": "ch",
                   "codes": [
                     {
                       "codeList": "UIC",
-                      "code": "8509068"
+                      "code": "8509000"
                     }
                   ]
                 }
               },
-              "arrivalDateTime": "2021-05-22T15:12:37.491Z",
+              "arrivalDateTime": "2021-05-24T10:52:00.491Z",
               "index": 0,
-              "arrivalTrack": "2"
+              "arrivalTrack": "9"
             },
             "duration": "P2DT3H4M",
             "direction": "UNSPECIFIED"
           },
-          "validFrom": "2021-05-22T13:06:11.952Z",
-          "validUntil": "2021-04-22T13:06:11.952Z",
+          "validFrom": "2021-05-24T07:47:46.649Z",
+          "validUntil": "2021-05-25T07:47:46.649Z",
           "admissions": [
             {
               "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
               "commonOfferPartAttributes": {
                 "price": {
                   "currency": "CHF",
-                  "amount": 6300,
+                  "amount": 0,
                   "scale": 2,
                   "vatDetails": [
                     {
                       "country": "CH",
                       "scale": 2,
                       "percentage": 7.9,
-                      "taxId": "TV SC 0103.9",
-                      "scope": "NATIONAL"
+                      "taxId": "string",
+                      "scope": "string"
                     }
                   ]
                 },
-                "pricingMode": "INDIVIDUAL",
+                "pricingMode": "COLLECTIVE",
                 "reductionsApplied": [],
                 "passengers": [
                   {
-                    "id": "0",
-                    "abstract": "Passenger 0",
-                    "dateOfBirth": "1974-09-14",
-                    "cards": []
+                    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "abstract": "Andreas Schlapbach",
+                    "reference": "string",
+                    "dateOfBirth": "2021-02-18",
+                    "cards": [],
+                    "gender": "MALE",
+                    "details": {
+                      "preferredLanguage": "string",
+                      "abstract": "string",
+                      "firstName": "string",
+                      "lastName": "string",
+                      "eMail": "string",
+                      "phoneNumber": "string"
+                    }
                   }
                 ],
-                "providerBookingReference": "nova_id-001",
+                "providerBookingReference": "string",
+                "finalProviderBookingReference": "string",
                 "availableFulfillmentOptions": [
                   {
-                    "fulfillmentType": "ETICKET",
+                    "fulfillmentType": "string",
                     "media": [
-                      "PDF_A4"
-                    ]
-                  },
-                  {
-                    "fulfillmentType": "CIT_PAPER",
-                    "media": [
-                      "RCT2"
+                      "string"
                     ]
                   }
                 ],
-                "validFrom": "2021-05-22T13:06:11.952Z",
-                "validUntil": "2021-04-22T13:06:11.952Z",
+                "validFrom": "2021-02-18T07:47:46.650Z",
+                "validUntil": "2021-02-18T07:47:46.650Z",
                 "refundable": "YES",
                 "exchangeable": "YES",
                 "products": [
                   {
                     "product": {
-                      "id": "CH00125",
-                      "abstract": "Point-to-point Ticket DV Schweiz",
-                      "code": "CH00125",
-                      "description": "One-way, return or round-trip ticket (ticket machines/ticket counter) in Switzerland in 1st or 2nd class",
+                      "id": "string",
+                      "abstract": "TGV Lyria Loisir 2",
+                      "code": "PT00AD",
+                      "description": "Loisir Non-flex Adult Fare",
                       "conditions": [
                         {
-                          "type": "REFUND",
-                          "description": "Erstattungskondition",
-                          "validFrom": "2021-03-24T06:43:41.696Z",
-                          "validUntil": "2021-04-24T06:43:41.696Z",
+                          "type": "string",
+                          "description": "string",
+                          "validFrom": "2021-02-18T07:47:46.650Z",
+                          "validUntil": "2021-02-18T07:47:46.650Z",
                           "afterSalesFee": {
                             "feeAmount": {
                               "currency": "CHF",
@@ -582,8 +496,8 @@
                                   "country": "CH",
                                   "scale": 2,
                                   "percentage": 7.9,
-                                  "taxId": "TV SC 0103.9",
-                                  "scope": "NATIONAL"
+                                  "taxId": "string",
+                                  "scope": "string"
                                 }
                               ]
                             },
@@ -592,28 +506,25 @@
                         }
                       ],
                       "serviceClass": {
-                        "id": "BEST",
-                        "carrierName": "SBB"
+                        "id": "string",
+                        "carrierName": "string"
                       },
-                      "comfortClass": "FIRST",
-                      "isTrainBound": false,
+                      "comfortClass": "string",
+                      "isTrainBound": true,
                       "isReturnProduct": false,
                       "fulfillmentOptions": [
                         {
-                          "fulfillmentType": "ETICKET",
+                          "fulfillmentType": "string",
                           "media": [
-                            "PDF_A4"
-                          ]
-                        },
-                        {
-                          "fulfillmentType": "CIT_PAPER",
-                          "media": [
-                            "RCT2"
+                            "string"
                           ]
                         }
                       ],
+                      "serviceConstraintText": "string",
+                      "carrierConstraintText": "string",
                       "combinationTags": [
                         {
+                          "combinationTag": "string",
                           "sellableStandalone": true
                         }
                       ]
@@ -627,76 +538,78 @@
               "isReservationRequired": true,
               "reservations": [
                 {
-                  "id": "reservation_BaselSBB-Landquart",
-                  "abstract": "Reservation Basel SBB - Landquart, 5 CHF"
-                },
-                {
-                  "id": "reservation_Landquart-KlostersPlatz",
-                  "abstract": "Reservation Landquart - Klosters Platz, 5 CHF"
+                  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                  "abstract": "ICE Wifi on Board 2020-07-11"
                 }
-              ]
+              ],
+              "ancillaries": []
             }
           ],
           "reservations": [
             {
-              "id": "reservation_BaselSBB-Landquart",
+              "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
               "commonOfferPartAttributes": {
                 "price": {
                   "currency": "CHF",
-                  "amount": 500,
+                  "amount": 0,
                   "scale": 2,
                   "vatDetails": [
                     {
                       "country": "CH",
                       "scale": 2,
                       "percentage": 7.9,
-                      "taxId": "TV SC 0103.9",
-                      "scope": "NATIONAL"
+                      "taxId": "string",
+                      "scope": "string"
                     }
                   ]
                 },
-                "pricingMode": "INDIVIDUAL",
+                "pricingMode": "COLLECTIVE",
                 "reductionsApplied": [],
                 "passengers": [
                   {
-                    "id": "0",
-                    "abstract": "Passenger 0",
-                    "dateOfBirth": "1974-09-14",
-                    "cards": []
+                    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "abstract": "Andreas Schlapbach",
+                    "reference": "string",
+                    "dateOfBirth": "2021-02-18",
+                    "cards": [],
+                    "gender": "MALE",
+                    "details": {
+                      "preferredLanguage": "string",
+                      "abstract": "string",
+                      "firstName": "string",
+                      "lastName": "string",
+                      "eMail": "string",
+                      "phoneNumber": "string"
+                    }
                   }
                 ],
-                "providerBookingReference": "nova-id-002",
+                "providerBookingReference": "string",
+                "finalProviderBookingReference": "string",
                 "availableFulfillmentOptions": [
                   {
-                    "fulfillmentType": "ETICKET",
+                    "fulfillmentType": "string",
                     "media": [
-                      "PDF_A4"
-                    ]
-                  },
-                  {
-                    "fulfillmentType": "CIT_PAPER",
-                    "media": [
-                      "RCT2"
+                      "string"
                     ]
                   }
                 ],
-                "validFrom": "2021-05-22T15:06:11.966Z",
-                "validUntil": "2021-04-12T15:06:11.966Z",
+                "validFrom": "2021-02-18T07:47:46.653Z",
+                "validUntil": "2021-02-18T07:47:46.653Z",
                 "refundable": "YES",
                 "exchangeable": "YES",
                 "products": [
                   {
                     "product": {
-                      "id": "CH10125",
-                      "abstract": "Seat Place Reservation",
-                      "code": "CH10125",
-                      "description": "Seat Place Reservation",
+                      "id": "string",
+                      "abstract": "TGV Lyria Loisir 2",
+                      "code": "PT00AD",
+                      "description": "Loisir Non-flex Adult Fare",
                       "conditions": [
                         {
-                          "type": "REFUND",
-                          "description": "Erstattungskondition",
-                          "validFrom": "2021-03-24T06:43:41.696Z",
-                          "validUntil": "2021-04-24T06:43:41.696Z",
+                          "type": "string",
+                          "description": "string",
+                          "validFrom": "2021-02-18T07:47:46.653Z",
+                          "validUntil": "2021-02-18T07:47:46.653Z",
                           "afterSalesFee": {
                             "feeAmount": {
                               "currency": "CHF",
@@ -707,8 +620,8 @@
                                   "country": "CH",
                                   "scale": 2,
                                   "percentage": 7.9,
-                                  "taxId": "TV SC 0103.9",
-                                  "scope": "NATIONAL"
+                                  "taxId": "string",
+                                  "scope": "string"
                                 }
                               ]
                             },
@@ -717,96 +630,442 @@
                         }
                       ],
                       "serviceClass": {
-                        "id": "BEST",
-                        "carrierName": "SBB"
+                        "id": "string",
+                        "carrierName": "string"
                       },
-                      "comfortClass": "FIRST",
-                      "isTrainBound": false,
+                      "comfortClass": "string",
+                      "isTrainBound": true,
                       "isReturnProduct": false,
                       "fulfillmentOptions": [
                         {
-                          "fulfillmentType": "ETICKET",
+                          "fulfillmentType": "string",
                           "media": [
-                            "PDF_A4"
-                          ]
-                        },
-                        {
-                          "fulfillmentType": "CIT_PAPER",
-                          "media": [
-                            "RCT2"
+                            "string"
                           ]
                         }
                       ],
+                      "serviceConstraintText": "string",
+                      "carrierConstraintText": "string",
                       "combinationTags": [
                         {
+                          "combinationTag": "string",
                           "sellableStandalone": true
                         }
                       ]
-                    }
+                    },
+                    "segmentIndices": [
+                      0
+                    ]
                   }
                 ]
               },
-              "optionality": "OPTIONAL"
+              "reservationDetails": {
+                "accommodationType": "string",
+                "accommodationSubType": "string",
+                "reservedPlaces": [
+                  {
+                    "id": "string",
+                    "passengerReferences": "string",
+                    "vehicle": "string",
+                    "coach": "string",
+                    "places": "string",
+                    "placeIds": [
+                      "string"
+                    ],
+                    "placeProperties": [
+                      {
+                        "placeProperty": "string",
+                        "number": 0,
+                        "priority": 0
+                      }
+                    ]
+                  }
+                ]
+              },
+              "placeSelection": {
+                "reservationOptions": {
+                  "preferences": [
+                    {
+                      "preferenceGroup": "SEAT_DIRECTION",
+                      "preferences": [
+                        "FORWARD_FACING"
+                      ]
+                    }
+                  ],
+                  "graphicalReservation": "string"
+                },
+                "vehicle": "string",
+                "referencePlace": {
+                  "placeNumber": "string",
+                  "coachNumber": "string"
+                },
+                "selectedOptions": [
+                  {
+                    "passengers": [
+                      {
+                        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                        "abstract": "Andreas Schlapbach",
+                        "reference": "string",
+                        "dateOfBirth": "2021-02-18",
+                        "cards": [],
+                        "gender": "MALE"
+                      }
+                    ],
+                    "selectedPlaceProperties": [
+                      "string"
+                    ]
+                  }
+                ],
+                "selectedCoach": {
+                  "selectedCoaches": [
+                    {
+                      "coachNumber": "string",
+                      "selectedPlaces": [
+                        {
+                          "passengerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                          "place": "string"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "optionality": "string",
+              "fees": []
+            }
+          ]
+        },
+        {
+          "id": "offer-id-chur-zermatt",
+          "abstract": "Chur - Zermatt, 2021-05-24, 11:06 - 17:10 CET, Normal Fare, 77 CHF",
+          "offerSummary": {
+            "minimalPrice": {
+              "currency": "CHF",
+              "amount": 77,
+              "scale": 2,
+              "vatDetails": [
+                {
+                  "country": "CH",
+                  "amount": 5,
+                  "scale": 2,
+                  "percentage": 0,
+                  "taxId": "string",
+                  "scope": "string"
+                }
+              ]
             },
+            "overallServiceClass": {
+              "id": "string",
+              "carrierName": "string"
+            },
+            "overallComfortClass": "string",
+            "overallAccommodationType": "string",
+            "overallAccommodationSubType": "string",
+            "overallFlexibility": "string"
+          },
+          "isReusable": true,
+          "offerTag": {
+            "isMandatory": false,
+            "offerTag": "string"
+          },
+          "coveredSegmentIndexes": [
+            0
+          ],
+          "requestedInformation": "string",
+          "availableFulfillmentTypes": [
+            "string"
+          ],
+          "trip": {
+            "id": "trip-id-chur-zermatt",
+            "abstract": "Chur - Zermatt, 2021-05-24, 11:06 - 17:10 CET",
+            "segments": [
+              {
+                "index": 0,
+                "origin": {
+                  "station": {
+                    "id": "8509000",
+                    "abstract": "Chur",
+                    "station": {
+                      "country": "ch",
+                      "codes": [
+                        {
+                          "codeList": "UIC",
+                          "code": "8509000"
+                        }
+                      ]
+                    },
+                    "departureDateTime": "2021-05-24T11:06:00.489Z",
+                    "index": 0,
+                    "departureTrack": "13"
+                  }
+                },
+                "destination": {
+                  "station": {
+                    "id": "8501689",
+                    "abstract": "Zermatt",
+                    "station": {
+                      "country": "ch",
+                      "codes": [
+                        {
+                          "codeList": "UIC",
+                          "code": "8501689"
+                        }
+                      ]
+                    },
+                    "arrivalDateTime": "2021-05-24T17:10:00.490Z",
+                    "index": 0,
+                    "arrivalTrack": "4"
+                  }
+                },
+                "duration": "P2DT6H4M",
+                "vehicle": {
+                  "numbers": [
+                    "903"
+                  ],
+                  "line": "",
+                  "serviceBrand": "PE",
+                  "transportMode": "MOUNTAIN_TRAIN"
+                },
+                "stops": [
+                  {
+                    "station": {
+                      "id": "8509000",
+                      "abstract": "Chur",
+                      "station": {
+                        "country": "ch",
+                        "codes": [
+                          {
+                            "codeList": "UIC",
+                            "code": "8509000"
+                          }
+                        ],
+                        "names": [
+                          {
+                            "language": "de",
+                            "text": "Chur"
+                          }
+                        ]
+                      }
+                    },
+                    "departureDateTime": "2021-05-24T11:06:00.490Z",
+                    "index": 0,
+                    "departureTrack": "13"
+                  },
+                  {
+                    "station": {
+                      "id": "8509179",
+                      "abstract": "Disentis/Mustér",
+                      "station": {
+                        "country": "ch",
+                        "codes": [
+                          {
+                            "codeList": "UIC",
+                            "code": "8509179"
+                          }
+                        ],
+                        "names": [
+                          {
+                            "language": "de",
+                            "text": "Disentis/Mustér"
+                          }
+                        ]
+                      }
+                    },
+                    "departureDateTime": "2021-05-24T12:37:00.490Z",
+                    "arrivalDateTime": "2021-05-24T12:18:00.490Z",
+                    "index": 1,
+                    "departureTrack": "1",
+                    "arrivalTrack": "1"
+                  },
+                  {
+                    "station": {
+                      "id": "8505165",
+                      "abstract": "Andermatt",
+                      "station": {
+                        "country": "ch",
+                        "codes": [
+                          {
+                            "codeList": "UIC",
+                            "code": "8505165"
+                          }
+                        ],
+                        "names": [
+                          {
+                            "language": "de",
+                            "text": "Andermatt"
+                          }
+                        ]
+                      }
+                    },
+                    "departureDateTime": "2021-05-24T14:08:00.490Z",
+                    "arrivalDateTime": "2021-05-24T13:52:00.490Z",
+                    "index": 2,
+                    "departureTrack": "2",
+                    "arrivalTrack": "2"
+                  },
+                  {
+                    "station": {
+                      "id": "8501609",
+                      "abstract": "Brig",
+                      "station": {
+                        "country": "ch",
+                        "codes": [
+                          {
+                            "codeList": "UIC",
+                            "code": "8501609"
+                          }
+                        ],
+                        "names": [
+                          {
+                            "language": "de",
+                            "text": "Brig"
+                          }
+                        ]
+                      }
+                    },
+                    "departureDateTime": "2021-05-24T15:50:00.490Z",
+                    "arrivalDateTime": "2021-05-24T15:40:00.490Z",
+                    "index": 3,
+                    "departureTrack": "12",
+                    "arrivalTrack": "12"
+                  },
+                  {
+                    "station": {
+                      "id": "8501689",
+                      "abstract": "Zermatt",
+                      "station": {
+                        "country": "ch",
+                        "codes": [
+                          {
+                            "codeList": "UIC",
+                            "code": "8501689"
+                          }
+                        ],
+                        "names": [
+                          {
+                            "language": "de",
+                            "text": "Zermatt"
+                          }
+                        ]
+                      }
+                    },
+                    "arrivalDateTime": "2021-05-24T17:10:00.490Z",
+                    "index": 4,
+                    "arrivalTrack": "4"
+                  }
+                ]
+              }
+            ],
+            "origin": {
+              "station": {
+                "id": "8509000",
+                "abstract": "Chur",
+                "station": {
+                  "country": "ch",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "8509000"
+                    }
+                  ],
+                  "names": [
+                    {
+                      "language": "de",
+                      "text": "Chur"
+                    }
+                  ]
+                }
+              },
+              "departureDateTime": "2021-05-24T11:06:00.490Z",
+              "index": 0,
+              "departureTrack": "13"
+            },
+            "destination": {
+              "station": {
+                "id": "8501689",
+                "abstract": "Zermatt",
+                "station": {
+                  "country": "ch",
+                  "codes": [
+                    {
+                      "codeList": "UIC",
+                      "code": "8501689"
+                    }
+                  ],
+                  "names": [
+                    {
+                      "language": "de",
+                      "text": "Zermatt"
+                    }
+                  ]
+                }
+              },
+              "arrivalDateTime": "2021-05-24T17:10:00.491Z",
+              "index": 0,
+              "arrivalTrack": "4"
+            },
+            "duration": "P2DT6H4M",
+            "direction": "UNSPECIFIED"
+          },
+          "validFrom": "2021-05-24T07:47:46.649Z",
+          "validUntil": "2021-05-25T07:47:46.649Z",
+          "admissions": [
             {
-              "id": "reservation_Landquart-KlostersPlatz",
+              "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
               "commonOfferPartAttributes": {
                 "price": {
                   "currency": "CHF",
-                  "amount": 500,
+                  "amount": 0,
                   "scale": 2,
                   "vatDetails": [
                     {
                       "country": "CH",
+                      "amount": 5,
                       "scale": 2,
-                      "percentage": 7.9,
-                      "taxId": "TV SC 0103.9",
-                      "scope": "NATIONAL"
+                      "percentage": 0,
+                      "taxId": "string",
+                      "scope": "string"
                     }
                   ]
                 },
-                "pricingMode": "INDIVIDUAL",
+                "pricingMode": "COLLECTIVE",
                 "reductionsApplied": [],
                 "passengers": [
                   {
-                    "id": "0",
-                    "abstract": "Passenger 0",
-                    "dateOfBirth": "1974-09-14",
+                    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "abstract": "Andreas Schlapbach",
+                    "reference": "string",
+                    "dateOfBirth": "2021-02-18",
                     "cards": []
                   }
                 ],
-                "providerBookingReference": "nova-id-003",
+                "providerBookingReference": "string",
+                "finalProviderBookingReference": "string",
                 "availableFulfillmentOptions": [
                   {
-                    "fulfillmentType": "ETICKET",
+                    "fulfillmentType": "string",
                     "media": [
-                      "PDF_A4"
-                    ]
-                  },
-                  {
-                    "fulfillmentType": "CIT_PAPER",
-                    "media": [
-                      "RCT2"
+                      "string"
                     ]
                   }
                 ],
-                "validFrom": "2021-05-22T15:06:11.966Z",
-                "validUntil": "2021-04-12T15:06:11.966Z",
+                "validFrom": "2021-02-18T07:47:46.650Z",
+                "validUntil": "2021-02-18T07:47:46.650Z",
                 "refundable": "YES",
                 "exchangeable": "YES",
                 "products": [
                   {
                     "product": {
-                      "id": "CH10125",
-                      "abstract": "Seat Place Reservation",
-                      "code": "CH10125",
-                      "description": "Seat Place Reservation",
+                      "id": "string",
+                      "abstract": "TGV Lyria Loisir 2",
+                      "code": "PT00AD",
+                      "description": "Loisir Non-flex Adult Fare",
                       "conditions": [
                         {
-                          "type": "REFUND",
-                          "description": "Erstattungskondition",
-                          "validFrom": "2021-03-24T06:43:41.696Z",
-                          "validUntil": "2021-04-24T06:43:41.696Z",
+                          "type": "string",
+                          "description": "string",
+                          "validFrom": "2021-02-18T07:47:46.650Z",
+                          "validUntil": "2021-02-18T07:47:46.650Z",
                           "afterSalesFee": {
                             "feeAmount": {
                               "currency": "CHF",
@@ -815,10 +1074,11 @@
                               "vatDetails": [
                                 {
                                   "country": "CH",
+                                  "amount": 5,
                                   "scale": 2,
-                                  "percentage": 7.9,
-                                  "taxId": "TV SC 0103.9",
-                                  "scope": "NATIONAL"
+                                  "percentage": 0,
+                                  "taxId": "string",
+                                  "scope": "string"
                                 }
                               ]
                             },
@@ -827,36 +1087,243 @@
                         }
                       ],
                       "serviceClass": {
-                        "id": "BEST",
-                        "carrierName": "SBB"
+                        "id": "string",
+                        "carrierName": "string"
                       },
-                      "comfortClass": "FIRST",
-                      "isTrainBound": false,
+                      "comfortClass": "string",
+                      "isTrainBound": true,
                       "isReturnProduct": false,
                       "fulfillmentOptions": [
                         {
-                          "fulfillmentType": "ETICKET",
+                          "fulfillmentType": "string",
                           "media": [
-                            "PDF_A4"
-                          ]
-                        },
-                        {
-                          "fulfillmentType": "CIT_PAPER",
-                          "media": [
-                            "RCT2"
+                            "string"
                           ]
                         }
                       ],
+                      "serviceConstraintText": "string",
+                      "carrierConstraintText": "string",
                       "combinationTags": [
                         {
+                          "combinationTag": "string",
                           "sellableStandalone": true
                         }
                       ]
-                    }
+                    },
+                    "segmentIndices": [
+                      0
+                    ]
                   }
                 ]
               },
-              "optionality": "OPTIONAL"
+              "isReservationRequired": true,
+              "reservations": [
+                {
+                  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                  "abstract": "ICE Wifi on Board 2020-07-11"
+                }
+              ],
+              "ancillaries": [],
+              "fees": []
+            }
+          ],
+          "reservations": [
+            {
+              "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+              "commonOfferPartAttributes": {
+                "price": {
+                  "currency": "CHF",
+                  "amount": 0,
+                  "scale": 2,
+                  "vatDetails": [
+                    {
+                      "country": "CH",
+                      "amount": 5,
+                      "scale": 2,
+                      "percentage": 0,
+                      "taxId": "string",
+                      "scope": "string"
+                    }
+                  ]
+                },
+                "pricingMode": "COLLECTIVE",
+                "reductionsApplied": [],
+                "passengers": [
+                  {
+                    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                    "abstract": "Andreas Schlapbach",
+                    "reference": "string",
+                    "dateOfBirth": "2021-02-18",
+                    "cards": [],
+                    "gender": "MALE",
+                    "details": {
+                      "preferredLanguage": "string",
+                      "abstract": "string",
+                      "firstName": "string",
+                      "lastName": "string",
+                      "eMail": "string",
+                      "phoneNumber": "string"
+                    }
+                  }
+                ],
+                "providerBookingReference": "string",
+                "finalProviderBookingReference": "string",
+                "availableFulfillmentOptions": [
+                  {
+                    "fulfillmentType": "string",
+                    "media": [
+                      "string"
+                    ]
+                  }
+                ],
+                "validFrom": "2021-02-18T07:47:46.653Z",
+                "validUntil": "2021-02-18T07:47:46.653Z",
+                "refundable": "YES",
+                "exchangeable": "YES",
+                "products": [
+                  {
+                    "product": {
+                      "id": "string",
+                      "abstract": "TGV Lyria Loisir 2",
+                      "code": "PT00AD",
+                      "description": "Loisir Non-flex Adult Fare",
+                      "conditions": [
+                        {
+                          "type": "string",
+                          "description": "string",
+                          "validFrom": "2021-02-18T07:47:46.653Z",
+                          "validUntil": "2021-02-18T07:47:46.653Z",
+                          "afterSalesFee": {
+                            "feeAmount": {
+                              "currency": "CHF",
+                              "amount": 0,
+                              "scale": 2,
+                              "vatDetails": [
+                                {
+                                  "country": "CH",
+                                  "amount": 5,
+                                  "scale": 2,
+                                  "percentage": 0,
+                                  "taxId": "string",
+                                  "scope": "string"
+                                }
+                              ]
+                            },
+                            "isCarrierFee": true
+                          }
+                        }
+                      ],
+                      "serviceClass": {
+                        "id": "string",
+                        "carrierName": "string"
+                      },
+                      "comfortClass": "string",
+                      "isTrainBound": true,
+                      "isReturnProduct": false,
+                      "fulfillmentOptions": [
+                        {
+                          "fulfillmentType": "string",
+                          "media": [
+                            "string"
+                          ]
+                        }
+                      ],
+                      "serviceConstraintText": "string",
+                      "carrierConstraintText": "string",
+                      "combinationTags": [
+                        {
+                          "combinationTag": "string",
+                          "sellableStandalone": true
+                        }
+                      ]
+                    },
+                    "segmentIndices": [
+                      0
+                    ]
+                  }
+                ]
+              },
+              "reservationDetails": {
+                "accommodationType": "string",
+                "accommodationSubType": "string",
+                "reservedPlaces": [
+                  {
+                    "id": "string",
+                    "passengerReferences": "string",
+                    "vehicle": "string",
+                    "coach": "string",
+                    "places": "string",
+                    "placeIds": [
+                      "string"
+                    ],
+                    "placeProperties": [
+                      {
+                        "placeProperty": "string",
+                        "number": 0,
+                        "priority": 0
+                      }
+                    ]
+                  }
+                ]
+              },
+              "placeSelection": {
+                "reservationOptions": {
+                  "preferences": [
+                    {
+                      "preferenceGroup": "SEAT_DIRECTION",
+                      "preferences": [
+                        "FORWARD_FACING"
+                      ]
+                    }
+                  ],
+                  "graphicalReservation": "string"
+                },
+                "vehicle": "string",
+                "referencePlace": {
+                  "placeNumber": "string",
+                  "coachNumber": "string"
+                },
+                "selectedOptions": [
+                  {
+                    "passengers": [
+                      {
+                        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                        "abstract": "Andreas Schlapbach",
+                        "reference": "string",
+                        "dateOfBirth": "2021-02-18",
+                        "cards": [],
+                        "gender": "MALE",
+                        "details": {
+                          "preferredLanguage": "string",
+                          "abstract": "string",
+                          "firstName": "string",
+                          "lastName": "string",
+                          "eMail": "string",
+                          "phoneNumber": "string"
+                        }
+                      }
+                    ],
+                    "selectedPlaceProperties": [
+                      "string"
+                    ]
+                  }
+                ],
+                "selectedCoach": {
+                  "selectedCoaches": [
+                    {
+                      "coachNumber": "string",
+                      "selectedPlaces": [
+                        {
+                          "passengerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                          "place": "string"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "optionality": "string",
+              "fees": []
             }
           ]
         }
