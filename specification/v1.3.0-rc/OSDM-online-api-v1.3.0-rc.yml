@@ -3316,6 +3316,73 @@ components:
             #   description: IT system that is participating in a communication with other participant(s)
             #   type: string
 
+    TimedLegStructure:  ## OJP
+      description: >-
+        A passenger trip leg with timetabled schedule. Corresponds to a ride.
+      type: object
+      properties:
+        timedLeg:
+          $ref: "#/components/schemas/TimedLeg"
+      required:
+        - timedLeg
+
+    TransferLegStructure:  ## OJP
+      description: >-
+        A passenger trip leg with timetabled schedule. Corresponds to a ride.
+      type: object
+      properties:
+        transferLeg:
+          $ref: "#/components/schemas/TransferLeg"
+      required:
+        - transferLeg
+
+    ContinuousLegStructure:  ## OJP
+      description: >-
+        A passenger trip leg with timetabled schedule. Corresponds to a ride.
+      type: object
+      properties:
+        continousLeg:
+          $ref: "#/components/schemas/ContinuousLeg"
+      required:
+        - continuousLeg
+
+    GeneralAttribute:  ## OJP
+      description: >-
+        Structured attribute classification with associated text. If URL is given, it refers to the whole attribute text.
+      type: object
+      properties:
+        text:
+          description: Text of the attribute to be shown to the user.
+          type: string
+        code:
+          description: Internal code of the attribute. Can be used for detection of double occurrences.
+          type: string
+        mandatory:
+          description: Defines whether the attribute has to be shown to the user.
+          type: boolean
+        importance:
+          description: Importance of the attribute.
+          type: number
+          minimum: 0
+          maximum: 100
+        url:
+          description: URL to resource on web.
+          type: string
+          format: uri
+        mimeType:
+          description: MIME type of the referenced resource. To which kind of resource does the URL point to?
+          type: string
+        embeddable:
+          description: >-
+            Is the referenced resource meant to be embedded as a webview in a surrounding context, e.g. app 
+            or web page? If yes, the resource has to be fully responsive.
+          type: boolean
+          default: false
+      required:
+        - text
+        - code
+        - url
+
     LegAttribute:  ## OJP
       description: >-
         Attributes that are not valid on the whole service, but only on section of a 
@@ -3442,7 +3509,7 @@ components:
           type: integer
           minimum: 1
 
-    TransferLegStructure:  ## OJP
+    TransferLeg:  ## OJP
       description: >-
         A leg which links other legs of a trip where a transfer between different locations is required.
       required:
@@ -3490,7 +3557,7 @@ components:
         # situationFullRef:
         #   $ref: "#/components/schemas/SituationFullRef"
 
-    ContinuousLegStructure:  ## OJP
+    ContinuousLeg:  ## OJP
       description: >-
         A leg of a journey that is not bound to a timetable.
       required:
