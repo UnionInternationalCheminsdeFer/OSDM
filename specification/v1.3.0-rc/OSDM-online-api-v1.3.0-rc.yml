@@ -3297,6 +3297,11 @@ components:
           example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
         offerSummary:
           $ref: '#/components/schemas/OfferSummary'
+        priceGuaranteedUntil:
+          type: string
+          format: date-time
+          description: >-
+            Indicates until when the price for the given offer is guaranteed.
         isReusable:
           type: boolean
           default: false
