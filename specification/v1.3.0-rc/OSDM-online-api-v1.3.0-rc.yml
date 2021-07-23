@@ -3122,13 +3122,15 @@ components:
         Allows to request offerparts of a certain type. 
         To support H/H use ["RESERVATION", "ANCILLARY"].
         Default is to get search for offers of all types.
+
     NonTripOfferSearchCriteria:
       type: object
       properties:
         freeText:
           type: string
           description: >- 
-            Allows the API consumer to provide a free-text based search. Usage of the provided tewt in the search process is left to the OSDM provider but should be documented
+            Allows the API consumer to provide a free-text based search. Usage of the provided
+            text in the search process is left to the OSDM provider but should be documented.
         flexibilities:
           description: >-
             Defines the flexibility levels desired of the fares returned.
@@ -3192,6 +3194,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Passenger'
+        promoCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromoCode'
         offerSearchCriteria:
           $ref: '#/components/schemas/OfferSearchCriteria'
         embed:
@@ -3388,8 +3394,7 @@ components:
       type: string
       x-extensible-enum:
         - FIRST
-        - SECOND 
-      
+        - SECOND  
 
     Flexibility:
       type: string
@@ -3409,10 +3414,14 @@ components:
             - COLLECTIVE
             - INDIVIDUAL 
           default: INDIVIDUAL
-        reductionsApplied:
+        appliedReductions:
           type: array
           items:
             $ref: '#/components/schemas/CardReference'
+        appliedPromoCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromoCode'
         passengers:
           type: array
           items:
@@ -3738,6 +3747,23 @@ components:
         - id
         - price
           
+    PromoCode:
+      type: object
+      description: >-
+        The promotion code is a token that reduces the price at POST booking time OR
+        Token that reduces the price at POST trip-offer-collection time OR
+        Token to receive offers that are not available without it.
+      properties:
+        code:
+          description: >-
+            The code issued by the issuer
+          type: string
+          example: SPRING_DISCOUNT
+        issuer:
+          description: >-
+            The party that issues the promotion code, in case of a railway it's its RICS code
+          type: string
+
     OfferPartReference:
       type: object
       description: >-
@@ -3775,7 +3801,7 @@ components:
         throughTicketTag:
           description: >-
             in case the carriage contracts represented by this offer have been grouped with carriage contracts from other
-            providers by the distributor. The same trhoughTicketTag that was used to perform the grouping can be specified here.
+            providers by the distributor. The same throughTicketTag that was used to perform the grouping can be specified here.
           type: string
           default: false
         selectedOptionalReservationsIds:
@@ -3828,6 +3854,10 @@ components:
             $ref: '#/components/schemas/OfferSelection'
           description: >-
             The list of offers that need to be provisionally booked, with possibly the reservations and ancillaries associated that should be booked as well. 
+        promoCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromoCode'
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -3877,6 +3907,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Offer'
+        appliedPromoCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromoCode'
         passengers:
           type: array
           items:
@@ -3930,6 +3964,10 @@ components:
         or e-ticket and preferred fulfillment media. 
         The latter is optional and relevant in some cases only.
       properties:
+        promoCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromoCode'
         requestedFulfillmentType:
           $ref: '#/components/schemas/FulfillmentType'
         preferredFulfillmentMedia:
@@ -4254,7 +4292,7 @@ components:
           format: date-time
           description: >-
             Indicates for passes the date taken as reference to compute possible partial refund. It is also the date taken
-            as reference to invalidate the pass partilly refunded.
+            as reference to invalidate the pass partially refunded.
       required:
         - fulfillmentIds
 
@@ -4428,7 +4466,11 @@ components:
         passengers:
           type: array
           items:
-            $ref:  '#/components/schemas/Passenger'  
+            $ref:  '#/components/schemas/Passenger'
+        promoCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromoCode'
         requestedFulfillmentOptions: 
           type: array
           items:
