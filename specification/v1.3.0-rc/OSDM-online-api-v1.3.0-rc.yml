@@ -3493,22 +3493,6 @@ components:
           type: string
           format: date-time
 
-    PathLink:  ## OJP
-      description: >-
-        A link within a place of or between two places (that is stop places, access spaces or 
-        quays, boarding positions, points of interest etc or path junctions) that represents 
-        a step in a possible route for pedestrians, cyclists or other out-of-vehicle passengers
-        within or between a place.
-      type: object
-      properties:
-        transition:
-          $ref: "#/components/schemas/TransitionEnumeration"
-        accessFeatureType:
-          $ref: "#/components/schemas/AccessFeatureTypeEnumeration"
-        count:
-          type: integer
-          minimum: 1
-
     TransferLeg:  ## OJP
       description: >-
         A leg which links other legs of a trip where a transfer between different locations is required.
@@ -3671,27 +3655,6 @@ components:
         - CHECK_IN
         - CHECK_OUT
       default: WALK
-
-    TransitionEnumeration:  ## OJP
-      description: Transition types for interchanges.
-      type: string
-      enum:
-        - UP
-        - DOWN
-        - LEVEL
-        - UP_AND_DOWN
-        - DOWN_AND_UP
-
-    AccessFeatureTypeEnumeration:  ## OJP
-      description: Allowed values for a AccessFeature.
-      type: string
-      enum:
-        - LIFT
-        - STAIRS
-        - SERIES_OF_STAIRS
-        - ESCALATOR
-        - RAMP
-        - FOOTPATH
 
     PrivateModesEnumeration:  ## OJP
       description: modes offered by private individuals
