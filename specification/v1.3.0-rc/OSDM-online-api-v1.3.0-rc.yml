@@ -2837,25 +2837,25 @@ components:
       required:
         - depArrTime
 
-    TimeAllowanceStructure:  ## OJP
-      type: object
-      properties:
-        timeAllowance:
-          type: string
-          format: duration
-          example: "120S"
-      required:
-        - timeAllowance
+    # TimeAllowanceStructure:  ## OJP
+    #   type: object
+    #   properties:
+    #     timeAllowance:
+    #       type: string
+    #       format: duration
+    #       example: "120S"
+    #   required:
+    #     - timeAllowance
 
     PlacePlaceStructure:  ## OJP Hack
       oneOf:
         - $ref: "#/components/schemas/PlaceRefStructure"
-        - $ref: "#/components/schemas/TripPlaceStructure"
+      #  - $ref: "#/components/schemas/TripPlaceStructure"  ## Out of Scope
 
     PlaceTimeStructure:  ## OJP Hack
       oneOf:
         - $ref: "#/components/schemas/DepArrTimeStructure"
-        - $ref: "#/components/schemas/TimeAllowanceStructure"
+      #  - $ref: "#/components/schemas/TimeAllowanceStructure"  ## Out of Scope
 
     PlaceContext:  ## OJP
       type: object
@@ -2963,78 +2963,6 @@ components:
           format: duration
           example: "30S"
 
-    TripPlaceStructure:  ## OJP
-      type: object
-      properties:
-        tripPlace:
-          $ref: "#/components/schemas/TripPlace"
-      required:
-        - tripPlace
-
-    TripPlace:  ## OJP
-      description: >-
-        A trip place represents the current logical position of a journey service. It can be 
-        used similarly to a place e.g. for starting a new trip requests from within this service. 
-        A trip place does not(!) describe the relative position of a traveller within a vehicle, 
-        e.g. the seat.
-      type: object
-      required:
-        - operatingDayRef
-        - journeyRef
-      properties:
-        operatingDayRef:
-          $ref: "#/components/schemas/OperationDayRef"
-        journeyRef:
-          $ref: "#/components/schemas/JourneyRef"
-
-    BaseTripContentFilter:  ## OJP
-      type: object
-      properties:
-        includeTrackSections:
-          type: boolean
-          description: Whether the result should include TrackSection elements to describe the geographic route of each journey leg.
-          default: false
-        includeLegProjection:
-          type: boolean
-          description: Whether the result should include the geographic projection (coordinates) of each journey leg.
-          default: false
-        includeTurnDescription:
-          type: boolean
-          description: Whether the result should include turn-by-turn instructions for each journey leg.
-          default: false
-        includeAccessibility:
-          type: boolean
-          description: Whether the result should include accessibility information.
-          default: false
-        includePlacesContext:
-          type: boolean
-          description: Whether the place context is needed. If a requestor has that information already, the response can be made slimmer, when set to false.
-          default: true
-        includeSituationsContext:
-          type: boolean
-          description: Whether the situation context is needed. If a requestor has that information by other means or can't process it, the response can be made slimmer, when set to false.
-          default: true
-
-    TripContentFilter:  ## OJP
-      type: object
-      properties:
-        includeIntermediateStops:
-          description: Whether the result should include intermediate stops (between the passenger's board and alight stops).
-          type: boolean
-          default: true
-        # includeFare:  # Out of scope
-        #   description: Whether the result should include fare information.
-        #  type: boolean
-        #  default: true
-        includeOperatingDays:
-          description: Whether the result should include operating day information - as encoded bit string and in natural language.
-          type: boolean
-          default: true
-        tripSummaryOnly:
-          description: If true, then the response will contain only summaries of the found trips.
-          type: boolean
-          default: false
-
     BaseTripPolicyFilter:  ## OJP
       type: object
       properties:        
@@ -3126,36 +3054,6 @@ components:
           items:
             $ref: "#/components/schemas/VehicleModesOfTransportEnumeration"
 
-    LineDirection:  ## OJP
-      description: Lines/Directions to include/exclude.
-      type: object
-      properties:
-        lineRef:
-          description: Line Reference.
-          type: string
-        directionRef:
-          description: Direction Reference.
-          type: string
-
-    LineDirectionFilter:  ## OJP
-      description: Filter for in/exclusion of lines (and directions).
-      type: object
-      properties:
-        lineDirections:
-          description: >-
-            Reference a GROUP of DIRECTIONs of the ROUTEs belonging to the same LINE created 
-            for the purpose of filtering and organising timetables.
-          type: array
-          items:
-            $ref: "#/components/schemas/LineDirection"
-          minItems: 1
-        exclude:
-          description: Whether lines in list are to include or exclude from search. Default is exclude.
-          type: boolean
-          default: True
-      required:
-        - lineDirections
-
     OperatorFilter:  ## OJP
       description: Filter for in/exclusion of transport operators.
       type: object
@@ -3206,8 +3104,8 @@ components:
       properties:
         ptModeFilter:
           $ref: "#/components/schemas/PtModeFilter"
-        lineFilter:
-          $ref: "#/components/schemas/LineDirectionFilter"
+        # lineFilter:  # Out of scope
+        #   $ref: "#/components/schemas/LineDirectionFilter"
         operatorFilter:
           $ref: "#/components/schemas/OperatorFilter"
         privateModeFilter:
@@ -3223,7 +3121,7 @@ components:
               numberOfResults:
                 type: number
                 format: uint8
-                default: 1
+                default: 5
           - $ref: "#/components/schemas/NumberOfResultsGroup"
         - type: object
           properties:
@@ -3263,12 +3161,12 @@ components:
       description: Options to control the search behaviour and response contents.
       allOf:
         - $ref: "#/components/schemas/TripDataFilter"
-        - $ref: "#/components/schemas/BaseTripPolicyFilter"
+      #  - $ref: "#/components/schemas/BaseTripPolicyFilter" Out of scope
         - $ref: "#/components/schemas/TripMobilityFilter"
         - $ref: "#/components/schemas/BaseTripPolicy"
         - $ref: "#/components/schemas/TripPolicy"
-        - $ref: "#/components/schemas/BaseTripContentFilter"
-        - $ref: "#/components/schemas/TripContentFilter"
+      #  - $ref: "#/components/schemas/BaseTripContentFilter"
+      #  - $ref: "#/components/schemas/TripContentFilter"
       #  - $ref: "#/components/schemas/FareParam"  ## Tackle next
 
     TripResponse:  ## OJP
@@ -3303,7 +3201,7 @@ components:
         - $ref: "#/components/schemas/ErrorMessage"
         - oneOf:
           - $ref: "#/components/schemas/Trip"
-          - $ref: "#/components/schemas/TripSummary"
+        #  - $ref: "#/components/schemas/TripSummary"
         # OOS - $ref: "#/components/schemas/TripFare" 
 
     ErrorMessage: ## OJP  --> Todo: Better map to Problem (RfC 7807)
@@ -3321,11 +3219,11 @@ components:
       type: object
       required:
         - tripId
-        - duration
+        # - duration
         - startTime
         - endTime
-        - transfers
-        - tripLegs
+        # - transfers
+        #- tripLegs
       properties:
         tripId:
           description: >-
@@ -3335,7 +3233,15 @@ components:
         duration:
           description: Overall duration of the trip
           type: string
-          example: "3500S"
+          example: "PT20M"
+        origin:
+          description: >-
+            Specifies the origin situation from where the user wants to start.
+          $ref: "#/components/schemas/PlaceContext"
+        destination:
+          description: >-
+            Specifies the destination situation where the user is heading to.
+          $ref: "#/components/schemas/PlaceContext"
         startTime:
           description: Departure time at origin.
           type: string
@@ -3360,92 +3266,12 @@ components:
           items:
             $ref: "#/components/schemas/TripLegStructure"
           minItems: 1
-        operatingDays:
-          $ref: "#/components/schemas/OperatingDays"
-        # situationFullRef:
+        # operatingDays: ## Out of scope
+        #  $ref: "#/components/schemas/OperatingDays"
+        # situationFullRef: ## Out of scope
         #   $ref: "#/components/schemas/SituationFullRef"
         tripStatus:   # Ask Stefan
           $ref: "#/components/schemas/TripStatus"
-
-    TripSummary: ## OJP
-      description: A complete trip from origin to destination
-      required:
-        - tripId
-      type: object
-      properties:
-        tripId:
-          description: >-
-            Id of this trip for referencing purposes. Unique within trip response.
-          type: string
-          format: uuid
-        origin:
-          description: >-
-            Specifies the origin situation from where the user wants to start.
-          $ref: "#/components/schemas/PlaceContext"
-        destination:
-          description: >-
-            Specifies the destination situation where the user is heading to.
-          $ref: "#/components/schemas/PlaceContext"
-        duration:
-          description: Overall duration of the trip
-          type: string
-          format: duration
-          example: "3600S"
-        startTime:
-          description: Departure time at origin.
-          type: string
-          format: date-time
-        endTime:
-          description: Arrival time at destination
-          type: string
-          format: date-time
-        ptTripLegs:
-          description: Number of public transport trip legs
-          type: integer
-          minimum: 0
-        distance:
-          description: Trip distance
-          type: number
-          format: integer
-          minimum: 0
-        operatingDays:
-          $ref: "#/components/schemas/OperatingDays"
-        # Out of scope
-        # situationFullRef:
-        #   $ref: "#/components/schemas/SituationFullRef"
-
-    OperatingDays:  ## OJP
-      description: >-
-         Day of public transport operation of which the characteristics are defined in a specific service
-         calendar and which may last more than 24 hours.
-      type: object
-      properties:
-        from:
-          description: Start date of period.
-          type: string
-          format: date
-          example: "2021-06-25"
-        to:
-          description: End date of period.
-          type: string
-          format: date
-          example: "2021-06-30"
-        pattern:
-          description: >-
-            Bit pattern for operating days between start date and end date. The length of the pattern is equal to the number
-            of days from start date to end date. A bit value of "1" indicates that an event actually happens on the day that
-            is represented by the bit position.
-          type: string
-          pattern: '^[01]+$'
-          example: "101101"
-        operatingDaysDescription:
-          description: >-
-            Textual description of the operation days, e.g. "monday to friday" or "not on holidays".
-          type: string
-      required:
-        - from
-        - to
-        - pattern
 
     TripStatus:  ## OJP
       description: Parameters which describe the current status of a trip.
@@ -3564,7 +3390,7 @@ components:
         available on a specified (part of a) leg of a vehicle journey)
       type: object
       allOf:
-        - $ref: "#/components/schemas/GeneralAttribute"
+        # - $ref: "#/components/schemas/GeneralAttribute"  # Out of scope
         - type: object
           properties:
             fromStopSeqNumber:
@@ -3605,7 +3431,7 @@ components:
         duration:
           type: string
           format: duration
-          example: "3600S"
+          example: "PT20M"
         length:
           type: number
           minimum: 0
@@ -3623,7 +3449,7 @@ components:
       required:
         - trackSection
 
-    TimedLeg:  ## OJP
+    TimedLegStructure:  ## OJP
       description: >-
         A leg which is bound to a timetabled schedule. Corresponds to a ride.
       required:
@@ -3646,8 +3472,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/LegAttribute"
-        operatingDays: # hack
-          $ref: "#/components/schemas/OperatingDays"
+        # operatingDays:  ## Out of scope
+        #  $ref: "#/components/schemas/OperatingDays"
         legTrack:
           type: array
           items:
@@ -3683,53 +3509,6 @@ components:
           type: integer
           minimum: 1
 
-    PathGuidanceSection:  ## OJP
-      description: >-
-        A description of a piece of a TRIP. May include geographic information, turn instructions
-        and accessibility information.
-      type: object
-      properties:
-        trackSection:
-          description: LINK PROJECTION on the infrastructure network of the TRIP LEG together with time information
-          $ref: "#/components/schemas/TrackSection"
-        turnDescription:
-          description: Textual description of a manoeuvre. This should imply the information from Manoeuvre, TurnAction, and TrackSection.RoadName.
-          type: string
-        guidanceAdvice:
-          description: various types of guidance advice given to travel.
-          $ref: "#/components/schemas/GuidanceAdviceEnumeration"
-        turnAction:
-          description: the range of alternative turns that can be described.
-          $ref: "#/components/schemas/TurnActionEnumeration"
-        directionHint:
-          description: Textual direction hint for better understanding, e.g. "follow signs to Hamburg"...)
-          type: string
-        bearing:
-          description: Absolute bearing after the described manoeuvre.
-          type: number
-          minimum: -360
-          maximum: 360
-        pathLink:
-          description: Description of the type of accessibility on this navigation section.
-          $ref: "#/components/schemas/PathLink"
-        # Out of scope
-        # situationFullRef:
-        #   $ref: "#/components/schemas/SituationFullRef"
-
-    PathGuidance:  ## OJP
-      description: >-
-        A description of a piece of a TRIP. May include geographic information, turn instructions 
-        and accessibility information.
-      type: object
-      properties:
-        pathGuidanceSections:
-          type: array
-          items:
-            $ref: "#/components/schemas/PathGuidanceSection"
-          minItems: 1
-      required:
-        - pathGuidanceSections
-
     TransferLeg:  ## OJP
       description: >-
         A leg which links other legs of a trip where a transfer between different locations is required.
@@ -3754,26 +3533,26 @@ components:
           description: Overall duration or this interchange.
           type: string
           format: duration
-          example: "3600S"
+          example: "PT20M"
         walkDuration:
           description: Walk time as part of the overall interchange duration.
           type: string
           format: duration
-          example: "3600S"
+          example: "PT20M"
         bufferTime:
           description: Buffer time as part of the overall interchange duration. Buffer times, f.e. check in/out times, sometimes are mandatory for using certain services as f.e. airplanes, ferries or highspeed trains.
           type: string
           format: duration
-          example: "0S"
+          example: "0SM"
         legDescription:
           type: string
         length:
           type: number
           minimum: 0
-        attribute:
-          $ref: "#/components/schemas/GeneralAttribute"
-        pathGuidance:
-          $ref: "#/components/schemas/PathGuidance"
+        # attribute:
+        #  $ref: "#/components/schemas/GeneralAttribute"
+        #pathGuidance:
+        #204  $ref: "#/components/schemas/PathGuidance"
         # Out of scope
         # situationFullRef:
         #   $ref: "#/components/schemas/SituationFullRef"
@@ -3811,8 +3590,8 @@ components:
         length:
           type: number
           minimum: 0
-        pathGuidance:
-          $ref: "#/components/schemas/PathGuidance"
+        #pathGuidance:
+        #  $ref: "#/components/schemas/PathGuidance"
         # Out of scope
         # situationFullRef:
         #   $ref: "#/components/schemas/SituationFullRef"
@@ -3892,31 +3671,6 @@ components:
         - CHECK_IN
         - CHECK_OUT
       default: WALK
-
-    TurnActionEnumeration:  ## OJP
-      description: the range of alternative turns that can be described
-      type: string
-      enum:
-        - SHARP_LEFT
-        - LEFT
-        - HALF_LEFT
-        - STRAIGHT_ON
-        - HALF_RIGHT
-        - RIGHT
-        - SHARP_RIGHT
-        - UTURN
-
-    GuidanceAdviceEnumeration:  ## OJP
-      description: various types of guidance advice given to travel
-      type: string
-      enum:
-        - ORIGIN
-        - DESTINATION
-        - CONTINUE
-        - KEEP
-        - TURN
-        - LEAVE
-        - ENTER
 
     TransitionEnumeration:  ## OJP
       description: Transition types for interchanges.
@@ -4045,7 +3799,7 @@ components:
               example: "8"
             serviceDeparture:
               $ref: "#/components/schemas/ServiceDeparture"
-        - $ref: "#/components/schemas/StopCallStatus"
+       # - $ref: "#/components/schemas/StopCallStatus"
 
     LegIntermediate:  ## OJP
       description: >-
@@ -4075,7 +3829,7 @@ components:
               $ref: "#/components/schemas/ServiceArrival"
             serviceDeparture:
               $ref: "#/components/schemas/ServiceDeparture"
-        - $ref: "#/components/schemas/StopCallStatus"
+       # - $ref: "#/components/schemas/StopCallStatus"
 
     LegAlight:  ## OJP
       description: >-
@@ -4110,7 +3864,7 @@ components:
               example: "8"
             serviceArrival:
               $ref: "#/components/schemas/ServiceArrival"
-        - $ref: "#/components/schemas/StopCallStatus"
+       # - $ref: "#/components/schemas/StopCallStatus"
 
     ServiceArrival:  ## OJP
       description: >-
@@ -4240,8 +3994,8 @@ components:
           name:
             type: string
             example: Zürich HB
-          attribute:
-           $ref: "#/components/schemas/GeneralAttribute"
+        #  attribute:   # Out of scope
+        #   $ref: "#/components/schemas/GeneralAttribute"
         #  extension:   # Out of scope
         #   $ref: "#/components/schemas/Extension"
 
