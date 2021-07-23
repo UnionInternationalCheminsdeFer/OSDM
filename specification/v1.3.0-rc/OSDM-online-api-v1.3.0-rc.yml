@@ -3318,7 +3318,7 @@ components:
 
     TimedLegStructure:  ## OJP
       description: >-
-        A passenger trip leg with timetabled schedule. Corresponds to a ride.
+        A leg with timetabled schedule. Corresponds to a ride.
       type: object
       properties:
         timedLeg:
@@ -3328,7 +3328,7 @@ components:
 
     TransferLegStructure:  ## OJP
       description: >-
-        A passenger trip leg with timetabled schedule. Corresponds to a ride.
+        A leg which links other legs of a trip where a transfer between different locations is required.
       type: object
       properties:
         transferLeg:
@@ -3338,10 +3338,10 @@ components:
 
     ContinuousLegStructure:  ## OJP
       description: >-
-        A passenger trip leg with timetabled schedule. Corresponds to a ride.
+        A leg of a journey that is not bound to a timetable.
       type: object
       properties:
-        continousLeg:
+        continuousLeg:
           $ref: "#/components/schemas/ContinuousLeg"
       required:
         - continuousLeg
@@ -3449,7 +3449,7 @@ components:
       required:
         - trackSection
 
-    TimedLegStructure:  ## OJP
+    TimedLeg:  ## OJP
       description: >-
         A leg which is bound to a timetabled schedule. Corresponds to a ride.
       required:
