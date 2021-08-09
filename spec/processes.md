@@ -258,7 +258,7 @@ Hereunder an example illustrating this concept:
 
 - Offer5: -
 - Offer6: #123
-- Offer7: #234
+- Offer7: #345
 - Offer8: #123, #234
 
 ##### Valid Combinations
