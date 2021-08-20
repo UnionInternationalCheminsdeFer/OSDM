@@ -3408,12 +3408,11 @@ components:
         - FIRST
         - SECOND 
       
-
     Flexibility:
       type: string
       x-extensible-enum:
         - FULLFLEX
-        - MIDFLEX
+        - SEMIFLEX
         - NONFLEX
 
     CommonOfferPartAttributes:
