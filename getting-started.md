@@ -88,7 +88,7 @@ A segment has all the stops as well as information on the vehicle running on thi
                 "code": "8509000"
             },
             "travelDateTime": {
-                "dateTime": "{{departure_timestamp}}",
+                "dateTime": "<departure_timestamp>",
                 "isArrival": false
             }
         },
@@ -166,7 +166,7 @@ A segment has all the stops as well as information on the vehicle running on thi
                     },
                     "passengers": [
                         {
-                            "id": "passenger_1"
+                            "id": "<passenger_id>"
                         }
                     ],
                     "validFrom": "2021-08-30T00:00:00+00:00",
@@ -196,7 +196,7 @@ A segment has all the stops as well as information on the vehicle running on thi
                     },
                     "passengers": [
                         {
-                            "id": "passenger_1"
+                            "id": "<passenger_id>"
                         }
                     ],
                     "validFrom": "2021-08-30T00:00:00+00:00",
@@ -235,9 +235,9 @@ A segment has all the stops as well as information on the vehicle running on thi
     {
         "selectedOffers": [
             {
-                "selectedOfferId": "{{selected_offer_id}}",
+                "selectedOfferId": "<selected_offer_id>",
                 "passengers": [
-                    {{passengers}}
+                    "<passenger_id>"
                 ]
             }
         ]
@@ -278,12 +278,12 @@ with a body of
 {
     "selectedOffers": [
         {
-            "selectedOfferId": "{{selected_offer_id}}",
+            "selectedOfferId": "<selected_offer_id>",
             "selectedOptionalReservationIds": [
-                "{{selected_reservation_ids}}"
+                "<selected_reservation_id>"
             ],
             "passengers": [
-                {{passengers}}
+                "<passenger_id>"
             ]
         }
     ]
@@ -304,15 +304,15 @@ Additionally, on this train there are ancillary services available. You can choo
 {
     "selectedOffers": [
         {
-            "selectedOfferId": "{{selected_offer_id}}",
+            "selectedOfferId": "<selected_offer_id>",
             "selectedOptionalReservationIds": [
-                "{{selected_reservation_ids}}"
+                "<selected_reservation_id>"
             ],
             "selectedOptionalAncillaryIds": [
-                "{{selected_ancillary_ids}}"
+                "<selected_ancillary_id>"
             ],
             "passengers": [
-                {{passengers}}
+                "<passengers_id>"
             ]
         }
     ]
@@ -325,17 +325,17 @@ If a customer wants to refund its ticket, the flow is a two step process analogo
 
 - Step 1: Request a refund offer.
 
-    The get a refund offer you `POST /bookings/{{booking_id}}/refundOffers`
+    The get a refund offer you `POST /bookings/{booking_id}/refundOffers`
 
     with ids of the fulfillments to be cancelled (You can look up the fulfillmentIds of a booking by `GET /bookings/{bookingId}`)
 
     ```json
     {
         "fulfillmentIds": [
-            {{fulfillments}}
+            "<fulfillment_id>"
         ],
         "overruleCode": "PAYMENT_FAILURE",
-        "refundDate": "{{refund_timestamp}}"
+        "refundDate": "<refund_timestamp>"
     }
     ```
 
@@ -349,7 +349,7 @@ If a customer wants to refund its ticket, the flow is a two step process analogo
 
     ```json
     {
-        "confirmedRefundOfferId": "{{offer_id}}"
+        "confirmedRefundOfferId": "<offer_id>"
     }
 
     ```
@@ -386,21 +386,21 @@ We take special care not to violate a passengers personal rights and build in pr
 
 There are two options: You can express your seating wishes such as at the window etc in the XYZ
 
-Or if you have chosen a unique seat using e.g a graphical seat reservation (see below) you just pass in a coach and seat number.
+Or if you have chosen a unique seat using e.g. a graphical seat reservation (see below) you just pass in a coach and seat number.
 
 ```json
 {
     "selectedOffers": [
         {
-            "selectedOfferId": "{{selected_offer_id}}",
+            "selectedOfferId": "<selected_offer_id>",
             "selectedOptionalReservationIds": [
-                "{{selected_reservation_ids}}"
+                "<selected_reservation_id>"
             ],
             "passengers": [
-                {{passengers}}
+                "<passenger_id>"
             ],
             "placeSelections": {
-                "reservationId": "{{selected_reservation_id}}",
+                "reservationId": "<selected_reservation_id>",
                 "placeSelection": {
                     "selectedCoach": {
                         "selectedCoaches": [
@@ -408,7 +408,7 @@ Or if you have chosen a unique seat using e.g a graphical seat reservation (see 
                                 "coachNumber": "2",
                                 "selectedPlaces": [
                                     {
-                                        "passengerId": "{{passengerId}}",
+                                        "passengerId": "<passenger_id>",
                                         "place": "2"
                                     }
                                 ]
