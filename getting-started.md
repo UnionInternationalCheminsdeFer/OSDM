@@ -107,7 +107,7 @@ A segment has all the stops as well as information on the vehicle running on thi
 
     ```json
     {
-       "id": "C_0KKC..",
+       "id": "C_0KK..",
         "tripOffers": [
             {
                 "id": "T_0KK--",
@@ -136,7 +136,7 @@ A segment has all the stops as well as information on the vehicle running on thi
 
     ```json
       {
-        "id": "O_72gFY..",
+        "id": "O_72g..",
         "offerSummary": {
             "minimalPrice": {
                 "currency": "CHF",
@@ -158,7 +158,7 @@ A segment has all the stops as well as information on the vehicle running on thi
         "validUntil": "2021-08-31T00:00:00+00:00",
         "admissions": [
             {
-                "id": "P_oLA5WtMSxS9EoAFwyb05DIhn$qbvv0Xo0NnUez5jw3EHGGNxHhxYfPYOryvAE29f",
+                "id": "P_oLA..",
                 "commonOfferPartAttributes": {
                     "price": {
                         "currency": "CHF",
@@ -188,7 +188,7 @@ A segment has all the stops as well as information on the vehicle running on thi
         ],
         "reservations": [
             {
-                "id": "P_WD18ohUYPc0o2xDGdLjS4lZp2GKCBCPiZZTJMVZPE+R+IZXvmnwWfCzAvQqqFsbF",
+                "id": "P_WD1..",
                 "commonOfferPartAttributes": {
                     "price": {
                         "currency": "CHF",
@@ -360,7 +360,7 @@ If a customer wants to refund its ticket, the flow is a two step process analogo
 
 This short introduction should help you getting started and assure you that OSDM is simple to use. While it's simple to use it's powerful to handle night trains, thru fares, passes and complex exchange processes on yielded.
 
-To fully understand OSDM we recommend you to have a look at the [specification](../spec/), especially the [model](../spec/models) and the [processes](../spec/processes) pages. A good start is also to study API itself. Or you can ask the OSDM technical group for introduction.
+To fully understand OSDM we recommend you to have a look at the [specification](../spec/), especially the [model](../spec/models) and the [processes](../spec/processes) pages. A good start is also to study the [API](https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/1.3.0-rc1) itself. Or you can ask the OSDM technical group for an introduction.
 
 ## FAQ
 
@@ -384,9 +384,7 @@ We take special care not to violate a passengers personal rights and build in pr
 
 ### Choosing Your Seat
 
-There are two options: You can express your seating wishes such as at the window etc in the XYZ
-
-Or if you have chosen a unique seat using e.g. a graphical seat reservation (see below) you just pass in a coach and seat number.
+There are two options: You can express your seating wishes such as at the window etc. Or if you have chosen a unique seat using e.g. a graphical seat reservation (see below) you just pass in a coach and seat number.
 
 ```json
 {
