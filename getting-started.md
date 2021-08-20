@@ -1,4 +1,10 @@
-# Getting Started with OSDM
+---
+layout: page
+title: Getting Started with OSDM
+permalink: /getting-started/
+---
+
+# A Gentle Introduction
 
 ## Introduction
 
@@ -354,7 +360,7 @@ If a customer wants to refund its ticket, the flow is a two step process analogo
 
 This short introduction should help you getting started and assure you that OSDM is simple to use. While it's simple to use it's powerful to handle night trains, thru fares, passes and complex exchange processes on yielded.
 
-To fully understand OSDM we recommend you to have a look at (), especially the () and () as well as the API as Op. Or you can ask the OSDM technical group for introduction
+To fully understand OSDM we recommend you to have a look at the [specification](./spec/), especially the [model](./spec/models) and the [processes](./spec/processes) pages. A good start is also to study API itself. Or you can ask the OSDM technical group for introduction.
 
 ## FAQ
 
