@@ -8,15 +8,15 @@ permalink: /getting-started/
 
 ## Introduction
 
-The OSDM interface is rich and can be overwhelming at start. Reason for its feature richness (leading ti complexity) is that fact that it aims to cover all possible public transportation products within Europe. There's a rich set of products and fares and operations to support all the 30+ systems within Europe.
+The OSDM API is rich and can be overwhelming at start. Reason for its feature richness (leading to its complexity) is the fact that it aims to cover all possible public transportation products and distribution processes within Europe and beyond.
 
 The products can be split roughly split into three categories:
 
 - *admissions*: the right to ride on a train, resulting in a ticket.
 - *reservations*: seat or couchette or bed in case of night trains
-- *ancillary*: WIFI, 3-Menu plate
+- *ancillary*: ancillary service such WIFI, 3-Menu plate
 
-Between the two product types, relationships are modelled to express whether it is optional or mandatory to have a certain seat reservation or ancillary on a given vehicle. In an open system (e.g. Switzerland) having a reservation is optional or a closed system (e.g. France) a seat reservation is a must.
+Between these categories, relationships are modelled to express whether it is optional or mandatory to have a certain seat reservation or ancillary on a given vehicle. In an open system (e.g. Switzerland) having a reservation is optional, on a closed system (e.g. France) a seat reservation is a mandatory.
 
 ### Booking a Ticket
 
