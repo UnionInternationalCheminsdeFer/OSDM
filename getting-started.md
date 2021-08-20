@@ -4,7 +4,7 @@ title: Getting Started with OSDM
 permalink: /getting-started/
 ---
 
-# A Gentle Introduction
+# A Gentle Introduction to OSDM
 
 ## Introduction
 
@@ -248,9 +248,9 @@ A segment has all the stops as well as information on the vehicle running on thi
 
 - Step 4: Get the fulfillments
 
-    To handout a ticket the last call is to get fulfillements of this ticket. Fulfillments are a general term to describe physical tickets as well as non-digital one such as Apple's passbook or a simple code only.
+    To handout a ticket the last call is to get fulfillments of this ticket. Fulfillments are a general term to describe physical tickets as well as non-digital one such as Apple's passbook or a simple code only.
 
-    The fulfillements can be simply accessed by calling:
+    The fulfillments can be simply accessed by calling:
 
     `GET /bookings/{booking_id}/fulfillments`
 
