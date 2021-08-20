@@ -3806,14 +3806,14 @@ components:
             providers by the distributor. The same throughTicketTag that was used to perform the grouping can be specified here.
           type: string
           default: false
-        selectedOptionalReservationsIds:
+        selectedOptionalReservationIds:
           type: array
           items:
             type: string
             format: uuid
             description: >-
               If relevant, ids of the selected optional reservations.
-        selectedOptionalAncillaries:
+        selectedOptionalAncillaryIds:
           type: array
           items:
             type: object
