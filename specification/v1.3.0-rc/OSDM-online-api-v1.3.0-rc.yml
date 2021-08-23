@@ -3633,9 +3633,9 @@ components:
       type: object
       description: >-
         place selection options and selected options in an offer
-        - selected optional place properties (selectedOptions)
-        - selectedPlaces from a graphical place selection (selectedPlaces)
         - reference place for adjacent reservation (referencePlace)
+        - selected optional place properties (selectedOptions)
+        - selected places from a graphical place selection (selectedPlaces)
       properties:
         referencePlace: 
           type: object    
@@ -3649,9 +3649,12 @@ components:
           type: array
           items: 
             $ref: '#/components/schemas/PlaceOptionsBundle'
-        selectedCoach:
-          $ref: '#/components/schemas/SelectedCoach'
-    
+        selectedPlaces:
+          description: selected coach and places in case of graphical reservation
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedPlaces'
+        
     Reservation:
       type: object
       description: >-
@@ -5907,20 +5910,20 @@ components:
     AccommodationType:
       type: string
       description:  >-
-        Accommodation type definition out of AccommodationTypeCodeList
+        Accommodation type definition out of the Accommodation Type Code List
+    
     AccommodationSubType:
       type: string
       description:  >-
-        Accommodation type definition out of AccommodationSubTypeCodeList
+        Accommodation type definition out of the Accommodation Sub Type Code List
+    
     PlaceSelection:
       type: object
       description: >-
         Place selection options and selected options in an offer
-        - optional place properties to choose from
-        - selected optional place properties (selectedOptions)
-        - selectable places for a graphical place selection 
-        - selectedPlaces from a graphical place selection (selectedPlaces)
         - reference place for adjacent reservation (referencePlace)
+        - selected optional place properties (selectedOptions)
+        - selected places from a graphical place selection (selectedPlaces)       
       properties:
         reservationOptions:
           $ref: '#/components/schemas/ReservationOnlineOption' 
@@ -5940,8 +5943,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlaceOptionsBundle'
-        selectedCoach:
-          $ref: '#/components/schemas/SelectedCoach'
+        selectedPlaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedPlaces'
 
     ReservationOnlineOption:
       type: object
@@ -6103,19 +6108,6 @@ components:
         - FREE
         - RESTRICTED
       default: FREE
-
-    SelectedCoach:
-      type: object
-      description: >-
-        Place selection from a graphical display of coaches.
-      properties:
-        selectedCoaches:
-          description: selected coach and places in case of graphical reservation
-          type: array
-          items:
-            $ref: '#/components/schemas/SelectedPlaces'
-      required:
-        - selectedCoaches
 
     SelectedPlaces:
       type: object
