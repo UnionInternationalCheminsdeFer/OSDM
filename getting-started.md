@@ -14,13 +14,13 @@ The products can be split roughly split into three categories:
 
 - *admissions*: the right to ride on a train, resulting in a ticket.
 - *reservations*: seat or couchette or bed in case of night trains
-- *ancillary*: ancillary service such WIFI, 3-Menu plate
+- *ancillary*: ancillary services such WIFI, 3-Menu plate
 
-Between these categories, relationships are modelled to express whether it is optional or mandatory to have a certain seat reservation or ancillary on a given vehicle. In an open system (e.g. Switzerland) having a reservation is optional, on a closed system (e.g. France) a seat reservation is a mandatory.
+Between these categories, relationships are modelled to express whether it is optional or mandatory to have a certain seat reservation or ancillary on a given vehicle. In an open system (e.g. Switzerland) having a reservation is optional. In contrast on a closed system (e.g. France) a seat reservation is a mandatory.
 
 ### Booking a Ticket
 
-We will start with booking a ticket, i.e. admission on a very simple trip: *Basel* - *Chur*. We assume there's no changing of trains, thus one segment only.
+We will start with booking a ticket, i.e. admission on a very simple trip: *Basel* - *Chur*. We assume there's no changing of trains, thus one segment only. We assume that the distributor is a Swiss website.
 
 A segment has all the stops as well as information on the vehicle running on this segment. On this segment this is a ICE train operated by SBB.
 
@@ -66,11 +66,11 @@ A segment has all the stops as well as information on the vehicle running on thi
     }
     ```
 
-  Thus by calling the service you will the following UIC codes: *Basel*: 8500010 and *Chur*: 8509000.
+  Thus by calling the service you get the following UIC codes: *Basel*: 8500010 and *Chur*: 8509000.
 
 - Step 2: Request Offers
 
-    Next, the simplest way to receive offers is to pass in *origin*, *destination*, *date* and *time* was well as the *passenger's* date of birth by calling.
+    Next, the simplest way to receive offers is to pass in *origin*, *destination*, *date* and *time* as well as the *passenger's* date of birth by calling.
 
     `POST /trips-offers-collection`
 
@@ -113,26 +113,23 @@ A segment has all the stops as well as information on the vehicle running on thi
                 "id": "T_0KK--",
                 "abstract": "Basel SBB - Chur",
                 "trip": [..
-            ],
-            "offers": [..
-            ],
-            "passengers": [
-             {
-                "id": "passenger_1",
-                 "abstract": "John Doe",
-                "externalReference": "ext_reference",
-                "dateOfBirth": "1970-01-01",
-                "gender": "MALE"
-             }
-          ]
-        }
-      ]
+                ],
+                "offers": [..
+                ],
+                "passengers": [
+                    {
+                        "id": "passenger_1",
+                        "dateOfBirth": "1970-01-01",
+                   }
+                ]
+            }
+        ]
     }
     ```
 
     An offer is structured starting with an offer summary, followed by admission, reservations and ancillaries if available.
 
-    On this train a valid offer consists of an admission with a optional reservation. As no reduction card has been submitted, the second class is full price, thus 68.00 CHF. Other valid offers for this trip, e.g. for super safer fares or for first class are returned.
+    On this train a valid offer consists of an admission with a optional reservation. As no reduction card has been submitted, the second class is full price, thus 68.00 CHF. Other valid offers for this trip, e.g. for super safer fares (in CH: "Sparbillett") or for first class are returned.
 
     ```json
       {
@@ -140,12 +137,13 @@ A segment has all the stops as well as information on the vehicle running on thi
         "offerSummary": {
             "minimalPrice": {
                 "currency": "CHF",
-                "amount": 6800
+                "amount": 6800,
+                "scale": 2
             },
             "overallServiceClass": {
                 "type": "BASIC"
             },
-            "overallFlexibility": "SEMIFLEX"
+            "overallFlexibility": "FULLFLEX"
         },
         "isReusable": true,
         "coveredSegmentIndexes": [
@@ -162,7 +160,8 @@ A segment has all the stops as well as information on the vehicle running on thi
                 "commonOfferPartAttributes": {
                     "price": {
                         "currency": "CHF",
-                        "amount": 6800
+                        "amount": 6800,
+                        "scale": 2
                     },
                     "passengers": [
                         {
@@ -178,7 +177,6 @@ A segment has all the stops as well as information on the vehicle running on thi
                             "id": "SBB_POINT_TO_POINT",
                             "abstract": "Point-to-point Ticket, Second Class",
                             "code": "125",
-                            "description": "",
                             "isTrainBound": false
                         }
                     ]
@@ -193,6 +191,7 @@ A segment has all the stops as well as information on the vehicle running on thi
                     "price": {
                         "currency": "CHF",
                         "amount": 500,
+                        "scale": 2
                     },
                     "passengers": [
                         {
@@ -208,7 +207,6 @@ A segment has all the stops as well as information on the vehicle running on thi
                             "id": "SBB_SEAT_RESERVATION",
                             "abstract": "Seat Reservation",
                             "code": "PRODUCT_10000",
-                            "description": "",
                             "isTrainBound": true
                         }
                     ]
@@ -219,7 +217,7 @@ A segment has all the stops as well as information on the vehicle running on thi
     }
     ```
 
-    If your overwhelmed by the numbers of offers you are getting, you can filter that by setting `flexibilities`, `comfortClasses`, `offerPartType`.
+    If your overwhelmed by the numbers of offers you are getting, you can filter them by setting `flexibilities`, `comfortClasses`, `offerPartType`.
 
 - Step 3: Booking Offers.
 
@@ -244,7 +242,7 @@ A segment has all the stops as well as information on the vehicle running on thi
     }
     ```
 
-    The system now creates a booking for you, containing all the information about the trip, the passenger and the products booked.
+    The system now creates a booking for you, containing all the information about the trip, the passenger and the products booked. The created booking is returned.
 
 - Step 4: Get the fulfillments
 
@@ -290,7 +288,9 @@ with a body of
 }
 ```
 
-As you can see, in the most simple case you just have to add the id of the selected reservation offer in the booking request. The inventory system will then choose a seat for you.
+As you can see, in the most simple case you just have to add the id of the selected reservation offer in the booking request. The inventory system will then choose a seat for you. 
+
+
 
 ### Traveling a Bit Further
 
@@ -321,7 +321,7 @@ Additionally, on this train there are ancillary services available. You can choo
 
 ### Refunding an Offer
 
-If a customer wants to refund its ticket, the flow is a two step process analogously to the booking flow. If a booking (i.e. its underlying product) is fully refundable you will get the full amount refunded. On the other hand, if the booking is non refundable you will get a offer of 0 CHF is returned.
+If a customer wants to refund its ticket, the flow is a two step process analogously to the booking flow. If a booking (i.e. its underlying product) is fully refundable you will get the full amount refunded. On the other hand, if the booking is non refundable an offer of 0 CHF is returned.
 
 - Step 1: Request a refund offer.
 
@@ -351,14 +351,13 @@ If a customer wants to refund its ticket, the flow is a two step process analogo
     {
         "confirmedRefundOfferId": "<offer_id>"
     }
-
     ```
 
    **Again, that's it**
 
-## Next Steps
+## Where to Go From Here
 
-This short introduction should help you getting started and assure you that OSDM is simple to use. While it's simple to use it's powerful to handle night trains, thru fares, passes and complex exchange processes on yielded.
+This short introduction should help you getting started and assure you that OSDM is simple to use. While it's simple to use it's powerful to handle all kind of night trains, thru fares, passes and complex exchange processes on yielded products.
 
 To fully understand OSDM we recommend you to have a look at the [specification](../spec/), especially the [model](../spec/models) and the [processes](../spec/processes) pages. A good start is also to study the [API](https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/1.3.0-rc1) itself. Or you can ask the OSDM technical group for an introduction.
 
@@ -366,25 +365,25 @@ To fully understand OSDM we recommend you to have a look at the [specification](
 
 ### Why is there no pre-booking step?
 
-In some countries, super saver fares are loaded as promotion into the system at a given date, which can lead to millions of request for offers within a short period. Storing hundreds of millions of offers server side becomes a challenge.
+In some countries, super saver fares are loaded as promotions into the system at a given date, which can lead to millions of request for offers within a short period as everybody tries to get the cheapest tickets. Storing hundreds of millions of offers server side becomes a challenge.
 
 To deal with such scenarios, the protocol is stateless by the design. Stateless in the sense that the state is held on the client and not on the server side. How can this be achieved? The trick is to encode all necessary information about an offer into the offerId and thus implicitly stored on the server side. Thus once an offerId is chosen, the offer is generated on the fly on the server side and then booked. Before booking the offer is validated for consistency.
 
 If your system thus not support this magic, you probably don't need it and can of course work cache the offers on the server side for a given time and return this information as part of the offer information.
 
-### Are using POST when there should be a GET?
+### Why are you using POST when there should be a GET?
 
 It would be in the spirit of REST to search for `GET /bookings?firstName=John&lastName=Doe` to return all bookings of John Doe. As such a call would be logged by any involved system, this collection of data violates GDPR regulations. We have reviewed all our services and decided to us POST in such cases and thus support privacy by design.
 
 ### When to pass in which passenger attributes?
 
-We take special care not to violate a passengers personal rights and build in privacy by design. Thus we collect as few information as possible at every step, i.e. only the attributes absolutely necessary to fulfill the operation are gathered. To indicate which information is needed you there is a `requestedInformation` attribute which express the information needed expressed in small DSL.
+We take special care not to violate a passengers personal rights and build in privacy by design. Thus we collect as few information as possible at every step, i.e. only the attributes absolutely necessary to fulfill the operation are gathered. To indicate which information is needed there is a `requestedInformation` attribute which express the information needed expressed in small DSL for [requested information](https://unioninternationalcheminsdefer.github.io/OSDM/spec/requested-information-grammar.html).
 
 ## Advanced Topics
 
 ### Choosing Your Seat
 
-There are two options: You can express your seating wishes such as at the window etc. Or if you have chosen a unique seat using e.g. a graphical seat reservation (see below) you just pass in a coach and seat number.
+There are two options: You can express your seating wishes such as at the window etc. Or if you have chosen a unique seat using e.g. a graphical seat reservation (see below) you just pass in a coach and seat number in the `POST /bookings` request:
 
 ```json
 {
