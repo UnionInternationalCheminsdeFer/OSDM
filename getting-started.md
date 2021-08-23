@@ -574,7 +574,7 @@ Another option is to express seating wishes of a passenger such as at the window
             "selectedOptions": [
                 {
                     "passengerId": "<passenger_id>", 
-                    "selectedPlaceProperties: [ 
+                    "selectedPlaceProperties": [ 
                         "WINDOW", 
                         "FAMILY"
                     ]
