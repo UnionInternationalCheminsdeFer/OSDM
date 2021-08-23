@@ -200,7 +200,7 @@ Legacy reservation code defined in UIC 90918-1.
 |![](../images/catalog-of-code-lists/graphics-icons/image064.jpg)|USB ports for charging|133|-|- | |
 |![](../images/catalog-of-code-lists/graphics-icons/image066.png)|Reclining seat|134|-|- | |
 |![](../images/catalog-of-code-lists/graphics-icons/image067.png)|Window|135|-|- | |
-|![](../images/catalog-of-code-lists/graphics-icons/image069.jpg)|stairs upwards</span><span|136|-|- | | 
+|![](../images/catalog-of-code-lists/graphics-icons/image069.jpg)|stairs upwards|136|-|- | | 
 |![](../images/catalog-of-code-lists/graphics-icons/image070.jpg)|stairs downwards|137|-|- | |
 |![](../images/catalog-of-code-lists/graphics-icons/image072.jpg)|Working compartment|144|-|- | |
 |![](../images/catalog-of-code-lists/graphics-icons/image074.jpg)|Cabin for allergic passengers|145|-|- | |
