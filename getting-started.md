@@ -429,6 +429,7 @@ As you can see, in the most simple case you just have to add the id of the selec
       }
     }
 }
+```
 
 ### Traveling a Bit Further
 
@@ -512,6 +513,7 @@ To deal with such scenarios, the protocol is stateless between offer and booking
 Thus once an offerId is chosen, the offer is generated on the fly on the server side, checked for consistency and then a booking in the state `PREBOOKED`is created.
 
 If your system thus not support this magic, you probably don't need it and can of course work cache the offers on the server side for a given time and return this information as part of the offer information.
+
 ### Why are you using POST when there should be a GET?
 
 It would be in the spirit of REST to search for `GET /bookings?firstName=John&lastName=Doe` to return all bookings of John Doe. As such a call would be logged by any involved system, this collection of data violates GDPR regulations. We have reviewed all our services and decided to us POST in such cases and thus support privacy by design.
