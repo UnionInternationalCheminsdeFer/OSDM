@@ -274,17 +274,103 @@ A segment has all the stops as well as information on the vehicle running on thi
     }
     ```
 
-    The system now creates a booking for you, containing all the information about the trip, the passenger and the products booked. The created booking is returned.
+    The system now creates a booking for you, containing all the information about the trip, the passenger and the offers booked. The created booking is returned in state `PREBOOKED` with the offer structure being available as part of the `bookedOffer`.
+
+    ```json
+    {
+        "booking": {
+            "id": "28OD7DVM",
+            "abstract": "Booking number 28OD7DVM",
+            "status": "PREBOOKED",
+            "provisionalPrice": {..
+            },
+            "confirmedPrice": {..
+            },
+            "ticketTimeLimit": "2021-08-23T12:21:15+00:00",
+            "fulfillmentType": "ETICKET",
+            "bookedOffers": [
+              {
+                "id": "B_WyJ...",
+                "offerSummary": {
+                "minimalPrice": {
+                    "currency": "CHF",
+                    "amount": 500,
+                    "scale": 2
+                  }
+                },
+                "isReusable": false,
+                "availableFulfillmentTypes": [
+                "ETICKET"
+                ],
+                "trip": {..
+                },
+                "validFrom": "2021-09-02T00:00:00+00:00",
+                "validUntil": "2021-09-02T00:00:00+00:00",
+                "admissions": [..
+                ],
+                "reservations": [],
+                "ancillaries": []
+              }
+            ],
+            "passengers": [..],
+            "fulfillments": [
+              {
+                "id": "28OD7DVM-001",
+                "status": "CONFIRMED",
+                "price": {
+                    "currency": "CHF",
+                    "amount": 500,
+                    "scale": 2
+                },
+                "controlNumber": "28OD7DVM-001",
+                "offerParts": [
+                "P_jekG6PnHWpW6dL8GPXLICWURJT9nh5ch5kRAjpMElgCvT8LTTNkWM6lOJsTaAUsq"
+                ]
+              }
+            ]
+        }
+    }
+    ```
 
 - Step 4: Get the fulfillments
 
-    To handout a ticket the last call is to get fulfillments of this ticket. Fulfillments are a general term to describe physical tickets as well as non-digital one such as Apple's passbook or a simple code only.
+    To finalize the booking and handout a ticket the last call is to get fulfillments of this ticket. Fulfillments are a general term to describe physical tickets as well as non-digital one such as Apple's passbook or a simple code only.
 
     The fulfillments can be simply accessed by calling:
 
     `GET /bookings/{booking_id}/fulfillments`
 
     For example, you can use the included URL to download the PDF.
+
+    ```json
+    {
+        "fulfillments": [
+            {
+                "id": "4ES36OIU-001",
+                "status": "FULFILLED",
+                "price": {
+                    "currency": "CHF",
+                    "amount": 500,
+                    "scale": 2
+                },
+                "controlNumber": "4ES36OIU-001",
+                "offerParts": [
+                    "P_jekG6..."
+                ],
+                "documents": [
+                    {
+                    "type": "TICKET",
+                    "downloadLink": "https://ticket.osdm-demo-test.cloud.sqills.com/ticket/4ES36OIU-001_210823145615241.png"
+                    },
+                    {
+                    "type": "TICKET",
+                    "downloadLink": "https://ticket.osdm-demo-test.cloud.sqills.com/ticket/4ES36OIU_PASSENGERS1_210823145615245.pdf"
+                    }
+                ]
+            }
+        ]
+    }
+    ```
 
     **Thats it**.
 
@@ -320,9 +406,29 @@ with a body of
 }
 ```
 
-As you can see, in the most simple case you just have to add the id of the selected reservation offer in the booking request. The inventory system will then choose a seat for you.
+As you can see, in the most simple case you just have to add the id of the selected reservation offer in the booking request. The inventory system will then choose a seat for you. In this case, the place 25 in coach 3 was booked.
 
-
+```json
+{
+    "booking:" {
+      "bookedOffer:" {
+        "reservations": [
+            "reservationDetails": {
+              "accommodationType": "SEAT",
+              "reservedPlaces": [
+                {
+                  "id": "S_7H5nJ5IEwipH4dvV2UNBRQ==",
+                  "vehicle": "IC 565",
+                  "coach": "3",
+                  "places": "25"
+                }
+              ]
+            },
+        ]
+        ..
+      }
+    }
+}
 
 ### Traveling a Bit Further
 
@@ -391,18 +497,21 @@ If a customer wants to refund its ticket, the flow is a two step process analogo
 
 This short introduction should help you getting started and assure you that OSDM is simple to use. While it's simple to use it's powerful to handle all kind of night trains, thru fares, passes and complex exchange processes on yielded products.
 
-To fully understand OSDM we recommend you to have a look at the [specification](../spec/), especially the [model](../spec/models) and the [processes](../spec/processes) pages. A good start is also to study the [API](https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/1.3.0-rc1) itself. Or you can ask the OSDM technical group for an introduction.
+To fully understand OSDM we recommend you to have a look at the [specification](../spec/), especially the [model](../spec/models) and the [processes](../spec/processes) pages, especially state model of a `booking` and a `fulfillment`.
+
+Another good start is to study the [API](https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/1.3.0-rc1) itself. Or you can ask the OSDM technical group for an introduction.
 
 ## FAQ
 
-### Why is there no pre-booking step?
+### Why is there no pre-booking resource?
 
-In some countries, super saver fares are loaded as promotions into the system at a given date, which can lead to millions of request for offers within a short period as everybody tries to get the cheapest tickets. Storing hundreds of millions of offers server side becomes a challenge.
+In some countries, super saver fares are loaded as promotions into the system at a given date, which can lead to millions of request for offers within a short period as everybody tries to get the cheapest tickets. Storing hundreds of millions of offers or pre-bookings server side becomes a challenge.
 
-To deal with such scenarios, the protocol is stateless by the design. Stateless in the sense that the state is held on the client and not on the server side. How can this be achieved? The trick is to encode all necessary information about an offer into the offerId and thus implicitly stored on the server side. Thus once an offerId is chosen, the offer is generated on the fly on the server side and then booked. Before booking the offer is validated for consistency.
+To deal with such scenarios, the protocol is stateless between offer and booking. Stateless in the sense that the state is held on the client and not on the server side. How can this be achieved? The trick is to encode all necessary information about an offer into the offerId and thus implicitly stored on the server side.
+
+Thus once an offerId is chosen, the offer is generated on the fly on the server side, checked for consistency and then a booking in the state `PREBOOKED`is created.
 
 If your system thus not support this magic, you probably don't need it and can of course work cache the offers on the server side for a given time and return this information as part of the offer information.
-
 ### Why are you using POST when there should be a GET?
 
 It would be in the spirit of REST to search for `GET /bookings?firstName=John&lastName=Doe` to return all bookings of John Doe. As such a call would be logged by any involved system, this collection of data violates GDPR regulations. We have reviewed all our services and decided to us POST in such cases and thus support privacy by design.
@@ -411,7 +520,7 @@ It would be in the spirit of REST to search for `GET /bookings?firstName=John&la
 
 The availability on a given train is bound to the products available on the train. I.e. the number of available bike reservations on a train is expressed on the offers of type "Bike Reservation" by the attribute `"numericAvailability": 23`. If no bike reservation places are available, no offer of this type is returned.
 
-This feature is optional to support by implementors, some railways decide not give insight into the numeric availability on there vehicles.
+This feature is optional to support by implementors, some railways decide not give insight into the numeric availability of seats on there vehicles.
 
 ### When to pass in which passenger attributes?
 
@@ -457,9 +566,7 @@ There are two options: You can express your seating wishes such as at the window
 }
 ```
 
-To be able to build a graphical seat reservation, you first need information of the layout of a the vehicle. The service `GET /coachLayouts/{layoutId}` allows you to download the layout.
-
-As a distributor you can now use this information to build a slick reservation UI that allows your customer to choose the seat or bed.
+To be able to build a graphical seat reservation, you first need information of the layout of the vehicles. The service `GET /coachLayouts/{layoutId}` allows you to download the layout. As a distributor you can now use this information to build a slick reservation UI that allows your customer to choose the seat or bed.
 
 ### What are fares?
 
