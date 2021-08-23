@@ -3635,7 +3635,7 @@ components:
         place selection options and selected options in an offer
         - reference place for adjacent reservation (referencePlace)
         - selected optional place properties (selectedOptions)
-        - selected places from a graphical place selection (selectedPlaces)
+        - selected places from a graphical place selection (selectedCoaches)
       properties:
         referencePlace: 
           type: object    
@@ -3649,7 +3649,7 @@ components:
           type: array
           items: 
             $ref: '#/components/schemas/PlaceOptionsBundle'
-        selectedPlaces:
+        selectedCoaches:
           description: selected coach and places in case of graphical reservation
           type: array
           items:
@@ -5923,7 +5923,7 @@ components:
         Place selection options and selected options in an offer
         - reference place for adjacent reservation (referencePlace)
         - selected optional place properties (selectedOptions)
-        - selected places from a graphical place selection (selectedPlaces)       
+        - selected places from a graphical place selection (selectedCoaches)       
       properties:
         reservationOptions:
           $ref: '#/components/schemas/ReservationOnlineOption' 
@@ -5932,18 +5932,12 @@ components:
             Vehicle / train number is necessary in case of train parts with different train numbers
           type: string
         referencePlace: 
-          type: object
-          description: selected place for an adjacent reservation (NEARBY)
-          properties:
-            placeNumber:
-              type: string
-            coachNumber:
-              type: string
+          $ref: '#/components/schemas/ReferencePlace'
         selectedOptions:
           type: array
           items:
             $ref: '#/components/schemas/PlaceOptionsBundle'
-        selectedPlaces:
+        selectedCoaches:
           type: array
           items:
             $ref: '#/components/schemas/SelectedPlaces'
@@ -5975,6 +5969,15 @@ components:
         - preferenceGroup
         - preferences
 
+    ReferencePlace:
+      type: object
+      description: selected place for an adjacent reservation (NEARBY)
+      properties:
+        coachNumber:
+          type: string
+        placeNumber:
+          type: string
+
     PlaceOptionsBundle:
       type: object
       description: >-
@@ -5983,7 +5986,9 @@ components:
         passengers:
           type: array
           items:
-            $ref: '#/components/schemas/Passenger'
+            description: reference of the passenger.id
+            type: string
+            format: uuid        
         selectedPlaceProperties: 
           description: Properties of places as defined in 90810-10.
           type: array
@@ -6121,11 +6126,10 @@ components:
             type: object
             properties:
               passengerId:
-                description: >-
-                  reference of the passenger.id
+                description: reference of the passenger.id
                 type: string
                 format: uuid
-              place:
+              placeNumber:
                 type: string 
 
     Passenger:
