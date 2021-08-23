@@ -530,7 +530,7 @@ We take special care not to violate a passengers personal rights and build in pr
 
 ### Choosing Your Seat
 
-There are two options: You can express your seating wishes such as at the window etc. Or if you have chosen a unique seat using e.g. a graphical seat reservation (see below) you just pass in a coach and seat number in the `POST /bookings` request:
+The easiest option is to book a place near to a given place:
 
 ```json
 {
@@ -543,24 +543,70 @@ There are two options: You can express your seating wishes such as at the window
             "passengers": [
                 "<passenger_id>"
             ],
-            "placeSelections": {
-                "reservationId": "<selected_reservation_id>",
-                "placeSelection": {
-                    "selectedCoach": {
-                        "selectedCoaches": [
-                            {
-                                "coachNumber": "2",
-                                "selectedPlaces": [
-                                    {
-                                        "passengerId": "<passenger_id>",
-                                        "place": "2"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
+            "placeSelection": {
+              "referencePlace": {
+                "coachNumber": "string",
+                "placeNumber": "string"
                 }
             }
+        }
+        ..
+    ]
+}
+
+```
+
+Another option is to express seating wishes of a passenger such as at the window etc.
+
+```json
+{
+    "selectedOffers": [
+        {
+            "selectedOfferId": "<selected_offer_id>",
+            "selectedOptionalReservationIds": [
+                "<selected_reservation_id>"
+            ],
+            "passengers": [
+                "<passenger_id>"
+            ],
+            "selectedOptions": [
+                {
+                    "passengerId": "<passenger_id>", 
+                    "selectedPlaceProperties: [ 
+                        "WINDOW", 
+                        "FAMILY"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+Or if you have unique seat chosen via a graphical seat reservation (see below) you just pass in a coach and seat number in the `POST /bookings` request:
+
+```json
+{
+    "selectedOffers": [
+        {
+            "selectedOfferId": "<selected_offer_id>",
+            "selectedOptionalReservationIds": [
+                "<selected_reservation_id>"
+            ],
+            "passengers": [
+                "<passenger_id>"
+            ],
+            "selectedCoaches": [
+                {
+                    "coachNumber": "2",
+                    "selectedPlaces": [
+                        {
+                            "passengerId": "<passenger_id>",
+                            "placeNumber": "2"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
