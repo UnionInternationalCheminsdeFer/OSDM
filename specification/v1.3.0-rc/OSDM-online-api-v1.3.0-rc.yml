@@ -5983,7 +5983,7 @@ components:
       description: >-
         Place selection of places for reservation linked to passengers.
       properties:
-        passengers:
+        passengerIds:
           type: array
           items:
             description: reference of the passenger.id
