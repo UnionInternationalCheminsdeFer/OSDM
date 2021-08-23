@@ -182,7 +182,7 @@ A segment has all the stops as well as information on the vehicle running on thi
                     ]
                 },
                 "isReservationRequired": false
-            }
+            },..
         ],
         "reservations": [
             {
@@ -200,6 +200,7 @@ A segment has all the stops as well as information on the vehicle running on thi
                     ],
                     "validFrom": "2021-08-30T00:00:00+00:00",
                     "validUntil": "2021-08-31T00:00:00+00:00",
+                    "numericAvailability:" 20,
                     "refundable": "NO",
                     "exchangeable": "NO",
                     "products": [
@@ -212,10 +213,41 @@ A segment has all the stops as well as information on the vehicle running on thi
                     ]
                 },
                 "optionality": "OPTIONAL"
+            },
+            {
+                "id": "P_WD1..",
+                "commonOfferPartAttributes": {
+                    "price": {
+                        "currency": "CHF",
+                        "amount": 500,
+                        "scale": 2
+                    },
+                    "passengers": [
+                        {
+                            "id": "<passenger_id>"
+                        }
+                    ],
+                    "validFrom": "2021-08-30T00:00:00+00:00",
+                    "validUntil": "2021-08-31T00:00:00+00:00",
+                    "numericAvailability:" 4,
+                    "refundable": "NO",
+                    "exchangeable": "NO",
+                    "products": [
+                        {
+                            "id": "SBB_BIKE_RESERVATION",
+                            "abstract": "Bike Reservation",
+                            "code": "PRODUCT_10001",
+                            "isTrainBound": true
+                        }
+                    ]
+                },
+                "optionality": "OPTIONAL"
             }
         ]
     }
     ```
+
+    The number of available seat or bike place is bound to the offers and expressed by the `"numericAvailability"` attribute.
 
     If your overwhelmed by the numbers of offers you are getting, you can filter them by setting `flexibilities`, `comfortClasses`, `offerPartType`.
 
@@ -288,7 +320,7 @@ with a body of
 }
 ```
 
-As you can see, in the most simple case you just have to add the id of the selected reservation offer in the booking request. The inventory system will then choose a seat for you. 
+As you can see, in the most simple case you just have to add the id of the selected reservation offer in the booking request. The inventory system will then choose a seat for you.
 
 
 
@@ -374,6 +406,12 @@ If your system thus not support this magic, you probably don't need it and can o
 ### Why are you using POST when there should be a GET?
 
 It would be in the spirit of REST to search for `GET /bookings?firstName=John&lastName=Doe` to return all bookings of John Doe. As such a call would be logged by any involved system, this collection of data violates GDPR regulations. We have reviewed all our services and decided to us POST in such cases and thus support privacy by design.
+
+### How many seats are available on the train?
+
+The availability on a given train is bound to the products available on the train. I.e. the number of available bike reservations on a train is expressed on the offers of type "Bike Reservation" by the attribute `"numericAvailability": 23`. If no bike reservation places are available, no offer of this type is returned.
+
+This feature is optional to support by implementors, some railways decide not give insight into the numeric availability on there vehicles.
 
 ### When to pass in which passenger attributes?
 
