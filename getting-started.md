@@ -200,7 +200,7 @@ A segment has all the stops as well as information on the vehicle running on thi
                     ],
                     "validFrom": "2021-08-30T00:00:00+00:00",
                     "validUntil": "2021-08-31T00:00:00+00:00",
-                    "numericAvailability:" 20,
+                    "numericAvailability": 20,
                     "refundable": "NO",
                     "exchangeable": "NO",
                     "products": [
@@ -229,7 +229,7 @@ A segment has all the stops as well as information on the vehicle running on thi
                     ],
                     "validFrom": "2021-08-30T00:00:00+00:00",
                     "validUntil": "2021-08-31T00:00:00+00:00",
-                    "numericAvailability:" 4,
+                    "numericAvailability": 4,
                     "refundable": "NO",
                     "exchangeable": "NO",
                     "products": [
@@ -522,7 +522,7 @@ It would be in the spirit of REST to search for `GET /bookings?firstName=John&la
 
 The availability on a given train is bound to the products available on the train. I.e. the number of available bike reservations on a train is expressed on the offers of type "Bike Reservation" by the attribute `"numericAvailability": 23`. If no bike reservation places are available, no offer of this type is returned.
 
-This feature is optional to support by implementors, some railways decide not give insight into the numeric availability of seats on there vehicles.
+This feature is optional to support by implementors, some railways decide not give insight into the numeric availability of product (especially super saver fares) on there trains.
 
 ### When to pass in which passenger attributes?
 
