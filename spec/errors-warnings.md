@@ -29,14 +29,16 @@ information about functional errors in the handling of a request.
 
 The problem structure is based on the Problem Details for HTTP APIs RFC
 [RfC-7807](https://tools.ietf.org/html/rfc7807) which defines a
-\"problem detail\" as a way to carry machine-readable details of errors in a HTTP response to avoid the need to define new error response formats for HTTP APIs.
+\"problem detail\" as a way to carry machine-readable details of errors
+in a HTTP response to avoid the need to define new error response formats 
+for HTTP APIs.
 
 For OSDM, the title property should begin with the code of the error
 type. This code should be the unique identifier for the functional
 situation in the absolute URI in the type property as well.
 
 In order that OSDM implementations also behave consistently in error situations,
-the following error codes must be supported in case of functional errors by all 
+the following error codes must be supported in case of functional errors by all
 implementations:
 
 | **Functional area** | **Code**     | **Title**                     |
