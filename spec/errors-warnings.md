@@ -5,9 +5,7 @@ hide_hero: true
 permalink: /spec/errors-warnings/
 ---
 
-# Errors and Warnings (Draft)
-
-*To be released in version 1.3*
+# Errors and Warnings
 
 ## General HTTP error codes and generic situations
 
@@ -22,6 +20,7 @@ The following standard HTTP error codes are used in the specification:
 | `409` | Conflict |
 | `500` | Internal server error |
 | `501` | Not implemented |
+| `503` | Service unavailable |
 
 ## Functional errors and the JSON Problem element
 

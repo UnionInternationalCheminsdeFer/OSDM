@@ -17,6 +17,8 @@
       link: spec/models/
     - name: Processes
       link: spec/processes/
+    - name: Errors & Warnings
+      link: spec/error-warnings/
     - name: Catalog of Code Lists
       link: spec/catalog-of-code-lists/
     - name: Non-Functional Requirements

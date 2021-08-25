@@ -23,8 +23,9 @@ The [Online API](https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm
 is explained in this documents:
 
 - [Technical Principles](./technical-principles/)
-- [Processes](./processes/)
 - [Models](./models/)
+- [Processes](./processes/)
+- [Errors & Warnings](./error-warnings/)
 
 ## Catalog of Code Lists
 
