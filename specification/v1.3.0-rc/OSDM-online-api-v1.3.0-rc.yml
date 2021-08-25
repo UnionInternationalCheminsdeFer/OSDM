@@ -151,7 +151,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-                
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /locations/{locationId}:
     get:
       tags:
@@ -200,6 +202,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /trips/{tripId}:
     get:
@@ -275,6 +279,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /trips-collection/{tripsCollectionId}:
     get:
@@ -384,6 +390,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /trips-collection:
     post:
@@ -456,6 +464,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /trip-offers-collection/{tripOffersCollectionId}:
     get:
@@ -568,6 +578,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
           
   /trip-offers-collection:
     post:
@@ -637,6 +649,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /trip-offers/{tripOfferId}:
     get:
@@ -700,6 +714,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
    
   /offers/{offerId}:
     get:
@@ -766,6 +782,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /non-trip-offers-collection:
     post:
@@ -824,6 +842,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
   
   '/offers/{offerId}/reservations/{reservationId}/available-preferences':             
     get:
@@ -903,7 +923,9 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
-          description: Not implemented          
+          description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
           
   '/offers/{offerId}/reservations/{reservationId}/nearby':             
     get:
@@ -998,7 +1020,9 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
-          description: Not implemented                
+          description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
           
   '/offers/{offerId}/reservations/{reservationId}/place-map':             
     get:
@@ -1080,7 +1104,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented                 
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   '/offers/{offerId}/fares/{fareId}/available-preferences':             
     get:
       tags:
@@ -1161,7 +1187,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented      
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   '/offers/{offerId}/fares/{fareId}/nearby':             
     get:
       tags:
@@ -1256,7 +1284,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented      
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   '/offers/{offerId}/fares/{fareId}/place-map':             
     get:
       tags:
@@ -1336,7 +1366,9 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
-          description: Not implemented            
+          description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /bookings/{bookingId}/passengers/{passengerId}:
     get:
@@ -1386,6 +1418,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     patch:
       tags:
         - Passengers
@@ -1440,7 +1475,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /products/{productId}:
     get:
       tags:
@@ -1488,7 +1525,9 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
-          description: Not implemented       
+          description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
  
   /bookings/search:
     post:
@@ -1553,7 +1592,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /bookings:
     post:
       tags:
@@ -1601,6 +1642,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /bookings/{bookingId}:
     get:
@@ -1667,6 +1710,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     delete:
       tags:
         - Bookings
@@ -1711,6 +1757,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     patch:
       tags:
         - Bookings
@@ -1757,7 +1806,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-   
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /bookings/{bookingId}/fulfillments:
     post:
       tags:
@@ -1813,6 +1864,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     patch:
       tags:
         - Fulfillments
@@ -1872,7 +1926,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /fulfillments/{fulfillmentId}:
     get:
       tags:
@@ -1919,7 +1975,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /bookings/{bookingId}/refundOffers:
     post:
       tags:
@@ -1970,7 +2028,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-        
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /bookings/{bookingId}/refundOffers/{refundOfferId}:
     get:
       tags:
@@ -2024,6 +2084,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     patch:
       tags:
         - Refund
@@ -2083,6 +2146,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     delete:
       tags:
         - Refund
@@ -2138,7 +2204,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /bookings/{bookingId}/exchangeOperations/{exchangeOperationId}:
     get:
       tags:
@@ -2209,7 +2277,10 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
-          description: Not implemented  
+          description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     patch:
       tags:
         - Exchange
@@ -2270,6 +2341,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     delete:
       tags:
         - Exchange
@@ -2322,6 +2396,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /exchange-trip-offers-collection:
     post:
@@ -2393,6 +2469,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'         
 
   /exchange-trip-offers-collection/{exchangeTripOffersCollectionId}:
     get:
@@ -2513,7 +2591,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'          
 
   /exchange-trip-offers/{exchangeTripOfferId}:
     get:
@@ -2580,6 +2659,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'      
         '501':
           description: Not implemented     
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /coachLayouts:
     get:
@@ -2655,6 +2736,8 @@ paths:
            $ref: '#/components/responses/InternalServerErrorResponse'         
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /coachLayouts/{layoutId}:
     get:
@@ -2697,6 +2780,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
 
 ## Components
@@ -2739,6 +2824,13 @@ components:
 
     InternalServerErrorResponse:
       description: Internal Server Error (500)
+      content:
+        "application/problem+json":
+          schema:
+            $ref: '#/components/schemas/Problem'
+
+    ServiceUnavailableResponse:
+      description: Service Unavailable (503)
       content:
         "application/problem+json":
           schema:
