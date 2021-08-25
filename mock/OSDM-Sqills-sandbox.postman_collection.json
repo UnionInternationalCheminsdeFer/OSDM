@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a148a2c1-b431-4971-8db1-755c381b9e63",
+		"_postman_id": "c0fbd2d4-0315-4e8a-b9c4-5aef7023e292",
 		"name": "OSDM - Sqills sandbox",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -192,6 +192,169 @@
 		},
 		{
 			"name": "Get station info",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/oauth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Locations",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Locations are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.locations).not.to.be.undefined;",
+									"",
+									"    pm.environment.set('location_id', response.locations[0].id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=8727100&matchType=CODE_LIST&codeListForMatch=UIC&limit=10&embed[]=NONE",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "8727100"
+								},
+								{
+									"key": "matchType",
+									"value": "CODE_LIST"
+								},
+								{
+									"key": "codeListForMatch",
+									"value": "UIC"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "embed[]",
+									"value": "NONE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Locations/{id}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/locations/{{location_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations",
+								"{{location_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get station Brig",
 			"item": [
 				{
 					"name": "Oauth",
@@ -1542,7 +1705,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"selectedOffers\": [\n        {\n            \"selectedOfferId\": \"{{selected_offer_id}}\",\n            \"selectedOptionalAncillaries\": [\n                {{selected_ancillaries}}\n            ],\n            \"passengers\": [\n                {{passengers}}\n            ]\n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
+							"raw": "{\n    \"selectedOffers\": [\n        {\n            \"selectedOfferId\": \"{{selected_offer_id}}\",\n            \"selectedOptionalAncillaries\": [\n                {{selected_ancillaries}}\n            ],\n            \"passengers\": [\n                {{passengers}}\n            ], \n            \"placeSelections\": {\n                \"reservationId\": \"{{selected_reservation_id}}\",\n                \"placeSelection\":\n                  { \n                    \"selectedCoach\":\n                      { \n                        \"selectedCoaches\":\n                          [\n                            { \n                              \"coachNumber\": \"2\",\n                              \"selectedPlaces\":\n                                [\n                                  {\n                                    \"passengerId\": \"passengerId\",\n                                    \"place\": \"2\"\n                                  }\n                                ]\n                            }  \n                          ]\n                      }\n                  }\n            }      \n        }\n    ],\n    \"embed\": [\n        \"ALL\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1556,6 +1719,344 @@
 							],
 							"path": [
 								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}/fulfillments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}/fulfillments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"fulfillments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Successful booking - with seat reservation",
+			"item": [
+				{
+					"name": "Oauth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Access token is returned\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    jsonData.access_token !== undefined;",
+									"    ",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);",
+									"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{agent.username}}\",\n  \"password\": \"{{agent.password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/oauth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"oauth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip-offers-collection",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set('departure_timestamp', new Date().addDays(10).format('{yyyy}-{MM}-{dd}T07:00:00Z'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Trip offers are returned\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response.tripOffers).not.to.be.empty;",
+									"});",
+									"",
+									"// Get the first offer returned",
+									"pm.response.json().tripOffers.some(function(tripOffer) {",
+									"    if (tripOffer.offers.length > 1) {",
+									"        let offer = tripOffer.offers[0];",
+									"        pm.environment.set('selected_offer_id', offer.id);",
+									"",
+									"        // Add the reservations",
+									"        let reservations = [];",
+									"        offer.reservations.some(function(reservation) {",
+									"",
+									"            let reservationPassengers = [];",
+									"            reservation.commonOfferPartAttributes.passengers.forEach(function(passenger) {",
+									"                reservationPassengers.push('\"' + passenger.id + '\"');",
+									"            });",
+									"",
+									"            reservations.push(`{",
+									"                \"reservationId\": \"` + reservation.id + `\",",
+									"                \"reservationIds\": [",
+									"                    ` + reservationPassengers + `",
+									"                ]",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('selected_reservation', reservations);",
+									"",
+									"        // Add the ancillaries",
+									"        let ancillaries = [];",
+									"        offer.ancillaries.some(function(ancillary) {",
+									"",
+									"            let ancillaryPassengers = [];",
+									"            ancillary.commonOfferPartAttributes.passengers.forEach(function(passenger) {",
+									"                ancillaryPassengers.push('\"' + passenger.id + '\"');",
+									"            });",
+									"",
+									"            ancillaries.push(`{",
+									"                \"ancillaryId\": \"` + ancillary.id + `\",",
+									"                \"passengerIds\": [",
+									"                    ` + ancillaryPassengers + `",
+									"                ]",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('selected_ancillaries', ancillaries);",
+									"",
+									"        // Add the passengers",
+									"        let passengers = [];",
+									"        tripOffer.passengers.forEach(function(passenger) {",
+									"            passengers.push(`{",
+									"                \"id\": \"` + passenger.id + `\",",
+									"                \"abstract\": \"` + passenger.abstract + `\",",
+									"                \"externalReference\": \"external_reference\",",
+									"                \"dateOfBirth\": \"` + passenger.dateOfBirth + `\"",
+									"            }`);",
+									"        });",
+									"        pm.environment.set('passengers', passengers);",
+									"",
+									"        return;",
+									"    }",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tripSearchCriteria\": {\n        \"origin\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8500010\"\n        },\n        \"destination\": {\n            \"codeList\": \"UIC\",\n            \"code\": \"8509000\"\n        },\n        \"travelDateTime\": {\n            \"dateTime\": \"{{departure_timestamp}}\",\n            \"isArrival\": false\n        },\n        \"serviceBrands\": [\n            \"OSDM\"\n        ]\n    },\n    \"passengers\": [\n        {\n            \"abstract\": \"John Doe\",\n            \"externalReference\": \"ext_reference\",\n            \"dateOfBirth\": \"1970-01-01\",\n            \"gender\": \"MALE\"\n        }\n    ],\n    \"offerSearchCriteria\": {\n        \"currency\": \"EUR\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers-collection",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers-collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set('booking_id', pm.response.json().booking.id);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"selectedOffers\": [\n        {\n            \"selectedOfferId\": \"{{selected_offer_id}}\",\n            \"selectedOptionalReservations\": [\n                {{selected_reservation}}\n            ],\n            \"passengers\": [\n                {{passengers}}\n            ],\n            \"selectedCoaches\": [\n                { \n                  \"coachNumber\": \"3\",\n                  \"selectedPlaces\":\n                    [\n                      {\n                        \"passengerId\": {{passengers}},\n                        \"place\": \"24\"\n                      }\n                    ]\n                }\n            ]\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bookings/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bookings/{{booking_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}"
 							]
 						}
 					},
