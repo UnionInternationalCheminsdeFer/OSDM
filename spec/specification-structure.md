@@ -25,7 +25,7 @@ is explained in this documents:
 - [Technical Principles](./technical-principles/)
 - [Models](./models/)
 - [Processes](./processes/)
-- [Errors & Warnings](./error-warnings/)
+- [Errors & Warnings](./errors-warnings/)
 
 ## Catalog of Code Lists
 
