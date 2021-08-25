@@ -410,8 +410,8 @@ As you can see, in the most simple case you just have to add the id of the selec
 
 ```json
 {
-    "booking:" {
-      "bookedOffer:" {
+    "booking": {
+      "bookedOffer": {
         "reservations": [
             "reservationDetails": {
               "accommodationType": "SEAT",
