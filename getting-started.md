@@ -423,7 +423,7 @@ As you can see, in the most simple case you just have to add the id of the selec
                   "places": "25"
                 }
               ]
-            },
+            }
         ]
         ..
       }
@@ -517,6 +517,12 @@ If your system thus not support this magic, you probably don't need it and can o
 ### Why are you using POST when there should be a GET?
 
 It would be in the spirit of REST to search for `GET /bookings?firstName=John&lastName=Doe` to return all bookings of John Doe. As such a call would be logged by any involved system, this collection of data violates GDPR regulations. We have reviewed all our services and decided to us POST in such cases and thus support privacy by design.
+
+### How are IRTs modeled?
+
+IRT stands for *integrated rail ticket* and stands for a group of products where the admission includes a seat as reservation. For example given, IRT are available on Eurostar or Thalys trains which basically act as any airplane where you can only enter is you have a reserved seat.
+
+The way they are modelled in OSDM are as *admission* with an *included reservation*, i.e., the seat reservation have an `"optionality": INCLUDED`. The admission with the included reservation have to be treated atomically by any implementation.
 
 ### How many seats are available on the train?
 

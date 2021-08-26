@@ -38,8 +38,7 @@ Business needs leading to this specification are captured in the [requirement](.
 
 ## Compliance to the Specification
 
-In order for an implementation to be compliant, depending on its role, a set of service need to be
-implemented as lined out in the [Compliance](./compliance/) section.
+In order for an implementation to be compliant, depending on its role, a set of service need to be implemented as lined out in the [Compliance](./compliance/) section.
 
 ## Availability as UIC Leaflet
 
