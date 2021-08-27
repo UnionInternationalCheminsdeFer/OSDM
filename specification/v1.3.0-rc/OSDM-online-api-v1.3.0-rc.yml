@@ -151,7 +151,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-                
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /locations/{locationId}:
     get:
       tags:
@@ -200,6 +202,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /trips/{tripId}:
     get:
@@ -275,6 +279,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /trips-collection/{tripsCollectionId}:
     get:
@@ -384,6 +390,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /trips-collection:
     post:
@@ -456,6 +464,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /trip-offers-collection/{tripOffersCollectionId}:
     get:
@@ -568,6 +578,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
           
   /trip-offers-collection:
     post:
@@ -637,6 +649,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /trip-offers/{tripOfferId}:
     get:
@@ -700,6 +714,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
    
   /offers/{offerId}:
     get:
@@ -766,6 +782,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /non-trip-offers-collection:
     post:
@@ -824,6 +842,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
   
   '/offers/{offerId}/reservations/{reservationId}/available-preferences':             
     get:
@@ -903,7 +923,9 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
-          description: Not implemented          
+          description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
           
   '/offers/{offerId}/reservations/{reservationId}/nearby':             
     get:
@@ -998,7 +1020,9 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
-          description: Not implemented                
+          description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
           
   '/offers/{offerId}/reservations/{reservationId}/place-map':             
     get:
@@ -1080,7 +1104,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented                 
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   '/offers/{offerId}/fares/{fareId}/available-preferences':             
     get:
       tags:
@@ -1161,7 +1187,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented      
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   '/offers/{offerId}/fares/{fareId}/nearby':             
     get:
       tags:
@@ -1256,7 +1284,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented      
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   '/offers/{offerId}/fares/{fareId}/place-map':             
     get:
       tags:
@@ -1336,7 +1366,9 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
-          description: Not implemented            
+          description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /bookings/{bookingId}/passengers/{passengerId}:
     get:
@@ -1386,6 +1418,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     patch:
       tags:
         - Passengers
@@ -1440,7 +1475,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /products/{productId}:
     get:
       tags:
@@ -1488,7 +1525,9 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
-          description: Not implemented       
+          description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
  
   /bookings/search:
     post:
@@ -1553,7 +1592,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /bookings:
     post:
       tags:
@@ -1601,6 +1642,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /bookings/{bookingId}:
     get:
@@ -1667,6 +1710,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     delete:
       tags:
         - Bookings
@@ -1711,6 +1757,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     patch:
       tags:
         - Bookings
@@ -1757,7 +1806,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-   
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /bookings/{bookingId}/fulfillments:
     post:
       tags:
@@ -1813,6 +1864,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     patch:
       tags:
         - Fulfillments
@@ -1872,7 +1926,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /fulfillments/{fulfillmentId}:
     get:
       tags:
@@ -1919,7 +1975,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /bookings/{bookingId}/refundOffers:
     post:
       tags:
@@ -1970,7 +2028,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-        
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /bookings/{bookingId}/refundOffers/{refundOfferId}:
     get:
       tags:
@@ -2024,6 +2084,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     patch:
       tags:
         - Refund
@@ -2083,6 +2146,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     delete:
       tags:
         - Refund
@@ -2138,7 +2204,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
   /bookings/{bookingId}/exchangeOperations/{exchangeOperationId}:
     get:
       tags:
@@ -2209,7 +2277,10 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
-          description: Not implemented  
+          description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     patch:
       tags:
         - Exchange
@@ -2270,6 +2341,9 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
     delete:
       tags:
         - Exchange
@@ -2322,6 +2396,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /exchange-trip-offers-collection:
     post:
@@ -2393,6 +2469,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'         
 
   /exchange-trip-offers-collection/{exchangeTripOffersCollectionId}:
     get:
@@ -2513,7 +2591,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
-          
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'          
 
   /exchange-trip-offers/{exchangeTripOfferId}:
     get:
@@ -2580,6 +2659,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'      
         '501':
           description: Not implemented     
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /coachLayouts:
     get:
@@ -2655,6 +2736,8 @@ paths:
            $ref: '#/components/responses/InternalServerErrorResponse'         
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /coachLayouts/{layoutId}:
     get:
@@ -2697,6 +2780,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
 
 ## Components
@@ -2739,6 +2824,13 @@ components:
 
     InternalServerErrorResponse:
       description: Internal Server Error (500)
+      content:
+        "application/problem+json":
+          schema:
+            $ref: '#/components/schemas/Problem'
+
+    ServiceUnavailableResponse:
+      description: Service Unavailable (503)
       content:
         "application/problem+json":
           schema:
@@ -2829,6 +2921,8 @@ components:
             - transferType
         vehicle:
           type: object
+          description: >-
+            Either 'line' or 'numbers' must be provided.
           properties:
             numbers:
               description: >-
@@ -2859,6 +2953,7 @@ components:
         - destination
         - duration
         - vehicle
+        - serviceBrand
 
     Stop:
       type: object
@@ -3259,9 +3354,17 @@ components:
     OfferSummary:
       type: object
       description: >-
-        The offer summary indicates the major service class, level or flexibility.
-        This does not imply that this service class or level applies to all parts 
-        of the whole offer. 
+        The offer summary indicates the most relevant service class, level, flexibility or accommodation 
+        that describe this offer, but this does not imply that these values exactly apply to all parts of
+        the offer. 
+        Let's consider, as a simplified example, a trip composed of two segments, one with both 1st and 
+        2nd class, and one with only 2nd. 
+        On this trip, the railway is expected to propose one offer with overallServiceClass FIRST composed 
+        of one admission in 1st class on the first segment and one admission in 2nd class on the second one, 
+        plus a second offer with overallServiceClass SECOND composed of two second class admissions.
+        Likewise for all 'overall' attributes. The purpose of these attributes is to convey to the client
+        system the service class, level, flexibility and accommodation that best represent this offer so to
+        facilitate presentation to the final user.
       properties:
         minimalPrice:
           $ref: '#/components/schemas/Price'
@@ -3281,6 +3384,8 @@ components:
         - overallFlexibility
 
     Offer:
+      description: >-
+        The attribute 'offerSummary' is meaningful at trip-offer-collection response time only.
       type: object
       properties:
         id:
@@ -3290,6 +3395,11 @@ components:
           example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
         offerSummary:
           $ref: '#/components/schemas/OfferSummary'
+        priceGuaranteedUntil:
+          type: string
+          format: date-time
+          description: >-
+            Indicates until when the price for the given offer is guaranteed.
         isReusable:
           type: boolean
           default: false
@@ -3394,13 +3504,13 @@ components:
       type: string
       x-extensible-enum:
         - FIRST
-        - SECOND  
-
+        - SECOND 
+      
     Flexibility:
       type: string
       x-extensible-enum:
         - FULLFLEX
-        - MIDFLEX
+        - SEMIFLEX
         - NONFLEX
 
     CommonOfferPartAttributes:
@@ -3422,10 +3532,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PromoCode'
-        passengers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Passenger'
+        passengerIds:
+            type: string
+            description: Id of the passenger
+            format: uuid
         providerBookingReference:
           type: string
           description: >-
@@ -3457,12 +3567,20 @@ components:
             offerparts, i.e. admissions, reservation or ancillaries.
         refundable:
           type: string
+          description: >-
+            This field should be set to YES when the offerpart is refundable without a fee before the
+            day of departure. NO when not refundable or refundable with 100% fee, WITH_CONDITIONS in
+            all other cases.
           enum:
             - YES
             - NO
             - WITH_CONDITIONS
         exchangeable:
           type: string
+          description: >-
+            This field should be set to YES when the offerpart is exchangeable without a fee before the
+            day of departure. NO when not exchangeable or exchangeable with 100% fee, WITH_CONDITIONS in
+            all other cases.        
           enum:
             - YES
             - NO
@@ -3482,7 +3600,7 @@ components:
                   format: int32
       required:
         - price
-        - passengers
+        - passengerIds
         - validFrom
         - refundable
         - exchangeable
@@ -3615,9 +3733,9 @@ components:
       type: object
       description: >-
         place selection options and selected options in an offer
-        - selected optional place properties (selectedOptions)
-        - selectedPlaces from a graphical place selection (selectedPlaces)
         - reference place for adjacent reservation (referencePlace)
+        - selected optional place properties (selectedOptions)
+        - selected places from a graphical place selection (selectedCoaches)
       properties:
         referencePlace: 
           type: object    
@@ -3631,9 +3749,12 @@ components:
           type: array
           items: 
             $ref: '#/components/schemas/PlaceOptionsBundle'
-        selectedCoach:
-          $ref: '#/components/schemas/SelectedCoach'
-    
+        selectedCoaches:
+          description: selected coach and places in case of graphical reservation
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedPlaces'
+        
     Reservation:
       type: object
       description: >-
@@ -3804,14 +3925,14 @@ components:
             providers by the distributor. The same throughTicketTag that was used to perform the grouping can be specified here.
           type: string
           default: false
-        selectedOptionalReservationsIds:
+        selectedOptionalReservationIds:
           type: array
           items:
             type: string
             format: uuid
             description: >-
               If relevant, ids of the selected optional reservations.
-        selectedOptionalAncillaries:
+        selectedOptionalAncillaryIds:
           type: array
           items:
             type: object
@@ -4325,7 +4446,7 @@ components:
       description: >-
         Defines the parameters needed to request an exchange offer, either based on either an
         existing trip (that is then passed in) plus a set of offer search
-        criteria, or based on tripsearch and offer search criteria. At least one
+        criteria, or based on trip-search and offer search criteria. At least one
         of the trip or tripSearchCriteria must be set.
       properties:
         tripOfferRequest:
@@ -5585,8 +5706,8 @@ components:
 
     Company:
       description: >-
-        RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used on a bilateral base the 
-        codes must have at least 5 positions and start with x
+        RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used 
+        on a bilateral base the codes must have at least 5 positions and start with x
       type: string
 
     ServiceBrandCode:
@@ -5605,10 +5726,9 @@ components:
       properties:
         type:
           $ref: '#/components/schemas/ServiceClassType'
-        carrierName:
+        name:
           type: string
-          description: >-
-            the name the carrier itself uses to designate this specific service class
+          description: The name the carrier itself uses to designate this specific service class.
       required:
         - id
       
@@ -5923,20 +6043,20 @@ components:
     AccommodationType:
       type: string
       description:  >-
-        Accommodation type definition out of AccommodationTypeCodeList
+        Accommodation type definition out of the Accommodation Type Code List
+    
     AccommodationSubType:
       type: string
       description:  >-
-        Accommodation type definition out of AccommodationSubTypeCodeList
+        Accommodation type definition out of the Accommodation Sub Type Code List
+    
     PlaceSelection:
       type: object
       description: >-
         Place selection options and selected options in an offer
-        - optional place properties to choose from
-        - selected optional place properties (selectedOptions)
-        - selectable places for a graphical place selection 
-        - selectedPlaces from a graphical place selection (selectedPlaces)
         - reference place for adjacent reservation (referencePlace)
+        - selected optional place properties (selectedOptions)
+        - selected places from a graphical place selection (selectedCoaches)       
       properties:
         reservationOptions:
           $ref: '#/components/schemas/ReservationOnlineOption' 
@@ -5945,19 +6065,15 @@ components:
             Vehicle / train number is necessary in case of train parts with different train numbers
           type: string
         referencePlace: 
-          type: object
-          description: selected place for an adjacent reservation (NEARBY)
-          properties:
-            placeNumber:
-              type: string
-            coachNumber:
-              type: string
+          $ref: '#/components/schemas/ReferencePlace'
         selectedOptions:
           type: array
           items:
             $ref: '#/components/schemas/PlaceOptionsBundle'
-        selectedCoach:
-          $ref: '#/components/schemas/SelectedCoach'
+        selectedCoaches:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedPlaces'
 
     ReservationOnlineOption:
       type: object
@@ -5986,15 +6102,26 @@ components:
         - preferenceGroup
         - preferences
 
+    ReferencePlace:
+      type: object
+      description: selected place for an adjacent reservation (NEARBY)
+      properties:
+        coachNumber:
+          type: string
+        placeNumber:
+          type: string
+
     PlaceOptionsBundle:
       type: object
       description: >-
         Place selection of places for reservation linked to passengers.
       properties:
-        passengers:
+        passengerIds:
           type: array
           items:
-            $ref: '#/components/schemas/Passenger'
+            description: reference of the passenger.id
+            type: string
+            format: uuid        
         selectedPlaceProperties: 
           description: Properties of places as defined in 90810-10.
           type: array
@@ -6120,19 +6247,6 @@ components:
         - RESTRICTED
       default: FREE
 
-    SelectedCoach:
-      type: object
-      description: >-
-        Place selection from a graphical display of coaches.
-      properties:
-        selectedCoaches:
-          description: selected coach and places in case of graphical reservation
-          type: array
-          items:
-            $ref: '#/components/schemas/SelectedPlaces'
-      required:
-        - selectedCoaches
-
     SelectedPlaces:
       type: object
       properties:
@@ -6145,11 +6259,10 @@ components:
             type: object
             properties:
               passengerId:
-                description: >-
-                  reference of the passenger.id
+                description: reference of the passenger.id
                 type: string
                 format: uuid
-              place:
+              placeNumber:
                 type: string 
 
     Passenger:
@@ -6167,8 +6280,9 @@ components:
           example: Andreas Schlapbach
         externalReference:
           description: >-
-            stable reference to passengers from other elements, or from caller
-            system.
+            A stable reference to passengers from other elements, or from caller system.
+            When received in input of a trip-offers-collection request, it must be echoed back in the
+            response.
           type: string
         dateOfBirth:
           description: date of birth of the passenger
@@ -6195,9 +6309,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-      required:
-        - abstract
-        - links
 
     PRMNeedType:
       type: string

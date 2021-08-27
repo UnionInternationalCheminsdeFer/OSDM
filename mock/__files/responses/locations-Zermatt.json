@@ -1,0 +1,37 @@
+{
+    "locations": [
+      {
+        "id": "8501689",
+        "abstract": "Zermatt",
+        "station": {
+          "country": "ch",
+          "codes": [
+            {
+              "codeList": "UIC",
+              "code": "8501689"
+            }
+          ],
+          "geoCoordinate": {
+            "system": "WSG84",
+            "accuracy": 0.00002,
+            "latitude": 47.012345,
+            "longitude": 8.040193
+          },
+          "names": [
+            {
+              "language": "de",
+              "text": "Zermatt"
+            },
+            {
+              "language": "fr",
+              "text": "Zermatt"
+            },
+            {
+              "language": "it",
+              "text": "Zermatt"
+            }
+          ]
+        }
+      }
+    ]
+  }

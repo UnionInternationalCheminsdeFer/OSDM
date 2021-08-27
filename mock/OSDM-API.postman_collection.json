@@ -263,6 +263,29 @@
 					"response": []
 				},
 				{
+					"name": "Zermatt",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/locations?matchValue=Zermatt",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "matchValue",
+									"value": "Zermatt"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Zürich HB",
 					"request": {
 						"method": "GET",
@@ -379,6 +402,24 @@
 					"response": []
 				},
 				{
+					"name": "Trip Basel SBB - Chur 563",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trips/trip-id-basel-chur",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trips",
+								"trip-id-basel-chur"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Trip Landquart - Klosters Platz",
 					"request": {
 						"method": "GET",
@@ -409,6 +450,24 @@
 							"path": [
 								"trips",
 								"48e65adb-25b5-4786-a4c8-c153cb5e623e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trip Chur - Zermatt",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trips/trip-id-chur-zermatt",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trips",
+								"trip-id-chur-zermatt"
 							]
 						}
 					},
@@ -494,6 +553,60 @@
 							"path": [
 								"trip-offers",
 								"trip-offer-002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/trip-offers-collection Basel SBB - Zermatt",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers-collection/trip-offers-collection-id-basel-zermatt",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers-collection",
+								"trip-offers-collection-id-basel-zermatt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/trip-offers Basel SBB - Chur",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers/trip-offer-id-basel-chur",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers",
+								"trip-offer-id-basel-chur"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/trip-offers  Chur - Zermatt",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/trip-offers/trip-offer-id-chur-zermatt",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"trip-offers",
+								"trip-offer-id-chur-zermatt"
 							]
 						}
 					},
