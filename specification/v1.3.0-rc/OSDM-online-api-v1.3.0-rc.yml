@@ -4322,10 +4322,7 @@ components:
           type: string
           format: date-time
         status:
-          type: string
-          enum:
-            - PROPOSED
-            - CONFIRMED
+          $ref: '#/components/schemas/RefundStatus'
         reimbursementStatus:
           description: >-
             If set to IMMEDIATE the distributor is allowed to return the 
@@ -4383,15 +4380,19 @@ components:
     RefundOfferConfirm:
       type: object
       description: >-
-        Changes the refund offer to status CONFIRMED.
+        Changes the refund offer to status CONFIRMED. De-confirmation by setting PROPOSED status is not supported by API.
       properties:
-        confirmedRefundOfferId:
-          type: string
-          format: uuid
-          description: id of the refund offer
+        status:
+          $ref: '#/components/schemas/RefundStatus' 
       required:
-        - confirmRefundOfferId 
- 
+        - status 
+
+    RefundStatus:
+      type: string
+      enum:
+        - PROPOSED
+        - CONFIRMED
+
     OverruleCode: 
       type: string
       description: >-
