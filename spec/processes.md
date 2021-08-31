@@ -50,7 +50,7 @@ scope of this document) they can be booked. The fulfillment of the booking can e
 be on paper or paperless.
 
 If needed bookings can either be refunded or exchanged by providing the customer with
-a refund or exchange offer which can the be booked by the customer.
+a refund or exchange offer which can then be booked by the customer.
 
 ## Trips and Locations Processes
 
@@ -62,7 +62,7 @@ The `\locations` Lookup can be used by an API provider in order to search for lo
 Two typical uses cases would be
 
 - getting a set of locations (in full or as reference) from a substring of the name
-- getting full details on a location based on on of its codes
+- getting full details on a location based on one of its codes
 
 Note that the functionality is not intended to trigger a "dump" of the complete locations
 list or to build a full "browsing" functionality, hence the lack of pagination features here.
@@ -115,9 +115,9 @@ return.
 It is important to ensure that once a trip has been generated, its id can 
 be re-used in possible subsequent operations within a reasonable time-frame:
 - When scrolling back and forth over time, a same trip should maintain the
-  same id, so the API consume can, if desired, expand the set of trips in its
+  same id, so the API consumer can, if desired, expand the set of trips in its
 own context and have the guarantee that one same trip (in terms of content)
-will remain with the same id (in terms of resource id.
+will remain with the same id (in terms of resource id).
 - It could be used in a subsequent offer request, so that offers are now built 
   for that specific trip
 
@@ -167,7 +167,7 @@ portion to work on.
 An offer request to an **Allocator**, **provider** or **fare provider** can lead to 
 offers with multiple `OfferParts`, potentially coming from different sub-providers 
 (OSDM compliant or not). However, in preparing offers with multiple offer parts 
-for the API consumer, the **Distributors** must follow the following rules :
+for the API consumer, the **Distributors** must follow the following rules:
 
 - The POST `/trip-offers-collection` only generates complete offers covering the
   complete trip (or complete section) requested.
@@ -214,7 +214,7 @@ When requesting offers for the outward travel, the API consumer has to
 provide a return date. The response will contain a set of offers. Each of these
 offers will have a `offerTag`. Usage of it is described further below.
 
-To get offer for the inward travel, the API consumer will have to provide
+To get offer for the inward travel, the API consumer will have to provide:
 
 - The id of the outward `tripCollectionID` (allows knowing the context in which
   the outward offers are made)
@@ -230,7 +230,7 @@ To get offer for the inward travel, the API consumer will have to provide
   (set of) outward offers.  
   Note that depending on whether the `offerTag` is mandatory or not and whether it
   is unique per outward offer, it may or may not be mandatory to select the outward
-  offer before th inward offer request can be constructed.
+  offer before the inward offer request can be constructed.
 
 #### Using returnTags
 
@@ -240,8 +240,8 @@ determine how to combine offers in a return trip.
 
 The idea is actually fairly simple: in case no filtering is applied on the
 inward offers using the `offerTag` filter mentioned above, the returned inward
-offers may not all be compatible with all outward offers. Identifying
-compatible pairs are simply identified by the fact that they have the same (set
+offers may not all be compatible with all outward offers. 
+Compatible pairs are simply identified by the fact that they have the same (set
 of) `returnTag(s)`. Offers with no return `returnTag` have
 no constraints.
 
