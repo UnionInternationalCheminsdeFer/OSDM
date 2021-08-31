@@ -112,13 +112,14 @@ whether complete trips should be returned or only a title and a link. A GET
 verb without any scrolling-token will simply return the last set of trips
 return.
 
-It is important to ensure that once a trip has been generated, its id can 
+It is important to ensure that once a trip has been generated, its id can
 be re-used in possible subsequent operations within a reasonable time-frame:
+
 - When scrolling back and forth over time, a same trip should maintain the
   same id, so the API consumer can, if desired, expand the set of trips in its
-own context and have the guarantee that one same trip (in terms of content)
-will remain with the same id (in terms of resource id).
-- It could be used in a subsequent offer request, so that offers are now built 
+  own context and have the guarantee that one same trip (in terms of content)
+  will remain with the same id (in terms of resource id).
+- It could be used in a subsequent offer request, so that offers are now built
   for that specific trip
 
 #### Error Handling
@@ -150,7 +151,7 @@ submits search criteria, and a collection of "trip offers" is returned. This
 collection can be browsed to earlier and later trips the same way as the trips
 collections.
 
-The search criterias for offers extend the search criteria available for trips
+The search criteria for offers extend the search criteria available for trips
 with additional criteria applicable to the fares and products that can be
 returned such as the fare flexibility, the service class or the currency the
 offers should be proposed in.
@@ -164,9 +165,9 @@ be larger than the part for which fares are requested. For this reason, the
 requested section must then be provided so that the provider knows which
 portion to work on.
 
-An offer request to an **Allocator**, **provider** or **fare provider** can lead to 
-offers with multiple `OfferParts`, potentially coming from different sub-providers 
-(OSDM compliant or not). However, in preparing offers with multiple offer parts 
+An offer request to an **Allocator**, **provider** or **fare provider** can lead to
+offers with multiple `OfferParts`, potentially coming from different sub-providers
+(OSDM compliant or not). However, in preparing offers with multiple offer parts
 for the API consumer, the **Distributors** must follow the following rules:
 
 - The POST `/trip-offers-collection` only generates complete offers covering the
@@ -174,16 +175,16 @@ for the API consumer, the **Distributors** must follow the following rules:
 - While the combination logic is left to the **Distributor**, it is recommended to
   only build and retain offers that are *homogeneous* (as much as possible) in
   terms of flexibility and comfort.
-- As with the trips, it must remain possible to scroll forward or backwards over 
-  tripOffers based on their id and the scrollToken. 
+- As with the trips, it must remain possible to scroll forward or backwards over
+  tripOffers based on their id and the scrollToken.
 
-As described further on, any additional information required for 
+As described further on, any additional information required for
 the provisional booking can be provided in the booking operation itself
 
-The resources used at offer steps optionally offer various *levels of embedding* 
-(returning complete structure is the only mechanism made mandatory by 
-the working group at the moment) and multiple granularity for the retrieval of 
-information, so each implementing party can fine-tune the queries in order to get 
+The resources used at offer steps optionally offer various *levels of embedding*
+(returning complete structure is the only mechanism made mandatory by
+the working group at the moment) and multiple granularity for the retrieval of
+information, so each implementing party can fine-tune the queries in order to get
 all the information needed for the processing at hand, and only that information.
 
 #### Offer Messages
@@ -221,7 +222,7 @@ To get offer for the inward travel, the API consumer will have to provide:
 
 - Depending on the targeted fare provider, the `offerTag` for the selected
   outward offer, or the set of potential offers (as the `offerTag` does not
-  have to be unique. E.g. all offers for a given date might have the same 
+  have to be unique. E.g. all offers for a given date might have the same
   if the constraint is only on date) can or must be provided.
   Whether the `offerTag` is mandatory in the inward offer request is indicated by
   the "mandatory flag" that is provided in the outward offer response next to each
@@ -240,7 +241,7 @@ determine how to combine offers in a return trip.
 
 The idea is actually fairly simple: in case no filtering is applied on the
 inward offers using the `offerTag` filter mentioned above, the returned inward
-offers may not all be compatible with all outward offers. 
+offers may not all be compatible with all outward offers.
 Compatible pairs are simply identified by the fact that they have the same (set
 of) `returnTag(s)`. Offers with no return `returnTag` have
 no constraints.
@@ -349,7 +350,7 @@ Proposed trip by timetable system:
 
 ![Creating a Booking Based on Offers](../images/processes/seq-creating-a-booking-based-on-offers.png)
 
-Once the offer has been selected, the API consumer can proceed to the booking of that offer. 
+Once the offer has been selected, the API consumer can proceed to the booking of that offer.
 Along with the offer, optional or mandatory reservations, or ancillaries could be
 booked as well. those optional offer parts can be identified easily in the
 offers as they will always be linked with an admission product (in
@@ -381,6 +382,7 @@ this offer part.
 
 In some cases, additional information must be provided before or at the provisional booking time
 in order to be taken into account, such as:
+
 - Additional passenger identity information
 - Additional accommodation preferences regarding the accommodation, or its exact location.
 
@@ -404,27 +406,36 @@ By parsing this structure, the API consumer is able to identify the elements
 that need to be filled-in to proceed. An initial version the [grammar for required
 information](../requested-information-grammar.html) is available for review.
 
-The two types of information (accommodation preferences and passenger data updates) are both to be added in the POST /booking body:
+The two types of information (accommodation preferences and passenger data updates)
+are both to be added in the POST /booking body:
+
 - passenger information can be specified in the passengers array: `bookingRequest.selectedOffers[].passengers`
 - seating preferences can be provided in `bookingRequest.selectedOffers[].placeSelections`
 
 #### Reusable offers
-A Reusable offer is an offer that can be booked several times, as long as there is sufficient availability, in distinct bookings and for different, but equivalent, sets of passengers from those of the initial offer request. 
+
+A reusable offer is an offer that can be booked several times, as long as there is sufficient availability, in distinct bookings and
+for different, but equivalent, sets of passengers from those of the initial offer request.
+
 The new set is considered equivalent when composed of passengers with a similar profile (same reductions and birth date entitling to the same product(s)).
 
 In case of:
-- booking a reusable offer for a new set of passengers, all passengers' attributes need to be be fully specified in the `POST /booking` body, except the `id` that is always generated by the server. 
+
+- booking a reusable offer for a new set of passengers, all passengers' attributes need to be be fully specified in
+  the `POST /booking` body, except the `id` that is always generated by the server.
 - booking an offer, reusable or not, for the same set of passengers of the offer request,  all properties are updatable except:
   - `id`
   - `externalReference`
 
-Note however that updating a property that can influence the eligible product in
-the offer (such as date of birth or reduction cards) may lead to the booking being rejected in case of incoherence. 
+Note however that updating a property can influence the eligible product in the offer (such as date of
+birth or reduction cards) may lead to the booking being rejected in case of incoherence.
 
 It is the choice of the OSDM provider to declare offers as reusable, or not, in the reply to `POST /trip-offers-collection`.
-Reusable offers however should be favored whenever possible: while the OSDM provider retains control, it allows implementation of powerful business usecases (e.g. a ticket machine at the station that could continue selling reusable offers while experiencing network issues and would then synchronize the sales upon connection re-establishement).
+Reusable offers however should be favored whenever possible: while the OSDM provider retains control, it allows implementation
+of powerful business use-cases (e.g. a ticket machine at the station that could continue selling reusable offers while
+experiencing network issues and would then synchronize the sales upon connection re-establishement).
 
-Reminder: the accommodation preferences can be found in the reservationOptions
+Reminder: the accommodation preferences can be found in the `reservationOptions`
 elements `(offer.fare|integratedReservation|reservation.placeSelection.reservationOptions)`
 
 The passengers in the booking resources are also the same type of resources as
@@ -435,9 +446,10 @@ Initially, a booking will have the status `PREBOOKED` (see also the booking
 status model).
 
 #### Error Handling
-- The requested reservation Option is not available on this transport
+
+- The requested reservation option is not available on this transport
 - An invalid value is provided for a passenger property
-- Referenced Offer or offer part not found (offer expired ?)
+- Referenced offer or offer part not found (offer expired ?)
 - No rights to access referenced offer
 - Incompatible offer part with the offer
 - Missing information
@@ -770,4 +782,6 @@ potential refund fee, etc (see the model for more details).
 
 #### Requesting an exchange offer
 
-Requesting an exchange ffer is almost identical to requesting a standard offer. The only difference in the request is that the fulfillment that the API consumer wants to exchange, and an overrule code if relevant,  are also provided.
+Requesting an exchange offer is almost identical to requesting a standard offer.
+The only difference in the request is that the fulfillment that the API consumer
+wants to exchange, and an overrule code if relevant, are also provided.
