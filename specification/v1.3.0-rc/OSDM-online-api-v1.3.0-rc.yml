@@ -64,7 +64,7 @@ paths:
     post:
       tags:
         - Place Information
-      summary: returns trips for a given place information request
+      summary: returns place information for a given place information request
       description: >-
         Returns place information for a given place information request based on the OJP specification.
       operationId: postPlaceInformations
@@ -2762,26 +2762,26 @@ components:
       properties:
         place:
           $ref: "#/components/schemas/Place"  
-        complete:
-          description: >-
-            States whether the included place is complete or needs further refinement. Only complete places
-            are fully resolved and can be used in e.g. trip requests. Incomplete places have to be refined 
-            entering them once again into a PlaceInformationRequest.
-          type: boolean
-        probability:
-          description: >-
-            Probability, that this result is the one meant by the user's input. Value should be between 0 and 1.
-          type: number
-          format: float
-          minimum: 0.0
-          maximum: 1.0
-        modes:
-          description:
-            List of transport modes that call at this place object. This list should only be filled in case of
-            stop points or stop places – and only when explicitly requested.
-          type: array
-          items:
-            $ref: "#/components/schemas/Mode"
+        #complete:  # Out of scope
+        #  description: >-
+        #    States whether the included place is complete or needs further refinement. Only complete places
+        #    are fully resolved and can be used in e.g. trip requests. Incomplete places have to be refined 
+        #    entering them once again into a PlaceInformationRequest.
+        #  type: boolean
+        #probability: # Out of scope
+        #  description: >-
+        #    Probability, that this result is the one meant by the user's input. Value should be between 0 and 1.
+        #  type: number
+        #  format: float
+        #  minimum: 0.0
+        #  maximum: 1.0
+        #modes:
+        #  description:
+        #    List of transport modes that call at this place object. This list should only be filled in case of
+        #    stop points or stop places – and only when explicitly requested.
+        #  type: array
+        #  items:
+        #    $ref: "#/components/schemas/Mode"
 
     TripRequest:  ## OJP
       required:
@@ -2890,8 +2890,8 @@ components:
 
     GeoPositionStructure:  ## OJP
       type: object
-      required:
-        - geoPosition
+      # required: Not mandatory for OSDM
+      #  - geoPosition
       properties:
         geoPosition:
           $ref: "#/components/schemas/LocationStructure"
@@ -3948,9 +3948,9 @@ components:
         - $ref: "#/components/schemas/AddressStructure"
         - $ref: "#/components/schemas/PointOfInterestStructure"
         - $ref: "#/components/schemas/StopPlaceStructure"
-        - $ref: "#/components/schemas/StopPointStructure"
-        - $ref: "#/components/schemas/TopographicPlaceStructure"
-        - $ref: "#/components/schemas/ConnectionPointStructure"  # OSDM extension for virtual border points
+      #  - $ref: "#/components/schemas/StopPointStructure"  # Out of scope
+      #  - $ref: "#/components/schemas/TopographicPlaceStructure"  # Out of scope
+      #  - $ref: "#/components/schemas/ConnectionPointStructure"  # OSDM extension for virtual border points
       - $ref: "#/components/schemas/GeoPositionStructure"
       - type: object
         properties:
@@ -3991,9 +3991,9 @@ components:
             description: Name or description of address for use in passenger information.
             type: string
             example: Oude Trambaan 7, 2265CA Leidschendam, Nederland
-          nameSuffix:
-            description: House number of the address. If none is given, either a crossing street can be given, or the whole street is meant.
-            type: string
+          # nameSuffix:  # Out of scope
+          #   description: House number of the address. If none is given, either a crossing street can be given, or the whole street is meant.
+          #   type: string
       - $ref: "#/components/schemas/AddressDetail"
 
     AddressDetail:  ## OJP
@@ -4008,13 +4008,13 @@ components:
           description: "Postal code of the address."
           type: string
           example: 2265CA
-        topographicPlaceName:
-          description: "TopographicPlace name of the address. If set it should at least contain the city name."
-          type: string
-          example: Leidschendam
-        topographicPlaceRef:
-          description: If at least one is set, only place objects within the given localities are allowed.If at least one is set, only place objects within the given localities are allowed.Reference to a TopographicPlace
-          $ref: "#/components/schemas/TopographicPlaceRef"
+        # topographicPlaceName:  # Out of scope
+        #   description: "TopographicPlace name of the address. If set it should at least contain the city name."
+        #   type: string
+        #   example: Leidschendam
+        # topographicPlaceRef:  # Out of scope
+        #   description: If at least one is set, only place objects within the given localities are allowed.If at least one is set, only place objects within the given localities are allowed.Reference to a TopographicPlace
+        #   $ref: "#/components/schemas/TopographicPlaceRef"
         street:
           description: Street name of the address.
           type: string
@@ -4023,9 +4023,9 @@ components:
           description: House number of the address. If none is given, either a crossing street can be given, or the whole street is meant.
           type: string
           example: 7
-        crossRoad:
-          description: Crossing. This can be used to be more specific without using house numbers.
-          type: string
+        # crossRoad:  # Out of scope
+        #   description: Crossing. This can be used to be more specific without using house numbers.
+        #   type: string
 
     PointOfInterestStructure:  ## OJP
       type: object
@@ -4051,22 +4051,22 @@ components:
           description: Name or description of point of interest for use in passenger information.
           type: string
           example: Park Rozenrust
-        nameSuffix:
-          description: >-
-            Additional description of the point of interest that may be appended to the name if enough space 
-            is available. F.e. "Exhibition Center".
-          type: string
-        pointOfInterestCategory:          
-          description: Categories this POI is associated with. Order indicates descending relevance.
-          $ref: "#/components/schemas/PointOfInterestCategory"
+        # nameSuffix:  # Out of scope
+        #   description: >-
+        #     Additional description of the point of interest that may be appended to the name if enough space 
+        #     is available. F.e. "Exhibition Center".
+        #   type: string
+        # pointOfInterestCategory:          
+        #   description: Categories this POI is associated with. Order indicates descending relevance.
+        #   $ref: "#/components/schemas/PointOfInterestCategory"
         privateCode:
           description: Code of this address in private/foreign/proprietary coding schemes.
           $ref: "#/components/schemas/PrivateCode"
-        topographicPlaceRef:
-          description: >-
-            If at least one is set, only place objects within the given localities are allowed. If at least one is set,
-            only place objects within the given localities are allowed. Reference to a TopographicPlace.
-          $ref: "#/components/schemas/TopographicPlaceRef"
+        # topographicPlaceRef:
+        #   description: >-
+        #     If at least one is set, only place objects within the given localities are allowed. If at least one is set,
+        #     only place objects within the given localities are allowed. Reference to a TopographicPlace.
+        #   $ref: "#/components/schemas/TopographicPlaceRef"
 
     PointOfInterestCategory:  ## OJP
       description: >-
@@ -4133,33 +4133,33 @@ components:
               description: Name of this stop place for use in passenger information.
               type: string
               example: Zürich HB
-            nameSuffix:
-              description: Additional description of the stop place that may be appended to the name if enough space is available.
-              type: string
-              example: Exhibition Center
+            # nameSuffix:
+            #   description: Additional description of the stop place that may be appended to the name if enough space is available.
+            #   type: string
+            #   example: Exhibition Center
             privateCode:
               description: Code of this stop place in private/foreign/proprietary coding schemes.
               $ref: "#/components/schemas/PrivateCode"
-            topographicPlaceRef:
-              description: If at least one is set, only place objects within the given localities are allowed.If at least one is set, only place objects within the given localities are allowed.Reference to a TopographicPlace
-              $ref: "#/components/schemas/TopographicPlaceRef"
-        - $ref: "#/components/schemas/StopAttributes"
+            # topographicPlaceRef: Out of scope
+            #   description: If at least one is set, only place objects within the given localities are allowed.If at least one is set, only place objects within the given localities are allowed.Reference to a TopographicPlace
+            #   $ref: "#/components/schemas/TopographicPlaceRef"
+        # - $ref: "#/components/schemas/StopAttributes" # Out of scope
 
-    StopAttributes:  ## OJP
-      description: >-
-        A selection of attributes of accessibility limitation related to a scheduled stop point extended by attributes
-        referring to some equipment.
-      type: object
-      properties:
-        wheelchairAccessible:
-          description: Whether this stop is accessible for wheelchair users.
-          type: boolean
-        lighting:
-          description: Whether this stop is lit.
-          type: boolean
-        covered:
-          description: Whether this stop offers protection from weather conditions like rain, snow, storm etc.
-          type: boolean
+    # StopAttributes:  ## OJP
+    #   description: >-
+    #     A selection of attributes of accessibility limitation related to a scheduled stop point extended by attributes
+    #     referring to some equipment.
+    #   type: object
+    #   properties:
+    #     wheelchairAccessible:
+    #       description: Whether this stop is accessible for wheelchair users.
+    #       type: boolean
+    #     lighting:
+    #       description: Whether this stop is lit.
+    #       type: boolean
+    #     covered:
+    #       description: Whether this stop offers protection from weather conditions like rain, snow, storm etc.
+    #       type: boolean
 
     AreaStructure:  ## OJP
       description: Area described as a polygon.
@@ -4243,7 +4243,7 @@ components:
             topographicPlaceRef:
               description: If at least one is set, only place objects within the given localities are allowed.If at least one is set, only place objects within the given localities are allowed.Reference to a TopographicPlace
               $ref: "#/components/schemas/TopographicPlaceRef"
-        - $ref: "#/components/schemas/StopAttributes"
+      #  - $ref: "#/components/schemas/StopAttributes"
 
     PrivateCode:  ## OJP
       description: Code of this stop point in private/foreign/proprietary coding schemes.
@@ -4267,10 +4267,10 @@ components:
           $ref: "#/components/schemas/Longitude"
         latitude:
           $ref: "#/components/schemas/Latitude"
-        altitude:
-          $ref: "#/components/schemas/Altitude"
-        precision:
-          $ref: "#/components/schemas/Precision"
+        # altitude:   #Out of scope
+        #  $ref: "#/components/schemas/Altitude"
+        #precision:   #Out of scope
+        #  $ref: "#/components/schemas/Precision"
       required:
         - latitude
         - longitude
@@ -4291,17 +4291,17 @@ components:
       minimum: -90.0
       maximum: 90.0
 
-    Altitude:  ## OJP
-      description: Altitude metres from sea level.
-      type: number
-      format: float
-      example: 0.0
+    # Altitude:  ## OJP
+    #   description: Altitude metres from sea level.
+    #   type: number
+    #   format: float
+    #   example: 0.0
 
-    Precision:  ## OJP
-      description: Precision for point measurement. In Meters.
-      type: number
-      format: float
-      example: 0.0
+    # Precision:  ## OJP
+    #   description: Precision for point measurement. In Meters.
+    #   type: number
+    #   format: float
+    #  example: 0.0
 
     StopPointRef:  ## OJP
       description: Reference to a (SCHEDULED) STOP POINT
