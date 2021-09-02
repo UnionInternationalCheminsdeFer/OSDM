@@ -23,6 +23,9 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
+  - name: Places
+    description: >-
+      resources to search for places
   - name: Place Information
     description: >-
       resources to search for place information
@@ -137,6 +140,31 @@ paths:
           description: not implemented
         "503":
           description: service unavailable
+          
+  /places/{placeId}:
+    get:
+      tags: 
+        - Places
+      summary: return place
+      description: >-
+        Returns places 
+      operationId: getPlaces
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/accessToken"
+        - in: path
+          name: placeId
+          schema:
+            type: string
+          required: true
+          description: ID of the place to get.
+      responses:
+        "200":
+          description: places
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Place"
 
   /trips/{tripId}:
     get:
@@ -2775,13 +2803,13 @@ components:
         #  format: float
         #  minimum: 0.0
         #  maximum: 1.0
-        #modes:
-        #  description:
-        #    List of transport modes that call at this place object. This list should only be filled in case of
-        #    stop points or stop places – and only when explicitly requested.
-        #  type: array
-        #  items:
-        #    $ref: "#/components/schemas/Mode"
+        modes:
+          description:
+            List of transport modes that call at this place object. This list should only be filled in case of
+            stop points or stop places – and only when explicitly requested.
+          type: array
+          items:
+            $ref: "#/components/schemas/Mode"
 
     TripRequest:  ## OJP
       required:
@@ -2865,8 +2893,8 @@ components:
       properties:
         place:
           $ref: "#/components/schemas/PlacePlaceStructure"
-        time:
-          $ref: "#/components/schemas/PlaceTimeStructure"
+        # time:
+        #   $ref: "#/components/schemas/PlaceTimeStructure"
         # individualTransportOptions:
         # - $ref: "#/components/schemas/IndividualTransportOptions"
       required:
@@ -3237,11 +3265,11 @@ components:
         origin:
           description: >-
             Specifies the origin situation from where the user wants to start.
-          $ref: "#/components/schemas/PlaceContext"
+          $ref: "#/components/schemas/Place"  ## EXT
         destination:
           description: >-
             Specifies the destination situation where the user is heading to.
-          $ref: "#/components/schemas/PlaceContext"
+          $ref: "#/components/schemas/Place"  ## EXT
         startTime:
           description: Departure time at origin.
           type: string
@@ -3308,10 +3336,13 @@ components:
             - $ref: "#/components/schemas/ContinuousLegStructure"
         - type: object
           properties:
-            legId:
-              description: Id of this trip leg. Unique within trip result.
-              type: string
-              format: uuid
+            # legId:
+            #   description: Id of this trip leg. Unique within trip result.
+            #   type: string
+            #   format: uuid
+            seqId:  # EXT
+              type: number
+              format: int32   
             # participantRef:   # out of scope
             #   description: IT system that is participating in a communication with other participant(s)
             #   type: string
@@ -3468,16 +3499,19 @@ components:
           $ref: "#/components/schemas/LegAlight"
         service:
           $ref: "#/components/schemas/DatedJourney"
-        legAttribute:
-          type: array
-          items:
-            $ref: "#/components/schemas/LegAttribute"
+        # legAttribute:  ## Out of scope
+        #   type: array
+        #   items:
+        #     $ref: "#/components/schemas/LegAttribute"
         # operatingDays:  ## Out of scope
         #  $ref: "#/components/schemas/OperatingDays"
-        legTrack:
-          type: array
-          items:
-            $ref: "#/components/schemas/LegTrack"
+        # legTrack:  ## Out of scope
+        #   type: array
+        #   items:
+        #     $ref: "#/components/schemas/LegTrack"
+        duration: 
+          type: string
+          format: duration
 
     TimeWindow:  ## OJP
       description: >-
@@ -3518,26 +3552,25 @@ components:
           type: string
           format: duration
           example: "PT20M"
-        walkDuration:
-          description: Walk time as part of the overall interchange duration.
-          type: string
-          format: duration
-          example: "PT20M"
-        bufferTime:
-          description: Buffer time as part of the overall interchange duration. Buffer times, f.e. check in/out times, sometimes are mandatory for using certain services as f.e. airplanes, ferries or highspeed trains.
-          type: string
-          format: duration
-          example: "0SM"
-        legDescription:
-          type: string
-        length:
-          type: number
-          minimum: 0
+        # walkDuration:  # Out of scope
+        #   description: Walk time as part of the overall interchange duration.
+        #   type: string
+        #   format: duration
+        #   example: "PT20M"
+        # bufferTime:
+        #   description: Buffer time as part of the overall interchange duration. Buffer times, f.e. check in/out times, sometimes are mandatory for using certain services as f.e. airplanes, ferries or highspeed trains.
+        #   type: string
+        #   format: duration
+        #   example: "0SM"
+        # legDescription:
+        #   type: string
+        # length:
+        #   type: number
+        #   minimum: 0
         # attribute:
-        #  $ref: "#/components/schemas/GeneralAttribute"
-        #pathGuidance:
-        #204  $ref: "#/components/schemas/PathGuidance"
-        # Out of scope
+        #   $ref: "#/components/schemas/GeneralAttribute"
+        # pathGuidance:
+        #   $ref: "#/components/schemas/PathGuidance"
         # situationFullRef:
         #   $ref: "#/components/schemas/SituationFullRef"
 
@@ -3569,14 +3602,13 @@ components:
           type: string
           format: duration
           example: "1800S"
-        legDescription:
-          type: string
-        length:
-          type: number
-          minimum: 0
-        #pathGuidance:
-        #  $ref: "#/components/schemas/PathGuidance"
-        # Out of scope
+        # legDescription:   # Out of scope
+        #   type: string
+        # length:
+        #   type: number
+        #   minimum: 0
+        # pathGuidance:
+        #   $ref: "#/components/schemas/PathGuidance"
         # situationFullRef:
         #   $ref: "#/components/schemas/SituationFullRef"
 
@@ -3736,20 +3768,20 @@ components:
       allOf:
         - type: object
           required:
-            - stopPointRef
-            - stopPointName
+            - stopPlace
+           # - stopPointName
             - serviceDeparture  
           properties:
-            stopPointRef:
-              $ref: "#/components/schemas/StopPointRef"
-            stopPointName:
-              type: string
-              example: Zug
-            nameSuffix:
-              description: >-
-                Additional description of the stop point that may be appended to the 
-                name if enough space is available. F.e. "opposite main entrance".
-              type: string
+            stopPlace:
+              $ref: "#/components/schemas/Place"
+            # stopPointName:
+            #   type: string
+            #   example: Brussel, Quay 14
+            # nameSuffix:
+            #   description: >-
+            #     Additional description of the stop point that may be appended to the 
+            #     name if enough space is available. F.e. "opposite main entrance".
+            #   type: string
             plannedQuay:
               description: >-
                 Name of the bay where to board the vehicle. According to planned timetable.
@@ -3774,14 +3806,14 @@ components:
             - order
             - plannedQuay
             - serviceArrival
-            - stopPointName
-            - stopPointRef
+            #- stopPointName
+            - stopPlace
           properties:
-            stopPointRef:
-              $ref: "#/components/schemas/StopPointRef"
-            stopPointName:
-              type: string
-              example: Luzern
+            stopPlace:
+              $ref: "#/components/schemas/Place"   ## EXT
+            # stopPointName:
+            #   type: string
+            #   example: Luzern
             plannedQuay:
               description: >-
                 Name of the bay where to board/alight from the vehicle. According to 
@@ -3801,20 +3833,20 @@ components:
       allOf:
         - type: object
           required:
+            - stopPlace
             - serviceArrival
-            - stopPointName
-            - stopPointRef      
+           # - stopPointName      
           properties:
-            stopPointRef:
-              $ref: "#/components/schemas/StopPointRef"
-            stopPointName:
-              type: string
-              example: Luzern
-            nameSuffix:
-              description: >-
-                Additional description of the stop point that may be appended to the 
-                name if enough space is available. F.e. "opposite main entrance".
-              type: string
+            stopPlace:
+              $ref: "#/components/schemas/Place" ## EXT
+            # stopPointName:
+            #   type: string
+            #   example: Luzern
+            # nameSuffix:
+            #   description: >-
+            #     Additional description of the stop point that may be appended to the 
+            #     name if enough space is available. F.e. "opposite main entrance".
+            #   type: string
             plannedQuay:
               description: >-
                 Name of the bay where to alight from the vehicle. According to planned timetable.
@@ -3866,17 +3898,17 @@ components:
       description: >-
         Vehicle journey that runs at a specific date.
       required:
-        - operatingDayRef
-        - journeyRef
+        # - operatingDayRef
+        # - journeyRef
         - mode
         - publishedServiceName
       type: object
       properties:
         ### Other attributes are out of scope
-        operatingDayRef:
-          $ref: "#/components/schemas/OperationDayRef"
-        journeyRef:
-          $ref: "#/components/schemas/JourneyRef"
+        # operatingDayRef:
+        #   $ref: "#/components/schemas/OperationDayRef"
+        # journeyRef:
+        #   $ref: "#/components/schemas/JourneyRef"
         mode:
           $ref: "#/components/schemas/Mode"
         productCategory:
@@ -3954,6 +3986,10 @@ components:
       - $ref: "#/components/schemas/GeoPositionStructure"
       - type: object
         properties:
+          id: 
+            type: string
+            description: id uniquely definining the place
+            example: "uic:850000"
           name:
             type: string
             example: Zürich HB
@@ -4304,7 +4340,7 @@ components:
     #  example: 0.0
 
     StopPointRef:  ## OJP
-      description: Reference to a (SCHEDULED) STOP POINT
+      description: Reference to a (SCHEDULED) STOP POINT.
       type: string
       example: "8503000"
 
