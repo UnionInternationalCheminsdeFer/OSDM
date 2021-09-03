@@ -3079,12 +3079,15 @@ components:
           $ref: '#/components/schemas/StationCode'
         destination:
           $ref: '#/components/schemas/StationCode'
-        trips:
+        selectedTrips:
+          description: >-
+            The trips have been provided by an external journey planner and selected by the customer.
           type: array
           items:
             type: object
             description: >-
-              a trip is a set of pairs: a client generated key, that has to be echoed in the response for the client to easily match the received trips with the requested ones, and the list of segments composing the trip.
+              A trip is a set of pairs: a client generated key, that has to be echoed in the response for the client to easily match
+              the received trips with the requested ones, and the list of segments composing the trip.
             properties:
               tripKey: 
                 type: string
