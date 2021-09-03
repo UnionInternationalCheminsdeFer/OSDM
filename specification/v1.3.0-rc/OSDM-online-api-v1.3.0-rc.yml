@@ -3327,21 +3327,21 @@ components:
               format: uuid
           required:
             - resultId
-        - $ref: "#/components/schemas/ErrorMessage"
+        #  - $ref: "#/components/schemas/ErrorMessage"  ## Out of Scope
         - oneOf:
           - $ref: "#/components/schemas/Trip"
-        #  - $ref: "#/components/schemas/TripSummary"
-        # OOS - $ref: "#/components/schemas/TripFare" 
+        #  - $ref: "#/components/schemas/TripSummary"  ## Out of Scope
+        #  - $ref: "#/components/schemas/TripFare"   ## Out of Scope
 
-    ErrorMessage: ## OJP  --> Todo: Better map to Problem (RfC 7807)
-      type: object
-      properties:
-        code:
-          type: string
-        text:
-          type: string
-      required:
-        - code
+    # ErrorMessage: ## OJP  --> Todo: Better map to Problem (RfC 7807)
+    #   type: object
+    #   properties:
+    #     code:
+    #       type: string
+    #     text:
+    #       type: string
+    #   required:
+    #     - code
 
     Trip:  ## OJP
       description: A complete trip from origin to destination
@@ -3835,34 +3835,34 @@ components:
         - ALL
         - ALL_SERVICES_EXCEPT
 
-    # StopCallStatus:  ## OJP
-    #   description: Status properties for the vehicle call at this stop.
-    #   type: object
-    #   properties:
-    #     order:
-    #       description: Sequence number of this stop in the service pattern of the journey.
-    #       type: integer
-    #       minimum: 1
-    #     requestStop:
-    #       description: The vehicle journey calls at this stop only on demand.
-    #       type: boolean
-    #       default: false
-    #     unplannedStop:
-    #       description: This stop has not been planned by the planning department.
-    #       type: boolean
-    #       default: false
-    #     notServicedStop:
-    #       description: The vehicle will not call at this stop despite earlier planning.
-    #       type: boolean
-    #       default: false
-    #     noBoardingAtStop:
-    #       description: Boarding will not be allowed at this stop of this journey.
-    #       type: boolean
-    #       default: false
-    #     noAlightingAtStop:
-    #       description: Alighting will not be allowed at this stop of this journey.
-    #       type: boolean
-    #       default: false
+    StopCallStatus:  ## OJP
+      description: Status properties for the vehicle call at this stop.
+      type: object
+      properties:
+        order:
+          description: Sequence number of this stop in the service pattern of the journey.
+          type: integer
+          minimum: 1
+        requestStop:
+          description: The vehicle journey calls at this stop only on demand.
+          type: boolean
+          default: false
+        unplannedStop:
+          description: This stop has not been planned by the planning department.
+          type: boolean
+          default: false
+        notServicedStop:
+          description: The vehicle will not call at this stop despite earlier planning.
+          type: boolean
+          default: false
+        noBoardingAtStop:
+          description: Boarding will not be allowed at this stop of this journey.
+          type: boolean
+          default: false
+        noAlightingAtStop:
+          description: Alighting will not be allowed at this stop of this journey.
+          type: boolean
+          default: false
         
     LegBoard:  ## OJP
       description: Stop/Station where boarding is done.
@@ -3895,7 +3895,7 @@ components:
               example: "8"
             serviceDeparture:
               $ref: "#/components/schemas/ServiceDeparture"
-       # - $ref: "#/components/schemas/StopCallStatus"
+        - $ref: "#/components/schemas/StopCallStatus"
 
     LegIntermediate:  ## OJP
       description: >-
@@ -3925,7 +3925,7 @@ components:
               $ref: "#/components/schemas/ServiceArrival"
             serviceDeparture:
               $ref: "#/components/schemas/ServiceDeparture"
-       # - $ref: "#/components/schemas/StopCallStatus"
+        - $ref: "#/components/schemas/StopCallStatus"
 
     LegAlight:  ## OJP
       description: >-
@@ -3960,7 +3960,7 @@ components:
               example: "8"
             serviceArrival:
               $ref: "#/components/schemas/ServiceArrival"
-       # - $ref: "#/components/schemas/StopCallStatus"
+        - $ref: "#/components/schemas/StopCallStatus"
 
     ServiceArrival:  ## OJP
       description: >-
