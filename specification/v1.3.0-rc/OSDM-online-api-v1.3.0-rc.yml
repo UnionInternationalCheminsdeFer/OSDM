@@ -2791,6 +2791,8 @@ components:
           $ref: "#/components/schemas/PlaceUsage"
         ptModes:
           $ref: "#/components/schemas/PtModeFilter"
+        serviceBrandFilter:
+          $ref: "#/components/schemas/ServiceBrandFilter"
         carrierFilter:
           $ref: "#/components/schemas/CarrierFilter"
         # topographicPlaceRef:  ## Out of scope
@@ -3083,7 +3085,7 @@ components:
           description: The user is not able to climb one step, i.e. wheel chair.
           type: boolean
           default: false
-        # noStairs:
+        # noStairs:  ## Out of scope
         #   description: The user is not able to walk up/down stairs.
         #   type: boolean
         #   default: false
@@ -3107,7 +3109,7 @@ components:
     TripMobilityFilter:  ## OJP
       type: object
       properties:
-        # levelEntrance:
+        # levelEntrance:  # Out of Scope
         #   description: >-
         #     The user needs vehicles with level entrance between platform and vehicle, f.e. 
         #     for wheelchair access.
@@ -3135,8 +3137,8 @@ components:
 
     NumberOfResultsGroup:  ## OJP
       description: >-
-        Parameter to control the number of TRIP results before/after a point in time. May NOT be used when departure time at 
-        origin AND arrival time at destination are set.
+        Parameter to control the number of trip results before/after a point in time. May NOT be used when departure time at 
+        origin and arrival time at destination are set.
       type: object
       properties:        
         numberOfResultsBefore:
@@ -3153,8 +3155,7 @@ components:
 
     PtModeFilter:  ## OJP
       description: >-
-        List of public transport modes ([from SIRI] mode of public transport service, corresponds
-        to VEHICLE MODE) to include or exclude.
+        List of public transport modes to include or exclude.
       type: object
       properties:
         exclude:
@@ -3175,7 +3176,7 @@ components:
           description: Whether carrier in list are to include or exclude from search.
           type: boolean
           default: True
-        carriers:
+        carrier:
           description: Reference to carrier
           type: array
           items:
@@ -3233,15 +3234,15 @@ components:
           $ref: "#/components/schemas/PtModeFilter"
         # lineFilter:  # Out of scope
         #   $ref: "#/components/schemas/LineDirectionFilter"
-        carrierFilter:
+        carrierFilter:  # EXT
           $ref: "#/components/schemas/CarrierFilter"
-        serviceBrandFilter:
+        serviceBrandFilter:  # EXT
           $ref: "#/components/schemas/ServiceBrandFilter"
-        # privateModeFilter:
+        # privateModeFilter:  # Out of scope
         #   $ref: "#/components/schemas/PrivateModeFilter"
 
     BaseTripPolicy:  ## OJP
-      description: Policies that control the trip search behaviour for both public and individual transport.
+      description: Policies that control the trip search behavior for both public and individual transport.
       type: object
       allOf:
         - oneOf:
@@ -3259,15 +3260,15 @@ components:
               default: false
 
     TripPolicy:  ## OJP
-      description: Policies that control the trip search behaviour.
+      description: Policies that control the trip search behavior.
       type: object
-      properties:        
+      properties:
         transferLimit:
           description: The maximum number of interchanges the user will accept per trip.
           type: number
           format: int8
           minimum: 0 
-        # optimisationMethod:
+        # optimisationMethod:  ## Out of scope
         #  $ref: "#/components/schemas/OptimisationMethod"
         itModesToCover:
           $ref: "#/components/schemas/IndividualMode"
@@ -3287,16 +3288,16 @@ components:
     #   default: FASTEST
 
     TripParam:  ## OJP
-      description: Options to control the search behaviour and response contents.
+      description: Options to control the search behavior and response contents.
       allOf:
         - $ref: "#/components/schemas/TripDataFilter"
         - $ref: "#/components/schemas/BaseTripPolicyFilter"
         - $ref: "#/components/schemas/TripMobilityFilter"
         - $ref: "#/components/schemas/BaseTripPolicy"
         - $ref: "#/components/schemas/TripPolicy"
-      #  - $ref: "#/components/schemas/BaseTripContentFilter"
+      #  - $ref: "#/components/schemas/BaseTripContentFilter"  ## Out of scope
       #  - $ref: "#/components/schemas/TripContentFilter"
-      #  - $ref: "#/components/schemas/FareParam"  ## Tackle next
+      #  - $ref: "#/components/schemas/FareParam"
 
     TripResponse:  ## OJP
       description: Trip response structure.
@@ -3307,8 +3308,7 @@ components:
         calcTime:
           type: integer
           minimum: 0
-        # TODO: Implement this if you understand what it is.
-        # tripResponseContext:
+        # tripResponseContext:  ## Out of scope
         #  $ref: "#/components/schemas/ResponseContext"
         tripResult:
           type: array
@@ -3366,11 +3366,11 @@ components:
         origin:
           description: >-
             Specifies the origin situation from where the user wants to start.
-          $ref: "#/components/schemas/Place"  ## EXT
+          $ref: "#/components/schemas/Place"  # EXT
         destination:
           description: >-
             Specifies the destination situation where the user is heading to.
-          $ref: "#/components/schemas/Place"  ## EXT
+          $ref: "#/components/schemas/Place"  # EXT
         startTime:
           description: Departure time at origin.
           type: string
@@ -4053,7 +4053,7 @@ components:
 
     ProductCategory:  ## OJP
       description: >-
-        Product category based on NeTEx/SIRI. A product category is a classification for VEHICLE JOURNEYs
+        Product category based on NeTEx/SIRI. A product category is a classification for vehicle journeys
         to express some common properties of journeys for marketing and fare products.
       required:
         - name
@@ -4062,7 +4062,7 @@ components:
       properties:
         name:
           description: >-
-            Full name of this product category, e.g. "Autoreisezug" in Switzerland or "Train Grand Vitessee".
+            Full name of this product category, e.g. "Autoreisezug" in Switzerland or "Train Grand Vitessee" in France.
           type: string
           example: Autoreisezug
         shortName:
@@ -4193,13 +4193,13 @@ components:
         #     Additional description of the point of interest that may be appended to the name if enough space 
         #     is available. F.e. "Exhibition Center".
         #   type: string
-        # pointOfInterestCategory:          
+        # pointOfInterestCategory:  # Out of scope         
         #   description: Categories this POI is associated with. Order indicates descending relevance.
         #   $ref: "#/components/schemas/PointOfInterestCategory"
         privateCode:
           description: Code of this address in private/foreign/proprietary coding schemes.
           $ref: "#/components/schemas/PrivateCode"
-        # topographicPlaceRef:
+        # topographicPlaceRef:  # Out of scope
         #   description: >-
         #     If at least one is set, only place objects within the given localities are allowed. If at least one is set,
         #     only place objects within the given localities are allowed. Reference to a TopographicPlace.
@@ -4270,7 +4270,7 @@ components:
               description: Name of this stop place for use in passenger information.
               type: string
               example: Zürich HB
-            # nameSuffix:
+            # nameSuffix:  # Out of scope
             #   description: Additional description of the stop place that may be appended to the name if enough space is available.
             #   type: string
             #   example: Exhibition Center
@@ -4288,13 +4288,13 @@ components:
     #     referring to some equipment.
     #   type: object
     #   properties:
-    #     wheelchairAccessible:
+    #     wheelchairAccessible:   # Out of scope
     #       description: Whether this stop is accessible for wheelchair users.
     #       type: boolean
-    #     lighting:
+    #     lighting:   # Out of scope
     #       description: Whether this stop is lit.
     #       type: boolean
-    #     covered:
+    #     covered:   # Out of scope
     #       description: Whether this stop offers protection from weather conditions like rain, snow, storm etc.
     #       type: boolean
 
@@ -4798,7 +4798,6 @@ components:
       x-extensible-enum:
         - FIRST
         - SECOND 
-      
 
     Flexibility:
       type: string
