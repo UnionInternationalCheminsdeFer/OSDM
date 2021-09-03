@@ -78,9 +78,204 @@ IRS 90918-1 (Service Level).
 | `REDUCTION` | Card providing reduction |
 | `CHIP_CARD` | Chip card to load bookings/references onto it |
 
-## Carrier
+## CarrierCode
 
-Carrier codes used in OSDM are based on the [UIC RICS Company Code](https://uic.org/support-activities/it/rics?recherche=RICS%20code) standard.
+| Country | Carrier Code | Short Name           | Full Name                                                                                     |
+|---------|------|------------------------------|-----------------------------------------------------------------------------------------------|
+| AT      | 1281 | ÖBB                          | ÖBB- Personenverkehr AG                                                                       |
+| AT      | 2133 | CAT                          | City Air Terminal Betriebsgesellschaft m.b.H                                                  |
+| AT      | 3039 | WLC                          | Wiener Lokalbahnen Cargo GmbH                                                                 |
+| AT      | 3063 | RTS                          | RTS Rail Transport Service GmbH                                                               |
+| AT      | 3153 | WIENER LINIEN                | WIENER LINIEN GmbH & Co KG                                                                    |
+| AT      | 3178 | RNE                          | RailNetEurope                                                                                 |
+| AT      | 3226 | LINZ LINIEN GmbH             | LINZ LINIEN GmbH für öffentlichen Personenverkehr                                             |
+| AT      | 3236 | WESTbahn                     | WESTbahn Management GmbH                                                                      |
+| AT      | 3268 | Holding Graz                 | Holding Graz - Kommunale Dienstleistungen GmbH                                                |
+| AT      | 3282 | IVB                          | Innsbrucker Verkehrsbetriebe und Stubaitalbahn GmbH                                           |
+| AT      | 3306 | VOR                          | Verkehrsverbund Ost-Region (VOR) GmbH                                                         |
+| AT      | 3427 | VAL                          | ÖBB-Postbus GmbH - Vienna Airport Lines                                                       |
+| AT      | 3465 | OÖVG                         | OÖ Verkehrsverbund-Organisations GmbH Nfg. & Co KG                                            |
+| AT      | 3602 | VVV                          | Verkehrsverbund Vorarlberg GmbH                                                               |
+| AT      | 3608 | WLB                          | WIENER LOKALBAHNEN GmbH                                                                       |
+| AT      | 3613 | STB                          | Steiermarkbahn und Bus GmbH                                                                   |
+| AT      | 3786 | ROeEE PV                     | Raab Odenburg Ebenfurter Eisenbahn AG Personenverkehr                                         |
+| BE      | 18   | THI Factory                  | THI Factory SA                                                                                |
+| BE      | 1088 | SNCB/NMBS                    | Société nationale des chemins de fer Belges / Nationale Maatschappij der Belgische Spoorwegen |
+| BE      | 3018 | THI                          | Thalys International                                                                          |
+| BE      | 3914 | Moonlight Express            | Moonlight Express Travel BV                                                                   |
+| BE      | 7187 | VSB                          | Voyages SNCF Benelux SPRL                                                                     |
+| BG      | 1052 | HOLDING BDZ                  | HOLDING BULGARIAN STATE RAILWAYS                                                              |
+| BG      | 1152 | BDZ PASSENGER                | BULGARIAN STATE RAILWAYS PASSENGER                                                            |
+| CH      | 1085 | SBB AG                       | Schweizerische Bundesbahnen                                                                   |
+| CH      | 1185 | SBB-Passengers               | Swiss Federal Railways-Passenger subsidiary                                                   |
+| CH      | 1285 | SBB-EPA                      | Schweizerische Bundesbahnen SBB Division Voyageur                                             |
+| CH      | 1385 | SBB2                         | Schweizerische Bundesbahnen Personenverkehr                                                   |
+| CH      | 3017 | CBB                          | Centralbahn AG                                                                                |
+| CH      | 3342 | VöV                          | Verband öffentlicher Verkehr                                                                  |
+| CH      | 3917 | THU                          | Regionalbahn Thurbo AG                                                                        |
+| CH      | 7387 | VSS                          | Voyages SNCF Suisse SARL                                                                      |
+| CZ      | 3189 | ARV                          | ARRIVA vlaky, s.r.o.                                                                          |
+| CZ      | 3244 | LE                           | LEO Express Global a.s.                                                                       |
+| CZ      | 3246 | RJ                           | Regiojet a.s.                                                                                 |
+| CZ      | 3288 | GWTR                         | GW Train Regio a.s.                                                                           |
+| CZ      | 3641 | LG                           | Lokalka Group, spolek                                                                         |
+| CZ      | 3725 | LET                          | Leo Express Tenders s.r.o                                                                     |
+| CZ      | 3752 | RJUK                         | Regiojet UK a.s.                                                                              |
+| CZ      | 3825 | Gepard Express               | Gepard Express, SE                                                                            |
+| DE      | 1080 | DB AG                        | Deutsche Bahn AG                                                                              |
+| DE      | 1180 | DB Vertrieb GmbH             | DB Vertrieb GmbH                                                                              |
+| DE      | 3012 | BSB                          | Bodensee-Schiffsbetriebe GmbH                                                                 |
+| DE      | 3016 | evb                          | EVB Elbe-Weser GmbH                                                                           |
+| DE      | 3030 | GVG                          | Georg Verkehrsorganisation GmbH                                                               |
+| DE      | 3071 | EVG                          | Eifelbahn Verkehrsgesellschaft mbH                                                            |
+| DE      | 3076 | Transdev                     | Transdev GmbH                                                                                 |
+| DE      | 3118 | AG EMS                       | Aktien-Gesellschaft 'EMS'                                                                     |
+| DE      | 3155 | RVF                          | Regio-Verkehrsverbund Freiburg GmbH                                                           |
+| DE      | 3164 | agilis                       | agilis Verkehrsgesellschaft mbH & Co. KG                                                      |
+| DE      | 3165 | ODEG                         | ODEG Ostdeutsche Eisenbahn GmbH                                                               |
+| DE      | 3202 | SSB AG                       | Stuttgarter Straßenbahnen AG                                                                  |
+| DE      | 3213 | HVV                          | Hamburger Verkehrsverbund GmbH                                                                |
+| DE      | 3229 | RNV GmbH                     | Rhein-Neckar-Verkehr GmbH                                                                     |
+| DE      | 3230 | Die Länderbahn               | Die Länderbahn GmbH DLB                                                                       |
+| DE      | 3243 | üstra AG                     | üstra Hannoversche Verkehrsbetriebe AG                                                        |
+| DE      | 3249 | NBE                          | NBE nordbahn Eisenbahngesellschaft mbH                                                        |
+| DE      | 3254 | HKX                          | Hamburg-Köln-Express GmbH                                                                     |
+| DE      | 3258 | metronom                     | metronom Eisenbahngesellschaft mbH                                                            |
+| DE      | 3274 | S-Bahn Berlin                | S-Bahn Berlin GmbH                                                                            |
+| DE      | 3275 | HOCHBAHN                     | Hamburger Hochbahn AG                                                                         |
+| DE      | 3279 | RMV                          | Rhein-Main-Verkehrsverbund GmbH                                                               |
+| DE      | 3284 | VBK GmbH                     | Verkehrsbetriebe Karlsruhe GmbH                                                               |
+| DE      | 3295 | FlixMobility                 | FlixMobility GmbH                                                                             |
+| DE      | 3312 | Ticex GmbH                   | Ticex GmbH                                                                                    |
+| DE      | 3314 | BVG                          | Berliner Verkehrsbetriebe (AöR)                                                               |
+| DE      | 3316 | AVG                          | AVG Augsburger Verkehrsgesellschaft mbH                                                       |
+| DE      | 3318 | MVV                          | Münchner Verkehrs- und Tarifverbund GmbH                                                      |
+| DE      | 3321 | MVG                          | Münchner Verkehrsgesellschaft mbH                                                             |
+| DE      | 3392 | highQ                        | highQ Computerlösungen GmbH                                                                   |
+| DE      | 3393 | SVDE                         | SNCF Voyages Deutschland GmbH                                                                 |
+| DE      | 3396 | DB Fernverkehr               | DB Fernverkehr AG                                                                             |
+| DE      | 3426 | BVGHT                        | B.Verkehrsbetriebe HT                                                                         |
+| DE      | 3453 | MVB                          | Magdeburger Verkehrsbetriebe GmbH & Co. KG                                                    |
+| DE      | 3469 | Naldo                        | Verkehrsverbund Neckar-Alb-Donau GmbH (naldo)                                                 |
+| DE      | 3493 | WEG                          | Werra-Eisenbahnverkehrsgesellschaft mbH                                                       |
+| DE      | 3496 | VIASP                        | VIAS Passenger                                                                                |
+| DE      | 3510 | BTE                          | BTE BahnTouristikExpress GmbH                                                                 |
+| DE      | 3540 | INVG                         | Ingolstädter Verkehrsgesellschaft mbH                                                         |
+| DE      | 3541 | SP SE                        | SPITZKE SE                                                                                    |
+| DE      | 3546 | VVW                          | Verkehrsverbund Warnow GmbH                                                                   |
+| DE      | 3549 | ERB                          | KEOLIS Deutschland GmbH & Co. KG                                                              |
+| DE      | 3591 | AKN                          | AKN Eisenbahn AG                                                                              |
+| DE      | 3594 | Abellio                      | Abellio GmbH                                                                                  |
+| DE      | 3607 | AVG                          | Albtal-Verkehrs-Gesellschaft mbH                                                              |
+| DE      | 3684 | ABRM                         | Abellio Rail Mitteldeutschland GmbH                                                           |
+| DE      | 3719 | RFG                          | Regiobahn Fahrbetriebsgesellschaft mbH                                                        |
+| DE      | 3722 | erixx                        | erixx GmbH                                                                                    |
+| DE      | 3729 | RDC Deutschland              | RDC Deutschland GmbH                                                                          |
+| DE      | 3817 | DVB                          | Dresdner Verkehrsbetriebe AG                                                                  |
+| DE      | 3834 | VRB                          | Verkehrsverbund Region Braunschweig GmbH                                                      |
+| DE      | 3837 | SVG                          | Schienenverkehrsgesellschaft mbH                                                              |
+| DE      | 3841 | HANS                         | Hanseatische Eisenbahn GmbH                                                                   |
+| DE      | 3848 | Go Ahead BW                  | https://www.tricon-terminal.de/                                                               |
+| DE      | 3849 | NXG                          | National Express Rail GmbH                                                                    |
+| DE      | 3864 | DB Regio                     | DB Regio AG                                                                                   |
+| DE      | 3873 | RTB                          | Rurtalbahn GmbH                                                                               |
+| DE      | 3885 | BEG                          | Brohltal-Schmalspureisenbahn Betriebs-GmbH                                                    |
+| DE      | 3925 | VIASR                        | VIAS Rail GmbH                                                                                |
+| DE      | 7287 | VSD                          | Voyages SNCF Deutschland GmbH                                                                 |
+| DK      | 1186 | DSB-Passenger                | Danske Statsbaner-Passenger subsidiary                                                        |
+| DK      | 1286 | DSB-EPA                      | DSB - Passenger - Reservations issued via EPA                                                 |
+| ES      | 1071 | Renfe                        | Renfe Operadora                                                                               |
+| ES      | 1171 | RENFE VIAJEROS               | RENFE VIAJEROS, S.A                                                                           |
+| ES      | 3256 | ELIPSOS                      | ELIPSOS INTERNACIONAL                                                                         |
+| ES      | 3780 | Rielsfera                    | RIELSFERA SAU                                                                                 |
+| ES      | 3860 | ILSA                         | ILSA Intermodalidad de Levante                                                                |
+| ES      | 7587 | VSE                          | Voyages SNCF Espana SRLU                                                                      |
+| FI      | 3191 | HMVY                         | Haapamäen museoveturiyhdistys ry                                                              |
+| FI      | 3204 | PMR                          | Porvoon Museorautatie ry                                                                      |
+| FR      | 14   | CWL                          | Compagnie des Wagons-Lits                                                                     |
+| FR      | 1187 | SNCF Voyages                 | SNCF Voyages                                                                                  |
+| FR      | 3216 | THELLO                       | THELLO                                                                                        |
+| GB      | 15   | RMF                          | Rail Manche Finance                                                                           |
+| GB      | 17   | ENS                          | European Night Services Ltd                                                                   |
+| GB      | 19   | Eurostar I                   | Eurostar International Limited                                                                |
+| GB      | 1170 | ATOC Ltd                     | Association of Train Operating Companies Limited                                              |
+| GB      | 3008 | StL UK                       | Stena Line UK Ltd                                                                             |
+| GB      | 3048 | STA Travel                   | STA Travel International Ltd                                                                  |
+| GB      | 3448 | STC                          | Switzerland Travel Center Ltd                                                                 |
+| GB      | 7087 | VSUK                         | Voyages SNCF UK Limited                                                                       |
+| HR      | 1178 | HŽ Putnički prijevoz d.o.o.  | HŽ Putnički prijevoz d.o.o. za prijevoz putnika                                               |
+| HU      | 1143 | GYSEV Passenger              | Győr-Sopron-Ebenfurti Vasút Zrt. Személyszállítás                                             |
+| HU      | 1155 | MÁV-Start                    | MÁV-Start Vasúti Személyszállító Zrt.                                                         |
+| HU      | 1355 | MAV START Zrt                | MAV START Railway Passenger Transport Co.                                                     |
+| IT      | 77   | FS EPA                       | Ferrovie dello Stato Italiane SpA EPA                                                         |
+| IT      | 1183 | TI                           | TRENITALIA                                                                                    |
+| IT      | 1280 | DB B I                       | DB Bahn Italia Srl                                                                            |
+| IT      | 3270 | TN                           | Trenord Srl                                                                                   |
+| IT      | 3280 | SAD                          | SAD Trasporto Locale SpA                                                                      |
+| IT      | 3451 | FT SpA                       | Ferrotramviaria SpA                                                                           |
+| IT      | 3454 | TT                           | Trentino Trasporti SPA                                                                        |
+| IT      | 3455 | TFT S.p.A.                   | Trasporto Ferroviario Toscano S.p.A.                                                          |
+| IT      | 3458 | GTT                          | Gruppo Torinese Trasporti                                                                     |
+| IT      | 3460 | Fergargano                   | Ferrovie del Gargano S.r.l.                                                                   |
+| IT      | 3462 | BI                           | Busitalia Sita Nord s.r.l.                                                                    |
+| IT      | 3463 | AIR                          | ARRIVA Italia Rail S.r.l.                                                                     |
+| IT      | 3470 | NTV SPA                      | Nuovo Trasporto Viaggiatori SpA                                                               |
+| IT      | 3827 | OBB IT                       | OBB Italia S.r.l.                                                                             |
+| IT      | 7487 | VSI                          | Voyages SNCF Italia SRL                                                                       |
+| LT      | 24   | LTG                          | AB 'Lietuvos geležinkeliai'                                                                   |
+| LT      | 1124 | LTG Link                     | UAB LTG Link                                                                                  |
+| LU      | 1182 | CFL Voyageurs                | Société Nationale des Chemins de Fer Luxembourgeois.                                          |
+| NL      | 6    | StL Holland                  | Stena Line Holland BV                                                                         |
+| NL      | 1084 | NS holding                   | N.V. Nederlandse Spoorwegen                                                                   |
+| NL      | 1184 | NS Reizigers                 | NS Reizigers BV                                                                               |
+| NL      | 3095 | Arriva                       | Arriva Nederland                                                                              |
+| NL      | 3553 | Keolis                       | Keolis Nederland                                                                              |
+| NL      | 3564 | HTM                          | HTM Personenvervoer N.V.                                                                      |
+| NL      | 3604 | GoAbout                      | GoAbout B.V.                                                                                  |
+| NL      | 3606 | Qbuzz                        | Qbuzz B.V.                                                                                    |
+| NL      | 3626 | GVB                          | GVB Exploitatie BV                                                                            |
+| NL      | 3888 | European Sleeper             | European Sleeper Cooperatie U.A.                                                              |
+| NL      | 8999 | Connexxion                   | Connexxion Openbaar Vervoer N.V.                                                              |
+| NL      | 9901 | Eurail B.V.                  | Eurail B.V.                                                                                   |
+| NL      | 9902 | Eurail Group - management    | Eurail Group G.I.E. management                                                                |
+| NO      | 3028 | Narvik                       | Visit Narvik                                                                                  |
+| NO      | 3403 | FT                           | Flytoget AS                                                                                   |
+| NO      | 3822 | Vy Tog                       | Vy Tog AS                                                                                     |
+| PL      | 1051 | PKP                          | Polskie Koleje Państwowe Spółka Akcyjna                                                       |
+| PL      | 1151 | PR                           | Przewozy Regionalne Spółka z o.o.                                                             |
+| PL      | 1251 | PKP Intercity                | PKP Intercity S.A.                                                                            |
+| PL      | 1351 | SKMT                         | PKP SKM w Trójmieście Spółka z o.o.                                                           |
+| PL      | 3151 | KM                           | 'Koleje Mazowieckie-KM' Sp. z o.o.                                                            |
+| PL      | 3238 | Arriva RP Sp. z o.o.         | Arriva RP Spółka z ograniczoną opdowiedzialnością                                             |
+| PL      | 3252 | KD                           | Koleje Dolnośląskie S.A.                                                                      |
+| PL      | 3253 | KW                           | Koleje Wielkopolskie Sp. z o.o.                                                               |
+| PL      | 3397 | Eurotrans                    | Eurotrans Sp.z o.o.                                                                           |
+| PL      | 3495 | WISKOL                       | WISKOL Sp. z o.o.k spolka komandytowa                                                         |
+| PT      | 1094 | CP                           | CP - Comboios de Portugal, E.P.E.                                                             |
+| PT      | 3390 | FERTAGUS                     | FERTAGUS, Travessia do Tejo, Transportes, S.A.                                                |
+| RO      | 1153 | CFR Călători                 | Societatea Naţională de Transport Feroviar de Călători                                        |
+| RO      | 3322 | REGIOTRANS                   | SC Regiotrans SRL Brasov                                                                      |
+| RO      | 3570 | REGIO CALATORI               | REGIO CALATORI S.R.L.                                                                         |
+| RO      | 3942 | IRC                          | SC Interregional Calatori SRL                                                                 |
+| RS      | 1172 | SV                           | Srbija Voz a.d.                                                                               |
+| RU      | 1120 | JSC 'FPC'                    | Joint Stock Company 'FEDERAL PASSENGER COMPANY'                                               |
+| SE      | 1174 | SJ                           | SJ AB                                                                                         |
+| SE      | 3027 | Länstrafiken                 | Länstrafiken i Norrbotten AB                                                                  |
+| SE      | 3051 | Snälltåget                   | Snälltåget i Sverige                                                                          |
+| SE      | 3126 | Öresundtåg                   | Skånetrafiken, Region Skåne                                                                   |
+| SE      | 3197 | VT                           | Västtrafik AB                                                                                 |
+| SE      | 3251 | Scandlines AB                | Scandlines AB                                                                                 |
+| SE      | 3294 | Botniatåg                    | Botniatåg AB                                                                                  |
+| SE      | 3350 | ITAB                         | Inlandsbanan Turism AB                                                                        |
+| SE      | 3550 | Tagab                        | Tågåkeriet i Bergslagen AB                                                                    |
+| SE      | 3578 | SL                           | AB Storstockholms Lokaltrafik                                                                 |
+| SI      | 1079 | SŽ, d.o.o.                   | Slovenske železnice, d.o.o.                                                                   |
+| SI      | 1179 | SŽ - Potniški promet, d.o.o. | Slovenske železnice - Potniški promet d.o.o.                                                  |
+| SI      | 1279 | SŽ - Potniški promet         | Slovenske železnice / Potniški promet d.o.o.                                                  |
+| SK      | 1156 | ZSSK                         | Železničná spoločnosť Slovensko, a.s.                                                         |
+| SK      | 3425 | VIALTE                       | VIALTE s.r.o.                                                                                 |
+| SK      | 3524 | Arriva SK                    | Arriva Service s.r.o.                                                                         |
+| US      | 3287 | Amtrak                       | National Railroad Passenger Corporation                                                       |
 
 ## ControlDataExchangeType
 
