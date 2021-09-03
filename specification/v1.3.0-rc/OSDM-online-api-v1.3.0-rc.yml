@@ -63,6 +63,45 @@ tags:
     description: >-
       resources to get the layout of a coach
 paths:
+  /place-informations/{placeInformationId}:
+    get:
+      tags: 
+        - Place Information
+      summary: returns a place-informations
+      description: >-
+        Returns trips for a given trip request based on the specification.
+      operationId: getPlaceInformations
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/accessToken"
+        - in: path
+          name: placeInformationId
+          schema:
+            type: string
+          required: true
+          description: ID of the place information to get.
+      responses:
+        "200":
+          description: place information found matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaceInformationResponse"
+        "400":
+          description: bad input parameter
+        "401":
+          description: unauthorized
+        "403":
+          description: forbidden
+        "404":
+          description: no place information found
+        "500":
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        "501":
+          description: not implemented
+        "503":
+          description: service unavailable
+        
   /place-informations:
     post:
       tags:
@@ -102,50 +141,11 @@ paths:
         "503":
           description: service unavailable
 
-  /place-informations/{placeInformationId}:
-    get:
-      tags: 
-        - Place Information
-      summary: return place-informations
-      description: >-
-        Returns trips for a given trip request based on the specification.
-      operationId: getPlaceInformations
-      parameters:
-        - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/accessToken"
-        - in: path
-          name: placeInformationId
-          schema:
-            type: string
-          required: true
-          description: ID of the place information to get.
-      responses:
-        "200":
-          description: place information found matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PlaceInformationResponse"
-        "400":
-          description: bad input parameter
-        "401":
-          description: unauthorized
-        "403":
-          description: forbidden
-        "404":
-          description: no place information found
-        "500":
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        "501":
-          description: not implemented
-        "503":
-          description: service unavailable
-          
   /places/{placeId}:
     get:
       tags: 
         - Places
-      summary: return place
+      summary: returns a place
       description: >-
         Returns places 
       operationId: getPlaces
@@ -160,11 +160,83 @@ paths:
           description: ID of the place to get.
       responses:
         "200":
-          description: places
+          description: the requested place
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                default: 'public, max-age=10000'
+                description: >-
+                  A places resource is fairly persistent and has a medium time to live to allow short-term caching.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Place"
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'
+                  place:
+                    $ref: '#/components/schemas/Place'
+        "400":
+          description: bad input parameter
+        "401":
+          description: unauthorized
+        "403":
+          description: forbidden
+        "404":
+          description: no place information found
+        "500":
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        "501":
+          description: not implemented
+        "503":
+          description: service unavailable
+
+  /places:
+    post:
+      tags:
+        - Places
+      summary: returns place information for a given place request
+      description: >-
+        Returns places for a given place request based on the OJP specification.
+      operationId: postPlaces
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/accessToken"
+      requestBody:
+        description: request for place
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlaceRequest"
+      responses:
+        "200":
+          description: place information found matching criteria
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                    $ref: '#/components/schemas/WarningMessageList'             
+                  places:
+                    type: array
+                    items: 
+                      $ref: "#/components/schemas/Place"
+        "400":
+          description: bad input parameter
+        "401":
+          description: unauthorized
+        "403":
+          description: forbidden
+        "404":
+          description: no place information found
+        "500":
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        "501":
+          description: not implemented
+        "503":
+          description: service unavailable
 
   /trips/{tripId}:
     get:
@@ -228,12 +300,14 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
         '501':
           description: Not implemented
+        '503':
+          description: service unavailable
 
-  /trips:
+  /trips-collection:
     post:
       tags:
         - Trips
-      summary: returns trips for a given OJP trip request
+      summary: returns a collection of trips for a given OJP trip request
       description: >-
         Returns trips for a given trip request based on the OJP specification.
       operationId: postTrips
@@ -2682,6 +2756,16 @@ components:
         - type
         - href
 
+    PlaceRequest: ## OJP
+      allOf:
+        - oneOf: 
+          - $ref: "#/components/schemas/InitialPlaceInput"
+         #  - $ref: "#/components/schemas/PlaceRefStructure"  ## Out of scope
+        - type: object
+          properties:
+            restrictions:
+              $ref: "#/components/schemas/PlaceParam"
+
     PlaceInformationRequest: ## OJP
       allOf:
         - oneOf: 
@@ -2707,11 +2791,11 @@ components:
           $ref: "#/components/schemas/PlaceUsage"
         ptModes:
           $ref: "#/components/schemas/PtModeFilter"
-        operatorFilter:
-          $ref: "#/components/schemas/OperatorFilter"
-        topographicPlaceRef:
-          $ref: "#/components/schemas/TopographicPlaceRef"
-        pointOfInterestFilter:
+        carrierFilter:
+          $ref: "#/components/schemas/CarrierFilter"
+        # topographicPlaceRef:  ## Out of scope
+        #   $ref: "#/components/schemas/TopographicPlaceRef"
+        pointOfInterestFilter: 
           $ref: "#/components/schemas/PointOfInterestFilter"
 
     PlaceType: ## OJP
@@ -2821,12 +2905,12 @@ components:
         origin:
           description: >-
             Specifies the origin situation from where the user wants to start.
-          $ref: "#/components/schemas/PlaceContext"
+          $ref: "#/components/schemas/PlaceRef"
         # Array out of Scope
         destination:
           description: >-
             Specifies the destination situation where the user is heading to.
-          $ref: "#/components/schemas/PlaceContext"
+          $ref: "#/components/schemas/PlaceRef"
         # Array out of Scope
         via:
           description: >-
@@ -2875,30 +2959,30 @@ components:
     #   required:
     #     - timeAllowance
 
-    PlacePlaceStructure:  ## OJP Hack
-      oneOf:
-        - $ref: "#/components/schemas/PlaceRefStructure"
-      #  - $ref: "#/components/schemas/TripPlaceStructure"  ## Out of Scope
+    # PlacePlaceStructure:  ## OJP Hack
+    #   oneOf:
+    #     - $ref: "#/components/schemas/PlaceRefStructure"
+    #   #  - $ref: "#/components/schemas/TripPlaceStructure"  ## Out of Scope
 
-    PlaceTimeStructure:  ## OJP Hack
-      oneOf:
-        - $ref: "#/components/schemas/DepArrTimeStructure"
-      #  - $ref: "#/components/schemas/TimeAllowanceStructure"  ## Out of Scope
+    # PlaceTimeStructure:  ## OJP Hack
+    #   oneOf:
+    #     - $ref: "#/components/schemas/DepArrTimeStructure"
+    #   #  - $ref: "#/components/schemas/TimeAllowanceStructure"  ## Out of Scope
 
-    PlaceContext:  ## OJP
-      type: object
-      # NOTICE: there is a bug in the Swagger-UI which prevents
-      # the correct structure to pop up when selecting.
-      # This should without the place and time layer.
-      properties:
-        place:
-          $ref: "#/components/schemas/PlacePlaceStructure"
-        # time:
-        #   $ref: "#/components/schemas/PlaceTimeStructure"
-        # individualTransportOptions:
-        # - $ref: "#/components/schemas/IndividualTransportOptions"
-      required:
-        - place
+    # PlaceContext:  ## OJP
+    #   type: object
+    #   # NOTICE: there is a bug in the Swagger-UI which prevents
+    #   # the correct structure to pop up when selecting.
+    #   # This should without the place and time layer.
+    #   properties:
+    #     place:
+    #       $ref: "#/components/schemas/PlacePlaceStructure"
+    #     # time:
+    #     #   $ref: "#/components/schemas/PlaceTimeStructure"
+    #     # individualTransportOptions:
+    #     # - $ref: "#/components/schemas/IndividualTransportOptions"
+    #   required:
+    #     - place
 
     StopPointRefStructure:  ## OJP
       type: object
@@ -2970,13 +3054,13 @@ components:
         Reference to a geographic PLACE of any type which may be specified as the origin or destination of a trip.
       allOf:
         - oneOf:
-          - $ref: "#/components/schemas/StopPointRefStructure"
+        #  - $ref: "#/components/schemas/StopPointRefStructure"
           - $ref: "#/components/schemas/StopPlaceRefStructure"
           - $ref: "#/components/schemas/GeoPositionStructure"
-          - $ref: "#/components/schemas/TopographicPlaceRefStructure"
+        #  - $ref: "#/components/schemas/TopographicPlaceRefStructure"
           - $ref: "#/components/schemas/PointOfInterestRefStructure"
           - $ref: "#/components/schemas/AddressRefStructure"
-        - $ref: "#/components/schemas/LocationNameStructure"
+       # - $ref: "#/components/schemas/LocationNameStructure"
 
     TripVia:  ## OJP
       description: >-
@@ -2989,31 +3073,32 @@ components:
         dwellTime:
           type: string
           format: duration
-          example: "30S"
+          description: desired dwell time at the via place
+          example: "30M"
 
     BaseTripPolicyFilter:  ## OJP
       type: object
       properties:        
         noSingleStep:
-          description: The user is not able to climb one step.
+          description: The user is not able to climb one step, i.e. wheel chair.
           type: boolean
           default: false
-        noStairs:
-          description: The user is not able to walk up/down stairs.
-          type: boolean
-          default: false
-        noEscalator:
-          type: boolean
-          description: The user is not able to use an escalator.
-          default: false
-        noElevator:
-          type: boolean
-          description: The user is not able to use an elevator.
-          default: false
-        noRamp:
-          type: boolean
-          description: The user is not able to use an ramp.
-          default: false
+        # noStairs:
+        #   description: The user is not able to walk up/down stairs.
+        #   type: boolean
+        #   default: false
+        # noEscalator:
+        #   type: boolean
+        #   description: The user is not able to use an escalator.
+        #   default: false
+        # noElevator:
+        #   type: boolean
+        #   description: The user is not able to use an elevator.
+        #   default: false
+        # noRamp:
+        #   type: boolean
+        #   description: The user is not able to use an ramp.
+        #   default: false
         noSight:
           type: boolean
           description: The user is not able to see.
@@ -3022,12 +3107,12 @@ components:
     TripMobilityFilter:  ## OJP
       type: object
       properties:
-        levelEntrance:
-          description: >-
-            The user needs vehicles with level entrance between platform and vehicle, f.e. 
-            for wheelchair access.
-          type: boolean
-          default: false
+        # levelEntrance:
+        #   description: >-
+        #     The user needs vehicles with level entrance between platform and vehicle, f.e. 
+        #     for wheelchair access.
+        #   type: boolean
+        #   default: false
         bikeTransport:
           description: >-
             The user wants to carry a bike on public transport.
@@ -3082,16 +3167,30 @@ components:
           items:
             $ref: "#/components/schemas/VehicleModesOfTransportEnumeration"
 
-    OperatorFilter:  ## OJP
-      description: Filter for in/exclusion of transport operators.
+    CarrierFilter:  ## OJP
+      description: Filter for in/exclusion of carriers
       type: object
       properties:
         exclude:
-          description: Whether operators in list are to include or exclude from search.
+          description: Whether carrier in list are to include or exclude from search.
           type: boolean
           default: True
-        operatorRef:
-          description: Reference to transport operator
+        carriers:
+          description: Reference to carrier
+          type: array
+          items:
+            type: string
+
+    ServiceBrandFilter:  ## OJP
+      description: Filter for in/exclusion of service brands
+      type: object
+      properties:
+        exclude:
+          description: Whether service brand in list are to include or exclude from search.
+          type: boolean
+          default: True
+        serviceBrands:
+          description: Reference to service brand codes
           type: array
           items:
             type: string
@@ -3112,19 +3211,19 @@ components:
           items:
             $ref: "#/components/schemas/PointOfInterestCategory"
 
-    PrivateModeFilter:  ## OJP
-      description: List of private mobility offers to include or exclude.
-      type: object
-      properties:
-        exclude:
-          description: Whether modes in list are to include or exclude from search.
-          type: boolean
-          default: True
-        privateMode:
-          description: List of private mobility offers to include/exclude.
-          type: array
-          items:
-            $ref: "#/components/schemas/PrivateModesEnumeration"
+    # PrivateModeFilter:  ## OJP
+    #   description: List of private mobility offers to include or exclude.
+    #   type: object
+    #   properties:
+    #     exclude:
+    #       description: Whether modes in list are to include or exclude from search.
+    #       type: boolean
+    #       default: True
+    #     privateMode:
+    #       description: List of private mobility offers to include/exclude.
+    #       type: array
+    #       items:
+    #         $ref: "#/components/schemas/PrivateModesEnumeration"
 
     TripDataFilter:  ## OJP
       description: Data to be included/excluded from search, f.e. modes, operators.
@@ -3134,10 +3233,12 @@ components:
           $ref: "#/components/schemas/PtModeFilter"
         # lineFilter:  # Out of scope
         #   $ref: "#/components/schemas/LineDirectionFilter"
-        operatorFilter:
-          $ref: "#/components/schemas/OperatorFilter"
-        privateModeFilter:
-          $ref: "#/components/schemas/PrivateModeFilter"
+        carrierFilter:
+          $ref: "#/components/schemas/CarrierFilter"
+        serviceBrandFilter:
+          $ref: "#/components/schemas/ServiceBrandFilter"
+        # privateModeFilter:
+        #   $ref: "#/components/schemas/PrivateModeFilter"
 
     BaseTripPolicy:  ## OJP
       description: Policies that control the trip search behaviour for both public and individual transport.
@@ -3166,30 +3267,30 @@ components:
           type: number
           format: int8
           minimum: 0 
-        optimisationMethod:
-          $ref: "#/components/schemas/OptimisationMethod"
+        # optimisationMethod:
+        #  $ref: "#/components/schemas/OptimisationMethod"
         itModesToCover:
           $ref: "#/components/schemas/IndividualMode"
 
-    OptimisationMethod:  ## OJP
-      description: >-
-        The types of algorithm that can be used for planning a journey (fastest, least walking, etc).
-      type: string
-      enum:
-        - FASTEST
-        - MIN_CHANGES
-        - LEAST_WALKING
-        - LEAST_COST
-        - EARLIEST_ARRIVAL 
-        - LATEST_DEPARTURE 
-        - EARLIEST_ARRIVAL_AND_LATEST_DEPARTURE
-      default: FASTEST
+    # OptimisationMethod:  ## OJP
+    #   description: >-
+    #     The types of algorithm that can be used for planning a journey (fastest, least walking, etc).
+    #   type: string
+    #   enum:
+    #     - FASTEST
+    #     - MIN_CHANGES
+    #     - LEAST_WALKING
+    #     - LEAST_COST
+    #     - EARLIEST_ARRIVAL 
+    #     - LATEST_DEPARTURE 
+    #     - EARLIEST_ARRIVAL_AND_LATEST_DEPARTURE
+    #   default: FASTEST
 
     TripParam:  ## OJP
       description: Options to control the search behaviour and response contents.
       allOf:
         - $ref: "#/components/schemas/TripDataFilter"
-      #  - $ref: "#/components/schemas/BaseTripPolicyFilter" Out of scope
+        - $ref: "#/components/schemas/BaseTripPolicyFilter"
         - $ref: "#/components/schemas/TripMobilityFilter"
         - $ref: "#/components/schemas/BaseTripPolicy"
         - $ref: "#/components/schemas/TripPolicy"
@@ -3377,59 +3478,59 @@ components:
       required:
         - continuousLeg
 
-    GeneralAttribute:  ## OJP
-      description: >-
-        Structured attribute classification with associated text. If URL is given, it refers to the whole attribute text.
-      type: object
-      properties:
-        text:
-          description: Text of the attribute to be shown to the user.
-          type: string
-        code:
-          description: Internal code of the attribute. Can be used for detection of double occurrences.
-          type: string
-        mandatory:
-          description: Defines whether the attribute has to be shown to the user.
-          type: boolean
-        importance:
-          description: Importance of the attribute.
-          type: number
-          minimum: 0
-          maximum: 100
-        url:
-          description: URL to resource on web.
-          type: string
-          format: uri
-        mimeType:
-          description: MIME type of the referenced resource. To which kind of resource does the URL point to?
-          type: string
-        embeddable:
-          description: >-
-            Is the referenced resource meant to be embedded as a webview in a surrounding context, e.g. app 
-            or web page? If yes, the resource has to be fully responsive.
-          type: boolean
-          default: false
-      required:
-        - text
-        - code
-        - url
+    # GeneralAttribute:  ## OJP
+    #   description: >-
+    #     Structured attribute classification with associated text. If URL is given, it refers to the whole attribute text.
+    #   type: object
+    #   properties:
+    #     text:
+    #       description: Text of the attribute to be shown to the user.
+    #       type: string
+    #     code:
+    #       description: Internal code of the attribute. Can be used for detection of double occurrences.
+    #       type: string
+    #     mandatory:
+    #       description: Defines whether the attribute has to be shown to the user.
+    #       type: boolean
+    #     importance:
+    #       description: Importance of the attribute.
+    #       type: number
+    #       minimum: 0
+    #       maximum: 100
+    #     url:
+    #       description: URL to resource on web.
+    #       type: string
+    #       format: uri
+    #     mimeType:
+    #       description: MIME type of the referenced resource. To which kind of resource does the URL point to?
+    #       type: string
+    #     embeddable:
+    #       description: >-
+    #         Is the referenced resource meant to be embedded as a webview in a surrounding context, e.g. app 
+    #         or web page? If yes, the resource has to be fully responsive.
+    #       type: boolean
+    #       default: false
+    #   required:
+    #     - text
+    #     - code
+    #     - url
 
-    LegAttribute:  ## OJP
-      description: >-
-        Attributes that are not valid on the whole service, but only on section of a 
-        trip made on a single mode without interchange between boarding and alighting (facilities 
-        available on a specified (part of a) leg of a vehicle journey)
-      type: object
-      allOf:
-        # - $ref: "#/components/schemas/GeneralAttribute"  # Out of scope
-        - type: object
-          properties:
-            fromStopSeqNumber:
-              type: integer
-              minimum: 1
-            toStopSeqNumber:
-              type: integer
-              minimum: 1
+    # LegAttribute:  ## OJP
+    #   description: >-
+    #     Attributes that are not valid on the whole service, but only on section of a 
+    #     trip made on a single mode without interchange between boarding and alighting (facilities 
+    #     available on a specified (part of a) leg of a vehicle journey)
+    #   type: object
+    #   allOf:
+    #     # - $ref: "#/components/schemas/GeneralAttribute"  # Out of scope
+    #     - type: object
+    #       properties:
+    #         fromStopSeqNumber:
+    #           type: integer
+    #           minimum: 1
+    #         toStopSeqNumber:
+    #           type: integer
+    #           minimum: 1
 
     LinkProjection:  ## OJP
       description: >-
@@ -3467,18 +3568,18 @@ components:
           type: number
           minimum: 0
 
-    LegTrack:  ## OJP
-      description: >-
-        The link projection of a Leg onto the topography of the route being followed.
-      type: object
-      properties:
-        trackSections:
-          type: array
-          items:
-            $ref: "#/components/schemas/TrackSection"
-          minItems: 1
-      required:
-        - trackSection
+    # LegTrack:  ## OJP
+    #   description: >-
+    #     The link projection of a Leg onto the topography of the route being followed.
+    #   type: object
+    #   properties:
+    #     trackSections:
+    #       type: array
+    #       items:
+    #         $ref: "#/components/schemas/TrackSection"
+    #       minItems: 1
+    #   required:
+    #     - trackSection
 
     TimedLeg:  ## OJP
       description: >-
@@ -3734,34 +3835,34 @@ components:
         - ALL
         - ALL_SERVICES_EXCEPT
 
-    StopCallStatus:  ## OJP
-      description: Status properties for the vehicle call at this stop.
-      type: object
-      properties:
-        order:
-          description: Sequence number of this stop in the service pattern of the journey.
-          type: integer
-          minimum: 1
-        requestStop:
-          description: The vehicle journey calls at this stop only on demand.
-          type: boolean
-          default: false
-        unplannedStop:
-          description: This stop has not been planned by the planning department.
-          type: boolean
-          default: false
-        notServicedStop:
-          description: The vehicle will not call at this stop despite earlier planning.
-          type: boolean
-          default: false
-        noBoardingAtStop:
-          description: Boarding will not be allowed at this stop of this journey.
-          type: boolean
-          default: false
-        noAlightingAtStop:
-          description: Alighting will not be allowed at this stop of this journey.
-          type: boolean
-          default: false
+    # StopCallStatus:  ## OJP
+    #   description: Status properties for the vehicle call at this stop.
+    #   type: object
+    #   properties:
+    #     order:
+    #       description: Sequence number of this stop in the service pattern of the journey.
+    #       type: integer
+    #       minimum: 1
+    #     requestStop:
+    #       description: The vehicle journey calls at this stop only on demand.
+    #       type: boolean
+    #       default: false
+    #     unplannedStop:
+    #       description: This stop has not been planned by the planning department.
+    #       type: boolean
+    #       default: false
+    #     notServicedStop:
+    #       description: The vehicle will not call at this stop despite earlier planning.
+    #       type: boolean
+    #       default: false
+    #     noBoardingAtStop:
+    #       description: Boarding will not be allowed at this stop of this journey.
+    #       type: boolean
+    #       default: false
+    #     noAlightingAtStop:
+    #       description: Alighting will not be allowed at this stop of this journey.
+    #       type: boolean
+    #       default: false
         
     LegBoard:  ## OJP
       description: Stop/Station where boarding is done.
