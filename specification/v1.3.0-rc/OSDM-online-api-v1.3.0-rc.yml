@@ -2779,26 +2779,35 @@ components:
     PlaceParam: ## OJP
       description: >-
         More parameters for restricting the request.
-      allOf:
-        - $ref: "#/components/schemas/PlaceDataFilter"
-        - $ref: "#/components/schemas/PlacePolicy"
-        
-    PlaceDataFilter: ## OJP
+       
+    # PlaceDataFilter: ## OJP
       properties:
-        type: 
+        type:  # PlaceDataFilter: ## OJP
           $ref: "#/components/schemas/PlaceType"
-        usage:
+        usage: # PlaceDataFilter: ## OJP
           $ref: "#/components/schemas/PlaceUsage"
-        ptModes:
+        ptModes: # PlaceDataFilter: ## OJP
           $ref: "#/components/schemas/PtModeFilter"
-        serviceBrandFilter:
+        serviceBrandFilter: # PlaceDataFilter: ## OJP
           $ref: "#/components/schemas/ServiceBrandFilter"
-        carrierFilter:
+        carrierFilter: # PlaceDataFilter: ## OJP
           $ref: "#/components/schemas/CarrierFilter"
         # topographicPlaceRef:  ## Out of scope
         #   $ref: "#/components/schemas/TopographicPlaceRef"
-        pointOfInterestFilter: 
+        pointOfInterestFilter:  # PlaceDataFilter: ## OJP
           $ref: "#/components/schemas/PointOfInterestFilter"
+        numberOfResults:  # PlacePolicy:  ## OJP
+          description: >-
+            Maximum number of results to be returned. The service is allowed to return fewer objects if reasonable
+            or otherwise appropriate.
+          type: number
+          format: int32
+          minimum: 1
+        # continueAt:   # PlacePolicy:  ## OJP  # Out of scope
+        #  type: number
+        #  format: int32
+        # includePtModes:   # PlacePolicy:  ## OJP   # Out of scope
+        #  type: boolean
 
     PlaceType: ## OJP
       type: string
@@ -2815,23 +2824,6 @@ components:
         - ORIGIN
         - VIA
         - DESTINATION
-
-    PlacePolicy:  ## OJP
-      properties:
-        #language:   # Not supported, language shall be set in header
-        #  type: string
-        numberOfResults:
-          description: >-
-            Maximum number of results to be returned. The service is allowed to return fewer objects if reasonable
-            or otherwise appropriate.
-          type: number
-          format: int32
-          minimum: 1
-        #continueAt:   # Out of scope
-        #  type: number
-        #  format: int32
-        #includePtModes:    # Out of scope
-        #  type: boolean
 
     InitialPlaceInput:  ## OJP
       description: >-
@@ -2986,13 +2978,13 @@ components:
     #   required:
     #     - place
 
-    StopPointRefStructure:  ## OJP
-      type: object
-      required:
-        - stopPointRef
-      properties:
-        stopPointRef:
-          $ref: "#/components/schemas/StopPointRef"
+    # StopPointRefStructure:  ## OJP
+    #   type: object
+    #   required:
+    #     - stopPointRef
+    #   properties:
+    #     stopPointRef:
+    #       $ref: "#/components/schemas/StopPointRef"
 
     StopPlaceRefStructure:  ## OJP
       type: object
@@ -3062,7 +3054,7 @@ components:
         #  - $ref: "#/components/schemas/TopographicPlaceRefStructure"
           - $ref: "#/components/schemas/PointOfInterestRefStructure"
           - $ref: "#/components/schemas/AddressRefStructure"
-       # - $ref: "#/components/schemas/LocationNameStructure"
+        # - $ref: "#/components/schemas/LocationNameStructure"
 
     TripVia:  ## OJP
       description: >-
@@ -3152,6 +3144,15 @@ components:
       required:
         - numberOfResultsBefore
         - numberOfResultsAfter
+
+    # PtModeChoiceGroup:  ## OJP
+    #   description: >-
+    #     Subset of SIRI Modes which are sensible.
+    #     TAP-TSI/UIC: Transport Mode
+    #   type: object
+    #   properties:
+    #     ptMode:
+    #       type: string
 
     PtModeFilter:  ## OJP
       description: >-
@@ -3366,11 +3367,11 @@ components:
         origin:
           description: >-
             Specifies the origin situation from where the user wants to start.
-          $ref: "#/components/schemas/Place"  # EXT
+          $ref: "#/components/schemas/Place"  # EXT no support for array
         destination:
           description: >-
             Specifies the destination situation where the user is heading to.
-          $ref: "#/components/schemas/Place"  # EXT
+          $ref: "#/components/schemas/Place"  # EXT no support for array
         startTime:
           description: Departure time at origin.
           type: string
@@ -3757,7 +3758,7 @@ components:
     IndividualMode:  ## OJP
       description: Modes which an individual powers themselves (such as walk, cycle).
       type: string
-      enum:
+      x-extensible-enum:
         - WALK 
         - CYCLE
         - TAXI
@@ -3775,7 +3776,7 @@ components:
     TransferMode:  ## OJP
       description: Modes dedicated to perform transfers.
       type: string
-      enum:
+      x-extensible-enum:
         - WALK
         - PARK_AND_RIDE
         - BIKE_AND_RIDE
@@ -3792,13 +3793,13 @@ components:
     PrivateModesEnumeration:  ## OJP
       description: modes offered by private individuals
       type: string
-      enum:
+      x-extensible-enum:
         - CAR_POOLING
 
     VehicleModesOfTransportEnumeration:  ## OJP  # TODO: Clarify description
       description: Vehicle mode- Tpeg ModeType pti1.
       type: string
-      enum:
+      x-extensible-enum:
         - UNKNOWN
         - RAILWAY_SERVICE
         - RAIL
@@ -3893,8 +3894,11 @@ components:
                 Name of the bay where to board the vehicle. As to the latest realtime status.
               type: string
               example: "8"
-            serviceDeparture:
-              $ref: "#/components/schemas/ServiceDeparture"
+            serviceDeparture: # EXT directly inline service time
+              description: >-
+                Describes the departure situation at this leg board stop point (group of attributes
+                of timetabled passing time, estimated passing time, observed passing time).
+              $ref: "#/components/schemas/ServiceTime"
         - $ref: "#/components/schemas/StopCallStatus"
 
     LegIntermediate:  ## OJP
@@ -3921,10 +3925,16 @@ components:
                 planned timetable.
               type: string
               example: "3"
-            serviceArrival:
-              $ref: "#/components/schemas/ServiceArrival"
-            serviceDeparture:
-              $ref: "#/components/schemas/ServiceDeparture"
+            serviceArrival: # EXT directly inline service time
+              description: >-
+                Describes the arrival situation at this leg board stop point (group of attributes
+                of timetabled passing time, estimated passing time, observed passing time).
+              $ref: "#/components/schemas/ServiceTime"
+            serviceDeparture: # EXT directly inline service time
+              description: >-
+                Describes the departure situation at this leg board stop point (group of attributes
+                of timetabled passing time, estimated passing time, observed passing time).
+              $ref: "#/components/schemas/ServiceTime"
         - $ref: "#/components/schemas/StopCallStatus"
 
     LegAlight:  ## OJP
@@ -3939,7 +3949,7 @@ components:
            # - stopPointName      
           properties:
             stopPlace:
-              $ref: "#/components/schemas/Place" ## EXT
+              $ref: "#/components/schemas/Place" ## EXT switched from PointPlace
             # stopPointName:
             #   type: string
             #   example: Luzern
@@ -3958,25 +3968,12 @@ components:
                 Name of the bay where to alight from the vehicle. As to the latest realtime status.
               type: string
               example: "8"
-            serviceArrival:
-              $ref: "#/components/schemas/ServiceArrival"
+            serviceArrival: # EXT directly inline service time
+              description: >-
+                Describes the arrival situation at this leg board stop point (group of attributes
+                of timetabled passing time, estimated passing time, observed passing time).
+              $ref: "#/components/schemas/ServiceTime"
         - $ref: "#/components/schemas/StopCallStatus"
-
-    ServiceArrival:  ## OJP
-      description: >-
-        Describes the departure situation at this leg board stop point (group of attributes
-        of timetabled passing time, estimated passing time, observed passing time).
-      allOf:
-        - $ref: "#/components/schemas/ServiceTime"  
-        # - $ref: "#/components/schemas/EstimatedTimeBand"   #Out of scope
-
-    ServiceDeparture:  ## OJP
-      description: >-
-        Describes the departure situation at this leg board stop point (group of attributes
-        of timetabled passing time, estimated passing time, observed passing time).
-      allOf:
-        - $ref: "#/components/schemas/ServiceTime"
-        # - $ref: "#/components/schemas/EstimatedTimeBand"   #Out of scope
 
     ServiceTime:  ## OJP
       description: >-
@@ -4036,9 +4033,30 @@ components:
         - ptMode
       type: object
       properties:
-        # Out of Scope
-        # ptMode:
-        #   $ref: "#/components/schemas/PTModeChoiceGroup"
+        ptMode:  # EXT
+          description: >-
+            Subset of SIRI Modes which are sensible.
+            TAP-TSI/UIC: Transport Mode  TODO: Align with SIRI
+          type: string
+          x-extensible-enum:
+            - HIGH_SPEED_TRAIN
+            - HISTORIC_TRAIN
+            - INTERCITY
+            - REGIONAL
+            - INTERREGIONAL
+            - URBAN
+            - TRAM
+            - UNDERGROUND
+            - NIGHT_TRAIN
+            - SHARED_TAXI
+            - MOTOR_RAIL
+            - MOUNTAIN_TRAIN
+            - PLANE
+            - COACH_GROUP
+            - SHIP
+            - BUS
+
+         #  $ref: "#/components/schemas/PtModeChoiceGroup"
         name:
           description: Name of the mode
           type: string
@@ -4056,20 +4074,24 @@ components:
         Product category based on NeTEx/SIRI. A product category is a classification for vehicle journeys
         to express some common properties of journeys for marketing and fare products.
       required:
-        - name
-        - shortName
+      #  - name  ## EXT no longer mandatory as being passed in a trip
+      #  - shortName  ## EXT no longer mandatory as being passed in a trip
         - productCategoryRef
       properties:
         name:
           description: >-
-            Full name of this product category, e.g. "Autoreisezug" in Switzerland or "Train Grand Vitessee" in France.
+            Full name of this product category, e.g. "TGV Lyria" in Switzerland and France.
+
+            UIC: Long name of Service Brand
           type: string
-          example: Autoreisezug
+          example: TGV Lyria
         shortName:
           description: >-
-            Short name or acronym of the product category, likely to be published, e.g. "ARZ", "TGV"
+            Short name or acronym of the product category, likely to be published, e.g. "TGV"
+
+            UIC: Abbreviation of Service Brand
           type: string
-          example: ARZ
+          example: TGV
         productCategoryRef:
           $ref: "#/components/schemas/ProductCategoryRef"
 
@@ -4083,7 +4105,7 @@ components:
         - $ref: "#/components/schemas/StopPlaceStructure"
       #  - $ref: "#/components/schemas/StopPointStructure"  # Out of scope
       #  - $ref: "#/components/schemas/TopographicPlaceStructure"  # Out of scope
-      #  - $ref: "#/components/schemas/ConnectionPointStructure"  # OSDM extension for virtual border points
+        - $ref: "#/components/schemas/ConnectionPointStructure"  # OSDM extension for virtual border points
       - $ref: "#/components/schemas/GeoPositionStructure"
       - type: object
         properties:
@@ -4121,9 +4143,9 @@ components:
             description: ID of this address.
             type: string
             example: NL:1916200000022621
-          privateCode:
-            description: Code of this address in private/foreign/proprietary coding schemes.
-            $ref: "#/components/schemas/PrivateCode"
+          # privateCode:  # Out of scope
+          #  description: Code of this address in private/foreign/proprietary coding schemes.
+          #  $ref: "#/components/schemas/PrivateCode"
           addressName:
             description: Name or description of address for use in passenger information.
             type: string
@@ -4179,7 +4201,7 @@ components:
       type: object
       required:
         - pointOfInterestCode
-        - pointOfInterestName
+      #  - pointOfInterestName  ## EXT no longer mandatory as being passed in a trip
       properties:
         pointOfInterestCode:
           description: ID of this Point of Interest.
@@ -4196,9 +4218,9 @@ components:
         # pointOfInterestCategory:  # Out of scope         
         #   description: Categories this POI is associated with. Order indicates descending relevance.
         #   $ref: "#/components/schemas/PointOfInterestCategory"
-        privateCode:
-          description: Code of this address in private/foreign/proprietary coding schemes.
-          $ref: "#/components/schemas/PrivateCode"
+        # privateCode:  # Out of scope 
+        #   description: Code of this address in private/foreign/proprietary coding schemes.
+        #   $ref: "#/components/schemas/PrivateCode"
         # topographicPlaceRef:  # Out of scope
         #   description: >-
         #     If at least one is set, only place objects within the given localities are allowed. If at least one is set,
@@ -4260,8 +4282,8 @@ components:
       allOf:
         - type: object
           required:
-            - stopPlaceName
             - stopPlaceRef
+          #  - stopPlaceName  # EXT no longer mandatory as being passed in a trip
           properties:
             stopPlaceRef:
               description: Reference to a Stop Place
@@ -4274,9 +4296,9 @@ components:
             #   description: Additional description of the stop place that may be appended to the name if enough space is available.
             #   type: string
             #   example: Exhibition Center
-            privateCode:
-              description: Code of this stop place in private/foreign/proprietary coding schemes.
-              $ref: "#/components/schemas/PrivateCode"
+            # privateCode:
+            #   description: Code of this stop place in private/foreign/proprietary coding schemes.
+            #   $ref: "#/components/schemas/PrivateCode"
             # topographicPlaceRef: Out of scope
             #   description: If at least one is set, only place objects within the given localities are allowed.If at least one is set, only place objects within the given localities are allowed.Reference to a TopographicPlace
             #   $ref: "#/components/schemas/TopographicPlaceRef"
@@ -4307,94 +4329,94 @@ components:
           items:
             $ref: "#/components/schemas/LocationStructure"
 
-    TopographicPlaceStructure:  ## OJP
-      type: object
-      properties:
-        toppographicPlace:
-          $ref: "#/components/schemas/TopographicPlace"
-      required:
-        - topographicPlace
+    # TopographicPlaceStructure:  ## OJP
+    #   type: object
+    #   properties:
+    #     toppographicPlace:
+    #       $ref: "#/components/schemas/TopographicPlace"
+    #   required:
+    #     - topographicPlace
 
-    TopographicPlace:  ## OJP
-      description: >-
-        a type of place providing the topographical context when searching for or presenting travel information, 
-        for example as the origin or destination of a trip. it may be of any size (e.g. county,city, town, village) 
-        and of different specificity (e.g. greater london, london, west end, westminster, st james's).
-      type: object
-      properties:
-        topographicPlaceCode:
-          type: string
-        topographicPlaceName:
-          type: string
-        privateCode:
-          $ref:  "#/components/schemas/PrivateCode"
-        parentRef:
-          $ref:  "#/components/schemas/TopographicPlaceRef"
-        referredSystemId:
-          type: string
-        area:
-          $ref:  "#/components/schemas/AreaStructure"
-      required:
-        - topographicPlaceCode
-        - topographicPlaceName
+    # TopographicPlace:  ## OJP
+    #   description: >-
+    #     a type of place providing the topographical context when searching for or presenting travel information, 
+    #     for example as the origin or destination of a trip. it may be of any size (e.g. county,city, town, village) 
+    #     and of different specificity (e.g. greater london, london, west end, westminster, st james's).
+    #   type: object
+    #   properties:
+    #     topographicPlaceCode:
+    #       type: string
+    #     topographicPlaceName:
+    #       type: string
+    #     privateCode:
+    #       $ref:  "#/components/schemas/PrivateCode"
+    #     parentRef:
+    #       $ref:  "#/components/schemas/TopographicPlaceRef"
+    #     referredSystemId:
+    #       type: string
+    #     area:
+    #       $ref:  "#/components/schemas/AreaStructure"
+    #   required:
+    #     - topographicPlaceCode
+    #     - topographicPlaceName
 
-    StopPointStructure:  ## OJP
-      type: object
-      properties:
-        stopPoint:
-          $ref: "#/components/schemas/StopPoint"
-      required:
-        - stopPoint
+    # StopPointStructure:  ## OJP
+    #   type: object
+    #   properties:
+    #     stopPoint:
+    #       $ref: "#/components/schemas/StopPoint"
+    #   required:
+    #     - stopPoint
 
-    StopPoint:  ## OJP
-      description: >-
-        An extended view of scheduled stop point in tmv6 a scheduled stop point extended by accessibility limitation
-        attributes and with identifier and name where passengers can board or alight from vehicles.
-      allOf:
-        - type: object
-          required:
-            - stopPlaceRef
-            - stopPointName
-          properties:
-            stopPointRef:
-              $ref: "#/components/schemas/StopPointRef"
-            stopPointName:
-              description: Name or description of stop point for use in passenger information.
-              type: string
-            nameSuffix:
-              description: Additional description of the stop point that may be appended to the name if enough space is available.
-              example: opposite main entrance
-              type: string
-            plannedQuay:
-              description: Name of the bay where to board/alight from the vehicle. According to planned timetable.
-              type: string
-            estimatedQuay:
-              description: Name of the bay where to board/alight from the vehicle. As to the latest realtime status.
-              type: string
-            privateCode:
-              description: Code of this stop point in private/foreign/proprietary coding schemes.
-              $ref: "#/components/schemas/PrivateCode"
-            parentRef:
-              description: Reference to the stop place to which this stop point belongs.
-              $ref: "#/components/schemas/StopPlaceRef"
-            topographicPlaceRef:
-              description: If at least one is set, only place objects within the given localities are allowed.If at least one is set, only place objects within the given localities are allowed.Reference to a TopographicPlace
-              $ref: "#/components/schemas/TopographicPlaceRef"
-      #  - $ref: "#/components/schemas/StopAttributes"
+    # StopPoint:  ## OJP
+    #   description: >-
+    #     An extended view of scheduled stop point in tmv6 a scheduled stop point extended by accessibility limitation
+    #     attributes and with identifier and name where passengers can board or alight from vehicles.
+    #   allOf:
+    #     - type: object
+    #       required:
+    #         - stopPlaceRef
+    #         - stopPointName
+    #       properties:
+    #         stopPointRef:
+    #           $ref: "#/components/schemas/StopPointRef"
+    #         stopPointName:
+    #           description: Name or description of stop point for use in passenger information.
+    #           type: string
+    #         nameSuffix:
+    #           description: Additional description of the stop point that may be appended to the name if enough space is available.
+    #           example: opposite main entrance
+    #           type: string
+    #         plannedQuay:
+    #           description: Name of the bay where to board/alight from the vehicle. According to planned timetable.
+    #           type: string
+    #         estimatedQuay:
+    #           description: Name of the bay where to board/alight from the vehicle. As to the latest realtime status.
+    #           type: string
+    #         privateCode:
+    #           description: Code of this stop point in private/foreign/proprietary coding schemes.
+    #           $ref: "#/components/schemas/PrivateCode"
+    #         parentRef:
+    #           description: Reference to the stop place to which this stop point belongs.
+    #           $ref: "#/components/schemas/StopPlaceRef"
+    #         topographicPlaceRef:
+    #           description: If at least one is set, only place objects within the given localities are allowed.If at least one is set, only place objects within the given localities are allowed.Reference to a TopographicPlace
+    #           $ref: "#/components/schemas/TopographicPlaceRef"
+    #   #  - $ref: "#/components/schemas/StopAttributes"
 
-    PrivateCode:  ## OJP
-      description: Code of this stop point in private/foreign/proprietary coding schemes.
-      type: object
-      properties:
-        system:
-          type: string
-          example: EFA
-        value:
-          type: string
-          example: "6373080"
-      required:
-        - system
-        - value
+    # PrivateCode:  ## OJP
+    #   description: Code of this stop point in private/foreign/proprietary coding schemes.
+    #   type: object
+    #   properties:
+    #     system:
+    #       type: string
+    #       example: EFA
+    #     value:
+    #       type: string
+    #       example: "6373080"
+    #   required:
+    #     - system
+    #     - value
 
     LocationStructure:  ## OJP
       description: WGS84 coordinates position
@@ -4440,25 +4462,47 @@ components:
     #   format: float
     #  example: 0.0
 
-    StopPointRef:  ## OJP
-      description: Reference to a (SCHEDULED) STOP POINT.
-      type: string
-      example: "8503000"
+    # StopPointRef:  ## OJP  # EXT Changed from StopPoint
+    #   description: >- 
+    #     Reference to a (SCHEDULED) STOP POINT.  Per definition we use MERTIS codes
+    #   type: object
+    #   properties:
+    #     code: 
+    #       type: string
+    #       example: "8503000"
+    #     codeList:
+    #       type: string
+    #       default: UIC
 
-    StopPlaceRef:  ## OJP
+    StopPlaceRef:  ## OJP  # EXT add code list
       description: Reference to a Stop Place
-      type: string
-      example: "8503000"
+      properties:
+        code: 
+          type: string
+          example: "8503000"
+        codeList:
+          type: string
+          default: UIC
 
-    PointOfInterestRef:  ## OJP
+    PointOfInterestRef:  ## OJP  # EXT add code list
       description: Reference to a Point of Interest
-      type: string
-      example: "8503000"
+      properties:
+        code: 
+          type: string
+          example: "8503000"
+        codeList:
+          type: string
+          default: UIC
 
-    AddressRef:  ## OJP
+    AddressRef:  ## OJP  # EXT add code list
       description: Reference to an Address
-      type: string
-      example: "1234567"
+      properties:
+        code: 
+          type: string
+          example: "8503000"
+        codeList:
+          type: string
+          default: EAC
 
     TopographicPlaceRef:  ## OJP
       description: Reference to a TopographicPlace
@@ -4470,8 +4514,10 @@ components:
         A reference to the product category. This is the internal code used within the reference frameworks (NeTEx, SIRI). 
         It is usually not displayed, but interpreted by the technical system, e.g. "ch:1:TypeOfProductCategory:ARZ" 
         (Autoreisezug in Switzerland) or "ch:1:TypeOfProductCategory:BAV".
+
+        UIC: Service Brand Code, TGV Lyria
       type: string
-      example: "ch:1:TypeOfProductCategory:ARZ"
+      example: "76"
 
     OperationDayRef:  ## OJP
       description: Reference to an operating day
@@ -6597,13 +6643,13 @@ components:
           type: integer
           format: int32
         entryStation:
-          $ref: '#/components/schemas/StopPoint'
+          $ref: '#/components/schemas/StopPlace'  # EXT Changed from StopPoint
         lineId:
           type: array
           items:
             type: string
         terminalStation:
-          $ref: '#/components/schemas/StopPoint'
+          $ref: '#/components/schemas/StopPlace'  # EXT Changed from StopPoint
         nutsCode:
           description: >-
             Nomenclature des units territoriales statistiques  
@@ -6616,9 +6662,9 @@ components:
       type: object
       properties:
         fromStation:
-          $ref: '#/components/schemas/StopPoint'
+          $ref: '#/components/schemas/StopPlace'  # EXT Changed from StopPoint
         toStation:
-          $ref: '#/components/schemas/StopPoint'
+          $ref: '#/components/schemas/StopPlace'  # EXT Changed from StopPoint
         train:
           type: string
         travelDate:
@@ -6666,7 +6712,7 @@ components:
         serviceBrand:
           $ref: '#/components/schemas/ServiceBrandCode'
         station:
-          $ref: '#/components/schemas/StopPoint'
+          $ref: '#/components/schemas/StopPlace'  # EXT Changed from StopPoint
         fareReferenceStationSet:
           type: object
           description: reference to a list of stations included in the fare
@@ -6703,9 +6749,9 @@ components:
           type: integer
           format: int32
         entryStation:
-          $ref: '#/components/schemas/StopPoint'
+          $ref: '#/components/schemas/StopPlace'  # EXT Changed from StopPoint
         terminalStation:
-          $ref: '#/components/schemas/StopPoint'
+          $ref: '#/components/schemas/StopPlace'  # EXT Changed from StopPoint
         zoneIds:
           description: to be used in bar codes
           type: array
@@ -6771,7 +6817,7 @@ components:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/StopPointStructure'
+              $ref: '#/components/schemas/StopPlaceStructure'  # EXT Changed from StopPoint
       required:
         - id
         - stationSets
@@ -7070,7 +7116,7 @@ components:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/StopPointRef'
+              $ref: '#/components/schemas/StopPlaceRef'  # EXT Changed from StopPoint
       required:
         - stations
 
