@@ -5158,7 +5158,7 @@ components:
             properties:
               relationType:
                 type: string
-                x-extensible-enum:
+                enum:
                   - OPTIONAL
                   - INCLUDED
               ancillary:
@@ -5218,7 +5218,7 @@ components:
             MANDATORY: the reservation is mandatory for the booking
             OPTIONAL: the reservation is not included but can be added optionally
           type: string
-          x-extensible-enum:
+          enum:
             - INCLUDED
             - MANDATORY
             - OPTIONAL
@@ -5229,7 +5229,7 @@ components:
             properties:
               relationType:
                 type: string
-                x-extensible-enum:
+                enum:
                   - OPTIONAL
                   - INCLUDED
               ancillary:
@@ -5255,7 +5255,7 @@ components:
             INCLUDED: the ancillary is included in the offer but is not mandatory 
             OPTIONAL: the ancillary is not included but can be optionally added
           type: string
-          x-extensible-enum:
+          enum:
             - INCLUDED
             - OPTIONAL
         category:
