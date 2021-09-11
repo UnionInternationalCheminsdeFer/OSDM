@@ -63,14 +63,14 @@ tags:
     description: >-
       resources to get the layout of a coach
 paths:
-  /place-informations/{placeInformationId}:
+  /place-information/{placeInformationId}:
     get:
       tags: 
         - Place Information
-      summary: returns a place-informations
+      summary: returns a place-information
       description: >-
         Returns trips for a given trip request based on the specification.
-      operationId: getPlaceInformations
+      operationId: getPlaceInformation
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/accessToken"
@@ -102,14 +102,14 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
         
-  /place-informations:
+  /place-information:
     post:
       tags:
         - Place Information
       summary: returns place information for a given place information request
       description: >-
         Returns place information for a given place information request based on the OJP specification.
-      operationId: postPlaceInformations
+      operationId: postPlaceInformation
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/accessToken"
