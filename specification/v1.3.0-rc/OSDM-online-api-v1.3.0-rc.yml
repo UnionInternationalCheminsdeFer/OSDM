@@ -81,25 +81,25 @@ paths:
           required: true
           description: ID of the place information to get.
       responses:
-        "200":
+        '200':
           description: place information found matching criteria
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PlaceInformationResponse"
-        "400":
+        '400':
           description: bad input parameter
-        "401":
+        '401':
           description: unauthorized
-        "403":
+        '403':
           description: forbidden
-        "404":
+        '404':
           description: no place information found
-        "500":
+        '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
-        "501":
+        '501':
           description: not implemented
-        "503":
+        '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
         
   /place-informations:
@@ -120,26 +120,26 @@ paths:
             schema:
               $ref: "#/components/schemas/PlaceInformationRequest"
       responses:
-        "200":
+        '200':
           description: place information found matching criteria
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/PlaceInformationResponse"
-        "400":
+        '400':
           description: bad input parameter
-        "401":
+        '401':
           description: unauthorized
-        "403":
+        '403':
           description: forbidden
-        "404":
+        '404':
           description: no place information found
-        "500":
+        '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
         "501":
           description: not implemented
-        "503":
-          description: service unavailable
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /places/{placeId}:
     get:
@@ -159,7 +159,7 @@ paths:
           required: true
           description: ID of the place to get.
       responses:
-        "200":
+        '200':
           description: the requested place
           headers:
             Cache-Control:
@@ -177,20 +177,20 @@ paths:
                     $ref: '#/components/schemas/WarningMessageList'
                   place:
                     $ref: '#/components/schemas/Place'
-        "400":
+        '400':
           description: bad input parameter
-        "401":
+        '401':
           description: unauthorized
-        "403":
+        '403':
           description: forbidden
-        "404":
+        '404':
           description: no place information found
-        "500":
+        '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
-        "501":
+        '501':
           description: not implemented
-        "503":
-          description: service unavailable
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /places:
     post:
@@ -210,7 +210,7 @@ paths:
             schema:
               $ref: "#/components/schemas/PlaceRequest"
       responses:
-        "200":
+        '200':
           description: place information found matching criteria
           content:
             application/json:
@@ -223,20 +223,20 @@ paths:
                     type: array
                     items: 
                       $ref: "#/components/schemas/Place"
-        "400":
+        '400':
           description: bad input parameter
-        "401":
+        '401':
           description: unauthorized
-        "403":
+        '403':
           description: forbidden
-        "404":
+        '404':
           description: no place information found
-        "500":
+        '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
-        "501":
+        '501':
           description: not implemented
-        "503":
-          description: service unavailable
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /trips/{tripId}:
     get:
@@ -321,30 +321,30 @@ paths:
             schema:
               $ref: "#/components/schemas/TripRequest"
       responses:
-        "200":
+        '200':
           description: trips found matching criteria
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/TripResponse"
-        "400":
+        '400':
           description: bad input parameter
-        "401":
+        '401':
           description: unauthorized
-        "403":
+        '403':
           description: forbidden
-        "404":
+        '404':
           description: no trips found
-        "500":
+        '500':
           description: internal server error
           content:
             "application/problem+json":
               schema:
                 $ref: "#/components/schemas/Problem"
-        "501":
+        '501':
           description: not implemented
-        "503":
-          description: service unavailable
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /trips-collection/{tripsCollectionId}:
     get:
