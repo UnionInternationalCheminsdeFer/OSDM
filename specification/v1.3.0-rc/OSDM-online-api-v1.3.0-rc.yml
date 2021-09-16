@@ -171,12 +171,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  place:
-                    $ref: '#/components/schemas/Place'
+                $ref: '#/components/schemas/PlaceResponse'   
         '400':
           description: bad input parameter
         '401':
@@ -215,14 +210,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'             
-                  places:
-                    type: array
-                    items: 
-                      $ref: "#/components/schemas/Place"
+                $ref: '#/components/schemas/PlaceResponse'   
         '400':
           description: bad input parameter
         '401':
@@ -258,6 +246,18 @@ paths:
           required: true
           description: ID of the trip to get.
         - in: query
+          name: stopBehavior
+          description: >-
+            Influences what stops are to be returned in response
+            (ORIGIN_DESTINATION_ONLY returns no intermediate stops;
+            REAL_BOARDING_ALIGHTING returns all stops except virtual stops).
+          schema:
+            type: string
+            default: ORIGIN_DESTINATION_ONLY
+            enum:
+              - ORIGIN_DESTINATION_ONLY
+              - REAL_BOARDING_ALIGHTING
+        - in: query
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only. 
@@ -267,6 +267,7 @@ paths:
               type: string
               enum:
                 - ALL
+                - PLACES
                 - NONE
             default: [ALL]
       responses:
@@ -282,12 +283,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  trip:
-                    $ref: '#/components/schemas/Trip'
+                $ref: '#/components/schemas/TripResponse'   
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -326,7 +322,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TripResponse"
+                $ref: "#/components/schemas/TripCollectionResponse"
         '400':
           description: bad input parameter
         '401':
@@ -353,7 +349,7 @@ paths:
       summary: Returns a collection of trips for a specified origin and destination (and via).
       description: >-
         The unique codes of the origin and
-        destination can be resolved using the locations service.
+        destination can be resolved using the places service.
       operationId: getTripsCollectionId
       parameters:
         - $ref: "#/components/parameters/accessToken"
@@ -387,7 +383,7 @@ paths:
               enum:
                 - ALL
                 - TRIPS
-                - TRIPS.LOCATIONS
+                - TRIPS.PLACES
                 - NONE
             default: [ALL]
       responses:
@@ -396,34 +392,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  id:
-                    type: string
-                    format: uuid
-                  tripsCollection:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Trip'
-                  scrollBackContext:
-                    type: string
-                    description: >-
-                      Scroll reference for the current response to scroll backward. 
-                      (Value depends on underlying system.)
-                  scrollForwardContext:
-                    type: string
-                    description: >-
-                      Scroll reference for the current response to scroll forward.
-                      (Value depends on underlying system.)
-                  links:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Link'
-                required:
-                  - id
-                  - tripsCollection
+                $ref: "#/components/schemas/TripCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -451,7 +420,7 @@ paths:
         - Offers
       summary: Returns different offers and trips for a specified origin and destination (and via). 
       description:
-        The unique codes of the origin and destination can be resolved using the locations service.
+        The unique codes of the origin and destination can be resolved using the places service.
       operationId: getTripOffersCollectionId
       parameters:
         - $ref: "#/components/parameters/accessToken"
@@ -486,7 +455,7 @@ paths:
                 - ALL
                 - TRIPOFFERS
                 - TRIPOFFERS.TRIPS
-                - TRIPOFFERS.TRIPS.LOCATIONS
+                - TRIPOFFERS.TRIPS.PLACES
                 - TRIPOFFERS.OFFERS
                 - TRIPOFFERS.OFFERS.OFFERPARTS
                 - TRIPOFFERS.PASSENGERS
@@ -498,34 +467,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                     $ref: '#/components/schemas/WarningMessageList'
-                  id:
-                    type: string
-                    format: uuid
-                  tripOffers:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/TripOffer'
-                  scrollBackContext:
-                    type: string
-                    description: >-
-                      Scroll reference for the current response to scroll backward. (Value
-                      depends on underlying system.)
-                  scrollForwardContext:
-                    type: string
-                    description: >-
-                      Scroll reference for the current response to scroll forward.
-                      (Value depends on underlying system.)
-                  links:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Link'
-                required:
-                  - id
-                  - tripOffers
+                $ref: "#/components/schemas/TripOfferCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -551,7 +493,7 @@ paths:
     post:
       tags:
         - Offers
-      summary: Returns trip offers for origin and destination (and via) locations. 
+      summary: Returns trip offers for origin and destination (and via) places. 
       operationId: postTripOffersCollection
       parameters:
         - $ref: "#/components/parameters/accessToken"
@@ -567,34 +509,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  id:
-                    type: string
-                    format: uuid
-                  tripOffers:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/TripOffer'
-                  scrollBackContext:
-                    type: string
-                    description: >-
-                      Scroll reference for the current response to scroll backward. (Value
-                      depends on underlying system.)
-                  scrollForwardContext:
-                    type: string
-                    description: >-
-                      Scroll reference for the current response to scroll forward.
-                      (Value depends on underlying system.)
-                  links:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Link'
-                required:
-                  - id
-                  - tripOffers
+                $ref: "#/components/schemas/TripOfferCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -644,7 +559,7 @@ paths:
               enum:
                 - ALL              
                 - TRIPS
-                - TRIPS.LOCATIONS
+                - TRIPS.PLACES
                 - OFFERS
                 - OFFERS.OFFERPARTS
                 - PASSENGERS
@@ -656,12 +571,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  tripOffer:
-                    $ref: '#/components/schemas/TripOffer'
+                $ref: '#/components/schemas/TripOfferResponse'  
           headers:
             Content-Language:
               schema:
@@ -711,7 +621,7 @@ paths:
                 - ALL
                 - OFFERPARTS
                 - TRIP
-                - TRIP.LOCATIONS
+                - TRIP.PLACES
                 - NONE
             default: [ALL]
       responses:
@@ -866,12 +776,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  reservation:
-                    $ref: '#/components/schemas/AvailablePlacePreferences'
+                $ref: '#/components/schemas/PlacePreferencesResponse'
           headers:
             Content-Language:
               schema:
@@ -963,12 +868,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  reservation:
-                    $ref: '#/components/schemas/AvailablePlacePreferences'
+                $ref: '#/components/schemas/PlacePreferencesResponse'
           headers:
             Content-Language:
               schema:
@@ -1046,12 +946,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  reservation:
-                    $ref: '#/components/schemas/PlaceAvailability'
+                $ref: '#/components/schemas/PlaceAvailabilityResponse'
           headers:
             Content-Language:
               schema:
@@ -1129,12 +1024,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  reservation:
-                    $ref: '#/components/schemas/AvailablePlacePreferences'
+                $ref: '#/components/schemas/PlacePreferencesResponse'
           headers:
             Content-Language:
               schema:
@@ -1226,12 +1116,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  reservation:
-                    $ref: '#/components/schemas/AvailablePlacePreferences'
+                $ref: '#/components/schemas/PlacePreferencesResponse'
           headers:
             Content-Language:
               schema:
@@ -1309,12 +1194,8 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  reservation:
-                    $ref: '#/components/schemas/PlaceAvailability'
+                $ref: '#/components/schemas/PlaceAvailabilityResponse'
+        
           headers:
             Content-Language:
               schema:
@@ -1520,7 +1401,7 @@ paths:
                 - ALL
                 - BOOKINGS
                 - BOOKINGS.BOOKEDOFFERS.TRIP
-                - BOOKINGS.BOOKEDOFFERS.TRIP.LOCATIONS
+                - BOOKINGS.BOOKEDOFFERS.TRIP.PLACES
                 - BOOKINGS.BOOKEDOFFERS
                 - BOOKINGS.BOOKEDOFFERS.OFFERPARTS
                 - BOOKINGS.PASSENGERS
@@ -1582,12 +1463,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  booking:
-                    $ref: '#/components/schemas/Booking'
+                $ref: '#/components/schemas/BookingResponse'
           headers:
             Content-Language:
               schema:
@@ -1638,7 +1514,7 @@ paths:
               enum:
                 - ALL
                 - BOOKEDOFFERS.TRIP
-                - BOOKEDOFFERS.TRIP.LOCATIONS
+                - BOOKEDOFFERS.TRIP.PLACES
                 - BOOKEDOFFERS
                 - BOOKEDOFFERS.OFFERPARTS
                 - PASSENGERS
@@ -1652,12 +1528,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  booking:
-                    $ref: '#/components/schemas/Booking'
+                $ref: '#/components/schemas/BookingResponse'
           headers:
             Content-Language:
               schema:
@@ -1752,12 +1623,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  booking:
-                    $ref: '#/components/schemas/Booking'
+                $ref: '#/components/schemas/BookingResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -1798,14 +1664,8 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  fulfillments:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Fulfillment'
+                $ref: '#/components/schemas/FulfillmentsResponse'
+            
         '202': 
           description: >- 
             Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
@@ -1860,14 +1720,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  fulfillments:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Fulfillment'
+                $ref: '#/components/schemas/FulfillmentsResponse'
         '202': 
           description: >- 
             Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
@@ -1917,12 +1770,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  fulfillment:
-                    $ref: '#/components/schemas/Fulfillment'
+                $ref: '#/components/schemas/FulfillmentResponse'
           headers:
             Content-Language:
               schema:
@@ -1974,12 +1822,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  refundOffersCollection:
-                    $ref: '#/components/schemas/RefundOffersCollection'
+                $ref: '#/components/schemas/RefundOffersCollectionResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2026,12 +1869,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  refundOffer:
-                    $ref: '#/components/schemas/RefundOffer'
+                $ref: '#/components/schemas/RefundOfferResponse'
           headers:
             Content-Language:
               schema:
@@ -2086,13 +1924,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  refundOffer:
-                    $ref: '#/components/schemas/RefundOffer'
-          headers:
+                $ref: '#/components/schemas/RefundOfferResponse'
             Content-Language:
               schema:
                 type: string
@@ -2208,7 +2040,7 @@ paths:
               enum:
                 - ALL
                 - TRIP
-                - TRIP.LOCATIONS
+                - TRIP.PLACES
                 - OFFERS
                 - OFFERS.OFFERPARTS
                 - OFFERS.OFFERPARTS.PRODUCTS
@@ -2220,12 +2052,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  exchangeOperation:
-                    $ref: '#/components/schemas/ExchangeOperation'
+                $ref: '#/components/schemas/ExchangeOperationResponse'
           headers:
             Content-Language:
               schema:
@@ -2281,12 +2108,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  exchangeOperation:
-                    $ref: '#/components/schemas/ExchangeOperation'
+                $ref: '#/components/schemas/ExchangeOperationResponse' 
           headers:
             Content-Language:
               schema:
@@ -2387,34 +2209,8 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  id:
-                    type: string
-                    format: uuid
-                  exchangeTripOffers:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/ExchangeTripOffer'
-                  scrollBackContext:
-                    type: string
-                    description: >-
-                      Scroll reference for the current response to scroll backward. (Value
-                      depends on underlying system.)
-                  scrollForwardContext:
-                    type: string
-                    description: >-
-                      Scroll reference for the current response to scroll forward.
-                      (Value depends on underlying system.)
-                  links:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Link'
-                required:
-                  - id
-                  - exchangeTripOffers
+                $ref: '#/components/schemas/ExchangeTripOfferCollectionResponse'
+             
           headers:
             Content-Language:
               schema:
@@ -2479,7 +2275,7 @@ paths:
                 - ALL
                 - TRIPOFFERS
                 - TRIPOFFERS.TRIPS
-                - TRIPOFFERS.TRIPS.LOCATIONS
+                - TRIPOFFERS.TRIPS.PLACES
                 - TRIPOFFERS.OFFERS
                 - TRIPOFFERS.OFFERS.OFFERPARTS
                 - TRIPOFFERS.OFFERS.OFFERPARTS.PRODUCTS
@@ -2492,41 +2288,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                     $ref: '#/components/schemas/WarningMessageList'
-                  id:
-                    type: string
-                    format: uuid
-                  fulfillmentIds:
-                    type: array
-                    items:
-                      type: string
-                      format: uuid
-                  overruleCode: 
-                    $ref: '#/components/schemas/OverruleCode'
-                  exchangeTripOffers:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/ExchangeTripOffer'
-                  scrollBackContext:
-                    type: string
-                    description: >-
-                      Scroll reference for the current response to scroll backward. (Value
-                      depends on underlying system.)
-                  scrollForwardContext:
-                    type: string
-                    description: >-
-                      Scroll reference for the current response to scroll forward.
-                      (Value depends on underlying system.)
-                  links:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Link'
-                required:
-                  - id
-                  - exchangeTripOffers
+                $ref: '#/components/schemas/ExchangeTripOfferCollectionResponse'
           headers:
             Content-Language:
               schema:
@@ -2576,7 +2338,7 @@ paths:
               enum:
                 - ALL              
                 - TRIPS
-                - TRIPS.LOCATIONS
+                - TRIPS.PLACES
                 - OFFERS
                 - OFFERS.OFFERPARTS
                 - OFFERS.OFFERPARTS.PRODUCTS
@@ -2589,12 +2351,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  tripOffer:
-                    $ref: '#/components/schemas/ExchangeTripOffer'
+                $ref: '#/components/schemas/ExchangeTripOfferResponse'
           headers:
             Content-Language:
               schema:
@@ -2668,16 +2425,8 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  selectablePlaces:
-                    $ref: '#/components/schemas/PlaceAvailability'
-                  layouts:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/CoachLayout'
+                $ref: '#/components/schemas/CoachLayoutsResponse' 
+                
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2716,12 +2465,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  coachLayout: 
-                    $ref: '#/components/schemas/CoachLayout'
+                $ref: '#/components/schemas/CoachLayoutResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -2790,6 +2534,8 @@ components:
           schema:
             $ref: '#/components/schemas/Problem'
 
+    
+
   schemas:
     WarningMessageList:
       type: array
@@ -2839,6 +2585,22 @@ components:
         - title
         - type
         - href
+    PlaceResponse:  ## OJP
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        place:
+          $ref: '#/components/schemas/Place'
+
+    TripResponse:  ## OJP
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        place:
+          $ref: '#/components/schemas/Trip'
+        
 
     PlaceRequest: ## OJP
       allOf:
@@ -2944,6 +2706,8 @@ components:
           items:
             $ref: "#/components/schemas/PlaceResult"
 
+     
+
     PlaceResult:  ## OJP
       type: object
       required:
@@ -3017,6 +2781,18 @@ components:
           description: >-
             Options to control the search behaviour and response contents.
           $ref: "#/components/schemas/TripParam"
+        embed:
+          description: >-
+            Influences whether referenced resources are returned in full or as references only.
+          type: array
+          items:
+            type: string
+            enum:
+              - TRIPS
+              - TRIPS.PLACES
+              - NONE
+              - ALL
+          default: [ALL]
 
     DepArrTimeStructure:  ## OJP
       type: object
@@ -3384,12 +3160,14 @@ components:
       #  - $ref: "#/components/schemas/TripContentFilter"
       #  - $ref: "#/components/schemas/FareParam"
 
-    TripResponse:  ## OJP
+    TripCollectionResponse:  ## OJP
       description: Trip response structure.
       required:
         - tripResult
       type: object
       properties:
+        warning :
+          $ref: "#/components/schemas/WarningMessageList"
         calcTime:
           type: integer
           minimum: 0
@@ -3399,6 +3177,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/TripResult"
+        links: 
+          $ref: "#/components/schemas/Link"
 
     TripResult:  ## OJP
       description: The trip results found by the server.
@@ -3545,7 +3325,7 @@ components:
 
     TransferLegStructure:  ## OJP
       description: >-
-        A leg which links other legs of a trip where a transfer between different locations is required.
+        A leg which links other legs of a trip where a transfer between different places is required.
       type: object
       properties:
         transferLeg:
@@ -3715,7 +3495,7 @@ components:
 
     TransferLeg:  ## OJP
       description: >-
-        A leg which links other legs of a trip where a transfer between different locations is required.
+        A leg which links other legs of a trip where a transfer between different places is required.
       required:
         - legStart
         - legEnd
@@ -4204,6 +3984,8 @@ components:
         #   $ref: "#/components/schemas/GeneralAttribute"
         #  extension:   # Out of scope
         #   $ref: "#/components/schemas/Extension"
+          link:
+            $ref: "#/components/schemas/Link"
 
     AddressStructure: ## OJP
       type: object
@@ -4361,7 +4143,7 @@ components:
     StopPlace:  ## OJP
       description: >-
         A PLACE extended by ACCESSIBILITY LIMITATION properties and some attributes of the associated equipment, comprising one
-        or more locations where vehicles may stop and where passengers may board or leave vehicles or prepare their trip, and which 
+        or more places where vehicles may stop and where passengers may board or leave vehicles or prepare their trip, and which 
         will usually have one or more wellknown names
       allOf:
         - type: object
@@ -4748,7 +4530,7 @@ components:
               - ALL
               - TRIPOFFERS
               - TRIPOFFERS.TRIP
-              - TRIPOFFERS.TRIP.LOCATIONS
+              - TRIPOFFERS.TRIP.PLACES
               - TRIPOFFERS.OFFERS
               - TRIPOFFERS.OFFERS.OFFERPARTS
               - TRIPOFFERS.PASSENGERS
@@ -4757,6 +4539,34 @@ components:
       required:
         - tripSearch
         - passengers
+
+    TripOfferCollectionResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        id:
+          type: string
+          format: uuid
+        tripOffers:
+          type: array
+          items:
+            $ref: '#/components/schemas/TripOffer'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      required:
+        - id
+        - tripOffers
+    
+    TripOfferResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        tripOffer:
+          $ref: '#/components/schemas/TripOffer'
 
     TripOffer:
       type: object
@@ -5431,7 +5241,7 @@ components:
               - ALL
               - BOOKEDOFFERS
               - BOOKEDOFFERS.TRIPS
-              - BOOKEDOFFERS.TRIPS.LOCATIONS
+              - BOOKEDOFFERS.TRIPS.PLACES
               - BOOKEDOFFERS.OFFERPARTS
               - PASSENGERS
               - REFUND_PROPOSITIONS
@@ -5439,6 +5249,14 @@ components:
           default: [ALL]
       required:
         - selectedOffers
+
+    BookingResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        booking:
+          $ref: '#/components/schemas/Booking'
       
     Booking:
       type: object
@@ -5621,6 +5439,24 @@ components:
               fulfilledFulfillmentId:
                 type: string
                 format: uuid
+
+    FulfillmentsResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+
+    FulfillmentResponse:
+       type: object
+       properties:
+         warnings:
+           $ref: '#/components/schemas/WarningMessageList'
+         fulfillment:
+           $ref: '#/components/schemas/Fulfillment'
                 
     Fulfillment:
       type: object
@@ -5778,7 +5614,15 @@ components:
           enum:
             - PNG
             - GIF
-            - SVG   
+            - SVG  
+
+    RefundOffersCollectionResponse:            
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        refundOffersCollection:
+          $ref: '#/components/schemas/RefundOffersCollection'             
       
     RefundOffersCollection:
       type: object
@@ -5787,6 +5631,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RefundOffer'
+
+
+    RefundOfferResponse:            
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        refundOffersCollection:
+          $ref: '#/components/schemas/RefundOffer'             
   
     RefundOffer:
       type: object
@@ -5904,6 +5757,33 @@ components:
       required:
         - tripOfferRequest
         - fulfillmentIds
+    ExchangeTripOfferCollectionResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        id:
+          type: string
+          format: uuid
+        exchangeTripOffers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExchangeTripOffer'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      required:
+        - id
+        - exchangeTripOffers
+
+    ExchangeTripOfferResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        tripOffer:
+          $ref: '#/components/schemas/ExchangeTripOffer'
 
     ExchangeTripOffer:
       type: object
@@ -5934,6 +5814,14 @@ components:
       required: 
         - id
         - trip
+    
+    ExchangeOperationResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        exchangeOperation:
+          $ref: '#/components/schemas/ExchangeOperation'
 
     ExchangeOperation:
       type: object
@@ -5987,7 +5875,7 @@ components:
             enum:
               - ALL
               - TRIP
-              - TRIP.LOCATIONS
+              - TRIP.PLACES
               - OFFERS
               - OFFERS.OFFERPARTS
               - OFFERS.OFFERPARTS.PRODUCTS
@@ -6095,6 +5983,26 @@ components:
             $ref: '#/components/schemas/Link'
       required:
         - id
+
+    CoachLayoutsResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        selectablePlaces:
+          $ref: '#/components/schemas/PlaceAvailability'
+        layouts:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoachLayout'        
+
+    CoachLayoutResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        coachLayout:
+          $ref: '#/components/schemas/CoachLayout'   
 
     CoachLayout:
       type: object
@@ -6281,7 +6189,13 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
- 
+    PlacePreferencesResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        reservation:
+          $ref: '#/components/schemas/AvailablePlacePreferences'
     AvailablePlacePreferences:
       type: object
       properties:  
@@ -7032,11 +6946,11 @@ components:
           format: uri
           description: URL to the linked resource (no parameters needed).
           example: 'https://www.brussels.info/train-stations/'
-        method:
+        type:
           type: string
           example: GET
           description: HTTP method to call the action
-        relation:
+        rel:
           type: string
           example: Get Map
           description: Relation of this link to the current entity.
@@ -7048,7 +6962,7 @@ components:
       required:
         - contentTypes
         - href
-        - relation
+        - rel
 
     Translation:
       type: object
@@ -7428,6 +7342,14 @@ components:
           items:
             description: selection from the optional place properties provided in the offer
             type: string
+
+    PlaceAvailabilityResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        reservation:
+          $ref: '#/components/schemas/PlaceAvailability'
    
     PlaceAvailability:
       type: object
