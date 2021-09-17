@@ -15,7 +15,7 @@ provided within the schema or within the IRS90918-10 specification.
 |-----------------------|----------|-------------|---------|
 | http:uic.org  | stn      | UIC station codes (TAP-TSI) | uic.org:stn:8512345 |
 | http:uic.org  | sbc      | UIC service brand code (TAP-TSI) | uic.org:sbc:17 |
-| http:uic.org  | rics     | UIC company code (TAP-TSI) | uic.org|rics:1080 |
+| http:uic.org  | rics     | UIC company code (TAP-TSI) | uic.org:rics:1080 |
 
 
 ## Accommodation Type
