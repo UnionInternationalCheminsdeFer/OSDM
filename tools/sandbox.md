@@ -39,6 +39,6 @@ username and password combination which is required to obtain a OAuth2 JWT token
 actual OSDM calls can be performed on the API.
 
 To register an account, please send an email including your name, role, company and a brief
-explanation of your interest in OSDM to [sandbox-osdm@sqills.com](mailto:sandbox-osdm@sqills.com).
+explanation of your interest in OSDM to [support-osdm@sqills.com ](mailto:support-osdm@sqills.com ).
 
 ![Sqills](../images/logo/Sqills-logo.png)
