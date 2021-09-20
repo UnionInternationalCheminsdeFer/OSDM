@@ -2613,12 +2613,16 @@ components:
           $ref: "#/components/schemas/PlaceParam"
 
     PlaceInformationRequest: ## OJP
-      allOf:
-        - oneOf: 
-          - $ref: "#/components/schemas/InitialPlaceInput"
-          - $ref: "#/components/schemas/PlaceRef"
-        - type: object
-          properties:
+      #allOf:
+      #  - oneOf: 
+      #    - $ref: "#/components/schemas/InitialPlaceInput"
+      #    - $ref: "#/components/schemas/PlaceRef"
+      type: object
+      properties:
+            input:
+              $ref: "#/components/schemas/InitialPlaceInput"
+            place:
+              $ref: "#/components/schemas/Place"              
             restrictions:
               $ref: "#/components/schemas/PlaceParam"
             
@@ -2749,12 +2753,12 @@ components:
         origin:
           description: >-
             Specifies the origin situation from where the user wants to start.
-          $ref: "#/components/schemas/PlaceRef"
+          $ref: "#/components/schemas/Place"
         # Array out of Scope
         destination:
           description: >-
             Specifies the destination situation where the user is heading to.
-          $ref: "#/components/schemas/PlaceRef"
+          $ref: "#/components/schemas/Place"
         # Array out of Scope
         via:
           description: >-
@@ -2840,18 +2844,23 @@ components:
     #     stopPointRef:
     #       $ref: "#/components/schemas/StopPointRef"
 
-    PlaceRef:  ## OJP
-      description: >-
-        Reference to a geographic PLACE of any type which may be specified as the origin or destination of a trip.
-      allOf:
-        - oneOf:
-        #  - $ref: "#/components/schemas/StopPointRefStructure"
-          - $ref: "#/components/schemas/StopPlaceRef"
-          - $ref: "#/components/schemas/GeoPosition"
-        #  - $ref: "#/components/schemas/TopographicPlaceRefStructure"
-          - $ref: "#/components/schemas/PointOfInterestRef"
-          - $ref: "#/components/schemas/AddressRef"
-        # - $ref: "#/components/schemas/LocationNameStructure"
+    #PlaceRef:  ## OJP
+    #  description: >-
+    #    Reference to a geographic PLACE of any type which may be specified as the origin or destination of a trip.
+    # allOf:
+    #  - oneOf:
+    #  - $ref: "#/components/schemas/StopPointRefStructure"
+    #  properties:
+    #stopPlaceRef:
+    #  $ref: "#/components/schemas/StopPlaceRef
+    #    geoCoordinate:
+    #      $ref: "#/components/schemas/GeoPosition"
+    #  - $ref: "#/components/schemas/TopographicPlaceRefStructure
+    #    pointOfInterest:
+    #      $ref: "#/components/schemas/PointOfInterestRef"
+    #    addressRef:
+    #      $ref: "#/components/schemas/AddressRef"
+    # - $ref: "#/components/schemas/LocationNameStructure"
 
     TripVia:  ## OJP
       description: >-
@@ -2860,7 +2869,7 @@ components:
         - viaPoint 
       properties:
         viaPoint:
-          $ref: "#/components/schemas/PlaceRef"
+          $ref: "#/components/schemas/Place"
         dwellTime:
           type: string
           format: duration
@@ -2960,7 +2969,7 @@ components:
           description: Whether modes in list are to include or exclude from search.
           type: boolean
           default: True
-        ptMode:
+        transportModes:
           description: List of Transport modes to include/exclude.
           type: array
           items:
@@ -3450,10 +3459,10 @@ components:
           $ref: "#/components/schemas/TransferMode"
         legStart:
           description: Stop/Station where boarding is done
-          $ref: "#/components/schemas/PlaceRef"
+          $ref: "#/components/schemas/Place"
         legEnd:
           description: Stop/Station to alight
-          $ref: "#/components/schemas/PlaceRef"
+          $ref: "#/components/schemas/Place"
         timeWindow:
           $ref: "#/components/schemas/TimeWindow"
         duration:
@@ -3496,10 +3505,10 @@ components:
       properties:
         legStart:
           description: Stop/Station where boarding is done
-          $ref: "#/components/schemas/PlaceRef"
+          $ref: "#/components/schemas/Place"
         legEnd:
           description: Stop/Station to alight
-          $ref: "#/components/schemas/PlaceRef"
+          $ref: "#/components/schemas/Place"
         service:
           $ref: "#/components/schemas/ContinuousService"
         timeWindow:
@@ -3945,7 +3954,7 @@ components:
             $ref: "#/components/schemas/Address"
           pointOfInterest:  
             $ref: "#/components/schemas/PointOfInterest"
-          stopPLace:
+          stopPlace:
             $ref: "#/components/schemas/StopPlace"
       #  - $ref: "#/components/schemas/StopPointStructure"  # Out of scope
       #  - $ref: "#/components/schemas/TopographicPlaceStructure"  # Out of scope
