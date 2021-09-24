@@ -13,9 +13,9 @@ provided within the schema or within the IRS90918-10 specification.
 
 | Name Space and domain | CodeList | Description | example |
 |-----------------------|----------|-------------|---------|
-| http:uic.org  | stn      | UIC station codes (TAP-TSI) | uic.org:stn:8512345 |
-| http:uic.org  | sbc      | UIC service brand code (TAP-TSI) | uic.org:sbc:17 |
-| http:uic.org  | rics     | UIC company code (TAP-TSI) | uic.org:rics:1080 |
+| urn:uic  | stn      | UIC station codes (TAP-TSI) | uic:stn:8512345 |
+| urn:uic  | sbc      | UIC service brand code (TAP-TSI) | uic:sbc:17 |
+| urn:uic  | rics     | UIC company code (TAP-TSI) | uic:rics:1080 |
 
 
 ## Accommodation Type
