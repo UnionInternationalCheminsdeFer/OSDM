@@ -63,83 +63,83 @@ tags:
     description: >-
       resources to get the layout of a coach
 paths:
-  /place-information/{placeInformationId}:
-    get:
-      tags: 
-        - Place Information
-      summary: returns a place-information
-      description: >-
-        Returns trips for a given trip request based on the specification.
-      operationId: getPlaceInformation
-      parameters:
-        - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/accessToken"
-        - in: path
-          name: placeInformationId
-          schema:
-            type: string
-          required: true
-          description: ID of the place information to get.
-      responses:
-        '200':
-          description: place information found matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PlaceInformationResponse"
-        '400':
-          description: bad input parameter
-        '401':
-          description: unauthorized
-        '403':
-          description: forbidden
-        '404':
-          description: no place information found
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          description: not implemented
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
-        
-  /place-information:
-    post:
-      tags:
-        - Place Information
-      summary: returns place information for a given place information request
-      description: >-
-        Returns place information for a given place information request based on the OJP specification.
-      operationId: postPlaceInformation
-      parameters:
-        - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/accessToken"
-      requestBody:
-        description: request for place information
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/PlaceInformationRequest"
-      responses:
-        '200':
-          description: place information found matching criteria
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PlaceInformationResponse"
-        '400':
-          description: bad input parameter
-        '401':
-          description: unauthorized
-        '403':
-          description: forbidden
-        '404':
-          description: no place information found
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        "501":
-          description: not implemented
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
+#  /place-information/{placeInformationId}:
+#    get:
+#      tags: 
+#        - Place Information
+#      summary: returns a place-information
+#      description: >-
+#        Returns trips for a given trip request based on the specification.
+#      operationId: getPlaceInformation
+#      parameters:
+#        - $ref: "#/components/parameters/acceptLanguage"
+#        - $ref: "#/components/parameters/accessToken"
+#        - in: path
+#          name: placeInformationId
+#          schema:
+#            type: string
+#          required: true
+#          description: ID of the place information to get.
+#      responses:
+#        '200':
+#          description: place information found matching criteria
+#          content:
+#            application/json:
+#              schema:
+#                $ref: "#/components/schemas/PlaceInformationResponse"
+#        '400':
+#          description: bad input parameter
+#        '401':
+#          description: unauthorized
+#        '403':
+#          description: forbidden
+#        '404':
+#          description: no place information found
+#        '500':
+#          $ref: '#/components/responses/InternalServerErrorResponse'
+#        '501':
+#          description: not implemented
+#        '503':
+#          $ref: '#/components/responses/ServiceUnavailableResponse'
+#        
+#  /place-information:
+#    post:
+#      tags:
+#        - Place Information
+#      summary: returns place information for a given place information request
+#      description: >-
+#        Returns place information for a given place information request based on the OJP #  specification.
+#      operationId: postPlaceInformation
+#      parameters:
+#        - $ref: "#/components/parameters/acceptLanguage"
+#        - $ref: "#/components/parameters/accessToken"
+#      requestBody:
+#        description: request for place information
+#        content:
+#          application/json:
+#            schema:
+#              $ref: "#/components/schemas/PlaceInformationRequest"
+#      responses:
+#        '200':
+#          description: place information found matching criteria
+#          content:
+#            application/json:
+#              schema:
+#                $ref: "#/components/schemas/PlaceInformationResponse"
+#        '400':
+#          description: bad input parameter
+#        '401':
+#          description: unauthorized
+#        '403':
+#          description: forbidden
+#        '404':
+#          description: no place information found
+#        '500':
+#          $ref: '#/components/responses/InternalServerErrorResponse'
+#        "501":
+#          description: not implemented
+#        '503':
+#          $ref: '#/components/responses/ServiceUnavailableResponse'#
 
   /places/{placeId}:
     get:
@@ -2588,15 +2588,17 @@ components:
       properties:
         warnings:
           $ref: '#/components/schemas/WarningMessageList'
-        place:
-          $ref: '#/components/schemas/Place'
+        places:
+          type: array
+          items:
+            $ref: '#/components/schemas/Place'
 
     TripResponse:  ## OJP
       type: object
       properties:
         warnings:
           $ref: '#/components/schemas/WarningMessageList'
-        place:
+        trip:
           $ref: '#/components/schemas/Trip'
         
 
@@ -2684,33 +2686,28 @@ components:
         #initialInput:
         #  anyOf:
         name:
-            $ref: "#/components/schemas/Name"
+          description: >-
+            Name of the place object which is looked after. This is usually the user's input. If not given,
+            the name of the resulting place objects is not relevant.
+          type: string
+          example: "Bern Bärengraben"
         geoCoordinate:
             $ref: "#/components/schemas/GeoCoordinate"
   #         - $ref: "#/components/schemas/GeoRestriction"   # Out of scope
   #         - $ref: "#/components/schemas/AllowedSystemId"    # Out of scope
 
-    Name:  ## OJP
-      description: >-
-        Name of the place object which is looked after. This is usually the user's input. If not given,
-        the name of the resulting place objects is not relevant.
-      type: object
-      properties:
-        name:
-          type: string
-          example: "Bern Bärengraben"
 
-    PlaceInformationResponse:  ## OJP
-      type: object
-      properties:
-        # placeInformationResponseContext:   # Out of scope
-        #   $ref: "#/components/schemas/PlaceContext"
-        # continueAt:   # Ouf of scope
-        #   type: string
-        placeResults:
-          type: array
-          items:
-            $ref: "#/components/schemas/PlaceResult"
+#PlaceInformationResponse:  ## OJP
+#      type: object
+#      properties:
+#        # placeInformationResponseContext:   # Out of scope
+#        #   $ref: "#/components/schemas/PlaceContext"
+#        # continueAt:   # Ouf of scope
+#        #   type: string
+#        placeResults:
+#          type: array
+#          items:
+#            $ref: "#/components/schemas/PlaceResult"
 
      
 
@@ -2750,6 +2747,14 @@ components:
       type: object
       properties:
         # Array out of Scope
+        departureTime:
+          type: string
+          format: date-time
+        arrivalTime:
+          description: >- 
+            requested arrival time. If arrival time is provided the departure time must be omitted.
+          type: string
+          format: date-time
         origin:
           description: >-
             Specifies the origin situation from where the user wants to start.
@@ -3148,30 +3153,35 @@ components:
           minimum: 0
         # tripResponseContext:  ## Out of scope
         #  $ref: "#/components/schemas/ResponseContext"
-        tripResult:
+#        tripResult:
+#          type: array
+#          items:
+#            $ref: "#/components/schemas/TripResult"
+        trips:
           type: array
           items:
-            $ref: "#/components/schemas/TripResult"
+            $ref: "#/components/schemas/Trip"            
+            
         links: 
           $ref: "#/components/schemas/Link"
 
-    TripResult:  ## OJP
-      description: The trip results found by the server.
-      #allOf:
-      type: object
-      properties:
-        resultId:
-            description: >-
-                Id of this trip result for referencing purposes. Unique within trip response.
-            type: string
-            format: uuid
-        #    - resultId
-        #  - $ref: "#/components/schemas/ErrorMessage"  ## Out of Scope
-        # oneOf:
-        trip:
-          $ref: "#/components/schemas/Trip"
-        #  - $ref: "#/components/schemas/TripSummary"  ## Out of Scope
-        #  - $ref: "#/components/schemas/TripFare"   ## Out of Scope
+#    TripResult:  ## OJP
+#      description: The trip results found by the server.
+#      #allOf:
+#      type: object
+#      properties:
+#        resultId:
+#            description: >-
+#                Id of this trip result for referencing purposes. Unique within trip response.
+#            type: string
+#            format: uuid
+#        #    - resultId
+#        #  - $ref: "#/components/schemas/ErrorMessage"  ## Out of Scope
+#        # oneOf:
+#        trip:
+#          $ref: "#/components/schemas/Trip"
+ #       #  - $ref: "#/components/schemas/TripSummary"  ## Out of Scope
+#        #  - $ref: "#/components/schemas/TripFare"   ## Out of Scope
 
     # ErrorMessage: ## OJP  --> Todo: Better map to Problem (RfC 7807)
     #   type: object
@@ -3407,14 +3417,18 @@ components:
         - service
       type: object
       properties:
-        legBoard:
-          $ref: "#/components/schemas/LegBoard"
-        legIntermediates:
+        stops: 
           type: array
           items:
-            $ref: "#/components/schemas/LegIntermediate"
-        legAlight:
-          $ref: "#/components/schemas/LegAlight"
+            $ref: "#/components/schemas/Stop"
+        #legBoard:
+        #  $ref: "#/components/schemas/LegBoard"
+        #legIntermediates:
+        #  type: array
+        #  items:
+        #    $ref: "#/components/schemas/LegIntermediate"
+        #legAlight:
+        #  $ref: "#/components/schemas/LegAlight"
         service:
           $ref: "#/components/schemas/DatedJourney"
         # legAttribute:  ## Out of scope
@@ -3562,14 +3576,13 @@ components:
         destinationText:
           type: string
 
-    ContinuousMode:  ## OJP
+    ContinuousMode:  ## OJP -- WALK removed
       description: Types of modes that run at any time without a timetable.
       type: string
       enum:
-        - WALK
+#        - WALK
         - DEMAND_RESPONSIVE
         - REPLACEMENT_SERVICE
-      default: WALK
     
     IndividualMode:  ## OJP
       description: Modes which an individual powers themselves (such as walk, cycle).
@@ -3612,27 +3625,27 @@ components:
     #  x-extensible-enum:
     #    - CAR_POOLING
 
-    VehicleModesOfTransportEnumeration:  ## OJP  # TODO: Clarify description
-      description: Vehicle mode- Tpeg ModeType pti1.
-      type: string
-      x-extensible-enum:
-        - HIGH_SPEED_TRAIN
-        - HISTORIC_TRAIN	
-        - INTERCITY	
-        - REGIONAL	
-        - INTERREGIONAL	
-        - TRAIN	 	
-        - URBAN	 	
-        - TRAM	 	
-        - UNDERGROUND	
-        - NIGHT_TRAIN	
-        - SHARED_TAXI	
-        - MOTOR_RAIL	
-        - MOUNTAIN_TRAIN	
-        - PLANE	 	
-        - COACH_GROUP	
-        - SHIP	 	
-        - BUS
+#    VehicleModesOfTransportEnumeration:  ## OJP  # TODO: Clarify description
+#      description: Vehicle mode- Tpeg ModeType pti1.
+#      type: string
+#      x-extensible-enum:
+#        - HIGH_SPEED_TRAIN
+#        - HISTORIC_TRAIN  
+#        - INTERCITY  
+ #       - REGIONAL  
+#        - INTERREGIONAL  
+#        - TRAIN     
+#        - URBAN     
+#        - TRAM     
+#        - UNDERGROUND  
+#        - NIGHT_TRAIN  
+#        - SHARED_TAXI  
+#        - MOTOR_RAIL  
+#        - MOUNTAIN_TRAIN  
+#        - PLANE     
+#        - COACH_GROUP  
+#        - SHIP     
+#        - BUS
         #- UNKNOWN
         #- RAILWAY_SERVICE
         #- RAIL
@@ -3698,18 +3711,18 @@ components:
           type: boolean
           default: false
         
-    LegBoard:  ## OJP
-      description: Stop/Station where boarding is done.
+#    LegBoard:  ## OJP
+#      description: Stop/Station where boarding is done.
       # allOf:
-      type: object
-      required:
-        - stopPlace
-        # - stopPointName
-        - serviceDeparture  
-      properties:
-        stopPlace:
-          $ref: "#/components/schemas/StopPlace"
-            # stopPointName:
+#      type: object
+#      required:
+#        - stopPlace
+#        # - stopPointName
+#        - serviceDeparture  
+#      properties:
+#        stopPlace:
+#          $ref: "#/components/schemas/StopPlace"
+#            # stopPointName:
             #   type: string
             #   example: Brussel, Quay 14
             # nameSuffix:
@@ -3717,25 +3730,25 @@ components:
             #     Additional description of the stop point that may be appended to the 
             #     name if enough space is available. F.e. "opposite main entrance".
             #   type: string
-        plannedQuay:
-          description: >-
-                Name of the bay where to board the vehicle. According to planned timetable.
-          type: string
-          example: "4"
-        estimatedQuay:
-          description: >-
-                Name of the bay where to board the vehicle. As to the latest realtime status.
-          type: string
-          example: "8"
-        serviceDeparture: # EXT directly inline service time
-              description: >-
-                Describes the departure situation at this leg board stop point (group of attributes
-                of timetabled passing time, estimated passing time, observed passing time).
-              $ref: "#/components/schemas/ServiceTime"
-        status:
-          $ref: "#/components/schemas/StopCallStatus"
+#        plannedQuay:
+# #         description: >-
+#                Name of the bay where to board the vehicle. According to planned timetable.
+#          type: string
+#          example: "4"
+#        estimatedQuay:
+#          description: >-
+#                Name of the bay where to board the vehicle. As to the latest realtime status.
+#          type: string
+#          example: "8"
+#        serviceDeparture: # EXT directly inline service time
+#              description: >-
+ #               Describes the departure situation at this leg board stop point (group of attributes
+#                of timetabled passing time, estimated passing time, observed passing time).
+#              $ref: "#/components/schemas/ServiceTime"
+#        status:
+#          $ref: "#/components/schemas/StopCallStatus"
 
-    LegIntermediate:  ## OJP
+    Stop:  ## OJP = LegBoard LegIntermdiate  LegAlign
       description: >-
         Describes the situation at a stop or station that lies between the
         LegBoard and LegAlight stop or station including time-related information.
@@ -3767,49 +3780,86 @@ components:
             serviceDeparture: # EXT directly inline service time
               description: >-
                 Describes the departure situation at this leg board stop point (group of attributes
-                of timetabled passing time, estimated passing time, observed passing time).
+                of timetabled passing time, estimated passing time, observed passing time).#
               $ref: "#/components/schemas/ServiceTime"
             status:
               $ref: "#/components/schemas/StopCallStatus"
 
-    LegAlight:  ## OJP
-      description: >-
-        Describes the situation at a stop or station at which the passenger alights
-        from a Leg of a trip including time-related information.
-      # allOf:
-      type: object
-      required:
-            - stopPlace
-            - serviceArrival
-           # - stopPointName      
-      properties:
-        stopPlace:
-              $ref: "#/components/schemas/StopPlace" ## EXT switched from PointPlace
-            # stopPointName:
-            #   type: string
-            #   example: Luzern
-            # nameSuffix:
-            #   description: >-
-            #     Additional description of the stop point that may be appended to the 
-            #     name if enough space is available. F.e. "opposite main entrance".
-            #   type: string
-        plannedQuay:
-              description: >-
-                Name of the bay where to alight from the vehicle. According to planned timetable.
-              type: string
-              example: "3"
-        estimatedQuay:
-              description: >-
-                Name of the bay where to alight from the vehicle. As to the latest realtime status.
-              type: string
-              example: "8"
-        serviceArrival: # EXT directly inline service time
-              description: >-
-                Describes the arrival situation at this leg board stop point (group of attributes
-                of timetabled passing time, estimated passing time, observed passing time).
-              $ref: "#/components/schemas/ServiceTime"
-        status: 
-              $ref: "#/components/schemas/StopCallStatus"
+#    LegIntermediate:  ## OJP
+#      description: >-
+#        Describes the situation at a stop or station that lies between the
+#        LegBoard and LegAlight stop or station including time-related information.
+#      #allOf:
+#      type: object
+#      required:
+#            #- order
+#            #- plannedQuay
+#            #- serviceArrival
+#            #- stopPointName
+#            - stopPlace
+#      properties:
+#            stopPlace:
+#              $ref: "#/components/schemas/StopPlace"   ## EXT
+#            # stopPointName:
+#            #   type: string
+#            #   example: Luzern
+#            plannedQuay:
+#              description: >-
+#                Name of the bay where to board/alight from the vehicle. According to 
+#                planned timetable.
+#              type: string
+#              example: "3"
+#            serviceArrival: # EXT directly inline service time
+#              description: >-
+#                Describes the arrival situation at this leg board stop point (group of attributes
+#                of timetabled passing time, estimated passing time, observed passing time).
+#              $ref: "#/components/schemas/ServiceTime"
+#            serviceDeparture: # EXT directly inline service time
+#              description: >-
+#                Describes the departure situation at this leg board stop point (group of attributes
+#                of timetabled passing time, estimated passing time, observed passing time).
+#              $ref: "#/components/schemas/ServiceTime"
+#            status:
+#              $ref: "#/components/schemas/StopCallStatus"
+
+#    LegAlight:  ## OJP
+#      description: >-
+#        Describes the situation at a stop or station at which the passenger alights
+#        from a Leg of a trip including time-related information.
+#      # allOf:
+#      type: object
+#      required:
+#            - stopPlace
+#            - serviceArrival
+#           # - stopPointName      
+#      properties:
+#        stopPlace:
+#              $ref: "#/components/schemas/StopPlace" ## EXT switched from PointPlace
+#            # stopPointName:
+#            #   type: string
+#            #   example: Luzern
+#            # nameSuffix:
+#            #   description: >-
+#            #     Additional description of the stop point that may be appended to the 
+#            #     name if enough space is available. F.e. "opposite main entrance".
+#            #   type: string
+#        plannedQuay:
+#              description: >-
+#                Name of the bay where to alight from the vehicle. According to planned timetable.
+#              type: string
+#              example: "3"
+#        estimatedQuay:
+#              description: >-
+#                Name of the bay where to alight from the vehicle. As to the latest realtime status.
+#              type: string
+#              example: "8"
+#        serviceArrival: # EXT directly inline service time
+#              description: >-
+#                Describes the arrival situation at this leg board stop point (group of attributes
+#                of timetabled passing time, estimated passing time, observed passing time).
+#              $ref: "#/components/schemas/ServiceTime"
+#        status: 
+#              $ref: "#/components/schemas/StopCallStatus
 
     ServiceTime:  ## OJP
       description: >-
@@ -3930,7 +3980,7 @@ components:
           $ref: "#/components/schemas/ProductCategoryRef"
 
     Place:  ## OJP
-      description: 
+      description: >-
         A geographic place of any type which may be specified as the origin or destination of a trip.
       # allOf:
       #- oneOf:
@@ -3945,8 +3995,9 @@ components:
       properties:
           id: 
             type: string
-            description: id uniquely definining the place
-            example: "uic:850000"
+            description: >- 
+              id uniquely definining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn "0850000"
+            example: "urn:uic:stn:8500000"
           name:
             type: string
             example: Zürich HB
@@ -3996,15 +4047,15 @@ components:
           #   type: string
           # - $ref: "#/components/schemas/AddressDetail"
         countryName:
-          description: "Country of the address."
+          description: Country of the address.
           type: string
           example: The Netherlands
         countryCode:
-          description: ISO country code (2 alpha)
+          description: ISO country code (2 alpha), relative URNs with base urn:iso:std:iso:3166 are recommended
           type: string
-          example: "DE"  
+          example: DE
         postCode:
-          description: "Postal code of the address."
+          description: Postal code of the address.
           type: string
           example: 2265CA
         # topographicPlaceName:  # Out of scope
@@ -4018,10 +4069,6 @@ components:
           description: Street name of the address.
           type: string
           example: Oude Trambaan
-        houseName:
-          description: name of the house
-          type: string
-          example: "Gran Hotel Excelsior"
         houseNumber:
           description: House number of the address. If none is given, either a crossing street can be given, or the whole street is meant.
           type: string
@@ -4318,7 +4365,7 @@ components:
       description: >-
         A reference to the product category using URNs to define code list. Default is UIC service brand code (TAP-TS
       type: string
-      example: "76"
+      example: "urn:uic:sbc:76"
 
     OperationDayRef:  ## OJP
       description: Reference to an operating day
