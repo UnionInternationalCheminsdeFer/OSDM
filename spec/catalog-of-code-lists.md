@@ -11,13 +11,13 @@ provided within the schema or within the IRS90918-10 specification.
 
 ## URNs for code lists
 
-| Name Space and domain | CodeList | Description | example |
-|-----------------------|----------|-------------|---------|
-| urn:uic  | stn      | UIC station codes (TAP-TSI) | uic:stn:8512345 |
-| urn:uic  | sbc      | UIC service brand code (TAP-TSI) | uic:sbc:17 |
-| urn:uic  | rics     | UIC company code (TAP-TSI) | uic:rics:1080 |
-| urn:iso  | std:iso:3166 | ISO Country Codes | urn:iso:std:iso:3166:CH |
-| urn:iso  | std:iso:4217 | ISO Currency Codes | urn:iso:std:iso:4217:CFR |
+| Code List | Name Space and domain | CodeList | Description | example | base path for relative references |
+| --------- |-----------------------|----------|-------------|---------| --------------------------------- |
+| stations  | urn:uic  | stn      | UIC station codes (TAP-TSI) | uic:stn:8512345 |  urn:uic:stn: |
+| service brands , products | urn:uic  | sbc      | UIC service brand code (TAP-TSI) | uic:sbc:17 |   urn:uic:sbc |
+| companies | urn:uic  | rics     | UIC company code (TAP-TSI) | uic:rics:1080 |  urn:uic:rics: |
+| countries | urn:iso  | std:iso:3166 | ISO Country Codes | urn:iso:std:iso:3166:CH |  urn:iso:std:iso:3166 | 
+| currencies | urn:iso  | std:iso:4217 | ISO Currency Codes | urn:iso:std:iso:4217:CFR |  urn:iso:std:iso:4217: | 
 
 
 ## Accommodation Type
