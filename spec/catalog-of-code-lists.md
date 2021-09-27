@@ -16,6 +16,8 @@ provided within the schema or within the IRS90918-10 specification.
 | urn:uic  | stn      | UIC station codes (TAP-TSI) | uic:stn:8512345 |
 | urn:uic  | sbc      | UIC service brand code (TAP-TSI) | uic:sbc:17 |
 | urn:uic  | rics     | UIC company code (TAP-TSI) | uic:rics:1080 |
+| urn:iso  | std:iso:3166 | ISO Country Codes | urn:iso:std:iso:3166:CH |
+| urn:iso  | std:iso:4217 | ISO Currency Codes | urn:iso:std:iso:4217:CFR |
 
 
 ## Accommodation Type
