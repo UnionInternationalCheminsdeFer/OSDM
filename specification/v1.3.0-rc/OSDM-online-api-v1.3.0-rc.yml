@@ -6176,7 +6176,7 @@ components:
             of the problem.
           minimum: 100
           maximum: 600
-          exclusiveMaximum: true
+          exclusiveMaximum: 600
           example: 503
         detail:
           type: string
