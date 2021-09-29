@@ -482,7 +482,7 @@ If a customer wants to refund its ticket, the flow is a two step process analogo
 
 - Step 2: Accept the refund offer.
 
-    To accept the refund offer you patch the `PATCH /bookings/{{booking_id}}/refundOffers/{{refund_id}}`
+    To accept the refund offer you patch the `PATCH /bookings/{booking_id}/refundOffers/{refund_id}`
 
     with a body of:
 
