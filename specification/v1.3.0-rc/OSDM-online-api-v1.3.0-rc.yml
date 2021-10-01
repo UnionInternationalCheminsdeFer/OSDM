@@ -3464,19 +3464,19 @@ components:
           type: string
           format: duration
 
-    TimeWindow:  ## OJP
-      description: >-
-        The window of opportunity that the traveller has to perform this leg of the journey.
-      type: object
-      properties:
-        timeWindowStart:
-          description: Time at which window begins.
-          type: string
-          format: date-time
-        timeWindowEnd:
-          description: Time at which window ends.
-          type: string
-          format: date-time
+    # TimeWindow:  ## OJP
+    #   description: >-
+    #     The window of opportunity that the traveller has to perform this leg of the journey.
+    #   type: object
+    #   properties:
+    #     timeWindowStart:
+    #       description: Time at which window begins.
+    #       type: string
+    #       format: date-time
+    #     timeWindowEnd:
+    #       description: Time at which window ends.
+    #       type: string
+    #       format: date-time
 
     TransferLeg:  ## OJP
       description: >-
@@ -3496,10 +3496,16 @@ components:
         legEnd:
           description: Stop/Station to alight
           $ref: "#/components/schemas/Place"
-        timeWindow:
-          $ref: "#/components/schemas/TimeWindow"
+        timeWindowStart: # Inlined from TimeWindow
+          description: Time at which window begins.
+          type: string
+          format: date-time
+        timeWindowEnd: # Inlined from TimeWindow
+          description: Time at which window ends.
+          type: string
+          format: date-time
         duration:
-          description: Overall duration or this interchange.
+          description: Overall duration of this interchange.
           type: string
           format: duration
           example: "PT20M"
@@ -3544,9 +3550,14 @@ components:
           $ref: "#/components/schemas/Place"
         service:
           $ref: "#/components/schemas/ContinuousService"
-        timeWindow:
-          description: Time window events should lie within. Starting from time given in PlaceContext.
-          $ref: "#/components/schemas/TimeWindow"
+        timeWindowStart: # Inlined from TimeWindow
+          description: Time at which window begins.
+          type: string
+          format: date-time
+        timeWindowEnd: # Inlined from TimeWindow
+          description: Time at which window ends.
+          type: string
+          format: date-time
         duration:
           description: >-
             Duration of this leg according to user preferences like walk speed.
