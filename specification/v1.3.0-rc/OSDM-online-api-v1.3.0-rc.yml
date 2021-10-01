@@ -3440,18 +3440,14 @@ components:
         - service
       type: object
       properties:
-        stops: 
+        legBoard: # EXT: use Place instead of LegBoard
+          $ref: "#/components/schemas/Place"
+        legIntermediates: # EXT: use Place instead of LegIntermediate
           type: array
           items:
-            $ref: "#/components/schemas/Stop"
-        #legBoard:
-        #  $ref: "#/components/schemas/LegBoard"
-        #legIntermediates:
-        #  type: array
-        #  items:
-        #    $ref: "#/components/schemas/LegIntermediate"
-        #legAlight:
-        #  $ref: "#/components/schemas/LegAlight"
+            $ref: "#/components/schemas/Place"
+        legAlight: # EXT: use Place instead of LegAlight
+          $ref: "#/components/schemas/Place"
         service:
           $ref: "#/components/schemas/DatedJourney"
         # legAttribute:  ## Out of scope
@@ -3464,7 +3460,7 @@ components:
         #   type: array
         #   items:
         #     $ref: "#/components/schemas/LegTrack"
-        duration: 
+        duration: # EXT add attribute for consistency
           type: string
           format: duration
 
@@ -6180,7 +6176,7 @@ components:
             of the problem.
           minimum: 100
           maximum: 600
-          exclusiveMaximum: 600
+          exclusiveMaximum: true
           example: 503
         detail:
           type: string
