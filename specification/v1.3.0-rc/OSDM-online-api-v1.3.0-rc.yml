@@ -4483,7 +4483,16 @@ components:
       type: object      
       description: >-
         Defines the parameters needed to request an offer. 
+
+        You can use the tripSearchCriteria (origin, destination,... ) or a list of trips to find trip offers.
+
+        If you are searching for fares you pass in the complete trip in trips and the use the returnSearchCriteria
+        to define which part you need fares (especially if you want a price up to a virtual border point).
       properties:
+        trips:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trip'
         tripSearchCriteria:
           $ref: '#/components/schemas/TripRequest'      
         returnSearchParameters:
