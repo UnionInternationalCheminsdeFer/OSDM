@@ -26,9 +26,9 @@ tags:
   - name: Places
     description: >-
       resources to search for places
-  - name: Place Information
-    description: >-
-      resources to search for place information
+ # - name: Place Information
+ #   description: >-
+ #     resources to search for place information
   - name: Trips
     description: >-
       resources to search for trips
@@ -3008,6 +3008,27 @@ components:
           items:
             type: string
 
+    VehicleFilter: # EXT
+      description: >-
+        Filter for in/exclusion of vehicle. Either the vehicle number array or the vehicle line
+        array must be set.
+      type: object
+      properties:
+        exclude:
+          description: Whether vehicle in list is to include or exclude from search.
+          type: boolean
+          default: True
+        vehicleNumbers:
+          description: Reference to vehicle number
+          type: array
+          items:
+            type: string
+        vehicleLines:
+          description: Reference to vehicle line
+          type: array
+          items:
+            type: string
+
     PointOfInterestFilter:  ## OJP
       description: Filter POIs by category 
       type: object
@@ -3052,6 +3073,8 @@ components:
           $ref: "#/components/schemas/ServiceBrandFilter"
         # privateModeFilter:  # Out of scope
         #   $ref: "#/components/schemas/PrivateModeFilter"
+        vehicleFilter:
+          $ref: "#/components/schemas/VehicleFilter"
 
     # BaseTripPolicy:  ## OJP
     #  description: Policies that control the trip search behavior for both public and individual transport.
