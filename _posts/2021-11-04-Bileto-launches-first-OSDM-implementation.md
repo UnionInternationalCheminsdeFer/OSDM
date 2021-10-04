@@ -6,8 +6,6 @@ date: 2021-10-04 12:10:33 +0100
 categories: osdm update
 ---
 
-## Introduction
-
 Brand new OSDM ticketing standard is poised to unify protocols used by European railways. Passengers benefit from more booking options, carriers, and ticket distributors will take advantage of a standards based solution with lower development costs.
 
 Prague-based [Bileto](https://www.bileto.com/en) successfully deployed and tested a next-generation ticketing interconnect to enable cross-carrier reservations within the national [OneTicket](https://oneticket.cz/home) system—a unified fare scheme covering 15 passenger rail operators in the Czech Republic. As of July 2021, carriers using the Bileto platform can seamlessly offer their seat inventory for sale with any OneTicket fare, even when ticketed by a different carrier. [ARRIVA](https://arriva.cz/) became the first operator to make its booking inventory available this way.
