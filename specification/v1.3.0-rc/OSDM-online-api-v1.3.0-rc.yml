@@ -3802,6 +3802,11 @@ components:
                 planned timetable.
               type: string
               example: "3"
+            estimatedQuay:
+              description: >-
+                Name of the bay where to board the vehicle. As to the latest realtime status.
+              type: string
+              example: "8"
             serviceArrival: # EXT directly inline service time
               description: >-
                 Describes the arrival situation at this leg board stop point (group of attributes
