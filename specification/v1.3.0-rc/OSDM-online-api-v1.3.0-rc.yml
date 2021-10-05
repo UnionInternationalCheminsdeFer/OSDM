@@ -3938,9 +3938,9 @@ components:
             or "Circle Line" or "ICE 488".
           type: string
           example: S1
-        trainNumber:
+        vehicleNumber:
           description: >-
-            If several TrainNumber types exist, use the commercial number.
+            If several vehicle number exist, use the commercial number.
           type: string
           example: 1
         operatorRef:
