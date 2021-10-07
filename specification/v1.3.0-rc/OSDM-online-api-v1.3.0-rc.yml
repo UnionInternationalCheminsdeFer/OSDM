@@ -3938,7 +3938,7 @@ components:
             or "Circle Line" or "ICE 488".
           type: string
           example: S1
-        vehicleNumber:
+        vehicleNumber:  # Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
           description: >-
             If several vehicle number exist, use the commercial number.
           type: string
