@@ -1,7 +1,7 @@
 ---
 layout: post
 title: It should be easier to book rail tickets across Europe – We’re on the case
-author: Patrich Heuget
+author: Patrick Heuget
 date: 2021-10-05 12:10:33 +0100
 categories: osdm update
 ---
