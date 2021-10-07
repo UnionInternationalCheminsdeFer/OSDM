@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Bileto Launches Europe’s First OSDM Implementation to Enable Next-gen Reservations Across Multiple Carriers"
-author: Andreas Schlapbach
+author: Josef Petrak
 date: 2021-10-04 12:10:33 +0100
 categories: osdm update
 ---
@@ -33,3 +33,5 @@ out-of-the-box.
 Bileto is a privately owned tech company based in Prague, Czechia. It has been developing its flagship booking system since 2015, focusing on serving public transportation companies that want to modernize and expand their online presence. By adopting the Bileto platform, train and bus operators of all sizes immediately get access to an advanced route search engine ready for web and mobile app integration, along with a comprehensive sales platform covering online, on-board and POS ticket sales, and a versatile API to easily integrate with third-party distributors.
 
 ![Bileto](https://unioninternationalcheminsdefer.github.io/OSDM/images/logo/bileto-logo.png)
+
+(*Source*: [https://www.bileto.com/en/blog/bileto-launches-europes-first-osdm-implementation-to-enable-next-gen-reservation](https://www.bileto.com/en/blog/bileto-launches-europes-first-osdm-implementation-to-enable-next-gen-reservation))
