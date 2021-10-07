@@ -1,12 +1,10 @@
 ---
 layout: post
-title: "OSDM Demo App Publicly Available"
-author: Andreas Schlapbach
-date: 2021-10-04 14:20:33 +0100
+title: "Bileto Launches Europe’s First OSDM Implementation to Enable Next-gen Reservations Across Multiple Carriers"
+author: Josef Petrak
+date: 2021-10-04 12:10:33 +0100
 categories: osdm update
 ---
-
-## Introduction
 
 Brand new OSDM ticketing standard is poised to unify protocols used by European railways. Passengers benefit from more booking options, carriers, and ticket distributors will take advantage of a standards based solution with lower development costs.
 
@@ -16,7 +14,7 @@ This breakthrough is enabled by the adoption of [OSDM](https://unioninternationa
 
 OSDM, short for Open Sales and Distribution Model, defines a standardized communication interface between passenger rail operators and ticket distributors. This enables sales channels to better access carrier’s fares and reservation inventory. Unlike its many predecessors, OSDM is based on modern, internet-era technologies and by its very nature is free from royalties or supplier lock-ins. The standard has been in development since 2020 as a joint effort of UIC member railways, as well as independent software vendors.
 
-Bileto became the very first solution provider to roll out an OSDM implementation into commercial usage in July 2021. The first successful ticketing interconnect was established with [Cendis](https://www.cendis.cz/), a state-owned entity tasked with managing the country’s unified fare system and its API. OneTicket’s core uses OSDM to search for and issue seat reservations offered by the Bileto reservation system. By extension, other rail carriers in the country get the same capability through OneTicket’s API. Going forward, the initial implementation will be extended to offer more seat selection options and other features.
+Bileto became the very **first solution provider to roll out an OSDM implementation** into commercial usage in July 2021. The first successful ticketing interconnect was established with [Cendis](https://www.cendis.cz/), a state-owned entity tasked with managing the country’s unified fare system and its API. OneTicket’s core uses OSDM to search for and issue seat reservations offered by the Bileto reservation system. By extension, other rail carriers in the country get the same capability through OneTicket’s API. Going forward, the initial implementation will be extended to offer more seat selection options and other features.
 
 *“Seamless connection of our booking platform with external distributors have been at the heart of our efforts for several years. Stand-alone seat reservation and search, however, necessitated significant new development on
 top of our existing interfaces. We even considered defining our own standard to meet our clients’ functional requirements. Ultimately, the advent of OSDM was timed perfectly to facilitate this step. Not only does it cover the
@@ -32,6 +30,8 @@ out-of-the-box.
 
 ### About Bileto
 
-Bileto is a privately owned tech company based in Prague, Czechia. It has been developing its flagship booking system since 2015, focusing on serving public transportation companies that want to modernize and expand their online presence. By adopting the Bileto platform, train and bus operators of all sizes immediately get access to an advanced route search engine ready for web and mobile app integration, along with a comprehensive sales platform covering online, on-board and POS ticket sales, and a versatile API to easily integrate with third-party
-distributors.
+Bileto is a privately owned tech company based in Prague, Czechia. It has been developing its flagship booking system since 2015, focusing on serving public transportation companies that want to modernize and expand their online presence. By adopting the Bileto platform, train and bus operators of all sizes immediately get access to an advanced route search engine ready for web and mobile app integration, along with a comprehensive sales platform covering online, on-board and POS ticket sales, and a versatile API to easily integrate with third-party distributors.
 
+![Bileto](https://unioninternationalcheminsdefer.github.io/OSDM/images/logo/bileto-logo.png)
+
+(*Source*: [https://www.bileto.com/en/blog/bileto-launches-europes-first-osdm-implementation-to-enable-next-gen-reservation](https://www.bileto.com/en/blog/bileto-launches-europes-first-osdm-implementation-to-enable-next-gen-reservation))

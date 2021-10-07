@@ -2,7 +2,7 @@
 layout: post
 title: "OSDM Demo App Publicly Available"
 author: Andreas Schlapbach
-date: 2021-10-04 14:20:33 +0100
+date: 2021-11-04 14:20:33 +0100
 categories: osdm update
 ---
 
