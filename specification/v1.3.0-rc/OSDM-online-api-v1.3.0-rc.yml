@@ -6005,8 +6005,6 @@ components:
       properties:
         warnings:
           $ref: '#/components/schemas/WarningMessageList'
-        selectablePlaces:
-          $ref: '#/components/schemas/PlaceAvailability'
         layouts:
           type: array
           items:
