@@ -2385,40 +2385,6 @@ paths:
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
-        - in: query 
-          description: id of the trip to offer
-          name: offerId
-          schema:
-            type: string
-            format: uuid
-          required: false
-        - in: query 
-          description: id of the reservation offer part within the offer
-          name: reservationId
-          schema:
-            type: string
-            format: uuid
-          required: false
-        - in: query 
-          description: id of the fare within the offer
-          name: fareId
-          schema:
-            type: string
-            format: uuid
-          required: false          
-        - in: query
-          name: embed
-          description: >-
-            Influences whether referenced resources are returned in full or as references only.
-          schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - ALL
-                - LAYOUT
-                - NONE
-            default: [ALL]
       responses:
         '200':
           description: coach layouts
@@ -6005,8 +5971,6 @@ components:
       properties:
         warnings:
           $ref: '#/components/schemas/WarningMessageList'
-        selectablePlaces:
-          $ref: '#/components/schemas/PlaceAvailability'
         layouts:
           type: array
           items:
