@@ -15,7 +15,7 @@ The following features have been added with version 1.2 of OSDM.
   ancillary service such a WIFI access. This feature opens the possibility to potentially sell
   public transportation unrelated services such as entrance to a museum or concert.
   
-  See the `/non-trip-based-offers` for more details.
+  See the `/non-trip-based-offers` resource for more details.
   
 - **Add support to query availabilities**
 
