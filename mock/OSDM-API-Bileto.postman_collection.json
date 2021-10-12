@@ -1,0 +1,558 @@
+{
+	"info": {
+		"_postman_id": "f6e4b725-0fe2-4da8-b8e1-19faa48c0890",
+		"name": "Bileto OSDM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Issue OAuth Access Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base}}/api/oauth/token?grant_type=client_credentials&client_id={{client_id}}&client_secret={{client_secret}}",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Trip Offers Collection (R 1076, Pardubice hl.n. - Liberec, reservations only)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"trip_offers_collection_id\", jsonData.id);",
+							"",
+							"var tripOffer = jsonData.tripOffers[0];",
+							"postman.setEnvironmentVariable(\"trip_offer_id\", tripOffer.id);",
+							"",
+							"var offer = tripOffer.offers[0];",
+							"postman.setEnvironmentVariable(\"offer_id\", offer.id);",
+							"",
+							"var reservation = offer.reservations[0];",
+							"postman.setEnvironmentVariable(\"reservation_id\", reservation.id);",
+							"",
+							"var passenger = tripOffer.passengers[0];",
+							"postman.setEnvironmentVariable(\"passenger_id\", passenger.id);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function pad(number) {\r",
+							"    return (number < 10) ? '0' + number : number;\r",
+							"}\r",
+							"\r",
+							"function get_next_weekday (date) {\r",
+							"    var tomorrow = new Date(date.setDate(date.getDate() + 1))\r",
+							"    return tomorrow.getDay() % 6\r",
+							"        ? tomorrow\r",
+							"        : get_next_weekday(tomorrow)\r",
+							"}\r",
+							"\r",
+							"var nextWeekday = get_next_weekday(new Date());\r",
+							"\r",
+							"postman.setEnvironmentVariable(\"next_weekday\", \"\" + nextWeekday.getUTCFullYear() + \"-\" + pad(nextWeekday.getUTCMonth() + 1) + \"-\" + pad(nextWeekday.getUTCDate()));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "{{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"passengers\" : [\n\t\t{\n\t\t\t\"dateOfBirth\" : \"2003-01-01\",\n\t\t\t\"cards\" : []\n\t\t}\n\t],\n\t\"tripSearchCriteria\" : {\n\t\t\"stopBehavior\": \"ORIGIN_DESTINATION_ONLY\",\n\t\t\"trips\" : [\n\t\t\t{\n\t\t\t\t\"trip\" : [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"index\" : 0,\n\t\t\t\t\t\t\"vehicle\": {\n\t\t\t\t\t\t\t\"numbers\": [\n\t\t\t\t\t\t\t  \"1076\"\n\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\"line\" : \"R14A\",\n\t\t\t\t\t\t\t\"serviceBrand\": \"R\",\n\t\t\t\t\t\t\t\"transportMode\": \"TRAIN\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"duration\": \"P2H56M\",\n\t\t\t\t\t\t\"origin\": {\n\t\t\t\t\t\t\t\"location\" : {\n\t\t\t\t\t\t\t\t\"station\" : {\n\t\t\t\t\t\t\t\t\t\"country\": \"cz\",\n\t\t\t\t\t\t\t\t\t\"codes\": [\n\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\"codeList\": \"UIC\",\n\t\t\t\t\t\t\t\t\t\t\t\"code\": \"{{origin_uic_code}}\"\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t]\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"destination\" : {\n\t\t\t\t\t\t\t\"location\" : {\n\t\t\t\t\t\t\t\t\"station\" : {\n\t\t\t\t\t\t\t\t\t\"country\": \"cz\",\n\t\t\t\t\t\t\t\t\t\"codes\": [\n\t\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\t\"codeList\": \"UIC\",\n\t\t\t\t\t\t\t\t\t\t\t\"code\": \"{{destination_uic_code}}\"\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t]\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t\t}\n\t\t],\n\t\t\"travelDateTime\" : {\n\t\t\t\"dateTime\": \"{{next_weekday}}T00:00:00+00:00\",\n\t\t\t\"isArrival\": false\n\t\t},\n\t\t\"maxChanges\": 0,\n\t\t\"extendedChangeTime\": 0,\n\t\t\"needsPRMAssistance\": false\n\t},\n\t\"offerSearchCriteria\" : {\n\t\t\"currency\" : \"CZK\",\n\t\t\"requestedOfferParts\" : [ \"RESERVATION\" ],\n\t\t\"serviceClassIds\": [ \"STANDARD\" ],\n\t\t\"comfortClasses\": [ \"SECOND\" ],\n\t\t\"embed\" : [ \"TRIPOFFERS\", \"TRIPOFFERS.OFFERS\", \"TRIPOFFERS.OFFERS.OFFERPARTS\", \"TRIPOFFERS.PASSENGERS\" ]\n\t},\n\t\"requestedFulfillmentOptions\" : [\n\t\t{\n\t\t\t\"type\" : \"ETICKET\",\n\t\t\t\"media\" : [ \"PDF_A4\" ]\n\t\t}\n\t]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/api/trip-offers-collection",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"trip-offers-collection"
+					],
+					"query": [
+						{
+							"key": "apiKey",
+							"value": "{{apiKey}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Place Maps for Reservation of Offer Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"var preSelection = jsonData.reservation.preSelection[0];\r",
+							"postman.setEnvironmentVariable(\"preselected_coach\", preSelection.coach);\r",
+							"postman.setEnvironmentVariable(\"preselected_place\", preSelection.place);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "{{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base}}/api/offers/{{offer_id}}/reservations/{{reservation_id}}/place-map",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"offers",
+						"{{offer_id}}",
+						"reservations",
+						"{{reservation_id}}",
+						"place-map"
+					],
+					"query": [
+						{
+							"key": "apiKey",
+							"value": "kunda",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Booking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"booking_id\", jsonData.booking.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "{{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"selectedOffers\" : [\r\n        {\r\n            \"selectedOfferId\" : \"{{offer_id}}\",\r\n            \"placeSelections\" : {\r\n                \"reservationId\" : \"{{reservation_id}}\",\r\n                \"placeSelection\" : {\r\n                    \"selectedCoach\" : {\r\n                        \"selectedCoaches\" : [\r\n                            {\r\n                                \"coachNumber\" : \"{{preselected_coach}}\",\r\n                                \"selectedPlaces\": [\r\n                                    {\r\n                                        \"passengerId\" : \"{{passenger_id}}\",\r\n                                        \"place\": \"{{preselected_place}}\"\r\n                                    }\r\n                                ]\r\n                            }\r\n                        ]\r\n                    }\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/api/bookings",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"bookings"
+					],
+					"query": [
+						{
+							"key": "apiKey",
+							"value": "kunda",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete prebooked Booking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "{{access_token}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base}}/api/bookings/{{booking_id}}?apiKey=kunda",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"bookings",
+						"{{booking_id}}"
+					],
+					"query": [
+						{
+							"key": "apiKey",
+							"value": "kunda"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtaining Fulfillments from Booking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Fulfillment for one booking obtained\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var fulfillments = jsonData.fulfillments;\r",
+							"    pm.expect(fulfillments.length).to.eql(1);\r",
+							"\r",
+							"    postman.setEnvironmentVariable(\"fulfillment_id\", jsonData.fulfillments[0].id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "{{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base}}/api/bookings/{{booking_id}}/fulfillments",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"bookings",
+						"{{booking_id}}",
+						"fulfillments"
+					],
+					"query": [
+						{
+							"key": "apiKey",
+							"value": "kunda",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Fulfillment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Fulfillment for one booking obtained\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var fulfillment = jsonData.fulfillment;\r",
+							"    pm.expect(fulfillment.id).to.eql(postman.getEnvironmentVariable(\"fulfillment_id\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "{{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base}}/api/fulfillments/{{fulfillment_id}}",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"fulfillments",
+						"{{fulfillment_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Requesting a Refund Offer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"refund_offer_id\", jsonData.refundOffersCollection.refundOffers[0].id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "{{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fulfillmentIds\" : [\r\n        {{fulfillment_id}}\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/api/bookings/{{booking_id}}/refundOffers",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"bookings",
+						"{{booking_id}}",
+						"refundOffers"
+					],
+					"query": [
+						{
+							"key": "apiKey",
+							"value": "kunda",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm the Refund Offer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Refund Offer was Confirmed\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData.refundOffer.status).to.eql(\"CONFIRMED\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "{{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"confirmedRefundOfferId\" : {{refund_offer_id}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/api/bookings/{{booking_id}}/refundOffers/{{refund_offer_id}}",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"bookings",
+						"{{booking_id}}",
+						"refundOffers",
+						"{{refund_offer_id}}"
+					],
+					"query": [
+						{
+							"key": "apiKey",
+							"value": "kunda",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
