@@ -9,35 +9,35 @@ permalink: /releases/OSDM-release-notes-v1.3/
 
 The following features have been added with version 1.3 of OSDM.
 
-- **Align /locations and /trips to Transmodel (OJP)**
+### Align /locations and /trips to Transmodel (OJP)
 
-  The main focus of this PI was to with the modelling of locations and trips to the model of OJP. The benefit of this change is to comply with European initiative such the National Access Point.
+The main focus of this PI was to align OSDM with the modelling of locations and trips of OSDM to the model of OJP. The benefits of this change are to profit from domain knowledge as well as to comply with European initiative such as the National Access Point initiative.
 
-  Additionally, OJP allows to search trip for new modes such as scooters or bikes.
+Additionally, OJP allows to search trips for new modes of transport such as scooters or bikes using the concept of `continuous leg`.
 
-  See the `/places` and the `/trips` resource for details.
+See the `/places` and the `/trips` resource for details.
 
-- **Add real time support**
+### Add real time support
 
-  An advantage of alignment with OJP was to get real time support as part
-  of the OSDM standard. Thus in a trip it is now possible to indicate the actual quay a train is arriving as well as the delay time of a train.
+Another advantage of the alignment with OJP was to get real time support as part of the OSDM standard. Thus in a trip it is now possible to indicate the actual quay a train is arriving as well as the delay time of a train.
 
-- **Add support for promotions**
+### Add support for promotions
 
-  The OSDM APIs now allows to pass in promo code in the offer search criteria.
-  They which will be taken account while calculating the offers if valid and applicable.
+The OSDM APIs now allows to pass in promo codes in the offer search criteria. If valid and applicable, they will be taken into account while calculating offers.
 
-  See the `PromotionCode` attribute for details.
+See the `PromotionCode` attribute for details.
   
-- **Add the possibility for direct booking**
+### Add the possibility for direct booking
 
-  If an offer is reusable it can be reused, thus an expert can directly
-  doesn't need to get offer repeatedly but can use it to directly book.
-  Special tariffs can be sent in via the promocode attribute.
+If an offer is flag as reusable it can be reused, thus they can be cached on clients side. Thus it isn't necessary to get an offer each and every-time.
 
-- **Indicate test data in offline data exchange**
+This feature allows to implement an expert mode where the cached offers can directly be booked.
+  
+Special tariffs can be sent in via the promocode attribute.
 
-  *OSDM offline feature*: Allows to indicate whether data in the OSDM offline delivery is for testing purpose only.
+### Indicate test data in offline data exchange
+
+*OSDM offline feature*: This feature allows to indicate whether data in the OSDM offline delivery is for testing purposes only.
 
 Other work addressed includes:
 
