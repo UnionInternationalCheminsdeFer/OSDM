@@ -1,3 +1,5 @@
+- name: Online API
+  link: https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/
 - name: Specification
   link: spec/
   dropdown:
@@ -9,8 +11,6 @@
       link: spec/common-data-structures/
     - name: Offline Model
       link: spec/offline-model/
-    - name: Online API
-      link: https://app.swaggerhub.com/apis-docs/schlpbch/uic-90918_10_osdm/
     - name: Technical Principles
       link: spec/technical-principles/
     - name: Models
