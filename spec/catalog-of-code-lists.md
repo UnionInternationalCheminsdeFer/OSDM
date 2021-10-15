@@ -35,12 +35,13 @@ IRS 90918-1 (Service Level).
 
 | Code | Description |
 |------|-------------|
-|`AC`| Seat near children's play area |
+|`AC`| Business Commfort – business seat with reduced service |
 |`AH`| Seat in historic coach |
 |`AM`| Seat in separate Compartment |
 |`AR`| Wheel chair seat |
 |`AS`| Quiet Compartment (Seat)|
 |`AV`| Seat with front-view |
+|`BC`| Seat near children's play |
 |`BE`| Restaurant (places in a dining car) |
 |`BP`| Private compartment seats |
 |`D2`| Cabin-couchette coach |
@@ -54,6 +55,7 @@ IRS 90918-1 (Service Level).
 |`F6`| Ladies compartment, 6-couchettes |
 |`L`| Single |
 |`M`| Special |
+|`MS`| Mini Suite - single person couchette compartment |
 |`N`| Double |
 |`O3`| Vehicle parking place category 1-3 |
 |`O4`| Motorcycle |
@@ -701,6 +703,7 @@ Other cards should start with the RICS code of the issuer.
 | `SALON` | `PLACE_GROUPING` | Salon (6 seats facing in separate compartment) |
 | `KIOSQUE` | `PLACE_GROUPING` | Kiosque (special seats in edge area) |
 | `SOLO` | `PLACE_GROUPING` | Separate place |
+| `CONNECTING_DOOR`| | Compartments with connecting Door (in Sleepers)|
 
 ## Reservation Preference Group
 
