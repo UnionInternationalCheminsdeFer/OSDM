@@ -983,7 +983,7 @@ Transaction type used in after sales rules for fares.
 | `PRM` | Person with reduced mobility - to be used in case of accompanying person or dog, date of birth must be provided additionally ||| X ||
 | `DOG` | A dog | X | X | X | X |
 | `PET` | A pet but not a dog | X | X | X | X |
-| `LUGGAG` | Over-size luggage | X | X | X | X |
+| `LUGGAGE` | Over-size luggage | X | X | X | X |
 | `BICYCLE` | A bicycle | X | X | X | X |
 | `ACCOMP_DOG` | An accompanying dog for a PRM | X | X | X | X |
 | `CAR` | A car for car-carriage trains | X | X | X | X |
