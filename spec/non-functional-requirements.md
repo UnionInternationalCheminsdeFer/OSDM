@@ -55,7 +55,7 @@ application) but not the network in-between the sender and receiver.
 
 | Resources | Look to Book Rate | 95% Response Times (msec) | Max. Response Time (msec) | Required Error Handling |
 |-----------|----|----|----|----|
-|`/locations` | - | 60 | 80 |  |
+|`/places` | - | 60 | 80 |  |
 |`/trips` | - | 400 | 600 |  |
 |`/trip-offers-collection` | 1000:1 | 1000 | 2000 | |
 |`/offers` | 100:1 | 1000 | 2000 | |
@@ -78,7 +78,7 @@ application) but not the network in-between the sender and receiver.
 
 | Resources | Look to Book Rate | 95% Response Times (msec) | Max. Response Time (msec) | Required Error Handling |
 |-----------|----|----|----|----|
-|`/locations` | - | 50 | 75 |  |
+|`/places` | - | 50 | 75 |  |
 |`/trips` | - | 300 | 500 |  |
 |`/trip-offers-collection` | 1000:1 | 800 | 1600 | |
 |`/offers` | 100:1 | 800 | 1600 | |
@@ -103,7 +103,7 @@ application) but not the network in-between the sender and receiver.
 
 | Resources | Look to Book Rate | 95% Response Times (msec) | Max. Response Time (msec) | Required Error Handling |
 |-----------|----|----|----|----|
-|`/locations` | - | 50 | 75 | |
+|`/places` | - | 50 | 75 | |
 |`/trip-offers-collection` | 1000:1 | 400 | | |
 |`/offers` | 100:1 | 400 | | |
 |`/offers/{offerId}/...` | 5:1 | 400 | | |

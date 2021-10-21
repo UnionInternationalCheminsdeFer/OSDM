@@ -4,7 +4,7 @@ title: Bookings Data Model
 class Trip <<R,Orchid>> #linen {
 }
 
-class Segment <<D, Green>> #linen {
+class TripLeg <<D, Green>> #linen {
 }
 
 class BookedOffer <<R,orchid>> #lightcyan { 
@@ -139,7 +139,7 @@ RefundOffer "1"--"1..n" Fulfillment
 ExchangeOperation "1"--"1..n" Fulfillment
 ExchangeOperation "1"-"1..n" ExchangeOffer
 Booking "1"*--"1..2" BookedOffer
-Trip "1" *- "1..n" Segment
+Trip "1" *- "1..n" TripLeg
 Booking "1"*--"0..n" Fulfillment
 
 Admission "1"*--"1..n" Product

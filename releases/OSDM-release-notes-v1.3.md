@@ -9,11 +9,9 @@ permalink: /releases/OSDM-release-notes-v1.3/
 
 The following features have been added with version 1.3 of OSDM.
 
-### Align /locations and /trips to Transmodel (OJP)
+### Align to /places and /trips to Open Joruney Planer (OJP) of Transmodel
 
-The main focus of this PI was to align OSDM with the modelling of locations and trips of OSDM to the model of OJP. The benefits of this change are to profit from domain knowledge as well as to comply with European initiative such as the National Access Point initiative.
-
-Additionally, OJP allows to search trips for new modes of transport such as scooters or bikes using the concept of `continuous leg`.
+The main focus of this PI was to align the modelling of places and trips of OSDM to the model of OJP. The benefits of this change are to profit from the domain knowledge of trip planning as well as to comply with European initiative such as the National Access Point initiative. Additionally, OJP allows to search trips for new modes of transport such as scooters or bikes using the concept of `continuous leg`.
 
 See the `/places` and the `/trips` resource for details.
 

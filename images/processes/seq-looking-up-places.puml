@@ -1,0 +1,15 @@
+hide footbox
+
+actor API_Consumer 
+
+== Searching for place & retrieving references only ==
+API_Consumer -> OSDM_Provider: GET /places/
+OSDM_Provider --> API_Consumer: <Places List>
+
+== Searching for place & retrieving full resources ==
+API_Consumer -> OSDM_Provider: GET /places/?embed="LOCATIONS"
+OSDM_Provider --> API_Consumer: <Places List>
+
+== Retrieving one specific place resource ==
+API_Consumer -> OSDM_Provider: GET /places/12345
+OSDM_Provider --> API_Consumer: <Place 12345>

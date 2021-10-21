@@ -20,17 +20,17 @@ concepts.
 
 ![Legend](../images/models/legend.png)
 
-## Trips and Locations
+## Trips and Places
 
-### Trips and Locations Data Model
+### Trips and Places Data Model
 
-![Trips and Locations Data Model](../images/models/trips-locations.png)
+![Trips and Places Data Model](../images/models/trips-places.png)
 
 ## Main Resources
 
-### Locations
+### Places
 
-Locations are resources representing a specific location in a trip: departure,
+Places are resources representing a specific location in a trip: departure,
 origin, intermediate stop or other. They can be of different types:
 
 - **Station**: represent a train station. It is obviously the most relevant
@@ -49,7 +49,7 @@ code set is highly recommended.
 - **ConnectionPoint**: allows to model virtual border points by defining
   stations within the connection point lies.
 
-Locations are modelled in the API as resources with a long time-to-live, which
+Places are modelled in the API as resources with a long time-to-live, which
 should allow efficient caching of this data, therefore removing the need of
 getting full location details in transactional operations.
 
@@ -59,12 +59,12 @@ Trips represent the concrete realization of a trip going from departure station
 to destination station. A trip is composed of one or more segments.
 
 Each segment (also sometimes called legs) represent a connection between two
-locations where the traveller will either step in a transport or step out of a
+places where the traveller will either step in a transport or step out of a
 transport (most likely a train). 3 types can be distinguished:
 
 - **origin**: departure location of the segment
 - **destination**: arrival location of the segment
-- **stops**: intermediate locations encountered between origin and destination
+- **stops**: intermediate places encountered between origin and destination
   of the segment
 
 Regardless of whether the products to travel these segments are train-bound, or
@@ -140,9 +140,9 @@ representing the trip the offers are for and the passengers for the trip.
 It is possible in OSDM to propose offers covering only a subset of the requested trip
 under specific conditions:
 
-- the segments covered by a given offer are indicated through the `coveredSegmentIndexes`
+- the segments covered by a given offer are indicated through the `coveredTripLegIndexes`
   property
-- all offers covering the same set of segments belong to the same  `offerCluster`. All offers related to the same `offerCluster` therefore have an identical set of `coveredSegmentIndexes`
+- all offers covering the same set of segments belong to the same  `offerCluster`. All offers related to the same `offerCluster` therefore have an identical set of `coveredTripLegIndexes`
 - a `segment` can only be covered in one `offerCluster` within a `tripOffer` (no overlap)
 - each `segment` of the `trip` must be covered by at least one `offer` in each `TripOffer`
   (no gap)

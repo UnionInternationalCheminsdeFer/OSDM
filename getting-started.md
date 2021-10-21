@@ -6,6 +6,8 @@ permalink: /getting-started/
 
 # A Gentle Introduction to OSDM
 
+(Todo: revise after the release of V1.3)
+
 ## Introduction
 
 The OSDM API is rich and can be overwhelming at start. Reason for its feature richness (leading to its complexity) is the fact that it aims to cover all possible public transportation products and distribution processes within Europe and beyond.
@@ -28,13 +30,13 @@ A segment has all the stops as well as information on the vehicle running on thi
 
   To uniquely identify a location, stations etc. internally a code is used. Thus a helper service is provided that allows you to look up codes:
 
-  `GET locations?matchValue=Basel`
+  `GET places?matchValue=Basel`
 
   As response, you get information on the location, e.g. its local name or its geo coordinates.
 
     ```json
     {
-    "locations": [
+    "places": [
         {
         "id": "8500010",
         "abstract": "Basel SBB",
@@ -433,7 +435,7 @@ As you can see, in the most simple case you just have to add the id of the selec
 
 ### Traveling a Bit Further
 
-Assuming you are hungry and want to see a scenic landscape, let's change the trip slightly: We travel from *Basel* to *Chur* and then switch train from *Chur* to *Brig* on a touristic train running through the wonderful Swiss alps. To find the UIC code of *Brig* you can again use `GET /locations?matchValue=Brig` and set the UIC code of *Chur* as a via station.
+Assuming you are hungry and want to see a scenic landscape, let's change the trip slightly: We travel from *Basel* to *Chur* and then switch train from *Chur* to *Brig* on a touristic train running through the wonderful Swiss alps. To find the UIC code of *Brig* you can again use `GET /places?matchValue=Brig` and set the UIC code of *Chur* as a via station.
 
 In the offer request the trip now consists of two segments. The second segment is a Panorama express operated by RhB. As there's high demand on these touristic trains, seat reservation is a must. This is indicated by a reservation offer with an mandatory reservation (`"optionality": "MANDATORY"`).
 

@@ -1,0 +1,69 @@
+title: Trips Data Model
+
+class Trip <<R,Orchid>> #linen {
+  id: string
+  origin: Place
+  destination: Place
+  duration: string
+  startTime: dateTime
+  endTime: dateTime
+  tripStatus
+}
+
+class TripLeg <<D, Green>> #linen {
+  legId
+}
+
+class TimedLeg {
+  legBoard: LegStop
+  legIntermediates: LegStop[]
+  legAlight: LegStop
+  service
+}
+
+class LegStop {
+  plannedQuay
+  estimatedQuay
+  serviceArrival
+  serviceDeparture
+  status
+}
+
+class DatedJourney {
+  mode 
+  vehicleNumber
+  operatorRef
+}
+
+class TransferLeg {
+  transferMode
+  legStart: Place
+  legEnd: Place
+  timeWindowStart
+  timeWindowEnd
+  duration
+}
+
+class ContinuousLeg {
+  legStart: Place
+  legEnd: Place
+  service
+  timeWindowStart
+  timeWindowEnd
+  duration
+}
+
+class ContinuousService {
+  originText
+  destinationText
+}
+
+Trip -- "1:m" TripLeg
+TripLeg -- "timedLeg" TimedLeg
+TripLeg -- "transferLeg" TransferLeg
+TripLeg -- "continousLeg" ContinuousLeg
+TimedLeg -- "service" DatedJourney
+TimedLeg -- "legBoard" LegStop
+TimedLeg -- "legAlight" LegStop
+
+ContinuousLeg -- "continousService" ContinuousService

@@ -43,8 +43,8 @@ implementations:
 
 | **Functional area** | **Code**     | **Title**                     |
 |---------------------|--------------|-------------------------------|
-| Locations  | `OSDM_L_INV`   | Invalid characters in the search string |
-| Locations  | `OSDM_L_NORES` | The search did not return any result|
+| Places     | `OSDM_L_INV`   | Invalid characters in the search string |
+| Places     | `OSDM_L_NORES` | The search did not return any result|
 | Trips      | `OSDM_TR_INV`  | A search criteria value contains invalid value or invalid characters |
 | Trips      | `OSDM_TR_OAB`  | A search criteria lies outside accepted boundaries |
 | Trips      | `OSDM_TR_UL`   | A provided location is not known |

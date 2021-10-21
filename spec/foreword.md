@@ -18,6 +18,7 @@ All members of the International Union of Railways
 - **2020 December** Version 1.0 OSDM released
 - **2021 February** Version 1.1 OSDM released
 - **2021 June** Version 1.2 OSDM released
+--**2021 October** Version 1.3 OSDM released
 
 ### Licencing
 
@@ -178,7 +179,7 @@ cost.
 #### International Union of Railway (UIC)
 
 - *UIC Leaflet 920-1: Standard numerical coding for railway undertakings, infrastructure managers and other companies involved in rail-transport chains*
-- *UIC Leaflet 920-2: Standard numerical coding of locations*
+- *UIC Leaflet 920-2: Standard numerical coding of loctions*
 - *UIC Leaflet 920-14: Standard numerical country coding for use in railway traffic*
 
 ### International Rail Standards

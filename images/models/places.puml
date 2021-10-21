@@ -1,0 +1,36 @@
+title: Places Data Model
+
+class Place <<R,Orchid>> #linen {
+  id: string
+  name: string
+}
+
+class Address #linen {
+  addressName
+  countryName
+}
+
+class PointOfInterest #linen {
+  pointOfInterestCode
+  pointOfInterestName
+}
+
+class StopPlace #linen {
+  stopPlaceRef
+  stopPlaceName
+}
+
+class FareConnectionPoint #linen {
+  stopPlace: StopPlace []
+}
+
+class GeoPosition #linen {
+  longitude
+  latitude
+}
+
+Place -- "address" Address
+Place -- "pointOfInterest" PointOfInterest
+Place -- "stopPlace" StopPlace
+Place -- "fareConnection" FareConnectionPoint
+Place -- "geoPosition" GeoPosition

@@ -3,9 +3,9 @@ title: Offers Data Model
 class Trip <<R,Orchid>> #linen {
 }
 
-Trip *-- "1..n" Segment
+Trip *-- "1..n" TripLeg
 
-class Segment <<D, Green>> #linen {
+class TripLeg <<D, Green>> #linen {
 }
 
 class TripOffer <<R,orchid>>  {
@@ -25,7 +25,7 @@ id*
 title
 offerSummary: OfferSummary
 offerHash
-coveredSegmentIndexes: [integer]
+coveredTripLegIndexes: [integer]
 offerCluster
 combinationHashes
 requestedInformation: string

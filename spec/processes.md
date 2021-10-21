@@ -20,7 +20,7 @@ are not represented or simplified in the data models.
 
 |Resources | Description |
 |---|---|
-| `/locations` | Resources to search for locations
+| `/places` | Resources to search for places
 | `/trips` | Resources to search for trips
 | `/trip-offers-collection` | Resources to get bookable offers
 | `/trip-offers/{tripOfferId}` | *dito*
@@ -52,22 +52,22 @@ be on paper or paperless.
 If needed bookings can either be refunded or exchanged by providing the customer with
 a refund or exchange offer which can then be booked by the customer.
 
-## Trips and Locations Processes
+## Trips and Places Processes
 
-### Looking Up Locations
+### Looking Up Places
 
-![Looking Up Locations](../images/processes/seq-looking-up-locations.png)
+![Looking Up Places](../images/processes/seq-looking-up-places.png)
 
-The `\locations` Lookup can be used by an API provider in order to search for locations.
+The `\places` Lookup can be used by an API provider in order to search for places.
 Two typical uses cases would be
 
-- getting a set of locations (in full or as reference) from a substring of the name
+- getting a set of places (in full or as reference) from a substring of the name
 - getting full details on a location based on one of its codes
 
-Note that the functionality is not intended to trigger a "dump" of the complete locations
+Note that the functionality is not intended to trigger a "dump" of the complete places
 list or to build a full "browsing" functionality, hence the lack of pagination features here.
 
-Given the high stability of this information, locations are given a long time to live
+Given the high stability of this information, places are given a long time to live
 and get responses can be cached for a long period, so these operations should not be too
 costly in terms of calls or bandwidth.
 

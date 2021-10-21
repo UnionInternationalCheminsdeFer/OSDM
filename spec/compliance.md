@@ -38,7 +38,7 @@ The following services/features are mandatory/optional to implement:
 
 | Resources | Description | Need to Support |
 | --- | --- | --- |
-| `/locations` and `/trips` | Resources to search for trip and locations | **Mandatory** for train stations UIC code need to be supported. |
+| `/places` and `/trips` | Resources to search for trip and places | **Mandatory** for train stations UIC code need to be supported. |
 | `/trip-offers-collection` and `/trip-offers` and `/offers` | Resources to get bookable offers | **Mandatory** is to provide at least admission offers. |
 | `/offers/{offerId}/admissions` and `/offers/{offerId}/reservations` and `/offers/{offerId}/ancillaries` | Resources to manipulate parts of an offer consisting of, e.g., admissions, reservations or ancillaries; | **Mandatory** |
 | `/offers/{offerId}/reservations/{reservationId}` | Resources to manipulate seat assignment | *Conditional*; mandatory to be supported in case seat assignment is provided. |
@@ -63,7 +63,7 @@ The following services/features are mandatory/optional to implement:
 
 | Resources | Description | Need to Support |
 | --- | --- | --- |
-| `/locations` and `/trips` | Resources to search for trip and locations | *Optional* |
+| `/places` and `/trips` | Resources to search for trip and places | *Optional* |
 | `/trip-offers-collection` and `/trip-offers` and `/offers` | Resources to get bookable offers | **Mandatory** is to provide fare offers on a `/trip-offers-collection`. *Optional*: `/offers` for non trip based offers. |
 | `/offers/{offerId}/admissions`and `/offers/{offerId}/reservations` and `/offers/{offerId}/ancillaries` and `/offers/{offerId}/fares` | Resources to manipulate parts of an offer consisting of, e.g., admissions, reservations or ancillaries; if permitted, also fares are offered. | **Mandatory** is to support pre-booking and booking of fares. |
 | `/bookings` | Resources to manipulate bookings | **Mandatory** is to support bookings consisting of fares except in the special case of direct sale fare offers |

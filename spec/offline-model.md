@@ -266,11 +266,11 @@ The travel validity defines the duration the traveler has to make his travel. Op
 
 Additional data to support the online sales services can be exchanged.
 
-### Fare Resource Locations
+### Fare Resource Places
 
 Information on where to fine resources for online services of OSDM online or via 90918-1 APIs
 
-![Fare Structure](../images/fare-data-structure/fare-resourceLocations.png)
+![Fare Structure](../images/fare-data-structure/fare-resourcePlaces.png)
 
 ### Fare Reservation Parameters
 
