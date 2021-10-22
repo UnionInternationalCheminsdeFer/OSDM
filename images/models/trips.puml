@@ -14,14 +14,14 @@ class TripLeg <<D, Green>> #linen {
   legId
 }
 
-class TimedLeg {
+class TimedLeg <<D, Green>> #linen {
   legBoard: LegStop
   legIntermediates: LegStop[]
   legAlight: LegStop
   service
 }
 
-class LegStop {
+class LegStop <<D, Green>> #linen {
   plannedQuay
   estimatedQuay
   serviceArrival
@@ -29,13 +29,13 @@ class LegStop {
   status
 }
 
-class DatedJourney {
+class DatedJourney <<D, Green>> #linen {
   mode 
   vehicleNumber
   operatorRef
 }
 
-class TransferLeg {
+class TransferLeg <<D, Green>> #linen {
   transferMode
   legStart: Place
   legEnd: Place
@@ -44,7 +44,7 @@ class TransferLeg {
   duration
 }
 
-class ContinuousLeg {
+class ContinuousLeg <<D, Green>> #linen {
   legStart: Place
   legEnd: Place
   service
@@ -53,7 +53,7 @@ class ContinuousLeg {
   duration
 }
 
-class ContinuousService {
+class ContinuousService <<D, Green>> #linen {
   originText
   destinationText
 }

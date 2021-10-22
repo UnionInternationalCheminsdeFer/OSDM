@@ -1,10 +1,12 @@
 # Things needing to be done
 
-- Add offline specification
-- Fix favicon
+- Rewrite chapter `Trips`
+- Rename segement in `clusters1` and `clusters2`
 
 ## Done
 
+- Add offline specification
+- Fix favicon
 - Improve navigation
 - Add code lists
 - Add contact

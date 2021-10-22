@@ -22,58 +22,60 @@ concepts.
 
 ## Trips and Places
 
-### Trips and Places Data Model
+### Places Data Model
 
-![Trips and Places Data Model](../images/models/trips-places.png)
-
-## Main Resources
+![Place Data Model](../images/models/places.png)
 
 ### Places
 
 Places are resources representing a specific location in a trip: departure,
 origin, intermediate stop or other. They can be of different types:
 
-- **Station**: represent a train station. It is obviously the most relevant
-  type for OSDM. Stations can be indicated as codes from different code
-sets. As with other code list based representations in the API, using the UIC
-code set is highly recommended.
-
 - **Address**: any street address can be represented here. Is included to
   foresee extension towards multi modality and first/last miles solutions
 
-- **POI**: used to represent a specific point of interest
+- **PointOfInterest**: used to represent a specific point of interest
+
+- **StopPlace**: represent a place where a train or a bus stops. It is obviously 
+  the most relevant type for OSDM. StopPlaces can be indicated as codes from different code
+  sets. As with other code list based representations in the API, using the UIC
+  code set is highly recommended and mandatory for train stations.
 
 - **GeoCoordinate**: allows providing any location on the globe using its
   geographical coordinates.
 
-- **ConnectionPoint**: allows to model virtual border points by defining
+- **FareConnectionPoint**: allows to model virtual border points by defining
   stations within the connection point lies.
 
 Places are modelled in the API as resources with a long time-to-live, which
 should allow efficient caching of this data, therefore removing the need of
 getting full location details in transactional operations.
 
+### Trip Data Model
+
+![Trip Data Model](../images/models/trips.png)
+
 ### Trips
 
 Trips represent the concrete realization of a trip going from departure station
-to destination station. A trip is composed of one or more segments.
+to destination station. A trip is composed of one or more triplegs.
 
-Each segment (also sometimes called legs) represent a connection between two
+Each tripleg (also sometimes called legs) represent a connection between two
 places where the traveller will either step in a transport or step out of a
 transport (most likely a train). 3 types can be distinguished:
 
-- **origin**: departure location of the segment
-- **destination**: arrival location of the segment
+- **origin**: departure location of the tripleg
+- **destination**: arrival location of the tripleg
 - **stops**: intermediate places encountered between origin and destination
-  of the segment
+  of the tripleg
 
-Regardless of whether the products to travel these segments are train-bound, or
-based on with a validity period of any duration, segments (and by extension
+Regardless of whether the products to travel these triplegs are train-bound, or
+based on with a validity period of any duration, triplegs (and by extension
 trips) are always train-bound and represent the realization of the travel wish
 using specific trains at a specific moment in time.
 
 Trips can be retrieved with or without details of all intermediate stops on the
-way between departure and arrival of each segment
+way between departure and arrival of each tripleg
 
 ## Offers
 
@@ -140,11 +142,11 @@ representing the trip the offers are for and the passengers for the trip.
 It is possible in OSDM to propose offers covering only a subset of the requested trip
 under specific conditions:
 
-- the segments covered by a given offer are indicated through the `coveredTripLegIndexes`
+- the triplegs covered by a given offer are indicated through the `coveredTripLegIndexes`
   property
-- all offers covering the same set of segments belong to the same  `offerCluster`. All offers related to the same `offerCluster` therefore have an identical set of `coveredTripLegIndexes`
-- a `segment` can only be covered in one `offerCluster` within a `tripOffer` (no overlap)
-- each `segment` of the `trip` must be covered by at least one `offer` in each `TripOffer`
+- all offers covering the same set of triplegs belong to the same  `offerCluster`. All offers related to the same `offerCluster` therefore have an identical set of `coveredTripLegIndexes`
+- a `tripleg` can only be covered in one `offerCluster` within a `tripOffer` (no overlap)
+- each `tripleg` of the `trip` must be covered by at least one `offer` in each `TripOffer`
   (no gap)
 
 *Example with no overlap*
@@ -209,7 +211,7 @@ be train-bound either.
 
 In some vehicles, seat reservations or an ancillary products (such as a
 WIFI connection or a meal onboard) can  be associated with the admission for
-one or more of the segments. A link will in this case point from the admission
+one or more of the triplegs. A link will in this case point from the admission
 to the reservations or ancillaries, and the link will be qualified. Ancillaries
 can be either included or optional, while reservation can also be mandatory to
 travel. Finally there can be a cases where all reservations associated are
@@ -263,8 +265,8 @@ with the current model, two approaches are proposed to implementers:
 price. In this approach it is assumed that a passenger will always book all
 available reservation, since the price is the same anyway. This approach also
 allows to not propose a reservation if there is none available on one of the
-segment, while still offering the offer for the complete trip with reservations
-on all segments where it is available
+tripleg, while still offering the offer for the complete trip with reservations
+on all triplegs where it is available
 
 - Propose all reservations as optional reservations with an identical unit
   price equals to 0 or to the reservation lump sum, associated with specific
@@ -332,7 +334,7 @@ As the name suggests, passenger resources represent the passengers for whom the
 offers are  proposed. All offers generated are always proposed for the complete
 set of passengers (no partial offers covering only a part of the passengers is
 generated). However, it is possible that because of age, reductions or other,
-some passengers are allowed to travel some segments without actually needing a
+some passengers are allowed to travel some triplegs without actually needing a
 travel right or reservation. It is for example usually the case for infants
 travelling on their parents lap.
 
@@ -378,7 +380,7 @@ passenger types he is using internally
   internally this clearly defined notion to the internal representation.
 
 The presentation hereunder provides some additional examples of high-level
-offer modellings for pure-OSDM offers.
+offer modelings for pure-OSDM offers.
 
 ## Booking
 
@@ -427,7 +429,6 @@ booking,while not monopolizing resources too long in case the booking is
 abandoned without properly cancelling it. However, some systems may decide a
 longer time. Obviously, the value for the booking ticket-time limit can never
 exceed the earliest ticket time limit of any of its offer parts.
-
 
 `FulfillmentOptions` allows the API consumer to specify the format desired for
 the fulfillment. Only electronic fulfillment is considered in the MVP scope.

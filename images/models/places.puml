@@ -5,26 +5,26 @@ class Place <<R,Orchid>> #linen {
   name: string
 }
 
-class Address #linen {
+class Address <<D, Green>> #linen {
   addressName
   countryName
 }
 
-class PointOfInterest #linen {
+class PointOfInterest <<D, Green>> #linen {
   pointOfInterestCode
   pointOfInterestName
 }
 
-class StopPlace #linen {
+class StopPlace <<D, Green>> #linen {
   stopPlaceRef
   stopPlaceName
 }
 
-class FareConnectionPoint #linen {
+class FareConnectionPoint <<D, Green>> #linen {
   stopPlace: StopPlace []
 }
 
-class GeoPosition #linen {
+class GeoPosition <<D, Green>> #linen {
   longitude
   latitude
 }
