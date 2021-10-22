@@ -201,6 +201,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/idempotencyKey"
       requestBody:
         description: request for place
         content:
@@ -313,6 +314,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/idempotencyKey"
       requestBody:
         description: request for trips
         content:
@@ -501,6 +503,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"   
       requestBody:
         content:
           application/json:
@@ -676,6 +679,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"   
       requestBody:
         description: request parameter for offer search
         required: true
@@ -1279,6 +1283,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"
         - in: path
           name: bookingId
           schema:
@@ -1379,6 +1384,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"
         - in: path
           name: bookingId
           schema:
@@ -1471,71 +1477,72 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
  
-  /bookings/search:
-    post:
-      tags:
-        - Bookings
-      summary: Allows to search for and find bookings based on a set of criteria.
-      description: >-
-        There are searching criteria that need to be supported. by passenger 
-        attributes (first name, name, date-of-birth), by booking reference (e.g. PNR, 
-        Auftragsnummer) or by fulfillment reference (e.g. ticket number).
-      operationId: getBookings
-      parameters:
-        - $ref: "#/components/parameters/accessToken"
-        - $ref: "#/components/parameters/acceptLanguage"
-        - in: query
-          name: embed
-          description: >-
-            Influences whether referenced resources are returned in full or as references only.
-          schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - ALL
-                - BOOKINGS
-                - BOOKINGS.BOOKEDOFFERS.TRIP
-                - BOOKINGS.BOOKEDOFFERS.TRIP.PLACES
-                - BOOKINGS.BOOKEDOFFERS
-                - BOOKINGS.BOOKEDOFFERS.OFFERPARTS
-                - BOOKINGS.PASSENGERS
-                - BOOKINGS.TICKETS  
-                - NONE
-            default: [ALL]
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BookingSearchParameter'          
-      responses:
-        '200':
-          description: Booking ids found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: '#/components/schemas/WarningMessageList'
-                  searchResults:
-                    $ref: '#/components/schemas/BookingSearchReply'  
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '409':
-          $ref: '#/components/responses/ConflictResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
-          description: Not implemented
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
+  # /bookings/search:
+  #   post:
+  #     tags:
+  #       - Bookings
+  #     summary: Allows to search for and find bookings based on a set of criteria.
+  #     description: >-
+  #       There are searching criteria that need to be supported. by passenger 
+  #       attributes (first name, name, date-of-birth), by booking reference (e.g. PNR, 
+  #       Auftragsnummer) or by fulfillment reference (e.g. ticket number).
+  #     operationId: getBookings
+  #     parameters:
+  #       - $ref: "#/components/parameters/accessToken"
+  #       - $ref: "#/components/parameters/acceptLanguage"
+  #       - $ref: "#/components/parameters/idempotencyKey"
+  #       - in: query
+  #         name: embed
+  #         description: >-
+  #           Influences whether referenced resources are returned in full or as references only.
+  #         schema:
+  #           type: array
+  #           items:
+  #             type: string
+  #             enum:
+  #               - ALL
+  #               - BOOKINGS
+  #               - BOOKINGS.BOOKEDOFFERS.TRIP
+  #               - BOOKINGS.BOOKEDOFFERS.TRIP.PLACES
+  #               - BOOKINGS.BOOKEDOFFERS
+  #               - BOOKINGS.BOOKEDOFFERS.OFFERPARTS
+  #               - BOOKINGS.PASSENGERS
+  #               - BOOKINGS.TICKETS  
+  #               - NONE
+  #           default: [ALL]
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/BookingSearchParameter'          
+  #     responses:
+  #       '200':
+  #         description: Booking ids found
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #               properties:
+  #                 warnings:
+  #                   $ref: '#/components/schemas/WarningMessageList'
+  #                 searchResults:
+  #                   $ref: '#/components/schemas/BookingSearchReply'  
+  #       '400':
+  #         $ref: '#/components/responses/BadRequestResponse'
+  #       '401':
+  #         description: Unauthorized
+  #       '403':
+  #         description: Forbidden
+  #       '404':
+  #         description: Not Found
+  #       '409':
+  #         $ref: '#/components/responses/ConflictResponse'
+  #       '500':
+  #         $ref: '#/components/responses/InternalServerErrorResponse'
+  #       '501':
+  #         description: Not implemented
+  #       '503':
+  #         $ref: '#/components/responses/ServiceUnavailableResponse'
 
   /bookings:
     post:
@@ -1546,6 +1553,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"
       requestBody:
         content:
           application/json:
@@ -1700,6 +1708,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"
         - in: path
           name: bookingId
           schema:
@@ -1745,6 +1754,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"   
         - in: path
           name: bookingId
           schema:
@@ -1796,6 +1806,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"
         - in: path
           name: bookingId
           schema:
@@ -1899,6 +1910,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"   
         - in: path
           name: bookingId
           schema:
@@ -1994,6 +2006,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"
         - in: path
           name: bookingId
           schema:
@@ -2178,6 +2191,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"
         - in: path
           name: bookingId
           schema:
@@ -2293,6 +2307,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"   
       requestBody:
         content:
           application/json:
@@ -2552,9 +2567,9 @@ components:
       description: >-
         OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
         for information on how to get a token.
-      required: true
       schema:
         type: string
+      required: true
 
     acceptLanguage:
       name: Accept-Language
@@ -2562,6 +2577,16 @@ components:
       description: >-
         Describes the set of natural languages that are preferred for localized text in the response
         to the request (see RFC2616-sec14.4). Supporting English (en) is a must.
+      schema:
+        type: string
+      required: false
+
+    idempotencyKey:
+      name: Idempotency-Key
+      in: header
+      description: >-
+        The HTTP Idempotency request header field can be used to carry idempotency key in order to make 
+        non-idempotent HTTP methods such as POST or PATCH fault-tolerant.
       schema:
         type: string
       required: false
