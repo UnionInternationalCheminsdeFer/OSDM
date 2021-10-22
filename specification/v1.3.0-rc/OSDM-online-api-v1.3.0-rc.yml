@@ -232,7 +232,7 @@ paths:
         - Trips
       summary: Returns a trip element representing a travel trip.
       description:
-        A trip consists of one or more segments for a given tripId. Depending on the 
+        A trip consists of one or more tripLegs for a given tripId. Depending on the 
         embed either references or full location definitions is returned.
       operationId: getTripsId
       parameters:
@@ -3275,23 +3275,26 @@ components:
             #- $ref: "#/components/schemas/TransferLeg"
             #- $ref: "#/components/schemas/ContinuousLeg"
       type: object
+      required:
+        - legId
+        - seqId
       properties:
-            # legId:
-            #   description: Id of this trip leg. Unique within trip result.
-            #   type: string
-            #   format: uuid
-            seqId:  # EXT
-              type: number
-              format: int32   
-            # participantRef:   # out of scope
-            #   description: IT system that is participating in a communication with other participant(s)
-            #   type: string
-            timedLeg: 
-              $ref: "#/components/schemas/TimedLeg"
-            transferLeg: 
-              $ref: "#/components/schemas/TransferLeg"
-            continousLeg:
-              $ref: "#/components/schemas/ContinuousLeg"            
+        legId:
+          description: Id of this trip leg. Unique within trip result.
+          type: string
+          format: uuid
+        seqId:  # EXT
+          type: number
+          format: int32   
+        # participantRef:   # out of scope
+        #   description: IT system that is participating in a communication with other participant(s)
+        #   type: string
+        timedLeg: 
+          $ref: "#/components/schemas/TimedLeg"
+        transferLeg: 
+          $ref: "#/components/schemas/TransferLeg"
+        continousLeg:
+          $ref: "#/components/schemas/ContinuousLeg"            
 
 
     # GeneralAttribute:  ## OJP
@@ -4601,10 +4604,10 @@ components:
         The offer summary indicates the most relevant service class, level, flexibility or accommodation 
         that describe this offer, but this does not imply that these values exactly apply to all parts of
         the offer. 
-        Let's consider, as a simplified example, a trip composed of two segments, one with both 1st and 
+        Let's consider, as a simplified example, a trip composed of two tripLegs, one with both 1st and 
         2nd class, and one with only 2nd. 
         On this trip, the railway is expected to propose one offer with overallServiceClass FIRST composed 
-        of one admission in 1st class on the first segment and one admission in 2nd class on the second one, 
+        of one admission in 1st class on the first tripLegs and one admission in 2nd class on the second one, 
         plus a second offer with overallServiceClass SECOND composed of two second class admissions.
         Likewise for all 'overall' attributes. The purpose of these attributes is to convey to the client
         system the service class, level, flexibility and accommodation that best represent this offer so to
@@ -4661,13 +4664,13 @@ components:
             The offerTag can/must (depending on the mandatory flag) be used in some cases to restrict the set of
             offers returned in a subsequent and related offer search to only compatible ones.
             Note the offerTag does not need to be unique.
-        coveredSegmentIndexes:
+        coveredTripLegIndexes:
           type: array
           items:
             type: integer
             format: int32
           description: >-
-            relevant only in case the offer only covers parts of the trip. This will indicate which segments are covered by the specific offer
+            relevant only in case the offer only covers parts of the trip. This will indicate which tripLegs are covered by the specific offer
         returnTags:
           type: array
           items:
@@ -4835,8 +4838,8 @@ components:
             properties:
               product:
                 $ref: '#/components/schemas/Product'
-              segmentIndices:
-                description: indices of the segments in the trip given by the provider of the offer
+              tripLegIndices:
+                description: indices of the tripLegs in the trip given by the provider of the offer
                 type: array
                 items:
                   type: integer
