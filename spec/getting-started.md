@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Getting Started with OSDM
-permalink: /getting-started/
+permalink: /spec/getting-started/
 ---
 
 # A Gentle Introduction to OSDM

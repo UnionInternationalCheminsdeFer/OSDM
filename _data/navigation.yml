@@ -3,6 +3,8 @@
 - name: Specification
   link: spec/
   dropdown:
+    - name: Getting Started
+      link: spec/getting-started
     - name: Requirements
       link: spec/requirements/
     - name: Business Capabilities

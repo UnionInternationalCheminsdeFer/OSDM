@@ -64,7 +64,7 @@ After forking or cloning the repository, perform the following steps to generate
 - Make sure you have ruby installed on your computer. See [https://www.ruby-lang.org/en/downloads/](https://www.ruby-lang.org/en/downloads/)
 - `bundle install`
 - `bundle exec jekyll serve --livereload`
-- Point your browser at [http://127.0.0.1:4000/OSDM](http://127.0.0.1:4000/OSDM)
+- Point your browser at [http://127.0.0.1:4000/OSDM/](http://127.0.0.1:4000/OSDM/)
 
 ## License
 
