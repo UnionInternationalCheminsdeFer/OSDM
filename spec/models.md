@@ -58,7 +58,7 @@ getting full location details in transactional operations.
 ### Trips
 
 Trips represent the concrete realization of a trip going from departure station
-to destination station. 
+to destination station.
 
 - **origin**: departure location of the tripleg
 - **destination**: arrival location of the tripleg
@@ -69,7 +69,7 @@ A trip is composed of one or more `triplegs` and can be of one the following:
   public transport
 - **TransferLeg**: A type of leg that links two legs such as walking from
   one stop to another
-- **ContinousLeg**: A type of leg that is not bound to a timetable. This 
+- **ContinousLeg**: A type of leg that is not bound to a timetable. This
   leg is mainly aimed at new modes such as scooter, taxis,..
 
 Each `tripleg` (also sometimes called legs) represent a connection between two
