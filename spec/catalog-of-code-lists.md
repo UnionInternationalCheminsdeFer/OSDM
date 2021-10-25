@@ -35,7 +35,7 @@ The Accommodation Sub Type defines the characteristics of a place for an offer. 
 
 Depending on the commercial decisions some codes might be used in accommodation sub type with one carreir whereas another carrier might alow them in the place preferences (e.g. Bicycle and Tandem Bicycle might have the same price (Place Preference) of different prices (Accommodation Sub Type). There might be place propertiies that indicate characteristics of a place to the traveller which are not selectable (e.g. Place without Window)). Therefore the shown usage for the different types are an indication but not mandatory.
 
-Place Preference Group collects Place preferences wher eonly on cna be choosen of.
+Place Preference Group collects Place preferences where only one can be choosen of.
 
 | Code | Accommodation Sub Type | Place Property | Place Preference | Description | Place Preference Group |
 |------|------------------------|----------------|------------------|-------------|------------------------|
@@ -92,7 +92,7 @@ Place Preference Group collects Place preferences wher eonly on cna be choosen o
 |`PRAM_WITH_SEAT`|  Y | N | Y | Seat wit space for a Pram | |
 |`PRIVATE_COMP`| Y | N | Y | Private compartment seats, compartment not to be shared with other passengers |  |
 |`PRIVATE_COUCHETTE`| Y | N | Y| Private compartment couchettes, compartment not to be shared with other passengers |  |
-|`PRIVAT_COUCHETTE_4`| Private compartment four couchettes , compartment not to be shared with other passengers | |
+|`PRIVAT_COUCHETTE_4`| Y | N | Y |  Private compartment four couchettes , compartment not to be shared with other passengers | |
 |`PRIVATE_SLEEPER`| Y | N | Y | Private compartment berth, compartment not to be shared with other passengers | |
 |`PRIVATE_SLEEPER_DELUXE`| Y | N | Y | Private compartment berth deluxe, compartment not to be shared with other passengers |  |
 |`RESTAURANT`| Y | Y | Y | Restaurant (places in a dining car) |  |
