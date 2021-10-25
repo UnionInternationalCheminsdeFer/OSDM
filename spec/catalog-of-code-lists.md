@@ -99,9 +99,9 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`RESTAURANT`| Y | Y | Y | Restaurant (places in a dining car) |  |
 |`SEPARATE_COMPARTMENT`| Y | Y | N |Seat in separate Compartment, compartment not to be shared with other passengers  |  |
 |`SILENCE`| Y | Y | Y | Quiet Compartment (Seat) | |
-|`SINGLE_SLEEPER`| Y | N | Y | Single sleeper compartment|  |
+|`SINGLE`| Y | N | Y | Single sleeper compartment|  |
 |`SINGLE_SWC`| Y | N | Y | Single sleeper compartment with shower & WC |  |
-|`SINGLE_SWC_DOUBLE' |  Y | N | Y |  Single compartment with shower & WC & double bed |  |
+|`SINGLE_SWC_DOUBLE` |  Y | N | Y |  Single compartment with shower & WC & double bed |  |
 |`SIDE_BY_SIDE`|  N | Y | Y | places side by side (2 seats side by side) | |
 |`SALON`| N | Y | Y | Salon (6 seats facing in a separate compartment)| |
 |`SLEEPERETTE`| Y | N | Y | Sleeperette (reclining seat) | |
