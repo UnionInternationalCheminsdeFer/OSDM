@@ -42,7 +42,7 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`AISLE`| N | Y | Y | Place at the aile | `PLACE_LOCATION` |
 |`AIR-CONDITIONED`| N | Y | Y | Place in air conditioned area | |
 |`BISTRO` | N | Y | Y | Places in a coach with self-service bistro | |
-|`BCYCLE`| Y | Y | Y | Bicycle | |
+|`BICYCLE`| Y | Y | Y | Bicycle hook | |
 |`BUSINESS`| Y | Y | Y | Manager compartment/business| |
 |`BUSINESS_COMFORT`| Y | Y | N | Business Commfort – business seat with reduced service |  |
 |`CABIN8`| N | Y | Y | Special place grou in TGV | |
