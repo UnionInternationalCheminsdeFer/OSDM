@@ -132,7 +132,7 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |------|-------------|
 | `FCB` | Flexible Content Barcode - See IRS 90918-9 |
 | `TLB` | Ticket Layout Barcode - See IRS 90918-9 |
-| `SBB` | Small Structured Barcode - See IRS 90918-9 |
+| `SSB` | Small Structured Barcode - See IRS 90918-9 |
 
 ## CardType
 
@@ -143,6 +143,8 @@ Place Preference Group collects Place preferences where only one can be choosen 
 | `CHIP_CARD` | Chip card to load bookings/references onto it |
 
 ## CarrierCode
+
+See code list: https://uic.org/support-activities/it/rics?recherche=RICS%20code
 
 | Country | Carrier Code | Short Name           | Full Name                                                                                     |
 |---------|------|------------------------------|-----------------------------------------------------------------------------------------------|
