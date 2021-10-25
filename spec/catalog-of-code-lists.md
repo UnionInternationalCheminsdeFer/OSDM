@@ -55,7 +55,6 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`CLUB_4`|  N | N | Y | Club 4 (4 seats facing)| |
 |`COMPARTMENT`|  N | N | Y |  places in a compartment | `PLACE_GROUPING` |
 |`CONFERENCE`|  Y | N | Y |  Conference compartment| |
-|`CONFERENCE_ROOM`| Y | N | Y |  Conference room| |
 |`CONNECTING_DOOR`| N | Y | Y |  Compartments with connecting Door (in Sleepers)| |
 |`COUCHETTE_2`| Y | N | Y | Two person couchette cabin | |
 |`COUCHETTE_4`| Y | N | Y | Couchette Four-berth |  |
