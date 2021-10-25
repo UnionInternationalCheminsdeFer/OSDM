@@ -36,10 +36,10 @@ origin, intermediate stop or other. They can be of different types:
 
 - **PointOfInterest**: used to represent a specific point of interest
 
-- **StopPlace**: represent a place where a train or a bus stops. It is obviously 
-  the most relevant type for OSDM. StopPlaces can be indicated as codes from different code
-  sets. As with other code list based representations in the API, using the UIC
-  code set is highly recommended and mandatory for train stations.
+- **StopPlace**: represent a place where a train or a bus stops. It is obviously
+  the most relevant type for OSDM. StopPlaces can be indicated as codes from
+  different code sets. As with other code list based representations in the API,
+  using the UIC code set is highly recommended and mandatory for train stations.
 
 - **GeoCoordinate**: allows providing any location on the globe using its
   geographical coordinates.
@@ -58,16 +58,23 @@ getting full location details in transactional operations.
 ### Trips
 
 Trips represent the concrete realization of a trip going from departure station
-to destination station. A trip is composed of one or more triplegs.
-
-Each tripleg (also sometimes called legs) represent a connection between two
-places where the traveller will either step in a transport or step out of a
-transport (most likely a train). 3 types can be distinguished:
+to destination station. 
 
 - **origin**: departure location of the tripleg
 - **destination**: arrival location of the tripleg
-- **stops**: intermediate places encountered between origin and destination
-  of the tripleg
+
+A trip is composed of one or more `triplegs` and can be of one the following:
+
+- **TimedLeg**: A type of leg with a timetable schedule such a provided by
+  public transport
+- **TransferLeg**: A type of leg that links two legs such as walking from
+  one stop to another
+- **ContinousLeg**: A type of leg that is not bound to a timetable. This 
+  leg is mainly aimed at new modes such as scooter, taxis,..
+
+Each `tripleg` (also sometimes called legs) represent a connection between two
+places where the traveller will either step in a transport or step out of a
+transport (most likely a train).
 
 Regardless of whether the products to travel these triplegs are train-bound, or
 based on with a validity period of any duration, triplegs (and by extension
@@ -75,7 +82,7 @@ trips) are always train-bound and represent the realization of the travel wish
 using specific trains at a specific moment in time.
 
 Trips can be retrieved with or without details of all intermediate stops on the
-way between departure and arrival of each tripleg
+way between departure and arrival of each `tripleg`.
 
 ## Offers
 
@@ -288,12 +295,12 @@ ancillary.
 
 ### Offer Parts - Fees
 
-Fees are used to represent additional costs for services or products. Offer 
-parts of type "fee" can be applied to the booking process (e.g. a service fee), 
-the trip (e.g. a reservation fee which is applied to all reservations in trains 
-running in the same direction, namely outward or inward travel) or other offer 
-parts. In contrast to other offer parts in OSDM, the customer is not free whether 
-to choose a fee or not: fees are generated and applied to other services or 
+Fees are used to represent additional costs for services or products. Offer
+parts of type "fee" can be applied to the booking process (e.g. a service fee),
+the trip (e.g. a reservation fee which is applied to all reservations in trains
+running in the same direction, namely outward or inward travel) or other offer
+parts. In contrast to other offer parts in OSDM, the customer is not free whether
+to choose a fee or not: fees are generated and applied to other services or
 products by the provider system.
 
 ### Products
@@ -477,12 +484,26 @@ Refund offers represent a provisional refund request that is made on all or a
 subset of the fulfillments contained in a booking.
 
 ### ExchangeOperations
-An exchange operations represent an ongoing exchange process, either in provisional state of in confirmed state (depending on its status)
-Much like a provisional booking, a provisional exchange contains the provisionally selected (new) Exchange Offer, a status and a ticket-time-limit. In addition, it also contains a reference to the fulfillments that are involved in the exchange, and will be cancelled as a result of its confirmation. 
-Confirmed exchange operations are very similar, except for their status that will change, obviously, and the fact that the exchangeOffer is then transformed into a booked Offer in the booking and only referenced in the exchangeOperation
+
+An exchange operations represent an ongoing exchange process, either in provisional
+state of in confirmed state (depending on its status). Much like a provisional booking,
+a provisional exchange contains the provisionally selected (new) Exchange Offer, a
+status and a ticket-time-limit. In addition, it also contains a reference to the
+fulfillments that are involved in the exchange, and will be cancelled as a result
+of its confirmation. Confirmed exchange operations are very similar, except for
+their status that will change, obviously, and the fact that the exchangeOffer is
+then transformed into a booked Offer in the booking and only referenced in the
+exchangeOperation
 
 ## Exchange Offers
-The exchange offers (and related models such as exchangeTripOffers) are totally similar to their offer counterpart, with the difference that ExchangeOffers also have a link to the fulfillments involved in the exchange operation, and also have 2 additional attributes for the exchange fee and exchange balance (= the difference between the value that can be returned form the fulfillment and the value of the current offers + the exchange fees =  the total amount to be paid or refunded if/when confirming the exchange)
+
+The exchange offers (and related models such as exchangeTripOffers) are totally
+similar to their offer counterpart, with the difference that ExchangeOffers
+also have a link to the fulfillments involved in the exchange operation, and
+also have 2 additional attributes for the exchange fee and exchange balance
+(= the difference between the value that can be returned form the fulfillment
+and the value of the current offers + the exchange fees =  the total amount
+to be paid or refunded if/when confirming the exchange)
 
 ## State Models
 
