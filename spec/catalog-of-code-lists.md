@@ -116,9 +116,9 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`UPPER_BED`| N | Y | Y | Upper bed or couchette | `BERTH_LOCATION` | |
 |`UPPER_DECK`| N | Y | Y | Upper deck in a double deck train |  `LEVEL` |
 |`VIDEO`| N | Y | Y | Place with video entertainment| |
-|`WHEELCHAIR`| Y | Y | N | Wheel chair place | |
+|`WHEELCHAIR`| Y | Y | Y | Wheel chair place | |
 |`WHEELCHAIR_AND_SEAT`| N | Y | Y | Wheelchair place with additional seat |  |
-|`WHEELCHAIR_NO_SEAT`| N | Y | Y | Wheelchair place without additional seat|  |
+|`WHEELCHAIR_NO_SEAT`| N | Y | Y | Wheelchair space without additional seat|  |
 |`WIFI`| N | Y | Y | Places with WiFi access point| |
 |`WINDOW`| N | Y | Y | place at the window | `PLACE_LOCATION` |
 |`WITH_ANIMALS`| Y | Y | Y | Place with animals (animals allowed)| |
