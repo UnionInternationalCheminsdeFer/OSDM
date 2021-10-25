@@ -22,8 +22,8 @@ Europeans travelers are all too familiar of the challenges of booking pan-Europe
 
 There is no doubt that the new OSDM can help the EU meet this goal. That’s why Amadeus is committed to working with the European Commission and all key stakeholders involved in rail and the travel industries to create a more efficient pan-European rail network and distribution system.
 
-Because if there’s anything the world needs, it’s more love stories started on the train, and less carbon emissions. If we need to deal with some tricky technical issues to get there, it will be worth the effort. 
+Because if there’s anything the world needs, it’s more love stories started on the train, and less carbon emissions. If we need to deal with some tricky technical issues to get there, it will be worth the effort.
 
 ![Amadeus](https://unioninternationalcheminsdefer.github.io/OSDM/images/logo/amadeus-logo.png)
 
-(*Source*: [https://amadeus.com/en/insights/blog/it-should-be-easier-to-book-rail-tickets-europe](https://amadeus.com/en/insights/blog/it-should-be-easier-to-book-rail-tickets-europe))
+(Source: [https://amadeus.com/en/insights/blog/it-should-be-easier-to-book-rail-tickets-europe](https://amadeus.com/en/insights/blog/it-should-be-easier-to-book-rail-tickets-europe))

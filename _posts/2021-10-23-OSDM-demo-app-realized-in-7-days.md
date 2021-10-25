@@ -2,11 +2,11 @@
 layout: post
 title: "OSDM Demo App Realized in Seven Days"
 author: Andreas Schlapbach
-date: 2021-11-04 14:20:33 +0100
+date: 2021-10-23 14:20:33 +0100
 categories: osdm update
 ---
 
-UIC member [SBB (Swiss Railways)](https://www.sbb.ch), has built an application in seven days only using the OSDM API to show simulations of routes and services within the system and the capabilities of real time railway ticket distribution.
+UIC member [SBB (Swiss Railways)](https://www.sbb.ch) has built an application in seven days only using the OSDM API to show simulations of routes and services within the system and the capabilities of real time railway ticket distribution.
 
 The application is connected to the [OSDM sandbox](https://unioninternationalcheminsdefer.github.io/OSDM/tools/sandbox/) environment developed by [Sqills](https://sqills.com), which is powered by the Sqills S3 Passenger inventory, reservation and ticketing SaaS. The sandbox is a working prototype which enables the study of the behaviour and semantics of the OSDM API and is open to any party interested in implementing OSDM.  
 
@@ -30,8 +30,13 @@ In order for other parties to start their distribution front-ends, SBB has decid
 
 To enable other parties to start their distribution frontends, SBB will make the app publicly available on GitHub within the next few weeks.
 
-UIC congratulates SBB and especially Hoang Tran on this achievement and fully supports this sector initiative with the aim of improving international passenger travel. 
+UIC congratulates SBB and especially Hoang Tran on this achievement and fully supports this sector initiative with the aim of improving international passenger travel.
 
 This development follows the release in July of a factsheet and a short video explaining the implementation of the OSDM specification, as well as the benefits and purpose of this sector initiative. A longer version of the video can be seen here: https://youtu.be/TVxQdq8nMAI
 
-For further information please consult Andreas Schlapbach (andreas.schlapbach@sbb.ch) or David Sarfatti, Senior Passenger Advisor: sarfatti@uic.org 
+For further information please consult Andreas Schlapbach (andreas.schlapbach@sbb.ch) or David Sarfatti, Senior Passenger Advisor: sarfatti@uic.org.
+
+![SBB](https://unioninternationalcheminsdefer.github.io/OSDM/images/logo/SBB-logo.png)
+
+
+(Source: [https://uic.org/com/enews/article/osdm-demo-app-developed-in-seven-days?var_recherche=osdm](https://uic.org/com/enews/article/osdm-demo-app-developed-in-seven-days?var_recherche=osdm))
