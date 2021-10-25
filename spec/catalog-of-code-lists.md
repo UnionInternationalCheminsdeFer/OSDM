@@ -90,7 +90,7 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`PHONE`|  N | Y | Y | Places in an area with mobile phone amplifier| |
 |`POWER`|  N | Y | Y | Place with power socket| |
 |`PRAM`|  Y | N | Y | Place for a Pram| |
-|`PRAM_WITH_SEAT`|  Y | N | Y | Seat wit space for a Pram | |
+|`PRAM_WITH_SEAT`|  Y | N | Y | Seat with space for a pram | |
 |`PRIVATE_COMP`| Y | N | Y | Private compartment seats, compartment not to be shared with other passengers |  |
 |`PRIVATE_COUCHETTE`| Y | N | Y| Private compartment couchettes, compartment not to be shared with other passengers, usually a 6 Person compartment |  |
 |`PRIVATE_COUCHETTE_4`| Y | N | Y |  Private compartment four couchettes, compartment not to be shared with other passengers | |
