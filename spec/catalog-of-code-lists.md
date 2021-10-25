@@ -33,7 +33,7 @@ provided within the schema or within the IRS90918-10 specification.
 
 The Accommodation Sub Type defines the characteristics of a place for an offer. It can not be changed within the offer. (Reservation) Place Preferences defne the options that can be selected within the offer when requesting a reservation. Place Properties define the place characteristics for the places in a reservation.
 
-Depending on the commercial decisions some codes might be used in accommodation sub type with one carreir whereas another carrier might alow them in the place preferences (e.g. Bicycle and Tandem Bicycle might have the same price (Place Preference) of different prices (Accommodation Sub Type). There might be place propertiies that indicate characteristics of a place to the traveller which are not selectable (e.g. Place without Window)). Therefore the shown usage for the different types are an indication but not mandatory.
+Depending on the commercial decisions some codes might be used in accommodation sub type with one carreir whereas another carrier might alow them in the place preferences (e.g. Bicycle and Tandem Bicycle might have the same price (Place Preference) of different prices (Accommodation Sub Type). There might be place properties that indicate characteristics of a place to the traveller which are not selectable (e.g. Place without Window)). Therefore the shown usage for the different types are an indication but not mandatory.
 
 Place Preference Group collects Place preferences where only one can be choosen of.
 
@@ -45,7 +45,7 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`BICYCLE`| Y | Y | Y | Bicycle hook | |
 |`BUSINESS`| Y | Y | Y | Manager compartment/business| |
 |`BUSINESS_COMFORT`| Y | Y | N | Business Commfort – business seat with reduced service |  |
-|`CABIN8`| N | Y | Y | Special place grou in TGV | |
+|`CABIN8`| N | Y | Y | Special place group in TGV | |
 |`CAR_SMALL`| Y | N | Y | Vehicle parking plpace category 1-3 |  |
 |`CAR_LARGE`| Y | N | Y | Vehicle parking place category 6-8 |  |
 |`CARRE`| N | Y | Y | Carré (4 seats facing normally 2nd Class)| |
@@ -70,6 +70,8 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`FAMILY`|  N | Y | Y | Places in family area |'FAMILY' |
 |`FRONT_VIEW`| N | Y | Y | Seat with front-view | |
 |`HISTORIC_COACH`| Y | Y | Y | Seat in historic coach |  |
+|`INCLUDING_MEAL`| Y | Y | Y | Meal at the place is included |  |
+|`INCLUDING_DRINK`| Y | Y | Y | A drink is included at the place |  |
 |`KIOSQUE`| Y | N | Y |  Kiosque (special seats in edge area of a TGV) | |
 |`LADIES`|  N | Y | Y | Ladies compartment | |
 |`LADIES_CHOUCHETTE_4` | Y | N | Y | Ladies compartment, 4-couchettes |  |
