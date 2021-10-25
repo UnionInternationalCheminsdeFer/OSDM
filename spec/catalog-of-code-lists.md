@@ -37,7 +37,7 @@ Depending on the commercial decisions some codes might be used in accommodation 
 
 Place Preference Group collects Place preferences where only one can be choosen of.
 
-| Code | Accommodation Sub Type | Place Property | Place Preference | Description | Place Preference Group |
+| Code | Accommodation Sub Type | Place Preference | Place Property | Description | Place Preference Group |
 |------|------------------------|----------------|------------------|-------------|------------------------|
 |`AISLE`| N | Y | Y | Place at the aile | `PLACE_LOCATION` |
 |`AIR-CONDITIONED`| N | Y | Y | Place in air conditioned area | |
@@ -51,8 +51,8 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`CARRE`| N | Y | Y | Carré (4 seats facing normally 2nd Class)| |
 |`CHILDREN_AREA`|  N | Y | Y | Places in children area |'FAMILY' |
 |`CLUB`| Y | N | Y | Club Category (RENFE)| | 
-|`CLUB_2`|  N | N | Y | Club Duo (2 seats facing in a separate compartment)| |
-|`CLUB_4`|  N | N | Y | Club 4 (4 seats facing)| |
+|`CLUB_2`|  N | Y | Y | Club Duo (2 seats facing in a separate compartment)| |
+|`CLUB_4`|  N | Y | Y | Club 4 (4 seats facing)| |
 |`COMPARTMENT`|  N | N | Y |  places in a compartment | `PLACE_GROUPING` |
 |`CONFERENCE`|  Y | N | Y |  Conference compartment| |
 |`CONNECTING_DOOR`| N | Y | Y |  Compartments with connecting Door (in Sleepers)| |
@@ -66,13 +66,13 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`DOUBLE_S`| Y | N | Y |  Double sleeper compartment with shower | |
 |`EASY_ACCESS`|  N | Y | Y | Place with easy access for PRMs| |
 |`FACE_2_FACE`| N | Y | Y |  places face to face (2 seats facing) | |
-|`EXCELENCE`| N | Y | Y |  Special Excellence Places (RhB) | |
+|`EXCELLENCE`| N | Y | Y |  Special Excellence Places (RhB) | |
 |`FAMILY`|  N | Y | Y | Places in family area |'FAMILY' |
 |`FRONT_VIEW`| N | Y | Y | Seat with front-view | |
 |`HISTORIC_COACH`| Y | Y | Y | Seat in historic coach |  |
 |`INCLUDING_MEAL`| Y | Y | Y | Meal at the place is included |  |
 |`INCLUDING_DRINK`| Y | Y | Y | A drink is included at the place |  |
-|`KIOSQUE`| Y | N | Y |  Kiosque (special seats in edge area of a TGV) | |
+|`KIOSQUE`| N | Y | Y |  Kiosque (special seats in edge area of a TGV) | |
 |`LADIES`|  N | Y | Y | Ladies compartment | |
 |`LADIES_CHOUCHETTE_4` | Y | N | Y | Ladies compartment, 4-couchettes |  |
 |`LADIES_CHOUCHETTE_6` | Y | N | Y | Ladies compartment, 6-couchettes | |
@@ -93,7 +93,7 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`PRAM_WITH_SEAT`|  Y | N | Y | Seat wit space for a Pram | |
 |`PRIVATE_COMP`| Y | N | Y | Private compartment seats, compartment not to be shared with other passengers |  |
 |`PRIVATE_COUCHETTE`| Y | N | Y| Private compartment couchettes, compartment not to be shared with other passengers, usually a 6 Person compartment |  |
-|`PRIVAT_COUCHETTE_4`| Y | N | Y |  Private compartment four couchettes , compartment not to be shared with other passengers | |
+|`PRIVATE_COUCHETTE_4`| Y | N | Y |  Private compartment four couchettes, compartment not to be shared with other passengers | |
 |`PRIVATE_SLEEPER`| Y | N | Y | Private compartment berth, compartment not to be shared with other passengers | |
 |`PRIVATE_SLEEPER_DELUXE`| Y | N | Y | Private compartment berth deluxe, compartment not to be shared with other passengers |  |
 |`RESTAURANT`| Y | Y | Y | Restaurant (places in a dining car) |  |
