@@ -29,52 +29,101 @@ provided within the schema or within the IRS90918-10 specification.
 | `BERTH` | Night trains only  |
 | `VEHICLE` |  |
 
-## Accommodation Sub Type
+## Accommodation Sub Type, Place Property, Reservation Place Preference
 
-IRS 90918-1 (Service Level).
+The Accommodation Sub Type defines the characteristics of a place for an offer. It can not be changed within the offer. (Reservation) Place Preferences defne the options that can be selected within the offer when requesting a reservation. Place Properties define the place characteristics for the places in a reservation.
 
-| Code | Description |
-|------|-------------|
-|`AC`| Business Commfort – business seat with reduced service |
-|`AH`| Seat in historic coach |
-|`AM`| Seat in separate Compartment |
-|`AR`| Wheel chair seat |
-|`AS`| Quiet Compartment (Seat)|
-|`AV`| Seat with front-view |
-|`BC`| Seat near children's play |
-|`BE`| Restaurant (places in a dining car) |
-|`BP`| Private compartment seats |
-|`D2`| Cabin-couchette coach |
-|`D4`| Couchette Four-berth |
-|`D5`| Couchette Five-berth |
-|`D6`| Couchette Six-berth |
-|`DP`| Private compartment couchettes |
-|`DR`| Wheelchair in sleeping car |
-|`E`| Sleeperette |
-|`F4`| Ladies compartment, 4-couchettes |
-|`F6`| Ladies compartment, 6-couchettes |
-|`L`| Single |
-|`M`| Special |
-|`MS`| Mini Suite - single person couchette compartment |
-|`N`| Double |
-|`O3`| Vehicle parking place category 1-3 |
-|`O4`| Motorcycle |
-|`O5`| Motorcycle with sidecar  |
-|`O8`| Vehicle parking place category 6-8 |
-|`OB`| Bicycle |
-|`OT`| Tandem Bicycle|
-|`P`| T2|
-|`P4`| Private compartment four couchettes |
-|`PD`| Private compartment berth deluxe |
-|`PS`| Private compartment berth |
-|`Q`| T3 |
-|`R`| T4 |
-|`S`| Single with shower & WC |
-|`SL`| Single with shower & WC & double bed |
-|`T`| Double with shower & WC |
-|`TL`| Double with shower & WC & double bed |
-|`U`| T3 with shower & WC |
-|`W`| Double with shower |
+Depending on the commercial decisions some codes might be used in accommodation sub type with one carreir whereas another carrier might alow them in the place preferences (e.g. Bicycle and Tandem Bicycle might have the same price (Place Preference) of different prices (Accommodation Sub Type). There might be place propertiies that indicate characteristics of a place to the traveller which are not selectable (e.g. Place without Window)). Therefore the shown usage for the different types are an indication but not mandatory.
+
+Place Preference Group collects Place preferences wher eonly on cna be choosen of.
+
+| Code | Accommodation Sub Type | Place Property | Place Preference | Description | Place Preference Group |
+|------|------------------------|----------------|------------------|-------------|------------------------|
+|`AISLE`| N | Y | Y | Place at the aile | `PLACE_LOCATION` |
+|`AIR-CONDITIONED`| N | Y | Y | Place in air conditioned area | |
+|`BISTRO` | N | Y | Y | Places in a coach with self-service bistro | |
+|`BCYCLE`| Y | Y | Y | Bicycle | |
+|`BUSINESS`| Y | Y | Y | Manager compartment/business| |
+|`BUSINESS_COMFORT`| Y | Y | N | Business Commfort – business seat with reduced service |  |
+|`CABIN8`| N | Y | Y | Special place grpou in TGV | |
+|`CAR_SMALL`| Y | N | Y | Vehicle parking place category 1-3 |  |
+|`CAR_LARGE`| Y | N | Y | Vehicle parking place category 6-8 |  |
+|`CARRE`| N | Y | Y | Carré (4 seats facing normally 2nd Class)| |
+|`CHILDREN_AREA`|  N | Y | Y | Places in children area |'FAMILY' |
+|`CLUB`| Y | N | Y | Club Category (RENFE)| | 
+|`CLUB_2`|  N | N | Y | Club Duo (2 seats facing in a separate compartment)| |
+|`CLUB_4`|  N | N | Y | Club 4 (4 seats facing)| |
+|`COMPARTMENT`|  N | N | Y |  places in a compartment | `PLACE_GROUPING` |
+|`CONFERENCE`|  Y | N | Y |  Conference compartment| |
+|`CONFERENCE_ROOM`| Y | N | Y |  Conference room| |
+|`CONNECTING_DOOR`| N | Y | Y |  Compartments with connecting Door (in Sleepers)| |
+|`COUCHETTE_2`| Y | N | Y | Two person couchette cabin | |
+|`COUCHETTE_4`| Y | N | Y | Couchette Four-berth |  |
+|`COUCHETTE_5`| Y | N | Y | Couchette Five-berth | |
+|`COUCHETTE_6`| Y | N | Y | Couchette Six-berth | |
+|`DOUBLE`| Y | N | Y | Two person sleeper compartment |  |
+|`DOUBLE_SWC`| Y | N | Y |  Double sleeper compartment with shower & WC |  |
+|`DOUBLE_SWC_DB`| Y | N | Y |  Double sleeper compartment with shower & WC & double bed |  |
+|`DOUBLE_S`| Y | N | Y |  Double sleeper compartment with shower | |
+|`EASY_ACCESS`|  N | Y | Y | Place with easy access for PRMs| |
+|`FACE_2_FACE`| N | Y | Y |  places face to face (2 seats facing) | |
+|`EXCELENCE`| N | Y | Y |  Special Excellence Places (RhB) | |
+|`FAMILY`|  N | Y | Y | Places in family area |'FAMILY' |
+|`FRONT_VIEW`| N | Y | Y | Seat with front-view | |
+|`HISTORIC_COACH`| Y | Y | Y | Seat in historic coach |  |
+|`KIOSQUE`| Y | N | Y |  Kiosque (special seats in edge area of a TGV) | |
+|`LADIES`|  N | Y | Y | Ladies compartment | |
+|`LADIES_CHOUCHETTE_4` | Y | N | Y | Ladies compartment, 4-couchettes |  |
+|`LADIES_CHOUCHETTE_6` | Y | N | Y | Ladies compartment, 6-couchettes | |
+|`LOWER_BED`| N | Y | Y | Lower bed or couchette | `BERTH_LOCATION` | 
+|`LOWER_DECK`| N | Y | Y | Lower deck in a double deck train | `LEVEL` |
+|`MIDDLE_BED` | N | Y | Y | Middle bed or couchette | `BERTH_LOCATION` |
+|`MINI_SUITE`| Y | N | Y |  Mini Suite - single person couchette compartment (Capsule)  |  |
+|`MOTOR_CYCLE`| Y | N | Y | Motorcycle |  |
+|`MOTOR_CYCLE_SC`| Y | N | Y | Motorcycle with sidecar  |  |
+|`NEAR_ANIMALS`| N | N | Y | Places close to place with animals| |
+|`NEAR_DINING`|  N | Y | Y | Places near the dining car| |
+|`NEAR_PLAY_AREA`|  N | Y | Y | Places near a child play area| 'FAMILY' |
+|`OPEN_SPACE`|  N | Y | Y | Places in open space area | `PLACE_GROUPING` |
+|`PANORAMA`|  N | Y | Y | Places in a panorama coach| |
+|`PHONE`|  N | Y | Y | Places in an area with mobile phone amplifier| |
+|`POWER`|  N | Y | Y | Place with power socket| |
+|`PRAM`|  Y | N | Y | Place for a Pram| |
+|`PRAM_WITH_SEAT`|  Y | N | Y | Seat wit space for a Pram | |
+|`PRIVATE_COMP`| Y | N | Y | Private compartment seats, compartment not to be shared with other passengers |  |
+|`PRIVATE_COUCHETTE`| Y | N | Y| Private compartment couchettes, compartment not to be shared with other passengers |  |
+|`PRIVAT_COUCHETTE_4`| Private compartment four couchettes , compartment not to be shared with other passengers | |
+|`PRIVATE_SLEEPER`| Y | N | Y | Private compartment berth, compartment not to be shared with other passengers | |
+|`PRIVATE_SLEEPER_DELUXE`| Y | N | Y | Private compartment berth deluxe, compartment not to be shared with other passengers |  |
+|`RESTAURANT`| Y | Y | Y | Restaurant (places in a dining car) |  |
+|`SEPARATE_COMPARTMENT`| Y | Y | N |Seat in separate Compartment, compartment not to be shared with other passengers  |  |
+|`SILENCE`| Y | Y | Y | Quiet Compartment (Seat) | |
+|`SINGLE_SLEEPER`| Y | N | Y | Single sleeper compartment|  |
+|`SINGLE_SWC`| Y | N | Y | Single sleeper compartment with shower & WC |  |
+|`SINGLE_SWC_DOUBLE' |  Y | N | Y |  Single compartment with shower & WC & double bed |  |
+|`SIDE_BY_SIDE`|  N | Y | Y | places side by side (2 seats side by side) | |
+|`SALON`| N | Y | Y | Salon (6 seats facing in a separate compartment)| |
+|`SLEEPERETTE`| Y | N | Y | Sleeperette (reclining seat) | |
+|`SOLO`|  N | Y | Y | Separate place without neighbor seat | `PLACE_LOCATION` |
+|`SPECIAL_SLEEPER`| Y | N | Y | Special Sleeper Compartment, one Person sleeper compartment smaller than a Single |  |
+|`TANDEM`| Y | Y | Y | Tandem Bicycle| | 
+|`TOURIST_SLEEPER_2`| Y | N | Y | T2 sleeper compartment | |
+|`TOURIST_SLEEPER_3`| Y | N | Y | T3 sleeper compartment |  |
+|`TOURIST_SLEEPER_4`| Y | N | Y | T4 sleeper compartment  | |
+|`TOURIST_SLEEPER_3_WC`| Y | N | Y |  T3 sleeper compartment with shower & WC |  |
+|`TABLE`| N | Y | Y | Places at a table| |
+|`UPPER_BED`| N | Y | Y | Upper bed or couchette | `BERTH_LOCATION` | |
+|`UPPER_DECK`| N | Y | Y | Upper deck in a double deck train |  `LEVEL` |
+|`VIDEO`| N | Y | Y | Place with video entertainment| |
+|`WHEEL_CHAIR`| Y | Y | N | Wheel chair place | |
+|`WHEELCHAIR`| N | Y | Y | Wheelchair place with additional seat|  |
+|`WHEELCHAIR_WS`| N | Y | Y | Wheelchair place without additional seat|  |
+|`WIFI`| N | Y | Y | Places with WiFi access point| |
+|`WINDOW`| N | Y | Y | place at the window | `PLACE_LOCATION` |
+|`WITH_ANIMALS`| Y | Y | Y | Place with animals (animals allowed)| |
+|`WITH_SMALL_CHILDREN`| N | Y | Y | Places for passengers with small children| 'FAMILY' |
+|`WITHOUT_ANIMALS`| N | Y | Y | Place in an area where animals are not allowed | |
+
 
 ## BarcodeType
 
@@ -546,73 +595,6 @@ Codes for personal data items that might be transferred to the carrier if requir
 | `DOCUMENT_CHANGE` | E.g. passport was lost and replaced|
 | `AGENT_ERROR` | Personal data were enterd wronlgy by the sales agent|
 
-## Place Property
-
-| Code | Description |
-|------|-------------|
-| `ACC_BICYCLE` | Place with bicycle|
-| `ACC_PRAM` | Place with space for a pram|
-| `ACC_TANDEM`| Place with tandem bicycle|
-| `AISLE`||
-| `AIR-CONDITIONED`||
-| `BICYCLE`| Bicycle |
-| `BICYCLE_INCL_SEAT`| Bicycle including seat|
-| `BISTRO` | Places in a coach with self-service bistro|
-| `BUSINESS`| Manager compartment/business|
-| `CABIN8`| |
-| `CARRE`| Carré (4 seats facing normally 2nd Class)|
-| `CLASSIC` | Classic coach|
-| `CLUB`| Club (RENFE)|
-| `CLUB_2`| Club Duo (2 seats facing in a separate compartment)|
-| `CLUB_4`| Club 4 (4 seats facing)|
-| `COMPARTMENT`| |
-| `COMPARTMENT_SHOWER_WC`| Compartment with shower and WC|
-| `COMPARTMENT_WC`| Compartment with shower|
-| `CONFERENCE`| Conference compartment|
-| `CONFERENCE_ROOM`| Conference room|
-| `CONNECTING_DOOR`| Compartments with connecting Door (in Sleepers)|
-| `DOUBLE_BED`| Sleeper with double bed|
-| `DUO_F2F`| Duo face to face (2 seats facing)|
-| `DUO_SBS`| Duo side by side (2 seats side by side)|
-| `EASY_ACCESS`| Place with easy access for PRMs|
-| `FAMILY`| Places in family area|
-| `FEMALE`| Female compartment|
-| `FRONT_VIEW`| Places with view to the front|
-| `KIOSQUE`| Kiosque (special seats in edge area)|
-| `LOWER_BED`| |
-| `LOWER_COUCHETTE`| |
-| `LOWER_DECK`| |
-| `MANAGER`| Manager compartment / business|
-| `MIDDLE_BED` | |
-| `MIDDLE_COUCHETTE`| |
-| `NEAR_ANIMALS`|Places close to place with animals|
-| `NEAR_DINING`| Places near the dining car|
-| `NEAR_PLAY_AREA`| Places near a child play area|
-| `OFFICE`| |
-| `OPEN_SPACE`| |
-| `PANORAMA`| Panorama coach|
-| `PHONE`| Places in an area with mobile phone amplifier|
-| `POWER`| Place with power socket|
-| `PRAM`| Space for a pram|
-| `PRM`| Places for passenger needing assistance / disabled|
-| `RESTAURANT`| Places in the restaurant coach|
-| `SALON`| Salon (6 seats facing in separate compartment)|
-| `SILENCE`| Places in silence area|
-| `SLEEPERETTE`| Sleeperette (reclining seat)|
-| `SOLO`| Separate place|
-| `TABLE`| Places at a table|
-| `TANDEM`| Tandem bicycle|
-| `UPPER_BED`| |
-| `UPPER_COUCHETTE`| |
-| `UPPER_DECK`| |
-| `VIDEO`| Place with video entertainment|
-| `WHEELCHAIR`| Wheelchair place with additional seat|
-| `WHEELCHAIR_WS`| Wheelchair place without additional seat|
-| `WIFI`| Places with WiFi access point|
-| `WINDOW`| |
-| `WITH_ANIMALS`| Place with animals (animals allowed)|
-| `WITH_SMALL_CHILDREN`| Places for passengers with small children|
-| `WITHOUT_ANIMALS`| Place in an area where animals are not allowed |
 
 ## Point of Interest (POI)
 
@@ -670,40 +652,7 @@ Other cards should start with the RICS code of the issuer.
 | `SALES_STAFF_ERROR` | Error made by sales staff |
 | `PAYMENT-FAILURE` | Cancellation made by the allocator due to a failed payment |
 
-## Reservation Preference
 
-| Code | Group | Description |
-|------|-------|-------------|
-| `AISLE` | `PLACE_LOCATION` |
-| `WINDOW` | `PLACE_LOCATION` |
-| `UPPER_BED` | `BED_LOCATION` |
-| `LOWER_BED` | `BED_LOCATION` |
-| `MIDDLE_BED` | `BED_LOCATION` |
-| `UPPER_COUCHETTE` | `BED_LOCATION` |
-| `MIDDLE_COUCHETTE` | `BED_LOCATION` |
-| `LOWER_COUCHETTE` | `BED_LOCATION` |
-| `UPPER_DECK` | `LEVEL` |
-| `LOWER_DECK` | `LEVEL` |
-| `COMPARTMENT` | `PLACE_GROUPING` |
-| `OPEN_SPACE` | `PLACE_GROUPING` |
-| `TABLE` || Places at a table |
-| `BICYCLE` | `VEHICLE` | Bicycle |
-| `TANDEM` | `VEHICLE` | Tandem bicycle
-| `PRAM` | `VEHICLE` | Space for a pram |
-| `AIR-CONDITIONED` | |
-| `PANORAMA` | | Panorama coach |
-| `MANAGER` | | Manager compartment / business |
-| `VIDEO` | | Place with video entertainment |
-| `CABIN8` | `PLACE_GROUPING` |
-| `DUO_F2F` | `PLACE_GROUPING` | Duo face to face (2 seats facing) |
-| `DUO_SBS` | `PLACE_GROUPING` | Duo side by side (2 seats side by side) |
-| `CLUB_2` | `PLACE_GROUPING` | Club Duo (2 seats facing in a separate compartment) |
-| `CLUB_4` | `PLACE_GROUPING` | Club 4 (4 seats facing) |
-| `CARRE` | `PLACE_GROUPING` | Carré (4 seats facing normally 2nd Class) |
-| `SALON` | `PLACE_GROUPING` | Salon (6 seats facing in separate compartment) |
-| `KIOSQUE` | `PLACE_GROUPING` | Kiosque (special seats in edge area) |
-| `SOLO` | `PLACE_GROUPING` | Separate place |
-| `CONNECTING_DOOR`| | Compartments with connecting Door (in Sleepers)|
 
 ## Reservation Preference Group
 
@@ -985,6 +934,7 @@ Transaction type used in after sales rules for fares.
 | `PET` | A pet but not a dog | X | X | X | X |
 | `LUGGAGE` | Over-size luggage | X | X | X | X |
 | `BICYCLE` | A bicycle | X | X | X | X |
+| `PRAM` | A pram | X | X | X | X |
 | `ACCOMP_DOG` | An accompanying dog for a PRM | X | X | X | X |
 | `CAR` | A car for car-carriage trains | X | X | X | X |
 | `MOTOCYCLE` | A motorcycle for car carriage trains | X | X | X | X |
