@@ -45,8 +45,8 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`BCYCLE`| Y | Y | Y | Bicycle | |
 |`BUSINESS`| Y | Y | Y | Manager compartment/business| |
 |`BUSINESS_COMFORT`| Y | Y | N | Business Commfort – business seat with reduced service |  |
-|`CABIN8`| N | Y | Y | Special place grpou in TGV | |
-|`CAR_SMALL`| Y | N | Y | Vehicle parking place category 1-3 |  |
+|`CABIN8`| N | Y | Y | Special place grou in TGV | |
+|`CAR_SMALL`| Y | N | Y | Vehicle parking plpace category 1-3 |  |
 |`CAR_LARGE`| Y | N | Y | Vehicle parking place category 6-8 |  |
 |`CARRE`| N | Y | Y | Carré (4 seats facing normally 2nd Class)| |
 |`CHILDREN_AREA`|  N | Y | Y | Places in children area |'FAMILY' |
@@ -91,7 +91,7 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`PRAM`|  Y | N | Y | Place for a Pram| |
 |`PRAM_WITH_SEAT`|  Y | N | Y | Seat wit space for a Pram | |
 |`PRIVATE_COMP`| Y | N | Y | Private compartment seats, compartment not to be shared with other passengers |  |
-|`PRIVATE_COUCHETTE`| Y | N | Y| Private compartment couchettes, compartment not to be shared with other passengers |  |
+|`PRIVATE_COUCHETTE`| Y | N | Y| Private compartment couchettes, compartment not to be shared with other passengers, usually a 6 Person compartment |  |
 |`PRIVAT_COUCHETTE_4`| Y | N | Y |  Private compartment four couchettes , compartment not to be shared with other passengers | |
 |`PRIVATE_SLEEPER`| Y | N | Y | Private compartment berth, compartment not to be shared with other passengers | |
 |`PRIVATE_SLEEPER_DELUXE`| Y | N | Y | Private compartment berth deluxe, compartment not to be shared with other passengers |  |
@@ -106,12 +106,12 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`SLEEPERETTE`| Y | N | Y | Sleeperette (reclining seat) | |
 |`SOLO`|  N | Y | Y | Separate place without neighbor seat | `PLACE_LOCATION` |
 |`SPECIAL_SLEEPER`| Y | N | Y | Special Sleeper Compartment, one Person sleeper compartment smaller than a Single |  |
+|`TABLE`| N | Y | Y | Places at a table| |
 |`TANDEM`| Y | Y | Y | Tandem Bicycle| | 
 |`TOURIST_SLEEPER_2`| Y | N | Y | T2 sleeper compartment | |
 |`TOURIST_SLEEPER_3`| Y | N | Y | T3 sleeper compartment |  |
 |`TOURIST_SLEEPER_4`| Y | N | Y | T4 sleeper compartment  | |
 |`TOURIST_SLEEPER_3_WC`| Y | N | Y |  T3 sleeper compartment with shower & WC |  |
-|`TABLE`| N | Y | Y | Places at a table| |
 |`UPPER_BED`| N | Y | Y | Upper bed or couchette | `BERTH_LOCATION` | |
 |`UPPER_DECK`| N | Y | Y | Upper deck in a double deck train |  `LEVEL` |
 |`VIDEO`| N | Y | Y | Place with video entertainment| |
