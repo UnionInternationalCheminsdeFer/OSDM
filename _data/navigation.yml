@@ -36,6 +36,8 @@
       link: https://github.com/UnionInternationalCheminsdeFer/OSDM/wiki/
     - name: OSDM Sandbox
       link: tools/sandbox/
+    - name: OSDM Demo App
+      link: tools/demo-app/
     - name: OSDM H2O Converter
       link: tools/H2O-converter/
     - name: OSDM Converter
