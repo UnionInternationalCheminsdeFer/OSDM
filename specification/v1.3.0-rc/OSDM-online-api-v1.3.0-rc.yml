@@ -66,84 +66,6 @@ tags:
     description: >-
       resources to get the layout of a coach
 paths:
-  #  /place-information/{placeInformationId}:
-  #    get:
-  #      tags:
-  #        - Place Information
-  #      summary: returns a place-information
-  #      description: >-
-  #        Returns trips for a given trip request based on the specification.
-  #      operationId: getPlaceInformation
-  #      parameters:
-  #        - $ref: "#/components/parameters/acceptLanguage"
-  #        - $ref: "#/components/parameters/accessToken"
-  #        - in: path
-  #          name: placeInformationId
-  #          schema:
-  #            type: string
-  #          required: true
-  #          description: ID of the place information to get.
-  #      responses:
-  #        '200':
-  #          description: place information found matching criteria
-  #          content:
-  #            application/json:
-  #              schema:
-  #                $ref: "#/components/schemas/PlaceInformationResponse"
-  #        '400':
-  #          description: bad input parameter
-  #        '401':
-  #          description: unauthorized
-  #        '403':
-  #          description: forbidden
-  #        '404':
-  #          description: no place information found
-  #        '500':
-  #          $ref: '#/components/responses/InternalServerErrorResponse'
-  #        '501':
-  #          description: not implemented
-  #        '503':
-  #          $ref: '#/components/responses/ServiceUnavailableResponse'
-  #
-  #  /place-information:
-  #    post:
-  #      tags:
-  #        - Place Information
-  #      summary: returns place information for a given place information request
-  #      description: >-
-  #        Returns place information for a given place information request based on the OJP #  specification.
-  #      operationId: postPlaceInformation
-  #      parameters:
-  #        - $ref: "#/components/parameters/acceptLanguage"
-  #        - $ref: "#/components/parameters/accessToken"
-  #      requestBody:
-  #        description: request for place information
-  #        content:
-  #          application/json:
-  #            schema:
-  #              $ref: "#/components/schemas/PlaceInformationRequest"
-  #      responses:
-  #        '200':
-  #          description: place information found matching criteria
-  #          content:
-  #            application/json:
-  #              schema:
-  #                $ref: "#/components/schemas/PlaceInformationResponse"
-  #        '400':
-  #          description: bad input parameter
-  #        '401':
-  #          description: unauthorized
-  #        '403':
-  #          description: forbidden
-  #        '404':
-  #          description: no place information found
-  #        '500':
-  #          $ref: '#/components/responses/InternalServerErrorResponse'
-  #        "501":
-  #          description: not implemented
-  #        '503':
-  #          $ref: '#/components/responses/ServiceUnavailableResponse'#
-
   /places/{placeId}:
     get:
       tags:
@@ -2619,33 +2541,18 @@ components:
         trip:
           $ref: "#/components/schemas/Trip"
 
-    PlaceRequest: ## OJP
-      # allOf:
-      #  - oneOf:
-      #  - $ref: "#/components/schemas/InitialPlaceInput"
-      #  - $ref: "#/components/schemas/PlaceRefStructure"  # Out of scope
+    PlaceRequest: ## OJP  # Reduced scope
       type: object
+      description: >-
+        Initial input for the place information request. This input defines what is originally looked for.
+        Provided by OJP.
       properties:
         placeInput:
           $ref: "#/components/schemas/InitialPlaceInput"
         restrictions:
           $ref: "#/components/schemas/PlaceParam"
 
-    # PlaceInformationRequest: ## OJP
-    #   #allOf:
-    #   #  - oneOf:
-    #   #    - $ref: "#/components/schemas/InitialPlaceInput"
-    #   #    - $ref: "#/components/schemas/PlaceRef"
-    #   type: object
-    #   properties:
-    #     input:
-    #       $ref: "#/components/schemas/InitialPlaceInput"
-    #     place:
-    #       $ref: "#/components/schemas/Place"
-    #     restrictions:
-    #       $ref: "#/components/schemas/PlaceParam"
-
-    PlaceParam: ## OJP
+    PlaceParam: ## OJP  # Reduced scope
       type: object
       description: >-
         More parameters for restricting the request. Provided by OJP.
@@ -2660,8 +2567,8 @@ components:
           $ref: "#/components/schemas/ServiceBrandFilter"
         carrierFilter:
           $ref: "#/components/schemas/CarrierFilter"
-        # topographicPlaceRef:  ## Out of scope
-        #   $ref: "#/components/schemas/TopographicPlaceRef"
+      # topographicPlaceRef:  ## Out of scope
+      #   $ref: "#/components/schemas/TopographicPlaceRef"
         pointOfInterestFilter:
           $ref: "#/components/schemas/PointOfInterestFilter"
         numberOfResults:
@@ -2671,11 +2578,11 @@ components:
           type: number
           format: int32
           minimum: 1
-        # continueAt:   # Out of scope
-        #  type: number
-        #  format: int32
-        # includePtModes:   # Out of scope
-        #  type: boolean
+      # continueAt:   # Out of scope
+      #  type: number
+      #  format: int32
+      # includePtModes:   # Out of scope
+      #  type: boolean
 
     PlaceType: ## OJP
       type: string
@@ -2716,50 +2623,7 @@ components:
     #         - $ref: "#/components/schemas/GeoRestriction"   # Out of scope
     #         - $ref: "#/components/schemas/AllowedSystemId"    # Out of scope
 
-    # PlaceInformationResponse:  ## OJP # Out of scope
-    #   type: object
-    #   properties:
-    #     placeInformationResponseContext:   # Out of scope
-    #       $ref: "#/components/schemas/PlaceContext"
-    #     continueAt:   # Ouf of scope
-    #       type: string
-    #     placeResults:  # Out of scope
-    #       type: array
-    #       items:
-    #         $ref: "#/components/schemas/PlaceResult"
-
-    # PlaceResult: ## OJP # Out of scope
-    #   type: object
-    #   description: >-
-    #     Place result. Provided by OJP.
-    #   required:
-    #     - results
-    #     - complete
-    #   properties:
-    #     place:  # Out of scope
-    #       $ref: "#/components/schemas/Place"
-    #     complete:  # Out of scope
-    #       description: >-
-    #         States whether the included place is complete or needs further refinement. Only complete places
-    #         are fully resolved and can be used in e.g. trip requests. Incomplete places have to be refined
-    #         entering them once again into a PlaceInformationRequest.
-    #       type: boolean
-    #     probability:  # Out of scope
-    #       description: >-
-    #         Probability, that this result is the one meant by the user's input. Value should be between 0 and 1.
-    #       type: number
-    #       format: float
-    #       minimum: 0.0
-    #       maximum: 1.0
-    #     modes:  # Out of scope
-    #       description:
-    #         List of transport modes that call at this place object. This list should only be filled in case of
-    #         stop points or stop places – and only when explicitly requested.
-    #       type: array
-    #       items:
-    #         $ref: "#/components/schemas/Mode"
-
-    TripRequest: ## OJP
+    TripRequest: ## OJP # Reduced scope
       type: object
       description: >-
         Trip request structure. Provided by OJP.
@@ -2825,70 +2689,9 @@ components:
               - ALL
           default: [ALL]
 
-    # TimeAllowanceStructure:  ## OJP
-    #   type: object
-    #   required:
-    #     - timeAllowance
-    #   properties:
-    #     timeAllowance:
-    #       type: string
-    #       format: duration
-    #       example: "120S"
-    
-    # PlacePlaceStructure:  ## OJP Hack
-    #   oneOf:
-    #     - $ref: "#/components/schemas/PlaceRefStructure"
-    #     - $ref: "#/components/schemas/TripPlaceStructure"
-
-    # PlaceTimeStructure:  ## OJP Hack
-    #   oneOf:
-    #     - $ref: "#/components/schemas/DepArrTimeStructure"
-    #     - $ref: "#/components/schemas/TimeAllowanceStructure"
-
-    # PlaceContext:  ## OJP
-    #   type: object
-    #   # NOTICE: there is a bug in the Swagger-UI which prevents
-    #   # the correct structure to pop up when selecting.
-    #   # This should without the place and time layer.
-    #   properties:
-    #     place:
-    #       $ref: "#/components/schemas/PlacePlaceStructure"
-    #     # time:
-    #     #   $ref: "#/components/schemas/PlaceTimeStructure"
-    #     # individualTransportOptions:
-    #     # - $ref: "#/components/schemas/IndividualTransportOptions"
-    #   required:
-    #     - place
-
-    # StopPointRefStructure:  ## OJP
-    #   type: object
-    #   required:
-    #     - stopPointRef
-    #   properties:
-    #     stopPointRef:
-    #       $ref: "#/components/schemas/StopPointRef"
-
-    # PlaceRef:  ## OJP
-    #   description: >-
-    #     Reference to a geographic PLACE of any type which may be specified as the origin or destination of a trip.
-    #  allOf:
-    #   - oneOf:
-    #   - $ref: "#/components/schemas/StopPointRefStructure"
-    #   properties:
-    #  stopPlaceRef:
-    #   $ref: "#/components/schemas/StopPlaceRef
-    #    geoCoordinate:
-    #      $ref: "#/components/schemas/GeoPosition"
-    #  - $ref: "#/components/schemas/TopographicPlaceRefStructure
-    #    pointOfInterest:
-    #      $ref: "#/components/schemas/PointOfInterestRef"
-    #    addressRef:
-    #      $ref: "#/components/schemas/AddressRef"
-    # - $ref: "#/components/schemas/LocationNameStructure"
-
     TripVia: ## OJP
       description: >-
-        Via restrictions for a trip.
+        Via restrictions for a trip. Provided by OJP.
       required:
         - viaPoint
       properties:
@@ -2900,28 +2703,28 @@ components:
           description: desired dwell time at the via place
           example: "30M"
 
-    BaseTripPolicyFilter: ## OJP
+    BaseTripPolicyFilter: ## OJP # Reduced Scope
       type: object
       description: >-
-        Policies that control the trip search behaviour for both public and individual transport.
+        Policies that control the trip search behavior for both public and individual transport. Provided by OJP.
       properties:
         noSingleStep:
           description: The user is not able to climb one step, i.e. wheel chair.
           type: boolean
           default: false
-        # noStairs:  ## Out of scope
+        # noStairs:  # Out of scope
         #   description: The user is not able to walk up/down stairs.
         #   type: boolean
         #   default: false
-        # noEscalator:  ## Out of scope
+        # noEscalator:  # Out of scope
         #   type: boolean
         #   description: The user is not able to use an escalator.
         #   default: false
-        # noElevator:  ## Out of scope
+        # noElevator:  # Out of scope
         #   type: boolean
         #   description: The user is not able to use an elevator.
         #   default: false
-        # noRamp:  ## Out of scope
+        # noRamp:  # Out of scope
         #   type: boolean
         #   description: The user is not able to use an ramp.
         #   default: false
@@ -2960,33 +2763,6 @@ components:
           type: string
           format: duration
           example: 0S
-
-    # NumberOfResultsGroup:  ## OJP # Out of scope
-    #  description: >-
-    #    Parameter to control the number of trip results before/after a point in time. May NOT be used when departure time at
-    #    origin and arrival time at destination are set.
-    #  type: object
-    #  required:
-    #    - numberOfResultsBefore
-    #    - numberOfResultsAfter
-    #  properties:
-    #   numberOfResultsBefore:  # Out of scope
-    #      type: number
-    #      format: int32
-    #      default: 0
-    #    numberOfResultsAfter:  # Out of scope
-    #      type: number
-    #      format: int32
-    #      default: 5
-    
-    # PtModeChoiceGroup:  ## OJP # Out of scope
-    #   description: >-
-    #     Subset of SIRI Modes which are sensible.
-    #     TAP-TSI/UIC: Transport Mode
-    #   type: object
-    #   properties:  # Out of scope
-    #     ptMode:
-    #       type: string
 
     ModeFilter: ## OJP
       description: >-
@@ -3071,21 +2847,7 @@ components:
           items:
             $ref: "#/components/schemas/PointOfInterestCategory"
 
-    # PrivateModeFilter:  ## OJP # Out of scope
-    #   description: List of private mobility offers to include or exclude.
-    #   type: object
-    #   properties:
-    #     exclude:  # Out of scope
-    #       description: Whether modes in list are to include or exclude from search.
-    #       type: boolean
-    #       default: True
-    #     privateMode:  # Out of scope
-    #       description: List of private mobility offers to include/exclude.
-    #       type: array
-    #       items:
-    #         $ref: "#/components/schemas/PrivateModesEnumeration"
-
-    TripDataFilter: ## OJP
+    TripDataFilter: ## OJP # Reduced scope
       description: >-
         Data to be included/excluded from search, f.e. modes, operators. Provided by OJP.
       type: object
@@ -3103,53 +2865,7 @@ components:
         vehicleFilter:
           $ref: "#/components/schemas/VehicleFilter"
 
-    # BaseTripPolicy:  ## OJP # Out of scope
-    #  description: Policies that control the trip search behavior for both public and individual transport.
-    #  type: object
-    #  allOf:
-    #    - oneOf:
-    #      - type: object
-    #        properties:
-    #          numberOfResults:
-    #            type: number
-    #            format: uint8
-    #            default: 5
-    #      - $ref: "#/components/schemas/NumberOfResultsGroup"
-    #    - type: object
-    #      properties:
-    #        ignoreRealtimeData:
-    #          type: boolean
-    #          default: false
-
-    # TripPolicy:  ## OJP # Out of scope
-    #  description: Policies that control the trip search behavior.
-    #  type: object
-    #  properties:
-    #    transferLimit:  # Out of scope
-    #      description: The maximum number of interchanges the user will accept per trip.
-    #      type: number
-    #      format: int8
-    #      minimum: 0
-    #    optimisationMethod:  # Out of scope
-    #      $ref: "#/components/schemas/OptimisationMethod"
-    #    itModesToCover: # Out of scope
-    #      $ref: "#/components/schemas/IndividualMode"#
-
-    # OptimisationMethod:  ## OJP # Out of scope
-    #   description: >-
-    #     The types of algorithm that can be used for planning a journey (fastest, least walking, etc).
-    #   type: string
-    #   enum:
-    #     - FASTEST
-    #     - MIN_CHANGES
-    #     - LEAST_WALKING
-    #     - LEAST_COST
-    #     - EARLIEST_ARRIVAL
-    #     - LATEST_DEPARTURE
-    #     - EARLIEST_ARRIVAL_AND_LATEST_DEPARTURE
-    #   default: FASTEST
-
-    TripParam: ## OJP
+    TripParam: ## OJP # Reduced scope
       description: >-
         Options to control the search behavior and response contents.
         number of results > either number of results or number of results before and after are used.
@@ -3190,7 +2906,7 @@ components:
       #  - $ref: "#/components/schemas/TripContentFilter"
       #  - $ref: "#/components/schemas/FareParam"
 
-    TripCollectionResponse: ## OJP
+    TripCollectionResponse: ## OJP  # Reduced scope
       description: >-
         Trip response structure. Provided by OJP.
       required:
@@ -3202,7 +2918,7 @@ components:
         calcTime:
           type: integer
           minimum: 0
-        # tripResponseContext:  ## Out of scope
+        # tripResponseContext:  # Out of scope
         #  $ref: "#/components/schemas/ResponseContext"
         #        tripResult:
         #          type: array
@@ -3215,36 +2931,8 @@ components:
 
         links:
           $ref: "#/components/schemas/Link"
-
-    #    TripResult:  ## OJP # Out of scope
-    #      description: The trip results found by the server.
-    #      #allOf:
-    #      type: object
-    #      properties:
-    #        resultId:
-    #            description: >-
-    #                Id of this trip result for referencing purposes. Unique within trip response.
-    #            type: string
-    #            format: uuid
-    #        #    - resultId
-    #        #  - $ref: "#/components/schemas/ErrorMessage"  # Out of Scope
-    #        # oneOf:
-    #        trip:
-    #          $ref: "#/components/schemas/Trip"
-    #        #  - $ref: "#/components/schemas/TripSummary"  # Out of Scope
-    #        #  - $ref: "#/components/schemas/TripFare"   # Out of Scope
-
-    # ErrorMessage: ## OJP  --> Todo: Better map to Problem (RfC 7807)
-    #   type: object
-    #   required:
-    #     - code
-    #   properties:
-    #     code:
-    #       type: string  # Out of Scope
-    #     text:
-    #       type: string  # Out of Scope
-
-    Trip:
+    
+    Trip: ## OJP # Reduced scope
       description: >-
         A complete trip from origin to destination. Provided by OJP.
       type: object
@@ -3330,10 +3018,9 @@ components:
           type: boolean
           default: false
 
-    TripLeg: ## OJP
+    TripLeg: ## OJP  # Reduced scope
       description: >-
         A single stage of a trip that is made without change of MODE or service (ie: between each interchange). Provided by OJP.
-
       type: object
       required:
         - legId
@@ -3355,113 +3042,8 @@ components:
           $ref: "#/components/schemas/TransferLeg"
         continousLeg:
           $ref: "#/components/schemas/ContinuousLeg"
-
-    # GeneralAttribute:  ## OJP  # Out of scope
-    #   description: >-
-    #     Structured attribute classification with associated text. If URL is given, it refers to the whole attribute text.
-    #   type: object
-    #   required:
-    #     - text
-    #     - code
-    #     - url
-    #   properties:
-    #     text:  # Out of scope
-    #       description: Text of the attribute to be shown to the user.
-    #       type: string
-    #     code:  # Out of scope
-    #       description: Internal code of the attribute. Can be used for detection of double occurrences.
-    #       type: string
-    #     mandatory:  # Out of scope
-    #       description: Defines whether the attribute has to be shown to the user.
-    #       type: boolean
-    #     importance:  # Out of scope
-    #       description: Importance of the attribute.
-    #       type: number
-    #       minimum: 0
-    #       maximum: 100
-    #     url:  # Out of scope
-    #       description: URL to resource on web.
-    #       type: string
-    #       format: uri
-    #     mimeType:  # Out of scope
-    #       description: MIME type of the referenced resource. To which kind of resource does the URL point to?
-    #       type: string
-    #     embeddable: # Out of scope
-    #       description: >-
-    #         Is the referenced resource meant to be embedded as a webview in a surrounding context, e.g. app
-    #         or web page? If yes, the resource has to be fully responsive.
-    #       type: boolean
-    #       default: false
     
-
-    # LegAttribute:  ## OJP # Out of scope
-    #   description: >-
-    #     Attributes that are not valid on the whole service, but only on section of a
-    #     trip made on a single mode without interchange between boarding and alighting (facilities
-    #     available on a specified (part of a) leg of a vehicle journey)
-    #   type: object
-    #   allOf:
-    #     - $ref: "#/components/schemas/GeneralAttribute"  # Out of scope
-    #     - type: object
-    #       properties:
-    #         fromStopSeqNumber:  # Out of scope
-    #           type: integer
-    #           minimum: 1
-    #         toStopSeqNumber:  # Out of scope
-    #           type: integer
-    #           minimum: 1
-
-    # LinkProjection:  ## OJP # Out of scope
-    #  description: >-
-    #    An oriented correspondence from one link of a source layer, onto an entity in a target layer:
-    #    e.g. link sequence.
-    #  type: object
-    #  required:
-    #    - position
-    #  properties:
-    #    positions:  # Out of scope
-    #      type: array
-    #      items:
-    #        $ref: "#/components/schemas/LocationStructure"
-    #      minItems: 2
-
-
-    # TrackSection:  ## OJP # Out of scope
-    #  description: >-
-    #    Link projection on the infrastructure network of the TRIP LEG together with time information.
-    #  type: object
-    #  properties:
-    #    trackStart:  # Out of scope
-    #      $ref: "#/components/schemas/PlaceRef"
-    #    trackEnd:  # Out of scope
-    #      $ref: "#/components/schemas/PlaceRef"
-    #    lineProjection:  # Out of scope
-    #      $ref: "#/components/schemas/LinkProjection"
-    #    roadName:  # Out of scope
-    #      type: string
-    #      example: "Oude Trambaan"
-    #    duration:  # Out of scope
-    #      type: string
-    #      format: duration
-    #      example: "PT20M"
-    #    length:  # Out of scope
-    #      type: number
-    #      minimum: 0
-
-    # LegTrack:  ## OJP # Out of scope
-    #   description: >-
-    #     The link projection of a Leg onto the topography of the route being followed.
-    #   type: object
-    #   required:
-    #     - trackSection
-    #   properties:  # Out of scope
-    #     trackSections:
-    #       type: array
-    #       items:
-    #         $ref: "#/components/schemas/TrackSection"
-    #       minItems: 1
-    
-    TimedLeg: ## OJP
+    TimedLeg: ## OJP # Reduced scope
       description: >-
         A leg which is bound to a timetabled schedule. Corresponds to a ride. Provided by OJP.
       required:
@@ -3494,21 +3076,7 @@ components:
           type: string
           format: duration
 
-    # TimeWindow:  ## OJP # Out of scope
-    #   description: >-
-    #     The window of opportunity that the traveller has to perform this leg of the journey.
-    #   type: object
-    #   properties:
-    #     timeWindowStart:  # Out of scope
-    #       description: Time at which window begins.
-    #       type: string
-    #       format: date-time
-    #     timeWindowEnd:   # Out of scope
-    #       description: Time at which window ends.
-    #       type: string
-    #       format: date-time
-
-    TransferLeg: ## OJP
+    TransferLeg: ## OJP # Reduced scope
       description: >-
         A leg which links other legs of a trip where a transfer between different places is required. Provided by OJP.
       required:
@@ -3561,7 +3129,7 @@ components:
         # situationFullRef:  # Out of scope
         #   $ref: "#/components/schemas/SituationFullRef"
 
-    ContinuousLeg: ## OJP
+    ContinuousLeg: ## OJP # Reduced scope
       description: >-
         A leg of a journey that is not bound to a timetable. Provided by OJP.
       required:
@@ -3648,7 +3216,7 @@ components:
 
     IndividualMode: ## OJP
       description: >-
-        Modes which an individual powers themselves (such as walk, cycle). Provided by OJP
+        Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
       type: string
       x-extensible-enum:
         - WALK
@@ -3683,69 +3251,6 @@ components:
         - CHECK_OUT
       default: WALK
 
-    # PrivateModesEnumeration:  ## OJP # Out of scope
-    #  description: modes offered by private individuals
-    #  type: string
-    #  x-extensible-enum:
-    #    - CAR_POOLING
-
-    # VehicleModesOfTransportEnumeration:  ## OJP  # TODO: Clarify description
-    #  description: Vehicle mode- Tpeg ModeType pti1.
-    #  type: string
-    #  x-extensible-enum:
-    # - HIGH_SPEED_TRAIN
-    # - HISTORIC_TRAIN
-    # - INTERCITY
-    # - REGIONAL
-    # - INTERREGIONAL
-    # - TRAIN
-    # - URBAN
-    # - TRAM
-    # - UNDERGROUND
-    # - NIGHT_TRAIN
-    # - SHARED_TAXI
-    # - MOTOR_RAIL
-    # - MOUNTAIN_TRAIN
-    # - PLANE
-    # - COACH_GROUP
-    # - SHIP
-    # - BUS
-    #- UNKNOWN
-    #- RAILWAY_SERVICE
-    #- RAIL
-    #- COACH_SERVICE
-    #- COACH
-    #- SUBURBAN_RAILWAY_SERVICE
-    #- SUBURBAN_RAIL
-    #- URBAN_RAILWAY_SERVICE
-    #- URBAN_RAILWAY
-    #- METRO_SERVICE
-    #- METRO
-    #- UNDERGROUND_SERVICE
-    #- UNDERGROUND
-    #- BUS_SERVICE
-    #- BUS
-    #- TROLLEY_BUS_SERVICE
-    #- TROLLEY_BUS
-    #- TRAM_SERVICE
-    #- TRAM
-    #- WATER_TRANSPORT_SERVICE
-    #- WATER_TRANSPORT
-    #- AIR_SERVICE
-    #- AIR
-    #- FERRY_SERVICE
-    #- WATER
-    #- TELECABIN_SERVICE
-    #- TELECABIN
-    #- FUNICULAR_SERVICE
-    #- FUNICULAR
-    #- TAXI_SERVICE
-    #- TAXI
-    #- SELF_DRIVE
-    #- ALL_SERVICES
-    #- ALL
-    #- ALL_SERVICES_EXCEPT
-
     StopCallStatus: ## OJP
       description: >-
         Status properties for the vehicle call at this stop. Provided by OJP.
@@ -3775,43 +3280,6 @@ components:
           description: Alighting will not be allowed at this stop of this journey.
           type: boolean
           default: false
-
-    # LegBoard:  ## OJP
-    #      description: Stop/Station where boarding is done.
-    # allOf:
-    #      type: object
-    #      required:
-    #        - stopPlace
-    #        # - stopPointName
-    #        - serviceDeparture
-    #      properties:
-    #        stopPlace:
-    #          $ref: "#/components/schemas/StopPlace"
-    #            # stopPointName:
-    #   type: string
-    #   example: Brussel, Quay 14
-    # nameSuffix:
-    #   description: >-
-    #     Additional description of the stop point that may be appended to the
-    #     name if enough space is available. F.e. "opposite main entrance".
-    #   type: string
-    #        plannedQuay:
-    #          description: >-
-    #                Name of the bay where to board the vehicle. According to planned timetable.
-    #          type: string
-    #          example: "4"
-    #        estimatedQuay:
-    #          description: >-
-    #                Name of the bay where to board the vehicle. As to the latest realtime status.
-    #          type: string
-    #          example: "8"
-    #        serviceDeparture: # EXT directly inline service time
-    #              description: >-
-    #               Describes the departure situation at this leg board stop point (group of attributes
-    #                of timetabled passing time, estimated passing time, observed passing time).
-    #              $ref: "#/components/schemas/ServiceTime"
-    #        status:
-    #          $ref: "#/components/schemas/StopCallStatus"
 
     LegStop: ## EXT OJP LegStop unifies LegBoard, LegIntermediate, LegAlign
       description: >-
@@ -3856,82 +3324,6 @@ components:
         status:
           $ref: "#/components/schemas/StopCallStatus"
 
-    #    LegIntermediate:  ## OJP # Out of scope
-    #      description: >-
-    #        Describes the situation at a stop or station that lies between the
-    #        LegBoard and LegAlight stop or station including time-related information.
-    #      #allOf:
-    #      type: object
-    #      required:
-    #        - order
-    #        - plannedQuay
-    #        - serviceArrival
-    #        - stopPointName
-    #        - stopPlace
-    #      properties:
-    #            stopPlace:  # Out of scope
-    #              $ref: "#/components/schemas/StopPlace"   ## EXT
-    #            stopPointName:   # Out of scope
-    #              type: string
-    #              example: Luzern
-    #            plannedQuay:   # Out of scope
-    #              description: >-
-    #                Name of the bay where to board/alight from the vehicle. According to
-    #                planned timetable.
-    #              type: string
-    #              example: "3"
-    #            serviceArrival: # EXT directly inline service time
-    #              description: >-
-    #                Describes the arrival situation at this leg board stop point (group of attributes
-    #                of timetabled passing time, estimated passing time, observed passing time).
-    #              $ref: "#/components/schemas/ServiceTime"
-    #            serviceDeparture: # EXT directly inline service time
-    #              description: >-
-    #                Describes the departure situation at this leg board stop point (group of attributes
-    #                of timetabled passing time, estimated passing time, observed passing time).
-    #              $ref: "#/components/schemas/ServiceTime"
-    #            status:
-    #              $ref: "#/components/schemas/StopCallStatus"
-
-    #    LegAlight:  ## OJP # Out of scope
-    #      description: >-
-    #        Describes the situation at a stop or station at which the passenger alights
-    #        from a Leg of a trip including time-related information.
-    #      # allOf:
-    #      type: object
-    #      required:
-    #            - stopPlace
-    #            - serviceArrival
-    #           # - stopPointName
-    #      properties:
-    #        stopPlace:   # Out of scope
-    #              $ref: "#/components/schemas/StopPlace" ## EXT switched from PointPlace
-    #            # stopPointName:
-    #            #   type: string
-    #            #   example: Luzern
-    #            # nameSuffix:
-    #            #   description: >-
-    #            #     Additional description of the stop point that may be appended to the
-    #            #     name if enough space is available. F.e. "opposite main entrance".
-    #            #   type: string
-    #        plannedQuay:   # Out of scope
-    #              description: >-
-    #                Name of the bay where to alight from the vehicle. According to planned timetable.
-    #              type: string
-    #              example: "3"
-    #        estimatedQuay:   # Out of scope
-    #              description: >-
-    #                Name of the bay where to alight from the vehicle. As to the latest realtime status.
-    #              type: string
-    #              example: "8"
-    #        serviceArrival: # EXT directly inline service time
-    #              description: >-
-    #                Describes the arrival situation at this leg board stop point (group of attributes
-    #                of timetabled passing time, estimated passing time, observed passing time).
-    #              $ref: "#/components/schemas/ServiceTime"
-    #        status:
-    #              $ref: "#/components/schemas/StopCallStatus
-
     ServiceTime: ## OJP
       description: >-
         Contains at least scheduled time, but can contain real time and estimated times. Provided by OJP.
@@ -3949,7 +3341,7 @@ components:
           type: string
           format: date-time
 
-    DatedJourney: ## OJP
+    DatedJourney: ## OJP # Reduced scope
       description: >-
         Vehicle journey that runs at a specific date. Provided by OJP.
       required:
@@ -4050,7 +3442,7 @@ components:
         productCategoryRef:
           $ref: "#/components/schemas/ProductCategoryRef"
 
-    Place: ## OJP
+    Place: ## OJP # Reduced scope
       description: >-
         A geographic place of any type which may be specified as the origin or destination of a trip. Provided by OJP.
       # allOf:
@@ -4092,7 +3484,7 @@ components:
         link:
           $ref: "#/components/schemas/Link"
 
-    Address: ## OJP
+    Address: ## OJP # Reduced scope
       description: >-
         A descriptive data associated with a place that can be used to describe the unique geographical context of a
         place for the purposes of identifying it. may be refined as either a road address, a postal address or both.
@@ -4149,7 +3541,7 @@ components:
         #   description: Crossing. This can be used to be more specific without using house numbers.
         #   type: string
 
-    PointOfInterest: ## OJP
+    PointOfInterest: ## OJP # Reduced scope
       description: >-
         A type of place to or through which passengers may wish to navigate as part of
         their journey and which is modelled in detail by journey planners. Provided by OJP.
@@ -4226,9 +3618,9 @@ components:
         - tag
         - value
 
-    StopPlace: ## OJP
+    StopPlace: ## OJP # Reduced scope
       description: >-
-        A place extended by accessibility limitiation properties and some attributes of the associated equipment, 
+        A place extended by accessibility limitation properties and some attributes of the associated equipment, 
         comprising one or more places where vehicles may stop and where passengers may board or leave vehicles 
         or prepare their trip, and which will usually have one or more wellknown names. Provided by OJP.
       #allOf:
@@ -4256,112 +3648,7 @@ components:
         #   $ref: "#/components/schemas/TopographicPlaceRef"
         # - $ref: "#/components/schemas/StopAttributes" # Out of scope
 
-    # StopAttributes:  ## OJP  # Out of scope
-    #   description: >-
-    #     A selection of attributes of accessibility limitation related to a scheduled stop point extended by attributes
-    #     referring to some equipment.
-    #   type: object
-    #   properties:
-    #     wheelchairAccessible:  # Out of scope
-    #       description: Whether this stop is accessible for wheelchair users.
-    #       type: boolean
-    #     lighting:  # Out of scope
-    #       description: Whether this stop is lit.
-    #       type: boolean
-    #     covered:  # Out of scope
-    #       description: Whether this stop offers protection from weather conditions like rain, snow, storm etc.
-    #       type: boolean
-
-    # TopographicPlaceStructure:  ## OJP  # Out of scope
-    #   type: object
-    #   properties:
-    #     toppographicPlace:  # Out of scope
-    #       $ref: "#/components/schemas/TopographicPlace"
-    #   required:
-    #     - topographicPlace  # Out of scope
-
-    # TopographicPlace:  ## OJP  # Out of scope
-    #   description: >-
-    #     a type of place providing the topographical context when searching for or presenting travel information,
-    #     for example as the origin or destination of a trip. it may be of any size (e.g. county,city, town, village)
-    #     and of different specificity (e.g. greater london, london, west end, westminster, st james's).
-    #   type: object
-    #   required:
-    #     - topographicPlaceCode
-    #     - topographicPlaceName
-    #   properties:
-    #     topographicPlaceCode:  # Out of scope  
-    #       type: string
-    #     topographicPlaceName:  # Out of scope
-    #       type: string
-    #     privateCode:  # Out of scope
-    #       $ref:  "#/components/schemas/PrivateCode"
-    #     parentRef:  # Out of scope
-    #       $ref:  "#/components/schemas/TopographicPlaceRef"
-    #     referredSystemId:  # Out of scope
-    #       type: string
-    #     area: # Out of scope
-    #       $ref:  "#/components/schemas/AreaStructure"
-   
-    # StopPointStructure:  ## OJP # Out of scope
-    #   type: object
-    #   required:
-    #     - stopPoint
-    #   properties:
-    #     stopPoint:  # Out of scope
-    #       $ref: "#/components/schemas/StopPoint"
-    
-    # StopPoint:  ## OJP # Out of scope
-    #   description: >-
-    #     An extended view of scheduled stop point in tmv6 a scheduled stop point extended by accessibility limitation
-    #     attributes and with identifier and name where passengers can board or alight from vehicles.
-    #   allOf:
-    #     - type: object
-    #       required:
-    #         - stopPlaceRef
-    #         - stopPointName
-    #       properties:
-    #         stopPointRef:  # Out of scope
-    #           $ref: "#/components/schemas/StopPointRef"
-    #         stopPointName:  # Out of scope
-    #           description: Name or description of stop point for use in passenger information.
-    #           type: string
-    #         nameSuffix:  # Out of scope
-    #           description: Additional description of the stop point that may be appended to the name if enough space is available.
-    #           example: opposite main entrance
-    #           type: string
-    #         plannedQuay:  # Out of scope
-    #           description: Name of the bay where to board/alight from the vehicle. According to planned timetable.
-    #           type: string
-    #         estimatedQuay:  # Out of scope
-    #           description: Name of the bay where to board/alight from the vehicle. As to the latest realtime status.
-    #           type: string
-    #         privateCode:  # Out of scope
-    #           description: Code of this stop point in private/foreign/proprietary coding schemes.
-    #           $ref: "#/components/schemas/PrivateCode"
-    #         parentRef:  # Out of scope
-    #           description: Reference to the stop place to which this stop point belongs.
-    #           $ref: "#/components/schemas/StopPlaceRef"
-    #         topographicPlaceRef:  # Out of scope
-    #           description: If at least one is set, only place objects within the given localities are allowed.If at least one is set, only place objects within the given localities are allowed.Reference to a TopographicPlace
-    #           $ref: "#/components/schemas/TopographicPlaceRef"
-    #   #  - $ref: "#/components/schemas/StopAttributes"
-
-    # PrivateCode:  ## OJP  # Out of scope
-    #   description: Code of this stop point in private/foreign/proprietary coding schemes.
-    #   type: object
-    #   required:
-    #     - system
-    #     - value
-    #   properties:
-    #     system:  # Out of scope
-    #       type: string
-    #       example: EFA
-    #     value:  # Out of scope
-    #       type: string
-    #       example: "6373080"
-    
-    GeoPosition: ## OJP
+    GeoPosition: ## OJP # Reduced scope
       description: >-
         WGS84 coordinates position. Provided by OJP.
       type: object
@@ -4396,64 +3683,28 @@ components:
       minimum: -90.0
       maximum: 90.0
 
-    # Altitude:  ## OJP # Out of scope
-    #   description: Altitude metres from sea level.
-    #   type: number
-    #   format: float
-    #   example: 0.0
-
-    # Precision:  ## OJP # Out of scope
-    #   description: Precision for point measurement. In Meters.
-    #   type: number
-    #   format: float
-    #   example: 0.0
-
-    # StopPointRef:  ## OJP  # EXT Changed from StopPoint
-    #   description: >-
-    #     Reference to a (SCHEDULED) STOP POINT.  Per definition we use MERTIS codes
-    #   type: object
-    #   properties:
-    #     code:  # Out of scope
-    #       type: string
-    #       example: "8503000"
-    #     codeList:  # Out of scope
-    #       type: string
-    #       default: UIC
-
-    StopPlaceRef: ## OJP  # EXT add code list
+    StopPlaceRef: ## OJP
       description: >-
         Reference to a Stop Place using URNs to define code. Default code list UIC MERITS/TAP-TSI station codes. Provided by OJP.
       type: string
       example: "8503000"
 
-    # PointOfInterestRef: ## OJP  # Out of scope
-    #   description: >-
-    #     Reference to a Point of Interest using URNs to define  list. Default code list UIC MERITS/TAP-TSI station codes. Provided by OJP.
-    #   type: string
-    #   example: "8503000"
-
-    # AddressRef: ## OJP  # Out of scope
-    #   description: Reference to an Address using URNs to define code.
-    #   type: string
-    #   example: "8503000"
-
-    # TopographicPlaceRef:  ## OJP # Out of scope
-    #  description: Reference to a TopographicPlace using URNs to define code list
-    #  type: string
-
     ProductCategoryRef: ## OJP
       description: >-
-        A reference to the product category using URNs to define code list. Default is UIC service brand code (TAP-TS
+        Reference to a product category. Product categories should be defined once and used uniformly in all channels 
+        (e.g. NeTEx, SIRI, OJP). Provided by OJP.
       type: string
       example: "urn:uic:sbc:76"
 
     OperationDayRef: ## OJP
-      description: Reference to an operating day
+      description: >-
+        Reference to an operating day. Provided by OJP.
       type: string
       example: "OperatingDay:12345"
 
     JourneyRef: ## OJP
-      description: Reference to a journey
+      description: >-
+        Reference to a journey. Provided by OJP.
       type: string
       example: "ServiceJourney:1"
 
