@@ -1476,73 +1476,6 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
-  # /bookings/search:
-  #   post:
-  #     tags:
-  #       - Bookings
-  #     summary: Allows to search for and find bookings based on a set of criteria.
-  #     description: >-
-  #       There are searching criteria that need to be supported. by passenger
-  #       attributes (first name, name, date-of-birth), by booking reference (e.g. PNR,
-  #       Auftragsnummer) or by fulfillment reference (e.g. ticket number).
-  #     operationId: getBookings
-  #     parameters:
-  #       - $ref: "#/components/parameters/accessToken"
-  #       - $ref: "#/components/parameters/acceptLanguage"
-  #       - $ref: "#/components/parameters/idempotencyKey"
-  #       - in: query
-  #         name: embed
-  #         description: >-
-  #           Influences whether referenced resources are returned in full or as references only.
-  #         schema:
-  #           type: array
-  #           items:
-  #             type: string
-  #             enum:
-  #               - ALL
-  #               - BOOKINGS
-  #               - BOOKINGS.BOOKEDOFFERS.TRIP
-  #               - BOOKINGS.BOOKEDOFFERS.TRIP.PLACES
-  #               - BOOKINGS.BOOKEDOFFERS
-  #               - BOOKINGS.BOOKEDOFFERS.OFFERPARTS
-  #               - BOOKINGS.PASSENGERS
-  #               - BOOKINGS.TICKETS
-  #               - NONE
-  #           default: [ALL]
-  #     requestBody:
-  #       content:
-  #         application/json:
-  #           schema:
-  #             $ref: '#/components/schemas/BookingSearchParameter'
-  #     responses:
-  #       '200':
-  #         description: Booking ids found
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 warnings:
-  #                   $ref: '#/components/schemas/WarningMessageList'
-  #                 searchResults:
-  #                   $ref: '#/components/schemas/BookingSearchReply'
-  #       '400':
-  #         $ref: '#/components/responses/BadRequestResponse'
-  #       '401':
-  #         description: Unauthorized
-  #       '403':
-  #         description: Forbidden
-  #       '404':
-  #         description: Not Found
-  #       '409':
-  #         $ref: '#/components/responses/ConflictResponse'
-  #       '500':
-  #         $ref: '#/components/responses/InternalServerErrorResponse'
-  #       '501':
-  #         description: Not implemented
-  #       '503':
-  #         $ref: '#/components/responses/ServiceUnavailableResponse'
-
   /bookings:
     post:
       tags:
@@ -4287,15 +4220,15 @@ components:
         #   description: Additional description of the stop place that may be appended to the name if enough space is available.
         #   type: string
         #   example: Exhibition Center
-        # privateCode:
+        # privateCode:  # Out of scope
         #   description: Code of this stop place in private/foreign/proprietary coding schemes.
         #   $ref: "#/components/schemas/PrivateCode"
-        # topographicPlaceRef: Out of scope
+        # topographicPlaceRef:  # Out of scope
         #   description: If at least one is set, only place objects within the given localities are allowed.If at least one is set, only place objects within the given localities are allowed.Reference to a TopographicPlace
         #   $ref: "#/components/schemas/TopographicPlaceRef"
         # - $ref: "#/components/schemas/StopAttributes" # Out of scope
 
-    # StopAttributes:  ## OJP
+    # StopAttributes:  ## OJP  # Out of scope
     #   description: >-
     #     A selection of attributes of accessibility limitation related to a scheduled stop point extended by attributes
     #     referring to some equipment.
@@ -4311,28 +4244,28 @@ components:
     #       description: Whether this stop offers protection from weather conditions like rain, snow, storm etc.
     #       type: boolean
 
-    # TopographicPlaceStructure:  ## OJP
+    # TopographicPlaceStructure:  ## OJP  # Out of scope
     #   type: object
     #   properties:
-    #     toppographicPlace:
+    #     toppographicPlace:  # Out of scope
     #       $ref: "#/components/schemas/TopographicPlace"
     #   required:
-    #     - topographicPlace
+    #     - topographicPlace  # Out of scope
 
-    # TopographicPlace:  ## OJP
+    # TopographicPlace:  ## OJP  # Out of scope
     #   description: >-
     #     a type of place providing the topographical context when searching for or presenting travel information,
     #     for example as the origin or destination of a trip. it may be of any size (e.g. county,city, town, village)
     #     and of different specificity (e.g. greater london, london, west end, westminster, st james's).
     #   type: object
     #   properties:
-    #     topographicPlaceCode:
+    #     topographicPlaceCode:  # Out of scope  
     #       type: string
-    #     topographicPlaceName:
+    #     topographicPlaceName:  # Out of scope
     #       type: string
-    #     privateCode:
+    #     privateCode:  # Out of scope
     #       $ref:  "#/components/schemas/PrivateCode"
-    #     parentRef:
+    #     parentRef:  # Out of scope
     #       $ref:  "#/components/schemas/TopographicPlaceRef"
     #     referredSystemId:
     #       type: string
@@ -4342,7 +4275,7 @@ components:
     #     - topographicPlaceCode
     #     - topographicPlaceName
 
-    # StopPointStructure:  ## OJP
+    # StopPointStructure:  ## OJP # Out of scope
     #   type: object
     #   properties:
     #     stopPoint:
@@ -4350,7 +4283,7 @@ components:
     #   required:
     #     - stopPoint
 
-    # StopPoint:  ## OJP
+    # StopPoint:  ## OJP # Out of scope
     #   description: >-
     #     An extended view of scheduled stop point in tmv6 a scheduled stop point extended by accessibility limitation
     #     attributes and with identifier and name where passengers can board or alight from vehicles.
@@ -4386,7 +4319,7 @@ components:
     #           $ref: "#/components/schemas/TopographicPlaceRef"
     #   #  - $ref: "#/components/schemas/StopAttributes"
 
-    # PrivateCode:  ## OJP
+    # PrivateCode:  ## OJP  # Out of scope
     #   description: Code of this stop point in private/foreign/proprietary coding schemes.
     #   type: object
     #   properties:
@@ -4408,9 +4341,9 @@ components:
           $ref: "#/components/schemas/Longitude"
         latitude:
           $ref: "#/components/schemas/Latitude"
-        # altitude:   #Out of scope
+        # altitude:   # Out of scope
         #  $ref: "#/components/schemas/Altitude"
-        #precision:   #Out of scope
+        #precision:   # Out of scope
         #  $ref: "#/components/schemas/Precision"
       required:
         - latitude
@@ -4432,13 +4365,13 @@ components:
       minimum: -90.0
       maximum: 90.0
 
-    # Altitude:  ## OJP
+    # Altitude:  ## OJP # Out of scope
     #   description: Altitude metres from sea level.
     #   type: number
     #   format: float
     #   example: 0.0
 
-    # Precision:  ## OJP
+    # Precision:  ## OJP # Out of scope
     #   description: Precision for point measurement. In Meters.
     #   type: number
     #   format: float
@@ -4473,7 +4406,7 @@ components:
       type: string
       example: "8503000"
 
-    # TopographicPlaceRef:  ## OJP
+    # TopographicPlaceRef:  ## OJP # Out of scope
     #  description: Reference to a TopographicPlace using URNs to define code list
     #  type: string
 
@@ -5465,62 +5398,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/OfferSelection"
-
-    BookingSearchParameter:
-      type: object
-      description: >-
-        parameter to be used to search for a booking. Contains personal data. 
-        For a search via personal data an exact match of all elements 
-        - first name, last name and date of birth - is mandatory. 
-        In case a ticket holder is indicated the parameter must match the ticket holder. 
-        TODO - legal check by CIT
-      properties:
-        passengerFirstName:
-          type: string
-          description: >-
-            First name of a passenger in the booking.
-        passengerLastName:
-          type: string
-          description: >-
-            Last name of a passenger in the booking.
-        passengerDateOfBirth:
-          type: string
-          format: date
-          description: >-
-            Date of birth of a passenger in the booking.
-        bookingReference:
-          type: string
-          format: date
-          description: >-
-            Human-readable booking reference for the booking, e.g. PNR.
-        fulfillmentReference:
-          type: string
-          description: >-
-            Human-readable fulfillment reference for the booking, e.g. ticket number.
-        travelDateBegin:
-          type: string
-          format: date-time
-          description: >-
-            Begin date for the travel date range to search.
-        travelDateEnd:
-          type: string
-          format: date-time
-          description: >-
-            End date for the travel date range to search.
-        origin:
-          $ref: "#/components/schemas/Place"
-        destination:
-          $ref: "#/components/schemas/Place"
-
-    BookingSearchReply:
-      type: object
-      description: >-
-        Reply on a search for bookings
-      properties:
-        bookings:
-          type: array
-          items:
-            $ref: "#/components/schemas/Booking"
 
     FulfillmentOption:
       type: object
