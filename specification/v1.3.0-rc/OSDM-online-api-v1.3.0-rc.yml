@@ -2567,8 +2567,8 @@ components:
           $ref: "#/components/schemas/ServiceBrandFilter"
         carrierFilter:
           $ref: "#/components/schemas/CarrierFilter"
-      # topographicPlaceRef:  ## Out of scope
-      #   $ref: "#/components/schemas/TopographicPlaceRef"
+        # topographicPlaceRef:  ## Out of scope
+        #   $ref: "#/components/schemas/TopographicPlaceRef"
         pointOfInterestFilter:
           $ref: "#/components/schemas/PointOfInterestFilter"
         numberOfResults:
@@ -2586,8 +2586,7 @@ components:
 
     PlaceType: ## OJP
       type: string
-      description:
-        Provided by OJP.
+      description: Provided by OJP.
       enum:
         - STOP
         - ADDRESS
@@ -2631,7 +2630,7 @@ components:
         - destination
         - origin
       properties:
-        departureTime:   # EXT Array out of Scope
+        departureTime: # EXT Array out of Scope
           type: string
           format: date-time
         arrivalTime:
@@ -2643,13 +2642,13 @@ components:
           description: >-
             Specifies the origin situation from where the user wants to start.
           $ref: "#/components/schemas/Place"
-        
-        destination:  # EXT Array out of Scope
+
+        destination: # EXT Array out of Scope
           description: >-
             Specifies the destination situation where the user is heading to.
           $ref: "#/components/schemas/Place"
-        
-        via:  # EXT Array out of Scope
+
+        via: # EXT Array out of Scope
           description: >-
             Ordered series of points where the journey must pass through. If more
             than one via point is given all of them must be obeyed - in the correct
@@ -2931,7 +2930,7 @@ components:
 
         links:
           $ref: "#/components/schemas/Link"
-    
+
     Trip: ## OJP # Reduced scope
       description: >-
         A complete trip from origin to destination. Provided by OJP.
@@ -3042,7 +3041,7 @@ components:
           $ref: "#/components/schemas/TransferLeg"
         continousLeg:
           $ref: "#/components/schemas/ContinuousLeg"
-    
+
     TimedLeg: ## OJP # Reduced scope
       description: >-
         A leg which is bound to a timetabled schedule. Corresponds to a ride. Provided by OJP.
@@ -3423,8 +3422,8 @@ components:
         Product category based on NeTEx/SIRI. A product category is a classification for vehicle journeys
         to express some common properties of journeys for marketing and fare products. Provided by OJP.
       required:
-      #  - name  # EXT no longer mandatory as being passed in a trip
-      #  - shortName  # EXT no longer mandatory as being passed in a trip
+        #  - name  # EXT no longer mandatory as being passed in a trip
+        #  - shortName  # EXT no longer mandatory as being passed in a trip
         - productCategoryRef
       properties:
         name:
@@ -3600,7 +3599,7 @@ components:
           type: array
           items:
             type: string
-      
+
     OsmTagStructure: ## OJP
       description: >-
         Structure of an Open Street Map tag. Provided by OJP.
