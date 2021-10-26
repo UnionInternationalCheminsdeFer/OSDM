@@ -19,7 +19,7 @@ interested in implementing OSDM.
 
 ## Contact
 
-The app will be open sourced as soon as SBB has the clearance from its legal entity. Until
+The app will be open sourced as soon as SBB has the clearance from its legal department (scheduled for December for 2021). Until
 then please contact [Andreas Schlapbach](https://www.linkedin.com/in/andreas-schlapbach/).
 
 ![SBB](../images/logo/SBB-logo.png)
