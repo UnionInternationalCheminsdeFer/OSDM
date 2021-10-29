@@ -16,8 +16,8 @@ provided within the schema or within the IRS90918-10 specification.
 | stations  | urn:uic  | stn      | UIC station codes (TAP-TSI) | uic:stn:8512345 |  urn:uic:stn: |
 | service brands , products | urn:uic  | sbc      | UIC service brand code (TAP-TSI) | uic:sbc:17 |   urn:uic:sbc: |
 | companies | urn:uic  | rics     | UIC company code (TAP-TSI) | uic:rics:1080 |  urn:uic:rics: |
-| countries | urn:iso  | std:iso:3166 | ISO Country Codes | urn:iso:std:iso:3166:CH |  urn:iso:std:iso:3166: | 
-| currencies | urn:iso  | std:iso:4217 | ISO Currency Codes | urn:iso:std:iso:4217:CFR |  urn:iso:std:iso:4217: | 
+| countries | urn:iso  | std:iso:3166 | ISO Country Codes | urn:iso:std:iso:3166:CH |  urn:iso:std:iso:3166: |
+| currencies | urn:iso  | std:iso:4217 | ISO Currency Codes | urn:iso:std:iso:4217:CFR |  urn:iso:std:iso:4217: |
 
 
 ## Accommodation Type
@@ -31,26 +31,28 @@ provided within the schema or within the IRS90918-10 specification.
 
 ## Accommodation Sub Type, Place Property, Reservation Place Preference
 
-The Accommodation Sub Type defines the characteristics of a place for an offer. It can not be changed within the offer. (Reservation) Place Preferences defne the options that can be selected within the offer when requesting a reservation. Place Properties define the place characteristics for the places in a reservation.
+The Accommodation Sub Type defines the characteristics of a place for an offer. It can not be changed within the offer.
 
-Depending on the commercial decisions some codes might be used in accommodation sub type with one carreir whereas another carrier might alow them in the place preferences (e.g. Bicycle and Tandem Bicycle might have the same price (Place Preference) of different prices (Accommodation Sub Type). There might be place properties that indicate characteristics of a place to the traveller which are not selectable (e.g. Place without Window)). Therefore the shown usage for the different types are an indication but not mandatory.
+(Reservation) Place Preferences define the options that can be selected within the offer when requesting a reservation. Place Properties define the place characteristics for the places in a reservation.
 
-Place Preference Group collects Place preferences where only one can be choosen of.
+Depending on the commercial decisions some codes might be used in accommodation sub type with one carrier whereas another carrier might alow them in the place preferences (e.g. Bicycle and Tandem Bicycle might have the same price (Place Preference) of different prices (Accommodation Sub Type). There might be place properties that indicate characteristics of a place to the traveller which are not selectable (e.g. Place without Window)). Therefore the shown usage for the different types are an indication but not mandatory.
+
+Place Preference Group collects Place preferences where only one can be chosen of.
 
 | Code | Accommodation Sub Type | Place Preference | Place Property | Description | Place Preference Group |
 |------|------------------------|----------------|------------------|-------------|------------------------|
-|`AISLE`| N | Y | Y | Place at the aile | `PLACE_LOCATION` |
+|`AISLE`| N | Y | Y | Place at the aisle | `PLACE_LOCATION` |
 |`AIR-CONDITIONED`| N | Y | Y | Place in air conditioned area | |
 |`BISTRO` | N | Y | Y | Places in a coach with self-service bistro | |
 |`BICYCLE`| Y | Y | Y | Bicycle hook | |
 |`BUSINESS`| Y | Y | Y | Manager compartment/business| |
-|`BUSINESS_COMFORT`| Y | Y | N | Business Commfort – business seat with reduced service |  |
+|`BUSINESS_COMFORT`| Y | Y | N | Business Comfort – business seat with reduced service |  |
 |`CABIN8`| N | Y | Y | Special place group in TGV | |
-|`CAR_SMALL`| Y | N | Y | Vehicle parking plpace category 1-3 |  |
+|`CAR_SMALL`| Y | N | Y | Vehicle parking place category 1-3 |  |
 |`CAR_LARGE`| Y | N | Y | Vehicle parking place category 6-8 |  |
 |`CARRE`| N | Y | Y | Carré (4 seats facing normally 2nd Class)| |
-|`CHILDREN_AREA`|  N | Y | Y | Places in children area |'FAMILY' |
-|`CLUB`| Y | N | Y | Club Category (RENFE)| | 
+|`CHILDREN_AREA`|  N | Y | Y | Places in children area |`FAMILY` |
+|`CLUB`| Y | N | Y | Club Category (RENFE)| |
 |`CLUB_2`|  N | Y | Y | Club Duo (2 seats facing in a separate compartment)| |
 |`CLUB_4`|  N | Y | Y | Club 4 (4 seats facing)| |
 |`COMPARTMENT`|  N | N | Y |  places in a compartment | `PLACE_GROUPING` |
@@ -76,7 +78,7 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`LADIES`|  N | Y | Y | Ladies compartment | |
 |`LADIES_CHOUCHETTE_4` | Y | N | Y | Ladies compartment, 4-couchettes |  |
 |`LADIES_CHOUCHETTE_6` | Y | N | Y | Ladies compartment, 6-couchettes | |
-|`LOWER_BED`| N | Y | Y | Lower bed or couchette | `BERTH_LOCATION` | 
+|`LOWER_BED`| N | Y | Y | Lower bed or couchette | `BERTH_LOCATION` |
 |`LOWER_DECK`| N | Y | Y | Lower deck in a double deck train | `LEVEL` |
 |`MIDDLE_BED` | N | Y | Y | Middle bed or couchette | `BERTH_LOCATION` |
 |`MINI_SUITE`| Y | N | Y |  Mini Suite - single person couchette compartment (Capsule)  |  |
@@ -84,7 +86,7 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`MOTOR_CYCLE_SC`| Y | N | Y | Motorcycle with sidecar  |  |
 |`NEAR_ANIMALS`| N | N | Y | Places close to place with animals| |
 |`NEAR_DINING`|  N | Y | Y | Places near the dining car| |
-|`NEAR_PLAY_AREA`|  N | Y | Y | Places near a child play area| 'FAMILY' |
+|`NEAR_PLAY_AREA`|  N | Y | Y | Places near a child play area| `FAMILY` |
 |`OPEN_SPACE`|  N | Y | Y | Places in open space area | `PLACE_GROUPING` |
 |`PANORAMA`|  N | Y | Y | Places in a panorama coach| |
 |`PHONE`|  N | Y | Y | Places in an area with mobile phone amplifier| |
@@ -108,10 +110,10 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`SOLO`|  N | Y | Y | Separate place without neighbor seat | `PLACE_LOCATION` |
 |`SPECIAL_SLEEPER`| Y | N | Y | Special Sleeper Compartment, one Person sleeper compartment smaller than a Single |  |
 |`TABLE`| N | Y | Y | Places at a table| |
-|`TANDEM`| Y | Y | Y | Tandem Bicycle| | 
+|`TANDEM`| Y | Y | Y | Tandem Bicycle| |
 |`TOURIST_SLEEPER_2`| Y | N | Y | T2 sleeper compartment | |
-|`TOURIST_SLEEPER_3`| Y | N | Y | T3 sleeper compartment |  |
-|`TOURIST_SLEEPER_4`| Y | N | Y | T4 sleeper compartment  | |
+|`TOURIST_SLEEPER_3`| Y | N | Y | T3 sleeper compartment | |
+|`TOURIST_SLEEPER_4`| Y | N | Y | T4 sleeper compartment | |
 |`TOURIST_SLEEPER_3_WC`| Y | N | Y |  T3 sleeper compartment with shower & WC |  |
 |`UPPER_BED`| N | Y | Y | Upper bed or couchette | `BERTH_LOCATION` | |
 |`UPPER_DECK`| N | Y | Y | Upper deck in a double deck train |  `LEVEL` |
@@ -124,7 +126,6 @@ Place Preference Group collects Place preferences where only one can be choosen 
 |`WITH_ANIMALS`| Y | Y | Y | Place with animals (animals allowed)| |
 |`WITH_SMALL_CHILDREN`| N | Y | Y | Places for passengers with small children| 'FAMILY' |
 |`WITHOUT_ANIMALS`| N | Y | Y | Place in an area where animals are not allowed | |
-
 
 ## BarcodeType
 
@@ -644,7 +645,6 @@ The following code lists defines the commonly used cards which are not provided 
 |`UIC_EU_DISABILITY_CARD`| * | EU Disabled Card||
 |`UIC_INT_DISABILITY_CARD`| * | International Disabled Card|REDUCTION_CARD|UIC_EU_DISABILITY_CARD|
 
-
 Other cards should start with the RICS code of the issuer.
 
 ## Refund Overrule Codes
@@ -654,8 +654,6 @@ Other cards should start with the RICS code of the issuer.
 | `STRIKE` |   |
 | `SALES_STAFF_ERROR` | Error made by sales staff |
 | `PAYMENT-FAILURE` | Cancellation made by the allocator due to a failed payment |
-
-
 
 ## Reservation Preference Group
 
@@ -672,7 +670,7 @@ Other cards should start with the RICS code of the issuer.
 
 ## Service Brands
 
-Snappshot, for the actual code list see https://uic.org/passenger/passenger-services-group/article/service-brand-code-list
+Snapshot version, for the actual code list see https://uic.org/passenger/passenger-services-group/article/service-brand-code-list
 
 | Service Brand Code | Abbreviation | Reservation Ticket Text | MERITS Description |
 |--------------------|--------------|-------------------------|--------------------|
