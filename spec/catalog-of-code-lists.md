@@ -134,6 +134,8 @@ Place Preference Group collects Place preferences where only one can be chosen o
 | `FCB` | Flexible Content Barcode - See IRS 90918-9 |
 | `TLB` | Ticket Layout Barcode - See IRS 90918-9 |
 | `SSB` | Small Structured Barcode - See IRS 90918-9 |
+| `DOSIPAS` | Double Signed Dynamic Barcode (static part (FCB) and dynamic part created at the control time - See IRS 90918-9 |
+
 
 ## CardType
 
