@@ -139,9 +139,11 @@ Place Preference Group collects Place preferences where only one can be chosen o
 
 | Code | Description |
 |------|-------------|
-| `LOYALTY` | Loyalty card |
-| `REDUCTION` | Card providing reduction |
+| `LOYALTY_CARD` | Loyalty card |
+| `REDUCTION_CARD` | Card providing reduction |
 | `CHIP_CARD` | Chip card to load bookings/references onto it |
+| `PASS` | A pass providing full or partial reduction within the region where the pass is valid |
+
 
 ## CarrierCode
 
