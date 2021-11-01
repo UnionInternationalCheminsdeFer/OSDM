@@ -5645,18 +5645,7 @@ components:
         serviceConstraint:
           $ref: "#/components/schemas/ServiceConstraint"
         carrierConstraint:
-          type: object
-          description: >-
-            Either excluded or included carriers can be set.
-          properties:
-            restrictedToCarrier:
-              type: array
-              items:
-                type: string
-            excludedCarrier:
-              type: array
-              items:
-                type: string
+          $ref: "#/components/schemas/CarrierConstraint"
         regulatoryConditions:
           $ref: "#/components/schemas/RegulatoryConditions"
         serviceClass:
@@ -6128,13 +6117,19 @@ components:
           items:
             $ref: "#/components/schemas/ViaStations"
         carrier:
-          $ref: "#/components/schemas/Company"
+          deprecated: true
+          $ref: '#/components/schemas/Company'
+        carrierConstraint:
+          $ref: '#/components/schemas/CarrierConstraint'
         route:
           type: array
           items:
             $ref: "#/components/schemas/ViaStations"
         serviceBrand:
+          deprecated: true
           $ref: "#/components/schemas/ServiceBrandCode"
+        serviceConstraint:
+          $ref: "#/components/schemas/ServiceConstraint"          
         station:
           $ref: "#/components/schemas/StopPlace" # EXT Changed from StopPoint
         fareReferenceStationSet:
@@ -6150,8 +6145,20 @@ components:
           required:
             - carrier
             - code
-        serviceConstraint:
-          $ref: "#/components/schemas/ServiceConstraint"
+
+    CarrierConstraint:
+      type: object
+      description: >-
+         Either excluded or included carriers can be set.
+      properties:
+        includedCarrier:
+          type: array
+          items:
+            type: string
+        excludedCarrier:
+          type: array
+          items:
+            type: string
 
     Zone:
       type: object
