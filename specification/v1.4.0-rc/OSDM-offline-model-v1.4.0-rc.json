@@ -1664,7 +1664,12 @@
 								"format": "int32"
 							},
 							"passengerTypeRef": {
+								"deprecated": "true",
 								"$ref": "#/definitions/TravelerTypeDef"
+							},
+							"passengerConstraintRef": {
+								"description": "reference to a passenger constraint defining the passengers to be included for free. The referenced passenger constraint must not itself contain included free passengers",
+								"type": "string"
 							}
 						},
 						"additionalProperties": false
