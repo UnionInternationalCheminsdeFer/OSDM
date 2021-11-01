@@ -2487,6 +2487,136 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
+  /complaints:
+     put:
+      tags:
+        - Complaints
+      summary: Allows adding the Complaint.
+      operationId: createComplaint
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Complaint'
+      responses:
+        '200': 
+          description: complaint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplaintResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
+
+  /complaint/{complaintId}:
+    get:
+      tags: 
+        - Complaints
+      summary: returns a complaint
+      description: >-
+        Returns a complaint 
+      operationId: getComplaint
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/accessToken"
+        - in: path
+          name: complaintId
+          schema:
+            type: string
+          required: true
+          description: ID of the complaint to get.
+      responses:
+        '200':
+          description: the requested complaint
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                default: 'public, max-age=10000'
+                description: >-
+                  A places resource is fairly persistent and has a medium time to live to allow short-term caching.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplaintResponse'   
+        '400':
+          description: bad input parameter
+        '401':
+          description: unauthorized
+        '403':
+          description: forbidden
+        '404':
+          description: no place information found
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          description: not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
+    patch:
+      tags:
+        - Complaints
+      summary: Allows updating the Complaint.
+      operationId: patchComplaint
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
+        - in: path
+          name: complaintId
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: ID of the complaint to be patched      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComplaintPatchRequest'
+      responses:
+        '200': 
+          description: complaint updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplaintResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '409':
+          $ref: '#/components/responses/ConflictResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+        '501':
+          description: Not implemented
+        '503':
+          $ref: '#/components/responses/ServiceUnavailableResponse'
+
+
 ## Components
 components:
   parameters:
@@ -2571,6 +2701,209 @@ components:
             $ref: "#/components/schemas/Problem"
 
   schemas:
+  
+    ComplaintResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: '#/components/schemas/WarningMessageList'
+        complaint:
+          $ref: '#/components/schemas/Complaint'
+
+    CustomerComplaint: 
+      description: complaint details provided by the passengers
+      type: object
+      properties: 
+        applicationTime:
+          description: >-
+             date and time when the claim was made. This starts the legal time line to process the claim
+          type: string
+          format: date-time
+        journeyDetails:
+           $ref:  '#/components/schemas/ClaimedJourneyDetails'
+        claimManager:
+           $ref: '#/components/schemas/PersonDetail'
+        affectedPassengers:
+           type: array
+           items:
+            $ref: '#/components/schemas/Passenger'
+        supportingDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        bookingIds: 
+          description: list of booking Ids 
+          type: array
+          items: 
+            type: string
+        ticketControlNumber: 
+          description: list of ticket control number (visible ticket identification for the customer)
+          type: array
+          items: 
+            type: string
+        requestedPaymentType:
+          type: string
+          x-extensible-enum:
+            - VOUCHER
+            - MONEY
+        bankAccount:
+          $ref:  '#/components/schemas/BankAccountReference'
+
+    BankAccountReference: 
+      description: bank account 
+      type: object
+      properties:
+        iban: 
+          type: string
+          pattern: '[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}'
+        ownerName:
+          type: string
+          example: "John Doe"
+          
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+          example: "delay confirmation written by staff on board"
+        content:
+          type: string
+          format: base64
+          description: base64 encoded binary of the actual document
+        format:
+          type: string
+          example: "application/pdf"
+          description: >-
+            Physical format of the document provided in the content field in Mime-Type format, e.g. 
+            application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
+
+    ClaimedJourneyDetails:
+      type: object
+      properties: 
+        impact:
+          description: impact that was caused by the event
+          type: string
+          x-extensible-enum:
+          - DELAY                     ## delayed arrival
+          - JOURNEY_ABANDONED         ## trip way abandoned during the travel
+          - JOURNEY_NOT_STARTED       ## trip was not started due to the delay
+          - SERVICE_DEGRADED          ## e.g. service class not provided
+          example: JOURNEY_ABANDONED
+        finalDelay:
+          type: string
+          format: duration
+          example: PT30M
+        onReturn: 
+          type: boolean
+          default: false          
+        delayedJourney:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClaimedLeg'
+    
+    ClaimedLeg:
+      type: object
+      properties:
+        trainNumber: 
+          type: string
+        connectionMissed:
+          description: connection missed due to a delay on the prevoius leg
+          type: boolean
+        serviceDegradation: 
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceDegradation'
+        departureStation:
+          $ref: '#/components/schemas/Place'
+        arrivalStation:
+          $ref: '#/components/schemas/Place'
+        plannedDepartureTime:
+          type: string
+          format: date-time
+        timetabledArrivalTime:
+          type: string
+          format: date-time  
+        observedArrivalTime:
+          type: string
+          format: date-time 
+          
+    ServiceDegradation:
+      description: >- 
+        enumeration of service degradations
+      type: string
+      x-extensible-enum:
+        - RESERVED_PLACES_MISSING
+        - BOOKED_ACCOMMODATION_TYPE_MISSING
+        - BOOKED_CLASS_MISSING
+        - BOOKED_MEAL_MISSING
+      
+    ComplaintPatchRequest:
+      description: >-
+        changes to a claim already made. This covers upload of additional supporting documents, changes to the passenger and clain manager data. The patch of the compensation amount requires an agreement between the involved parties and is used in case the legal time line for deciding the claim is passed.
+      type: object
+      properties:
+        reason:
+          type: string
+          x-extensible-enum:
+            - BANK_ACCOUNT
+            - SETTLED_TIME_LIMIT_EXCEEDED  ## an allocator settled the claim as the fare provided did not reply in due time. The compensation amount debited is provided
+            - PASSENGER_CHANGE  
+        compensationAmount:
+          $ref: '#/components/schemas/Price'
+        claimManager:
+           $ref: '#/components/schemas/PersonDetail'          
+        affectedPassengers:
+           type: array
+           items:
+            $ref: '#/components/schemas/Passenger'
+        supportingDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        bankAccount:
+          $ref:  '#/components/schemas/BankAccountReference'     
+    
+    Complaint:
+      type: object
+      properties:
+        status:
+          type: string
+          x-extensible-enum:
+            - INITIATED
+            - EVALUATING
+            - DECIDED
+            - SETTLED
+        customerComplaint: 
+          $ref:  '#/components/schemas/CustomerComplaint'
+        missingInformation:
+          description: >-
+            indication of missing customer information
+          type: array
+          items: 
+            type: string
+        decision: 
+          $ref:  '#/components/schemas/ComplaintDecision'
+      
+    ComplaintDecision:      
+      type: object
+      properties: 
+        compensationAmount:
+          $ref: '#/components/schemas/Price'
+        refundVoucher:
+          $ref: '#/components/schemas/FulfillmentDocument'
+        explanation:
+          $ref: '#/components/schemas/FulfillmentDocument'
+        shortExplanation: 
+          type: string
+        delayedJourney:
+          description: >-
+            allocator or fare provider view on the delays. This might differ from the customer view
+          type: array
+          items:
+            $ref: '#/components/schemas/Trip'  
+                  
     WarningMessageList:
       type: array
       items:
@@ -2587,7 +2920,6 @@ components:
         description: >-
           This element can be used to pass non-blocking information or events,
           such as a price difference with the initially offered price at booking time.
-
     Resource:
       type: object
       description: used to represent a non-specified resource in the API.
@@ -2600,7 +2932,7 @@ components:
           example: Bruxelles-Midi
         type:
           type: string
-          enum:
+          x-extensible-enum:
             - LOCATION
             - TRIP
             - TRIPOFFER
@@ -2610,6 +2942,7 @@ components:
             - BOOKING
             - FULFILLMENT
             - REFUNDOFFER
+            - COMPLAINT
         href:
           type: string
           format: url
@@ -3884,9 +4217,7 @@ components:
       type: object
       description: >-
         Defines the parameters needed to request an offer. 
-
         You can use the tripSearchCriteria (origin, destination,... ) or a list of trips to find trip offers.
-
         If you are searching for fares you pass in the complete trip in trips and the use the returnSearchCriteria
         to define which part you need fares (especially if you want a price up to a virtual border point).
       properties:
@@ -4017,7 +4348,6 @@ components:
       description: >-
         Boolean-expression indicating the data that must be set in the data
         model in order to proceed to next step of the process.
-
     OfferSummary:
       type: object
       description: >-
@@ -4733,6 +5063,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
+        complaints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
+            
       required:
         - id
         - type
@@ -4910,7 +5245,6 @@ components:
           description: >-
             Physical format of the document provided in the content field in Mime-Type format, e.g. 
             application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
-
     FulfillmentItem:
       type: object
       description: >-
@@ -6228,7 +6562,6 @@ components:
         In case the connection point is between stations for each side of the border real stations must be provided. 
         Multiple sets of station can be provided in the rare case that the connection point connects more than two station (A-B and A-C).
         Multiple stations within a set at one side of the border might be provided in case of changes (new stations build near the border). 
-
         Providing the UIC code for the station is mandatory.
       properties:
         id:
@@ -6600,12 +6933,10 @@ components:
       type: string
       description: >-
         Accommodation type definition out of the Accommodation Type Code List
-
     AccommodationSubType:
       type: string
       description: >-
         Accommodation type definition out of the Accommodation Sub Type Code List
-
     PlaceSelection:
       type: object
       description: >-
