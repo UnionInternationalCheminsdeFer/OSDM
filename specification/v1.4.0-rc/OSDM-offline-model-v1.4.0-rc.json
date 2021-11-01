@@ -424,7 +424,31 @@
 						"earliestReturn"
 					],
 					"additionalProperties": false
-				}
+				},
+		                "trainValidity": {
+			           "description": "validity depending on boarding / leaving of a train. The ticket is also valid from departure until the destination station in the train ",
+			           "type": "object",
+			           "properties": {
+				   "carrierConstraintRef": {
+					"type": "string"
+				   },
+				   "serviceConstraintRef": {
+					"type": "string"
+				   },
+				   "scope": {
+					"type": "string",
+					"enum": [
+						"BOARDING",
+						"ARRIVAL"
+					]
+				  }
+			      },
+			      "required": [
+				"carrierConstraintRef",
+				"scope"
+			      ],
+			      "additionalProperties": false
+		           }				
 			},
 			"required": [
 				"validityRange"
