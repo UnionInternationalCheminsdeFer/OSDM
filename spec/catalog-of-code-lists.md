@@ -134,14 +134,18 @@ Place Preference Group collects Place preferences where only one can be chosen o
 | `FCB` | Flexible Content Barcode - See IRS 90918-9 |
 | `TLB` | Ticket Layout Barcode - See IRS 90918-9 |
 | `SSB` | Small Structured Barcode - See IRS 90918-9 |
+| `DOSIPAS` | Double Signed Dynamic Barcode (static part (FCB) and dynamic part created at the control time - See IRS 90918-9 |
+
 
 ## CardType
 
 | Code | Description |
 |------|-------------|
-| `LOYALTY` | Loyalty card |
-| `REDUCTION` | Card providing reduction |
+| `LOYALTY_CARD` | Loyalty card |
+| `REDUCTION_CARD` | Card providing reduction |
 | `CHIP_CARD` | Chip card to load bookings/references onto it |
+| `PASS` | A pass providing full or partial reduction within the region where the pass is valid |
+
 
 ## CarrierCode
 
