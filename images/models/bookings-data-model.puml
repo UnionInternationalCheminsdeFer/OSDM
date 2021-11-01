@@ -7,46 +7,51 @@ class Trip <<R,Orchid>> #linen {
 class TripLeg <<D, Green>> #linen {
 }
 
-class BookedOffer <<R,orchid>> #lightcyan { 
-id
-minimalPrice: price
-overallServiceClass: FIRST/SECOND
-overallServiceRank: FIRST_A,B,C/SECOND_A,B,C
-overallFlexibility: FULL/SEMI/NONE
-validFrom: date
-validTo: date
-requestedInformation: String
-OfferParts: [OfferParts]
-Fares:[Fares]
-Trip: Trip
-} 
+class BookedOffer <<R,orchid>> #lightcyan {
 
-class ExchangeOffer <<R,orchid>> #lightgreen { 
-id
-Offer
-ExchangeFee
-ExchangeBalance
-} 
+  id
+  minimalPrice: price
+  overallServiceClass: FIRST/SECOND
+  overallServiceRank: FIRST_A,B,C/SECOND_A,B,C
+  overallFlexibility: FULL/SEMI/NONE
+  validFrom: date
+  validTo: date
+  requestedInformation: String
+  OfferParts: [OfferParts]
+  Fares:[Fares]
+  Trip: Trip
+}
+
+
+class ExchangeOffer <<R,orchid>> #lightgreen {
+
+  id
+  Offer
+  ExchangeFee
+  ExchangeBalance
+}
+
 
 abstract class OfferPart <<D,green>> #lightgrey {
 }
 
 class Ancillary <<R,orchid>> {
-category
+  category
 }
 
 class Admission <<R,orchid>> {
-reservationRequired 
-reservations: [reservations]
-ancillaries: [ancillaries]
-<<opt>> numericAvailability
+  reservationRequired
+  reservations: [reservations]
+  ancillaries: [ancillaries]
+  <<opt>> numericAvailability
 }
 
 class Reservation<<R,orchid>> {
-<<opt>> numericAvailability
-reservationDetails: {reservation details}
-placeSelection: {place selection information}
-} 
+  <<opt>> numericAvailability
+  reservationDetails: {reservation details}
+  placeSelection: {place selection information}
+}
+
 
 class Product <<R,orchid>> {
 }
@@ -56,50 +61,61 @@ class Fare <<R,orchid>> {
 }
 
 class Passenger <<R, orchid>> {
-id
-externalPassengerReference
-dateOfBirth
-gender
-LastName
-Firstname
-PassportInformation
-Reductions
-Type
+  id
+  externalPassengerReference
+  firstName
+  lastName
+  email
+  phoneNumber
+  dateOfBirth
+  gender
+  PassportInformation
+  Reductions
+  Type
+}
+
+class Booker <<R, orchid>> {
+  id
+  externalReference
+  firstName
+  lastName
+  email
+  phoneNumber
 }
 
 class Booking <<R,orchid>> #lightcyan {
-id
-status
-bookingMessages
-requestedInformation
-ticketTimeLimit
-fulfillmentOptions: fulfillmentOptions
-bookedOffers: Offers
+  id
+  status
+  bookingMessages
+  requestedInformation
+  ticketTimeLimit
+  fulfillmentOptions: fulfillmentOptions
+  bookedOffers: Offers
 
 }
 note left: possible states PREBOOKED, BOOKED, FULFILLED, CANCELLED\n Booked represents the state between the booking\nconfirmation and the issuance of the tickets.
 
 class FulfillmentOption <<D,green>> #lightcyan  {
-type
+  type
 }
 
 class ReservationDetails_ReservedPlaces<<D, green>> #lightcyan {
-passengerId
-<<opt>> placeNumber
-<<opt>> coachNumber
-<<opt>> direction
+  passengerId
+  <<opt>> placeNumber
+  <<opt>> coachNumber
+  <<opt>> direction
 }
 
 note right of Product
-reference is the unique internal id that allows to
-link fulfillments to products. It has no functional meaning
+  reference is the unique internal id that allows to
+  link fulfillments to products. It has no functional meaning
 end note
 
 class Fulfillment  <<R,orchid>> #bisque{
-id
-status
-tcn
-productReferences
+  id
+  status
+  tcn
+  productReferences
 }
 
 class RefundOffer <<R, orchid>> #lightgreen {
@@ -110,28 +126,29 @@ class RefundOffer <<R, orchid>> #lightgreen {
   appliedOverrule
   fulfillments:[fulfillments]
   RefundFee
-  RefundableAmount 
+  RefundableAmount
 }
 
 class ExchangeOperation <<R, orchid>> #lightgreen {
-     id
-     Status
-     exchangeOffers
-     fulfillments
-     ticketTimeLimit
-     fulfillmentType
+  id
+  Status
+  exchangeOffers
+  fulfillments
+  ticketTimeLimit
+  fulfillmentType
 }
 
 note bottom of Fulfillment
-Possible statuses:
-TICKETED
-CANCELLED: following a refund operation
-BOARDED: checked on board by a controlling agency.
+  Possible statuses:
+  TICKETED
+  CANCELLED: following a refund operation
+  BOARDED: checked on board by a controlling agency.
 
-Tcn:  unique ticket number for a railway
+  Tcn:  unique ticket number for a railway
 end note
 
 Booking "1"*-"1..n" Passenger
+Booking "1"*-"1" Booker
 Booking "1"*--"1..n" FulfillmentOption
 Booking "1"-"0..n" RefundOffer
 Booking "1"-"0..n" ExchangeOperation
@@ -161,7 +178,7 @@ Reservation*--"1..n" ReservationDetails_ReservedPlaces
 
 note as floatingNote
 FulfillmentOption, RequestedInformation and
-TicketTimeLimit are only meaningful at 
+TicketTimeLimit are only meaningful at
 pre-booking stage
 end note
 @enduml

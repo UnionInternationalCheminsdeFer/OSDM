@@ -74,18 +74,27 @@ A trip must contain the following information.
 - `origin`: a location where the vehicle departs
 - `destination`: a location where the vehicle arrives
 - `duration`: the duration of the trip
-- `segments`: a list of segments
+- `tripLegs`: a list of tripLegs
 
-A segment represents a subsection of a trip that is realized with the
+A trip is composed of one or more `triplegs` and can be of one the following type:
+
+- **TimedLeg**: A type of leg with a timetable schedule such a provided by
+  public transport
+- **TransferLeg**: A type of leg that links two legs such as walking from
+  one stop to another
+- **ContinousLeg**: A type of leg that is not bound to a timetable. This
+  leg is mainly aimed at new modes such as scooter, taxis,..
+
+A tripLeg represents a subsection of a trip that is realized with the
 same transport vehicle. In railways it is typically one train (between the
 moment passenger steps on-board until stepping out of that train) but
-could be using different means of transportation. A segment has an
+could be using different means of transportation. A tripLeg has an
 origin, a destination and duration.
 
 A vehicle is defined by a number or line and a service
 brand.
 
-A transfer is a special kind of segment, defining how long the transfer
+A transfer is a special kind of tripLeg, defining how long the transfer
 takes.
 
 ### Requirements on Offers
@@ -102,7 +111,7 @@ An offer is valid for a given time.
 
 An offer can be pre-booked.
 
-An offer should span at least one segment of the trip and include all needed services.
+An offer should span at least one tripLeg of the trip and include all needed services.
 
 #### Requirements on Admission
 
@@ -210,6 +219,9 @@ It must be possible to search for bookings:
 
 To support stateless booking a explicit pre-booking step is *not* supported
 by design.
+
+A booking has a booker which has booked the booking. The booking can but most not
+be a passenger.
 
 Booking must be supported by all parties.
 
@@ -558,7 +570,7 @@ reductions to a fare.
 
 - A card might be valid only for combined tickets only (special NS card)
 
-- Multiple cards might apply to the same route segment, but only
+- Multiple cards might apply to the same route tripLeg, but only
   one of them would be applied.
 
 - A reduction might grant a 100% price reduction

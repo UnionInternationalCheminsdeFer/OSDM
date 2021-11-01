@@ -63,7 +63,7 @@ to destination station.
 - **origin**: departure location of the tripleg
 - **destination**: arrival location of the tripleg
 
-A trip is composed of one or more `triplegs` and can be of one the following:
+A trip is composed of one or more `triplegs` and can be of one the following type:
 
 - **TimedLeg**: A type of leg with a timetable schedule such a provided by
   public transport
@@ -72,7 +72,7 @@ A trip is composed of one or more `triplegs` and can be of one the following:
 - **ContinousLeg**: A type of leg that is not bound to a timetable. This
   leg is mainly aimed at new modes such as scooter, taxis,..
 
-Each `tripleg` (also sometimes called legs) represent a connection between two
+Each `tripleg` (also sometimes called leg) represents a connection between two
 places where the traveller will either step in a transport or step out of a
 transport (most likely a train).
 
@@ -338,7 +338,7 @@ flow of interactions regardless of the type of provider.
 ### Passengers
 
 As the name suggests, passenger resources represent the passengers for whom the
-offers are  proposed. All offers generated are always proposed for the complete
+offers are proposed. All offers generated are always proposed for the complete
 set of passengers (no partial offers covering only a part of the passengers is
 generated). However, it is possible that because of age, reductions or other,
 some passengers are allowed to travel some triplegs without actually needing a
@@ -388,6 +388,15 @@ passenger types he is using internally
 
 The presentation hereunder provides some additional examples of high-level
 offer modelings for pure-OSDM offers.
+
+### Booker
+
+A booker represent the entity which has booked an offer. It is the person to
+contact in case of changes to the booking primary.
+
+A booker does not need to travel thus is not necessary a passenger.
+
+Common attributes of a passenger and a passenger are factored in the person entity.
 
 ## Booking
 

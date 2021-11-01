@@ -153,7 +153,7 @@ GDPR regulation.
 ### Retrieve Product Information
 
 A service to access the attributes of a product such as detailed sales
-and after-sales is optional. Product informatio n is part of the offer or 
+and after-sales is optional. Product information is part of the offer or
 booking and is included there by default.
 
 ### Retrieve Stored Personal Data
@@ -330,6 +330,5 @@ GDPR regulation.
 ### Retrieve stored personal data
 
 There is no specific service to retrieve stored personal data. The booking can be retrieved 
-to get the passenger references and then the passengers can be retireved. 
+to get the passenger references and then the passengers can be retireved.
 This will provide all stored personal data.
-

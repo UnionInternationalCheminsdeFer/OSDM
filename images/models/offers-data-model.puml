@@ -9,36 +9,34 @@ class TripLeg <<D, Green>> #linen {
 }
 
 class TripOffer <<R,orchid>>  {
-id*
-trip*: Trip
-offers: [Offer]
-passengers: [Passenger]
-links: [link]
+  id*
+  trip*: Trip
+  offers: [Offer]
+  passengers: [Passenger]
 }
 
 TripOffer *-- "1..n" Offer
 TripOffer *-- "1..n" Passenger
 TripOffer *-- "1" Trip
 
-class Offer <<R,orchid>> { 
-id*
-title
-offerSummary: OfferSummary
-offerHash
-coveredTripLegIndexes: [integer]
-offerCluster
-combinationHashes
-requestedInformation: string
-availableFulfillmentTypes: [FulfillmentType]
-trip: Trip
-validFrom: date
-validUntil: date
-admissions: [Admission]
-reservations: [Reservation]
-ancilliaries: [Ancillary]
-fees: [Fee]
-fares: [FareOnline]
-links: [Link]
+class Offer <<R,orchid>> {
+  id*
+  title
+  offerSummary: OfferSummary
+  offerHash
+  coveredTripLegIndexes: [integer]
+  offerCluster
+  combinationHashes
+  requestedInformation: string
+  availableFulfillmentTypes: [FulfillmentType]
+  trip: Trip
+  validFrom: date
+  validUntil: date
+  admissions: [Admission]
+  reservations: [Reservation]
+  ancilliaries: [Ancillary]
+  fees: [Fee]
+  fares: [FareOnline]
 }
 
 Offer *-- "0..n" Admission
@@ -60,10 +58,9 @@ class OfferSummary <<D,green>> {
 }
 
 abstract class OfferPart <<D,green>> #lightgrey {
-id
-parts
-title
-links: [Link]
+  id
+  parts
+  title
 }
 
 OfferPart <|-- Admission
@@ -93,11 +90,10 @@ CommonOfferPartAttributes o-- "0..n" Product
 
 class Ancillary <<D,green>> {
   id*
-  commonOfferPartAttributes*: CommonOfferPartAttributes
+  commonOfferPartAttributes*
   optionality: INCLUDED/OPTIONAL
   category: string
   fees: [OfferPart]
-  links: [Link]
 }
 
 Ancillary *-- "1" CommonOfferPartAttributes
@@ -106,13 +102,12 @@ Ancillary .>"0..n" Fee
 
 
 class Admission <<D,green>> {
-  id
-  commonOfferPartAttributes: CommonOfferPartAttributes
+  id*
+  commonOfferPartAttributes*
   isReservationRequired: boolean
   reservations: [OfferPart]
   ancilliaries: [OPTIONAL/INCLUDED, OfferPart]
   fees: [OfferPart]
-  links: [Link]
 }
 
 Admission *-- "1" CommonOfferPartAttributes
@@ -122,13 +117,12 @@ Admission .>"0..n" Fee
 
 class Reservation <<D,green>> {
   id*
-  commonOfferPartAttributes*: CommonOfferPartAttributes
+  commonOfferPartAttributes*
   reservationDetails*: reservationDetails
   placeSelection: PlaceSelection
   optionality: [INCLUDED/MANDATORY/OPTIONAL]
   fees: [OfferPart]
-  links: [Link]
-} 
+}
 
 Reservation *-- "1" CommonOfferPartAttributes
 Reservation *-- "1" ReservationDetail
@@ -137,9 +131,9 @@ Reservation .>"0..n" Fee
 Reservation .>"0..n" Ancillary:optional/\nincluded/\nmandatory
 
 class ReservationDetail<<D,green>> {
-accommodationType: string
-accommodationSubtype: string
-reservedPlaces: [PlacePack]
+  accommodationType: string
+  accommodationSubtype: string
+  reservedPlaces: [PlacePack]
 }
 
 ReservationDetail *-- "0..n" PlacePack
@@ -155,11 +149,11 @@ class PlacePack<<D,green>> {
 }
 
 class PlaceSelection<<D,green>> {
-reservationOptions
-vehicle
-referencePlace
-selectedOptions
-selectedCoach
+  reservationOptions
+  vehicle
+  referencePlace
+  selectedOptions
+  selectedCoach
 }
 
 class Fee<<D,green>> {
@@ -169,27 +163,25 @@ class Fee<<D,green>> {
   applicability: BOOKING/TRIP/OFFERPART
   providerBookingReference: string
   refundable: YES/NO/WITH_CONDITIONS
-  conditions: [Condition]
+  conditions
   productCode: string
-  links: [Link]
 }
 
 Fee *-- "0..n" Condition
 
 class Product <<R,orchid>> {
-id*
-title
-code
-description
-conditions: [Condition]
-serviceClass: string
-comfortClass: FIRST/SECOND
-isTrainBound: boolean
-isReturnProduct: boolean
-fulfillmentOptions: [FulfillmentOption]
-serviceConstraintText: string
-carrierConstraintText: string
-links: [Link]
+  id*
+  title
+  code
+  description
+  conditions: [Condition]
+  serviceClass: string
+  comfortClass: FIRST/SECOND
+  isTrainBound: boolean
+  isReturnProduct: boolean
+  fulfillmentOptions
+  serviceConstraintText: string
+  carrierConstraintText: string
 }
 
 Product *-- "0..n" Condition
@@ -206,21 +198,20 @@ class Condition<<D,green>> {
 
 class FulfillmentOption<<D,green>> {
   fulfillmentType: ETICKET/CIT_PAPER
-  media: RCT2/RCCST/UIC_PDF/PDF_A4/PKPASS/TICKETLESS/ALLOCATOR_APP/SOCIAL_MEDIA_ACCOUNTS
+  media
 }
 
 class Passenger <<R, orchid>> {
-id*
-abstract: string
-reference: string
-dateOfBirth: date
-cards: [CardReference]
-gender: MALE/FEMALE/X
-details: PassengerDetail
-passport: IdentificationDocument
-transportableDetails: Transportable
-prmneeds: WHEELCHAIR/ACCOMPDOG/COMPANIONSEAT/COMPANION
-links*: [Link]
+  id*
+  abstract: string
+  reference: string
+  dateOfBirth: date
+  cards: [CardReference]
+  gender: MALE/FEMALE/X
+  details: PassengerDetail
+  passport: IdentificationDocument
+  transportableDetails: Transportable
+  prmneeds
 }
 
 Passenger *-- "0..n" CardReference
@@ -263,34 +254,34 @@ class IdentificationDocument<<D,green>> {
 }
 
 class Transportable<<D,green>> {
-  type: PET/BICYLE/CAR/MOTOR_CYCLE/CAR_TRAILER
+  type
   car: Car
   motorCycle: motorCycle
   trailer: trailer
 }
 
 class FareOnline <<D,green>> {
-id*
-type*: ADMISSION/RESERVATION/INTEGRATED_RESERVATION/ANCILLIARY
-name
-fareDetailDescription
-price
-regionalConstraint*
-serviceConstraint
-regulatoryConditions: CIV/MD/EU-PRR
-carrierConstraint
-serviceClass
-comfortClass: FIRST/SECOND
-accommodationDetails
-afterSalesCondition*
-combinationConstraint*
-fulfillmentConstraint
-reductionConstraint
-legacyAccountingIdentifier
-travelValidityConstraint*
-reservationDetails
-placeSelection
-reservationLegacyParameter
-coveredSection
-passengerConstraint
+  id*
+  type*
+  name
+  fareDetailDescription
+  price
+  regionalConstraint*
+  serviceConstraint
+  regulatoryConditions: CIV/MD/EU-PRR
+  carrierConstraint
+  serviceClass
+  comfortClass: FIRST/SECOND
+  accommodationDetails
+  afterSalesCondition*
+  combinationConstraint*
+  fulfillmentConstraint
+  reductionConstraint
+  legacyAccountingIdentifier
+  travelValidityConstraint*
+  reservationDetails
+  placeSelection
+  reservationLegacyParameter
+  coveredSection
+  passengerConstraint
 }
