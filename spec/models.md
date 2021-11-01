@@ -60,10 +60,10 @@ getting full location details in transactional operations.
 Trips represent the concrete realization of a trip going from departure station
 to destination station.
 
-- **origin**: departure location of the tripleg
-- **destination**: arrival location of the tripleg
+- **origin**: departure location of the tripLeg
+- **destination**: arrival location of the tripLeg
 
-A trip is composed of one or more `triplegs` and can be of one the following type:
+A trip is composed of one or more `tripLegs` and can be of one the following type:
 
 - **TimedLeg**: A type of leg with a timetable schedule such a provided by
   public transport
@@ -72,17 +72,17 @@ A trip is composed of one or more `triplegs` and can be of one the following typ
 - **ContinousLeg**: A type of leg that is not bound to a timetable. This
   leg is mainly aimed at new modes such as scooter, taxis,..
 
-Each `tripleg` (also sometimes called leg) represents a connection between two
+Each `tripLeg` (also sometimes called leg) represents a connection between two
 places where the traveller will either step in a transport or step out of a
 transport (most likely a train).
 
-Regardless of whether the products to travel these triplegs are train-bound, or
-based on with a validity period of any duration, triplegs (and by extension
+Regardless of whether the products to travel these tripLegs are train-bound, or
+based on with a validity period of any duration, tripLegs (and by extension
 trips) are always train-bound and represent the realization of the travel wish
 using specific trains at a specific moment in time.
 
 Trips can be retrieved with or without details of all intermediate stops on the
-way between departure and arrival of each `tripleg`.
+way between departure and arrival of each `tripLeg`.
 
 ## Offers
 
@@ -149,11 +149,11 @@ representing the trip the offers are for and the passengers for the trip.
 It is possible in OSDM to propose offers covering only a subset of the requested trip
 under specific conditions:
 
-- the triplegs covered by a given offer are indicated through the `coveredTripLegIndexes`
+- the tripLegs covered by a given offer are indicated through the `coveredTripLegIndexes`
   property
-- all offers covering the same set of triplegs belong to the same  `offerCluster`. All offers related to the same `offerCluster` therefore have an identical set of `coveredTripLegIndexes`
-- a `tripleg` can only be covered in one `offerCluster` within a `tripOffer` (no overlap)
-- each `tripleg` of the `trip` must be covered by at least one `offer` in each `TripOffer`
+- all offers covering the same set of tripLegs belong to the same  `offerCluster`. All offers related to the same `offerCluster` therefore have an identical set of `coveredTripLegIndexes`
+- a `tripLeg` can only be covered in one `offerCluster` within a `tripOffer` (no overlap)
+- each `tripLeg` of the `trip` must be covered by at least one `offer` in each `TripOffer`
   (no gap)
 
 *Example with no overlap*
@@ -218,7 +218,7 @@ be train-bound either.
 
 In some vehicles, seat reservations or an ancillary products (such as a
 WIFI connection or a meal onboard) can  be associated with the admission for
-one or more of the triplegs. A link will in this case point from the admission
+one or more of the tripLegs. A link will in this case point from the admission
 to the reservations or ancillaries, and the link will be qualified. Ancillaries
 can be either included or optional, while reservation can also be mandatory to
 travel. Finally there can be a cases where all reservations associated are
@@ -272,8 +272,8 @@ with the current model, two approaches are proposed to implementers:
 price. In this approach it is assumed that a passenger will always book all
 available reservation, since the price is the same anyway. This approach also
 allows to not propose a reservation if there is none available on one of the
-tripleg, while still offering the offer for the complete trip with reservations
-on all triplegs where it is available
+tripLeg, while still offering the offer for the complete trip with reservations
+on all tripLegs where it is available
 
 - Propose all reservations as optional reservations with an identical unit
   price equals to 0 or to the reservation lump sum, associated with specific
@@ -341,7 +341,7 @@ As the name suggests, passenger resources represent the passengers for whom the
 offers are proposed. All offers generated are always proposed for the complete
 set of passengers (no partial offers covering only a part of the passengers is
 generated). However, it is possible that because of age, reductions or other,
-some passengers are allowed to travel some triplegs without actually needing a
+some passengers are allowed to travel some tripLegs without actually needing a
 travel right or reservation. It is for example usually the case for infants
 travelling on their parents lap.
 

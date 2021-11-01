@@ -76,7 +76,7 @@ A trip must contain the following information.
 - `duration`: the duration of the trip
 - `tripLegs`: a list of tripLegs
 
-A trip is composed of one or more `triplegs` and can be of one the following type:
+A trip is composed of one or more `tripLegs` and can be of one the following type:
 
 - **TimedLeg**: A type of leg with a timetable schedule such a provided by
   public transport
