@@ -3,9 +3,9 @@
 # Needs pandoc to be installed
 
 pandoc -s \
--o OSDM-specification-V1.2.0-rc.docx \
+-o OSDM-specification-V1.3.0-rc.docx \
 foreword.md \
-OSDM-release-notes-v1.2.md \
+../releases/OSDM-release-notes-v1.3.md \
 requirements.md \
 business-capabilities.md \
 common-data-structures.md \

@@ -270,7 +270,7 @@ Additional data to support the online sales services can be exchanged.
 
 Information on where to fine resources for online services of OSDM online or via 90918-1 APIs
 
-![Fare Structure](../images/fare-data-structure/fare-resourcePlaces.png)
+![Fare Structure](../images/fare-data-structure/fare-resourceLocations.png)
 
 ### Fare Reservation Parameters
 
