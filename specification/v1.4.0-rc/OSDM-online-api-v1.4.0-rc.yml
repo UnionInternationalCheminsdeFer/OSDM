@@ -5924,6 +5924,12 @@ components:
               lowerAgeLimit:
                 type: integer
                 format: int32
+        involvedTcos:
+          description: >-
+            ticket controling organizations involved in the control. Used to provide TCOs access to the ticket in the contraol data (UIC IRS 90918-4)
+          type: array
+          items:
+            $ref: '#/components/schemas/Company'                
       required:
         - id
         - type
