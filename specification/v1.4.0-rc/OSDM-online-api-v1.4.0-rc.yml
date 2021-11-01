@@ -6278,6 +6278,8 @@ components:
       required:
         - from
         - until
+        - carrier
+        - scope
       additionalProperties: false
 
     ##### Fare-specific elements end
