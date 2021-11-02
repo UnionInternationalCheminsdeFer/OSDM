@@ -440,7 +440,8 @@
 					"enum": [
 						"BOARDING",
 						"ARRIVAL"
-					]
+					],
+					"default": "BOARDING"			   
 				  }
 			      },
 			      "required": [
