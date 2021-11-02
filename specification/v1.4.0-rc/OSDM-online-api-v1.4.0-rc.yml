@@ -6275,6 +6275,7 @@ components:
           enum:
             - BOARDING
             - ARRIVAL
+          default: BOARDING  
       required:
         - from
         - until
