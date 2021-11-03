@@ -24,13 +24,13 @@ The following diagram shows the actors and principal use cases involved in rail 
 | **Actor**   | **Description** | Motivation / Distinction to other roles |
 |-------------|-----------------|-----------------------------------------|
 | Allocator   | The **allocator** manages the lifecycle of a product sold (the travel contract). He therefore needs to establish information exchange with the ticket **vendor**, **carriers** and **TCOs** involved. The **allocator** makes products available to the **ticket vendor**. The allocator could provide direct services to the **passenger** to modify the ticket status (e.g. activate / check in on a ticket). The allocator combines fares defined by the carriers according to their rules.The allocator creates the ticket fulfillment data (e.g. pdf, pkpass, ...). *Note*: To avoid confusion due to usage differences (see the CIT term bank as well as the European TAP-TSI regulation), the terms “Issuer” and “Attributor” have been avoided in this IRS. | The allocator is introduced to separate the role of just selling tickets along a route (Ticket Vendor) from the role of creating the ticket content and providing it to vendors for sale.
-| Carrier     | The **carrier** is the owner of the fare. He provides the transport service to the **traveller himself or via a substitute carrier**. The travel contract provided to the customer establishes a contract between the traveller and each carrier participating in the service. Carriers include Railway undertaking, Bus companies, Maritime companies. |
+| Carrier     | The **carrier** provides the transport service to the **traveller himself or via a substitute carrier**. The travel contract provided to the customer establishes a contract between the traveller and each carrier participating in the service. Carriers include Railway undertaking, Bus companies, Maritime companies. Unless some intermeta fare provider organizes the fare the carrier is the owner of the fare.|
 | Customer    | The **customer** purchases a travel contract for one or more traveller. *Note*: **The customer** is entitled to receive refund payments.
 | Distributor | The **distributor** is the company selling the ticket provided and managed by the allocator to the customer. | Alias: **Ticket Vendor**
 | Fare Provider | The **fare provider** manages fares on behalf of a carrier or a local transport authority.
 | Local Transport Authority | The **local transport authority** organizes the local traffic within an area a behalf of the government or is itself a governmental organization. It defines a fare structure for the local transport which all carriers included must apply.
 | Passenger   | The **passenger** is the person who travels using a travel contract. | The passenger and the customer can be to distinct person, e.g., if a mom buys a ticket for her daughter.
-| Ticket Controller | Ticket checking machines, e.g. gates are also part of a ticket controller are also part of a **ticket controlling organization**. | Alias: **Train Agent**
+| Ticket Controller | Person (train staff) or machine (e.g. gates) responsible for controling the ticket. The ticket controler is always part of a **ticket controlling organization** (**TCO**) acting on behalf ot the carrier. | Alias: **Train Agent**
 | Ticket Vendor | The **ticket vendor** is the company selling the ticket provided and managed by the allocator to the customer. The ticket vendor does not combine fare into one ticket. | Alias: **Distributor** |
 | Train agent | A **train agent** controls whether the passenger has a valid travel contract. The train agent is part of a **ticket controlling organization**. | Alias: **Ticket Controller** |
 
@@ -161,6 +161,21 @@ booking and is included there by default.
 A customer can request information on the stored personal data. This
 includes also information on personal data passed on to allocators. The
 booking data can be used to show the stored personal data.
+
+There is no specific service to retrieve the stored personal data. The booking can be retrieved 
+to get the passenger references and then the passengers can be retireved.
+This will provide all stored personal data.
+
+### Manage complaints
+
+TODO
+
+### Provide Masterdata
+
+#### Reduction Card Definitions
+
+The Definitions of reduction cards are provided as Master Data. The reduction card definitions can be used by the Distributors for selection lists in the sales process or in customer accounts.
+
 
 ## Business Capabilities for Fare Allocation
 
@@ -332,3 +347,7 @@ GDPR regulation.
 There is no specific service to retrieve stored personal data. The booking can be retrieved 
 to get the passenger references and then the passengers can be retireved.
 This will provide all stored personal data.
+
+### Manage complaints
+
+TODO
