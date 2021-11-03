@@ -246,20 +246,26 @@ cost.
 | Fulfilment| A fulfilment is a document (either for paper printing or electronically) provided to the passenger to prove his travel right,facilitate access to trains and stations (e.g. via gates), provide further information on the travel and provide access to services either directly or via exchange (voucher)
 | Offer Part | An abstraction of things that can be offered. Can be of type Admission, Reservation or Ancillary.
 
+
 ## Acronyms
 
 | Acronyms | Acronym Description |
 |----------|---------------------|
+| ERA | **European Union Agency for Railways** (https://www.era.europa.eu/)
 | EWT | **East West tariff**: Tariff used for Non-Integrated-Reservation-Tickets. The fare data model follows UIC IRS 10108.1.
 | FCB | **Flexible Content Bar Code**: Barcode specification that contains ticket data for control as structured data and is therefore machine interpretable. The Specification provides a data model of a ticket for control. FCB covers various ticket type (IRT, NRT, RPT,..). (UIC 90918-9)
 | JWT | **JSON Web Token**: Specification to transport authentication information used by the OAUTH2  authorization protocol. JSON Web Token - RFC 7519
-| NRT | **Non-Integrated Reservation Tariff**: Tariff used for Non-Integrated-Reservation-Tickets. The fare data model follows UIC IRS 10108.1.
+| IRT | **Integrated Reservation Tariff**: Tariff used for Integrated-Reservation-Tickets. The fare data model replaced UIC IRS 10108.2.
+| IRT | **Integrated Reservation Ticket**: Ticket including mandatory reservation.
+| NRT | **Non-Integrated Reservation Tariff**: Tariff used for Non-Integrated-Reservation-Tickets. The fare data model replaced UIC IRS 10108.1.
 | NRT | **Non-Integrated Reservation Ticket**: Ticket not including an integrated reservation.
 | REST | **Representational State Transfer (REST)**: REST is a software architectural style that defines a set of constraints to be used for creating Web services. Web services that conform to the REST architectural style, called RESTful Web services, provide interoperability between computer systems on the internet. RESTful Web services allow the requesting systems to access and manipulate textual representations of Web resources by using a uniform and predefined set of stateless operations. Other kinds of Web services, such as SOAP Web services, expose their own arbitrary sets of operations.
+| RPT | **Rail Pass Ticket** Ticket valid for multiple trips in a region
 | SiP | **Security in Paper**: A ticket (representing the contract of carriage) is unique and printed on secured paper to avoid modification or creation by other than a railway company. The security is provided by the quality of the security elements included in the paper and the quality of the stock control process that controls the access to blank secure paper. (UIC IRS 90918-0)
 | SiD | **Security in Data**:  A ticket contains security elements. These are created/calculated based on the content of the ticket, resulting in a non-compliant security element in case of falsification or modification. SiD tickets are usually easy to regenerate or to copy. As SiD does not provide copy protection additional measures must be taken to avoid double use. The tickets are personalized, and the validity of the ticket is limited. (UIC IRS 90918-0)
 | SiS | **Security in System**: The contract is on a server. Every operation (creation, check, modification, …) on the ticket is conducted on the record(s) on the server or a synchronized replica. The access to the contract requires an authentication of the traveller. The ticket control id (key to the ticket) or personal data of the traveller (name, date of birth,) are used to retrieve the ticket. (UIC IRS 90918-0)
 | SiV | **Security by Visual** elements: The ticket is controlled by a visual element printed with the ticket data on blank paper of displayed on a device. To use an image as a security feature the costs to create the complex image must be higher than the price of the ticket. (UIC IRS 90918-0)
+| TAP TSI | European regulation on Interoperability: **Telematics Applications for Passenger Service Technical Specification for Interoperablility** 
 | TCO | **Ticket Controlling Organization**
 | TLT | **Train Linked Ticket**: Ticket not including a reservation but restricted to a train run (or multiple train runs along the route)
 | TLB | **Ticket Layout Barcode**: Barcode specification describing the “printed” layout of a ticket. It is not machine interpretable and does not provide ticket data, only a ticket display.
