@@ -424,7 +424,32 @@
 						"earliestReturn"
 					],
 					"additionalProperties": false
-				}
+				},
+		                "trainValidity": {
+			           "description": "validity depending on boarding / leaving of a train. The ticket is also valid from departure until the destination station in the train ",
+			           "type": "object",
+			           "properties": {
+				   "carrierConstraintRef": {
+					"type": "string"
+				   },
+				   "serviceConstraintRef": {
+					"type": "string"
+				   },
+				   "scope": {
+					"type": "string",
+					"enum": [
+						"BOARDING",
+						"ARRIVAL"
+					],
+					"default": "BOARDING"			   
+				  }
+			      },
+			      "required": [
+				"carrierConstraintRef",
+				"scope"
+			      ],
+			      "additionalProperties": false
+		           }				
 			},
 			"required": [
 				"validityRange"
@@ -1664,7 +1689,12 @@
 								"format": "int32"
 							},
 							"passengerTypeRef": {
+								"deprecated": "true",
 								"$ref": "#/definitions/TravelerTypeDef"
+							},
+							"passengerConstraintRef": {
+								"description": "reference to a passenger constraint defining the passengers to be included for free. The referenced passenger constraint must not itself contain included free passengers",
+								"type": "string"
 							}
 						},
 						"additionalProperties": false

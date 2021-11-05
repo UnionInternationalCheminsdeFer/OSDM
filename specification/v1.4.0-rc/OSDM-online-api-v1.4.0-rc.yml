@@ -2525,7 +2525,6 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
 
-
   /complaint/{complaintId}:
     get:
       tags: 
@@ -2616,6 +2615,48 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
 
+  /masterdata/reductionCards:
+    get:
+      tags:
+        - ReductionCards
+        - MasterData
+      summary: Returns a collection of reduction card definitions.
+      description: >-
+        returns a list of reduction card definitions.
+      operationId: getReductionCards
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
+      responses:
+        "200":
+          description: Cards Provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReductionCards"
+          headers:
+            Expires:
+              schema:
+                type: string
+                description: >-
+                  Gives the date/time after which the response is considered stale (in "HTTP-date" format as defined by RFC 7231).
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
+
 
 ## Components
 components:
@@ -2701,7 +2742,6 @@ components:
             $ref: "#/components/schemas/Problem"
 
   schemas:
-  
     ComplaintResponse:
       type: object
       properties:
@@ -2904,6 +2944,62 @@ components:
           items:
             $ref: '#/components/schemas/Trip'  
                   
+    ReductionCards:
+      description: >-
+        notification on a change of a resource
+      type: object
+      properties:
+        deliveryDate:
+          description: date of the assembly of the reduction card data set
+          type: string
+          format: date-time
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReductionCard'
+                 
+    ReductionCard:
+      type: object
+      properties:
+        issuer:
+          $ref: '#/components/schemas/Company'
+        id:
+          description: >- 
+            id of the card type within the issue
+          type: string
+        name:
+          $ref: '#/components/schemas/Text'
+        includedCards:
+          description: This card includes the listed cards
+          type: array
+          items:
+            $ref: '#/components/schemas/CardReference'
+        serviceClasses:
+          description: >-
+            list of service classes where this card applies
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceClassType'
+        cardType:
+          $ref: '#/components/schemas/CardType'
+        cardIdRequired:
+          description: the card id must be delivered in online sales
+          type: boolean
+          default: false
+      required:
+        - issuer
+        - id
+        - name    
+     
+    CardType:
+      type: string
+      x-extensible-enum:
+        - REDUCTION_CARD
+        - LOYALTY_CARD
+        - CHIP_CARD
+        - PASS
+      default: REDUCTION_CARD     
+         
     WarningMessageList:
       type: array
       items:
@@ -5979,18 +6075,7 @@ components:
         serviceConstraint:
           $ref: "#/components/schemas/ServiceConstraint"
         carrierConstraint:
-          type: object
-          description: >-
-            Either excluded or included carriers can be set.
-          properties:
-            restrictedToCarrier:
-              type: array
-              items:
-                type: string
-            excludedCarrier:
-              type: array
-              items:
-                type: string
+          $ref: "#/components/schemas/CarrierConstraint"
         regulatoryConditions:
           $ref: "#/components/schemas/RegulatoryConditions"
         serviceClass:
@@ -6462,13 +6547,19 @@ components:
           items:
             $ref: "#/components/schemas/ViaStations"
         carrier:
-          $ref: "#/components/schemas/Company"
+          deprecated: true
+          $ref: '#/components/schemas/Company'
+        carrierConstraint:
+          $ref: '#/components/schemas/CarrierConstraint'
         route:
           type: array
           items:
             $ref: "#/components/schemas/ViaStations"
         serviceBrand:
+          deprecated: true
           $ref: "#/components/schemas/ServiceBrandCode"
+        serviceConstraint:
+          $ref: "#/components/schemas/ServiceConstraint"          
         station:
           $ref: "#/components/schemas/StopPlace" # EXT Changed from StopPoint
         fareReferenceStationSet:
@@ -6484,8 +6575,20 @@ components:
           required:
             - carrier
             - code
-        serviceConstraint:
-          $ref: "#/components/schemas/ServiceConstraint"
+
+    CarrierConstraint:
+      type: object
+      description: >-
+         Either excluded or included carriers can be set.
+      properties:
+        includedCarrier:
+          type: array
+          items:
+            type: string
+        excludedCarrier:
+          type: array
+          items:
+            type: string
 
     Zone:
       type: object
@@ -6608,9 +6711,12 @@ components:
           enum:
             - BOARDING
             - ARRIVAL
+          default: BOARDING  
       required:
         - from
         - until
+        - carrier
+        - scope
       additionalProperties: false
 
     ##### Fare-specific elements end
@@ -7447,13 +7553,5 @@ components:
         - type
         - codeList
         - code
-
-    CardType:
-      type: string
-      enum:
-        - REDUCTION
-        - LOYALTY
-        - CHIP_CARD
-      default: REDUCTION
-
+        
     #### Common elements end
