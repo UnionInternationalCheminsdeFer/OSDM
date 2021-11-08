@@ -548,7 +548,6 @@ paths:
           name: offerId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the trip to get.
         - in: query
@@ -1116,14 +1115,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking the passenger is in.
         - in: path
           name: passengerId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the passenger to get.
       responses:
@@ -1169,14 +1166,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking the passenger is in.
         - in: path
           name: passengerId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the passenger to get.
       requestBody:
@@ -1427,7 +1422,6 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the product to get.
         - in: query
@@ -1496,7 +1490,6 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking to delete.
       responses:
@@ -1541,7 +1534,6 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking to be patched
       requestBody:
@@ -1589,7 +1581,6 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking to be patched
       responses:
@@ -1642,7 +1633,6 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking to be patched
       requestBody:
@@ -1700,7 +1690,6 @@ paths:
           name: fulfillmentId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the product to get.
       responses:
@@ -1750,7 +1739,6 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking.
       requestBody:
@@ -1797,14 +1785,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking
         - in: path
           name: refundOfferId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the refund offer to get.
       responses:
@@ -1850,14 +1836,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
           name: refundOfferId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the product to get.
       requestBody:
@@ -1908,14 +1892,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
           name: refundOfferId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the product to delete.
       responses:
@@ -1967,14 +1949,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking
         - in: path
           name: exchangeOperationId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the exchange operation to get.
         - in: query
@@ -2038,14 +2018,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking to be exchanged.
         - in: path
           name: exchangeOperationId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the exchange operation.
       requestBody:
@@ -2097,14 +2075,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking containing the exchange operation
         - in: path
           name: exchangeOperationId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the exchangeOperation to delete.
       responses:
@@ -2199,7 +2175,6 @@ paths:
           name: exchangeTripOffersCollectionId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the trip to get.
         - name: scrollContext
@@ -2277,7 +2252,6 @@ paths:
           name: exchangeTripOfferId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the trip to get.
         - in: query
@@ -2965,7 +2939,6 @@ components:
           description: >-
             Id of this trip for referencing purposes. Unique within trip response.
           type: string
-          format: uuid
         duration:
           description: Overall duration of the trip
           type: string
@@ -3046,7 +3019,6 @@ components:
         legId:
           description: Id of this trip leg. Unique within trip result.
           type: string
-          format: uuid
         seqId: # EXT
           type: number
           format: int32
@@ -3832,7 +3804,6 @@ components:
                 product and fares.
             outwardTripOfferCollectionId:
               type: string
-              format: uuid
               description: >-
                 Needs to be provided when creating the collection of inward travels so that the provider
                 can relate the inward travels to the outward travels context.
@@ -3882,7 +3853,6 @@ components:
           $ref: "#/components/schemas/WarningCollection"
         id:
           type: string
-          format: uuid
         tripOffers:
           type: array
           items:
@@ -4122,7 +4092,6 @@ components:
         passengerIds:
           type: string
           description: Id of the passenger
-          format: uuid
         providerBookingReference:
           type: string
           description: >-
@@ -4480,7 +4449,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         abstract:
           type: string
           example: ICE Wifi on Board 2020-07-11
@@ -4496,7 +4464,6 @@ components:
       properties:
         selectedOfferId:
           type: string
-          format: uuid
           description: id of the selected offer or exchangeOffer
         afterSaleByDistributorOnly:
           description: >-
@@ -4516,7 +4483,6 @@ components:
           type: array
           items:
             type: string
-            format: uuid
             description: >-
               If relevant, ids of the selected optional reservations.
         selectedOptionalAncillaryIds:
@@ -4526,14 +4492,12 @@ components:
             properties:
               ancillaryId:
                 type: string
-                format: uuid
                 description: >-
                   If relevant, ids of the selected optional ancillaries.
               passengerIds:
                 type: array
                 items:
                   type: string
-                  format: uuid
                   description: >-
                     Id of the passengers the selected optional ancillaries are for.
         passengers:
@@ -4547,7 +4511,6 @@ components:
           properties:
             reservationId:
               type: string
-              format: uuid
             placeSelection:
               $ref: "#/components/schemas/PlaceSelectionPatch"
       required:
@@ -4600,7 +4563,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         abstract:
           type: string
           example: booking 2345
@@ -4721,7 +4683,6 @@ components:
             properties:
               fulfilledFulfillmentId:
                 type: string
-                format: uuid
 
     FulfillmentsResponse:
       type: object
@@ -4752,7 +4713,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         status:
           $ref: "#/components/schemas/FulfillmentStatus"
         price:
@@ -4978,7 +4938,6 @@ components:
           type: array
           items:
             type: string
-            format: uuid
             description: id of the fulfillment to refund
         overruleCode:
           $ref: "#/components/schemas/OverruleCode"
@@ -5033,7 +4992,6 @@ components:
           type: array
           items:
             type: string
-            format: uuid
         overruleCode:
           $ref: "#/components/schemas/OverruleCode"
       required:
@@ -5046,7 +5004,6 @@ components:
           $ref: "#/components/schemas/WarningCollection"
         id:
           type: string
-          format: uuid
         exchangeTripOffers:
           type: array
           items:
@@ -5110,7 +5067,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         abstract:
           type: string
           example: booking 2345
@@ -6634,7 +6590,6 @@ components:
           items:
             description: reference of the passenger.id
             type: string
-            format: uuid
         selectedPlaceProperties:
           description: Properties of places as defined in 90810-10.
           type: array
@@ -6782,7 +6737,6 @@ components:
               passengerId:
                 description: reference of the passenger.id
                 type: string
-                format: uuid
               placeNumber:
                 type: string
 
@@ -6811,7 +6765,6 @@ components:
           type: string
           description: >-
             Id of the passenger resource in case service to patch a single passenger is provided.
-          format: uuid
         abstract:
           type: string
           example: Andreas Schlapbach
