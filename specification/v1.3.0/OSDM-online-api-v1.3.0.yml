@@ -677,28 +677,19 @@ paths:
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list PLacePreferences) the customer wants to have
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
           schema:
             type: array
             items:
               type: string
         - in: query
-          name: preferenceBundles
+          name: preferencesBundle
           description: >-
             Place preferences the customer wants to have applying to a selection of passengers or transportables only
           schema:
             type: array
             items:
-              type: object
-              properties:
-                passengerId:
-                  type: string
-                preferences:
-                  description: >-
-                    Place preferences (see code list PlacePreferences) the customer wants to have
-                  type: array
-                  items:
-                    type: string
+              $ref: "#/components/schemas/PlacePreferencesBundle"
       responses:
         "200":
           description: places available
@@ -771,28 +762,19 @@ paths:
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list Reservation Preferences) the customer wants to have
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
           schema:
             type: array
             items:
               type: string
         - in: query
-          name: preferenceBundles
+          name: preferencesBundle
           description: >-
             Place preferences the customer wants to have applying to a selection of passengers or transportables only
           schema:
             type: array
             items:
-              type: object
-              properties:
-                passengerId:
-                  type: string
-                preferences:
-                  description: >-
-                    Place preferences (see code list Reservation Preferences) the customer wants to have
-                  type: array
-                  items:
-                    type: string
+              $ref: "#/components/schemas/PlacePreferencesBundle"
       responses:
         "200":
           description: nearby places available
@@ -851,28 +833,19 @@ paths:
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list PLacePreferences) the customer wants to have
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
           schema:
             type: array
             items:
               type: string
         - in: query
-          name: preferenceBundles
+          name: preferencesBundle
           description: >-
             Place preferences the customer wants to have applying to a selection of passengers or transportables only
           schema:
             type: array
             items:
-              type: object
-              properties:
-                passengerId:
-                  type: string
-                preferences:
-                  description: >-
-                    Place preferences (see code list PlacePreferences) the customer wants to have
-                  type: array
-                  items:
-                    type: string
+              $ref: "#/components/schemas/PlacePreferencesBundle"
       responses:
         "200":
           description: available places for selection
@@ -931,28 +904,19 @@ paths:
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list PLacePreferences) the customer wants to have
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
           schema:
             type: array
             items:
               type: string
         - in: query
-          name: preferenceBundles
+          name: preferencesBundle
           description: >-
             Place preferences the customer wants to have applying to a selection of passengers or transportables only
           schema:
             type: array
             items:
-              type: object
-              properties:
-                passengerId:
-                  type: string
-                preferences:
-                  description: >-
-                    Place preferences (see code list PlacePreferences) the customer wants to have
-                  type: array
-                  items:
-                    type: string
+              $ref: "#/components/schemas/PlacePreferencesBundle"
       responses:
         "200":
           description: Places available
@@ -1025,28 +989,19 @@ paths:
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list Reservation Preferences) the customer wants to have
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
           schema:
             type: array
             items:
               type: string
         - in: query
-          name: preferenceBundles
+          name: preferencesBundle
           description: >-
             Place preferences the customer wants to have applying to a selection of passengers or transportables only
           schema:
             type: array
             items:
-              type: object
-              properties:
-                passengerId:
-                  type: string
-                preferences:
-                  description: >-
-                    Place preferences (see code list Reservation Preferences) the customer wants to have
-                  type: array
-                  items:
-                    type: string
+              $ref: "#/components/schemas/PlacePreferencesBundle"
       responses:
         "200":
           description: Places available
@@ -1105,28 +1060,19 @@ paths:
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list PLacePreferences) the customer wants to have
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
           schema:
             type: array
             items:
               type: string
         - in: query
-          name: preferenceBundles
+          name: preferencesBundle
           description: >-
             Place preferences the customer wants to have applying to a selection of passengers or transportables only
           schema:
             type: array
             items:
-              type: object
-              properties:
-                passengerId:
-                  type: string
-                preferences:
-                  description: >-
-                    Place preferences (see code list PlacePreferences) the customer wants to have
-                  type: array
-                  items:
-                    type: string
+              $ref: "#/components/schemas/PlacePreferencesBundle"
       responses:
         "200":
           description: selectable places
@@ -1654,7 +1600,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FulfillmentsResponse"
-
         "202":
           description: >-
             Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
@@ -5544,7 +5489,21 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
-            
+
+    PlacePreferencesBundle:
+      type: object
+      description: >-
+        Place preferences per passenger.
+      properties:
+        passengerId:
+          type: string
+        preferences:
+          description: >-
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
+          type: array
+          items:
+            type: string
+                  
     PlacePreferencesResponse:
       type: object
       properties:
