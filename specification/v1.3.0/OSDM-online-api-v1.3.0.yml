@@ -574,8 +574,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
+
                   offer:
                     description: >-
                       Either an Offer or a NonTripOffer is returned.
@@ -631,24 +630,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
-                  id:
-                    type: string
-                    format: uuid
-                  nonTripOffers:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/NonTripOffer"
-                  links:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Link"
-                required:
-                  - id
-                  - nonTripOffers
+                $ref: "#/components/schemas/NonTripOfferCollection"
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -1152,7 +1134,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PlaceAvailabilityResponse"
-
           headers:
             Content-Language:
               schema:
@@ -1581,7 +1562,7 @@ paths:
                 type: object
                 properties:
                   warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
+                    $ref: "#/components/schemas/WarningCollection"
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -1683,7 +1664,7 @@ paths:
                 type: object
                 properties:
                   warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
+                    $ref: "#/components/schemas/WarningCollection"
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -1741,7 +1722,7 @@ paths:
                 type: object
                 properties:
                   warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
+                    $ref: "#/components/schemas/WarningCollection"
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -1946,6 +1927,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RefundOfferResponse"
+          headers:
             Content-Language:
               schema:
                 type: string
@@ -2000,11 +1982,7 @@ paths:
                 type: object
                 properties:
                   warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
-                  fulfillments:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Fulfillment"
+                    $ref: "#/components/schemas/WarningCollection"
           headers:
             Content-Language:
               schema:
@@ -2193,13 +2171,7 @@ paths:
                 type: object
                 properties:
                   warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
+                    $ref: "#/components/schemas/WarningCollection"
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -2243,7 +2215,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ExchangeTripOfferCollectionResponse"
-
           headers:
             Content-Language:
               schema:
@@ -2571,22 +2542,27 @@ components:
             $ref: "#/components/schemas/Problem"
 
   schemas:
-    WarningMessageList:
+    WarningCollection:
       type: array
+      description: >-
+        List of warnings. 
       items:
-        type: object
-        properties:
-          code:
-            type: string
-          text:
-            type: string
-          elementList:
-            type: array
-            items:
-              $ref: "#/components/schemas/Resource"
-        description: >-
-          This element can be used to pass non-blocking information or events,
-          such as a price difference with the initially offered price at booking time.
+        $ref: "#/components/schemas/Warning"
+
+    Warning:
+      type: object
+      description: >-
+        This element can be used to pass non-blocking information or events,
+        such as a price difference with the initially offered price at booking time.
+      properties:
+        code:
+          type: string
+        text:
+          type: string
+        elementList:
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
 
     Resource:
       type: object
@@ -2624,7 +2600,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         places:
           type: array
           items:
@@ -2634,7 +2610,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         trip:
           $ref: "#/components/schemas/Trip"
 
@@ -3010,7 +2986,7 @@ components:
       type: object
       properties:
         warning:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         calcTime:
           type: integer
           minimum: 0
@@ -3958,7 +3934,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         id:
           type: string
           format: uuid
@@ -3978,7 +3954,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         tripOffer:
           $ref: "#/components/schemas/TripOffer"
 
@@ -4670,7 +4646,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         booking:
           $ref: "#/components/schemas/Booking"
 
@@ -4806,7 +4782,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         fulfillments:
           type: array
           items:
@@ -4816,7 +4792,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         fulfillment:
           $ref: "#/components/schemas/Fulfillment"
 
@@ -4982,7 +4958,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         refundOffersCollection:
           $ref: "#/components/schemas/RefundOffersCollection"
 
@@ -4998,7 +4974,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         refundOffersCollection:
           $ref: "#/components/schemas/RefundOffer"
 
@@ -5122,7 +5098,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         id:
           type: string
           format: uuid
@@ -5142,7 +5118,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         tripOffer:
           $ref: "#/components/schemas/ExchangeTripOffer"
 
@@ -5180,7 +5156,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         exchangeOperation:
           $ref: "#/components/schemas/ExchangeOperation"
 
@@ -5302,6 +5278,26 @@ components:
               - ALL
           default: [ALL]
 
+    NonTripOfferCollection:
+      type: object
+      required:
+        - id
+        - nonTripOffers
+      properties:
+        warnings:
+          $ref: "#/components/schemas/WarningCollection"
+        id:
+          type: string
+          format: uuid
+        nonTripOffers:
+          type: array
+          items:
+            $ref: "#/components/schemas/NonTripOffer"
+        links:
+          type: array
+          items:
+            $ref: "#/components/schemas/Link"
+
     NonTripOffer:
       type: object
       description: >-
@@ -5349,7 +5345,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         layouts:
           type: array
           items:
@@ -5359,7 +5355,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         coachLayout:
           $ref: "#/components/schemas/CoachLayout"
 
@@ -5548,13 +5544,15 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
+            
     PlacePreferencesResponse:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         reservation:
           $ref: "#/components/schemas/AvailablePlacePreferences"
+
     AvailablePlacePreferences:
       type: object
       properties:
@@ -6689,7 +6687,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         reservation:
           $ref: "#/components/schemas/PlaceAvailability"
 
