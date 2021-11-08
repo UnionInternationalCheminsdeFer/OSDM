@@ -1203,7 +1203,7 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
-  /bookings/{bookingId}/booker/:
+  /bookings/{bookingId}/booker:
     get:
       tags:
         - Booker
@@ -2443,7 +2443,7 @@ components:
     WarningCollection:
       type: array
       description: >-
-        List of warnings. 
+        List of warnings.
       items:
         $ref: "#/components/schemas/Warning"
 
@@ -3548,7 +3548,6 @@ components:
         A categorisation of points of interest in respect of the activities undertaken at them 
         (defined by key-value-pairs). Provided by OJP.
       # oneOf:
-
       #  required:
       #   - pointOfInterestClassification  #EXT no longer mandatory
       properties:
@@ -5439,7 +5438,7 @@ components:
           type: array
           items:
             type: string
-                  
+
     PlacePreferencesResponse:
       type: object
       properties:
