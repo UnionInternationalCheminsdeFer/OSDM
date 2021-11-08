@@ -5501,16 +5501,13 @@ components:
         name:
           $ref: "#/components/schemas/Text"
         description:
-          $ref: "#/components/schemas/Text"
-        price:
-          type: object
+          $ref: "#/components/schemas/Text"     
+        prices:
           description: allows specifying a price in multiple currencies
-          properties:
-            price:
-              type: array
-              minItems: 1
-              items:
-                $ref: "#/components/schemas/Price"
+          type: array
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/Price"
         regionalConstraint:
           type: object
           description: >-
