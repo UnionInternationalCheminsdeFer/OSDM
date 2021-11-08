@@ -538,6 +538,8 @@ paths:
       tags:
         - Offers
       summary: Returns an offer for the id requested.
+      description: >-
+        Returns an offer. Note: Does not return non-trip offers.
       operationId: getOffersId
       parameters:
         - $ref: "#/components/parameters/accessToken"
@@ -571,15 +573,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-
-                  offer:
-                    description: >-
-                      Either an Offer or a NonTripOffer is returned.
-                    oneOf:
-                      - $ref: "#/components/schemas/Offer"
-                      - $ref: "#/components/schemas/NonTripOffer"
+                $ref: "#/components/schemas/Offer"
           headers:
             Content-Language:
               schema:
@@ -1494,14 +1488,7 @@ paths:
           description: ID of the booking to delete.
       responses:
         "200":
-          description: Booking successfully cancelled
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: "#/components/schemas/WarningCollection"
+          description: OK
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -1902,20 +1889,7 @@ paths:
           description: ID of the product to delete.
       responses:
         "200":
-          description: RefundOffer removed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: "#/components/schemas/WarningCollection"
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
+          description: OK
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -2085,14 +2059,7 @@ paths:
           description: ID of the exchangeOperation to delete.
       responses:
         "200":
-          description: ExchangeOperation removed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: "#/components/schemas/WarningCollection"
+          description: OK
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -2321,6 +2288,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CoachLayoutsResponse"
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -2362,6 +2335,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CoachLayoutResponse"
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -2596,10 +2575,10 @@ components:
         - DESTINATION
 
     InitialPlaceInput: ## OJP
+      type: object
       description: >-
         Initial input for the place information request. This input defines what is originally looked for.
         Provided by OJP.
-      type: object
       properties:
         #initialInput:
         #  anyOf:
@@ -2619,8 +2598,8 @@ components:
       description: >-
         Trip request structure. Provided by OJP.
       required:
-        - destination
         - origin
+        - destination
       properties:
         departureTime: # EXT Array out of Scope
           type: string
@@ -2634,12 +2613,10 @@ components:
           description: >-
             Specifies the origin situation from where the user wants to start.
           $ref: "#/components/schemas/Place"
-
         destination: # EXT Array out of Scope
           description: >-
             Specifies the destination situation where the user is heading to.
           $ref: "#/components/schemas/Place"
-
         via: # EXT Array out of Scope
           description: >-
             Ordered series of points where the journey must pass through. If more
@@ -2681,6 +2658,7 @@ components:
           default: [ALL]
 
     TripVia: ## OJP
+      type: object
       description: >-
         Via restrictions for a trip. Provided by OJP.
       required:
@@ -2756,9 +2734,9 @@ components:
           example: 0S
 
     ModeFilter: ## OJP
+      type: object
       description: >-
         List of public transport modes to include or exclude. Provided by OJP.
-      type: object
       properties:
         exclude:
           description: Whether modes in list are to include or exclude from search.
@@ -2771,9 +2749,9 @@ components:
             $ref: "#/components/schemas/Mode"
 
     CarrierFilter: ## OJP
+      type: object
       description: >-
         Filter for in/exclusion of carriers. Provided by OJP.
-      type: object
       properties:
         exclude:
           description: Whether carrier in list are to include or exclude from search.
@@ -2786,9 +2764,9 @@ components:
             type: string
 
     ServiceBrandFilter: ## OJP
+      type: object
       description: >-
         Filter for in/exclusion of service brands. Provided by OJP.
-      type: object
       properties:
         exclude:
           description: Whether service brand in list are to include or exclude from search.
@@ -2801,10 +2779,10 @@ components:
             type: string
 
     VehicleFilter: ## OJP # EXT
+      type: object
       description: >-
         Filter for in/exclusion of vehicle. Either the vehicle number array or the vehicle line
         array must be set. Provided by OJP.
-      type: object
       properties:
         exclude:
           description: Whether vehicle in list is to include or exclude from search.
@@ -2822,9 +2800,9 @@ components:
             type: string
 
     PointOfInterestFilter: ## OJP
+      type: object
       description: >-
         Filter POIs by category. Provided by OJP.
-      type: object
       properties:
         exclude:
           description: Whether operators in list are to include or exclude from search.
@@ -2839,9 +2817,9 @@ components:
             $ref: "#/components/schemas/PointOfInterestCategory"
 
     TripDataFilter: ## OJP # Reduced scope
+      type: object
       description: >-
         Data to be included/excluded from search, f.e. modes, operators. Provided by OJP.
-      type: object
       properties:
         ptModeFilter:
           $ref: "#/components/schemas/ModeFilter"
@@ -2857,6 +2835,7 @@ components:
           $ref: "#/components/schemas/VehicleFilter"
 
     TripParam: ## OJP # Reduced scope
+      type: object
       description: >-
         Options to control the search behavior and response contents.
         number of results > either number of results or number of results before and after are used.
@@ -2898,11 +2877,11 @@ components:
       #  - $ref: "#/components/schemas/FareParam"
 
     TripCollectionResponse: ## OJP  # Reduced scope
+      type: object
       description: >-
         Trip response structure. Provided by OJP.
       required:
         - tripResult
-      type: object
       properties:
         warning:
           $ref: "#/components/schemas/WarningCollection"
@@ -2924,9 +2903,9 @@ components:
           $ref: "#/components/schemas/Link"
 
     Trip: ## OJP # Reduced scope
+      type: object
       description: >-
         A complete trip from origin to destination. Provided by OJP.
-      type: object
       required:
         - tripId
         - duration
@@ -2983,9 +2962,9 @@ components:
           $ref: "#/components/schemas/TripStatus"
 
     TripStatus: ## OJP
+      type: object
       description: >-
         Parameters which describe the current status of a trip. Provided by OJP.
-      type: object
       properties:
         unplanned:
           description: Whether this trip is an additional one that has not been planned.
@@ -3009,9 +2988,9 @@ components:
           default: false
 
     TripLeg: ## OJP  # Reduced scope
+      type: object
       description: >-
         A single stage of a trip that is made without change of MODE or service (ie: between each interchange). Provided by OJP.
-      type: object
       required:
         - legId
         - seqId
@@ -3033,13 +3012,13 @@ components:
           $ref: "#/components/schemas/ContinuousLeg"
 
     TimedLeg: ## OJP # Reduced scope
+      type: object
       description: >-
         A leg which is bound to a timetabled schedule. Corresponds to a ride. Provided by OJP.
       required:
         - legAlight
         - legBoard
         - service
-      type: object
       properties:
         legBoard: # EXT: use Place instead of LegBoard
           $ref: "#/components/schemas/LegStop"
@@ -3066,6 +3045,7 @@ components:
           format: duration
 
     TransferLeg: ## OJP # Reduced scope
+      type: object
       description: >-
         A leg which links other legs of a trip where a transfer between different places is required. Provided by OJP.
       required:
@@ -3073,7 +3053,6 @@ components:
         - legEnd
         - timeWindow
         - transferMode
-      type: object
       properties:
         transferMode:
           $ref: "#/components/schemas/TransferMode"
@@ -3119,6 +3098,7 @@ components:
         #   $ref: "#/components/schemas/SituationFullRef"
 
     ContinuousLeg: ## OJP # Reduced scope
+      type: object
       description: >-
         A leg of a journey that is not bound to a timetable. Provided by OJP.
       required:
@@ -3127,7 +3107,6 @@ components:
         - service
         - timeWindow
         - transferMode
-      type: object
       properties:
         legStart:
           description: Stop/Station where boarding is done
@@ -3162,11 +3141,11 @@ components:
         #   $ref: "#/components/schemas/SituationFullRef"
 
     ContinuousService: ## OJP
+      type: object
       description: >-
         A vehicle movement on a continuous, non-timetabled service.
         Service of this leg. May be "walk" in most cases, but also cycling or taxi etc.
         Provided by OJP.
-      type: object
       required:
         - operatingDayRef
         - journeyRef
@@ -3241,9 +3220,9 @@ components:
       default: WALK
 
     StopCallStatus: ## OJP
+      type: object
       description: >-
         Status properties for the vehicle call at this stop. Provided by OJP.
-      type: object
       properties:
         order:
           description: Sequence number of this stop in the service pattern of the journey.
@@ -3271,12 +3250,12 @@ components:
           default: false
 
     LegStop: ## EXT OJP LegStop unifies LegBoard, LegIntermediate, LegAlign
+      type: object
       description: >-
         Describes the situation at a stop or station that lies between the
         LegBoard and LegAlight stop or station including time-related information. 
         Provided by OJP whereas LegStop unifies LegBoard, LegIntermediate and LegAlign.
       #allOf:
-      type: object
       required:
         #- order
         #- plannedQuay
@@ -3314,9 +3293,9 @@ components:
           $ref: "#/components/schemas/StopCallStatus"
 
     ServiceTime: ## OJP
+      type: object
       description: >-
         Contains at least scheduled time, but can contain real time and estimated times. Provided by OJP.
-      type: object
       required:
         - timetabledTime
       properties:
@@ -3331,6 +3310,7 @@ components:
           format: date-time
 
     DatedJourney: ## OJP # Reduced scope
+      type: object
       description: >-
         Vehicle journey that runs at a specific date. Provided by OJP.
       required:
@@ -3338,7 +3318,6 @@ components:
         # - journeyRef
         - mode
         - publishedServiceName
-      type: object
       properties:
         # operatingDayRef:  # Out of scope
         #   $ref: "#/components/schemas/OperationDayRef"
@@ -3365,11 +3344,11 @@ components:
           example: ojp:11
 
     Mode: ## OJP
+      type: object
       description: >-
         A method of transportation such as bus, rail, etc. Provided by OJP.
       required:
         - ptMode
-      type: object
       properties:
         ptMode: # EXT
           description: >-
@@ -3408,6 +3387,7 @@ components:
           type: string
 
     ProductCategory: ## OJP
+      type: object
       description: >-
         Product category based on NeTEx/SIRI. A product category is a classification for vehicle journeys
         to express some common properties of journeys for marketing and fare products. Provided by OJP.
@@ -3563,11 +3543,12 @@ components:
         #   $ref: "#/components/schemas/TopographicPlaceRef"
 
     PointOfInterestCategory: ## OJP
+      type: object
       description: >-
         A categorisation of points of interest in respect of the activities undertaken at them 
         (defined by key-value-pairs). Provided by OJP.
       # oneOf:
-      type: object
+
       #  required:
       #   - pointOfInterestClassification  #EXT no longer mandatory
       properties:
@@ -3575,7 +3556,7 @@ components:
           description: Open Street Map tag structure (key-value)
           type: array
           items:
-            $ref: "#/components/schemas/OsmTagStructure"
+            $ref: "#/components/schemas/OsmTag"
         #    required:
         #      - osmTag
         #  - type: object
@@ -3589,10 +3570,10 @@ components:
           items:
             type: string
 
-    OsmTagStructure: ## OJP
+    OsmTag: ## OJP
+      type: object
       description: >-
         Structure of an Open Street Map tag. Provided by OJP.
-      type: object
       properties:
         tag:
           type: string
@@ -3607,12 +3588,12 @@ components:
         - value
 
     StopPlace: ## OJP # Reduced scope
+      type: object
       description: >-
         A place extended by accessibility limitation properties and some attributes of the associated equipment, 
         comprising one or more places where vehicles may stop and where passengers may board or leave vehicles 
         or prepare their trip, and which will usually have one or more wellknown names. Provided by OJP.
       #allOf:
-      type: object
       required:
         - stopPlaceRef
         #  - stopPlaceName  # EXT no longer mandatory as being passed in a trip
@@ -3637,9 +3618,9 @@ components:
         # - $ref: "#/components/schemas/StopAttributes" # Out of scope
 
     GeoPosition: ## OJP # Reduced scope
+      type: object
       description: >-
         WGS84 coordinates position. Provided by OJP.
-      type: object
       properties:
         longitude:
           $ref: "#/components/schemas/Longitude"
