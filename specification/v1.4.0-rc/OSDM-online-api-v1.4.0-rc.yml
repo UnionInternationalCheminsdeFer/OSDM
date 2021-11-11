@@ -59,9 +59,16 @@ tags:
   - name: Exchange
     description: >-
       resources to get exchange offers and book it
+  - name: Complaint Management
+    description:
+      resources to manage complaints
   - name: CoachLayouts
     description: >-
       resources to get the layout of a coach
+  - name: Master Data
+    description: >-
+      resources to get master data
+  
 paths:
   /places/{placeId}:
     get:
@@ -2357,9 +2364,9 @@ paths:
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
   /complaints:
-      put:
+      post:
         tags:
-          - Complaints
+          - Complaint Management
         summary: Allows adding the Complaint.
         operationId: createComplaint
         parameters:
@@ -2397,7 +2404,7 @@ paths:
   /complaint/{complaintId}:
     get:
       tags: 
-        - Complaints
+        - Complaint Management
       summary: returns a complaint
       description: >-
         Returns a complaint 
@@ -2442,7 +2449,7 @@ paths:
 
     patch:
       tags:
-        - Complaints
+        - Complaint Management
       summary: Allows updating the Complaint.
       operationId: patchComplaint
       parameters:
@@ -2483,6 +2490,46 @@ paths:
           description: Not implemented
         '503':
           $ref: '#/components/responses/ServiceUnavailableResponse'
+
+  /masterdata/reductionCards:
+    get:
+      tags:
+        - Master Data
+      summary: Returns a collection of reduction card definitions.
+      description: >-
+        returns a list of reduction card definitions.
+      operationId: getReductionCards
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
+      responses:
+        "200":
+          description: Cards Provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReductionCards"
+          headers:
+            Expires:
+              schema:
+                type: string
+                description: >-
+                  Gives the date/time after which the response is considered stale (in "HTTP-date" format as defined by RFC 7231).
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
 
 ## Components
 components:
@@ -5822,6 +5869,53 @@ components:
           items:
             $ref: '#/components/schemas/Trip'  
 
+    ReductionCards:
+      description: >-
+        notification on a change of a resource
+      type: object
+      properties:
+        deliveryDate:
+          description: date of the assembly of the reduction card data set
+          type: string
+          format: date-time
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReductionCard'
+
+    ReductionCard:
+      type: object
+      properties:
+        issuer:
+          $ref: '#/components/schemas/Company'
+        id:
+          description: >- 
+            id of the card type within the issue
+          type: string
+        name:
+          $ref: '#/components/schemas/Text'
+        includedCards:
+          description: This card includes the listed cards
+          type: array
+          items:
+            $ref: '#/components/schemas/CardReference'
+        serviceClasses:
+          description: >-
+            list of service classes where this card applies
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceClassType'
+        cardType:
+          $ref: '#/components/schemas/CardType'
+        cardIdRequired:
+          description: the card id must be delivered in online sales
+          type: boolean
+          default: false
+      required:
+        - issuer
+        - id
+        - name    
+
     #### Fare-specific elements begin
 
     FareOnline:
@@ -7356,10 +7450,11 @@ components:
 
     CardType:
       type: string
-      enum:
-        - REDUCTION
-        - LOYALTY
+      x-extensible-enum:
+        - REDUCTION_CARD
+        - LOYALTY_CARD
         - CHIP_CARD
-      default: REDUCTION
+        - PASS
+      default: REDUCTION_CARD
 
     #### Common elements end
