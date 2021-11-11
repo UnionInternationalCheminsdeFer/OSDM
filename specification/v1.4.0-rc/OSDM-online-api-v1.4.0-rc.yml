@@ -60,15 +60,15 @@ tags:
     description: >-
       resources to get exchange offers and book it
   - name: Complaint Management
-    description:
+    description: >-
       resources to manage complaints
-  - name: CoachLayouts
+  - name: Coach Layouts
     description: >-
       resources to get the layout of a coach
   - name: Master Data
     description: >-
       resources to get master data
-  
+
 paths:
   /places/{placeId}:
     get:
@@ -2277,7 +2277,7 @@ paths:
   /coachLayouts:
     get:
       tags:
-        - CoachLayouts
+        - Coach Layouts
       summary: Returns all coach layouts.
       description: >-
         Retrieve the coach layout description needed for graphical reservation. The coach
@@ -2319,7 +2319,7 @@ paths:
   /coachLayouts/{layoutId}:
     get:
       tags:
-        - CoachLayouts
+        - Coach Layouts
       summary: Returns a coach layout for a provided id.
       description: >-
         Retrieve a coach layout description needed for graphical reservation for a given layout id.
@@ -2364,50 +2364,50 @@ paths:
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
   /complaints:
-      post:
-        tags:
-          - Complaint Management
-        summary: Allows adding the Complaint.
-        operationId: createComplaint
-        parameters:
-          - $ref: "#/components/parameters/accessToken"
-          - $ref: "#/components/parameters/acceptLanguage"
-        requestBody:
+    post:
+      tags:
+        - Complaint Management
+      summary: Allows adding the Complaint.
+      operationId: createComplaint
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Complaint"
+      responses:
+        "200":
+          description: complaint
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Complaint'
-        responses:
-          '200': 
-            description: complaint
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/ComplaintResponse'
-          '400':
-            $ref: '#/components/responses/BadRequestResponse'
-          '401':
-            description: Unauthorized
-          '403':
-            description: Forbidden
-          '404':
-            description: Not Found
-          '409':
-            $ref: '#/components/responses/ConflictResponse'
-          '500':
-            $ref: '#/components/responses/InternalServerErrorResponse'
-          '501':
-            description: Not implemented
-          '503':
-            $ref: '#/components/responses/ServiceUnavailableResponse'
+                $ref: "#/components/schemas/ComplaintResponse"
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "409":
+          $ref: "#/components/responses/ConflictResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
 
   /complaint/{complaintId}:
     get:
-      tags: 
+      tags:
         - Complaint Management
       summary: returns a complaint
       description: >-
-        Returns a complaint 
+        Returns a complaint
       operationId: getComplaint
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
@@ -2419,33 +2419,33 @@ paths:
           required: true
           description: ID of the complaint to get.
       responses:
-        '200':
+        "200":
           description: the requested complaint
           headers:
             Cache-Control:
               schema:
                 type: string
-                default: 'public, max-age=10000'
+                default: "public, max-age=10000"
                 description: >-
                   A places resource is fairly persistent and has a medium time to live to allow short-term caching.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ComplaintResponse'
-        '400':
+                $ref: "#/components/schemas/ComplaintResponse"
+        "400":
           description: bad input parameter
-        '401':
+        "401":
           description: unauthorized
-        '403':
+        "403":
           description: forbidden
-        '404':
+        "404":
           description: no place information found
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
           description: not implemented
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
 
     patch:
       tags:
@@ -2461,35 +2461,35 @@ paths:
             type: string
             format: uuid
           required: true
-          description: ID of the complaint to be patched      
+          description: ID of the complaint to be patched
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ComplaintPatchRequest'
+              $ref: "#/components/schemas/ComplaintPatchRequest"
       responses:
-        '200': 
+        "200":
           description: complaint updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ComplaintResponse'
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
+                $ref: "#/components/schemas/ComplaintResponse"
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-        '404':
+        "404":
           description: Not Found
-        '409':
-          $ref: '#/components/responses/ConflictResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-        '501':
+        "409":
+          $ref: "#/components/responses/ConflictResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
           description: Not implemented
-        '503':
-          $ref: '#/components/responses/ServiceUnavailableResponse'
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
 
   /masterdata/reductionCards:
     get:
@@ -5674,38 +5674,38 @@ components:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
         complaint:
-          $ref: '#/components/schemas/Complaint'
+          $ref: "#/components/schemas/Complaint"
 
-    CustomerComplaint: 
+    CustomerComplaint:
       description: complaint details provided by the passengers
       type: object
-      properties: 
+      properties:
         applicationTime:
           description: >-
-             date and time when the claim was made. This starts the legal time line to process the claim
+            date and time when the claim was made. This starts the legal time line to process the claim
           type: string
           format: date-time
         journeyDetails:
-           $ref:  '#/components/schemas/ClaimedJourneyDetails'
+          $ref: "#/components/schemas/ClaimedJourneyDetails"
         claimManager:
-           $ref: '#/components/schemas/PersonDetail'
+          $ref: "#/components/schemas/PersonDetail"
         affectedPassengers:
-           type: array
-           items:
-            $ref: '#/components/schemas/Passenger'
+          type: array
+          items:
+            $ref: "#/components/schemas/Passenger"
         supportingDocuments:
           type: array
           items:
-            $ref: '#/components/schemas/Document'
-        bookingIds: 
-          description: list of booking Ids 
+            $ref: "#/components/schemas/Document"
+        bookingIds:
+          description: list of booking Ids
           type: array
-          items: 
+          items:
             type: string
-        ticketControlNumber: 
+        ticketControlNumber:
           description: list of ticket control number (visible ticket identification for the customer)
           type: array
-          items: 
+          items:
             type: string
         requestedPaymentType:
           type: string
@@ -5713,15 +5713,15 @@ components:
             - VOUCHER
             - MONEY
         bankAccount:
-          $ref:  '#/components/schemas/BankAccountReference'
+          $ref: "#/components/schemas/BankAccountReference"
 
-    BankAccountReference: 
-      description: bank account 
+    BankAccountReference:
+      description: bank account
       type: object
       properties:
-        iban: 
+        iban:
           type: string
-          pattern: '[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}'
+          pattern: "[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}"
         ownerName:
           type: string
           example: "John Doe"
@@ -5746,56 +5746,56 @@ components:
             application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
     ClaimedJourneyDetails:
       type: object
-      properties: 
+      properties:
         impact:
           description: impact that was caused by the event
           type: string
           x-extensible-enum:
-          - DELAY                     ## delayed arrival
-          - JOURNEY_ABANDONED         ## trip way abandoned during the travel
-          - JOURNEY_NOT_STARTED       ## trip was not started due to the delay
-          - SERVICE_DEGRADED          ## e.g. service class not provided
+            - DELAY ## delayed arrival
+            - JOURNEY_ABANDONED ## trip way abandoned during the travel
+            - JOURNEY_NOT_STARTED ## trip was not started due to the delay
+            - SERVICE_DEGRADED ## e.g. service class not provided
           example: JOURNEY_ABANDONED
         finalDelay:
           type: string
           format: duration
           example: PT30M
-        onReturn: 
+        onReturn:
           type: boolean
-          default: false          
+          default: false
         delayedJourney:
           type: array
           items:
-            $ref: '#/components/schemas/ClaimedLeg'
+            $ref: "#/components/schemas/ClaimedLeg"
 
     ClaimedLeg:
       type: object
       properties:
-        trainNumber: 
+        trainNumber:
           type: string
         connectionMissed:
           description: connection missed due to a delay on the prevoius leg
           type: boolean
-        serviceDegradation: 
+        serviceDegradation:
           type: array
           items:
-            $ref: '#/components/schemas/ServiceDegradation'
+            $ref: "#/components/schemas/ServiceDegradation"
         departureStation:
-          $ref: '#/components/schemas/Place'
+          $ref: "#/components/schemas/Place"
         arrivalStation:
-          $ref: '#/components/schemas/Place'
+          $ref: "#/components/schemas/Place"
         plannedDepartureTime:
           type: string
           format: date-time
         timetabledArrivalTime:
           type: string
-          format: date-time  
+          format: date-time
         observedArrivalTime:
           type: string
-          format: date-time 
+          format: date-time
 
     ServiceDegradation:
-      description: >- 
+      description: >-
         enumeration of service degradations
       type: string
       x-extensible-enum:
@@ -5813,22 +5813,22 @@ components:
           type: string
           x-extensible-enum:
             - BANK_ACCOUNT
-            - SETTLED_TIME_LIMIT_EXCEEDED  ## an allocator settled the claim as the fare provided did not reply in due time. The compensation amount debited is provided
-            - PASSENGER_CHANGE  
+            - SETTLED_TIME_LIMIT_EXCEEDED ## an allocator settled the claim as the fare provided did not reply in due time. The compensation amount debited is provided
+            - PASSENGER_CHANGE
         compensationAmount:
-          $ref: '#/components/schemas/Price'
+          $ref: "#/components/schemas/Price"
         claimManager:
-           $ref: '#/components/schemas/PersonDetail'          
+          $ref: "#/components/schemas/PersonDetail"
         affectedPassengers:
-           type: array
-           items:
-            $ref: '#/components/schemas/Passenger'
+          type: array
+          items:
+            $ref: "#/components/schemas/Passenger"
         supportingDocuments:
           type: array
           items:
-            $ref: '#/components/schemas/Document'
+            $ref: "#/components/schemas/Document"
         bankAccount:
-          $ref:  '#/components/schemas/BankAccountReference'     
+          $ref: "#/components/schemas/BankAccountReference"
 
     Complaint:
       type: object
@@ -5840,34 +5840,34 @@ components:
             - EVALUATING
             - DECIDED
             - SETTLED
-        customerComplaint: 
-          $ref:  '#/components/schemas/CustomerComplaint'
+        customerComplaint:
+          $ref: "#/components/schemas/CustomerComplaint"
         missingInformation:
           description: >-
             indication of missing customer information
           type: array
-          items: 
+          items:
             type: string
-        decision: 
-          $ref:  '#/components/schemas/ComplaintDecision'
+        decision:
+          $ref: "#/components/schemas/ComplaintDecision"
 
-    ComplaintDecision:      
+    ComplaintDecision:
       type: object
-      properties: 
+      properties:
         compensationAmount:
-          $ref: '#/components/schemas/Price'
+          $ref: "#/components/schemas/Price"
         refundVoucher:
-          $ref: '#/components/schemas/FulfillmentDocument'
+          $ref: "#/components/schemas/FulfillmentDocument"
         explanation:
-          $ref: '#/components/schemas/FulfillmentDocument'
-        shortExplanation: 
+          $ref: "#/components/schemas/FulfillmentDocument"
+        shortExplanation:
           type: string
         delayedJourney:
           description: >-
             allocator or fare provider view on the delays. This might differ from the customer view
           type: array
           items:
-            $ref: '#/components/schemas/Trip'  
+            $ref: "#/components/schemas/Trip"
 
     ReductionCards:
       description: >-
@@ -5881,32 +5881,32 @@ components:
         cards:
           type: array
           items:
-            $ref: '#/components/schemas/ReductionCard'
+            $ref: "#/components/schemas/ReductionCard"
 
     ReductionCard:
       type: object
       properties:
         issuer:
-          $ref: '#/components/schemas/Company'
+          $ref: "#/components/schemas/Company"
         id:
-          description: >- 
+          description: >-
             id of the card type within the issue
           type: string
         name:
-          $ref: '#/components/schemas/Text'
+          $ref: "#/components/schemas/Text"
         includedCards:
           description: This card includes the listed cards
           type: array
           items:
-            $ref: '#/components/schemas/CardReference'
+            $ref: "#/components/schemas/CardReference"
         serviceClasses:
           description: >-
             list of service classes where this card applies
           type: array
           items:
-            $ref: '#/components/schemas/ServiceClassType'
+            $ref: "#/components/schemas/ServiceClassType"
         cardType:
-          $ref: '#/components/schemas/CardType'
+          $ref: "#/components/schemas/CardType"
         cardIdRequired:
           description: the card id must be delivered in online sales
           type: boolean
@@ -5914,7 +5914,7 @@ components:
       required:
         - issuer
         - id
-        - name    
+        - name
 
     #### Fare-specific elements begin
 
@@ -5929,7 +5929,7 @@ components:
         name:
           $ref: "#/components/schemas/Text"
         description:
-          $ref: "#/components/schemas/Text"     
+          $ref: "#/components/schemas/Text"
         prices:
           description: allows specifying a price in multiple currencies
           type: array
@@ -6235,7 +6235,7 @@ components:
                   ticket controlling organizations involved in the control. Used to provide TCOs access to the ticket in the control data (UIC IRS 90918-4)
                 type: array
                 items:
-                  $ref: '#/components/schemas/Company'
+                  $ref: "#/components/schemas/Company"
       required:
         - id
         - type
@@ -6441,9 +6441,9 @@ components:
             $ref: "#/components/schemas/ViaStations"
         carrier:
           deprecated: true
-          $ref: '#/components/schemas/Company'
+          $ref: "#/components/schemas/Company"
         carrierConstraint:
-          $ref: '#/components/schemas/CarrierConstraint'
+          $ref: "#/components/schemas/CarrierConstraint"
         route:
           type: array
           items:
@@ -6472,7 +6472,7 @@ components:
     CarrierConstraint:
       type: object
       description: >-
-         Either excluded or included carriers can be set.
+        Either excluded or included carriers can be set.
       properties:
         includedCarrier:
           type: array
@@ -6610,8 +6610,7 @@ components:
           enum:
             - BOARDING
             - ARRIVAL
-          default:
-            BOARDING
+          default: BOARDING
       additionalProperties: false
 
     ##### Fare-specific elements end
