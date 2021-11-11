@@ -6135,10 +6135,15 @@ components:
         - stationSets
 
     TrainValidity:
+      type: object
       description: >-
         validity depending on boarding / leaving of a train. The ticket is valid
         from departure until the destination station in the train if departure or destination is within the from - until range. The validation can reference the departure or the destination time to decide the validity (e.g. Eurail/Interrail passes currently use the departure for the validity on night trains).
-      type: object
+      required:
+        - from
+        - until
+        - carrier
+        - scope
       properties:
         from:
           type: string
@@ -6164,9 +6169,8 @@ components:
           enum:
             - BOARDING
             - ARRIVAL
-      required:
-        - from
-        - until
+          default:
+            BOARDING
       additionalProperties: false
 
     ##### Fare-specific elements end
