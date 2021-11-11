@@ -5951,8 +5951,8 @@ components:
               type: string
             exitConnectionPoint:
               $ref: "#/components/schemas/FareConnectionPoint"
-            regionalValidity:
-              $ref: "#/components/schemas/RegionalValidity"
+            regionalValidites:
+              $ref: "#/components/schemas/RegionalValidities"
             distance:
               description: Distance in km for statistics
               type: integer
@@ -6337,29 +6337,32 @@ components:
         description:
           $ref: "#/components/schemas/Text"
 
-    RegionalValidity:
+    RegionalValidities:
       type: array
       items:
-        type: object
-        description: >-
-          One of the elements Zone, ViaStation, TrainLink, Line, or Polygon defining the regional validity
-        properties:
-          seqNb:
-            description: order number of the list item
-            type: integer
-            format: int32
-          zone:
-            $ref: "#/components/schemas/Zone"
-          viaStations:
-            $ref: "#/components/schemas/ViaStations"
-          trainLink:
-            $ref: "#/components/schemas/TrainLink"
-          line:
-            $ref: "#/components/schemas/Line"
-          polygon:
-            $ref: "#/components/schemas/Polygon"
-          serviceConstraint:
-            $ref: "#/components/schemas/ServiceConstraint"
+        $ref: "#/components/schemas/RegionalValidity"
+
+    RegionalValidity:
+      type: object
+      description: >-
+        One of the elements Zone, ViaStation, TrainLink, Line, or Polygon defining the regional validity
+      properties:
+        seqNb:
+          description: order number of the list item
+          type: integer
+          format: int32
+        zone:
+          $ref: "#/components/schemas/Zone"
+        viaStations:
+          $ref: "#/components/schemas/ViaStations"
+        trainLink:
+          $ref: "#/components/schemas/TrainLink"
+        line:
+          $ref: "#/components/schemas/Line"
+        polygon:
+          $ref: "#/components/schemas/Polygon"
+        serviceConstraint:
+          $ref: "#/components/schemas/ServiceConstraint"
 
     Line:
       type: object
