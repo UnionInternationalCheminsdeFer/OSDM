@@ -1,0 +1,87 @@
+asyncapi: 2.2.0
+info:
+  title: OSDM asynchronous APIs
+  description: OSDM asynchronous APIs - view with https://playground.asyncapi.io/?utm_source=editor&utm_medium=editor-topbar&campaign=playground
+  termsOfService: https://unioninternationalcheminsdefer.github.io/OSDM/
+  contact:
+    name: Nicolas Selleslagh, Clemens Gantert and Andreas Schlapbach
+    url: https://unioninternationalcheminsdefer.github.io/OSDM/
+    email: osdm@uic.org
+  license:
+    name: Apache 2.0
+    url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+  version: 1.4.0
+channels:
+  "resource/changed":
+    publish:
+      description: notify on changed resources
+      operationId: publishNotification
+      message:
+        $ref: "#/components/messages/NotificationMessage"
+    bindings:
+      amqp1:
+        is: queue
+        queue:
+          exclusive: true
+components:
+  messages:
+    NotificationMessage:
+      name: notification
+      title: notification
+      contentType: application/json
+      payload:
+        $ref: "#/components/schemas/Notification"
+  schemas:
+    Notification:
+      type: object
+      description: >-
+        notification on a change of a resource
+      properties:
+        resourceType:
+          $ref: "#/components/schemas/Resource"
+        changeTime:
+          type: string
+          format: date-time
+        changeHint:
+          type: string
+          example: CLAIM_DECISION
+          x-extensible-enum:
+            - CLAIM_INFO_REQUEST
+            - CLAIM_DECISION
+            - BOOKING_CHANGE_OF_MATERIAL
+            - BOOKING_CHANGE_OF_SCHEDULE
+    Resource:
+      type: object
+      description: >-
+        used to represent a non-specified resource in the API.
+      properties:
+        id:
+          type: string
+          description: unique id of this resource on this server.
+          example: 99adf336-8adc-4351-aa73-3712869040f3
+        title:
+          type: string
+          example: Compensation on Bruxelles-Midi - Frankfurt on 12.12.2022
+        type:
+          type: string
+          example: COMPENSATION_CLAIM
+          x-extensible-enum:
+            - LOCATION
+            - TRIP
+            - TRIPOFFER
+            - OFFER
+            - OFFERPART
+            - PASSENGER
+            - BOOKING
+            - FULFILLMENT
+            - REFUNDOFFER
+            - COMPENSATION
+        href:
+          type: string
+          format: url
+          example: "http://some.provider/compensationClaim/2345"
+      required:
+        - id
+        - title
+        - type
+        - href
