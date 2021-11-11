@@ -656,6 +656,13 @@
 					"description": "indicates that the after sales of this fare can be treated independently per person.",
 					"type": "boolean",
 					"default": false
+				},
+				"involvedTCOs": {
+					"description": "ticket controlling organizations involved in the control. Used to provide TCOs access to the ticket in the control data (IRS 90918-4)",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/CompanyDef"
+					}
 				}
 			},
 			"required": [
