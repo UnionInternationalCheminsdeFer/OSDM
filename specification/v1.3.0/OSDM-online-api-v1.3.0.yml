@@ -5098,7 +5098,7 @@ components:
               - OFFERS.OFFERPARTS
               - OFFERS.OFFERPARTS.PRODUCTS
               - PASSENGERS
-            default: [ALL]
+          default: [ALL]
 
     ExchangeOffer:
       type: object
