@@ -3707,6 +3707,10 @@ components:
           description: The currency returned might be different from the one requested.
 
     OfferPartType:
+      description: >-
+        Allows to request offerparts of a certain type. 
+        To support H/H use ["RESERVATION", "ANCILLARY"].
+        Default is to get search for offers of all types.
       type: string
       enum:
         - ADMISSION
@@ -3716,12 +3720,8 @@ components:
         - FARE_RESERVATION
         - FARE_ANCILLARY
         - ALL
-      default:
-        - ALL
-      description: >-
-        Allows to request offerparts of a certain type. 
-        To support H/H use ["RESERVATION", "ANCILLARY"].
-        Default is to get search for offers of all types.
+      default: [ALL]
+
     NonTripOfferSearchCriteria:
       type: object
       properties:
@@ -5098,6 +5098,7 @@ components:
               - OFFERS.OFFERPARTS
               - OFFERS.OFFERPARTS.PRODUCTS
               - PASSENGERS
+            default: [ALL]
 
     ExchangeOffer:
       type: object
