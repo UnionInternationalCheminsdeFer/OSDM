@@ -1676,7 +1676,13 @@
 								"default": 999
 							},
 							"passengerTypeRef": {
+								"description": "Deprecated with v.1.4.",
+								"deprecated": "true",
 								"$ref": "#/definitions/TravelerTypeDef"
+							},
+							"passengerConstraintRef": {
+								"description": "Reference to a passenger constraint defining the passengers to be included for free. The referenced passenger constraint must not itself contain included free passengers",
+								"type": "string"
 							}
 						},
 						"required": [
