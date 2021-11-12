@@ -2401,7 +2401,7 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
-  /complaint/{complaintId}:
+  /complaints/{complaintId}:
     get:
       tags:
         - Complaint Management
