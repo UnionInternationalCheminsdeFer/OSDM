@@ -1,0 +1,12 @@
+@startuml
+
+[*] --> planned
+[*] --> confirmed
+planned --> confirmed
+confirmed --> changed: delay
+confirmed --> cancelled: disruption
+confirmed --> [*]
+cancelled --> [*]
+changed --> [*] 
+
+@enduml

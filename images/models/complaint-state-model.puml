@@ -1,0 +1,8 @@
+@startuml
+
+[*] --> initiated
+initiated --> decided
+decided --> settled
+settled --> [*]
+
+@enduml

@@ -84,6 +84,8 @@ using specific trains at a specific moment in time.
 Trips can be retrieved with or without details of all intermediate stops on the
 way between departure and arrival of each `tripLeg`.
 
+A trip can be in states *planned*, *confirmed*, *changed* or *cancelled*.
+
 ## Offers
 
 ### Offers Data Model
@@ -514,7 +516,22 @@ also have 2 additional attributes for the exchange fee and exchange balance
 and the value of the current offers + the exchange fees =  the total amount
 to be paid or refunded if/when confirming the exchange)
 
+## Complaint (new in v.1.4)
+
+A complaint can be filed by a passenger in case of delay/disruption or service
+derogation for a booking or parts of it (e.g. in case of a return trip).
+A passenger can provide documentation to support the claim (e.g. scanned manual
+remark of train staff) and it must able to lookup the status of the claim made.
+
+If a claim is accepted or rejected the system that made the request must be
+informed. The accepted or rejected claim must provide an explanation for the
+decision especially if the amount covers the ticket price only partially.
+
 ## State Models
+
+### Trip State Model
+
+![Trip State Model](../images/models/trip-state-model.png)
 
 ### Booking State Model
 
@@ -529,5 +546,10 @@ to be paid or refunded if/when confirming the exchange)
 ![Refund State Data Model](../images/models/refund-state-model.png)
 
 ### Exchange State Model
+
 Values are a subset of the booking status values
 ![Exchange State Data Model](../images/models/exchangeOperation-state-model.png)
+
+### Complaint State Model
+
+![Complaint State Model](../images/models/complaint-state-model.png)
