@@ -2496,6 +2496,8 @@ components:
 
     PlaceResponse:
       type: object
+      required:
+        - places
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
@@ -2506,6 +2508,8 @@ components:
 
     TripResponse:
       type: object
+      required:
+        - trip
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
@@ -2881,7 +2885,7 @@ components:
       description: >-
         Trip response structure. Provided by OJP.
       required:
-        - tripResult
+        - trips
       properties:
         warning:
           $ref: "#/components/schemas/WarningCollection"
@@ -2898,7 +2902,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Trip"
-
         links:
           $ref: "#/components/schemas/Link"
 
@@ -3051,7 +3054,6 @@ components:
       required:
         - legStart
         - legEnd
-        - timeWindow
         - transferMode
       properties:
         transferMode:
@@ -3106,7 +3108,6 @@ components:
         - legEnd
         - service
         - timeWindow
-        - transferMode
       properties:
         legStart:
           description: Stop/Station where boarding is done
@@ -3762,6 +3763,9 @@ components:
 
         If you are searching for fares you pass in the complete trip in trips and the use the returnSearchCriteria
         to define which part you need fares (especially if you want a price up to a virtual border point).
+      required:
+        - tripSearchCriteria
+        - passengers
       properties:
         trips:
           type: array
@@ -3822,9 +3826,7 @@ components:
               - TRIPOFFERS.PASSENGERS
               - NONE
           default: [ALL]
-      required:
-        - tripSearch
-        - passengers
+
 
     TripOfferCollectionResponse:
       type: object
@@ -4458,7 +4460,6 @@ components:
             in case the carriage contracts represented by this offer have been grouped with carriage contracts from other
             providers by the distributor. The same throughTicketTag that was used to perform the grouping can be specified here.
           type: string
-          default: false
         selectedOptionalReservationIds:
           type: array
           items:
@@ -4540,6 +4541,11 @@ components:
 
     Booking:
       type: object
+      required:
+        - id
+        - status
+        - booker
+        - passengers
       properties:
         id:
           type: string
@@ -4596,9 +4602,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
-        - type
 
     BookingStatus:
       type: string
@@ -4913,6 +4916,8 @@ components:
       description: >-
         Request for a refund offer. 
         Fulfillments can be provided in case the booking contains multiple individual fulfillments.
+      required:
+        - fulfillmentIds
       properties:
         fulfillmentIds:
           type: array
@@ -4927,8 +4932,6 @@ components:
           description: >-
             Indicates for passes the date taken as reference to compute possible partial refund. It is also the date taken
             as reference to invalidate the pass partially refunded.
-      required:
-        - fulfillmentIds
 
     RefundOfferConfirm:
       type: object
@@ -4977,6 +4980,7 @@ components:
       required:
         - tripOfferRequest
         - fulfillmentIds
+    
     ExchangeTripOfferCollectionResponse:
       type: object
       properties:
@@ -4998,6 +5002,8 @@ components:
 
     ExchangeTripOfferResponse:
       type: object
+      required:
+        - tripOffer
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
@@ -5006,6 +5012,9 @@ components:
 
     ExchangeTripOffer:
       type: object
+      required:
+        - id
+        - trip
       properties:
         id:
           type: string
@@ -5030,9 +5039,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
-        - trip
 
     ExchangeOperationResponse:
       type: object
@@ -5246,6 +5252,8 @@ components:
         coach layout providing data to draw a coach layout. The items of a coach
         are located via coordinates with (0,0) in the upper left corner. All
         coordinates are given without sign.
+      required:
+        - id
       properties:
         id:
           type: string
@@ -5352,8 +5360,7 @@ components:
           description: Context information required by the services.
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
+
 
     LayoutCoordinates:
       type: object
@@ -5532,7 +5539,7 @@ components:
               type: integer
               format: int32
           required:
-            - regionalValidity
+            - regionalValidities
         serviceConstraint:
           $ref: "#/components/schemas/ServiceConstraint"
         carrierConstraint:
@@ -5638,8 +5645,6 @@ components:
               description: a separate fulfillment per traveler is forbidden
               type: boolean
               default: false
-          required:
-            - acceptedFulfillmentTypes
         reductionConstraint:
           type: object
           properties:
@@ -6444,6 +6449,12 @@ components:
         selection of places with common properties
         description element - textual description of the places
         placeProperties is mandatory for allocator mode, for distributors the textual description is used
+      required:
+        - id
+        - reference
+        - vehicle
+        - coach
+        - places
       properties:
         id:
           type: string
@@ -6483,12 +6494,6 @@ components:
                 format: int32
             required:
               - placeProperty
-      required:
-        - id
-        - reference
-        - vehicle
-        - coach
-        - places
 
     AccommodationType:
       type: string
@@ -6891,6 +6896,8 @@ components:
 
     MotorCycle:
       type: object
+      required:
+        - isSideCarIncluded
       properties:
         isSideCarIncluded:
           type: boolean
@@ -6900,8 +6907,6 @@ components:
             The trailer plate is a personal data item and must not be provided in an offer request. 
             It must be patched into the offer after the customer accepted the offer for booking
           type: string
-      required:
-        - includingSideCar
 
     Trailer:
       type: object
@@ -6983,6 +6988,10 @@ components:
 
     CardReference:
       type: object
+      required:
+        - types
+        - codeList
+        - code
       properties:
         types:
           description: Types of card. One card can have multiple roles, such as loyalty and reduction
@@ -7003,10 +7012,6 @@ components:
           type: string
         issuer:
           $ref: "#/components/schemas/Company"
-      required:
-        - type
-        - codeList
-        - code
 
     CardType:
       type: string
