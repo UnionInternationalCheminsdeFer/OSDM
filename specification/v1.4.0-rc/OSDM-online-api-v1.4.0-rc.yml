@@ -5477,7 +5477,6 @@ components:
               coords:
                 $ref: "#/components/schemas/LayoutCoordinates"
             required:
-              - id
               - number
               - coords
         signs:
@@ -5989,7 +5988,6 @@ components:
             reservationParameterId:
               type: string
           required:
-            - id
             - text
         afterSalesCondition:
           type: object
@@ -6057,8 +6055,6 @@ components:
               description: a separate fulfillment per traveler is forbidden
               type: boolean
               default: false
-          required:
-            - acceptedFulfillmentTypes
         reductionConstraint:
           type: object
           properties:
@@ -6590,7 +6586,7 @@ components:
       required:
         - from
         - until
-        - carrier
+        - carriers
         - scope
       properties:
         from:
@@ -6783,8 +6779,6 @@ components:
         name:
           type: string
           description: The name the carrier itself uses to designate this specific service class.
-      required:
-        - id
 
     ServiceClassType:
       type: string
@@ -6890,6 +6884,11 @@ components:
         selection of places with common properties
         description element - textual description of the places
         placeProperties is mandatory for allocator mode, for distributors the textual description is used
+      required:
+        - id
+        - vehicle
+        - coach
+        - places
       properties:
         id:
           type: string
@@ -6929,12 +6928,7 @@ components:
                 format: int32
             required:
               - placeProperty
-      required:
-        - id
-        - reference
-        - vehicle
-        - coach
-        - places
+
 
     AccommodationType:
       type: string
@@ -7430,7 +7424,7 @@ components:
     CardReference:
       type: object
       required:
-        - type
+        - types
         - codeList
         - code
       properties:

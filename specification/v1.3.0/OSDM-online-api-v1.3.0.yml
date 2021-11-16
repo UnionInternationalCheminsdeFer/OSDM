@@ -3107,7 +3107,6 @@ components:
         - legStart
         - legEnd
         - service
-        - timeWindow
       properties:
         legStart:
           description: Stop/Station where boarding is done
@@ -5302,7 +5301,6 @@ components:
               coords:
                 $ref: "#/components/schemas/LayoutCoordinates"
             required:
-              - id
               - number
               - coords
         signs:
@@ -5577,7 +5575,6 @@ components:
             reservationParameterId:
               type: string
           required:
-            - id
             - text
         afterSalesCondition:
           type: object
@@ -6342,8 +6339,6 @@ components:
         name:
           type: string
           description: The name the carrier itself uses to designate this specific service class.
-      required:
-        - id
 
     ServiceClassType:
       type: string
@@ -6451,7 +6446,6 @@ components:
         placeProperties is mandatory for allocator mode, for distributors the textual description is used
       required:
         - id
-        - reference
         - vehicle
         - coach
         - places
