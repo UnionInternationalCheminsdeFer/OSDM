@@ -3282,8 +3282,6 @@ components:
         - legStart
         - legEnd
         - service
-        - timeWindow
-        - transferMode
       properties:
         legStart:
           description: Stop/Station where boarding is done
