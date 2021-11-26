@@ -3490,10 +3490,15 @@ components:
           description: Postal code of the address.
           type: string
           example: 2265CA
-        # topographicPlaceName:  # Out of scope
-        #   description: "TopographicPlace name of the address. If set it should at least contain the city name."
-        #   type: string
-        #   example: Leidschendam
+        city:  # EXT
+          description: City name
+          type: string
+          example: Leidschendam
+        topographicPlaceName:
+          description: >-
+            TopographicPlace name of the address. If set it should at least contain the city name.
+          type: string
+          example: Leidschendam
         # topographicPlaceRef:  # Out of scope
         #   description: If at least one is set, only place objects within the given localities are allowed.If at least one is set, only place objects within the given localities are allowed.Reference to a TopographicPlace
         #   $ref: "#/components/schemas/TopographicPlaceRef"
