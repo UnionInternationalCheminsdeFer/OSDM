@@ -59,9 +59,16 @@ tags:
   - name: Exchange
     description: >-
       resources to get exchange offers and book it
-  - name: CoachLayouts
+  - name: Complaint Management
+    description: >-
+      resources to manage complaints
+  - name: Coach Layouts
     description: >-
       resources to get the layout of a coach
+  - name: Master Data
+    description: >-
+      resources to get master data
+
 paths:
   /places/{placeId}:
     get:
@@ -538,6 +545,8 @@ paths:
       tags:
         - Offers
       summary: Returns an offer for the id requested.
+      description: >-
+        Returns an offer. Note: Does not return non-trip offers.
       operationId: getOffersId
       parameters:
         - $ref: "#/components/parameters/accessToken"
@@ -548,7 +557,6 @@ paths:
           name: offerId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the trip to get.
         - in: query
@@ -572,16 +580,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
-                  offer:
-                    description: >-
-                      Either an Offer or a NonTripOffer is returned.
-                    oneOf:
-                      - $ref: "#/components/schemas/Offer"
-                      - $ref: "#/components/schemas/NonTripOffer"
+                $ref: "#/components/schemas/Offer"
           headers:
             Content-Language:
               schema:
@@ -631,24 +630,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
-                  id:
-                    type: string
-                    format: uuid
-                  nonTripOffers:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/NonTripOffer"
-                  links:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Link"
-                required:
-                  - id
-                  - nonTripOffers
+                $ref: "#/components/schemas/NonTripOfferCollection"
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -695,28 +677,19 @@ paths:
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list PLacePreferences) the customer wants to have
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
           schema:
             type: array
             items:
               type: string
         - in: query
-          name: preferenceBundles
+          name: preferencesBundle
           description: >-
             Place preferences the customer wants to have applying to a selection of passengers or transportables only
           schema:
             type: array
             items:
-              type: object
-              properties:
-                passengerId:
-                  type: string
-                preferences:
-                  description: >-
-                    Place preferences (see code list PlacePreferences) the customer wants to have
-                  type: array
-                  items:
-                    type: string
+              $ref: "#/components/schemas/PlacePreferencesBundle"
       responses:
         "200":
           description: places available
@@ -789,28 +762,19 @@ paths:
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list Reservation Preferences) the customer wants to have
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
           schema:
             type: array
             items:
               type: string
         - in: query
-          name: preferenceBundles
+          name: preferencesBundle
           description: >-
             Place preferences the customer wants to have applying to a selection of passengers or transportables only
           schema:
             type: array
             items:
-              type: object
-              properties:
-                passengerId:
-                  type: string
-                preferences:
-                  description: >-
-                    Place preferences (see code list Reservation Preferences) the customer wants to have
-                  type: array
-                  items:
-                    type: string
+              $ref: "#/components/schemas/PlacePreferencesBundle"
       responses:
         "200":
           description: nearby places available
@@ -869,28 +833,19 @@ paths:
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list PLacePreferences) the customer wants to have
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
           schema:
             type: array
             items:
               type: string
         - in: query
-          name: preferenceBundles
+          name: preferencesBundle
           description: >-
             Place preferences the customer wants to have applying to a selection of passengers or transportables only
           schema:
             type: array
             items:
-              type: object
-              properties:
-                passengerId:
-                  type: string
-                preferences:
-                  description: >-
-                    Place preferences (see code list PlacePreferences) the customer wants to have
-                  type: array
-                  items:
-                    type: string
+              $ref: "#/components/schemas/PlacePreferencesBundle"
       responses:
         "200":
           description: available places for selection
@@ -949,28 +904,19 @@ paths:
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list PLacePreferences) the customer wants to have
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
           schema:
             type: array
             items:
               type: string
         - in: query
-          name: preferenceBundles
+          name: preferencesBundle
           description: >-
             Place preferences the customer wants to have applying to a selection of passengers or transportables only
           schema:
             type: array
             items:
-              type: object
-              properties:
-                passengerId:
-                  type: string
-                preferences:
-                  description: >-
-                    Place preferences (see code list PlacePreferences) the customer wants to have
-                  type: array
-                  items:
-                    type: string
+              $ref: "#/components/schemas/PlacePreferencesBundle"
       responses:
         "200":
           description: Places available
@@ -1043,28 +989,19 @@ paths:
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list Reservation Preferences) the customer wants to have
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
           schema:
             type: array
             items:
               type: string
         - in: query
-          name: preferenceBundles
+          name: preferencesBundle
           description: >-
             Place preferences the customer wants to have applying to a selection of passengers or transportables only
           schema:
             type: array
             items:
-              type: object
-              properties:
-                passengerId:
-                  type: string
-                preferences:
-                  description: >-
-                    Place preferences (see code list Reservation Preferences) the customer wants to have
-                  type: array
-                  items:
-                    type: string
+              $ref: "#/components/schemas/PlacePreferencesBundle"
       responses:
         "200":
           description: Places available
@@ -1123,28 +1060,19 @@ paths:
         - in: query
           name: preferences
           description: >-
-            Place preferences (see code list PLacePreferences) the customer wants to have
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
           schema:
             type: array
             items:
               type: string
         - in: query
-          name: preferenceBundles
+          name: preferencesBundle
           description: >-
             Place preferences the customer wants to have applying to a selection of passengers or transportables only
           schema:
             type: array
             items:
-              type: object
-              properties:
-                passengerId:
-                  type: string
-                preferences:
-                  description: >-
-                    Place preferences (see code list PlacePreferences) the customer wants to have
-                  type: array
-                  items:
-                    type: string
+              $ref: "#/components/schemas/PlacePreferencesBundle"
       responses:
         "200":
           description: selectable places
@@ -1152,7 +1080,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PlaceAvailabilityResponse"
-
           headers:
             Content-Language:
               schema:
@@ -1189,14 +1116,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking the passenger is in.
         - in: path
           name: passengerId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the passenger to get.
       responses:
@@ -1242,14 +1167,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking the passenger is in.
         - in: path
           name: passengerId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the passenger to get.
       requestBody:
@@ -1287,7 +1210,7 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
-  /bookings/{bookingId}/booker/:
+  /bookings/{bookingId}/booker:
     get:
       tags:
         - Booker
@@ -1500,7 +1423,6 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the product to get.
         - in: query
@@ -1569,19 +1491,11 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking to delete.
       responses:
         "200":
-          description: Booking successfully cancelled
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
+          description: OK
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -1614,7 +1528,6 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking to be patched
       requestBody:
@@ -1662,7 +1575,6 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking to be patched
       responses:
@@ -1673,7 +1585,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FulfillmentsResponse"
-
         "202":
           description: >-
             Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
@@ -1683,7 +1594,7 @@ paths:
                 type: object
                 properties:
                   warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
+                    $ref: "#/components/schemas/WarningCollection"
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -1716,7 +1627,6 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking to be patched
       requestBody:
@@ -1741,7 +1651,7 @@ paths:
                 type: object
                 properties:
                   warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
+                    $ref: "#/components/schemas/WarningCollection"
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -1774,7 +1684,6 @@ paths:
           name: fulfillmentId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the product to get.
       responses:
@@ -1824,7 +1733,6 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking.
       requestBody:
@@ -1871,14 +1779,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking
         - in: path
           name: refundOfferId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the refund offer to get.
       responses:
@@ -1924,14 +1830,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
           name: refundOfferId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the product to get.
       requestBody:
@@ -1946,6 +1850,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RefundOfferResponse"
+          headers:
             Content-Language:
               schema:
                 type: string
@@ -1981,36 +1886,17 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the offer the offerPart is part of.
         - in: path
           name: refundOfferId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the product to delete.
       responses:
         "200":
-          description: RefundOffer removed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
-                  fulfillments:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Fulfillment"
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
+          description: OK
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -2044,14 +1930,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking
         - in: path
           name: exchangeOperationId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the exchange operation to get.
         - in: query
@@ -2115,14 +1999,12 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking to be exchanged.
         - in: path
           name: exchangeOperationId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the exchange operation.
       requestBody:
@@ -2174,32 +2056,17 @@ paths:
           name: bookingId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the booking containing the exchange operation
         - in: path
           name: exchangeOperationId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the exchangeOperation to delete.
       responses:
         "200":
-          description: ExchangeOperation removed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  warnings:
-                    $ref: "#/components/schemas/WarningMessageList"
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
+          description: OK
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -2243,7 +2110,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ExchangeTripOfferCollectionResponse"
-
           headers:
             Content-Language:
               schema:
@@ -2283,7 +2149,6 @@ paths:
           name: exchangeTripOffersCollectionId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the trip to get.
         - name: scrollContext
@@ -2361,7 +2226,6 @@ paths:
           name: exchangeTripOfferId
           schema:
             type: string
-            format: uuid
           required: true
           description: ID of the trip to get.
         - in: query
@@ -2413,7 +2277,7 @@ paths:
   /coachLayouts:
     get:
       tags:
-        - CoachLayouts
+        - Coach Layouts
       summary: Returns all coach layouts.
       description: >-
         Retrieve the coach layout description needed for graphical reservation. The coach
@@ -2431,6 +2295,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CoachLayoutsResponse"
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -2449,7 +2319,7 @@ paths:
   /coachLayouts/{layoutId}:
     get:
       tags:
-        - CoachLayouts
+        - Coach Layouts
       summary: Returns a coach layout for a provided id.
       description: >-
         Retrieve a coach layout description needed for graphical reservation for a given layout id.
@@ -2472,6 +2342,180 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CoachLayoutResponse"
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
+  /complaints:
+    post:
+      tags:
+        - Complaint Management
+      summary: Allows adding the Complaint.
+      operationId: createComplaint
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Complaint"
+      responses:
+        "200":
+          description: complaint
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ComplaintResponse"
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "409":
+          $ref: "#/components/responses/ConflictResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
+  /complaints/{complaintId}:
+    get:
+      tags:
+        - Complaint Management
+      summary: returns a complaint
+      description: >-
+        Returns a complaint
+      operationId: getComplaint
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/accessToken"
+        - in: path
+          name: complaintId
+          schema:
+            type: string
+          required: true
+          description: ID of the complaint to get.
+      responses:
+        "200":
+          description: the requested complaint
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                default: "public, max-age=10000"
+                description: >-
+                  A places resource is fairly persistent and has a medium time to live to allow short-term caching.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ComplaintResponse"
+        "400":
+          description: bad input parameter
+        "401":
+          description: unauthorized
+        "403":
+          description: forbidden
+        "404":
+          description: no place information found
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
+    patch:
+      tags:
+        - Complaint Management
+      summary: Allows updating the Complaint.
+      operationId: patchComplaint
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
+        - in: path
+          name: complaintId
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: ID of the complaint to be patched
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ComplaintPatchRequest"
+      responses:
+        "200":
+          description: complaint updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ComplaintResponse"
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "409":
+          $ref: "#/components/responses/ConflictResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
+  /masterdata/reductionCards:
+    get:
+      tags:
+        - Master Data
+      summary: Returns a collection of reduction card definitions.
+      description: >-
+        returns a list of reduction card definitions.
+      operationId: getReductionCards
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
+      responses:
+        "200":
+          description: Cards Provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReductionCards"
+          headers:
+            Expires:
+              schema:
+                type: string
+                description: >-
+                  Gives the date/time after which the response is considered stale (in "HTTP-date" format as defined by RFC 7231).
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -2571,22 +2615,27 @@ components:
             $ref: "#/components/schemas/Problem"
 
   schemas:
-    WarningMessageList:
+    WarningCollection:
       type: array
+      description: >-
+        List of warnings.
       items:
-        type: object
-        properties:
-          code:
-            type: string
-          text:
-            type: string
-          elementList:
-            type: array
-            items:
-              $ref: "#/components/schemas/Resource"
-        description: >-
-          This element can be used to pass non-blocking information or events,
-          such as a price difference with the initially offered price at booking time.
+        $ref: "#/components/schemas/Warning"
+
+    Warning:
+      type: object
+      description: >-
+        This element can be used to pass non-blocking information or events,
+        such as a price difference with the initially offered price at booking time.
+      properties:
+        code:
+          type: string
+        text:
+          type: string
+        elementList:
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
 
     Resource:
       type: object
@@ -2610,6 +2659,7 @@ components:
             - BOOKING
             - FULFILLMENT
             - REFUNDOFFER
+            - COMPLAINT
         href:
           type: string
           format: url
@@ -2622,9 +2672,11 @@ components:
 
     PlaceResponse:
       type: object
+      required:
+        - places
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         places:
           type: array
           items:
@@ -2632,9 +2684,11 @@ components:
 
     TripResponse:
       type: object
+      required:
+        - trip
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         trip:
           $ref: "#/components/schemas/Trip"
 
@@ -2701,10 +2755,10 @@ components:
         - DESTINATION
 
     InitialPlaceInput: ## OJP
+      type: object
       description: >-
         Initial input for the place information request. This input defines what is originally looked for.
         Provided by OJP.
-      type: object
       properties:
         #initialInput:
         #  anyOf:
@@ -2724,8 +2778,8 @@ components:
       description: >-
         Trip request structure. Provided by OJP.
       required:
-        - destination
         - origin
+        - destination
       properties:
         departureTime: # EXT Array out of Scope
           type: string
@@ -2739,12 +2793,10 @@ components:
           description: >-
             Specifies the origin situation from where the user wants to start.
           $ref: "#/components/schemas/Place"
-
         destination: # EXT Array out of Scope
           description: >-
             Specifies the destination situation where the user is heading to.
           $ref: "#/components/schemas/Place"
-
         via: # EXT Array out of Scope
           description: >-
             Ordered series of points where the journey must pass through. If more
@@ -2786,6 +2838,7 @@ components:
           default: [ALL]
 
     TripVia: ## OJP
+      type: object
       description: >-
         Via restrictions for a trip. Provided by OJP.
       required:
@@ -2861,9 +2914,9 @@ components:
           example: 0S
 
     ModeFilter: ## OJP
+      type: object
       description: >-
         List of public transport modes to include or exclude. Provided by OJP.
-      type: object
       properties:
         exclude:
           description: Whether modes in list are to include or exclude from search.
@@ -2876,24 +2929,24 @@ components:
             $ref: "#/components/schemas/Mode"
 
     CarrierFilter: ## OJP
+      type: object
       description: >-
         Filter for in/exclusion of carriers. Provided by OJP.
-      type: object
       properties:
         exclude:
           description: Whether carrier in list are to include or exclude from search.
           type: boolean
           default: True
-        carrier:
+        carriers:
           description: Reference to carrier
           type: array
           items:
             type: string
 
     ServiceBrandFilter: ## OJP
+      type: object
       description: >-
         Filter for in/exclusion of service brands. Provided by OJP.
-      type: object
       properties:
         exclude:
           description: Whether service brand in list are to include or exclude from search.
@@ -2906,10 +2959,10 @@ components:
             type: string
 
     VehicleFilter: ## OJP # EXT
+      type: object
       description: >-
         Filter for in/exclusion of vehicle. Either the vehicle number array or the vehicle line
         array must be set. Provided by OJP.
-      type: object
       properties:
         exclude:
           description: Whether vehicle in list is to include or exclude from search.
@@ -2927,9 +2980,9 @@ components:
             type: string
 
     PointOfInterestFilter: ## OJP
+      type: object
       description: >-
         Filter POIs by category. Provided by OJP.
-      type: object
       properties:
         exclude:
           description: Whether operators in list are to include or exclude from search.
@@ -2944,9 +2997,9 @@ components:
             $ref: "#/components/schemas/PointOfInterestCategory"
 
     TripDataFilter: ## OJP # Reduced scope
+      type: object
       description: >-
         Data to be included/excluded from search, f.e. modes, operators. Provided by OJP.
-      type: object
       properties:
         ptModeFilter:
           $ref: "#/components/schemas/ModeFilter"
@@ -2962,6 +3015,7 @@ components:
           $ref: "#/components/schemas/VehicleFilter"
 
     TripParam: ## OJP # Reduced scope
+      type: object
       description: >-
         Options to control the search behavior and response contents.
         number of results > either number of results or number of results before and after are used.
@@ -3003,14 +3057,14 @@ components:
       #  - $ref: "#/components/schemas/FareParam"
 
     TripCollectionResponse: ## OJP  # Reduced scope
+      type: object
       description: >-
         Trip response structure. Provided by OJP.
       required:
-        - tripResult
-      type: object
+        - trips
       properties:
         warning:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         calcTime:
           type: integer
           minimum: 0
@@ -3024,14 +3078,13 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Trip"
-
         links:
           $ref: "#/components/schemas/Link"
 
     Trip: ## OJP # Reduced scope
+      type: object
       description: >-
         A complete trip from origin to destination. Provided by OJP.
-      type: object
       required:
         - tripId
         - duration
@@ -3044,7 +3097,6 @@ components:
           description: >-
             Id of this trip for referencing purposes. Unique within trip response.
           type: string
-          format: uuid
         duration:
           description: Overall duration of the trip
           type: string
@@ -3089,9 +3141,9 @@ components:
           $ref: "#/components/schemas/TripStatus"
 
     TripStatus: ## OJP
+      type: object
       description: >-
         Parameters which describe the current status of a trip. Provided by OJP.
-      type: object
       properties:
         unplanned:
           description: Whether this trip is an additional one that has not been planned.
@@ -3115,9 +3167,9 @@ components:
           default: false
 
     TripLeg: ## OJP  # Reduced scope
+      type: object
       description: >-
         A single stage of a trip that is made without change of MODE or service (ie: between each interchange). Provided by OJP.
-      type: object
       required:
         - legId
         - seqId
@@ -3125,7 +3177,6 @@ components:
         legId:
           description: Id of this trip leg. Unique within trip result.
           type: string
-          format: uuid
         seqId: # EXT
           type: number
           format: int32
@@ -3140,13 +3191,13 @@ components:
           $ref: "#/components/schemas/ContinuousLeg"
 
     TimedLeg: ## OJP # Reduced scope
+      type: object
       description: >-
         A leg which is bound to a timetabled schedule. Corresponds to a ride. Provided by OJP.
       required:
         - legAlight
         - legBoard
         - service
-      type: object
       properties:
         legBoard: # EXT: use Place instead of LegBoard
           $ref: "#/components/schemas/LegStop"
@@ -3173,14 +3224,12 @@ components:
           format: duration
 
     TransferLeg: ## OJP # Reduced scope
+      type: object
       description: >-
         A leg which links other legs of a trip where a transfer between different places is required. Provided by OJP.
       required:
         - legStart
         - legEnd
-        - timeWindow
-        - transferMode
-      type: object
       properties:
         transferMode:
           $ref: "#/components/schemas/TransferMode"
@@ -3226,15 +3275,13 @@ components:
         #   $ref: "#/components/schemas/SituationFullRef"
 
     ContinuousLeg: ## OJP # Reduced scope
+      type: object
       description: >-
         A leg of a journey that is not bound to a timetable. Provided by OJP.
       required:
         - legStart
         - legEnd
         - service
-        - timeWindow
-        - transferMode
-      type: object
       properties:
         legStart:
           description: Stop/Station where boarding is done
@@ -3269,11 +3316,11 @@ components:
         #   $ref: "#/components/schemas/SituationFullRef"
 
     ContinuousService: ## OJP
+      type: object
       description: >-
         A vehicle movement on a continuous, non-timetabled service.
         Service of this leg. May be "walk" in most cases, but also cycling or taxi etc.
         Provided by OJP.
-      type: object
       required:
         - operatingDayRef
         - journeyRef
@@ -3348,9 +3395,9 @@ components:
       default: WALK
 
     StopCallStatus: ## OJP
+      type: object
       description: >-
         Status properties for the vehicle call at this stop. Provided by OJP.
-      type: object
       properties:
         order:
           description: Sequence number of this stop in the service pattern of the journey.
@@ -3378,12 +3425,12 @@ components:
           default: false
 
     LegStop: ## EXT OJP LegStop unifies LegBoard, LegIntermediate, LegAlign
+      type: object
       description: >-
         Describes the situation at a stop or station that lies between the
         LegBoard and LegAlight stop or station including time-related information. 
         Provided by OJP whereas LegStop unifies LegBoard, LegIntermediate and LegAlign.
       #allOf:
-      type: object
       required:
         #- order
         #- plannedQuay
@@ -3421,9 +3468,9 @@ components:
           $ref: "#/components/schemas/StopCallStatus"
 
     ServiceTime: ## OJP
+      type: object
       description: >-
         Contains at least scheduled time, but can contain real time and estimated times. Provided by OJP.
-      type: object
       required:
         - timetabledTime
       properties:
@@ -3438,6 +3485,7 @@ components:
           format: date-time
 
     DatedJourney: ## OJP # Reduced scope
+      type: object
       description: >-
         Vehicle journey that runs at a specific date. Provided by OJP.
       required:
@@ -3445,7 +3493,6 @@ components:
         # - journeyRef
         - mode
         - publishedServiceName
-      type: object
       properties:
         # operatingDayRef:  # Out of scope
         #   $ref: "#/components/schemas/OperationDayRef"
@@ -3472,11 +3519,11 @@ components:
           example: ojp:11
 
     Mode: ## OJP
+      type: object
       description: >-
         A method of transportation such as bus, rail, etc. Provided by OJP.
       required:
         - ptMode
-      type: object
       properties:
         ptMode: # EXT
           description: >-
@@ -3515,6 +3562,7 @@ components:
           type: string
 
     ProductCategory: ## OJP
+      type: object
       description: >-
         Product category based on NeTEx/SIRI. A product category is a classification for vehicle journeys
         to express some common properties of journeys for marketing and fare products. Provided by OJP.
@@ -3670,11 +3718,11 @@ components:
         #   $ref: "#/components/schemas/TopographicPlaceRef"
 
     PointOfInterestCategory: ## OJP
+      type: object
       description: >-
         A categorisation of points of interest in respect of the activities undertaken at them 
         (defined by key-value-pairs). Provided by OJP.
       # oneOf:
-      type: object
       #  required:
       #   - pointOfInterestClassification  #EXT no longer mandatory
       properties:
@@ -3682,7 +3730,7 @@ components:
           description: Open Street Map tag structure (key-value)
           type: array
           items:
-            $ref: "#/components/schemas/OsmTagStructure"
+            $ref: "#/components/schemas/OsmTag"
         #    required:
         #      - osmTag
         #  - type: object
@@ -3696,10 +3744,10 @@ components:
           items:
             type: string
 
-    OsmTagStructure: ## OJP
+    OsmTag: ## OJP
+      type: object
       description: >-
         Structure of an Open Street Map tag. Provided by OJP.
-      type: object
       properties:
         tag:
           type: string
@@ -3714,12 +3762,12 @@ components:
         - value
 
     StopPlace: ## OJP # Reduced scope
+      type: object
       description: >-
         A place extended by accessibility limitation properties and some attributes of the associated equipment, 
         comprising one or more places where vehicles may stop and where passengers may board or leave vehicles 
         or prepare their trip, and which will usually have one or more wellknown names. Provided by OJP.
       #allOf:
-      type: object
       required:
         - stopPlaceRef
         #  - stopPlaceName  # EXT no longer mandatory as being passed in a trip
@@ -3744,9 +3792,9 @@ components:
         # - $ref: "#/components/schemas/StopAttributes" # Out of scope
 
     GeoPosition: ## OJP # Reduced scope
+      type: object
       description: >-
         WGS84 coordinates position. Provided by OJP.
-      type: object
       properties:
         longitude:
           $ref: "#/components/schemas/Longitude"
@@ -3889,6 +3937,9 @@ components:
 
         If you are searching for fares you pass in the complete trip in trips and the use the returnSearchCriteria
         to define which part you need fares (especially if you want a price up to a virtual border point).
+      required:
+        - tripSearchCriteria
+        - passengers
       properties:
         trips:
           type: array
@@ -3911,7 +3962,6 @@ components:
                 product and fares.
             outwardTripOfferCollectionId:
               type: string
-              format: uuid
               description: >-
                 Needs to be provided when creating the collection of inward travels so that the provider
                 can relate the inward travels to the outward travels context.
@@ -3950,18 +4000,14 @@ components:
               - TRIPOFFERS.PASSENGERS
               - NONE
           default: [ALL]
-      required:
-        - tripSearch
-        - passengers
 
     TripOfferCollectionResponse:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         id:
           type: string
-          format: uuid
         tripOffers:
           type: array
           items:
@@ -3978,7 +4024,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         tripOffer:
           $ref: "#/components/schemas/TripOffer"
 
@@ -4201,7 +4247,6 @@ components:
         passengerIds:
           type: string
           description: Id of the passenger
-          format: uuid
         providerBookingReference:
           type: string
           description: >-
@@ -4559,7 +4604,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         abstract:
           type: string
           example: ICE Wifi on Board 2020-07-11
@@ -4575,7 +4619,6 @@ components:
       properties:
         selectedOfferId:
           type: string
-          format: uuid
           description: id of the selected offer or exchangeOffer
         afterSaleByDistributorOnly:
           description: >-
@@ -4590,12 +4633,10 @@ components:
             in case the carriage contracts represented by this offer have been grouped with carriage contracts from other
             providers by the distributor. The same throughTicketTag that was used to perform the grouping can be specified here.
           type: string
-          default: false
         selectedOptionalReservationIds:
           type: array
           items:
             type: string
-            format: uuid
             description: >-
               If relevant, ids of the selected optional reservations.
         selectedOptionalAncillaryIds:
@@ -4605,14 +4646,12 @@ components:
             properties:
               ancillaryId:
                 type: string
-                format: uuid
                 description: >-
                   If relevant, ids of the selected optional ancillaries.
               passengerIds:
                 type: array
                 items:
                   type: string
-                  format: uuid
                   description: >-
                     Id of the passengers the selected optional ancillaries are for.
         passengers:
@@ -4626,7 +4665,6 @@ components:
           properties:
             reservationId:
               type: string
-              format: uuid
             placeSelection:
               $ref: "#/components/schemas/PlaceSelectionPatch"
       required:
@@ -4670,16 +4708,20 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         booking:
           $ref: "#/components/schemas/Booking"
 
     Booking:
       type: object
+      required:
+        - id
+        - status
+        - booker
+        - passengers
       properties:
         id:
           type: string
-          format: uuid
         abstract:
           type: string
           example: booking 2345
@@ -4729,13 +4771,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ExchangeOperation"
+        complaint:
+          type: array
+          items:
+            $ref: "#/components/schemas/Complaint"
         links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
-        - type
 
     BookingStatus:
       type: string
@@ -4800,13 +4843,12 @@ components:
             properties:
               fulfilledFulfillmentId:
                 type: string
-                format: uuid
 
     FulfillmentsResponse:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         fulfillments:
           type: array
           items:
@@ -4816,7 +4858,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         fulfillment:
           $ref: "#/components/schemas/Fulfillment"
 
@@ -4831,7 +4873,6 @@ components:
       properties:
         id:
           type: string
-          format: uuid
         status:
           $ref: "#/components/schemas/FulfillmentStatus"
         price:
@@ -4982,7 +5023,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         refundOffersCollection:
           $ref: "#/components/schemas/RefundOffersCollection"
 
@@ -4998,7 +5039,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         refundOffersCollection:
           $ref: "#/components/schemas/RefundOffer"
 
@@ -5052,12 +5093,13 @@ components:
       description: >-
         Request for a refund offer. 
         Fulfillments can be provided in case the booking contains multiple individual fulfillments.
+      required:
+        - fulfillmentIds
       properties:
         fulfillmentIds:
           type: array
           items:
             type: string
-            format: uuid
             description: id of the fulfillment to refund
         overruleCode:
           $ref: "#/components/schemas/OverruleCode"
@@ -5067,8 +5109,6 @@ components:
           description: >-
             Indicates for passes the date taken as reference to compute possible partial refund. It is also the date taken
             as reference to invalidate the pass partially refunded.
-      required:
-        - fulfillmentIds
 
     RefundOfferConfirm:
       type: object
@@ -5112,7 +5152,6 @@ components:
           type: array
           items:
             type: string
-            format: uuid
         overruleCode:
           $ref: "#/components/schemas/OverruleCode"
       required:
@@ -5122,10 +5161,9 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         id:
           type: string
-          format: uuid
         exchangeTripOffers:
           type: array
           items:
@@ -5142,7 +5180,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         tripOffer:
           $ref: "#/components/schemas/ExchangeTripOffer"
 
@@ -5180,16 +5218,17 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         exchangeOperation:
           $ref: "#/components/schemas/ExchangeOperation"
 
     ExchangeOperation:
       type: object
+      required:
+        - id
       properties:
         id:
           type: string
-          format: uuid
         abstract:
           type: string
           example: booking 2345
@@ -5271,7 +5310,7 @@ components:
             type: string
         geoCoordinate:
           $ref: "#/components/schemas/GeoCoordinate"
-        travelPeriod:
+        travelPeriods:
           type: array
           items:
             type: string
@@ -5301,6 +5340,25 @@ components:
               - NONE
               - ALL
           default: [ALL]
+
+    NonTripOfferCollection:
+      type: object
+      required:
+        - id
+        - nonTripOffers
+      properties:
+        warnings:
+          $ref: "#/components/schemas/WarningCollection"
+        id:
+          type: string
+        nonTripOffers:
+          type: array
+          items:
+            $ref: "#/components/schemas/NonTripOffer"
+        links:
+          type: array
+          items:
+            $ref: "#/components/schemas/Link"
 
     NonTripOffer:
       type: object
@@ -5349,7 +5407,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         layouts:
           type: array
           items:
@@ -5359,7 +5417,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         coachLayout:
           $ref: "#/components/schemas/CoachLayout"
 
@@ -5417,7 +5475,6 @@ components:
               coords:
                 $ref: "#/components/schemas/LayoutCoordinates"
             required:
-              - id
               - number
               - coords
         signs:
@@ -5548,13 +5605,29 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
+
+    PlacePreferencesBundle:
+      type: object
+      description: >-
+        Place preferences per passenger.
+      properties:
+        passengerId:
+          type: string
+        preferences:
+          description: >-
+            Place preferences (see code list Reservation Place Preferences) the customer wants to have
+          type: array
+          items:
+            type: string
+
     PlacePreferencesResponse:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         reservation:
           $ref: "#/components/schemas/AvailablePlacePreferences"
+
     AvailablePlacePreferences:
       type: object
       properties:
@@ -5596,6 +5669,254 @@ components:
                       type: integer
                       format: int32
 
+    ComplaintResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: "#/components/schemas/WarningCollection"
+        complaint:
+          $ref: "#/components/schemas/Complaint"
+
+    CustomerComplaint:
+      description: complaint details provided by the passengers
+      type: object
+      properties:
+        applicationTime:
+          description: >-
+            date and time when the claim was made. This starts the legal time line to process the claim
+          type: string
+          format: date-time
+        journeyDetails:
+          $ref: "#/components/schemas/ClaimedJourneyDetails"
+        claimManager:
+          $ref: "#/components/schemas/PersonDetail"
+        affectedPassengers:
+          type: array
+          items:
+            $ref: "#/components/schemas/Passenger"
+        supportingDocuments:
+          type: array
+          items:
+            $ref: "#/components/schemas/Document"
+        bookingIds:
+          description: list of booking Ids
+          type: array
+          items:
+            type: string
+        ticketControlNumber:
+          description: list of ticket control number (visible ticket identification for the customer)
+          type: array
+          items:
+            type: string
+        requestedPaymentType:
+          type: string
+          x-extensible-enum:
+            - VOUCHER
+            - MONEY
+        bankAccount:
+          $ref: "#/components/schemas/BankAccountReference"
+
+    BankAccountReference:
+      description: bank account
+      type: object
+      properties:
+        iban:
+          type: string
+          pattern: "[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}"
+        ownerName:
+          type: string
+          example: "John Doe"
+
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+          example: "delay confirmation written by staff on board"
+        content:
+          type: string
+          format: base64
+          description: base64 encoded binary of the actual document
+        format:
+          type: string
+          example: "application/pdf"
+          description: >-
+            Physical format of the document provided in the content field in Mime-Type format, e.g. 
+            application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
+    ClaimedJourneyDetails:
+      type: object
+      properties:
+        impact:
+          description: impact that was caused by the event
+          type: string
+          x-extensible-enum:
+            - DELAY ## delayed arrival
+            - JOURNEY_ABANDONED ## trip way abandoned during the travel
+            - JOURNEY_NOT_STARTED ## trip was not started due to the delay
+            - SERVICE_DEGRADED ## e.g. service class not provided
+          example: JOURNEY_ABANDONED
+        finalDelay:
+          type: string
+          format: duration
+          example: PT30M
+        onReturn:
+          type: boolean
+          default: false
+        delayedJourney:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClaimedLeg"
+
+    ClaimedLeg:
+      type: object
+      properties:
+        trainNumber:
+          type: string
+        connectionMissed:
+          description: connection missed due to a delay on the prevoius leg
+          type: boolean
+        serviceDegradation:
+          type: array
+          items:
+            $ref: "#/components/schemas/ServiceDegradation"
+        departureStation:
+          $ref: "#/components/schemas/Place"
+        arrivalStation:
+          $ref: "#/components/schemas/Place"
+        plannedDepartureTime:
+          type: string
+          format: date-time
+        timetabledArrivalTime:
+          type: string
+          format: date-time
+        observedArrivalTime:
+          type: string
+          format: date-time
+
+    ServiceDegradation:
+      description: >-
+        enumeration of service degradations
+      type: string
+      x-extensible-enum:
+        - RESERVED_PLACES_MISSING
+        - BOOKED_ACCOMMODATION_TYPE_MISSING
+        - BOOKED_CLASS_MISSING
+        - BOOKED_MEAL_MISSING
+
+    ComplaintPatchRequest:
+      description: >-
+        changes to a claim already made. This covers upload of additional supporting documents, changes to the passenger and clain manager data. The patch of the compensation amount requires an agreement between the involved parties and is used in case the legal time line for deciding the claim is passed.
+      type: object
+      properties:
+        reason:
+          type: string
+          x-extensible-enum:
+            - BANK_ACCOUNT
+            - SETTLED_TIME_LIMIT_EXCEEDED ## an allocator settled the claim as the fare provided did not reply in due time. The compensation amount debited is provided
+            - PASSENGER_CHANGE
+        compensationAmount:
+          $ref: "#/components/schemas/Price"
+        claimManager:
+          $ref: "#/components/schemas/PersonDetail"
+        affectedPassengers:
+          type: array
+          items:
+            $ref: "#/components/schemas/Passenger"
+        supportingDocuments:
+          type: array
+          items:
+            $ref: "#/components/schemas/Document"
+        bankAccount:
+          $ref: "#/components/schemas/BankAccountReference"
+
+    Complaint:
+      type: object
+      properties:
+        status:
+          type: string
+          x-extensible-enum:
+            - INITIATED
+            - EVALUATING
+            - DECIDED
+            - SETTLED
+        customerComplaint:
+          $ref: "#/components/schemas/CustomerComplaint"
+        missingInformation:
+          description: >-
+            indication of missing customer information
+          type: array
+          items:
+            type: string
+        decision:
+          $ref: "#/components/schemas/ComplaintDecision"
+
+    ComplaintDecision:
+      type: object
+      properties:
+        compensationAmount:
+          $ref: "#/components/schemas/Price"
+        refundVoucher:
+          $ref: "#/components/schemas/FulfillmentDocument"
+        explanation:
+          $ref: "#/components/schemas/FulfillmentDocument"
+        shortExplanation:
+          type: string
+        delayedJourney:
+          description: >-
+            allocator or fare provider view on the delays. This might differ from the customer view
+          type: array
+          items:
+            $ref: "#/components/schemas/Trip"
+
+    ReductionCards:
+      description: >-
+        notification on a change of a resource
+      type: object
+      properties:
+        deliveryDate:
+          description: date of the assembly of the reduction card data set
+          type: string
+          format: date-time
+        cards:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReductionCard"
+
+    ReductionCard:
+      type: object
+      properties:
+        issuer:
+          $ref: "#/components/schemas/Company"
+        id:
+          description: >-
+            id of the card type within the issue
+          type: string
+        name:
+          $ref: "#/components/schemas/Text"
+        includedCards:
+          description: This card includes the listed cards
+          type: array
+          items:
+            $ref: "#/components/schemas/CardReference"
+        serviceClasses:
+          description: >-
+            list of service classes where this card applies
+          type: array
+          items:
+            $ref: "#/components/schemas/ServiceClassType"
+        cardType:
+          $ref: "#/components/schemas/CardType"
+        cardIdRequired:
+          description: the card id must be delivered in online sales
+          type: boolean
+          default: false
+      required:
+        - issuer
+        - id
+        - name
+
     #### Fare-specific elements begin
 
     FareOnline:
@@ -5610,19 +5931,18 @@ components:
           $ref: "#/components/schemas/Text"
         description:
           $ref: "#/components/schemas/Text"
-        price:
-          type: object
+        prices:
           description: allows specifying a price in multiple currencies
-          properties:
-            price:
-              type: array
-              minItems: 1
-              items:
-                $ref: "#/components/schemas/Price"
+          type: array
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/Price"
         regionalConstraint:
           type: object
           description: >-
             Regional constraint of the fare- offline bulk data use the id of connection points whereas in an online environment the connection point is included
+          required:
+            - regionalValidities
           properties:
             entryConnectionPointId:
               description: connection point connecting two fare regimes
@@ -5634,29 +5954,16 @@ components:
               type: string
             exitConnectionPoint:
               $ref: "#/components/schemas/FareConnectionPoint"
-            regionalValidity:
-              $ref: "#/components/schemas/RegionalValidity"
+            regionalValidities:
+              $ref: "#/components/schemas/RegionalValidities"
             distance:
               description: Distance in km for statistics
               type: integer
               format: int32
-          required:
-            - regionalValidity
         serviceConstraint:
           $ref: "#/components/schemas/ServiceConstraint"
         carrierConstraint:
-          type: object
-          description: >-
-            Either excluded or included carriers can be set.
-          properties:
-            restrictedToCarrier:
-              type: array
-              items:
-                type: string
-            excludedCarrier:
-              type: array
-              items:
-                type: string
+          $ref: "#/components/schemas/CarrierConstraint"
         regulatoryConditions:
           $ref: "#/components/schemas/RegulatoryConditions"
         serviceClass:
@@ -5679,7 +5986,6 @@ components:
             reservationParameterId:
               type: string
           required:
-            - id
             - text
         afterSalesCondition:
           type: object
@@ -5747,8 +6053,6 @@ components:
               description: a separate fulfillment per traveler is forbidden
               type: boolean
               default: false
-          required:
-            - acceptedFulfillmentTypes
         reductionConstraint:
           type: object
           properties:
@@ -5810,7 +6114,7 @@ components:
               required:
                 - timeUnit
                 - value
-            excludedTimeRange:
+            excludedTimeRanges:
               description: time ranges excluded from the validity (e.g. off peak fulfillments)
               type: array
               items:
@@ -5888,7 +6192,7 @@ components:
             compartmentTypeCode:
               description: compartment type code in UIC 90918-1 to be used in reservation
               type: string
-            tariff:
+            tariffs:
               description: tariff according to UIC 90918-1 to be used for booking
               type: array
               items:
@@ -5907,7 +6211,7 @@ components:
           required:
             - start
             - end
-        passengerConstraint:
+        passengerConstraints:
           description: >-
             passenger constraint to be included in bar codes
           type: array
@@ -5924,12 +6228,13 @@ components:
               lowerAgeLimit:
                 type: integer
                 format: int32
-        involvedTcos:
+        involvedTCOs:
           description: >-
-            ticket controling organizations involved in the control. Used to provide TCOs access to the ticket in the contraol data (UIC IRS 90918-4)
+            ticket controlling organizations involved in the control. Used to provide TCOs access to the ticket in the control data (UIC IRS 90918-4)
           type: array
           items:
-            $ref: '#/components/schemas/Company'                
+            $ref: "#/components/schemas/Company"
+            
       required:
         - id
         - type
@@ -5984,7 +6289,7 @@ components:
             Possible models are SEPARATE_TICKET, SEPARATE_CONTRACT, CLUSTERING, COMBINING. 
             The models need to be supported by the allocator.
           type: string
-        combinableCarrier:
+        combinableCarriers:
           description: >-
             List of all carriers where the model can be applied, in case the list is empty
             all combinations are allowed.
@@ -6031,29 +6336,32 @@ components:
         description:
           $ref: "#/components/schemas/Text"
 
-    RegionalValidity:
+    RegionalValidities:
       type: array
       items:
-        type: object
-        description: >-
-          One of the elements Zone, ViaStation, TrainLink, Line, or Polygon defining the regional validity
-        properties:
-          seqNb:
-            description: order number of the list item
-            type: integer
-            format: int32
-          zone:
-            $ref: "#/components/schemas/Zone"
-          viaStations:
-            $ref: "#/components/schemas/ViaStations"
-          trainLink:
-            $ref: "#/components/schemas/TrainLink"
-          line:
-            $ref: "#/components/schemas/Line"
-          polygon:
-            $ref: "#/components/schemas/Polygon"
-          serviceConstraint:
-            $ref: "#/components/schemas/ServiceConstraint"
+        $ref: "#/components/schemas/RegionalValidity"
+
+    RegionalValidity:
+      type: object
+      description: >-
+        One of the elements Zone, ViaStation, TrainLink, Line, or Polygon defining the regional validity
+      properties:
+        seqNb:
+          description: order number of the list item
+          type: integer
+          format: int32
+        zone:
+          $ref: "#/components/schemas/Zone"
+        viaStations:
+          $ref: "#/components/schemas/ViaStations"
+        trainLink:
+          $ref: "#/components/schemas/TrainLink"
+        line:
+          $ref: "#/components/schemas/Line"
+        polygon:
+          $ref: "#/components/schemas/Polygon"
+        serviceConstraint:
+          $ref: "#/components/schemas/ServiceConstraint"
 
     Line:
       type: object
@@ -6074,7 +6382,7 @@ components:
           format: int32
         entryStation:
           $ref: "#/components/schemas/StopPlace" # EXT Changed from StopPoint
-        lineId:
+        lineIds:
           type: array
           items:
             type: string
@@ -6111,7 +6419,7 @@ components:
     Polygon:
       type: object
       properties:
-        edge:
+        edges:
           type: array
           minItems: 1
           items:
@@ -6134,13 +6442,19 @@ components:
           items:
             $ref: "#/components/schemas/ViaStations"
         carrier:
+          deprecated: true
           $ref: "#/components/schemas/Company"
+        carrierConstraint:
+          $ref: "#/components/schemas/CarrierConstraint"
         route:
           type: array
           items:
             $ref: "#/components/schemas/ViaStations"
         serviceBrand:
+          deprecated: true
           $ref: "#/components/schemas/ServiceBrandCode"
+        serviceConstraint:
+          $ref: "#/components/schemas/ServiceConstraint"
         station:
           $ref: "#/components/schemas/StopPlace" # EXT Changed from StopPoint
         fareReferenceStationSet:
@@ -6156,8 +6470,20 @@ components:
           required:
             - carrier
             - code
-        serviceConstraint:
-          $ref: "#/components/schemas/ServiceConstraint"
+
+    CarrierConstraint:
+      type: object
+      description: >-
+        Either excluded or included carriers can be set.
+      properties:
+        includedCarrier:
+          type: array
+          items:
+            type: string
+        excludedCarrier:
+          type: array
+          items:
+            type: string
 
     Zone:
       type: object
@@ -6252,10 +6578,15 @@ components:
         - stationSets
 
     TrainValidity:
+      type: object
       description: >-
         validity depending on boarding / leaving of a train. The ticket is valid
         from departure until the destination station in the train if departure or destination is within the from - until range. The validation can reference the departure or the destination time to decide the validity (e.g. Eurail/Interrail passes currently use the departure for the validity on night trains).
-      type: object
+      required:
+        - from
+        - until
+        - carriers
+        - scope
       properties:
         from:
           type: string
@@ -6263,16 +6594,16 @@ components:
         until:
           type: string
           format: date-time
-        carrier:
+        carriers:
           type: array
           minItems: 1
           items:
             $ref: "#/components/schemas/Company"
-        excludedServiceBrand:
+        excludedServiceBrands:
           type: array
           items:
             $ref: "#/components/schemas/ServiceBrandCode"
-        includedServiceBrand:
+        includedServiceBrands:
           type: array
           items:
             $ref: "#/components/schemas/ServiceBrandCode"
@@ -6281,9 +6612,7 @@ components:
           enum:
             - BOARDING
             - ARRIVAL
-      required:
-        - from
-        - until
+          default: BOARDING
       additionalProperties: false
 
     ##### Fare-specific elements end
@@ -6449,8 +6778,6 @@ components:
         name:
           type: string
           description: The name the carrier itself uses to designate this specific service class.
-      required:
-        - id
 
     ServiceClassType:
       type: string
@@ -6473,6 +6800,7 @@ components:
           type: string
           x-extensible-enum:
             - SALE
+            - FULFILLMENT
             - EXCHANGE
             - REFUND
             - TRAVEL
@@ -6556,6 +6884,11 @@ components:
         selection of places with common properties
         description element - textual description of the places
         placeProperties is mandatory for allocator mode, for distributors the textual description is used
+      required:
+        - id
+        - vehicle
+        - coach
+        - places
       properties:
         id:
           type: string
@@ -6595,12 +6928,7 @@ components:
                 format: int32
             required:
               - placeProperty
-      required:
-        - id
-        - reference
-        - vehicle
-        - coach
-        - places
+
 
     AccommodationType:
       type: string
@@ -6683,7 +7011,6 @@ components:
           items:
             description: reference of the passenger.id
             type: string
-            format: uuid
         selectedPlaceProperties:
           description: Properties of places as defined in 90810-10.
           type: array
@@ -6695,7 +7022,7 @@ components:
       type: object
       properties:
         warnings:
-          $ref: "#/components/schemas/WarningMessageList"
+          $ref: "#/components/schemas/WarningCollection"
         reservation:
           $ref: "#/components/schemas/PlaceAvailability"
 
@@ -6706,7 +7033,7 @@ components:
       properties:
         vehicle:
           $ref: "#/components/schemas/Vehicle"
-        preSelection:
+        preSelections:
           description: suggested pre-selection of places
           type: array
           items:
@@ -6831,7 +7158,6 @@ components:
               passengerId:
                 description: reference of the passenger.id
                 type: string
-                format: uuid
               placeNumber:
                 type: string
 
@@ -6860,7 +7186,6 @@ components:
           type: string
           description: >-
             Id of the passenger resource in case service to patch a single passenger is provided.
-          format: uuid
         abstract:
           type: string
           example: Andreas Schlapbach
@@ -7006,6 +7331,8 @@ components:
 
     MotorCycle:
       type: object
+      required:
+        - isSideCarIncluded
       properties:
         isSideCarIncluded:
           type: boolean
@@ -7015,8 +7342,6 @@ components:
             The trailer plate is a personal data item and must not be provided in an offer request. 
             It must be patched into the offer after the customer accepted the offer for booking
           type: string
-      required:
-        - includingSideCar
 
     Trailer:
       type: object
@@ -7098,8 +7423,12 @@ components:
 
     CardReference:
       type: object
+      required:
+        - types
+        - codeList
+        - code
       properties:
-        type:
+        types:
           description: Types of card. One card can have multiple roles, such as loyalty and reduction
           type: array
           items:
@@ -7118,17 +7447,14 @@ components:
           type: string
         issuer:
           $ref: "#/components/schemas/Company"
-      required:
-        - type
-        - codeList
-        - code
 
     CardType:
       type: string
-      enum:
-        - REDUCTION
-        - LOYALTY
+      x-extensible-enum:
+        - REDUCTION_CARD
+        - LOYALTY_CARD
         - CHIP_CARD
-      default: REDUCTION
+        - PASS
+      default: REDUCTION_CARD
 
     #### Common elements end
