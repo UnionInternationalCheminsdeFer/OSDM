@@ -1487,8 +1487,8 @@ paths:
           required: true
           description: ID of the booking to delete.
       responses:
-        "200":
-          description: OK
+        "204":
+          description: No Content
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -1888,8 +1888,8 @@ paths:
           required: true
           description: ID of the product to delete.
       responses:
-        "200":
-          description: OK
+        "204":
+          description: No Content
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -2058,8 +2058,8 @@ paths:
           required: true
           description: ID of the exchangeOperation to delete.
       responses:
-        "200":
-          description: OK
+        "204":
+          description: No Content
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
