@@ -6234,6 +6234,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Company"
+            
       required:
         - id
         - type

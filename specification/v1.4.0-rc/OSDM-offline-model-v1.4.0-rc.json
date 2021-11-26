@@ -1949,6 +1949,13 @@
 					"description": "indicates that the fare can be treated independently per person although booked for more than one person.",
 					"type": "boolean",
 					"default": false
+				},
+				"involvedTCOs": {
+					"description": "ticket controling organizations involved in the control. Used to provide TCOs access to the ticket in the contraol data (IRS 90918-4)",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/CompanyDef"
+					}
 				}
 			},
 			"required": [
