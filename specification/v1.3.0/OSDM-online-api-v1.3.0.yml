@@ -254,7 +254,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TripCollectionResponse"
+                $ref: "#/components/schemas/TripsCollectionResponse"
         "400":
           description: bad input parameter
         "401":
@@ -326,7 +326,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TripCollectionResponse"
+                $ref: "#/components/schemas/TripsCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -402,7 +402,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TripOfferCollectionResponse"
+                $ref: "#/components/schemas/TripOffersCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -447,7 +447,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TripOfferCollectionResponse"
+                $ref: "#/components/schemas/TripOffersCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -603,7 +603,7 @@ paths:
       description: >-
         Get offers based on key words or regional information not linked to trips. 
         This includes simple passes or one day tickets.
-      operationId: offerCollections
+      operationId: postNonTripOffersCollection
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
@@ -1786,7 +1786,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RefundOfferResponse"
+                $ref: "#/components/schemas/RefundOffersCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -1842,7 +1842,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RefundOfferResponse"
+                $ref: "#/components/schemas/RefundOffersCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -2102,7 +2102,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExchangeTripOfferCollectionResponse"
+                $ref: "#/components/schemas/ExchangeTripOffersCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -2181,7 +2181,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExchangeTripOfferCollectionResponse"
+                $ref: "#/components/schemas/ExchangeTripOffersCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -2880,24 +2880,27 @@ components:
       #  - $ref: "#/components/schemas/TripContentFilter"
       #  - $ref: "#/components/schemas/FareParam"
 
-    TripCollectionResponse: ## OJP  # Reduced scope
+    TripsCollectionResponse: ## OJP  # Reduced scope
       type: object
       description: >-
         Trip response structure. Provided by OJP.
       required:
+        - id
         - trips
       properties:
-        warning:
-          $ref: "#/components/schemas/WarningCollection"
-        calcTime:
-          type: integer
-          minimum: 0
+        # calcTime:
+        #   type: integer
+        #   minimum: 0
         # tripResponseContext:  # Out of scope
         #  $ref: "#/components/schemas/ResponseContext"
         #        tripResult:
         #          type: array
         #          items:
         #            $ref: "#/components/schemas/TripResult"
+        warning:
+          $ref: "#/components/schemas/WarningCollection"
+        id: 
+          type: string
         trips:
           type: array
           items:
@@ -3831,9 +3834,11 @@ components:
               - NONE
           default: [ALL]
 
-
-    TripOfferCollectionResponse:
+    TripOffersCollectionResponse:
       type: object
+      required:
+        - id
+        - tripOffers
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
@@ -3847,9 +3852,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
-        - tripOffers
 
     TripOfferResponse:
       type: object
@@ -4848,27 +4850,22 @@ components:
 
     RefundOffersCollectionResponse:
       type: object
+      required:
+        - id
+        - refundOffers
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
-        refundOffersCollection:
-          $ref: "#/components/schemas/RefundOffersCollection"
-
-    RefundOffersCollection:
-      type: object
-      properties:
+        id:
+          type: string
         refundOffers:
           type: array
           items:
             $ref: "#/components/schemas/RefundOffer"
-
-    RefundOfferResponse:
-      type: object
-      properties:
-        warnings:
-          $ref: "#/components/schemas/WarningCollection"
-        refundOffersCollection:
-          $ref: "#/components/schemas/RefundOffer"
+        links:
+          type: array
+          items:
+            $ref: "#/components/schemas/Link"
 
     RefundOffer:
       type: object
@@ -4985,8 +4982,11 @@ components:
         - tripOfferRequest
         - fulfillmentIds
     
-    ExchangeTripOfferCollectionResponse:
+    ExchangeTripOffersCollectionResponse:
       type: object
+      required:
+        - id
+        - exchangeTripOffers
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
@@ -5000,9 +5000,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
-        - exchangeTripOffers
 
     ExchangeTripOfferResponse:
       type: object
