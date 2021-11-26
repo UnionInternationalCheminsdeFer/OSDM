@@ -5137,8 +5137,10 @@ components:
           type: array
           items:
             type: string
-        geoCoordinate:
-          $ref: "#/components/schemas/GeoCoordinate"
+        origin:
+          $ref: "#/components/schemas/Place"
+        destination:
+          $ref: "#/components/schemas/Place"
         travelPeriods:
           type: array
           items:
