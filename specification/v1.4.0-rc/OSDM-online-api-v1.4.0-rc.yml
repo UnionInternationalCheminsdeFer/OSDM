@@ -5921,6 +5921,15 @@ components:
 
     FareOnline:
       type: object
+      description: >-
+        The online representation of a fare.
+      required:
+        - id
+        - type
+        - regionalConstraint
+        - combinationConstraint
+        - travelValidityConstraint
+        - afterSalesCondition
       properties:
         id:
           description: unique id of the fare item to be included in accounting
@@ -6235,14 +6244,6 @@ components:
           items:
             $ref: "#/components/schemas/Company"
             
-      required:
-        - id
-        - type
-        - regionalConstraint
-        - combinationConstraint
-        - travelValidityConstraint
-        - afterSalesCondition
-
     RegulatoryConditions:
       description: >-
         General conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and
