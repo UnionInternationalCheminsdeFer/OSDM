@@ -261,7 +261,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TripCollectionResponse"
+                $ref: "#/components/schemas/TripsCollectionResponse"
         "400":
           description: bad input parameter
         "401":
@@ -333,7 +333,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TripCollectionResponse"
+                $ref: "#/components/schemas/TripsCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -409,7 +409,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TripOfferCollectionResponse"
+                $ref: "#/components/schemas/TripOffersCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -454,7 +454,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TripOfferCollectionResponse"
+                $ref: "#/components/schemas/TripOffersCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -610,7 +610,7 @@ paths:
       description: >-
         Get offers based on key words or regional information not linked to trips. 
         This includes simple passes or one day tickets.
-      operationId: offerCollections
+      operationId: postNonTripOffersCollection
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
@@ -1494,8 +1494,8 @@ paths:
           required: true
           description: ID of the booking to delete.
       responses:
-        "200":
-          description: OK
+        "204":
+          description: No Content
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -1793,7 +1793,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RefundOfferResponse"
+                $ref: "#/components/schemas/RefundOffersCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -1895,8 +1895,8 @@ paths:
           required: true
           description: ID of the product to delete.
       responses:
-        "200":
-          description: OK
+        "204":
+          description: No Content
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -2065,8 +2065,8 @@ paths:
           required: true
           description: ID of the exchangeOperation to delete.
       responses:
-        "200":
-          description: OK
+        "204":
+          description: No Content
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -2109,7 +2109,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExchangeTripOfferCollectionResponse"
+                $ref: "#/components/schemas/ExchangeTripOffersCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -2188,7 +2188,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExchangeTripOfferCollectionResponse"
+                $ref: "#/components/schemas/ExchangeTripOffersCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -3056,24 +3056,27 @@ components:
       #  - $ref: "#/components/schemas/TripContentFilter"
       #  - $ref: "#/components/schemas/FareParam"
 
-    TripCollectionResponse: ## OJP  # Reduced scope
+    TripsCollectionResponse: ## OJP  # Reduced scope
       type: object
       description: >-
         Trip response structure. Provided by OJP.
       required:
+        - id
         - trips
       properties:
-        warning:
-          $ref: "#/components/schemas/WarningCollection"
-        calcTime:
-          type: integer
-          minimum: 0
+        # calcTime:
+        #  type: integer
+        #  minimum: 0
         # tripResponseContext:  # Out of scope
         #  $ref: "#/components/schemas/ResponseContext"
         #        tripResult:
         #          type: array
         #          items:
         #            $ref: "#/components/schemas/TripResult"
+        warning:
+          $ref: "#/components/schemas/WarningCollection"
+        id:
+          type: string
         trips:
           type: array
           items:
@@ -3665,10 +3668,15 @@ components:
           description: Postal code of the address.
           type: string
           example: 2265CA
-        # topographicPlaceName:  # Out of scope
-        #   description: "TopographicPlace name of the address. If set it should at least contain the city name."
-        #   type: string
-        #   example: Leidschendam
+        city:  # EXT
+          description: City name
+          type: string
+          example: Leidschendam
+        topographicPlaceName:
+          description: >-
+            TopographicPlace name of the address. If set it should at least contain the city name.
+          type: string
+          example: Leidschendam
         # topographicPlaceRef:  # Out of scope
         #   description: If at least one is set, only place objects within the given localities are allowed.If at least one is set, only place objects within the given localities are allowed.Reference to a TopographicPlace
         #   $ref: "#/components/schemas/TopographicPlaceRef"
@@ -3883,6 +3891,10 @@ components:
 
     OfferPartType:
       type: string
+      description: >-
+        Allows to request offerparts of a certain type. 
+        To support H/H use ["RESERVATION", "ANCILLARY"].
+        Default is to get search for offers of all types.
       enum:
         - ADMISSION
         - RESERVATION
@@ -3893,10 +3905,7 @@ components:
         - ALL
       default:
         - ALL
-      description: >-
-        Allows to request offerparts of a certain type. 
-        To support H/H use ["RESERVATION", "ANCILLARY"].
-        Default is to get search for offers of all types.
+
     NonTripOfferSearchCriteria:
       type: object
       properties:
@@ -4001,8 +4010,11 @@ components:
               - NONE
           default: [ALL]
 
-    TripOfferCollectionResponse:
+    TripOffersCollectionResponse:
       type: object
+      required:
+        - id
+        - tripOffers
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
@@ -4016,9 +4028,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
-        - tripOffers
 
     TripOfferResponse:
       type: object
@@ -5021,27 +5030,22 @@ components:
 
     RefundOffersCollectionResponse:
       type: object
+      required:
+       - id
+       - refundOffers
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
-        refundOffersCollection:
-          $ref: "#/components/schemas/RefundOffersCollection"
-
-    RefundOffersCollection:
-      type: object
-      properties:
+        id:
+          type: string
         refundOffers:
           type: array
           items:
             $ref: "#/components/schemas/RefundOffer"
-
-    RefundOfferResponse:
-      type: object
-      properties:
-        warnings:
-          $ref: "#/components/schemas/WarningCollection"
-        refundOffersCollection:
-          $ref: "#/components/schemas/RefundOffer"
+        links:
+          type: array
+          items:
+            $ref: "#/components/schemas/Link"
 
     RefundOffer:
       type: object
@@ -5157,8 +5161,12 @@ components:
       required:
         - tripOfferRequest
         - fulfillmentIds
-    ExchangeTripOfferCollectionResponse:
+
+    ExchangeTripOffersCollectionResponse:
       type: object
+      required:
+        - id
+        - exchangeTripOffers
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
@@ -5172,9 +5180,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
-        - exchangeTripOffers
 
     ExchangeTripOfferResponse:
       type: object
@@ -5308,8 +5313,10 @@ components:
           type: array
           items:
             type: string
-        geoCoordinate:
-          $ref: "#/components/schemas/GeoCoordinate"
+        origin:
+          $ref: "#/components/schemas/Place"
+        destination:
+          $ref: "#/components/schemas/Place"
         travelPeriods:
           type: array
           items:
