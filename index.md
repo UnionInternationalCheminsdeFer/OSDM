@@ -110,6 +110,9 @@ online distribution/carrier systems of [BENE](https://www.benerail.com), [CD](ht
 as well as existing [UIC leaflets](https://www.shop-etf.com/en/leaflets-irs) were
 carefully examined and taken into account.
 
+Recently [Bileto](https://www.bileto.com/en) as well as [Turnit](https://turnit.com/)
+have joint the initiative and are using the standard for the distribution of bus rides.
+
 Advisors from **CER**, **CIT**, **ECTAA**, **EU Traveltech** and sounding boards from
 the **European Commission** as well as the **European Rail Agency** were involved from
 the start and guided the effort.
