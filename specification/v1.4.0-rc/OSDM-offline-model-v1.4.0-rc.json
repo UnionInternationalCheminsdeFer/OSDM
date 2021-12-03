@@ -696,6 +696,9 @@
 					"polygon": {
 						"$ref": "#/definitions/PolygonDef"
 					},
+					"carrierConstraintRef": {
+						"type": "string"
+					},
 					"serviceConstraintRef": {
 						"type": "string"
 					}
@@ -801,8 +804,13 @@
 					}
 				},
 				"carrier": {
+				    "deprecated": true,
 					"$ref": "#/definitions/CompanyDef"
 				},
+				"carrierConstraintRef": {
+				    "description": "restriction to a specific carriers",
+					"type": "string"
+				},				
 				"route": {
 					"type": "array",
 					"items": {
@@ -811,8 +819,13 @@
 				},
 				"serviceBrand": {
 					"description": "restriction to a specific service brand",
+					"deprecated" : true,
 					"type": "string"
 				},
+				"serviceConstraintRef": {
+				        "description": "restriction to a specific service brands",
+					"type": "string"
+				},				
 				"station": {
 					"$ref": "#/definitions/StationDef"
 				},
@@ -835,9 +848,6 @@
 						"code"
 					],
 					"additionalProperties": false
-				},
-				"serviceConstraintRef": {
-					"type": "string"
 				}
 			},
 			"additionalProperties": false
