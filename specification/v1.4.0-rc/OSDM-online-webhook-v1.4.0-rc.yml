@@ -1,0 +1,143 @@
+openapi: 3.1.0
+servers:
+  - description: Localhost on port 8080
+    url: http://localhost:8080
+info:
+  title: UIC 90918-10 - OSDM webhook
+  version: 1.4.0-rc1
+  description: |
+    Specifications for the OSDM API standard. The OSDM specification supports two
+    modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
+    both mode, except that in allocator mode the API also returns fare information.
+    The OSDM specification combines the allocator and distributor modes into one aligned
+    API interface.
+  contact:
+    name: Nicolas Selleslagh, Clemens Gantert and Andreas Schlapbach
+    url: https://unioninternationalcheminsdefer.github.io/OSDM/
+    email: osdm@uic.org
+  license:
+    name: Apache 2.0
+    url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+
+paths:
+  # OpenAPI documents all need a paths element
+  /ping:
+    get:
+      summary: ping
+      operationId: ping
+      responses:
+        "200":
+          description: OK
+
+##
+
+webhooks:
+  bookingChanged:
+    post:
+      description: A change on a booking has occured
+      requestBody:
+        description: Information about booking event
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingEvent"
+      responses:
+        "200":
+          description: OK
+
+##
+
+components:
+  schemas:
+    Booker:
+      required:
+        - revision
+        - bookingId
+        - bookerId
+      properties:
+        revision:
+          $ref: "#/components/schemas/Revision"
+        bookingId:
+          type: string
+        bookerId:
+          type: string
+
+    BookingEvent:
+      required:
+        - type
+        - revision
+        - bookingId
+        - resources
+      properties:
+        type:
+          $ref: "#/components/schemas/BookingEventType"
+        revision:
+          $ref: "#/components/schemas/Revision"
+        bookingId:
+          type: string
+        resources:
+          description: >-
+            Resources to be called by receiver to update its data about a booking.
+
+            Title can be used for a human readable description of what has changed. e.g.
+            "Train ICE 34 at 2021-12-22 13:30 has been cancelled".
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
+
+    BookingEventType:
+      type: string
+      enum:
+        - BOOKING_CANCELLED
+        - BOOKING_CONFIRMED
+        - FULFILLMENT_REFUNDED
+        - FULFILLMENT_EXCHANGED
+        - FULFILLMENT_CONTROLLED
+        - PLACE_RELEASED
+        - BOOKER_CHANGED
+        - PASSENGER_CHANGED
+      example: FULFILLMENT_REFUNDED
+
+    Revision:
+      required:
+        - number
+      properties:
+        number:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    Resource:
+      type: object
+      description: used to represent a non-specified resource in the API.
+      properties:
+        id:
+          type: string
+          description: unique id of this resource on this server.
+        title:
+          type: string
+          example: A ticket has been returned.
+        type:
+          type: string
+          enum:
+            - LOCATION
+            - TRIP
+            - TRIPOFFER
+            - OFFER
+            - OFFERPART
+            - PASSENGER
+            - BOOKING
+            - FULFILLMENT
+            - REFUNDOFFER
+            - COMPLAINT
+          example: FULFILLMENT
+        href:
+          type: string
+          format: url
+          example: "https://db.de/osdm/bookings/2345/fulfillments/ASBV"
+      required:
+        - id
+        - title
+        - type
+        - href
