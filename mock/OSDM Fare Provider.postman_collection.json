@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "5bb4a38b-ace6-4905-8800-36bd87585e8e",
+		"name": "OSDM Fare Provider",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Fare Offers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/osdm-fare-provider-int.api.sbb.ch:443/trip-offers-collection/ddd",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"osdm-fare-provider-int.api.sbb.ch:443",
+						"trip-offers-collection",
+						"ddd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fare Offers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/trip-offers-collection/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trip-offers-collection",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "clientSecret",
+				"value": "55d65ac7382f5c0295bea36df8a48411",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "c0cc77bb",
+				"type": "string"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/auth",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://sso-int.sbb.ch/auth/realms/SBB_Public/protocol/openid-connect/token",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
