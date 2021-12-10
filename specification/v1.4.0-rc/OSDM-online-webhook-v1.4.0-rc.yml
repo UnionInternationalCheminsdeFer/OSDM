@@ -3,7 +3,7 @@ servers:
   - description: Localhost on port 8080
     url: http://localhost:8080
 info:
-  title: UIC 90918-10 - OSDM webhook
+  title: UIC 90918-10 - OSDM webhooks
   version: 1.4.0-rc1
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
@@ -32,28 +32,15 @@ paths:
 ##
 
 webhooks:
-  tripChanged:
+  changed:
     post:
-      description: A change on a trip has occurred
+      description: A change has occurred
       requestBody:
         description: Information about the event
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/TripEvent"
-      responses:
-        "200":
-          description: OK
-
-  bookingChanged:
-    post:
-      description: A change on a booking has occurred
-      requestBody:
-        description: Information about the event
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/BookingEvent"
+              $ref: "#/components/schemas/Event"
       responses:
         "200":
           description: OK
@@ -62,6 +49,21 @@ webhooks:
 
 components:
   schemas:
+    Event:
+      properties:
+        type: 
+          type: string
+          enum:
+            - TRIP
+            - BOOKING
+            - COMPLAINT
+          example:  
+            BOOKING
+        event:
+          $ref: "#/components/schemas/BookingEvent"
+ #           - "#/components/schemas/BookingEvent"
+ #           - "#/components/schemas/ComplaintEvent"
+
     Booker:
       required:
         - revision
@@ -82,8 +84,6 @@ components:
         - tripId
         - resources
       properties:
-        type:
-          $ref: "#/components/schemas/TripEventType"
         revision:
           $ref: "#/components/schemas/Revision"
         tripId:
@@ -98,7 +98,7 @@ components:
           items:
             $ref: "#/components/schemas/Resource"
 
-    TripEventType:
+    TripActionType:
       type: string
       enum:
         - TRIP_CONFIRMED
@@ -115,23 +115,24 @@ components:
         - bookingId
         - resources
       properties:
-        type:
-          $ref: "#/components/schemas/BookingEventType"
         revision:
           $ref: "#/components/schemas/Revision"
         bookingId:
           type: string
+          example: 2345
         resources:
           description: >-
             Resources to be called by receiver to update its data about a booking.
 
             Title can be used for a human readable description of what has changed. e.g.
             "Train ICE 34 at 2021-12-22 13:30 has been cancelled".
+
+            The "TRIP_CHANGED" event may only be available if the relevant contract exists.
           type: array
           items:
             $ref: "#/components/schemas/Resource"
 
-    BookingEventType:
+    BookingActionType:
       type: string
       enum:
         - BOOKING_CANCELLED
@@ -142,7 +143,41 @@ components:
         - PLACE_RELEASED
         - BOOKER_CHANGED
         - PASSENGER_CHANGED
+        - TRIP_CHANGED
       example: FULFILLMENT_REFUNDED
+
+    ComplaintEvent:
+      required:
+        - type
+        - revision
+        - complaintId
+        - resources
+      properties:
+        revision:
+          $ref: "#/components/schemas/Revision"
+        complaintId:
+          type: string
+        resources:
+          description: >-
+            Resources to be called by receiver to update its data about a complaint.
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
+
+    ComplaintActionType:
+      type: string
+      enum:
+        - DECIDED
+        - SETTLED
+        - INFORMATION_MISSING
+      examples:
+        - SETTLED
+
+    ActionType:
+      oneOf:
+        - "#/components/schemas/TripActionType"
+        - "#/components/schemas/BookingActionType"
+        - "#/components/schemas/ComplaintActionType"
 
     ##
 
@@ -163,9 +198,10 @@ components:
         id:
           type: string
           description: unique id of this resource on this server.
-        title:
+        title: 
           type: string
-          example: A ticket has been returned.
+        action:
+          $ref: "#/components/schemas/ActionType"
         type:
           type: string
           enum:
