@@ -226,7 +226,7 @@ To get offer for the inward travel, the API consumer will have to provide:
   if the constraint is only on date) can or must be provided.
   Whether the `offerTag` is mandatory in the inward offer request is indicated by
   the "mandatory flag" that is provided in the outward offer response next to each
-  offerHash. If the `offerTag` is provided in the inward offer request, the
+  offerTag. If the `offerTag` is provided in the inward offer request, the
   provider should then only return offers that are compatible with the indicated
   (set of) outward offers.  
   Note that depending on whether the `offerTag` is mandatory or not and whether it
