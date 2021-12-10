@@ -51,18 +51,17 @@ components:
   schemas:
     Event:
       properties:
-        type: 
+        type:
           type: string
           enum:
             - TRIP
             - BOOKING
             - COMPLAINT
-          example:  
-            BOOKING
+          example: BOOKING
         event:
-          $ref: "#/components/schemas/BookingEvent"
- #           - "#/components/schemas/BookingEvent"
- #           - "#/components/schemas/ComplaintEvent"
+          - "#/components/schemas/BookingEvent"
+          - "#/components/schemas/BookingEvent"
+          - "#/components/schemas/ComplaintEvent"
 
     Booker:
       required:
@@ -98,7 +97,7 @@ components:
           items:
             $ref: "#/components/schemas/Resource"
 
-    TripActionType:
+    TripChangeType:
       type: string
       enum:
         - TRIP_CONFIRMED
@@ -132,7 +131,7 @@ components:
           items:
             $ref: "#/components/schemas/Resource"
 
-    BookingActionType:
+    BookingChangeType:
       type: string
       enum:
         - BOOKING_CANCELLED
@@ -164,7 +163,7 @@ components:
           items:
             $ref: "#/components/schemas/Resource"
 
-    ComplaintActionType:
+    ComplaintChangeType:
       type: string
       enum:
         - DECIDED
@@ -173,11 +172,11 @@ components:
       examples:
         - SETTLED
 
-    ActionType:
+    ChangeType:
       oneOf:
-        - "#/components/schemas/TripActionType"
-        - "#/components/schemas/BookingActionType"
-        - "#/components/schemas/ComplaintActionType"
+        - "#/components/schemas/TripChangeType"
+        - "#/components/schemas/BookingChangeType"
+        - "#/components/schemas/ComplaintChangeType"
 
     ##
 
@@ -198,10 +197,12 @@ components:
         id:
           type: string
           description: unique id of this resource on this server.
-        title: 
+        title:
           type: string
-        action:
-          $ref: "#/components/schemas/ActionType"
+        changeType:
+          description: >-
+            Defines what type of change has occurred leading to the event.
+          $ref: "#/components/schemas/ChangeType"
         type:
           type: string
           enum:
