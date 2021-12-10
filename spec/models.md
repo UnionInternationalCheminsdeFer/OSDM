@@ -117,16 +117,12 @@ information needed will be specified in the `requestedInformation` element using
 a notation akin to regular expressions.
 
 Offers should always contain a `minimalPrice` (= the price of the offer without
-any of the optional offer parts), a global service class, service level and
+any of the optional offer parts), a global service class and
 flexibility. Although the calculation rules for these global values are up to
 the OSDM provider, the following rules are recommended:
 
 - `ServiceClass`: the lowest class of a significant offer part should be the
   service class of the offer (1st class + 2nd class = 2nd class)
-
-- `ServiceLevel`: the highest service Level should be the service level of the
-  offer  (bed + berth in compartment of 2 + berth in compartment of 4 = berth
-  in compartment of 2)
 
 - `Flexibility`: the lowest flexibility of a significant offer part should be the
   service class of the offer (full flex + mid flex = mid flex)
@@ -246,7 +242,7 @@ be passed in.
 Reservations have several additional attributes due to their specificities
 compared to admission products:
 
-- Reservation Details provide additional information on the service Level and,
+- Reservation Details provide additional information on the accommodation type and,
   once the offer will have been booked, the exact reserved places, with their
   properties and links to the concerned passengers
 
