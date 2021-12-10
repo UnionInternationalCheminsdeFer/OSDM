@@ -386,14 +386,6 @@ passenger types he is using internally
 The presentation hereunder provides some additional examples of high-level
 offer modelings for pure-OSDM offers.
 
-### Booker
-
-A booker represent the entity which has booked an offer. It is the person to
-contact in case of changes to the booking primary.
-
-A booker does not need to travel thus is not necessary a passenger.
-
-Common attributes of a passenger and a passenger are factored in the person entity.
 
 ## Booking
 
@@ -445,6 +437,15 @@ exceed the earliest ticket time limit of any of its offer parts.
 
 `FulfillmentOptions` allows the API consumer to specify the format desired for
 the fulfillment. Only electronic fulfillment is considered in the MVP scope.
+
+### Booker
+
+A booker represent the entity which has booked an offer. It is the person to
+contact in case of changes to the booking primary.
+
+A booker does not need to travel thus is not necessary a passenger.
+
+Common attributes of a passenger and a passenger are factored in the person entity.
 
 ### BookedOffers
 
