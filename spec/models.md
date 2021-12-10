@@ -249,13 +249,12 @@ compared to admission products:
 - Place selection Details: contains several elements related to the selection
   of places:
 
-  - `ReservationOptions` show, at offer retrieval stag which options are
+  - `placeSelection/ReservationOptions` show, at offer retrieval stage which options are
     available for this reservation.
 
   - `SelectedOptions` allows the API consumer to specify desired options.
 
-  - `SelectablePlaces` and `SelectedPlaces` are only relevant to graphical
-    selection of seats (seat map).
+  - `SelectedPlaces` indicates selection of specific places (probably only relevant in case of grpahical place selection.
 
 #### Modelling Lump Sum Reservations
 
