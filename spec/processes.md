@@ -163,7 +163,7 @@ one or several trips. It is actually the only way to go for a request to a fare
 provider working according to nTM rules. In this case, the trips provided may
 be larger than the part for which fares are requested. For this reason, the
 requested section must then be provided so that the provider knows which
-portion to work on.
+portion to work on. When this method is used, the API consumer can provide a "tripkey" together with the trip specification, which will be echoed in the tripoffer element matching that specific trip, for an explicit reconciliation between requested trips and provided offers.
 
 An offer request to an **Allocator**, **provider** or **fare provider** can lead to
 offers with multiple `OfferParts`, potentially coming from different sub-providers
