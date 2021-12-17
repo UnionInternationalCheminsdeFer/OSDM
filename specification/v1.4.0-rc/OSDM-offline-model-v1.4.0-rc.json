@@ -1712,8 +1712,12 @@
                 "format": "int32"
               },
               "passengerTypeRef": {
+                "deprecated": true,
                 "$ref": "#/definitions/TravelerTypeDef"
-              }
+              },
+              "passengerConstraintRef": {
+                "type": "string"
+              }      
             },
             "additionalProperties": false
           }
