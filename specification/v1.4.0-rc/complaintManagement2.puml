@@ -1,0 +1,40 @@
+@startuml
+hide footbox
+
+actor "TicketVendor:T1"
+actor "Allocator:A1"
+actor "Carrier:C1"
+actor "Carrier:C2"
+control "Time"
+
+"TicketVendor:T1" -> "Allocator:A1": POST compensation claim
+
+"Allocator:A1" -> "Allocator:A1": validate claim
+
+"Allocator:A1" --\\ "TicketVendor:T1": Bank account missing
+
+"TicketVendor:T1" -> "Allocator:A1": PATCH compensation claim
+
+"Allocator:A1" -> "Allocator:A1": retrieve the booking, select the affected carriers/fare providers
+
+"Allocator:A1" -> "Carrier:C1": post a new compensation claim
+
+"Allocator:A1" -> "Carrier:C2": post a new compensation claim
+
+"Carrier:C2" -> "Carrier:C2": decide claim
+
+"Carrier:C2" --\\ "Allocator:A1": claim changed
+
+"Time" --\\ "Allocator:A1": approaching legal deadline for claim
+
+"Allocator:A1" -> "Carrier:C2": get claim
+
+"Allocator:A1" -> "Allocator:A1": decide on the claim
+
+"Allocator:A1" -> "Carrier:C1": patch claim with decision and amount
+
+"Allocator:A1" --\\ "TicketVendor:T1": claim changed
+
+"TicketVendor:T1" -> "Allocator:A1": GET compensation claim
+
+@enduml
