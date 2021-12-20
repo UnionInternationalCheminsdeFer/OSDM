@@ -1,0 +1,55 @@
+@startuml
+hide footbox
+
+actor "TicketVendor:T1"
+actor "Allocator:A1"
+actor "Carrier:C1"
+actor "Carrier:C2"
+
+"TicketVendor:T1" -> "Allocator:A1": GET reduction cards
+
+"TicketVendor:T1" -> "Allocator:A1": GET coach layouts
+
+"TicketVendor:T1" -> "Allocator:A1": POST trip offers collection using from / to satation
+
+"Allocator:A1" -> "Allocator:A1": split the request to carriers / fare prooviders
+
+"Allocator:A1" -> "Carrier:C1": POST trip offers collection including trip 
+
+"Allocator:A1" -> "Carrier:C2": POST trip offers collection including trip 
+
+"Allocator:A1" -> "Allocator:A1": combine fare offers according to fare rules
+
+"Allocator:A1" --> "TicketVendor:T1": trip offers
+
+"TicketVendor:T1" -> "TicketVendor:T1": manage customer selection of an offer
+
+"TicketVendor:T1" -> "Allocator:A1": GET place-map (reservationId)
+ 
+"Allocator:A1" -> "Carrier:C1": GET place-map (reservationId)
+
+"TicketVendor:T1" -> "TicketVendor:T1": combine place-maps with coach layouts and manage customer selection of a place
+
+"TicketVendor:T1" -> "Allocator:A1": POST bookingid, place selection
+
+"Allocator:A1" -> "Carrier:C1": POST bookingid, place selection 
+
+"Allocator:A1" -> "Carrier:C2": POST booking 
+
+"Allocator:A1" --> "TicketVendor:T1": booking  
+
+"TicketVendor:T1" -> "Allocator:A1": POST fulfillments
+
+"Allocator:A1" -> "Carrier:C1": POST fulfillments
+
+"Allocator:A1" -> "Carrier:C2": POST fulfillments
+
+"TicketVendor:T1" <-- "Allocator:A1": fulfillmentIds
+
+loop for each fulfillment
+
+"TicketVendor:T1" -> "Allocator:A1": GET fulfillmentId
+
+end
+
+@enduml
