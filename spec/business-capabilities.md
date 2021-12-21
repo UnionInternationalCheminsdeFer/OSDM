@@ -168,7 +168,8 @@ This will provide all stored personal data.
 
 ### Manage complaints
 
-TODO
+Complaints can be created on behalf of the passenger by Ticket Vendors (on bookings) and Allocators (on booked fares). The Allocator of fare provider can request additional documents to proof the complaint. The passenger can add documents to prove the claim and change his data (e.g. bank account). 
+The allocator can decide on a claim himself in case the fare provider has not kept the legal time line.
 
 ### Provide Masterdata
 
