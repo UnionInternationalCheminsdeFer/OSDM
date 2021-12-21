@@ -19,7 +19,7 @@ are not represented or simplified in the data models.
 ## Overview of Services
 
 |Resources | Description |
-|---|---|
+| --- | --- |
 | `/places` | Resources to search for places |
 | `/trips` | Resources to search for trips|
 | `/trip-offers-collection` | Resources to get bookable offers|
