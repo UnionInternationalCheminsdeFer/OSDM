@@ -275,6 +275,34 @@ Partial refund is regarded as special form of exchange
 
 Partial refund as well as exchange may be supported by all parties.
 
+### Requirements on complaints
+
+It must be possible to manage a complaint according to (EU) **2021/782**.
+
+It must be possible that the claim is managed by a separate person on behalf of the passenger.
+
+It must be possible to Ticket Vendors and / or Allocators to submit a claim for a booking or parts of it (e.g. in case of a return trip) where the service has not been provided as promised. This includes:
+
+* Delays of trains
+  * In case the train was not restricted to specific trains this includes also trains which were not mentioned in the trip of the booking
+  * A description of the cause is needed delayed trains incl. the delay, missed connections, Cancelled trains,...
+  * Abandoned travel (e.g. in case of a return, subsequent trains,..)
+* Service derogation (e.g. first class not available, ...)
+
+It must be possible to provide documentation to support the claim (e.g. scanned manual remark of train staff) (Alternatively require exchange via **UIC 90918-4**).
+
+It must be possible to demand the that the claimed amount is issued as a voucher or transferred to a bank account.
+
+It must be possible to lookup the status of the claim made.
+
+In case a claim is accepted or rejected the actor that made the request must be informed. The accepted or rejected claim must provide an explanation for the decision especially if the amount covers the ticket price only partially.
+
+It must be possible to inform the allocator / fare provider that the payment way made and the claim is settled.
+
+It must be possible for an allocator to inform the fare provider that the claim was accepted because the fare provider missed a legal time line to handling the claim.
+
+
+
 ## Functional Requirements Allocation
 
 The requirements covered by this specification are listed here with
@@ -326,6 +354,9 @@ another carrier is indicated with an additional “(FR)” in the human
 readable form if it is not at a “real” station.
 
 ##### Are routes used as line routes or as bubble routes?
+
+![Line- vs. Buble Route interpretation](../images/business-capabilities/line-vs-buble-route.png)
+
 
 `A*B/D*C` as line routes: `A-E-C` is not allowed
 
@@ -382,6 +413,12 @@ timetable data. As in principle every station can become a connection
 point (e.g. all stops from Aachen to Brussels are connection points from
 DB to SNCB) implementations based on border point codes cannot cover all
 connections.
+
+![Connection point](../images/business-capabilities/connection-point.png)
+
+![Connection point](../images/business-capabilities/connection-point-simple.png)
+
+![Connection point](../images/business-capabilities/connection-point-complex.png)
 
 As on both sides of a connection multiple small stations could be
 connected and not all of them might be in the timetable of a train the
@@ -533,11 +570,13 @@ use a fare. To define this time there is a need to:
   - Indication that the ticket is a pass
   - Start and end of validity in UTC
   - Number of allowed trips or days
+  - The validity might depend on the toime of Boarding or De-Boarding of a train. E.g. a pass might be valid on the train if the the passneger boards the train during the validity of the pass.
 
 - Examples:
   - Valid Monday – Friday if work day from 09:00 until 03:00 the following day
   - Valid Saturday – Sunday and public holidays from 00:00 until 03:00 the
-    following day
+    following day   
+    
 
 ### Requirements on validity for passengers / transportables
 
