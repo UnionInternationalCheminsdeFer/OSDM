@@ -254,7 +254,7 @@ compared to admission products:
 
   - `SelectedOptions` allows the API consumer to specify desired options.
 
-  - `SelectedPlaces` indicates selection of specific places (probably only relevant in case of grpahical place selection.
+  - `SelectedPlaces` indicates selection of specific places (probably only relevant in case of graphical place selection.
 
 #### Modelling Lump Sum Reservations
 
@@ -332,6 +332,12 @@ For distribution systems also able and allowed to act as allocators,
 encapsulating both fares and offer product in offers allows to have a similar
 flow of interactions regardless of the type of provider.
 
+Fares provide all information needed to be combined by an allocator and to allow an 
+allocator to create fulfillments and support of control processes (e.g. providing combined 
+control data to the TCOs). This especially includes the temporal and regional validity 
+for travel. The rules on how to combine the fares (combination constraints) 
+must also be included in the fare. 
+
 ### Passengers
 
 As the name suggests, passenger resources represent the passengers for whom the
@@ -340,7 +346,7 @@ set of passengers (no partial offers covering only a part of the passengers is
 generated). However, it is possible that because of age, reductions or other,
 some passengers are allowed to travel some tripLegs without actually needing a
 travel right or reservation. It is for example usually the case for infants
-travelling on their parents lap.
+traveling on their parents lap.
 
 While a lot of attributes can be set for passengers, only a few are required at
 this stage (and even later). The key elements at offer stage are already

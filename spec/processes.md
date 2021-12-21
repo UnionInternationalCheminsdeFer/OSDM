@@ -25,10 +25,12 @@ are not represented or simplified in the data models.
 | `/trip-offers-collection` | Resources to get bookable offers
 | `/trip-offers/{tripOfferId}` | *dito*
 | `/offers/{offerId}` | *dito*
-  `/offer-collections` | Resources to get offers for non-journey based products
+| `/offer-collections` | Resources to get offers for non-journey based products
 | `/bookings` | Resources to manipulate bookings
 | `/offers/{id}/passengers` | Resources to manipulate a passenger's information at every stage of the flow
 | `/bookings/{bookingId}/passengers/{passengerId}` | *dito*
+| `/bookings/{bookingId}/reservations/{reservationId}` | resource to retrieve availability 
+information on places (seats,..)
 | `/products` | Resources to retrieve products information on one or more products
 | `/bookings/{bookingId}/fulfillments`| Resources to retrieve fulfillments, e.g. tickets
 | `/fulfillments` | *dito*
@@ -39,6 +41,8 @@ are not represented or simplified in the data models.
 | `/bookings/{bookingId}/exchange-trip-offers` | *dito*
 | `/coachLayouts` | Returns all coach layouts.
 | `/coachLayouts/{layoutId}` | Returns a coach layout for layout id
+| `/complaints` | resources to create and manipulate complaints
+| `/masterdata/reductioncards` | retrieve reduction card types
 
 ## Process Flow
 
@@ -326,7 +330,7 @@ Proposed trip by timetable system:
 
 | Origin - Destination| Train Number |
 | --- | --- |
-| Rotterdam → Antwerp | Thalys 9324 (integrated reservation) |
+| Rotterdam → Antwerp | Thalys 9324 (mandatory reservation) |
 | Antwerp → Liège | IC 2345 + IR 5567 |
 | Liège → Frankfurt | ICE 122 (mandatory reservation) |
 | Frankfurt → Wien Hbf | RailJet RJ 23 (optional reservation) |
@@ -336,7 +340,7 @@ Proposed trip by timetable system:
 
 | Origin - Destination | Train Number | Fare Provider | Consolidated |
 | --- | --- | --- | --- |
-| Rotterdam → Antwerp | Thalys 9324 (integrated reservation) | PAO | PAO |
+| Rotterdam → Antwerp | Thalys 9324 (mandatory reservation) | PAO | PAO |
 | Antwerp → Liège | IC 2345 + IR 5567 | Fare SNCB | Fare SNCB |
 | Liège → Frankfurt | ICE 122 (mandatory reservation)|  GUS | GUS
 | Frankfurt → Wien Hbf | RailJet RJ 23 (optional reservation) | Frankfurt → Salzburg (Border) | Fare DB |
@@ -373,10 +377,23 @@ passenger party must remain the same from one offer to the other.
 
 If the booking succeeds, a new booking resource is created. In this booking,
 the booked offers can be found and should look a lot like the offers as they
-were in the offer responses, with the exception that for (integrated)
-reservations and fares, the reservedPlaces element will now be populated
+were in the offer responses, with the exception that for reservations and fares, 
+the reservedPlaces element will now be populated
 with the places that have actually be assigned to the passengers for
 this offer part.
+
+
+### Additional availability information before provisional booking step
+
+In most cases the offer will not contain information on specific place properties for 
+reservations. the reservation resource in the offer provides information on the availability of 
+places with the selected offer:
+
+ - Places with specific properties
+ - Places nearby another place
+ - A graphical display of available places.
+
+![Graphical reservation](../images/processes/seq-graphical-reservation.puml.png)
 
 ### Additional information in provisional booking step
 
@@ -614,6 +631,12 @@ more takes place  behind the scene. Indeed, the **Distributor** will have to
 - build the fulfillments elements
 - update relevant booking properties as described above.
 
+A fare provider will rarely provide real fulfillments as in the allocator 
+is responsible to create the fulfillments of the combined offers. However the fare provider 
+has the option to provide fulfillment parts (e.g. visual security elements,..) to be 
+integrated by the allocator in the combined fulfillment.
+
+
 #### Error handling
 
 In the confirmation and fulfillment process, the following issues can arise:
@@ -773,6 +796,29 @@ potential refund fee, etc (see the model for more details).
 #### Confirm a Refund Offer
 
 ![Confirm a Refund Offer](../images/processes/seq-fulfillment-process.png)
+
+
+### Complaints
+
+Complaints can be provided on behalf of a traveler. Complaints might concern a delay 
+of a train or a service degradation on the journey. The handling of complaints is subject 
+to the EU PRR and COTIV where minimal compensation amounts and time lines for the decision 
+of a claim are defined. According to PRR the customer can decide whether he wants to 
+be compensated by money or would accept vouchers.  
+
+The handling of a claim is an asynchronous process, where the claim is placed and decided 
+by the carriers/fare provides involved later-on. 
+  
+
+![Complaint](../images/processes/seq-complaintManagement1.puml.png)
+
+As the allocator is usually involved 
+as a carrier and then responsible to keep the legal time lines he can decide to compensate 
+and inform the fare provides/carriers on his decision if the time line would otherwise 
+can not be held:
+
+![Complaint](../images/processes/seq-complaintManagement2.puml.png)
+
 
 ## Example End-to-end Interaction
 
