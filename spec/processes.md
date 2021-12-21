@@ -29,8 +29,7 @@ are not represented or simplified in the data models.
 | `/bookings` | Resources to manipulate bookings|
 | `/offers/{id}/passengers` | Resources to manipulate a passenger's information at every stage of the flow|
 | `/bookings/{bookingId}/passengers/{passengerId}` | *dito*|
-| `/bookings/{bookingId}/reservations/{reservationId}` | resource to retrieve availability |
-information on places (seats,..)|
+| `/bookings/{bookingId}/reservations/{reservationId}` | resource to retrieve availability information on places (seats,..)|
 | `/products` | Resources to retrieve products information on one or more products|
 | `/bookings/{bookingId}/fulfillments`| Resources to retrieve fulfillments, e.g. tickets|
 | `/fulfillments` | *dito*|
@@ -393,7 +392,7 @@ places with the selected offer:
  - Places nearby another place
  - A graphical display of available places.
 
-![Graphical reservation](../images/processes/seq-graphical-reservation.puml.png)
+![Graphical reservation](../images/processes/seq-graphical-reservation_puml.png)
 
 ### Additional information in provisional booking step
 
@@ -810,14 +809,14 @@ The handling of a claim is an asynchronous process, where the claim is placed an
 by the carriers/fare provides involved later-on. 
   
 
-![Complaint](../images/processes/seq-complaintManagement1.puml.png)
+![Complaint](../images/processes/seq-complaintManagement1_puml.png)
 
 As the allocator is usually involved 
 as a carrier and then responsible to keep the legal time lines he can decide to compensate 
 and inform the fare provides/carriers on his decision if the time line would otherwise 
 can not be held:
 
-![Complaint](../images/processes/seq-complaintManagement2.puml.png)
+![Complaint](../images/processes/seq-complaintManagement2_puml.png)
 
 
 ## Example End-to-end Interaction
