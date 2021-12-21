@@ -20,29 +20,29 @@ are not represented or simplified in the data models.
 
 |Resources | Description |
 |---|---|
-| `/places` | Resources to search for places
-| `/trips` | Resources to search for trips
-| `/trip-offers-collection` | Resources to get bookable offers
-| `/trip-offers/{tripOfferId}` | *dito*
-| `/offers/{offerId}` | *dito*
-| `/offer-collections` | Resources to get offers for non-journey based products
-| `/bookings` | Resources to manipulate bookings
-| `/offers/{id}/passengers` | Resources to manipulate a passenger's information at every stage of the flow
-| `/bookings/{bookingId}/passengers/{passengerId}` | *dito*
-| `/bookings/{bookingId}/reservations/{reservationId}` | resource to retrieve availability 
-information on places (seats,..)
-| `/products` | Resources to retrieve products information on one or more products
-| `/bookings/{bookingId}/fulfillments`| Resources to retrieve fulfillments, e.g. tickets
-| `/fulfillments` | *dito*
-| `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer
-| `/bookings/{bookingId}/refundOffers/{refundOfferId}` | *dito*
-| `/bookings/{bookingId}/exchangeOperations/{exchangerOperationId}` | Resources to get and accept a exchange offer
-| `/bookings/{bookingId}/exchange-trip-offers-collection` | *dito*
-| `/bookings/{bookingId}/exchange-trip-offers` | *dito*
-| `/coachLayouts` | Returns all coach layouts.
-| `/coachLayouts/{layoutId}` | Returns a coach layout for layout id
-| `/complaints` | resources to create and manipulate complaints
-| `/masterdata/reductioncards` | retrieve reduction card types
+| `/places` | Resources to search for places |
+| `/trips` | Resources to search for trips|
+| `/trip-offers-collection` | Resources to get bookable offers|
+| `/trip-offers/{tripOfferId}` | *dito*|
+| `/offers/{offerId}` | *dito*|
+| `/offer-collections` | Resources to get offers for non-journey based products|
+| `/bookings` | Resources to manipulate bookings|
+| `/offers/{id}/passengers` | Resources to manipulate a passenger's information at every stage of the flow|
+| `/bookings/{bookingId}/passengers/{passengerId}` | *dito*|
+| `/bookings/{bookingId}/reservations/{reservationId}` | resource to retrieve availability |
+information on places (seats,..)|
+| `/products` | Resources to retrieve products information on one or more products|
+| `/bookings/{bookingId}/fulfillments`| Resources to retrieve fulfillments, e.g. tickets|
+| `/fulfillments` | *dito*|
+| `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer|
+| `/bookings/{bookingId}/refundOffers/{refundOfferId}` | *dito*|
+| `/bookings/{bookingId}/exchangeOperations/{exchangerOperationId}` | Resources to get and accept a exchange offer|
+| `/bookings/{bookingId}/exchange-trip-offers-collection` | *dito*|
+| `/bookings/{bookingId}/exchange-trip-offers` | *dito*|
+| `/coachLayouts` | Returns all coach layouts.|
+| `/coachLayouts/{layoutId}` | Returns a coach layout for layout id|
+| `/complaints` | resources to create and manipulate complaints|
+| `/masterdata/reductioncards` | retrieve reduction card types|
 
 ## Process Flow
 
