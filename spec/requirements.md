@@ -710,6 +710,10 @@ The Required personal data might depend on the fulfillment:
 
 - Data might be required for ticket holders only or for all passengers
 
+
+Fares should provide the incolved TCOs that need to have access to the ticket data for control of fulfillments.
+
+
 ### Requirements on dynamic fares and train linked tickets
 
 #### Indication of dynamic fares available online
