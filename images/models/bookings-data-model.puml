@@ -7,95 +7,142 @@ class Trip <<R,Orchid>> #linen {
 class TripLeg <<D, Green>> #linen {
 }
 
-class BookedOffer <<R,orchid>> #lightcyan {
+class Offer <<R,orchid>> #lightcyan {
 
-  id
-  minimalPrice: price
-  overallServiceClass: FIRST/SECOND
-  overallServiceRank: FIRST_A,B,C/SECOND_A,B,C
-  overallFlexibility: FULL/SEMI/NONE
-  validFrom: date
-  validTo: date
-  requestedInformation: String
-  OfferParts: [OfferParts]
-  Fares:[Fares]
-  Trip: Trip
 }
 
 
 class ExchangeOffer <<R,orchid>> #lightgreen {
 
   id
-  Offer
-  ExchangeFee
-  ExchangeBalance
+  offer: Offer
+  exchangeFee: Price
+  exchangePrice: Price
 }
 
 
-abstract class OfferPart <<D,green>> #lightgrey {
+
+
+class Ancillary <<D,green>> {
+ 
 }
 
-class Ancillary <<R,orchid>> {
-  category
+class Admission <<D,green>> {
+
 }
 
-class Admission <<R,orchid>> {
-  reservationRequired
-  reservations: [reservations]
-  ancillaries: [ancillaries]
-  <<opt>> numericAvailability
-}
-
-class Reservation<<R,orchid>> {
-  <<opt>> numericAvailability
-  reservationDetails: {reservation details}
-  placeSelection: {place selection information}
+class Reservation<<D,green>> {
 }
 
 
 class Product <<R,orchid>> {
 }
 
-class Fare <<R,orchid>> {
+class FareOnline <<D,green>> {
 
 }
 
 class Passenger <<R, orchid>> {
-  id
-  externalPassengerReference
-  firstName
-  lastName
-  email
-  phoneNumber
-  dateOfBirth
-  gender
-  PassportInformation
-  Reductions
-  Type
 }
+
+class PersonDetail<<D,green>> {
+  preferredLanguage: string
+  abstract: string
+  firstName: string
+  lastName: string
+  email: string
+  phoneNumber: string
+  address: Address
+}
+
 
 class Booker <<R, orchid>> {
   id
   externalReference
-  firstName
-  lastName
-  email
-  phoneNumber
+  details: PersonDetail
 }
+
+class Complaint <<R, orchid>> {
+  id*
+  reference
+  status
+  customerComplaint:  CustomerComplaint
+  missingInformation: [string]
+  decision: ComplaintDecision
+}
+
+
+class CustomerComplaint <<D, green>> {
+  applicationTime: Date
+  journeyDetails: ClaimedJourneyDetails
+  claimManager: PersonDetail
+  affectedPassengers: [Passenger]
+  supportingDocuments: Document
+  bookingIds: [string]
+  ticketControlNumbers: [string]
+  requestedPaymentType: string
+  bankAccount: BankAccountReference
+  
+}
+
+class Document <<D, green>> {
+  id: string
+  title: string
+  content: string
+  format: string
+  
+}
+
+class ClaimedJourneyDetails <<D, green>> {
+  impact: string
+  finalDelay: string
+  onReturn: boolean
+  delayedJourney: [ClaimedLeg]
+ 
+}
+
+class ComplaintDecision <<D, green>>{
+  compensationAmount: Price
+  refundVoucher: FulfillmentDocument
+  explanation: FulfillmentDocument
+  shortExplanation: string
+  DelayedJouney: Trip
+}
+
+
+class BankAccountReference <<D, green>>{
+  iban
+  ownerName
+}
+
+
 
 class Booking <<R,orchid>> #lightcyan {
-  id
-  status
-  bookingMessages
-  requestedInformation
+  id*
+  abstract: string
+  reference: string
+  status* : BookingStatus
+  provisionalPrice: Price
+  confirmedPrice: Price
+  requestedInformation: string
   ticketTimeLimit
-  fulfillmentOptions: fulfillmentOptions
+  fulfillmentType: fulfillmentType
   bookedOffers: Offers
+  appliedPromoCodes: [PromoCode]
+  booker*: Booker
+  passengers: [Passenger]
+  fulfillments: [Fulfillment]
+  refundOffers: [RefundOffer]
+  exchangeOperations: [ExchangeOperation]
+  complaints: [Complaint]
+  links: [Link]
+
+  
 
 }
-note left: possible states PREBOOKED, BOOKED, FULFILLED, CANCELLED\n Booked represents the state between the booking\nconfirmation and the issuance of the tickets.
+note left: possible states PREBOOKED, CONFIRMED, FULFILLED, CANCELLED, REFUNDED, EXCHANGE_ONGOING, ERROR\n Booked represents the state between the booking\nconfirmation and the issuance of the tickets.
 
-class FulfillmentOption <<D,green>> #lightcyan  {
+class FulfillmentType <<D,green>> #lightcyan  {
   type
 }
 
@@ -112,27 +159,55 @@ note right of Product
 end note
 
 class Fulfillment  <<R,orchid>> #bisque{
-  id
+  id*
   status
-  tcn
-  productReferences
+  price: Price
+  controlNumber
+  offerParts: [OfferPartReference]
+  documents: [FulfillmentDocument]
+  fulfillmentItems: [fullfillmentItem]
 }
 
+class FulfillmentItem <<D, green>>{
+  fulfilmentMedia: FulfillmentMediaType
+  travelReference: string
+  controlId: string
+  securityFeatures: [type: SecurityFeatureType, data: string]
+  securtyFeatureLinks: [type: SecurityFeatureType, uri: string]
+  isMandatory: boolean
+  securePaperOnly: boolean
+}
+
+class FulfillmentDocument <<D, green>>{
+  medium: FulfillmentMediaType
+  type: string
+  downloadLink: string
+  downloadExpiry: Date
+  content: string
+  format: string
+
+}
+
+
 class RefundOffer <<R, orchid>> #lightgreen {
-  id
+  id*
+  abstract
   validUntil
+  status
   reimbursementStatus
   reimbursementDateTime
-  appliedOverrule
-  fulfillments:[fulfillments]
-  RefundFee
-  RefundableAmount
+  appliedOverruleCode
+  fulfillments:[Fulfillment]
+  RefundFee: Price
+  RefundableAmount: Price
+  links: [Link]
 }
 
 class ExchangeOperation <<R, orchid>> #lightgreen {
-  id
+  id*
+  abstract
   Status
-  exchangeOffers
+  exchangeOffers: [ExchangeOffer]
   fulfillments
   ticketTimeLimit
   fulfillmentType
@@ -140,37 +215,46 @@ class ExchangeOperation <<R, orchid>> #lightgreen {
 
 note bottom of Fulfillment
   Possible statuses:
-  TICKETED
-  CANCELLED: following a refund operation
-  BOARDED: checked on board by a controlling agency.
-
-  Tcn:  unique ticket number for a railway
+  CONFIRMED, FULFILLED, CHECKEDIN, REFUNDED
 end note
 
 Booking "1"*-"1..n" Passenger
 Booking "1"*-"1" Booker
-Booking "1"*--"1..n" FulfillmentOption
 Booking "1"-"0..n" RefundOffer
 Booking "1"-"0..n" ExchangeOperation
+Booking "1"-"0..1" FulfillmentType
 RefundOffer "1"--"1..n" Fulfillment
 ExchangeOperation "1"--"1..n" Fulfillment
 ExchangeOperation "1"-"1..n" ExchangeOffer
-Booking "1"*--"1..2" BookedOffer
+Booking "1"*--"1..2" Offer
 Trip "1" *- "1..n" TripLeg
 Booking "1"*--"0..n" Fulfillment
+Booking "1"*--"0..n" Complaint
+Fulfillment "1"*--"0..n" FulfillmentDocument
+Fulfillment "1"*--"0..n" FulfillmentItem
+Complaint "1"*--"0..1" ComplaintDecision
+Complaint "1"*--"0..1" CustomerComplaint
+CustomerComplaint "1"*--"0..1" PersonDetail
+CustomerComplaint "1"*--"0..1" ClaimedJourneyDetails
+Complaint "1"*--"0..n" Document
+Complaint "1"*--"1..n" Passenger
+Complaint "1"*--"0..n" BankAccountReference
+ComplaintDecision "1"*--"0..n" FulfillmentDocument
+
+Booker *-- "0..1" PersonDetail
 
 Admission "1"*--"1..n" Product
 Reservation"1"*--"0..1" Product
 Ancillary "1"*--"0..1" Product
 
-BookedOffer "1" *-- "0..n" Admission
-BookedOffer "1" *-- "0..n" Reservation
-BookedOffer "1" *-- "0..n" Fare
-BookedOffer "1" *-- "0..n" Ancillary
-BookedOffer "1"*--"0..1" Trip
-OfferPart <|-- Admission
-OfferPart <|-- Reservation
-OfferPart <|-- Ancillary
+Offer "1" *-- "0..n" Admission
+Offer "1" *-- "0..n" Reservation
+Offer "1" *-- "0..n" FareOnline
+Offer "1" *-- "0..n" Ancillary
+Offer "1"*--"0..1" Trip
+OfferPartReference <|-- Admission
+OfferPartReference <|-- Reservation
+OfferPartReference <|-- Ancillary
 Admission .>"0..n" Reservation:optional/included/mandatory
 Admission .>"0..n" Ancillary:optional/included
 Reservation*--"1..n" ReservationDetails_ReservedPlaces
