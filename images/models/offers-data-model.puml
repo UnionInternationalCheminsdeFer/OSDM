@@ -1,3 +1,4 @@
+@startuml
 title: Offers Data Model
 
 class Trip <<R,Orchid>> #linen {
@@ -21,12 +22,15 @@ TripOffer *-- "1" Trip
 
 class Offer <<R,orchid>> {
   id*
-  title
+  abstract
   offerSummary: OfferSummary
-  offerHash
+  priceGuaranteedUntil: date
+  isReusable: boolean
+  offerTag
   coveredTripLegIndexes: [integer]
-  offerCluster
-  combinationHashes
+  returnTags: [string]
+  tripTags: [string]
+  appliedThroughTicketTags: [string]
   requestedInformation: string
   availableFulfillmentTypes: [FulfillmentType]
   trip: Trip
@@ -37,6 +41,7 @@ class Offer <<R,orchid>> {
   ancilliaries: [Ancillary]
   fees: [Fee]
   fares: [FareOnline]
+  links: [Link]
 }
 
 Offer *-- "0..n" Admission
@@ -57,33 +62,36 @@ class OfferSummary <<D,green>> {
   overallFlexibility*: FULLFLEX/MIDFLEX/NOFLEX
 }
 
-abstract class OfferPart <<D,green>> #lightgrey {
-  id
-  parts
-  title
+abstract class OfferPartReference <<C,green>> #lightgrey {
+  id*
+  abstract
+  links: [Link]
 }
 
-OfferPart <|-- Admission
-OfferPart <|-- Reservation
-OfferPart <|-- Ancillary
-OfferPart <|-- Fee
+OfferPartReference <|-- Admission
+OfferPartReference <|-- Reservation
+OfferPartReference <|-- Ancillary
+OfferPartReference <|-- Fee
 
 class CommonOfferPartAttributes {
-  price
+  price*
   pricingMode: INDIVIDUAL/COLLECTIVE
-  reductionsApplied: [CardReference]
-  passengers: [Passenger]
+  appliedReductions: [CardReference]
+  appliedPromoCodes: [PromoCode]
+  passengerIds*: string
   providerBookingReference: string
   finalProviderBookingReference: string
   availableFulfillmentOptions: [FulfillmentOption]
-  validFrom: date
+  validFrom*: date
   validUntil: date
-  refundable: YES/NO/WITH_CONDITIONS
-  exchangeable: YES/NO/WITH_CONDITIONS
-  products: [Product, segmentIndices]
+  numericAvailability
+  refundable*: YES/NO/WITH_CONDITIONS
+  exchangeable*: YES/NO/WITH_CONDITIONS
+  products: [Product, tripLegIndices]
 }
 
 CommonOfferPartAttributes *-- "0..n" CardReference
+CommonOfferPartAttributes *-- "0..n" PromoCode
 CommonOfferPartAttributes *-- "1..n" Passenger
 CommonOfferPartAttributes *-- "1..n" FulfillmentOption
 CommonOfferPartAttributes o-- "0..n" Product
@@ -93,10 +101,9 @@ class Ancillary <<D,green>> {
   commonOfferPartAttributes*
   optionality: INCLUDED/OPTIONAL
   category: string
-  fees: [OfferPart]
+  fees: [OfferPartReference]
 }
 
-Ancillary *-- "1" CommonOfferPartAttributes
 Ancillary *-- "1" CommonOfferPartAttributes
 Ancillary .>"0..n" Fee
 
@@ -106,8 +113,8 @@ class Admission <<D,green>> {
   commonOfferPartAttributes*
   isReservationRequired: boolean
   reservations: [OfferPart]
-  ancilliaries: [OPTIONAL/INCLUDED, OfferPart]
-  fees: [OfferPart]
+  ancilliaries: [OPTIONAL/INCLUDED, OfferPartReference]
+  fees: [OfferPartReference]
 }
 
 Admission *-- "1" CommonOfferPartAttributes
@@ -118,10 +125,11 @@ Admission .>"0..n" Fee
 class Reservation <<D,green>> {
   id*
   commonOfferPartAttributes*
-  reservationDetails*: reservationDetails
+  reservationDetails*: ReservationDetail
   placeSelection: PlaceSelection
   optionality: [INCLUDED/MANDATORY/OPTIONAL]
-  fees: [OfferPart]
+  ancillaries: [relationType, ancillary]
+  fees: [OfferPartReference]
 }
 
 Reservation *-- "1" CommonOfferPartAttributes
@@ -140,7 +148,7 @@ ReservationDetail *-- "0..n" PlacePack
 
 class PlacePack<<D,green>> {
   id*
-  passengerReferences*: string
+  passengerReferences: string
   vehicle*: string
   coach*: string
   places*: string
@@ -171,17 +179,20 @@ Fee *-- "0..n" Condition
 
 class Product <<R,orchid>> {
   id*
-  title
+  abstract
   code
   description
   conditions: [Condition]
-  serviceClass: string
+  serviceClass: ServiceClass
   comfortClass: FIRST/SECOND
   isTrainBound: boolean
   isReturnProduct: boolean
-  fulfillmentOptions
+  fulfillmentOptions: [FulfilmentOption]
   serviceConstraintText: string
   carrierConstraintText: string
+  throughTicketTags: [string]
+  combinationTags
+  links: [Link]
 }
 
 Product *-- "0..n" Condition
@@ -192,8 +203,8 @@ class Condition<<D,green>> {
   description*: string
   validFrom: date
   validUntil: date
-  afterSalesFee.feeAmount: price
-  afterSalesFee.isCarrierFee: boolean
+  afterSalesFee.feePrice: Price
+  afterSalesFee.isAllocatorFee: boolean
 }
 
 class FulfillmentOption<<D,green>> {
@@ -204,28 +215,30 @@ class FulfillmentOption<<D,green>> {
 class Passenger <<R, orchid>> {
   id*
   abstract: string
-  reference: string
+  externalReference: string
   dateOfBirth: date
   cards: [CardReference]
   gender: MALE/FEMALE/X
-  details: PassengerDetail
+  details: PersonDetail
   passport: IdentificationDocument
   transportableDetails: Transportable
-  prmneeds
+  prmneeds: [PRMNeedType]
+  links: [Link]
 }
 
 Passenger *-- "0..n" CardReference
-Passenger *-- "0..1" PassengerDetail
+Passenger *-- "0..1" PersonDetail
 Passenger *-- "0..1" IdentificationDocument
 Passenger *-- "0..1" Transportable
 
-class PassengerDetail<<D,green>> {
+class PersonDetail<<D,green>> {
   preferredLanguage: string
-  title: string
+  abstract: string
   firstName: string
   lastName: string
   email: string
-  phone: string
+  phoneNumber: string
+  address: Address
 }
 
 class CardReference<<D,green>> {
@@ -234,6 +247,12 @@ class CardReference<<D,green>> {
   codeList*: string
   name: string
   number: string
+  issuer: string
+}
+
+
+class PromoCode<<D,green>> {
+  code*: string
   issuer: string
 }
 
@@ -254,25 +273,25 @@ class IdentificationDocument<<D,green>> {
 }
 
 class Transportable<<D,green>> {
-  type
+  type*
   car: Car
-  motorCycle: motorCycle
-  trailer: trailer
+  motorCycle: MotorCycle
+  trailer: Trailer
 }
 
 class FareOnline <<D,green>> {
   id*
   type*
   name
-  fareDetailDescription
-  price
+  description
+  prices: [Price]
   regionalConstraint*
   serviceConstraint
-  regulatoryConditions: CIV/MD/EU-PRR
   carrierConstraint
+  regulatoryConditions: CIV/MD/EU-PRR
   serviceClass
   comfortClass: FIRST/SECOND
-  accommodationDetails
+  accommodationDetail
   afterSalesCondition*
   combinationConstraint*
   fulfillmentConstraint
@@ -283,5 +302,7 @@ class FareOnline <<D,green>> {
   placeSelection
   reservationLegacyParameter
   coveredSection
-  passengerConstraint
+  passengerConstraints
+  involvedTCOs
 }
+@enduml
