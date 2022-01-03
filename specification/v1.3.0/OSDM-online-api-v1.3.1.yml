@@ -4079,8 +4079,12 @@ components:
           items:
             $ref: "#/components/schemas/PromoCode"
         passengerIds:
-          type: string
-          description: Id of the passenger
+          description: >-
+            Ids ot the passengers (more than on in case of collective pricing).
+          type: array
+          items:
+            type: string
+            description: Id of the passenger
         providerBookingReference:
           type: string
           description: >-
