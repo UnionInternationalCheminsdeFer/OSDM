@@ -1687,7 +1687,7 @@
               },
               "passengerTypeRef": {
                 "description": "Deprecated with v.1.4.",
-                "deprecated": "true",
+                "deprecated": true,
                 "$ref": "#/definitions/TravelerTypeDef"
               },
               "passengerConstraintRef": {
