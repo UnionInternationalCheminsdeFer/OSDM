@@ -5850,8 +5850,17 @@ components:
       type: object
       properties:
         iban:
+          description: IBAN to be used in Europe
           type: string
           pattern: "[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}"
+        accountId:
+          description: bank account id to be used outside of EU
+        bankIdCodelist:
+          type: string
+          x-extensible-enum:
+            - SWIFT
+        bankId:  
+          type: string
         ownerName:
           type: string
           example: "John Doe"
@@ -5964,6 +5973,8 @@ components:
     Complaint:
       type: object
       properties:
+        id:
+          type: string
         status:
           type: string
           x-extensible-enum:
@@ -6005,12 +6016,14 @@ components:
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
-        complaint:
+        reimbourcementClaim:
           $ref: "#/components/schemas/ReimbursementClaim"
 
     ReimbursementClaim:
       type: object
       properties:
+        id: 
+          type: string
         status:
           type: string
           x-extensible-enum:
@@ -6037,6 +6050,8 @@ components:
             date and time when the claim was made. This starts the legal time line to process the claim
           type: string
           format: date-time
+        claimManager:
+          $ref: "#/components/schemas/PersonDetail"          
         claimType:
           description: impact that was caused by the event
           type: string
@@ -6046,14 +6061,9 @@ components:
             - JOURNEY_PARTIALLY_NOT_STARTED ## Some passengers did not travel
             - JOURNEY_PARTIALLY_ABANDONED ## Some passengers abandoned the jouney
         unusedJourneyDetails:
-          items:
-            $ref: "#/components/schemas/AffectedLeg"          
-        claimManager:
-          $ref: "#/components/schemas/PersonDetail"
-        nonTravelingPassengers:
           type: array
-          items:
-            $ref: "#/components/schemas/Passenger"
+          items: 
+            $ref:  "#/components/schemas/UnusedJourneyPart"      
         supportingDocuments:
           type: array
           items:
@@ -6076,10 +6086,23 @@ components:
         bankAccount:
           $ref: "#/components/schemas/BankAccountReference"
 
+    UnusedJourneyPart:
+      type: object
+      description: unused part of the journey
+      properties:
+        unusedLegs:
+          type: array
+          items:
+            $ref: "#/components/schemas/AffectedLeg"          
+        nonTravelingPassengers:
+          type: array
+          items:
+            $ref: "#/components/schemas/Passenger"
+
     AffectedLeg:
       type: object
       properties:
-        trainNumber:
+        vehicleNumber:
           type: string
         departureStation:
           $ref: "#/components/schemas/Place"
