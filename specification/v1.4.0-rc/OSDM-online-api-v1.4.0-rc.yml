@@ -2491,6 +2491,128 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
+  /reimbursementClaims:
+    post:
+      tags:
+        - Reimbursement Management
+      summary: Allows adding the request for a reimbursement for non used tickets (fully or partially). The prefered implementation of a reimboursement would be via an after sales operation on the booking. However there might be the need for the traveler to provide evidence on the claim which can not be made via the synchronous booking api. This request for reimbursement is allowed only in case it is not supported via the booking interface!
+      operationId: createReimbourcementClaim
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReimbursementClaim"
+      responses:
+        "200":
+          description: complaint
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReimbursementClaimResponse"
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "409":
+          $ref: "#/components/responses/ConflictResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
+  /reimbursementClaims/{claimId}:
+    get:
+      tags:
+        - Reimbursement Management
+      summary: returns a complaint
+      description: >-
+        Returns a reimbourcement claim
+      operationId: getReimbourcementClaim
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/accessToken"
+        - in: path
+          name: claimId
+          schema:
+            type: string
+          required: true
+          description: ID of the claim to get.
+      responses:
+        "200":
+          description: the requested claim
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReimbursementClaimResponse"
+        "400":
+          description: bad input parameter
+        "401":
+          description: unauthorized
+        "403":
+          description: forbidden
+        "404":
+          description: no place information found
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
+    patch:
+      tags:
+        - Reimbursement Management
+      summary: Allows updating the claim to correct customer data or to provide additional documents for proof.
+      operationId: patchReimbourcementClaim
+      parameters:
+        - $ref: "#/components/parameters/accessToken"
+        - $ref: "#/components/parameters/acceptLanguage"
+        - in: path
+          name: claimId
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: ID of the claim to be patched
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReimbursementPatchRequest"
+      responses:
+        "200":
+          description: claim updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReimbursementClaimResponse"
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "409":
+          $ref: "#/components/responses/ConflictResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
+
   /masterdata/reductionCards:
     get:
       tags:
@@ -5728,8 +5850,17 @@ components:
       type: object
       properties:
         iban:
+          description: IBAN to be used in Europe
           type: string
           pattern: "[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}"
+        accountId:
+          description: bank account id to be used outside of EU
+        bankIdCodelist:
+          type: string
+          x-extensible-enum:
+            - SWIFT
+        bankId:  
+          type: string
         ownerName:
           type: string
           example: "John Doe"
@@ -5752,6 +5883,7 @@ components:
           description: >-
             Physical format of the document provided in the content field in Mime-Type format, e.g. 
             application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
+            
     ClaimedJourneyDetails:
       type: object
       properties:
@@ -5841,6 +5973,8 @@ components:
     Complaint:
       type: object
       properties:
+        id:
+          type: string
         status:
           type: string
           x-extensible-enum:
@@ -5876,6 +6010,145 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Trip"
+    
+    ReimbursementClaimResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: "#/components/schemas/WarningCollection"
+        reimbourcementClaim:
+          $ref: "#/components/schemas/ReimbursementClaim"
+
+    ReimbursementClaim:
+      type: object
+      properties:
+        id: 
+          type: string
+        status:
+          type: string
+          x-extensible-enum:
+            - INITIATED
+            - EVALUATING
+            - DECIDED
+            - SETTLED
+        customerReimbursementClaim:
+          $ref: "#/components/schemas/CustomerReimbursementClaim"
+        missingInformation:
+          description: >-
+            indication of missing customer information
+          type: array
+          items:
+            type: string
+        decision:
+          $ref: "#/components/schemas/ReimbursementClaimDecision"
+
+    CustomerReimbursementClaim:
+      type: object
+      properties:
+        applicationTime:
+          description: >-
+            date and time when the claim was made. This starts the legal time line to process the claim
+          type: string
+          format: date-time
+        claimManager:
+          $ref: "#/components/schemas/PersonDetail"          
+        claimType:
+          description: impact that was caused by the event
+          type: string
+          x-extensible-enum:
+            - JOURNEY_ABANDONED ## all passngers abandoned the journey during the travel
+            - JOURNEY_NOT_STARTED ## trip was not started
+            - JOURNEY_PARTIALLY_NOT_STARTED ## Some passengers did not travel
+            - JOURNEY_PARTIALLY_ABANDONED ## Some passengers abandoned the jouney
+        unusedJourneyDetails:
+          type: array
+          items: 
+            $ref:  "#/components/schemas/UnusedJourneyPart"      
+        supportingDocuments:
+          type: array
+          items:
+            $ref: "#/components/schemas/Document"
+        bookingIds:
+          description: list of booking Ids
+          type: array
+          items:
+            type: string
+        ticketControlNumber:
+          description: list of ticket control number (visible ticket identification for the customer)
+          type: array
+          items:
+            type: string
+        preferedPaymentType:
+          type: string
+          x-extensible-enum:
+            - VOUCHER
+            - MONEY
+        bankAccount:
+          $ref: "#/components/schemas/BankAccountReference"
+
+    UnusedJourneyPart:
+      type: object
+      description: unused part of the journey
+      properties:
+        unusedLegs:
+          type: array
+          items:
+            $ref: "#/components/schemas/AffectedLeg"          
+        nonTravelingPassengers:
+          type: array
+          items:
+            $ref: "#/components/schemas/Passenger"
+
+    AffectedLeg:
+      type: object
+      properties:
+        vehicleNumber:
+          type: string
+        departureStation:
+          $ref: "#/components/schemas/Place"
+        departureTime:
+          type: string
+          format: date-time
+        arrivalStation:
+          $ref: "#/components/schemas/Place"
+        arrivalTime:
+          type: string
+          format: date-time
+
+    ReimbursementPatchRequest:
+      description: >-
+        changes to a claim already made. This covers upload of additional supporting documents, changes to the passengers and claim manager data.
+      type: object
+      properties:
+        reason:
+          type: string
+          x-extensible-enum:
+            - BANK_ACCOUNT
+            - PASSENGER_CHANGE
+        claimManager:
+          $ref: "#/components/schemas/PersonDetail"
+        affectedPassengers:
+          type: array
+          items:
+            $ref: "#/components/schemas/Passenger"
+        supportingDocuments:
+          type: array
+          items:
+            $ref: "#/components/schemas/Document"
+        bankAccount:
+          $ref: "#/components/schemas/BankAccountReference"
+
+    ReimbursementClaimDecision:
+      type: object
+      properties:
+        compensationAmount:
+          $ref: "#/components/schemas/Price"
+        refundVoucher:
+          $ref: "#/components/schemas/FulfillmentDocument"
+        explanation:
+          $ref: "#/components/schemas/FulfillmentDocument"
+        shortExplanation:
+          type: string
 
     ReductionCards:
       description: >-
