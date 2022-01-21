@@ -59,12 +59,15 @@ tags:
   - name: Exchange
     description: >-
       resources to get exchange offers and book it
-  - name: Complaint Management
-    description: >-
-      resources to manage complaints
   - name: Coach Layouts
     description: >-
       resources to get the layout of a coach
+  - name: Complaint Management
+    description: >-
+      resources to manage complaints
+  - name: Reimbursement Management
+    description: >-
+      resources to manage reimbursement requests
   - name: Master Data
     description: >-
       resources to get master data
@@ -2495,8 +2498,13 @@ paths:
     post:
       tags:
         - Reimbursement Management
-      summary: Allows adding the request for a reimbursement for non used tickets (fully or partially). The prefered implementation of a reimboursement would be via an after sales operation on the booking. However there might be the need for the traveler to provide evidence on the claim which can not be made via the synchronous booking api. This request for reimbursement is allowed only in case it is not supported via the booking interface!
-      operationId: createReimbourcementClaim
+      summary: Allows to add a reimbursement request for non used tickets (fully or partially). 
+      description: >-
+        The preferred implementation of a reimbursement would be via an after sales operation on the booking. 
+        However there might be the need for the traveler to provide evidence on the claim which can not be made
+        via the synchronous booking api. This request for reimbursement is allowed only in case it is not 
+        supported via the booking interface.
+      operationId: createReimbursementClaim
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
@@ -2535,8 +2543,8 @@ paths:
         - Reimbursement Management
       summary: returns a complaint
       description: >-
-        Returns a reimbourcement claim
-      operationId: getReimbourcementClaim
+        Returns a reimbursement claim.
+      operationId: getReimbursementClaim
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/accessToken"
@@ -2572,7 +2580,7 @@ paths:
       tags:
         - Reimbursement Management
       summary: Allows updating the claim to correct customer data or to provide additional documents for proof.
-      operationId: patchReimbourcementClaim
+      operationId: patchReimbursementClaim
       parameters:
         - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
@@ -2612,14 +2620,11 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
-
   /masterdata/reductionCards:
     get:
       tags:
         - Master Data
       summary: Returns a collection of reduction card definitions.
-      description: >-
-        returns a list of reduction card definitions.
       operationId: getReductionCards
       parameters:
         - $ref: "#/components/parameters/accessToken"
@@ -2627,7 +2632,7 @@ paths:
         - $ref: "#/components/parameters/traceState"
       responses:
         "200":
-          description: Cards Provided
+          description: Reduction cards provided
           content:
             application/json:
               schema:
