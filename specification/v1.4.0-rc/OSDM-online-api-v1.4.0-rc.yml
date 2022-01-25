@@ -3282,22 +3282,6 @@ components:
           description: >-
             Id of this trip for referencing purposes. Unique within trip response.
           type: string
-        # origin:
-        #   description: >-
-        #     Specifies the origin situation from where the user wants to start.
-        #   $ref: "#/components/schemas/Place" # EXT no support for array
-        # destination:
-        #   description: >-
-        #     Specifies the destination situation where the user is heading to.
-        #   $ref: "#/components/schemas/Place" # EXT no support for array
-        # startTime:
-        #   description: Departure time at origin.
-        #   type: string
-        #   format: date-time
-        # endTime:
-        #   description: Arrival time at destination
-        #   type: string
-        #   format: date-time
         tripLegs:
           description: Legs ot the trip with minimal information
           type: array
@@ -3411,7 +3395,7 @@ components:
           type: string
           format: duration
 
-    TimedLegSpecification: ## OJP # Reduced scope
+    TimedLegSpecification:
       type: object
       description: >-
         A minimal leg specification.
@@ -3421,28 +3405,15 @@ components:
         - service
       properties:
         legBoard: # EXT: use Place instead of LegBoard
-          $ref: "#/components/schemas/LegStop"
+          $ref: "#/components/schemas/LegStopSpecification"
         legIntermediates: # EXT: use Place instead of LegIntermediate
           type: array
           items:
-            $ref: "#/components/schemas/LegStop"
+            $ref: "#/components/schemas/LegStopSpecification"
         legAlight: # EXT: use Place instead of LegAlight
-          $ref: "#/components/schemas/LegStop"
+          $ref: "#/components/schemas/LegStopSpecification"
         service:
           $ref: "#/components/schemas/DatedJourneySpecification"
-        # legAttribute:  # Out of scope
-        #   type: array
-        #   items:
-        #     $ref: "#/components/schemas/LegAttribute"
-        # operatingDays:  # Out of scope
-        #  $ref: "#/components/schemas/OperatingDays"
-        # legTrack:  # Out of scope
-        #   type: array
-        #   items:
-        #     $ref: "#/components/schemas/LegTrack"
-        # duration: # EXT add attribute for consistency
-        #   type: string
-        #   format: duration
 
     TransferLeg: ## OJP # Reduced scope
       type: object
@@ -3688,6 +3659,23 @@ components:
         status:
           $ref: "#/components/schemas/StopCallStatus"
 
+    LegStopSpecification:
+      type: object
+      description: >-
+        A minimal leg stop specification indicating the time and place where the vehicle starts.
+      #allOf:
+      required:
+        - plannedQuay
+        - stopPlace
+      properties:
+        stopPlace:
+          $ref: "#/components/schemas/StopPlace" ## EXT
+        serviceDeparture:
+          description: >-
+            Describes the departure situation at this leg board stop point (group of attributes
+            of timetabled passing time, estimated passing time, observed passing time).#
+          $ref: "#/components/schemas/ServiceTime"
+
     ServiceTime: ## OJP
       type: object
       description: >-
@@ -3752,7 +3740,7 @@ components:
           type: string
           example: "urn:uic:rics:11:321"
 
-    DatedJourneySpecification: ## OJP # Reduced scope
+    DatedJourneySpecification:
       type: object
       description: >-
         Vehicle journey that runs at a specific date. Provided by OJP.
@@ -3766,20 +3754,7 @@ components:
         - publishedServiceName
         - operatorRef
       properties:
-        # operatingDayRef:  # Out of scope
-        #   $ref: "#/components/schemas/OperationDayRef"
-        # journeyRef:  # Out of scope
-        #   $ref: "#/components/schemas/JourneyRef"
-        # mode:
-        #  $ref: "#/components/schemas/Mode"
-        # productCategory:
-        #  $ref: "#/components/schemas/ProductCategory"
-        # publishedServiceName:
-        #  description: >-
-        #    Line name or service description as known to the public, f.e. "512", "S8"
-        #    or "Circle Line" or "ICE 488".
-        #  type: string
-        #  example: S1
+
         vehicleNumbers: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
           description: >-
             The vehicle number(s) of the vehicle(s) that runs this timed leg.
