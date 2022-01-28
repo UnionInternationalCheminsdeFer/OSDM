@@ -3718,7 +3718,7 @@ components:
             or "Circle Line" or "ICE 488".
           type: string
           example: S1
-        vehicleNumber: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
+        vehicleNumbers: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
           description: >-
             The vehicle number(s) of the vehicle(s) that runs this timed leg.
             On some legs a vehicle has multiple vehicles, e.g. if it is split into two
@@ -3754,7 +3754,6 @@ components:
         - publishedServiceName
         - operatorRef
       properties:
-
         vehicleNumbers: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
           description: >-
             The vehicle number(s) of the vehicle(s) that runs this timed leg.
@@ -4200,10 +4199,11 @@ components:
 
         You can use the tripSearchCriteria (origin, destination,... ) or a list of trips to find trip offers.
 
+        Either a set of tripSpecification xor a tripSearchCriteria must be provided.
+
         If you are searching for fares you pass in the complete trip in trips and the use the returnSearchCriteria
         to define which part you need fares (especially if you want a price up to a virtual border point).
       required:
-        - tripSearchCriteria
         - passengers
       properties:
         tripSpecifications:
