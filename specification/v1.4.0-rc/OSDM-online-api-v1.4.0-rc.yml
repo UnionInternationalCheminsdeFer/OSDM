@@ -6370,14 +6370,8 @@ components:
           required:
             - regionalValidities
           properties:
-            entryConnectionPointId:
-              description: connection point connecting two fare regimes
-              type: string
             entryConnectionPoint:
               $ref: "#/components/schemas/FareConnectionPoint"
-            exitConnectionPointId:
-              description: connection point connecting two fare regimes
-              type: string
             exitConnectionPoint:
               $ref: "#/components/schemas/FareConnectionPoint"
             regionalValidities:
@@ -6981,8 +6975,6 @@ components:
 
         Providing the UIC code for the station is mandatory.
       properties:
-        id:
-          type: string
         name:
           type: string
         stationSets:
@@ -6992,7 +6984,6 @@ components:
             items:
               $ref: "#/components/schemas/StopPlaceRef" # EXT Changed from StopPoint
       required:
-        - id
         - stationSets
 
     TrainValidity:
