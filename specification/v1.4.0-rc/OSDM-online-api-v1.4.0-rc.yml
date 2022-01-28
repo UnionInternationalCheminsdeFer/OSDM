@@ -3270,6 +3270,25 @@ components:
         tripStatus: # Ask Stefan
           $ref: "#/components/schemas/TripStatus"
 
+    TripSpecification:
+      type: object
+      description: >-
+        A minimal trip specification from origin to destination.
+      required:
+        - tripId
+        - tripLegs
+      properties:
+        tripId:
+          description: >-
+            Id of this trip for referencing purposes. Unique within trip response.
+          type: string
+        tripLegs:
+          description: Legs ot the trip with minimal information
+          type: array
+          items:
+            $ref: "#/components/schemas/TripLegSpecification"
+          minItems: 1
+
     TripStatus: ## OJP
       type: object
       description: >-
@@ -3320,6 +3339,29 @@ components:
         continousLeg:
           $ref: "#/components/schemas/ContinuousLeg"
 
+    TripLegSpecification:
+      type: object
+      description: >-
+        A minimal simple trip leg specification consisting only of timed legs. Transfer legs 
+        and continuous legs are not part of this specification as they are not relevant to find
+        the correct vehicles by a pricing engine.
+      required:
+        - legId
+        - seqId
+      properties:
+        legId:
+          description: Id of this trip leg. Unique within trip result.
+          type: string
+        seqId: # EXT
+          type: number
+          format: int32
+        timedLeg:
+          $ref: "#/components/schemas/TimedLegSpecification"
+        # transferLeg:
+        #  $ref: "#/components/schemas/TransferLeg"
+        # continousLeg:
+        #   $ref: "#/components/schemas/ContinuousLeg"
+
     TimedLeg: ## OJP # Reduced scope
       type: object
       description: >-
@@ -3352,6 +3394,26 @@ components:
         duration: # EXT add attribute for consistency
           type: string
           format: duration
+
+    TimedLegSpecification:
+      type: object
+      description: >-
+        A minimal leg specification.
+      required:
+        - legAlight
+        - legBoard
+        - service
+      properties:
+        legBoard: # EXT: use Place instead of LegBoard
+          $ref: "#/components/schemas/LegStopSpecification"
+        legIntermediates: # EXT: use Place instead of LegIntermediate
+          type: array
+          items:
+            $ref: "#/components/schemas/LegStopSpecification"
+        legAlight: # EXT: use Place instead of LegAlight
+          $ref: "#/components/schemas/LegStopSpecification"
+        service:
+          $ref: "#/components/schemas/DatedJourneySpecification"
 
     TransferLeg: ## OJP # Reduced scope
       type: object
@@ -3563,7 +3625,7 @@ components:
       #allOf:
       required:
         #- order
-        #- plannedQuay
+        - plannedQuay
         #- serviceArrival
         #- stopPointName
         - stopPlace
@@ -3597,6 +3659,23 @@ components:
         status:
           $ref: "#/components/schemas/StopCallStatus"
 
+    LegStopSpecification:
+      type: object
+      description: >-
+        A minimal leg stop specification indicating the time and place where the vehicle starts.
+      #allOf:
+      required:
+        - plannedQuay
+        - stopPlace
+      properties:
+        stopPlace:
+          $ref: "#/components/schemas/StopPlace" ## EXT
+        serviceDeparture:
+          description: >-
+            Describes the departure situation at this leg board stop point (group of attributes
+            of timetabled passing time, estimated passing time, observed passing time).#
+          $ref: "#/components/schemas/ServiceTime"
+
     ServiceTime: ## OJP
       type: object
       description: >-
@@ -3623,6 +3702,7 @@ components:
         # - journeyRef
         - mode
         - publishedServiceName
+        - operatorRef
       properties:
         # operatingDayRef:  # Out of scope
         #   $ref: "#/components/schemas/OperationDayRef"
@@ -3638,15 +3718,63 @@ components:
             or "Circle Line" or "ICE 488".
           type: string
           example: S1
-        vehicleNumber: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
+        vehicleNumbers: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
           description: >-
-            If several vehicle number exist, use the commercial number.
-          type: string
-          example: 1
+            The vehicle number(s) of the vehicle(s) that runs this timed leg.
+            On some legs a vehicle has multiple vehicles, e.g. if it is split into two
+            trains at a intermediate stop.
+          type: array
+          items:
+            type: string
+        lineNumbers:
+          description: >-
+            List of line numbers that are part of this journey.
+            Especially on regional traffic, a vehicle is defined by a line number only.
+          type: array
+          items:
+            type: string
         operatorRef:
-          description: Reference to transport operator
+          description: >-
+            Reference to transport operator.
+            For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
           type: string
-          example: ojp:11
+          example: "urn:uic:rics:11:321"
+
+    DatedJourneySpecification:
+      type: object
+      description: >-
+        Vehicle journey that runs at a specific date. Provided by OJP.
+
+        A vehicle can either be defined by a vehicle number(s) or line number(s) in the
+        case of regional traffic.
+      required:
+        # - operatingDayRef
+        # - journeyRef
+        - mode
+        - publishedServiceName
+        - operatorRef
+      properties:
+        vehicleNumbers: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
+          description: >-
+            The vehicle number(s) of the vehicle(s) that runs this timed leg.
+            On some legs a vehicle has multiple vehicles, e.g. if it is split into two
+            trains at a intermediate stop.
+          type: array
+          items:
+            type: string
+        lineNumbers:
+          description: >-
+            List of line numbers that are part of this journey.
+            Especially on regional traffic, a vehicle is defined by a line number only.
+          type: array
+          items:
+            type: string
+        operatorRef:
+          description: >-
+            Reference to transport operator.
+            For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
+          type: string
+          example: "urn:uic:rics:11:321"
 
     Mode: ## OJP
       type: object
@@ -3697,8 +3825,8 @@ components:
         Product category based on NeTEx/SIRI. A product category is a classification for vehicle journeys
         to express some common properties of journeys for marketing and fare products. Provided by OJP.
       required:
-        #  - name  # EXT no longer mandatory as being passed in a trip
-        #  - shortName  # EXT no longer mandatory as being passed in a trip
+        - name
+        - shortName
         - productCategoryRef
       properties:
         name:
@@ -3826,7 +3954,7 @@ components:
       type: object
       required:
         - pointOfInterestCode
-      #  - pointOfInterestName  ## EXT no longer mandatory as being passed in a trip
+        - pointOfInterestName
       properties:
         pointOfInterestCode:
           description: ID of this Point of Interest.
@@ -3905,7 +4033,7 @@ components:
       #allOf:
       required:
         - stopPlaceRef
-        #  - stopPlaceName  # EXT no longer mandatory as being passed in a trip
+        - stopPlaceName
       properties:
         stopPlaceRef:
           description: Reference to a Stop Place
@@ -4071,16 +4199,17 @@ components:
 
         You can use the tripSearchCriteria (origin, destination,... ) or a list of trips to find trip offers.
 
+        Either a set of tripSpecification xor a tripSearchCriteria must be provided.
+
         If you are searching for fares you pass in the complete trip in trips and the use the returnSearchCriteria
         to define which part you need fares (especially if you want a price up to a virtual border point).
       required:
-        - tripSearchCriteria
         - passengers
       properties:
-        trips:
+        tripSpecifications:
           type: array
           items:
-            $ref: "#/components/schemas/Trip"
+            $ref: "#/components/schemas/TripSpecification"
         tripSearchCriteria:
           $ref: "#/components/schemas/TripRequest"
         returnSearchParameters:
@@ -5951,7 +6080,10 @@ components:
 
     ComplaintPatchRequest:
       description: >-
-        changes to a claim already made. This covers upload of additional supporting documents, changes to the passenger and clain manager data. The patch of the compensation amount requires an agreement between the involved parties and is used in case the legal time line for deciding the claim is passed.
+        Changes to a claim already made.
+        This covers upload of additional supporting documents, changes to  the passenger and claim manager data.
+        The patch of the compensation amount requires an agreement between the involved parties and is used in
+        case the legal time line for deciding the claim is passed.
       type: object
       properties:
         reason:
