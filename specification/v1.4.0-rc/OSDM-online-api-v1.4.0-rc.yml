@@ -83,7 +83,6 @@ paths:
       operationId: getPlaces
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
         - in: path
@@ -131,7 +130,6 @@ paths:
       operationId: postPlaces
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -173,7 +171,6 @@ paths:
         embed either references or full location definitions is returned.
       operationId: getTripsId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -248,7 +245,6 @@ paths:
       operationId: postTrips
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -293,8 +289,7 @@ paths:
         The unique codes of the origin and
         destination can be resolved using the places service.
       operationId: getTripsCollectionId
-      parameters:
-        - $ref: "#/components/parameters/accessToken"
+      parameters:"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -366,7 +361,6 @@ paths:
       description: The unique codes of the origin and destination can be resolved using the places service.
       operationId: getTripOffersCollectionId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -441,7 +435,6 @@ paths:
       summary: Returns trip offers for origin and destination (and via) places.
       operationId: postTripOffersCollection
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -488,7 +481,6 @@ paths:
       summary: Returns different offers for a specified tripOfferId.
       operationId: getTripOffersId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -552,7 +544,6 @@ paths:
         Returns an offer. Note: Does not return non-trip offers.
       operationId: getOffersId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -615,7 +606,6 @@ paths:
         This includes simple passes or one day tickets.
       operationId: postNonTripOffersCollection
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -661,7 +651,6 @@ paths:
         This service provides the availability service to be compliant with existing 90918-1 services (as-if-reservation).
       operationId: validateReservationPreferencesId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -734,7 +723,6 @@ paths:
         compliant with existing 90918-1 services (as-if-reservation).
       operationId: validateReservationNearbyId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -817,7 +805,6 @@ paths:
         combination available preferences are returned.
       operationId: provideReservationSeatMap
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -888,7 +875,6 @@ paths:
         with existing 90918-1 services (as-if-reservation)
       operationId: validateFareReservationPreferencesId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -961,7 +947,6 @@ paths:
         This service provides the availability service to be compliant with existing 90918-1 services (as-if-reservation).
       operationId: validateFareReservationNearbyId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1044,7 +1029,6 @@ paths:
         combination available preferences are returned.
       operationId: provideFareReservationPlaceMap
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1111,7 +1095,6 @@ paths:
       summary: Returns the passenger's information at booking step.
       operationId: getBookingPassengersId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1161,7 +1144,6 @@ paths:
       summary: Allows updating a passenger's information at booking step.
       operationId: patchBookingPassenger
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1220,7 +1202,6 @@ paths:
       summary: Returns the booker's information at booking step.
       operationId: getBookingCustomer
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1264,7 +1245,6 @@ paths:
       summary: Allows updating a booker's information at booking step.
       operationId: patchBookingBooker
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1317,7 +1297,6 @@ paths:
       summary: Returns a product for the id provided.
       operationId: getProductsId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1370,7 +1349,6 @@ paths:
       summary: Allows to create a booking based on a previously requested offer.
       operationId: postBookings
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1418,7 +1396,6 @@ paths:
       summary: Returns a booking with the id provided.
       operationId: getBookingsId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1487,7 +1464,6 @@ paths:
         but must be repeated according to the error handling rules in case the delete fails.
       operationId: deleteBookingsId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
         - in: path
@@ -1522,7 +1498,6 @@ paths:
       summary: Allows updating the fulfillment type of the booking.
       operationId: confirmBooking
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1569,7 +1544,6 @@ paths:
       summary: Triggers the fulfillment of the booking.
       operationId: postFulfillments
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1621,7 +1595,6 @@ paths:
       summary: Allows the effective fulfillment of one ore more confirmed fulfillment.
       operationId: patchFulfillment
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1679,7 +1652,6 @@ paths:
       summary: Returns the fulfillment, aka. ticket for the provided id.
       operationId: getFulfillmentId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1727,7 +1699,6 @@ paths:
         accepted via a PATCH, deleted or left to die at the end of its lifetime.
       operationId: postRefundOffersBookingId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1774,7 +1745,6 @@ paths:
       summary: Returns the refund offer for the ids provided.
       operationId: getRefundOffersId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1824,7 +1794,6 @@ paths:
       summary: Allows to accept and confirm a refund offer.
       operationId: patchRefundOffersId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1882,7 +1851,6 @@ paths:
       summary: Deletes a refundOffer without waiting for expiry.
       operationId: deleteRefundOffersId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
         - in: path
@@ -1925,7 +1893,6 @@ paths:
         Returns the exchange operation with the id provided. It may be a provisional or a confirmed exchange.
       operationId: getExchangeOperation
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1993,7 +1960,6 @@ paths:
         Allows to update an ongoing exchange operation.
       operationId: patchExchangeOperation
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -2052,7 +2018,6 @@ paths:
         Cancels an ongoing exchange operation in provisional state.
       operationId: deleteExchangeOperation
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
         - in: path
@@ -2096,7 +2061,6 @@ paths:
         characteristics.
       operationId: postExchangeTripOffersCollection
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -2144,7 +2108,6 @@ paths:
         Returns different offers and trips for a specified origin and destination (and via).
       operationId: getExchangeTripOffersCollectionId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -2221,7 +2184,6 @@ paths:
         Returns different offers for a specified trip offer id.
       operationId: getExchangeTripOffersId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -2287,7 +2249,6 @@ paths:
         layouts can either be retrieved as a complete list or specificity for a train identified via offerId and reservationId or fareId
       operationId: getCoachLayouts
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -2328,7 +2289,6 @@ paths:
         Retrieve a coach layout description needed for graphical reservation for a given layout id.
       operationId: getCoachLayoutsLayoutId
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -2373,7 +2333,6 @@ paths:
       summary: Allows adding the Complaint.
       operationId: createComplaint
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
       requestBody:
         content:
@@ -2414,7 +2373,6 @@ paths:
       operationId: getComplaint
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/accessToken"
         - in: path
           name: complaintId
           schema:
@@ -2456,7 +2414,6 @@ paths:
       summary: Allows updating the Complaint.
       operationId: patchComplaint
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: complaintId
@@ -2506,7 +2463,6 @@ paths:
         supported via the booking interface.
       operationId: createReimbursementClaim
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
       requestBody:
         content:
@@ -2547,7 +2503,6 @@ paths:
       operationId: getReimbursementClaim
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/accessToken"
         - in: path
           name: claimId
           schema:
@@ -2582,7 +2537,6 @@ paths:
       summary: Allows updating the claim to correct customer data or to provide additional documents for proof.
       operationId: patchReimbursementClaim
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/acceptLanguage"
         - in: path
           name: claimId
@@ -2627,7 +2581,6 @@ paths:
       summary: Returns a collection of reduction card definitions.
       operationId: getReductionCards
       parameters:
-        - $ref: "#/components/parameters/accessToken"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
       responses:
@@ -2658,19 +2611,21 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
-## Components
-components:
-  parameters:
-    accessToken:
-      name: Access-Token
-      in: header
-      description: >-
-        OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-        for information on how to get a token.
-      schema:
-        type: string
-      required: true
+security:
+  - oAuth2ClientCredentials: []
 
+components:
+  securitySchemes:
+    oAuth2ClientCredentials:
+      type: oauth2
+      description: See https://swagger.io/docs/specification/authentication/oauth2/
+      flows:
+        clientCredentials:
+          # The token endpoint of the authorization server, needs to be specified here
+          tokenUrl: "https://login.microsoftonline.com/tbd"
+          scopes: {} # The scopes are not being used yet
+
+  parameters:
     acceptLanguage:
       name: Accept-Language
       in: header
