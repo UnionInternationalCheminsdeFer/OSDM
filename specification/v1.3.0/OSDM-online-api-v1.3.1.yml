@@ -8,7 +8,7 @@ servers:
     url: https://tickets-otest.oebb.at/osdm-sim/api
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.3.1-rc
+  version: 1.3.1
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -73,7 +73,7 @@ paths:
       operationId: getPlaces
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/authorization"
+
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
         - in: path
@@ -121,7 +121,7 @@ paths:
       operationId: postPlaces
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/authorization"
+
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -163,7 +163,6 @@ paths:
         embed either references or full location definitions is returned.
       operationId: getTripsId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -238,7 +237,7 @@ paths:
       operationId: postTrips
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/authorization"
+
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -284,7 +283,6 @@ paths:
         destination can be resolved using the places service.
       operationId: getTripsCollectionId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -356,7 +354,6 @@ paths:
       description: The unique codes of the origin and destination can be resolved using the places service.
       operationId: getTripOffersCollectionId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -431,7 +428,6 @@ paths:
       summary: Returns trip offers for origin and destination (and via) places.
       operationId: postTripOffersCollection
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -478,7 +474,6 @@ paths:
       summary: Returns different offers for a specified tripOfferId.
       operationId: getTripOffersId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -542,7 +537,6 @@ paths:
         Returns an offer. Note: Does not return non-trip offers.
       operationId: getOffersId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -605,7 +599,6 @@ paths:
         This includes simple passes or one day tickets.
       operationId: postNonTripOffersCollection
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -651,7 +644,6 @@ paths:
         This service provides the availability service to be compliant with existing 90918-1 services (as-if-reservation).
       operationId: validateReservationPreferencesId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -724,7 +716,6 @@ paths:
         compliant with existing 90918-1 services (as-if-reservation).
       operationId: validateReservationNearbyId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -807,7 +798,6 @@ paths:
         combination available preferences are returned.
       operationId: provideReservationSeatMap
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -878,7 +868,6 @@ paths:
         with existing 90918-1 services (as-if-reservation)
       operationId: validateFareReservationPreferencesId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -951,7 +940,6 @@ paths:
         This service provides the availability service to be compliant with existing 90918-1 services (as-if-reservation).
       operationId: validateFareReservationNearbyId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1034,7 +1022,6 @@ paths:
         combination available preferences are returned.
       operationId: provideFareReservationPlaceMap
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1101,7 +1088,6 @@ paths:
       summary: Returns the passenger's information at booking step.
       operationId: getBookingPassengersId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1151,7 +1137,6 @@ paths:
       summary: Allows updating a passenger's information at booking step.
       operationId: patchBookingPassenger
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1210,7 +1195,6 @@ paths:
       summary: Returns the booker's information at booking step.
       operationId: getBookingCustomer
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1254,7 +1238,6 @@ paths:
       summary: Allows updating a booker's information at booking step.
       operationId: patchBookingBooker
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1307,7 +1290,6 @@ paths:
       summary: Returns a product for the id provided.
       operationId: getProductsId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1360,7 +1342,6 @@ paths:
       summary: Allows to create a booking based on a previously requested offer.
       operationId: postBookings
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1408,7 +1389,6 @@ paths:
       summary: Returns a booking with the id provided.
       operationId: getBookingsId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1477,7 +1457,6 @@ paths:
         but must be repeated according to the error handling rules in case the delete fails.
       operationId: deleteBookingsId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
         - in: path
@@ -1512,7 +1491,6 @@ paths:
       summary: Allows updating the fulfillment type of the booking.
       operationId: confirmBooking
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1559,7 +1537,6 @@ paths:
       summary: Triggers the fulfillment of the booking.
       operationId: postFulfillments
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1611,7 +1588,6 @@ paths:
       summary: Allows the effective fulfillment of one ore more confirmed fulfillment.
       operationId: patchFulfillment
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1669,7 +1645,6 @@ paths:
       summary: Returns the fulfillment, aka. ticket for the provided id.
       operationId: getFulfillmentId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1717,7 +1692,6 @@ paths:
         accepted via a PATCH, deleted or left to die at the end of its lifetime.
       operationId: postRefundOffersBookingId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1764,7 +1738,6 @@ paths:
       summary: Returns the refund offer for the ids provided.
       operationId: getRefundOffersId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1814,7 +1787,6 @@ paths:
       summary: Allows to accept and confirm a refund offer.
       operationId: patchRefundOffersId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -1872,7 +1844,6 @@ paths:
       summary: Deletes a refundOffer without waiting for expiry.
       operationId: deleteRefundOffersId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
         - in: path
@@ -1915,7 +1886,6 @@ paths:
         Returns the exchange operation with the id provided. It may be a provisional or a confirmed exchange.
       operationId: getExchangeOperation
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -1983,7 +1953,6 @@ paths:
         Allows to update an ongoing exchange operation.
       operationId: patchExchangeOperation
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -2042,7 +2011,6 @@ paths:
         Cancels an ongoing exchange operation in provisional state.
       operationId: deleteExchangeOperation
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
         - in: path
@@ -2086,7 +2054,6 @@ paths:
         characteristics.
       operationId: postExchangeTripOffersCollection
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
         - $ref: "#/components/parameters/traceParent"
@@ -2134,7 +2101,6 @@ paths:
         Returns different offers and trips for a specified origin and destination (and via).
       operationId: getExchangeTripOffersCollectionId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -2211,7 +2177,6 @@ paths:
         Returns different offers for a specified trip offer id.
       operationId: getExchangeTripOffersId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -2277,7 +2242,6 @@ paths:
         layouts can either be retrieved as a complete list or specificity for a train identified via offerId and reservationId or fareId
       operationId: getCoachLayouts
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -2318,7 +2282,6 @@ paths:
         Retrieve a coach layout description needed for graphical reservation for a given layout id.
       operationId: getCoachLayoutsLayoutId
       parameters:
-        - $ref: "#/components/parameters/authorization"
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -2357,18 +2320,21 @@ paths:
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
 ## Components
-components:
-  parameters:
-    authorization:
-      name: Authorization
-      in: header
-      description: >-
-        OAuth2 token used to authenticate the consumer API. Refer to the implementation documentation
-        for information on how to get a token.
-      schema:
-        type: string
-      required: true
+security:
+  - oAuth2ClientCredentials: []
 
+components:
+  securitySchemes:
+    oAuth2ClientCredentials:
+      type: oauth2
+      description: See https://swagger.io/docs/specification/authentication/oauth2/
+      flows:
+        clientCredentials:
+          # The token endpoint of the authorization server, needs to be specified here
+          tokenUrl: "https://login.microsoftonline.com/tbd"
+          scopes: {} # The scopes are not being used yet
+
+  parameters:
     acceptLanguage:
       name: Accept-Language
       in: header
@@ -2899,7 +2865,7 @@ components:
         #            $ref: "#/components/schemas/TripResult"
         warning:
           $ref: "#/components/schemas/WarningCollection"
-        id: 
+        id:
           type: string
         trips:
           type: array
@@ -2967,6 +2933,25 @@ components:
         tripStatus: # Ask Stefan
           $ref: "#/components/schemas/TripStatus"
 
+    TripSpecification:
+      type: object
+      description: >-
+        A minimal trip specification from origin to destination.
+      required:
+        - tripId
+        - tripLegs
+      properties:
+        tripId:
+          description: >-
+            Id of this trip for referencing purposes. Unique within trip response.
+          type: string
+        tripLegs:
+          description: Legs ot the trip with minimal information
+          type: array
+          items:
+            $ref: "#/components/schemas/TripLegSpecification"
+          minItems: 1
+
     TripStatus: ## OJP
       type: object
       description: >-
@@ -3017,6 +3002,29 @@ components:
         continousLeg:
           $ref: "#/components/schemas/ContinuousLeg"
 
+    TripLegSpecification:
+      type: object
+      description: >-
+        A minimal simple trip leg specification consisting only of timed legs. Transfer legs 
+        and continuous legs are not part of this specification as they are not relevant to find
+        the correct vehicles by a pricing engine.
+      required:
+        - legId
+        - seqId
+      properties:
+        legId:
+          description: Id of this trip leg. Unique within trip result.
+          type: string
+        seqId: # EXT
+          type: number
+          format: int32
+        timedLeg:
+          $ref: "#/components/schemas/TimedLegSpecification"
+        transferLeg:
+          $ref: "#/components/schemas/TransferLegSpecification"
+        # continousLeg:
+        #   $ref: "#/components/schemas/ContinuousLeg"
+
     TimedLeg: ## OJP # Reduced scope
       type: object
       description: >-
@@ -3049,6 +3057,26 @@ components:
         duration: # EXT add attribute for consistency
           type: string
           format: duration
+
+    TimedLegSpecification:
+      type: object
+      description: >-
+        A minimal leg specification.
+      required:
+        - legAlight
+        - legBoard
+        - service
+      properties:
+        legBoard: # EXT: use Place instead of LegBoard
+          $ref: "#/components/schemas/LegStopSpecification"
+        legIntermediates: # EXT: use Place instead of LegIntermediate
+          type: array
+          items:
+            $ref: "#/components/schemas/LegStopSpecification"
+        legAlight: # EXT: use Place instead of LegAlight
+          $ref: "#/components/schemas/LegStopSpecification"
+        service:
+          $ref: "#/components/schemas/DatedJourneySpecification"
 
     TransferLeg: ## OJP # Reduced scope
       type: object
@@ -3101,6 +3129,19 @@ components:
         #   $ref: "#/components/schemas/PathGuidance"
         # situationFullRef:  # Out of scope
         #   $ref: "#/components/schemas/SituationFullRef"
+
+    TransferLegSpecification:
+      type: object
+      description: >-
+        A minimal transfer leg specification.
+      required:
+        - legStart
+        - legEnd
+      properties:
+        legStart:
+          $ref: "#/components/schemas/Place"
+        legEnd:
+          $ref: "#/components/schemas/Place"
 
     ContinuousLeg: ## OJP # Reduced scope
       type: object
@@ -3295,6 +3336,23 @@ components:
         status:
           $ref: "#/components/schemas/StopCallStatus"
 
+    LegStopSpecification:
+      type: object
+      description: >-
+        A minimal leg stop specification indicating the time and place where the vehicle starts.
+      #allOf:
+      required:
+        - plannedQuay
+        - stopPlace
+      properties:
+        stopPlace:
+          $ref: "#/components/schemas/StopPlace" ## EXT
+        serviceDeparture:
+          description: >-
+            Describes the departure situation at this leg board stop point (group of attributes
+            of timetabled passing time, estimated passing time, observed passing time).#
+          $ref: "#/components/schemas/ServiceTime"
+
     ServiceTime: ## OJP
       type: object
       description: >-
@@ -3321,6 +3379,7 @@ components:
         # - journeyRef
         - mode
         - publishedServiceName
+        - operatorRef
       properties:
         # operatingDayRef:  # Out of scope
         #   $ref: "#/components/schemas/OperationDayRef"
@@ -3336,15 +3395,63 @@ components:
             or "Circle Line" or "ICE 488".
           type: string
           example: S1
-        vehicleNumber: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
+        vehicleNumbers: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
           description: >-
             If several vehicle number exist, use the commercial number.
-          type: string
-          example: 1
+            The vehicle number(s) of the vehicle(s) that runs this timed leg.
+            On some legs a vehicle has multiple vehicles, e.g. if it is split into two
+            trains at a intermediate stop.
+          type: array
+          items:
+            type: string
+        lineNumbers:
+          description: >-
+            List of line numbers that are part of this journey.
+            Especially on regional traffic, a vehicle is defined by a line number only.
+          type: array
+          items:
+            type: string
         operatorRef:
-          description: Reference to transport operator
+          description: >-
+            Reference to transport operator.
+            For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
           type: string
-          example: ojp:11
+          example: "urn:uic:rics:11:321"
+
+    DatedJourneySpecification:
+      type: object
+      description: >-
+        Vehicle journey that runs at a specific date. Provided by OJP.
+        A vehicle can either be defined by a vehicle number(s) or line number(s) in the
+        case of regional traffic.
+      required:
+        # - operatingDayRef
+        # - journeyRef
+        - mode
+        - publishedServiceName
+        - operatorRef
+      properties:
+        vehicleNumbers: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
+          description: >-
+            The vehicle number(s) of the vehicle(s) that runs this timed leg.
+            On some legs a vehicle has multiple vehicles, e.g. if it is split into two
+            trains at a intermediate stop.
+          type: array
+          items:
+            type: string
+        lineNumbers:
+          description: >-
+            List of line numbers that are part of this journey.
+            Especially on regional traffic, a vehicle is defined by a line number only.
+          type: array
+          items:
+            type: string
+        operatorRef:
+          description: >-
+            Reference to transport operator.
+            For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
+          type: string
+          example: "urn:uic:rics:11:321"
 
     Mode: ## OJP
       type: object
@@ -3395,8 +3502,8 @@ components:
         Product category based on NeTEx/SIRI. A product category is a classification for vehicle journeys
         to express some common properties of journeys for marketing and fare products. Provided by OJP.
       required:
-        #  - name  # EXT no longer mandatory as being passed in a trip
-        #  - shortName  # EXT no longer mandatory as being passed in a trip
+        - name
+        - shortName
         - productCategoryRef
       properties:
         name:
@@ -3493,7 +3600,7 @@ components:
           description: Postal code of the address.
           type: string
           example: 2265CA
-        city:  # EXT
+        city: # EXT
           description: City name
           type: string
           example: Leidschendam
@@ -3524,7 +3631,7 @@ components:
       type: object
       required:
         - pointOfInterestCode
-      #  - pointOfInterestName  ## EXT no longer mandatory as being passed in a trip
+        - pointOfInterestName
       properties:
         pointOfInterestCode:
           description: ID of this Point of Interest.
@@ -3603,7 +3710,7 @@ components:
       #allOf:
       required:
         - stopPlaceRef
-        #  - stopPlaceName  # EXT no longer mandatory as being passed in a trip
+        - stopPlaceName
       properties:
         stopPlaceRef:
           description: Reference to a Stop Place
@@ -3772,13 +3879,12 @@ components:
         If you are searching for fares you pass in the complete trip in trips and the use the returnSearchCriteria
         to define which part you need fares (especially if you want a price up to a virtual border point).
       required:
-        - tripSearchCriteria
         - passengers
       properties:
-        trips:
+        tripSpecifications:
           type: array
           items:
-            $ref: "#/components/schemas/Trip"
+            $ref: "#/components/schemas/TripSpecification"
         tripSearchCriteria:
           $ref: "#/components/schemas/TripRequest"
         returnSearchParameters:
@@ -3872,10 +3978,6 @@ components:
           example: Bruxelles-Midi 2020-07-01 10:05 CET
         trip:
           $ref: "#/components/schemas/Trip"
-        tripKey:
-          description: >-
-            client reference that could be received in a search with trips in input. In such cases it is expected to be echoed back.
-          type: string
         offers:
           type: array
           items:
@@ -4987,7 +5089,7 @@ components:
       required:
         - tripOfferRequest
         - fulfillmentIds
-    
+
     ExchangeTripOffersCollectionResponse:
       type: object
       required:
@@ -5369,7 +5471,6 @@ components:
           items:
             $ref: "#/components/schemas/Link"
 
-
     LayoutCoordinates:
       type: object
       properties:
@@ -5517,7 +5618,7 @@ components:
         name:
           $ref: "#/components/schemas/Text"
         description:
-          $ref: "#/components/schemas/Text"     
+          $ref: "#/components/schemas/Text"
         prices:
           description: allows specifying a price in multiple currencies
           type: array
@@ -5529,14 +5630,8 @@ components:
           description: >-
             Regional constraint of the fare- offline bulk data use the id of connection points whereas in an online environment the connection point is included
           properties:
-            entryConnectionPointId:
-              description: connection point connecting two fare regimes
-              type: string
             entryConnectionPoint:
               $ref: "#/components/schemas/FareConnectionPoint"
-            exitConnectionPointId:
-              description: connection point connecting two fare regimes
-              type: string
             exitConnectionPoint:
               $ref: "#/components/schemas/FareConnectionPoint"
             regionalValidities:
@@ -6137,8 +6232,6 @@ components:
 
         Providing the UIC code for the station is mandatory.
       properties:
-        id:
-          type: string
         name:
           type: string
         stationSets:
@@ -6148,7 +6241,6 @@ components:
             items:
               $ref: "#/components/schemas/StopPlaceRef" # EXT Changed from StopPoint
       required:
-        - id
         - stationSets
 
     TrainValidity:
@@ -6449,7 +6541,7 @@ components:
             $ref: "#/components/schemas/PlacePack"
       required:
         - accommodationType
-        - accommodationSubType 
+        - accommodationSubType
 
     PlacePack:
       type: object
