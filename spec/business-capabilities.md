@@ -79,6 +79,15 @@ need to be supported. Some trains of the trip might not support all service clas
 Searching for non-trip based offers is supported by a dedicated service. Search criteria can 
 be tags, regions, geo-coordiantes.
 
+### Offer combination
+
+Offers can provide tags to indicate that some products from a provider can be sold only when in conjunction with product(s) from another provider using the same tag. At least one, not all, combinationTags must be in common to allow combination. No combinationTags indicate that there are no combination constraints on the product. The comination might be mandatory or optional.
+
+The combination tags must be unique across all partners involved on a given trip.
+
+If offers have no combination restrictions they can be combined freely.
+However if business rule require, it must be to express combination constraints to
+secure the tariff validity.
 
 ### Pre-book Offers
 
