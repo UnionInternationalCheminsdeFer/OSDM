@@ -350,7 +350,7 @@ A route can split into optional routes indicated in the human readable
 route by “/”.
 
 The end of a route of one carrier when combined to another route of
-another carrier is indicated with an additional “(FR)” in the human
+another carrier might be indicated with an additional text (e.g. FR or GR) in the human
 readable form if it is not at a “real” station.
 
 ##### Are routes used as line routes or as bubble routes?
@@ -967,22 +967,6 @@ The existing reservation services in IRS 90918-1 should also be
 supported.
 
 ### Requirements on Fare Exchange
-
-*Will be released as part of version 1.2*
-
-Fares-in OSDM are expressed in Euro.
-
-Fares must be delivered by fare providers twice a year: **October 1st** each
-year for *winter timetable change (mid of December)* and **April 1st** each year
-for *summer timetable change (mid of June)*. The data for these mandatory
-data exchange must be delivered by all fare providers to the OSDM-Offline
-platform. Additionally, all allocators must import relevant fares from the
-the OSDM-Offline platform to guarantee that up-to-date fare data is used for
-price calculation.
-
-Fare-prices shall remain unchanged unless optional deliveries in between these
-dates (October 1st and April 1st each year) are agreed on bi-/multilateral basis.
-These optional data are also delivered to the OSDM-Offline platform.
 
 In principle prices for customers are created by addition of prices per
 fare provider. Nevertheless, bi-multilateral agreements may include other
