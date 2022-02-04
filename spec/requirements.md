@@ -189,13 +189,13 @@ The state of a fee depends on the state of the associated product.
 
 ### Requirements on Offer Combination
 
-If offers have no combination restrictions they can be combined freely.
-However if business rule require, it must be to express combination constraints to
-secure the tariff validity.
+Offers from different providers might have a restriction to be sold in combination only. 
+
+The combination might not be be required by all offers. E.g. an offer from provider A might only be sold if offer B of 
+another provider is sold but offer B can be sold stand alone. 
 
 The combination logic needs to be fast (<20ms).
 
-The combination tags most be unique across all partners involved on a given trip.
 
 ### Requirements on Round Trips
 
