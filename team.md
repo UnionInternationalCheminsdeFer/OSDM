@@ -9,7 +9,9 @@ permalink: /team/
 The [OSDM specification](../spec) effort has been driven by
 
 - [Eder Sabine](https://www.linkedin.com/in/sabine-eder-949337203/) (ÖBB)
-- [Gantert Clemens](https://www.linkedin.com/in/clemens-g-88783725) (DB)
+- [Gantert Clemens](https://www.linkedin.com/in/clemens-g-88783725/) (DB)
+- [Klapwijk Roland](https://www.linkedin.com/in/rolandklapwijk/) (Sqills)
+- [Koffi-Frédéric Konan](https://www.linkedin.com/in/frederic-konan/) (Amadeus)
 - [Johan Nieuwerth](https://www.linkedin.com/in/johannieuwerth/) (Sqills)
 - [Olsson Anders](https://www.linkedin.com/in/anders-olsson-5712a32a/) (SilverRail)
 - [Parmigiani Elisa](https://www.linkedin.com/in/elisa-parmigiani-186b5745/) (Amadeus)
