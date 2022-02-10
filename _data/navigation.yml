@@ -19,6 +19,8 @@
       link: spec/models/
     - name: Processes
       link: spec/processes/
+    - name: Synchronization Management
+      link: spec/synchronization-management/
     - name: Errors & Warnings
       link: spec/errors-warnings/
     - name: Catalog of Code Lists
