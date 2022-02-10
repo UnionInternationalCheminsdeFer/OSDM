@@ -1,13 +1,13 @@
 ---
 layout: page
-title: Booking Synchronization Management
+title: Synchronization Management
 hide_hero: true
-permalink: /spec/synchronization-management
+permalink: /spec/synchronization-management/
 ---
 
 ## Synchronization Management
 
-In order for carriers or allocators to inform distributors about changes in a trip or a booking, we have added an API that a carrier/allocator system can inform a distributor about that fact, that a trip or a booking has changed. The distributor can then itself inform a passenger or the buyer e.g. a travel agency about changes to its booking.
+For carriers or allocators to inform distributors about changes in a trip or a booking, we have added an API that a carrier/allocator system can inform a distributor about that fact, that a trip or a booking has changed. The distributor can then itself inform a passenger or the buyer e.g. a travel agency about changes to the trip, the booking or the complaint.
 
 ![Synchronization Management](../images/synchronization-management/synchronization-management.png)
 
