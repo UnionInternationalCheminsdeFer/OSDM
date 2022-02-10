@@ -9,6 +9,8 @@ permalink: /spec/synchronization-management
 
 In order for carriers or allocators to inform distributors about changes in a trip or a booking, we have added an API that a carrier/allocator system can inform a distributor about that fact, that a trip or a booking has changed. The distributor can then itself inform a passenger or the buyer e.g. a travel agency about changes to its booking.
 
+![Synchronization Management](../images/synchronization-management/synchronization-management.png)
+
 The API informs authorized listener of the fact that changes have occurred using [Webhook](https://en.wikipedia.org/wiki/Webhook).
 
 ## Event Types and Their Semantics

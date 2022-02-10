@@ -26,6 +26,7 @@ is explained in this documents:
 - [Models](./models/)
 - [Processes](./processes/)
 - [Errors & Warnings](./errors-warnings/)
+- [Synchronization Management](./synchronization-management/)
 
 ## Catalog of Code Lists
 
