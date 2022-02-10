@@ -117,5 +117,6 @@ The following increments are planned:
 | `PI-0` | 17.12.2020 | *delivered with ODSM v.1.0*  |
 | `PI-1` | 11.02.2021 | *delivered with OSDM v.1.1*  |
 | `PI-2` | 24.06.2021 | *delivered with OSDM v.1.2*, see [Release Notes 1.2](https://unioninternationalcheminsdefer.github.io/OSDM//releases/OSDM-release-notes-v1.2/) |
-| `PI-3` | 28.10.2021 | *delivered with OSDM v.1.3*, see [Release Notes 1.3](https://unioninternationalcheminsdefer.github.io/OSDM//releases/OSDM-release-notes-v1.3/) 
-| `PI-4` | 14.02.2022 | *specification work ongoing* |
+| `PI-3` | 28.10.2021 | *delivered with OSDM v.1.3*, see [Release Notes 1.3](https://unioninternationalcheminsdefer.github.io/OSDM//releases/OSDM-release-notes-v1.3/) |
+| `PI-4` | 14.02.2022 | *delivered with OSDM v.1.4*, see [Release Notes 1.4](https://unioninternationalcheminsdefer.github.io/OSDM//releases/OSDM-release-notes-v1.4/) |
+| `PI-5` | 26.06.2022 | *specification work ongoing* |
