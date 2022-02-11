@@ -7,6 +7,8 @@ permalink: /spec/compliance/
 
 ## Compliance
 
+*Update to 1.4*
+
 To be compliant with the OSDM specification in total a party must be compliant
 with the offline as well as the online part of the specification. However, a
 party can decide based on their business need to implement the offline or the
