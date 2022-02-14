@@ -4327,7 +4327,9 @@ components:
           items:
             $ref: "#/components/schemas/PromoCode"
         passengerIds:
-          type: string
+          type: array
+          items:
+            type: string
           description: Id of the passenger
         providerBookingReference:
           type: string
