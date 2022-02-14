@@ -6,6 +6,7 @@ servers:
     url: http://osdm.mocklab.io
   - description: OEBB OSDM Simulator
     url: https://tickets-otest.oebb.at/osdm-sim/api
+
 info:
   title: UIC 90918-10 - OSDM
   version: 1.4.0-rc1
@@ -289,7 +290,7 @@ paths:
         The unique codes of the origin and
         destination can be resolved using the places service.
       operationId: getTripsCollectionId
-      parameters:"
+      parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
@@ -3690,7 +3691,7 @@ components:
             type: string
         operatorRef:
           description: >-
-            Reference to transport operator.
+            Reference to transport operators.
             For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
           type: string
           example: "urn:uic:rics:11:321"
@@ -3707,7 +3708,7 @@ components:
         # - journeyRef
         - mode
         - publishedServiceName
-        - operatorRef
+        - operatorRefs
       properties:
         vehicleNumbers: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
           description: >-
@@ -3724,12 +3725,14 @@ components:
           type: array
           items:
             type: string
-        operatorRef:
+        operatorRefs:
           description: >-
-            Reference to transport operator.
+            Reference to transport operators.
             For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
-          type: string
-          example: "urn:uic:rics:11:321"
+          type: array
+          items:
+            type: string
+            example: "urn:uic:rics:11:321"
 
     Mode: ## OJP
       type: object
