@@ -60,9 +60,6 @@ tags:
   - name: Exchange
     description: >-
       resources to get exchange offers and book it
-  - name: Coach Layouts
-    description: >-
-      resources to get the layout of a coach
   - name: Complaint Management
     description: >-
       resources to manage complaints
@@ -2240,7 +2237,7 @@ paths:
   /coachLayouts:
     get:
       tags:
-        - Coach Layouts
+        - Master Data
       summary: Returns all coach layouts.
       description: >-
         Retrieve the coach layout description needed for graphical reservation. The coach
@@ -2281,7 +2278,7 @@ paths:
   /coachLayouts/{layoutId}:
     get:
       tags:
-        - Coach Layouts
+        - Master Data
       summary: Returns a coach layout for a provided id.
       description: >-
         Retrieve a coach layout description needed for graphical reservation for a given layout id.
@@ -2449,7 +2446,7 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
-  /masterdata/reductionCards:
+  /reductionCards:
     get:
       tags:
         - Master Data
