@@ -3148,17 +3148,10 @@ components:
         A single stage of a trip that is made without change of MODE or service (ie: between each interchange). Provided by OJP.
       required:
         - legId
-        - seqId
       properties:
         legId:
-          description: Id of this trip leg. Unique within trip result.
+          description: Id of this trip leg. Unique within trip result. A seqId is a leg legId.
           type: string
-        seqId: # EXT
-          type: number
-          format: int32
-        # participantRef:   # Out of scope
-        #   description: IT system that is participating in a communication with other participant(s)
-        #   type: string
         timedLeg:
           $ref: "#/components/schemas/TimedLeg"
         transferLeg:
@@ -3174,14 +3167,10 @@ components:
         the correct vehicles by a pricing engine.
       required:
         - legId
-        - seqId
       properties:
         legId:
-          description: Id of this trip leg. Unique within trip result.
+          description: Id of this trip leg. Unique within trip result .A seqId is a leg legId.
           type: string
-        seqId: # EXT
-          type: number
-          format: int32
         timedLeg:
           $ref: "#/components/schemas/TimedLegSpecification"
         # transferLeg:
@@ -4224,13 +4213,12 @@ components:
             The offerTag can/must (depending on the mandatory flag) be used in some cases to restrict the set of
             offers returned in a subsequent and related offer search to only compatible ones.
             Note the offerTag does not need to be unique.
-        coveredTripLegIndexes:
+        coveredTripLegIds:
           type: array
           items:
-            type: integer
-            format: int32
+            type: string
           description: >-
-            relevant only in case the offer only covers parts of the trip. This will indicate which tripLegs are covered by the specific offer
+            Relevant only in case the offer only covers parts of the trip. This will indicate which tripLegs are covered by the specific offer.
         returnTags:
           type: array
           items:
