@@ -918,7 +918,8 @@ Transaction type used in after sales rules for fares.
 |`EXCHANGE` ||
 |`CARRIER_CHANGE` | Exchange with a new fare of another carrier|
 |`EXCHANGE` | Exchange with a new fare of the same carrier|
-|`UPGRADE` ||
+|`UPGRADE` | Exchange with a fare of higher value|
+|`GROUP_DOWN_SIZE` | Exchange with a group of less passengers |
 
 ## TravelerType
 
