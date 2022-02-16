@@ -136,7 +136,6 @@ Place Preference Group collects Place preferences where only one can be chosen o
 | `SSB` | Small Structured Barcode - See IRS 90918-9 |
 | `DOSIPAS` | Double Signed Dynamic Barcode (static part (FCB) and dynamic part created at the control time - See IRS 90918-9 |
 
-
 ## CardType
 
 | Code | Description |
@@ -145,7 +144,6 @@ Place Preference Group collects Place preferences where only one can be chosen o
 | `REDUCTION_CARD` | Card providing reduction |
 | `CHIP_CARD` | Chip card to load bookings/references onto it |
 | `PASS` | A pass providing full or partial reduction within the region where the pass is valid |
-
 
 ## CarrierCode
 
@@ -603,6 +601,28 @@ Codes for personal data items that might be transferred to the carrier if requir
 | `DOCUMENT_CHANGE` | E.g. passport was lost and replaced|
 | `AGENT_ERROR` | Personal data were enterd wronlgy by the sales agent|
 
+## Public Transportation Modes (ptMode)
+
+This is a sensible subset of SIRI.
+
+| PT Mode |
+|----------|
+| `BUS`    |
+| `COACH_GROUP` |
+| `HIGH_SPEED_TRAIN` |
+| `HISTORIC_TRAIN` |
+| `INTERCITY` |
+| `REGIONAL`  |
+| `INTERREGIONAL`  |
+| `URBAN`  |
+| `TRAM`   |
+| `UNDERGROUND` |
+| `NIGHT_TRAIN` |
+| `SHARED_TAXI` |
+| `MOTOR_RAIL`  |
+| `MOUNTAIN_TRAIN` |
+| `PLANE`  |
+| `SHIP`   |
 
 ## Point of Interest (POI)
 
