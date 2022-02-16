@@ -603,7 +603,7 @@ Codes for personal data items that might be transferred to the carrier if requir
 
 ## Public Transportation Modes (ptMode)
 
-This is a sensible subset of SIRI.
+This is a sensible subset of SIRI modes.
 
 | PT Mode |
 |----------|

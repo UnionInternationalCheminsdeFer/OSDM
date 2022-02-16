@@ -15,12 +15,6 @@ The API informs authorized listener of the fact that changes have occurred using
 
 ## Event Types and Their Semantics
 
-### Trip
-
-- `TRIP_CONFIRMED` - (use case: group booking)
-- `TRIP_CHANGED` - booking is still valid, but trip has changed, e.g. re-routing due to construction etc., even a simple delay
-- `TRIP_CANCELLED` - (use case: disruption, strike,..): trip no longer rideable, no alternative available
-
 ### Booking
 
 - `BOOKING_CANCELED` - `DELETE /bookings/{id}`: pre-booking has either been cancelled by distributor or pre-booking has timed out
@@ -43,11 +37,11 @@ The API informs authorized listener of the fact that changes have occurred using
 
 To verify whether a booking has changed on the distributor's side, a **revision number** (or **timestamp**) on the booking is required.
 
-## Subscribing to Event
+## Subscribing to Events
 
 A receiver has to provide the following information:
 
-- The events it is interested in. E.g. `BOOKING`, `TRIP` or `COMPLAINT`
+- The events it is interested in. E.g. `BOOKING` or `COMPLAINT`
 - The end point the events need to be sent to. E.g. `https://trainline.com/api/webhooks/db`
 - Sign message to guarantee that the sender is in fact who it claims to be. E.g. `HMAC`
 - IP whitelist
