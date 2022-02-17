@@ -262,6 +262,16 @@ The travel validity defines the duration the traveler has to make his travel. Op
 | `numberOfTravelDays` | A duration must be provided
 | `returnConstraint` | `earliestReturn` < `latestReturn`
 
+
+#### Constraint on Trip Interruptions
+
+![Fare Structure](../images/fare-data-structure/TripInterruption.PNG)
+
+#### Constraint on Activation of Multi Journey Fares
+
+![Fare Structure](../images/fare-data-structure/MultipleTripTicketAllocation.PNG)
+
+
 ## Data Supporting Online Services
 
 Additional data to support the online sales services can be exchanged.

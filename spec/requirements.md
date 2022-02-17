@@ -966,6 +966,23 @@ It should be possible to book reservations within the same technology.
 The existing reservation services in IRS 90918-1 should also be
 supported.
 
+### Requirements on Trip Interruptions
+
+Restrictions oon allowed trip interruptions must be indicated in a fare. 
+
+Restrictions on interruptions can specify the maximal number of interruptions and the maximal duration of interruptions.
+
+The fare must provide information wheter the interruption has to be confiremd by staff of by deactivation of the electronic ticket.
+
+### Requirements on Multi-Journes Tickets
+
+The restrictions on the use of a multi-journey ticket for individual trips must be described in the fare.
+
+REstrictions can specifyy the number of das, trips or time units to be used.
+
+The process to use an individual trip with a multi journey ticket must be indicated. These  
+include separate fulfillments per individual tris or activation for a trip. 
+
 ### Requirements on Fare Exchange
 
 In principle prices for customers are created by addition of prices per
