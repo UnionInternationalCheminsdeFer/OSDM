@@ -966,6 +966,16 @@ Transaction type used in after sales rules for fares.
 | `MOTOCYCLE` | A motorcycle for car carriage trains | X | X | X | X |
 | `TRAILER` | A trailer for car carriage trains | X | X | X | X |
 
+## TravelValidityType
+
+Type of the travel validity of a fare.
+
+| Code |Description |
+|-----|-----------------|
+| `SINGLE_TRIP` | Fare is for a single trip. |
+| `MULTIPLE_TRIPS`| Fare is for multiple trips but with restrictions on the usage. |
+| `UNRESTRICTED` | The fare is for multiple unrestricted use within the provided travel validity period. |
+
 ## TripAllocationProcess
 
 Trip allocation process indicated the type of process a passenger needs to follow to make use of a multi journey ticket with restrictions.
