@@ -2234,93 +2234,6 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
-  /coachLayouts:
-    get:
-      tags:
-        - Master Data
-      summary: Returns all coach layouts.
-      description: >-
-        Retrieve the coach layout description needed for graphical reservation. The coach
-        layouts can either be retrieved as a complete list or specificity for a train identified via offerId and reservationId or fareId
-      operationId: getCoachLayouts
-      parameters:
-        - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/traceParent"
-        - $ref: "#/components/parameters/traceState"
-      responses:
-        "200":
-          description: coach layouts
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CoachLayoutsResponse"
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        "400":
-          $ref: "#/components/responses/BadRequestResponse"
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          $ref: "#/components/responses/InternalServerErrorResponse"
-        "501":
-          description: Not implemented
-        "503":
-          $ref: "#/components/responses/ServiceUnavailableResponse"
-
-  /coachLayouts/{layoutId}:
-    get:
-      tags:
-        - Master Data
-      summary: Returns a coach layout for a provided id.
-      description: >-
-        Retrieve a coach layout description needed for graphical reservation for a given layout id.
-      operationId: getCoachLayoutsLayoutId
-      parameters:
-        - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/traceParent"
-        - $ref: "#/components/parameters/traceState"
-        - in: path
-          description: id of the layout
-          name: layoutId
-          schema:
-            type: string
-          required: true
-      responses:
-        "200":
-          description: coach layouts
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CoachLayoutResponse"
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        "400":
-          $ref: "#/components/responses/BadRequestResponse"
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "500":
-          $ref: "#/components/responses/InternalServerErrorResponse"
-        "501":
-          description: Not implemented
-        "503":
-          $ref: "#/components/responses/ServiceUnavailableResponse"
-
   /complaints:
     post:
       tags:
@@ -2439,6 +2352,93 @@ paths:
           description: Not Found
         "409":
           $ref: "#/components/responses/ConflictResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
+  /coachLayouts:
+    get:
+      tags:
+        - Master Data
+      summary: Returns all coach layouts.
+      description: >-
+        Retrieve the coach layout description needed for graphical reservation. The coach
+        layouts can either be retrieved as a complete list or specificity for a train identified via offerId and reservationId or fareId
+      operationId: getCoachLayouts
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
+      responses:
+        "200":
+          description: coach layouts
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CoachLayoutsResponse"
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
+  /coachLayouts/{layoutId}:
+    get:
+      tags:
+        - Master Data
+      summary: Returns a coach layout for a provided id.
+      description: >-
+        Retrieve a coach layout description needed for graphical reservation for a given layout id.
+      operationId: getCoachLayoutsLayoutId
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
+        - in: path
+          description: id of the layout
+          name: layoutId
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: coach layouts
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CoachLayoutResponse"
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
@@ -3741,7 +3741,7 @@ components:
           description: Postal code of the address.
           type: string
           example: 2265CA
-        city:  # EXT
+        city: # EXT
           description: City name
           type: string
           example: Leidschendam
@@ -5106,8 +5106,8 @@ components:
     RefundOffersCollectionResponse:
       type: object
       required:
-       - id
-       - refundOffers
+        - id
+        - refundOffers
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
@@ -5812,7 +5812,7 @@ components:
           type: string
           x-extensible-enum:
             - SWIFT
-        bankId:  
+        bankId:
           type: string
         ownerName:
           type: string
@@ -5836,7 +5836,7 @@ components:
           description: >-
             Physical format of the document provided in the content field in Mime-Type format, e.g. 
             application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
-            
+
     ClaimedJourneyDetails:
       type: object
       properties:
@@ -5966,7 +5966,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Trip"
-    
+
     ReimbursementClaimResponse:
       type: object
       properties:
@@ -5978,7 +5978,7 @@ components:
     ReimbursementClaim:
       type: object
       properties:
-        id: 
+        id:
           type: string
         status:
           type: string
@@ -6007,7 +6007,7 @@ components:
           type: string
           format: date-time
         claimManager:
-          $ref: "#/components/schemas/PersonDetail"          
+          $ref: "#/components/schemas/PersonDetail"
         claimType:
           description: impact that was caused by the event
           type: string
@@ -6018,8 +6018,8 @@ components:
             - JOURNEY_PARTIALLY_ABANDONED ## Some passengers abandoned the jouney
         unusedJourneyDetails:
           type: array
-          items: 
-            $ref:  "#/components/schemas/UnusedJourneyPart"      
+          items:
+            $ref: "#/components/schemas/UnusedJourneyPart"
         supportingDocuments:
           type: array
           items:
@@ -6049,7 +6049,7 @@ components:
         unusedLegs:
           type: array
           items:
-            $ref: "#/components/schemas/AffectedLeg"          
+            $ref: "#/components/schemas/AffectedLeg"
         nonTravelingPassengers:
           type: array
           items:
@@ -6473,7 +6473,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Company"
-            
+
     RegulatoryConditions:
       description: >-
         General conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and
@@ -7156,7 +7156,6 @@ components:
                 format: int32
             required:
               - placeProperty
-
 
     AccommodationType:
       type: string
