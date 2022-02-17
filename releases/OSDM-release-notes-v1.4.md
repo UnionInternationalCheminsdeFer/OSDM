@@ -21,23 +21,31 @@ For a customer it must be possible to submit a claim for a booking or parts of i
 
 OSDM now provides an online API to submit a complaint for a booking which can be implemented by any distributor to digitize this process. See the `/complaints` resources for details.
 
-### Differentiate between passenger and buyer
+### Differentiate Between Passenger and Buyer
 
 Especially for travel agencies or the B2B business center it's important to distinguish between *buyer* and *passenger*. I.e., a buyer is not always a passenger. Thus we have added the `buyer` the API.
 
-### Reduction cards are available to ticket vendors
+### Add Constraints on Allowed Journey Interruptions
+
+If an open ticket has constrains on how often a journey can be interrupted this fact can now be expressed in the Offline as well as Online Fare data.
+
+### Add Constraints on Multi-Journey Products
+
+With this version, multi-journey products can be expressed.
+
+### Reduction Cards are Available to Ticket Vendors
 
 Reduction cards are now available to ticket vendors to be used for selecting the cards for requests and in customer profiles. See `/masterdata/reductionCards` for details.
 
-### Add the responsible TCOs in the booking data
+### Add the Responsible TCOs in the Booking Data
 
 New we can support cases where the ticket control organization (TCO) to control tickets is different from the fare provider.
 
-### Option to indicate CarrierConstraints at the level of RegionalValidity and ViaStation
+### Option to Indicate CarrierConstraints at the Level of `RegionalValidity` and `ViaStation`
 
 This feature on the OSDM offline part of the specification allow to indicate CarrierConstraints at the level of RegionalValidity and ViaStation in the fare.
 
-### Travel validity depending on boarding time only
+### Travel Validity Depending on Boarding Time O:nly
 
 Some special tickets define a travel validity based on the boarding time only. These tickets are the valid on that train until the traveler leaves the train.
 
