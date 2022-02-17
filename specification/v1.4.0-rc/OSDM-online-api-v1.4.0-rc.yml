@@ -3173,8 +3173,8 @@ components:
           type: string
         timedLeg:
           $ref: "#/components/schemas/TimedLegSpecification"
-        # transferLeg:
-        #  $ref: "#/components/schemas/TransferLeg"
+        transferLeg:
+          $ref: "#/components/schemas/TransferLeg"
         # continousLeg:
         #   $ref: "#/components/schemas/ContinuousLeg"
 
@@ -3518,7 +3518,7 @@ components:
         # - journeyRef
         - mode
         - publishedServiceName
-        - operatorRef
+        # - operatorRef
       properties:
         # operatingDayRef:  # Out of scope
         #   $ref: "#/components/schemas/OperationDayRef"
@@ -3554,7 +3554,7 @@ components:
             Reference to transport operators.
             For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
           type: string
-          example: "urn:uic:rics:11:321"
+          example: "urn:uic:rics:1185:11"
 
     DatedJourneySpecification:
       type: object
@@ -6162,6 +6162,7 @@ components:
       required:
         - id
         - type
+        - prices
         - regionalConstraint
         - combinationConstraint
         - travelValidityConstraint
@@ -6306,6 +6307,8 @@ components:
         legacyAccountingIdentifier:
           type: object
           description: identifier of the fare in the current 301 accounting file
+          required:
+            - serialId
           properties:
             serialId:
               description: sequential number of regional validities
