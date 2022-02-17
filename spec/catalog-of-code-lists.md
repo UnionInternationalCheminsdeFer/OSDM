@@ -965,3 +965,38 @@ Transaction type used in after sales rules for fares.
 | `CAR` | A car for car-carriage trains | X | X | X | X |
 | `MOTOCYCLE` | A motorcycle for car carriage trains | X | X | X | X |
 | `TRAILER` | A trailer for car carriage trains | X | X | X | X |
+
+## TripAllocationProcess
+
+Trip allocation process indicated the type of process a passenger needs to follow to make use of a multi journey ticket with restrictions.
+
+| Code |Description |
+|-----|-----------------|
+| `NONE` | No action is required, the usage might be tracked automatoally or via on-board controls. |
+| `MANUAL`| The passenger has to allocate a trip manually e.g. by stamping the ticket. (outdated). |
+| `ACTIVATION` | The fulfillment needs to be activated for the trip. |
+| `FULFILLMENT` | A separate fulfillment needs to be retrieved for the trip. |
+
+## TripAllocationUnit
+
+Trip allocation unit indicates the unit that can be allocatoed on a multi journey ticket with restrictions.
+
+| Code |Description |
+|-----|-----------------|
+| `NONE` | Individual trips don't need to be allocated. |
+| `MANUAL`|  allocation per individual trip. |
+| `ACTIVATION` | The allocation is per travel day for multiple trips on the day. |
+| `FULFILLMENT` | The allocation is per duration. |
+
+## TripInterruptionProcess
+
+Trip interruption process indicates the type of process to be followed by the passenger to interrupt a trip.
+
+| Code |Description |
+|-----|-----------------|
+| `NONE` | No action is required from the passenger in case he is interrupting his trip. |
+| `MANUAL`| In case a passenger is interrupting his trip he needs to receive a confirmation from train or station staff |
+| `ACTIVATION` | The electronic ticket needs to be deactivated during the interruption. |
+
+
+
