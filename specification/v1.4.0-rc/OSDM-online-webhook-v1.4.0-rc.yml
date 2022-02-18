@@ -12,7 +12,7 @@ info:
     The OSDM specification combines the allocator and distributor modes into one aligned
     API interface.
   contact:
-    name: Nicolas Selleslagh, Clemens Gantert and Andreas Schlapbach
+    name: Nicolas Selleslagh, Roland Klapwik and Andreas Schlapbach
     url: https://unioninternationalcheminsdefer.github.io/OSDM/
     email: osdm@uic.org
   license:
@@ -54,12 +54,10 @@ components:
         type:
           type: string
           enum:
-            - TRIP
             - BOOKING
             - COMPLAINT
           example: BOOKING
         event:
-          - "#/components/schemas/BookingEvent"
           - "#/components/schemas/BookingEvent"
           - "#/components/schemas/ComplaintEvent"
 
@@ -75,37 +73,6 @@ components:
           type: string
         bookerId:
           type: string
-
-    TripEvent:
-      required:
-        - type
-        - revision
-        - tripId
-        - resources
-      properties:
-        revision:
-          $ref: "#/components/schemas/Revision"
-        tripId:
-          type: string
-        resources:
-          description: >-
-            Resources to be called by receiver to update its data about a trip.
-
-            Title can be used for a human readable description of what has changed. e.g.
-            "Train ICE 34 at 2021-12-22 13:30 has been cancelled".
-          type: array
-          items:
-            $ref: "#/components/schemas/Resource"
-
-    TripChangeType:
-      type: string
-      enum:
-        - TRIP_CONFIRMED
-        - TRIP_CHANGED
-        - TRIP_CANCELLED
-      examples:
-        - TRIP_CONFIRMED
-        - TRIP_CANCELLED
 
     BookingEvent:
       required:
@@ -125,8 +92,6 @@ components:
 
             Title can be used for a human readable description of what has changed. e.g.
             "Train ICE 34 at 2021-12-22 13:30 has been cancelled".
-
-            The "TRIP_CHANGED" event may only be available if the relevant contract exists.
           type: array
           items:
             $ref: "#/components/schemas/Resource"
@@ -142,7 +107,6 @@ components:
         - PLACE_RELEASED
         - BOOKER_CHANGED
         - PASSENGER_CHANGED
-        - TRIP_CHANGED
       example: FULFILLMENT_REFUNDED
 
     ComplaintEvent:
@@ -174,7 +138,6 @@ components:
 
     ChangeType:
       oneOf:
-        - "#/components/schemas/TripChangeType"
         - "#/components/schemas/BookingChangeType"
         - "#/components/schemas/ComplaintChangeType"
 
