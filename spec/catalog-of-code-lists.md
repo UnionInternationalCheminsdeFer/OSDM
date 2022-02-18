@@ -132,7 +132,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 | `FCB` | Flexible Content Barcode - See IRS 90918-9 |
 | `TLB` | Ticket Layout Barcode - See IRS 90918-9 |
 | `SSB` | Small Structured Barcode - See IRS 90918-9 |
-| `DOSIPAS` | Double Signed Dynamic Barcode (static part (FCB) and dynamic part created at the control time - See IRS 90918-9 |
+| `DOSIPAS` | Double Signed Dynamic Barcode (static part (FCB) and dynamic part created at the control time) - See IRS 90918-9 |
 
 ## CardType
 
@@ -145,7 +145,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 
 ## CarrierCode
 
-See code list: https://uic.org/support-activities/it/rics?recherche=RICS%20code
+See code [RICS code list](https://uic.org/support-activities/it/rics?recherche=RICS%20code).
 
 | Country | Carrier Code | Short Name           | Full Name                                                                                     |
 |---------|------|------------------------------|-----------------------------------------------------------------------------------------------|
@@ -242,7 +242,7 @@ See code list: https://uic.org/support-activities/it/rics?recherche=RICS%20code
 | DE      | 3834 | VRB                          | Verkehrsverbund Region Braunschweig GmbH                                                      |
 | DE      | 3837 | SVG                          | Schienenverkehrsgesellschaft mbH                                                              |
 | DE      | 3841 | HANS                         | Hanseatische Eisenbahn GmbH                                                                   |
-| DE      | 3848 | Go Ahead BW                  | https://www.tricon-terminal.de/                                                               |
+| DE      | 3848 | Go Ahead BW                  | Tricon                                                              |
 | DE      | 3849 | NXG                          | National Express Rail GmbH                                                                    |
 | DE      | 3864 | DB Regio                     | DB Regio AG                                                                                   |
 | DE      | 3873 | RTB                          | Rurtalbahn GmbH                                                                               |
@@ -539,6 +539,31 @@ provides codes for different levels of geographical/political units. E.g.:
 
 Refund because of breakage of a vehicle is handled in a separate process.
 
+## Passenger Type (aka. Traveler Type)
+
+| Code | Description | Transportable  | Bulk (Offline) | Online Request | Online Reply |
+|------|-------------|----------------|----------------|----------------|--------------|
+| `YOUNG_CHILD` | Young child defined by the carrier depending on the age || X || X |
+| `CHILD` | Child defined by the carrier depending on the age || X || X |
+| `YOUTH` | Youth defined by the carrier depending on the age || X || X |
+| `ADULT` | Adult defined by the carrier depending on the age || X || X |
+| `SENIOR` | Senior defined by the carrier depending on the age || X || X |
+| `FAMILY_CHILD` | Child associated with a family traveling together || X | X | X |
+| `ACCOMP_PRM` | Accompanying Person for PRM || X || X |
+| `PRM_CHILD` | Handicapped young child accompanied by one person where the usual child according to the age price would be zero and the accompanying person would also be free || X || X |
+| `WHEELCHAIR` | Passenger with wheel-chair ||| X ||
+| `PERSON` | Used in requests together with date of birth ||| X ||
+| `PRM` | Person with reduced mobility - to be used in case of accompanying person or dog, date of birth must be provided additionally ||| X ||
+| `DOG` | A dog | X | X | X | X |
+| `PET` | A pet but not a dog | X | X | X | X |
+| `LUGGAGE` | Over-size luggage | X | X | X | X |
+| `BICYCLE` | A bicycle | X | X | X | X |
+| `PRAM` | A pram | X | X | X | X |
+| `ACCOMP_DOG` | An accompanying dog for a PRM | X | X | X | X |
+| `CAR` | A car for car-carriage trains | X | X | X | X |
+| `MOTOCYCLE` | A motorcycle for car carriage trains | X | X | X | X |
+| `TRAILER` | A trailer for car carriage trains | X | X | X | X |
+
 ## Passport
 
 | Code | Description |
@@ -692,7 +717,7 @@ Other cards should start with the RICS code of the issuer.
 
 ## Service Brands
 
-Snapshot version, for the actual code list see https://uic.org/passenger/passenger-services-group/article/service-brand-code-list
+Snapshot version, for the actual code list see [UIC Service Brand Code List](https://uic.org/passenger/passenger-services-group/article/service-brand-code-list).
 
 | Service Brand Code | Abbreviation | Reservation Ticket Text | MERITS Description |
 |--------------------|--------------|-------------------------|--------------------|
@@ -939,31 +964,6 @@ Transaction type used in after sales rules for fares.
 |`UPGRADE` | Exchange with a fare of higher value|
 |`GROUP_DOWN_SIZE` | Exchange with a group of less passengers |
 
-## TravelerType
-
-| Code | Description | Transportable  | Bulk (Offline) | Online Request | Online Reply |
-|------|-------------|----------------|----------------|----------------|--------------|
-| `YOUNG_CHILD` | Young child defined by the carrier depending on the age || X || X |
-| `CHILD` | Child defined by the carrier depending on the age || X || X |
-| `YOUTH` | Youth defined by the carrier depending on the age || X || X |
-| `ADULT` | Adult defined by the carrier depending on the age || X || X |
-| `SENIOR` | Senior defined by the carrier depending on the age || X || X |
-| `FAMILY_CHILD` | Child associated with a family traveling together || X | X | X |
-| `ACCOMP_PRM` | Accompanying Person for PRM || X || X |
-| `PRM_CHILD` | Handicapped young child accompanied by one person where the usual child according to the age price would be zero and the accompanying person would also be free || X || X |
-| `WHEELCHAIR` | Passenger with wheel-chair ||| X ||
-| `PERSON` | Used in requests together with date of birth ||| X ||
-| `PRM` | Person with reduced mobility - to be used in case of accompanying person or dog, date of birth must be provided additionally ||| X ||
-| `DOG` | A dog | X | X | X | X |
-| `PET` | A pet but not a dog | X | X | X | X |
-| `LUGGAGE` | Over-size luggage | X | X | X | X |
-| `BICYCLE` | A bicycle | X | X | X | X |
-| `PRAM` | A pram | X | X | X | X |
-| `ACCOMP_DOG` | An accompanying dog for a PRM | X | X | X | X |
-| `CAR` | A car for car-carriage trains | X | X | X | X |
-| `MOTOCYCLE` | A motorcycle for car carriage trains | X | X | X | X |
-| `TRAILER` | A trailer for car carriage trains | X | X | X | X |
-
 ## TravelValidityType
 
 Type of the travel validity of a fare.
@@ -1005,6 +1005,3 @@ Trip interruption process indicates the type of process to be followed by the pa
 | `NONE` | No action is required from the passenger in case he is interrupting his trip. |
 | `MANUAL`| In case a passenger is interrupting his trip he needs to receive a confirmation from train or station staff |
 | `ACTIVATION` | The electronic ticket needs to be deactivated during the interruption. |
-
-
-
