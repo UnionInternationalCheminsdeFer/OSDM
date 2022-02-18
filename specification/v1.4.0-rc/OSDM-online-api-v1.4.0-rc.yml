@@ -3187,14 +3187,14 @@ components:
         - legBoard
         - service
       properties:
-        legBoard: # EXT: use Place instead of LegBoard
-          $ref: "#/components/schemas/LegStop"
-        legIntermediates: # EXT: use Place instead of LegIntermediate
+        legBoard:
+          $ref: "#/components/schemas/LegBoard"
+        legIntermediates:
           type: array
           items:
-            $ref: "#/components/schemas/LegStop"
-        legAlight: # EXT: use Place instead of LegAlight
-          $ref: "#/components/schemas/LegStop"
+            $ref: "#/components/schemas/LegIntermediate"
+        legAlight:
+          $ref: "#/components/schemas/LegAlight"
         service:
           $ref: "#/components/schemas/DatedJourney"
         # legAttribute:  # Out of scope
@@ -3220,14 +3220,14 @@ components:
         - legBoard
         - service
       properties:
-        legBoard: # EXT: use Place instead of LegBoard
-          $ref: "#/components/schemas/LegStopSpecification"
-        legIntermediates: # EXT: use Place instead of LegIntermediate
+        legBoard:
+          $ref: "#/components/schemas/LegBoard"
+        legIntermediates:
           type: array
           items:
-            $ref: "#/components/schemas/LegStopSpecification"
-        legAlight: # EXT: use Place instead of LegAlight
-          $ref: "#/components/schemas/LegStopSpecification"
+            $ref: "#/components/schemas/LegIntermediate"
+        legAlight:
+          $ref: "#/components/schemas/LegAlight"
         service:
           $ref: "#/components/schemas/DatedJourneySpecification"
 
@@ -3432,25 +3432,58 @@ components:
           type: boolean
           default: false
 
-    LegStop: ## EXT OJP LegStop unifies LegBoard, LegIntermediate, LegAlign
+    LegBoard: ## OJP
       type: object
       description: >-
-        Describes the situation at a stop or station that lies between the
-        LegBoard and LegAlight stop or station including time-related information. 
-        Provided by OJP whereas LegStop unifies LegBoard, LegIntermediate and LegAlign.
+        Describes the the situation at a stop or station at which the passenger boards a Leg
+        of a trip including time-related information. Provided by OJP.
       #allOf:
       required:
-        #- order
-        - plannedQuay
-        #- serviceArrival
-        #- stopPointName
-        - stopPlace
+        - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
+        - serviceDeparture
+        - stopPointName
       properties:
-        stopPlace:
-          $ref: "#/components/schemas/StopPlace" ## EXT
-        # stopPointName: # Out of scope
-        #   type: string
-        #   example: Luzern
+        stopPlaceRef:
+          $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
+        stopPointName: # Out of scope
+          type: string
+          example: Luzern
+        plannedQuay:
+          description: >-
+            Name of the bay where to board/alight from the vehicle. According to 
+            planned timetable.
+          type: string
+          example: "3"
+        estimatedQuay:
+          description: >-
+            Name of the bay where to board the vehicle. As to the latest realtime status.
+          type: string
+          example: "8"
+        serviceDeparture: # EXT directly inline service time
+          description: >-
+            Describes the departure situation at this leg board stop point (group of attributes
+            of timetabled passing time, estimated passing time, observed passing time).
+          $ref: "#/components/schemas/ServiceTime"
+        status:
+          $ref: "#/components/schemas/StopCallStatus"
+
+    LegIntermediate:
+      type: object
+      description: >-
+        Describes the situation at a stop or station that lies between the LegBoard and 
+        LegAlight stop or station including time-related information. Provided by OJP.
+      #allOf:
+      required:
+        - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
+        - serviceArrival
+        - serviceDeparture
+        - stopPointName
+      properties:
+        stopPlaceRef:
+          $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
+        stopPointName:
+          type: string
+          example: Luzern
         plannedQuay:
           description: >-
             Name of the bay where to board/alight from the vehicle. According to 
@@ -3470,27 +3503,45 @@ components:
         serviceDeparture: # EXT directly inline service time
           description: >-
             Describes the departure situation at this leg board stop point (group of attributes
-            of timetabled passing time, estimated passing time, observed passing time).#
+            of timetabled passing time, estimated passing time, observed passing time).
           $ref: "#/components/schemas/ServiceTime"
         status:
           $ref: "#/components/schemas/StopCallStatus"
 
-    LegStopSpecification:
+    LegAlight:
       type: object
       description: >-
-        A minimal leg stop specification indicating the time and place where the vehicle starts.
+        Describes the situation at a stop or station at which the passenger alights from a Leg 
+        of a trip including time-related information. Provided by OJP.
       #allOf:
       required:
-        - plannedQuay
-        - stopPlace
+        - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
+        - serviceArrival
+        - stopPointName
       properties:
-        stopPlace:
-          $ref: "#/components/schemas/StopPlace" ## EXT
-        serviceDeparture:
+        stopPlaceRef:
+          $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
+        stopPointName:
+          type: string
+          example: Luzern
+        plannedQuay:
           description: >-
-            Describes the departure situation at this leg board stop point (group of attributes
-            of timetabled passing time, estimated passing time, observed passing time).#
+            Name of the bay where to board/alight from the vehicle. According to 
+            planned timetable.
+          type: string
+          example: "3"
+        estimatedQuay:
+          description: >-
+            Name of the bay where to board the vehicle. As to the latest realtime status.
+          type: string
+          example: "8"
+        serviceArrival: # EXT directly inline service time
+          description: >-
+            Describes the arrival situation at this leg board stop point (group of attributes
+            of timetabled passing time, estimated passing time, observed passing time).
           $ref: "#/components/schemas/ServiceTime"
+        status:
+          $ref: "#/components/schemas/StopCallStatus"
 
     ServiceTime: ## OJP
       type: object
@@ -3680,6 +3731,10 @@ components:
       #  - $ref: "#/components/schemas/TopographicPlaceStructure"  # Out of scope
       #- $ref: "#/components/schemas/GeoPosition"
       type: object
+      required:
+        - id
+        # - name  ## EXT
+        # - geoCoordinate  ## EXT
       properties:
         id:
           type: string
@@ -3695,11 +3750,12 @@ components:
           $ref: "#/components/schemas/PointOfInterest"
         stopPlace:
           $ref: "#/components/schemas/StopPlace"
+        # stopPoint:
         #  - $ref: "#/components/schemas/StopPointStructure"  # Out of scope
+        # topographicPlace:
         #  - $ref: "#/components/schemas/TopographicPlaceStructure"  # Out of scope
-        connectionPoint:
+        connectionPoint:  # EXT OSDM extension for virtual border points
           $ref: "#/components/schemas/FareConnectionPoint"
-          # OSDM extension for virtual border points
         geoCoordinate:
           $ref: "#/components/schemas/GeoPosition"
         #  attribute:   # Out of scope
@@ -3717,7 +3773,7 @@ components:
       # allOf:
       type: object
       required:
-        # - addressCode
+        - addressCode
         - addressName
       properties:
         addressCode:
@@ -3915,9 +3971,10 @@ components:
 
     StopPlaceRef: ## OJP
       description: >-
-        Reference to a Stop Place using URNs to define code. Default code list UIC MERITS/TAP-TSI station codes. Provided by OJP.
+        Reference to a Stop Place using URNs to define code.
+        For UIC see UIC MERITS/TAP-TSI station codes. Provided by OJP.
       type: string
-      example: "8503000"
+      example: "urn:uic:stn:8503000"
 
     ProductCategoryRef: ## OJP
       description: >-
@@ -6992,9 +7049,9 @@ components:
 
     Company:
       description: >-
-        RICS company code or the upcoming compatible ERA company code. In case proprietary codes are used 
-        on a bilateral base the codes must have at least 5 positions and start with x
+        RICS company code or the upcoming compatible ERA company code.
       type: string
+      example: "urn:uic:rics:1185"
 
     ServiceBrandCode:
       description: >-
