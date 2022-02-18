@@ -201,6 +201,7 @@ paths:
                 - PLACES
                 - NONE
             default: [ALL]
+            maxItems: 1
       responses:
         "200":
           description: the requested trip
@@ -320,6 +321,7 @@ paths:
                 - TRIPS.PLACES
                 - NONE
             default: [ALL]
+            maxItems: 2
       responses:
         "200":
           description: Trip(s) found
@@ -395,6 +397,7 @@ paths:
                 - TRIPOFFERS.PASSENGERS
                 - NONE
             default: [ALL]
+            maxItems: 5
       responses:
         "200":
           description: Trip Offer Collection(s) found
@@ -502,6 +505,7 @@ paths:
                 - PASSENGERS
                 - NONE
             default: [ALL]
+            maxItems: 5
       responses:
         "200":
           description: Trip offer found
@@ -563,6 +567,7 @@ paths:
                 - TRIP.PLACES
                 - NONE
             default: [ALL]
+            maxItems: 3
       responses:
         "200":
           description: Offer found
@@ -1419,6 +1424,7 @@ paths:
                 - REFUND_PROPOSITIONS
                 - NONE
             default: [ALL]
+            maxItems: 7
       responses:
         "200":
           description: booking found
@@ -1920,6 +1926,7 @@ paths:
                 - OFFERS.OFFERPARTS.PRODUCTS
                 - PASSENGERS
             default: [ALL]
+            maxItems: 5
       responses:
         "200":
           description: ExchangeOperation found
@@ -2143,6 +2150,7 @@ paths:
                 - TRIPOFFERS.PASSENGERS
                 - NONE
             default: [ALL]
+            maxItems: 7
       responses:
         "200":
           description: Trip Offer Collection(s) found
@@ -2206,6 +2214,7 @@ paths:
                 - PASSENGERS
                 - NONE
             default: [ALL]
+            maxItems: 6
       responses:
         "200":
           description: Trip offer found
@@ -3169,7 +3178,7 @@ components:
         - legId
       properties:
         legId:
-          description: Id of this trip leg. Unique within trip result .A seqId is a leg legId.
+          description: Id of this trip leg. Unique within trip result. A seqId is a leg legId.
           type: string
         timedLeg:
           $ref: "#/components/schemas/TimedLegSpecification"
@@ -3221,15 +3230,15 @@ components:
         - service
       properties:
         legBoard:
-          $ref: "#/components/schemas/LegBoard"
+          $ref: "#/components/schemas/LegBoardSpecification"
         legIntermediates:
           type: array
           items:
-            $ref: "#/components/schemas/LegIntermediate"
+            $ref: "#/components/schemas/LegIntermediateSpecification"
         legAlight:
-          $ref: "#/components/schemas/LegAlight"
+          $ref: "#/components/schemas/LegAlightSpecification"
         service:
-          $ref: "#/components/schemas/DatedJourneySpecification"
+          $ref: "#/components/schemas/DatedJourney"
 
     TransferLeg: ## OJP # Reduced scope
       type: object
@@ -3467,7 +3476,25 @@ components:
         status:
           $ref: "#/components/schemas/StopCallStatus"
 
-    LegIntermediate:
+    LegBoardSpecification:
+      type: object
+      description: >-
+        Describes the the situation at a stop or station at which the passenger boards a Leg
+        of a trip including time-related information. Provided by OJP.
+      #allOf:
+      required:
+        - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
+        - serviceDeparture
+      properties:
+        stopPlaceRef:
+          $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
+        serviceDeparture: # EXT directly inline service time
+          description: >-
+            Describes the departure situation at this leg board stop point (group of attributes
+            of timetabled passing time, estimated passing time, observed passing time).
+          $ref: "#/components/schemas/ServiceTime"
+
+    LegIntermediate: ## OJP
       type: object
       description: >-
         Describes the situation at a stop or station that lies between the LegBoard and 
@@ -3508,7 +3535,31 @@ components:
         status:
           $ref: "#/components/schemas/StopCallStatus"
 
-    LegAlight:
+    LegIntermediateSpecification:
+      type: object
+      description: >-
+        Describes the situation at a stop or station that lies between the LegBoard and 
+        LegAlight stop or station including time-related information. Provided by OJP.
+      #allOf:
+      required:
+        - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
+        - serviceArrival
+        - serviceDeparture
+      properties:
+        stopPlaceRef:
+          $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
+        serviceArrival: # EXT directly inline service time
+          description: >-
+            Describes the arrival situation at this leg board stop point (group of attributes
+            of timetabled passing time, estimated passing time, observed passing time).
+          $ref: "#/components/schemas/ServiceTime"
+        serviceDeparture: # EXT directly inline service time
+          description: >-
+            Describes the departure situation at this leg board stop point (group of attributes
+            of timetabled passing time, estimated passing time, observed passing time).
+          $ref: "#/components/schemas/ServiceTime"
+
+    LegAlight: ## OJP
       type: object
       description: >-
         Describes the situation at a stop or station at which the passenger alights from a Leg 
@@ -3543,6 +3594,24 @@ components:
         status:
           $ref: "#/components/schemas/StopCallStatus"
 
+    LegAlightSpecification:
+      type: object
+      description: >-
+        Describes the situation at a stop or station at which the passenger alights from a Leg 
+        of a trip including time-related information. Provided by OJP.
+      #allOf:
+      required:
+        - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
+        - serviceArrival
+      properties:
+        stopPlaceRef:
+          $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
+        serviceArrival: # EXT directly inline service time
+          description: >-
+            Describes the arrival situation at this leg board stop point (group of attributes
+            of timetabled passing time, estimated passing time, observed passing time).
+          $ref: "#/components/schemas/ServiceTime"
+
     ServiceTime: ## OJP
       type: object
       description: >-
@@ -3569,7 +3638,10 @@ components:
         # - journeyRef
         - mode
         - publishedServiceName
-        # - operatorRef
+        # - privateMode
+        - operatorRef
+        # - originText
+        # - destinationText
       properties:
         # operatingDayRef:  # Out of scope
         #   $ref: "#/components/schemas/OperationDayRef"
@@ -3609,47 +3681,6 @@ components:
             For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
           type: string
           example: "urn:uic:rics:1185:11"
-
-    DatedJourneySpecification:
-      type: object
-      description: >-
-        Vehicle journey that runs at a specific date. Provided by OJP.
-
-        A vehicle can either be defined by a vehicle number(s) or line number(s) in the
-        case of regional traffic.
-      required:
-        # - operatingDayRef
-        # - journeyRef
-        - mode
-        - publishedServiceName
-        - operatorRefs
-      properties:
-        vehicleNumbers: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
-          description: >-
-            The vehicle number(s) of the vehicle(s) that runs this timed leg.
-            On some legs a vehicle has multiple vehicles, e.g. if it is split into two
-            trains at a intermediate stop.
-
-            For backwards compatibility with Hermes/Hosa the length of the string must be restricted
-            to 5 characters. If's longer, it is not possible to use the H2O converter.
-          type: array
-          items:
-            type: string
-        lineNumbers:
-          description: >-
-            List of line numbers that are part of this journey.
-            Especially on regional traffic, a vehicle is defined by a line number only.
-          type: array
-          items:
-            type: string
-        operatorRefs:
-          description: >-
-            Reference to transport operators.
-            For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
-          type: array
-          items:
-            type: string
-            example: "urn:uic:rics:11:321"
 
     Mode: ## OJP
       type: object
@@ -3739,7 +3770,7 @@ components:
         id:
           type: string
           description: >-
-            id uniquely definining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn "0850000"
+            id uniquely defining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn "0850000"
           example: "urn:uic:stn:8500000"
         name:
           type: string
@@ -4011,12 +4042,13 @@ components:
             $ref: "#/components/schemas/ComfortClass"
           description: >-
             The classes returned might be different from the requested classes.
-        serviceClassIds:
+        serviceClassTypes:
           type: array
           items:
             $ref: "#/components/schemas/ServiceClassType"
           description: >-
             The classes returned might be different from the requested classes.
+          maxItems: 4
         requestedOfferParts:
           type: array
           items:
@@ -4038,8 +4070,6 @@ components:
         - FARE_ADMISSION
         - FARE_RESERVATION
         - FARE_ANCILLARY
-        - ALL
-      default:
         - ALL
 
     NonTripOfferSearchCriteria:
@@ -4067,6 +4097,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ServiceClassType"
+          maxItems: 4
           description: >-
             The classes returned might be different from the requested classes.
         currency:
@@ -4085,7 +4116,7 @@ components:
         If you are searching for fares you pass in the complete trip in trips and the use the returnSearchCriteria
         to define which part you need fares (especially if you want a price up to a virtual border point).
       required:
-        - passengers
+        - passengerSpecifications
       properties:
         tripSpecifications:
           type: array
@@ -4120,10 +4151,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FulfillmentOption"
-        passengers:
+        passengerSpecifications:
           type: array
           items:
-            $ref: "#/components/schemas/Passenger"
+            $ref: "#/components/schemas/PassengerSpecification"
         promoCodes:
           type: array
           items:
@@ -4146,6 +4177,7 @@ components:
               - TRIPOFFERS.PASSENGERS
               - NONE
           default: [ALL]
+          maxItems: 5
 
     TripOffersCollectionResponse:
       type: object
@@ -4176,6 +4208,11 @@ components:
 
     TripOffer:
       type: object
+      required:
+        - id
+        - trip
+        - offers
+        - passengers
       properties:
         id:
           type: string
@@ -4184,25 +4221,20 @@ components:
           example: Bruxelles-Midi 2020-07-01 10:05 CET
         trip:
           $ref: "#/components/schemas/Trip"
-        tripKey:
-          description: >-
-            client reference that could be received in a search with trips in input. In such cases it is expected to be echoed back.
-          type: string
         offers:
           type: array
           items:
             $ref: "#/components/schemas/Offer"
+          minItems: 1
         passengers:
           type: array
           items:
             $ref: "#/components/schemas/Passenger"
+          minItems: 1
         links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
-        - trip
 
     RequestedInformation:
       type: string
@@ -4281,7 +4313,7 @@ components:
           items:
             type: string
           description: >-
-            Relevant only in case the offer only covers parts of the trip. This will indicate which tripLegs are covered by the specific offer.
+            Indicate which tripLegs are covered by the specific offer. Not used for fares.
         returnTags:
           type: array
           items:
@@ -4314,8 +4346,7 @@ components:
         trip:
           $ref: "#/components/schemas/Trip"
           description: >-
-            Note that trip element cannot be embedded in tripoffer context as the
-            TRIPOFFERS.OFFERS.TRIP value is not a possible embed value for TripOffers.
+            This trip will be included in the offer if the offer is part of the booking.
         validFrom:
           type: string
           format: date-time
@@ -4848,6 +4879,7 @@ components:
               - REFUND_PROPOSITIONS
               - NONE
           default: [ALL]
+          maxItems: 6
       required:
         - selectedOffers
 
@@ -5423,6 +5455,7 @@ components:
               - OFFERS.OFFERPARTS
               - OFFERS.OFFERPARTS.PRODUCTS
               - PASSENGERS
+            maxItems: 5
 
     ExchangeOffer:
       type: object
@@ -5460,10 +5493,10 @@ components:
           items:
             type: string
             format: date-time
-        passengers:
+        passengerSpecifications:
           type: array
           items:
-            $ref: "#/components/schemas/Passenger"
+            $ref: "#/components/schemas/PassengerSpecification"
         promoCodes:
           type: array
           items:
@@ -5485,6 +5518,7 @@ components:
               - NONE
               - ALL
           default: [ALL]
+          maxItems: 1
 
     NonTripOfferCollection:
       type: object
@@ -6030,145 +6064,6 @@ components:
           items:
             $ref: "#/components/schemas/Trip"
 
-    ReimbursementClaimResponse:
-      type: object
-      properties:
-        warnings:
-          $ref: "#/components/schemas/WarningCollection"
-        reimbourcementClaim:
-          $ref: "#/components/schemas/ReimbursementClaim"
-
-    ReimbursementClaim:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          x-extensible-enum:
-            - INITIATED
-            - EVALUATING
-            - DECIDED
-            - SETTLED
-        customerReimbursementClaim:
-          $ref: "#/components/schemas/CustomerReimbursementClaim"
-        missingInformation:
-          description: >-
-            indication of missing customer information
-          type: array
-          items:
-            type: string
-        decision:
-          $ref: "#/components/schemas/ReimbursementClaimDecision"
-
-    CustomerReimbursementClaim:
-      type: object
-      properties:
-        applicationTime:
-          description: >-
-            date and time when the claim was made. This starts the legal time line to process the claim
-          type: string
-          format: date-time
-        claimManager:
-          $ref: "#/components/schemas/PersonDetail"
-        claimType:
-          description: impact that was caused by the event
-          type: string
-          x-extensible-enum:
-            - JOURNEY_ABANDONED ## all passngers abandoned the journey during the travel
-            - JOURNEY_NOT_STARTED ## trip was not started
-            - JOURNEY_PARTIALLY_NOT_STARTED ## Some passengers did not travel
-            - JOURNEY_PARTIALLY_ABANDONED ## Some passengers abandoned the jouney
-        unusedJourneyDetails:
-          type: array
-          items:
-            $ref: "#/components/schemas/UnusedJourneyPart"
-        supportingDocuments:
-          type: array
-          items:
-            $ref: "#/components/schemas/Document"
-        bookingIds:
-          description: list of booking Ids
-          type: array
-          items:
-            type: string
-        ticketControlNumber:
-          description: list of ticket control number (visible ticket identification for the customer)
-          type: array
-          items:
-            type: string
-        preferedPaymentType:
-          type: string
-          x-extensible-enum:
-            - VOUCHER
-            - MONEY
-        bankAccount:
-          $ref: "#/components/schemas/BankAccountReference"
-
-    UnusedJourneyPart:
-      type: object
-      description: unused part of the journey
-      properties:
-        unusedLegs:
-          type: array
-          items:
-            $ref: "#/components/schemas/AffectedLeg"
-        nonTravelingPassengers:
-          type: array
-          items:
-            $ref: "#/components/schemas/Passenger"
-
-    AffectedLeg:
-      type: object
-      properties:
-        vehicleNumber:
-          type: string
-        departureStation:
-          $ref: "#/components/schemas/Place"
-        departureTime:
-          type: string
-          format: date-time
-        arrivalStation:
-          $ref: "#/components/schemas/Place"
-        arrivalTime:
-          type: string
-          format: date-time
-
-    ReimbursementPatchRequest:
-      description: >-
-        changes to a claim already made. This covers upload of additional supporting documents, changes to the passengers and claim manager data.
-      type: object
-      properties:
-        reason:
-          type: string
-          x-extensible-enum:
-            - BANK_ACCOUNT
-            - PASSENGER_CHANGE
-        claimManager:
-          $ref: "#/components/schemas/PersonDetail"
-        affectedPassengers:
-          type: array
-          items:
-            $ref: "#/components/schemas/Passenger"
-        supportingDocuments:
-          type: array
-          items:
-            $ref: "#/components/schemas/Document"
-        bankAccount:
-          $ref: "#/components/schemas/BankAccountReference"
-
-    ReimbursementClaimDecision:
-      type: object
-      properties:
-        compensationAmount:
-          $ref: "#/components/schemas/Price"
-        refundVoucher:
-          $ref: "#/components/schemas/FulfillmentDocument"
-        explanation:
-          $ref: "#/components/schemas/FulfillmentDocument"
-        shortExplanation:
-          type: string
-
     ReductionCards:
       description: >-
         notification on a change of a resource
@@ -6199,12 +6094,13 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/CardReference"
-        serviceClasses:
+        serviceClassTypes:
           description: >-
             list of service classes where this card applies
           type: array
           items:
             $ref: "#/components/schemas/ServiceClassType"
+          maxItems: 4
         cardType:
           $ref: "#/components/schemas/CardType"
         cardIdRequired:
@@ -6507,15 +6403,25 @@ components:
             - serviceLevelCode
             - serviceCode
         coveredSection:
+          description: >-
+            The section of the fare that is covered by the fare. The leg id allows 
+            to uniquely identify a place if it is passed through several times.
           type: object
-          properties:
-            start:
-              $ref: "#/components/schemas/Place"
-            end:
-              $ref: "#/components/schemas/Place"
           required:
-            - start
-            - end
+            - startPlace
+            - startLegId
+            - endPlace
+            - endLegId
+          properties:
+            startPlace:
+              $ref: "#/components/schemas/Place"
+            startLegId:
+              type: string
+            endPlace:
+              $ref: "#/components/schemas/Place"
+            endLegId:
+              type: string
+
         passengerConstraints:
           description: >-
             passenger constraint to be included in bar codes
@@ -7064,8 +6970,10 @@ components:
 
     ServiceClass:
       type: object
-      description: >-
-        Class of service.
+      description: Class of service.
+      required:
+        - type
+        - name
       properties:
         type:
           $ref: "#/components/schemas/ServiceClassType"
@@ -7514,6 +7422,55 @@ components:
           items:
             $ref: "#/components/schemas/Link"
 
+    PassengerSpecification:
+      description: >-
+        Minimal specification of a passenger to request offers.
+      type: object
+      required:
+        - id
+        - passengerType
+      properties:
+        id: 
+          type: string
+          format: uuid
+        externalRef:
+          type: string
+          example: TKT-ID-2314234
+        passengerType:
+          $ref: "#/components/schemas/PassengerType"
+        dateOfBirth:
+          description: >-
+            Date of birth of the passenger. Only needed for passengers of type persons, family child, PRMS
+            and wheelchair.
+          type: string
+          format: date
+        cards:
+          description: reduction or loyalty cards owned by the passenger
+          type: array
+          items:
+            $ref: "#/components/schemas/CardReference"
+
+    PassengerType:
+      description: >-
+        Passenger type according to UIC passenger, i.e. traveler type list.
+      type: string
+      x-extensible-enum:
+        - DOG
+        - PET
+        - LUGGAGE
+        - PRM
+        - BICYCLE
+        - PRAM
+        - ACCOMP_DOG
+        - CAR
+        - PERSON
+        - MOTOCYCLE
+        - TRAILER
+        - FAMILY_CHILD
+        - WHEELCHAR
+      example: PERSON
+      default: PERSON
+
     PRMNeedType:
       type: string
       x-extensible-enum:
@@ -7534,7 +7491,7 @@ components:
       properties:
         preferredLanguage:
           type: string
-          description: Languages spoken by the traveler (ISO Language code)
+          description: Languages spoken by the traveler (ISO language code)
         abstract:
           type: string
         firstName:
@@ -7718,7 +7675,6 @@ components:
       type: object
       required:
         - types
-        - codeList
         - code
       properties:
         types:
@@ -7727,10 +7683,7 @@ components:
           items:
             $ref: "#/components/schemas/CardType"
         code:
-          description: Code of the card type according to code list.
-          type: string
-        codeList:
-          description: Code list for the code provided.
+          description: Code of the card type according to issuer.
           type: string
         name:
           description: Card name for printing on fulfillments.
