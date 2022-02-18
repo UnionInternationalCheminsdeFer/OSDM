@@ -3539,6 +3539,9 @@ components:
             The vehicle number(s) of the vehicle(s) that runs this timed leg.
             On some legs a vehicle has multiple vehicles, e.g. if it is split into two
             trains at a intermediate stop.
+
+            For backwards compatibility with Hermes/Hosa the length of the string must be restricted
+            to 5 characters. If's longer, it is not possible to use the H2O converter.
           type: array
           items:
             type: string
@@ -3575,6 +3578,9 @@ components:
             The vehicle number(s) of the vehicle(s) that runs this timed leg.
             On some legs a vehicle has multiple vehicles, e.g. if it is split into two
             trains at a intermediate stop.
+
+            For backwards compatibility with Hermes/Hosa the length of the string must be restricted
+            to 5 characters. If's longer, it is not possible to use the H2O converter.
           type: array
           items:
             type: string
