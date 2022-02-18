@@ -3785,7 +3785,7 @@ components:
         #  - $ref: "#/components/schemas/StopPointStructure"  # Out of scope
         # topographicPlace:
         #  - $ref: "#/components/schemas/TopographicPlaceStructure"  # Out of scope
-        connectionPoint:  # EXT OSDM extension for virtual border points
+        connectionPoint: # EXT OSDM extension for virtual border points
           $ref: "#/components/schemas/FareConnectionPoint"
         geoCoordinate:
           $ref: "#/components/schemas/GeoPosition"
@@ -6364,14 +6364,14 @@ components:
                 - latestReturn
                 - earliestReturn
             trainValidity:
-              $ref: "#/components/schemas/TrainValidity"                
-            validityType: 
+              $ref: "#/components/schemas/TrainValidity"
+            validityType:
               description: >-
                 Type of usage, either as single trip or multiple trips. Unrestricted fares might be combined 
                 into single trips if appropriate.
               type: string
               default: SINGLE_TRIP
-              x-extensible-enum: 
+              x-extensible-enum:
                 - SINGLE_TRIP
                 - MULTIPLE_TRIPS
                 - UNRESTRICTED
@@ -6459,7 +6459,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Company"
-    
+
     TripInterruptionProcess:
       description: >-
         MANUAL- passenger needs manual confirmation of train or station staff to interrupt the trip. ACTIVATION- Passenger needs to deactivate the ticket during the interruption (via an app).
@@ -6468,11 +6468,11 @@ components:
           - NONE
           - MANUAL
           - ACTIVATION
-    TripAllocationProcess: 
+    TripAllocationProcess:
       description: >-
         NONE- Individual trips don't need to be allocated. MANUAL- The passenger has to allocate a trip manually (This should not be used as it is by desiugn non-interoperable). ACTIVATION- Individual trips can be allocatted by activation of the ticket. FULFILLMENT- A new fulfillment needs to be created to allocate a trip
       type: string
-      x-extensible-enum: 
+      x-extensible-enum:
         - NONE
         - MANUAL
         - ACTIVATION
@@ -6480,34 +6480,34 @@ components:
     TripAllocationUnit:
       description: Unit to allocate trips in a multi-trip fare. Trips can be allocated per day (e.g. Eurail) or per duration (e.g. multiples of a duration unit to cover the trip) or as single trips (e.g. carnet)) NONE- Individual trips don't need to be allocated. TRIP- allocation per individual trip. DAY- The allocation is per travel day DURATION- the allocation is per duration",
       type: string
-      x-extensible-enum": 
+      x-extensible-enum":
         - NONE
         - TRIP
         - DAY
         - DURATION
     TripAllocationConstraint:
-        description: constraint on the use of a multiple trip ticket
-        type: object
-        properties:
-          allocationUnit:
-            $ref: "#/components/schemas/TripAllocationUnit"
-          maxUnits:
-            description: maximum number of allowed units to be allocated
-            type: integer
-            format: int32
-          durationUnit:
-            description: multiples of this duration can be allocated
-            type: string
-            format: duration
-            example: "PT30M"
-          requiredProcesses: 
-            description: one of the listed processes is required for the allocation of a single trip
-            type: array
-            items: 
-              $ref: "#/components/schemas/TripAllocationProcess"
-        required:
-          - allocationUnit
-          - requiredProcesses
+      description: constraint on the use of a multiple trip ticket
+      type: object
+      properties:
+        allocationUnit:
+          $ref: "#/components/schemas/TripAllocationUnit"
+        maxUnits:
+          description: maximum number of allowed units to be allocated
+          type: integer
+          format: int32
+        durationUnit:
+          description: multiples of this duration can be allocated
+          type: string
+          format: duration
+          example: "PT30M"
+        requiredProcesses:
+          description: one of the listed processes is required for the allocation of a single trip
+          type: array
+          items:
+            $ref: "#/components/schemas/TripAllocationProcess"
+      required:
+        - allocationUnit
+        - requiredProcesses
     TripInterruptionConstraint:
       description: >-
         rules on allowed trip interruptions. Interruptions due to a train change  indicated by a trip search must not be included here.
@@ -6733,18 +6733,12 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ViaStations"
-        carrier:
-          deprecated: true
-          $ref: "#/components/schemas/Company"
         carrierConstraint:
           $ref: "#/components/schemas/CarrierConstraint"
         route:
           type: array
           items:
             $ref: "#/components/schemas/ViaStations"
-        serviceBrand:
-          deprecated: true
-          $ref: "#/components/schemas/ServiceBrandCode"
         serviceConstraint:
           $ref: "#/components/schemas/ServiceConstraint"
         station:
@@ -7521,7 +7515,7 @@ components:
         - id
         - passengerType
       properties:
-        id: 
+        id:
           type: string
           format: uuid
         externalRef:
