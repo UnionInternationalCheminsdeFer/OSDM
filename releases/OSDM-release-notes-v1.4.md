@@ -33,6 +33,10 @@ If an open ticket has constrains on how often a journey can be interrupted this 
 
 With this version, multi-journey products can be expressed.
 
+### Improved OJP Support
+
+The `LegBoard`, `LegIntermediates` and `LegBoard` entities have been added according to the [Open Journey Planning (OJP)](https://www.transmodel-cen.eu/ojp-standard/) specification.
+
 ### Reduction Cards are Available to Ticket Vendors
 
 Reduction cards are now available to ticket vendors to be used for selecting the cards for requests and in customer profiles. See `/masterdata/reductionCards` for details.
@@ -57,4 +61,4 @@ Other work addressed includes:
 - Fixing minor inconsistencies
 - Incorporating feedback from the first implementors
 - Setting up a mock infrastructure as well as writing actual mocks
-- Best Practices concerning non-functional requirements
+
