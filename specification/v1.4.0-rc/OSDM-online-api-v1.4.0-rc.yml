@@ -6367,7 +6367,8 @@ components:
               $ref: "#/components/schemas/TrainValidity"                
             validityType: 
               description: >-
-                type of usage, eigther as single trip or multiple trips. Unrestricted fares might be combined into single trips when apropriate
+                Type of usage, either as single trip or multiple trips. Unrestricted fares might be combined 
+                into single trips if appropriate.
               type: string
               default: SINGLE_TRIP
               x-extensible-enum: 
@@ -6868,8 +6869,10 @@ components:
     TrainValidity:
       type: object
       description: >-
-        validity depending on boarding / leaving of a train. The ticket is valid
-        from departure until the destination station in the train if departure or destination is within the from - until range. The validation can reference the departure or the destination time to decide the validity (e.g. Eurail/Interrail passes currently use the departure for the validity on night trains).
+        Validity depending on boarding / leaving of a train. The ticket is valid
+        from departure until the destination station in the train if departure or destination is within the from - until range.
+        The validation can reference the departure or the destination time to decide the validity (e.g. Eurail/Interrail passes
+        currently use the departure for the validity on night trains).
       required:
         - from
         - until
