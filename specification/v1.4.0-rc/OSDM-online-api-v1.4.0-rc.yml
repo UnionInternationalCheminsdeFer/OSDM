@@ -162,7 +162,7 @@ paths:
         - Trips
       summary: Returns a trip element representing a travel trip.
       description:
-        A trip consists of one or more tripLegs for a given tripId. Depending on the
+        A trip consists of one or more legs for a given tripId. Depending on the
         embed either references or full location definitions is returned.
       operationId: getTripsId
       parameters:
@@ -3052,14 +3052,14 @@ components:
       description: >-
         A complete trip from origin to destination. Provided by OJP.
       required:
-        - tripId
+        - id # EXT replaces tripId, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/179
         - duration
         - startTime
         - endTime
         - transfers
-        - tripLegs
+        - legs # EXT replaces tripLegs, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/179
       properties:
-        tripId:
+        id:
           description: >-
             Id of this trip for referencing purposes. Unique within trip response.
           type: string
@@ -3093,7 +3093,7 @@ components:
           type: number
           format: integer
           minimum: 0
-        tripLegs:
+        legs:
           description: Legs ot the trip
           type: array
           items:
@@ -3103,7 +3103,7 @@ components:
         #  $ref: "#/components/schemas/OperatingDays"
         # situationFullRef: ## Out of scope
         #   $ref: "#/components/schemas/SituationFullRef"
-        tripStatus: # Ask Stefan
+        status: # EXT replaces tripLegs, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/182
           $ref: "#/components/schemas/TripStatus"
 
     TripSpecification:
@@ -3111,14 +3111,14 @@ components:
       description: >-
         A minimal trip specification from origin to destination.
       required:
-        - tripId
-        - tripLegs
+        - id
+        - legs # EXT replaces tripLegs, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/179
       properties:
-        tripId:
+        id:
           description: >-
             Id of this trip for referencing purposes. Unique within trip response.
           type: string
-        tripLegs:
+        legs:
           description: Legs ot the trip with minimal information
           type: array
           items:
@@ -3156,10 +3156,10 @@ components:
       description: >-
         A single stage of a trip that is made without change of MODE or service (ie: between each interchange). Provided by OJP.
       required:
-        - legId
+        - id  ## EXT replaces legId, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/181
       properties:
-        legId:
-          description: Id of this trip leg. Unique within trip result. A seqId is a leg legId.
+        id:
+          description: Id of this trip leg. Unique within trip result. A seqId is a leg id.
           type: string
         timedLeg:
           $ref: "#/components/schemas/TimedLeg"
@@ -3175,10 +3175,10 @@ components:
         and continuous legs are not part of this specification as they are not relevant to find
         the correct vehicles by a pricing engine.
       required:
-        - legId
+        - id ## EXT replaces legId, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/181
       properties:
-        legId:
-          description: Id of this trip leg. Unique within trip result. A seqId is a leg legId.
+        id:
+          description: Id of this trip leg. Unique within trip result. A seqId is a leg id.
           type: string
         timedLeg:
           $ref: "#/components/schemas/TimedLegSpecification"
@@ -4248,10 +4248,10 @@ components:
         The offer summary indicates the most relevant service class, level, flexibility or accommodation 
         that describe this offer, but this does not imply that these values exactly apply to all parts of
         the offer. 
-        Let's consider, as a simplified example, a trip composed of two tripLegs, one with both 1st and 
+        Let's consider, as a simplified example, a trip composed of two legs, one with both 1st and 
         2nd class, and one with only 2nd. 
         On this trip, the railway is expected to propose one offer with overallServiceClass FIRST composed 
-        of one admission in 1st class on the first tripLegs and one admission in 2nd class on the second one, 
+        of one admission in 1st class on the first legs and one admission in 2nd class on the second one, 
         plus a second offer with overallServiceClass SECOND composed of two second class admissions.
         Likewise for all 'overall' attributes. The purpose of these attributes is to convey to the client
         system the service class, level, flexibility and accommodation that best represent this offer so to
@@ -4308,12 +4308,12 @@ components:
             The offerTag can/must (depending on the mandatory flag) be used in some cases to restrict the set of
             offers returned in a subsequent and related offer search to only compatible ones.
             Note the offerTag does not need to be unique.
-        coveredTripLegIds:
+        coveredLegIds:
           type: array
           items:
             type: string
           description: >-
-            Indicate which tripLegs are covered by the specific offer. Not used for fares.
+            Indicate which legs are covered by the specific offer. Not used for fares.
         returnTags:
           type: array
           items:
@@ -4481,8 +4481,8 @@ components:
             properties:
               product:
                 $ref: "#/components/schemas/Product"
-              tripLegIndices:
-                description: indices of the tripLegs in the trip given by the provider of the offer
+              legIndices:
+                description: indices of the legs in the trip given by the provider of the offer
                 type: array
                 items:
                   type: integer
