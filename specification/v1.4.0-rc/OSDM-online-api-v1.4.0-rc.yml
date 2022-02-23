@@ -3822,17 +3822,17 @@ components:
       # allOf:
       type: object
       required:
-        - addressCode
-        - addressName
+        - code  # EXT code instead of addressCode, see https://github.com/VDVde/OJP/issues/183
+        - name  # EXT name instead of addressName, see https://github.com/VDVde/OJP/issues/183
       properties:
-        addressCode:
+        code:
           description: ID of this address.
           type: string
           example: NL:1916200000022621
         # privateCode:  # Out of scope
         #   description: Code of this address in private/foreign/proprietary coding schemes.
         #   $ref: "#/components/schemas/PrivateCode"
-        addressName:
+        name:
           description: Name or description of address for use in passenger information.
           type: string
           example: Oude Trambaan 7, 2265CA Leidschendam, Nederland
@@ -3882,13 +3882,13 @@ components:
         their journey and which is modelled in detail by journey planners. Provided by OJP.
       type: object
       required:
-        - pointOfInterestCode
-        - pointOfInterestName
+        - code  # EXT code instead of pointOfInterestCode, see https://github.com/VDVde/OJP/issues/183
+        - name  # EXT name instead of pointOfInterestName, see https://github.com/VDVde/OJP/issues/183
       properties:
-        pointOfInterestCode:
+        code:
           description: ID of this Point of Interest.
           type: string
-        pointOfInterestName:
+        name:
           description: Name or description of point of interest for use in passenger information.
           type: string
           example: Park Rozenrust
@@ -3961,13 +3961,13 @@ components:
         or prepare their trip, and which will usually have one or more wellknown names. Provided by OJP.
       #allOf:
       required:
-        - stopPlaceRef
-        - stopPlaceName
+        - ref  # EXT ref instead of stopPlaceRef
+        - name  # EXT name instead of stopPlaceName
       properties:
-        stopPlaceRef:
+        ref:
           description: Reference to a Stop Place
           $ref: "#/components/schemas/StopPlaceRef"
-        stopPlaceName:
+        name:
           description: Name of this stop place for use in passenger information.
           type: string
           example: Zürich HB
@@ -7185,7 +7185,7 @@ components:
         Describes the details of the reserved place(s).
       required:
        - accommodationType
-       ## - accommodationSubType #### Discuss with Christian
+       - accommodationSubType
       properties:
         accommodationType:
           $ref: "#/components/schemas/AccommodationType"
