@@ -9,7 +9,7 @@ servers:
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.4.0-rc1
+  version: 1.4.0-rc2
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -2818,7 +2818,8 @@ components:
     BaseTripPolicyFilter: ## OJP # Reduced Scope
       type: object
       description: >-
-        Policies that control the trip search behavior for both public and individual transport. Provided by OJP.
+        Policies that control the trip search behavior for both public and individual transport. 
+        Provided by OJP.
       properties:
         noSingleStep:
           description: The user is not able to climb one step, i.e. wheel chair.
@@ -2848,7 +2849,8 @@ components:
     TripMobilityFilter: ## OJP
       type: object
       description: >-
-        Base mobility options to be applied for both public and individual transport. Provided by OJP.
+        Base mobility options to be applied for both public and individual transport.
+        Provided by OJP.
       properties:
         # levelEntrance:  # Out of Scope
         #   description: >-
@@ -3154,7 +3156,8 @@ components:
     TripLeg: ## OJP  # Reduced scope
       type: object
       description: >-
-        A single stage of a trip that is made without change of MODE or service (ie: between each interchange). Provided by OJP.
+        A single stage of a trip that is made without change of MODE or service (ie: between each interchange).
+        Provided by OJP.
       required:
         - id  ## EXT replaces legId, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/181
       properties:
@@ -3165,7 +3168,7 @@ components:
           $ref: "#/components/schemas/TimedLeg"
         transferLeg:
           $ref: "#/components/schemas/TransferLeg"
-        continousLeg:
+        continuousLeg:
           $ref: "#/components/schemas/ContinuousLeg"
 
     TripLegSpecification:
@@ -3184,7 +3187,7 @@ components:
           $ref: "#/components/schemas/TimedLegSpecification"
         transferLeg:
           $ref: "#/components/schemas/TransferLeg"
-        # continousLeg:
+        # continuousLeg:
         #   $ref: "#/components/schemas/ContinuousLeg"
 
     TimedLeg: ## OJP # Reduced scope
@@ -3192,17 +3195,17 @@ components:
       description: >-
         A leg which is bound to a timetabled schedule. Corresponds to a ride. Provided by OJP.
       required:
-        - legAlight
-        - legBoard
+        - alight # EXT renamed timedLeg
+        - board # EXT renamed boardLeg
         - service
       properties:
-        legBoard:
+        board:
           $ref: "#/components/schemas/LegBoard"
-        legIntermediates:
+        intermediates:
           type: array
           items:
             $ref: "#/components/schemas/LegIntermediate"
-        legAlight:
+        alight:
           $ref: "#/components/schemas/LegAlight"
         service:
           $ref: "#/components/schemas/DatedJourney"
@@ -3223,19 +3226,19 @@ components:
     TimedLegSpecification:
       type: object
       description: >-
-        A minimal leg specification.
+        A minimal timed leg specification.
       required:
-        - legAlight
-        - legBoard
+        - alight # EXT renamed timedAlight
+        - board # EXT renamed timedBoard
         - service
       properties:
-        legBoard:
+        board:
           $ref: "#/components/schemas/LegBoardSpecification"
-        legIntermediates:
+        intermediates:
           type: array
           items:
             $ref: "#/components/schemas/LegIntermediateSpecification"
-        legAlight:
+        alight:
           $ref: "#/components/schemas/LegAlightSpecification"
         service:
           $ref: "#/components/schemas/DatedJourney"
@@ -3243,17 +3246,18 @@ components:
     TransferLeg: ## OJP # Reduced scope
       type: object
       description: >-
-        A leg which links other legs of a trip where a transfer between different places is required. Provided by OJP.
+        A leg which links other legs of a trip where a transfer between different places is required. 
+        Provided by OJP.
       required:
-        - legStart
-        - legEnd
+        - start # EXT renamed legStart
+        - end # EXT renamed legEnd
       properties:
         transferMode:
           $ref: "#/components/schemas/TransferMode"
-        legStart:
+        start:
           description: Stop/Station where boarding is done
           $ref: "#/components/schemas/Place"
-        legEnd:
+        end:
           description: Stop/Station to alight
           $ref: "#/components/schemas/Place"
         timeWindowStart: # Inlined from TimeWindow
@@ -3296,14 +3300,14 @@ components:
       description: >-
         A leg of a journey that is not bound to a timetable. Provided by OJP.
       required:
-        - legStart
-        - legEnd
+        - start
+        - end
         - service
       properties:
-        legStart:
+        start:
           description: Stop/Station where boarding is done
           $ref: "#/components/schemas/Place"
-        legEnd:
+        end:
           description: Stop/Station to alight
           $ref: "#/components/schemas/Place"
         service:
@@ -3636,10 +3640,10 @@ components:
       required:
         # - operatingDayRef
         # - journeyRef
-        - mode
-        - publishedServiceName
-        # - privateMode
-        - operatorRef
+        # - mode
+        # - publishedServiceName # EXT 
+        # - privateMode # EXT
+        - operatorRefs
         # - originText
         # - destinationText
       properties:
@@ -3668,6 +3672,10 @@ components:
           type: array
           items:
             type: string
+            example:
+              - "TGV 9218"
+              - "TH 9340"
+              - "ICE 15"
         lineNumbers:
           description: >-
             List of line numbers that are part of this journey.
@@ -3675,12 +3683,22 @@ components:
           type: array
           items:
             type: string
-        operatorRef:
+            example: 
+             - "S 52"
+             - "B 19"
+        operatorRefs:
           description: >-
             Reference to transport operators.
             For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
-          type: string
-          example: "urn:uic:rics:1185:11"
+
+            As a leg can be operated by more than operator we model it as an array here.
+          type: array
+          items:
+            type: string
+            example: 
+             - "urn:uic:rics:1185:11"
+             - "urn:uic:rics:1185:72"
+             - "urn:uic:rics:1185:48" 
 
     Mode: ## OJP
       type: object
@@ -5905,6 +5923,7 @@ components:
           pattern: "[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}"
         accountId:
           description: bank account id to be used outside of EU
+          type: string
         bankIdCodelist:
           type: string
           x-extensible-enum:
@@ -6455,22 +6474,27 @@ components:
                 format: int32
         involvedTCOs:
           description: >-
-            ticket controlling organizations involved in the control. Used to provide TCOs access to the ticket in the control data (UIC IRS 90918-4)
+            The ticket controlling organizations (TCOs) involved in the control.
+            Used to provide TCOs access to the ticket in the control data (UIC IRS 90918-4).
           type: array
           items:
             $ref: "#/components/schemas/Company"
 
     TripInterruptionProcess:
       description: >-
-        MANUAL- passenger needs manual confirmation of train or station staff to interrupt the trip. ACTIVATION- Passenger needs to deactivate the ticket during the interruption (via an app).
-        type:  string
-        x-extensible-enum:
-          - NONE
-          - MANUAL
-          - ACTIVATION
+        MANUAL: passenger needs manual confirmation of train or station staff to interrupt the trip. 
+        ACTIVATION: Passenger needs to deactivate the ticket during the interruption (via an app).
+      type:  string
+      x-extensible-enum:
+        - NONE
+        - MANUAL
+        - ACTIVATION
     TripAllocationProcess:
       description: >-
-        NONE- Individual trips don't need to be allocated. MANUAL- The passenger has to allocate a trip manually (This should not be used as it is by desiugn non-interoperable). ACTIVATION- Individual trips can be allocatted by activation of the ticket. FULFILLMENT- A new fulfillment needs to be created to allocate a trip
+        NONE: Individual trips don't need to be allocated. 
+        MANUAL: The passenger has to allocate a trip manually (This should not be used as it is by design non-interoperable). 
+        ACTIVATION: Individual trips can be allocated by activation of the ticket. 
+        FULFILLMENT: A new fulfillment needs to be created to allocate a trip.
       type: string
       x-extensible-enum:
         - NONE
@@ -6478,9 +6502,16 @@ components:
         - ACTIVATION
         - FULFILLMENT
     TripAllocationUnit:
-      description: Unit to allocate trips in a multi-trip fare. Trips can be allocated per day (e.g. Eurail) or per duration (e.g. multiples of a duration unit to cover the trip) or as single trips (e.g. carnet)) NONE- Individual trips don't need to be allocated. TRIP- allocation per individual trip. DAY- The allocation is per travel day DURATION- the allocation is per duration",
+      description: >-
+        Unit to allocate trips in a multi-trip fare. Trips can be allocated per day (e.g. Eurail) or per 
+        duration (e.g. multiples of a duration unit to cover the trip) or as single trips (e.g. carnet))
+        
+        NONE: Individual trips don't need to be allocated. 
+        TRIP: allocation per individual trip. 
+        DAY: The allocation is per travel day.
+        DURATION: the allocation is per duration.
       type: string
-      x-extensible-enum":
+      x-extensible-enum:
         - NONE
         - TRIP
         - DAY
@@ -7152,6 +7183,9 @@ components:
       type: object
       description: >-
         Describes the details of the reserved place(s).
+      required:
+       - accommodationType
+       ## - accommodationSubType #### Discuss with Christian
       properties:
         accommodationType:
           $ref: "#/components/schemas/AccommodationType"
@@ -7467,6 +7501,9 @@ components:
       type: object
       description: >-
         Passenger information needed at offering step.
+      required:
+        - id
+        - passengerType
       properties:
         id:
           type: string
@@ -7485,6 +7522,8 @@ components:
           description: date of birth of the passenger
           type: string
           format: date
+        passengerType:
+          $ref: "#/components/schemas/PassengerType"
         cards:
           description: reduction or loyalty cards owned by the passenger
           type: array
@@ -7508,19 +7547,24 @@ components:
             $ref: "#/components/schemas/Link"
 
     PassengerSpecification:
+      type: object
       description: >-
         Minimal specification of a passenger to request offers.
-      type: object
       required:
         - id
         - passengerType
       properties:
         id:
           type: string
-          format: uuid
-        externalRef:
+          description: >-
+            Id of the passenger resource in case service to patch a single passenger is provided.
+        externalReference:
+          description: >-
+            A stable reference to passengers from other elements, or from caller system.
+            When received in input of a trip-offers-collection request, it must be echoed back in the
+            response.
           type: string
-          example: TKT-ID-2314234
+          example: "TK-ID-12345"
         passengerType:
           $ref: "#/components/schemas/PassengerType"
         dateOfBirth:
@@ -7536,9 +7580,10 @@ components:
             $ref: "#/components/schemas/CardReference"
 
     PassengerType:
+      type: string
       description: >-
         Passenger type according to UIC passenger, i.e. traveler type list.
-      type: string
+        See https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
       x-extensible-enum:
         - DOG
         - PET
@@ -7593,9 +7638,9 @@ components:
           $ref: "#/components/schemas/Address"
 
     Gender:
+      type: string
       description: >-
         The gender of the passenger, which is important in the case of night trains.
-      type: string
       enum:
         - MALE
         - FEMALE
