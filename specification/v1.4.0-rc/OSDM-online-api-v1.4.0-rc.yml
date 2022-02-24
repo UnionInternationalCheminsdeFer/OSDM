@@ -4569,11 +4569,11 @@ components:
           type: string
         carrierConstraintText:
           type: string
-        tariffCode:
+        tariff:
           type: string
           description: >-
             Mapping to Tariff 42 of IRS-90918-3 (Hermes/Hosa). Helps the H2O converter in mapping
-            offers to a requested tariff code.
+            offers to a requested tariff. See legacyReservationParameter.tariff in OSDM offline.
         throughTicketTags:
           type: array
           items:
