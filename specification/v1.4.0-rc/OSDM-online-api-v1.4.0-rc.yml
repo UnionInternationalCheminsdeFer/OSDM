@@ -3370,18 +3370,20 @@ components:
           type: string
 
     ContinuousMode: ## OJP
+      type: string
       description: >-
         Types of modes that run at any time without a timetable. Provided by OJP.
-      type: string
+
       enum:
         - WALK
         - DEMAND_RESPONSIVE
         - REPLACEMENT_SERVICE
 
     IndividualMode: ## OJP
+      type: string
       description: >-
         Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
-      type: string
+
       x-extensible-enum:
         - WALK
         - CYCLE
@@ -3398,9 +3400,10 @@ components:
       default: WALK
 
     TransferMode: ## OJP
+      type: string
       description: >-
         Modes dedicated to perform transfers. Provided by OJP.
-      type: string
+
       x-extensible-enum:
         - WALK
         - PARK_AND_RIDE
@@ -3815,12 +3818,12 @@ components:
           $ref: "#/components/schemas/Link"
 
     Address: ## OJP # Reduced scope
+      type: object
       description: >-
         A descriptive data associated with a place that can be used to describe the unique geographical context of a
         place for the purposes of identifying it. may be refined as either a road address, a postal address or both.
         Provided by OJP.
       # allOf:
-      type: object
       required:
         - code  # EXT code instead of addressCode, see https://github.com/VDVde/OJP/issues/183
         - name  # EXT name instead of addressName, see https://github.com/VDVde/OJP/issues/183
@@ -4001,47 +4004,54 @@ components:
         #   $ref: "#/components/schemas/Precision"
 
     Longitude: ## OJP
+      type: number
       description: >-
         Longitude from Greenwich Meridian. -180 (West) to +180 (East). Decimal degrees. eg 2.356. Provided by OJP.
-      type: number
+
       format: float
       example: 8.54021
       minimum: -180.0
       maximum: 180.0
 
     Latitude: ## OJP
+      type: number
       description: >-
         Latitude from equator. -90 (South) to +90 (North). Decimal degrees. eg 56.356. Provided by OJP.
-      type: number
       format: float
       example: 47.37818
       minimum: -90.0
       maximum: 90.0
 
     StopPlaceRef: ## OJP
+      type: string
       description: >-
         Reference to a Stop Place using URNs to define code.
         For UIC see UIC MERITS/TAP-TSI station codes. Provided by OJP.
-      type: string
-      example: "urn:uic:stn:8503000"
+      example: 
+       - "urn:uic:stn:8503000"
+       - "urn:uic:stn:8400058"
+       - "urn:uic:stn:8727100"
 
     ProductCategoryRef: ## OJP
       description: >-
         Reference to a product category. Product categories should be defined once and used uniformly in all channels 
         (e.g. NeTEx, SIRI, OJP). Provided by OJP.
       type: string
-      example: "urn:uic:sbc:76"
+      example:
+      - "urn:uic:sbc:76"
+      - "urn:uic:sbc:43"
 
     OperationDayRef: ## OJP
+      type: string
       description: >-
         Reference to an operating day. Provided by OJP.
-      type: string
+
       example: "OperatingDay:12345"
 
     JourneyRef: ## OJP
+      type: string
       description: >-
         Reference to a journey. Provided by OJP.
-      type: string
       example: "ServiceJourney:1"
 
     OfferSearchCriteria:
