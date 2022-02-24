@@ -3769,6 +3769,7 @@ components:
           $ref: "#/components/schemas/ProductCategoryRef"
 
     Place: ## OJP # Reduced scope
+      type: object
       description: >-
         A geographic place of any type which may be specified as the origin or destination of a trip. Provided by OJP.
       # allOf:
@@ -3779,7 +3780,6 @@ components:
       #  - $ref: "#/components/schemas/StopPointStructure"  # Out of scope
       #  - $ref: "#/components/schemas/TopographicPlaceStructure"  # Out of scope
       #- $ref: "#/components/schemas/GeoPosition"
-      type: object
       required:
         - id
         # - name  ## EXT
@@ -3877,10 +3877,10 @@ components:
         #   type: string
 
     PointOfInterest: ## OJP # Reduced scope
+      type: object
       description: >-
         A type of place to or through which passengers may wish to navigate as part of
         their journey and which is modelled in detail by journey planners. Provided by OJP.
-      type: object
       required:
         - code  # EXT code instead of pointOfInterestCode, see https://github.com/VDVde/OJP/issues/183
         - name  # EXT name instead of pointOfInterestName, see https://github.com/VDVde/OJP/issues/183
@@ -3987,6 +3987,9 @@ components:
       type: object
       description: >-
         WGS84 coordinates position. Provided by OJP.
+      required:
+        - latitude
+        - longitude
       properties:
         longitude:
           $ref: "#/components/schemas/Longitude"
@@ -3996,9 +3999,6 @@ components:
         #   $ref: "#/components/schemas/Altitude"
         # precision:   # Out of scope
         #   $ref: "#/components/schemas/Precision"
-      required:
-        - latitude
-        - longitude
 
     Longitude: ## OJP
       description: >-
@@ -4262,6 +4262,10 @@ components:
 
     OfferSummary:
       type: object
+      required:
+        - minimalPrice
+        - overallServiceClass
+        - overallFlexibility
       description: >-
         The offer summary indicates the most relevant service class, level, flexibility or accommodation 
         that describe this offer, but this does not imply that these values exactly apply to all parts of
@@ -4287,10 +4291,6 @@ components:
           $ref: "#/components/schemas/AccommodationSubType"
         overallFlexibility:
           $ref: "#/components/schemas/Flexibility"
-      required:
-        - minimalPrice
-        - overallServiceClass
-        - overallFlexibility
 
     Offer:
       description: >-
@@ -4516,6 +4516,8 @@ components:
       type: object
       description: >-
         Structured description of the product , its name, comfort and sales / after-sales conditions
+      required:
+        - id
       properties:
         id:
           type: string
@@ -4557,17 +4559,24 @@ components:
           type: string
         carrierConstraintText:
           type: string
+        tariffCode:
+          type: string
+          description: >-
+            Mapping to Tariff 42 of IRS-90918-3 (Hermes/Hosa). Helps the H2O converter in mapping
+            offers to matching tariff code.
         throughTicketTags:
           type: array
           items:
             type: string
           description: >-
-            List of tags (and their type) that allow identifying sets of offers for which related contracts can be grouped into one through ticket
+            List of tags (and their type) that allow identifying sets of offers for which related 
+            contracts can be grouped into one through ticket
         combinationTags:
           description: >-
-            Tags to indicate that some products from a provider can be sold only when in conjunction with product(s) 
-            from another provider using the same tag. At least one, not all, combinationTags must be in common to allow 
-            combination. No combinationTags indicate that there are no combination constraints on the product.
+            Tags to indicate that some products from a provider can be sold only when in conjunction
+            with product(s) from another provider using the same tag. At least one, not all, 
+            combinationTags must be in common to allow combination. No combinationTags indicate 
+            that there are no combination constraints on the product.
           type: array
           items:
             type: object
@@ -4576,22 +4585,20 @@ components:
                 type: string
               needsToBeCombined:
                 description: >-
-                  If false it means that this product can only be sold also when not in conjunction with a product with
-                  the same tag. This is needed to propose specific products from one provider that depend on public ones of 
-                  another.
+                  If false it means that this product can only be sold also when not in conjunction with
+                  a product with the same tag. This is needed to propose specific products from one provider 
+                  that depend on public ones of another.
                 type: boolean
                 default: false
         links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
 
     FulfillmentMediaType:
       type: string
       description: >-
-        Fulfillment types. RCT2, RCCST and UIC-PDF are official UIC standards.
+        Fulfillment types. RCT2, RCCST and UIC_PDF are official UIC standards.
       x-extensible-enum:
         - RCT2
         - RCCST
@@ -4605,6 +4612,9 @@ components:
       description:
         An admission represents a travel right, or the entitlement to travel onboard a train between
         the given origin and destination, following the given route. It does not include a seat reservation.
+      required:
+        - id
+        - commonOfferPartAttributes
       properties:
         id:
           type: string
@@ -4632,9 +4642,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/OfferPartReference"
-      required:
-        - id
-        - commonOfferPartAttributes
 
     PlaceSelectionPatch:
       type: object
@@ -4668,6 +4675,10 @@ components:
         Reservation includes the reference to the in the initial offer. 
         The offer needs to be updated with the selected places before the confirmation
         which creates the reservation details including the reserved places.
+      required:
+        - id
+        - commonOfferPartAttributes
+        - reservationDetails
       properties:
         id:
           type: string
@@ -4703,13 +4714,12 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/OfferPartReference"
-      required:
-        - id
-        - commonOfferPartAttributes
-        - reservationDetails
 
     Ancillary:
       type: object
+      required:
+        - id
+        - commonOfferPartAttributes
       properties:
         id:
           type: string
@@ -4729,12 +4739,12 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/OfferPartReference"
-      required:
-        - id
-        - commonOfferPartAttributes
 
     Fee:
       type: object
+      required:
+        - id
+        - price
       properties:
         id:
           type: string
@@ -4771,9 +4781,6 @@ components:
             The product code expressed in the provider system (could be a
             mapping from an even lower-level provider).
           example: Reservierungsentgelt
-      required:
-        - id
-        - price
 
     PromoCode:
       type: object
@@ -4794,6 +4801,8 @@ components:
 
     OfferPartReference:
       type: object
+      required:
+        - id
       description: >-
         References all the offer part elements in an uniform format.
         In its part, an OfferPartReference can refer to reservation, admission, ancillary or fee.
@@ -4807,11 +4816,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
 
     OfferSelection:
       type: object
+      required:
+        - selectedOfferId
       properties:
         selectedOfferId:
           type: string
@@ -4863,11 +4872,11 @@ components:
               type: string
             placeSelection:
               $ref: "#/components/schemas/PlaceSelectionPatch"
-      required:
-        - selectedOfferId
 
     BookingRequest:
       type: object
+      required:
+        - selectedOffers
       properties:
         booker:
           $ref: "#/components/schemas/Booker"
@@ -4898,8 +4907,6 @@ components:
               - NONE
           default: [ALL]
           maxItems: 6
-      required:
-        - selectedOffers
 
     BookingResponse:
       type: object
@@ -5067,6 +5074,8 @@ components:
         - provides easier access to trains and stations
         - allows an exchange for other services (voucher)
         A fulfillment refers to services of one or multiple offer parts or a fare (allocator mode).
+      required:
+        - id
       properties:
         id:
           type: string
@@ -5102,8 +5111,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
 
     FulfillmentStatus:
       type: string
@@ -5237,6 +5244,8 @@ components:
 
     RefundOffer:
       type: object
+      required:
+        - id
       properties:
         id:
           type: string
@@ -5277,8 +5286,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
 
     RefundOfferRequest:
       type: object
@@ -5306,11 +5313,11 @@ components:
       type: object
       description: >-
         Changes the refund offer to status CONFIRMED. De-confirmation by setting PROPOSED status is not supported by API.
+      required:
+        - status
       properties:
         status:
           $ref: "#/components/schemas/RefundStatus"
-      required:
-        - status
 
     RefundStatus:
       type: string
@@ -5337,6 +5344,9 @@ components:
         existing trip (that is then passed in) plus a set of offer search
         criteria, or based on trip-search and offer search criteria. At least one
         of the trip or tripSearchCriteria must be set.
+      required:
+        - tripOfferRequest
+        - fulfillmentIds
       properties:
         tripOfferRequest:
           $ref: "#/components/schemas/TripOfferRequest"
@@ -5346,9 +5356,6 @@ components:
             type: string
         overruleCode:
           $ref: "#/components/schemas/OverruleCode"
-      required:
-        - tripOfferRequest
-        - fulfillmentIds
 
     ExchangeTripOffersCollectionResponse:
       type: object
@@ -5379,6 +5386,9 @@ components:
 
     ExchangeTripOffer:
       type: object
+      required:
+        - id
+        - trip
       properties:
         id:
           type: string
@@ -5403,9 +5413,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
-        - trip
 
     ExchangeOperationResponse:
       type: object
@@ -5561,6 +5568,8 @@ components:
       type: object
       description: >-
         Non trip offers do not reference a trip, thus no reservations can be offered by definition.
+      required:
+        - id
       properties:
         id:
           type: string
@@ -5597,8 +5606,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
 
     CoachLayoutsResponse:
       type: object
@@ -5624,6 +5631,8 @@ components:
         coach layout providing data to draw a coach layout. The items of a coach
         are located via coordinates with (0,0) in the upper left corner. All
         coordinates are given without sign.
+      required:
+        - id
       properties:
         id:
           type: string
@@ -5729,11 +5738,13 @@ components:
           description: Context information required by the services.
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
 
     LayoutCoordinates:
       type: object
+      required:
+        - x
+        - y
+        - zOrder
       properties:
         x:
           description: >-
@@ -5753,10 +5764,6 @@ components:
               - value 1: middle layer usually used by places
               - value 2: top layer usually used by icons
           type: string
-      required:
-        - x
-        - y
-        - zOrder
 
     Problem:
       type: object
@@ -6084,9 +6091,9 @@ components:
             $ref: "#/components/schemas/Trip"
 
     ReductionCards:
+      type: object
       description: >-
         notification on a change of a resource
-      type: object
       properties:
         deliveryDate:
           description: date of the assembly of the reduction card data set
@@ -6099,6 +6106,10 @@ components:
 
     ReductionCard:
       type: object
+      required:
+        - issuer
+        - id
+        - name
       properties:
         issuer:
           $ref: "#/components/schemas/Company"
@@ -6126,10 +6137,6 @@ components:
           description: the card id must be delivered in online sales
           type: boolean
           default: false
-      required:
-        - issuer
-        - id
-        - name
 
     #### Fare-specific elements begin
 
@@ -6489,6 +6496,7 @@ components:
         - NONE
         - MANUAL
         - ACTIVATION
+
     TripAllocationProcess:
       description: >-
         NONE: Individual trips don't need to be allocated. 
@@ -6501,6 +6509,7 @@ components:
         - MANUAL
         - ACTIVATION
         - FULFILLMENT
+
     TripAllocationUnit:
       description: >-
         Unit to allocate trips in a multi-trip fare. Trips can be allocated per day (e.g. Eurail) or per 
@@ -6516,9 +6525,13 @@ components:
         - TRIP
         - DAY
         - DURATION
+
     TripAllocationConstraint:
-      description: constraint on the use of a multiple trip ticket
       type: object
+      description: constraint on the use of a multiple trip ticket
+      required:
+        - allocationUnit
+        - requiredProcesses
       properties:
         allocationUnit:
           $ref: "#/components/schemas/TripAllocationUnit"
@@ -6536,13 +6549,15 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/TripAllocationProcess"
-      required:
-        - allocationUnit
-        - requiredProcesses
+
     TripInterruptionConstraint:
-      description: >-
-        rules on allowed trip interruptions. Interruptions due to a train change  indicated by a trip search must not be included here.
       type: object
+      description: >-
+        rules on allowed trip interruptions. Interruptions due to a train change 
+        indicated by a trip search must not be included here.
+      required:
+        - maxInterruptions
+        - requiredProcesses
       properties:
         maxInterruptions:
           description: maximum number of allowed interruptions
@@ -6563,14 +6578,12 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/TripInterruptionProcess"
-      required:
-        - maxInterruptions
-        - requiredProcesses
+
     RegulatoryConditions:
       description: >-
-        General conditions applied to cover legal regulations within the area of validity. allocators must reflect these terms and
-        conditions in the conditions of combined offers and indicate them to the customer where required. Which indications are
-        mandatory to be shown to the customer will be defined in the SCICs
+        General conditions applied to cover legal regulations within the area of validity. Allocators must 
+        reflect these terms and conditions in the conditions of combined offers and indicate them to the customer
+        where required. Which indications are mandatory to be shown to the customer will be defined in the SCICs
          - CIV: terms and conditions according to COTIV regulation
          - MD:  terms and conditions according to SMPS regulation
          - EU-PRR: terms and conditions according to EU-PRR regulation
@@ -6606,6 +6619,8 @@ components:
 
     FareCombinationModel:
       type: object
+      required:
+        - model
       properties:
         model:
           description: >-
@@ -6640,8 +6655,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Company"
-      required:
-        - model
 
     ServiceConstraint:
       type: object
@@ -6693,6 +6706,8 @@ components:
         to go to the main rail station). 
         entryStation - Station to enter the zone in case the product requires to enter the zone via a 
         specific station (e.g. local zone ticket to start from the main rail station).
+      required:
+        - carrier
       properties:
         binaryLineId:
           type: string
@@ -6716,11 +6731,14 @@ components:
             Nomenclature des units territoriales statistiques  
              COMMISSION REGULATION (EU) No 31/2011
           type: string
-      required:
-        - carrier
 
     TrainLink:
       type: object
+      required:
+        - fromStation
+        - toStation
+        - train
+        - travelDate
       properties:
         fromStation:
           $ref: "#/components/schemas/StopPlace" # EXT Changed from StopPoint
@@ -6733,11 +6751,6 @@ components:
           format: date-time
           description: >-
             date and time of the departure where the train link starts
-      required:
-        - fromStation
-        - toStation
-        - train
-        - travelDate
 
     Polygon:
       type: object
@@ -6810,6 +6823,8 @@ components:
         (e.g. local zone ticket to start from the main rail station).
         terminalStation - Terminal station in case the product requires a destination within the zone (e.g. local ticket
         to go to the main rail station).
+      required:
+        - carrier
       properties:
         binaryZoneId:
           type: string
@@ -6833,8 +6848,6 @@ components:
         nutsCode:
           description: Nomenclature des units territoriales statistiques COMMISSION REGULATION (EU) No 31/2011
           type: string
-      required:
-        - carrier
 
     ControlSecurityType:
       description: >-
@@ -6879,6 +6892,8 @@ components:
         Multiple stations within a set at one side of the border might be provided in case of changes (new stations build near the border). 
 
         Providing the UIC code for the station is mandatory.
+      required:
+        - stationSets
       properties:
         name:
           type: string
@@ -6888,8 +6903,6 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/StopPlaceRef" # EXT Changed from StopPoint
-      required:
-        - stationSets
 
     TrainValidity:
       type: object
@@ -6942,6 +6955,10 @@ components:
         The underlying system may provide additional links pointing on further
         information (such as HTML download links, web sites or extended APIs).
         Mechanism to add flexible extensions specific to an underlying system.
+      required:
+        - contentTypes
+        - href
+        - rel
       properties:
         contentTypes:
           type: array
@@ -6967,13 +6984,12 @@ components:
           format: int32
           example: 1
           description: Version of the current relation.
-      required:
-        - contentTypes
-        - href
-        - rel
 
     Translation:
       type: object
+      required:
+        - language
+        - text
       properties:
         language:
           type: string
@@ -6982,12 +6998,12 @@ components:
           type: string
         shortText:
           type: string
-      required:
-        - language
-        - text
 
     Text:
       type: object
+      required:
+        - id
+        - text
       description: >-
         Directly included text in case of online services. Text must be encrypted in
         UTF-8 format.
@@ -7002,12 +7018,12 @@ components:
           type: string
         shortText:
           type: string
-      required:
-        - id
-        - text
 
     Price:
       type: object
+      required:
+        - currency
+        - amount
       minProperties: 1
       properties:
         currency:
@@ -7024,9 +7040,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/VAT"
-      required:
-        - currency
-        - amount
 
     Currency:
       description: ISO 4217 currency codes
@@ -7035,6 +7048,9 @@ components:
 
     VAT:
       type: object
+      required:
+        - country
+        - amount
       properties:
         country:
           description: ISO 3166 2A codes
@@ -7056,9 +7072,6 @@ components:
           type: string
         scope:
           $ref: "#/components/schemas/VatScope"
-      required:
-        - country
-        - amount
 
     VatScope:
       description: scope where the VAT applies
@@ -7113,6 +7126,9 @@ components:
         Describes sales and after sales conditions applicable to the product. 
         For a product to be refundable or exchangeable, at least one refund or exchange 
         (respectively) condition must be present.
+      required:
+        - type
+        - description
       properties:
         type:
           type: string
@@ -7139,14 +7155,14 @@ components:
               description: indicates whether the fee belongs to the allocator
               type: boolean
               default: false
-      required:
-        - type
-        - description
 
     GeoCoordinate:
       type: object
       description: >-
         Used to provide any geo-encoded location, regardless of environment, using longitude and latitude coordinates.
+      required:
+        - latitude
+        - longitude
       properties:
         system:
           description: >-
@@ -7175,9 +7191,6 @@ components:
           type: number
           format: float
           example: 7.439122
-      required:
-        - latitude
-        - longitude
 
     ReservationDetail:
       type: object
@@ -7299,6 +7312,9 @@ components:
 
     ReservationOptionGroup:
       type: object
+      required:
+        - preferenceGroup
+        - preferences
       properties:
         preferenceGroup:
           type: string
@@ -7308,9 +7324,6 @@ components:
           items:
             type: string
             example: "FORWARD_FACING"
-      required:
-        - preferenceGroup
-        - preferences
 
     ReferencePlace:
       type: object
@@ -7374,6 +7387,9 @@ components:
 
     Coach:
       type: object
+      required:
+        - number
+        - layoutId
       properties:
         compartments:
           type: array
@@ -7414,15 +7430,12 @@ components:
             - BICYCLE_COACH
             - LUGGAGE_COACH
             - TRAIN_HEAD
-      required:
-        - number
-        - layoutId
 
     Compartment:
+      type: object
       description: >-
         Areas within a coach that holds places. Areas might be selectable
         as a whole. Usual areas would be classic compartments.
-      type: object
       properties:
         places:
           type: array
@@ -7436,8 +7449,11 @@ components:
           default: false
 
     PlacePosition:
-      description: description of a place
       type: object
+      description: description of a place
+      required:
+        - number
+        - status
       properties:
         number:
           description: >-
@@ -7451,9 +7467,7 @@ components:
             case complete compartments must be selected.
           type: boolean
           default: false
-      required:
-        - number
-        - status
+
 
     AvailabilityStatus:
       description: status of the place or coach
@@ -7485,6 +7499,9 @@ components:
       type: object
       description: >-
         Booker information needed at offering step.
+      required:
+        - id
+        - details
       properties:
         id:
           type: string
@@ -7613,11 +7630,11 @@ components:
     PersonDetail:
       type: object
       description: >-
-        Personal information potentially needed at booking step. The main purpose is
-        being able to inform the customer of delays or disruptions.
-        PersonDetails providing personal information only information required in the booking.
-        It is not allowed to send personal information not required in the booking reply.
-        It is not allowed to send these personal data already in the booking request.
+        Personal information potentially needed at booking step. To support privacy by design,
+        it is not permitted to send personal information not required to create a valid booking. 
+      required:
+        - firstName
+        - lastName
       properties:
         preferredLanguage:
           type: string
@@ -7631,7 +7648,9 @@ components:
         eMail:
           type: string
         phoneNumber:
-          description: Preferably a mobile phone number
+          description: >-
+            Preferably a mobile phone number, to be contacted in case changes to the booking ocuur, e.g.,
+            in case of interruptions.
           type: string
         address:
           description: address of the traveller. Can be relevant for some pass holders
@@ -7651,6 +7670,8 @@ components:
       description: >-
         Transportables which are handled similar to passengers like dogs, bicycles, car transport.
         These transportables might need a ticket or reservation.
+      required:
+        - type
       properties:
         type:
           description: >-
@@ -7668,11 +7689,15 @@ components:
           $ref: "#/components/schemas/MotorCycle"
         trailer:
           $ref: "#/components/schemas/Trailer"
-      required:
-        - type
 
     Car:
       type: object
+      required:
+        - weight
+        - length
+        - width
+        - height
+        - model
       properties:
         weight:
           type: integer
@@ -7702,12 +7727,6 @@ components:
             The trailer plate is a personal data item and must not be provided in an offer request. 
             It must be patched into the offer after the customer accepted the offer for booking.
           type: string
-      required:
-        - weight
-        - length
-        - width
-        - height
-        - model
 
     MotorCycle:
       type: object
@@ -7725,6 +7744,11 @@ components:
 
     Trailer:
       type: object
+      required:
+        - weight
+        - length
+        - width
+        - height
       properties:
         weight:
           description: weight in kg
@@ -7747,11 +7771,6 @@ components:
             The trailer plate is a personal data item and must not be provided in an offer request. 
             It must be patched into the offer after the customer accepted the offer for booking
           type: string
-      required:
-        - weight
-        - length
-        - width
-        - height
 
     IdentificationDocument:
       type: object
@@ -7760,6 +7779,9 @@ components:
         PassengerDetails providing personal information only information required in the offer. 
         It is not allowed to send personal information not required in the offer reply. 
         It is legally not allowed to send these personal data already in the offer request.
+      required:
+        - id
+        - type
       properties:
         id:
           description: Identifier on the document.
@@ -7797,9 +7819,6 @@ components:
         limitOfValidity:
           type: string
           format: date-time
-      required:
-        - id
-        - type
 
     CardReference:
       type: object
