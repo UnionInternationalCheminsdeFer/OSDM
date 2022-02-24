@@ -85,7 +85,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the place to get.
+          description: id of the place to get.
       responses:
         "200":
           description: the requested place
@@ -175,7 +175,7 @@ paths:
             type: string
             description: unique (on this server) and opaque id of the trip
           required: true
-          description: ID of the trip to get.
+          description: id of the trip to get.
         - in: query
           name: stopBehavior
           description: >-
@@ -282,8 +282,7 @@ paths:
         - Trips
       summary: Returns a collection of trips for a specified origin and destination (and via).
       description: >-
-        The unique codes of the origin and
-        destination can be resolved using the places service.
+        The unique codes of the origin and destination can be resolved using the places service.
       operationId: getTripsCollectionId
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
@@ -294,7 +293,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the trip to get.
+          description: id of the trips
         - name: scrollContext
           in: query
           description: >-
@@ -366,7 +365,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the trip to get.
+          description: id of the trip offers
         - name: scrollContext
           in: query
           description: >-
@@ -487,7 +486,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the trip to get.
+          description: id of the trip offer to get.
         - in: query
           name: embed
           description: >-
@@ -551,7 +550,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the trip to get.
+          description: id of the offer to get.
         - in: query
           name: embed
           description: >-
@@ -659,13 +658,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the offer.
+          description: id of the offer.
         - in: path
           name: reservationId
           schema:
             type: string
           required: true
-          description: ID of the reservation where to validate the place availability
+          description: id of the reservation where to validate the place availability
         - in: query
           name: preferences
           description: >-
@@ -731,13 +730,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the offer.
+          description: id of the offer.
         - in: path
           name: reservationId
           schema:
             type: string
           required: true
-          description: ID of the reservation where to validate the place availability
+          description: id of the reservation where to validate the place availability
         - in: query
           name: coachNumber
           description: coach of the referenced place
@@ -813,13 +812,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the offer.
+          description: id of the offer
         - in: path
           name: reservationId
           schema:
             type: string
           required: true
-          description: ID of the reservation where to validate the place availability
+          description: id of the reservation where to validate the place availability
         - in: query
           name: preferences
           description: >-
@@ -883,13 +882,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the offer.
+          description: id of the offer
         - in: path
           name: fareId
           schema:
             type: string
           required: true
-          description: ID of the fare where to validate the place availability
+          description: id of the fare where to validate the place availability
         - in: query
           name: preferences
           description: >-
@@ -955,13 +954,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the offer.
+          description: id of the offer
         - in: path
           name: fareId
           schema:
             type: string
           required: true
-          description: ID of the fare where to validate the place availability
+          description: id of the fare where to validate the place availability
         - in: query
           name: coachNumber
           description: coach of the referenced place
@@ -1037,13 +1036,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the offer.
+          description: id of the offer
         - in: path
           name: fareId
           schema:
             type: string
           required: true
-          description: ID of the reservation fare where to get the place availability
+          description: id of the reservation fare where to get the place availability
         - in: query
           name: preferences
           description: >-
@@ -1103,13 +1102,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the booking the passenger is in.
+          description: id of the booking
         - in: path
           name: passengerId
           schema:
             type: string
           required: true
-          description: ID of the passenger to get.
+          description: id of the passenger
       responses:
         "200":
           description: Passenger found
@@ -1153,13 +1152,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the booking the passenger is in.
+          description: id of the booking the passenger is in.
         - in: path
           name: passengerId
           schema:
             type: string
           required: true
-          description: ID of the passenger to get.
+          description: id of the passenger
       requestBody:
         content:
           application/json:
@@ -1210,7 +1209,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the booking the booker is in.
+          description: id of the booking the booker is in.
       responses:
         "200":
           description: Booker found
@@ -1254,7 +1253,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the booking the booker is in.
+          description: id of the booking the booker is in.
       requestBody:
         content:
           application/json:
@@ -1304,9 +1303,9 @@ paths:
           name: productId
           schema:
             type: string
-            description: unique and opaque ID of the product
+            description: unique and opaque id of the product
           required: true
-          description: ID of the product to get.
+          description: id of the product to get
       responses:
         "200":
           description: Product found
@@ -1404,7 +1403,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the product to get.
+          description: id of the booking to get.
         - in: query
           name: embed
           description: >-
@@ -1472,7 +1471,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the booking to delete.
+          description: id of the booking to delete.
       responses:
         "204":
           description: No Content
@@ -1508,7 +1507,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the booking to be patched
+          description: id of the booking to be patched
       requestBody:
         content:
           application/json:
@@ -1554,7 +1553,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the booking to be patched
+          description: id of the booking to be patched
       responses:
         "200":
           description: >-
@@ -1605,7 +1604,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the booking to be patched
+          description: id of the booking to be patched
       requestBody:
         content:
           application/json:
@@ -1661,7 +1660,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the product to get.
+          description: id of the fulfillment to get.
       responses:
         "200":
           description: fulfillment found
@@ -1709,7 +1708,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the booking.
+          description: id of the booking.
       requestBody:
         content:
           application/json:
@@ -1754,13 +1753,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the booking
+          description: id of the booking
         - in: path
           name: refundOfferId
           schema:
             type: string
           required: true
-          description: ID of the refund offer to get.
+          description: id of the refund offer to get.
       responses:
         "200":
           description: RefundOffer found
@@ -1804,13 +1803,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the offer the offerPart is part of.
+          description: id of the booking
         - in: path
           name: refundOfferId
           schema:
             type: string
           required: true
-          description: ID of the product to get.
+          description: id of the refund offer
       requestBody:
         content:
           application/json:
@@ -1859,13 +1858,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the offer the offerPart is part of.
+          description: id of the booking
         - in: path
           name: refundOfferId
           schema:
             type: string
           required: true
-          description: ID of the product to delete.
+          description: id of the refund offer
       responses:
         "204":
           description: No Content
@@ -1902,13 +1901,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the booking
+          description: id of the booking
         - in: path
           name: exchangeOperationId
           schema:
             type: string
           required: true
-          description: ID of the exchange operation to get.
+          description: id of the exchange operation
         - in: query
           name: embed
           description: >-
@@ -1971,13 +1970,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the booking to be exchanged.
+          description: id of the booking to be exchanged.
         - in: path
           name: exchangeOperationId
           schema:
             type: string
           required: true
-          description: ID of the exchange operation.
+          description: id of the exchange operation.
       requestBody:
         content:
           application/json:
@@ -2027,13 +2026,13 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the booking containing the exchange operation
+          description: id of the booking containing the exchange operation
         - in: path
           name: exchangeOperationId
           schema:
             type: string
           required: true
-          description: ID of the exchangeOperation to delete.
+          description: id of the exchangeOperation to delete.
       responses:
         "204":
           description: No Content
@@ -2118,7 +2117,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the trip to get.
+          description: id of the trip to get.
         - name: scrollContext
           in: query
           description: >-
@@ -2195,7 +2194,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the trip to get.
+          description: id of the trip to get.
         - in: query
           name: embed
           description: >-
@@ -2295,7 +2294,7 @@ paths:
           schema:
             type: string
           required: true
-          description: ID of the complaint to get.
+          description: id of the complaint
       responses:
         "200":
           description: the requested complaint
@@ -2338,7 +2337,7 @@ paths:
             type: string
             format: uuid
           required: true
-          description: ID of the complaint to be patched
+          description: id of the complaint to be patched
       requestBody:
         content:
           application/json:
@@ -2606,7 +2605,7 @@ components:
       properties:
         id:
           type: string
-          description: unique id of this resource on this server.
+          description:  id of this resource on this server.
         title:
           type: string
           example: Bruxelles-Midi
@@ -3393,7 +3392,7 @@ components:
         - MOTORCYCLE
         - TRUCK
         - SCOOTER
-        - RIDE_POOL_CAR
+        - RidE_POOL_CAR
         - CAR_SHARING
         - CYCLE_SHARING
         - SCOOTER_SHARING
@@ -3406,8 +3405,8 @@ components:
 
       x-extensible-enum:
         - WALK
-        - PARK_AND_RIDE
-        - BIKE_AND_RIDE
+        - PARK_AND_RidE
+        - BIKE_AND_RidE
         - CAR_HIRE
         - BIKE_HIRE
         - PROTECTED_CONNECTION
@@ -3791,7 +3790,7 @@ components:
         id:
           type: string
           description: >-
-            id uniquely defining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn "0850000"
+            id  defining the place. The code is provided as URN, relative URNs are allowed with base path urn:uic:stn "0850000"
           example: "urn:uic:stn:8500000"
         name:
           type: string
@@ -3829,7 +3828,7 @@ components:
         - name  # EXT name instead of addressName, see https://github.com/VDVde/OJP/issues/183
       properties:
         code:
-          description: ID of this address.
+          description: id of the address
           type: string
           example: NL:1916200000022621
         # privateCode:  # Out of scope
@@ -3889,7 +3888,7 @@ components:
         - name  # EXT name instead of pointOfInterestName, see https://github.com/VDVde/OJP/issues/183
       properties:
         code:
-          description: ID of this Point of Interest.
+          description: id of the Point of Interest.
           type: string
         name:
           description: Name or description of point of interest for use in passenger information.
@@ -4438,8 +4437,8 @@ components:
           type: string
           enum:
             - COLLECTIVE
-            - INDIVIDUAL
-          default: INDIVIDUAL
+            - INDIVidUAL
+          default: INDIVidUAL
         appliedReductions:
           type: array
           items:
@@ -4451,8 +4450,9 @@ components:
         passengerIds:
           type: array
           items:
+            description: Id of the passenger
             type: string
-          description: Id of the passenger
+          
         providerBookingReference:
           type: string
           description: >-
@@ -4531,7 +4531,7 @@ components:
       properties:
         id:
           type: string
-          description: unique id of this product on this server.
+          description: id of the product
         abstract:
           type: string
           example: TGV Lyria Loisir 2
@@ -5646,7 +5646,7 @@ components:
       properties:
         id:
           type: string
-          description: unique id of this coachLayout on this server
+          description: id of this coachLayout on this server
         abstract:
           type: string
           example: coach 3 train T122
@@ -5856,9 +5856,11 @@ components:
                 $ref: "#/components/schemas/AccommodationType"
               accommodationSubType:
                 $ref: "#/components/schemas/AccommodationSubType"
-              passengerReferences:
-                description: reference of the traveller / reservation holder
-                type: string
+              passengerIds:
+                type: array             
+                items:
+                  description: Id of the passenger
+                  type: string
               number:
                 description: number of places
                 type: integer
@@ -5869,7 +5871,8 @@ components:
                 type: array
                 items:
                   type: object
-                  description: place properties of places in the place pack. Properties without a  number refer to all places
+                  description: >-
+                    Place properties of places in the place pack. Properties without a number refer to all places.
                   properties:
                     placeProperty:
                       description: see code list
@@ -6069,7 +6072,7 @@ components:
           x-extensible-enum:
             - INITIATED
             - EVALUATING
-            - DECIDED
+            - DECidED
             - SETTLED
         customerComplaint:
           $ref: "#/components/schemas/CustomerComplaint"
@@ -6124,8 +6127,7 @@ components:
         issuer:
           $ref: "#/components/schemas/Company"
         id:
-          description: >-
-            id of the card type within the issue
+          description: id of the card type within the issue
           type: string
         name:
           $ref: "#/components/schemas/Text"
@@ -6164,7 +6166,7 @@ components:
         - afterSalesCondition
       properties:
         id:
-          description: unique id of the fare item to be included in accounting
+          description: id of the fare item to be included in accounting
           type: string
         type:
           $ref: "#/components/schemas/FareType"
@@ -6181,7 +6183,8 @@ components:
         regionalConstraint:
           type: object
           description: >-
-            Regional constraint of the fare- offline bulk data use the id of connection points whereas in an online environment the connection point is included
+            Regional constraint of the fare- offline bulk data use the id of connection points whereas 
+            in an online environment the connection point is included
           required:
             - regionalValidities
           properties:
@@ -6861,11 +6864,11 @@ components:
 
     ControlSecurityType:
       description: >-
-        SIP: secure paper tickets; SID: security in data (signed bar code); SIS: security in system
+        SIP: secure paper tickets; Sid: security in data (signed bar code); SIS: security in system
       type: string
       x-extensible-enum:
         - SIP
-        - SID
+        - Sid
         - SIS
 
     LegacyReservationTariff:
@@ -7230,15 +7233,18 @@ components:
         placeProperties is mandatory for allocator mode, for distributors the textual description is used
       required:
         - id
+        - passengerIds
         - vehicle
         - coach
         - places
       properties:
         id:
           type: string
-        passengerReferences:
-          description: reference of the traveller / reservation holder
-          type: string
+        passengerIds:
+          type: array
+          items:
+            description: Id of the passenger
+            type: string
         vehicle:
           description: vehicle number (e.g. train number)
           type: string
@@ -7352,7 +7358,7 @@ components:
         passengerIds:
           type: array
           items:
-            description: reference of the passenger.id
+            description: Id of the passenger
             type: string
         selectedPlaceProperties:
           description: Properties of places as defined in 90810-10.
@@ -7500,7 +7506,7 @@ components:
             type: object
             properties:
               passengerId:
-                description: reference of the passenger.id
+                description: Id of the passenger
                 type: string
               placeNumber:
                 type: string
@@ -7591,7 +7597,7 @@ components:
             When received in input of a trip-offers-collection request, it must be echoed back in the
             response.
           type: string
-          example: "TK-ID-12345"
+          example: "TK-id-12345"
         passengerType:
           $ref: "#/components/schemas/PassengerType"
         dateOfBirth:
