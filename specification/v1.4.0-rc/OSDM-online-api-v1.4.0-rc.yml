@@ -4490,8 +4490,8 @@ components:
           type: string
           enum:
             - COLLECTIVE
-            - INDIVidUAL
-          default: INDIVidUAL
+            - INDIVIDUAL
+          default: INDIVIDUAL
         appliedReductions:
           type: array
           items:
@@ -6253,7 +6253,7 @@ components:
             of the corresponding offline fare.
           $ref: "#/components/schemas/Text"
         description:
-          description: detailed description of the fare    
+          description: detailed description of the fare
           $ref: "#/components/schemas/Text"
         prices:
           description: allows specifying a price in multiple currencies
@@ -6524,7 +6524,8 @@ components:
               maximum: 99999
             addId:
               description: >-
-                Sequential number of regional validities (leading positions in case the series is too short
+                Sequential number of regional validities (leading positions in case the series
+                is too short).
               type: integer
               format: int32
               minimum: 0
@@ -6566,7 +6567,6 @@ components:
             - travelClass
             - serviceLevelCode
             - serviceCode
-
 
     TripInterruptionProcess:
       description: >-
@@ -7290,7 +7290,7 @@ components:
             $ref: "#/components/schemas/AccommodationSubType"
         placeProperties:
           type: array
-          items: 
+          items:
             $ref: "#/components/schemas/PlaceProperty"
         text:
           $ref: "#/components/schemas/Text"
@@ -7350,7 +7350,7 @@ components:
                 format: int32
             required:
               - placeProperty
-    
+
     PlaceProperty:
       type: string
       description: see code list
