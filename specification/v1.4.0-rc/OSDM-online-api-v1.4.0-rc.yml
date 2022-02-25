@@ -4758,13 +4758,13 @@ components:
       required:
         - id
         - commonOfferPartAttributes
-        - reservationDetails
+        - reservationDetail
       properties:
         id:
           type: string
         commonOfferPartAttributes:
           $ref: "#/components/schemas/CommonOfferPartAttributes"
-        reservationDetails:
+        reservationDetail:
           $ref: "#/components/schemas/ReservationDetail"
         placeSelection:
           $ref: "#/components/schemas/PlaceSelection"
@@ -6248,8 +6248,12 @@ components:
         type:
           $ref: "#/components/schemas/FareType"
         name:
+          description: >-
+            If the online fare is based on a offline fare it corresponds to the name
+            of the corresponding offline fare.
           $ref: "#/components/schemas/Text"
         description:
+          description: detailed description of the fare    
           $ref: "#/components/schemas/Text"
         prices:
           description: allows specifying a price in multiple currencies
@@ -6285,23 +6289,6 @@ components:
           $ref: "#/components/schemas/ServiceClass"
         comfortClass:
           $ref: "#/components/schemas/ComfortClass"
-        accommodationDetail:
-          type: object
-          properties:
-            accommodationType:
-              $ref: "#/components/schemas/AccommodationType"
-            accommodationSubType:
-              $ref: "#/components/schemas/AccommodationSubType"
-            text:
-              $ref: "#/components/schemas/Text"
-            isClassNameExcluded:
-              description: indicates that the class name is included
-              type: boolean
-              default: false
-            reservationParameterId:
-              type: string
-          required:
-            - text
         afterSalesCondition:
           type: object
           properties:
@@ -6379,31 +6366,6 @@ components:
                 $ref: "#/components/schemas/CardReference"
           required:
             - requiredCards
-        legacyAccountingIdentifier:
-          type: object
-          description: identifier of the fare in the current 301 accounting file
-          required:
-            - serialId
-          properties:
-            serialId:
-              description: sequential number of regional validities
-              type: integer
-              format: int32
-              minimum: 0
-              maximum: 99999
-            addId:
-              description: >-
-                Sequential number of regional validities (leading positions in case the series is too short
-              type: integer
-              format: int32
-              minimum: 0
-              maximum: 99
-            tariffId:
-              description: sequential number of the fares for one regional validity
-              type: integer
-              format: int32
-              minimum: 0
-              maximum: 9999
         travelValidityConstraint:
           type: object
           description: >-
@@ -6498,40 +6460,12 @@ components:
           required:
             - validityRange
         reservationDetails:
-          $ref: "#/components/schemas/ReservationDetail"
+          type: array
+          items:
+            $ref: "#/components/schemas/ReservationDetail"
         placeSelection:
           $ref: "#/components/schemas/PlaceSelection"
-        legacyReservationParameter:
-          type: object
-          description: reservation parameter to support the UIC 90918-1 interface for booking
-          properties:
-            travelClass:
-              description: 90918-1 class code in reservation
-              type: string
-            serviceLevelCode:
-              description: service level code defined in UIC 90918-1
-              type: string
-            serviceCode:
-              description: service code to be used in reservation
-              type: string
-            berthType:
-              description: berth type code in UIC 90918-1 to be used in reservation
-              type: string
-            coachTypeCode:
-              description: coach type code in UIC 90918-1 to be used in reservation
-              type: string
-            compartmentTypeCode:
-              description: compartment type code in UIC 90918-1 to be used in reservation
-              type: string
-            tariffs:
-              description: tariff according to UIC 90918-1 to be used for booking
-              type: array
-              items:
-                $ref: "#/components/schemas/LegacyReservationTariff"
-          required:
-            - travelClass
-            - serviceLevelCode
-            - serviceCode
+
         coveredSection:
           description: >-
             The section of the fare that is covered by the fare. The leg id allows 
@@ -6576,6 +6510,63 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Company"
+        legacyAccountingIdentifier:
+          type: object
+          description: identifier of the fare in the current 301 accounting file
+          required:
+            - serialId
+          properties:
+            serialId:
+              description: sequential number of regional validities
+              type: integer
+              format: int32
+              minimum: 0
+              maximum: 99999
+            addId:
+              description: >-
+                Sequential number of regional validities (leading positions in case the series is too short
+              type: integer
+              format: int32
+              minimum: 0
+              maximum: 99
+            tariffId:
+              description: Tarif id for the old serie format.
+              type: integer
+              format: int32
+              minimum: 0
+              maximum: 9999
+        legacyReservationParameter:
+          type: object
+          description: reservation parameter to support the UIC 90918-1 interface for booking
+          properties:
+            travelClass:
+              description: 90918-1 class code in reservation
+              type: string
+            serviceLevelCode:
+              description: service level code defined in UIC 90918-1
+              type: string
+            serviceCode:
+              description: service code to be used in reservation
+              type: string
+            berthType:
+              description: berth type code in UIC 90918-1 to be used in reservation
+              type: string
+            coachTypeCode:
+              description: coach type code in UIC 90918-1 to be used in reservation
+              type: string
+            compartmentTypeCode:
+              description: compartment type code in UIC 90918-1 to be used in reservation
+              type: string
+            tariffs:
+              description: tariff according to UIC 90918-1 to be used for booking
+              type: array
+              items:
+                $ref: "#/components/schemas/LegacyReservationTariff"
+          required:
+            - travelClass
+            - serviceLevelCode
+            - serviceCode
+
 
     TripInterruptionProcess:
       description: >-
@@ -7288,12 +7279,21 @@ components:
         Describes the details of the reserved place(s).
       required:
         - accommodationType
-        - accommodationSubType
+        - accommodationSubTypes
+        - text
       properties:
         accommodationType:
           $ref: "#/components/schemas/AccommodationType"
-        accommodationSubType:
-          $ref: "#/components/schemas/AccommodationSubType"
+        accommodationSubTypes:
+          type: array
+          items:
+            $ref: "#/components/schemas/AccommodationSubType"
+        placeProperties:
+          type: array
+          items: 
+            $ref: "#/components/schemas/PlaceProperty"
+        text:
+          $ref: "#/components/schemas/Text"
         reservedPlaces:
           description: >-
             Reserved places in a confirmed reservation. 
@@ -7340,21 +7340,20 @@ components:
           type: array
           items:
             type: object
-            description: place properties of places in the place pack. Properties without a  number refer to all places
+            description: place properties of places in the place pack. Properties without a number refer to all places
             properties:
               placeProperty:
-                description: see code list
-                type: string
+                $ref: "#/components/schemas/PlaceProperty"
               number:
                 description: number of places with this property
                 type: integer
                 format: int32
-              priority:
-                description: priority for displaying a list of properties
-                type: integer
-                format: int32
             required:
               - placeProperty
+    
+    PlaceProperty:
+      type: string
+      description: see code list
 
     AccommodationType:
       type: string
