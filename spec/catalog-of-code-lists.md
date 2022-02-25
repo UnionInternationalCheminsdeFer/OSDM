@@ -85,6 +85,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`NEAR_ANIMALS`| N | N | Y | Places close to place with animals| |
 |`NEAR_DINING`|  N | Y | Y | Places near the dining car| |
 |`NEAR_PLAY_AREA`|  N | Y | Y | Places near a child play area| `FAMILY` |
+|`NEAR_BICYCLE_AREA`|  N | Y | Y | Places near the icycle storage space |  |
 |`OPEN_SPACE`|  N | Y | Y | Places in open space area | `PLACE_GROUPING` |
 |`PANORAMA`|  N | Y | Y | Places in a panorama coach| |
 |`PHONE`|  N | Y | Y | Places in an area with mobile phone amplifier| |
