@@ -3135,7 +3135,8 @@ components:
           format: integer
           minimum: 0
         distance:
-          description: Trip distance
+          description: >-
+            Distance in meters over the the complete trip, i.e., including transfer legs.
           type: number
           format: integer
           minimum: 0
@@ -5001,7 +5002,6 @@ components:
       required:
         - id
         - status
-        - booker
         - passengers
       properties:
         id:
@@ -5035,6 +5035,9 @@ components:
           items:
             $ref: "#/components/schemas/PromoCode"
         booker:
+          description: >-
+            Some caller do want to provide information about the booker, thus this attribute 
+            can not be made mandatory.
           $ref: "#/components/schemas/Booker"
         passengers:
           type: array
@@ -7675,13 +7678,8 @@ components:
       description: >-
         Minimal specification of a passenger to request offers.
       required:
-        - id
         - passengerType
       properties:
-        id:
-          type: string
-          description: >-
-            Id of the passenger resource in case service to patch a single passenger is provided.
         externalReference:
           description: >-
             A stable reference to passengers from other elements, or from caller system.
