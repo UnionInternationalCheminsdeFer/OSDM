@@ -9,7 +9,7 @@ servers:
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.4.0-rc2
+  version: 1.4.0-rc3
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
