@@ -573,7 +573,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Offer"
+                $ref: "#/components/schemas/OfferResponse"
           headers:
             Content-Language:
               schema:
@@ -1115,7 +1115,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Passenger"
+                $ref: "#/components/schemas/PassengerResponse"
           headers:
             Content-Language:
               schema:
@@ -1199,7 +1199,7 @@ paths:
       tags:
         - Booker
       summary: Returns the booker's information at booking step.
-      operationId: getBookingCustomer
+      operationId: getBookingBooker
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
@@ -1216,7 +1216,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Booker"
+                $ref: "#/components/schemas/BookerResponse"
           headers:
             Content-Language:
               schema:
@@ -1289,10 +1289,55 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
+  /products:
+    get:
+      tags:
+        - Master Data
+      summary: Returns all products available to the caller.
+      operationId: getProducts
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
+      responses:
+        "200":
+          description: Product found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProductCollectionResponse"
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                default: "public, max-age=43200"
+                description: >-
+                  A product resource has a long time to live to allow long-term caching. Any update of the product 
+                  information will lead to the creation of a new resource.
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
   /products/{productId}:
     get:
       tags:
-        - Products
+        - Master Data
       summary: Returns a product for the id provided.
       operationId: getProductsId
       parameters:
@@ -1312,7 +1357,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Product"
+                $ref: "#/components/schemas/ProductResponse"
           headers:
             Cache-Control:
               schema:
@@ -2469,7 +2514,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ReductionCards"
+                $ref: "#/components/schemas/ReductionCardCollectionResponse"
           headers:
             Expires:
               schema:
@@ -2605,7 +2650,7 @@ components:
       properties:
         id:
           type: string
-          description:  id of this resource on this server.
+          description: id of this resource on this server.
         title:
           type: string
           example: Bruxelles-Midi
@@ -3158,7 +3203,7 @@ components:
         A single stage of a trip that is made without change of MODE or service (ie: between each interchange).
         Provided by OJP.
       required:
-        - id  ## EXT replaces legId, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/181
+        - id ## EXT replaces legId, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/181
       properties:
         id:
           description: Id of this trip leg. Unique within trip result. A seqId is a leg id.
@@ -3455,12 +3500,12 @@ components:
       #allOf:
       required:
         - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
+        - stopPlaceName ## EXT stopPlaceName instead of stopPointRef
         - serviceDeparture
-        - stopPointName
       properties:
         stopPlaceRef:
           $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        stopPointName: # Out of scope
+        stopPlaceName:
           type: string
           example: Luzern
         plannedQuay:
@@ -3484,17 +3529,17 @@ components:
 
     LegBoardSpecification:
       type: object
-      description: >-
-        Describes the the situation at a stop or station at which the passenger boards a Leg
-        of a trip including time-related information. Provided by OJP.
-      #allOf:
+      description: Minimal leg board specification.
       required:
         - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
         - serviceDeparture
       properties:
         stopPlaceRef:
           $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        serviceDeparture: # EXT directly inline service time
+        stopPlaceName:
+          type: string
+          example: Luzern
+        serviceDeparture:
           description: >-
             Describes the departure situation at this leg board stop point (group of attributes
             of timetabled passing time, estimated passing time, observed passing time).
@@ -3508,13 +3553,13 @@ components:
       #allOf:
       required:
         - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
+        - stopPlaceName ## EXT stopPlaceName instead of stopPointName
         - serviceArrival
         - serviceDeparture
-        - stopPointName
       properties:
         stopPlaceRef:
           $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        stopPointName:
+        stopPlaceName: ## EXT stopPlaceName instead of stopPointName
           type: string
           example: Luzern
         plannedQuay:
@@ -3543,10 +3588,7 @@ components:
 
     LegIntermediateSpecification:
       type: object
-      description: >-
-        Describes the situation at a stop or station that lies between the LegBoard and 
-        LegAlight stop or station including time-related information. Provided by OJP.
-      #allOf:
+      description: Minimal leg intermediate specification.
       required:
         - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
         - serviceArrival
@@ -3554,12 +3596,15 @@ components:
       properties:
         stopPlaceRef:
           $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        serviceArrival: # EXT directly inline service time
+        stopPlaceName:
+          type: string
+          example: Luzern
+        serviceArrival:
           description: >-
             Describes the arrival situation at this leg board stop point (group of attributes
             of timetabled passing time, estimated passing time, observed passing time).
           $ref: "#/components/schemas/ServiceTime"
-        serviceDeparture: # EXT directly inline service time
+        serviceDeparture:
           description: >-
             Describes the departure situation at this leg board stop point (group of attributes
             of timetabled passing time, estimated passing time, observed passing time).
@@ -3573,12 +3618,12 @@ components:
       #allOf:
       required:
         - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
+        - stopPlaceName ## EXT stopPlaceName instead of stopPointName
         - serviceArrival
-        - stopPointName
       properties:
         stopPlaceRef:
           $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        stopPointName:
+        stopPlaceName:
           type: string
           example: Luzern
         plannedQuay:
@@ -3602,17 +3647,17 @@ components:
 
     LegAlightSpecification:
       type: object
-      description: >-
-        Describes the situation at a stop or station at which the passenger alights from a Leg 
-        of a trip including time-related information. Provided by OJP.
-      #allOf:
+      description: Minimal leg alight specification
       required:
         - stopPlaceRef ## EXT stopPlaceRef instead of stopPointRef
         - serviceArrival
       properties:
         stopPlaceRef:
           $ref: "#/components/schemas/StopPlaceRef" ## EXT stopPlaceRef instead of stopPointRef
-        serviceArrival: # EXT directly inline service time
+        stopPlaceName:
+          type: string
+          example: Luzern
+        serviceArrival:
           description: >-
             Describes the arrival situation at this leg board stop point (group of attributes
             of timetabled passing time, estimated passing time, observed passing time).
@@ -3643,7 +3688,7 @@ components:
         # - operatingDayRef
         # - journeyRef
         # - mode
-        # - publishedServiceName # EXT 
+        # - publishedServiceName # EXT
         # - privateMode # EXT
         - operatorRefs
         # - originText
@@ -3685,9 +3730,9 @@ components:
           type: array
           items:
             type: string
-            example: 
-             - "S 52"
-             - "B 19"
+            example:
+              - "S 52"
+              - "B 19"
         operatorRefs:
           description: >-
             Reference to transport operators.
@@ -3697,10 +3742,10 @@ components:
           type: array
           items:
             type: string
-            example: 
-             - "urn:uic:rics:1185:11"
-             - "urn:uic:rics:1185:72"
-             - "urn:uic:rics:1185:48" 
+            example:
+              - "urn:uic:rics:1185:11"
+              - "urn:uic:rics:1185:72"
+              - "urn:uic:rics:1185:48"
 
     Mode: ## OJP
       type: object
@@ -3824,8 +3869,8 @@ components:
         Provided by OJP.
       # allOf:
       required:
-        - code  # EXT code instead of addressCode, see https://github.com/VDVde/OJP/issues/183
-        - name  # EXT name instead of addressName, see https://github.com/VDVde/OJP/issues/183
+        - code # EXT code instead of addressCode, see https://github.com/VDVde/OJP/issues/183
+        - name # EXT name instead of addressName, see https://github.com/VDVde/OJP/issues/183
       properties:
         code:
           description: id of the address
@@ -3884,8 +3929,8 @@ components:
         A type of place to or through which passengers may wish to navigate as part of
         their journey and which is modelled in detail by journey planners. Provided by OJP.
       required:
-        - code  # EXT code instead of pointOfInterestCode, see https://github.com/VDVde/OJP/issues/183
-        - name  # EXT name instead of pointOfInterestName, see https://github.com/VDVde/OJP/issues/183
+        - code # EXT code instead of pointOfInterestCode, see https://github.com/VDVde/OJP/issues/183
+        - name # EXT name instead of pointOfInterestName, see https://github.com/VDVde/OJP/issues/183
       properties:
         code:
           description: id of the Point of Interest.
@@ -3963,8 +4008,8 @@ components:
         or prepare their trip, and which will usually have one or more wellknown names. Provided by OJP.
       #allOf:
       required:
-        - ref  # EXT ref instead of stopPlaceRef
-        - name  # EXT name instead of stopPlaceName
+        - ref # EXT ref instead of stopPlaceRef
+        - name # EXT name instead of stopPlaceName
       properties:
         ref:
           description: Reference to a Stop Place
@@ -4026,10 +4071,10 @@ components:
       description: >-
         Reference to a Stop Place using URNs to define code.
         For UIC see UIC MERITS/TAP-TSI station codes. Provided by OJP.
-      example: 
-       - "urn:uic:stn:8503000"
-       - "urn:uic:stn:8400058"
-       - "urn:uic:stn:8727100"
+      example:
+        - "urn:uic:stn:8503000"
+        - "urn:uic:stn:8400058"
+        - "urn:uic:stn:8727100"
 
     ProductCategoryRef: ## OJP
       description: >-
@@ -4037,8 +4082,8 @@ components:
         (e.g. NeTEx, SIRI, OJP). Provided by OJP.
       type: string
       example:
-      - "urn:uic:sbc:76"
-      - "urn:uic:sbc:43"
+        - "urn:uic:sbc:76"
+        - "urn:uic:sbc:43"
 
     OperationDayRef: ## OJP
       type: string
@@ -4301,6 +4346,14 @@ components:
         overallFlexibility:
           $ref: "#/components/schemas/Flexibility"
 
+    OfferResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: "#/components/schemas/WarningCollection"
+        offer:
+          $ref: "#/components/schemas/Offer"
+
     Offer:
       description: >-
         The attribute 'offerSummary' is meaningful at trip-offer-collection response time only.
@@ -4452,7 +4505,6 @@ components:
           items:
             description: Id of the passenger
             type: string
-          
         providerBookingReference:
           type: string
           description: >-
@@ -4509,18 +4561,36 @@ components:
             properties:
               product:
                 $ref: "#/components/schemas/Product"
-              legIndices:
+              legIds:
                 description: indices of the legs in the trip given by the provider of the offer
                 type: array
                 items:
-                  type: integer
-                  format: int32
+                  type: string
       required:
         - price
         - passengerIds
         - validFrom
         - refundable
         - exchangeable
+
+    ProductCollectionResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: "#/components/schemas/WarningCollection"
+        products:
+          type: array
+          description: The list of all products available to the caller.
+          items:
+            $ref: "#/components/schemas/Product"
+
+    ProductResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: "#/components/schemas/WarningCollection"
+        product:
+          $ref: "#/components/schemas/Product"
 
     Product:
       type: object
@@ -5857,7 +5927,7 @@ components:
               accommodationSubType:
                 $ref: "#/components/schemas/AccommodationSubType"
               passengerIds:
-                type: array             
+                type: array
                 items:
                   description: Id of the passenger
                   type: string
@@ -6103,16 +6173,23 @@ components:
           items:
             $ref: "#/components/schemas/Trip"
 
-    ReductionCards:
+    ReductionCardCollectionResponse:
       type: object
-      description: >-
-        notification on a change of a resource
+      properties:
+        warnings:
+          $ref: "#/components/schemas/WarningCollection"
+        reductionCardsDelivery:
+          $ref: "#/components/schemas/ReductionCardsDelivery"
+
+    ReductionCardsDelivery:
+      type: object
+      description: Delivery of a list of reduction cards.
       properties:
         deliveryDate:
           description: date of the assembly of the reduction card data set
           type: string
           format: date-time
-        cards:
+        reductionCards:
           type: array
           items:
             $ref: "#/components/schemas/ReductionCard"
@@ -6504,7 +6581,7 @@ components:
       description: >-
         MANUAL: passenger needs manual confirmation of train or station staff to interrupt the trip. 
         ACTIVATION: Passenger needs to deactivate the ticket during the interruption (via an app).
-      type:  string
+      type: string
       x-extensible-enum:
         - NONE
         - MANUAL
@@ -6527,7 +6604,7 @@ components:
       description: >-
         Unit to allocate trips in a multi-trip fare. Trips can be allocated per day (e.g. Eurail) or per 
         duration (e.g. multiples of a duration unit to cover the trip) or as single trips (e.g. carnet))
-        
+
         NONE: Individual trips don't need to be allocated. 
         TRIP: allocation per individual trip. 
         DAY: The allocation is per travel day.
@@ -7210,8 +7287,8 @@ components:
       description: >-
         Describes the details of the reserved place(s).
       required:
-       - accommodationType
-       - accommodationSubType
+        - accommodationType
+        - accommodationSubType
       properties:
         accommodationType:
           $ref: "#/components/schemas/AccommodationType"
@@ -7484,7 +7561,6 @@ components:
           type: boolean
           default: false
 
-
     AvailabilityStatus:
       description: status of the place or coach
       type: string
@@ -7511,6 +7587,14 @@ components:
               placeNumber:
                 type: string
 
+    BookerResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: "#/components/schemas/WarningCollection"
+        booker:
+          $ref: "#/components/schemas/Booker"
+
     Booker:
       type: object
       description: >-
@@ -7529,6 +7613,14 @@ components:
           type: string
         details:
           $ref: "#/components/schemas/PersonDetail"
+
+    PassengerResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: "#/components/schemas/WarningCollection"
+        passenger:
+          $ref: "#/components/schemas/Passenger"
 
     Passenger:
       type: object
@@ -7647,7 +7739,7 @@ components:
       type: object
       description: >-
         Personal information potentially needed at booking step. To support privacy by design,
-        it is not permitted to send personal information not required to create a valid booking. 
+        it is not permitted to send personal information not required to create a valid booking.
       required:
         - firstName
         - lastName
