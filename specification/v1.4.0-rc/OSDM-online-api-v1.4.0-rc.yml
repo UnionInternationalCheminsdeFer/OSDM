@@ -48,9 +48,6 @@ tags:
   - name: Booker
     description: >-
       resources to manipulate a booker's information at every stage of the flow
-  - name: Products
-    description: >-
-      resources to retrieve products information on one or more products
   - name: Fulfillments
     description: >-
       resources to retrieve fulfillments, e.g. tickets
@@ -4031,41 +4028,7 @@ components:
         #   $ref: "#/components/schemas/TopographicPlaceRef"
         # - $ref: "#/components/schemas/StopAttributes" # Out of scope
 
-    GeoPosition: ## OJP # Reduced scope
-      type: object
-      description: >-
-        WGS84 coordinates position. Provided by OJP.
-      required:
-        - latitude
-        - longitude
-      properties:
-        longitude:
-          $ref: "#/components/schemas/Longitude"
-        latitude:
-          $ref: "#/components/schemas/Latitude"
-        # altitude:   # Out of scope
-        #   $ref: "#/components/schemas/Altitude"
-        # precision:   # Out of scope
-        #   $ref: "#/components/schemas/Precision"
-
-    Longitude: ## OJP
-      type: number
-      description: >-
-        Longitude from Greenwich Meridian. -180 (West) to +180 (East). Decimal degrees. eg 2.356. Provided by OJP.
-
-      format: float
-      example: 8.54021
-      minimum: -180.0
-      maximum: 180.0
-
-    Latitude: ## OJP
-      type: number
-      description: >-
-        Latitude from equator. -90 (South) to +90 (North). Decimal degrees. eg 56.356. Provided by OJP.
-      format: float
-      example: 47.37818
-      minimum: -90.0
-      maximum: 90.0
+ 
 
     StopPlaceRef: ## OJP
       type: string
@@ -4538,9 +4501,8 @@ components:
         refundable:
           type: string
           description: >-
-            This field should be set to YES when the offerpart is refundable without a fee before the
-            day of departure. NO when not refundable or refundable with 100% fee, WITH_CONDITIONS in
-            all other cases.
+            If set to YES the offerpart is refundable without a fee before the day of departure.
+            NO when not refundable or refundable with 100% fee, WITH_CONDITIONS in all other cases.
           enum:
             - YES
             - NO
@@ -4548,13 +4510,17 @@ components:
         exchangeable:
           type: string
           description: >-
-            This field should be set to YES when the offerpart is exchangeable without a fee before the
-            day of departure. NO when not exchangeable or exchangeable with 100% fee, WITH_CONDITIONS in
-            all other cases.
+            If set to YES the offerpart is exchangeable without a fee before the day of departure. 
+            NO when not exchangeable or exchangeable with 100% fee, WITH_CONDITIONS in all other cases.
           enum:
             - YES
             - NO
-            - WITH_CONDITIONS
+        afterSaleConditions:
+          type: array
+          description: >-
+            Fine grained specification of the after sale condition of the booking.
+          items:
+            $ref: "#/components/schemas/AfterSaleCondition"
         products:
           type: array
           items:
@@ -4573,6 +4539,23 @@ components:
         - validFrom
         - refundable
         - exchangeable
+
+    AfterSaleCondition:
+      type: object
+      properties:
+        condition:
+          $ref: "#/components/schemas/ConditionType"
+        validFrom:
+          type: string
+          format: date-time
+        validUntil:
+          type: string
+          format: date-time
+        afterSalesFee:
+          type: object
+          properties:
+            feePrice:
+              $ref: "#/components/schemas/Price"
 
     ProductCollectionResponse:
       type: object
@@ -4596,7 +4579,7 @@ components:
     Product:
       type: object
       description: >-
-        Structured description of the product , its name, comfort and sales / after-sales conditions
+        Structured description of the product, its name, comfort and sales / after-sales conditions
       required:
         - id
       properties:
@@ -6833,8 +6816,7 @@ components:
         travelDate:
           type: string
           format: date-time
-          description: >-
-            date and time of the departure where the train link starts
+          description: date and time of the departure where the train link starts
 
     Polygon:
       type: object
@@ -6843,7 +6825,7 @@ components:
           type: array
           minItems: 1
           items:
-            $ref: "#/components/schemas/GeoCoordinate"
+            $ref: "#/components/schemas/GeoPosition"
 
     ViaStations:
       type: object
@@ -6887,8 +6869,7 @@ components:
 
     CarrierConstraint:
       type: object
-      description: >-
-        Either excluded or included carriers can be set.
+      description: Either excluded or included carriers can be set.
       properties:
         includedCarrier:
           type: array
@@ -6934,17 +6915,18 @@ components:
           type: string
 
     ControlSecurityType:
+      type: string
       description: >-
         SIP: secure paper tickets; Sid: security in data (signed bar code); SIS: security in system
-      type: string
       x-extensible-enum:
         - SIP
         - Sid
         - SIS
 
     LegacyReservationTariff:
-      description: legacy tariff code and number of items or persons in case UIC 90918-1 is used for booking
       type: object
+      description: >-
+        Legacy tariff code and number of items or persons in case UIC 90918-1 is used for booking.
       properties:
         number:
           description: number of items with this tariff code
@@ -6956,9 +6938,8 @@ components:
           format: int32
 
     FareType:
-      description: >-
-        Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
       type: string
+      description: Basic UIC fare types used in 90918-10, 90918-4, and 90918-9.
       x-extensible-enum:
         - ADMISSION
         - RESERVATION
@@ -7033,6 +7014,39 @@ components:
     #### Common elements start
     ## Referenced by distributor as well as allocator part
 
+     GeoPosition:
+      type: object
+      description: >-
+        WGS84 coordinates position. Provided by OJP.
+      required:
+        - latitude
+        - longitude
+      properties:
+        longitude:
+          $ref: "#/components/schemas/Longitude"
+        latitude:
+          $ref: "#/components/schemas/Latitude"
+        # altitude:   # Out of scope
+        #   $ref: "#/components/schemas/Altitude"
+        # precision:   # Out of scope
+        #   $ref: "#/components/schemas/Precision"
+
+    Longitude:
+      type: number
+      description: Longitude from Greenwich Meridian. -180 (West) to +180 (East). Decimal degrees. eg 2.356.
+      format: float
+      example: 8.54021
+      minimum: -180.0
+      maximum: 180.0
+
+    Latitude:
+      type: number
+      description: Latitude from equator. -90 (South) to +90 (North). Decimal degrees. eg 56.356.
+      format: float
+      example: 47.37818
+      minimum: -90.0
+      maximum: 90.0  
+
     Link:
       type: object
       description: >-
@@ -7085,12 +7099,12 @@ components:
 
     Text:
       type: object
-      required:
-        - id
-        - text
       description: >-
         Directly included text in case of online services. Text must be encrypted in
         UTF-8 format.
+      required:
+        - id
+        - text
       properties:
         id:
           type: string
@@ -7108,7 +7122,6 @@ components:
       required:
         - currency
         - amount
-      minProperties: 1
       properties:
         currency:
           $ref: "#/components/schemas/Currency"
@@ -7126,9 +7139,11 @@ components:
             $ref: "#/components/schemas/VAT"
 
     Currency:
-      description: ISO 4217 currency codes
       type: string
-      example: CHF
+      description: ISO 4217 currency codes
+      example:
+        - EUR
+        - CHF
 
     VAT:
       type: object
@@ -7167,9 +7182,9 @@ components:
         - LONG_DISTANCE
 
     Company:
+      type: string
       description: >-
         RICS company code or the upcoming compatible ERA company code.
-      type: string
       example: "urn:uic:rics:1185"
 
     ServiceBrandCode:
@@ -7177,9 +7192,13 @@ components:
         Service brand codes allowed in response, code list can be found on 
         [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list]
         (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
+
+        For example, 163 denotes TGV Lyria and 175 denotes Glacier Express.
       type: integer
       format: int32
-      example: TGV
+      example: 
+       - 163
+       - 175
 
     ServiceClass:
       type: object
@@ -7215,66 +7234,19 @@ components:
         - description
       properties:
         type:
-          type: string
-          x-extensible-enum:
-            - SALE
-            - FULFILLMENT
-            - EXCHANGE
-            - REFUND
-            - TRAVEL
+          $ref: "#/components/schemas/ConditionType"
         description:
           type: string
-        validFrom:
-          type: string
-          format: date-time
-        validUntil:
-          type: string
-          format: date-time
-        afterSalesFee:
-          type: object
-          properties:
-            feePrice:
-              $ref: "#/components/schemas/Price"
-            isAllocatorFee:
-              description: indicates whether the fee belongs to the allocator
-              type: boolean
-              default: false
 
-    GeoCoordinate:
-      type: object
-      description: >-
-        Used to provide any geo-encoded location, regardless of environment, using longitude and latitude coordinates.
-      required:
-        - latitude
-        - longitude
-      properties:
-        system:
-          description: >-
-            geo coordinate system indication: 
-             - WGS84 = WGS 84 standard system,
-             - GRS80 = (outdated) GRS 80 coordinate system
-          type: string
-          x-extensible-enum:
-            - WGS84
-            - GRS80
-          default: WGS84
-        accuracy:
-          description: accuracy of the provided coordinates to be used when comparing coordinates
-          type: number
-          format: float
-          example: 0.00002
-        latitude:
-          description: >-
-            Geographic coordinate that specifies the north-south position of a point on the earths surface
-          type: number
-          format: float
-          example: 46.948825
-        longitude:
-          description: >-
-            Geographic coordinate that specifies the east-west position of a point on the earths surface.
-          type: number
-          format: float
-          example: 7.439122
+    ConditionType:
+      type: string
+      x-extensible-enum:
+        - SALE
+        - PLACE_CHANGE
+        - FULFILLMENT
+        - EXCHANGE
+        - REFUND
+        - TRAVEL
 
     ReservationDetail:
       type: object
