@@ -9,7 +9,7 @@ servers:
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.4.0-rc4
+  version: 1.4.0-rc5
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -3302,10 +3302,10 @@ components:
           $ref: "#/components/schemas/TransferMode"
         start:
           description: Stop/Station to board.
-          $ref: "#/components/schemas/StopPlaceRef"
+          $ref: "#/components/schemas/PlaceRef"
         end:
           description: Stop/Station to alight
-          $ref: "#/components/schemas/StopPlaceRef"
+          $ref: "#/components/schemas/PlaceRef"
         timeWindowStart: # Inlined from TimeWindow
           description: Time at which window begins.
           type: string
@@ -3821,6 +3821,7 @@ components:
       #  - $ref: "#/components/schemas/StopPlace"
       #  - $ref: "#/components/schemas/StopPointStructure"  # Out of scope
       #  - $ref: "#/components/schemas/TopographicPlaceStructure"  # Out of scope
+      #  - $ref: "#/components/schemas/FareConnectionPoint # EXT OSDM extension
       #- $ref: "#/components/schemas/GeoPosition"
       required:
         - id
@@ -4031,7 +4032,10 @@ components:
         - $ref: "#/components/schemas/TopographicPlaceRef"
         - $ref: "#/components/schemas/PointOfInterestRef"
         - $ref: "#/components/schemas/AddressRef"
+        - $ref: "#/components/schemas/FareConnectionPointRef"
         - $ref: "#/components/schemas/GeoPosition"
+      required:
+        - name
       properties:
         name:
           type: string
@@ -4058,6 +4062,10 @@ components:
       type: string
       description: Reference to an Address
 
+    FareConnectionPointRef: ## OSDM extension
+      type: string
+      description: Reference to a Fare Connection Point
+
     ProductCategoryRef: ## OJP
       description: >-
         Reference to a product category. Product categories should be defined once and used uniformly in all channels 
@@ -4069,15 +4077,12 @@ components:
 
     OperationDayRef: ## OJP
       type: string
-      description: >-
-        Reference to an operating day. Provided by OJP.
-
+      description: Reference to an operating day. Provided by OJP.
       example: "OperatingDay:12345"
 
     JourneyRef: ## OJP
       type: string
-      description: >-
-        Reference to a journey. Provided by OJP.
+      description: Reference to a journey. Provided by OJP.
       example: "ServiceJourney:1"
 
     OfferSearchCriteria:
