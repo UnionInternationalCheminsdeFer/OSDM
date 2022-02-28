@@ -9,7 +9,7 @@ servers:
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.4.0-rc3
+  version: 1.4.0-rc4
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -2631,6 +2631,8 @@ components:
       description: >-
         This element can be used to pass non-blocking information or events,
         such as a price difference with the initially offered price at booking time.
+      required:
+        - code
       properties:
         code:
           type: string
@@ -2773,7 +2775,7 @@ components:
           type: string
           example: "Bern Bärengraben"
         geoCoordinate:
-          $ref: "#/components/schemas/GeoCoordinate"
+          $ref: "#/components/schemas/GeoPosition"
     #         - $ref: "#/components/schemas/GeoRestriction"   # Out of scope
     #         - $ref: "#/components/schemas/AllowedSystemId"    # Out of scope
 
@@ -3110,14 +3112,14 @@ components:
           description: Overall duration of the trip
           type: string
           example: "PT20M"
-        origin:
+        origin:  # EXT
           description: >-
             Specifies the origin situation from where the user wants to start.
-          $ref: "#/components/schemas/Place" # EXT no support for array
-        destination:
+          $ref: "#/components/schemas/PlaceRef" # EXT no support for array
+        destination: # EXT
           description: >-
             Specifies the destination situation where the user is heading to.
-          $ref: "#/components/schemas/Place" # EXT no support for array
+          $ref: "#/components/schemas/PlaceRef" # EXT no support for array
         startTime:
           description: Departure time at origin.
           type: string
@@ -3294,14 +3296,16 @@ components:
         - start # EXT renamed legStart
         - end # EXT renamed legEnd
       properties:
+        continuousMode:
+          $ref: "#/components/schemas/ContinuousMode"
         transferMode:
           $ref: "#/components/schemas/TransferMode"
         start:
-          description: Stop/Station where boarding is done
-          $ref: "#/components/schemas/Place"
+          description: Stop/Station to board.
+          $ref: "#/components/schemas/StopPlaceRef"
         end:
           description: Stop/Station to alight
-          $ref: "#/components/schemas/Place"
+          $ref: "#/components/schemas/StopPlaceRef"
         timeWindowStart: # Inlined from TimeWindow
           description: Time at which window begins.
           type: string
@@ -3413,19 +3417,15 @@ components:
 
     ContinuousMode: ## OJP
       type: string
-      description: >-
-        Types of modes that run at any time without a timetable. Provided by OJP.
-
-      enum:
+      description: Types of modes that run at any time without a timetable. Provided by OJP.
+      x-extensible-enum:
         - WALK
         - DEMAND_RESPONSIVE
         - REPLACEMENT_SERVICE
 
     IndividualMode: ## OJP
       type: string
-      description: >-
-        Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
-
+      description: Modes which an individual powers themselves (such as walk, cycle). Provided by OJP.
       x-extensible-enum:
         - WALK
         - CYCLE
@@ -3443,9 +3443,7 @@ components:
 
     TransferMode: ## OJP
       type: string
-      description: >-
-        Modes dedicated to perform transfers. Provided by OJP.
-
+      description: Modes dedicated to perform transfers. Provided by OJP.
       x-extensible-enum:
         - WALK
         - PARK_AND_RidE
@@ -3462,8 +3460,7 @@ components:
 
     StopCallStatus: ## OJP
       type: object
-      description: >-
-        Status properties for the vehicle call at this stop. Provided by OJP.
+      description: Status properties for the vehicle call at this stop. Provided by OJP.
       properties:
         order:
           description: Sequence number of this stop in the service pattern of the journey.
@@ -4028,7 +4025,16 @@ components:
         #   $ref: "#/components/schemas/TopographicPlaceRef"
         # - $ref: "#/components/schemas/StopAttributes" # Out of scope
 
- 
+    PlaceRef: ### OJP
+      oneOf:
+        - $ref: "#/components/schemas/StopPlaceRef"
+        - $ref: "#/components/schemas/TopographicPlaceRef"
+        - $ref: "#/components/schemas/PointOfInterestRef"
+        - $ref: "#/components/schemas/AddressRef"
+        - $ref: "#/components/schemas/GeoPosition"
+      properties:
+        name:
+          type: string
 
     StopPlaceRef: ## OJP
       type: string
@@ -4039,6 +4045,18 @@ components:
         - "urn:uic:stn:8503000"
         - "urn:uic:stn:8400058"
         - "urn:uic:stn:8727100"
+
+    PointOfInterestRef: ## OJP
+      type: string
+      description: Reference to a Point of Interest
+
+    TopographicPlaceRef: ## OJP
+      type: string
+      description: Reference to a Topographic Place
+
+    AddressRef: ## OJP
+      type: string
+      description: Reference to an Address
 
     ProductCategoryRef: ## OJP
       description: >-
@@ -4523,6 +4541,10 @@ components:
             $ref: "#/components/schemas/AfterSaleCondition"
         products:
           type: array
+          description: >-
+            In offer mode, in allmost all cases exactly one product is referenced. Only on some French
+            trips consisting of a TGV and a TER two products need to be used.
+            In fare mode, no product exists as first needs to created from the different fares.
           items:
             type: object
             properties:
@@ -4582,6 +4604,7 @@ components:
         Structured description of the product, its name, comfort and sales / after-sales conditions
       required:
         - id
+        - code
       properties:
         id:
           type: string
@@ -5576,9 +5599,9 @@ components:
           items:
             type: string
         origin:
-          $ref: "#/components/schemas/Place"
+          $ref: "#/components/schemas/PlaceRef"
         destination:
-          $ref: "#/components/schemas/Place"
+          $ref: "#/components/schemas/PlaceRef"
         travelPeriods:
           type: array
           items:
@@ -5906,41 +5929,7 @@ components:
             Properties of the available places for the provided selection query
           type: array
           items:
-            type: object
-            properties:
-              accommodationType:
-                $ref: "#/components/schemas/AccommodationType"
-              accommodationSubType:
-                $ref: "#/components/schemas/AccommodationSubType"
-              passengerIds:
-                type: array
-                items:
-                  description: Id of the passenger
-                  type: string
-              number:
-                description: number of places
-                type: integer
-                format: int32
-              availablePlaceProperties:
-                description: >-
-                  Properties of the available places for the provided selection query
-                type: array
-                items:
-                  type: object
-                  description: >-
-                    Place properties of places in the place pack. Properties without a number refer to all places.
-                  properties:
-                    placeProperty:
-                      description: see code list
-                      type: string
-                    number:
-                      description: number of places with this property
-                      type: integer
-                      format: int32
-                    priority:
-                      description: priority for displaying a list of properties
-                      type: integer
-                      format: int32
+            $ref: "#/components/schemas/PlacePack"
 
     ComplaintResponse:
       type: object
@@ -7014,7 +7003,7 @@ components:
     #### Common elements start
     ## Referenced by distributor as well as allocator part
 
-     GeoPosition:
+    GeoPosition:
       type: object
       description: >-
         WGS84 coordinates position. Provided by OJP.
@@ -7255,7 +7244,6 @@ components:
       required:
         - accommodationType
         - accommodationSubTypes
-        - text
       properties:
         accommodationType:
           $ref: "#/components/schemas/AccommodationType"
@@ -7267,8 +7255,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PlaceProperty"
-        text:
-          $ref: "#/components/schemas/Text"
+        number:
+          description: number of places
+          type: integer
+          format: int32
         reservedPlaces:
           description: >-
             Reserved places in a confirmed reservation. 
@@ -7280,8 +7270,7 @@ components:
     PlacePack:
       type: object
       description: >-
-        selection of places with common properties
-        description element - textual description of the places
+        Selection of places with common properties description element - textual description of the places
         placeProperties is mandatory for allocator mode, for distributors the textual description is used
       required:
         - id
@@ -7315,7 +7304,11 @@ components:
           type: array
           items:
             type: object
-            description: place properties of places in the place pack. Properties without a number refer to all places
+            description: >-
+              Place properties of places in the place pack. Properties without a number refer 
+              to all places.
+            required:
+              - placeProperty
             properties:
               placeProperty:
                 $ref: "#/components/schemas/PlaceProperty"
@@ -7323,8 +7316,6 @@ components:
                 description: number of places with this property
                 type: integer
                 format: int32
-            required:
-              - placeProperty
 
     PlaceProperty:
       type: string
