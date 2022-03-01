@@ -71,7 +71,7 @@ The following services/features are mandatory/optional to implement:
 | `/offers/{offerId}/admissions`and `/offers/{offerId}/reservations` and `/offers/{offerId}/ancillaries` and `/offers/{offerId}/fares` | Resources to manipulate parts of an offer consisting of, e.g., admissions, reservations or ancillaries; if permitted, also fares are offered. | **Mandatory** is to support pre-booking and booking of fares. |
 | `/bookings` | Resources to manipulate bookings | **Mandatory** is to support bookings consisting of fares except in the special case of direct sale fare offers |
 | `/offers/{offerId}/passengers` and `/bookings/{bookingId}/passengers` | Resources to manipulate  passenger information at every stage of the flow | *Conditional*, mandatory to be supported in case personal data are required by the fare provider |
-| `/products` | Resources to retrieve products information on one or more products | **Mandatory** |
+| `/products` | Resources to retrieve products information on one or more products | *Optional* |
 | `/offers/{offerId}/fares/{fareId}` and `/offers/{offerId}/reservations/{reservationId}` | Resources to manipulate seat assignment | *Conditional*, to be supported in case seat assignment is provided. |
 | `/bookings/{bookingid}/fulfillments` and `fulfillments` | Resources to retrieve fulfillments, e.g. tickets | *Conditional*, mandatory to be supported in case fulfillment items need to be provided |
 | `/bookings/{bookingId}/refundOffers` | Resources to get and accept a refund offer | **Mandatory** is to support for full refund, partial refund is optional. Not required in the special case of direct sale offers |
