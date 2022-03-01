@@ -3034,7 +3034,7 @@ components:
           $ref: "#/components/schemas/TripDataFilter"
         policyFilter:
           $ref: "#/components/schemas/BaseTripPolicyFilter"
-        mobilityFlter:
+        mobilityFilter:
           $ref: "#/components/schemas/TripMobilityFilter"
         numberOfResults:
           type: number
@@ -3145,8 +3145,8 @@ components:
           items:
             $ref: "#/components/schemas/TripLeg"
           minItems: 1
-        # operatingDays: ## Out of scope
-        #  $ref: "#/components/schemas/OperatingDays"
+        operatingDays:
+          $ref: "#/components/schemas/OperatingDays"
         # situationFullRef: ## Out of scope
         #   $ref: "#/components/schemas/SituationFullRef"
         status: # EXT replaces tripLegs, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/182
@@ -3170,6 +3170,28 @@ components:
           items:
             $ref: "#/components/schemas/TripLegSpecification"
           minItems: 1
+
+    OperatingDays:  ## OJP
+      type: object
+      description: >-
+        Day of public transport operation of which the characteristics are defined in a specific
+        service calendar and which may last more than 24 hours. Provided by OJP.
+      properties:
+        from:
+          type: string
+          description: Start date of period
+          format: date
+        to:
+          type: string
+          description: End date of period
+          format: dateTime
+        pattern:
+          type: string
+          description: >-
+            Bit pattern for operating days between start date and end date.
+            The length of the pattern is equal to the number of days from 
+            start date to end date. A bit value of "1" indicates that an event
+            actually happens on the day that is represented by the bit position.
 
     TripStatus: ## OJP
       type: object
