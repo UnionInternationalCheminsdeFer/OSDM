@@ -9,7 +9,7 @@ servers:
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.4.0-rc5
+  version: 1.4.0-rc6
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -684,7 +684,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PlacePreferencesResponse"
+                $ref: "#/components/schemas/PlaceAvailabilitiesResponse"
           headers:
             Content-Language:
               schema:
@@ -768,7 +768,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PlacePreferencesResponse"
+                $ref: "#/components/schemas/PlaceAvailabilitiesResponse"
           headers:
             Content-Language:
               schema:
@@ -908,7 +908,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PlacePreferencesResponse"
+                $ref: "#/components/schemas/PlaceAvailabilitiesResponse"
           headers:
             Content-Language:
               schema:
@@ -992,7 +992,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PlacePreferencesResponse"
+                $ref: "#/components/schemas/PlaceAvailabilitiesResponse"
           headers:
             Content-Language:
               schema:
@@ -3112,7 +3112,7 @@ components:
           description: Overall duration of the trip
           type: string
           example: "PT20M"
-        origin:  # EXT
+        origin: # EXT
           description: >-
             Specifies the origin situation from where the user wants to start.
           $ref: "#/components/schemas/PlaceRef" # EXT no support for array
@@ -3171,7 +3171,7 @@ components:
             $ref: "#/components/schemas/TripLegSpecification"
           minItems: 1
 
-    OperatingDays:  ## OJP
+    OperatingDays: ## OJP
       type: object
       description: >-
         Day of public transport operation of which the characteristics are defined in a specific
@@ -4776,12 +4776,12 @@ components:
         selectedOptions:
           type: array
           items:
-            $ref: "#/components/schemas/PlaceOptionsBundle"
+            $ref: "#/components/schemas/SelectedOption"
         selectedCoaches:
           description: selected coach and places in case of graphical reservation
           type: array
           items:
-            $ref: "#/components/schemas/SelectedPlaces"
+            $ref: "#/components/schemas/SelectedCoach"
 
     Reservation:
       type: object
@@ -4801,7 +4801,7 @@ components:
         reservationDetail:
           $ref: "#/components/schemas/ReservationDetail"
         placeSelection:
-          $ref: "#/components/schemas/PlaceSelection"
+          $ref: "#/components/schemas/SelectedPlaceOption"
         optionality:
           description: >-
             INCLUDED: the reservation is included in the offer
@@ -5091,10 +5091,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ExchangeOperation"
-        complaint:
-          type: array
-          items:
-            $ref: "#/components/schemas/Complaint"
         links:
           type: array
           items:
@@ -5940,23 +5936,15 @@ components:
           items:
             type: string
 
-    PlacePreferencesResponse:
+    PlaceAvailabilitiesResponse:
       type: object
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
-        reservation:
-          $ref: "#/components/schemas/AvailablePlacePreferences"
-
-    AvailablePlacePreferences:
-      type: object
-      properties:
-        placePacks:
-          description: >-
-            Properties of the available places for the provided selection query
+        availablePlaces:
           type: array
           items:
-            $ref: "#/components/schemas/PlacePack"
+            $ref: "#/components/schemas/AvailablePlace"
 
     ComplaintResponse:
       type: object
@@ -6461,13 +6449,16 @@ components:
               $ref: "#/components/schemas/TripInterruptionConstraint"
           required:
             - validityRange
+        availablePlaces:
+          type: array
+          items:
+            $ref: "#/components/schemas/AvailablePlace"
+        selectedPlaceOption:
+          $ref: "#/components/schemas/SelectedPlaceOption"
         reservationDetails:
           type: array
           items:
             $ref: "#/components/schemas/ReservationDetail"
-        placeSelection:
-          $ref: "#/components/schemas/PlaceSelection"
-
         coveredSection:
           description: >-
             The section of the fare that is covered by the fare. The leg id allows 
@@ -6487,7 +6478,6 @@ components:
               $ref: "#/components/schemas/Place"
             endLegId:
               type: string
-
         passengerConstraints:
           description: >-
             passenger constraint to be included in bar codes
@@ -7061,7 +7051,7 @@ components:
       format: float
       example: 47.37818
       minimum: -90.0
-      maximum: 90.0  
+      maximum: 90.0
 
     Link:
       type: object
@@ -7212,9 +7202,9 @@ components:
         For example, 163 denotes TGV Lyria and 175 denotes Glacier Express.
       type: integer
       format: int32
-      example: 
-       - 163
-       - 175
+      example:
+        - 163
+        - 175
 
     ServiceClass:
       type: object
@@ -7264,37 +7254,50 @@ components:
         - REFUND
         - TRAVEL
 
+    AvailablePlace:
+      type: object
+      description: >-
+        Describes the details of the available places.
+      required:
+        - accommodationType
+      properties:
+        accommodationType:
+          $ref: "#/components/schemas/AccommodationType"
+        accommodationSubType:
+          $ref: "#/components/schemas/AccommodationSubType"
+        placeProperties:
+          type: array
+          items:
+            $ref: "#/components/schemas/AvailablePlaceProperty"
+
+    AvailablePlaceProperty:
+      type: object
+      properties:
+        placeProperty:
+          $ref: "#/components/schemas/PlaceProperty"
+        numericAvailability:
+          type: integer
+          format: int32
+
     ReservationDetail:
       type: object
       description: >-
         Describes the details of the reserved place(s).
       required:
         - accommodationType
-        - accommodationSubTypes
       properties:
         accommodationType:
           $ref: "#/components/schemas/AccommodationType"
-        accommodationSubTypes:
-          type: array
-          items:
-            $ref: "#/components/schemas/AccommodationSubType"
-        placeProperties:
-          type: array
-          items:
-            $ref: "#/components/schemas/PlaceProperty"
-        number:
-          description: number of places
-          type: integer
-          format: int32
+
         reservedPlaces:
           description: >-
             Reserved places in a confirmed reservation. 
             Multiple place packs are needed to combined person and bicycle reservations
           type: array
           items:
-            $ref: "#/components/schemas/PlacePack"
+            $ref: "#/components/schemas/ReservedPlace"
 
-    PlacePack:
+    ReservedPlace:
       type: object
       description: >-
         Selection of places with common properties description element - textual description of the places
@@ -7321,6 +7324,8 @@ components:
         places:
           description: descriptive string of the places (e.g. 11-35,51)
           type: string
+        accommodationSubType:
+          $ref: "#/components/schemas/AccommodationSubType"
         placeIds:
           description: list of individual place numbers
           type: array
@@ -7339,10 +7344,6 @@ components:
             properties:
               placeProperty:
                 $ref: "#/components/schemas/PlaceProperty"
-              number:
-                description: number of places with this property
-                type: integer
-                format: int32
 
     PlaceProperty:
       type: string
@@ -7358,7 +7359,7 @@ components:
       description: >-
         Accommodation type definition out of the Accommodation Sub Type Code List
 
-    PlaceSelection:
+    SelectedPlaceOption:
       type: object
       description: >-
         Place selection options and selected options in an offer
@@ -7377,11 +7378,11 @@ components:
         selectedOptions:
           type: array
           items:
-            $ref: "#/components/schemas/PlaceOptionsBundle"
+            $ref: "#/components/schemas/SelectedOption"
         selectedCoaches:
           type: array
           items:
-            $ref: "#/components/schemas/SelectedPlaces"
+            $ref: "#/components/schemas/SelectedCoach"
 
     ReservationOnlineOption:
       type: object
@@ -7419,17 +7420,23 @@ components:
         placeNumber:
           type: string
 
-    PlaceOptionsBundle:
+    SelectedOption:
       type: object
       description: >-
         Place selection of places for reservation linked to passengers.
+      required:
+        - passengerIds
       properties:
         passengerIds:
           type: array
           items:
             description: Id of the passenger
             type: string
-        selectedPlaceProperties:
+        accommodationType:
+          $ref: "#/components/schemas/AccommodationType"
+        accommodationSubType:
+          $ref: "#/components/schemas/AccommodationSubType"
+        placeProperties:
           description: Properties of places as defined in 90810-10.
           type: array
           items:
@@ -7562,22 +7569,25 @@ components:
         - RESTRICTED
       default: FREE
 
-    SelectedPlaces:
+    SelectedCoach:
       type: object
       properties:
         coachNumber:
           type: string
-        selectedPlaces:
+        places:
           description: selected places in case of graphical booking
           type: array
           items:
-            type: object
-            properties:
-              passengerId:
-                description: Id of the passenger
-                type: string
-              placeNumber:
-                type: string
+            $ref:  "#/components/schemas/SelectedPlace"
+
+    SelectedPlace:
+      type: object
+      properties:
+        passengerId:
+          description: Id of the passenger
+          type: string
+        placeNumber:
+          type: string
 
     BookerResponse:
       type: object
