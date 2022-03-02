@@ -4475,6 +4475,50 @@ components:
       required:
         - id
 
+    BookedOffer:
+      description: >-
+        The attribute 'offerSummary' is meaningful at trip-offer-collection response time only.
+      type: object
+      properties:
+        id:
+          type: string
+        abstract:
+          type: string
+          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
+        appliedThroughTicketTags:
+          type: array
+          items:
+            type: string
+          description: >-
+            the list of all throughticket tags that were effectively used in building or booking the offer.
+            Cross-checking this list with the products, the actual groupings applied can be identified.
+        trip:
+          $ref: "#/components/schemas/Trip"
+          description: >-
+            This trip will be included in the offer if the offer is part of the booking.
+        admissions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Admission"
+        reservations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Reservation"
+        ancillaries:
+          type: array
+          items:
+            $ref: "#/components/schemas/Ancillary"
+        fees:
+          type: array
+          items:
+            $ref: "#/components/schemas/Fee"
+        fares:
+          type: array
+          items:
+            $ref: "#/components/schemas/FareOnline"
+      required:
+        - id
+
     ComfortClass:
       description: >-
         Generic class classification, mostly used to harmonize choice and
@@ -4530,13 +4574,11 @@ components:
         validFrom:
           type: string
           format: date-time
-          description: >-
-            Validity of offer towards passenger
+          description: Validity of offer towards passenger
         validUntil:
           type: string
           format: date-time
-          description: >-
-            Validity of offer towards passenger
+          description: Validity of offer towards passenger
         numericAvailability:
           type: integer
           format: int32
@@ -4562,14 +4604,13 @@ components:
             - NO
         afterSaleConditions:
           type: array
-          description: >-
-            Fine grained specification of the after sale condition of the booking.
+          description: Fine grained specification of the after sale condition of the booking.
           items:
             $ref: "#/components/schemas/AfterSaleCondition"
         products:
           type: array
           description: >-
-            In offer mode, in allmost all cases exactly one product is referenced. Only on some French
+            In offer mode, in almost all cases exactly one product is referenced. Only on some French
             trips consisting of a TGV and a TER two products need to be used.
             In fare mode, no product exists as first needs to created from the different fares.
           items:
@@ -4647,7 +4688,7 @@ components:
           example: PT00AD
         description:
           type: string
-          description: the textual description of the product
+          description: Textual description of the product.
           example: Loisir Non-flex Adult Fare
         conditions:
           type: array
@@ -5062,7 +5103,7 @@ components:
         bookedOffers:
           type: array
           items:
-            $ref: "#/components/schemas/Offer"
+            $ref: "#/components/schemas/BookedOffer"
         appliedPromoCodes:
           type: array
           items:
