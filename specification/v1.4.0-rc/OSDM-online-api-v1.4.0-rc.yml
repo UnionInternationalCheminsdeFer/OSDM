@@ -3291,8 +3291,8 @@ components:
         #   type: array
         #   items:
         #     $ref: "#/components/schemas/LegAttribute"
-        # operatingDays:  # Out of scope
-        #  $ref: "#/components/schemas/OperatingDays"
+        operatingDays:
+          $ref: "#/components/schemas/OperatingDays"
         # legTrack:  # Out of scope
         #   type: array
         #   items:
@@ -3723,8 +3723,8 @@ components:
         # - originText
         # - destinationText
       properties:
-        # operatingDayRef:  # Out of scope
-        #   $ref: "#/components/schemas/OperationDayRef"
+        operatingDayRef:
+          $ref: "#/components/schemas/OperationDayRef"
         # journeyRef:  # Out of scope
         #   $ref: "#/components/schemas/JourneyRef"
         mode:
