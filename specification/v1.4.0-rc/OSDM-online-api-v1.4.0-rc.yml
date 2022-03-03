@@ -9,7 +9,7 @@ servers:
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.4.0-rc6
+  version: 1.4.0-rc7
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -2638,7 +2638,7 @@ components:
           type: string
         text:
           type: string
-        elementList:
+        resources:
           type: array
           items:
             $ref: "#/components/schemas/Resource"
@@ -2646,6 +2646,11 @@ components:
     Resource:
       type: object
       description: used to represent a non-specified resource in the API.
+      required:
+        - id
+        - title
+        - type
+        - href
       properties:
         id:
           type: string
@@ -2654,27 +2659,34 @@ components:
           type: string
           example: Bruxelles-Midi
         type:
-          type: string
-          enum:
-            - LOCATION
-            - TRIP
-            - TRIPOFFER
-            - OFFER
-            - OFFERPART
-            - PASSENGER
-            - BOOKING
-            - FULFILLMENT
-            - REFUNDOFFER
-            - COMPLAINT
+          $ref: "#/components/schemas/ResourceType"
         href:
           type: string
           format: url
           example: "http://some.provider/location/2345"
-      required:
-        - id
-        - title
-        - type
-        - href
+
+    ResourceType:
+      type: string
+      x-extensible-enum:
+        - PLACE
+        - TRIP
+        - TRIP_OFFER
+        - NON_TRIP_OFFER
+        - OFFER
+        - OFFER_PART
+        - BOOKING
+        - FARE
+        - PASSENGER
+        - BOOKER
+        - RESERVATION
+        - FULFILLMENT
+        - REFUND_OFFER
+        - EXCHANGE_OPERATION
+        - EXCHANGE_TRIP_OFFER
+        - COMPLAINT
+        - PRODUCT
+        - COACH_LAYOUT
+        - REDUCTION_CARD
 
     PlaceResponse:
       type: object
@@ -4387,16 +4399,16 @@ components:
             Indicates whether the offerId can be used in more than one booking.
         offerTag:
           type: object
+          description: >-
+            The offerTag can/must (depending on the mandatory flag) be used in some cases to restrict the 
+            set of offers returned in a subsequent and related offer search to only compatible ones.
+            Note the offerTag does not need to be unique.
           properties:
+            id:
+              type: string
             isMandatory:
               type: boolean
               default: false
-            offerTag:
-              type: string
-          description: >-
-            The offerTag can/must (depending on the mandatory flag) be used in some cases to restrict the set of
-            offers returned in a subsequent and related offer search to only compatible ones.
-            Note the offerTag does not need to be unique.
         coveredLegIds:
           type: array
           items:
@@ -4727,29 +4739,32 @@ components:
             List of tags (and their type) that allow identifying sets of offers for which related 
             contracts can be grouped into one through ticket.
         combinationTags:
-          description: >-
-            Tags to indicate that some products from a provider can be sold only when in conjunction
-            with product(s) from another provider using the same tag. At least one, not all, 
-            combinationTags must be in common to allow combination. No combinationTags indicate 
-            that there are no combination constraints on the product.
           type: array
           items:
-            type: object
-            properties:
-              combinationTag:
-                type: string
-              needsToBeCombined:
-                description: >-
-                  If false it means that this product can only be sold also when not in conjunction with
-                  a product with the same tag. This is needed to propose specific products from one provider 
-                  that depend on public ones of another.
-                type: boolean
-                default: false
+            $ref: "#/components/schemas/CombinationTag"
         links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
 
+    CombinationTag:
+      type: object
+      description: >-
+        Tag to indicate that some products from a provider can be sold only when in conjunction
+        with product(s) from another provider using the same tag. At least one, not all, 
+        combinationTags must be in common to allow combination. No combinationTags indicate 
+        that there are no combination constraints on the product.
+      properties:
+        id:
+          type: string
+        needsToBeCombined:
+          description: >-
+            If false it means that this product can only be sold also when not in conjunction with
+            a product with the same tag. This is needed to propose specific products from one provider 
+            that depend on public ones of another.
+          type: boolean
+          default: false
+          
     FulfillmentMediaType:
       type: string
       description: >-
@@ -7326,10 +7341,12 @@ components:
         Describes the details of the reserved place(s).
       required:
         - accommodationType
+        - accommodationSubType
       properties:
         accommodationType:
           $ref: "#/components/schemas/AccommodationType"
-
+        accommodationSubType:
+          $ref: "#/components/schemas/AccommodationSubType"
         reservedPlaces:
           description: >-
             Reserved places in a confirmed reservation. 
@@ -7348,7 +7365,6 @@ components:
         - passengerIds
         - vehicle
         - coach
-        - places
       properties:
         id:
           type: string
@@ -7365,8 +7381,6 @@ components:
         places:
           description: descriptive string of the places (e.g. 11-35,51)
           type: string
-        accommodationSubType:
-          $ref: "#/components/schemas/AccommodationSubType"
         placeIds:
           description: list of individual place numbers
           type: array
@@ -7391,9 +7405,9 @@ components:
       description: see code list
 
     AccommodationType:
-      type: string
       description: >-
         Accommodation type definition out of the Accommodation Type Code List
+      default: SEAT
 
     AccommodationSubType:
       type: string
@@ -7467,6 +7481,8 @@ components:
         Place selection of places for reservation linked to passengers.
       required:
         - passengerIds
+        - accommodationType
+        - accommodationSubType
       properties:
         passengerIds:
           type: array
@@ -7671,7 +7687,7 @@ components:
         Passenger information needed at offering step.
       required:
         - id
-        - passengerType
+        - type
       properties:
         id:
           type: string
@@ -7690,7 +7706,7 @@ components:
           description: date of birth of the passenger
           type: string
           format: date
-        passengerType:
+        type:
           $ref: "#/components/schemas/PassengerType"
         cards:
           description: reduction or loyalty cards owned by the passenger
@@ -7707,6 +7723,8 @@ components:
           $ref: "#/components/schemas/Transportable"
         prmNeeds:
           type: array
+          description: >-
+            For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
           items:
             $ref: "#/components/schemas/PRMNeedType"
         links:
@@ -7720,7 +7738,7 @@ components:
         Minimal specification of a passenger to request offers.
       required:
         - id
-        - passengerType
+        - type
       properties:
         id:
           type: string
@@ -7733,7 +7751,7 @@ components:
             response.
           type: string
           example: "TK-id-12345"
-        passengerType:
+        type:
           $ref: "#/components/schemas/PassengerType"
         dateOfBirth:
           description: >-
@@ -7746,6 +7764,12 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/CardReference"
+        prmNeeds:
+          type: array
+          description: >-
+            For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
+          items:
+            $ref: "#/components/schemas/PRMNeedType"
 
     PassengerType:
       type: string
