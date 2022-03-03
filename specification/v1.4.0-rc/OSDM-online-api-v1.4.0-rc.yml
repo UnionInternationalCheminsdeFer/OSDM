@@ -7197,7 +7197,7 @@ components:
           description: scale of the amount - the number of positions after the comma
           type: integer
           default: 2
-        vatDetails:
+        vats:
           type: array
           items:
             $ref: "#/components/schemas/VAT"
@@ -7206,8 +7206,9 @@ components:
       type: string
       description: ISO 4217 currency codes
       example:
-        - EUR
         - CHF
+        - EUR
+        - SEK
 
     VAT:
       type: object
@@ -7247,8 +7248,7 @@ components:
 
     Company:
       type: string
-      description: >-
-        RICS company code or the upcoming compatible ERA company code.
+      description: RICS company code or compatible ERA company code for rail.
       example: "urn:uic:rics:1185"
 
     ServiceBrandCode:
