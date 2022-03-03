@@ -4235,7 +4235,7 @@ components:
               description: >-
                 Needs to be provided when creating the collection of inward travels so that the provider
                 can relate the inward travels to the outward travels context.
-            outwardSelectedOfferTag:
+            outwardOfferTag:
               type: string
               description: >-
                 Needs to be provided when creating the collection of inward travels so that the provider
@@ -4248,10 +4248,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PassengerSpecification"
-        promoCodes:
+        promotionCodes:
           type: array
           items:
-            $ref: "#/components/schemas/PromoCode"
+            $ref: "#/components/schemas/PromotionCode"
         offerSearchCriteria:
           $ref: "#/components/schemas/OfferSearchCriteria"
         embed:
@@ -4561,10 +4561,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/CardReference"
-        appliedPromoCodes:
+        appliedPromotionCodes:
           type: array
           items:
-            $ref: "#/components/schemas/PromoCode"
+            $ref: "#/components/schemas/PromotionCode"
         passengerIds:
           type: array
           items:
@@ -4813,28 +4813,28 @@ components:
           items:
             $ref: "#/components/schemas/OfferPartReference"
 
-    PlaceSelectionPatch:
+    SelectedPlaces:
       type: object
       description: >-
         place selection options and selected options in an offer
-        - reference place for adjacent reservation (referencePlace)
-        - selected optional place properties (selectedOptions)
-        - selected places from a graphical place selection (selectedCoaches)
+        - reference place for adjacent reservation
+        - selected optional place options
+        - selected places from a graphical place selection (coach and places)
       properties:
         referencePlace:
           type: object
-          description: selected place for an adjacent reservation (NEARBY)
+          description: reference place for an adjacent reservation
           properties:
             placeNumber:
               type: string
             coachNumber:
               type: string
-        selectedOptions:
+        options:
           type: array
           items:
             $ref: "#/components/schemas/SelectedOption"
-        selectedCoaches:
-          description: selected coach and places in case of graphical reservation
+        coaches:
+          description: selected coach and places for graphical reservation
           type: array
           items:
             $ref: "#/components/schemas/SelectedCoach"
@@ -4952,7 +4952,7 @@ components:
             mapping from an even lower-level provider).
           example: Reservierungsentgelt
 
-    PromoCode:
+    PromotionCode:
       type: object
       description: >-
         The promotion code is a token that reduces the price at POST booking time OR
@@ -4971,11 +4971,11 @@ components:
 
     OfferPartReference:
       type: object
-      required:
-        - id
       description: >-
         References all the offer part elements in an uniform format.
         In its part, an OfferPartReference can refer to reservation, admission, ancillary or fee.
+      required:
+        - id
       properties:
         id:
           type: string
@@ -4990,9 +4990,9 @@ components:
     OfferSelection:
       type: object
       required:
-        - selectedOfferId
+        - offerId
       properties:
-        selectedOfferId:
+        offerId:
           type: string
           description: id of the selected offer or exchangeOffer
         afterSaleByDistributorOnly:
@@ -5008,13 +5008,13 @@ components:
             in case the carriage contracts represented by this offer have been grouped with carriage contracts from other
             providers by the distributor. The same throughTicketTag that was used to perform the grouping can be specified here.
           type: string
-        selectedOptionalReservationIds:
+        optionalReservationIds:
           type: array
           items:
             type: string
             description: >-
               If relevant, ids of the selected optional reservations.
-        selectedOptionalAncillaryIds:
+        optionalAncillaryIds:
           type: array
           items:
             type: object
@@ -5041,25 +5041,25 @@ components:
             reservationId:
               type: string
             placeSelection:
-              $ref: "#/components/schemas/PlaceSelectionPatch"
+              $ref: "#/components/schemas/SelectedPlaceOption"
 
     BookingRequest:
       type: object
       required:
-        - selectedOffers
+        - offers
       properties:
         booker:
           $ref: "#/components/schemas/Booker"
-        selectedOffers:
+        offers:
           type: array
           items:
             $ref: "#/components/schemas/OfferSelection"
           description: >-
             The list of offers that need to be provisionally booked, with possibly the reservations and ancillaries associated that should be booked as well.
-        promoCodes:
+        promotionCodes:
           type: array
           items:
-            $ref: "#/components/schemas/PromoCode"
+            $ref: "#/components/schemas/PromotionCode"
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -5122,7 +5122,7 @@ components:
         appliedPromoCodes:
           type: array
           items:
-            $ref: "#/components/schemas/PromoCode"
+            $ref: "#/components/schemas/PromotionCode"
         booker:
           description: >-
             Some caller do want to provide information about the booker, thus this attribute 
@@ -5177,16 +5177,18 @@ components:
         Allows setting the required fulfillment type, e.g. value paper
         or e-ticket and preferred fulfillment media. 
         The latter is optional and relevant in some cases only.
+      required:
+       - exchangeOffers
       properties:
-        promoCodes:
+        promotionCodes:
           type: array
           items:
-            $ref: "#/components/schemas/PromoCode"
+            $ref: "#/components/schemas/PromotionCode"
         requestedFulfillmentType:
           $ref: "#/components/schemas/FulfillmentType"
         preferredFulfillmentMedia:
           $ref: "#/components/schemas/FulfillmentMediaType"
-        selectedExchangeOffers:
+        exchangeOffers:
           type: array
           items:
             $ref: "#/components/schemas/OfferSelection"
@@ -5690,10 +5692,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PassengerSpecification"
-        promoCodes:
+        promotionCodes:
           type: array
           items:
-            $ref: "#/components/schemas/PromoCode"
+            $ref: "#/components/schemas/PromotionCode"
         requestedFulfillmentOptions:
           type: array
           items:
@@ -7418,28 +7420,28 @@ components:
       type: object
       description: >-
         Place selection options and selected options in an offer
-        - reference place for adjacent reservation (referencePlace)
-        - selected optional place properties (selectedOptions)
-        - selected places from a graphical place selection (selectedCoaches)
+        - reference place for adjacent reservation
+        - selected optional place properties
+        - selected places from a graphical place selection
       properties:
         reservationOptions:
-          $ref: "#/components/schemas/ReservationOnlineOption"
+          $ref: "#/components/schemas/ReservationOption"
         vehicle:
           description: >-
             Vehicle / train number is necessary in case of train parts with different train numbers
           type: string
         referencePlace:
-          $ref: "#/components/schemas/ReferencePlace"
-        selectedOptions:
+          $ref: "#/components/schemas/SelectedReferencePlace"
+        options:
           type: array
           items:
             $ref: "#/components/schemas/SelectedOption"
-        selectedCoaches:
+        coaches:
           type: array
           items:
             $ref: "#/components/schemas/SelectedCoach"
 
-    ReservationOnlineOption:
+    ReservationOption:
       type: object
       properties:
         preferences:
@@ -7466,9 +7468,9 @@ components:
             type: string
             example: "FORWARD_FACING"
 
-    ReferencePlace:
+    SelectedReferencePlace:
       type: object
-      description: selected place for an adjacent reservation (NEARBY)
+      description: reference place for an adjacent reservation
       properties:
         coachNumber:
           type: string
@@ -7631,14 +7633,15 @@ components:
       properties:
         coachNumber:
           type: string
-        places:
-          description: selected places in case of graphical booking
+          description: selected coach in case of graphical booking
+        places:        
           type: array
           items:
             $ref:  "#/components/schemas/SelectedPlace"
 
     SelectedPlace:
       type: object
+      description: selected place in case of graphical booking
       properties:
         passengerId:
           description: Id of the passenger
