@@ -3159,10 +3159,40 @@ components:
           minItems: 1
         operatingDays:
           $ref: "#/components/schemas/OperatingDays"
-        # situationFullRef: ## Out of scope
-        #   $ref: "#/components/schemas/SituationFullRef"
-        status: # EXT replaces tripLegs, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/182
+        operatingDaysDescription:
+          type: string
+          description: >-
+            Textual description of the operation days, e.g. "Monday to Friday" or "Not on holidays".
+        situationFullRefs:
+          type: array
+          items:
+            $ref: "#/components/schemas/SituationFullRef"
+        tripStatus:
           $ref: "#/components/schemas/TripStatus"
+
+    TripStatus:
+      type: object
+      properties:
+        unplanned:
+          description: Whether this trip is an additional one that has not been planned.
+          type: boolean
+          default: false
+        cancelled:
+          description: Whether this trip is cancelled and will not be run.
+          type: boolean
+          default: false
+        deviation:
+          description: Whether this trip deviates from the planned service pattern.
+          type: boolean
+          default: false
+        delayed:
+          description: Whether this trip is delayed.
+          type: boolean
+          default: false
+        infeasible:
+          description: Whether this trip cannot be used, due to operational delays and impossible transfers.
+          type: boolean
+          default: false    
 
     TripSpecification:
       type: object
@@ -3204,32 +3234,6 @@ components:
             The length of the pattern is equal to the number of days from 
             start date to end date. A bit value of "1" indicates that an event
             actually happens on the day that is represented by the bit position.
-
-    TripStatus: ## OJP
-      type: object
-      description: >-
-        Parameters which describe the current status of a trip. Provided by OJP.
-      properties:
-        unplanned:
-          description: Whether this trip is an additional one that has not been planned.
-          type: boolean
-          default: false
-        canceled:
-          description: Whether this trip is cancelled and will not be run.
-          type: boolean
-          default: false
-        deviation:
-          description: Whether this trip deviates from the planned service pattern.
-          type: boolean
-          default: false
-        delayed:
-          description: Whether this trip is delayed.
-          type: boolean
-          default: false
-        infeasible:
-          description: Whether this trip cannot be used, due to operational delays and impossible transfers.
-          type: boolean
-          default: false
 
     TripLeg: ## OJP  # Reduced scope
       type: object
@@ -3293,6 +3297,10 @@ components:
         #     $ref: "#/components/schemas/LegAttribute"
         operatingDays:
           $ref: "#/components/schemas/OperatingDays"
+        operatingDaysDescription:
+          type: string
+          description: >-
+            Textual description of the operation days, e.g. "Monday to Friday" or "not on holidays".
         # legTrack:  # Out of scope
         #   type: array
         #   items:
@@ -3372,8 +3380,10 @@ components:
         #   $ref: "#/components/schemas/GeneralAttribute"
         # pathGuidance:  # Out of scope
         #   $ref: "#/components/schemas/PathGuidance"
-        # situationFullRef:  # Out of scope
-        #   $ref: "#/components/schemas/SituationFullRef"
+        situationFullRef:
+          type: array
+          items:
+            $ref: "#/components/schemas/SituationFullRef"
 
     ContinuousLeg: ## OJP # Reduced scope
       type: object
@@ -3413,8 +3423,10 @@ components:
         #   minimum: 0
         # pathGuidance:  # Out of scope
         #   $ref: "#/components/schemas/PathGuidance"
-        # situationFullRef:  # Out of scope
-        #   $ref: "#/components/schemas/SituationFullRef"
+        situationFullRefs:
+          type: array
+          items:
+            $ref: "#/components/schemas/SituationFullRef"
 
     ContinuousService: ## OJP
       type: object
@@ -3775,6 +3787,12 @@ components:
               - "urn:uic:rics:1185:11"
               - "urn:uic:rics:1185:72"
               - "urn:uic:rics:1185:48"
+        serviceStatus:
+          $ref: "#/components/schemas/ServiceStatus"
+        situationFullRefs:
+          type: array
+          items:
+            $ref: "#/components/schemas/SituationFullRef"
 
     Mode: ## OJP
       type: object
@@ -3843,6 +3861,31 @@ components:
           example: TGV
         productCategoryRef:
           $ref: "#/components/schemas/ProductCategoryRef"
+
+    ServiceStatus:
+      type: object
+      description: >-
+        Parameters which describe the current status of a dated vehicle journey.
+        Provided by OJP.
+      properties:
+        unplanned:
+          type: boolean
+          description: Whether this trip is an additional one that has not been planned.
+          default: false
+        cancelled:
+          type: boolean
+          description: Whether this trip is cancelled and will not be run.
+          default: false
+        deviation:
+          type: boolean
+          description: Whether this trip deviates from the planned service pattern.
+          default: false
+        occupancy:
+          type: string
+          description: >-
+            Passenger load status on vehicle. If omitted, not known. 
+            Equivalent to siri:OccupancyEnumeration which describes three values: 
+            "full", "seatingAvailable" and "standingAvailable".
 
     Place: ## OJP # Reduced scope
       type: object
@@ -4102,8 +4145,8 @@ components:
 
     ProductCategoryRef: ## OJP
       description: >-
-        Reference to a product category. Product categories should be defined once and used uniformly in all channels 
-        (e.g. NeTEx, SIRI, OJP). Provided by OJP.
+        Reference to a product category. Product categories should be defined once and used
+        uniformly in all channels (e.g. NeTEx, SIRI, OJP). Provided by OJP.
       type: string
       example:
         - "urn:uic:sbc:76"
@@ -4118,6 +4161,12 @@ components:
       type: string
       description: Reference to a journey. Provided by OJP.
       example: "ServiceJourney:1"
+
+    SituationFullRef: ## OJP
+      type: string
+      description: >-
+        Reference to situation message. Message details might be found in response 
+        context or through other communication channels. Provided by OJP.
 
     OfferSearchCriteria:
       type: object
@@ -4200,14 +4249,11 @@ components:
     TripOfferRequest:
       type: object
       description: >-
-        Defines the parameters needed to request an offer. 
-
-        You can use the tripSearchCriteria (origin, destination,... ) or a list of trips to find trip offers.
-
-        Either a set of tripSpecification xor a tripSearchCriteria must be provided.
-
-        If you are searching for fares you pass in the complete trip in trips and the use the returnSearchCriteria
-        to define which part you need fares (especially if you want a price up to a virtual border point).
+        Defines the parameters needed to request an offer. Either a tripSearchCriteria
+        or a list of trip specifications can be passed in to request trip offer.
+        If you are searching for fares you pass in the complete trip and the use the 
+        returnSearchCriteria to define which part you need fares (including virtual 
+        border points).
       required:
         - passengerSpecifications
       properties:
@@ -7512,8 +7558,7 @@ components:
 
     PlaceAvailability:
       type: object
-      description: >-
-        Availability of places on coaches.
+      description: Availability of places on vehicle.
       properties:
         vehicle:
           $ref: "#/components/schemas/Vehicle"
@@ -7595,7 +7640,7 @@ components:
         status:
           type: string
         isSelectable:
-          description: to indicate compartments selectable as a whole only
+          description: Indicates whether compartments are selectable as a whole only
           type: boolean
           default: false
 
@@ -7607,8 +7652,7 @@ components:
         - status
       properties:
         number:
-          description: >-
-            the place number as indicated at the place in the coach
+          description: place number as indicated at the place in the coach
           type: string
         status:
           $ref: "#/components/schemas/AvailabilityStatus"
@@ -7659,8 +7703,7 @@ components:
 
     Booker:
       type: object
-      description: >-
-        Booker information needed at offering step.
+      description: booker information needed at offering step
       required:
         - id
         - details
@@ -7686,8 +7729,7 @@ components:
 
     Passenger:
       type: object
-      description: >-
-        Passenger information needed at offering step.
+      description: passenger information needed at offering step
       required:
         - id
         - type
