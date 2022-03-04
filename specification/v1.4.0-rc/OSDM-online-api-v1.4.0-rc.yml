@@ -3192,7 +3192,7 @@ components:
         infeasible:
           description: Whether this trip cannot be used, due to operational delays and impossible transfers.
           type: boolean
-          default: false    
+          default: false
 
     TripSpecification:
       type: object
@@ -3965,9 +3965,7 @@ components:
           type: string
           example: The Netherlands
         countryCode:
-          description: ISO country code (2 alpha), relative URNs with base urn:iso:std:iso:3166 are recommended
-          type: string
-          example: DE
+          $ref: "#/components/schemas/CountryCode"
         postCode:
           description: Postal code of the address.
           type: string
@@ -3995,6 +3993,11 @@ components:
         # crossRoad:  # Out of scope
         #   description: Crossing. This can be used to be more specific without using house numbers.
         #   type: string
+
+    CountryCode:
+      type: string
+      description: ISO country code (2 alpha), relative URNs with base urn:iso:std:iso:3166 are recommended
+      example: DE
 
     PointOfInterest: ## OJP # Reduced scope
       type: object
@@ -4810,7 +4813,7 @@ components:
             that depend on public ones of another.
           type: boolean
           default: false
-          
+
     FulfillmentMediaType:
       type: string
       description: >-
@@ -5224,7 +5227,7 @@ components:
         or e-ticket and preferred fulfillment media. 
         The latter is optional and relevant in some cases only.
       required:
-       - exchangeOffers
+        - exchangeOffers
       properties:
         promotionCodes:
           type: array
@@ -7259,13 +7262,11 @@ components:
     VAT:
       type: object
       required:
-        - country
+        - countryCode
         - amount
       properties:
-        country:
-          description: ISO 3166 2A codes
-          type: string
-          example: CH
+        countryCode:
+          $ref: "#/components/schemas/CountryCode"
         amount:
           description: amount in cents
           type: integer
@@ -7678,10 +7679,10 @@ components:
         coachNumber:
           type: string
           description: selected coach in case of graphical booking
-        places:        
+        places:
           type: array
           items:
-            $ref:  "#/components/schemas/SelectedPlace"
+            $ref: "#/components/schemas/SelectedPlace"
 
     SelectedPlace:
       type: object
@@ -8015,30 +8016,27 @@ components:
         nationality:
           description: ISO 3166 2A codes
           type: string
-        cityOfBirth:
+        birthCity:
           type: string
-        cityOfIssue:
+        issuingCity:
           description: place where the document is issued
           type: string
-        cityOfResidence:
+        residenceCity:
           type: string
-        countryOfBirth:
-          description: ISO 3166 2A codes
-          type: string
-        countryOfIssue:
-          description: ISO 3166 2A codes
-          type: string
-        countryOfResidence:
-          description: ISO 3166 2A codes
-          type: string
-        dateOfIssue:
+        birthCountryCode:
+          $ref: "#/components/schemas/CountryCode"
+        issuingCountryCode:
+          $ref: "#/components/schemas/CountryCode"
+        residenceCountryCode:
+          $ref: "#/components/schemas/CountryCode"
+        issuingDate:
           type: string
           format: date-time
         gender:
           $ref: "#/components/schemas/Gender"
-        limitOfValidity:
+        expirationDate:
           type: string
-          format: date-time
+          format: date
 
     CardReference:
       type: object
