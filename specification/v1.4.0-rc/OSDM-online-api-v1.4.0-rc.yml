@@ -5433,8 +5433,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FulfillmentMediaType"
-        travelerReference:
-          description: reference to a traveler
+        passengerReference:
+          description: reference to a passenger
           type: string
         controlId:
           type: string
@@ -6529,7 +6529,7 @@ components:
                   - REGISTRY
                   - PEER_TO_PEER
             isIndividualTicketingForbidden:
-              description: a separate fulfillment per traveler is forbidden
+              description: a separate fulfillment per passenger is forbidden
               type: boolean
               default: false
         reductionConstraint:
@@ -7899,7 +7899,7 @@ components:
     PassengerType:
       type: string
       description: >-
-        Passenger type according to UIC passenger, i.e. traveler type list.
+        Passenger type according to UIC passenger, i.e. passenger type list.
         See https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
       x-extensible-enum:
         - DOG
@@ -7938,7 +7938,7 @@ components:
       properties:
         preferredLanguage:
           type: string
-          description: Languages spoken by the traveler (ISO language code)
+          description: Languages spoken by the person (ISO language code)
         abstract:
           type: string
         firstName:
@@ -7953,7 +7953,7 @@ components:
             in case of interruptions.
           type: string
         address:
-          description: address of the traveller. Can be relevant for some pass holders
+          description: Address of the person, relevant for some pass holders
           $ref: "#/components/schemas/Address"
 
     Gender:
@@ -7975,7 +7975,7 @@ components:
       properties:
         type:
           description: >-
-            Subset of the values from the traveler type code list IRS 90918-10
+            Subset of the values from the passenger type code list IRS 90918-10
           type: string
           x-extensible-enum:
             - PET
