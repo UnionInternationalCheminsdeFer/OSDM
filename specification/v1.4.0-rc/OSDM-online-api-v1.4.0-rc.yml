@@ -1,9 +1,8 @@
 openapi: 3.0.3
 servers:
-  - description: Localhost on port 8080
-    url: http://localhost:8080
+
   - description: OSDM Mock on Mocklab
-    url: http://osdm.mocklab.io
+    url: https://osdm.mocklab.io
   - description: OEBB OSDM Simulator
     url: https://tickets-otest.oebb.at/osdm-sim/api
 
@@ -3571,6 +3570,7 @@ components:
         order:
           description: Sequence number of this stop in the service pattern of the journey.
           type: integer
+          format: int32
           minimum: 1
         requestStop:
           description: The vehicle journey calls at this stop only on demand.
@@ -6248,7 +6248,7 @@ components:
         trainNumber:
           type: string
         connectionMissed:
-          description: connection missed due to a delay on the prevoius leg
+          description: connection missed due to a delay on the previous leg
           type: boolean
         serviceDegradation:
           type: array
@@ -6454,6 +6454,7 @@ components:
               description: Distance in km for statistics
               type: integer
               format: int32
+              minimum: 0
         serviceConstraint:
           $ref: "#/components/schemas/ServiceConstraint"
         carrierConstraint:
@@ -6603,10 +6604,12 @@ components:
                   description: number of days after departure or start of validity of the last return
                   type: integer
                   format: int32
+                  minimum: 0
                 earliestReturn:
                   description: number of days after departure or start of validity of the earliest return
                   type: integer
                   format: int32
+                  minimum: 0
                 excludedWeekdays:
                   description: weekdays (ISO day of the week, 1 = Monday) between travel and return where travel is not allowed
                   type: array
@@ -7108,11 +7111,13 @@ components:
     ControlSecurityType:
       type: string
       description: >-
-        SIP: secure paper tickets; Sid: security in data (signed bar code); SIS: security in system
+        SiP: secure paper tickets
+        SiP: security in data (signed bar code)
+        SiS: security in system
       x-extensible-enum:
-        - SIP
-        - Sid
-        - SIS
+        - SiP
+        - SiD
+        - SiS
 
     LegacyReservationTariff:
       type: object
@@ -7315,6 +7320,7 @@ components:
         scale:
           description: scale of the amount - the number of positions after the comma
           type: integer
+          format: int32
           default: 2
         vats:
           type: array
@@ -7345,6 +7351,7 @@ components:
         scale:
           description: scale of the amount - the number of positions after the comma
           type: integer
+          format: int32
           default: 2
         percentage:
           type: number
@@ -7993,15 +8000,19 @@ components:
         weight:
           type: integer
           format: int32
+          minimum: 0
         length:
           type: integer
           format: int32
+          minimum: 0
         width:
           type: integer
           format: int32
+          minimum: 0
         height:
           type: integer
           format: int32
+          minimum: 0
         model:
           type: string
           description: Free text description of the model (e.g. BMW X5)
@@ -8045,14 +8056,17 @@ components:
           description: weight in kg
           type: integer
           format: int32
+          minimum: 0
         length:
           description: length in cm
           type: integer
           format: int32
+          minimum: 0
         width:
           description: width in cm
           type: integer
           format: int32
+          minimum: 0
         height:
           description: length in cm
           type: integer
