@@ -342,11 +342,59 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
+
+
+  /trip-offers-collection:
+    post:
+      tags:
+        - Offers
+      summary: Returns trip offers for origin and destination (and via) places.
+      operationId: postTripOffersCollection
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TripOfferRequest"
+      responses:
+        "200":
+          description: Collection of trip offers found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TripOffersCollectionResponse"
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "409":
+          $ref: "#/components/responses/ConflictResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
   /trip-offers-collection/{tripOffersCollectionId}:
     get:
       tags:
         - Offers
-      summary: Returns different offers and trips for a specified origin and destination (and via).
+      summary: Returns offers and trips for a specified origin and destination (and via).
       description: The unique codes of the origin and destination can be resolved using the places service.
       operationId: getTripOffersCollectionId
       parameters:
@@ -414,57 +462,11 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
-  /trip-offers-collection:
-    post:
-      tags:
-        - Offers
-      summary: Returns trip offers for origin and destination (and via) places.
-      operationId: postTripOffersCollection
-      parameters:
-        - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/idempotencyKey"
-        - $ref: "#/components/parameters/traceParent"
-        - $ref: "#/components/parameters/traceState"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/TripOfferRequest"
-      responses:
-        "200":
-          description: Collection of trip offers found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TripOffersCollectionResponse"
-          headers:
-            Content-Language:
-              schema:
-                type: string
-                description: >-
-                  The language of translatable strings in the response (see RFC2616-sec14.12).
-        "400":
-          $ref: "#/components/responses/BadRequestResponse"
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
-        "500":
-          $ref: "#/components/responses/InternalServerErrorResponse"
-        "501":
-          description: Not implemented
-        "503":
-          $ref: "#/components/responses/ServiceUnavailableResponse"
-
   /trip-offers/{tripOfferId}:
     get:
       tags:
         - Offers
-      summary: Returns different offers for a specified tripOfferId.
+      summary: Returns offers for a specified tripOfferId.
       operationId: getTripOffersId
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
@@ -522,13 +524,129 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
+
+
+  /non-trip-offers-collection:
+    post:
+      tags:
+        - Offers
+      summary: Returns offers for non-journey based products.
+      description: >-
+        Get offers based on key words or regional information not linked to trips. 
+        This includes simple passes or one day tickets.
+      operationId: postNonTripOffersCollection
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
+      requestBody:
+        description: request parameter for offer search
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NonTripOfferSearch"
+      responses:
+        "200":
+          description: offer collection
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NonTripOffersCollectionResponse"
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "409":
+          $ref: "#/components/responses/ConflictResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
+  /non-trip-offers-collection/{nonTripOffersCollectionId}:
+    get:
+      tags:
+        - Offers
+      summary: Returns offers unbound to a journey.
+      operationId: getNonTripOffersCollectionId
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
+        - in: path
+          name: nonTripOffersCollectionId
+          schema:
+            type: string
+          required: true
+          description: id of the trip offers
+        - in: query
+          name: cursor
+          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
+          schema:
+            type: string
+            format: uri
+          example: "https://api.osdm.com/non-trip-offers-collection/1234?cursor=2"
+          required: false
+        - in: query
+          name: embed
+          description: >-
+            Influences whether referenced resources are returned in full or as references only.
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - ALL
+                - TRIPOFFERS
+                - TRIPOFFERS.OFFERS
+                - TRIPOFFERS.OFFERS.OFFERPARTS
+                - TRIPOFFERS.PASSENGERS
+                - NONE
+            default: [ALL]
+            maxItems: 5
+      responses:
+        "200":
+          description: Non Trip Offer Collection(s) found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NonTripOffersCollectionResponse"
+          headers:
+            Content-Language:
+              schema:
+                type: string
+                description: >-
+                  The language of translatable strings in the response (see RFC2616-sec14.12).
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
   /offers/{offerId}:
     get:
       tags:
         - Offers
       summary: Returns an offer for the id requested.
       description: >-
-        Returns an offer. Note: Does not return non-trip offers.
+        Returns an offer.
       operationId: getOffersId
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
@@ -577,51 +695,6 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-        "500":
-          $ref: "#/components/responses/InternalServerErrorResponse"
-        "501":
-          description: Not implemented
-        "503":
-          $ref: "#/components/responses/ServiceUnavailableResponse"
-
-  /non-trip-offers-collection:
-    post:
-      tags:
-        - Offers
-      summary: Returns offers for non-journey based products.
-      description: >-
-        Get offers based on key words or regional information not linked to trips. 
-        This includes simple passes or one day tickets.
-      operationId: postNonTripOffersCollection
-      parameters:
-        - $ref: "#/components/parameters/acceptLanguage"
-        - $ref: "#/components/parameters/idempotencyKey"
-        - $ref: "#/components/parameters/traceParent"
-        - $ref: "#/components/parameters/traceState"
-      requestBody:
-        description: request parameter for offer search
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/NonTripOfferSearch"
-      responses:
-        "200":
-          description: offer collection
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/NonTripOfferCollection"
-        "400":
-          $ref: "#/components/responses/BadRequestResponse"
-        "401":
-          description: Unauthorized
-        "403":
-          description: Forbidden
-        "404":
-          description: Not Found
-        "409":
-          $ref: "#/components/responses/ConflictResponse"
         "500":
           $ref: "#/components/responses/InternalServerErrorResponse"
         "501":
@@ -2092,7 +2165,7 @@ paths:
       tags:
         - Exchange
       summary: >-
-        Returns different exchange offers for a specified fulfillments submitted given requested new trip 
+        Returns exchange offers for a specified fulfillments submitted given requested new trip 
         characteristics.
       operationId: postExchangeTripOffersCollection
       parameters:
@@ -2140,7 +2213,7 @@ paths:
       tags:
         - Exchange
       summary: >-
-        Returns different offers and trips for a specified origin and destination (and via).
+        Returns offers and trips for a specified origin and destination (and via).
       operationId: getExchangeTripOffersCollectionId
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
@@ -2212,8 +2285,7 @@ paths:
     get:
       tags:
         - Exchange
-      summary: >-
-        Returns different offers for a specified trip offer id.
+      summary: Returns offers for a specified trip offer id.
       operationId: getExchangeTripOffersId
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
@@ -2228,7 +2300,8 @@ paths:
         - in: query
           name: embed
           description: >-
-            Influences whether referenced resources are returned in full or as references only.
+            Influences whether referenced resources are returned in full or as references
+            only.
           schema:
             type: array
             items:
@@ -4414,7 +4487,9 @@ components:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
         offer:
-          $ref: "#/components/schemas/Offer"
+          oneOf:
+            - $ref: "#/components/schemas/Offer"
+            - $ref: "#/components/schemas/NonTripOffer"
 
     Offer:
       description: >-
@@ -5762,7 +5837,7 @@ components:
           default: [ALL]
           maxItems: 1
 
-    NonTripOfferCollection:
+    NonTripOffersCollectionResponse:
       type: object
       required:
         - id
@@ -5795,18 +5870,46 @@ components:
           example: Super Saver One Day Pass
         offerSummary:
           $ref: "#/components/schemas/OfferSummary"
+        priceGuaranteedUntil:
+          type: string
+          format: date-time
+          description: >-
+            Indicates until when the price for the given offer is guaranteed.
+        isReusable:
+          type: boolean
+          default: false
+          description: >-
+            Indicates whether the offerId can be used in more than one booking.
+        offerTag:
+          type: object
+          description: >-
+            The offerTag can/must (depending on the mandatory flag) be used in some cases to restrict the 
+            set of offers returned in a subsequent and related offer search to only compatible ones.
+            Note the offerTag does not need to be unique.
+          properties:
+            id:
+              type: string
+            isMandatory:
+              type: boolean
+              default: false  
         requestedInformation:
           $ref: "#/components/schemas/RequestedInformation"
-        validFrom:
-          type: string
-          format: date-time
-        validUntil:
-          type: string
-          format: date-time
         availableFulfillmentTypes:
           type: array
           items:
             $ref: "#/components/schemas/FulfillmentType"
+        validFrom:
+          type: string
+          format: date-time
+          description: >-
+            Defines the minimum validity period of the trip booked, meaning the period 
+            during which it will be possible to travel with the fulfillments for this offer.
+        validUntil:
+          type: string
+          format: date-time
+          description: >-
+            Defines the minimum validity period of the trip booked, meaning the period 
+            during which it will be possible to travel with the fulfillments for this offer.
         admissions:
           type: array
           items:
@@ -5815,6 +5918,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Ancillary"
+        fees:
+          type: array
+          items:
+            $ref: "#/components/schemas/Fee"
         fares:
           type: array
           items:
