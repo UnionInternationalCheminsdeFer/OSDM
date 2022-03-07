@@ -1,11 +1,4 @@
 openapi: 3.0.3
-servers:
-
-  - description: OSDM Mock on Mocklab
-    url: https://osdm.mocklab.io
-  - description: OEBB OSDM Simulator
-    url: https://tickets-otest.oebb.at/osdm-sim/api
-
 info:
   title: UIC 90918-10 - OSDM
   version: 1.4.0-rc8
@@ -22,6 +15,13 @@ info:
   license:
     name: Apache 2.0
     url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+servers:
+  - description: OSDM Mock on Mocklab
+    url: https://osdm.mocklab.io
+  - description: Sqills Sandbox
+    url: https://s3p-osdm.cloud.sqills.com
+  - description: OEBB OSDM Simulator
+    url: https://tickets-otest.oebb.at/osdm-sim/api
 tags:
   - name: Places
     description: >-
@@ -7532,6 +7532,7 @@ components:
       description: see code list
 
     AccommodationType:
+      type: string
       description: >-
         Accommodation type definition out of the Accommodation Type Code List
       default: SEAT
