@@ -44,9 +44,9 @@ tags:
   - name: Passengers
     description: >-
       resources to manipulate a passenger's information at every stage of the flow
-  - name: Booker
+  - name: Purchaser
     description: >-
-      resources to manipulate a booker's information at every stage of the flow
+      resources to manipulate a purchaser's information at every stage of the flow
   - name: Fulfillments
     description: >-
       resources to retrieve fulfillments, e.g. tickets
@@ -1250,12 +1250,12 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
-  /bookings/{bookingId}/booker:
+  /bookings/{bookingId}/purchaser:
     get:
       tags:
-        - Booker
-      summary: Returns the booker's information at booking step.
-      operationId: getBookingBooker
+        - Purchaser
+      summary: Returns the purchaser's information at booking step.
+      operationId: getBookingPurchaser
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
@@ -1265,14 +1265,14 @@ paths:
           schema:
             type: string
           required: true
-          description: id of the booking the booker is in.
+          description: id of the booking the purchaser is in.
       responses:
         "200":
-          description: Booker found
+          description: Purchaser found
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BookerResponse"
+                $ref: "#/components/schemas/PurchaserResponse"
           headers:
             Content-Language:
               schema:
@@ -1296,9 +1296,9 @@ paths:
 
     patch:
       tags:
-        - Booker
-      summary: Allows updating a booker's information at booking step.
-      operationId: patchBookingBooker
+        - Purchaser
+      summary: Allows updating a purchaser's information at booking step.
+      operationId: patchBookingPurchaser
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
@@ -1309,19 +1309,19 @@ paths:
           schema:
             type: string
           required: true
-          description: id of the booking the booker is in.
+          description: id of the booking the purchaser is in.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Booker"
+              $ref: "#/components/schemas/Purchaser"
       responses:
         "200":
-          description: Booker successfully patched
+          description: Purchaser successfully patched
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Booker"
+                $ref: "#/components/schemas/Purchaser"
           headers:
             Content-Language:
               schema:
@@ -5143,8 +5143,8 @@ components:
       required:
         - offers
       properties:
-        booker:
-          $ref: "#/components/schemas/Booker"
+        purchaser:
+          $ref: "#/components/schemas/Purchaser"
         offers:
           type: array
           items:
@@ -5218,11 +5218,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PromotionCode"
-        booker:
+        purchaser:
           description: >-
-            Some caller do want to provide information about the booker, thus this attribute 
+            Some caller do want to provide information about the purchaser, thus this attribute 
             can not be made mandatory.
-          $ref: "#/components/schemas/Booker"
+          $ref: "#/components/schemas/Purchaser"
         passengers:
           type: array
           items:
@@ -7773,17 +7773,17 @@ components:
         placeNumber:
           type: string
 
-    BookerResponse:
+    PurchaserResponse:
       type: object
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
-        booker:
-          $ref: "#/components/schemas/Booker"
+        purchaser:
+          $ref: "#/components/schemas/Purchaser"
 
-    Booker:
+    Purchaser:
       type: object
-      description: booker information needed at offering step
+      description: purchaser information needed at offering step
       required:
         - id
         - details
@@ -7792,7 +7792,7 @@ components:
           type: string
         externalReference:
           description: >-
-            A stable reference to a booker from other elements, or from caller system.
+            A stable reference to a purchaser from other elements, or from caller system.
             When received in input of a trip-offers-collection request, it must be echoed back in the
             response.
           type: string
