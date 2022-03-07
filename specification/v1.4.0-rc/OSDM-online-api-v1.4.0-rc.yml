@@ -7098,32 +7098,28 @@ components:
         The underlying system may provide links for pagination of links pointing on 
         further information (such as HTML download links, web sites or extended APIs).
         Mechanism to add flexible extensions specific to an underlying system.
-        In this version only GET is supported.
+      additionalProperties:
+        $ref: "#/components/schemas/LinkObject"
+
+    LinkObject:
+      type: object
       required:
-        - contentTypes
-        - relation
         - href
       properties:
-        contentTypes:
-          type: array
-          example: '["application/json", "application/pdf", "application/png"]'
-          description: Possible content types of the resource.
-          items:
-            type: string
-        relation:
+        type: 
           type: string
-          description: Relation of this link to the current entity.
-          example:
-           - next
-           - previous
+          description: >-
+            A a hint to indicate the media type expected when dereferencing the target
+            resource.
+          example: application/json
         href:
           type: string
           format: uri
-          description: URL to the linked resource (no parameters needed).
+          description: A URI
           example: 
-           - "https://api.osdm.com/trips-collections/12345?cursor=2"
-           - "https://api.osdm.com/trips-collections/12345?cursor=0"
-    
+            - "https://api.osdm.com/trips-collections/12345?cursor=2"
+            - "https://api.osdm.com/trips-collections/12345?cursor=0"
+      
     Translation:
       type: object
       required:
