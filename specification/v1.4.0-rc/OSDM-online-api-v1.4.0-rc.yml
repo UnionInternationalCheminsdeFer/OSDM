@@ -3224,6 +3224,8 @@ components:
             $ref: "#/components/schemas/SituationFullRef"
         tripStatus:
           $ref: "#/components/schemas/TripStatus"
+        _links:
+          $ref: "#/components/schemas/Link"
 
     TripStatus:
       type: object
@@ -3991,7 +3993,7 @@ components:
         #   $ref: "#/components/schemas/GeneralAttribute"
         #  extension:   # Out of scope
         #   $ref: "#/components/schemas/Extension"
-        link:
+        _links:
           $ref: "#/components/schemas/Link"
 
     Address: ## OJP # Reduced scope
@@ -4837,7 +4839,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/CombinationTag"
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -6329,6 +6331,8 @@ components:
             type: string
         decision:
           $ref: "#/components/schemas/ComplaintDecision"
+        _links:
+          $ref: "#/components/schemas/Link"
 
     ComplaintDecision:
       type: object
@@ -6401,6 +6405,8 @@ components:
           description: the card id must be delivered in online sales
           type: boolean
           default: false
+        _links:
+          $ref: "#/components/schemas/Link"
 
     #### Fare-specific elements begin
 
@@ -7798,6 +7804,8 @@ components:
           type: string
         details:
           $ref: "#/components/schemas/PersonDetail"
+        _links:
+          $ref: "#/components/schemas/Link"
 
     PassengerResponse:
       type: object
