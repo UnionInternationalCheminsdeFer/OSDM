@@ -3173,7 +3173,7 @@ components:
       properties:
         id:
           description: >-
-            Id of this trip for referencing purposes. Unique within trip response.
+            Id of this trip for referencing purposes. Unique within a trip.
           type: string
         duration:
           description: Overall duration of the trip
@@ -3261,10 +3261,9 @@ components:
       properties:
         id:
           description: >-
-            Id of this trip for referencing purposes. Unique within trip response.
+            Id of this trip for referencing purposes. Unique within a trip specification.
           type: string
         legs:
-          description: Legs ot the trip with minimal information
           type: array
           items:
             $ref: "#/components/schemas/TripLegSpecification"
@@ -3317,9 +3316,8 @@ components:
     TripLegSpecification:
       type: object
       description: >-
-        A minimal simple trip leg specification consisting only of timed legs. Transfer legs 
-        and continuous legs are not part of this specification as they are not relevant to find
-        the correct vehicles by a pricing engine.
+        A minimal trip leg specification consisting of timed and transfer legs only. 
+        Continuous legs are not yet part of this version of the specification-
       required:
         - id ## EXT replaces legId, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/181
       properties:
