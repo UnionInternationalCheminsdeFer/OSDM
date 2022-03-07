@@ -342,8 +342,6 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
-
-
   /trip-offers-collection:
     post:
       tags:
@@ -524,9 +522,7 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
-
-
-  /non-trip-offers-collection:
+  /offers-collection:
     post:
       tags:
         - Offers
@@ -534,7 +530,7 @@ paths:
       description: >-
         Get offers based on key words or regional information not linked to trips. 
         This includes simple passes or one day tickets.
-      operationId: postNonTripOffersCollection
+      operationId: postOffersCollection
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
@@ -546,14 +542,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/NonTripOfferSearch"
+              $ref: "#/components/schemas/OfferSearch"
       responses:
         "200":
           description: offer collection
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/NonTripOffersCollectionResponse"
+                $ref: "#/components/schemas/OffersCollectionResponse"
         "400":
           $ref: "#/components/responses/BadRequestResponse"
         "401":
@@ -571,18 +567,18 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
-  /non-trip-offers-collection/{nonTripOffersCollectionId}:
+  /offers-collection/{offersCollectionId}:
     get:
       tags:
         - Offers
       summary: Returns offers unbound to a journey.
-      operationId: getNonTripOffersCollectionId
+      operationId: getOffersCollectionId
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
         - in: path
-          name: nonTripOffersCollectionId
+          name: offersCollectionId
           schema:
             type: string
           required: true
@@ -593,7 +589,7 @@ paths:
           schema:
             type: string
             format: uri
-          example: "https://api.osdm.com/non-trip-offers-collection/1234?cursor=2"
+          example: "https://api.osdm.com/offers-collection/1234?cursor=2"
           required: false
         - in: query
           name: embed
@@ -605,20 +601,19 @@ paths:
               type: string
               enum:
                 - ALL
-                - TRIPOFFERS
-                - TRIPOFFERS.OFFERS
-                - TRIPOFFERS.OFFERS.OFFERPARTS
-                - TRIPOFFERS.PASSENGERS
+                - NONTRIPOFFERS
+                - NONTRIPOFFERS.OFFERRPARTS
+                - NONTRIPOFFERS.PASSENGERS
                 - NONE
             default: [ALL]
-            maxItems: 5
+            maxItems: 3
       responses:
         "200":
-          description: Non Trip Offer Collection(s) found
+          description: Offer Collection(s) found
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/NonTripOffersCollectionResponse"
+                $ref: "#/components/schemas/OffersCollectionResponse"
           headers:
             Content-Language:
               schema:
@@ -4239,6 +4234,11 @@ components:
     OfferSearchCriteria:
       type: object
       properties:
+        freeText:
+          type: string
+          description: >-
+            Allows the API consumer to provide a free-text based search. Usage of the provided
+            text in the search process is left to the OSDM provider but should be documented.
         flexibilities:
           description: >-
             Defines the flexibility levels desired of the fares returned.
@@ -4281,38 +4281,6 @@ components:
         - FARE_RESERVATION
         - FARE_ANCILLARY
         - ALL
-
-    NonTripOfferSearchCriteria:
-      type: object
-      properties:
-        freeText:
-          type: string
-          description: >-
-            Allows the API consumer to provide a free-text based search. Usage of the provided
-            text in the search process is left to the OSDM provider but should be documented.
-        flexibilities:
-          description: >-
-            Defines the flexibility levels desired of the fares returned.
-            This refers to the after sales flexibility levels as defined in IRS-90918-10
-          type: array
-          items:
-            $ref: "#/components/schemas/Flexibility"
-        comfortClasses:
-          type: array
-          items:
-            $ref: "#/components/schemas/ComfortClass"
-          description: >-
-            The classes returned might be different from the requested classes.
-        serviceClassTypes:
-          type: array
-          items:
-            $ref: "#/components/schemas/ServiceClassType"
-          maxItems: 4
-          description: >-
-            The classes returned might be different from the requested classes.
-        currency:
-          $ref: "#/components/schemas/Currency"
-          description: The currency returned might be different from the one requested.
 
     TripOfferRequest:
       type: object
@@ -4430,8 +4398,13 @@ components:
           $ref: "#/components/schemas/Trip"
         offers:
           type: array
+          description: >-
+            Non trip offers like day passes can be returned as up- or cross-selling items
+            to trip offers.
           items:
-            $ref: "#/components/schemas/Offer"
+            oneOf:
+              - $ref: "#/components/schemas/Offer"
+              - $ref: "#/components/schemas/NonTripOffer"
           minItems: 1
         passengers:
           type: array
@@ -4552,7 +4525,7 @@ components:
           items:
             type: string
           description: >-
-            the list of all throughticket tags that were effectively used in building or booking the offer.
+            the list of all through ticket tags that were effectively used in building or booking the offer.
             Cross-checking this list with the products, the actual groupings applied can be identified.
         requestedInformation:
           $ref: "#/components/schemas/RequestedInformation"
@@ -4624,7 +4597,7 @@ components:
           items:
             type: string
           description: >-
-            the list of all throughticket tags that were effectively used in building or booking the offer.
+            All through ticket tags that were effectively used in building or booking the offer.
             Cross-checking this list with the products, the actual groupings applied can be identified.
         trip:
           $ref: "#/components/schemas/Trip"
@@ -5784,7 +5757,7 @@ components:
         exchangePrice:
           $ref: "#/components/schemas/Price"
 
-    NonTripOfferSearch:
+    OfferSearch:
       type: object
       description: >-
         Search parameter for an offer search on offers not based on a trip (e.g. passes).
@@ -5822,8 +5795,8 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FulfillmentOption"
-        nonTripOfferSearchCriteria:
-          $ref: "#/components/schemas/NonTripOfferSearchCriteria"
+        offerSearchCriteria:
+          $ref: "#/components/schemas/OfferSearchCriteria"
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -5837,17 +5810,17 @@ components:
           default: [ALL]
           maxItems: 1
 
-    NonTripOffersCollectionResponse:
+    OffersCollectionResponse:
       type: object
       required:
         - id
-        - nonTripOffers
+        - offers
       properties:
         warnings:
           $ref: "#/components/schemas/WarningCollection"
         id:
           type: string
-        nonTripOffers:
+        offers:
           type: array
           items:
             $ref: "#/components/schemas/NonTripOffer"
@@ -5891,7 +5864,7 @@ components:
               type: string
             isMandatory:
               type: boolean
-              default: false  
+              default: false
         requestedInformation:
           $ref: "#/components/schemas/RequestedInformation"
         availableFulfillmentTypes:
@@ -7280,7 +7253,7 @@ components:
       required:
         - href
       properties:
-        type: 
+        type:
           type: string
           description: >-
             Hint to indicate the media type expected when dereferencing the target resource.
@@ -7289,10 +7262,10 @@ components:
           type: string
           format: uri
           description: A URI
-          example: 
+          example:
             - "https://api.osdm.com/trips-collections/12345?cursor=2"
             - "https://api.osdm.com/trips-collections/12345?cursor=0"
-      
+
     Translation:
       type: object
       required:
