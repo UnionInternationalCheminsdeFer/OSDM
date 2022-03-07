@@ -9,7 +9,7 @@ servers:
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.4.0-rc6
+  version: 1.4.0-rc7
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -2638,7 +2638,7 @@ components:
           type: string
         text:
           type: string
-        elementList:
+        resources:
           type: array
           items:
             $ref: "#/components/schemas/Resource"
@@ -2646,6 +2646,11 @@ components:
     Resource:
       type: object
       description: used to represent a non-specified resource in the API.
+      required:
+        - id
+        - title
+        - type
+        - href
       properties:
         id:
           type: string
@@ -2654,27 +2659,34 @@ components:
           type: string
           example: Bruxelles-Midi
         type:
-          type: string
-          enum:
-            - LOCATION
-            - TRIP
-            - TRIPOFFER
-            - OFFER
-            - OFFERPART
-            - PASSENGER
-            - BOOKING
-            - FULFILLMENT
-            - REFUNDOFFER
-            - COMPLAINT
+          $ref: "#/components/schemas/ResourceType"
         href:
           type: string
           format: url
           example: "http://some.provider/location/2345"
-      required:
-        - id
-        - title
-        - type
-        - href
+
+    ResourceType:
+      type: string
+      x-extensible-enum:
+        - PLACE
+        - TRIP
+        - TRIP_OFFER
+        - NON_TRIP_OFFER
+        - OFFER
+        - OFFER_PART
+        - BOOKING
+        - FARE
+        - PASSENGER
+        - BOOKER
+        - RESERVATION
+        - FULFILLMENT
+        - REFUND_OFFER
+        - EXCHANGE_OPERATION
+        - EXCHANGE_TRIP_OFFER
+        - COMPLAINT
+        - PRODUCT
+        - COACH_LAYOUT
+        - REDUCTION_CARD
 
     PlaceResponse:
       type: object
@@ -3147,10 +3159,40 @@ components:
           minItems: 1
         operatingDays:
           $ref: "#/components/schemas/OperatingDays"
-        # situationFullRef: ## Out of scope
-        #   $ref: "#/components/schemas/SituationFullRef"
-        status: # EXT replaces tripLegs, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/182
+        operatingDaysDescription:
+          type: string
+          description: >-
+            Textual description of the operation days, e.g. "Monday to Friday" or "Not on holidays".
+        situationFullRefs:
+          type: array
+          items:
+            $ref: "#/components/schemas/SituationFullRef"
+        tripStatus:
           $ref: "#/components/schemas/TripStatus"
+
+    TripStatus:
+      type: object
+      properties:
+        unplanned:
+          description: Whether this trip is an additional one that has not been planned.
+          type: boolean
+          default: false
+        cancelled:
+          description: Whether this trip is cancelled and will not be run.
+          type: boolean
+          default: false
+        deviation:
+          description: Whether this trip deviates from the planned service pattern.
+          type: boolean
+          default: false
+        delayed:
+          description: Whether this trip is delayed.
+          type: boolean
+          default: false
+        infeasible:
+          description: Whether this trip cannot be used, due to operational delays and impossible transfers.
+          type: boolean
+          default: false
 
     TripSpecification:
       type: object
@@ -3192,32 +3234,6 @@ components:
             The length of the pattern is equal to the number of days from 
             start date to end date. A bit value of "1" indicates that an event
             actually happens on the day that is represented by the bit position.
-
-    TripStatus: ## OJP
-      type: object
-      description: >-
-        Parameters which describe the current status of a trip. Provided by OJP.
-      properties:
-        unplanned:
-          description: Whether this trip is an additional one that has not been planned.
-          type: boolean
-          default: false
-        canceled:
-          description: Whether this trip is cancelled and will not be run.
-          type: boolean
-          default: false
-        deviation:
-          description: Whether this trip deviates from the planned service pattern.
-          type: boolean
-          default: false
-        delayed:
-          description: Whether this trip is delayed.
-          type: boolean
-          default: false
-        infeasible:
-          description: Whether this trip cannot be used, due to operational delays and impossible transfers.
-          type: boolean
-          default: false
 
     TripLeg: ## OJP  # Reduced scope
       type: object
@@ -3279,8 +3295,12 @@ components:
         #   type: array
         #   items:
         #     $ref: "#/components/schemas/LegAttribute"
-        # operatingDays:  # Out of scope
-        #  $ref: "#/components/schemas/OperatingDays"
+        operatingDays:
+          $ref: "#/components/schemas/OperatingDays"
+        operatingDaysDescription:
+          type: string
+          description: >-
+            Textual description of the operation days, e.g. "Monday to Friday" or "not on holidays".
         # legTrack:  # Out of scope
         #   type: array
         #   items:
@@ -3360,8 +3380,10 @@ components:
         #   $ref: "#/components/schemas/GeneralAttribute"
         # pathGuidance:  # Out of scope
         #   $ref: "#/components/schemas/PathGuidance"
-        # situationFullRef:  # Out of scope
-        #   $ref: "#/components/schemas/SituationFullRef"
+        situationFullRef:
+          type: array
+          items:
+            $ref: "#/components/schemas/SituationFullRef"
 
     ContinuousLeg: ## OJP # Reduced scope
       type: object
@@ -3401,8 +3423,10 @@ components:
         #   minimum: 0
         # pathGuidance:  # Out of scope
         #   $ref: "#/components/schemas/PathGuidance"
-        # situationFullRef:  # Out of scope
-        #   $ref: "#/components/schemas/SituationFullRef"
+        situationFullRefs:
+          type: array
+          items:
+            $ref: "#/components/schemas/SituationFullRef"
 
     ContinuousService: ## OJP
       type: object
@@ -3711,8 +3735,8 @@ components:
         # - originText
         # - destinationText
       properties:
-        # operatingDayRef:  # Out of scope
-        #   $ref: "#/components/schemas/OperationDayRef"
+        operatingDayRef:
+          $ref: "#/components/schemas/OperationDayRef"
         # journeyRef:  # Out of scope
         #   $ref: "#/components/schemas/JourneyRef"
         mode:
@@ -3763,6 +3787,12 @@ components:
               - "urn:uic:rics:1185:11"
               - "urn:uic:rics:1185:72"
               - "urn:uic:rics:1185:48"
+        serviceStatus:
+          $ref: "#/components/schemas/ServiceStatus"
+        situationFullRefs:
+          type: array
+          items:
+            $ref: "#/components/schemas/SituationFullRef"
 
     Mode: ## OJP
       type: object
@@ -3831,6 +3861,31 @@ components:
           example: TGV
         productCategoryRef:
           $ref: "#/components/schemas/ProductCategoryRef"
+
+    ServiceStatus:
+      type: object
+      description: >-
+        Parameters which describe the current status of a dated vehicle journey.
+        Provided by OJP.
+      properties:
+        unplanned:
+          type: boolean
+          description: Whether this trip is an additional one that has not been planned.
+          default: false
+        cancelled:
+          type: boolean
+          description: Whether this trip is cancelled and will not be run.
+          default: false
+        deviation:
+          type: boolean
+          description: Whether this trip deviates from the planned service pattern.
+          default: false
+        occupancy:
+          type: string
+          description: >-
+            Passenger load status on vehicle. If omitted, not known. 
+            Equivalent to siri:OccupancyEnumeration which describes three values: 
+            "full", "seatingAvailable" and "standingAvailable".
 
     Place: ## OJP # Reduced scope
       type: object
@@ -3910,9 +3965,7 @@ components:
           type: string
           example: The Netherlands
         countryCode:
-          description: ISO country code (2 alpha), relative URNs with base urn:iso:std:iso:3166 are recommended
-          type: string
-          example: DE
+          $ref: "#/components/schemas/CountryCode"
         postCode:
           description: Postal code of the address.
           type: string
@@ -3940,6 +3993,11 @@ components:
         # crossRoad:  # Out of scope
         #   description: Crossing. This can be used to be more specific without using house numbers.
         #   type: string
+
+    CountryCode:
+      type: string
+      description: ISO country code (2 alpha), relative URNs with base urn:iso:std:iso:3166 are recommended
+      example: DE
 
     PointOfInterest: ## OJP # Reduced scope
       type: object
@@ -4090,8 +4148,8 @@ components:
 
     ProductCategoryRef: ## OJP
       description: >-
-        Reference to a product category. Product categories should be defined once and used uniformly in all channels 
-        (e.g. NeTEx, SIRI, OJP). Provided by OJP.
+        Reference to a product category. Product categories should be defined once and used
+        uniformly in all channels (e.g. NeTEx, SIRI, OJP). Provided by OJP.
       type: string
       example:
         - "urn:uic:sbc:76"
@@ -4106,6 +4164,12 @@ components:
       type: string
       description: Reference to a journey. Provided by OJP.
       example: "ServiceJourney:1"
+
+    SituationFullRef: ## OJP
+      type: string
+      description: >-
+        Reference to situation message. Message details might be found in response 
+        context or through other communication channels. Provided by OJP.
 
     OfferSearchCriteria:
       type: object
@@ -4188,14 +4252,11 @@ components:
     TripOfferRequest:
       type: object
       description: >-
-        Defines the parameters needed to request an offer. 
-
-        You can use the tripSearchCriteria (origin, destination,... ) or a list of trips to find trip offers.
-
-        Either a set of tripSpecification xor a tripSearchCriteria must be provided.
-
-        If you are searching for fares you pass in the complete trip in trips and the use the returnSearchCriteria
-        to define which part you need fares (especially if you want a price up to a virtual border point).
+        Defines the parameters needed to request an offer. Either a tripSearchCriteria
+        or a list of trip specifications can be passed in to request trip offer.
+        If you are searching for fares you pass in the complete trip and the use the 
+        returnSearchCriteria to define which part you need fares (including virtual 
+        border points).
       required:
         - passengerSpecifications
       properties:
@@ -4223,7 +4284,7 @@ components:
               description: >-
                 Needs to be provided when creating the collection of inward travels so that the provider
                 can relate the inward travels to the outward travels context.
-            outwardSelectedOfferTag:
+            outwardOfferTag:
               type: string
               description: >-
                 Needs to be provided when creating the collection of inward travels so that the provider
@@ -4236,10 +4297,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PassengerSpecification"
-        promoCodes:
+        promotionCodes:
           type: array
           items:
-            $ref: "#/components/schemas/PromoCode"
+            $ref: "#/components/schemas/PromotionCode"
         offerSearchCriteria:
           $ref: "#/components/schemas/OfferSearchCriteria"
         embed:
@@ -4387,16 +4448,16 @@ components:
             Indicates whether the offerId can be used in more than one booking.
         offerTag:
           type: object
+          description: >-
+            The offerTag can/must (depending on the mandatory flag) be used in some cases to restrict the 
+            set of offers returned in a subsequent and related offer search to only compatible ones.
+            Note the offerTag does not need to be unique.
           properties:
+            id:
+              type: string
             isMandatory:
               type: boolean
               default: false
-            offerTag:
-              type: string
-          description: >-
-            The offerTag can/must (depending on the mandatory flag) be used in some cases to restrict the set of
-            offers returned in a subsequent and related offer search to only compatible ones.
-            Note the offerTag does not need to be unique.
         coveredLegIds:
           type: array
           items:
@@ -4549,10 +4610,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/CardReference"
-        appliedPromoCodes:
+        appliedPromotionCodes:
           type: array
           items:
-            $ref: "#/components/schemas/PromoCode"
+            $ref: "#/components/schemas/PromotionCode"
         passengerIds:
           type: array
           items:
@@ -4727,28 +4788,31 @@ components:
             List of tags (and their type) that allow identifying sets of offers for which related 
             contracts can be grouped into one through ticket.
         combinationTags:
-          description: >-
-            Tags to indicate that some products from a provider can be sold only when in conjunction
-            with product(s) from another provider using the same tag. At least one, not all, 
-            combinationTags must be in common to allow combination. No combinationTags indicate 
-            that there are no combination constraints on the product.
           type: array
           items:
-            type: object
-            properties:
-              combinationTag:
-                type: string
-              needsToBeCombined:
-                description: >-
-                  If false it means that this product can only be sold also when not in conjunction with
-                  a product with the same tag. This is needed to propose specific products from one provider 
-                  that depend on public ones of another.
-                type: boolean
-                default: false
+            $ref: "#/components/schemas/CombinationTag"
         links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
+
+    CombinationTag:
+      type: object
+      description: >-
+        Tag to indicate that some products from a provider can be sold only when in conjunction
+        with product(s) from another provider using the same tag. At least one, not all, 
+        combinationTags must be in common to allow combination. No combinationTags indicate 
+        that there are no combination constraints on the product.
+      properties:
+        id:
+          type: string
+        needsToBeCombined:
+          description: >-
+            If false it means that this product can only be sold also when not in conjunction with
+            a product with the same tag. This is needed to propose specific products from one provider 
+            that depend on public ones of another.
+          type: boolean
+          default: false
 
     FulfillmentMediaType:
       type: string
@@ -4798,28 +4862,28 @@ components:
           items:
             $ref: "#/components/schemas/OfferPartReference"
 
-    PlaceSelectionPatch:
+    SelectedPlaces:
       type: object
       description: >-
         place selection options and selected options in an offer
-        - reference place for adjacent reservation (referencePlace)
-        - selected optional place properties (selectedOptions)
-        - selected places from a graphical place selection (selectedCoaches)
+        - reference place for adjacent reservation
+        - selected optional place options
+        - selected places from a graphical place selection (coach and places)
       properties:
         referencePlace:
           type: object
-          description: selected place for an adjacent reservation (NEARBY)
+          description: reference place for an adjacent reservation
           properties:
             placeNumber:
               type: string
             coachNumber:
               type: string
-        selectedOptions:
+        options:
           type: array
           items:
             $ref: "#/components/schemas/SelectedOption"
-        selectedCoaches:
-          description: selected coach and places in case of graphical reservation
+        coaches:
+          description: selected coach and places for graphical reservation
           type: array
           items:
             $ref: "#/components/schemas/SelectedCoach"
@@ -4937,7 +5001,7 @@ components:
             mapping from an even lower-level provider).
           example: Reservierungsentgelt
 
-    PromoCode:
+    PromotionCode:
       type: object
       description: >-
         The promotion code is a token that reduces the price at POST booking time OR
@@ -4956,11 +5020,11 @@ components:
 
     OfferPartReference:
       type: object
-      required:
-        - id
       description: >-
         References all the offer part elements in an uniform format.
         In its part, an OfferPartReference can refer to reservation, admission, ancillary or fee.
+      required:
+        - id
       properties:
         id:
           type: string
@@ -4975,9 +5039,9 @@ components:
     OfferSelection:
       type: object
       required:
-        - selectedOfferId
+        - offerId
       properties:
-        selectedOfferId:
+        offerId:
           type: string
           description: id of the selected offer or exchangeOffer
         afterSaleByDistributorOnly:
@@ -4993,13 +5057,13 @@ components:
             in case the carriage contracts represented by this offer have been grouped with carriage contracts from other
             providers by the distributor. The same throughTicketTag that was used to perform the grouping can be specified here.
           type: string
-        selectedOptionalReservationIds:
+        optionalReservationIds:
           type: array
           items:
             type: string
             description: >-
               If relevant, ids of the selected optional reservations.
-        selectedOptionalAncillaryIds:
+        optionalAncillaryIds:
           type: array
           items:
             type: object
@@ -5026,25 +5090,25 @@ components:
             reservationId:
               type: string
             placeSelection:
-              $ref: "#/components/schemas/PlaceSelectionPatch"
+              $ref: "#/components/schemas/SelectedPlaceOption"
 
     BookingRequest:
       type: object
       required:
-        - selectedOffers
+        - offers
       properties:
         booker:
           $ref: "#/components/schemas/Booker"
-        selectedOffers:
+        offers:
           type: array
           items:
             $ref: "#/components/schemas/OfferSelection"
           description: >-
             The list of offers that need to be provisionally booked, with possibly the reservations and ancillaries associated that should be booked as well.
-        promoCodes:
+        promotionCodes:
           type: array
           items:
-            $ref: "#/components/schemas/PromoCode"
+            $ref: "#/components/schemas/PromotionCode"
         embed:
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -5107,7 +5171,7 @@ components:
         appliedPromoCodes:
           type: array
           items:
-            $ref: "#/components/schemas/PromoCode"
+            $ref: "#/components/schemas/PromotionCode"
         booker:
           description: >-
             Some caller do want to provide information about the booker, thus this attribute 
@@ -5162,16 +5226,18 @@ components:
         Allows setting the required fulfillment type, e.g. value paper
         or e-ticket and preferred fulfillment media. 
         The latter is optional and relevant in some cases only.
+      required:
+        - exchangeOffers
       properties:
-        promoCodes:
+        promotionCodes:
           type: array
           items:
-            $ref: "#/components/schemas/PromoCode"
+            $ref: "#/components/schemas/PromotionCode"
         requestedFulfillmentType:
           $ref: "#/components/schemas/FulfillmentType"
         preferredFulfillmentMedia:
           $ref: "#/components/schemas/FulfillmentMediaType"
-        selectedExchangeOffers:
+        exchangeOffers:
           type: array
           items:
             $ref: "#/components/schemas/OfferSelection"
@@ -5675,10 +5741,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PassengerSpecification"
-        promoCodes:
+        promotionCodes:
           type: array
           items:
-            $ref: "#/components/schemas/PromoCode"
+            $ref: "#/components/schemas/PromotionCode"
         requestedFulfillmentOptions:
           type: array
           items:
@@ -7180,7 +7246,7 @@ components:
           description: scale of the amount - the number of positions after the comma
           type: integer
           default: 2
-        vatDetails:
+        vats:
           type: array
           items:
             $ref: "#/components/schemas/VAT"
@@ -7189,19 +7255,18 @@ components:
       type: string
       description: ISO 4217 currency codes
       example:
-        - EUR
         - CHF
+        - EUR
+        - SEK
 
     VAT:
       type: object
       required:
-        - country
+        - countryCode
         - amount
       properties:
-        country:
-          description: ISO 3166 2A codes
-          type: string
-          example: CH
+        countryCode:
+          $ref: "#/components/schemas/CountryCode"
         amount:
           description: amount in cents
           type: integer
@@ -7230,8 +7295,7 @@ components:
 
     Company:
       type: string
-      description: >-
-        RICS company code or the upcoming compatible ERA company code.
+      description: RICS company code or compatible ERA company code for rail.
       example: "urn:uic:rics:1185"
 
     ServiceBrandCode:
@@ -7326,10 +7390,12 @@ components:
         Describes the details of the reserved place(s).
       required:
         - accommodationType
+        - accommodationSubType
       properties:
         accommodationType:
           $ref: "#/components/schemas/AccommodationType"
-
+        accommodationSubType:
+          $ref: "#/components/schemas/AccommodationSubType"
         reservedPlaces:
           description: >-
             Reserved places in a confirmed reservation. 
@@ -7348,7 +7414,6 @@ components:
         - passengerIds
         - vehicle
         - coach
-        - places
       properties:
         id:
           type: string
@@ -7365,8 +7430,6 @@ components:
         places:
           description: descriptive string of the places (e.g. 11-35,51)
           type: string
-        accommodationSubType:
-          $ref: "#/components/schemas/AccommodationSubType"
         placeIds:
           description: list of individual place numbers
           type: array
@@ -7391,9 +7454,9 @@ components:
       description: see code list
 
     AccommodationType:
-      type: string
       description: >-
         Accommodation type definition out of the Accommodation Type Code List
+      default: SEAT
 
     AccommodationSubType:
       type: string
@@ -7404,28 +7467,28 @@ components:
       type: object
       description: >-
         Place selection options and selected options in an offer
-        - reference place for adjacent reservation (referencePlace)
-        - selected optional place properties (selectedOptions)
-        - selected places from a graphical place selection (selectedCoaches)
+        - reference place for adjacent reservation
+        - selected optional place properties
+        - selected places from a graphical place selection
       properties:
         reservationOptions:
-          $ref: "#/components/schemas/ReservationOnlineOption"
+          $ref: "#/components/schemas/ReservationOption"
         vehicle:
           description: >-
             Vehicle / train number is necessary in case of train parts with different train numbers
           type: string
         referencePlace:
-          $ref: "#/components/schemas/ReferencePlace"
-        selectedOptions:
+          $ref: "#/components/schemas/SelectedReferencePlace"
+        options:
           type: array
           items:
             $ref: "#/components/schemas/SelectedOption"
-        selectedCoaches:
+        coaches:
           type: array
           items:
             $ref: "#/components/schemas/SelectedCoach"
 
-    ReservationOnlineOption:
+    ReservationOption:
       type: object
       properties:
         preferences:
@@ -7452,9 +7515,9 @@ components:
             type: string
             example: "FORWARD_FACING"
 
-    ReferencePlace:
+    SelectedReferencePlace:
       type: object
-      description: selected place for an adjacent reservation (NEARBY)
+      description: reference place for an adjacent reservation
       properties:
         coachNumber:
           type: string
@@ -7467,6 +7530,8 @@ components:
         Place selection of places for reservation linked to passengers.
       required:
         - passengerIds
+        - accommodationType
+        - accommodationSubType
       properties:
         passengerIds:
           type: array
@@ -7494,8 +7559,7 @@ components:
 
     PlaceAvailability:
       type: object
-      description: >-
-        Availability of places on coaches.
+      description: Availability of places on vehicle.
       properties:
         vehicle:
           $ref: "#/components/schemas/Vehicle"
@@ -7577,7 +7641,7 @@ components:
         status:
           type: string
         isSelectable:
-          description: to indicate compartments selectable as a whole only
+          description: Indicates whether compartments are selectable as a whole only
           type: boolean
           default: false
 
@@ -7589,8 +7653,7 @@ components:
         - status
       properties:
         number:
-          description: >-
-            the place number as indicated at the place in the coach
+          description: place number as indicated at the place in the coach
           type: string
         status:
           $ref: "#/components/schemas/AvailabilityStatus"
@@ -7615,14 +7678,15 @@ components:
       properties:
         coachNumber:
           type: string
+          description: selected coach in case of graphical booking
         places:
-          description: selected places in case of graphical booking
           type: array
           items:
-            $ref:  "#/components/schemas/SelectedPlace"
+            $ref: "#/components/schemas/SelectedPlace"
 
     SelectedPlace:
       type: object
+      description: selected place in case of graphical booking
       properties:
         passengerId:
           description: Id of the passenger
@@ -7640,8 +7704,7 @@ components:
 
     Booker:
       type: object
-      description: >-
-        Booker information needed at offering step.
+      description: booker information needed at offering step
       required:
         - id
         - details
@@ -7667,11 +7730,10 @@ components:
 
     Passenger:
       type: object
-      description: >-
-        Passenger information needed at offering step.
+      description: passenger information needed at offering step
       required:
         - id
-        - passengerType
+        - type
       properties:
         id:
           type: string
@@ -7690,7 +7752,7 @@ components:
           description: date of birth of the passenger
           type: string
           format: date
-        passengerType:
+        type:
           $ref: "#/components/schemas/PassengerType"
         cards:
           description: reduction or loyalty cards owned by the passenger
@@ -7707,6 +7769,8 @@ components:
           $ref: "#/components/schemas/Transportable"
         prmNeeds:
           type: array
+          description: >-
+            For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
           items:
             $ref: "#/components/schemas/PRMNeedType"
         links:
@@ -7720,7 +7784,7 @@ components:
         Minimal specification of a passenger to request offers.
       required:
         - id
-        - passengerType
+        - type
       properties:
         id:
           type: string
@@ -7733,7 +7797,7 @@ components:
             response.
           type: string
           example: "TK-id-12345"
-        passengerType:
+        type:
           $ref: "#/components/schemas/PassengerType"
         dateOfBirth:
           description: >-
@@ -7746,6 +7810,12 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/CardReference"
+        prmNeeds:
+          type: array
+          description: >-
+            For the persons with reduced mobility (PRMs) its specific needs for support are expressed.
+          items:
+            $ref: "#/components/schemas/PRMNeedType"
 
     PassengerType:
       type: string
@@ -7946,30 +8016,27 @@ components:
         nationality:
           description: ISO 3166 2A codes
           type: string
-        cityOfBirth:
+        birthCity:
           type: string
-        cityOfIssue:
+        issuingCity:
           description: place where the document is issued
           type: string
-        cityOfResidence:
+        residenceCity:
           type: string
-        countryOfBirth:
-          description: ISO 3166 2A codes
-          type: string
-        countryOfIssue:
-          description: ISO 3166 2A codes
-          type: string
-        countryOfResidence:
-          description: ISO 3166 2A codes
-          type: string
-        dateOfIssue:
+        birthCountryCode:
+          $ref: "#/components/schemas/CountryCode"
+        issuingCountryCode:
+          $ref: "#/components/schemas/CountryCode"
+        residenceCountryCode:
+          $ref: "#/components/schemas/CountryCode"
+        issuingDate:
           type: string
           format: date-time
         gender:
           $ref: "#/components/schemas/Gender"
-        limitOfValidity:
+        expirationDate:
           type: string
-          format: date-time
+          format: date
 
     CardReference:
       type: object
