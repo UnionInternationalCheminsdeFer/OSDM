@@ -3176,12 +3176,16 @@ components:
       description: >-
         Day of public transport operation of which the characteristics are defined in a specific
         service calendar and which may last more than 24 hours. Provided by OJP.
+      required:
+        - from
+        - until  # EXT to renamed to until
+        - pattern
       properties:
         from:
           type: string
           description: Start date of period
           format: date
-        to:
+        until:
           type: string
           description: End date of period
           format: dateTime
@@ -3261,17 +3265,17 @@ components:
       description: >-
         A leg which is bound to a timetabled schedule. Corresponds to a ride. Provided by OJP.
       required:
-        - alight # EXT renamed timedLeg
-        - board # EXT renamed boardLeg
+        - start # EXT alight renamed to start
+        - end # EXT board renamed to end
         - service
       properties:
-        board:
+        start:
           $ref: "#/components/schemas/LegBoard"
         intermediates:
           type: array
           items:
             $ref: "#/components/schemas/LegIntermediate"
-        alight:
+        end:
           $ref: "#/components/schemas/LegAlight"
         service:
           $ref: "#/components/schemas/DatedJourney"
@@ -3525,15 +3529,15 @@ components:
         stopPlaceName:
           type: string
           example: Luzern
-        plannedQuay:
+        plannedStopPointName:
           description: >-
-            Name of the bay where to board/alight from the vehicle. According to 
+            Name of the bay/quay/terminal where to board/alight from the vehicle. According to 
             planned timetable.
           type: string
           example: "3"
-        estimatedQuay:
+        estimatedStopPointName:
           description: >-
-            Name of the bay where to board the vehicle. As to the latest realtime status.
+            Name of the bay/quay/terminal where to board the vehicle. As to the latest realtime status.
           type: string
           example: "8"
         serviceDeparture: # EXT directly inline service time
@@ -3579,15 +3583,15 @@ components:
         stopPlaceName: ## EXT stopPlaceName instead of stopPointName
           type: string
           example: Luzern
-        plannedQuay:
+        plannedStopPointName:
           description: >-
-            Name of the bay where to board/alight from the vehicle. According to 
+            Name of the bay/quay/terminal where to board/alight from the vehicle. According to 
             planned timetable.
           type: string
           example: "3"
-        estimatedQuay:
+        estimatedStopPointName:
           description: >-
-            Name of the bay where to board the vehicle. As to the latest realtime status.
+            Name of the bay/quay/terminal where to board the vehicle. As to the latest realtime status.
           type: string
           example: "8"
         serviceArrival: # EXT directly inline service time
@@ -3643,15 +3647,15 @@ components:
         stopPlaceName:
           type: string
           example: Luzern
-        plannedQuay:
+        plannedStopPointName:
           description: >-
-            Name of the bay where to board/alight from the vehicle. According to 
+            Name of the bay/quay/terminal where to board/alight from the vehicle. According to 
             planned timetable.
           type: string
           example: "3"
-        estimatedQuay:
+        estimatedStopPointName:
           description: >-
-            Name of the bay where to board the vehicle. As to the latest realtime status.
+            Name of the bay/quay/terminal where to board the vehicle. As to the latest realtime status.
           type: string
           example: "8"
         serviceArrival: # EXT directly inline service time
