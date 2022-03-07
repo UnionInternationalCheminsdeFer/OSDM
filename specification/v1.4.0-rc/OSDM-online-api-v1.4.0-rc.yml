@@ -287,21 +287,17 @@ paths:
         - $ref: "#/components/parameters/traceState"
         - in: path
           name: tripsCollectionId
+          description: id of the trips
           schema:
             type: string
           required: true
-          description: id of the trips
-        - name: scrollContext
-          in: query
-          description: >-
-            Based on a previous search-response, earlier or later connections
-            for the same trip can be retrieved by scrolling back and forth (by
-            a pointer-context). You must use the same request parameters as in
-            the original trips-request and the given values in the response for
-            either "scrollBackContext" or "scrollForwardContext" for optional
-            scrolling.
+        - in: query
+          name: cursor
+          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
           schema:
             type: string
+            format: uri
+          example: "https://api.osdm.com/trips-collection/1234?cursor=2"
           required: false
         - in: query
           name: embed
@@ -363,17 +359,13 @@ paths:
             type: string
           required: true
           description: id of the trip offers
-        - name: scrollContext
-          in: query
-          description: >-
-            Based on a previous search-response, earlier or later connections
-            for the same trip can be retrieved by scrolling back and forth (by
-            a pointer-context). You must use the same request parameters as in
-            the original trips-request and the given values in the response for
-            either "ScrollBack-Context" or "ScrollForward-Context" for optional
-            scrolling.
+        - in: query
+          name: cursor
+          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
           schema:
             type: string
+            format: uri
+          example: "https://api.osdm.com/trip-offers-collection/1234?cursor=2"
           required: false
         - in: query
           name: embed
@@ -2160,17 +2152,13 @@ paths:
             type: string
           required: true
           description: id of the trip to get.
-        - name: scrollContext
-          in: query
-          description: >-
-            Based on a previous search-response, earlier or later connections
-            for the same trip can be retrieved by scrolling back and forth (by
-            a pointer-context). You must use the same request parameters as in
-            the original trips-request and the given values in the response for
-            either "ScrollBack-Context" or "ScrollForward-Context" for optional
-            scrolling.
+        - in: query
+          name: cursor
+          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
           schema:
             type: string
+            format: uri
+          example: "https://api.osdm.com/exchange-trip-offers-collection/1234?cursor=2"
           required: false
         - in: query
           name: embed
@@ -3089,7 +3077,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Trip"
-        links:
+        _links:
           $ref: "#/components/schemas/Link"
 
     Trip: ## OJP # Reduced scope
@@ -3178,7 +3166,7 @@ components:
         service calendar and which may last more than 24 hours. Provided by OJP.
       required:
         - from
-        - until  # EXT to renamed to until
+        - until # EXT to renamed to until
         - pattern
       properties:
         from:
@@ -4278,7 +4266,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/TripOffer"
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -4316,7 +4304,7 @@ components:
           items:
             $ref: "#/components/schemas/Passenger"
           minItems: 1
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -4472,7 +4460,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FareOnline"
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -4755,7 +4743,7 @@ components:
                   that depend on public ones of another.
                 type: boolean
                 default: false
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -4977,7 +4965,7 @@ components:
         abstract:
           type: string
           example: ICE Wifi on Board 2020-07-11
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -5142,7 +5130,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ExchangeOperation"
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -5270,7 +5258,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FulfillmentItem"
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -5400,7 +5388,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/RefundOffer"
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -5445,7 +5433,7 @@ components:
           $ref: "#/components/schemas/Price"
         refundableAmount:
           $ref: "#/components/schemas/Price"
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -5534,7 +5522,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ExchangeTripOffer"
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -5572,7 +5560,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Fulfillment"
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -5722,7 +5710,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/NonTripOffer"
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -5765,7 +5753,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/FareOnline"
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
@@ -5896,7 +5884,7 @@ components:
             y:
               type: integer
               format: int32
-        links:
+        _links:
           type: array
           description: Context information required by the services.
           items:
@@ -7107,39 +7095,35 @@ components:
     Link:
       type: object
       description: >-
-        The underlying system may provide additional links pointing on further
-        information (such as HTML download links, web sites or extended APIs).
+        The underlying system may provide links for pagination of links pointing on 
+        further information (such as HTML download links, web sites or extended APIs).
         Mechanism to add flexible extensions specific to an underlying system.
+        In this version only GET is supported.
       required:
         - contentTypes
+        - relation
         - href
-        - rel
       properties:
         contentTypes:
           type: array
-          example: '["application/json", "application/pdf"]'
+          example: '["application/json", "application/pdf", "application/png"]'
           description: Possible content types of the resource.
           items:
             type: string
+        relation:
+          type: string
+          description: Relation of this link to the current entity.
+          example:
+           - next
+           - previous
         href:
           type: string
           format: uri
           description: URL to the linked resource (no parameters needed).
-          example: "https://www.brussels.info/train-stations/"
-        type:
-          type: string
-          example: GET
-          description: HTTP method to call the action
-        rel:
-          type: string
-          example: Get Map
-          description: Relation of this link to the current entity.
-        version:
-          type: integer
-          format: int32
-          example: 1
-          description: Version of the current relation.
-
+          example: 
+           - "https://api.osdm.com/trips-collections/12345?cursor=2"
+           - "https://api.osdm.com/trips-collections/12345?cursor=0"
+    
     Translation:
       type: object
       required:
@@ -7629,7 +7613,7 @@ components:
           description: selected places in case of graphical booking
           type: array
           items:
-            $ref:  "#/components/schemas/SelectedPlace"
+            $ref: "#/components/schemas/SelectedPlace"
 
     SelectedPlace:
       type: object
@@ -7719,7 +7703,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PRMNeedType"
-        links:
+        _links:
           type: array
           items:
             $ref: "#/components/schemas/Link"
