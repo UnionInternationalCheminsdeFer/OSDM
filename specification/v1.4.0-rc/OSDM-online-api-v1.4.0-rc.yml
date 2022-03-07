@@ -9,7 +9,7 @@ servers:
 
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.4.0-rc7
+  version: 1.4.0-rc8
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -7163,7 +7163,8 @@ components:
       description: >-
         The underlying system may provide links for pagination of links pointing on 
         further information (such as HTML download links, web sites or extended APIs).
-        Mechanism to add flexible extensions specific to an underlying system.
+        Mechanism to add flexible extensions specific to an underlying system. Implemented
+        the JSON-HAL specification.
       additionalProperties:
         $ref: "#/components/schemas/LinkObject"
 
@@ -7175,8 +7176,7 @@ components:
         type: 
           type: string
           description: >-
-            A a hint to indicate the media type expected when dereferencing the target
-            resource.
+            Hint to indicate the media type expected when dereferencing the target resource.
           example: application/json
         href:
           type: string
