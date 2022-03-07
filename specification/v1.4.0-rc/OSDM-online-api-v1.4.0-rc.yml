@@ -6472,11 +6472,12 @@ components:
               type: array
               minItems: 1
               items:
-                $ref: "#/components/schemas/Condition"
+                $ref: "#/components/schemas/AfterSaleCondition"
               description: >-
-                Structured description of the sales or after-sales conditions.
+                Structured description of the after-sales conditions.
             isSupportingIndividualContracts:
-              description: Indicates that the after sales of this fare can be treated independently per person.
+              description: >-
+                Indicates that the after sales of this fare can be treated independently per person.
               type: boolean
               default: false
         combinationConstraint:
