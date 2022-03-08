@@ -55,8 +55,7 @@ class PersonDetail<<D,green>> {
   address: Address
 }
 
-
-class Booker <<R, orchid>> {
+class Purchaser <<R, orchid>> {
   id
   externalReference
   details: PersonDetail
@@ -70,7 +69,6 @@ class Complaint <<R, orchid>> {
   missingInformation: [string]
   decision: ComplaintDecision
 }
-
 
 class CustomerComplaint <<D, green>> {
   applicationTime: Date
@@ -109,13 +107,10 @@ class ComplaintDecision <<D, green>>{
   DelayedJouney: Trip
 }
 
-
 class BankAccountReference <<D, green>>{
   iban
   ownerName
 }
-
-
 
 class Booking <<R,orchid>> #lightcyan {
   id*
@@ -129,16 +124,13 @@ class Booking <<R,orchid>> #lightcyan {
   fulfillmentType: fulfillmentType
   bookedOffers: Offers
   appliedPromoCodes: [PromoCode]
-  booker*: Booker
+  purchaser*: Purchaser
   passengers: [Passenger]
   fulfillments: [Fulfillment]
   refundOffers: [RefundOffer]
   exchangeOperations: [ExchangeOperation]
   complaints: [Complaint]
   links: [Link]
-
-  
-
 }
 note left: possible states PREBOOKED, CONFIRMED, FULFILLED, CANCELLED, REFUNDED, EXCHANGE_ONGOING, ERROR\n Booked represents the state between the booking\nconfirmation and the issuance of the tickets.
 
@@ -188,7 +180,6 @@ class FulfillmentDocument <<D, green>>{
 
 }
 
-
 class RefundOffer <<R, orchid>> #lightgreen {
   id*
   abstract
@@ -219,7 +210,7 @@ note bottom of Fulfillment
 end note
 
 Booking "1"*-"1..n" Passenger
-Booking "1"*-"1" Booker
+Booking "1"*-"1" Purchaser
 Booking "1"-"0..n" RefundOffer
 Booking "1"-"0..n" ExchangeOperation
 Booking "1"-"0..1" FulfillmentType
@@ -241,7 +232,7 @@ Complaint "1"*--"1..n" Passenger
 Complaint "1"*--"0..n" BankAccountReference
 ComplaintDecision "1"*--"0..n" FulfillmentDocument
 
-Booker *-- "0..1" PersonDetail
+Purchaser *-- "0..1" PersonDetail
 
 Admission "1"*--"1..n" Product
 Reservation"1"*--"0..1" Product

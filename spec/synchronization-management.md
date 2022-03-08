@@ -26,7 +26,7 @@ The API informs authorized listener of the fact that changes have occurred using
 
 - `REFUND_INITIATED` - refund initiated at provider level, e.g. at the station office. Needs to happen before travel. This implies releasing potentially booked places or ancillaries (e.g. meal).
 
-- `BOOKER_CHANGED` - `PATCH /bookings/{id}/booker`: name or contact data changed
+- `PURCHASER_CHANGED` - `PATCH /bookings/{id}/purchaser`: name or contact data changed
 - `PASSENGER_CHANGED` - `PATCH /bookings/{id}/passenger`: name or contact data changed
 
 ### Complaints

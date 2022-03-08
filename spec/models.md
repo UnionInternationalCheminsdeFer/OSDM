@@ -418,9 +418,9 @@ confirmation for the price and possible reservations assigned at provisional
 booking time. Basically, it is the time given to the API consumer to perform
 all updates needed to confirm the booking, and trigger that confirmation.
 
-At the root of the booking structure, Two balance elements are provided, in
-order to clarify the state of the financial exchange between an API consumer or
-booker and the OSDM:Distributor:
+At the root of the booking structure, two balance elements are provided to
+clarify the state of the financial exchange between an API consumer and the
+OSDM:Distributor:
 
 - conditional balance is the balance of the booking that is not confirmed. It
   is the amount that will be due to the provider if the booking is further
@@ -444,12 +444,12 @@ exceed the earliest ticket time limit of any of its offer parts.
 `FulfillmentOptions` allows the API consumer to specify the format desired for
 the fulfillment. Only electronic fulfillment is considered in the MVP scope.
 
-### Booker
+### Purchaser
 
-A booker represent the entity which has booked an offer. It is the person to
+A purchaser represent the entity which has booked an offer. It is the person to
 contact in case of changes to the booking primary.
 
-A booker does not need to travel thus is not necessary a passenger.
+A purchaser does not need to travel thus is not necessary a passenger.
 
 Common attributes of a passenger and a passenger are factored in the person entity.
 

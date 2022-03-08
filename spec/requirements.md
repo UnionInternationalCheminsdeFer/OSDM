@@ -220,7 +220,7 @@ It must be possible to search for bookings:
 To support stateless booking a explicit pre-booking step is *not* supported
 by design.
 
-A booking has a booker which has booked the booking. The booking can but most not
+A booking has a purchaser which has booked the booking. The booking can but most not
 be a passenger.
 
 Booking must be supported by all parties.
