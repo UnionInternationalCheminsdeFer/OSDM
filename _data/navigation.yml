@@ -19,6 +19,8 @@
       link: spec/models/
     - name: Processes
       link: spec/processes/
+    - name: Pagination
+      link: spec/pagination/ 
     - name: Synchronization Management
       link: spec/synchronization-management/
     - name: Errors & Warnings

@@ -25,6 +25,7 @@ is explained in this documents:
 - [Technical Principles](./technical-principles/)
 - [Models](./models/)
 - [Processes](./processes/)
+- [Pagination](./pagination/)
 - [Errors & Warnings](./errors-warnings/)
 - [Synchronization Management](./synchronization-management/)
 
@@ -35,11 +36,13 @@ and provides references to standards used.
 
 ## Business Requirements
 
-Business needs leading to this specification are captured in the [requirement](./requirements/) and the [business capabilities](./business-capabilities/) documents.
+Business needs leading to this specification are captured in the [requirement](./requirements/) and the
+[business capabilities](./business-capabilities/) documents.
 
 ## Compliance to the Specification
 
-In order for an implementation to be compliant, depending on its role, a set of service need to be implemented as lined out in the [Compliance](./compliance/) section.
+In order for an implementation to be compliant, depending on its role, a set of service need to be
+implemented as lined out in the [Compliance](./compliance/) section.
 
 ## Availability as UIC Leaflet
 
