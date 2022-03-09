@@ -12,11 +12,11 @@ provided within the schema or within the IRS90918-10 specification.
 
 | Code List  | Name Space and domain | CodeList | Description | example | base path for relative references |
 | ---------- |-----------------------|----------|-------------|---------| --------------------------------- |
-| stations   | `urn:uic`    | `stn`      | UIC station codes (TAP-TSI) | `urn:uic:stn:8512345` |  `urn:uic:stn:` |
+| stations   | `urn:uic` | `stn`      | UIC station codes (TAP-TSI) | `urn:uic:stn:8512345` |  `urn:uic:stn:` |
 | service brands , products | `urn:uic`  | `sbc` | UIC service brand code (TAP-TSI) | `urn:uic:sbc:17` | `urn:uic:sbc:` |
-| companies  | `urn:uic`    | `rics`     | UIC company code (TAP-TSI) | `urn:uic:rics:1080` | `urn:uic:rics:` |
-| countries  | `urn:iso`    | `std:iso:3166` | ISO Country Codes  | `urn:iso:std:iso:3166:CH`  |  `urn:iso:std:iso:3166:` |
-| currencies | `urn:iso`    | `std:iso:4217` | ISO Currency Codes | `urn:iso:std:iso:4217:CFR` |  `urn:iso:std:iso:4217:` |
+| companies  | `urn:uic` | `rics:ac`     | UIC company code (TAP-TSI) and optional administration code (AC) | `urn:uic:rics:1080:000011` | `urn:uic:rics:` |
+| countries  | `urn:iso` | `std:iso:3166` | ISO Country Codes  | `urn:iso:std:iso:3166:CH`  |  `urn:iso:std:iso:3166:` |
+| currencies | `urn:iso` | `std:iso:4217` | ISO Currency Codes | `urn:iso:std:iso:4217:CFR` |  `urn:iso:std:iso:4217:` |
 
 ## Accommodation Type
 
