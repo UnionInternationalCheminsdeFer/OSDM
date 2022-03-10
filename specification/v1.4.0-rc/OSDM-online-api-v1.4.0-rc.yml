@@ -4166,8 +4166,8 @@ components:
         #   $ref: "#/components/schemas/TopographicPlaceRef"
         # - $ref: "#/components/schemas/StopAttributes" # Out of scope
 
-    PlaceRef: ### OJP
-      oneOf:
+    PlaceRef: ### OJP 
+      oneOf: #do we really need a oneOf here, considering all these refs are in the end just a string ?
         - $ref: "#/components/schemas/StopPlaceRef"
         - $ref: "#/components/schemas/TopographicPlaceRef"
         - $ref: "#/components/schemas/PointOfInterestRef"
@@ -4402,6 +4402,8 @@ components:
             Non trip offers like day passes can be returned as up- or cross-selling items
             to trip offers.
           items:
+            discriminator:
+              propertyName: offerType
             oneOf:
               - $ref: "#/components/schemas/Offer"
               - $ref: "#/components/schemas/NonTripOffer"
@@ -4469,6 +4471,8 @@ components:
         The attribute 'offerSummary' is meaningful at trip-offer-collection response time only.
       type: object
       properties:
+        offerType: 
+          type: string 
         id:
           type: string
         abstract:
@@ -4575,6 +4579,7 @@ components:
             $ref: "#/components/schemas/Link"
       required:
         - id
+        - offerType
 
     BookedOffer:
       description: >-
@@ -5835,8 +5840,11 @@ components:
         Non trip offers do not reference a trip, thus no reservations can be offered by definition.
       required:
         - id
+        - offerType
       properties:
         id:
+          type: string
+        offerType:
           type: string
         abstract:
           type: string
