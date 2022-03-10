@@ -7029,9 +7029,6 @@ components:
     ViaStations:
       type: object
       properties:
-        isBorder:
-          type: boolean
-          default: false
         routeId:
           type: integer
           format: int32
@@ -7041,30 +7038,37 @@ components:
         alternativeRoute:
           type: array
           items:
-            $ref: "#/components/schemas/ViaStations"
+            $ref: "#/components/schemas/Route"
         carrierConstraint:
           $ref: "#/components/schemas/CarrierConstraint"
         route:
           type: array
           items:
-            $ref: "#/components/schemas/ViaStations"
-        serviceConstraint:
-          $ref: "#/components/schemas/ServiceConstraint"
+            $ref: "#/components/schemas/Route"
+
+    Route:
+      type: object
+      properties:
         station:
           $ref: "#/components/schemas/StopPlace" # EXT Changed from StopPoint
         fareReferenceStationSet:
-          type: object
-          description: reference to a list of stations included in the fare
-          properties:
-            carrier:
-              $ref: "#/components/schemas/Company"
-            code:
-              type: string
-            name:
-              type: string
-          required:
-            - carrier
-            - code
+          $ref: "#/components/schemas/FareReferenceStationSet"
+        carrierConstraint:
+          $ref: "#/components/schemas/CarrierConstraint"
+
+    FareReferenceStationSet:
+      type: object
+      description: Reference to a list of stations included in the fare.
+      required:
+        - carrier
+        - code
+      properties:
+        carrier:
+          $ref: "#/components/schemas/Company"
+        code:
+          type: string
+        name:
+          type: string
 
     CarrierConstraint:
       type: object
