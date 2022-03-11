@@ -7013,15 +7013,6 @@ components:
     ViaStations:
       type: object
       properties:
-        isBorder:
-          type: boolean
-          default: false
-        routeId:
-          type: integer
-          format: int32
-        seriesId:
-          type: integer
-          format: int32
         alternativeRoute:
           type: array
           items:
@@ -7036,19 +7027,33 @@ components:
           $ref: "#/components/schemas/ServiceConstraint"
         station:
           $ref: "#/components/schemas/StopPlace" # EXT Changed from StopPoint
-        fareReferenceStationSet:
-          type: object
-          description: reference to a list of stations included in the fare
-          properties:
-            carrier:
-              $ref: "#/components/schemas/Company"
-            code:
-              type: string
-            name:
-              type: string
-          required:
-            - carrier
-            - code
+        fareReferenceStation:
+          $ref: "#/components/schemas/FareReferenceStation"
+
+    FareReferenceStation:
+      type: object
+      description: >-
+        Reference to a list of stations jointly valid in a fare. The fare
+        reference station defines a set of station that are equivalent from 
+        a tariff point of view. The code is issued by the carrier. Needed to
+        generate bar codes as well as fulfillments.
+      required:
+        - name
+        - code
+        - carrier
+        - stations
+      properties:
+        name:
+          type: string
+        code:
+          type: string
+        carrier:
+          $ref: "#/components/schemas/Company"
+        stations:
+          type: array
+          items:
+            $ref: "#/components/schemas/StopPlaceRef"
+          minItems: 1
 
     CarrierConstraint:
       type: object
