@@ -2685,64 +2685,36 @@ components:
       type: object
       description: >-
         This element can be used to pass non-blocking information or events,
-        such as a price difference with the initially offered price at booking time.
-      required:
-        - code
+        such as a price difference with the initially offered price at booking time. 
+        It is inspired on the JSon problem structure.
       properties:
         code:
           type: string
-        text:
-          type: string
-        resources:
-          type: array
-          items:
-            $ref: "#/components/schemas/Resource"
-
-    Resource:
-      type: object
-      description: used to represent a non-specified resource in the API.
-      required:
-        - id
-        - title
-        - type
-        - href
-      properties:
-        id:
-          type: string
-          description: id of this resource on this server.
-        title:
-          type: string
-          example: Bruxelles-Midi
         type:
-          $ref: "#/components/schemas/ResourceType"
-        href:
           type: string
-          format: url
-          example: "http://some.provider/location/2345"
+          format: uri
+          description: >-
+            An absolute URI that identifies the warning type. When dereferenced,
+            it SHOULD provide human-readable documentation for the problem type
+            (e.g., using HTML).
+          default: "about:blank"
+          example: "https://example.com/warns/price-updated"
+        detail:
+          type: string
+          description: >-
+            A human readable explanation specific to this occurrence of the
+            warning.
+          example: The price of the given offer part has been updated during the booking operation
+        instance:
+          type: string
+          format: uri
+          description: >-
+            An absolute URI that identifies the specific occurrence of the warning.
+            example: offers/offer1234
 
-    ResourceType:
-      type: string
-      x-extensible-enum:
-        - PLACE
-        - TRIP
-        - TRIP_OFFER
-        - NON_TRIP_OFFER
-        - OFFER
-        - OFFER_PART
-        - BOOKING
-        - FARE
-        - PASSENGER
-        - BOOKER
-        - RESERVATION
-        - FULFILLMENT
-        - REFUND_OFFER
-        - EXCHANGE_OPERATION
-        - EXCHANGE_TRIP_OFFER
-        - COMPLAINT
-        - PRODUCT
-        - COACH_LAYOUT
-        - REDUCTION_CARD
-
+      required:
+        - code
+      
     PlaceResponse:
       type: object
       required:
