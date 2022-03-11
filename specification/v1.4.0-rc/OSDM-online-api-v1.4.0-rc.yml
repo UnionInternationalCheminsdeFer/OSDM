@@ -4473,6 +4473,8 @@ components:
       properties:
         offerType: 
           type: string 
+          enum: 
+            - Offer
         id:
           type: string
         abstract:
@@ -5846,6 +5848,8 @@ components:
           type: string
         offerType:
           type: string
+          enum: 
+            - NonTripOffer          
         abstract:
           type: string
           example: Super Saver One Day Pass
