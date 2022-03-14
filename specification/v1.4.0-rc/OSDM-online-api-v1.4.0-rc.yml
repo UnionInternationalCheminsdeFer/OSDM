@@ -3275,12 +3275,12 @@ components:
       description: >-
         A minimal trip specification from origin to destination.
       required:
-        - id
+        - externalRef
         - legs # EXT replaces tripLegs, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/179
       properties:
-        id:
+        externalRef:
           description: >-
-            Id of this trip for referencing purposes. Unique within a trip specification.
+            External reference of this trip for referencing purposes. Unique within a trip specification.
           type: string
         legs:
           type: array
@@ -3338,10 +3338,11 @@ components:
         A minimal trip leg specification consisting of timed and transfer legs only. 
         Continuous legs are not yet part of this version of the specification-
       required:
-        - id ## EXT replaces legId, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/181
+        - externalRef
       properties:
-        id:
-          description: Id of this trip leg. Unique within trip result. A seqId is a leg id.
+        externalRef:
+          description: >-
+            External reference of this trip leg. Unique within trip result.
           type: string
         timedLeg:
           $ref: "#/components/schemas/TimedLegSpecification"
@@ -7830,7 +7831,7 @@ components:
       properties:
         id:
           type: string
-        externalReference:
+        externalRef:
           description: >-
             A stable reference to a purchaser from other elements, or from caller system.
             When received in input of a trip-offers-collection request, it must be echoed back in the
@@ -7863,9 +7864,9 @@ components:
         abstract:
           type: string
           example: Andreas Schlapbach
-        externalReference:
+        externalRef:
           description: >-
-            A stable reference to passengers from other elements, or from caller system.
+            A stable reference to a passenger from other elements, or from caller system.
             When received in input of a trip-offers-collection request, it must be echoed back in the
             response.
           type: string
@@ -7911,9 +7912,9 @@ components:
           type: string
           description: >-
             Id of the passenger resource in case service to patch a single passenger is provided.
-        externalReference:
+        externalRef:
           description: >-
-            A stable reference to passengers from other elements, or from caller system.
+            A stable reference to a passenger from other elements, or from caller system.
             When received in input of a trip-offers-collection request, it must be echoed back in the
             response.
           type: string
