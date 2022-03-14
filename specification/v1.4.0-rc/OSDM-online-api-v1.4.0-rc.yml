@@ -64,27 +64,29 @@ tags:
       resources to get master data
 
 paths:
-  /places/{placeId}:
+  /places:
     get:
       tags:
-        - Places
-      summary: returns a place
+        - Master Data
+      summary: Returns all places
       description: >-
-        Returns places
+        Returns all places
       operationId: getPlaces
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
-        - in: path
-          name: placeId
+        - in: query
+          name: cursor
+          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
           schema:
             type: string
-          required: true
-          description: id of the place to get.
+            format: uri
+          example: "https://api.osdm.com/places/?cursor=2"
+          required: false
       responses:
         "200":
-          description: the requested place
+          description: the requested places
           headers:
             Cache-Control:
               schema:
@@ -110,8 +112,6 @@ paths:
           description: not implemented
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
-
-  /places:
     post:
       tags:
         - Places
@@ -133,6 +133,53 @@ paths:
       responses:
         "200":
           description: place information found matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaceResponse"
+        "400":
+          description: bad input parameter
+        "401":
+          description: unauthorized
+        "403":
+          description: forbidden
+        "404":
+          description: no place information found
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
+  /places/{placeId}:
+    get:
+      tags:
+        - Places
+      summary: returns a place
+      description: >-
+        Returns places
+      operationId: getPlacesId
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
+        - in: path
+          name: placeId
+          schema:
+            type: string
+          required: true
+          description: id of the place to get.
+      responses:
+        "200":
+          description: the requested places
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                default: "public, max-age=10000"
+                description: >-
+                  A places resource is fairly persistent and has a medium time to live to allow short-term caching.
           content:
             application/json:
               schema:
