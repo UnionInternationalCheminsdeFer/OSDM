@@ -3576,7 +3576,7 @@ components:
         - MOTORCYCLE
         - TRUCK
         - SCOOTER
-        - RidE_POOL_CAR
+        - RIDE_POOL_CAR
         - CAR_SHARING
         - CYCLE_SHARING
         - SCOOTER_SHARING
@@ -3587,8 +3587,8 @@ components:
       description: Modes dedicated to perform transfers. Provided by OJP.
       x-extensible-enum:
         - WALK
-        - PARK_AND_RidE
-        - BIKE_AND_RidE
+        - PARK_AND_RIDE
+        - BIKE_AND_RIDE
         - CAR_HIRE
         - BIKE_HIRE
         - PROTECTED_CONNECTION
