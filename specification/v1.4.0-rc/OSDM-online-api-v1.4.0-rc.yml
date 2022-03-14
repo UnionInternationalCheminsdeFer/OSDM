@@ -1689,7 +1689,7 @@ paths:
     post:
       tags:
         - Fulfillments
-      summary: Triggers the fulfillment of the booking.
+      summary: Triggers the fulfillment of the booking, but does not actually return the fulfillments.
       operationId: postFulfillments
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
@@ -1740,7 +1740,7 @@ paths:
     patch:
       tags:
         - Fulfillments
-      summary: Allows the effective fulfillment of one ore more confirmed fulfillment.
+      summary: Finalizes the fulfillments and returns the documents.
       operationId: patchFulfillment
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
