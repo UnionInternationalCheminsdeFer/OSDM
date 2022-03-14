@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.4.0-rc8
+  version: 1.4.0-rc9
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -647,9 +647,9 @@ paths:
               type: string
               enum:
                 - ALL
-                - NONTRIPOFFERS
-                - NONTRIPOFFERS.OFFERRPARTS
-                - NONTRIPOFFERS.PASSENGERS
+                - OFFERS
+                - OFFERS.OFFERRPARTS
+                - OFFERS.PASSENGERS
                 - NONE
             default: [ALL]
             maxItems: 3
@@ -3158,8 +3158,8 @@ components:
           type: integer
           format: int32
           minimum: 0
-        # optimisationMethod:  # Out of scope
-        #  $ref: "#/components/schemas/OptimisationMethod"
+        # optimizationMethod:  # Out of scope
+        #  $ref: "#/components/schemas/OptimizationMethod"
         itModesToCover:
           $ref: "#/components/schemas/IndividualMode"
       #  - $ref: "#/components/schemas/BaseTripContentFilter"  ## Out of scope
@@ -4675,9 +4675,9 @@ components:
     Flexibility:
       type: string
       x-extensible-enum:
-        - FULLFLEX
-        - SEMIFLEX
-        - NONFLEX
+        - FULL_FLEXIBLE
+        - SEMI_FLEXIBLE
+        - NON_FLEXIBLE
 
     CommonOfferPartAttributes:
       type: object
@@ -7833,7 +7833,7 @@ components:
 
     Purchaser:
       type: object
-      description: purchaser information needed at offering step
+      description: purchaser information
       required:
         - id
         - details
@@ -7960,10 +7960,10 @@ components:
         - PRM
         - BICYCLE
         - PRAM
-        - ACCOMP_DOG
+        - ACCOMPANION_DOG
         - CAR
         - PERSON
-        - MOTOCYCLE
+        - MOTORCYCLE
         - TRAILER
         - FAMILY_CHILD
         - WHEELCHAIR
@@ -8001,7 +8001,7 @@ components:
           type: string
         phoneNumber:
           description: >-
-            Preferably a mobile phone number, to be contacted in case changes to the booking ocuur, e.g.,
+            Preferably a mobile phone number, to be contacted in case changes to the booking occur, e.g.,
             in case of interruptions.
           type: string
         address:

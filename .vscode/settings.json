@@ -1,14 +1,25 @@
 {
     "cSpell.words": [
         "Andreas",
-        "Halbtax",
-        "Landquart",
-        "Milano",
-        "Platz",
-        "Sargans",
         "blis",
+        "BOOKEDOFFERS",
+        "Eurail",
+        "Halbtax",
+        "idempotency",
         "klosters",
         "küblis",
-        "schiers"
+        "Landquart",
+        "Lyria",
+        "Milano",
+        "offerpart",
+        "OFFERPARTS",
+        "Platz",
+        "rics",
+        "Sargans",
+        "schiers",
+        "SIRI",
+        "traceparent",
+        "tracestate",
+        "TRIPOFFERS"
     ]
 }
