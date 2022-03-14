@@ -7966,7 +7966,7 @@ components:
         - MOTOCYCLE
         - TRAILER
         - FAMILY_CHILD
-        - WHEELCHAR
+        - WHEELCHAIR
       example: PERSON
       default: PERSON
 
