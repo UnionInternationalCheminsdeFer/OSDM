@@ -5639,6 +5639,7 @@ components:
         - PRM_SUPPORT_UNAVAILABLE
         - SALES_STAFF_ERROR
         - STRIKE
+        - TECHNICAL_FAILURE
 
     ExchangeTripOfferRequest:
       type: object
