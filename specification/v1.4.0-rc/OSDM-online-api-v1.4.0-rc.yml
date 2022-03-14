@@ -3462,7 +3462,10 @@ components:
         #   format: duration
         #   example: "PT20M"
         # bufferTime:  # Out of scope
-        #   description: Buffer time as part of the overall interchange duration. Buffer times, f.e. check in/out times, sometimes are mandatory for using certain services as f.e. airplanes, ferries or highspeed trains.
+        #   description: >-
+        #     Buffer time as part of the overall interchange duration. Buffer times,
+        #     e.g. check in/out times, sometimes are mandatory for using certain
+        #     services as f.e. airplanes, ferries or high speed trains.
         #   type: string
         #   format: duration
         #   example: "0SM"
@@ -7932,7 +7935,7 @@ components:
           $ref: "#/components/schemas/PassengerType"
         dateOfBirth:
           description: >-
-            Date of birth of the passenger. Only needed for passengers of type persons, family child, PRMS
+            Date of birth of the passenger. Only needed for passengers of type persons, family child, PRM
             and wheelchair.
           type: string
           format: date
@@ -7960,7 +7963,7 @@ components:
         - PRM
         - BICYCLE
         - PRAM
-        - ACCOMPANION_DOG
+        - COMPANION_DOG
         - CAR
         - PERSON
         - MOTORCYCLE
