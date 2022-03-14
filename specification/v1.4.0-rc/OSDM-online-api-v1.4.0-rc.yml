@@ -4892,9 +4892,9 @@ components:
           type: string
         needsToBeCombined:
           description: >-
-            If false it means that this product can only be sold also when not in conjunction with
-            a product with the same tag. This is needed to propose specific products from one provider 
-            that depend on public ones of another.
+            If false it means that this product can be sold also when not in conjunction with
+            a product with the same tag. This is needed to propose specific products from one 
+            provider that depend on public ones of another.
           type: boolean
           default: false
 
