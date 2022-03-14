@@ -2817,7 +2817,7 @@ components:
           description: >-
             Maximum number of results to be returned. The service is allowed to return fewer objects if reasonable
             or otherwise appropriate.
-          type: number
+          type: integer
           format: int32
           minimum: 1
       # continueAt:   # Out of scope
@@ -3012,8 +3012,8 @@ components:
         walkSpeed:
           description: >-
             Deviation from average walk speed in percent. 100% percent is average speed.
-          type: number
-          format: uint8
+          type: integer
+          format: int32
           default: 100
         additionalTransferTime:
           description: >-
@@ -3139,15 +3139,15 @@ components:
         mobilityFilter:
           $ref: "#/components/schemas/TripMobilityFilter"
         numberOfResults:
-          type: number
-          format: uint8
+          type: integer
+          format: int32
           default: 5
         numberOfResultsBefore:
-          type: number
+          type: integer
           format: int32
           default: 0
         numberOfResultsAfter:
-          type: number
+          type: integer
           format: int32
           default: 5
         ignoreRealtimeData:
@@ -3155,8 +3155,8 @@ components:
           default: false
         transferLimit:
           description: The maximum number of interchanges the user will accept per trip.
-          type: number
-          format: int8
+          type: integer
+          format: int32
           minimum: 0
         # optimisationMethod:  # Out of scope
         #  $ref: "#/components/schemas/OptimisationMethod"
@@ -3232,14 +3232,14 @@ components:
           format: date-time
         transfers:
           description: Number of interchanges
-          type: number
-          format: integer
+          type: integer
+          format: int32
           minimum: 0
         distance:
           description: >-
             Distance in meters over the the complete trip, i.e., including transfer legs.
-          type: number
-          format: integer
+          type: integer
+          format: int32
           minimum: 0
         legs:
           description: Legs ot the trip
