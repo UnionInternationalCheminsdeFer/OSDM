@@ -2734,6 +2734,8 @@ components:
         This element can be used to pass non-blocking information or events,
         such as a price difference with the initially offered price at booking time. 
         It is inspired on the JSon problem structure.
+      required:
+        - code    
       properties:
         code:
           type: string
@@ -2759,9 +2761,6 @@ components:
             An absolute URI that identifies the specific occurrence of the warning.
             example: offers/offer1234
 
-      required:
-        - code
-      
     PlaceResponse:
       type: object
       required:
@@ -2884,12 +2883,30 @@ components:
         origin:
           description: >-
             Specifies the origin situation from where the user wants to start.
-          $ref: "#/components/schemas/Place"
+          $ref: "#/components/schemas/PlaceRef"
         destination: # EXT Array out of Scope
           description: >-
             Specifies the destination situation where the user is heading to.
-          $ref: "#/components/schemas/Place"
-        via: # EXT Array out of Scope
+          $ref: "#/components/schemas/PlaceRef"
+        requestedSection: # EXT a
+          description: >-
+            Indicates the sub-part of the trip that is requested to price. When absent, the totality of the trip is 
+            requested for pricing.
+          type: object
+          properties:
+            start:
+              description: >-
+                Start of the sub-trip to price, expressed as a reference to a stop place or a fare connection point.
+              oneOf:
+                - $ref: "#/components/schemas/StopPlaceRef"
+                - $ref: "#/components/schemas/FareConnectionPointRef"
+            end:
+              description: >-
+                End of the sub-trip to price, expressed as a reference to a stop place or a fare connection point.
+              oneOf:
+                - $ref: "#/components/schemas/StopPlaceRef"
+                - $ref: "#/components/schemas/FareConnectionPointRef"
+        via:
           description: >-
             Ordered series of points where the journey must pass through. If more
             than one via point is given all of them must be obeyed - in the correct
@@ -2937,7 +2954,7 @@ components:
         - viaPoint
       properties:
         viaPoint:
-          $ref: "#/components/schemas/Place"
+          $ref: "#/components/schemas/PlaceRef"
         dwellTime:
           type: string
           format: duration
@@ -4186,7 +4203,7 @@ components:
         #   $ref: "#/components/schemas/TopographicPlaceRef"
         # - $ref: "#/components/schemas/StopAttributes" # Out of scope
 
-    PlaceRef: ### OJP 
+    PlaceRef: ### OJP
       oneOf: #do we really need a oneOf here, considering all these refs are in the end just a string ?
         - $ref: "#/components/schemas/StopPlaceRef"
         - $ref: "#/components/schemas/TopographicPlaceRef"
@@ -4205,10 +4222,7 @@ components:
       description: >-
         Reference to a Stop Place using URNs to define code.
         For UIC see UIC MERITS/TAP-TSI station codes. Provided by OJP.
-      example:
-        - "urn:uic:stn:8503000"
-        - "urn:uic:stn:8400058"
-        - "urn:uic:stn:8727100"
+      example: urn:uic:stn:8503000
 
     PointOfInterestRef: ## OJP
       type: string
@@ -4491,9 +4505,9 @@ components:
         The attribute 'offerSummary' is meaningful at trip-offer-collection response time only.
       type: object
       properties:
-        offerType: 
-          type: string 
-          enum: 
+        offerType:
+          type: string
+          enum:
             - Offer
         id:
           type: string
@@ -5868,8 +5882,8 @@ components:
           type: string
         offerType:
           type: string
-          enum: 
-            - NonTripOffer          
+          enum:
+            - NonTripOffer
         abstract:
           type: string
           example: Super Saver One Day Pass
