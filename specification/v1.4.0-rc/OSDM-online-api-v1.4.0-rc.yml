@@ -2735,7 +2735,7 @@ components:
         such as a price difference with the initially offered price at booking time. 
         It is inspired on the JSon problem structure.
       required:
-        - code    
+        - code
       properties:
         code:
           type: string
@@ -3011,8 +3011,7 @@ components:
           default: false
         walkSpeed:
           description: >-
-            Deviation from average walk speed in percent. 100% percent is average speed. 
-            Less than 100 % slower, Greater than 150% faster.
+            Deviation from average walk speed in percent. 100% percent is average speed.
           type: number
           format: uint8
           default: 100
@@ -3052,7 +3051,7 @@ components:
           description: Reference to carrier
           type: array
           items:
-            type: string
+            $ref: "#/components/schemas/Company"
 
     ServiceBrandFilter: ## OJP
       type: object
@@ -3067,7 +3066,7 @@ components:
           description: Reference to service brand codes
           type: array
           items:
-            type: string
+            $ref: "#/components/schemas/ServiceBrandCode"
 
     VehicleFilter: ## OJP # EXT
       type: object
@@ -7428,18 +7427,15 @@ components:
 
     Company:
       type: string
-      description: RICS company code or compatible ERA company code for rail.
+      description: >-
+        Identifies a company. For rail, a RICS company code or compatible ERA company code are used.
       example: "urn:uic:rics:1185"
 
     ServiceBrandCode:
       description: >-
-        Service brand codes allowed in response, code list can be found on 
-        [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list]
-        (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
-
-        For example, 163 denotes TGV Lyria and 175 denotes Glacier Express.
-      type: integer
-      format: int32
+        Service brand codes. For public transport, a code list can be found in OSDM's catalog of code list.
+        For example, "163" denotes TGV Lyria and "175" denotes Glacier Express.
+      type: string
       example:
         - 163
         - 175
