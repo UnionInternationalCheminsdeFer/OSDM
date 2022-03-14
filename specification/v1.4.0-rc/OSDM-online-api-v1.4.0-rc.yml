@@ -292,7 +292,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/TripRequest"
+              $ref: "#/components/schemas/TripSearchCriteria"
       responses:
         "200":
           description: trips found matching criteria
@@ -2864,7 +2864,7 @@ components:
     #         - $ref: "#/components/schemas/GeoRestriction"   # Out of scope
     #         - $ref: "#/components/schemas/AllowedSystemId"    # Out of scope
 
-    TripRequest: ## OJP # Reduced scope
+    TripSearchCriteria: ## OJP # Renamed from TripRequest, reduced scope
       type: object
       description: >-
         Trip request structure. Provided by OJP.
@@ -4323,15 +4323,13 @@ components:
         If you are searching for fares you pass in the complete trip and the use the 
         returnSearchCriteria to define which part you need fares (including virtual 
         border points).
-      required:
-        - passengerSpecifications
       properties:
         tripSpecifications:
           type: array
           items:
             $ref: "#/components/schemas/TripSpecification"
         tripSearchCriteria:
-          $ref: "#/components/schemas/TripRequest"
+          $ref: "#/components/schemas/TripSearchCriteria"
         returnSearchParameters:
           type: object
           description: >-
