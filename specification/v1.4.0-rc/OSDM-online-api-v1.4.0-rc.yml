@@ -2880,7 +2880,7 @@ components:
             requested arrival time. If arrival time is provided the departure time must be omitted.
           type: string
           format: date-time
-        origin:
+        origin: # EXT Array out of Scope
           description: >-
             Specifies the origin situation from where the user wants to start.
           $ref: "#/components/schemas/PlaceRef"
@@ -2888,7 +2888,7 @@ components:
           description: >-
             Specifies the destination situation where the user is heading to.
           $ref: "#/components/schemas/PlaceRef"
-        requestedSection: # EXT a
+        requestedSection: # EXT Indicates sub part of trip that is requested to price.
           description: >-
             Indicates the sub-part of the trip that is requested to price. When absent, the totality of the trip is 
             requested for pricing.
