@@ -3071,23 +3071,20 @@ components:
     VehicleFilter: ## OJP # EXT
       type: object
       description: >-
-        Filter for in/exclusion of vehicle. Either the vehicle number array or the vehicle line
-        array must be set. Provided by OJP.
+        Filter for in/exclusion of vehicle based on vehicle number or line number.
       properties:
         exclude:
           description: Whether vehicle in list is to include or exclude from search.
           type: boolean
           default: True
         vehicleNumbers:
-          description: Reference to vehicle number
           type: array
           items:
-            type: string
-        vehicleLines:
-          description: Reference to vehicle line
+            $ref: "#/components/schemas/VehicleNumber"
+        lineNumbers:
           type: array
           items:
-            type: string
+            $ref: "#/components/schemas/LineNumber"
 
     PointOfInterestFilter: ## OJP
       type: object
@@ -3849,30 +3846,13 @@ components:
           type: string
           example: S1
         vehicleNumbers: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
-          description: >-
-            The vehicle number(s) of the vehicle(s) that runs this timed leg.
-            On some legs a vehicle has multiple vehicles, e.g. if it is split into two
-            trains at a intermediate stop.
-
-            For backwards compatibility with Hermes/Hosa the length of the string must be restricted
-            to 5 characters. If's longer, it is not possible to use the H2O converter.
           type: array
           items:
-            type: string
-            example:
-              - "TGV 9218"
-              - "TH 9340"
-              - "ICE 15"
+            $ref: "#/components/schemas/VehicleNumber"
         lineNumbers:
-          description: >-
-            List of line numbers that are part of this journey.
-            Especially on regional traffic, a vehicle is defined by a line number only.
           type: array
           items:
-            type: string
-            example:
-              - "S 52"
-              - "B 19"
+            $ref: "#/components/schemas/LineNumber"
         operatorRefs:
           description: >-
             Reference to transport operators.
@@ -4266,6 +4246,28 @@ components:
       description: >-
         Reference to situation message. Message details might be found in response 
         context or through other communication channels. Provided by OJP.
+    
+    VehicleNumber:
+      type: string
+      description: >-
+        The vehicle number(s) of the vehicle that runs this timed leg. On some legs a vehicle can
+        have multiple vehicle numbers, e.g. if it is split into two trains at a intermediate stop.
+        E.g. the vehicle numbers of "TGV 9218", "TH 9340" or "ICE 15".
+        For backwards compatibility with Hermes/Hosa the length of the string must be restricted
+        to 5 characters. If's longer, it is not possible to use the H2O converter.
+      example:
+        - "9218"
+        - "9340"
+        - "15"
+
+    LineNumber:
+      type: string
+      description: >-
+        Especially on regional traffic, a vehicle is defined by a line number. 
+        E.g. the line numbers of "S 52" or "B 19".
+      example:
+        - "52"
+        - "19"
 
     OfferSearchCriteria:
       type: object
@@ -5740,12 +5742,7 @@ components:
           type: string
           example: booking 2345
         status:
-          type: string
-          enum:
-            - PREBOOKED
-            - CONFIRMED
-            - FULFILLED
-            - ERROR
+          $ref: "#/components/schemas/ExchangeStatus"
         exchangeOffers:
           type: array
           items:
@@ -5759,6 +5756,14 @@ components:
           format: date-time
         fulfillmentType:
           $ref: "#/components/schemas/FulfillmentType"
+
+    ExchangeStatus:
+      type: string
+      enum:
+        - PREBOOKED
+        - CONFIRMED
+        - FULFILLED
+        - ERROR
 
     ExchangeOperationPatchRequest:
       type: object
@@ -7419,8 +7424,8 @@ components:
           $ref: "#/components/schemas/VatScope"
 
     VatScope:
-      description: scope where the VAT applies
       type: string
+      description: scope where the VAT applies
       x-extensible-enum:
         - INTERNATIONAL
         - NATIONAL
@@ -7434,10 +7439,10 @@ components:
       example: "urn:uic:rics:1185"
 
     ServiceBrandCode:
+      type: string
       description: >-
         Service brand codes. For public transport, a code list can be found in OSDM's catalog of code list.
         For example, "163" denotes TGV Lyria and "175" denotes Glacier Express.
-      type: string
       example:
         - 163
         - 175
