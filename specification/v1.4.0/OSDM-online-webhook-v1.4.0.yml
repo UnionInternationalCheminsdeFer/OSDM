@@ -103,10 +103,8 @@ components:
       description: >-
         The type of change that has occurred on the booking.
       enum:
-        - BOOKING_CONFIRMED
         - BOOKING_REAL_TIME_EVENT_OCCURRED
         - BOOKING_REACCOMMODATED
-        - BOOKING_TRIP_CANCELLED
         - BOOKING_TRIP_CHANGED
         - BOOKING_TRIP_CONFIRMED
         - FULFILLMENT_AVAILABLE
