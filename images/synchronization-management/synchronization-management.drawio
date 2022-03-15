@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="oFB6CcAC594AhaVThJXz" name="Seite-1">
-        <mxGraphModel dx="803" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="885" dy="570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -32,8 +32,8 @@
                 <mxCell id="AdF0Kggzv5YeNbQHZzFB-9" value="" style="ellipse;whiteSpace=wrap;html=1;align=center;aspect=fixed;resizable=0;points=[];outlineConnect=0;sketch=0;strokeColor=#66B2FF;strokeWidth=2;" parent="1" vertex="1">
                     <mxGeometry x="520" y="440.5" width="10" height="10" as="geometry"/>
                 </mxCell>
-                <mxCell id="AdF0Kggzv5YeNbQHZzFB-10" value="&lt;b style=&quot;font-size: 15px&quot;&gt;&lt;font color=&quot;#0066cc&quot; style=&quot;font-size: 15px&quot;&gt;Event:&lt;br style=&quot;font-size: 15px&quot;&gt;- Booking Cancelled&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;align=left;fontSize=15;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="460" y="480" width="150" height="30" as="geometry"/>
+                <mxCell id="AdF0Kggzv5YeNbQHZzFB-10" value="&lt;b style=&quot;font-size: 15px&quot;&gt;&lt;font color=&quot;#0066cc&quot; style=&quot;font-size: 15px&quot;&gt;Events:&lt;br style=&quot;font-size: 15px&quot;&gt;- Booking Trip Cancelled&lt;br&gt;- Refund Initiated&lt;br&gt;&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;align=left;fontSize=15;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="480" width="180" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="AdF0Kggzv5YeNbQHZzFB-12" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.mail;" parent="1" vertex="1">
                     <mxGeometry x="200" y="463.5" width="30" height="16.5" as="geometry"/>

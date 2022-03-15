@@ -31,7 +31,7 @@ The API informs authorized listener of the fact that changes have occurred using
 
   The recommended action is to reload the booking from this provider. If part of a multi-provider trip, check the total trip is still feasible and bubble the event up. If final partner, inform the client.
 
-- `BOOKING_REAL_TIME_EVENT`
+- `BOOKING_REAL_TIME_EVENT_OCCURRED`
 
   A train involved in a trip of the linked booking is experiencing some unexpected change in the actual schedule.
 
