@@ -76,14 +76,6 @@ paths:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
-        - in: query
-          name: cursor
-          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
-          schema:
-            type: string
-            format: uri
-          example: "https://api.osdm.com/places/?cursor=2"
-          required: false
       responses:
         "200":
           description: the requested places
@@ -338,14 +330,6 @@ paths:
             type: string
           required: true
         - in: query
-          name: cursor
-          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
-          schema:
-            type: string
-            format: uri
-          example: "https://api.osdm.com/trips-collection/1234?cursor=2"
-          required: false
-        - in: query
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -451,14 +435,6 @@ paths:
             type: string
           required: true
           description: id of the trip offers
-        - in: query
-          name: cursor
-          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
-          schema:
-            type: string
-            format: uri
-          example: "https://api.osdm.com/trip-offers-collection/1234?cursor=2"
-          required: false
         - in: query
           name: embed
           description: >-
@@ -629,14 +605,6 @@ paths:
             type: string
           required: true
           description: id of the trip offers
-        - in: query
-          name: cursor
-          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
-          schema:
-            type: string
-            format: uri
-          example: "https://api.osdm.com/offers-collection/1234?cursor=2"
-          required: false
         - in: query
           name: embed
           description: >-
@@ -2266,14 +2234,6 @@ paths:
             type: string
           required: true
           description: id of the trip to get.
-        - in: query
-          name: cursor
-          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
-          schema:
-            type: string
-            format: uri
-          example: "https://api.osdm.com/exchange-trip-offers-collection/1234?cursor=2"
-          required: false
         - in: query
           name: embed
           description: >-
@@ -4791,11 +4751,8 @@ components:
         validUntil:
           type: string
           format: date-time
-        afterSalesFee:
-          type: object
-          properties:
-            feePrice:
-              $ref: "#/components/schemas/Price"
+        afterSaleFee:
+          $ref: "#/components/schemas/Price"
     
     AfterSaleConditionType:
       type: string
@@ -7337,8 +7294,7 @@ components:
           format: uri
           description: A URI
           example:
-            - "https://api.osdm.com/trips-collections/12345?cursor=2"
-            - "https://api.osdm.com/trips-collections/12345?cursor=0"
+            "https://api.osdm.com/trips-collections/12345?cursor=2"
 
     Translation:
       type: object
