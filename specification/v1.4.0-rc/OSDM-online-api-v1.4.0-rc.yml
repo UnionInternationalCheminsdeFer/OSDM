@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.4.0-rc8
+  version: 1.4.0
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -64,27 +64,21 @@ tags:
       resources to get master data
 
 paths:
-  /places/{placeId}:
+  /places:
     get:
       tags:
-        - Places
-      summary: returns a place
+        - Master Data
+      summary: Returns all places
       description: >-
-        Returns places
+        Returns all places
       operationId: getPlaces
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/traceParent"
         - $ref: "#/components/parameters/traceState"
-        - in: path
-          name: placeId
-          schema:
-            type: string
-          required: true
-          description: id of the place to get.
       responses:
         "200":
-          description: the requested place
+          description: the requested places
           headers:
             Cache-Control:
               schema:
@@ -110,8 +104,6 @@ paths:
           description: not implemented
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
-
-  /places:
     post:
       tags:
         - Places
@@ -133,6 +125,53 @@ paths:
       responses:
         "200":
           description: place information found matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaceResponse"
+        "400":
+          description: bad input parameter
+        "401":
+          description: unauthorized
+        "403":
+          description: forbidden
+        "404":
+          description: no place information found
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
+  /places/{placeId}:
+    get:
+      tags:
+        - Places
+      summary: returns a place
+      description: >-
+        Returns places
+      operationId: getPlacesId
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
+        - in: path
+          name: placeId
+          schema:
+            type: string
+          required: true
+          description: id of the place to get.
+      responses:
+        "200":
+          description: the requested places
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                default: "public, max-age=10000"
+                description: >-
+                  A places resource is fairly persistent and has a medium time to live to allow short-term caching.
           content:
             application/json:
               schema:
@@ -245,7 +284,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/TripRequest"
+              $ref: "#/components/schemas/TripSearchCriteria"
       responses:
         "200":
           description: trips found matching criteria
@@ -290,14 +329,6 @@ paths:
           schema:
             type: string
           required: true
-        - in: query
-          name: cursor
-          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
-          schema:
-            type: string
-            format: uri
-          example: "https://api.osdm.com/trips-collection/1234?cursor=2"
-          required: false
         - in: query
           name: embed
           description: >-
@@ -404,14 +435,6 @@ paths:
             type: string
           required: true
           description: id of the trip offers
-        - in: query
-          name: cursor
-          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
-          schema:
-            type: string
-            format: uri
-          example: "https://api.osdm.com/trip-offers-collection/1234?cursor=2"
-          required: false
         - in: query
           name: embed
           description: >-
@@ -583,14 +606,6 @@ paths:
           required: true
           description: id of the trip offers
         - in: query
-          name: cursor
-          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
-          schema:
-            type: string
-            format: uri
-          example: "https://api.osdm.com/offers-collection/1234?cursor=2"
-          required: false
-        - in: query
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -600,9 +615,9 @@ paths:
               type: string
               enum:
                 - ALL
-                - NONTRIPOFFERS
-                - NONTRIPOFFERS.OFFERRPARTS
-                - NONTRIPOFFERS.PASSENGERS
+                - OFFERS
+                - OFFERS.OFFERRPARTS
+                - OFFERS.PASSENGERS
                 - NONE
             default: [ALL]
             maxItems: 3
@@ -1642,7 +1657,7 @@ paths:
     post:
       tags:
         - Fulfillments
-      summary: Triggers the fulfillment of the booking.
+      summary: Triggers the fulfillment of the booking, but does not actually return the fulfillments.
       operationId: postFulfillments
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
@@ -1693,7 +1708,7 @@ paths:
     patch:
       tags:
         - Fulfillments
-      summary: Allows the effective fulfillment of one ore more confirmed fulfillment.
+      summary: Finalizes the fulfillments and returns the documents.
       operationId: patchFulfillment
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
@@ -2220,14 +2235,6 @@ paths:
           required: true
           description: id of the trip to get.
         - in: query
-          name: cursor
-          description: URI pointing to the prev/next page. See OSDM documentation on how pagination is implemented.
-          schema:
-            type: string
-            format: uri
-          example: "https://api.osdm.com/exchange-trip-offers-collection/1234?cursor=2"
-          required: false
-        - in: query
           name: embed
           description: >-
             Influences whether referenced resources are returned in full or as references only.
@@ -2687,6 +2694,8 @@ components:
         This element can be used to pass non-blocking information or events,
         such as a price difference with the initially offered price at booking time. 
         It is inspired on the JSon problem structure.
+      required:
+        - code
       properties:
         code:
           type: string
@@ -2712,9 +2721,6 @@ components:
             An absolute URI that identifies the specific occurrence of the warning.
             example: offers/offer1234
 
-      required:
-        - code
-      
     PlaceResponse:
       type: object
       required:
@@ -2771,7 +2777,7 @@ components:
           description: >-
             Maximum number of results to be returned. The service is allowed to return fewer objects if reasonable
             or otherwise appropriate.
-          type: number
+          type: integer
           format: int32
           minimum: 1
       # continueAt:   # Out of scope
@@ -2818,7 +2824,7 @@ components:
     #         - $ref: "#/components/schemas/GeoRestriction"   # Out of scope
     #         - $ref: "#/components/schemas/AllowedSystemId"    # Out of scope
 
-    TripRequest: ## OJP # Reduced scope
+    TripSearchCriteria: ## OJP # Renamed from TripRequest, reduced scope
       type: object
       description: >-
         Trip request structure. Provided by OJP.
@@ -2834,15 +2840,33 @@ components:
             requested arrival time. If arrival time is provided the departure time must be omitted.
           type: string
           format: date-time
-        origin:
+        origin: # EXT Array out of Scope
           description: >-
             Specifies the origin situation from where the user wants to start.
-          $ref: "#/components/schemas/Place"
+          $ref: "#/components/schemas/PlaceRef"
         destination: # EXT Array out of Scope
           description: >-
             Specifies the destination situation where the user is heading to.
-          $ref: "#/components/schemas/Place"
-        via: # EXT Array out of Scope
+          $ref: "#/components/schemas/PlaceRef"
+        requestedSection: # EXT Indicates sub part of trip that is requested to price.
+          description: >-
+            Indicates the sub-part of the trip that is requested to price. When absent, the totality of the trip is 
+            requested for pricing.
+          type: object
+          properties:
+            start:
+              description: >-
+                Start of the sub-trip to price, expressed as a reference to a stop place or a fare connection point.
+              oneOf:
+                - $ref: "#/components/schemas/StopPlaceRef"
+                - $ref: "#/components/schemas/FareConnectionPoint"
+            end:
+              description: >-
+                End of the sub-trip to price, expressed as a reference to a stop place or a fare connection point.
+              oneOf:
+                - $ref: "#/components/schemas/StopPlaceRef"
+                - $ref: "#/components/schemas/FareConnectionPoint"
+        via:
           description: >-
             Ordered series of points where the journey must pass through. If more
             than one via point is given all of them must be obeyed - in the correct
@@ -2890,7 +2914,7 @@ components:
         - viaPoint
       properties:
         viaPoint:
-          $ref: "#/components/schemas/Place"
+          $ref: "#/components/schemas/PlaceRef"
         dwellTime:
           type: string
           format: duration
@@ -2947,10 +2971,9 @@ components:
           default: false
         walkSpeed:
           description: >-
-            Deviation from average walk speed in percent. 100% percent is average speed. 
-            Less than 100 % slower, Greater than 150% faster.
-          type: number
-          format: uint8
+            Deviation from average walk speed in percent. 100% percent is average speed.
+          type: integer
+          format: int32
           default: 100
         additionalTransferTime:
           description: >-
@@ -2988,7 +3011,7 @@ components:
           description: Reference to carrier
           type: array
           items:
-            type: string
+            $ref: "#/components/schemas/Company"
 
     ServiceBrandFilter: ## OJP
       type: object
@@ -3003,28 +3026,25 @@ components:
           description: Reference to service brand codes
           type: array
           items:
-            type: string
+            $ref: "#/components/schemas/ServiceBrandCode"
 
     VehicleFilter: ## OJP # EXT
       type: object
       description: >-
-        Filter for in/exclusion of vehicle. Either the vehicle number array or the vehicle line
-        array must be set. Provided by OJP.
+        Filter for in/exclusion of vehicle based on vehicle number or line number.
       properties:
         exclude:
           description: Whether vehicle in list is to include or exclude from search.
           type: boolean
           default: True
         vehicleNumbers:
-          description: Reference to vehicle number
           type: array
           items:
-            type: string
-        vehicleLines:
-          description: Reference to vehicle line
+            $ref: "#/components/schemas/VehicleNumber"
+        lineNumbers:
           type: array
           items:
-            type: string
+            $ref: "#/components/schemas/LineNumber"
 
     PointOfInterestFilter: ## OJP
       type: object
@@ -3076,15 +3096,15 @@ components:
         mobilityFilter:
           $ref: "#/components/schemas/TripMobilityFilter"
         numberOfResults:
-          type: number
-          format: uint8
+          type: integer
+          format: int32
           default: 5
         numberOfResultsBefore:
-          type: number
+          type: integer
           format: int32
           default: 0
         numberOfResultsAfter:
-          type: number
+          type: integer
           format: int32
           default: 5
         ignoreRealtimeData:
@@ -3092,11 +3112,11 @@ components:
           default: false
         transferLimit:
           description: The maximum number of interchanges the user will accept per trip.
-          type: number
-          format: int8
+          type: integer
+          format: int32
           minimum: 0
-        # optimisationMethod:  # Out of scope
-        #  $ref: "#/components/schemas/OptimisationMethod"
+        # optimizationMethod:  # Out of scope
+        #  $ref: "#/components/schemas/OptimizationMethod"
         itModesToCover:
           $ref: "#/components/schemas/IndividualMode"
       #  - $ref: "#/components/schemas/BaseTripContentFilter"  ## Out of scope
@@ -3169,14 +3189,14 @@ components:
           format: date-time
         transfers:
           description: Number of interchanges
-          type: number
-          format: integer
+          type: integer
+          format: int32
           minimum: 0
         distance:
           description: >-
             Distance in meters over the the complete trip, i.e., including transfer legs.
-          type: number
-          format: integer
+          type: integer
+          format: int32
           minimum: 0
         legs:
           description: Legs ot the trip
@@ -3228,12 +3248,12 @@ components:
       description: >-
         A minimal trip specification from origin to destination.
       required:
-        - id
+        - externalRef
         - legs # EXT replaces tripLegs, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/179
       properties:
-        id:
+        externalRef:
           description: >-
-            Id of this trip for referencing purposes. Unique within a trip specification.
+            External reference of this trip for referencing purposes. Unique within a trip specification.
           type: string
         legs:
           type: array
@@ -3291,10 +3311,11 @@ components:
         A minimal trip leg specification consisting of timed and transfer legs only. 
         Continuous legs are not yet part of this version of the specification-
       required:
-        - id ## EXT replaces legId, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/181
+        - externalRef
       properties:
-        id:
-          description: Id of this trip leg. Unique within trip result. A seqId is a leg id.
+        externalRef:
+          description: >-
+            External reference of this trip leg. Unique within trip result.
           type: string
         timedLeg:
           $ref: "#/components/schemas/TimedLegSpecification"
@@ -3398,7 +3419,10 @@ components:
         #   format: duration
         #   example: "PT20M"
         # bufferTime:  # Out of scope
-        #   description: Buffer time as part of the overall interchange duration. Buffer times, f.e. check in/out times, sometimes are mandatory for using certain services as f.e. airplanes, ferries or highspeed trains.
+        #   description: >-
+        #     Buffer time as part of the overall interchange duration. Buffer times,
+        #     e.g. check in/out times, sometimes are mandatory for using certain
+        #     services as f.e. airplanes, ferries or high speed trains.
         #   type: string
         #   format: duration
         #   example: "0SM"
@@ -3512,7 +3536,7 @@ components:
         - MOTORCYCLE
         - TRUCK
         - SCOOTER
-        - RidE_POOL_CAR
+        - RIDE_POOL_CAR
         - CAR_SHARING
         - CYCLE_SHARING
         - SCOOTER_SHARING
@@ -3523,8 +3547,8 @@ components:
       description: Modes dedicated to perform transfers. Provided by OJP.
       x-extensible-enum:
         - WALK
-        - PARK_AND_RidE
-        - BIKE_AND_RidE
+        - PARK_AND_RIDE
+        - BIKE_AND_RIDE
         - CAR_HIRE
         - BIKE_HIRE
         - PROTECTED_CONNECTION
@@ -3782,30 +3806,13 @@ components:
           type: string
           example: S1
         vehicleNumbers: # EXT Fix to OJP submitted, see https://github.com/VDVde/OJP/issues/173
-          description: >-
-            The vehicle number(s) of the vehicle(s) that runs this timed leg.
-            On some legs a vehicle has multiple vehicles, e.g. if it is split into two
-            trains at a intermediate stop.
-
-            For backwards compatibility with Hermes/Hosa the length of the string must be restricted
-            to 5 characters. If's longer, it is not possible to use the H2O converter.
           type: array
           items:
-            type: string
-            example:
-              - "TGV 9218"
-              - "TH 9340"
-              - "ICE 15"
+            $ref: "#/components/schemas/VehicleNumber"
         lineNumbers:
-          description: >-
-            List of line numbers that are part of this journey.
-            Especially on regional traffic, a vehicle is defined by a line number only.
           type: array
           items:
-            type: string
-            example:
-              - "S 52"
-              - "B 19"
+            $ref: "#/components/schemas/LineNumber"
         operatorRefs:
           description: >-
             Reference to transport operators.
@@ -3835,8 +3842,7 @@ components:
       properties:
         ptMode: # EXT
           description: >-
-            Subset of SIRI Modes which are sensible.
-            TAP-TSI/UIC: Transport Mode  TODO: Align with SIRI
+            TAP-TSI/UIC contains a sensible subset of SIRI Transport Modes.
           type: string
           x-extensible-enum:
             - HIGH_SPEED_TRAIN
@@ -3855,8 +3861,6 @@ components:
             - COACH_GROUP
             - SHIP
             - BUS
-
-          #  $ref: "#/components/schemas/PtModeChoiceGroup"
         name:
           description: Name of the mode
           type: string
@@ -3930,7 +3934,7 @@ components:
       #  - $ref: "#/components/schemas/StopPlace"
       #  - $ref: "#/components/schemas/StopPointStructure"  # Out of scope
       #  - $ref: "#/components/schemas/TopographicPlaceStructure"  # Out of scope
-      #  - $ref: "#/components/schemas/FareConnectionPoint # EXT OSDM extension
+      #- $ref: "#/components/schemas/FareConnectionPoint # EXT OSDM extension
       #- $ref: "#/components/schemas/GeoPosition"
       required:
         - id
@@ -4138,13 +4142,13 @@ components:
         #   $ref: "#/components/schemas/TopographicPlaceRef"
         # - $ref: "#/components/schemas/StopAttributes" # Out of scope
 
-    PlaceRef: ### OJP 
+    PlaceRef: ### OJP
       oneOf: #do we really need a oneOf here, considering all these refs are in the end just a string ?
         - $ref: "#/components/schemas/StopPlaceRef"
         - $ref: "#/components/schemas/TopographicPlaceRef"
         - $ref: "#/components/schemas/PointOfInterestRef"
         - $ref: "#/components/schemas/AddressRef"
-        - $ref: "#/components/schemas/FareConnectionPointRef"
+        - $ref: "#/components/schemas/FareConnectionPoint"
         - $ref: "#/components/schemas/GeoPosition"
       required:
         - name
@@ -4157,10 +4161,7 @@ components:
       description: >-
         Reference to a Stop Place using URNs to define code.
         For UIC see UIC MERITS/TAP-TSI station codes. Provided by OJP.
-      example:
-        - "urn:uic:stn:8503000"
-        - "urn:uic:stn:8400058"
-        - "urn:uic:stn:8727100"
+      example: urn:uic:stn:8503000
 
     PointOfInterestRef: ## OJP
       type: string
@@ -4173,10 +4174,6 @@ components:
     AddressRef: ## OJP
       type: string
       description: Reference to an Address
-
-    FareConnectionPointRef: ## OSDM extension
-      type: string
-      description: Reference to a Fare Connection Point
 
     ProductCategoryRef: ## OJP
       description: >-
@@ -4202,6 +4199,28 @@ components:
       description: >-
         Reference to situation message. Message details might be found in response 
         context or through other communication channels. Provided by OJP.
+
+    VehicleNumber:
+      type: string
+      description: >-
+        The vehicle number(s) of the vehicle that runs this timed leg. On some legs a vehicle can
+        have multiple vehicle numbers, e.g. if it is split into two trains at a intermediate stop.
+        E.g. the vehicle numbers of "TGV 9218", "TH 9340" or "ICE 15".
+        For backwards compatibility with Hermes/Hosa the length of the string must be restricted
+        to 5 characters. If's longer, it is not possible to use the H2O converter.
+      example:
+        - "9218"
+        - "9340"
+        - "15"
+
+    LineNumber:
+      type: string
+      description: >-
+        Especially on regional traffic, a vehicle is defined by a line number. 
+        E.g. the line numbers of "S 52" or "B 19".
+      example:
+        - "52"
+        - "19"
 
     OfferSearchCriteria:
       type: object
@@ -4262,15 +4281,13 @@ components:
         If you are searching for fares you pass in the complete trip and the use the 
         returnSearchCriteria to define which part you need fares (including virtual 
         border points).
-      required:
-        - passengerSpecifications
       properties:
         tripSpecifications:
           type: array
           items:
             $ref: "#/components/schemas/TripSpecification"
         tripSearchCriteria:
-          $ref: "#/components/schemas/TripRequest"
+          $ref: "#/components/schemas/TripSearchCriteria"
         returnSearchParameters:
           type: object
           description: >-
@@ -4365,7 +4382,8 @@ components:
           type: string
         abstract:
           type: string
-          example: Bruxelles-Midi 2020-07-01 10:05 CET
+          description: A human-readable description of the trip offer.
+          example: Trip offer for Bruxelles-Midi 2022-07-01 10:05 CET, 44 €, full flexible
         trip:
           $ref: "#/components/schemas/Trip"
         offers:
@@ -4443,15 +4461,16 @@ components:
         The attribute 'offerSummary' is meaningful at trip-offer-collection response time only.
       type: object
       properties:
-        offerType: 
-          type: string 
-          enum: 
+        offerType:
+          type: string
+          enum:
             - Offer
         id:
           type: string
         abstract:
           type: string
-          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
+          description: A human-readable description of the fulfillment.
+          example: Bruxelles-Midi - Paris-Nord 2022-07-01 10:05 CET, Normal Fare, 50 €
         offerSummary:
           $ref: "#/components/schemas/OfferSummary"
         priceGuaranteedUntil:
@@ -4564,7 +4583,8 @@ components:
           type: string
         abstract:
           type: string
-          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
+          description: A human-readable description of the booked offer.
+          example: Bruxelles-Midi - Paris-Nord 2022-07-01 10:05 CET, Normal Fare, 50 €
         coveredLegIds:
           type: array
           items:
@@ -4616,9 +4636,9 @@ components:
     Flexibility:
       type: string
       x-extensible-enum:
-        - FULLFLEX
-        - SEMIFLEX
-        - NONFLEX
+        - FULL_FLEXIBLE
+        - SEMI_FLEXIBLE
+        - NON_FLEXIBLE
 
     CommonOfferPartAttributes:
       type: object
@@ -4720,18 +4740,22 @@ components:
       type: object
       properties:
         condition:
-          $ref: "#/components/schemas/ConditionType"
+          $ref: "#/components/schemas/AfterSaleConditionType"
         validFrom:
           type: string
           format: date-time
         validUntil:
           type: string
           format: date-time
-        afterSalesFee:
-          type: object
-          properties:
-            feePrice:
-              $ref: "#/components/schemas/Price"
+        afterSaleFee:
+          $ref: "#/components/schemas/Price"
+
+    AfterSaleConditionType:
+      type: string
+      x-extensible-enum:
+        - PLACE_CHANGE
+        - EXCHANGE
+        - REFUND
 
     ProductCollectionResponse:
       type: object
@@ -4765,6 +4789,7 @@ components:
           description: id of the product
         abstract:
           type: string
+          description: A human-readable description of the product.
           example: TGV Lyria Loisir 2
         code:
           type: string
@@ -4833,9 +4858,9 @@ components:
           type: string
         needsToBeCombined:
           description: >-
-            If false it means that this product can only be sold also when not in conjunction with
-            a product with the same tag. This is needed to propose specific products from one provider 
-            that depend on public ones of another.
+            If false it means that this product can be sold also when not in conjunction with
+            a product with the same tag. This is needed to propose specific products from one 
+            provider that depend on public ones of another.
           type: boolean
           default: false
 
@@ -4994,7 +5019,8 @@ components:
           type: string
         abstract:
           type: string
-          example: Reservierungsentgelt
+          description: A human-readable description of the fee.
+          example: Reservierungsentgelt, 5 €
         price:
           $ref: "#/components/schemas/Price"
         applicability:
@@ -5055,7 +5081,8 @@ components:
           type: string
         abstract:
           type: string
-          example: ICE Wifi on Board 2020-07-11
+          description: A human-readable description of the offer part reference.
+          example: ICE Wifi on Board of train ICE 3, 2022-07-11
         _links:
           type: array
           items:
@@ -5171,7 +5198,8 @@ components:
           type: string
         abstract:
           type: string
-          example: booking 2345
+          description: A human-readable description of the booking.
+          example: Booking 2345 for Clemens Gantert
         reference:
           type: string
           description: >-
@@ -5323,31 +5351,26 @@ components:
       properties:
         id:
           type: string
+        abstract:
+          type: string
+          description: A human-readable description of the fulfillment.
+          example: e-ticket 12345
         status:
           $ref: "#/components/schemas/FulfillmentStatus"
-        price:
-          $ref: "#/components/schemas/Price"
-          description: >-
-            Note the price is present here as an optional element as future evolution indicate a possible
-            separation between fulfillment info and financial information. 
-            Please refer to UIC leaflet XXX for more information on current status.
         controlNumber:
           type: string
-          description: >-
-            Ticket Control Number
+          description: Ticket Control Number.
         offerParts:
           type: array
           items:
             $ref: "#/components/schemas/OfferPartReference"
         documents:
-          description: >-
-            complete document created for fulfillment
+          description: Final document created for fulfillment.
           type: array
           items:
             $ref: "#/components/schemas/FulfillmentDocument"
         fulfillmentItems:
-          description: >-
-            fulfillment items to be integrated into tickets (allocator mode)
+          description: Fulfillment items to be integrated into tickets (allocator mode).
           type: array
           items:
             $ref: "#/components/schemas/FulfillmentItem"
@@ -5496,7 +5519,8 @@ components:
           description: id of the refund offer
         abstract:
           type: string
-          example: Refund Paris-Barcelona Andre Dupont 2020-07-23
+          description: A human-readable description of the refund offer.
+          example: Refund Offer for Paris-Barcelona Andre Dupont 2022-07-23
         validUntil:
           type: string
           format: date-time
@@ -5580,6 +5604,7 @@ components:
         - PRM_SUPPORT_UNAVAILABLE
         - SALES_STAFF_ERROR
         - STRIKE
+        - TECHNICAL_FAILURE
 
     ExchangeTripOfferRequest:
       type: object
@@ -5638,7 +5663,8 @@ components:
           type: string
         abstract:
           type: string
-          example: Bruxelles-Midi 2020-07-01 10:05 CET
+          description: A human-readable description of the exchange offer
+          example: Exchange offer for Bruxelles-Midi 2022-07-01 10:05 CET
         trip:
           $ref: "#/components/schemas/Trip"
         exchangeOffers:
@@ -5673,16 +5699,8 @@ components:
       properties:
         id:
           type: string
-        abstract:
-          type: string
-          example: booking 2345
         status:
-          type: string
-          enum:
-            - PREBOOKED
-            - CONFIRMED
-            - FULFILLED
-            - ERROR
+          $ref: "#/components/schemas/ExchangeStatus"
         exchangeOffers:
           type: array
           items:
@@ -5696,6 +5714,14 @@ components:
           format: date-time
         fulfillmentType:
           $ref: "#/components/schemas/FulfillmentType"
+
+    ExchangeStatus:
+      type: string
+      enum:
+        - PREBOOKED
+        - CONFIRMED
+        - FULFILLED
+        - ERROR
 
     ExchangeOperationPatchRequest:
       type: object
@@ -5820,10 +5846,11 @@ components:
           type: string
         offerType:
           type: string
-          enum: 
-            - NonTripOffer          
+          enum:
+            - NonTripOffer
         abstract:
           type: string
+          description: A human-readable description of the offer.
           example: Super Saver One Day Pass
         offerSummary:
           $ref: "#/components/schemas/OfferSummary"
@@ -5920,7 +5947,8 @@ components:
           description: id of this coachLayout on this server
         abstract:
           type: string
-          example: coach 3 train T122
+          description: A human-readable description of the coach layout.
+          example: Coach 3 in train T-122
         places:
           description: list of places included in the layout
           type: array
@@ -5958,7 +5986,13 @@ components:
                    - value 7: place might be in open space
                 type: string
                 x-extensible-enum:
-                  - VALUE1-TODO
+                  - MIGHT_HAVE_TABLE
+                  - MIGHT_NOT_HAVE_TABLE
+                  - MIGHT_HAVE_DIFFERENT_DIRECTION
+                  - MIGHT_HAVE_TABLE_AND_DIFFERENT_DIRECTION
+                  - MIGHT_NOT_HAVE_TABLE_AND_MIGHT_HAVE_DIFFERENT_DIRECTION
+                  - MIGHT_BE_IN_COMPARTMENT
+                  - MIGHT_BE_IN_OPEN_SPACE
               coords:
                 $ref: "#/components/schemas/LayoutCoordinates"
             required:
@@ -7013,15 +7047,6 @@ components:
     ViaStations:
       type: object
       properties:
-        isBorder:
-          type: boolean
-          default: false
-        routeId:
-          type: integer
-          format: int32
-        seriesId:
-          type: integer
-          format: int32
         alternativeRoute:
           type: array
           items:
@@ -7036,19 +7061,33 @@ components:
           $ref: "#/components/schemas/ServiceConstraint"
         station:
           $ref: "#/components/schemas/StopPlace" # EXT Changed from StopPoint
-        fareReferenceStationSet:
-          type: object
-          description: reference to a list of stations included in the fare
-          properties:
-            carrier:
-              $ref: "#/components/schemas/Company"
-            code:
-              type: string
-            name:
-              type: string
-          required:
-            - carrier
-            - code
+        fareReferenceStation:
+          $ref: "#/components/schemas/FareReferenceStation"
+
+    FareReferenceStation:
+      type: object
+      description: >-
+        Reference to a list of stations jointly valid in a fare. The fare
+        reference station defines a set of station that are equivalent from 
+        a tariff point of view. The code is issued by the carrier. Needed to
+        generate bar codes as well as fulfillments.
+      required:
+        - name
+        - code
+        - carrier
+        - stations
+      properties:
+        name:
+          type: string
+        code:
+          type: string
+        carrier:
+          $ref: "#/components/schemas/Company"
+        stations:
+          type: array
+          items:
+            $ref: "#/components/schemas/StopPlaceRef"
+          minItems: 1
 
     CarrierConstraint:
       type: object
@@ -7256,9 +7295,7 @@ components:
           type: string
           format: uri
           description: A URI
-          example:
-            - "https://api.osdm.com/trips-collections/12345?cursor=2"
-            - "https://api.osdm.com/trips-collections/12345?cursor=0"
+          example: "https://api.osdm.com/trips-collections/12345?cursor=2"
 
     Translation:
       type: object
@@ -7268,7 +7305,7 @@ components:
       properties:
         language:
           type: string
-          description: language code following RFC2616-sec14.4
+          description: ISO-639-1 language code
         text:
           type: string
         shortText:
@@ -7277,8 +7314,7 @@ components:
     Text:
       type: object
       description: >-
-        Directly included text in case of online services. Text must be encrypted in
-        UTF-8 format.
+        Directly included text in case of online services. Text must be encoded in UTF-8 format.
       required:
         - id
         - text
@@ -7351,8 +7387,8 @@ components:
           $ref: "#/components/schemas/VatScope"
 
     VatScope:
-      description: scope where the VAT applies
       type: string
+      description: scope where the VAT applies
       x-extensible-enum:
         - INTERNATIONAL
         - NATIONAL
@@ -7361,18 +7397,15 @@ components:
 
     Company:
       type: string
-      description: RICS company code or compatible ERA company code for rail.
+      description: >-
+        Identifies a company. For rail, a RICS company code or compatible ERA company code are used.
       example: "urn:uic:rics:1185"
 
     ServiceBrandCode:
+      type: string
       description: >-
-        Service brand codes allowed in response, code list can be found on 
-        [https://uic.org/passenger/passenger-services-group/article/service-brand-code-list]
-        (https://uic.org/passenger/passenger-services-group/article/service-brand-code-list)
-
-        For example, 163 denotes TGV Lyria and 175 denotes Glacier Express.
-      type: integer
-      format: int32
+        Service brand codes. For public transport, a code list can be found in OSDM's catalog of code list.
+        For example, "163" denotes TGV Lyria and "175" denotes Glacier Express.
       example:
         - 163
         - 175
@@ -7771,14 +7804,14 @@ components:
 
     Purchaser:
       type: object
-      description: purchaser information needed at offering step
+      description: purchaser information
       required:
         - id
         - details
       properties:
         id:
           type: string
-        externalReference:
+        externalRef:
           description: >-
             A stable reference to a purchaser from other elements, or from caller system.
             When received in input of a trip-offers-collection request, it must be echoed back in the
@@ -7810,10 +7843,11 @@ components:
             Id of the passenger resource in case service to patch a single passenger is provided.
         abstract:
           type: string
+          description: A human-readable description of the passenger.
           example: Andreas Schlapbach
-        externalReference:
+        externalRef:
           description: >-
-            A stable reference to passengers from other elements, or from caller system.
+            A stable reference to a passenger from other elements, or from caller system.
             When received in input of a trip-offers-collection request, it must be echoed back in the
             response.
           type: string
@@ -7859,9 +7893,9 @@ components:
           type: string
           description: >-
             Id of the passenger resource in case service to patch a single passenger is provided.
-        externalReference:
+        externalRef:
           description: >-
-            A stable reference to passengers from other elements, or from caller system.
+            A stable reference to a passenger from other elements, or from caller system.
             When received in input of a trip-offers-collection request, it must be echoed back in the
             response.
           type: string
@@ -7870,7 +7904,7 @@ components:
           $ref: "#/components/schemas/PassengerType"
         dateOfBirth:
           description: >-
-            Date of birth of the passenger. Only needed for passengers of type persons, family child, PRMS
+            Date of birth of the passenger. Only needed for passengers of type persons, family child, PRM
             and wheelchair.
           type: string
           format: date
@@ -7898,13 +7932,13 @@ components:
         - PRM
         - BICYCLE
         - PRAM
-        - ACCOMP_DOG
+        - COMPANION_DOG
         - CAR
         - PERSON
-        - MOTOCYCLE
+        - MOTORCYCLE
         - TRAILER
         - FAMILY_CHILD
-        - WHEELCHAR
+        - WHEELCHAIR
       example: PERSON
       default: PERSON
 
@@ -7928,9 +7962,11 @@ components:
       properties:
         preferredLanguage:
           type: string
-          description: Languages spoken by the person (ISO language code)
+          description: ISO-639-1 language code
         abstract:
           type: string
+          description: A human-readable description of the person.
+          example: Andreas Schlapbach, Riedweg 4, 3074 Bern, schlpbch@gmail.com
         firstName:
           type: string
         lastName:
@@ -7939,7 +7975,7 @@ components:
           type: string
         phoneNumber:
           description: >-
-            Preferably a mobile phone number, to be contacted in case changes to the booking ocuur, e.g.,
+            Preferably a mobile phone number, to be contacted in case changes to the booking occur, e.g.,
             in case of interruptions.
           type: string
         address:
