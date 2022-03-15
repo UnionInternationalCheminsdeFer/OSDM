@@ -2859,13 +2859,13 @@ components:
                 Start of the sub-trip to price, expressed as a reference to a stop place or a fare connection point.
               oneOf:
                 - $ref: "#/components/schemas/StopPlaceRef"
-                - $ref: "#/components/schemas/FareConnectionPointRef"
+                - $ref: "#/components/schemas/FareConnectionPoint"
             end:
               description: >-
                 End of the sub-trip to price, expressed as a reference to a stop place or a fare connection point.
               oneOf:
                 - $ref: "#/components/schemas/StopPlaceRef"
-                - $ref: "#/components/schemas/FareConnectionPointRef"
+                - $ref: "#/components/schemas/FareConnectionPoint"
         via:
           description: >-
             Ordered series of points where the journey must pass through. If more
@@ -3842,8 +3842,7 @@ components:
       properties:
         ptMode: # EXT
           description: >-
-            Subset of SIRI Modes which are sensible.
-            TAP-TSI/UIC: Transport Mode  TODO: Align with SIRI
+            TAP-TSI/UIC contains a sensible subset of SIRI Transport Modes.
           type: string
           x-extensible-enum:
             - HIGH_SPEED_TRAIN
@@ -3862,8 +3861,6 @@ components:
             - COACH_GROUP
             - SHIP
             - BUS
-
-          #  $ref: "#/components/schemas/PtModeChoiceGroup"
         name:
           description: Name of the mode
           type: string
@@ -3937,7 +3934,7 @@ components:
       #  - $ref: "#/components/schemas/StopPlace"
       #  - $ref: "#/components/schemas/StopPointStructure"  # Out of scope
       #  - $ref: "#/components/schemas/TopographicPlaceStructure"  # Out of scope
-      #  - $ref: "#/components/schemas/FareConnectionPoint # EXT OSDM extension
+      #- $ref: "#/components/schemas/FareConnectionPoint # EXT OSDM extension
       #- $ref: "#/components/schemas/GeoPosition"
       required:
         - id
@@ -4151,7 +4148,7 @@ components:
         - $ref: "#/components/schemas/TopographicPlaceRef"
         - $ref: "#/components/schemas/PointOfInterestRef"
         - $ref: "#/components/schemas/AddressRef"
-        - $ref: "#/components/schemas/FareConnectionPointRef"
+        - $ref: "#/components/schemas/FareConnectionPoint"
         - $ref: "#/components/schemas/GeoPosition"
       required:
         - name
@@ -4178,10 +4175,6 @@ components:
       type: string
       description: Reference to an Address
 
-    FareConnectionPointRef: ## OSDM extension
-      type: string
-      description: Reference to a Fare Connection Point
-
     ProductCategoryRef: ## OJP
       description: >-
         Reference to a product category. Product categories should be defined once and used
@@ -4206,7 +4199,7 @@ components:
       description: >-
         Reference to situation message. Message details might be found in response 
         context or through other communication channels. Provided by OJP.
-    
+
     VehicleNumber:
       type: string
       description: >-
@@ -4389,7 +4382,8 @@ components:
           type: string
         abstract:
           type: string
-          example: Bruxelles-Midi 2020-07-01 10:05 CET
+          description: A human-readable description of the trip offer.
+          example: Trip offer for Bruxelles-Midi 2022-07-01 10:05 CET, 44 €, full flexible
         trip:
           $ref: "#/components/schemas/Trip"
         offers:
@@ -4475,7 +4469,8 @@ components:
           type: string
         abstract:
           type: string
-          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
+          description: A human-readable description of the fulfillment.
+          example: Bruxelles-Midi - Paris-Nord 2022-07-01 10:05 CET, Normal Fare, 50 €
         offerSummary:
           $ref: "#/components/schemas/OfferSummary"
         priceGuaranteedUntil:
@@ -4588,7 +4583,8 @@ components:
           type: string
         abstract:
           type: string
-          example: Bruxelles-Midi - Paris-Nord 2020-07-01 10:05 CET, Normal Fare, 50 EUR
+          description: A human-readable description of the booked offer.
+          example: Bruxelles-Midi - Paris-Nord 2022-07-01 10:05 CET, Normal Fare, 50 €
         coveredLegIds:
           type: array
           items:
@@ -4753,7 +4749,7 @@ components:
           format: date-time
         afterSaleFee:
           $ref: "#/components/schemas/Price"
-    
+
     AfterSaleConditionType:
       type: string
       x-extensible-enum:
@@ -4793,6 +4789,7 @@ components:
           description: id of the product
         abstract:
           type: string
+          description: A human-readable description of the product.
           example: TGV Lyria Loisir 2
         code:
           type: string
@@ -5022,7 +5019,8 @@ components:
           type: string
         abstract:
           type: string
-          example: Reservierungsentgelt
+          description: A human-readable description of the fee.
+          example: Reservierungsentgelt, 5 €
         price:
           $ref: "#/components/schemas/Price"
         applicability:
@@ -5083,7 +5081,8 @@ components:
           type: string
         abstract:
           type: string
-          example: ICE Wifi on Board 2020-07-11
+          description: A human-readable description of the offer part reference.
+          example: ICE Wifi on Board of train ICE 3, 2022-07-11
         _links:
           type: array
           items:
@@ -5199,7 +5198,8 @@ components:
           type: string
         abstract:
           type: string
-          example: booking 2345
+          description: A human-readable description of the booking.
+          example: Booking 2345 for Clemens Gantert
         reference:
           type: string
           description: >-
@@ -5351,31 +5351,26 @@ components:
       properties:
         id:
           type: string
+        abstract:
+          type: string
+          description: A human-readable description of the fulfillment.
+          example: e-ticket 12345
         status:
           $ref: "#/components/schemas/FulfillmentStatus"
-        price:
-          $ref: "#/components/schemas/Price"
-          description: >-
-            Note the price is present here as an optional element as future evolution indicate a possible
-            separation between fulfillment info and financial information. 
-            Please refer to UIC leaflet XXX for more information on current status.
         controlNumber:
           type: string
-          description: >-
-            Ticket Control Number
+          description: Ticket Control Number.
         offerParts:
           type: array
           items:
             $ref: "#/components/schemas/OfferPartReference"
         documents:
-          description: >-
-            complete document created for fulfillment
+          description: Final document created for fulfillment.
           type: array
           items:
             $ref: "#/components/schemas/FulfillmentDocument"
         fulfillmentItems:
-          description: >-
-            fulfillment items to be integrated into tickets (allocator mode)
+          description: Fulfillment items to be integrated into tickets (allocator mode).
           type: array
           items:
             $ref: "#/components/schemas/FulfillmentItem"
@@ -5524,7 +5519,8 @@ components:
           description: id of the refund offer
         abstract:
           type: string
-          example: Refund Paris-Barcelona Andre Dupont 2020-07-23
+          description: A human-readable description of the refund offer.
+          example: Refund Offer for Paris-Barcelona Andre Dupont 2022-07-23
         validUntil:
           type: string
           format: date-time
@@ -5667,7 +5663,8 @@ components:
           type: string
         abstract:
           type: string
-          example: Bruxelles-Midi 2020-07-01 10:05 CET
+          description: A human-readable description of the exchange offer
+          example: Exchange offer for Bruxelles-Midi 2022-07-01 10:05 CET
         trip:
           $ref: "#/components/schemas/Trip"
         exchangeOffers:
@@ -5702,9 +5699,6 @@ components:
       properties:
         id:
           type: string
-        abstract:
-          type: string
-          example: booking 2345
         status:
           $ref: "#/components/schemas/ExchangeStatus"
         exchangeOffers:
@@ -5856,6 +5850,7 @@ components:
             - NonTripOffer
         abstract:
           type: string
+          description: A human-readable description of the offer.
           example: Super Saver One Day Pass
         offerSummary:
           $ref: "#/components/schemas/OfferSummary"
@@ -5952,7 +5947,8 @@ components:
           description: id of this coachLayout on this server
         abstract:
           type: string
-          example: coach 3 train T122
+          description: A human-readable description of the coach layout.
+          example: Coach 3 in train T-122
         places:
           description: list of places included in the layout
           type: array
@@ -5990,7 +5986,13 @@ components:
                    - value 7: place might be in open space
                 type: string
                 x-extensible-enum:
-                  - VALUE1-TODO
+                  - MIGHT_HAVE_TABLE
+                  - MIGHT_NOT_HAVE_TABLE
+                  - MIGHT_HAVE_DIFFERENT_DIRECTION
+                  - MIGHT_HAVE_TABLE_AND_DIFFERENT_DIRECTION
+                  - MIGHT_NOT_HAVE_TABLE_AND_MIGHT_HAVE_DIFFERENT_DIRECTION
+                  - MIGHT_BE_IN_COMPARTMENT
+                  - MIGHT_BE_IN_OPEN_SPACE
               coords:
                 $ref: "#/components/schemas/LayoutCoordinates"
             required:
@@ -7293,8 +7295,7 @@ components:
           type: string
           format: uri
           description: A URI
-          example:
-            "https://api.osdm.com/trips-collections/12345?cursor=2"
+          example: "https://api.osdm.com/trips-collections/12345?cursor=2"
 
     Translation:
       type: object
@@ -7304,7 +7305,7 @@ components:
       properties:
         language:
           type: string
-          description: language code following RFC2616-sec14.4
+          description: ISO-639-1 language code
         text:
           type: string
         shortText:
@@ -7842,6 +7843,7 @@ components:
             Id of the passenger resource in case service to patch a single passenger is provided.
         abstract:
           type: string
+          description: A human-readable description of the passenger.
           example: Andreas Schlapbach
         externalRef:
           description: >-
@@ -7960,9 +7962,11 @@ components:
       properties:
         preferredLanguage:
           type: string
-          description: Languages spoken by the person (ISO language code)
+          description: ISO-639-1 language code
         abstract:
           type: string
+          description: A human-readable description of the person.
+          example: Andreas Schlapbach, Riedweg 4, 3074 Bern, schlpbch@gmail.com
         firstName:
           type: string
         lastName:
