@@ -1,0 +1,201 @@
+openapi: 3.1.0
+servers:
+  - description: Localhost on port 8080
+    url: https://localhost:8080
+info:
+  title: UIC 90918-10 - OSDM webhooks
+  version: 1.4.0
+  description: |
+    Specifications for the OSDM API standard. The OSDM webhook specification allows
+    an allocator to inform a distributor about changes to a booking or a complaint. 
+  contact:
+    name: Nicolas Selleslagh, Roland Klapwik and Andreas Schlapbach
+    url: https://unioninternationalcheminsdefer.github.io/OSDM/
+    email: osdm@uic.org
+  license:
+    name: Apache 2.0
+    url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+
+paths:
+  # OpenAPI documents all need a path element
+  /ping:
+    get:
+      summary: ping
+      operationId: ping
+      responses:
+        "200":
+          description: OK
+
+##
+
+webhooks:
+  events:
+    post:
+      description: An event has occurred
+      requestBody:
+        description: Information about the event
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: "#/components/schemas/BookingEvent"
+                - $ref: "#/components/schemas/ComplaintEvent"
+            discriminator:
+              propertyName: objectType
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: bad input parameter
+        "401":
+          description: unauthorized
+        "403":
+          description: forbidden
+        "404":
+          description: no place information found
+        "500":
+          description: internal server error
+        "501":
+          description: not implemented
+        "503":
+          description: service unavailable
+
+##
+
+components:
+  schemas:
+    BookingEvent:
+      type: object
+      required:
+        - objectType
+        - abstract
+        - type
+        - revision
+        - bookingId
+        - resources
+      properties:
+        objectType:
+          type: string
+          enum:
+            - BookingEvent
+          default: BookingEvent
+        abstract:
+          type: string
+          description: >-
+            Human readable description of what has changed on the booking. e.g.
+            "Train ICE 34 at 2021-12-22 13:30 has been cancelled".
+        type:
+          $ref: "#/components/schemas/BookingChangeType"
+        revision:
+          $ref: "#/components/schemas/Revision"
+        bookingId:
+          type: string
+          description: The ID of the booking that has changed.
+        resources:
+          description: >-
+            Resources to be called by receiver to update a booking.
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
+
+    BookingChangeType:
+      type: string
+      description: >-
+        The type of change that has occurred on the booking.
+      enum:
+        - BOOKING_CONFIRMED
+        - BOOKING_REAL_TIME_EVENT_OCCURRED
+        - BOOKING_REACCOMMODATED
+        - BOOKING_TRIP_CANCELLED
+        - BOOKING_TRIP_CHANGED
+        - BOOKING_TRIP_CONFIRMED
+        - FULFILLMENT_AVAILABLE
+        - FULFILLMENT_REFUNDED
+        - FULFILLMENT_EXCHANGED
+        - FULFILLMENT_CONTROLLED
+        - ACCOMMODATION_RELEASED
+        - PURCHASER_CHANGED
+        - PASSENGER_CHANGED
+        - REFUND_INITIATED
+        - EXCHANGE_INITIATED
+      example: FULFILLMENT_REFUNDED
+
+    ComplaintEvent:
+      type: object
+      required:
+        - objectType
+        - abstract
+        - type
+        - revision
+        - complaintId
+        - resources
+      properties:
+        objectType:
+          type: string
+          enum:
+            - ComplaintEvent
+          default: ComplaintEvent
+        abstract:
+          type: string
+          description: >-
+            Human readable description of what has changed on the complaint
+            "Complaint 123456 has been settled".
+        type:
+          $ref: "#/components/schemas/ComplaintChangeType"
+        revision:
+          $ref: "#/components/schemas/Revision"
+        complaintId:
+          type: string
+          description: The ID of the complaint.
+        resources:
+          description: >-
+            Resources to be called by receiver to update a complaint.
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
+
+    ComplaintChangeType:
+      type: string
+      description:
+        The type of change that has occurred on the complaint.
+      enum:
+        - INITIATED
+        - DECIDED
+        - SETTLED
+        - INFORMATION_MISSING
+      default:
+        - INITIATED
+
+    ##
+
+    Revision:
+      type: object
+      description:
+        The revision of the event.
+      required:
+        - name
+        - timestamp
+      properties:
+        name:
+          type: string
+          example: 1
+        timestamp:
+          type: string
+          format: date-time
+
+    Resource:
+      type: object
+      description: >-
+        The resource to be called by receiver to update a booking or a complaint.
+      required:
+        - href
+      properties:
+        title:
+          type: string
+          description: >-
+            Intended for labelling the link with a human-readable identifier (as defined 
+            by [RFC5988]).
+        href:
+          type: string
+          format: url
+          example: "https://db.de/osdm/bookings/2345/fulfillments/ASBV"
