@@ -4784,7 +4784,7 @@ components:
       type: object
       properties:
         condition:
-          $ref: "#/components/schemas/ConditionType"
+          $ref: "#/components/schemas/AfterSaleConditionType"
         validFrom:
           type: string
           format: date-time
@@ -4796,6 +4796,13 @@ components:
           properties:
             feePrice:
               $ref: "#/components/schemas/Price"
+    
+    AfterSaleConditionType:
+      type: string
+      x-extensible-enum:
+        - PLACE_CHANGE
+        - EXCHANGE
+        - REFUND
 
     ProductCollectionResponse:
       type: object
