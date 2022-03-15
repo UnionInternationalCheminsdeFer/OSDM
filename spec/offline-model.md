@@ -23,9 +23,9 @@ The data delivery will contain the version number of the used json schema and th
 
 ## Versioning of Data Delivery Data
 
-The data delivery has a unique id. It can indicate that it replaces a previous delivery 
-by indicating the data delivery id of the delivery to be replaced. Deliveries can be 
-marked as optional. In this case a user of the data delivery might ignore the delivery. 
+The data delivery has a unique id. It can indicate that it replaces a previous delivery
+by indicating the data delivery id of the delivery to be replaced. Deliveries can be
+marked as optional. In this case a user of the data delivery might ignore the delivery.
 Deliveries marked as mandatory have to be used.
 
 ## Automated Bulk Data Exchange
@@ -38,56 +38,57 @@ Queue authentication and encryption must use TLS version 1.2.
 
 ### AMPQ Header Parameter
 
-| Parameter | Usage |
-|---|---|
-| `message-id` |Technical id of the data transfer, not the data delivery id in the data.
-| `user-id` |  |
-| `to` | |
-| `subject` | „fare-data-delivery_“\<version\>
-| `reply-to` | N/A
-| `correlation-id` | N/A
-| `content-type` | `application/json`
-| `absolute-expiry-time` | 1 year ahead
-| `creation-time` | Time stamp when the data are put to the queue
-| `group-id` |
-| `group-sequence` | 
-| `reply-to-group-id` | |
+| Parameter              | Usage                                                                    |
+| ---------------------- | ------------------------------------------------------------------------ |
+| `message-id`           | Technical id of the data transfer, not the data delivery id in the data. |
+| `user-id`              |                                                                          |
+| `to`                   |                                                                          |
+| `subject`              | „fare-data-delivery\_“\<version\>                                        |
+| `reply-to`             | N/A                                                                      |
+| `correlation-id`       | N/A                                                                      |
+| `content-type`         | `application/json`                                                       |
+| `absolute-expiry-time` | 1 year ahead                                                             |
+| `creation-time`        | Time stamp when the data are put to the queue                            |
+| `group-id`             |
+| `group-sequence`       |
+| `reply-to-group-id`    |                                                                          |
 
 ## Asynchronous Fare Data Delivery
 
-The fare structure delivery is the bulk data object collecting the fare data `fareStructure` of a delivery and the delivery meta data `delivery`. 
-
+The fare structure delivery is the bulk data object collecting the fare data `fareStructure` of
+a delivery and the delivery meta data `delivery`.
 
 ![Data Structure for Bulk Data](../images/fare-data-structure/data-structure-for-bulk-data.png)
 
-
 ### Definition of a single fare
 
-The single fare represents the smallest unit to be integrated in an offer. Within the 
-offline data the fare collects the references to the constraints that need to be applied 
+The single fare represents the smallest unit to be integrated in an offer. Within the
+offline data the fare collects the references to the constraints that need to be applied
 and the price.
 
 ![Fare Structure](../images/fare-data-structure/fare-offline.png)
 
-Some constraints are bundled within the fare constraint bundle to avoid repeating the 
+Some constraints are bundled within the fare constraint bundle to avoid repeating the
 same data too many times:
 
 ![Fare Structure](../images/fare-data-structure/fare-bundle.png)
 
 ## Basic definitions included in the data delivery
 
-Basic definitions are provided within each data delivery. The basic definitions are 
+Basic definitions are provided within each data delivery. The basic definitions are
 included only once and are references within the data via their id.
 
 ### Calendar
 
-A data structure to define a calendar e.g. used in sales availability. 
+A data structure to define a calendar e.g. used in sales availability.
 
 ![Fare Structure](../images/fare-data-structure/calendar.png)
 
 ### Text
 
-All texts provided wit the data use the text data structure providing short and long texts and translations in different languages. To support legacy implementations and the conversation to the 108.1 specification additional texts without special characters can be defined.
+All texts provided wit the data use the text data structure providing short and long texts
+and translations in different languages. To support legacy implementations and the conversation
+to the 108.1 specification additional texts without special characters can be defined.
 
 ![Fare Structure](../images/fare-data-structure/text.png)
 
@@ -121,14 +122,14 @@ Connection points define the options to connect one fare with another fare a a p
 point is a real station the connection point is defined by a set including just that station. In case the fares
 are connected between two stations the connection point includes two sets each including the station on one
 side. There light be cases where a connection is possible between more than two stations, in this rare case the
-set(s) might contain more than one station (e.g. Stations *A* and *B* for carrier 1 are connected to stations
-*C* and *D* of carrier 2 and allowed route go via *A-C* or *B-D*).
+set(s) might contain more than one station (e.g. Stations _A_ and _B_ for carrier 1 are connected to stations
+_C_ and _D_ of carrier 2 and allowed route go via _A-C_ or _B-D_).
 
 ![Fare Structure](../images/fare-data-structure/connectionPoint.png)
 
 ### fare reference station set
 
-Fare reference station set defines a set of stations that can be used in a route. All station(s) of the set can 
+Fare reference station set defines a set of stations that can be used in a route. All station(s) of the set can
 be used by the traveler.
 
 ![Fare Structure](../images/fare-data-structure/fare-referenceStationSet.png)
@@ -151,7 +152,7 @@ sales constraint can be omitted in case the allocator is responsible for the aft
 
 ### Fare Carrier Constraint
 
-The carrier constraint defines the carriers that can be used. Either a list of the allowed carriers can be 
+The carrier constraint defines the carriers that can be used. Either a list of the allowed carriers can be
 provided or a list on excluded carriers. In the case of excluded carriers all carriers not listed can be used.
 
 The carrier constraint can be referenced by a fare via the id.
@@ -162,10 +163,11 @@ be specified either as exclusion list or alternatively as inclusion list.
 Carriers are specified by their Company code (RICS code).
 
 <!-- Figure 5 carrier constraint data structure (offline) -->
+
 ![Carrier Constraint Type](../images/common-data-structures/carrier-constraint-type.png)
 
-The included / excluded carriers are also part of the FCB barcode (*IRS 90918-4*) content and the ticket
-control data (*IRS 90918-9*).
+The included / excluded carriers are also part of the FCB barcode (_IRS 90918-4_) content and the ticket
+control data (_IRS 90918-9_).
 
 ![Fare Structure](../images/fare-data-structure/fare-carrierConstraint.png)
 
@@ -232,9 +234,9 @@ A reference to a calendar can be provided to indicate all sales dates.
 
 #### Data Constraint on SalesAvailability
 
-| Code | Description |
-|---|---|
-| `startOfSale`, `endOfSale` | `startOfSale` < `endOfSale`|
+| Code                       | Description                 |
+| -------------------------- | --------------------------- |
+| `startOfSale`, `endOfSale` | `startOfSale` < `endOfSale` |
 
 ### Fare Service Constraint
 
@@ -244,9 +246,9 @@ The service constraint defines restrictions to specific service brands. Either a
 
 #### Data Constraint on ServiceConstraint
 
-| Code | Description |
-|---|---|
-| `includedServiceBrands`, `excludedServiceBrands`| Only one of the lists can be used. Using both lists is forbidden. |
+| Code                                             | Description                                                       |
+| ------------------------------------------------ | ----------------------------------------------------------------- |
+| `includedServiceBrands`, `excludedServiceBrands` | Only one of the lists can be used. Using both lists is forbidden. |
 
 ### Fare Travel Validity Constraint
 
@@ -256,12 +258,11 @@ The travel validity defines the duration the traveler has to make his travel. Op
 
 #### Data Constraint on TravelValidity
 
-| Code | Description |
-|---|---|
-| `excludedTimeRange` | `from` time < `until` time
-| `numberOfTravelDays` | A duration must be provided
-| `returnConstraint` | `earliestReturn` < `latestReturn`
-
+| Code                 | Description                       |
+| -------------------- | --------------------------------- |
+| `excludedTimeRange`  | `from` time < `until` time        |
+| `numberOfTravelDays` | A duration must be provided       |
+| `returnConstraint`   | `earliestReturn` < `latestReturn` |
 
 #### Constraint on Trip Interruptions
 
@@ -270,7 +271,6 @@ The travel validity defines the duration the traveler has to make his travel. Op
 #### Constraint on Activation of Multi Journey Fares
 
 ![Fare Structure](../images/fare-data-structure/MultipleTripTicketAllocation.PNG)
-
 
 ## Data Supporting Online Services
 

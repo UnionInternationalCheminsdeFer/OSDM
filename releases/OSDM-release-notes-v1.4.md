@@ -60,5 +60,3 @@ Other work addressed includes:
 - Improving the API's description
 - Fixing minor inconsistencies
 - Incorporating feedback from the first implementors
-- Setting up a mock infrastructure as well as writing actual mocks
-

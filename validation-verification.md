@@ -4,8 +4,6 @@ title: Validation & Verification
 permalink: /validation-verification/
 ---
 
-*Note: to be released with version 1.2*
-
 ## Vision
 
 We are envisioning a level of compatibility of the OSDM implementations that allows to connect to each other with **no technical modification** needed on both parties end, thus neither for the provider nor the consumer.
@@ -36,11 +34,4 @@ We need an **independent entity** with the **right technical skills** to validat
 This entity is in charge to **maintain the test sets** needed for a party to test.
 
 This entity is also authorized to issue a **statement of compliance**.
-
-## Open tasks
-
-- Assign entity with the correct skills.
-- Order the entity to set up test sets and test automation. This will also imply having mocks.
-- Build a representative test set.
-  - *Proposal*: Every party shares their test set with all the parties.
   
