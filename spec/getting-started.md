@@ -30,7 +30,17 @@ A segment has all the stops as well as information on the vehicle running on thi
 
   To uniquely identify a location, stations etc. internally a code is used. Thus a helper service is provided that allows you to look up codes:
 
-  `GET places?matchValue=Basel`
+  `POST /places`
+
+  with a body
+
+  ```json
+  {
+    "placeInput": {
+      "name": "Basel"
+    }
+  }
+  ```
 
   As response, you get information on the location, e.g. its local name or its geo coordinates.
 
@@ -38,31 +48,15 @@ A segment has all the stops as well as information on the vehicle running on thi
     {
     "places": [
         {
-        "id": "8500010",
-        "abstract": "Basel SBB",
-        "station": {
-            "country": "ch",
-            "codes": [
-              {
-                "codeList": "UIC",
-                "code": "8500010"
-              }
-            ],
-            "geoCoordinate": {
-                "latitude": 47.547408,
-                "longitude": 7.589548
-            },
-            "names": [
-              {
-                "language": "de",
-                "text": "Basel SBB"
-              },
-              {
-                "language": "fr",
-                "text": "Bâle SBB"
-              }
-            ]
-         }
+        "id": "place-1",
+        "name": "Basel SBB",
+        "stopPlace": {
+            "ref": "urn:uic:stn:8503000",
+            "name": "Basel SBB"
+        },
+        "geoPosition": {
+            "latitude": 47.547408,
+            "longitude": 7.589548
         }
      ]
     }
@@ -72,7 +66,8 @@ A segment has all the stops as well as information on the vehicle running on thi
 
 - Step 2: Request Offers
 
-    Next, the simplest way to receive offers is to pass in *origin*, *destination*, *date* and *time* as well as the *passenger's* date of birth by calling.
+    Next, the simplest way to receive offers is to pass in *origin*, *destination*, *departureTime* as well as the *passenger's* date of birth by calling. The birth date
+    is necessary to return e.g. senior fares where sensible.
 
     `POST /trips-offers-collection`
 
@@ -81,18 +76,9 @@ A segment has all the stops as well as information on the vehicle running on thi
     ```json
     {
         "tripSearchCriteria": {
-            "origin": {
-                "codeList": "UIC",
-                "code": "8500010"
-            },
-            "destination": {
-                "codeList": "UIC",
-                "code": "8509000"
-            },
-            "travelDateTime": {
-                "dateTime": "<departure_timestamp>",
-                "isArrival": false
-            }
+            "origin": "urn:uic:stn:8500010",
+            "destination": "urn:uic:stn:8503000",
+            "departureTime": "<departure_timestamp>",
         },
         "passengers": [
             {
@@ -265,9 +251,9 @@ A segment has all the stops as well as information on the vehicle running on thi
 
     ```json
     {
-        "selectedOffers": [
+        "offers": [
             {
-                "selectedOfferId": "<selected_offer_id>",
+                "offerId": "<selected_offer_id>",
                 "passengers": [
                     "<passenger_id>"
                 ]
@@ -394,10 +380,10 @@ with a body of
 
 ```json
 {
-    "selectedOffers": [
+    "offers": [
         {
-            "selectedOfferId": "<selected_offer_id>",
-            "selectedOptionalReservationIds": [
+            "offerId": "<selected_offer_id>",
+            "optionalReservationIds": [
                 "<selected_reservation_id>"
             ],
             "passengers": [
@@ -443,13 +429,13 @@ Additionally, on this train there are ancillary services available. You can choo
 
 ```json
 {
-    "selectedOffers": [
+    "offers": [
         {
-            "selectedOfferId": "<selected_offer_id>",
-            "selectedOptionalReservationIds": [
+            "offerId": "<selected_offer_id>",
+            "optionalReservationIds": [
                 "<selected_reservation_id>"
             ],
-            "selectedOptionalAncillaryIds": [
+            "optionalAncillaryIds": [
                 "<selected_ancillary_id>"
             ],
             "passengers": [
@@ -530,11 +516,11 @@ The way they are modelled in OSDM are as *admission* with an *included reservati
 
 The availability on a given train is bound to the products available on the train. I.e. the number of available bike reservations on a train is expressed on the offers of type "Bike Reservation" by the attribute `"numericAvailability": 23`. If no bike reservation places are available, no offer of this type is returned.
 
-This feature is optional to support by implementors, some railways decide not give insight into the numeric availability of product (especially super saver fares) on there trains.
+This feature is optional to support by implementors, some railways decide not give insight into the numeric availability of product (especially super saver fares) on their trains.
 
 ### When to pass in which passenger attributes?
 
-We take special care not to violate a passengers personal rights and build in privacy by design. Thus we collect as few information as possible at every step, i.e. only the attributes absolutely necessary to fulfill the operation are gathered. To indicate which information is needed there is a `requestedInformation` attribute which express the information needed expressed in small DSL for [requested information](https://unioninternationalcheminsdefer.github.io/OSDM/spec/requested-information-grammar.html).
+We take special care not to violate passenger personal rights and build in privacy by design. Thus we collect as few information as possible at every step, i.e. only the attributes absolutely necessary to fulfill the operation are gathered. To indicate which information is needed there is a `requestedInformation` attribute which express the information needed expressed in small DSL for [requested information](https://unioninternationalcheminsdefer.github.io/OSDM/spec/requested-information-grammar.html).
 
 ## Advanced Topics
 
@@ -544,10 +530,10 @@ The easiest option is to book a place near to a given place:
 
 ```json
 {
-    "selectedOffers": [
+    "offers": [
         {
-            "selectedOfferId": "<selected_offer_id>",
-            "selectedOptionalReservationIds": [
+            "offerId": "<selected_offer_id>",
+            "optionalReservationIds": [
                 "<selected_reservation_id>"
             ],
             "passengers": [
@@ -570,19 +556,19 @@ Another option is to express seating wishes of a passenger such as at the window
 
 ```json
 {
-    "selectedOffers": [
+    "offers": [
         {
-            "selectedOfferId": "<selected_offer_id>",
-            "selectedOptionalReservationIds": [
+            "offerId": "<selected_offer_id>",
+            "optionalReservationIds": [
                 "<selected_reservation_id>"
             ],
             "passengers": [
                 "<passenger_id>"
             ],
-            "selectedOptions": [
+            "placeSelections": [
                 {
                     "passengerId": "<passenger_id>", 
-                    "selectedPlaceProperties": [ 
+                    "placeProperties": [ 
                         "WINDOW", 
                         "FAMILY"
                     ]
@@ -597,19 +583,19 @@ Or if you have unique seat chosen via a graphical seat reservation (see below) y
 
 ```json
 {
-    "selectedOffers": [
+    "offers": [
         {
-            "selectedOfferId": "<selected_offer_id>",
-            "selectedOptionalReservationIds": [
+            "offerId": "<selected_offer_id>",
+            "optionalReservationIds": [
                 "<selected_reservation_id>"
             ],
             "passengers": [
                 "<passenger_id>"
             ],
-            "selectedCoaches": [
+            "coaches": [
                 {
                     "coachNumber": "2",
-                    "selectedPlaces": [
+                    "places": [
                         {
                             "passengerId": "<passenger_id>",
                             "placeNumber": "2"
