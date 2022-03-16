@@ -123,7 +123,7 @@ A segment has all the stops as well as information on the vehicle running on thi
     ```json
       {
         "id": "O_72g..",
-        "objectType": "Offer",
+        "offerType": "Offer",
         "offerSummary": {
             "minimalPrice": {
                 "currency": "CHF",
@@ -136,8 +136,8 @@ A segment has all the stops as well as information on the vehicle running on thi
             "overallFlexibility": "FULLFLEX"
         },
         "isReusable": true,
-        "coveredSegmentIndexes": [
-            0
+        "coveredLegIds": [
+            "leg-1"
         ],
         "availableFulfillmentTypes": [
             "ETICKET"
@@ -255,9 +255,11 @@ A segment has all the stops as well as information on the vehicle running on thi
     {
         "offers": [
             {
-                "offerId": "<selected_offer_id>",
+                "id": "<selected_offer_id>",
                 "passengers": [
-                    "<passenger_id>"
+                    {
+                     "id": "<passenger_id>"
+                    }
                 ]
             }
         ]
@@ -401,18 +403,21 @@ As you can see, in the most simple case you just have to add the id of the selec
 ```json
 {
     "booking": {
-      "bookedOffer": {
+      "bookedOffers": {
+        "id": "offer-1",
         "reservations": [
-            "reservationDetails": {
-              "accommodationType": "SEAT",
-              "reservedPlaces": [
-                {
-                  "id": "S_7H5nJ5IEwipH4dvV2UNBRQ==",
-                  "vehicle": "IC 565",
-                  "coach": "3",
-                  "places": "25"
+            {
+                "reservationDetails": {
+                "accommodationType": "SEAT",
+                "reservedPlaces": [
+                    {
+                    "id": "S_7H5nJ5IEwipH4dvV2UNBRQ==",
+                    "vehicle": "IC 565",
+                    "coach": "3",
+                    "places": "25"
+                    }
+                ]
                 }
-              ]
             }
         ]
         ..
