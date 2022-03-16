@@ -17,7 +17,7 @@ processes.md \
 getting-started.md \
 non-functional-requirements.md \
 catalog-of-code-lists.md \
-errors-warnings.md
+errors-warnings.md \
 pagination.md \
 synchronization.md \
 compliance.md \

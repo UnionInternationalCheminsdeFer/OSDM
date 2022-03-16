@@ -130,7 +130,7 @@ _C_ and _D_ of carrier 2 and allowed route go via _A-C_ or _B-D_).
 ### fare reference station set
 
 Fare reference station set defines a set of stations that can be used in a route. All station(s) of the set can
-be used by the traveler.
+be used by the passenger.
 
 ![Fare Structure](../images/fare-data-structure/fare-referenceStationSet.png)
 
@@ -252,7 +252,7 @@ The service constraint defines restrictions to specific service brands. Either a
 
 ### Fare Travel Validity Constraint
 
-The travel validity defines the duration the traveler has to make his travel. Optional time slots (e.g. peak hours) can be excluded.
+The travel validity defines the duration the passenger has to make his travel. Optional time slots (e.g. peak hours) can be excluded.
 
 ![Fare Structure](../images/fare-data-structure/travelValidity.png)
 

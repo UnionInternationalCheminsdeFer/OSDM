@@ -57,7 +57,7 @@ This feature on the OSDM offline part of the specification allow to indicate Car
 
 ### Travel Validity Depending on Boarding Time O:nly
 
-Some special tickets define a travel validity based on the boarding time only. These tickets are the valid on that train until the traveler leaves the train.
+Some special tickets define a travel validity based on the boarding time only. These tickets are the valid on that train until the passenger leaves the train.
 
 E.g. Eurail tickets on specific night trains where the Eurail ticket must be valid at boarding time only and the passenger can stay on the train until his destination on the next day.
 

@@ -759,7 +759,7 @@ These are the required information needed per process step for major parties
 | Distributor | Pre-booking Step | Booking Step | Fulfillment Step |
 |---|---|---|---|
 | **Bene** | | `firstName` and `lastName` ||
-| **DB** | In general one `firstName` and `name`, regardless of the number of travelers. In case of regional trains, however, all names and sur names are needed, unless printed on security paper. ||
+| **DB** | In general one `firstName` and `name`, regardless of the number of passengers. In case of regional trains, however, all names and sur names are needed, unless printed on security paper. ||
 | **öBB** | Both `firstName` and `lastName` are needed. Birth date may be needed. Some reduction cards require the number to be provided at pre-booking time, in order to be pre-checked. In other cases, the cards are simply checked on-board `phoneNumber` or `eMail` (once per order - as contact information) | `phoneNumber` or `eMail` (once per order - as contact information)|
 | **RENFE** | Per passenger: `firstName`, `lastName`, surname document type and identity document (DNI, NIE or passport). A `phoneNumber` or  `eMail`. | Per passenger: `firstName`, `lastName`, surname document type and Identity document.  (DNI, NIE or passport) A `phoneNumber` or `eMail`. |
 | **SBB** | Per passenger: `name` and `first name` date of birth. Additional sales parameters for some, additional products || `eMail` |
@@ -796,28 +796,24 @@ potential refund fee, etc (see the model for more details).
 
 ![Confirm a Refund Offer](../images/processes/seq-fulfillment-process.png)
 
-
 ### Complaints
 
-Complaints can be provided on behalf of a traveler. Complaints might concern a delay 
-of a train or a service degradation on the journey. The handling of complaints is subject 
-to the EU PRR and COTIV where minimal compensation amounts and time lines for the decision 
-of a claim are defined. According to PRR the customer can decide whether he wants to 
+Complaints can be provided on behalf of a passenger. Complaints might concern a delay
+of a train or a service degradation on the journey. The handling of complaints is subject
+to the EU PRR and COTIV where minimal compensation amounts and time lines for the decision
+of a claim are defined. According to PRR the customer can decide whether he wants to
 be compensated by money or would accept vouchers.  
 
-The handling of a claim is an asynchronous process, where the claim is placed and decided 
-by the carriers/fare provides involved later-on. 
+The handling of a claim is an asynchronous process, where the claim is placed and decided
+by the carriers/fare provides involved later-on.
   
-
 ![Complaint](../images/processes/seq-complaintManagement1_puml.png)
 
-As the allocator is usually involved 
-as a carrier and then responsible to keep the legal time lines he can decide to compensate 
-and inform the fare provides/carriers on his decision if the time line would otherwise 
-can not be held:
+As the allocator is usually involved as a carrier and then responsible to keep the legal
+time lines he can decide to compensate and inform the fare provides/carriers on his decision
+if the time line would otherwise can not be held.
 
 ![Complaint](../images/processes/seq-complaintManagement2_puml.png)
-
 
 ## Example End-to-end Interaction
 
