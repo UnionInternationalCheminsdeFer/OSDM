@@ -21,8 +21,8 @@
       link: spec/processes/
     - name: Pagination
       link: spec/pagination/ 
-    - name: Synchronization Management
-      link: spec/synchronization-management/
+    - name: Synchronization
+      link: spec/synchronization/
     - name: Errors & Warnings
       link: spec/errors-warnings/
     - name: Catalog of Code Lists

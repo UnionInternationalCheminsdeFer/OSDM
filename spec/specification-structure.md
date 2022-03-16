@@ -27,7 +27,7 @@ is explained in this documents:
 - [Processes](./processes/)
 - [Pagination](./pagination/)
 - [Errors & Warnings](./errors-warnings/)
-- [Synchronization Management](./synchronization-management/)
+- [Synchronization](./synchronization/)
 
 ## Catalog of Code Lists
 

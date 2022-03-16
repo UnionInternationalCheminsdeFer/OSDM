@@ -9,11 +9,17 @@ permalink: /releases/OSDM-release-notes-v1.4/
 
 The following features have been added with version 1.4 of OSDM.
 
-### Booking Synchronization Management
+### Booking Synchronization
 
 If there is change in a trip or a booking, we have added an API that a carrier/allocator system can inform a distributor about that fact, that a trip or a booking has changed. The distributor can then itself inform a passenger or the buyer e.g. a travel agency about changes to its booking.
 
-The API consists of a set of **webhooks** that allow to send **events** about changes which involve e.g. *trip cancelled*, *booking cancelled* or *seat changed*. See [Booking Synchronization Management](../spec/booking-synchronization-management) for details.
+The API consists of a set of **webhooks** that allow to send **events** about changes which involve e.g. *trip cancelled*, *booking cancelled* or *seat changed*. See [Booking Synchronization](../spec/synchronization) for details.
+
+### Added A Getting Started Tutorial
+
+The OSDM API is feature rich. The reason for it's richness is that OSDM aims to cover all possible public transportation products and distribution processes within Europe and beyond.
+
+Nevertheless the complete booking flow consist of **three simple REST calls** only, same for refund. To help you getting started we have added a [Getting Starded Tutorial](../spec/getting-started) that gets you up to speed in no time.
 
 ### Added Support for Paperless Complaint Management
 
