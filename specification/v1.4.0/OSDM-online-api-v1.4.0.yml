@@ -2819,7 +2819,7 @@ components:
             the name of the resulting place objects is not relevant.
           type: string
           example: "Bern Bärengraben"
-        geoCoordinate:
+        geoPosition:
           $ref: "#/components/schemas/GeoPosition"
     #         - $ref: "#/components/schemas/GeoRestriction"   # Out of scope
     #         - $ref: "#/components/schemas/AllowedSystemId"    # Out of scope
@@ -3939,7 +3939,7 @@ components:
       required:
         - id
         # - name  ## EXT
-        # - geoCoordinate  ## EXT
+        # - geoPosition  ## EXT
       properties:
         id:
           type: string
@@ -3961,7 +3961,7 @@ components:
         #  - $ref: "#/components/schemas/TopographicPlaceStructure"  # Out of scope
         connectionPoint: # EXT OSDM extension for virtual border points
           $ref: "#/components/schemas/FareConnectionPoint"
-        geoCoordinate:
+        geoPosition:
           $ref: "#/components/schemas/GeoPosition"
         #  attribute:   # Out of scope
         #   $ref: "#/components/schemas/GeneralAttribute"
