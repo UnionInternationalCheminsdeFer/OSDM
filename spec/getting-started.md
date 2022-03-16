@@ -80,8 +80,9 @@ A segment has all the stops as well as information on the vehicle running on thi
             "destination": "urn:uic:stn:8503000",
             "departureTime": "<departure_timestamp>",
         },
-        "passengers": [
+        "passengerSpecification": [
             {
+                "type": "PERSON",
                 "dateOfBirth": "1970-01-01"
             }
         ],
