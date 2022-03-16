@@ -2849,23 +2849,7 @@ components:
             Specifies the destination situation where the user is heading to.
           $ref: "#/components/schemas/PlaceRef"
         requestedSection: # EXT Indicates sub part of trip that is requested to price.
-          description: >-
-            Indicates the sub-part of the trip that is requested to price. When absent, the totality of the trip is 
-            requested for pricing.
-          type: object
-          properties:
-            start:
-              description: >-
-                Start of the sub-trip to price, expressed as a reference to a stop place or a fare connection point.
-              oneOf:
-                - $ref: "#/components/schemas/StopPlaceRef"
-                - $ref: "#/components/schemas/FareConnectionPoint"
-            end:
-              description: >-
-                End of the sub-trip to price, expressed as a reference to a stop place or a fare connection point.
-              oneOf:
-                - $ref: "#/components/schemas/StopPlaceRef"
-                - $ref: "#/components/schemas/FareConnectionPoint"
+          $ref: "#/components/schemas/Section"
         via:
           description: >-
             Ordered series of points where the journey must pass through. If more
@@ -5088,62 +5072,6 @@ components:
           items:
             $ref: "#/components/schemas/Link"
 
-    OfferSelection:
-      type: object
-      required:
-        - offerId
-      properties:
-        offerId:
-          type: string
-          description: id of the selected offer or exchangeOffer
-        afterSaleByDistributorOnly:
-          description: >-
-            in case the distributor has proposed this offer in conjunction with an offer of another provider constrained
-            by a combinationTag, this flag must be set to true to indicate to the provider that after-sale must be done 
-            on the totality of the distributor's booking. Only after-sale requests triggered by the distributor can be 
-            safely processed on this offer. When the flag is not set, standard provider logic applies.
-          type: boolean
-          default: false
-        throughTicketTag:
-          description: >-
-            in case the carriage contracts represented by this offer have been grouped with carriage contracts from other
-            providers by the distributor. The same throughTicketTag that was used to perform the grouping can be specified here.
-          type: string
-        optionalReservationIds:
-          type: array
-          items:
-            type: string
-            description: >-
-              If relevant, ids of the selected optional reservations.
-        optionalAncillaryIds:
-          type: array
-          items:
-            type: object
-            properties:
-              ancillaryId:
-                type: string
-                description: >-
-                  If relevant, ids of the selected optional ancillaries.
-              passengerIds:
-                type: array
-                items:
-                  type: string
-                  description: >-
-                    Id of the passengers the selected optional ancillaries are for.
-        passengers:
-          type: array
-          items:
-            $ref: "#/components/schemas/Passenger"
-          description: >-
-            If needed (cf requiredInformation) or desired, this array allows providing the required details on some or all passengers
-        placeSelections:
-          type: object
-          properties:
-            reservationId:
-              type: string
-            placeSelection:
-              $ref: "#/components/schemas/SelectedPlaceOption"
-
     BookingRequest:
       type: object
       required:
@@ -5178,6 +5106,62 @@ components:
               - NONE
           default: [ALL]
           maxItems: 6
+
+    OfferSelection:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          description: id of the selected offer or exchangeOffer
+        optionalReservationIds:
+          type: array
+          items:
+            type: string
+            description: >-
+              If relevant, ids of the selected optional reservations.
+        optionalAncillaryIds:
+          type: array
+          items:
+            type: object
+            properties:
+              ancillaryId:
+                type: string
+                description: >-
+                  If relevant, ids of the selected optional ancillaries.
+              passengerIds:
+                type: array
+                items:
+                  type: string
+                  description: >-
+                    Id of the passengers the selected optional ancillaries are for.
+        passengers:
+          type: array
+          items:
+            $ref: "#/components/schemas/Passenger"
+          description: >-
+            If needed (cf requiredInformation) or desired, this array allows providing the required details on some or all passengers
+        placeSelections:
+          type: object
+          properties:
+            reservationId:
+              type: string
+            placeSelection:
+              $ref: "#/components/schemas/SelectedPlaceOption"
+        afterSaleByDistributorOnly:
+          description: >-
+            in case the distributor has proposed this offer in conjunction with an offer of another provider constrained
+            by a combinationTag, this flag must be set to true to indicate to the provider that after-sale must be done 
+            on the totality of the distributor's booking. Only after-sale requests triggered by the distributor can be 
+            safely processed on this offer. When the flag is not set, standard provider logic applies.
+          type: boolean
+          default: false
+        throughTicketTag:
+          description: >-
+            in case the carriage contracts represented by this offer have been grouped with carriage contracts from other
+            providers by the distributor. The same throughTicketTag that was used to perform the grouping can be specified here.
+          type: string
 
     BookingResponse:
       type: object
@@ -6674,21 +6658,7 @@ components:
           description: >-
             The section of the fare that is covered by the fare. The leg id allows 
             to uniquely identify a place if it is passed through several times.
-          type: object
-          required:
-            - startPlace
-            - startLegId
-            - endPlace
-            - endLegId
-          properties:
-            startPlace:
-              $ref: "#/components/schemas/Place"
-            startLegId:
-              type: string
-            endPlace:
-              $ref: "#/components/schemas/Place"
-            endLegId:
-              type: string
+          $ref: "#/components/schemas/Section"
         passengerConstraints:
           description: >-
             passenger constraint to be included in bar codes
@@ -7270,6 +7240,21 @@ components:
       example: 47.37818
       minimum: -90.0
       maximum: 90.0
+
+    Section:
+      type: object
+      description: >-
+        Allows to indicate the sub-part of the trip. LegIds are only relevant if
+        a trip can be referenced. When absent, the totality of the trip is priced.
+      properties:
+        startPlace:
+          $ref: "#/components/schemas/PlaceRef"
+        startLegId:
+          type: string
+        endPlace:
+          $ref: "#/components/schemas/PlaceRef"
+        endLegId:
+          type: string
 
     Link:
       type: object
