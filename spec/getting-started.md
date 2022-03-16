@@ -123,6 +123,7 @@ A segment has all the stops as well as information on the vehicle running on thi
     ```json
       {
         "id": "O_72g..",
+        "objectType": "Offer",
         "offerSummary": {
             "minimalPrice": {
                 "currency": "CHF",
