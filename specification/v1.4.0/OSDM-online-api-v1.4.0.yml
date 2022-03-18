@@ -4132,13 +4132,15 @@ components:
         - $ref: "#/components/schemas/TopographicPlaceRef"
         - $ref: "#/components/schemas/PointOfInterestRef"
         - $ref: "#/components/schemas/AddressRef"
-        - $ref: "#/components/schemas/FareConnectionPoint"
-        - $ref: "#/components/schemas/GeoPosition"
       required:
         - name
       properties:
         name:
           type: string
+        fareConnectionPoint:
+          $ref: "#/components/schemas/FareConnectionPoint"
+        position:
+          $ref: "#/components/schemas/GeoPosition"
 
     StopPlaceRef: ## OJP
       type: string
