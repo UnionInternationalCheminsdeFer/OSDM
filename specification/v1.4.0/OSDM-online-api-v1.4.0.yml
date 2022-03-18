@@ -7019,16 +7019,16 @@ components:
     ViaStations:
       type: object
       properties:
-        alternativeRoute:
-          type: array
-          items:
-            $ref: "#/components/schemas/ViaStations"
+        # alternativeRoute:
+        #   type: array
+        #   items:
+        #     $ref: "#/components/schemas/ViaStations"
         carrierConstraint:
           $ref: "#/components/schemas/CarrierConstraint"
-        route:
-          type: array
-          items:
-            $ref: "#/components/schemas/ViaStations"
+        # route:
+        #   type: array
+        #   items:
+        #     $ref: "#/components/schemas/ViaStations"
         serviceConstraint:
           $ref: "#/components/schemas/ServiceConstraint"
         station:
