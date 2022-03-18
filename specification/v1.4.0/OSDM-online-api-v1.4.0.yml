@@ -3271,11 +3271,11 @@ components:
             start date to end date. A bit value of "1" indicates that an event
             actually happens on the day that is represented by the bit position.
 
-    TripLeg: ## OJP  # Reduced scope
+    TripLeg: ## OJP
       type: object
       description: >-
-        A single stage of a trip that is made without change of MODE or service (ie: between each interchange).
-        Provided by OJP.
+        A single stage of a trip that is made without change of MODE or service (ie: 
+        between each interchange). Provided by OJP.
       required:
         - id ## EXT replaces legId, fix to OJP submitted, see https://github.com/VDVde/OJP/issues/181
       properties:
@@ -3292,8 +3292,7 @@ components:
     TripLegSpecification:
       type: object
       description: >-
-        A minimal trip leg specification consisting of timed and transfer legs only. 
-        Continuous legs are not yet part of this version of the specification-
+        A minimal trip leg specification.
       required:
         - externalRef
       properties:
@@ -3313,8 +3312,8 @@ components:
       description: >-
         A leg which is bound to a timetabled schedule. Corresponds to a ride. Provided by OJP.
       required:
-        - start # EXT alight renamed to start
-        - end # EXT board renamed to end
+        - start # EXT legBoard renamed to start
+        - end # EXT legAlight renamed to end
         - service
       properties:
         start:
@@ -3350,8 +3349,8 @@ components:
       description: >-
         A minimal timed leg specification.
       required:
-        - start # EXT renamed to start
-        - end # EXT renamed to board
+        - start # EXT legBoard renamed to start
+        - end # EXT legAlight renamed to board
         - service
       properties:
         start:
@@ -3371,8 +3370,8 @@ components:
         A leg which links other legs of a trip where a transfer between different places is required. 
         Provided by OJP.
       required:
-        - start # EXT renamed legStart
-        - end # EXT renamed legEnd
+        - start # EXT legStart renamed to start
+        - end # EXT legEnd renamed to end
       properties:
         continuousMode:
           $ref: "#/components/schemas/ContinuousMode"
@@ -3382,7 +3381,7 @@ components:
           description: Stop/Station to board.
           $ref: "#/components/schemas/PlaceRef"
         end:
-          description: Stop/Station to alight
+          description: Stop/Station to alight.
           $ref: "#/components/schemas/PlaceRef"
         timeWindowStart: # Inlined from TimeWindow
           description: Time at which window begins.
@@ -3427,15 +3426,15 @@ components:
       description: >-
         A leg of a journey that is not bound to a timetable. Provided by OJP.
       required:
-        - start
-        - end
+        - start # EXT legStart renamed to start
+        - end # EXT legEnd renamed to end
         - service
       properties:
         start:
-          description: Stop/Station where boarding is done
+          description: Stop/Station to board.
           $ref: "#/components/schemas/Place"
         end:
-          description: Stop/Station to alight
+          description: Stop/Station to alight.
           $ref: "#/components/schemas/Place"
         service:
           $ref: "#/components/schemas/ContinuousService"
