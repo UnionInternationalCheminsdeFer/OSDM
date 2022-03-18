@@ -3415,8 +3415,6 @@ components:
         # length:  # Out of scope
         #   type: number
         #   minimum: 0
-        # attribute:  # Out of scope
-        #   $ref: "#/components/schemas/GeneralAttribute"
         # pathGuidance:  # Out of scope
         #   $ref: "#/components/schemas/PathGuidance"
         situationFullRef:
@@ -3918,7 +3916,7 @@ components:
       #  - $ref: "#/components/schemas/StopPlace"
       #  - $ref: "#/components/schemas/StopPointStructure"  # Out of scope
       #  - $ref: "#/components/schemas/TopographicPlaceStructure"  # Out of scope
-      #- $ref: "#/components/schemas/FareConnectionPoint # EXT OSDM extension
+      #  - $ref: "#/components/schemas/FareConnectionPoint # EXT OSDM extension
       #- $ref: "#/components/schemas/GeoPosition"
       required:
         - id
@@ -3943,14 +3941,10 @@ components:
         #  - $ref: "#/components/schemas/StopPointStructure"  # Out of scope
         # topographicPlace:
         #  - $ref: "#/components/schemas/TopographicPlaceStructure"  # Out of scope
-        connectionPoint: # EXT OSDM extension for virtual border points
+        fareConnectionPoint: # EXT OSDM extension for virtual border points
           $ref: "#/components/schemas/FareConnectionPoint"
         geoPosition:
           $ref: "#/components/schemas/GeoPosition"
-        #  attribute:   # Out of scope
-        #   $ref: "#/components/schemas/GeneralAttribute"
-        #  extension:   # Out of scope
-        #   $ref: "#/components/schemas/Extension"
         _links:
           $ref: "#/components/schemas/Link"
 
@@ -4127,39 +4121,80 @@ components:
         # - $ref: "#/components/schemas/StopAttributes" # Out of scope
 
     PlaceRef: ### OJP
-      oneOf: #do we really need a oneOf here, considering all these refs are in the end just a string ?
+      oneOf:
         - $ref: "#/components/schemas/StopPlaceRef"
-        - $ref: "#/components/schemas/TopographicPlaceRef"
         - $ref: "#/components/schemas/PointOfInterestRef"
         - $ref: "#/components/schemas/AddressRef"
-      required:
-        - name
-      properties:
-        name:
-          type: string
-        fareConnectionPoint:
-          $ref: "#/components/schemas/FareConnectionPoint"
-        position:
-          $ref: "#/components/schemas/GeoPosition"
+        - $ref: "#/components/schemas/FareConnectionPointRef"
+        - $ref: "#/components/schemas/GeoPosition"
+      discriminator:
+        propertyName: placeRefType
 
     StopPlaceRef: ## OJP
-      type: string
+      type: object
       description: >-
         Reference to a Stop Place using URNs to define code.
         For UIC see UIC MERITS/TAP-TSI station codes. Provided by OJP.
-      example: urn:uic:stn:8503000
+      required:
+        - stopPlaceRef
+      properties:
+        placeRefType:
+          type: string
+          enum:
+            - stopPlaceRef
+        stopPlaceRef:
+          type: string
+          example: urn:uic:stn:8503000
+        name:
+          type: string
 
     PointOfInterestRef: ## OJP
-      type: string
-      description: Reference to a Point of Interest
-
-    TopographicPlaceRef: ## OJP
-      type: string
-      description: Reference to a Topographic Place
+      type: object
+      description: >-
+        Reference to a Point of Interest. Provided by OJP.
+      required:
+        - pointOfInterestRef
+      properties:
+        placeRefType:
+          type: string
+          enum:
+            - pointOfInterestRef
+        pointOfInterestRef:
+          type: string
+        name:
+          type: string
 
     AddressRef: ## OJP
-      type: string
-      description: Reference to an Address
+      type: object
+      description: >-
+        Reference to an Address.
+      required:
+        - addressRef
+      properties:
+        placeRefType:
+          type: string
+          enum:
+            - addressRef
+        addressRef:
+          type: string
+        name:
+          type: string
+
+    FareConnectionPointRef:
+      type: object
+      description: >-
+        Reference to a Fare Connection Point.
+      required:
+        - fareConnectionPoint
+      properties:
+        placeRefType:
+          type: string
+          enum:
+            - fareConnectionPointRef
+        fareConnectionPoint:
+          $ref: "#/components/schemas/FareConnectionPoint"
+        name:
+          type: string
 
     ProductCategoryRef: ## OJP
       description: >-
@@ -4444,18 +4479,21 @@ components:
 
     Offer:
       description: >-
-        The attribute 'offerSummary' is meaningful at trip-offer-collection response time only.
+        An offer for a given leg or trip.
       type: object
+      required:
+        - id
+        - offerType
       properties:
+        id:
+          type: string
         offerType:
           type: string
           enum:
             - Offer
-        id:
-          type: string
         abstract:
           type: string
-          description: A human-readable description of the fulfillment.
+          description: A human-readable description of the Offer.
           example: Bruxelles-Midi - Paris-Nord 2022-07-01 10:05 CET, Normal Fare, 50 €
         offerSummary:
           $ref: "#/components/schemas/OfferSummary"
@@ -4556,9 +4594,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
-      required:
-        - id
-        - offerType
 
     BookedOffer:
       description: >-
@@ -5823,7 +5858,7 @@ components:
     NonTripOffer:
       type: object
       description: >-
-        Non trip offers do not reference a trip, thus no reservations can be offered by definition.
+        Non trip offers do not reference a trip. E.g., a day pass or a reduction card.
       required:
         - id
         - offerType
@@ -7218,6 +7253,10 @@ components:
         - latitude
         - longitude
       properties:
+        placeRefType:
+          type: string
+          enum:
+            - stopPlaceRef
         longitude:
           $ref: "#/components/schemas/Longitude"
         latitude:
