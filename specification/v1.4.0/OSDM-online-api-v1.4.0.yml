@@ -3350,17 +3350,17 @@ components:
       description: >-
         A minimal timed leg specification.
       required:
-        - alight # EXT renamed timedAlight
-        - board # EXT renamed timedBoard
+        - start # EXT renamed to start
+        - end # EXT renamed to board
         - service
       properties:
-        board:
+        start:
           $ref: "#/components/schemas/LegBoardSpecification"
         intermediates:
           type: array
           items:
             $ref: "#/components/schemas/LegIntermediateSpecification"
-        alight:
+        end:
           $ref: "#/components/schemas/LegAlightSpecification"
         service:
           $ref: "#/components/schemas/DatedJourney"
