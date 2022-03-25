@@ -5114,7 +5114,7 @@ components:
         - offers
       properties:
         purchaser:
-          $ref: "#/components/schemas/Purchaser"
+          $ref: "#/components/schemas/PurchaserSpecification"
         offers:
           type: array
           items:
@@ -7846,6 +7846,21 @@ components:
           $ref: "#/components/schemas/PersonDetail"
         _links:
           $ref: "#/components/schemas/Link"
+    
+    PurchaserSpecification:
+      type: object
+      description: Minimal specification of a purchaser to request booking of an offer.
+      required:
+        - details
+      properties:
+        externalRef:
+          description: >-
+            A stable reference to a purchaser from other elements, or from caller system.
+            When received in input of a trip-offers-collection request, it must be echoed back in the
+            response.
+          type: string
+        details:
+          $ref: "#/components/schemas/PersonDetail"
 
     PassengerResponse:
       type: object
