@@ -1709,7 +1709,7 @@ paths:
       tags:
         - Fulfillments
       summary: Finalizes the fulfillments and returns the documents.
-      operationId: patchFulfillment
+      operationId: patchFulfillments
       parameters:
         - $ref: "#/components/parameters/acceptLanguage"
         - $ref: "#/components/parameters/idempotencyKey"
@@ -1804,6 +1804,64 @@ paths:
           description: Not implemented
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
+          
+    patch:
+      tags:
+        - Fulfillments
+      summary: Finalizes the fulfillment for usage and returns the documents.
+      operationId: patchFulfillment
+      parameters:
+        - $ref: "#/components/parameters/acceptLanguage"
+        - $ref: "#/components/parameters/idempotencyKey"
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
+        - in: path
+          name: fulfillmentId
+          schema:
+            type: string
+          required: true
+          description: id of the fulfillment to get.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FulfillmentPatch"
+      responses:
+        "200":
+          description: >-
+            Fulfillment successfully completed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FulfillmentsResponse"
+        "202":
+          description: >-
+            Fulfillment successfully initiated, retrieve booking to retrieve the fulfillment documents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  warnings:
+                    $ref: "#/components/schemas/WarningCollection"
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "409":
+          $ref: "#/components/responses/ConflictResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"          
+          
+          
 
   /bookings/{bookingId}/refundOffers:
     post:
@@ -5340,6 +5398,35 @@ components:
               fulfilledFulfillmentId:
                 type: string
 
+    FulfillmentPatch:
+      type: object
+      description: >-
+         an available fulfillment to status USABLE.
+      properties:
+        usage:
+          $ref: "#/components/schemas/FulfillmentUsage"
+                
+    FulfillmentUsage:             
+      type: object
+      description: >-
+         change an available fulfillment by adding the parameters for the usage to status FULFILLED.    
+      properties:
+        startOfUsage:
+          type: string
+          format: date-time
+        travelDates:
+          type: array
+          items:
+            type: string
+            format: date
+        fromPlace:
+          $ref: "#/components/schemas/PlaceRef"
+        selectedZoneIds:
+          type: array
+          items:
+            type: string
+                
+
     FulfillmentsResponse:
       type: object
       properties:
@@ -5377,6 +5464,8 @@ components:
           example: e-ticket 12345
         status:
           $ref: "#/components/schemas/FulfillmentStatus"
+        availableUsage:
+          $ref: "#/components/schemas/AvailableFulfillmentUsage"
         controlNumber:
           type: string
           description: Ticket Control Number.
@@ -5399,10 +5488,68 @@ components:
           items:
             $ref: "#/components/schemas/Link"
 
+    AvailableFulfillmentUsage:
+        description: >- 
+          parameters to be used to change the status of a fulfillment in status AVAILABLE to FULFILLED so it can be used by the passenger.
+        type: object
+        properties:
+          travelValidityRanges:
+            description:  >- 
+               ranges for the start of validity to be used in a patch for available fufillments. (e.g. a 1 hour ticket not available during peak hours in the morning and afternoon)
+            type: array
+            items:  
+              type: object
+              properties:
+                from: 
+                  type: string
+                  format: date-time
+                until:
+                  type: string
+                  format: date-time
+          travelDates:
+            description:  >- 
+               travel dates that can be selected. Note: date only is used to cover properly the case of passes including multiple time zones.
+            type: array
+            items:
+               type: string
+               format: date 
+          fromPlaceRequired:
+            description: >-
+              indication whether a starting place for the ticket must be provided.
+            type: boolean
+            default: false
+          maxAvailableZones:
+            description: >-
+              upper limit to the numver of selected zones.          
+            type: integer
+            format: int32
+          availableZones:
+            description: >-
+              zones that can be selected for the fulfillment. Zone ids are defined in the context of a fare provider. TODO: add masterdata service on ZoneDefinition (ZoneDefinition is included in OSDM offline data)
+            type: array
+            items:
+              type: object
+              properties:
+                provider:
+                  $ref: "#/components/schemas/Company"
+                id: 
+                  type: string
+                name: 
+                  type: string
+              required:
+                - provider
+                - id
+
+
     FulfillmentStatus:
+      description: >-
+        Individual fulfillments of a multi journey booking need an separate patch to create the usable fulfilment in status FULFILLED before they are in an intermediate state AVAILABLE where they don't provide a document for travel. Fulfillments can be ON_HOLD in case they are booked but not yet available (e.g. a booking providing 2 journey per week) or passed in case the fulfillment was not patched for usage within the required time.
       type: string
       enum:
         - CONFIRMED
+        - AVAILABLE
+        - ON_HOLD
+        - PASSED
         - FULFILLED
         - CHECKEDIN
         - REFUNDED
