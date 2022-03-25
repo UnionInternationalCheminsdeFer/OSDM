@@ -7061,7 +7061,7 @@ components:
             list of route items referenced within the 
           type: array
           items: 
-            $ref: "#/components/schemas/Company"
+            $ref: "#/components/schemas/RouteItem"
 
     RouteItem:
       description: >-
