@@ -646,7 +646,11 @@ Multi-Journey products provide the right for mutliple journes. These can be defi
 | Travel right for a number of trips of a limited range | The time when the journey starts and the starting place needs to be added |
 | Tickets for a selectable number of zones | the selected zones need to be provided |
 
+After the booking confirmation the fulfillment will be in state of AVAILABLE in case the fulfillment just requires additional selections to be come fulfilled. To fulfill it the patch endpoint of the api on the fulfillment needs to be used to select more options like travel date or zones. The fulfillment in the state available provides information on the selections to be made.
 
+A fulfillment acn be in state on hold it it is not jet available to be fulfilled. This could be the case for tickets providing a limited number of trips per time (e.g. 5 trips per week) and the number has already been used for the current time range. 
+
+Fulfillment can be in state expired if they had been available but were not requested in time.
 
 #### Error handling
 
