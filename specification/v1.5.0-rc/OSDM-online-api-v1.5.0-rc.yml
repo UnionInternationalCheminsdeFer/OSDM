@@ -62,7 +62,6 @@ tags:
   - name: Master Data
     description: >-
       resources to get master data
-
 paths:
   /places:
     get:
@@ -2653,6 +2652,43 @@ paths:
         "503":
           $ref: "#/components/responses/ServiceUnavailableResponse"
 
+  /zones:
+    get:
+      tags:
+        - Master Data
+      summary: Returns a collection of zone definitions.
+      operationId: getZones
+      parameters:
+        - $ref: "#/components/parameters/traceParent"
+        - $ref: "#/components/parameters/traceState"
+      responses:
+        "200":
+          description: zone definitions provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ZoneCollectionResponse"
+          headers:
+            Expires:
+              schema:
+                type: string
+                description: >-
+                  Gives the date/time after which the response is considered stale (in "HTTP-date" format as defined by RFC 7231).
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "501":
+          description: Not implemented
+        "503":
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+
 security:
   - oAuth2ClientCredentials: []
 
@@ -2778,7 +2814,6 @@ components:
           description: >-
             An absolute URI that identifies the specific occurrence of the warning.
             example: offers/offer1234
-
     PlaceResponse:
       type: object
       required:
@@ -3328,7 +3363,6 @@ components:
             The length of the pattern is equal to the number of days from 
             start date to end date. A bit value of "1" indicates that an event
             actually happens on the day that is represented by the bit position.
-
     TripLeg: ## OJP
       type: object
       description: >-
@@ -3856,7 +3890,6 @@ components:
           description: >-
             Reference to transport operators.
             For UIC see: https://unioninternationalcheminsdefer.github.io/OSDM/spec/catalog-of-code-lists/
-
             As a leg can be operated by more than operator we model it as an array here.
           type: array
           items:
@@ -3961,7 +3994,6 @@ components:
             Passenger load status on vehicle. If omitted, not known. 
             Equivalent to siri:OccupancyEnumeration which describes three values: 
             "full", "seatingAvailable" and "standingAvailable".
-
     Place: ## OJP # Reduced scope
       type: object
       description: >-
@@ -4277,7 +4309,6 @@ components:
       description: >-
         Reference to situation message. Message details might be found in response 
         context or through other communication channels. Provided by OJP.
-
     VehicleNumber:
       type: string
       description: >-
@@ -4491,7 +4522,6 @@ components:
       description: >-
         Boolean-expression indicating the data that must be set in the data
         model in order to proceed to next step of the process.
-
     OfferSummary:
       type: object
       required:
@@ -5549,7 +5579,7 @@ components:
         - CONFIRMED
         - AVAILABLE
         - ON_HOLD
-        - PASSED
+        - EXPIRED
         - FULFILLED
         - CHECKEDIN
         - REFUNDED
@@ -5589,7 +5619,6 @@ components:
           description: >-
             Physical format of the document provided in the content field in Mime-Type format, e.g. 
             application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
-
     FulfillmentItem:
       type: object
       description: >-
@@ -5743,7 +5772,6 @@ components:
           description: >-
             Indicates for passes the date taken as reference to compute possible partial refund. It is also the date taken
             as reference to invalidate the pass partially refunded.
-
     RefundOfferConfirm:
       type: object
       description: >-
@@ -6291,7 +6319,6 @@ components:
           format: uri
           description: >-
             An absolute URI that identifies the specific occurrence of the problem.
-
     PlacePreferencesBundle:
       type: object
       description: >-
@@ -6402,7 +6429,6 @@ components:
           description: >-
             Physical format of the document provided in the content field in Mime-Type format, e.g. 
             application/pdf, image/jpeg, etc. Must be filled if the "content" field is present.
-
     ClaimedJourneyDetails:
       type: object
       properties:
@@ -6590,6 +6616,58 @@ components:
           default: false
         _links:
           $ref: "#/components/schemas/Link"
+
+    ZoneCollectionResponse:
+      type: object
+      properties:
+        warnings:
+          $ref: "#/components/schemas/WarningCollection"
+        zoneDelivery:
+          $ref: "#/components/schemas/ZonesDelivery"
+
+    ZonesDelivery:
+      type: object
+      description: Delivery of a list of reduction cards.
+      properties:
+        deliveryDate:
+          description: date of the assembly of the reduction card data set
+          type: string
+          format: date-time
+        reductionCards:
+          type: array
+          items:
+            $ref: "#/components/schemas/ZoneDefinition"
+
+    ZoneDefinition:
+      description: >-
+        definition of a zone used to define regional validity. The area of the zone can be defined via a geo-polygon, a complete list of all contained stations or area codes from the NUTS code list. The carrier is either the carrier or transport authority responsible for the definition.
+      type: object 
+      properties:
+        carrier: 
+          $ref: "#/components/schemas/Company"
+        id: 
+          type: string
+        name: 
+          type: string
+        polygon: 
+          $ref: "#/components/schemas/Polygon"
+        places: 
+          type: array
+          items: 
+            $ref: "#/components/schemas/PlaceRef"
+        nutsCodes: 
+          type: array
+          items:
+            type: string
+      required: 
+         - carrier
+         - id
+         
+         
+         
+         
+         
+         
 
     #### Fare-specific elements begin
 
@@ -6951,7 +7029,6 @@ components:
       description: >-
         Unit to allocate trips in a multi-trip fare. Trips can be allocated per day (e.g. Eurail) or per 
         duration (e.g. multiples of a duration unit to cover the trip) or as single trips (e.g. carnet))
-
         NONE: Individual trips don't need to be allocated. 
         TRIP: allocation per individual trip. 
         DAY: The allocation is per travel day.
@@ -7332,7 +7409,6 @@ components:
         In case the connection point is between stations for each side of the border real stations must be provided. 
         Multiple sets of station can be provided in the rare case that the connection point connects more than two station (A-B and A-C).
         Multiple stations within a set at one side of the border might be provided in case of changes (new stations build near the border). 
-
         Providing the UIC code for the station is mandatory.
       required:
         - stationSets
@@ -7734,7 +7810,6 @@ components:
       type: string
       description: >-
         Accommodation type definition out of the Accommodation Sub Type Code List
-
     SelectedPlaceOption:
       type: object
       description: >-
