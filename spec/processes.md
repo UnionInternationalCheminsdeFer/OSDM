@@ -635,6 +635,18 @@ is responsible to create the fulfillments of the combined offers. However the fa
 has the option to provide fulfillment parts (e.g. visual security elements,..) to be 
 integrated by the allocator in the combined fulfillment.
 
+#### Fulfillment Process of Multi-Journey Products
+
+Multi-Journey products provide the right for mutliple journes. These can be defined in the product as a specific number travel days or jounrney. In order to use the travel right the fulfillment has to be enhanced with additional information on the intended use. e.g.:
+
+| Travel right | required information |
+|---|---|
+| Pass for a number of travel days | The day of travel is provided and as a result the fulfillment for that selected day becomes fulfilled. |
+| Travel right a number of journeys | The day or start time is provided and as result the fulfillment for one journey becomes fulfilled. |
+| Travel right for a number of trips of a limited range | The time when the journey starts and the starting place needs to be added |
+| Tickets for a selectable number of zones | the selected zones need to be provided |
+
+
 
 #### Error handling
 
