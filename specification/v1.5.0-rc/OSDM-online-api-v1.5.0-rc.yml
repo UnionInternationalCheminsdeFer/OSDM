@@ -6630,7 +6630,7 @@ components:
       description: Delivery of a list of reduction cards.
       properties:
         deliveryDate:
-          description: date of the assembly of the reduction card data set
+          description: date of the assembly of the zone data set
           type: string
           format: date-time
         reductionCards:
