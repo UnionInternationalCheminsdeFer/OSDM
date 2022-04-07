@@ -4432,6 +4432,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PromotionCode"
+        corporateCodes:
+          type: array
+          items:
+            $ref: "#/components/schemas/CorporateCode"
         offerSearchCriteria:
           $ref: "#/components/schemas/OfferSearchCriteria"
         embed:
