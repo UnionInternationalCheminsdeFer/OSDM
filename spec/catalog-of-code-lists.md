@@ -41,6 +41,7 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |------|------------------------|----------------|------------------|-------------|------------------------|
 |`AISLE`| N | Y | Y | Place at the aisle | `PLACE_LOCATION` |
 |`AIR-CONDITIONED`| N | Y | Y | Place in air conditioned area | |
+|`ANY_SEAT` | Y | N | N | Indicates that any seat within a vehicle is ok | |
 |`BISTRO` | N | Y | Y | Places in a coach with self-service bistro | |
 |`BICYCLE`| Y | Y | Y | Bicycle hook | |
 |`BUSINESS`| Y | Y | Y | Manager compartment/business| |

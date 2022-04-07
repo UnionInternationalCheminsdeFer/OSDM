@@ -55,7 +55,7 @@ implementations:
 | Offers     | `OFFER_PLACE_UNKNOWN`      | A provided place is not known |
 | Offers     | `OFFER_NO_RESULTS`  | The trip search did not return any result |
 | Offers     | `OFFER_SCHEDULE_MISMATCH`  | Schedule mismatch between systems |
-| Offers     | `OFFER_RESERVATION_OPTION_NOTA`  | The requested reservation option is not available on this vehicle |
+| Offers     | `OFFER_RESERVATION_OPTION_NOT_AVAILABLE` | The requested reservation option is not available on this vehicle |
 | Offers     | `OFFER_PASSENGER_PROPERTY_NOT_MODIFIABLE`| Attempted to modify a read-only property (passenger) |
 | Offers     | `OFFER_OFFERPART_PROPERTY_NOT_MODIFIABLE`| Attempted to modify a read-only property (reservation, ancillary or fare) |
 | Booking    | `BOOKING_OFFER_NOT_FOUND`  | Referenced Offer or offer part not found (offer expired ?) |
