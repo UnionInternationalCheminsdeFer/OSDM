@@ -5188,9 +5188,8 @@ components:
      CorporateCode:
       type: object
       description: >-
-        The corporate code is a token that reduces the price at POST booking time OR
-        Token that reduces the price at POST trip-offer-collection time OR
-        Token to receive offers that are not available without it, associated with an agreement
+        The corporate code is a token that reduces the price that reduces the price at POST trip-offer-collection time OR
+        trip-offer-request or Token to receive offers that are not available without it, associated with an agreement
         between allocator/carrier and a corporate client
       properties:
         code:
