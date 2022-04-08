@@ -7202,8 +7202,8 @@ components:
           format: int32
         zone:
           $ref: "#/components/schemas/Zone"
-        viaStations:
-          $ref: "#/components/schemas/ViaStations"
+        route:
+          $ref: "#/components/schemas/Route"
         trainLink:
           $ref: "#/components/schemas/TrainLink"
         line:
@@ -7274,19 +7274,40 @@ components:
           items:
             $ref: "#/components/schemas/GeoPosition"
 
-    ViaStations:
+    Route:
+      description: >-
+        route description including the first and last real stopPoint
+      properties:  
+        routeItem:
+           $ref: "#/components/schemas/RouteItem"
+        routeItemList:
+          description: >-
+            list of route items referenced within the 
+          type: array
+          items: 
+            $ref: "#/components/schemas/RouteItem"
+
+    RouteItem:
+      description: >-
+        items to compose routes (Note - replaced viaStation, content compliant with viaStation in IRS 90918-4 and 90918-9)
       type: object
       properties:
-        alternativeRoute:
+        alternativeRouteItemIndices:
+          description: >- 
+            list of alternative route parts to be used on this travel path referenced by the index in the provided list of route items
           type: array
           items:
-            $ref: "#/components/schemas/ViaStations"
+            type: integer
+            format: int32
         carrierConstraint:
           $ref: "#/components/schemas/CarrierConstraint"
-        route:
+        routeItemIndices:
+          description: >- 
+            sequence of route items along the travel path referenced by the index in the provided list of route items
           type: array
           items:
-            $ref: "#/components/schemas/ViaStations"
+            type: integer
+            format: int32
         serviceConstraint:
           $ref: "#/components/schemas/ServiceConstraint"
         station:
