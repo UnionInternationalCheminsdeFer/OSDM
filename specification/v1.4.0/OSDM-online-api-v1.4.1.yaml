@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: UIC 90918-10 - OSDM
-  version: 1.4.1
+  version: 1.4.1-rc1
   description: |
     Specifications for the OSDM API standard. The OSDM specification supports two
     modes of operation: Distributor Mode and Allocator Mode. The API works the same in 
@@ -5406,7 +5406,7 @@ components:
         - offers
       properties:
         purchaser:
-          $ref: "#/components/schemas/Purchaser"
+          $ref: "#/components/schemas/PurchaserSpecification"
         offers:
           type: array
           items:
@@ -7274,8 +7274,8 @@ components:
           format: int32
         zone:
           $ref: "#/components/schemas/Zone"
-        viaStations:
-          $ref: "#/components/schemas/ViaStations"
+        route:
+          $ref: "#/components/schemas/Route"
         trainLink:
           $ref: "#/components/schemas/TrainLink"
         line:
@@ -7359,6 +7359,46 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ViaStations"
+        serviceConstraint:
+          $ref: "#/components/schemas/ServiceConstraint"
+        station:
+          $ref: "#/components/schemas/StopPlace" # EXT Changed from StopPoint
+        fareReferenceStation:
+          $ref: "#/components/schemas/FareReferenceStation"
+
+    Route:
+      description: >-
+        Route description including the first and last real stopPoint
+      properties:  
+        routeItem:
+           $ref: "#/components/schemas/RouteItem"
+        routeItemList:
+          description: list of route items referenced within the list
+          type: array
+          items: 
+            $ref: "#/components/schemas/RouteItem"
+
+    RouteItem:
+      description: >-
+        Items to compose routes (Note - replaced viaStation, content compliant with viaStation in IRS 90918-4 and 90918-9)
+      type: object
+      properties:
+        alternativeRouteItemIndices:
+          description: >- 
+            list of alternative route parts to be used on this travel path referenced by the index in the provided list of route items
+          type: array
+          items:
+            type: integer
+            format: int32
+        carrierConstraint:
+          $ref: "#/components/schemas/CarrierConstraint"
+        routeItemIndices:
+          description: >- 
+            sequence of route items along the travel path referenced by the index in the provided list of route items
+          type: array
+          items:
+            type: integer
+            format: int32
         serviceConstraint:
           $ref: "#/components/schemas/ServiceConstraint"
         station:
@@ -8155,6 +8195,21 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Link"
+    
+    PurchaserSpecification:
+      type: object
+      description: Minimal specification of a purchaser to request booking of an offer.
+      required:
+        - details
+      properties:
+        externalRef:
+          description: >-
+            A stable reference to a purchaser from other elements, or from caller system.
+            When received in input of a trip-offers-collection request, it must be echoed back in the
+            response.
+          type: string
+        details:
+          $ref: "#/components/schemas/PersonDetail"
 
     PassengerResponse:
       type: object
