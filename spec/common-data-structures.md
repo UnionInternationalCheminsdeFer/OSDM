@@ -588,8 +588,8 @@ The data structure `RegionalValidity` is defined in *IRS 90918-4* and included b
 
 Extended route data structure including fare reference station sets.
 
-<!-- Figure 33 route description (ViaStation) data structure -->
-![Via Stations](../images/common-data-structures/via-stations.png)
+<!-- Figure 33 route description (Route (ViaStation in previous versions) data structure -->
+![Route](../images/common-data-structures/route.png)
 
 <!-- Figure 34 RegionalConstraint data structure - copy of 90918-4 -->
 ![Regional Constraint](../images/common-data-structures/regional-constraint.png)
