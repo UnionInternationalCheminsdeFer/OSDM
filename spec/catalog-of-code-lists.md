@@ -965,23 +965,23 @@ Additional codelists can be defined by implementers. The codelist name should th
  |`WIFI_FREE`	 | 	Free WiFi service on board available	 | 	B.4.7161	 | 	46	 | 
  |`WIFI_OFFERED`	 | 	WiFi service on board available	 | 	B.4.7161	 | 	47	 | 
  |`WARNING_STRIKE`	 | 	Warning! Service may be affected by strike action	 | 	B.4.7161	 | 	48	 | 
- | 	N/A	 | 	First-class sleepers First-class sleepers	 | 	B.4.9039	 | 	2	 | 
- | 	N/A	 | 	Standard class sleepers Standard class (second class) sleepers	 | 	B.4.9039	 | 	3	 | 
- | 	N/A	 | 	First-class seats First-class seats	 | 	B.4.9039	 | 	4	 | 
- | 	N/A	 | 	Second-class seats Second-class seats Also: standard, etc.	 | 	B.4.9039	 | 	5	 | 
- | 	N/A	 | 	First-class couchettes First-class couchettes	 | 	B.4.9039	 | 	6	 | 
- | 	N/A	 | 	Second-class couchettes Second-class couchettes	 | 	B.4.9039	 | 	7	 | 
+ | 	N/A	 | 	First-class sleepers	 | 	B.4.9039	 | 	2	 | 
+ | 	N/A	 | 	Standard class (second class) sleepers	 | 	B.4.9039	 | 	3	 | 
+ | 	N/A	 | 	First-class seats	 | 	B.4.9039	 | 	4	 | 
+ | 	N/A	 | 	Second-class seats Also: standard, etc.	 | 	B.4.9039	 | 	5	 | 
+ | 	N/A	 | 	First-class couchettes	 | 	B.4.9039	 | 	6	 | 
+ | 	N/A	 | 	Second-class couchettes	 | 	B.4.9039	 | 	7	 | 
  | 	N/A	 | 	Sleeperette Sleeperette or reclining seat	 | 	B.4.9039	 | 	8	 | 
  |`RESTAURANT`	 | 	Restaurant facility	 | 	B.4.9039	 | 	9	 | 
- | 	N/A	 | 	First-class sleeper, single First-class sleeper, single	 | 	B.4.9039	 | 	11	 | 
- | 	N/A	 | 	First-class sleeper, special First-class sleeper, special	 | 	B.4.9039	 | 	12	 | 
- | 	N/A	 | 	First-class sleeper, double First-class sleeper, double	 | 	B.4.9039	 | 	13	 | 
+ | 	N/A	 | 	First-class sleeper, single	 | 	B.4.9039	 | 	11	 | 
+ | 	N/A	 | 	First-class sleeper, special	 | 	B.4.9039	 | 	12	 | 
+ | 	N/A	 | 	First-class sleeper, double	 | 	B.4.9039	 | 	13	 | 
  |`VEHICLE_TRAINSPORT`	 | 	Facilities for vehicle transport etc. Not bicycles. Cars, boats, trailers, motorbikes	 | 	B.4.9039	 | 	14	 | 
- | 	N/A	 | 	Second-class, sleeper, T2, Second-class sleeper, T2 (two-bed compartment) 0	 | 	B.4.9039	 | 	15	 | 
+ | 	N/A	 | 	Second-class sleeper, T2 (two-bed compartment) 0	 | 	B.4.9039	 | 	15	 | 
  | 	N/A	 | 	Second-class sleeper, T3 Second-class sleeper, T3 (three-bed compartment) 0	 | 	B.4.9039	 | 	16	 | 
  | 	N/A	 | 	Second-class sleeper T4 Second-class sleeper, T4 (four-bed compartment) 0	 | 	B.4.9039	 | 	17	 | 
- | 	N/A	 | 	First-class sleeper, single, shower First-class sleeper, single with shower 0	 | 	B.4.9039	 | 	18	 | 
- | N/A	 | 	First-class sleeper, double, shower First-class sleeper, double with shower 0	 | 	B.4.9039	 | 	19	 | 
+ | 	N/A	 | 	First-class sleeper, single with shower 0	 | 	B.4.9039	 | 	18	 | 
+ | N/A	 | 	First-class sleeper, double with shower 0	 | 	B.4.9039	 | 	19	 | 
  |`NON_SMOKER`	 | 	The travel service is non-smoking	 | 	B.4.9039	 | 	20	 | 
  |`DISABLED_FACILITIES`	 | 	Facilities for heavily disabled persons available	 | 	B.4.9039	 | 	21	 | 
  |`BABY_ROOM`	 | 	Baby care facilities available	 | 	B.4.9039	 | 	24	 | 
@@ -999,21 +999,21 @@ Additional codelists can be defined by implementers. The codelist name should th
  | 	N/A	 | 	Premium class A class with comfort level higher than first class Business, etc Includes Comfort, Club, Pullman	 | 	B.4.9039	 | 	54	 | 
  | 	N/A	 | 	Preferente Spanish first class on long distance trains RENFE	 | 	B.4.9039	 | 	55	 | 
  | 	N/A	 | 	Turista Spanish second class on long distance trains RENFE	 | 	B.4.9039	 | 	56	 | 
- | 	N/A	 | 	First-class sleeper, single, shower, WC First-class sleeper, single with shower and WC RENFE	 | 	B.4.9039	 | 	57	 | 
- | 	N/A	 | 	First-class sleeper, double shower, WC First-class sleeper, double with shower and WC RENFE	 | 	B.4.9039	 | 	58	 | 
- | 	N/A	 | 	Second class sleeper, T3, shower, WC Second class sleeper, T3, shower, WC	 | 	B.4.9039	 | 	59	 | 
- | 	N/A	 | 	Second class sleeper double Second class sleeper for two	 | 	B.4.9039	 | 	60	 | 
- | 	N/A	 | 	Second class sleeper double shower/toilets Second class sleeper for two with shower and toilets	 | 	B.4.9039	 | 	61	 | 
- | 	N/A	 | 	Second-class, couchette, two-bed, C2 Second class compartment with 2 couchettes	 | 	B.4.9039	 | 	62	 | 
- | 	N/A	 | 	Second-class, couchette, four-bed, C4 Second class compartment with 4 couchettes 	 | 	B.4.9039	 | 	63	 | 
- | 	N/A	 | 	Second-class, couchette, six-bed, C6 Second class compartment with 6 couchettes 	 | 	B.4.9039	 | 	64	 | 
- | 	N/A	 | 	Second class couchette wheelchair Second class couchette with wheelchair space 	 | 	B.4.9039	 | 	65	 | 
+ | 	N/A	 | 	First-class sleeper, single with shower and WC RENFE	 | 	B.4.9039	 | 	57	 | 
+ | 	N/A	 | 	First-class sleeper, double with shower and WC RENFE	 | 	B.4.9039	 | 	58	 | 
+ | 	N/A	 | 	Second class sleeper, T3, shower, WC	 | 	B.4.9039	 | 	59	 | 
+ | 	N/A	 | 	Second class sleeper for two	 | 	B.4.9039	 | 	60	 | 
+ | 	N/A	 | 	Second class sleeper for two with shower and toilets	 | 	B.4.9039	 | 	61	 | 
+ | 	N/A	 | 	Second class compartment with 2 couchettes	 | 	B.4.9039	 | 	62	 | 
+ | 	N/A	 | 	Second class compartment with 4 couchettes 	 | 	B.4.9039	 | 	63	 | 
+ | 	N/A	 | 	Second class compartment with 6 couchettes 	 | 	B.4.9039	 | 	64	 | 
+ | 	N/A	 | 	Second class couchette with wheelchair space 	 | 	B.4.9039	 | 	65	 | 
  | 	N/A	 | 	Executive class A class with comfort level higher than first class Trenitalia 	 | 	B.4.9039	 | 	66	 | 
  | 	N/A	 | 	Business class First class Trenitalia 	 | 	B.4.9039	 | 	67	 | 
  | 	N/A	 | 	Premium class A second class with comfort level higher than normal second class Trenitalia 	 | 	B.4.9039	 | 	68	 | 
  | 	N/A	 | 	Standard class Trenitalia’s normal second class Trenitalia 	 | 	B.4.9039	 | 	69	 | 
  |`NO_CLASS`	 | 	Unified class For services with no class differentiation. A service with only one class UIC 	 | 	B.4.9039	 | 	70	 | 
- |`MASK_MEDI_GRADE`	 | 	Medical-grade masks Medical-grade masks must be worn 	 | 	B.4.9039	 | 	71	 | 
+ |`MASK_MEDI_GRADE`	 | 	Medical-grade masks must be worn 	 | 	B.4.9039	 | 	71	 | 
  |`MASK`	 | 	Mask obligation according to legal regulation Mask obligation according to legal regulation 	 | 	B.4.9039	 | 	72	 | 
  | 	N/A	 | 	Metro connection Metro, subway, underground connection Only used in TSDUPD 	 | 	B.4.9039	 | 	101	 | 
  | 	N/A	 | 	Taxi connection Taxi connection Only used in TSDUPD 	 | 	B.4.9039	 | 	102	 | 
