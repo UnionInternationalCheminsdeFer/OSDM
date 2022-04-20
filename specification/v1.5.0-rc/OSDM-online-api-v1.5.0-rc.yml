@@ -5198,9 +5198,7 @@ components:
           type: string
           example: 123456
         companyRef:
-          description: >-
-            The party that issues the corporate code, in case of a railway it's its RICS code
-          type: string
+          $ref: “#/components/schemas/Company”
         beneficiary:
           description: >-
             The party that benefits from the corporate code, intended to be used to present to the end user
