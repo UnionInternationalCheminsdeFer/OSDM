@@ -5198,7 +5198,7 @@ components:
           type: string
           example: 123456
         companyRef:
-          $ref: “#/components/schemas/Company”
+          $ref: "#/components/schemas/Company"
         beneficiary:
           description: >-
             The party that benefits from the corporate code, intended to be used to present to the end user
