@@ -5402,6 +5402,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/OfferSelection"
+        payments:
+          type: array
+          items:
+             $ref: "#/components/schemas/Payment"
 
     FulfillmentOption:
       type: object
@@ -8459,5 +8463,40 @@ components:
         - CHIP_CARD
         - PASS
       default: REDUCTION_CARD
+    
+    PaymentMethod:
+      type: string
+      x-extensible-enum:
+        - CASH
+        - INVOICE
+        - VOUCHER
+        - CARD
+    
+    VoucherInformation:
+      type: object
+      required:
+        - code
+        - issuer
+      properties:
+        code: 
+          description: voucher code provided by the issuer
+          type: string
+        issuer: 
+          description: refers to the entity which issued the voucher
+          type: string
+
+    Payment:
+      type: object
+      description: Refers to the payment made between the distributor/ticket vendor and the allocator
+      required:
+        - paymentMethod
+        - price
+      properties:
+        paymentMethod:
+          $ref: "#/components/schemas/PaymentMethod"
+        voucherInformation:
+          $ref: "#/components/schemas/VoucherInformation"
+        amount:
+          $ref: "#/components/schemas/Price"
 
     #### Common elements end
