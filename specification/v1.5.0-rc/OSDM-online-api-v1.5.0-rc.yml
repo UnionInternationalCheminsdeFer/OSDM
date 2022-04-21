@@ -5357,6 +5357,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ExchangeOperation"
+        payments:
+          type: array
+          items: 
+            $ref: "#/components/schemas/Payment"
+
         _links:
           type: array
           items:
