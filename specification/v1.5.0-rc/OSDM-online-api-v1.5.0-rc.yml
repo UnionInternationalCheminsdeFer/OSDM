@@ -5191,18 +5191,22 @@ components:
         The corporate code is a token that reduces the price that reduces the price at POST trip-offer-collection time OR
         trip-offer-request or Token to receive offers that are not available without it, associated with an agreement
         between allocator/carrier and a corporate client
+      required:
+        - code
+        - issuer
       properties:
         code:
           description: >-
             The code issued by the referenced company
           type: string
           example: 123456
-        companyRef:
+        issuer:
           $ref: "#/components/schemas/Company"
         beneficiary:
           description: >-
-            The party that benefits from the corporate code, intended to be used to present to the end user
+            The name of the party that benefits from the corporate code, intended to be used to present to the end user
           type: string
+          example: Siemens
           
     OfferPartReference:
       type: object
