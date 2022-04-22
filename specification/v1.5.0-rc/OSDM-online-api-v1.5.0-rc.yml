@@ -4839,7 +4839,6 @@ components:
                   type: string
       required:
         - price
-        - passengerIds
         - validFrom
         - refundable
         - exchangeable
@@ -5162,6 +5161,9 @@ components:
 
     PromotionCode:
       type: object
+      required:
+        - code
+        - issuer
       description: >-
         The promotion code is a token that reduces the price at POST booking time OR
         Token that reduces the price at POST trip-offer-collection time OR
@@ -5175,7 +5177,7 @@ components:
         issuer:
           description: >-
             The party that issues the promotion code, in case of a railway it's its RICS code
-          type: string
+          $ref: "#/components/schemas/Company"
 
     OfferPartReference:
       type: object
@@ -5392,8 +5394,6 @@ components:
         Allows setting the required fulfillment type, e.g. value paper
         or e-ticket and preferred fulfillment media. 
         The latter is optional and relevant in some cases only.
-      required:
-        - exchangeOffers
       properties:
         promotionCodes:
           type: array
@@ -5408,6 +5408,7 @@ components:
           items:
             $ref: "#/components/schemas/OfferSelection"
         payments:
+          description: Methods of payment used by the customer to the distributor. In case of voucher payment, the amount of the voucher is not required in input.
           type: array
           items:
              $ref: "#/components/schemas/Payment"
@@ -8476,6 +8477,8 @@ components:
         - INVOICE
         - VOUCHER
         - CARD
+        - E_PAYMENT
+        - DIRECT_DEBIT
     
     VoucherInformation:
       type: object
@@ -8487,21 +8490,19 @@ components:
           description: voucher code provided by the issuer
           type: string
         issuer: 
-          description: refers to the entity which issued the voucher
-          type: string
+          $ref: "#/components/schemas/Company"
 
     Payment:
       type: object
-      description: Refers to the payment made between the distributor/ticket vendor and the allocator
+      description: Method of payment used by the customer to the distributor. On input of voucher the money attribute will not be present
       required:
         - paymentMethod
-        - price
       properties:
         paymentMethod:
           $ref: "#/components/schemas/PaymentMethod"
         voucherInformation:
           $ref: "#/components/schemas/VoucherInformation"
-        amount:
+        money:
           $ref: "#/components/schemas/Price"
 
     #### Common elements end
