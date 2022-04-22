@@ -127,6 +127,24 @@ Place Preference Group collects Place preferences where only one can be chosen o
 |`WITH_SMALL_CHILDREN`| N | Y | Y | Places for passengers with small children| 'FAMILY' |
 |`WITHOUT_ANIMALS`| N | Y | Y | Place in an area where animals are not allowed | |
 
+## Ancilliary category
+
+
+| Code                | Description                                                          |
+|---------------------|----------------------------------------------------------------------|
+|`PAYMENT_VOUCHER`    | Payment voucher to be used to pay                                    |
+|`PRODUCT_ACCESS`     | Access to retrieve a product (e.g. electronic newspaper,..)          |
+|`MERCHANDISE_PRODUCT`|                                                                      |
+|`LUGGAGE`            | Allowance for extra luggage                                          |
+|`LUGGAGE_TRANSFER    | Service for luggage transport                                        |
+|`ON_BOARD_SERVICE`   | Access to service on board                                           |
+|`STATION_SERVICE`    | Access to some station service, Lounge access,...                    |
+|`FOOD_ON_BOARD`      |                                                                      |
+|`DRINKS_ON_BOARD`    |                                                                      |
+|`WIFI`               | Access to WiFi                                                       |
+|`PARKING`            | parking of cars                                                      |
+
+
 ## BarcodeType
 
 | Code | Description |
