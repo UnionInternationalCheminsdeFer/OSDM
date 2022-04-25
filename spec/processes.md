@@ -604,6 +604,35 @@ grace period is left to the implementor.
 - the booking is already cancelled
 - unknown error on the server side
 
+### Payment information and Payment Vouchers
+
+OSDM does not currently handle the payment process directly, which means that
+payment from the customer has to be taken by the distributor outside of this API.
+
+It is however necessary for the allocator / provider to know about certain aspects 
+of the payment, e.g. the method of payment (e.g. Invoice, Cash, Non-Cash methods like
+Credit/Debit cards or Direct Debit).
+
+It is also necessary to be able to use Payment Vouchers, such as those that are given by
+allocators / providers in response to Passenger Rights Claims, or that are used as means
+of refund on certain tariffs (e.g. Deutsche Bahn Sparpreis).
+
+As a Payment Voucher is a kind of payment, the handling of these goes together in the API.
+
+The process for a booking which uses one or more Payment Vouchers, and that specifies the
+means of payment, is as follows:
+
+1. Create the prelimiary booking by using the POST /bookings endpoint
+2. Add any Payment Vouchers by using the PATCH /bookings endpoint and filling out the 
+payments information only for the Payment Vouchers presented
+3. This will return a preliminary booking structure which has the payment information for 
+these vouchers added, including the value of the vouchers. Should the value of the vouchers
+exceed the value of the booking, an Ancilliary Offer will have been added to the booking
+which represents a new voucher covering the overpayment.
+4. Add the payment information for the balance of the booking (should there be any) in another
+PATCH /bookings call
+5. The booking is now "balanced", i.e. the sum of all payments equals the sum of all offers
+
 ## Confirmation and Fulfillment Processes
 
 ### Fulfillment Process
