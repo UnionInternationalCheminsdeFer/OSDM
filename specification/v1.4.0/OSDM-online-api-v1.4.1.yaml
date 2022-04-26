@@ -2844,7 +2844,7 @@ components:
       flows:
         clientCredentials:
           tokenUrl: "https://login.microsoftonline.com/tbd"
-          refreshUrl: "TODO Please add required refresh URL"
+          refreshUrl: "https://required.refresh.url/tbd"
           scopes: {} # The scopes are not being used yet
 
   parameters:
