@@ -5359,11 +5359,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ExchangeOperation"
-        payments:
+        paymentMethods:
           type: array
           items: 
-            $ref: "#/components/schemas/Payment"
-
+            $ref: "#/components/schemas/PaymentMethod"
         _links:
           type: array
           items:
@@ -5407,11 +5406,13 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/OfferSelection"
-        payments:
-          description: Methods of payment used by the customer to the distributor. In case of voucher payment, the amount of the voucher is not required in input.
+        paymentMethods:
+          description: >-
+            Methods of payment used by the customer to the distributor. In case of voucher payment, 
+            the amount of the voucher is not required in input.
           type: array
           items:
-             $ref: "#/components/schemas/Payment"
+             $ref: "#/components/schemas/PaymentMethod"
 
     FulfillmentOption:
       type: object
@@ -5465,7 +5466,6 @@ components:
           type: array
           items:
             type: string
-                
 
     FulfillmentsResponse:
       type: object
@@ -5579,7 +5579,6 @@ components:
               required:
                 - provider
                 - id
-
 
     FulfillmentStatus:
       description: >-
@@ -8470,7 +8469,7 @@ components:
         - PASS
       default: REDUCTION_CARD
     
-    PaymentMethod:
+    PaymentType:
       type: string
       x-extensible-enum:
         - CASH
@@ -8492,14 +8491,15 @@ components:
         issuer: 
           $ref: "#/components/schemas/Company"
 
-    Payment:
+    PaymentMethod:
       type: object
-      description: Method of payment used by the customer to the distributor. On input of voucher the money attribute will not be present
+      description: >-
+        Method of payment used by the customer to the distributor. On input of voucher the money attribute will not be present
       required:
-        - paymentMethod
+        - type
       properties:
-        paymentMethod:
-          $ref: "#/components/schemas/PaymentMethod"
+        type:
+          $ref: "#/components/schemas/PaymentType"
         voucherInformation:
           $ref: "#/components/schemas/VoucherInformation"
         money:
